@@ -237,7 +237,7 @@ theorem strictNormalCrossingsRestrictToClopen : StrictNormalCrossingsRestrictToC
     smooth_subschemeι_comp_of_hasStrictNormalCrossingsWith Z E hZ
   have hsmT : AlgebraicGeometry.Smooth (T.ι ≫ (Z.subschemeι ≫ p)) := inferInstance
   obtain ⟨V, hV, hyV, n, c, γ, hγ, hinjγ, hmem⟩ :=
-    exists_etaleChart_coord_mem_primeIdealOf_on_clopen p E hE Z hZ T hTclosed hcomp y
+    exists_etaleChart_coord_mem_primeIdealOf_on_clopen p E Z hZ T hcomp y
   obtain ⟨U, hyU, hU⟩ : ∃ U : W.Opens, (T.ι ≫ Z.subschemeι).base y ∈ U ∧ IsAffineOpen U := by
     obtain ⟨U, hUmem, hxU, -⟩ :=
       TopologicalSpace.Opens.isBasis_iff_nbhd.mp (Scheme.isBasis_affineOpens W)
@@ -1481,9 +1481,9 @@ universe u
 namespace FunctorialResolution
 
 theorem functorialResolutionCharZero : FunctorialResolutionCharZero.{u} := by
-  obtain ⟨R, h1, h2, h3⟩ := EmbeddedResolution.strongResolutionOfSingularitiesCharZero.{u}
+  obtain ⟨R, h1, h2⟩ := EmbeddedResolution.strongResolutionOfSingularitiesCharZero.{u}
   exact ⟨fun k _ _ X f _ _ _ =>
-    ⟨(R k X f).length, (R k X f).tower, (R k X f).isoZero, (R k X f).center, (R k X f).isBlowup⟩, h1, h2, h3⟩
+    ⟨(R k X f).length, (R k X f).tower, (R k X f).isoZero, (R k X f).center, (R k X f).isBlowup⟩, h1, h2⟩
 
 theorem inStrictNormalCrossingPosition_of_hasSimpleNormalCrossings {X : Scheme.{u}} {k : Type u} [Field k]
     {p : X ⟶ Spec (CommRingCat.of k)} {E : List X.IdealSheafData} (h : HasSimpleNormalCrossings p E) :
@@ -1556,15 +1556,12 @@ noncomputable def principalizationRuleOfAlgorithm (A : EmbeddedResolution.Princi
 
 theorem functorialPrincipalizationCharZero_of_algorithm (A : EmbeddedResolution.PrincipalizationAlgorithm.{u}) (h : FunctorialResolution.EmbeddedResolution.IsFunctorialPrincipalization A) :
     FunctorialPrincipalizationCharZero.{u} := by
-  refine ⟨principalizationRuleOfAlgorithm A, ?_, ?_, ?_⟩
+  refine ⟨principalizationRuleOfAlgorithm A, ?_, ?_⟩
   · intro k _ _ X p _ _ _ I hI E hE
     exact isPrincipalizingSequence_of_idealBlowupSequence _ (inStrictNormalCrossingPosition_of_hasSimpleNormalCrossings hE)
       (h.lastIdeal_eq_top k X p I hI E (inStrictNormalCrossingPosition_of_hasSimpleNormalCrossings hE))
   · intro k _ _ X p _ _ _ I hI E hE X' p' _ _ _ φ _ hφ hI' hE'
     exact h.smooth_pullback k X p I hI E (inStrictNormalCrossingPosition_of_hasSimpleNormalCrossings hE) X' p' φ hφ hI'
-      (inStrictNormalCrossingPosition_of_hasSimpleNormalCrossings hE')
-  · intro k _ _ X p _ _ _ I hI E hE K _ _ _ hI' hE'
-    exact h.base_change k X p I hI E (inStrictNormalCrossingPosition_of_hasSimpleNormalCrossings hE) K (algebraMap k K) hI'
       (inStrictNormalCrossingPosition_of_hasSimpleNormalCrossings hE')
 
 theorem functorialPrincipalizationCharZero : FunctorialPrincipalizationCharZero.{u} :=

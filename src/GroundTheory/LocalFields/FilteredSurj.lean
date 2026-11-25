@@ -2,56 +2,15 @@ module
 
 public import Mathlib.Algebra.Group.Subgroup.Map
 public import Mathlib.Order.Filter.AtTopBot.Defs
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.RingTheory.WittVector.IsPoly
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
-import Mathlib.Tactic.TypeStar
-import Mathlib.Topology.Sheaves.Init
 public import Mathlib.Order.Filter.AtTopBot.Basic
+import Mathlib.Algebra.Group.Subgroup.Ker
+import Mathlib.Tactic.Choose
 
 @[expose] public section
 
 namespace GroundTheory.LocalField
 
-open Filter Topology Uniformity
+open Filter
 
 section Filtration
 
@@ -112,7 +71,7 @@ theorem map_eq_of_graded_surjective {F : ℕ → Subgroup G} {E : ℕ → Subgro
     induction j with
     | zero => simpa [hr0] using hh
     | succ j ih =>
-      rw [hrs, ← add_assoc]
+      rw [hrs, ← Nat.add_assoc]
       exact (hs (k + j) (r j) (Nat.le_add_right k j) ih).2
 
   obtain ⟨D, hD⟩ : ∃ D : ℕ → G, ∀ j, D j = s (k + j) (r j) := ⟨_, fun _ => rfl⟩
@@ -136,7 +95,7 @@ theorem map_eq_of_graded_surjective {F : ℕ → Subgroup G} {E : ℕ → Subgro
     | zero => simp
     | succ d ih =>
       have e : x (m + (d + 1)) / x m = D (m + d + 1) * (x (m + d) / x m) := by
-        rw [← add_assoc, hxs, div_eq_mul_inv, div_eq_mul_inv, mul_assoc]
+        rw [← Nat.add_assoc, hxs, div_eq_mul_inv, div_eq_mul_inv, mul_assoc]
       rw [e]
       exact (F _).mul_mem (hF (by omega) (hDF (m + d + 1))) ih
   have hC : FiltrationCauchy F x := by
@@ -185,18 +144,10 @@ theorem surjective_of_graded_surjective {F : ℕ → Subgroup G} {E : ℕ → Su
     (hF0 : F 0 = ⊤) (hE0 : E (φ 0) = ⊤) (hmap : ∀ n, ∀ g ∈ F n, f g ∈ E (φ n))
     (hgr : ∀ n, ∀ h ∈ E (φ n), ∃ g ∈ F n, h / f g ∈ E (φ (n + 1))) :
     Function.Surjective f := by
-  intro h
-  have e := map_eq_of_graded_surjective hF hE hG hH f hφ 0 (fun n _ => hmap n)
-    (fun n _ => hgr n)
-  have hh : h ∈ E (φ 0) := by rw [hE0]; exact Subgroup.mem_top h
-  rw [← e, hF0] at hh
-  obtain ⟨g, -, rfl⟩ := hh
-  exact ⟨g, rfl⟩
+  rw [← MonoidHom.range_eq_top, ← Subgroup.map_top, ← hF0, ← hE0]
+  exact map_eq_of_graded_surjective hF hE hG hH f hφ 0
+    (fun n _ => hmap n) (fun n _ => hgr n)
 
 end Surjectivity
-
-section Topological
-
-end Topological
 
 end GroundTheory.LocalField

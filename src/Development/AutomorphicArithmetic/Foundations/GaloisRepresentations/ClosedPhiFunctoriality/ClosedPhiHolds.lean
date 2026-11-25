@@ -1324,7 +1324,7 @@ open GlobalTheory.AboveL
 namespace GlobalTheory.AboveL
 
 theorem eig_pow_of_rep {K Ω : Type} [Field Ω] [Field K] [NumberField K] [Algebra K Ω] [IsAlgClosure K Ω]
-    {A : ValuationSubring Ω} {v : HeightOneSpectrum (𝓞 K)} {h : Formalism.ConjugateSelfDual.IsPlaceOver A v} (x : WD h) (σ : Weil h) (k : ℕ) :
+    {A : ValuationSubring Ω} {v : HeightOneSpectrum (𝓞 K)} {h : IsPlaceOver A v} (x : WD h) (σ : Weil h) (k : ℕ) :
     x.eig (σ ^ k) = (x.eig σ).map (· ^ k) := by
   obtain ⟨n, a, rfl⟩ := WD.exists_rep x
   rw [WD.eig_mk, WD.eig_mk, map_pow]

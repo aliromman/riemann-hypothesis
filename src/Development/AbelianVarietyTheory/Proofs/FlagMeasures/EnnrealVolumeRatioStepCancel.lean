@@ -580,7 +580,7 @@ theorem covol_eq_of_strict {G : Type} [Group G] [MeasurableSpace G] [MeasurableM
 theorem isInvInvariant {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     [LocallyCompactSpace G] [SecondCountableTopology G] [MeasurableSpace G] [BorelSpace G] (μ : Measure G)
     [μ.IsHaarMeasure] [μ.IsMulRightInvariant] : μ.IsInvInvariant := by
-  apply GlobalTheory.CartanInt.isInvInvariant_of_right <;> assumption
+  apply GlobalTheory.CartanInt.isInvInvariant_of_right
 
 private lemma exists_nhds_one_inter_discrete_subgroup_eq_one {H : Type} [Group H] [TopologicalSpace H] (Γ : Subgroup H)
     [DiscreteTopology Γ] : ∃ V ∈ nhds (1 : H), ∀ γ ∈ Γ, γ ∈ V → γ = 1 := by
@@ -1418,10 +1418,6 @@ theorem exists_rat (I : AutInst) : ∃ Γ : Subgroup I.GA, (Γ : Set I.GA) = I.G
   have hn : ((fun γ : Γ => (γ : I.GA)) ⁻¹' C) ∈ nhds (1 : Γ) :=
     continuous_subtype_val.continuousAt.preimage_mem_nhds hC1
   exact discreteTopology_of_isOpen_singleton_one (isOpen_singleton_of_finite_mem_nhds _ hn hfin)
-
-theorem gauge_pos {n : ℕ} {ε : Fin n → Bool} {c : ℝ} (h : IsGauge ε c) : 0 < c := by
-  obtain ⟨c₀, h0, -, hu⟩ := _root_.GlobalTheory.GaugeConst.gauge_exists_pos_unique n ε
-  exact hu c h ▸ h0
 
 theorem haar_muA (I : AutInst) (μf : Measure I.Gf) [SigmaFinite μf] [μf.IsHaarMeasure] :
     (I.muA μf).IsHaarMeasure ∧ (I.muA μf).IsMulRightInvariant := by

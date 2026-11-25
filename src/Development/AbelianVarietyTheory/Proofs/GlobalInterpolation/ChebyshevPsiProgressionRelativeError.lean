@@ -222,12 +222,7 @@ variable [NeZero q]
 
 theorem zsym_rootNumber_ne_zero {χ : DirichletCharacter ℂ q} (hχ : χ.IsPrimitive) :
     χ.rootNumber ≠ 0 := by
-  intro h
-  have h1 := hχ.completedLFunction_one_sub (-1)
-  rw [h, mul_zero, zero_mul] at h1
-  have h2 := χ.LFunction_eq_completed_div_gammaFactor (1 - -1) (Or.inl (by norm_num))
-  rw [h1, zero_div] at h2
-  exact χ.LFunction_ne_zero_of_one_le_re (Or.inr (by norm_num)) (by norm_num) h2
+  exact DirichletCharacter.rootNumber_ne_zero hχ
 
 noncomputable def zsymFactor (χ : DirichletCharacter ℂ q) (s : ℂ) : ℂ :=
   (q : ℂ) ^ ((1 - s) - 1 / 2) * χ.rootNumber * (χ.gammaFactor s)⁻¹ / (χ⁻¹.gammaFactor (1 - s))⁻¹
@@ -268,9 +263,7 @@ theorem zsymFactor_analyticAt (χ : DirichletCharacter ℂ q) {s : ℂ}
 
 theorem zsym_analyticAt_LFunction (χ : DirichletCharacter ℂ q) {s : ℂ} (hs : s ≠ 1) :
     AnalyticAt ℂ χ.LFunction s := by
-  refine DifferentiableOn.analyticAt (s := {1}ᶜ) (fun z hz => ?_)
-    (isOpen_compl_singleton.mem_nhds hs)
-  exact (χ.differentiableAt_LFunction z (Or.inl hz)).differentiableWithinAt
+  exact ZeroWindow.analyticOff χ s hs
 
 end
 
@@ -717,6 +710,33 @@ theorem box_subset {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (T : ℝ
   rintro ρ ⟨a, b, c, d⟩
   exact ⟨by linarith, b, by simpa using c, d⟩
 
+/-- Passing to the primitive character preserves zero boxes strictly to the right of
+`re s = 0`; the extra Euler factors can have zeros on the boundary. -/
+theorem zerosBox_eq_primitiveCharacter {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q)
+    {σ : ℝ} (hσ : 0 < σ) (T : ℝ) :
+    have : NeZero χ.conductor := ⟨χ.conductor_ne_zero⟩
+    zerosBox χ σ T = zerosBox χ.primitiveCharacter σ T := by
+  have : NeZero χ.conductor := ⟨χ.conductor_ne_zero⟩
+  ext ρ
+  have hzero (h0 : σ ≤ ρ.re) (h1 : ρ.re < 1) :=
+    (zeros_eq_zeros_primitiveCharacter q χ ρ (hσ.trans_le h0)
+      (Or.inr (by rintro rfl; simp at h1))).1
+  constructor <;> rintro ⟨h0, h1, ht, hz⟩
+  · exact ⟨h0, h1, ht, (hzero h0 h1).mp hz⟩
+  · exact ⟨h0, h1, ht, (hzero h0 h1).mpr hz⟩
+
+/-- Weighted zero sums, including multiplicities, are unchanged by passage to the
+primitive character in a positive-real-part zero box. -/
+theorem finsum_zerosBox_eq_primitiveCharacter {q : ℕ} [NeZero q]
+    (χ : DirichletCharacter ℂ q) {σ : ℝ} (hσ : 0 < σ) (T : ℝ) (f : ℂ → ℂ) :
+    have : NeZero χ.conductor := ⟨χ.conductor_ne_zero⟩
+    (∑ᶠ ρ ∈ zerosBox χ σ T, (ord χ ρ : ℂ) * f ρ) =
+      ∑ᶠ ρ ∈ zerosBox χ.primitiveCharacter σ T, (ord χ.primitiveCharacter ρ : ℂ) * f ρ := by
+  have : NeZero χ.conductor := ⟨χ.conductor_ne_zero⟩
+  refine finsum_mem_congr (zerosBox_eq_primitiveCharacter χ hσ T) fun ρ hρ => ?_
+  rw [(zeros_eq_zeros_primitiveCharacter q χ ρ (hσ.trans_le hρ.1)
+    (Or.inr (by intro h; have hr := hρ.2.1; simpa [h] using hr))).2]
+
 theorem left_zeros {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (u T : ℝ) (hu : 1 ≤ u) :
     ‖zsum χ 0 T (fun ρ => (u : ℂ) ^ ρ / ρ) -
       ∑ᶠ ρ ∈ zerosBox χ (1 / 2) T, (ord χ ρ : ℂ) * ((u : ℂ) ^ ρ / ρ)‖ ≤
@@ -842,21 +862,8 @@ theorem explicit_formula_right : ∃ C : ℝ, 0 < C ∧ ∀ (q : ℕ) [NeZero q]
       rw [← χ.changeLevel_primitiveCharacter, h, map_one]
     · rintro rfl
       exact primitiveCharacter_one
-  have hcmp : ∀ ρ : ℂ, 1 / 2 ≤ ρ.re → ρ.re < 1 →
-      (LFunction χ ρ = 0 ↔ LFunction χ.primitiveCharacter ρ = 0) ∧
-        ord χ ρ = ord χ.primitiveCharacter ρ := fun ρ a b =>
-    _root_.GlobalTheory.Lin.zeros_eq_zeros_primitiveCharacter q χ ρ (by linarith) (Or.inr (by rintro rfl; simp at b))
-  have hbox : zerosBox χ (1 / 2) T = zerosBox χ.primitiveCharacter (1 / 2) T := by
-    ext ρ
-    constructor
-    · rintro ⟨a, b, c, d⟩
-      exact ⟨a, b, c, (hcmp ρ a b).1.mp d⟩
-    · rintro ⟨a, b, c, d⟩
-      exact ⟨a, b, c, (hcmp ρ a b).1.mpr d⟩
-  have hsum : ∑ᶠ ρ ∈ zerosBox χ (1 / 2) T, (ord χ ρ : ℂ) * ((u : ℂ) ^ ρ / ρ) =
-      ∑ᶠ ρ ∈ zerosBox χ.primitiveCharacter (1 / 2) T,
-        (ord χ.primitiveCharacter ρ : ℂ) * ((u : ℂ) ^ ρ / ρ) :=
-    finsum_mem_congr hbox fun ρ hρ => by rw [(hcmp ρ hρ.1 hρ.2.1).2]
+  have hsum := finsum_zerosBox_eq_primitiveCharacter χ (by norm_num : (0 : ℝ) < 1 / 2)
+    T (fun ρ => (u : ℂ) ^ ρ / ρ)
   have hE := HA χ.conductor χ.primitiveCharacter hprim u T hT hu
   obtain ⟨hZ₁, hZ⟩ := HB χ.conductor χ.primitiveCharacter hprim T hT
   have hD := left_zeros χ.primitiveCharacter u T (by linarith)
@@ -871,7 +878,6 @@ theorem explicit_formula_right : ∃ C : ℝ, 0 < C ∧ ∀ (q : ℕ) [NeZero q]
     · rw [if_pos h, if_pos (hone.mpr h)]
     · rw [if_neg h, if_neg (mt hone.mp h)]
   have hu0 : 0 < u := by linarith
-  have hT0 : 0 < T := by linarith
   have hZ0 : 0 ≤ zsumR χ.primitiveCharacter 0 1 (fun ρ => 1 / ‖ρ‖) := by
     rw [zsumR_eq]
     exact Finset.sum_nonneg fun ρ _ => by positivity
@@ -1196,27 +1202,7 @@ namespace GlobalTheory.Lin.Repulsion
 
 theorem one_le_ord {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) {w : ℂ} (hw : w ≠ 1)
     (h0 : LFunction χ w = 0) : 1 ≤ ord χ w := by
-  have han : AnalyticOnNhd ℂ (LFunction χ) ({1}ᶜ : Set ℂ) := by
-    apply DifferentiableOn.analyticOnNhd _ isOpen_compl_singleton
-    intro z hz
-    exact (differentiableAt_LFunction χ z (Or.inl hz)).differentiableWithinAt
-  have hpre : IsPreconnected ({1}ᶜ : Set ℂ) :=
-    (isConnected_compl_singleton_of_one_lt_rank (by simp) (1 : ℂ)).isPreconnected
-  have h2 : (2 : ℂ) ∈ ({1}ᶜ : Set ℂ) := by norm_num
-  have hne : LFunction χ 2 ≠ 0 :=
-    LFunction_ne_zero_of_one_le_re χ (Or.inr (by norm_num)) (by norm_num)
-  have h2o : analyticOrderAt (LFunction χ) 2 ≠ ⊤ := by
-    rw [(han 2 h2).analyticOrderAt_eq_zero.2 hne]; simp
-  have htop : analyticOrderAt (LFunction χ) w ≠ ⊤ :=
-    han.analyticOrderAt_ne_top_of_isPreconnected hpre h2 hw h2o
-  have hz : analyticOrderAt (LFunction χ) w ≠ 0 := by
-    rw [Ne, (han w hw).analyticOrderAt_eq_zero]; simpa using h0
-  unfold ord analyticOrderNatAt
-  rw [Nat.one_le_iff_ne_zero]
-  intro h
-  rcases ENat.toNat_eq_zero.1 h with h | h
-  · exact hz h
-  · exact htop h
+  exact GlobalTheory.GoodHeight.one_le_order χ hw h0
 
 theorem norm_pow_sub_le {a b : ℂ} (ha : ‖a‖ ≤ 1) (hb : ‖b‖ ≤ 1) (j : ℕ) :
     ‖a ^ j - b ^ j‖ ≤ j * ‖a - b‖ := by
@@ -1324,10 +1310,6 @@ theorem der_pos {q : ℕ} [NeZero q] (χ₁ χ : DirichletCharacter ℂ q) (h : 
   have hsq : χ₁ n ^ 2 = 1 := by
     rw [← MulChar.pow_apply' _ two_ne_zero, h, MulChar.one_apply hu]
   set A : ℝ := Λ n * (Real.log n ^ k / k.factorial) * (n : ℝ) ^ (-2 : ℝ) with hA
-  have hA0 : 0 ≤ A := by
-    have := Real.log_natCast_nonneg n
-    have := vonMangoldt_nonneg (n := n)
-    positivity
   rw [e1, e0, MulChar.one_apply hu, MulChar.mul_apply]
   have key : ∀ ε : ℝ, χ₁ n = ε → 0 ≤ 1 + ε → 0 ≤ (((Λ n : ℝ) : ℂ) * 1 * ((Real.log n : ℂ) ^ k / (k.factorial : ℂ)) * (((n : ℝ) ^ (-2 : ℝ) : ℝ) : ℂ) +
       ((Λ n : ℝ) : ℂ) * χ₁ n * ((Real.log n : ℂ) ^ k / (k.factorial : ℂ)) * (((n : ℝ) ^ (-2 : ℝ) : ℝ) : ℂ) +
@@ -1497,14 +1479,12 @@ theorem repulsion : ∃ c : ℝ, 0 < c ∧ ∀ (q : ℕ) [NeZero q] (χ₁ χ : 
                                          positivity
       have : (0 : ℝ) ≤ 1 / 2 ^ j := by positivity
       linarith
-  have hCL : 0 ≤ C * L := by positivity
   have key := P ((W0 + V1).map (fun w => 1 / ((2 : ℂ) + (0 : ℝ) * I - w)) +
       (V2 + V3).map (fun w => 1 / ((2 : ℂ) + t * I - w))) (1 / ((2 : ℂ) + t * I - ρ))
       ((8 * C + 4) * L) (1 - β) (1 - ρ.re)
       (Multiset.mem_add.2 (Or.inr (Multiset.mem_map_of_mem _ (Multiset.mem_add.2 (Or.inl hρV)))))
       (by nlinarith) (by linarith) (by linarith) (by linarith) ?_ ?_ ?_
   · have hL' : 0 < L := by linarith
-    have hδ : 0 < 1 - β := by linarith
     convert key using 1
     have e : 1 / (D * (8 * C + 4)) / ((1 - β) * L) = 1 / (D * ((8 * C + 4) * L) * (1 - β)) := by
       field_simp
@@ -1590,7 +1570,6 @@ lemma zsum (s t : Set ℂ) (ht : t.Finite) (hst : s ⊆ t) (o : ℂ → ℕ) (u 
   have h2 : 1 / 2 ≤ ‖ρ‖ := h1.trans (Complex.re_le_norm ρ)
   rw [norm_mul, norm_div, Complex.norm_natCast, Complex.norm_cpow_eq_rpow_re_of_pos hu,
     Real.rpow_sub_one hu.ne']
-  have h3 : 0 < u ^ ρ.re := Real.rpow_pos_of_pos hu _
   have h4 : u ^ ρ.re / ‖ρ‖ ≤ 2 * u ^ ρ.re := by
     rw [div_le_iff₀ (by linarith)]
     have := mul_le_mul_of_nonneg_left h2 (show (0 : ℝ) ≤ 2 * u ^ ρ.re by positivity)
@@ -1708,8 +1687,6 @@ lemma mainLower (θ β V : ℝ) (hθ : θ ≤ 1) (h1 : 7 / 8 ≤ β) (h2 : β < 
       have h6 : (1 - x / 4) * (1 + x) * (1 - x / 8) =
           1 + 11 / 32 * (x * (1 - x)) + 9 / 32 * x + 1 / 32 * (x * (x * x)) := by ring
       linarith [mul_nonneg hx0.le (sub_nonneg.2 h), mul_nonneg hx0.le (mul_nonneg hx0.le hx0.le)]
-  have hu := Real.exp_pos V
-  have e5 : 0 < Real.exp (-x) / β := by positivity
   rw [e1, mul_div_assoc (Real.exp V) (Real.exp (-x))]
   have : θ * (Real.exp V * (Real.exp (-x) / β)) ≤ 1 * (Real.exp V * (1 - min 1 x / 4)) := by
     refine (mul_le_mul_of_nonneg_right hθ (by positivity)).trans ?_
@@ -1792,7 +1769,6 @@ lemma realEnd (Ce Ca η₀ c' K cw R₀ : ℝ) (hCe : 0 < Ce) (hCa : 0 < Ca) (h�
         have := mul_le_mul_of_nonneg_left h1 hc.le
         linarith
       linarith [Real.exp_pos (-c₃ * V / m)]
-  have hs0 : 0 ≤ s := by linarith
   have q1 : (m + V + (8 * m + s)) ^ 2 ≤ 1536 * Real.exp (s / 2) := by
     have h1 : (m + V + (8 * m + s)) ^ 2 ≤ (2 * V) ^ 2 := by gcongr; linarith
     have h2 := Real.pow_div_factorial_le_exp (s / 2) (by linarith) 4
@@ -1895,7 +1871,6 @@ theorem psiAP_relative : ∃ c₀ : ℝ, 0 < c₀ ∧ ∀ c₁ : ℝ, 0 < c₁ �
   have hfin := fun w => (hR m V w hm1 hV).2.2
   clear hR
   set L := 10 * m + √V with hLd
-  have hL1 : 10 ≤ L := by linarith
   have hL0 : 0 < L := by linarith
   have hL8 : 8 * L ≤ V := le_trans (by gcongr; exact le_max_right _ _) hL
   have hLA : A * L ≤ V := le_trans (by gcongr; exact (le_max_right _ _).trans (le_max_left _ _)) hL

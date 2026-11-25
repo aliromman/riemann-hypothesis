@@ -58,8 +58,6 @@ section Comparison₂
 
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 theorem tie_star (D : D7) (x : D.host.E) : star x = D.host.conj x := by
   haveI : IsCMField D.host.E := D.host.der.cm
   have hc : D.host.conj = (IsCMField.complexConj D.host.E).restrictScalars ℚ := by
@@ -154,7 +152,7 @@ open Formalism.MainNotions.S.LocalSplitGroups
 
 theorem tie_gram_det_ne {E : Type} [Field E] [NumberField E] [StarRing E] (S : Formalism.BasicNotions.HSpace E) :
     S.gram.det ≠ 0 := by
-  apply GlobalTheory.RecDict.det_gram_ne_zero <;> assumption
+  apply GlobalTheory.RecDict.det_gram_ne_zero
 
 variable (D : D7) (p : PlF D)
 

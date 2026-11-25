@@ -47,8 +47,6 @@ import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open MvPowerSeries ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ

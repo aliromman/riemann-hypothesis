@@ -121,7 +121,7 @@ theorem laurentSeries_eq_sum_single_mul_pow :
     rw [map_mul, HahnSeries.ofPowerSeries_X_pow, ← mul_assoc, HahnSeries.single_mul_single, hm',
       mul_one]
     congr 2
-    ring
+    ring_nf
 
   rw [key, hG, map_sum, Finset.mul_sum]
   refine Finset.sum_congr rfl fun j _ => ?_

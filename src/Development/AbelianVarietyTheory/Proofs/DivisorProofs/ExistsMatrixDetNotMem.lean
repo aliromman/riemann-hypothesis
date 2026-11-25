@@ -78,8 +78,6 @@ import Mathlib.Tactic.Linter.Style
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.Survey.UnimodularStandardLattice
@@ -223,8 +221,6 @@ end -- clump:auto
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsMatrixDetNotMem", "h": "module\n\npublic import Formalism.LocalToGlobal.ProjectiveLattices.ThClass\npublic import Development.AbelianVarietyTheory.BlockTheory.JetGauges.ThetaSpanAdjoint\npublic import Development.AbelianVarietyTheory.Counterexamples.JetSurvey.UnimodularStandardLattice\npublic import Development.AbelianVarietyTheory.Counterexamples.LevelGroupExamples.ZeroNotAdmissibleOfRankPos\npublic import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.ExistsEqSumIndicatorOfRightInvariant\npublic import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.ProjectiveOfFg\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.LinearAlgebra.FreeModule.IdealQuotient\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Tactic.TypeStar\n\n"}
 section -- clump:auto
 @[expose] public section
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -425,7 +421,6 @@ theorem exists_unitary_of_mod (H : Host E) {M bad : ℕ} (hM : 0 < M) (hbad : 0 
     refine (forall_sub_mem_iff_mapMatrix_eq S _ _).2 ?_
     rw [map_mul, map_one]
     first
-      | exact Matrix.mul_eq_one_comm.1 h1
       | exact mul_eq_one_comm.1 h1
   let e := LinearEquiv.ofBijective (GlobalTheory.RepTrivial.inc E n)
     ⟨GlobalTheory.RepTrivial.inc_injective, GlobalTheory.RepTrivial.inc_surjective⟩
@@ -493,7 +488,6 @@ theorem exists_unitary_of_mod (H : Host E) {M bad : ℕ} (hM : 0 < M) (hbad : 0 
           have h1' := h1
           push_cast at hbk h1' ⊢
           rw [h1', Pi.smul_apply, ← hbk, smul_eq_mul]
-          all_goals first | rfl | simp
         have h2 : a k = (M : 𝓞 E) * b k := by
           first
             | exact NumberField.RingOfIntegers.coe_injective h3
@@ -662,8 +656,7 @@ theorem exists_unitary_mod (g g' : Matrix (Fin n) (Fin n) (𝓞 E)) (h : ∀ i j
 
       simp only [Matrix.sub_apply, Matrix.mul_apply, Matrix.of_apply, Matrix.transpose_apply, Matrix.map_apply, Matrix.one_apply,
       map_sub, map_sum, map_mul, map_add, map_one, bar_bar, apply_ite (H.bar), map_zero,
-      apply_ite (Ideal.Quotient.mk l.Mb), e1, e2, sub_self, zero_mul, one_mul, add_zero, zero_add, mul_zero,
-      mul_one, sub_zero] at key ⊢
+      apply_ite (Ideal.Quotient.mk l.Mb), e1, e2, sub_self, zero_mul, one_mul, add_zero, zero_add, sub_zero] at key ⊢
       exact key
     · rw [← Ideal.Quotient.eq_zero_iff_mem]
       have e1 : Ideal.Quotient.mk (Mfr l) (cSep l) = 0 := Ideal.Quotient.eq_zero_iff_mem.2 hc0
@@ -680,8 +673,7 @@ theorem exists_unitary_mod (g g' : Matrix (Fin n) (Fin n) (𝓞 E)) (h : ∀ i j
 
       simp only [Matrix.sub_apply, Matrix.mul_apply, Matrix.of_apply, Matrix.transpose_apply, Matrix.map_apply, Matrix.one_apply,
       map_sub, map_sum, map_mul, map_add, map_one, bar_bar, map_zero,
-      apply_ite (Ideal.Quotient.mk (Mfr l)), e1, e2, sub_self, zero_mul, one_mul, add_zero, zero_add, mul_zero,
-      mul_one, sub_zero] at key ⊢
+      apply_ite (Ideal.Quotient.mk (Mfr l)), e1, e2, sub_self, zero_mul, one_mul, add_zero, zero_add, sub_zero] at key ⊢
       simpa [mul_comm] using key
   · show cSep l * H.bar (g i j) + (1 - cSep l) * g' j i - H.bar (g i j) ∈ l.Mb
     have : cSep l * H.bar (g i j) + (1 - cSep l) * g' j i - H.bar (g i j) =

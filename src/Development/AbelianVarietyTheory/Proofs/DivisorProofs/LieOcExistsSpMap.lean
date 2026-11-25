@@ -883,8 +883,6 @@ section -- clump:auto
 
 open Matrix TensorProduct
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.IdemRankStalk

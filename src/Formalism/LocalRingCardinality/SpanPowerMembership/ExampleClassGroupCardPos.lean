@@ -766,7 +766,6 @@ def nthToy : NTh R H what₂ LL0 (ndToy H what₂ h) (ntwToy H LL0 h) (nexpToy H
   Pt := fun i => i.elim
   ev := fun i => i.elim
   ev_smul := fun i => i.elim
-  ev_inj := fun i => i.elim
   Lt := fun i => i.elim
   acgLt := fun i => i.elim
   modLt := fun i => i.elim
@@ -799,7 +798,6 @@ def nthToy : NTh R H what₂ LL0 (ndToy H what₂ h) (ntwToy H LL0 h) (nexpToy H
   FmUr := fun i => i.elim
   FmUr_smul := fun i => i.elim
   FmUr_span := fun i => i.elim
-  Bsup_def := fun i => i.elim
   Kq := fun i => i.elim
   grpKq := fun i => i.elim
   actK := fun i => i.elim

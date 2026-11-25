@@ -22,46 +22,7 @@ public import Formalism.LocalToGlobal.TorsionIntegrality.UniformGaussModels.OneL
 import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.FlowTwoTorsionWp
 import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.WeierstrassSubstitution.SubstPairSubst
 import Formalism.SharpRestriction.GlobalSchurBounds.GlobalRankLatticeProofs.UnitTraceSumBounds.TestVectorMemSchwartzBruhat
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Lemma
-import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
-import Mathlib.Topology.Sheaves.Init
 import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.CoeffOneSubstOfConstantCoeffEqZero
 import Formalism.LocalToGlobal.TorsionIntegrality.FrobeniusFibreCurves.LogarithmicSubstitution.NormHalfB2SubTwoTorsionLeOne
 
@@ -169,10 +130,10 @@ theorem subst_smul' {f a : K⟦X⟧} (ha : constantCoeff a = 0) (c : K) : (c •
   rw [← PowerSeries.coe_substAlgHom h, map_smul]
 
 theorem exp_rel (s2 : K) :
-    phi W C * Formalism.L2.Th1.B.fExp (-((Formalism.L2.Th1.B.phW (C • W) (((C.u⁻¹ : Kˣ) : K) ^ 2 * s2)).subst (phi W C))) =
+    Formalism.L2.KerInert.MC.phi W C * Formalism.L2.Th1.B.fExp (-((Formalism.L2.Th1.B.phW (C • W) (((C.u⁻¹ : Kˣ) : K) ^ 2 * s2)).subst (Formalism.L2.KerInert.MC.phi W C))) =
       PowerSeries.C ((C.u : Kˣ) : K) * (X * Formalism.L2.Th1.B.fExp (-(Formalism.L2.Th1.B.phW W s2))) := by
-  have hφ0 : PowerSeries.constantCoeff (phi W C) = 0 := by
-    rw [Formalism.L2.KerInert.VC.phi_eq]; simp
+  have hφ0 : PowerSeries.constantCoeff (Formalism.L2.KerInert.MC.phi W C) = 0 := by
+    rw [Formalism.L2.KerInert.MC.phi_eq]; simp
   have hφ := PowerSeries.HasSubst.of_constantCoeff_zero' hφ0
   have hℓ0 : PowerSeries.constantCoeff (Formalism.L2.Th1.A.logSer W) = 0 := Formalism.L2.Th1.A.ZSer.log_cc (W := W)
   have hℓ0' : PowerSeries.constantCoeff (Formalism.L2.Th1.A.logSer (C • W)) = 0 :=
@@ -187,9 +148,9 @@ theorem exp_rel (s2 : K) :
     rw [← Units.val_mul, inv_mul_cancel, Units.val_one]
   have hcu0 : PowerSeries.constantCoeff (PowerSeries.C ((C.u : Kˣ) : K) * Formalism.L2.Th1.A.logSer W) = 0 := by
     simp [hℓ0]
-  have step1 : phi W C * Formalism.L2.Th1.B.fExp
-      (-((Formalism.L2.Th1.B.phW (C • W) (((C.u⁻¹ : Kˣ) : K) ^ 2 * s2)).subst (phi W C))) =
-      PowerSeries.subst (phi W C)
+  have step1 : Formalism.L2.KerInert.MC.phi W C * Formalism.L2.Th1.B.fExp
+      (-((Formalism.L2.Th1.B.phW (C • W) (((C.u⁻¹ : Kˣ) : K) ^ 2 * s2)).subst (Formalism.L2.KerInert.MC.phi W C))) =
+      PowerSeries.subst (Formalism.L2.KerInert.MC.phi W C)
         (X * Formalism.L2.Th1.B.fExp (-Formalism.L2.Th1.B.phW (C • W) (((C.u⁻¹ : Kˣ) : K) ^ 2 * s2))) := by
     rw [← PowerSeries.coe_substAlgHom hφ, map_mul, PowerSeries.coe_substAlgHom hφ,
       PowerSeries.subst_X hφ, _root_.Formalism.L2.Th1.B.Ph.psubst_fExp hφ0 hnP0, subst_neg' hφ0]
@@ -197,7 +158,7 @@ theorem exp_rel (s2 : K) :
       PowerSeries.rescale ((C.u⁻¹ : Kˣ) : K) (Formalism.L2.Th1.B.sgW W s2) =
       ((C.u : Kˣ) : K) • PowerSeries.rescale ((C.u⁻¹ : Kˣ) : K) (Formalism.L2.Th1.B.sgW W s2) :=
     (PowerSeries.smul_eq_C_mul _ _).symm
-  rw [step1, ← hcs'.2.1, PowerSeries.subst_comp_subst_apply hℓ' hφ, Formalism.L2.KerInert.VC.log_phi,
+  rw [step1, ← hcs'.2.1, PowerSeries.subst_comp_subst_apply hℓ' hφ, Formalism.L2.KerInert.MC.log_phi,
     sgW_change, hsm, subst_smul' hcu0, subst_rescale' _ _ hcu0,
     ← mul_assoc (PowerSeries.C _) (PowerSeries.C _) (Formalism.L2.Th1.A.logSer W), ← map_mul PowerSeries.C,
     hul, map_one, one_mul, hcs.2.1]
@@ -236,9 +197,9 @@ theorem lg_intsmul (N : ℤ) {f : K⟦X⟧} (hf : LG R' (f : MvPowerSeries Unit 
 
 theorem integral_phi1_variable_change (W : WeierstrassCurve K) (hW : CoeffIn R' W) (C : WeierstrassCurve.VariableChange K)
     (hu : ((C.u : Kˣ) : K) ∈ R') (hr : C.r ∈ R') (hs : C.s ∈ R') (ht : C.t ∈ R') :
-    IntPS R' (PowerSeries.C ((C.u : Kˣ) : K) * (1 - PowerSeries.C C.r * X ^ 2 * Formalism.L2.Th1.A.wU W) * vv W C) := by
-  have h := Formalism.L2.KerInert.VC.intPS_phi W hW C hu hr hs ht
-  rw [Formalism.L2.KerInert.VC.phi_eq] at h
+    IntPS R' (PowerSeries.C ((C.u : Kˣ) : K) * (1 - PowerSeries.C C.r * X ^ 2 * Formalism.L2.Th1.A.wU W) * Formalism.L2.KerInert.MC.vv W C) := by
+  have h := Formalism.L2.KerInert.MC.intPS_phi W hW C hu hr hs ht
+  rw [Formalism.L2.KerInert.MC.phi_eq] at h
   intro n
   have h1 := h (n + 1)
   rwa [PowerSeries.coeff_succ_X_mul] at h1
@@ -246,15 +207,15 @@ theorem integral_phi1_variable_change (W : WeierstrassCurve K) (hW : CoeffIn R' 
 theorem cong_phi (W : WeierstrassCurve K) (hW : CoeffIn R' W) (C : WeierstrassCurve.VariableChange K)
     (hu : ((C.u : Kˣ) : K) ∈ R') (hu' : ((C.u⁻¹ : Kˣ) : K) ∈ R') (hr : C.r ∈ R') (hs : C.s ∈ R') (ht : C.t ∈ R')
     (s2 : K) :
-    Cong R' ((PowerSeries.subst (phi W C) (Formalism.L2.Th1.B.phW (C • W) (((C.u⁻¹ : Kˣ) : K) ^ 2 * s2)) : K⟦X⟧) :
+    Cong R' ((PowerSeries.subst (Formalism.L2.KerInert.MC.phi W C) (Formalism.L2.Th1.B.phW (C • W) (((C.u⁻¹ : Kˣ) : K) ^ 2 * s2)) : K⟦X⟧) :
       MvPowerSeries Unit K) ((Formalism.L2.Th1.B.phW W s2 : K⟦X⟧) : MvPowerSeries Unit K) := by
-  have hφ0 : PowerSeries.constantCoeff (phi W C) = 0 := by
-    rw [Formalism.L2.KerInert.VC.phi_eq]; simp
+  have hφ0 : PowerSeries.constantCoeff (Formalism.L2.KerInert.MC.phi W C) = 0 := by
+    rw [Formalism.L2.KerInert.MC.phi_eq]; simp
   have hφ := PowerSeries.HasSubst.of_constantCoeff_zero' hφ0
   have hcs := _root_.Formalism.L2.Th1.B.Crv.curve_sigma_function_holds K W s2
   have hcs' := _root_.Formalism.L2.Th1.B.Crv.curve_sigma_function_holds K (C • W) (((C.u⁻¹ : Kˣ) : K) ^ 2 * s2)
   have key := exp_rel W C s2
-  obtain ⟨A, hA⟩ : ∃ A : K⟦X⟧, A = PowerSeries.subst (phi W C)
+  obtain ⟨A, hA⟩ : ∃ A : K⟦X⟧, A = PowerSeries.subst (Formalism.L2.KerInert.MC.phi W C)
       (Formalism.L2.Th1.B.phW (C • W) (((C.u⁻¹ : Kˣ) : K) ^ 2 * s2)) := ⟨_, rfl⟩
   obtain ⟨B, hB⟩ : ∃ B : K⟦X⟧, B = Formalism.L2.Th1.B.phW W s2 := ⟨_, rfl⟩
   rw [← hA, ← hB]
@@ -279,8 +240,8 @@ theorem cong_phi (W : WeierstrassCurve K) (hW : CoeffIn R' W) (C : WeierstrassCu
   have hAB : Formalism.L2.Th1.B.fExp (A - B) = Formalism.L2.Th1.B.fExp A * Formalism.L2.Th1.B.fExp (-B) := by
     rw [sub_eq_add_neg, hER.1 A (-B) hA0 hnB0]
   obtain ⟨V, hV⟩ : ∃ V : K⟦X⟧, V = PowerSeries.C ((C.u : Kˣ) : K) *
-      (1 - PowerSeries.C C.r * X ^ 2 * Formalism.L2.Th1.A.wU W) * vv W C := ⟨_, rfl⟩
-  have hφV : phi W C = X * V := by rw [Formalism.L2.KerInert.VC.phi_eq, hV]
+      (1 - PowerSeries.C C.r * X ^ 2 * Formalism.L2.Th1.A.wU W) * Formalism.L2.KerInert.MC.vv W C := ⟨_, rfl⟩
+  have hφV : Formalism.L2.KerInert.MC.phi W C = X * V := by rw [Formalism.L2.KerInert.MC.phi_eq, hV]
   rw [hφV] at key
   have key2 : V * Formalism.L2.Th1.B.fExp (-A) = PowerSeries.C ((C.u : Kˣ) : K) * Formalism.L2.Th1.B.fExp (-B) := by
     apply mul_left_cancel₀ (PowerSeries.X_ne_zero (R := K))
@@ -345,41 +306,41 @@ theorem phNormAt_varChange (W : WeierstrassCurve K) (hW : CoeffIn R' W) (C : Wei
     (h : PhNormAt R' (Formalism.L2.Th1.A.logSer W) (Formalism.L2.Th1.A.expSer W) (Formalism.L2.Th1.B.phW W s2) c cb) :
     PhNormAt R' (Formalism.L2.Th1.A.logSer (C • W)) (Formalism.L2.Th1.A.expSer (C • W))
       (Formalism.L2.Th1.B.phW (C • W) (((C.u⁻¹ : Kˣ) : K) ^ 2 * s2)) c cb := by
-  have hφ0 : PowerSeries.constantCoeff (phi W C) = 0 := by
-    rw [Formalism.L2.KerInert.VC.phi_eq]; simp
+  have hφ0 : PowerSeries.constantCoeff (Formalism.L2.KerInert.MC.phi W C) = 0 := by
+    rw [Formalism.L2.KerInert.MC.phi_eq]; simp
   have hφ := PowerSeries.HasSubst.of_constantCoeff_zero' hφ0
-  have h1 : PowerSeries.coeff 1 (phi W C) = ((C.u : Kˣ) : K) := by
-    rw [Formalism.L2.KerInert.VC.phi_eq, show (1 : ℕ) = 0 + 1 from rfl, PowerSeries.coeff_succ_X_mul,
+  have h1 : PowerSeries.coeff 1 (Formalism.L2.KerInert.MC.phi W C) = ((C.u : Kˣ) : K) := by
+    rw [Formalism.L2.KerInert.MC.phi_eq, show (1 : ℕ) = 0 + 1 from rfl, PowerSeries.coeff_succ_X_mul,
       PowerSeries.coeff_zero_eq_constantCoeff_apply]
-    simp [Formalism.L2.KerInert.VC.vv, PowerSeries.constantCoeff_invOfUnit]
+    simp [Formalism.L2.KerInert.MC.vv, PowerSeries.constantCoeff_invOfUnit]
   have huu : ((C.u : Kˣ) : K) * ((C.u⁻¹ : Kˣ) : K) = 1 := by
     rw [← Units.val_mul, mul_inv_cancel, Units.val_one]
-  have spec := Formalism.L2.Th1.A.compInvSpec K (phi W C) hφ0 (by rw [h1]; exact (C.u).isUnit)
-  have hψ0 : PowerSeries.constantCoeff (Formalism.L2.Th1.A.compInv (phi W C)) = 0 := spec.1
+  have spec := Formalism.L2.Th1.A.compInvSpec K (Formalism.L2.KerInert.MC.phi W C) hφ0 (by rw [h1]; exact (C.u).isUnit)
+  have hψ0 : PowerSeries.constantCoeff (Formalism.L2.Th1.A.compInv (Formalism.L2.KerInert.MC.phi W C)) = 0 := spec.1
   have hψ := PowerSeries.HasSubst.of_constantCoeff_zero' hψ0
-  have hψI : IntPS R' (Formalism.L2.Th1.A.compInv (phi W C)) :=
-    Formalism.L2.KerInert.VC.intPS_compInv (R' := R') (hf := Formalism.L2.KerInert.VC.intPS_phi W hW C hu hr hs ht)
+  have hψI : IntPS R' (Formalism.L2.Th1.A.compInv (Formalism.L2.KerInert.MC.phi W C)) :=
+    Formalism.L2.KerInert.MC.intPS_compInv (R' := R') (hf := Formalism.L2.KerInert.MC.intPS_phi W hW C hu hr hs ht)
       (h0 := hφ0) (hui := hu') (h1 := h1) (huu := huu)
-  have hψpt : IsPt R' ((Formalism.L2.Th1.A.compInv (phi W C) : K⟦X⟧) : MvPowerSeries Unit K) := ⟨hψ0, intMv_coe_of_intPS hψI⟩
+  have hψpt : IsPt R' ((Formalism.L2.Th1.A.compInv (Formalism.L2.KerInert.MC.phi W C) : K⟦X⟧) : MvPowerSeries Unit K) := ⟨hψ0, intMv_coe_of_intPS hψI⟩
   have hℓ0 : PowerSeries.constantCoeff (Formalism.L2.Th1.A.logSer W) = 0 := Formalism.L2.Th1.A.ZSer.log_cc (W := W)
   have hm0 : PowerSeries.constantCoeff (mulBy (Formalism.L2.Th1.A.logSer W) (Formalism.L2.Th1.A.expSer W) c) = 0 := by
     unfold mulBy
     exact constantCoeff_subst_eq_zero_inert_coprime (by simp [hℓ0]) (constantCoeff_compInv _)
   have hm := PowerSeries.HasSubst.of_constantCoeff_zero' hm0
-  have hmψ0 : PowerSeries.constantCoeff (PowerSeries.subst (Formalism.L2.Th1.A.compInv (phi W C))
+  have hmψ0 : PowerSeries.constantCoeff (PowerSeries.subst (Formalism.L2.Th1.A.compInv (Formalism.L2.KerInert.MC.phi W C))
       (mulBy (Formalism.L2.Th1.A.logSer W) (Formalism.L2.Th1.A.expSer W) c)) = 0 := constantCoeff_subst_eq_zero_inert_coprime hψ0 hm0
   have hmψ := PowerSeries.HasSubst.of_constantCoeff_zero' hmψ0
-  have hmψpt : IsPt R' ((PowerSeries.subst (Formalism.L2.Th1.A.compInv (phi W C))
+  have hmψpt : IsPt R' ((PowerSeries.subst (Formalism.L2.Th1.A.compInv (Formalism.L2.KerInert.MC.phi W C))
       (mulBy (Formalism.L2.Th1.A.logSer W) (Formalism.L2.Th1.A.expSer W) c) : K⟦X⟧) : MvPowerSeries Unit K) :=
     ⟨hmψ0, _root_.Formalism.L2.Th1.C.coeffsInSubst' K R' _ hE Unit _ hψpt⟩
   have hD := cong_phi W hW C hu hu' hr hs ht s2
-  obtain ⟨D, hDdef⟩ : ∃ D : K⟦X⟧, D = PowerSeries.subst (phi W C)
+  obtain ⟨D, hDdef⟩ : ∃ D : K⟦X⟧, D = PowerSeries.subst (Formalism.L2.KerInert.MC.phi W C)
       (Formalism.L2.Th1.B.phW (C • W) (((C.u⁻¹ : Kˣ) : K) ^ 2 * s2)) - Formalism.L2.Th1.B.phW W s2 := ⟨_, rfl⟩
   have hDLG : LG R' (D : MvPowerSeries Unit K) := by rw [hDdef]; exact hD
-  have e1 : PowerSeries.subst (phi W C) (Formalism.L2.Th1.B.phW (C • W) (((C.u⁻¹ : Kˣ) : K) ^ 2 * s2)) =
+  have e1 : PowerSeries.subst (Formalism.L2.KerInert.MC.phi W C) (Formalism.L2.Th1.B.phW (C • W) (((C.u⁻¹ : Kˣ) : K) ^ 2 * s2)) =
       Formalism.L2.Th1.B.phW W s2 + D := by rw [hDdef]; ring
   have e2 : Formalism.L2.Th1.B.phW (C • W) (((C.u⁻¹ : Kˣ) : K) ^ 2 * s2) =
-      PowerSeries.subst (Formalism.L2.Th1.A.compInv (phi W C)) (Formalism.L2.Th1.B.phW W s2 + D) := by
+      PowerSeries.subst (Formalism.L2.Th1.A.compInv (Formalism.L2.KerInert.MC.phi W C)) (Formalism.L2.Th1.B.phW W s2 + D) := by
     rw [← e1, PowerSeries.subst_comp_subst_apply hφ hψ, spec.2.1, _root_.Formalism.L2.Th1.B.psubst_X]
   have hadd : ∀ (a f g : K⟦X⟧), PowerSeries.HasSubst a →
       PowerSeries.subst a (f + g) = PowerSeries.subst a f + PowerSeries.subst a g := by
@@ -389,16 +350,16 @@ theorem phNormAt_varChange (W : WeierstrassCurve K) (hW : CoeffIn R' W) (C : Wei
   have hL2 := Formalism.L2.Th1.C.lGSubst K R' _ hDLG Unit _ hmψpt
   have hL3 := lg_intsmul N (Formalism.L2.Th1.C.lGSubst K R' _ hDLG Unit _ hψpt)
   unfold PhNormAt Cong
-  rw [Formalism.L2.KerInert.VC.mulBy_eq, ← PowerSeries.subst_comp_subst_apply hφ hmψ, e1, hadd _ _ _ hmψ,
+  rw [Formalism.L2.KerInert.MC.mulBy_eq, ← PowerSeries.subst_comp_subst_apply hφ hmψ, e1, hadd _ _ _ hmψ,
     ← PowerSeries.subst_comp_subst_apply hm hψ]
   rw [e2]
   rw [hadd _ _ _ hψ, hN]
-  have e3 : PowerSeries.subst (Formalism.L2.Th1.A.compInv (phi W C))
+  have e3 : PowerSeries.subst (Formalism.L2.Th1.A.compInv (Formalism.L2.KerInert.MC.phi W C))
       (PowerSeries.subst (mulBy (Formalism.L2.Th1.A.logSer W) (Formalism.L2.Th1.A.expSer W) c) (Formalism.L2.Th1.B.phW W s2)
         - (N : K) • Formalism.L2.Th1.B.phW W s2) =
-      PowerSeries.subst (Formalism.L2.Th1.A.compInv (phi W C))
+      PowerSeries.subst (Formalism.L2.Th1.A.compInv (Formalism.L2.KerInert.MC.phi W C))
         (PowerSeries.subst (mulBy (Formalism.L2.Th1.A.logSer W) (Formalism.L2.Th1.A.expSer W) c) (Formalism.L2.Th1.B.phW W s2))
-      - (N : K) • PowerSeries.subst (Formalism.L2.Th1.A.compInv (phi W C)) (Formalism.L2.Th1.B.phW W s2) := by
+      - (N : K) • PowerSeries.subst (Formalism.L2.Th1.A.compInv (Formalism.L2.KerInert.MC.phi W C)) (Formalism.L2.Th1.B.phW W s2) := by
     rw [subst_sub' hψ0, subst_smul' hψ0]
   rw [hN] at hL1
   rw [e3] at hL1

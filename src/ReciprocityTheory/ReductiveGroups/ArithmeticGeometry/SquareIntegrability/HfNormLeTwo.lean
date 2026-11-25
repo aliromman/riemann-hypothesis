@@ -531,11 +531,11 @@ theorem one_add_pow_sub_one_le (x : ℝ) (hx : 0 ≤ x) (m : ℕ) :
     have h1 : (1 : ℝ) ≤ (1 + x) ^ n := by
       have h : (1 : ℝ) ^ n ≤ (1 + x) ^ n := by gcongr; linarith
       simpa using h
-    have h2 : (1 : ℝ) ≤ (1 + x) ^ n * (1 + x) := by nlinarith
-    have h3 := mul_le_mul_of_nonneg_right ih (by linarith : (0 : ℝ) ≤ 1 + x)
+    have h2 : (1 : ℝ) ≤ (1 + x) ^ n * (1 + x) := one_le_mul_of_one_le_of_one_le h1 (by linarith only [hx])
+    have h3 := mul_le_mul_of_nonneg_right ih (by linarith only [hx] : (0 : ℝ) ≤ 1 + x)
     push_cast
     rw [pow_succ]
-    nlinarith [mul_nonneg hx (sub_nonneg.2 h2)]
+    linarith only [h3, mul_nonneg hx (sub_nonneg.2 h2)]
 
 theorem num_bound (r D : ℕ) (hr : 1 ≤ r) (ε : ℝ) (hε0 : 0 ≤ ε)
     (hε : ε ≤ Real.exp (-((D + 1) * (r * Real.log r + 3 * r + 3)))) :
@@ -547,7 +547,7 @@ theorem num_bound (r D : ℕ) (hr : 1 ≤ r) (ε : ℝ) (hε0 : 0 ≤ ε)
     rw [Real.log_le_iff_le_exp (by norm_num)]
     have h1 : (2 : ℝ) ≤ Real.exp 1 := by linarith [Real.add_one_le_exp (1 : ℝ)]
     have h2 : Real.exp 2 = Real.exp 1 * Real.exp 1 := by rw [← Real.exp_add]; norm_num
-    rw [h2]; nlinarith
+    rw [h2]; linarith only [mul_le_mul h1 h1 (by norm_num) (by linarith only [h1])]
   have hD0 : (0 : ℝ) ≤ D := Nat.cast_nonneg D
   have h2D : 2 * (D : ℝ) ≤ Real.exp (2 * D) := by linarith [Real.add_one_le_exp (2 * (D : ℝ))]
   have hpow : ((4 : ℝ) * r) ^ D = Real.exp (D * Real.log (4 * r)) := by
@@ -565,9 +565,9 @@ theorem num_bound (r D : ℕ) (hr : 1 ≤ r) (ε : ℝ) (hε0 : 0 ≤ ε)
       _ ≤ Real.exp ((D + 1) * (r * Real.log r + 3 * r + 3)) := by
           apply Real.exp_le_exp.2
           rw [hlog]
-          nlinarith [mul_nonneg hD0 (mul_nonneg (sub_nonneg.2 hr1) hlogr),
+          linarith only [mul_nonneg hD0 (mul_nonneg (sub_nonneg.2 hr1) hlogr),
             mul_nonneg hD0 (sub_nonneg.2 hlog4), mul_nonneg hD0 (sub_nonneg.2 hr1),
-            mul_nonneg hr0.le hlogr]
+            mul_nonneg hr0.le hlogr, hD0, hr1, hlogr]
   calc 2 * (D : ℝ) * (4 * r) ^ D * Real.exp ((r / 2 + 1) * D) * ε
       ≤ Real.exp ((D + 1) * (r * Real.log r + 3 * r + 3)) *
           Real.exp (-((D + 1) * (r * Real.log r + 3 * r + 3))) :=
@@ -773,13 +773,13 @@ theorem jof_core (hx : Ext.All) (hs : SplitStatement) (hc : CharStatement) (ht :
         ← Finset.prod_mul_distrib]
       refine Finset.prod_le_prod₀ (fun _ _ => by positivity) fun p _ => ?_
       have : (1 : ℝ) ≤ 2 ^ (bs p.1).c := one_le_pow₀ (by norm_num)
-      nlinarith
+      linarith only [mul_le_mul_of_nonneg_right this hε0]
     have h2 := one_add_pow_sub_one_le ε hε0 m
     have h3 : (1 + ε) ^ m ≤ 2 ^ DF bs :=
-      (pow_le_pow_left₀ (by linarith) (by linarith) m).trans (pow_le_pow_right₀ (by norm_num) hm)
+      (pow_le_pow_left₀ (by linarith only [hε0]) (by linarith only [hε1]) m).trans (pow_le_pow_right₀ (by norm_num) hm)
     have h4 : (0 : ℝ) ≤ 2 ^ DF bs := by positivity
     have h5 : (0 : ℝ) ≤ m * ε := by positivity
-    calc A1 - 2 ^ DF bs ≤ 2 ^ DF bs * ((1 + ε) ^ m - 1) := by nlinarith
+    calc A1 - 2 ^ DF bs ≤ 2 ^ DF bs * ((1 + ε) ^ m - 1) := by linarith only [h1]
       _ ≤ 2 ^ DF bs * (m * ε * (1 + ε) ^ m) := mul_le_mul_of_nonneg_left h2 h4
       _ ≤ 2 ^ DF bs * (m * ε * 2 ^ DF bs) := by gcongr
   set δ0 : ℝ := (2 : ℝ) ^ (-(X.r : ℝ) / 2) / 2 with hδ0def
@@ -808,7 +808,7 @@ theorem jof_core (hx : Ext.All) (hs : SplitStatement) (hc : CharStatement) (ht :
           rw [← Real.exp_add]; ring_nf
       _ ≤ Real.exp (Real.log 2 * (-(X.r : ℝ) / 2)) * (1 / 2) := by
           gcongr
-          nlinarith
+          linarith only [mul_le_mul_of_nonneg_right hl2 hr0]
       _ = Real.exp (Real.log 2 * (-(X.r : ℝ) / 2)) / 2 := by ring
   have hnum2 : (N : ℝ) * (A1 - 2 ^ DF bs) ≤ Dt / 2 := by
     have hc : (N : ℝ) ≤ (X.r : ℝ) ^ DF bs := by exact_mod_cast hcard
@@ -906,10 +906,10 @@ theorem jof_core (hx : Ext.All) (hs : SplitStatement) (hc : CharStatement) (ht :
       rw [hsc_none k hk.2, hwdef]
       have h1 : Real.exp (-a) ≤ 1 := Real.exp_le_one_iff.2 (by linarith)
       have h2 := hsel
-      have h3 : (1 : ℝ) / 4 ≤ ‖se 0‖ ^ 2 := by nlinarith
+      have h3 : (1 : ℝ) / 4 ≤ ‖se 0‖ ^ 2 := by linarith only [hse0, sq_nonneg (‖se 0‖ - 1 / 2)]
       have h4 := l2NormSq_nonneg_gaussianTorus X P.q se
       have h5 : 0 ≤ Real.exp (-a) := (Real.exp_pos _).le
-      nlinarith [mul_nonneg hK6 h4, mul_le_mul_of_nonneg_left h1 (mul_nonneg hK6 h4)]
+      linarith only [h2, h3, mul_nonneg hK6 h4, mul_le_mul_of_nonneg_left h1 (mul_nonneg hK6 h4)]
     have he2 : (∏ p : (Σ j : Fin nb, Fin (bs j).i), w) *
         (∏ p : (Σ j : Fin nb, Fin (bs j).i), X.l2 P.q (sc (colB bs p))) ≤ 4⁻¹ * Mμ ^ 2 := by
       rw [← Finset.prod_mul_distrib]
@@ -919,7 +919,7 @@ theorem jof_core (hx : Ext.All) (hs : SplitStatement) (hc : CharStatement) (ht :
               fun p _ => ?_
             rw [hsc_col, hwdef]
             have := hl2 p.1 p.2
-            nlinarith
+            linarith only [this, hK6]
         _ = (4⁻¹) ^ m * Mμ ^ 2 := by
             rw [Finset.prod_mul_distrib, Finset.prod_const, Finset.card_univ, hMμdef, Finset.prod_pow]
         _ ≤ 4⁻¹ * Mμ ^ 2 := by

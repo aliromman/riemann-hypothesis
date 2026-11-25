@@ -1055,7 +1055,7 @@ end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RightTranslateOperatorFamilyProdUpdateStatement =====
 
 -- ===== clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RightTranslateOperatorMulLocalOperatorHasSum =====
--- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RightTranslateOperatorMulLocalOperatorHasSum", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TrivialLevelCosetRepresentativeMemLevel\nimport Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.LatIndexEqOneOfMem\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.CStarAlgebra.ContinuousLinearMap\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.PiTensorProduct\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Mathlib.Topology.UniformSpace.Uniformizable\n\n"}
+-- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RightTranslateOperatorMulLocalOperatorHasSum", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TrivialLevelCosetRepresentativeMemLevel\nimport Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.LatIndexEqOneOfMem\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.CStarAlgebra.ContinuousLinearMap\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.PiTensorProduct\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Mathlib.Topology.UniformSpace.Uniformizable\nimport Development.AbelianVarietyTheory.Proofs.SatakeParameters.InvolutionSphericalHeckeAnti\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -1080,12 +1080,6 @@ theorem unitaryAdeleMatrix_injective (V : HSp D) : Function.Injective (Formalism
   have h1 : matHom V g = matHom V h := Units.ext hgh
   exact (HR (AF D.host.F) D.sp.cm.sig V.gram).subtype_injective h1
 
-theorem unitaryAdeleMatrix_mul (V : HSp D) (g h : GA D V) : Formalism.L2.Theta.mt V (g * h) = Formalism.L2.Theta.mt V g * Formalism.L2.Theta.mt V h := by
-  unfold Formalism.L2.Theta.mt
-  rw [map_mul]; rfl
-
-theorem unitaryAdeleMatrix_one (V : HSp D) : Formalism.L2.Theta.mt V 1 = 1 := rfl
-
 theorem supportedAtIdempotent_iff_smul_matrix_sub_one (V : HSp D) (f : AE D) (g : GA D V) :
     SuppF V f g ↔ f • (Formalism.L2.Theta.mt V g - 1) = Formalism.L2.Theta.mt V g - 1 := by
   constructor
@@ -1097,12 +1091,12 @@ theorem supportedAtAdeleIdempotent_mul_closed (V : HSp D) (f : AE D) {g h : GA D
   rw [supportedAtIdempotent_iff_smul_matrix_sub_one] at *
   have e : Formalism.L2.Theta.mt V (g * h) - 1 = (Formalism.L2.Theta.mt V g - 1) * (Formalism.L2.Theta.mt V h - 1) +
       (Formalism.L2.Theta.mt V g - 1) + (Formalism.L2.Theta.mt V h - 1) := by
-    rw [unitaryAdeleMatrix_mul]; noncomm_ring
+    rw [GlobalTheory.SplitPlace.mt_mul]; noncomm_ring
   rw [e, smul_add, smul_add, ← Matrix.smul_mul, hg, hh]
 
 theorem supportedAtAdeleIdempotent_inv_closed (V : HSp D) (f : AE D) {g : GA D V} (hg : SuppF V f g) : SuppF V f g⁻¹ := by
   rw [supportedAtIdempotent_iff_smul_matrix_sub_one] at *
-  have hm : Formalism.L2.Theta.mt V g⁻¹ * Formalism.L2.Theta.mt V g = 1 := by rw [← unitaryAdeleMatrix_mul, inv_mul_cancel]; rfl
+  have hm : Formalism.L2.Theta.mt V g⁻¹ * Formalism.L2.Theta.mt V g = 1 := by rw [← GlobalTheory.SplitPlace.mt_mul, inv_mul_cancel]; rfl
   have e : Formalism.L2.Theta.mt V g⁻¹ - 1 = -(Formalism.L2.Theta.mt V g⁻¹ * (Formalism.L2.Theta.mt V g - 1)) := by
     rw [Matrix.mul_sub, hm]; noncomm_ring
   rw [e, smul_neg, ← Matrix.mul_smul, hg]
@@ -1110,7 +1104,7 @@ theorem supportedAtAdeleIdempotent_inv_closed (V : HSp D) (f : AE D) {g : GA D V
 theorem supportedAtIdempotent_zero_eq_one (V : HSp D) {g : GA D V} (hg : SuppF V 0 g) : g = 1 := by
   rw [supportedAtIdempotent_iff_smul_matrix_sub_one, zero_smul] at hg
   apply unitaryAdeleMatrix_injective V
-  rw [unitaryAdeleMatrix_one]
+  rw [GlobalTheory.SplitPlace.mt_one]
   exact (sub_eq_zero.mp hg.symm)
 
 theorem rightTranslatePairingOperator_spec {R : RealDat D A Ks} {i : Fin D.R.m} (hTL : TransLaws R i) {γ : GA D (Wc D i)}

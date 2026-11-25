@@ -89,8 +89,7 @@ lemma ell_le (𝓕 : LFam) (t u : ℝ) (h : |u - t| ≤ 3 / 5) : 𝓕.ell u ≤ 
   have hpos : 0 < 𝓕.B * (|u| + 2) := by positivity
   have hle : 𝓕.B * (|u| + 2) ≤ 𝓕.B * (|t| + 2) * (13 / 10) := by
     have : |u| + 2 ≤ (|t| + 2) * (13 / 10) := by linarith
-    have := mul_le_mul_of_nonneg_left this (by linarith : 0 ≤ 𝓕.B)
-    linarith
+    nlinarith
   have hlog : Real.log (𝓕.B * (|u| + 2)) ≤ Real.log (𝓕.B * (|t| + 2)) + Real.log (13 / 10) := by
     rw [← Real.log_mul (by positivity) (by norm_num)]
     exact Real.log_le_log hpos hle
@@ -475,14 +474,7 @@ theorem truncated_perron_of_le_two_vonMangoldt : ∃ C : ℝ, 0 < C ∧ ∀ (c :
   have key : 2 * (12 * (u / T) * Real.log u) * (1 + 2 * Real.log u)
       + 2 * (16 * Real.log u) * (2 + 2 * (u / T) * (2 * (1 + Real.log u)))
       ≤ 480 * ((u / T) * Real.log u ^ 2 + Real.log u) := by
-    have heq : 2 * (12 * (u / T) * Real.log u) * (1 + 2 * Real.log u)
-        + 2 * (16 * Real.log u) * (2 + 2 * (u / T) * (2 * (1 + Real.log u)))
-        = 176 * ((u / T) * Real.log u ^ 2) + 152 * ((u / T) * Real.log u) + 64 * Real.log u := by ring
-    have hint' : (u / T) * Real.log u ≤ 2 * ((u / T) * Real.log u ^ 2) := by
-      have : (u / T) * Real.log u * (2 * Real.log u - 1) =
-          2 * ((u / T) * Real.log u ^ 2) - (u / T) * Real.log u := by ring
-      linarith
-    linarith
+    grind
   calc 2 * C * (12 * u * Real.log u / T) * ∑' n : ℕ, 1 / (n : ℝ) ^ (1 + 1 / (2 * Real.log u))
         + 2 * C * (16 * Real.log u)
           * ∑ n ∈ Finset.range (⌊u⌋₊ + 1 + (⌊u⌋₊ + 1)), w ⌊u⌋₊ (2 * u / T) n
@@ -709,9 +701,8 @@ theorem shift (ψ : ℂ → ℂ) (S : Finset ℂ) (k : ℂ → ℂ) (u σ c T M 
 theorem one_le_ell (𝓕 : LFam) (t : ℝ) : 1 ≤ 𝓕.ell t := by
   rw [LFam.ell, Real.le_log_iff_exp_le (by have := 𝓕.B_ge; positivity)]
   have := Real.exp_one_lt_d9
-  have hB := 𝓕.B_ge
-  have : 4 * 2 ≤ 𝓕.B * (|t| + 2) := mul_le_mul hB (by linarith [abs_nonneg t]) (by norm_num) (by linarith)
-  linarith
+  have := 𝓕.B_ge
+  nlinarith [abs_nonneg t]
 
 theorem ell_mono (𝓕 : LFam) {t T : ℝ} (h : |t| ≤ T) : 𝓕.ell t ≤ 𝓕.ell T := by
   have := 𝓕.B_ge
@@ -972,8 +963,7 @@ theorem rpow_le {c₀ u l W : ℝ} (hc₀ : 0 < c₀) (hu0 : 0 < u) (hl1 : 1 ≤
   have e : W ^ 2 * (2 * (c₀ / (8 * l))) = c₀ / 4 * W * W / l := by field_simp; ring
   rw [e, le_div_iff₀ (by linarith)]
   have := mul_le_mul_of_nonneg_left hl (mul_nonneg hc₀.le hW0)
-  have hnn : 0 ≤ c₀ * W * W := mul_nonneg (mul_nonneg hc₀.le hW0) hW0
-  linarith
+  grind [mul_nonneg (mul_nonneg hc₀.le hW0) hW0]
 
 theorem total_le {δ P K M Y u T W : ℝ} (hδ0 : 0 < δ) (hP : 0 < P) (hK0 : 0 < K) (hM0 : 0 ≤ M)
     (hu0 : 0 < u) (hW1 : 1 ≤ W) (hW2 : W ^ 2 = Real.log u) (hT : T = Real.exp (δ * W))

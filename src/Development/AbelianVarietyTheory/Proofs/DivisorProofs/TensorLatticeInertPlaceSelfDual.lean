@@ -1,7 +1,7 @@
 module
 
 public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilTensorModels
-public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EventuallySelfDualLatticeIndicatorIsVacuum
+public import Development.WeilBound.ThetaLifts.TowerModels.TwistedSums.EventuallySelfDualLatticeIndicatorIsVacuum
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.StandardAddCharSymplecticLocalLatticeEqOne
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsDualFamilyOfIsLattice
 import Mathlib.Algebra.Order.Floor.Extended
@@ -47,6 +47,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatAtVAtStable
+public import Development.WeilBound.ThetaLifts.TowerModels.PlaneReal
 
 @[expose] public section
 
@@ -102,18 +103,9 @@ theorem exists_traceFamily [Algebra.Unramified (𝓞 F) (𝓞 E)] :
   rw [hc', hD]
 
 theorem det_ne_zero_of_hasSig {n r s : ℕ} {M : Matrix (Fin n) (Fin n) ℂ} (h : HasSig M r s) : M.det ≠ 0 := by
-  obtain ⟨hrs, A, hA⟩ := h
-  let e : Fin r ⊕ Fin s ≃ Fin n := finSumFinEquiv.trans (finCongr hrs)
-  let A' : Matrix (Fin n) (Fin n) ℂ := A.submatrix id e.symm
-  have h2 : A'ᵀ * M * A'.map star =
-      (Matrix.fromBlocks 1 0 0 (-1) : Matrix (Fin r ⊕ Fin s) (Fin r ⊕ Fin s) ℂ).submatrix e.symm e.symm := by
-    rw [← hA]; ext i j; simp [A', Matrix.mul_apply]
-  intro h0
-  have hd := congrArg Matrix.det h2
-  rw [Matrix.det_mul, Matrix.det_mul, h0, mul_zero, zero_mul, Matrix.det_submatrix_equiv_self,
-    Matrix.det_fromBlocks_zero₂₁, Matrix.det_one, one_mul, Matrix.det_neg] at hd
-  rw [Matrix.det_one, mul_one, Fintype.card_fin] at hd
-  exact (pow_ne_zero s (by norm_num : (-1 : ℂ) ≠ 0)) hd.symm
+  first
+  | exact _root_.PositivityTheory.ThKG.Tow.Pln.det_ne_zero_of_hasSig
+  | (apply _root_.PositivityTheory.ThKG.Tow.Pln.det_ne_zero_of_hasSig <;> assumption)
 
 theorem det_ne_zero_of_herm (σ : E →ₐ[F] E) (B : Base F E) {n r s : ℕ} {X : Spc F E n} (h : X.IsHerm σ B r s) :
     X.J.det ≠ 0 := by
@@ -156,7 +148,7 @@ theorem exists_formFrame (σ : E →ₐ[F] E) {n : ℕ} (J : Matrix (Fin n) (Fin
       ← Matrix.map_mul, h1, Matrix.map_one _ (map_zero _) (map_one _), Matrix.transpose_one, Matrix.mul_one,
       Matrix.nonsing_inv_mul _ hJtu]
 
-alias cA_inclR := _root_.GlobalTheory.VacIndic.cA_inclR
+alias cA_inclR := _root_.Tw.VacIndic.cA_inclR
 
 theorem trace_inclR (e : E) :
     Algebra.trace (AF F) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)) (inclR (F := F) (AF F) e) = algebraMap F (AF F) (Algebra.trace F E e) := by
@@ -296,7 +288,7 @@ theorem latAtV_selfDual : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [
           have := htat u hu
           rw [smul_eq_mul] at this ⊢
           rw [mul_left_comm, this, mul_zero]
-        rw [GlobalTheory.VacIndic.psi_of_at _ hat2, map_mul, GlobalTheory.LatVac.evFin_liftV, mul_comm] at h1
+        rw [Tw.VacIndic.psi_of_at _ hat2, map_mul, GlobalTheory.LatVac.evFin_liftV, mul_comm] at h1
         exact h1
       have := (hunr _).1 key
       rw [htC, map_neg] at this

@@ -46,6 +46,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Compactness.Paracompact
 import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.TrivialOnInertiaOfUnr
 public import GroundTheory.ProfiniteCohomology.RealPlaces.GSDefs
+public import Formalism.SharedLemmas.TotDiscQuot
 
 @[expose] public section
 
@@ -54,8 +55,6 @@ noncomputable section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal IsLocalRing UpperTheory.V.HV GlobalTheory.WeilDeligne GlobalTheory.GalOfCusp
 
 namespace UpperTheory.V.W
-
-instance coefLocal {l : ℕ} [Fact l.Prime] (c : Coef l) : IsLocalRing ↥c.O := c.dvr.toIsLocalRing
 
 abbrev Plc (F : Type) [Field F] : Type := HeightOneSpectrum (𝓞 F)
 
@@ -69,25 +68,9 @@ def GDet.IsTwist {n : ℕ} {A G : Type} [CommRing A] [Group G] (D : GDet n A G) 
 private theorem totDisc_quot {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [CompactSpace G]
     [TotallyDisconnectedSpace G] (N : Subgroup G) [N.Normal] (hN : IsClosed (N : Set G)) :
     TotallyDisconnectedSpace (G ⧸ N) := by
-  have hsep : TotallySeparatedSpace (G ⧸ N) := by
-    rw [totallySeparatedSpace_iff_exists_isClopen]
-    intro x y hxy
-    induction x using QuotientGroup.induction_on with
-    | _ a =>
-    induction y using QuotientGroup.induction_on with
-    | _ b =>
-    have hcl : IsClosed ((fun g : G => b⁻¹ * g) ⁻¹' (N : Set G)) :=
-      hN.preimage (continuous_const.mul continuous_id)
-    have ha : a ∈ ((fun g : G => b⁻¹ * g) ⁻¹' (N : Set G))ᶜ := by
-      intro h
-      exact hxy (QuotientGroup.eq.2 h).symm
-    obtain ⟨C, hC, haC, hCsub⟩ := compact_exists_isClopen_in_isOpen hcl.isOpen_compl ha
-    refine ⟨QuotientGroup.mk '' C, ⟨?_, QuotientGroup.isOpenMap_coe _ hC.isOpen⟩, ⟨a, haC, rfl⟩, ?_⟩
-    · rw [← (QuotientGroup.isQuotientMap_mk N).isClosed_preimage, QuotientGroup.preimage_image_mk_eq_mul]
-      exact hN.mul_left_of_isCompact hC.isClosed.isCompact
-    · rintro ⟨c, hc, hcb⟩
-      exact hCsub hc (QuotientGroup.eq.1 hcb.symm)
-  infer_instance
+  first
+  | exact _root_.Formalism.SharedLemmas.totDisc_quot
+  | (apply _root_.Formalism.SharedLemmas.totDisc_quot <;> assumption)
 
 section LocAlg
 

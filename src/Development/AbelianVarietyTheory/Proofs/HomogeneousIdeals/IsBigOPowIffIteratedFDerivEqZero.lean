@@ -132,15 +132,6 @@ variable {E G : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] [NormedAddComm
 
 end Rigidity
 
-section Series
-
-variable {E G : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] [NormedAddCommGroup G]
-  [NormedSpace ℂ G]
-
-def quadPart (h : E → G) (z : E) : G := (2 : ℂ)⁻¹ • iteratedFDeriv ℂ 2 h 0 fun _ => z
-
-end Series
-
 section Character
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
@@ -149,7 +140,6 @@ theorem eq_cexp_fderiv_of_map_add {f : E → ℂ} (hf : DifferentiableAt ℂ f 0
     (hm : ∀ x y, f (x + y) = f x * f y) (z : E) : f z = cexp (fderiv ℂ f 0 z) := by
   first
   | (apply _root_.GlobalTheory.ExpOfFrechetDerivative.eq_exp_fderiv <;> assumption)
-  | (intros; exact _root_.GlobalTheory.ExpOfFrechetDerivative.eq_exp_fderiv ..)
 
 end Character
 

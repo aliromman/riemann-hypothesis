@@ -49,6 +49,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Data.Int.CardIntervalMod
 import Mathlib.Tactic.Basify
 import Mathlib.Tactic.ENatToNat
 import Std.Tactic.BVDecide.Normalize.Prop
@@ -174,7 +175,7 @@ end -- clump:auto
 -- ===== end clump member: Formalism.WindowSums.AnnihilatorPolynomials.Lagrange =====
 
 -- ===== clump member: Formalism.WindowSums.AnnihilatorPolynomials.WindowSum =====
--- clump-header: {"m": "Formalism.WindowSums.AnnihilatorPolynomials.WindowSum", "h": "module\n\npublic import Formalism.WindowSums.Statement\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Int\nimport Mathlib.Algebra.Order.Star.Real\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Lemma\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}
+-- clump-header: {"m": "Formalism.WindowSums.AnnihilatorPolynomials.WindowSum", "h": "module\n\npublic import Formalism.WindowSums.Statement\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Int\nimport Mathlib.Algebra.Order.Star.Real\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.Int.CardIntervalMod\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Lemma\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -186,36 +187,13 @@ open Finset
 
 lemma windowSum_count (a : ℤ) (L : ℕ) (r : ℤ) (hr : 0 < r) :
     ((((Finset.Ico a (a + L)).filter (fun x => r ∣ x)).card : ℕ) : ℝ) ≤ (L : ℝ) / (r : ℝ) + 1 := by
-  have hmaps : ∀ x ∈ (Finset.Ico a (a + L)).filter (fun x => r ∣ x),
-      (x - a) / r ∈ Finset.Icc (0 : ℤ) ((L : ℤ) / r) := by
-    intro x hx
-    simp only [Finset.mem_filter, Finset.mem_Ico] at hx
-    simp only [Finset.mem_Icc]
-    exact ⟨Int.ediv_nonneg (by linarith) hr.le, Int.ediv_le_ediv hr (by linarith)⟩
-  have hinj : Set.InjOn (fun x => (x - a) / r)
-      ((Finset.Ico a (a + L)).filter (fun x => r ∣ x) : Set ℤ) := by
-    intro x hx y hy hxy
-    simp only [Finset.coe_filter, Set.mem_setOf_eq] at hx hy
-    obtain ⟨k, rfl⟩ := hx.2
-    obtain ⟨m, rfl⟩ := hy.2
-    simp only at hxy
-    rw [show r * k - a = -a + r * k by ring, show r * m - a = -a + r * m by ring,
-      Int.add_mul_ediv_left _ _ hr.ne', Int.add_mul_ediv_left _ _ hr.ne'] at hxy
-    have : k = m := by linarith
-    rw [this]
-  have hcard := Finset.card_le_card_of_injOn _ hmaps hinj
-  have hq0 : 0 ≤ (L : ℤ) / r := Int.ediv_nonneg (by positivity) hr.le
-  rw [Int.card_Icc, sub_zero] at hcard
-  have hc : ((((Finset.Ico a (a + L)).filter (fun x => r ∣ x)).card : ℕ) : ℝ) ≤
-      (((L : ℤ) / r : ℤ) : ℝ) + 1 := by
-    have h1 : ((((Finset.Ico a (a + L)).filter (fun x => r ∣ x)).card : ℕ) : ℤ) ≤ (L : ℤ) / r + 1 := by
-      have := Int.toNat_of_nonneg (by linarith : (0 : ℤ) ≤ (L : ℤ) / r + 1)
-      omega
-    exact_mod_cast h1
-  have hdiv : (((L : ℤ) / r : ℤ) : ℝ) ≤ (L : ℝ) / (r : ℝ) := by
-    rw [le_div_iff₀ (by exact_mod_cast hr)]
-    exact_mod_cast Int.ediv_mul_le (L : ℤ) hr.ne'
-  linarith
+  suffices h : (((Finset.Ico a (a + L)).filter (fun x => r ∣ x)).card : ℚ) ≤ (L : ℚ) / r + 1 by
+    exact_mod_cast h
+  rw [← Int.cast_natCast, Int.Ico_filter_dvd_card _ _ hr, Int.cast_max, Int.cast_sub, Int.cast_zero]
+  refine max_le ?_ (by positivity)
+  push_cast
+  rw [add_div]
+  linarith only [Int.ceil_lt_add_one ((a : ℚ) / r + L / r), Int.le_ceil ((a : ℚ) / r)]
 
 private theorem sum_range_one_div_pow_succ_eq (x : ℝ) (hx : 1 < x) (K : ℕ) :
     ∑ k ∈ Finset.range K, 1 / x ^ (k + 1) = (1 - 1 / x ^ K) / (x - 1) := by

@@ -69,12 +69,6 @@ lemma val_alg (v : HeightOneSpectrum (𝓞 L)) (a : L) :
   first
   | exact IsDedekindDomain.HeightOneSpectrum.valuedAdicCompletion_eq_valuation' v a
 
-lemma exists_pow_lt {δ : ℤᵐ⁰} (hδ : δ ≠ 0) : ∃ n : ℕ, exp (-(n : ℤ)) < δ := by
-  obtain ⟨k, rfl⟩ : ∃ k : ℤ, exp k = δ := ⟨log δ, exp_log hδ⟩
-  refine ⟨k.natAbs + 1, ?_⟩
-  rw [exp_lt_exp]
-  omega
-
 lemma val_nat_le_one (v : HeightOneSpectrum (𝓞 L)) (m : ℕ) : v.valuation L (m : L) ≤ 1 := by
   have h := v.valuation_le_one (K := L) (m : 𝓞 L)
   simpa using h
@@ -108,11 +102,11 @@ lemma exists_nat_small (T : Finset (HeightOneSpectrum (𝓞 L))) (δ : HeightOne
     have := (w.valuation_lt_one_iff_mem (K := L) _).mpr hmem
     simpa using this
   let n : HeightOneSpectrum (𝓞 L) → ℕ := fun w =>
-    if h : δ w ≠ 0 then Classical.choose (exists_pow_lt h) else 0
+    if h : δ w ≠ 0 then Classical.choose (WithZero.exists_exp_neg_natCast_lt h) else 0
   refine ⟨M ^ (∑ w ∈ T, n w), pow_pos hM0 _, fun w hw => ?_⟩
   have hn : exp (-((n w : ℕ) : ℤ)) < δ w := by
     simp only [n, dif_pos (hδ w hw)]
-    exact Classical.choose_spec (exists_pow_lt (hδ w hw))
+    exact Classical.choose_spec (WithZero.exists_exp_neg_natCast_lt (hδ w hw))
   have hle : n w ≤ ∑ u ∈ T, n u := Finset.single_le_sum (fun _ _ => Nat.zero_le _) hw
   calc w.valuation L ((M ^ (∑ u ∈ T, n u) : ℕ) : L)
         = (w.valuation L (M : L)) ^ (∑ u ∈ T, n u) := by rw [Nat.cast_pow, map_pow]

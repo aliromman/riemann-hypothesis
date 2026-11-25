@@ -204,8 +204,7 @@ lemma epi_toUnit {k : Type} [Field k] (W : Over (Sp k)) [Nonempty W.left] : Epi 
   have : Epi (toUnit W).left := by
     have h := Over.w (toUnit W)
     have h' : (toUnit W).left = W.hom := (Category.comp_id _).symm.trans h
-    rw [h']
-    assumption
+    rwa [h']
   exact Over.epi_of_epi_left _
 
 lemma mono_constDesc {k : Type} [Field k] {I : Type} {A : Over (Sp k)}

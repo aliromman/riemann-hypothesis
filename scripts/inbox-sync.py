@@ -10,10 +10,12 @@ A pull request can be in the inbox when it is open, is not a draft, is not a bat
 none of `batch queue`, `building` and `awaiting-author`. A batch is a pull request from a branch
 named `batch/...`, in this repository or a fork.
 
-A pull request enters review when it is opened, reopened or marked ready. It belongs in the inbox
-until someone with triage access or more responds to it after that: a comment, such as `batch`,
-a review or a review comment, or a change to its labels other than the ones label-pr.yml keeps up
-to date. Responses by the pull request's author or by a bot do not count.
+A pull request enters review when it is opened, reopened or marked ready, and again when
+`awaiting-author` comes off it: its author commented `ready` (see batch-queue.yml), or a
+maintainer took the label off by hand. It belongs in the inbox until someone with triage access or
+more responds to it after that: a comment, such as `batch`, a review or a review comment, or a
+change to its labels other than the ones label-pr.yml keeps up to date. Responses by the pull
+request's author or by a bot do not count.
 
 A maintainer who takes `inbox` off by hand is not overruled until the pull request enters review
 again. One who puts it back asks for another look: it then stays until the next response, not
@@ -38,8 +40,10 @@ import subprocess
 import sys
 
 INBOX = "inbox"
+# Handed back to the author. Taking it off hands the pull request back to the maintainers.
+WAITING = "awaiting-author"
 # Labels that mean a maintainer has already decided what happens next.
-DECIDED = ("batch queue", "building", "awaiting-author")
+DECIDED = ("batch queue", "building", WAITING)
 # Labels that label-pr.yml keeps up to date from the files a pull request changes and its size.
 # Someone adding or removing one of these by hand has not responded to the pull request: they were
 # all put on by hand once, before that workflow existed.
@@ -215,6 +219,11 @@ def pull(node):
             continue
         actor = person(item.get("actor"))
         name = (item.get("label") or {}).get("name")
+        if kind == "UnlabeledEvent" and name == WAITING:
+            # Whoever took the label off, the pull request needs another look. Counting this as a
+            # response too would take it straight back out.
+            entered = max(entered, at)
+            continue
         if name != INBOX:
             if actor and name not in AUTOMATIC:
                 responses.append({"login": actor, "at": at, "did": "changed its labels"})

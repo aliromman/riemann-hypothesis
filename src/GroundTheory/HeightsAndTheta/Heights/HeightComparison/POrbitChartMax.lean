@@ -4,53 +4,13 @@ public import GroundTheory.HeightsAndTheta.Heights.HeightComparison.HeightOrbitC
 public import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PMinimalPrimeMultiHomog
 public import GroundTheory.HeightsAndTheta.Heights.HeightComparison.POrbitCurve
 public import GroundTheory.HeightsAndTheta.Heights.HeightComparison.PSubringPrimeMaximal
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Sub.Prod
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.RingTheory.WittVector.IsPoly
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
-import Mathlib.Topology.Sheaves.Init
 public import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.IsMultiHomogIdealSpanSingleton
+import GroundTheory.HeightsAndTheta.Heights.BlockScaling
 
 @[expose] public section
 
@@ -74,23 +34,8 @@ theorem aeval_mul_of_homog {R : Type*} [CommRing R] [Algebra ℤ R] (t : ι → 
     {G : MvPolynomial (Coord n) ℤ} {b : ι → ℕ} (hG : IsWeightedHomogeneous (coordDeg n) G b) :
     aeval (fun p ↦ t p.1 * z p) G = aeval z G * ∏ k, t k ^ b k := by
   classical
-  conv_lhs => rw [G.as_sum]
-  conv_rhs => rw [G.as_sum]
-
-  rw [map_sum, map_sum, Finset.sum_mul]
-  refine Finset.sum_congr rfl fun m hm ↦ ?_
-  have hmb : ∀ k, ∑ i, m ⟨k, i⟩ = b k := fun k ↦ by
-    rw [← weight_coordDeg_apply, hG (mem_support_iff.mp hm)]
-  rw [aeval_monomial, aeval_monomial, mul_assoc]
-  congr 1
-  rw [Finsupp.prod_fintype _ _ (fun _ ↦ pow_zero _), Finsupp.prod_fintype _ _ (fun _ ↦ pow_zero _)]
-  simp_rw [mul_pow]
-  rw [Finset.prod_mul_distrib, mul_comm]
-  congr 1
-  rw [Fintype.prod_sigma]
-  refine Finset.prod_congr rfl fun k _ ↦ ?_
-  rw [← hmb k]
-  exact Finset.prod_pow_eq_pow_sum Finset.univ (fun i ↦ m ⟨k, i⟩) (t k)
+  rw [mul_comm]
+  exact BlockScaling.eval₂_mul_block_left (algebraMap ℤ R) t z fun _ hm => BlockScaling.sum_eq_of_isWeightedHomogeneous_single hG hm
 
 def homDeg (F : MvPolynomial (Coord n) ℤ) : ι → ℕ :=
   fun k ↦ F.support.sup fun m ↦ Finsupp.weight (coordDeg n) m k

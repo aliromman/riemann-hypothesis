@@ -7,47 +7,8 @@ public import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerm
 public import Formalism.SharpRestriction.CuspSpanNormBounds.LowestKTypeMultiplicity
 public import Mathlib.Analysis.InnerProductSpace.Calculus
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.InfinitesimalDecay.DecBoundOfCompact
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.TypeStar
-import Mathlib.Topology.Sheaves.Init
 import Mathlib.Analysis.Normed.Algebra.MatrixExponential
-import Mathlib.Tactic.Linter.Style
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.CoefDecayA, Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.CoefDecay
@@ -229,19 +190,19 @@ theorem hasDeriv_R (hσ : Formalism.MainNotions.S.IsURepOn (B.GV k r) σ) {v' : 
   refine h2.congr_of_eventuallyEq (Filter.Eventually.of_forall fun t => ?_)
   show ⟪a, σ (g * NormedSpace.exp ((t : ℂ) • Y)) (Formalism.MainNotions.S.dsigW σ w v')⟫_ℂ =
     ⟪a, σ g (σ (NormedSpace.exp ((t : ℂ) • Y)) (Formalism.MainNotions.S.dsigW σ w v'))⟫_ℂ
-  rw [hσ.1.2 g hg _ (Formalism.MainNotions.LowestKTypeMultiplicity.exp_mem_UH hY t)]
+  rw [hσ.1.2 g hg _ (PI.WUN.exp_mem_UH hY t)]
   rfl
 
 theorem inner_exp_move (hσ : Formalism.MainNotions.S.IsURepOn (B.GV k r) σ) {X : B.Mat k r}
     (hX : Formalism.MainNotions.S.InLieHpk k r X) (t : ℝ) (x y : H) :
     ⟪x, σ (NormedSpace.exp (-((t : ℂ) • X))) y⟫_ℂ = ⟪σ (NormedSpace.exp ((t : ℂ) • X)) x, y⟫_ℂ := by
-  have he : NormedSpace.exp ((t : ℂ) • X) ∈ B.GV k r := Formalism.MainNotions.LowestKTypeMultiplicity.exp_mem_UH hX t
+  have he : NormedSpace.exp ((t : ℂ) • X) ∈ B.GV k r := PI.WUN.exp_mem_UH hX t
   have hX' : Formalism.MainNotions.S.InLieHpk k r (-X) := by
     have h : Xᴴ * Hpk k r + Hpk k r * X = 0 := hX
     show (-X)ᴴ * Hpk k r + Hpk k r * (-X) = 0
     rw [Matrix.conjTranspose_neg, Matrix.neg_mul, Matrix.mul_neg, ← neg_add, h, neg_zero]
   have he' : NormedSpace.exp (-((t : ℂ) • X)) ∈ B.GV k r := by
-    rw [← smul_neg]; exact Formalism.MainNotions.LowestKTypeMultiplicity.exp_mem_UH hX' t
+    rw [← smul_neg]; exact PI.WUN.exp_mem_UH hX' t
   have e1 : NormedSpace.exp ((t : ℂ) • X) * NormedSpace.exp (-((t : ℂ) • X)) = 1 := by
     rw [← Matrix.exp_add_of_commute _ _ ((Commute.refl ((t : ℂ) • X)).neg_right)]
     simp
@@ -273,7 +234,7 @@ theorem hasDeriv_L (hσ : Formalism.MainNotions.S.IsURepOn (B.GV k r) σ) {v : H
   rw [inner_zero_right, zero_add] at h2
   refine h2.congr_of_eventuallyEq (Filter.Eventually.of_forall fun t => ?_)
   have he' : NormedSpace.exp (-((t : ℂ) • X)) ∈ B.GV k r := by
-    rw [← smul_neg]; exact Formalism.MainNotions.LowestKTypeMultiplicity.exp_mem_UH hX' t
+    rw [← smul_neg]; exact PI.WUN.exp_mem_UH hX' t
   show ⟪Formalism.MainNotions.S.dsigW σ u v, σ (NormedSpace.exp (-((t : ℂ) • X)) * g) y⟫_ℂ =
     ⟪σ (NormedSpace.exp ((t : ℂ) • X)) (Formalism.MainNotions.S.dsigW σ u v), σ g y⟫_ℂ
   rw [hσ.1.2 _ he' g hg]

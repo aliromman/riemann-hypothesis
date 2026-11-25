@@ -46,8 +46,6 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValua
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -93,7 +91,7 @@ theorem val_of_pull {φ : K → (Y ⟶ X)} {ε : K → ℤ} {φ' : K → (Y' ⟶
     val t' r z J = val t (r ≫ h) z J := by
   obtain rfl : φ' = fun k => h ≫ φ k := funext e
   unfold val
-  simp only [Category.assoc]
+  simp only
   rw [H]
   all_goals first
     | rfl

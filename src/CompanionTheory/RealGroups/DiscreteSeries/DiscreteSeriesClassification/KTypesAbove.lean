@@ -55,9 +55,10 @@ public import CompanionTheory.RealGroups.FormalDegrees.ArchimedeanFormalDegrees.
 public import CompanionTheory.RealGroups.FormalDegrees.ArchimedeanFormalDegrees.FormalDegreeFormula.CkTwist
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.PsiFor
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.SigLamMemLpOfNe
-public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.ExistenceG2.FormulaF
-public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.ExistenceG2.IsDSSigLam
-public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.FormalDegreeG2.FdCons
+public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.FormulaF
+public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.IsDSSigLam
+public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FdCons
+public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.Transported
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.DatumEmbeddingMemHlam
 public import CompanionTheory.RealGroups.FormalDegrees.ArchimedeanFormalDegrees.MomB
 public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.KFacts
@@ -122,7 +123,6 @@ import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.VNormSqLowKSubRootLt
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.Weight
 import Mathlib.Tactic.ReduceModChar
-import ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.ExistenceG2.SigLamKTypeBounds
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FdegTransfer
 import Mathlib.Algebra.Order.Star.Real
 import Mathlib.Tactic.Basify
@@ -157,7 +157,7 @@ theorem exists_of (hE : DSExists) : GlobalTheory.Published.DiscreteSeriesExists 
   GlobalTheory.Published.discreteSeriesExists_iff_upq.2 (upqExists_of hE)
 
 theorem coverExists_of (hE : DSExists) : GlobalTheory.Published.DiscreteSeriesCoverExists :=
-  GlobalTheory.Published.CoverSeries.of_upq (upqExists_of hE) (fun p q h T U hU => ((_root_.GlobalTheory.HcPort.print_harishChandraModules.1 p q h T).1 U hU).2.1)
+  GlobalTheory.Published.CoverSeries.of_upq (upqExists_of hE) (fun p q h T U hU => ((_root_.CompanionTheory.D.gk.HC.print_harishChandraModules.1 p q h T).1 U hU).2.1)
 
 def ClassUsed : Prop :=
   ∀ (n : ℕ) (ε : Fin n → Bool) (lam : Fin n → ℝ), Formalism.QuantumDeterminants.IsHCParam lam →
@@ -406,7 +406,7 @@ end -- clump:auto
 -- ===== end clump member: CompanionTheory.RealGroups.FormalDegrees.ArchimedeanFormalDegrees.FormalDegreeFormula.CoefPow =====
 
 -- ===== clump member: CompanionTheory.RealGroups.FormalDegrees.ArchimedeanFormalDegrees.DegreeNormalization.GapNorm =====
--- clump-header: {"m": "CompanionTheory.RealGroups.FormalDegrees.ArchimedeanFormalDegrees.DegreeNormalization.GapNorm", "h": "module\n\npublic import CompanionTheory.RealGroups.FormalDegrees.ArchimedeanFormalDegrees.HlamStable\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.PsiFor\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.SigLamMemLpOfNe\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.ExistenceG2.FormulaF\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.ExistenceG2.IsDSSigLam\nimport ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.ExistenceG2.SigLamKTypeBounds\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.FormalDegreeG2.FdCons\nimport ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FdegTransfer\nimport ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.Exists\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.DatumEmbeddingMemHlam\n\n"}
+-- clump-header: {"m": "CompanionTheory.RealGroups.FormalDegrees.ArchimedeanFormalDegrees.DegreeNormalization.GapNorm", "h": "module\n\npublic import CompanionTheory.RealGroups.FormalDegrees.ArchimedeanFormalDegrees.HlamStable\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.PsiFor\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.SigLamMemLpOfNe\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.FormulaF\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.IsDSSigLam\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FdCons\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.Transported\nimport ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.FdegTransfer\nimport ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.Exists\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.DatumEmbeddingMemHlam\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -421,40 +421,40 @@ open ReciprocityTheory.ChartRestriction.DS ReciprocityTheory.ChartRestriction.DS
 
 theorem gapNorm_of (hD : DegPsi) : GapNorm := by
   intro n ε hp hq
-  refine ⟨G2.thrS ε + 2, fun lam hlam hgap T μ hμ => ?_⟩
-  have hh : G2.thrS ε + 1 < G2.thrS ε + 2 := by linarith
+  refine ⟨thrStar ε + 2, fun lam hlam hgap T μ hμ => ?_⟩
+  have hh : thrStar ε + 1 < thrStar ε + 2 := by linarith
   have hq0 := one_le_q0_of_p_q_pos hp hq
-  have h8 := G2.fdc_eight hh
+  have h8 := fdc_eight hh
   have hP : IsPsiFor ε lam T (PsiM T μ) := (S7.isPsiFor_psiM ε lam _ T μ hlam hμ hgap hq0 h8).1
-  have hgap' := G2.fdc_stdGap hlam hgap hh
+  have hgap' := fdc_stdGap hlam hgap hh
   have hw := _root_.ReciprocityTheory.ChartRestriction.DS.HW.KType.w_ne_zero T
-  have hDS := G2.isDS_sigLam hgap' hP hw
+  have hDS := isDS_sigLam hgap' hP hw
   have : CompleteSpace (Hlam ε (PsiM T μ) T.w) := hDS.1
   have : Nontrivial (Hlam ε (PsiM T μ) T.w) := hDS.2.1
-  obtain ⟨d, hd⟩ := G2.fdcGood_of_isDS hDS
+  obtain ⟨d, hd⟩ := fdcGood_of_isDS hDS
   obtain ⟨x, hx⟩ := exists_ne (0 : Hlam ε (PsiM T μ) T.w)
-  have hΨ : ∀ μ' : Fin n → ℝ, IsHCParam μ' → GapAtLeast ε μ' (G2.thrS ε + 2) →
+  have hΨ : ∀ μ' : Fin n → ℝ, IsHCParam μ' → GapAtLeast ε μ' (thrStar ε + 2) →
       ∃ (T' : KType ε (lowK ε μ')) (Ψ : Matrix (Fin n) (Fin n) ℂ → (T'.V →L[ℂ] T'.V)), IsPsiFor ε μ' T' Ψ := by
     intro μ' hμ' hg'
     obtain ⟨T'⟩ := HW.kType_exists ε μ' hμ'
-    obtain ⟨m', -, hP'⟩ := G2.fdc_model hp hq hμ' hg' hh T'
+    obtain ⟨m', -, hP'⟩ := fdc_model hp hq hμ' hg' hh T'
     exact ⟨T', _, hP'⟩
-  have hdeg := G2.fdCons_cd hp hq hlam hgap hh hΨ hDS hx
+  have hdeg := fdCons_cd hp hq hlam hgap hh hΨ hDS hx
   rw [fdegOf_of_isFdeg' hd hx] at hdeg
   subst hdeg
   set C : ℝ := ‖uniformisationL2 ε (PsiM T μ) T.w T.w‖ ^ 2 with hC
   have hC0 : 0 < C := by
-    have := G2.datumEmbedding_highest_ne_zero hgap' hP hw
+    have := datumEmbedding_highest_ne_zero hgap' hP hw
     positivity
   have h1 : (1 : Matrix (Fin n) (Fin n) ℂ) ∈ UJset ε := umat_mem_UJset ε 1
   refine hD n ε T.V (PsiM T μ) (Hlam ε (PsiM T μ) T.w) (sigLam ε (PsiM T μ) T.w)
     (fun v => ⟨uniformisationL2 ε (PsiM T μ) T.w v, datumEmbedding_mem_Hlam hP v⟩) C (dimVlam lam) (muCD ε) hC0 (fun v v' => ?_) (fun g v v' => ?_) hd
-  · have e := G2.formulaF_sigLam hgap' hP hw h1 v v'
+  · have e := formulaF_sigLam hgap' hP hw h1 v v'
     rw [hP.2.1] at e
     simp only [ContinuousLinearMap.one_apply] at e
-    rw [← e, (G2.sigLam_isURepOn hgap' hP hw).1.1]
+    rw [← e, (sigLam_isURepOn hgap' hP hw).1.1]
     rfl
-  · exact G2.formulaF_sigLam hgap' hP hw (umat_mem_UJset ε g) v v'
+  · exact formulaF_sigLam hgap' hP hw (umat_mem_UJset ε g) v v'
 
 end CompanionTheory.RgFd
 end -- clump:auto

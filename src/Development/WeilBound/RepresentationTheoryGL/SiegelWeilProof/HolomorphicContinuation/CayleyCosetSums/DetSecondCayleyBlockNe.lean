@@ -66,68 +66,7 @@ attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 variable {n : ℕ}
 
-private theorem toBlocks₂_relations_of_inG {x : M2 n} (hx : InG x) :
-    toBlocks₂₁ x * (toBlocks₂₂ x)ᴴ = toBlocks₂₂ x * (toBlocks₂₁ x)ᴴ ∧
-    toBlocks₂₁ x * (toBlocks₁₂ x)ᴴ - toBlocks₂₂ x * (toBlocks₁₁ x)ᴴ = -1 := by
-  have e := _root_.PositivityTheory.Rg.Sw.LVs.mul_JJ_conjTranspose hx
-  rw [← fromBlocks_toBlocks x] at e
-  simp only [JJ, fromBlocks_conjTranspose, fromBlocks_multiply, fromBlocks_inj] at e
-  simp at e
-  refine ⟨?_, ?_⟩
-  · have h := e.2.2.2
-    rw [neg_add_eq_sub, sub_eq_zero] at h
-    exact h
-  · have h := e.2.2.1
-    rwa [neg_add_eq_sub] at h
-
-private theorem det_smul_toBlocks₂₁_add_toBlocks₂₂_ne_zero {x : M2 n} (hx : InG x) (t : ℂ) (ht : t ≠ star t) :
-    (t • toBlocks₂₁ x + toBlocks₂₂ x).det ≠ 0 := by
-  intro h0
-  obtain ⟨v, hv, hvM⟩ := exists_vecMul_eq_zero_iff.mpr h0
-  obtain ⟨hC, hA⟩ := toBlocks₂_relations_of_inG hx
-  rw [Matrix.vecMul_add, Matrix.vecMul_smul] at hvM
-  have hβ : v ᵥ* toBlocks₂₂ x = -t • (v ᵥ* toBlocks₂₁ x) := by
-    rw [neg_smul, ← sub_eq_zero, sub_neg_eq_add, add_comm]
-    exact hvM
-  have key : (v ᵥ* toBlocks₂₁ x) ⬝ᵥ star (v ᵥ* toBlocks₂₂ x)
-      = (v ᵥ* toBlocks₂₂ x) ⬝ᵥ star (v ᵥ* toBlocks₂₁ x) := by
-    have h := congrArg (fun M => (v ᵥ* M) ⬝ᵥ star v) hC
-    have e1 : (v ᵥ* (toBlocks₂₁ x * (toBlocks₂₂ x)ᴴ)) ⬝ᵥ star v
-        = (v ᵥ* toBlocks₂₁ x) ⬝ᵥ star (v ᵥ* toBlocks₂₂ x) := by
-      rw [← vecMul_vecMul, ← dotProduct_mulVec, star_vecMul]
-    have e2 : (v ᵥ* (toBlocks₂₂ x * (toBlocks₂₁ x)ᴴ)) ⬝ᵥ star v
-        = (v ᵥ* toBlocks₂₂ x) ⬝ᵥ star (v ᵥ* toBlocks₂₁ x) := by
-      rw [← vecMul_vecMul, ← dotProduct_mulVec, star_vecMul]
-    rw [← e1, ← e2]
-    exact h
-  rw [hβ, star_smul, dotProduct_smul, smul_dotProduct, smul_eq_mul, smul_eq_mul] at key
-  have hs : (v ᵥ* toBlocks₂₁ x) ⬝ᵥ star (v ᵥ* toBlocks₂₁ x) = 0 := by
-    have h3 : (t - star t) * ((v ᵥ* toBlocks₂₁ x) ⬝ᵥ star (v ᵥ* toBlocks₂₁ x)) = 0 := by
-      rw [star_neg] at key
-      linear_combination key
-    rcases mul_eq_zero.mp h3 with h4 | h4
-    · exact absurd (sub_eq_zero.mp h4) ht
-    · exact h4
-  have hα : v ᵥ* toBlocks₂₁ x = 0 := by
-    open scoped ComplexOrder in exact dotProduct_self_star_eq_zero.mp hs
-  have hβ0 : v ᵥ* toBlocks₂₂ x = 0 := by rw [hβ, hα, smul_zero]
-  have h5 := congrArg (fun M => v ᵥ* M) hA
-  simp only [Matrix.vecMul_sub, ← vecMul_vecMul, hα, hβ0, zero_vecMul, sub_self, vecMul_neg,
-    vecMul_one] at h5
-  exact hv (neg_eq_zero.mp h5.symm)
-
 theorem inG_of_inK {g : M2 n} (h : InK g) : InG g := h.1
-
-private theorem det_ne_zero_of_inG' {x : M2 n} (hx : InG x) : x.det ≠ 0 := by
-  have hJ : JJ n * JJ n = -1 := by
-    rw [JJ, fromBlocks_multiply, ← fromBlocks_one, fromBlocks_neg]
-    simp
-  have hx' : xᴴ * JJ n * x = JJ n := hx
-  have h1 : (-(JJ n * xᴴ * JJ n)) * x = 1 := by
-    calc (-(JJ n * xᴴ * JJ n)) * x = -(JJ n * (xᴴ * JJ n * x)) := by
-          simp only [Matrix.neg_mul, Matrix.mul_assoc]
-      _ = 1 := by rw [hx', hJ, neg_neg]
-  exact (Matrix.isUnit_det_of_left_inverse h1).ne_zero
 
 theorem continuous_rhoP {Kg : Type} [TopologicalSpace Kg] (ι : Kg → M2 n) (hι : Continuous ι)
     (hK : ∀ k, InG (ι k)) (m : ℕ) (e : ℤ) (Y : Matrix (Fin n) (Fin n) ℂ) : Continuous (rhoP ι m e Y) := by
@@ -141,12 +80,6 @@ theorem continuous_rhoP {Kg : Type} [TopologicalSpace Kg] (ι : Kg → M2 n) (h�
   have hu2 : Continuous fun k => u2 (ι k) := by
     unfold u2
     fun_prop
-  have hI : Complex.I ≠ star Complex.I := by
-    rw [Complex.star_def, Complex.conj_I]
-    intro h
-    have := congrArg Complex.im h
-    norm_num at this
-  have hd1 : ∀ k, (u1 (ι k)).det ≠ 0 := fun k => det_smul_toBlocks₂₁_add_toBlocks₂₂_ne_zero (hK k) Complex.I hI
   have hinv : Continuous fun k => (u2 (ι k))⁻¹ := by
     rw [continuous_iff_continuousAt]
     intro k
@@ -158,8 +91,8 @@ theorem continuous_rhoP {Kg : Type} [TopologicalSpace Kg] (ι : Kg → M2 n) (h�
   simp only [neg_zero, Complex.cpow_zero, mul_one]
   refine Continuous.star (Continuous.mul (Continuous.mul (hdet.zpow₀ e ?_) ?_)
     (Continuous.matrix_trace ((hinv.matrix_mul continuous_const).matrix_mul hu1)))
-  · exact fun k => Or.inl (det_ne_zero_of_inG' (hK k))
-  · exact (hu1.matrix_det).zpow₀ _ (fun k => Or.inl (hd1 k))
+  · exact fun k => Or.inl (LVs.isUnit_det_of_inG' (hK k)).ne_zero
+  · exact (hu1.matrix_det).zpow₀ _ fun k => Or.inl (LVs.det_first_cayley_block_ne_zero (hK k))
 
 theorem one_upper_left_block : (1 : M2 n).toBlocks₁₁ = 1 := by ext i j; simp [toBlocks₁₁, Matrix.one_apply]
 theorem one_lower_left_block : (1 : M2 n).toBlocks₂₁ = 0 := by ext i j; simp [toBlocks₂₁]

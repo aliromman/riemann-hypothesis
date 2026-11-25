@@ -55,9 +55,6 @@ noncomputable section
 namespace UpperTheory.One.M
 
 
-def New.nMv (_ : TrivialCondition) {D : D7} (m : Mv D) (n : NTiedGPlaceholder D) : NTiedGPlaceholder m.D :=
-  @NTiedGPlaceholder.mk _
-
 end UpperTheory.One.M
 end -- clump:auto
 end -- clump:auto
@@ -78,13 +75,12 @@ open GlobalTheory.Mem.R3.Tr GlobalTheory.LayerMove
 noncomputable section
 namespace UpperTheory.One.M
 
-def mvAll_alt (s : _root_.UpperTheory.One.M.TrivialCondition) {D : D7} (m : Mv D) {C : NChoice D} (a : _root_.GlobalTheory.HeightCounting.NAllCAlt D C) : _root_.GlobalTheory.HeightCounting.NAllCAlt m.D (m.ch C) := @_root_.GlobalTheory.HeightCounting.NAllCAlt.mk (_) (_)
+def mvAll_alt {D : D7} (m : Mv D) {C : NChoice D} (a : _root_.GlobalTheory.HeightCounting.NAllCAlt D C) : _root_.GlobalTheory.HeightCounting.NAllCAlt m.D (m.ch C) := @_root_.GlobalTheory.HeightCounting.NAllCAlt.mk (_) (_)
     (gal := @_root_.Formalism.L2.NGalTiedAlt.mk (_)
       (fr := @_root_.Formalism.L2.OmFrame.mk (_)
         (jE := (by with_unfolding_all exact (a.gal.fr.jE :)))
         (eOm := (by with_unfolding_all exact (a.gal.fr.eOm :)))
         (comm := (by with_unfolding_all exact (a.gal.fr.comm :))))
-      (lp := @_root_.Formalism.L2.LPTiedPlaceholder.mk (_))
       (mt := @fun x1 => @fun x2 => @fun x3 => @fun x4 => @_root_.Formalism.L2.MtReal.mk (_) (_) (_)
         (wt := (by with_unfolding_all exact ((@_root_.Formalism.L2.NGalTiedAlt.mt (_) a.gal ((x1)) ((x2)) ((x3)) ((x4))).wt : _)))
         (J := (by with_unfolding_all exact ((@_root_.Formalism.L2.NGalTiedAlt.mt (_) a.gal ((x1)) ((x2)) ((x3)) ((x4))).J : _)))
@@ -107,7 +103,7 @@ def mvAll_alt (s : _root_.UpperTheory.One.M.TrivialCondition) {D : D7} (m : Mv D
         (surj := (by with_unfolding_all exact (a.gal.av.surj :)))
         (typeV := (by with_unfolding_all exact (a.gal.av.typeV :)))
         (ptV := (by with_unfolding_all exact (a.gal.av.ptV :))))
-      (au := @_root_.Formalism.L2.AUTiedAlt.mk (_) (_) (_) (_)
+      (au := @_root_.Formalism.L2.AUTiedAlt.mk (_) (_) (_)
         (cls := (by with_unfolding_all exact (a.gal.au.cls :)))
         (surj := (by with_unfolding_all exact (a.gal.au.surj :)))
         (iso := (by with_unfolding_all exact (a.gal.au.iso :)))
@@ -128,15 +124,6 @@ def mvAll_alt (s : _root_.UpperTheory.One.M.TrivialCondition) {D : D7} (m : Mv D
         (uni := (by with_unfolding_all exact (a.gal.level.uni :)))
         (wt := (by with_unfolding_all exact (a.gal.level.wt :)))
         (hyp := (by with_unfolding_all exact (a.gal.level.hyp :)))))
-    (n := _root_.UpperTheory.One.M.New.nMv s m a.n)
-    (loc := @_root_.Formalism.L2.LocTied.mk (_)
-      (arith := (by with_unfolding_all exact (a.loc.arith :)))
-      (nbr := (by with_unfolding_all exact (a.loc.nbr :)))
-      (ntwbr := (by with_unfolding_all exact (a.loc.ntwbr :))))
-    (data := @_root_.Formalism.L2.NormalizedDataCompatibility.mk (_)
-      (bj := (by with_unfolding_all exact (a.data.bj :)))
-      (bj_span := (by with_unfolding_all exact (a.data.bj_span :)))
-      (bj_rel := (by with_unfolding_all exact (a.data.bj_rel :))))
     (cover := @_root_.Formalism.L2.NormalizedLocalCompatibility.mk (_) (_)
       (B := @_root_.Formalism.L2.NLocBase.mk (_) (_)
         (Oc := (by with_unfolding_all exact (a.cover.B.Oc :)))
@@ -193,10 +180,6 @@ def mvAll_alt (s : _root_.UpperTheory.One.M.TrivialCondition) {D : D7} (m : Mv D
       (etaT_unr := (by with_unfolding_all exact (a.chi.etaT_unr :)))
       (etaT_inf := (by with_unfolding_all exact (a.chi.etaT_inf :)))
       (lamG := (by with_unfolding_all exact (a.chi.lamG :))))
-    (rho := @_root_.Formalism.L2.NR.NRhoTied.mk (_)
-      (rbarSS := (by with_unfolding_all exact (a.rho.rbarSS :)))
-      (rbar := (by with_unfolding_all exact (a.rho.rbar :)))
-      (rhoS := (by with_unfolding_all exact (a.rho.rhoS :))))
     (types := @_root_.Formalism.L2.NormalizedTypesCompatibility.mk (_) (_)
       (eM := (by with_unfolding_all exact (a.types.eM :)))
       (eM_K := (by with_unfolding_all exact (a.types.eM_K :)))
@@ -303,7 +286,6 @@ def mvAll_alt (s : _root_.UpperTheory.One.M.TrivialCondition) {D : D7} (m : Mv D
       (sd_conj := (by with_unfolding_all exact (a.choice.sd_conj :)))
       (one := (by with_unfolding_all exact (a.choice.one :)))
       (conj := (by with_unfolding_all exact (a.choice.conj :))))
-    (eMt_level := (by with_unfolding_all exact (a.eMt_level :)))
     (cf := @_root_.Formalism.L2.Host.CharFrame.mk (_)
       (P := (by with_unfolding_all exact (a.cf.P :)))
       (W := (by with_unfolding_all exact (a.cf.W :)))
@@ -330,19 +312,8 @@ def mvAll_alt (s : _root_.UpperTheory.One.M.TrivialCondition) {D : D7} (m : Mv D
       (xi_tw := (by with_unfolding_all exact (a.tp.xi_tw :)))
       (psi_is := (by with_unfolding_all exact (a.tp.psi_is :)))
       (psi_un := (by with_unfolding_all exact (a.tp.psi_un :))))
-    (tupLink := (by with_unfolding_all exact (a.tupLink :)))
-    (eta_eq := (by with_unfolding_all exact (a.eta_eq :)))
-    (ringSpec_normalisedCharacter_eq := (by with_unfolding_all exact (a.ringSpec_normalisedCharacter_eq :)))
-    (del_eq := (by with_unfolding_all exact (a.del_eq :)))
-    (psi_eq := (by with_unfolding_all exact (a.psi_eq :)))
     (plB := (by with_unfolding_all exact (a.plB :)))
     (plκ := (by with_unfolding_all exact (a.plκ :)))
-    (plB_loc := (by with_unfolding_all exact (a.plB_loc :)))
-    (plB_iota := (by with_unfolding_all exact (a.plB_iota :)))
-    (etaT_link := (by with_unfolding_all exact (a.etaT_link :)))
-    (muC_link := (by with_unfolding_all exact (a.muC_link :)))
-    (iCq_embO := (by with_unfolding_all exact (a.iCq_embO :)))
-    (embO_star := (by with_unfolding_all exact (a.embO_star :)))
 end UpperTheory.One.M
 end
 end

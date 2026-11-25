@@ -204,23 +204,14 @@ theorem integral_sqrt_one_sub_sq_wide (a b : ℝ) (ha : a ≤ -1) (hb : 1 ≤ b)
     · intro t ht
       rw [Set.uIcc_of_le ha] at ht
       apply Real.sqrt_eq_zero'.mpr
-      have ht1 : 1 ≤ -t := by linarith [ht.2]
-      have hsq : 1 ≤ t ^ 2 := by
-        calc (1 : ℝ) = 1 * 1 := by norm_num
-          _ ≤ (-t) * (-t) := mul_le_mul ht1 ht1 (by norm_num) (by linarith [ht.2])
-          _ = t ^ 2 := by ring
-      linarith
+      nlinarith [ht.1, ht.2]
   have z2 : ∫ t in (1:ℝ)..b, Real.sqrt (1 - t ^ 2) = 0 := by
     rw [intervalIntegral.integral_congr (g := fun _ => (0:ℝ))]
     · simp
     · intro t ht
       rw [Set.uIcc_of_le hb] at ht
       apply Real.sqrt_eq_zero'.mpr
-      have hsq : 1 ≤ t ^ 2 := by
-        calc (1 : ℝ) = 1 * 1 := by norm_num
-          _ ≤ t * t := mul_le_mul ht.1 ht.1 (by norm_num) (by linarith [ht.1])
-          _ = t ^ 2 := by ring
-      linarith
+      nlinarith [ht.1, ht.2]
   rw [z1, z2]
   ring
 
@@ -476,8 +467,6 @@ theorem plane_lattice_reduction_step (e₁ e₂ : ℂ)
       calc |J| ^ 2 ≤ (N / 2) ^ 2 := pow_le_pow_left₀ (abs_nonneg J) hJ 2
         _ = N ^ 2 / 4 := by ring
     have h4 : N * (2 * M) ≤ N * N := by
-      have hNN : N * N = N ^ 2 := (sq N).symm
-      have h2M : N * (2 * M) = 2 * (N * M) := by ring
       linarith
     exact le_of_mul_le_mul_left h4 hN
 
@@ -964,7 +953,6 @@ theorem aRay_eq_ncard_qForm : ∀ (K : Type) [Field K] [NumberField K] (d M : �
   have hImb : |((starRingEnd ℂ) (φ ((b 0 : 𝓞 K) : K)) * φ ((b 1 : 𝓞 K) : K)).im| = √(d : ℝ) / 2 := by
     rw [← Real.sqrt_sq_eq_abs, hb, Real.sqrt_div' _ (by norm_num : (0 : ℝ) ≤ 4),
       show (4 : ℝ) = 2 ^ 2 by norm_num, Real.sqrt_sq (by norm_num)]
-  have hMr : (3 : ℝ) ≤ M := by exact_mod_cast hM
   have hIme : |((starRingEnd ℂ) e₁ * e₂).im| = (M : ℝ) ^ 2 * Nr * (√(d : ℝ) / 2) := by
     rw [hIm, map_mul, hNnorm, hImb, hNr]
     push_cast
@@ -1041,10 +1029,6 @@ theorem aRay_eq_ncard_qForm : ∀ (K : Type) [Field K] [NumberField K] (d M : �
     have h1 : ‖f₁‖ ^ 2 ≤ 2 * Iv := by rw [hImf]; exact hshort
     have h2' : 2 * Nr ≤ Iv := by
       have hM2 : (9 : ℝ) ≤ (M : ℝ) ^ 2 := by exact_mod_cast hM9
-      have hd10 : (10 : ℝ) ≤ √(d : ℝ) := by
-        rw [Real.le_sqrt (by norm_num) (Nat.cast_nonneg _)]
-        norm_num
-        exact_mod_cast hd100
       have hk : (2 : ℝ) ≤ (M : ℝ) ^ 2 * (√(d : ℝ) / 2) := by
         calc (2 : ℝ) ≤ 9 * (10 / 2) := by norm_num
           _ ≤ (M : ℝ) ^ 2 * (√(d : ℝ) / 2) :=
@@ -1140,10 +1124,7 @@ theorem summable_shifted {s : ℝ} (θ : ℝ) (hs : 0 < s) :
   refine Summable.of_nonneg_of_le (fun _ => (Real.exp_pos _).le) (fun m => ?_)
     ((summable_exp_neg_mul_sq (half_pos hs)).mul_left (Real.exp (s * θ ^ 2)))
   rw [← Real.exp_add, Real.exp_le_exp]
-  have hsq : -(s / 2 * (m : ℝ) ^ 2) + s * θ ^ 2 - (-(s * ((m : ℝ) + θ) ^ 2)) =
-      s / 2 * ((m : ℝ) + 2 * θ) ^ 2 := by ring
-  have hnn : 0 ≤ s / 2 * ((m : ℝ) + 2 * θ) ^ 2 := mul_nonneg (half_pos hs).le (sq_nonneg _)
-  linarith
+  grind [mul_nonneg hs.le (sq_nonneg ((m : ℝ) + 2 * θ))]
 
 theorem poisson {s : ℝ} (θ : ℝ) (hs : 0 < s) :
     ((∑' m : ℤ, Real.exp (-(s * (m + θ) ^ 2)) : ℝ) : ℂ) =
@@ -1267,10 +1248,7 @@ theorem tsum_prod_weight_approx {ι κ : Type} (u : ι → κ → ℝ) (w : κ �
   have h7 : A * (∑' k, w k - C) ≤ A * (C * c) := mul_le_mul_of_nonneg_left h4.2 hA
   have h8 : A * (-(C * c)) ≤ A * (∑' k, w k - C) := mul_le_mul_of_nonneg_left h4.1 hA
   rw [abs_le]
-  have e1 : A * C * (a + c + a * c) = A * a * (C + C * c) + A * (C * c) := by ring
-  have e2 : -(A * C * (a + c + a * c)) = -(A * a * (C + C * c)) + A * (-(C * c)) := by ring
-  have e3 : A * ∑' k, w k - A * C = A * (∑' k, w k - C) := by ring
-  constructor <;> linarith
+  constructor <;> grind
 
 theorem theta_qForm : ∀ α γ l θ₁ θ₂ t : ℝ, 0 < α → 0 < γ → 0 < t → Summable (fun v : ℤ × ℤ => Real.exp (-(t * qForm α γ l θ₁ θ₂ v))) ∧ |∑' v : ℤ × ℤ, Real.exp (-(t * qForm α γ l θ₁ θ₂ v)) - Real.pi / Real.sqrt (α * γ) / t| ≤ Real.pi / Real.sqrt (α * γ) / t * ((α * t) ^ 2 + (γ * t) ^ 2 + (α * t) ^ 2 * (γ * t) ^ 2) := by
   intro α γ l θ₁ θ₂ t hα hγ ht

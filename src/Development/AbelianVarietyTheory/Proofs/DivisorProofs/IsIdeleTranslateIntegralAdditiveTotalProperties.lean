@@ -86,7 +86,7 @@ theorem main : ∀ (K : Type) [Field K] [NumberField K] (t : (Af K)ˣ), (∀ x x
     have : algebraMap (𝓞 K) K b = a := rfl
     rw [this]
     simp only [adele_sub_apply, adele_mul_apply, adele_algebraMap_apply, map_mul]
-    ring
+    ring_nf
   · intro x
     have hI : ((t⁻¹ : (Af K)ˣ) • (1 : FractionalIdeal (𝓞 K)⁰ K)) ≠ 0 :=
       GlobalTheory.Idele.smul_ne_zero _ one_ne_zero

@@ -80,7 +80,7 @@ open GlobalTheory.Hk3 (hyp SphOp)
 open GlobalTheory.HeckeScalarSph (locK)
 open scoped TensorProduct
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar Formalism.IndefR.principalLevelFrame.instCMHostI GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+attribute [local instance] Formalism.BasicNotions.Host.cmStar Formalism.IndefR.principalLevelFrame.instCMHostI
 
 variable {D : D7} {V : HSp D} {n : ℕ} {hF : D.host.F = maximalRealSubfield D.host.E} {Q : principalLevelFrame.RowPsi V n}
 
@@ -236,7 +236,7 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Form
   GlobalTheory.HeightCounting GlobalTheory.EigRows
 open scoped TensorProduct
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar Formalism.IndefR.principalLevelFrame.instCMHostI GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+attribute [local instance] Formalism.BasicNotions.Host.cmStar Formalism.IndefR.principalLevelFrame.instCMHostI
 
 
 

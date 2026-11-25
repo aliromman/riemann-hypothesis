@@ -42,6 +42,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.OmLocU
+public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.HRAddSmul
 
 @[expose] public section
 
@@ -127,10 +128,6 @@ theorem gram_rem {a : ℕ} (y Z W : Fin a → Fin n → R ⊗[F] E) :
 end Alg
 
 section Rem
-
-theorem sigR_sc (r : Fv F v) : sigR (Fv F v) σ (sc (E := E) v r) = sc (E := E) v r := by
-  first
-  | (simp [sigR, sc]; done)
 
 theorem hR_smul_smul (r t : Fv F v) (x y : Fin n → Fv F v ⊗[F] E) :
     hR (Fv F v) σ J (r • x) (t • y) = sc (E := E) v (r * t) * hR (Fv F v) σ J x y := by

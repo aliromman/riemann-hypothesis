@@ -158,22 +158,8 @@ theorem bad_inert (hI : MB.MatchBadI) (hU : Unr E) (d : LocData E n) (hd : d.Ok)
   exact hI E hU w hs n a (n - a) k (Nat.add_sub_cancel' ha) hk _ hl hc _
 
 theorem mconv_mul_mul {a b : ℕ} {w : Pl E} (r s : ℂ) (u v : GLw a w × GLw b w → ℂ) :
-    mconv (fun y => r * u y) (fun y => s * v y) = fun y => (r * s) * mconv u v y := by
-  funext y
-  unfold mconv
-  rw [← GlobalTheory.CompanionTheory.TailLocPow.hint_smul]
-  congr 1
-  funext z
-  ring
-
-theorem lconv_mul_mul {w : Pl E} (r s : ℂ) (u v : UL n w → ℂ) :
-    lconv (fun y => r * u y) (fun y => s * v y) = fun y => (r * s) * lconv u v y := by
-  funext y
-  unfold lconv
-  rw [← GlobalTheory.CompanionTheory.TailLocPow.hint_smul]
-  congr 1
-  funext z
-  ring
+    mconv (fun y => r * u y) (fun y => s * v y) = fun y => (r * s) * mconv u v y :=
+  GlobalTheory.CompanionTheory.MatchLMPlaces.mconv_mul_mul r s u v
 
 theorem mconv_left {a b : ℕ} {w : Pl E} {u v : GLw a w × GLw b w → ℂ} {l : GLw a w × GLw b w}
     (hu : ∀ m, u (l * m) = u m) (m : GLw a w × GLw b w) : mconv u v (l * m) = mconv u v m := by
@@ -184,15 +170,8 @@ theorem mconv_left {a b : ℕ} {w : Pl E} {u v : GLw a w × GLw b w → ℂ} {l 
   rw [hu, mul_inv_rev, mul_assoc, inv_mul_cancel_left]
 
 theorem tr_one (d : LocData E n) {a : ℕ} (L : LM d.kap a (n - a)) {w : Pl E} (hw : w ∈ d.P) :
-    L.tr d.P d.one w = ∑ x, L.m w x x := by
-  unfold LM.tr
-  rw [if_pos hw]
-  refine Finset.sum_congr rfl fun x _ => ?_
-  rw [Finset.sum_eq_single x]
-  · simp [LocData.one]
-  · intro y _ hy
-    simp [LocData.one, hy]
-  · simp
+    L.tr d.P d.one w = ∑ x, L.m w x x :=
+  GlobalTheory.CompanionTheory.MatchLMB2.tr_one d L hw
 
 theorem sum_diag (d : LocData E n) {a : ℕ} {w : Pl E} (f g : d.kap w → LF a (n - a) w) (x : d.kap w) :
     ∑ z, mconv (d.diag f x z) (g z) = mconv (f x) (g x) := by
@@ -424,30 +403,12 @@ theorem qT_eq (s : Finset (Fin (n / 2))) :
     rw [dite_eq_right h, dite_eq_right h', mul_zero]
 
 theorem mpow_scale {b : ℕ} (r : ℂ) (u : GLw a w × GLw b w → ℂ) (k : ℕ) :
-    MT.mpow w (fun y => r * u y) k = fun y => r ^ k * MT.mpow w u k y := by
-  induction k with
-  | zero =>
-    funext y
-    simp [MT.mpow]
-  | succ k ih =>
-    show mconv _ (MT.mpow w _ k) = _
-    rw [ih, mconv_mul_mul]
-    funext y
-    show _ = r ^ (k + 1) * mconv u (MT.mpow w u k) y
-    ring
+    MT.mpow w (fun y => r * u y) k = fun y => r ^ k * MT.mpow w u k y :=
+  GlobalTheory.CompanionTheory.MatchLMPlaces.mpow_scale r u k
 
 theorem lpow_scale (K : Subgroup (UL n w)) (r : ℂ) (g : UL n w → ℂ) (k : ℕ) :
-    lpow K (fun y => r * g y) k = fun y => r ^ k * lpow K g k y := by
-  induction k with
-  | zero =>
-    funext y
-    simp [U.lpow]
-  | succ k ih =>
-    show lconv _ (lpow K _ k) = _
-    rw [ih, lconv_mul_mul]
-    funext y
-    show _ = r ^ (k + 1) * lconv g (lpow K g k) y
-    ring
+    lpow K (fun y => r * g y) k = fun y => r ^ k * lpow K g k y :=
+  GlobalTheory.CompanionTheory.MatchLMPlaces.lpow_scale K r g k
 
 theorem qT_hecke (s : Finset (Fin (n / 2))) : IsHecke (Tail.I2 a (n - a) w) (d.qT a w s) := by
   rw [qT_eq]
@@ -670,32 +631,9 @@ section SlopeTestRemainingChoices
 
 variable {H : Type} [Group H]
 
-theorem ms_mem_rStab {u : H → ℂ} {r : H} : r ∈ rStab u ↔ ∀ x, u (x * r) = u x := Iff.rfl
-
-theorem ms_rStab_left (u : H → ℂ) (k : H) : rStab (fun z => u (k * z)) = rStab u := by
-  ext r
-  rw [ms_mem_rStab, ms_mem_rStab]
-  constructor
-  · intro h x
-    simpa [mul_assoc] using h (k⁻¹ * x)
-  · intro h x
-    simpa [mul_assoc] using h (k * x)
-
 theorem ms_hint_left (K : Subgroup H) (u : H → ℂ) (k : H) :
-    hint K (fun z => u (k * z)) = hint K u := by
-  unfold hint
-  rw [ms_rStab_left]
-  congr 1
-  refine Eq.trans ?_ (finsum_comp_equiv (MulAction.toPerm k : H ⧸ (rStab u ⊓ K) ≃ H ⧸ (rStab u ⊓ K)))
-  refine finsum_congr fun q => ?_
-  have hq : (MulAction.toPerm k : H ⧸ (rStab u ⊓ K) ≃ H ⧸ (rStab u ⊓ K)) q =
-      ((k * q.out : H) : H ⧸ (rStab u ⊓ K)) := by
-    conv_lhs => rw [← QuotientGroup.out_eq' q]
-    rfl
-  rw [hq]
-  obtain ⟨h, hh⟩ := QuotientGroup.mk_out_eq_mul (rStab u ⊓ K) (k * q.out)
-  rw [hh]
-  exact (h.2.1 _).symm
+    hint K (fun z => u (k * z)) = hint K u :=
+  PositivityTheory.Rg.BcB.F.FinConv.hint_left K u k
 
 theorem ms_exists_of_hint_ne_zero (K : Subgroup H) (u : H → ℂ) (h : hint K u ≠ 0) : ∃ z, u z ≠ 0 := by
   by_contra hc
@@ -802,10 +740,6 @@ namespace PositivityTheory.Rg.BcB.F.MatchAll
 open PositivityTheory.Rg.Bc.ArchbcB.B PositivityTheory.Rg.BcN.F2.LocOpPf
 
 theorem ctMul : MT.CtMul := _root_.GlobalTheory.CompanionTheory.CtMulSplit.ctMul
-
-theorem hM4 : M4 := _root_.PositivityTheory.Rg.Bc.ArchbcB.B.M4.m4
-
-theorem hM1 : M1 := m1
 
 theorem matchT_of (h4 : M4) : MT.MatchT := TorusMatching.match_torus_of_twisted_matching h4
 

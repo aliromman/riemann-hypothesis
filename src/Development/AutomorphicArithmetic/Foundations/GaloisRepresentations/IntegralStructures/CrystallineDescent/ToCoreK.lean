@@ -1291,7 +1291,7 @@ open Sub
 theorem twoUpOK_of_steps (hT : UpperTheory.TP.TLiftK) (hC : ChrPairs) (hU : UpOf) (hB : BaseNG) : TwoUpOK := by
   intro E _ _ _ hE hK _ hI n hn he U hA lam hl w₀ hw₀
   obtain ⟨Bs, δ, 𝔞, hG, hX, hW⟩ := hB E hE hI
-  obtain ⟨d₀, hd⟩ := hT E Bs ⟨hG.cm, hK, hG.unram, hG.std, hG.inert, hG.psiP⟩ n hn _ rfl (hX n)
+  obtain ⟨d₀, hd⟩ := hT E Bs ⟨hG.cm, .inl hK, hG.unram, hG.std, hG.inert, hG.psiP⟩ n hn _ rfl (hX n)
   set t := 2 * (d₀ + n) + 1 with ht
   obtain ⟨b, hb⟩ := (Set.finite_range fun x : InfinitePlace (maximalRealSubfield E) × Fin n => (lam (Bs.emb x.1).1).w x.2).bddBelow
   obtain ⟨κ, m, χX, χW, mX, mW, ψ, p, hκ, hj, hne, hu, hu'⟩ :=

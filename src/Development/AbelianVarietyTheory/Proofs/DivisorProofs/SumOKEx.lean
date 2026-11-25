@@ -15,49 +15,10 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IndicatorSma
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemGlLatCongOfSmul
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemMatLatSmulBlockLat
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ValuationLeOneOfMem
-import Mathlib
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnderMemAndPlaceAboveEqOfMem
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PadicIsNonarchimedeanLocalField
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.NsmulProjectionXColumnsMemSelfDualLattice
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ParahoricLevelLiftsExist
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.ReduceModChar
-import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
 
@@ -71,7 +32,7 @@ namespace GlobalTheory.FunObj
 
 open GlobalTheory.ChiGrid GlobalTheory.SplitFlip GlobalTheory.SplitWeil GlobalTheory.StepData GlobalTheory.StdFrames Formalism.L2.Host Formalism.L2.DIV
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw
+attribute [local instance] Formalism.BasicNotions.Host.cmStar borelKw borelSpaceKw
 
 attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace
 
@@ -544,8 +505,8 @@ theorem isSBHalf_cosLoc_top (S : GridChoice W U) (t : T) {e : AE D} (he : IsIdem
     IsSBHalf e (latO (G.pS (.top t j)) (G.pT (.top t j)) (G.latS (.top t j) : Set _) (G.latT (.top t j) : Set _) fun _ => True)
       (cosLoc (locPl G t) e (S.βp (j + 1)) (S.βp j) N r) :=
   _root_.GlobalTheory.FunObj.CosSB.isSBHalf_cosLoc (G.V (.top j)) (G.V (.top (j + 1))) (G.Λ (.top j)) (G.Λ (.top (j + 1))) (S.βp j) (S.βp (j + 1)) (locPl G t) e N r
-    (by first | exact isFullLattice_top G j.2.le | exact (isFullLattice_top G j.2.le).toIsLattice)
-    (by first | exact isFullLattice_top G j.2 | exact (isFullLattice_top G j.2).toIsLattice) (S.βp_is j j.2.le) (S.βp_is (j + 1) j.2) he hr
+    (by first | exact isFullLattice_top G j.2.le)
+    (by first | exact isFullLattice_top G j.2) (S.βp_is j j.2.le) (S.βp_is (j + 1) j.2) he hr
 
 theorem isSBHalf_cosLoc_chi {μ₀ : T} (hL : L.Is μ₀) (S : GridChoice W U) (t : T) {e : AE D} (he : IsIdemSum e (locPl G t))
     (N : ℕ) (i : Fin D.R.m) {r : WO (G.pS (.chi i D.R.m)) (G.pT (.chi i D.R.m))} (hr : IsHalf e r) :
@@ -557,8 +518,8 @@ theorem isSBHalf_cosLoc_chi {μ₀ : T} (hL : L.Is μ₀) (S : GridChoice W U) (
     · exact isFullLattice_grid_zero hL G
     · exact isFullLattice_grid_succ G hi.le
   exact _root_.GlobalTheory.FunObj.CosSB.isSBHalf_cosLoc (G.pS (.chi i D.R.m)) (G.pT (.chi i D.R.m)) (G.Λ (.grid (i + 1) D.R.m)) (G.Λ (.grid i D.R.m))
-    (S.B.β (i + 1) D.R.m) (S.B.β i D.R.m) (locPl G t) e N r (by first | exact isFullLattice_grid_succ G i.2 | exact (isFullLattice_grid_succ G i.2).toIsLattice)
-    (by first | exact hT | exact hT.toIsLattice)
+    (S.B.β (i + 1) D.R.m) (S.B.β i D.R.m) (locPl G t) e N r (by first | exact isFullLattice_grid_succ G i.2)
+    (by first | exact hT)
     (S.B.isFrame_β hL i.2 le_rfl) (S.B.isFrame_β hL i.2.le le_rfl) he hr
 
 end SBs

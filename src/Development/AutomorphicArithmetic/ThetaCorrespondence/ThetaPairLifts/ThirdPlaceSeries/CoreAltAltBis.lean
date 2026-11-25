@@ -66,7 +66,6 @@ structure SpectralDataCompatible {p : _root_.GlobalTheory.Mem.Top.Bl.Parameters 
   twGood : DQ.GoodAllAt (q.w.D q.Z) q.O.ex.nch S.twIn
   chr : (⟨S.n.cf, S.n.tp⟩ : Σ c : CharFrame (q.w.D q.Z), TupTied (q.w.D q.Z) c q.O.ex.nch) = ⟨TC.cf q.w.I q.w.l q.Z, q.x.n.tp⟩
   gal : S.n.gal = q.core_data_of_point.a.all.gal
-  nn : S.n.n = q.core_data_of_point.a.all.n
   exp : S.n.exp = q.core_data_of_point.a.all.exp
   chiD : S.n.chiD = q.core_data_of_point.a.all.chiD
   twF : S.n.twF = q.core_data_of_point.a.all.twF
@@ -76,8 +75,6 @@ structure SpectralDataCompatible {p : _root_.GlobalTheory.Mem.Top.Bl.Parameters 
   thetaChr : HEq S.thetaChr q.x.th.chr
   dt : ∀ a, S.chrDt.eDt a = (QuotientGroup.mk a : GlobalTheory.Mem.Col2.DtQ q.B.host q.w.I.SQ)
   pieces : S.what₂.O.pieces.rcf = GlobalTheory.Mem.HD.qb S.host.fr.ι q.w.δ.ray ∧ S.what₂.O.pieces.MDel = GlobalTheory.Mem.HD.qb S.host.fr.ι q.w.δ.M'
-  inK : S.inK = q.x.div.inK
-  geo : HEq S.geo q.x.div.geo
   tw : ∃ he : q.O.ex.tw = q.w.tw q.Z, TC.StdTw q.w.I q.w.l q.Z q.w.l0 (he ▸ S.tw)
 abbrev BoundaryReciprocity : GlobalTheory.Fc.BdT := fun _ O _ => _root_.Formalism.L2.RecTAlt O.ex
 structure RecordCompatible {p : _root_.GlobalTheory.Mem.Top.Bl.Parameters hL} {K : Ctx} (q : WPt p.s K) (R : _root_.Formalism.L2.RecTAlt q.O.ex) : Prop where

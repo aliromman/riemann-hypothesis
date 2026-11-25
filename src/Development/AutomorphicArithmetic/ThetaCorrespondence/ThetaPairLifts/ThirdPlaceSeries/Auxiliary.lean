@@ -92,6 +92,7 @@ import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ParabolicInduc
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnitarisableSegmentTwistPrecedesAddOneLe
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsFixedIff
 import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.NormalIntegrality
+public import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.InertFrames.FrameInertAll
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsDegreeOnePrimeNotSplitsCompletely, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.InertFrames.InertB, Development.AutomorphicArithmetic.Foundations.UnitarySphericalFixing.SatakeParameters.BaseChangeDefiniteOfCmDatumRecLaws, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.CuspidalOfLocalLanglands, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.MTwinB, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LpSumSegmentsNuStatement, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.RecSpehQuot, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.RecSpehQuotStatement, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.RecSatakeRecT, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.RecSatakeRecTStatement, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.UnitaryOfLocalLanglands, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.BciNarrowAux, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.Auxiliary
@@ -162,13 +163,6 @@ namespace ExistsNonSplitPlace
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E]
 
-theorem mem_of_not_isSplitAt {Sec : Set (Pl E)} (hS : IsSection Sec) {w : Pl E} (hw : ¬ IsSplitAt w) :
-    w ∈ Sec := by
-  obtain ⟨u, ⟨hu, hue⟩, -⟩ := hS w
-  by_cases h : u = w
-  · exact h ▸ hu
-  · exact absurd ⟨u, h, hue⟩ hw
-
 theorem exists_not_isSplitAt (B : Set (Pl E)) (hB : B.Finite) : ∃ w : Pl E, w ∉ B ∧ ¬ IsSplitAt w := by
   set F := maximalRealSubfield E
   have h2 : Module.finrank F E = 2 := Algebra.IsQuadraticExtension.finrank_eq_two F E
@@ -202,16 +196,6 @@ theorem exists_not_isSplitAt (B : Set (Pl E)) (hB : B.Finite) : ∃ w : Pl E, w 
   omega
 
 end ExistsNonSplitPlace
-
-theorem inertPlaceEx : InertPlaceEx := by
-  intro E _ _ _ _ n π hπ Sec hS X
-  have hfin : {w : Pl E | ¬ IsUnramU π w}.Finite :=
-    Filter.eventually_cofinite.1 (PositivityTheory.Rg.BcB.F.Rig.eventually_isUnramU hπ)
-  obtain ⟨w, hwB, hw⟩ := ExistsNonSplitPlace.exists_not_isSplitAt ((X : Set (Pl E)) ∪ {w | ¬ IsUnramU π w})
-    (X.finite_toSet.union hfin)
-  refine ⟨w, ExistsNonSplitPlace.mem_of_not_isSplitAt hS hw, fun h => hwB (Or.inl h), hw, ?_⟩
-  by_contra h
-  exact hwB (Or.inr h)
 
 end PositivityTheory.Rg.BcB.F.Inert
 
@@ -617,7 +601,7 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.unitary_of_local_langlands' : ∀ (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (D : D7) (T : GlobalTheory.RowTie.WDTie D.nd D.naut) (A : _root_.GlobalTheory.HeightCounting.AUSideAlt D), _root_.GlobalTheory.HeightCounting.AutomorphicSideRealised hL D T A → _root_.UpperTheory.One.M.Ud.UnitaryReadS D.nbc (_root_.GlobalTheory.FormDict.recT_alt T hL) := by
-  first | exact @_root_.UpperTheory.One.M.unitaryRead_true_alt trivial
+  first | exact @_root_.UpperTheory.One.M.unitaryRead_true_alt
 end
 end -- clump:auto
 end -- clump:auto

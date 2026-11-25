@@ -1,6 +1,6 @@
 module
 
-public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerOrbitVolume.PosNear
+public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.PosNear
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompactness.T2SpaceTensorProductFiniteExtension
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
@@ -60,7 +60,8 @@ namespace TensAllW
 
 open scoped TensorProduct
 open NumberField IsDedekindDomain MeasureTheory Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes PI.AdicCompletionValuation
-  PI.VolFromSW PositiveNearLattice Matrix
+  PI.VolFromSW Matrix
+open PI.VolStabS.PositiveNearLattice (crd continuous_crd)
 
 def LIP (R : Type) [CommRing R] : Prop :=
   ∀ (m n : Type) [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n] (W : Matrix m n R),

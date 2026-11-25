@@ -63,7 +63,7 @@ namespace GlobalTheory.FunObj
 
 open GlobalTheory.ChiGrid GlobalTheory.SplitFlip GlobalTheory.SplitWeil GlobalTheory.StepData GlobalTheory.StdFrames Formalism.L2.Host Formalism.L2.DIV ValuativeRel
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 def flipOrder (m : ℕ) : List (ℕ × ℕ) := (List.range m).flatMap fun i => (List.range m).map fun j => (i, j)
 

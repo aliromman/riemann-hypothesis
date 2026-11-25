@@ -331,31 +331,6 @@ theorem eD_form [FiniteDimensional F E] (σ : E →ₐ[F] E) (J : Matrix (Fin m)
   have h1 : ((ε : ℤ) : AF F) * (u : AF F) = -1 := by rw [← Int.cast_mul, hεu]; norm_num
   linear_combination (-(Bf σ J Z' X)) * h1
 
-theorem sDarb : SDarb := by
-  intro F E _ _ _ _ _ σ B bs m n A Y b ε r s hB hm hn hsg hb hε
-  haveI : FiniteDimensional F E := Module.Finite.of_basis bs
-  have hσ : ∀ a, σ (σ a) = a := by
-    obtain ⟨-, -, -, h⟩ := hB.cm
-    intro a
-    let τ : E →+* ℂ := Classical.arbitrary _
-    apply τ.injective
-    rw [h, h, star_star]
-  obtain ⟨u, hsym, hεu, hJ⟩ : ∃ u : ℤ, (∀ i j, σ (A.J j i) = (u : E) * A.J i j) ∧ (ε : ℤ) * u = -1 ∧ A.J.det ≠ 0 := by
-    rcases hsg with ⟨hA, hY⟩ | ⟨hA, hY⟩
-    · refine ⟨1, fun i j => by simp [hA.herm], ?_, GlobalTheory.ThetaRatPair.det_ne_of_sig B A.J hA.sig⟩
-      rw [eps_eq hσ Y.J (-1) (fun i j => by simp [hY]) b ε hε hn]
-      norm_num
-    · refine ⟨-1, fun i j => by simp [hA.skew], ?_, GlobalTheory.ThetaRatPair.det_ne_of_sig' B A.J hA.sig⟩
-      rw [eps_eq hσ Y.J 1 (fun i j => by simp [hY]) b ε hε hn]
-      norm_num
-  have hP := Pm_unit (n := n) σ hσ A.J hJ bs
-  let dd : Darboux (symp (R := AF F) (_root_.Algebra.TensorProduct.map (_root_.AlgHom.id (AF F) (AF F)) σ) (-1) ((_root_.Matrix.map · (_root_.Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.inclR (F := F) (AF F))) A.J) (dbl ((_root_.Matrix.map · (_root_.Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.inclR (F := F) (AF F))) Y.J))) (Fin m × Fin n × Fin 2) :=
-    ⟨eD σ A.J bs b hP, eD_form σ A.J bs Y.J b ε hε u (fun X Z => Bf_symm hσ A.J u hsym X Z) hεu hP⟩
-  have hd : IsAdapted bs A Y b dd := fun Z X => eD_frame σ A.J bs b hP Z X
-  refine ⟨dd, hd, fun x => ?_⟩
-  obtain ⟨c, hc⟩ := e_rat bs A Y b dd hd x
-  exact ⟨_, c, hc⟩
-
 end PositivityTheory.SiegelWeilFormula.Ldexa
 end -- clump:auto
 end -- clump:auto

@@ -2,7 +2,7 @@ module
 
 public import Formalism.FormalDegreeBessel.StatementDS
 public import Formalism.PeriodIntegrals.UpqRep
-public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.TensorProductsG2.Transported
+public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.Transported
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FormalDegreeSquareIntegrable.Closed
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HermitianFormalDegree.VUnitInvVal
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HighestWeightUniqueness.HpkMulMulHpkApply
@@ -67,7 +67,7 @@ import Mathlib.Data.Nat.Choose.Multinomial
 -- Members: CompanionTheory.AutomorphicTheory.PieriRules.HarishChandraFormalDegree, CompanionTheory.HarishChandraModules.BesselParameterIntegrals.SmoothCyclicVectors.SmoothCyclicVectors, CompanionTheory.AutomorphicTheory.PieriRules.InfinitesimalCharacterDiscreteSeries
 
 -- ===== clump member: CompanionTheory.AutomorphicTheory.PieriRules.HarishChandraFormalDegree =====
--- clump-header: {"m": "CompanionTheory.AutomorphicTheory.PieriRules.HarishChandraFormalDegree", "h": "module\n\npublic import Formalism.FormalDegreeBessel.StatementDS\npublic import Formalism.PeriodIntegrals.UpqRep\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.TensorProductsG2.Transported\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FormalDegreeSquareIntegrable.Closed\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HermitianFormalDegree.VUnitInvVal\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HighestWeightUniqueness.HpkMulMulHpkApply\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Real\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.PsiGelfand\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.ExistenceG2.FinalExists\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.TensorProductsG2.FormalDegreeConstantDiscrete\nimport ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.Exists\nimport Std.Tactic.BVDecide.Normalize.Prop\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.EqZeroOfDatumEmbeddingEqZero\n\n"}
+-- clump-header: {"m": "CompanionTheory.AutomorphicTheory.PieriRules.HarishChandraFormalDegree", "h": "module\n\npublic import Formalism.FormalDegreeBessel.StatementDS\npublic import Formalism.PeriodIntegrals.UpqRep\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.Transported\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FormalDegreeSquareIntegrable.Closed\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HermitianFormalDegree.VUnitInvVal\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HighestWeightUniqueness.HpkMulMulHpkApply\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Real\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficients.PsiGelfand\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.ExistenceG2.FinalExists\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.TensorProductsG2.FormalDegreeConstantDiscrete\nimport ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.Exists\nimport Std.Tactic.BVDecide.Normalize.Prop\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.EqZeroOfDatumEmbeddingEqZero\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -81,23 +81,31 @@ open PI.UpqRep ReciprocityTheory.ChartRestriction.DS
 
 variable {n : ℕ}
 
-theorem thrS_lt (ε : Fin n → Bool) (hn : 1 ≤ n) {h : ℝ} (hh : 43 * (n : ℝ) ^ 2 ≤ h) : G2.thrS ε + 1 < h := by
-  have hq : S7.q0 ε ≤ n := (min_le_left _ _).trans ((Finset.card_filter_le _ _).trans (by simp))
-  have hq' : (S7.q0 ε : ℝ) ≤ n := by exact_mod_cast hq
+theorem thrS_lt (ε : Fin n → Bool) (hn : 1 ≤ n) {h : ℝ} (hh : 43 * (n : ℝ) ^ 3 ≤ h) :
+    max (2 * (n : ℝ)) (thrStar ε) + 1 < h := by
+  have hp : pOf ε ≤ n := (Finset.card_le_univ _).trans_eq (Fintype.card_fin n)
+  have hq : qOf ε ≤ n := (Finset.card_le_univ _).trans_eq (Fintype.card_fin n)
+  have h0 : S7.q0 ε ≤ n := (min_le_left _ _).trans ((Finset.card_filter_le _ _).trans (by simp))
+  have hp' : (pOf ε : ℝ) ≤ n := by exact_mod_cast hp
+  have hq' : (qOf ε : ℝ) ≤ n := by exact_mod_cast hq
+  have h0' : (S7.q0 ε : ℝ) ≤ n := by exact_mod_cast h0
   have hn' : (1 : ℝ) ≤ n := by exact_mod_cast hn
+  have h2 : (n : ℝ) ≤ n ^ 3 := le_self_pow₀ hn' (by norm_num)
+  have h3 : (n : ℝ) ^ 2 ≤ n ^ 3 := pow_le_pow_right₀ hn' (by norm_num)
   have hs : Real.sqrt (2 * (S7.q0 ε : ℝ)) ≤ 2 * n := by
     rw [Real.sqrt_le_left (by positivity)]
     nlinarith [(Nat.cast_nonneg (S7.q0 ε) : (0 : ℝ) ≤ _)]
-  have h1 : (n : ℝ) * (S7.q0 ε : ℝ) ≤ n * n := mul_le_mul_of_nonneg_left hq' (by positivity)
-  unfold G2.thrS
-  rcases max_cases (2 * (n : ℝ)) (16 * (n : ℝ) * (S7.q0 ε : ℝ) + 8 * Real.sqrt (2 * (S7.q0 ε : ℝ))) with h2 | h2 <;>
-    rw [h2.1] <;> nlinarith
+  have h1 : (n : ℝ) * (S7.q0 ε : ℝ) ≤ n * n := mul_le_mul_of_nonneg_left h0' (by positivity)
+  have h4 : (n : ℝ) * (pOf ε : ℝ) * (qOf ε : ℝ) ≤ n * n * n := by gcongr
+  suffices max (2 * (n : ℝ)) (thrStar ε) < h - 1 by linarith
+  unfold thrStar
+  refine max_lt ?_ (max_lt ?_ ?_) <;> nlinarith
 
 def HCFdegG : Prop :=
   ∀ (n : ℕ) (ε : Fin n → Bool), 1 ≤ pOf ε → 1 ≤ qOf ε → ∃ c : ℝ, 0 < c ∧
     ∀ (lam : Fin n → ℝ) (H : Type) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
       (σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)), IsHCParam lam → IsDS ε lam σ →
-      ∀ h : ℝ, Formalism.QuantumDeterminants.GapAtLeast ε lam h → G2.thrS ε + 1 < h → IsFdeg (muG ε) σ (c * fdegHC lam)
+      ∀ h : ℝ, Formalism.QuantumDeterminants.GapAtLeast ε lam h → thrStar ε + 1 < h → IsFdeg (muG ε) σ (c * fdegHC lam)
 
 theorem harish_chandra_formal_degree : HCFdegG := by
   intro n ε hp hq
@@ -120,10 +128,12 @@ theorem harish_chandra_formal_degree : HCFdegG := by
   rwa [← h3]
 
 theorem dsExistsG (ε : Fin n → Bool) (lam : Fin n → ℝ) (hl : IsHCParam lam) {h : ℝ}
-    (hg : Formalism.QuantumDeterminants.GapAtLeast ε lam h) (hh : G2.thrS ε < h) :
+    (hg : Formalism.QuantumDeterminants.GapAtLeast ε lam h) (hh : max (2 * (n : ℝ)) (thrStar ε) < h) :
     ∃ (H : Type) (_ : NormedAddCommGroup H) (_ : InnerProductSpace ℂ H)
       (σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)), IsDS ε lam σ :=
-  G2.final_existsG_of (fun _ => S7.psiExists) n ε lam hl h hg hh
+  G2.final_existsG_of (fun _ => S7.psiExists) n ε lam hl h hg
+    (max_lt (lt_of_le_of_lt (le_max_left _ _) hh)
+      (lt_of_le_of_lt ((le_max_right _ _).trans (le_max_right _ _)) hh))
 
 section Hpk
 
@@ -161,7 +171,7 @@ theorem one_le_pOf (hk : 1 ≤ k) (hP : IsCayleyU k r ε P) : 1 ≤ pOf ε := by
   norm_num at h2
 
 theorem dsExistsHpkG (hP : IsCayleyU k r ε P) (lam : Fin (2 * r + k + 1) → ℝ) (hl : IsHCParam lam) {h : ℝ}
-    (hg : Formalism.QuantumDeterminants.GapAtLeast ε lam h) (hh : G2.thrS ε < h) :
+    (hg : Formalism.QuantumDeterminants.GapAtLeast ε lam h) (hh : max (2 * ((2 * r + k + 1 : ℕ) : ℝ)) (thrStar ε) < h) :
     ∃ (H : Type) (_ : NormedAddCommGroup H) (_ : InnerProductSpace ℂ H) (_ : CompleteSpace H)
       (σ : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ → (H →L[ℂ] H)), IsDSHpk k r ε lam σ := by
   obtain ⟨H, _, _, σ, hσ⟩ := dsExistsG ε lam hl hg hh
@@ -198,7 +208,7 @@ end -- clump:auto
 -- ===== end clump member: CompanionTheory.HarishChandraModules.BesselParameterIntegrals.SmoothCyclicVectors.SmoothCyclicVectors =====
 
 -- ===== clump member: CompanionTheory.AutomorphicTheory.PieriRules.InfinitesimalCharacterDiscreteSeries =====
--- clump-header: {"m": "CompanionTheory.AutomorphicTheory.PieriRules.InfinitesimalCharacterDiscreteSeries", "h": "module\n\npublic import CompanionTheory.AutomorphicTheory.PieriRules.ThetaBesselIsometries.IsDSOfIsDG\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.TensorProductsG2.Transported\npublic import CompanionTheory.AutomorphicTheory.PieriRules.HarishChandraFormalDegree\npublic import CompanionTheory.AutomorphicTheory.RankOneEstimates.DecSender\npublic import CompanionTheory.AutomorphicTheory.RankOneEstimates.RankOne\npublic import CompanionTheory.HarishChandraModules.BesselParameterIntegrals.SmoothCyclicVectors.SmoothCyclicVectors\nimport CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.AdmissibleOfIwasawa\npublic import CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.HaarBumpFunctions.PoulsenSmoothVectorsDense\npublic import CompanionTheory.HarishChandraModules.LowKTypeMultiplicity.DiscreteSeriesCharacters.DiscreteSeriesInfinitesimalCharacter\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Real\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
+-- clump-header: {"m": "CompanionTheory.AutomorphicTheory.PieriRules.InfinitesimalCharacterDiscreteSeries", "h": "module\n\npublic import CompanionTheory.AutomorphicTheory.PieriRules.ThetaBesselIsometries.IsDSOfIsDG\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.Transported\npublic import CompanionTheory.AutomorphicTheory.PieriRules.HarishChandraFormalDegree\npublic import CompanionTheory.AutomorphicTheory.RankOneEstimates.DecSender\npublic import CompanionTheory.AutomorphicTheory.RankOneEstimates.RankOne\npublic import CompanionTheory.HarishChandraModules.BesselParameterIntegrals.SmoothCyclicVectors.SmoothCyclicVectors\nimport CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.AdmissibleOfIwasawa\npublic import CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.HaarBumpFunctions.PoulsenSmoothVectorsDense\npublic import CompanionTheory.HarishChandraModules.LowKTypeMultiplicity.DiscreteSeriesCharacters.DiscreteSeriesInfinitesimalCharacter\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Real\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -215,11 +225,8 @@ theorem infinitesimal_character_discrete_series : InfCharG := fun _ _ ε lam H _
   CompanionTheory.D.DSIC.discrete_series_infinitesimal_character _ ε lam H σ hl hσ
 
 theorem thrS_lt_of_gapOK {k r : ℕ} (ε : Fin (2 * r + k + 1) → Bool) {h : ℝ} (hok : GapOK k r h) :
-    ReciprocityTheory.ChartRestriction.DS.G2.thrS ε + 1 < h :=
-  Fd.thrS_lt ε (by omega) (by
-    have h1 := hok.2.1
-    have h2 : (1 : ℝ) ≤ ((2 * r + k + 1 : ℕ) : ℝ) := by exact_mod_cast Nat.le_add_left 1 _
-    nlinarith [mul_le_mul_of_nonneg_left h2 (sq_nonneg ((2 * r + k + 1 : ℕ) : ℝ)), sq_nonneg ((2 * r + k + 1 : ℕ) : ℝ)])
+    max (2 * ((2 * r + k + 1 : ℕ) : ℝ)) (ReciprocityTheory.ChartRestriction.DS.thrStar ε) + 1 < h :=
+  Fd.thrS_lt ε (by omega) (by linarith [hok.2.1, show (0 : ℝ) ≤ ((2 * r + k + 1 : ℕ) : ℝ) ^ 3 by positivity])
 
 theorem discrete_series_exist : DSExistG := by
   rintro k r ε mu hm ⟨P, hP⟩ ⟨h, hg, hok⟩
@@ -237,7 +244,7 @@ theorem harish_chandra_formal_degree : HCFdegG := by
       (Fd.one_le_qOf hQ)
     refine ⟨c, hc, ?_⟩
     rintro lam H _ _ _ σ ⟨g, hg, hok⟩ hl hσ
-    exact h lam H σ hl hσ g hg (thrS_lt_of_gapOK ε hok)
+    exact h lam H σ hl hσ g hg (by linarith [le_max_right (2 * ((2 * r + k + 1 : ℕ) : ℝ)) (ReciprocityTheory.ChartRestriction.DS.thrStar ε), thrS_lt_of_gapOK ε hok])
   · refine ⟨1, one_pos, ?_⟩
     rintro lam H _ _ _ σ ⟨g, -, hok⟩
     exact absurd hok.1 hk

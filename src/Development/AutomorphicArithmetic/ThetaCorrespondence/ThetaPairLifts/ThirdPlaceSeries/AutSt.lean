@@ -40,7 +40,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 
 section
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.FrameAut
 open Formalism.CohomologicalDescent.DepthNonnegative GlobalTheory.ExpFrame

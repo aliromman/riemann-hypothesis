@@ -439,7 +439,7 @@ theorem ParAlgIndep.proof : ParAlgIndep.Statement := by
   rw [algebraicIndependent_iff_injective_aeval]
   change Function.Injective (eval₂Hom (kToFrac K e n) (parYF K e n))
   let M : Submonoid (MvPolynomial (Par e n) (𝓞 K)) := (nonZeroDivisors (𝓞 K)).map C
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro z hz
   obtain ⟨⟨a, s⟩, rfl⟩ := IsLocalization.mk'_surjective M z
   have h := IsLocalization.mk'_spec (MvPolynomial (Par e n) K) a s
@@ -675,7 +675,7 @@ theorem map_linForm {R S : Type*} [CommRing R] [CommRing S] {n : ℕ} (f : R →
 
 theorem map_integralModel {n : ℕ} (I : Ideal (MvPolynomial (Fin n) K)) :
     (integralModel I).map (MvPolynomial.map (algebraMap (𝓞 K) K)) = I := by
-  apply GroundTheory.Heights₂.Heights.Vertical.SecBFinite.map_integralModel <;> assumption
+  apply GroundTheory.Heights₂.Heights.Vertical.SecBFinite.map_integralModel
 
 theorem map_secIdeal {n : ℕ} (e : ℕ) (I : Ideal (MvPolynomial (Fin n) K)) (v : HeightOneSpectrum (𝓞 K)) :
     (secIdeal (modelR e I v) (parY e n v)).map (MvPolynomial.map (parToFrac e n v)) =

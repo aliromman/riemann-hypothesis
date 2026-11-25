@@ -158,20 +158,6 @@ theorem psi_trace_at {ψ : AddChar (AF F) ℂ} (hψ : IsStd ψ) (h : IsCMExt F E
 
 variable (d : SD σ)
 
-theorem _root_.PositivityTheory.SiegelWeilFormula.SD.cm (d : SD σ) : IsCMExt F E σ := d.ok.good.cm
-
-theorem _root_.PositivityTheory.SiegelWeilFormula.SD.std (d : SD σ) : IsStd d.B.ψ := d.ok.good.std
-
-theorem continuous_cw (w : InfinitePlace F) {p q : Type} : Continuous (fun X : Matrix p q (AE F E) => d.cw w X) :=
-  continuous_id.matrix_map (continuous_piInf (d.B.emb w))
-
-theorem cw_ext {p q : Type} {X Z : Matrix p q (AE F E)} (h1 : ∀ w, d.cw w X = d.cw w Z) (h2 : finOne F • X = finOne F • Z) :
-    X = Z :=
-  mat_ext d.cm d.B.emb h1 h2
-
-theorem cw_cA (w : InfinitePlace F) {p q : Type} (X : Matrix p q (AE F E)) : d.cw w (X.map (cA σ)) = (d.cw w X).map star :=
-  map_cA d.cm _ X
-
 end PositivityTheory.SiegelWeilFormula.Place
 
 end

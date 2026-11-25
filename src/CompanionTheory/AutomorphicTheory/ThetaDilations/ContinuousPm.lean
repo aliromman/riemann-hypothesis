@@ -1,6 +1,6 @@
 module
 
-public import CompanionTheory.AutomorphicTheory.ThetaDilations.ParAlg
+public import Development.WeilBound.CoreStatements.ThetaDilations.ParAlg
 public import Formalism.UnipotentAdelicQuotients.SWXSDefs
 public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.AdelesLocallyCompactSecondCountable
 public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.TensorLocallyCompactRing
@@ -55,6 +55,10 @@ open scoped TensorProduct ENNReal NNReal Matrix
 noncomputable section
 
 namespace CompanionTheory.PlacePermOperatorBicommutantSpan
+
+open PositivityTheory.PlacePermOperatorBicommutantSpan
+  (blk blk_inj blk_mul continuous_UJ hform_eq hypJ_eq hypJ_map iM_nM iM_unit mM_nM mM_unit mkU nM
+    nM_mul nM_unit nim par_dec pm pm_map pm_mul pm_one)
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}
   (R : Type) [CommRing R] [Algebra F R]

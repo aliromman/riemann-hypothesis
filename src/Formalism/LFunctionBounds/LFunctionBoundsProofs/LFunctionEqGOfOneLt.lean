@@ -1,5 +1,6 @@
 module
 
+import Formalism.ZeroFreeRegion.ZetaLogDerivativeBounds.NormCpowSubLePoint
 public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.NumberTheory.LSeries.DirichletContinuation
 import Mathlib.Algebra.Order.Floor.Extended
@@ -62,22 +63,7 @@ private lemma pos_of_mem_uIcc_self_add_one {x t : ℝ} (hx : 0 < x) (ht : t ∈ 
 
 lemma cpow_sub_eq_integral {x : ℝ} (hx : 0 < x) {s : ℂ} (hs : s ≠ 0) :
     (x : ℂ) ^ (-s) - ((x + 1 : ℝ) : ℂ) ^ (-s) = s * ∫ t in x..(x + 1), (t : ℂ) ^ (-s - 1) := by
-  have hderiv : ∀ t ∈ Set.uIcc x (x + 1),
-      HasDerivAt (fun y : ℝ => (y : ℂ) ^ (-s)) (-s * (t : ℂ) ^ (-s - 1)) t := fun t ht =>
-    (Complex.hasStrictDerivAt_cpow_const (Complex.ofReal_mem_slitPlane.mpr (pos_of_mem_uIcc_self_add_one hx ht))).hasDerivAt.comp_ofReal
-  have hint : IntervalIntegrable (fun t : ℝ => -s * (t : ℂ) ^ (-s - 1)) MeasureTheory.volume x (x + 1) := by
-    apply ContinuousOn.intervalIntegrable
-    intro t ht
-    have hc : ContinuousAt (fun z : ℂ => z ^ (-s - 1)) (t : ℂ) :=
-      (Complex.hasStrictDerivAt_cpow_const (c := -s - 1)
-        (Complex.ofReal_mem_slitPlane.mpr (pos_of_mem_uIcc_self_add_one hx ht))).hasDerivAt.continuousAt
-    exact (continuousAt_const.mul (hc.comp Complex.continuous_ofReal.continuousAt)).continuousWithinAt
-  have h := intervalIntegral.integral_eq_sub_of_hasDerivAt hderiv hint
-  rw [intervalIntegral.integral_const_mul] at h
-  have e : s * ∫ t in x..(x + 1), (t : ℂ) ^ (-s - 1) =
-      -(-s * ∫ t in x..(x + 1), (t : ℂ) ^ (-s - 1)) := by ring
-  rw [e, h]
-  ring
+  exact Formalism.ZF.ComplexPowerDifferenceIntegral.cpow_sub_eq_integral' hx (by linarith) hs
 
 lemma norm_integral_le {x : ℝ} (hx : 0 < x) (s : ℂ) :
     ‖∫ t in x..(x + 1), (t : ℂ) ^ (-s - 1)‖ ≤ ∫ t in x..(x + 1), t ^ (-s.re - 1) := by

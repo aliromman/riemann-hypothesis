@@ -517,6 +517,7 @@ section -- clump:auto
 section
 set_option autoImplicit false
 noncomputable section
+open scoped GlobalTheory.CompHt
 namespace GlobalTheory.ThetaSteep
 section Tau
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsLocalRing IsDedekindDomain
@@ -565,7 +566,7 @@ theorem exists_theta_multiplication_rule (hP : _root_.GlobalTheory.CovTop.Publis
     rw [← map_mul, mul_inv_cancel₀ ha, map_one, show vV T.V (1 : T.Fr) = 0 by simp [vV]] at h3
     omega
   have hs : ∀ τ, ev (s τ).sig ∈ (algebraMap T.V T.Fr).range := fun τ => by
-    have h1 := _root_.GlobalTheory.FlatCore.Bdry.nval_evI_eq_zero_alt hP hP.q2 E H Dw l Xo c r U x hL Z τ (ArchSec.ofConst (s τ)) T io y hio0 hZ
+    have h1 := _root_.GlobalTheory.FlatCore.Bdry.nval_evI_eq_zero_alt hP E H Dw l Xo c r U x hL Z τ (ArchSec.ofConst (s τ)) T io y hio0 hZ
     change nval T.V 1 (ev (s τ).sig) = 0 at h1
     by_cases h0 : ev (s τ).sig = 0
     · exact h0 ▸ zero_mem _
@@ -1134,7 +1135,7 @@ theorem twisted_section_flat_valuation (hP : _root_.GlobalTheory.CovTop.Publishe
   let ev : Rul Xo c →* T.Fr :=
     ⟨⟨evI y, by rw [← mul_one (evI y 1), ← hid, ← evI_mul, one_mul]⟩, evI_mul y⟩
   have hsig : ∀ τ, ev (sF τ).sig ∈ unitsV T := fun τ => by
-    have hn := _root_.GlobalTheory.FlatCore.Bdry.nval_evI_eq_zero_alt hP hP.q2 E H Dw l Xo c r U x hL Z τ
+    have hn := _root_.GlobalTheory.FlatCore.Bdry.nval_evI_eq_zero_alt hP E H Dw l Xo c r U x hL Z τ
       (ArchSec.ofConst (sF τ)) T io y hio hLies
     have hev0 : evI y (sF τ).sig ≠ 0 := by
       intro h0
@@ -1329,6 +1330,7 @@ open GlobalTheory GlobalTheory.CechPic GlobalTheory.Vanishing GlobalTheory.HermT
 open GlobalTheory.FlagMod (FlagCover)
 open GlobalTheory.FlagTan (dimFlag)
 open GlobalTheory.HSApp
+open scoped GlobalTheory.CompHt
 
 theorem GlobalTheory.JetsCst.jets_of_constant_section_alt : _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → _root_.GlobalTheory.CovTop.DeepGoodness → _root_.GlobalTheory.CovTop.SizeCondition → _root_.GlobalTheory.CovTop.FlatDegreeCondition → _root_.GlobalTheory.CovTop.CoversCondition fun Fm x _ ι p i Y PP _ => ∀ (Z : Comp Y.d.Xo₂ Y.d.c₂) (TF : TorFlag Y.d.Xo₂ Y.d.c₂), ∀ la ∈ ({(⟨uW p i, cZero (Fm.D x ι) ((i : ℕ) + 1), (Fm.D x ι).R.k - 2, lenT p i PP⟩ : WtPar (dat p i)).u₁, (⟨uW p i, cZero (Fm.D x ι) ((i : ℕ) + 1), (Fm.D x ι).R.k - 2, lenT p i PP⟩ : WtPar (dat p i)).ub} : Set (AllWt.Weight (dat p i))), ∀ cst : ℝ, GlobalTheory.RefSum.JetNum (Fm.D x ι) (DF (dat p i) (GlobalTheory.RefSum.thA (dat p i) la (GlobalTheory.RefSum.nCol (dat p i)))) cst → ∀ y ∈ (U₀ TF.X Z : Set (Y₀ TF.X Z))ᶜ, ∀ (T : CDVR) (io : Y.d.c₂.F →+* T.Fr) (y' : IntFr Y.d.Xo₂ Y.d.c₂ T io) (g : (Y₀ TF.X Z).presheaf.stalk y →+* T.V) (φT : ℝ), IsLocalHom g → GlobalTheory.SlopeRec.HasPhi y' φT → (letI := io.toAlgebra; TF.X.ptY y'.1 = Spec.map (CommRingCat.ofHom ((algebraMap T.V T.Fr).comp g)) ≫ (Y₀ TF.X Z).fromSpecStalk y ≫ inc₀ TF.X Z) → ∃ f : Cusp Z Y.U la, evI y' ((f : Rul Y.d.Xo₂ Y.d.c₂)) ≠ 0 ∧ (vV T.V (evI y' ((f : Rul Y.d.Xo₂ Y.d.c₂))) : ℝ) ≤ cst * φT := by
   intro hP hD hS hF
@@ -1669,8 +1671,8 @@ noncomputable section
 namespace GlobalTheory.ValMultRun
 open TopologicalSpace ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CechPic GlobalTheory.Vanishing in
 
-theorem valuation_multiplicity_of_consecutive_run_alt : _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → GlobalTheory.Published.GrothendieckDeformation → GlobalTheory.HSCore.Quoted → GlobalTheory.Published.SiegelToroidalIntegral → GlobalTheory.Published.ToroidalForFanKS → GlobalTheory.Published.SemiAbelianLieSeminegative → _root_.GlobalTheory.CovTop.DeepGoodness → _root_.GlobalTheory.CovTop.SizeCondition → _root_.GlobalTheory.CovTop.FlatDegreeCondition → _root_.GlobalTheory.CovTop.CoversCondition fun Fm x _ ι p i Y PP _ => ∀ Z, ValMult Y.U Z (wtOf (dat p i) (⟨uW p i, cZero (Fm.D x ι) ((i : ℕ) + 1), (Fm.D x ι).R.k - 2, lenT p i PP⟩ : WtPar (dat p i)).u₁ 0) (wtOf (dat p i) (CompHt.uPrime (dat p i) (⟨uW p i, cZero (Fm.D x ι) ((i : ℕ) + 1), (Fm.D x ι).R.k - 2, lenT p i PP⟩ : WtPar (dat p i)).u₁) 0) := by
-  intro hP hGD hQ hS hT hL h2 h3 h4
+theorem valuation_multiplicity_of_consecutive_run_alt : _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → GlobalTheory.Published.GrothendieckDeformation → GlobalTheory.HSCore.Quoted → GlobalTheory.Published.ToroidalForFanKS → GlobalTheory.Published.SemiAbelianLieSeminegative → _root_.GlobalTheory.CovTop.DeepGoodness → _root_.GlobalTheory.CovTop.SizeCondition → _root_.GlobalTheory.CovTop.FlatDegreeCondition → _root_.GlobalTheory.CovTop.CoversCondition fun Fm x _ ι p i Y PP _ => ∀ Z, ValMult Y.U Z (wtOf (dat p i) (⟨uW p i, cZero (Fm.D x ι) ((i : ℕ) + 1), (Fm.D x ι).R.k - 2, lenT p i PP⟩ : WtPar (dat p i)).u₁ 0) (wtOf (dat p i) (CompHt.uPrime (dat p i) (⟨uW p i, cZero (Fm.D x ι) ((i : ℕ) + 1), (Fm.D x ι).R.k - 2, lenT p i PP⟩ : WtPar (dat p i)).u₁) 0) := by
+  intro hP hGD hQ hT hL h2 h3 h4
   refine ((((_root_.GlobalTheory.ThetaSteep.exists_theta_section_alt_alt hP h2 h3 h4).and (_root_.GlobalTheory.HSApp.exists_subspace_vanishing_order_le_phi_alt hP h2 h3 h4)).and (_root_.GlobalTheory.DegVal.exists_phiAt_pos_alt_alt hP h2 h3 h4)).and _root_.GlobalTheory.HSApp.wtBig_run_alt).imp
     fun Fm CH _ h => ?_
   obtain ⟨⟨⟨⟨C, hC, x0, hx⟩, ⟨C', hC', x1, hx1⟩⟩, ⟨C'', hC'', x2, hx2⟩⟩, ⟨C₃, hC₃, x3, hx3⟩⟩ := h
@@ -1689,7 +1691,7 @@ theorem valuation_multiplicity_of_consecutive_run_alt : _root_.GlobalTheory.CovT
     omega
   have hCI : ∀ la, CuspIso TF.X Z Y.U la := fun la =>
     ⟨GlobalTheory.T.cuspForms_extend_vanish_compactifiedFlagSpace _ _ _ Y _ _ hY.1 hf Z TF _, vanBd_le_space _ _ _ Y _ _ hY.1 hf Z TF _⟩
-  have hfree := _root_.GlobalTheory.T.hodge_bundle_base_point_free_on_open hP' hGD hQ hP.q15 hP.q16 hS hT.toroidalChartsForFan hL _ _ _ _ _ _ TF Z _ Y.U hY.1.geo
+  have hfree := _root_.GlobalTheory.T.hodge_bundle_base_point_free_on_open hP' hGD hQ hP.q15 hP.q16 hT.toroidalChartsForFan hL _ _ _ _ _ _ TF Z _ Y.U hY.1.geo
     hB.one_le _ (gaps_of_wtBig _ _ _ _ hB _ List.mem_cons_self).2 (hCI _)
   refine valMult_of_section TF.X Z Y.U (GlobalTheory.VarFlag.isVariety₀_flag _ _ _ _ _ _ TF Z hY.1.geo) hCI ?_ hfree θ hθ
     fun y hy ν hν => ?_

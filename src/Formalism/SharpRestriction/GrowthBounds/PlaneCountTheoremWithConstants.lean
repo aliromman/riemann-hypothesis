@@ -384,7 +384,7 @@ theorem svBound_of (X : Inst D L) (K : Consts) (hK : K.Nonneg) (P : ParameterCho
     have h4 : L.sc.a / ((D.R.k : ℝ) * L.sc.x ^ (Scale.A / 2)) ≤ L.sc.a / 5 := by
       apply div_le_div_of_nonneg_left (by linarith) (by norm_num)
       have : 1 ≤ L.sc.x ^ (Scale.A / 2) := Real.one_le_rpow L.sc.one_lt_alt.le (by unfold Scale.A; norm_num)
-      nlinarith
+      nlinarith only [hk, this]
     unfold al cG
     rw [h1]
     constructor <;> linarith
@@ -433,7 +433,7 @@ theorem svBound_of (X : Inst D L) (K : Consts) (hK : K.Nonneg) (P : ParameterCho
     · exact mul_nonneg (Nat.cast_nonneg _)
         (add_nonneg (mul_nonneg (Nat.cast_nonneg _) (by linarith)) (mul_nonneg (Nat.cast_nonneg _) hbase))
   have hgam : 0 ≤ gam p ∧ gam p * L.sc.a ≤ 4 / 3 * (L.sc.a / p) := by
-    have hp4 : (4 : ℝ) ≤ (p : ℝ) ^ 2 := by nlinarith
+    have hp4 : (4 : ℝ) ≤ (p : ℝ) ^ 2 := by nlinarith only [hp2]
     have hd : (0 : ℝ) < (p : ℝ) ^ 2 - 1 := by linarith
     unfold gam
     refine ⟨div_nonneg hp0.le hd.le, ?_⟩
@@ -518,7 +518,7 @@ theorem cmp_expand (hs : ∀ a x, cmp (a • x) = φ a • cmp x) (x : V) :
 
 theorem cmp_inj (hs : ∀ a x, cmp (a • x) = φ a • cmp x) (hli : LinearIndependent Kf (fun a => cmp (b a))) :
     Function.Injective cmp := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   rw [cmp_expand b φ cmp hs x] at hx
   have h := Fintype.linearIndependent_iff.1 hli _ hx
@@ -797,11 +797,6 @@ theorem eventually_sizes_admitted {eps : ℝ} (Fm : FamP eps) :
 
 def Adm1F {eps : ℝ} (Fm : FamP eps) : Prop :=
   ∃ C : ℝ, 0 < C ∧ Ev Fm fun x i => AuxBlock8.adm1 (Fm.D x i) (Fm.L x i) (Fm.Gx x i) C
-
-def Adm2F {eps : ℝ} (Fm : FamP eps) : Prop :=
-  Ev Fm fun x i => AuxBlock8.adm2 (Fm.D x i) (Fm.L x i) (Fm.Gx x i)
-
-def Adm3F {eps : ℝ} (Fm : FamP eps) : Prop := Ev Fm fun x i => AuxBlock8.adm3 (Fm.D x i) (Fm.L x i)
 
 def Adm4F {eps : ℝ} (Fm : FamP eps) : Prop := Ev Fm fun x i => AuxBlock8.ArchimedeanSignatureMatching (Fm.D x i) (Fm.L x i) Fm.GK
 
@@ -1275,7 +1270,7 @@ theorem sizes_bound_of_log_estimates (K : Consts) (δ Ce : ℝ) (hLa : 0 < K.La)
       rw [div_le_iff₀ hLa] at hC
       linarith
     have h2 : (1 : ℝ) ≤ (N1 L.sc : ℝ) ^ 2 := one_le_pow₀ hN1
-    have h3 : xe ≤ (N1 L.sc : ℝ) ^ 2 * (l + xe) := by nlinarith
+    have h3 : xe ≤ (N1 L.sc : ℝ) ^ 2 * (l + xe) := by nlinarith only [h2, hl1, hxe1]
     calc xe ≤ (N1 L.sc : ℝ) ^ 2 * (l + xe) := h3
       _ ≤ (K.La * xd) * ((N1 L.sc : ℝ) ^ 2 * (l + xe)) := le_mul_of_one_le_left (by positivity) h1
       _ = K.La * (N1 L.sc : ℝ) ^ 2 * (l + xe) * xd := by ring
@@ -1283,7 +1278,7 @@ theorem sizes_bound_of_log_estimates (K : Consts) (δ Ce : ℝ) (hLa : 0 < K.La)
     unfold La
     rw [hloga]
     have h1 : (N1 L.sc : ℝ) ^ 2 ≤ (Ce * l) ^ 2 := pow_le_pow_left₀ (by positivity) hN 2
-    have h2 : l + xe ≤ 2 * l * xe := by nlinarith
+    have h2 : l + xe ≤ 2 * l * xe := by nlinarith only [hl1, hxe1]
     calc K.La * (N1 L.sc : ℝ) ^ 2 * (l + xe) ≤ K.La * (Ce * l) ^ 2 * (2 * l * xe) := by gcongr
       _ = xe * (2 * K.La * Ce ^ 2 * l ^ 3) := by ring
       _ ≤ xe * xd := mul_le_mul_of_nonneg_left hA (by positivity)
@@ -1323,7 +1318,7 @@ theorem sizes_bound_of_log_estimates (K : Consts) (δ Ce : ℝ) (hLa : 0 < K.La)
     unfold Qp
     rw [Real.log_pow, hsplit]
     have h5 : Ce * l ≤ xd := by
-      have : Ce * l ≤ 38 * Ce * l ^ 3 := by nlinarith
+      have : Ce * l ≤ 38 * Ce * l ^ 3 := by nlinarith only [hCe, hl1, hl13]
       linarith
     calc (Gp L.sc : ℝ) * Real.log p ≤ (Ce * l * x ^ (e / 8)) * x ^ (e / 3) := by gcongr
       _ = x ^ (e / 8) * x ^ (e / 3) * (Ce * l) := by ring
@@ -1372,11 +1367,6 @@ end Sizes
 section Rest
 
 theorem family_first_lemma {eps : ℝ} (Fm : FamP eps) : Adm1F Fm := TopChoiceBounds.family_uniform_constant_holds Fm
-
-theorem family_orders_first_part {eps : ℝ} (Fm : FamP eps) (C₄ : ℝ) (hS : CornerGLContinuity.FamilyOrdersSmallPrimeBound Fm C₄) (hO : CornerGLContinuity.FamilyGlobalOrderEstimate Fm C₄) :
-    Adm3F Fm := by
-  obtain ⟨x0, h⟩ := hS hO
-  exact ⟨x0, fun x hx i => TopChoiceBounds.order_statement_of_odd_primes (h x hx i) (J.two_readings_of_Frobenius _)⟩
 
 theorem family_orders_bound_of_lemma {eps : ℝ} (Fm : FamP eps) (hS : CornerGLContinuity.FamilyOrdersLargePrimeBound Fm) (hCN : CornerGLContinuity.FamilyWindowLogBound Fm) : Adm4F Fm := by
   obtain ⟨x0, h⟩ := hS (TopChoiceBounds.family_master_orbit_holds Fm) hCN

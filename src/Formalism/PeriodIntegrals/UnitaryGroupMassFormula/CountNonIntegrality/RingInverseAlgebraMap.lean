@@ -53,12 +53,9 @@ namespace PI.CntNotIntW
 open NumberField IsDedekindDomain Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.CntLocal
 open Classical ValuativeRel
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 theorem star_coeF (D : Formalism.BasicNotions.D7) (t : D.host.F) : star (t : D.host.E) = t := by
   haveI := D.host.isCMField_hostE
   first
-  | exact (NumberField.IsCMField.complexConj_eq_self_iff _).mpr t.2
   | exact (NumberField.IsCMField.complexConj_eq_self_iff (K := D.host.E) (t : D.host.E)).mpr t.2
 
 theorem resChar_mem' (D : Formalism.BasicNotions.D7) (p : PlF D) : ((Loc.resChar p : ℕ) : 𝓞 D.host.F) ∈ p.asIdeal := by

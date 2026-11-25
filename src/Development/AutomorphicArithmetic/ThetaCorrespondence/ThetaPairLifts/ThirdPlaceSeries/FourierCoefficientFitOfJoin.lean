@@ -1750,7 +1750,6 @@ theorem fittedFunction_at_zero_close_alt : _root_.GlobalTheory.FunPr.ThetaLocalI
   have hDl := _root_.GlobalTheory.T.abs_logDerivativeAtOne_le_x_rpow_eps hP
   have hInp := _root_.GlobalTheory.NormSum.inp_all
   have hIntSt := GlobalTheory.T.classSumDenominatorBound_of_cmThetaHypotheses hInp
-  have hArchSt := GlobalTheory.ArchTop.archSt_of_inp hInp
   have hThA := _root_.GlobalTheory.ThmAUpper.thmA_upper_alt (GlobalTheory.ToricTransport.toricRatioConjugates_of_transport hTw) hSet hDl hFieldDat hTorEx
   have hSq := _root_.GlobalTheory.BigTop.Fun.square_ratio_at_point_of_leading_term_alt hP hAg hMa hSet hDl hConst hLNe hTriEx hTower
   have hB : _root_.GlobalTheory.BigTop.Fun.BundleCondition := @_root_.GlobalTheory.BigTop.Fun.bundle_of_rows_alt
@@ -1759,7 +1758,7 @@ theorem fittedFunction_at_zero_close_alt : _root_.GlobalTheory.FunPr.ThetaLocalI
     (_root_.GlobalTheory.BigTop.Fun.LeafMMTie.mm_tie_alt hSet) (_root_.GlobalTheory.BigTop.Fun.oneMap_of_bundle_setAt_kernel_conditions hB hSet hLin hInj hConst hF2) (_root_.GlobalTheory.BigTop.Fun.leafKernel_of_linK_injK_constK_formula2K hB hSet hLin hInj hConst hF2)
     (_root_.LeafFixedPointPairing.GlobalTheory.CompanionTheory.LeafFixedPointPlaceNorm.fp_tie_alt hSet hFin hAway) (_root_.GlobalTheory.QuotientNormCoisometry.leafHeightMapBound_tie_of_infK hB hSet hInf) (_root_.GlobalTheory.BigTop.Fun.ipb_of_lamLow_alt hL)
     (_root_.GlobalTheory.BigTop.Fun.oneSq_of_log_derivative_bound_thA hSet hDl hThA hOneSqSt) (_root_.GlobalTheory.BigTop.Fun.den_tie_alt hSet hDl hDenSum) (_root_.GlobalTheory.BigTop.Fun.int_tie_alt hSet hDl hBotSmall hBotNe)
-    (_root_.GlobalTheory.BigTop.Fun.arch_tie_of_logDeriv_bound hSet hDl hArchSt hBotSmall) (_root_.GlobalTheory.BigTop.Fun.thb_tie_alt hSet hDl hThbSt) (_root_.GlobalTheory.BigTop.Fun.wt_tie_alt hSize)
+    (_root_.GlobalTheory.BigTop.Fun.arch_tie_of_logDeriv_bound hSet hDl) (_root_.GlobalTheory.BigTop.Fun.thb_tie_alt hSet hDl hThbSt) (_root_.GlobalTheory.BigTop.Fun.wt_tie_alt hSize)
     _root_.GlobalTheory.BigTop.Fun.Close.desHLeaf_alt _root_.GlobalTheory.BigTop.Fun.rankGapBound_alt _root_.GlobalTheory.BigTop.Fun.ramified_sums_seventh_bound_alt _root_.GlobalTheory.BigTop.Fun.desPol_alt
 end GlobalTheory.BigTop.Fun.Close
 end

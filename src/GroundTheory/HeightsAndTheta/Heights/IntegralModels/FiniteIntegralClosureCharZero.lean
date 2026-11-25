@@ -268,7 +268,7 @@ theorem isJacobsonRing_int : IsJacobsonRing ℤ := by
 
 theorem exists_prime_mem_of_isMaximal (A : Type*) [CommRing A] [Algebra.FiniteType ℤ A]
     (𝔪 : Ideal A) [𝔪.IsMaximal] : ∃ p : ℕ, p.Prime ∧ (p : A) ∈ 𝔪 := by
-  apply GlobalTheory.exists_prime_natCast_mem_of_finiteType_int <;> assumption
+  apply GlobalTheory.exists_prime_natCast_mem_of_finiteType_int
 
 theorem exists_pow_smul_mem_of_isMaximal
     (A : Type*) [CommRing A] [IsDomain A] [CharZero A] [Algebra.FiniteType ℤ A]
@@ -324,7 +324,7 @@ theorem exists_pow_smul_mem_of_isMaximal
       obtain ⟨H, rfl⟩ := ih G hG
       exact ⟨H, by rw [pow_succ, map_mul, mul_assoc, mul_left_comm]⟩
   have hφinj : Function.Injective φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro F hF
     ext m
     rw [MvPolynomial.coeff_zero]

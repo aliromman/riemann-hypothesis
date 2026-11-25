@@ -108,14 +108,6 @@ private theorem cont_comp (w : Plc E) : Continuous (comp w : GUf E n → GL (Fin
 private theorem th_eq (F : Frame S) (g : GUf E n) : F.th g = UpperTheory.Gal.CertificateRingHomMap.th g :=
   Subtype.ext (Prod.ext (Units.ext ((F.th_mat g).trans (UpperTheory.Gal.CertificateRingHomMap.invT_val _).symm)) (F.th_sim g))
 
-private theorem pr_loc_one {F : Frame S} {w u : Spl E p} {L : Loc S.G.GAf (GLw n w.1)} {L' : Loc S.G.GAf (GLw n u.1)}
-    (hf : IsFac F w L) (hf' : IsFac F u L') (h : GlobalTheory.Cong.Apart w.1 u.1) (y : GLw n u.1) : L.pr (L'.loc y) = 1 := by
-  rw [hf'.2, hf.1, UpperTheory.Gal.CertificateRingHomMap.comp_loc_of_apart u.2.1 h]
-
-private theorem fac_apart {F : Frame S} {w u : Spl E p} {L : Loc S.G.GAf (GLw n w.1)} {L' : Loc S.G.GAf (GLw n u.1)}
-    (hf : IsFac F w L) (hf' : IsFac F u L') (h : GlobalTheory.Cong.Apart w.1 u.1) : L.Apart L' :=
-  ⟨pr_loc_one hf hf' h, pr_loc_one hf' hf (Ne.symm h)⟩
-
 private theorem exists_prime_mem (w : Plc E) : ∃ q : ℕ, q.Prime ∧ (q : 𝓞 E) ∈ w.asIdeal :=
   _root_.UpperTheory.Reformulated.B.Qk68.exists_prime_mem w
 

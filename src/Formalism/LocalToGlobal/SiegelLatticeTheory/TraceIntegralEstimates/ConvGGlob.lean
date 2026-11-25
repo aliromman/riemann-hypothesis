@@ -56,17 +56,9 @@ namespace Formalism.L2.S.Pv.ConvG
 
 open Formalism.L2.SG.HidaSetting Formalism.L2.SG.RealObj Formalism.L2.SG.Pf.EnergyAbs
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section Glob
 
 variable {D : D7} (X : Formalism.L2.SG.HidaSetting.HidaSetting D)
-
-private theorem norm_psiInf_eq_one (I : Formalism.MainNotions.S.AutInst) {r : ℕ} (g : ℕ) (e f : Fin r → Fin I.n → I.E)
-    (z : Fin I.n → I.E) (s : I.Ginf) : ‖psiInf I g e f z s‖ = 1 := by
-  unfold psiInf
-  rw [norm_prod]
-  exact Finset.prod_eq_one fun v _ => _root_.Formalism.L2.SG.Pf.psiR_norm _ _ _ _ _ _
 
 @[irreducible] def phiV (u u' : D.what₂.Word) (γ : X.B.I.Ginf) (v : InfinitePlace X.B.I.F) (a b : Formalism.REAL.UJ (X.B.I.ε v)) :
     ℝ≥0∞ :=

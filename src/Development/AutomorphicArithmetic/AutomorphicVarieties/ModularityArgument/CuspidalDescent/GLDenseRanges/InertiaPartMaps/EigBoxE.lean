@@ -176,8 +176,7 @@ private theorem eigBoxL_lemma_3 {L : Type} [Field L] [NumberField L] {n : ℕ} {
     simp only [Iwa.uOp]
     exact eigBoxL_lemma _ ρ₁ ρ₂ g hg z
   rw [eigL] at hy ⊢
-  simp only [Submodule.mem_inf, Submodule.mem_iInf, fixd, Submodule.mem_mk, AddSubmonoid.mem_mk,
-    AddSubsemigroup.mem_mk, Set.mem_setOf_eq, Module.End.mem_eigenspace_iff,
+  simp only [Submodule.mem_inf, Submodule.mem_iInf, fixd, Module.End.mem_eigenspace_iff,
     Module.End.mem_maxGenEigenspace] at hy ⊢
   obtain ⟨⟨⟨h1, h2⟩, h3⟩, h4⟩ := hy
   refine ⟨⟨⟨fun u hu' => ?_, fun u hu' => ?_⟩, fun v i z => ?_⟩, fun v j => ?_⟩
@@ -198,8 +197,7 @@ private theorem eigBoxL_lemma_4 {L : Type} [Field L] [NumberField L] {n : ℕ} {
     simp only [Iwa.uOp]
     exact eigBoxL_lemma _ ρ₁ ρ₂ g hg z
   rw [eigL] at hy ⊢
-  simp only [Submodule.mem_inf, Submodule.mem_iInf, fixd, Submodule.mem_mk, AddSubmonoid.mem_mk,
-    AddSubsemigroup.mem_mk, Set.mem_setOf_eq, Module.End.mem_eigenspace_iff,
+  simp only [Submodule.mem_inf, Submodule.mem_iInf, fixd, Module.End.mem_eigenspace_iff,
     Module.End.mem_maxGenEigenspace] at hy ⊢
   obtain ⟨⟨⟨h1, h2⟩, h3⟩, h4⟩ := hy
   refine ⟨⟨⟨fun u hu' => ?_, fun u hu' => ?_⟩, fun v i z => ?_⟩, fun v j => ?_⟩
@@ -369,10 +367,8 @@ theorem eigBoxL {L : Type} [Field L] [NumberField L] {n : ℕ} {V : Type} [Finty
     funext i
     rw [hpr, hpr]
     exact hf (by rw [← hΦ, ← hΦ, h])
-  have hMi : Function.Injective M := by
-    haveI : Module.Flat ℂ A := Module.Flat.of_free
-    haveI : Module.Flat ℂ B := Module.Flat.of_free
-    exact TensorProduct.map_injective_of_flat_flat _ _ A.injective_subtype B.injective_subtype
+  have hMi : Function.Injective M :=
+    TensorProduct.map_injective_of_flat_flat _ _ A.injective_subtype B.injective_subtype
   have hP : ((invT K₁ K₂ τ₀ (π.comp (MonoidHom.inr _ _)) ⊓ Submodule.pi Set.univ fun _ =>
         ePart ((π.comp (MonoidHom.inr _ _)).comp (MonoidHom.inr G H)) a N) ⊓ Submodule.pi Set.univ fun _ =>
       LinearMap.range f ⊓ eigL S (π.comp (MonoidHom.inl _ _)) b φ μ) = LinearMap.range (Φ ∘ₗ M) := by

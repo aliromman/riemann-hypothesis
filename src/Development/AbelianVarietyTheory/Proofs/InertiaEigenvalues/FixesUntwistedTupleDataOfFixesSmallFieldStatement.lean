@@ -63,8 +63,6 @@ open Formalism.L2.Host (embLL0)
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.FixBaseSmall

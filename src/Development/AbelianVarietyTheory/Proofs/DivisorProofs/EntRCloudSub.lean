@@ -68,7 +68,7 @@ theorem two_le_rdE (D : D7) (hq : 2 ≤ D.host.q) (hd : 2 ≤ D.host.d) : 2 ≤ 
   have hq' : (2 : ℝ) ≤ D.host.q := by exact_mod_cast hq
   have hd' : (2 : ℝ) ≤ D.host.d := by exact_mod_cast hd
   have h4 : (2 : ℝ) ≤ Real.sqrt ((D.host.q : ℝ) * D.host.d) := by
-    rw [Real.le_sqrt' (by norm_num)]; nlinarith
+    rw [Real.le_sqrt' (by norm_num)]; linarith [mul_le_mul hq' hd' (by norm_num) (by linarith)]
   linarith
 
 theorem two_le_of_log_pos (n : ℕ) (h : 0 < Real.log (n : ℝ)) : 2 ≤ n := by
@@ -93,21 +93,21 @@ theorem log_rdE_le_L (D : D7) (L : SizeData₂ D) (hCond : Formalism.MainNotions
     have : 1 ≤ D.R.t := by have := D.R.rank_add_five_le; omega
     exact_mod_cast this
   have hb1 : 1 ≤ L.sc.b := by unfold Scale.b; exact Real.one_le_exp (by linarith)
-  have hqd : (1 : ℝ) ≤ (D.host.q : ℝ) * D.host.d := by nlinarith
+  have hqd : (1 : ℝ) ≤ (D.host.q : ℝ) * D.host.d := one_le_mul_of_one_le_of_one_le (by linarith) (by linarith)
   have hs : Real.sqrt ((D.host.q : ℝ) * D.host.d) ≤ (D.host.q : ℝ) * D.host.d :=
-    Real.sqrt_le_iff.2 ⟨by linarith, by nlinarith⟩
+    Real.sqrt_le_iff.2 ⟨by linarith, le_self_pow₀ hqd (by norm_num)⟩
   have hc : D.host.rdE ≤ Formalism.MainNotions.szCond L := by
     refine hQD.2.2.2.2.2.2.2.trans ?_
     unfold Formalism.MainNotions.szCond
     have h0 : (0 : ℝ) ≤ D.host.QS := Nat.cast_nonneg _
     have : (D.host.QS : ℝ) * Real.sqrt ((D.host.q : ℝ) * D.host.d) ≤ D.host.QS * ((D.host.q : ℝ) * D.host.d) :=
       mul_le_mul_of_nonneg_left hs h0
-    nlinarith [mul_nonneg h0 (Real.sqrt_nonneg ((D.host.q : ℝ) * D.host.d))]
+    linarith [mul_nonneg h0 (Real.sqrt_nonneg ((D.host.q : ℝ) * D.host.d))]
   have hc1 : 1 ≤ Formalism.MainNotions.szCond L := by linarith
   have h36 : Formalism.MainNotions.szCond L ≤ Formalism.MainNotions.szCond L ^ 36 := le_self_pow₀ hc1 (by norm_num)
   have h150 : Formalism.MainNotions.szCond L ^ 36 ≤ Formalism.MainNotions.szCond L ^ 36 * (D.R.t : ℝ) ^ 150 :=
     le_mul_of_one_le_right (by positivity) (one_le_pow₀ ht1)
-  have hsb : Real.sqrt L.sc.b ≤ L.sc.b := Real.sqrt_le_iff.2 ⟨by linarith, by nlinarith⟩
+  have hsb : Real.sqrt L.sc.b ≤ L.sc.b := Real.sqrt_le_iff.2 ⟨by linarith, le_self_pow₀ hb1 (by norm_num)⟩
   have hfin : D.host.rdE ≤ L.sc.b := hc.trans (h36.trans (h150.trans (hCond.trans hsb)))
   have := Real.log_le_log (by linarith) hfin
   rwa [show Real.log L.sc.b = L.sc.L by unfold Scale.b; exact Real.log_exp _] at this
@@ -149,7 +149,7 @@ theorem bprime_le_half (D : D7) (L : SizeData₂ D) (hEta : Formalism.MainNotion
     have e : L.de2 * D.R.m * L.sc.b * ((D.R.m : ℝ) * L.de2) = (L.de2 * L.de2) * ((D.R.m : ℝ) * D.R.m * L.sc.b) := by
       ring
     rw [e]
-    have : L.de2 * L.de2 ≤ 1 := by nlinarith
+    have : L.de2 * L.de2 ≤ 1 := (mul_le_of_le_one_left hd0.le hd1).trans hd1
     exact mul_le_of_le_one_left (by positivity) this
   have fin : (D.R.m : ℝ) * D.R.m * (2 * L.sc.b') ≤ (D.R.m : ℝ) * D.R.m * L.sc.b := by
     have e : (D.R.m : ℝ) * L.sc.b' * 2 * ((D.R.m : ℝ) * 1) = (D.R.m : ℝ) * D.R.m * (2 * L.sc.b') := by ring
@@ -176,7 +176,7 @@ theorem size_window (D : D7) (L : SizeData₂ D) (hS : Formalism.MainNotions.Siz
     exact_mod_cast this
   have hw' : L.sc.w'' D.R.n ≤ L.sc.b' := by
     unfold Scale.w''
-    exact div_le_self hb' (by nlinarith)
+    exact div_le_self hb' (by linarith [one_le_mul_of_one_le_of_one_le hn1 hL1, one_le_mul_of_one_le_of_one_le hn1 hx1.le])
   have hbx : L.sc.b' / L.sc.x ≤ L.sc.b' := div_le_self hb' hx1.le
   have hbx0 : 0 ≤ L.sc.b' / L.sc.x := by positivity
   have hη0 := L.etaSz_pos
@@ -193,11 +193,11 @@ theorem size_window (D : D7) (L : SizeData₂ D) (hS : Formalism.MainNotions.Siz
     have e1 := hEta.2.1
     rw [le_div_iff₀ (by positivity)] at e1
     have e2 : (4 : ℝ) ≤ (D.R.t : ℝ) ^ 3 * D.R.f * (D.R.k : ℝ) ^ 3 := by
-      have a1 : (4 : ℝ) ≤ (D.R.t : ℝ) ^ 3 := by nlinarith [mul_nonneg (by linarith : (0:ℝ) ≤ D.R.t) (by linarith : (0:ℝ) ≤ D.R.t)]
+      have a1 : (4 : ℝ) ≤ (D.R.t : ℝ) ^ 3 := ht4.trans (le_self_pow₀ (by linarith) (by norm_num))
       have a2 : (1 : ℝ) ≤ (D.R.k : ℝ) ^ 3 := one_le_pow₀ hk1
-      have a3 : (4 : ℝ) ≤ (D.R.t : ℝ) ^ 3 * D.R.f := by nlinarith
-      nlinarith
-    nlinarith
+      have a3 : (4 : ℝ) ≤ (D.R.t : ℝ) ^ 3 * D.R.f := a1.trans (le_mul_of_one_le_right (by linarith) hf1)
+      exact a3.trans (le_mul_of_one_le_right (by linarith) a2)
+    linarith [mul_le_mul_of_nonneg_left e2 hη0.le]
   have hwj : DV.wSz D j τ = wj D j τ := by
     unfold DV.wSz wj
     rw [dite_eq_left ⟨h1, h2⟩, dite_eq_left (by omega)]
@@ -253,13 +253,13 @@ theorem mul_widths_le (D : D7) (L : SizeData₂ D) (p : ℝ)
     have h2 := hEta.2.2.2.1
     have h3 : L.sc.w'' D.R.n / L.sc.x * L.sc.x = L.sc.w'' D.R.n := by field_simp
     have h4 : 0 ≤ L.sc.w'' D.R.n / L.sc.x := by positivity
-    nlinarith
+    linarith [mul_le_mul_of_nonneg_left hx4 h4]
 
   have hDel0 : (0 : ℝ) < (D.s.Del : ℝ) := by
     have := L.Sc_eq
     by_contra hneg
     push Not at hneg
-    have : L.Sc ≤ 0 := by rw [L.Sc_eq]; nlinarith
+    have : L.Sc ≤ 0 := by rw [L.Sc_eq]; linarith [mul_nonpos_of_nonneg_of_nonpos (by positivity : (0 : ℝ) ≤ 4 * (D.R.k : ℝ)) hneg]
     linarith
   have hq2 := two_le_of_log_pos _ (lt_of_lt_of_le (Real.rpow_pos_of_pos hx0 _) hQD.1)
   have hd2 := two_le_of_log_pos _ (lt_of_lt_of_le (Real.rpow_pos_of_pos hx0 _) hQD.2.2.2.1)
@@ -272,8 +272,8 @@ theorem mul_widths_le (D : D7) (L : SizeData₂ D) (p : ℝ)
       exact_mod_cast this
     have : (1 : ℝ) ≤ 4 * D.R.n := by linarith
     have hQ : (1 : ℝ) ≤ D.host.QS := by exact_mod_cast D.host.QS_pos
-    have : (1 : ℝ) ≤ D.host.QS * D.host.q := by nlinarith
-    nlinarith
+    have : (1 : ℝ) ≤ D.host.QS * D.host.q := one_le_mul_of_one_le_of_one_le hQ (by linarith)
+    linarith [one_le_mul_of_one_le_of_one_le this (by linarith : (1 : ℝ) ≤ D.host.d)]
   have hlt : Real.log D.R.t ≤ L.sc.L / 300 := by
     have h1 : (D.R.t : ℝ) ^ 150 ≤ Real.sqrt L.sc.b :=
       le_trans (le_mul_of_one_le_left (by positivity) (one_le_pow₀ hc1)) hCond
@@ -324,8 +324,7 @@ theorem parameterPrecision_le_length_and_rank (D : D7) (L : SizeData₂ D) (P : 
   have hPT : T.PP ≤ (T.TO : ℝ) := by
     refine le_trans ?_ T.TO_ge
     rw [le_div_iff₀ hmd]
-    have b0 : (D.R.m : ℝ) * L.de2 ≤ D.R.k := by
-      have := L.thickDensity_le_one; have := L.thickDensity_pos; nlinarith
+    have b0 : (D.R.m : ℝ) * L.de2 ≤ D.R.k := (mul_le_of_le_one_right (by linarith) L.thickDensity_le_one).trans hmk
     have b1 : T.PP * ((D.R.m : ℝ) * L.de2) ≤ T.PP * D.R.k := mul_le_mul_of_nonneg_left b0 (by linarith)
     have b2 : T.PP ≤ T.PP ^ 4 := le_self_pow₀ h1 (by norm_num)
     have b3 : T.PP ^ 4 ≤ T.PP ^ 4 * (T.Dp : ℝ) ^ 3 := le_mul_of_one_le_right (by positivity) (one_le_pow₀ hD1)
@@ -445,7 +444,7 @@ theorem minimalGap_le_first_lowerRowParameter (D : D7) (L : SizeData₂ D) (P : 
   have ht : (0 : ℝ) ≤ (D.R.t : ℝ) := Nat.cast_nonneg _
   have h3 : 2 * L.etaSz ≤ (D.R.m : ℝ) * ((D.R.t : ℝ) + 1) * L.etaSz := by
     refine mul_le_mul_of_nonneg_right ?_ he.le
-    nlinarith
+    exact hm2.trans (le_mul_of_one_le_right (by linarith) (by linarith))
   have h4 := P.mteta
   have h5 : LevelStarExponents.h0 L ≤ L.etaSz := by
     unfold LevelStarExponents.h0
@@ -489,13 +488,13 @@ theorem len_le (D : D7) (L : SizeData₂ D) (P : ParameterChoice' D L) (T : Para
     exact_mod_cast this
   have hZ1 : (1 : ℝ) ≤ zBase L := by
     unfold zBase
-    have : (1 : ℝ) ≤ (D.R.f : ℝ) * D.R.r := by nlinarith
-    nlinarith
+    have : (1 : ℝ) ≤ (D.R.f : ℝ) * D.R.r := one_le_mul_of_one_le_of_one_le hf1 hr1
+    exact one_le_mul_of_one_le_of_one_le this hL1
   have hP1 : 1 ≤ T.PP := by
     rw [T.PP_eq]
     have h1 := Real.one_le_rpow hZ1 (by linarith [T.eP_ge] : 0 ≤ T.eP)
     have h2 := T.one_le_CP
-    nlinarith
+    exact one_le_mul_of_one_le_of_one_le h2 h1
   have hxCp : 1 ≤ L.sc.x ^ T.Cp := Real.one_le_rpow hx1.le T.Cp_nonneg
   refine le_trans ?_ T.TO_ge
   have a1 : T.PP ^ 2 ≤ T.PP ^ 4 :=
@@ -507,8 +506,7 @@ theorem len_le (D : D7) (L : SizeData₂ D) (P : ParameterChoice' D L) (T : Para
   have a5 : T.PP ^ 4 * (T.Dp : ℝ) ^ 3 * D.R.k * D.R.f ≤
       T.PP ^ 4 * (T.Dp : ℝ) ^ 3 * D.R.k * D.R.f * L.sc.x ^ T.Cp :=
     le_mul_of_one_le_right (by positivity) hxCp
-  have hd : (D.R.m : ℝ) * L.de2 ≤ D.R.m := by
-    have := L.thickDensity_le_one; nlinarith
+  have hd : (D.R.m : ℝ) * L.de2 ≤ D.R.m := mul_le_of_le_one_right (by linarith) L.thickDensity_le_one
   exact div_le_div₀ (by positivity) (a3.trans (a4.trans a5)) (mul_pos (by linarith) L.thickDensity_pos) hd
 
 theorem gap_le (D : D7) (L : SizeData₂ D) (P : ParameterChoice' D L) (T : ParamsT D L P) (tt : ℝ) (hT0 : 0 ≤ tt) (hTO : tt ≤ (T.TO : ℝ)) :
@@ -528,7 +526,7 @@ theorem gap_le (D : D7) (L : SizeData₂ D) (P : ParameterChoice' D L) (T : Para
         ((T.TO : ℝ) + T.Dp + 2) * ((T.TO : ℝ) + T.Dp + 2 + 2 * (D.R.N D.R.m : ℝ)) :=
       mul_le_mul (by linarith) (by linarith) (by positivity) (by positivity)
     have g2 := T.Del_gap
-    have g3 : (1 : ℝ) ≤ (tt + T.Dp + 2) * (tt + T.Dp + 2 + 2 * (D.R.r : ℝ)) := by nlinarith
+    have g3 : (1 : ℝ) ≤ (tt + T.Dp + 2) * (tt + T.Dp + 2 + 2 * (D.R.r : ℝ)) := one_le_mul_of_one_le_of_one_le (by linarith) (by linarith)
     linarith
   · have q1 : 40 * ((T.Dp : ℝ) + 2) ≤ (T.TO : ℝ) := by exact_mod_cast T.TO_40
     have q2 : 2 * (D.R.r : ℝ) ≤ (T.TO : ℝ) := by
@@ -538,7 +536,7 @@ theorem gap_le (D : D7) (L : SizeData₂ D) (P : ParameterChoice' D L) (T : Para
       mul_le_mul (by linarith) (by linarith) (by positivity) (by positivity)
     have q3 : (80 : ℝ) ≤ (T.TO : ℝ) := by linarith
     have q4 := T.heightBound_ge_order_sq
-    nlinarith
+    linarith [show (41 / 40 * (T.TO : ℝ)) * (81 / 40 * (T.TO : ℝ)) = 3321 / 1600 * (T.TO : ℝ) ^ 2 by ring, one_le_pow₀ (n := 2) (by linarith : (1 : ℝ) ≤ T.TO)]
 
 end GlobalTheory.CovTop.WtShape
 
@@ -582,9 +580,9 @@ theorem len_ge : 4 * T.Dp + 4 ≤ ⌈T.PP ^ 2 * (T.Dp : ℝ) ^ 2 * (D.R.k : ℝ)
   have hmk : (D.R.m : ℝ) ≤ D.R.k := by exact_mod_cast (by have := D.R.m_add_three_le_k; omega : D.R.m ≤ D.R.k)
   have h3 : T.PP ^ 2 * (T.Dp : ℝ) ^ 2 ≤ T.PP ^ 2 * (T.Dp : ℝ) ^ 2 * (D.R.k : ℝ) / (D.R.m : ℝ) := by
     rw [le_div_iff₀ hm]; exact mul_le_mul_of_nonneg_left hmk (by positivity)
-  have h4 : (8 : ℝ) * (T.Dp : ℝ) ^ 2 ≤ T.PP ^ 2 * (T.Dp : ℝ) ^ 2 := mul_le_mul_of_nonneg_right (by nlinarith) (by positivity)
+  have h4 : (8 : ℝ) * (T.Dp : ℝ) ^ 2 ≤ T.PP ^ 2 * (T.Dp : ℝ) ^ 2 := mul_le_mul_of_nonneg_right ((by norm_num : (8 : ℝ) ≤ 40 ^ 2).trans (pow_le_pow_left₀ (by norm_num) h2 2)) (by positivity)
   have h5 : ((4 * T.Dp + 4 : ℕ) : ℝ) ≤ T.PP ^ 2 * (T.Dp : ℝ) ^ 2 * (D.R.k : ℝ) / (D.R.m : ℝ) := by
-    push_cast; nlinarith
+    push_cast; linarith [le_self_pow₀ h1 (by norm_num : 2 ≠ 0), one_le_pow₀ (n := 2) h1]
   exact_mod_cast h5.trans (Nat.le_ceil _)
 
 theorem cZeroN_le_TO (j : ℕ) : cZeroN D j ≤ 12 * T.TO := by
@@ -602,10 +600,10 @@ theorem cZeroN_le_TO (j : ℕ) : cZeroN D j ≤ 12 * T.TO := by
       have : 5 ≤ s := by omega
       rw [hs]; nlinarith
     have e4 : D.R.r ^ 2 * (4 * D.R.r ^ 2) ≤ D.R.r ^ 2 * (6 * s ^ 2) := Nat.mul_le_mul_left _ e3
-    nlinarith
+    grind
   have h4 : D.R.f ^ 2 * D.R.r ^ 4 ≤ D.R.f ^ 2 * (6 * (D.R.r.choose 2) ^ 2) := Nat.mul_le_mul_left _ h3
   rw [T.Dp_eq, mul_pow] at h2
-  nlinarith
+  grind
 
 theorem spacing_ge (j n : ℕ) (hn : n ≤ T.TO) :
     4 * ((cZeroN D j : ℝ) + 2 * D.R.r + n + T.Dp + 1) ≤ LevelStarExponents.h0 L ∧ 24 * (D.R.r : ℝ) * n ≤ LevelStarExponents.h0 L ∧
@@ -613,7 +611,7 @@ theorem spacing_ge (j n : ℕ) (hn : n ≤ T.TO) :
   have a1 : (cZeroN D j : ℝ) ≤ 12 * T.TO := by exact_mod_cast cZeroN_le_TO T j
   have a2 : 6 * (D.R.r : ℝ) ≤ T.TO := by
     have h := T.order_ge_rank_bound
-    have : 6 * D.R.r ≤ T.TO := by nlinarith [Nat.zero_le (D.R.r * T.Dp)]
+    have : 6 * D.R.r ≤ T.TO := by linarith [Nat.zero_le (D.R.r * T.Dp)]
     exact_mod_cast this
   have a3 : 40 * ((T.Dp : ℝ) + 2) ≤ T.TO := by exact_mod_cast T.TO_40
   have a4 : (n : ℝ) ≤ T.TO := by exact_mod_cast hn
@@ -622,9 +620,9 @@ theorem spacing_ge (j n : ℕ) (hn : n ≤ T.TO) :
   have b1 : (0 : ℝ) ≤ D.R.r := Nat.cast_nonneg _
   have b2 : (0 : ℝ) ≤ n := Nat.cast_nonneg _
   have b3 : (0 : ℝ) ≤ D.R.t := Nat.cast_nonneg _
-  refine ⟨by nlinarith, ?_, by nlinarith⟩
+  refine ⟨by linarith [mul_le_mul_of_nonneg_right (show (80 : ℝ) ≤ T.TO by linarith) (by linarith : (0 : ℝ) ≤ T.TO), sq (T.TO : ℝ)], ?_, by linarith [pow_le_pow_left₀ b2 a4 2]⟩
   have : 6 * (D.R.r : ℝ) * n ≤ T.TO * T.TO := mul_le_mul a2 a4 b2 (by linarith)
-  nlinarith
+  linarith [sq (T.TO : ℝ)]
 
 theorem prod_bounds (n : ℕ) (hn : n ≤ T.TO) :
     T.PP * n * D.R.r * (D.R.f : ℝ) ^ 2 * (D.R.m : ℝ) ^ 2 * D.R.k * T.Dp ≤ LevelStarExponents.h0 L ∧

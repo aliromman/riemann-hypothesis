@@ -1045,10 +1045,12 @@ theorem args_pinned_heq_zsOf_mem_eq (t : RowsT K w Z Wt ex.p0) (a : TwArgs ex t)
       HEq a.x.F.Sp a.Sp) ∧
     ∃ Zs : DefSub (famT t).fam3.amb3, HEq (zsOf a.x.R a.x.F) Zs ∧ HEq (a.x.F.Dc (zsOf a.x.R a.x.F)) (a.Dc Zs) ∧
       HEq (a.x.F.Sp (zsOf a.x.R a.x.F)) (a.Sp Zs) ∧ (a.x.F.Dc (zsOf a.x.R a.x.F)).Mem = (a.Dc Zs).Mem := by
-  have hpack := @pack_heq (w.st Z).toD7 _ _ a.pack
-  dsimp only at hpack
-  with_unfolding_all exact ⟨hpack.1, hpack.2.1,
-    zsOf ((t.r.z.R.updS t.r.z.R.kap a.lam).withErr a.err) (reFace t.r.z.F a.Dc a.Sp a.Zsc), hpack.2.2⟩
+  cases a with
+  | mk _ _ _ _ _ _ x hpack =>
+    cases x
+    cases hpack
+    exact ⟨⟨rfl, HEq.rfl, rfl, rfl, rfl, HEq.rfl⟩, ⟨HEq.rfl, HEq.rfl, HEq.rfl, HEq.rfl, HEq.rfl, HEq.rfl⟩,
+      _, HEq.rfl, HEq.rfl, HEq.rfl, rfl⟩
 
 theorem exists_square_integrable_columns_of_data (t : RowsT K w Z Wt ex.p0) (pin : ColPin w) (S : _root_.Formalism.L2.TiedDataSKAlt ex) (hS : TC.StdKer w.I w.l Z S.ker)
     (a : TwArgs ex t) (hD : a.Dc = (colRecK w.ok w.pins w.l Z pin.isTw pin.jets t.hX (usedOf w.I T Wt) t.r.z.Xg t.r.z.tr S.ker).face)

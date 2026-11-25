@@ -98,6 +98,8 @@ end Free
 
 variable {D : D7} {A : Amb D} {N j : ℕ}
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure At (S : Sig A N j) (κ : Lv A) (p : ℕ) : Type where
   hp : p.Prime
   W : ValuationSubring ℂ
@@ -211,6 +213,8 @@ end GIso
 
 end At
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure LawSt (ct : At S κ p) : Prop where
   nrm_nonneg : ∀ {Z : ct.Mdl} (F : ct.Sh Z) (f : ct.Sec F) (y : ct.Pt Z), 0 ≤ ct.nrm F f y
   norm_le_one_of_mem_sections : ∀ {Z : ct.Mdl} (F : ct.Sh Z) (f : ct.Sec F), f ∈ ct.H0 F → ∀ y, ct.nrm F f y ≤ 1
@@ -221,6 +225,8 @@ structure LawSt (ct : At S κ p) : Prop where
   phi_conj : ∀ {Z : ct.Mdl} (y : ct.Pt Z) (c c' : 𝓞 D.host.E),
     (c' : D.host.E) = D.host.conj (c : D.host.E) → ∀ a : ct.Ylat y, ct.phi y (c' • a) = c • ct.phi y a
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure MotSt (ct : At S κ p) : Type 1 where
   be : ∀ {Z : ct.Mdl} (y : ct.Pt Z), ct.Ylat y →ₗ[ℤ] ct.Ylat y →ₗ[ℤ] ℝ
   be_symm : ∀ {Z : ct.Mdl} (y : ct.Pt Z) (a b : ct.Ylat y), be y a b = be y b a
@@ -245,6 +251,8 @@ structure MotSt (ct : At S κ p) : Type 1 where
   dimB_add : ∀ y, dimB y + Module.finrank ℤ (ct.Ylat y) = D.R.f * N
   be_eq : ∀ {Z : ct.Mdl} (y : ct.Pt Z) (u v : ct.Ylat y), be y u v = (ct.dat y).beta u v
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure ShfSt (ct : At S κ p) : Type 1 where
   vrat : ∀ {Z : ct.Mdl} {F₁ F₂ : ct.Sh Z}, ct.GIso F₁ F₂ → ct.Pt Z → ℝ
   SES : ct.Mdl → Type
@@ -262,12 +270,16 @@ structure ShfSt (ct : At S κ p) : Type 1 where
   secOf : ∀ {F : ct.Sh ct.Xm}, ct.GIso oX F → ct.Sec F
   nrm_secOf : ∀ {F : ct.Sh ct.Xm} (φ : ct.GIso oX F) y, ct.nrm F (secOf φ) y = (p : ℝ) ^ (-(vrat φ y))
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure FlgSt (ct : At S κ p) : Type 1 where
   FlagData : ct.Mdl → Type
   flagCl : ∀ Z, FlagData Z → ct.Mdl
   allFlags : FlagData ct.Xm
   YY_eq : ct.YY = flagCl ct.Xm allFlags
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure FrmSt (ct : At S κ p) : Type 1 where
   nrmRef : ∀ l, ct.Sec (ct.Lb l) → ct.Pt ct.YY → ℝ
   LieV : ct.Pt ct.YY → Type
@@ -286,6 +298,8 @@ structure FrmSt (ct : At S κ p) : Type 1 where
 
 attribute [instance] FrmSt.lvAdd FrmSt.lvMod
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure ChtSt (ct : At S κ p) : Type 1 where
   DVP : Type
   dvRho : DVP → ℕ
@@ -317,6 +331,8 @@ structure ChtSt (ct : At S κ p) : Type 1 where
   yEta : ∀ {Z}, ct.Gen Z → ct.Pt Z
   yEta_good : ∀ {Z} (η : ct.Gen Z), Subsingleton (ct.Ylat (yEta η)) ↔ ct.abAt η
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure TorSt (ct : At S κ p) : Type 1 where
   PL : Type
   phiAt : PL → ∀ {Z : ct.Mdl}, ct.Pt Z → ℝ
@@ -325,15 +341,21 @@ structure TorSt (ct : At S κ p) : Type 1 where
   IvD : Option ℕ → Type
   jIdl : ∀ b, IvD b → ct.Idl ((ct.B.X b))
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure FJSt (ct : At S κ p) : Type 1 where
   FJd : Type
   Chr : FJd → Type
   fjN : ∀ l, ct.Sec (ct.Lb l) → (t : FJd) → Chr t → ℝ
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure UniSt (ct : At S κ p) : Type 1 where
   Unim : Type
   latStd : ℕ → Unim
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure ThbSt (ct : At S κ p) (un : UniSt ct) : Type 1 where
   LBG : un.Unim → Type
   LBGq : un.Unim → Type
@@ -356,11 +378,15 @@ structure ThbSt (ct : At S κ p) (un : UniSt ct) : Type 1 where
   dg_res : ∀ {La} (P : StrictHenselianAcyclic La), resQ (dg P) = dgq (res2 P)
   PPq_def : ∀ La, PPq La = dgq (PoiQ La)
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure KeySt (ct : At S κ p) : Type 1 where
   piPP : ct.Sh ct.Xm
   keySh : ℕ → ct.Sh ct.Xm
   keySh_inv : ct.IsInv piPP → ∀ c, ct.IsInv (keySh c)
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure BdySt (ct : At S κ p) : Type 1 where
   BPt : Type
   Rl : BPt → Type
@@ -397,6 +423,8 @@ structure BdySt (ct : At S κ p) : Type 1 where
 
 attribute [instance] BdySt.iRr BdySt.iRd BdySt.iRl BdySt.iRn BdySt.iRi BdySt.iRc BdySt.iYa BdySt.iYm BdySt.iXa BdySt.iXm BdySt.iSg BdySt.iSk BdySt.iSm BdySt.iSt
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure ThgSt (ct : At S κ p) (un : UniSt ct) : Type 1 where
   Tors : ct.Pt ct.Xm → un.Unim → ℕ → Type
   [atAdd : ∀ y La n, AddCommGroup (Tors y La n)]
@@ -431,6 +459,8 @@ structure ThgSt (ct : At S κ p) (un : UniSt ct) : Type 1 where
 
 attribute [instance] ThgSt.atAdd ThgSt.atFin ThgSt.thGrp ThgSt.snAdd ThgSt.snMod
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure JetSt (ct : At S κ p) (un : UniSt ct) (tg : ThgSt ct un) : Type 1 where
   Jet : ct.Pt ct.Xm → un.Unim → ℕ → ℕ → Type
   [jAdd : ∀ y La n DF, AddCommGroup (Jet y La n DF)]
@@ -456,6 +486,8 @@ structure JetSt (ct : At S κ p) (un : UniSt ct) (tg : ThgSt ct un) : Type 1 whe
 
 attribute [instance] JetSt.jAdd JetSt.jMod JetSt.fbAdd JetSt.fbMod
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure EvlSt (ct : At S κ p) : Type 1 where
   LieGt : ct.Pt ct.Xm → PsiT D × Bool → Type
   LieB : ct.Pt ct.Xm → PsiT D × Bool → Type
@@ -474,6 +506,8 @@ structure EvlSt (ct : At S κ p) : Type 1 where
 
 attribute [instance] EvlSt.lgAdd EvlSt.lbAdd EvlSt.ltAdd
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure HTpSt (ct : At S κ p) : Type 1 where
   Tp : ∀ {Z : ct.Mdl}, ct.Pt Z → Type
   [tpAdd : ∀ {Z : ct.Mdl} (y : ct.Pt Z), AddCommGroup (Tp y)]
@@ -496,6 +530,8 @@ structure HTpSt (ct : At S κ p) : Type 1 where
 
 attribute [instance] HTpSt.tpAdd HTpSt.omAdd HTpSt.omMod HTpSt.tcAdd HTpSt.tcMod
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure HTmSt (ct : At S κ p) (sh : ShfSt ct) (hq : HTpSt ct) : Type 1 where
   IsHTBlowup : ct.Mdl → ct.Mdl → Prop
   eOmP : ∀ Z : ct.Mdl, Bool → PsiT D → ct.Sh Z
@@ -528,6 +564,8 @@ structure HTmSt (ct : At S κ p) (sh : ShfSt ct) (hq : HTpSt ct) : Type 1 where
 
 attribute [instance] HTmSt.obAdd HTmSt.obMod
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure CrDSt (ct : At S κ p) : Type 1 where
   nefQ : (PsiT D → ℕ → ℝ) → Prop
   Crv : Type
@@ -549,6 +587,8 @@ structure CrDSt (ct : At S κ p) : Type 1 where
   Pm_head : ∀ CC τ i, 1 ≤ i → i ≤ j → ∑ k ∈ Finset.Icc 1 i, degGrD CC τ k ≤ Pm CC
   Pm_tail : ∀ CC τ i, j ≤ i → i ≤ N → -∑ k ∈ Finset.Icc (i + 1) N, degGrD CC τ k ≤ Pm CC
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure CrHSt (ct : At S κ p) (fg : FlgSt ct) : Type 1 where
   nefHT : ct.Mdl → (PsiT D → ℕ → ℝ) → Prop
   descK : ct.Mdl → (PsiT D → ℕ → ℤ) → Prop
@@ -571,6 +611,8 @@ structure CrHSt (ct : At S κ p) (fg : FlgSt ct) : Type 1 where
   nefHT_def : ∀ Z (l : PsiT D → ℕ → ℝ), nefHT Z l ↔
     ∀ C : CrvS Z, 0 ≤ -∑ᶠ τ, ∑ i ∈ Finset.Icc 1 N, l τ i * (degGr C τ i : ℝ)
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure Stages (ct : At S κ p) : Type 1 where
   lw : LawSt ct
   mo : MotSt ct
@@ -733,95 +775,50 @@ def ex : ModuliIntegralCharts.ExtA D st.loc where
   FlagData := @FlgSt.FlagData _ _ _ _ _ _ _ _ st.fg
   flagCl := @FlgSt.flagCl _ _ _ _ _ _ _ _ st.fg
   allFlags := @FlgSt.allFlags _ _ _ _ _ _ _ _ st.fg
-  YY_eq := @FlgSt.YY_eq _ _ _ _ _ _ _ _ st.fg
   Idl := @At.Idl _ _ _ _ _ _ _ ct
   blowUp := @At.blowUp _ _ _ _ _ _ _ ct
-  powP := @At.powP _ _ _ _ _ _ _ ct
-  pbPrinc := @ChtSt.pbPrinc _ _ _ _ _ _ _ _ st.ch
   Corr := @At.Corr _ _ _ _ _ _ _ ct
-  corr_sub := fun _ _ => ⟨fun ⟨_⟩ ⟨_⟩ => rfl⟩
-  diagCl := @At.diagCl _ _ _ _ _ _ _ ct
   IvD := @TorSt.IvD _ _ _ _ _ _ _ _ st.tr
-  jIdl := fun b d => match b, d with
-    | none, d => st.tr.jIdl none d
-    | some n, d => st.tr.jIdl (some n) d
   ZP := @At.ZP _ _ _ _ _ _ _ ct
   spz := @At.spz _ _ _ _ _ _ _ ct
   abP := @At.abP _ _ _ _ _ _ _ ct
   inQ := @At.inQ _ _ _ _ _ _ _ ct
   isGenP := @At.isGenP _ _ _ _ _ _ _ ct
-  isGenP_ab := @LawSt.isGenP_ab _ _ _ _ _ _ _ _ st.lw
   gpt := @At.gpt _ _ _ _ _ _ _ ct
-  abAt_iff := fun _ => Iff.rfl
-  gpt_notQ := fun η => η.2.1
-  genFin := @LawSt.genFin _ _ _ _ _ _ _ _ st.lw
   genNe := @LawSt.genNe _ _ _ _ _ _ _ _ st.lw
   redK := @ChtSt.redK _ _ _ _ _ _ _ _ st.ch
-  dvRho_pos_iff := @ChtSt.dvRho_pos_iff _ _ _ _ _ _ _ _ st.ch
   genK := @ChtSt.genK _ _ _ _ _ _ _ _ st.ch
-  redK_genK := @ChtSt.redK_genK _ _ _ _ _ _ _ _ st.ch
   imgM := @ChtSt.imgM _ _ _ _ _ _ _ _ st.ch
   imgU := @ChtSt.imgU _ _ _ _ _ _ _ _ st.ch
-  img_spz := @ChtSt.img_spz _ _ _ _ _ _ _ _ st.ch
-  imgU_inQ := @ChtSt.imgU_inQ _ _ _ _ _ _ _ _ st.ch
-  chAt_imgM := @ChtSt.chAt_imgM _ _ _ _ _ _ _ _ st.ch
-  chAbExact_imgU := @ChtSt.chAbExact_imgU _ _ _ _ _ _ _ _ st.ch
   RFam := @ChtSt.RFam _ _ _ _ _ _ _ _ st.ch
-  chFam := @ChtSt.chFam _ _ _ _ _ _ _ _ st.ch
   ptK := @ChtSt.ptK _ _ _ _ _ _ _ _ st.ch
-  ptK_good := @ChtSt.ptK_good _ _ _ _ _ _ _ _ st.ch
   vpi := @ChtSt.vpi _ _ _ _ _ _ _ _ st.ch
-  vpi_pos := @ChtSt.vpi_pos _ _ _ _ _ _ _ _ st.ch
-  ordGe := @ChtSt.ordGe _ _ _ _ _ _ _ _ st.ch
   yEta := @ChtSt.yEta _ _ _ _ _ _ _ _ st.ch
-  yEta_good := @ChtSt.yEta_good _ _ _ _ _ _ _ _ st.ch
   homSh := @ShfSt.homSh _ _ _ _ _ _ _ _ st.sh
-  homSh_inv := @ShfSt.homSh_inv _ _ _ _ _ _ _ _ st.sh
   isoSec := @ShfSt.isoSec _ _ _ _ _ _ _ _ st.sh
-  nrm_isoSec := @ShfSt.nrm_isoSec _ _ _ _ _ _ _ _ st.sh
   isoSymm := @ShfSt.isoSymm _ _ _ _ _ _ _ _ st.sh
-  vrat_symm := @ShfSt.vrat_symm _ _ _ _ _ _ _ _ st.sh
   LieV := @FrmSt.LieV _ _ _ _ _ _ _ _ st.fr
   lvAdd := @FrmSt.lvAdd _ _ _ _ _ _ _ _ st.fr
   lvMod := @FrmSt.lvMod _ _ _ _ _ _ _ _ st.fr
   lieL := @FrmSt.lieL _ _ _ _ _ _ _ _ st.fr
   eig := @FrmSt.eig _ _ _ _ _ _ _ _ st.fr
   Wst := @FrmSt.Wst _ _ _ _ _ _ _ _ st.fr
-  Wst_le := @FrmSt.Wst_le _ _ _ _ _ _ _ _ st.fr
   taut := @FrmSt.taut _ _ _ _ _ _ _ _ st.fr
-  taut_eq := @FrmSt.taut_eq _ _ _ _ _ _ _ _ st.fr
   nrmIn := @FrmSt.nrmIn _ _ _ _ _ _ _ _ st.fr
-  nrmRef_def := @FrmSt.nrmRef_def _ _ _ _ _ _ _ _ st.fr
-  nrm_Lb_def := @FrmSt.nrm_Lb_def _ _ _ _ _ _ _ _ st.fr
-  om_smul := @HTpSt.om_smul _ _ _ _ _ _ _ _ st.hq
   TC := @HTpSt.TC _ _ _ _ _ _ _ _ st.hq
   tcAdd := @HTpSt.tcAdd _ _ _ _ _ _ _ _ st.hq
   tcMod := @HTpSt.tcMod _ _ _ _ _ _ _ _ st.hq
   iT := @HTpSt.iT _ _ _ _ _ _ _ _ st.hq
-  iT_span := @HTpSt.iT_span _ _ _ _ _ _ _ _ st.hq
   htC := @HTpSt.htC _ _ _ _ _ _ _ _ st.hq
-  htC_iT := @HTpSt.htC_iT _ _ _ _ _ _ _ _ st.hq
-  psiC := @HTpSt.psiC _ _ _ _ _ _ _ _ st.hq
-  lieGt1 := @HTpSt.lieGt1 _ _ _ _ _ _ _ _ st.hq
-  eT := @HTpSt.eT _ _ _ _ _ _ _ _ st.hq
   HTn := @HTmSt.HTn _ _ _ _ _ _ _ _ _ _ st.hm
   htEval := @HTmSt.htEval _ _ _ _ _ _ _ _ _ _ st.hm
   htIdl := @HTmSt.htIdl _ _ _ _ _ _ _ _ _ _ st.hm
-  IsHTBlowup_def := @HTmSt.IsHTBlowup_def _ _ _ _ _ _ _ _ _ _ st.hm
-  wFib := @HTmSt.wFib _ _ _ _ _ _ _ _ _ _ st.hm
-  htFlags := @CrHSt.htFlags _ _ _ _ _ _ _ _ _ st.cr
-  omSh := @HTmSt.omSh _ _ _ _ _ _ _ _ _ _ st.hm
   omPat := @HTmSt.omPat _ _ _ _ _ _ _ _ _ _ st.hm
-  omPat_def := @HTmSt.omPat_def _ _ _ _ _ _ _ _ _ _ st.hm
   BPt := @HTmSt.BPt _ _ _ _ _ _ _ _ _ _ st.hm
   bfld := @HTmSt.bfld _ _ _ _ _ _ _ _ _ _ st.hm
   OmB := @HTmSt.OmB _ _ _ _ _ _ _ _ _ _ st.hm
   obAdd := @HTmSt.obAdd _ _ _ _ _ _ _ _ _ _ st.hm
   obMod := @HTmSt.obMod _ _ _ _ _ _ _ _ _ _ st.hm
-  omB := @HTmSt.omB _ _ _ _ _ _ _ _ _ _ st.hm
-  omPB := @HTmSt.omPB _ _ _ _ _ _ _ _ _ _ st.hm
-  eOmB := @HTmSt.eOmB _ _ _ _ _ _ _ _ _ _ st.hm
-  eB := @HTmSt.eB _ _ _ _ _ _ _ _ _ _ st.hm
   YsP := @CrHSt.YsP _ _ _ _ _ _ _ _ _ st.cr
   ysBd := @CrHSt.ysBd _ _ _ _ _ _ _ _ _ st.cr
   FlP := @CrHSt.FlP _ _ _ _ _ _ _ _ _ st.cr
@@ -831,20 +828,11 @@ def ex : ModuliIntegralCharts.ExtA D st.loc where
   flDim := @CrHSt.flDim _ _ _ _ _ _ _ _ _ st.cr
   Sum1 := @CrHSt.Sum1 _ _ _ _ _ _ _ _ _ st.cr
   locus := @CrHSt.locus _ _ _ _ _ _ _ _ _ st.cr
-  bdryLoci_def := @CrHSt.bdryLoci_def _ _ _ _ _ _ _ _ _ st.cr
   CrvS := @CrHSt.CrvS _ _ _ _ _ _ _ _ _ st.cr
   degGr := @CrHSt.degGr _ _ _ _ _ _ _ _ _ st.cr
-  nefHT_def := @CrHSt.nefHT_def _ _ _ _ _ _ _ _ _ st.cr
   CrvQ := @CrDSt.CrvQ _ _ _ _ _ _ _ _ st.cd
   degGrQ := @CrDSt.degGrQ _ _ _ _ _ _ _ _ st.cd
-  nefQ_def := @CrDSt.nefQ_def _ _ _ _ _ _ _ _ st.cd
   degGrD := @CrDSt.degGrD _ _ _ _ _ _ _ _ st.cd
-  degLdR_def := @CrDSt.degLdR_def _ _ _ _ _ _ _ _ st.cd
-  degLie_f := @CrDSt.degLie_f _ _ _ _ _ _ _ _ st.cd
-  degLie_alt := @CrDSt.degLie_alt _ _ _ _ _ _ _ _ st.cd
-  eDeg_def := @CrDSt.eDeg_def _ _ _ _ _ _ _ _ st.cd
-  Pm_head := @CrDSt.Pm_head _ _ _ _ _ _ _ _ st.cd
-  Pm_tail := @CrDSt.Pm_tail _ _ _ _ _ _ _ _ st.cd
 
 def locB : BoundaryLocalData.LocB D st.loc where
   chX := @At.chX _ _ _ _ _ _ _ ct

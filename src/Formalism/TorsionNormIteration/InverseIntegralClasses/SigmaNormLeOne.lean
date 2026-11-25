@@ -64,14 +64,8 @@ section Ball
 variable {K : Type u} [NormedField K] [IsUltrametricDist K]
 
 lemma sigma_norm_le_one {p q : ℕ} {σ : K →+* K} (hp : ‖(p : K)‖ ≤ 1)
-    (hσ : IsFrobLift p q σ) (a : K) (ha : ‖a‖ ≤ 1) : ‖σ a‖ ≤ 1 := by
-  have h1 : ‖σ a - a ^ q‖ ≤ ‖(p : K)‖ := hσ a ha
-  have h2 : ‖a ^ q‖ ≤ 1 := by
-    rw [norm_pow]
-    simpa using pow_le_pow_of_le_one (norm_nonneg a) ha (Nat.zero_le q)
-  calc ‖σ a‖ = ‖(σ a - a ^ q) + a ^ q‖ := by rw [sub_add_cancel]
-    _ ≤ max ‖σ a - a ^ q‖ ‖a ^ q‖ := IsUltrametricDist.norm_add_le_max _ _
-    _ ≤ 1 := max_le (h1.trans hp) h2
+    (hσ : IsFrobLift p q σ) (a : K) (ha : ‖a‖ ≤ 1) : ‖σ a‖ ≤ 1 :=
+  frobenius_norm_le_one hσ hp ha
 
 lemma coeff_split (p q : ℕ) (hq : q ≠ 0) (σ : K →+* K) (f : PowerSeries K) (n : ℕ) :
     coeff n f = coeff n (f - (p : K)⁻¹ • (PowerSeries.map σ f).subst
@@ -195,7 +189,7 @@ private lemma bd_add' {c : ℝ} {F G : MvPowerSeries ι K} (hF : Bd c F) (hG : B
   exact (IsUltrametricDist.norm_add_le_max _ _).trans (max_le (hF d) (hG d))
 
 lemma powp_step {p : ℕ} (hp : p.Prime) {r : ℕ} (hr : 1 ≤ r) {A B : MvPowerSeries ι K}
-    (_hA : Bd 1 A) (hB : Bd 1 B) (hD : Bd (‖(p : K)‖ ^ r) (A - B)) :
+    (hB : Bd 1 B) (hD : Bd (‖(p : K)‖ ^ r) (A - B)) :
     Bd (‖(p : K)‖ ^ (r + 1)) (A ^ p - B ^ p) := by
   have hpn : 0 ≤ ‖(p : K)‖ := norm_nonneg _
   have hp1 : ‖(p : K)‖ ≤ 1 := IsUltrametricDist.norm_natCast_le_one K p
@@ -240,13 +234,13 @@ lemma powp_step {p : ℕ} (hp : p.Prime) {r : ℕ} (hr : 1 ≤ r) {A B : MvPower
       _ ≤ r * p := Nat.mul_le_mul_left r hp.two_le
 
 lemma powpj {p : ℕ} (hp : p.Prime) {r : ℕ} (hr : 1 ≤ r) {A B : MvPowerSeries ι K}
-    (hA : Bd 1 A) (hB : Bd 1 B) (hD : Bd (‖(p : K)‖ ^ r) (A - B)) :
+    (hB : Bd 1 B) (hD : Bd (‖(p : K)‖ ^ r) (A - B)) :
     ∀ j : ℕ, Bd (‖(p : K)‖ ^ (r + j)) (A ^ (p ^ j) - B ^ (p ^ j))
   | 0 => by simpa using hD
   | j + 1 => by
     rw [pow_succ p j, pow_mul, pow_mul, ← add_assoc]
-    exact powp_step hp (by omega) (by simpa using hA.pow zero_le_one (p ^ j))
-      (by simpa using hB.pow zero_le_one (p ^ j)) (powpj hp hr hA hB hD j)
+    exact powp_step hp (by omega)
+      (by simpa using hB.pow zero_le_one (p ^ j)) (powpj hp hr hB hD j)
 
 lemma pow_sub_pow_bd {c : ℝ} (hc : 0 ≤ c) {A B : MvPowerSeries ι K} (hA : Bd 1 A) (hB : Bd 1 B)
     (hD : Bd c (A - B)) (m : ℕ) : Bd c (A ^ m - B ^ m) := by
@@ -273,7 +267,7 @@ theorem powCongr : Formalism.LT.PowCongr.{u, v} := by
     intro d
     rw [← norm_pow]
     exact hD d
-  have h1 := powpj hp hr hA' hB' hD' j
+  have h1 := powpj hp hr hB' hD' j
   have hAj : Bd 1 (A ^ (p ^ j)) := by simpa using Bd.pow hA' zero_le_one (p ^ j)
   have hBj : Bd 1 (B ^ (p ^ j)) := by simpa using Bd.pow hB' zero_le_one (p ^ j)
   have h2 := pow_sub_pow_bd (pow_nonneg (norm_nonneg _) _) hAj hBj h1 m

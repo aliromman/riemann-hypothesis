@@ -60,7 +60,7 @@ namespace Formalism.FourierDecayAlt.P.AdmissibleLieWords
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.B Formalism.FourierDecayAlt.P.BetaSesquilinearity PI.UnitaryCorollaryDerivatives.CRH
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
+open scoped Matrix.Norms.Elementwise
 
 def sc (ε x : ℝ) : ℝ := Real.smoothTransition ((x - ε / 4) / (ε / 4))
 
@@ -104,14 +104,12 @@ lemma hh_bound {ε : ℝ} (hε : 0 < ε) (j : ℕ) {x : ℝ} (hx : ε ≤ x) :
   have heq : iteratedFDeriv ℝ j (hh ε) x = iteratedFDeriv ℝ j (fun y : ℝ => y ^ (-(1 / 2 : ℝ))) x := by
     first
     | exact ((hh_ev hε h2).iteratedFDeriv ℝ j).eq_of_nhds
-    | exact (hh_ev hε h2).iteratedFDeriv_eq j
   rw [heq, norm_iteratedFDeriv_eq_norm_iteratedDeriv, iteratedDeriv_eq_iterate]
   simp only [Real.iter_deriv_rpow_const]
   rw [norm_mul, Real.norm_eq_abs, Real.norm_eq_abs, abs_of_pos (Real.rpow_pos_of_pos hx0 _)]
   have hexp : -(1 / 2 : ℝ) - j ≤ 0 := by linarith
   apply mul_le_mul_of_nonneg_left _ (abs_nonneg _)
   first
-  | exact Real.rpow_le_rpow_of_exponent_nonpos hε hx hexp
   | exact Real.rpow_le_rpow_of_nonpos hε hx hexp
 
 def Phh (ε : ℝ) (z : ℂ) : ℂ := ((hh ε z.re : ℝ) : ℂ)
@@ -156,7 +154,7 @@ namespace Formalism.FourierDecayAlt.P
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.B Formalism.FourierDecayAlt.P.BetaSesquilinearity PI.UnitaryCorollaryDerivatives.CRH Formalism.FourierDecayAlt.P.AdmissibleLieWords
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
+open scoped Matrix.Norms.Elementwise
 
 lemma admissible_of_unit_words {k r i : ℕ} {u v : List (Mat k r)} (h : C6.UnitWords k r u v i) : admitted i (wL u ++ wR v) := by
   obtain ⟨h1, h2, h3⟩ := h

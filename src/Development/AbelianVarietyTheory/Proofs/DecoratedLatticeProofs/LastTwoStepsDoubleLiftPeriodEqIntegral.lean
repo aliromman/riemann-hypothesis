@@ -48,13 +48,13 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Init
+public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.MixedCoordinates
 
 @[expose] public section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum MeasureTheory IsDedekindDomain NumberField Matrix
 open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Unf GlobalTheory.SeeSaw GlobalTheory.FinPl
 open scoped TensorProduct
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 noncomputable section
 
@@ -222,8 +222,8 @@ theorem flatBF_rankZero : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (B : Bes
   funext w
   have hS := (GlobalTheory.Unf.mixRankZero D ψ).1 B.V B.V₀ J.W B.d s.vS.μ s.vS.𝓕 s.vS.covol
   have hT := (GlobalTheory.Unf.mixRankZero D ψ).2.1 B.V₀ J.W J.W₀ J.d s.vT.μ s.vT.𝓕 s.vT.covol
-  change ∀ f x, _root_.I195MixedCoordinates_14b5fd3aa93c7f4842f1a892.source B.d J.W ψ s.vS.μ s.vS.𝓕 f x = fun w => f (B.d.ext0 J.W w) at hS
-  change ∀ f y, _root_.I195MixedCoordinates_14b5fd3aa93c7f4842f1a892.target J.d B.V₀ ψ s.vT.μ s.vT.𝓕 f y = fun w => f (J.d.inc0 B.V₀ w) at hT
+  change ∀ f x, _root_.I195MixedCoordinates.source B.d J.W ψ s.vS.μ s.vS.𝓕 f x = fun w => f (B.d.ext0 J.W w) at hS
+  change ∀ f y, _root_.I195MixedCoordinates.target J.d B.V₀ ψ s.vT.μ s.vT.𝓕 f y = fun w => f (J.d.inc0 B.V₀ w) at hT
   simp only [flatBF, flat, flatAt, flatFun, evalAt, hS]
   have hpsi : ∀ u : UX D 0, psiUni ψ u.1 = 1 := fun u => by
     simp [psiUni, upSum, psiE]

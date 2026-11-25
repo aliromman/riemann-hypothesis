@@ -2,46 +2,6 @@ module
 
 public import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.StatementZ
 public import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.StatementT
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -65,10 +25,6 @@ theorem subst_one' {a : R⟦X⟧} (ha : HasSubst a) : (1 : R⟦X⟧).subst a = 1
   first
     | (rw [← PowerSeries.coe_substAlgHom ha]; exact map_one _)
 
-private theorem hasSubst_lemma {a : R⟦X⟧} (h : constantCoeff a = 0) : HasSubst a := by
-  first
-  | exact HasSubst.of_constantCoeff_zero' h
-
 private theorem powerSeries_subst_mul_of_hasSubst {a : R⟦X⟧} (ha : HasSubst a) (f g : R⟦X⟧) :
     (f * g).subst a = f.subst a * g.subst a := by
   first
@@ -77,7 +33,7 @@ private theorem powerSeries_subst_mul_of_hasSubst {a : R⟦X⟧} (ha : HasSubst 
 private theorem constantCoeff_powerSeries_subst_eq_zero {a f : R⟦X⟧} (ha0 : constantCoeff a = 0) (hf : constantCoeff f = 0) :
     constantCoeff (f.subst a) = 0 := by
   obtain ⟨h, rfl⟩ := (PowerSeries.X_dvd_iff).mpr hf
-  rw [powerSeries_subst_mul_of_hasSubst (hasSubst_lemma ha0), PowerSeries.subst_X (hasSubst_lemma ha0), map_mul, ha0, zero_mul]
+  rw [powerSeries_subst_mul_of_hasSubst (PowerSeries.HasSubst.of_constantCoeff_zero' ha0), PowerSeries.subst_X (PowerSeries.HasSubst.of_constantCoeff_zero' ha0), map_mul, ha0, zero_mul]
 
 private theorem powerSeries_subst_subst_eq_subst_subst {a b f : R⟦X⟧} (ha : HasSubst a) (hb : HasSubst b) :
     PowerSeries.subst b (PowerSeries.subst a f : R⟦X⟧)
@@ -111,7 +67,7 @@ theorem expSpec_of (hI : IntegSpec.{u}) (hC : CompInvSpec.{u}) (hU : UnitSpec.{u
   obtain ⟨hE0, hLE, hEL, hcoef, -⟩ := hC K (logSer W) hL0 (by rw [hL1]; exact isUnit_one)
   have hE0' : constantCoeff (expSer W) = 0 := hE0
   have hLE' : (logSer W).subst (expSer W) = X := hLE
-  have hs : HasSubst (expSer W) := hasSubst_lemma hE0'
+  have hs : HasSubst (expSer W) := PowerSeries.HasSubst.of_constantCoeff_zero' hE0'
   refine ⟨hE0, ?_, hLE, hEL, ?_⟩
   · have h : coeff 1 (expSer W) * coeff 1 (logSer W) = 1 := hcoef
     rwa [hL1, mul_one] at h
@@ -128,7 +84,7 @@ theorem chainZ_of (hI : IntegSpec.{u}) (hC : CompInvSpec.{u}) (hU : UnitSpec.{u}
     ChainZ.{u} := by
   intro K _ _ W f
   obtain ⟨hE0, -, -, -, hEd⟩ := expSpec_of hI hC hU K W
-  have hs : HasSubst (expSer W) := hasSubst_lemma hE0
+  have hs : HasSubst (expSer W) := PowerSeries.HasSubst.of_constantCoeff_zero' hE0
   rw [derivative_subst hs, hEd]
   simp only [D, Derivation.smul_apply, smul_eq_mul]
   rw [powerSeries_subst_mul_of_hasSubst hs, mul_comm]
@@ -139,8 +95,8 @@ theorem logNeg_of (hI : IntegSpec.{u}) (hC : CompInvSpec.{u}) (hU : UnitSpec.{u}
   obtain ⟨hL0, -, hLd, -⟩ := logSpec_of hI hU K W
   obtain ⟨hE0, -, hLE, hEL, -⟩ := expSpec_of hI hC hU K W
   obtain ⟨hi0, -, -, -, -, -, -, hiom⟩ := hS K W
-  have hsi : HasSubst (iSer W) := hasSubst_lemma hi0
-  have hsE : HasSubst (expSer W) := hasSubst_lemma hE0
+  have hsi : HasSubst (iSer W) := PowerSeries.HasSubst.of_constantCoeff_zero' hi0
+  have hsE : HasSubst (expSer W) := PowerSeries.HasSubst.of_constantCoeff_zero' hE0
   have hL' : (logSer W).subst (iSer W) = -logSer W := by
     obtain ⟨-, -, huniq⟩ := hI K (-om W)
     have e1 := huniq ((logSer W).subst (iSer W)) (constantCoeff_powerSeries_subst_eq_zero hi0 hL0)
@@ -149,9 +105,9 @@ theorem logNeg_of (hI : IntegSpec.{u}) (hC : CompInvSpec.{u}) (hU : UnitSpec.{u}
     rw [e1, e2]
   refine ⟨hL', ?_⟩
   have hnX0 : constantCoeff (-X : K⟦X⟧) = 0 := by simp
-  have hsn : HasSubst (-X : K⟦X⟧) := hasSubst_lemma hnX0
-  apply subst_injective_of_leftInverse (l := logSer W) (e := expSer W) (hasSubst_lemma hL0)
-    (hasSubst_lemma (constantCoeff_powerSeries_subst_eq_zero hnX0 hE0)) (hasSubst_lemma (constantCoeff_powerSeries_subst_eq_zero hE0 hi0)) hEL
+  have hsn : HasSubst (-X : K⟦X⟧) := PowerSeries.HasSubst.of_constantCoeff_zero' hnX0
+  apply subst_injective_of_leftInverse (l := logSer W) (e := expSer W) (PowerSeries.HasSubst.of_constantCoeff_zero' hL0)
+    (PowerSeries.HasSubst.of_constantCoeff_zero' (constantCoeff_powerSeries_subst_eq_zero hnX0 hE0)) (PowerSeries.HasSubst.of_constantCoeff_zero' (constantCoeff_powerSeries_subst_eq_zero hE0 hi0)) hEL
   rw [← powerSeries_subst_subst_eq_subst_subst hsE hsn, hLE, PowerSeries.subst_X hsn, ← powerSeries_subst_subst_eq_subst_subst hsi hsE, hL',
     subst_neg' hsE, hLE]
 

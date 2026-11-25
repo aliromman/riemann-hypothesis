@@ -1,48 +1,7 @@
 module
 
 public import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsChartDenominator
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.RingTheory.WittVector.IsPoly
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.ReduceModChar
-import Mathlib.Topology.Sheaves.Init
+import Mathlib.RingTheory.Localization.Finiteness
 
 @[expose] public section
 
@@ -54,31 +13,13 @@ open ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction
 
 theorem exists_nat_mul_mem_adjoin_int {Ω : Type} [Field Ω] [CharZero Ω] (S : Set Ω) {x : Ω}
     (hx : x ∈ Algebra.adjoin ℚ S) : ∃ n : ℕ, 1 ≤ n ∧ (n : Ω) * x ∈ Algebra.adjoin ℤ S := by
-  induction hx using Algebra.adjoin_induction with
-  | mem x hx => exact ⟨1, le_rfl, by simpa using Algebra.subset_adjoin hx⟩
-  | algebraMap r =>
-    refine ⟨r.den, r.den_pos, ?_⟩
-    have h : ((r.den : ℕ) : Ω) * algebraMap ℚ Ω r = ((r.num : ℤ) : Ω) := by
-      have hd : ((r.den : ℕ) : Ω) ≠ 0 := by exact_mod_cast r.den_pos.ne'
-      rw [eq_ratCast (algebraMap ℚ Ω) r, Rat.cast_def, mul_div_cancel₀ _ hd]
-    rw [h]
-    exact intCast_mem _ _
-  | add x y _ _ hx hy =>
-    obtain ⟨n, hn, hnx⟩ := hx
-    obtain ⟨m, hm, hmy⟩ := hy
-    refine ⟨n * m, Nat.one_le_iff_ne_zero.mpr (by positivity), ?_⟩
-    have h : ((n * m : ℕ) : Ω) * (x + y) = (m : ℤ) • ((n : Ω) * x) + (n : ℤ) • ((m : Ω) * y) := by
-      simp only [Nat.cast_mul, zsmul_eq_mul, Int.cast_natCast]; ring
-    rw [h]
-    exact add_mem (zsmul_mem hnx _) (zsmul_mem hmy _)
-  | mul x y _ _ hx hy =>
-    obtain ⟨n, hn, hnx⟩ := hx
-    obtain ⟨m, hm, hmy⟩ := hy
-    refine ⟨n * m, Nat.one_le_iff_ne_zero.mpr (by positivity), ?_⟩
-    have h : ((n * m : ℕ) : Ω) * (x * y) = ((n : Ω) * x) * ((m : Ω) * y) := by
-      push_cast; ring
-    rw [h]
-    exact mul_mem hnx hmy
+  obtain ⟨t, ht⟩ := multiple_mem_adjoin_of_mem_localization_adjoin (nonZeroDivisors ℤ) ℚ S x hx
+  refine ⟨t.1.natAbs, Int.natAbs_pos.mpr (nonZeroDivisors.ne_zero t.2), ?_⟩
+  have ht' : (t.1 : Ω) * x ∈ Algebra.adjoin ℤ S := by simpa [Submonoid.smul_def, zsmul_eq_mul] using ht
+  rcases Int.natAbs_eq t.1 with h | h
+  · rwa [← Int.cast_natCast, ← h]
+  · rw [← Int.cast_natCast, neg_eq_iff_eq_neg.mp h.symm, Int.cast_neg, neg_mul]
+    exact neg_mem ht'
 
 theorem ChartDenominator.proof : ChartDenominator.Statement := by
   intro K _ ι _ Ω _ _ y b τ s hs

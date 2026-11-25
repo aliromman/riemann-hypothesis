@@ -304,13 +304,6 @@ theorem derivInv {G : Type} [Mul G] (U : Set ℂ) (Ê : ℂ → G → ℂ) (hU :
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}
 
-theorem nbRat (d : SD σ) {nb lam 𝓖} (hc : CoefData (σ := σ) (Y := d.Y) d.b nb lam 𝓖) :
-    ∀ β ∈ nF σ d.Y d.b, nb β ∈ rat2 σ d.Y :=
-  fun β hβ => kfour.nb_rat hc.1 β hβ
-
-def Bj (d : SD σ) (Φ : d.Fn) (p : Polynomial ℂ) (Ê : ℂ → d.G → ℂ) (j : ℕ) (g : d.G) : ℂ :=
-  iteratedDeriv j (Ê · g) (s0 d.m d.n) - iteratedDeriv j (fun z => p.eval z) (s0 d.m d.n) * (2 * d.I Φ g)
-
 end PositivityTheory.SiegelWeilFormula.AStep
 
 end

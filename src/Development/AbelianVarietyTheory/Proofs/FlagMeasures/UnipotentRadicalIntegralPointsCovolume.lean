@@ -671,7 +671,6 @@ theorem exists_unitary_of_skew_layer (R K : Type) [CommRing R] [Field K] [StarRi
     (hw : algebraMap R K w + star (algebraMap R K w) = 1)
     (hA : ∀ c, A (c + 1) ≤ A c) (hm : A m = ⊥)
     (hmul : ∀ c, ∀ X ∈ A c, ∀ Y ∈ A 0, X * Y ∈ A (c + 1) ∧ Y * X ∈ A (c + 1))
-    (_hadj : ∀ c, ∀ X ∈ A c, J⁻¹ * Xᴴ * J ∈ A c)
     (c : ℕ) (X : Matrix (Fin n) (Fin n) K) (hX : X ∈ A c) (hskew : J⁻¹ * Xᴴ * J = -X) :
     ∃ Y ∈ A (c + 1), (1 + X + Y)ᴴ * J * (1 + X + Y) = J := by
   classical
@@ -1641,7 +1640,7 @@ theorem layer_covolume (E : Type) [Field E] [NumberField E] [StarRing E] (hE : I
         · rw [Matrix.smul_mulVec]; exact zsmul_mem (h1 y hy) k
         · have : (k • Z).map (φ v) = k • Z.map (φ v) := by ext p q; simp
           rw [this, Matrix.mul_smul, Matrix.smul_mul, ← h2]; rfl }
-  have hM := fun b : Fin m => _root_.GlobalTheory.HomCovolumeFamily.homCovolume_family E hE ι φ hX.1 _ _ (Λ b) (Λ (b + c + 1)) (by first | exact hΛ _ | exact (hΛ _).toIsLattice) (by first | exact hΛ _ | exact (hΛ _).toIsLattice)
+  have hM := fun b : Fin m => _root_.GlobalTheory.HomCovolumeFamily.homCovolume_family E hE ι φ hX.1 _ _ (Λ b) (Λ (b + c + 1)) (by first | exact hΛ _) (by first | exact hΛ _)
     (fun v => G v b) (fun v => G v (b + c + 1)) (fun v => hdet v _) (fun v => hdet v _) (M b)
     (fun z => Iff.rfl)
   obtain ⟨dL, lL, hcov⟩ := _root_.GlobalTheory.CovPi.covolume_pi_unitary ι {i : Fin d // deg i = c} (Fin m) (fun b => r b)
@@ -1667,7 +1666,7 @@ theorem layer_covolume (E : Type) [Field E] [NumberField E] [StarRing E] (hE : I
     have : 0 < |(discr E : ℝ)| := abs_pos.2 (by exact_mod_cast discr_ne_zero E)
     unfold Formalism.HermitianLatticesTheory.vInv
     positivity
-  have hp := _root_.GlobalTheory.PieceCov.main E hE ι n m φ P X hX hP F r T T' Λ hT (by intro b; first | exact hΛ b | exact (hΛ b).toIsLattice) hF U hU hW
+  have hp := _root_.GlobalTheory.PieceCov.main E hE ι n m φ P X hX hP F r T T' Λ hT (by intro b; first | exact hΛ b) hF U hU hW
   rw [h, hp, hp, div_mul_cancel_left₀ (pow_pos hv _).ne', mul_pow, ← pow_mul, inv_pow, mul_assoc,
     mul_assoc, div_eq_mul_inv]
 
@@ -1837,7 +1836,7 @@ theorem radicalCovolume : RadicalCovolume := by
       have hX' := sub_mem hY' (hadjF c _ hY')
       obtain ⟨Z, hZ, hU'⟩ := _root_.GlobalTheory.RadCov.exists_unitary_of_skew_layer (𝓞 I.E) I.E I.n m I.J (lowers F) w hJ I.J_det hw
         (lowers_succ_le hF.1) (lowers_eq_bot hF.2.1 hF.2.2.1 hsp)
-        (fun c X hX Y hY => lowers_mul_zero hX hY) hadjF c _ hX' (by
+        (fun c X hX Y hY => lowers_mul_zero hX hY) c _ hX' (by
           have hu := I.J_det.isUnit
           rw [Matrix.conjTranspose_sub, Matrix.conjTranspose_mul, Matrix.conjTranspose_mul,
             Matrix.conjTranspose_nonsing_inv, hJ, Matrix.conjTranspose_conjTranspose, Matrix.mul_sub,

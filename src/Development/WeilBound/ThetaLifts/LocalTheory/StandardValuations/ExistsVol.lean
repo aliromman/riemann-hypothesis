@@ -8,7 +8,7 @@ public import Development.WeilBound.ThetaLifts.LocalTheory.IsArchimedeanLocalEqu
 public import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.PfDictDef
 public import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.KdMulRight
 public import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.PfDictSec
-public import Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.VacuumImageIntertwiner
+public import Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.PfDict
 public import Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.ValIffNorm
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.FinPartIdemMulMemIff
 public import Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.AdelicInclusionMapPlaceSection
@@ -85,7 +85,6 @@ open Matrix MeasureTheory ValuativeRel Topology GlobalTheory.SplitFlip GlobalThe
 
 namespace PositivityTheory.ThKG.Std
 
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 attribute [local instance 10000] GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
@@ -322,7 +321,7 @@ end -- clump:auto
 -- ===== end clump member: Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.SmallFSing =====
 
 -- ===== clump member: Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.IdeleInt =====
--- clump-header: {"m": "Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.IdeleInt", "h": "module\n\npublic import Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.IntIndPow\npublic import Development.WeilBound.ThetaLifts.LocalTheory.IsArchimedeanLocalEquivariantMap\npublic import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.PfDictDef\nimport Development.AbelianVarietyTheory.Proofs.FoundationProofs.PadicIsNonarchimedeanLocalField\nimport Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.PairwiseDisjointCell\npublic import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.KdMulRight\npublic import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.PfDictSec\npublic import Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.VacuumImageIntertwiner\npublic import Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.ValIffNorm\nimport GroundTheory.LocalFields.PadicLogSeries\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\nimport Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts\npublic import Development.AbelianVarietyTheory.Proofs.FoundationProofs.FinPartIdemMulMemIff\n\n"}
+-- clump-header: {"m": "Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.IdeleInt", "h": "module\n\npublic import Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.IntIndPow\npublic import Development.WeilBound.ThetaLifts.LocalTheory.IsArchimedeanLocalEquivariantMap\npublic import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.PfDictDef\nimport Development.AbelianVarietyTheory.Proofs.FoundationProofs.PadicIsNonarchimedeanLocalField\nimport Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.PairwiseDisjointCell\npublic import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.KdMulRight\npublic import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.PfDictSec\npublic import Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.PfDict\npublic import Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.ValIffNorm\nimport GroundTheory.LocalFields.PadicLogSeries\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\nimport Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts\npublic import Development.AbelianVarietyTheory.Proofs.FoundationProofs.FinPartIdemMulMemIff\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -333,7 +332,7 @@ noncomputable section
 namespace PositivityTheory.ThKG.Std
 
 open NumberField IsDedekindDomain GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.SplitFlip Matrix
-open PositivityTheory.KCo PositivityTheory.ThK.SplitDict PositivityTheory.ThKG.StdDict PositivityTheory.ThKG.Loc MeasureTheory ValuativeRel Topology GlobalTheory.ThK
+open PositivityTheory.KCo PositivityTheory.ThK.SplitDict PositivityTheory.ThKG.Loc MeasureTheory ValuativeRel Topology GlobalTheory.ThK
 open GlobalTheory.Doubling (absE)
 open scoped TensorProduct
 
@@ -526,7 +525,7 @@ noncomputable section
 namespace PositivityTheory.ThKG.Std
 
 open NumberField IsDedekindDomain GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.SplitFlip Matrix
-open PositivityTheory.KCo PositivityTheory.ThK.SplitDict PositivityTheory.ThKG.StdDict PositivityTheory.ThKG.Loc MeasureTheory ValuativeRel Topology GlobalTheory.ThK
+open PositivityTheory.KCo PositivityTheory.ThK.SplitDict PositivityTheory.ThKG.Loc MeasureTheory ValuativeRel Topology GlobalTheory.ThK
 open GlobalTheory.Doubling (absE)
 open scoped TensorProduct
 
@@ -737,7 +736,7 @@ noncomputable section
 namespace PositivityTheory.ThKG.Std
 
 open NumberField IsDedekindDomain GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.SplitFlip Matrix
-open PositivityTheory.KCo PositivityTheory.ThK.SplitDict PositivityTheory.ThKG.StdDict PositivityTheory.ThKG.Loc MeasureTheory ValuativeRel Topology GlobalTheory.ThK
+open PositivityTheory.KCo PositivityTheory.ThK.SplitDict PositivityTheory.ThKG.Loc MeasureTheory ValuativeRel Topology GlobalTheory.ThK
 open GlobalTheory.Doubling (absE)
 open scoped TensorProduct
 

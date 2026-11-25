@@ -52,15 +52,6 @@ noncomputable section
 
 namespace Formalism.ZF
 
-private theorem closedBall_mem_nhds_of_mem_closedBall_lt {z₀ z : ℂ} {r R₁ : ℝ} (hR : R₁ < r)
-    (hz : z ∈ Metric.closedBall z₀ R₁) : Metric.closedBall z₀ r ∈ 𝓝 z :=
-  Filter.mem_of_superset (Metric.isOpen_ball.mem_nhds (Metric.closedBall_subset_ball hR hz))
-    Metric.ball_subset_closedBall
-
-private theorem natCast_analyticOrderNatAt_of_ne_top {f : ℂ → ℂ} {z : ℂ}
-    (h : analyticOrderAt f z ≠ ⊤) : ((analyticOrderNatAt f z : ℕ) : ℕ∞) = analyticOrderAt f z :=
-  ENat.natCast_toNat h
-
 theorem exists_factorization_of_sum_order (z₀ : ℂ) (r R₁ : ℝ) (hR : R₁ < r) :
     ∀ N : ℕ, ∀ (f : ℂ → ℂ) (Z : Finset ℂ), DifferentiableOn ℂ f (Metric.closedBall z₀ r) →
       (∀ ρ ∈ Z, ρ ∈ Metric.closedBall z₀ R₁) →
@@ -79,39 +70,38 @@ theorem exists_factorization_of_sum_order (z₀ : ℂ) (r R₁ : ℝ) (hR : R₁
     refine ⟨f, hf, fun z hz hfz => ?_, fun z _ => by
       rw [Finset.prod_eq_one fun ρ hρ => by rw [h0 ρ hρ, pow_zero], one_mul]⟩
     have hzZ := hzero z hz hfz
-    have hord : analyticOrderAt f z = 0 := by rw [← natCast_analyticOrderNatAt_of_ne_top (htop z hzZ)]; simp [h0 z hzZ]
-    exact ((hf.analyticAt (closedBall_mem_nhds_of_mem_closedBall_lt hR hz)).analyticOrderAt_eq_zero.mp hord) hfz
+    have hord : analyticOrderAt f z = 0 := by
+      rw [← Nat.cast_analyticOrderNatAt (htop z hzZ)]; simp [h0 z hzZ]
+    have hball := Metric.closedBall_mem_nhds_of_mem (Metric.closedBall_subset_ball hR hz)
+    exact ((hf.analyticAt hball).analyticOrderAt_eq_zero.mp hord) hfz
   | succ n ih =>
     intro f Z hf hZ hzero htop hsum
     obtain ⟨ρ₀, hρ₀Z, hρ₀⟩ := Finset.exists_ne_zero_of_sum_ne_zero (by rw [hsum]; exact Nat.succ_ne_zero n)
     have hρ₀B := hZ ρ₀ hρ₀Z
-    have hanρ₀ := hf.analyticAt (closedBall_mem_nhds_of_mem_closedBall_lt hR hρ₀B)
-    have hfρ₀ : f ρ₀ = 0 := by
-      by_contra hne
-      exact hρ₀ (by simp [analyticOrderNatAt, hanρ₀.analyticOrderAt_eq_zero.mpr hne])
+    have hρ₀N := Metric.closedBall_mem_nhds_of_mem (Metric.closedBall_subset_ball hR hρ₀B)
+    have hfρ₀ : f ρ₀ = 0 := apply_eq_zero_of_analyticOrderNatAt_ne_zero hρ₀
     let g : ℂ → ℂ := dslope f ρ₀
     have hfg : ∀ z, f z = (z - ρ₀) * g z := fun z => by
       have h := sub_smul_dslope f ρ₀ z; rw [hfρ₀, sub_zero, smul_eq_mul] at h; exact h.symm
     have hgd : DifferentiableOn ℂ g (Metric.closedBall z₀ r) :=
-      (Complex.differentiableOn_dslope (closedBall_mem_nhds_of_mem_closedBall_lt hR hρ₀B)).mpr hf
+      (Complex.differentiableOn_dslope hρ₀N).mpr hf
     have keyN : ∀ ρ ∈ Z,
         analyticOrderNatAt f ρ = (if ρ = ρ₀ then 1 else 0) + analyticOrderNatAt g ρ ∧
           analyticOrderAt g ρ ≠ ⊤ := fun ρ hρ => by
-      have hga := hgd.analyticAt (closedBall_mem_nhds_of_mem_closedBall_lt hR (hZ ρ hρ))
+      have hga := hgd.analyticAt
+        (Metric.closedBall_mem_nhds_of_mem (Metric.closedBall_subset_ball hR (hZ ρ hρ)))
       have hla : AnalyticAt ℂ (fun z : ℂ => z - ρ₀) ρ := analyticAt_id.sub analyticAt_const
       have hk : analyticOrderAt f ρ = (if ρ = ρ₀ then 1 else 0) + analyticOrderAt g ρ := by
         rw [show f = (fun z : ℂ => z - ρ₀) * g from funext hfg, analyticOrderAt_mul hla hga]
         congr 1; split_ifs with hρρ₀
-        · subst hρρ₀
-          exact (hla.analyticOrderAt_eq_natCast (n := 1)).mpr
-            ⟨fun _ => 1, analyticAt_const, one_ne_zero, Filter.Eventually.of_forall fun _ => by simp⟩
-        · exact hla.analyticOrderAt_eq_zero.mpr (sub_ne_zero.mpr hρρ₀)
+        · subst hρρ₀; exact analyticOrderAt_id_sub_const_self
+        · exact analyticOrderAt_id_sub_const_of_ne hρρ₀
       have ht := htop ρ hρ
       have hgt : analyticOrderAt g ρ ≠ ⊤ := fun h => ht (by rw [hk, h]; simp)
       refine ⟨?_, hgt⟩
       have h1 : ((analyticOrderNatAt f ρ : ℕ) : ℕ∞) =
           (((if ρ = ρ₀ then 1 else 0) + analyticOrderNatAt g ρ : ℕ) : ℕ∞) := by
-        rw [natCast_analyticOrderNatAt_of_ne_top ht, hk, Nat.cast_add, natCast_analyticOrderNatAt_of_ne_top hgt]
+        rw [Nat.cast_analyticOrderNatAt ht, hk, Nat.cast_add, Nat.cast_analyticOrderNatAt hgt]
         split_ifs <;> simp
       exact_mod_cast h1
     have hsumg : ∑ ρ ∈ Z, analyticOrderNatAt g ρ = n := by
@@ -156,6 +146,7 @@ theorem zeroFactorization : ZeroFactor := by
   obtain ⟨hB, hfρ⟩ := (hmem ρ).mp hρ
   have hball := Metric.closedBall_subset_ball hR hB
   exact Nat.one_le_iff_ne_zero.mpr fun h0 =>
-    ((hU ρ hball).analyticOrderAt_eq_zero.mp (by rw [← natCast_analyticOrderNatAt_of_ne_top (htop ρ hball)]; simp [h0])) hfρ
+    ((hU ρ hball).analyticOrderAt_eq_zero.mp
+      (by rw [← Nat.cast_analyticOrderNatAt (htop ρ hball)]; simp [h0])) hfρ
 
 end Formalism.ZF

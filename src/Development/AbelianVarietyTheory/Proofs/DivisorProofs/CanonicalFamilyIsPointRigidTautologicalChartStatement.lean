@@ -1100,8 +1100,6 @@ theorem gm_const {S S₀ : Scheme.{0}} (i : S ⟶ S₀) (B₀ : Over S₀) [GrpO
   rw [gm_val c z ⊤ trivial, gm_val c' z ⊤ trivial]
   exact (congrArg (S.presheaf.germ ⊤ z trivial).hom ((key c hc).trans (key c' hc').symm))
 
-private theorem inv_mul_cancel_left' {G : Type} [Group G] (a s b : G) : a * s⁻¹ * (s * b) = a * b := by group
-
 theorem exists_const {K : Type} [Field K] (k₀ : Subfield K) {B₀ B₁ : Scheme.{0}} {M₀ : LB B₀} {M₁ : LB B₁} (hM₀ : M₀.IsLB)
     (hM₁ : M₁.IsLB) {κ₀ : B₀ ⟶ B₁} {v : LB.Iso M₀ (M₁.pull κ₀)} (hv : v.IsGen) (p : Fin 4 → (Sp k₀ ⟶ B₀))
     (τ₁ : LB.Gen (LB.LinComb M₀ p ![-1, 1, 1, -1])) (hτ : τ₁.IsGen) (z : Sp K) (m : Fin 4 → M₁.ι)
@@ -1137,7 +1135,7 @@ theorem exists_const {K : Type} [Field K] (k₀ : Subfield K) {B₀ B₁ : Schem
   simp only [trF, Fin.prod_univ_four, Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val, zpow_neg, zpow_one,
     mul_inv, inv_inv]
   generalize val τ₁ i z I = s
-  rw [mul_comm _ s, inv_mul_cancel_left' _ s]
+  rw [mul_comm _ s, mul_inv_mul_mul_cancel _ s]
   ac_rfl
 
 theorem main : ∀ (R : Type) [CommRing R] [IsDomain R]

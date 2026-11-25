@@ -40,8 +40,6 @@ import Formalism.LocalToGlobal.IndefiniteReal.ExistsChosenExtremalVector
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open NumberField IsDedekindDomain

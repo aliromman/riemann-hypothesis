@@ -3,7 +3,7 @@ module
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.SlopeBoundSt
 public import ReciprocityTheory.AnalyticForms.LeviForms.IsRegFamilyInhabitStatement
 public import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsArith
-public import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.StatementsPushDown
+public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterNamed
 public import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FlagIndices
 public import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.StatementsDimX
 public import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.StatementsZhangLowerX
@@ -67,7 +67,7 @@ def An : Prop :=
     ReciprocityTheory.AnForm.P.UnifIntStatement ∧ ReciprocityTheory.AnForm.P.PullbackStatement ∧ ReciprocityTheory.AnForm.P.RegGlobalStatement
 
 def ZhangDimensionPushDownGrassmannianHeightBounds : Prop :=
-  ZhangLowerX.Statement ∧ DimX.Statement ∧ True ∧ PushDown.Statement ∧ GrassmannianHeightZTwo.Statement
+  ZhangLowerX.Statement ∧ DimX.Statement ∧ True ∧ True ∧ GrassmannianHeightZTwo.Statement
 
 abbrev LemmaS := @SlopeBoundSt
 

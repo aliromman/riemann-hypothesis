@@ -51,7 +51,6 @@ noncomputable section
 
 open NumberField IsDedekindDomain MeasureTheory Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Lev Formalism.IndefR.Datum Formalism.L2.Pj Formalism.IndefR.FWT Formalism.IndefR GlobalTheory.WeilParts GlobalTheory.VecInv
 open scoped TensorProduct
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.SchrMove
 
@@ -64,19 +63,6 @@ alias actO_add := _root_.GlobalTheory.WeilVacMove.actO_add
 theorem actO_nsmul (g : GA D S) (h : GA D T) (k : ℕ) (x : WO S T) :
     actO S T g h (k • x) = k • actO S T g h x := by
   simp only [actO, Matrix.mul_smul, Matrix.smul_mul]
-
-private lemma isHalf_iff_smul_eq {e : AE D} (u : WO S T) : IsHalf e u ↔ e • u = u := by
-  unfold IsHalf
-  constructor
-  · intro hu
-    apply Matrix.ext
-    intro i j
-    change e * u i j = u i j
-    exact hu i j
-  · intro hu i j
-    have h := congrFun (congrFun hu i) j
-    change e * u i j = u i j at h
-    exact h
 
 theorem isHalf_actO_iff {e : AE D} (g : GA D S) (h : GA D T) (u : WO S T) :
     IsHalf e (actO S T g h u) ↔ IsHalf e u := ⟨fun hu => by simpa only [_root_.GlobalTheory.WeilVacMove.actO_inv_actO] using _root_.GlobalTheory.SplitHecke.isHalf_actO g⁻¹ h⁻¹ hu, _root_.GlobalTheory.SplitHecke.isHalf_actO g h⟩

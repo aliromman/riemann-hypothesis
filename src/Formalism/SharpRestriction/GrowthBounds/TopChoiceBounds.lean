@@ -75,7 +75,7 @@ theorem bc_fwd_le {n a b : ℕ} (hb : b < n) (hab : a ≤ b) : fwd n a b = b - a
 theorem bc_fwd_gt {n a b : ℕ} (ha : a < n) (hab : b < a) : fwd n a b = b + n - a :=
   Nat.mod_eq_of_lt (by omega)
 
-theorem bc_fwd_of {n a b d : ℕ} (ha : a < n) (_hb : b < n) (hd : d < n) (h : (a + d) % n = b) : fwd n a b = d := by
+theorem bc_fwd_of {n a b d : ℕ} (ha : a < n) (hd : d < n) (h : (a + d) % n = b) : fwd n a b = d := by
   by_cases hc : a + d < n
   · rw [Nat.mod_eq_of_lt hc] at h
     subst h
@@ -228,12 +228,11 @@ theorem bc_seg {n' : ℕ} {TT : Finset (Fin n')} {r L₁ L₂ u M₀ G' N₁ : �
     rw [← hφ.2] at this
     exact Finset.mem_range.mp (bc_sub TT (Finset.mem_inter.mp this).1)
   have han : a < n' := hmem f s hf _
-  have hbn : b < n' := hmem f' s' hf' _
   have s1 : (if s < s' then b - a else b + n' - a) < G' := hS.1
   have s2 : (a + (if s < s' then b - a else b + n' - a)) % n' = b := hS.2.1
   have s3 : (TT.map Fin.valEmbedding ∩ (Finset.range ((if s < s' then b - a else b + n' - a) + 1)).image
       (fun j => (a + j) % n')).card ≤ N₁ := hS.2.2
-  have hDd : Dd = (if s < s' then b - a else b + n' - a) := bc_fwd_of han hbn (by omega) s2
+  have hDd : Dd = (if s < s' then b - a else b + n' - a) := bc_fwd_of han (by omega) s2
   rw [hDd]
   refine ⟨by omega, s3, fun i _ => e1 ▸ hgev i, fun i _ => e2 ▸ hgev' i, ?_, ?_⟩
   · intro i hi _
@@ -740,7 +739,7 @@ theorem bs_next {TT : Finset (Fin n')} {r L₁ L₂ u M₀ G' N₁ : ℕ} (hr : 
   obtain ⟨d, d1, d2, dT, dE, _, dN⟩ := bc_next hr h x.val (Finset.mem_map.mpr ⟨x, hx, rfl⟩) hev
   obtain ⟨e, heT, hev'⟩ := Finset.mem_map.mp dT
   have hev'' : e.val = (x.val + d) % n' := hev'
-  have hcd : cdist x e = d := bc_fwd_of x.isLt e.isLt (by omega) hev''.symm
+  have hcd : cdist x e = d := bc_fwd_of x.isLt (by omega) hev''.symm
   refine ⟨d, e, d1, d2, heT, by rw [hev'']; exact dE, ?_, hcd, dN⟩
   rintro rfl
   have : cdist e e = 0 := by
@@ -963,7 +962,7 @@ theorem vertex_count_eq_card_tops (X : Inst D L) {p : ℕ} (hc : IsResidueClassZ
     exact ⟨⟨y, hy⟩, by simpa [topsPos] using h2, rfl⟩
 
 theorem forward_back_index_eq {n y d : ℕ} (hy : y < n) (hd : d < n) : CornerGLContinuity.fwd n ((y + n - d) % n) y = d := by
-  refine bc_fwd_of (Nat.mod_lt _ (by omega)) hy hd ?_
+  refine bc_fwd_of (Nat.mod_lt _ (by omega)) hd ?_
   rw [Nat.mod_add_mod, Nat.sub_add_cancel (by omega), Nat.add_mod_right, Nat.mod_eq_of_lt hy]
 
 theorem back_smul_eq_sub (h t0 : HH D) {y d : ℕ} (hd : d ≤ addOrderOf h) :
@@ -1128,33 +1127,6 @@ theorem band_ratio_statement_of (K : Consts) (h : CornerGLContinuity.OrdersLarge
 
 theorem gluing_statement_of_proof (X : Inst D L) (Y : LatInst D) (K : Consts) (h : CornerGLContinuity.LatticeGrowthBound D L X Y K) :
     AuxBlock8.admG1 D L X Y K := h
-
-theorem order_statement_of_odd_primes (h : CornerGLContinuity.OrdersSmallPrimeBound D L) (hF : CornerGLContinuity.FrobeniusClassCompatibility D) : AuxBlock8.adm3 D L := by
-  classical
-  unfold AuxBlock8.adm3
-  refine le_trans ?_ h
-  apply Finset.sum_le_sum_of_subset_of_nonneg
-  · intro p hp
-    simp only [AuxBlock8.primesResidueBelow, Finset.mem_filter, Finset.mem_range] at hp ⊢
-    obtain ⟨⟨h1, h2, _, h4⟩, h5⟩ := hp
-    obtain ⟨h6, h7⟩ := hF p h2 h4
-    refine ⟨h1, h2, h6, lt_of_le_of_lt ?_ h5⟩
-    have key : ∀ (e : ℕ) (i : ZMod (2 ^ e)) (k : ℕ), iotaH e (k • i) = iotaH e i ^ k := by
-      intro e i k
-      induction k with
-      | zero => rw [zero_nsmul, pow_zero, iotaH_zero]
-      | succ k ih => rw [succ_nsmul, iotaH_add, ih]; exact (pow_succ _ _).symm
-    have hd : addOrderOf (Formalism.MainNotions.GlobalTheoryTheory.hOf D.R.e p) ∣ addOrderOf (hP D p) := by
-      rw [addOrderOf_dvd_iff_nsmul_eq_zero]
-      apply (iotaH_bijective _).1
-      rw [key, iotaH_zero]
-      have h8 : addOrderOf (hP D p) • D.R.h (hP D p) = 0 := by
-        rw [← map_nsmul, addOrderOf_nsmul_eq_zero, map_zero]
-      rw [h7, ← ofMul_pow] at h8
-      exact Additive.ofMul.injective (h8.trans ofMul_one.symm)
-    exact_mod_cast Nat.le_of_dvd (addOrderOf_pos_shift (hP D p)) hd
-  · intro p _ _
-    exact div_nonneg (Real.log_natCast_nonneg p) (Nat.cast_nonneg p)
 
 theorem sandwich_of_exponent_clause (X : Inst D L) (Ce : ℝ) (hT : GatTies D) (h : AuxBlock8.adm9 D L X Ce) : CornerGLContinuity.LatticeSandwich D L X :=
   fun u w hg => h.2 u w hg ⟨hT⟩
@@ -1451,107 +1423,6 @@ namespace Formalism.MainNotions.G.TopChoiceBounds
 
 open Formalism.BasicNotions Formalism.MainNotions.G Formalism.MainNotions
 
-theorem scaled_upper_length_eq (s : Scale) (n : ℕ) (hn : 0 < n) : s.X'' n = s.x * n * s.X' := by
-  have hx : s.x ≠ 0 := (lt_trans one_pos s.one_lt_alt).ne'
-  have hb : s.b ≠ 0 := by unfold Scale.b; exact (Real.exp_pos _).ne'
-  have hX : s.X' ≠ 0 := by unfold Scale.X'; exact (Real.exp_pos _).ne'
-  have hn' : (n : ℝ) ≠ 0 := by exact_mod_cast hn.ne'
-  unfold Scale.X'' Scale.w'' Scale.b' Scale.a
-  field_simp
-
-theorem order_statement_at_scale {D : D7} (L : SizeData₂ D) (C₄ : ℝ) (h4 : UnusedSlot33.Conclusion4 D C₄) (hN : SizeN L)
-    (h1 : 8 * Real.log L.sc.x ≤ L.sc.x ^ (L.sc.eps / 3))
-    (h2 : 4 * |C₄| ≤ L.sc.x ^ (19 * L.sc.eps / 300)) : CornerGLContinuity.OrdersSmallPrimeBound D L := by
-  classical
-  obtain ⟨_, _, _, h4⟩ := h4
-  obtain ⟨hN1, hN2⟩ := hN
-  set x := L.sc.x with hxdef
-  set ε := L.sc.eps with hεdef
-  have hx1 : 1 < x := L.sc.one_lt_alt
-  have hx0 : 0 < x := lt_trans one_pos hx1
-  have hε : 0 < ε := L.sc.eps_pos
-  have hε2 : ε < 1 / 52 := L.sc.eps_lt
-  have hlx : 0 < Real.log x := Real.log_pos hx1
-  have hθ : szTh L = ε / 100 := rfl
-  rw [hθ] at hN1 hN2
-  have hn0 : (0 : ℝ) < D.R.n := lt_of_lt_of_le (Real.rpow_pos_of_pos hx0 _) hN1
-  have hnN : 0 < D.R.n := by exact_mod_cast hn0
-  have hn1 : (1 : ℝ) ≤ D.R.n := by exact_mod_cast hnN
-  have hJ : (1 : ℝ) ≤ x ^ (ε / 4) := Real.one_le_rpow hx1.le (by positivity)
-  have key := h4 (x ^ (ε / 4)) hJ (L.sc.X'' D.R.n)
-  unfold CornerGLContinuity.OrdersSmallPrimeBound
-  refine le_trans (le_trans ?_ key) ?_
-  · apply Finset.sum_le_sum_of_subset_of_nonneg
-    · intro p hp
-      simp only [Finset.mem_filter, Finset.mem_range] at hp ⊢
-      obtain ⟨a1, a2, a3, a4⟩ := hp
-      exact ⟨lt_of_lt_of_le a1 (Nat.ceil_le_floor_add_one _), a2, a3, a4.le⟩
-    · intro p _ _
-      exact div_nonneg (Real.log_natCast_nonneg p) (Nat.cast_nonneg p)
-  ·
-    have hX' : Real.log L.sc.X' = x ^ (ε / 3) := by unfold Scale.X'; exact Real.log_exp _
-    have hX'0 : 0 < L.sc.X' := by unfold Scale.X'; exact Real.exp_pos _
-    have hlogn : Real.log D.R.n ≤ (2 + 8 * ε + ε / 100) * Real.log x := by
-      rw [← Real.log_rpow hx0]
-      exact Real.log_le_log hn0 hN2
-    have hlogn0 : 0 ≤ Real.log D.R.n := Real.log_nonneg hn1
-    have hB0 : 0 ≤ x ^ (ε / 3) := Real.rpow_nonneg hx0.le _
-    have hno : (D.R.n : ℝ) ≤ (D.R.o : ℝ) * ((2 ^ D.R.e : ℕ) : ℝ) := by
-      exact_mod_cast D.R.toFrame.ord_le_o_mul_two_pow
-    have hmn : ((2 ^ D.R.e : ℕ) : ℝ) ≤ (D.R.n : ℝ) := by exact_mod_cast D.R.two_pow_le_n
-    have hm1 : (1 : ℝ) ≤ ((2 ^ D.R.e : ℕ) : ℝ) := by exact_mod_cast Nat.one_le_two_pow
-    generalize ((2 ^ D.R.e : ℕ) : ℝ) = m at hno hmn hm1 ⊢
-    have hm0 : 0 < m := lt_of_lt_of_le one_pos hm1
-    have hlogm : Real.log m ≤ Real.log D.R.n := Real.log_le_log hm0 hmn
-    have hlogm0 : 0 ≤ Real.log m := Real.log_nonneg hm1
-    have hmlo : x ^ (2 + 8 * ε - ε / 50) ≤ m := by
-      have hx100 : 0 < x ^ (ε / 100) := Real.rpow_pos_of_pos hx0 _
-      have ho : (D.R.o : ℝ) ≤ x ^ (ε / 100) := L.o_tie
-      have e1 : x ^ (2 + 8 * ε - ε / 100) = x ^ (ε / 100) * x ^ (2 + 8 * ε - ε / 50) := by
-        rw [← Real.rpow_add hx0]
-        congr 1
-        ring
-      have h5 : x ^ (ε / 100) * x ^ (2 + 8 * ε - ε / 50) ≤ x ^ (ε / 100) * m :=
-        e1 ▸ hN1.trans (hno.trans (mul_le_mul_of_nonneg_right ho hm0.le))
-      exact le_of_mul_le_mul_left h5 hx100
-    have hLg : Real.log (m * L.sc.X'' D.R.n) =
-        Real.log m + (Real.log x + Real.log D.R.n + x ^ (ε / 3)) := by
-      rw [scaled_upper_length_eq L.sc D.R.n hnN, Real.log_mul hm0.ne' (by positivity), Real.log_mul (by positivity) hX'0.ne',
-        Real.log_mul hx0.ne' hn0.ne', hX']
-    have hLg0 : 0 ≤ Real.log (m * L.sc.X'' D.R.n) := by rw [hLg]; positivity
-    have hLg1 : Real.log (m * L.sc.X'' D.R.n) ≤ 2 * x ^ (ε / 3) := by
-      rw [hLg]
-      have : (2 + 8 * ε + ε / 100) * Real.log x ≤ 3 * Real.log x := by
-        apply mul_le_mul_of_nonneg_right _ hlx.le
-        linarith
-      linarith
-    have hsq : Real.log (m * L.sc.X'' D.R.n) ^ 2 ≤ (2 * x ^ (ε / 3)) ^ 2 :=
-      pow_le_pow_left₀ hLg0 hLg1 2
-    have hA0 : 0 ≤ x ^ (ε / 4) := Real.rpow_nonneg hx0.le _
-    have hN00 : 0 < x ^ (2 + 8 * ε - ε / 50) := Real.rpow_pos_of_pos hx0 _
-    have s1 : C₄ * x ^ (ε / 4) * Real.log (m * L.sc.X'' D.R.n) ^ 2 ≤
-        |C₄| * x ^ (ε / 4) * (2 * x ^ (ε / 3)) ^ 2 := by
-      apply mul_le_mul _ hsq (by positivity) (by positivity)
-      exact mul_le_mul_of_nonneg_right (le_abs_self _) hA0
-    have s2 : C₄ * x ^ (ε / 4) * Real.log (m * L.sc.X'' D.R.n) ^ 2 / m ≤
-        |C₄| * x ^ (ε / 4) * (2 * x ^ (ε / 3)) ^ 2 / x ^ (2 + 8 * ε - ε / 50) := by
-      calc _ ≤ |C₄| * x ^ (ε / 4) * (2 * x ^ (ε / 3)) ^ 2 / m := by gcongr
-        _ ≤ _ := by gcongr
-    refine le_trans s2 ?_
-    have e : x ^ (-hG L.sc + ε) =
-        x ^ (19 * ε / 300) * (x ^ (ε / 4) * (x ^ (ε / 3)) ^ 2 / x ^ (2 + 8 * ε - ε / 50)) := by
-      rw [← Real.rpow_natCast (x ^ (ε / 3)) 2, ← Real.rpow_mul hx0.le, ← Real.rpow_add hx0, ← Real.rpow_sub hx0,
-        ← Real.rpow_add hx0]
-      congr 1
-      unfold hG
-      push_cast
-      ring
-    rw [e]
-    have : |C₄| * x ^ (ε / 4) * (2 * x ^ (ε / 3)) ^ 2 / x ^ (2 + 8 * ε - ε / 50) =
-        (4 * |C₄|) * (x ^ (ε / 4) * (x ^ (ε / 3)) ^ 2 / x ^ (2 + 8 * ε - ε / 50)) := by ring
-    rw [this]
-    exact mul_le_mul_of_nonneg_right h2 (by positivity)
-
 theorem family_eps_pos {eps : ℝ} (Fm : FamP eps) : 0 < eps := by
   obtain ⟨i⟩ := Fm.Ix_zero
   have := (Fm.L 0 i).sc.eps_pos
@@ -1571,18 +1442,6 @@ theorem mul_log_le_rpow_eventually_alt (c r : ℝ) (hr : 0 < r) : ∀ᶠ x : ℝ
 
 theorem const_le_rpow_eventually (c r : ℝ) (hr : 0 < r) : ∀ᶠ x : ℝ in Filter.atTop, c ≤ x ^ r :=
   (tendsto_rpow_atTop hr).eventually_ge_atTop c
-
-theorem family_order_bound_holds {eps : ℝ} (Fm : FamP eps) (C₄ : ℝ) : CornerGLContinuity.FamilyOrdersSmallPrimeBound Fm C₄ := by
-  intro h4
-  have he := family_eps_pos Fm
-  have ev := ((mul_log_le_rpow_eventually_alt 8 (eps / 3) (by positivity)).and (const_le_rpow_eventually (4 * |C₄|) (19 * eps / 300) (by positivity))).and
-    (Filter.eventually_gt_atTop Fm.x1)
-  obtain ⟨x0, hx0⟩ := Filter.eventually_atTop.mp ev
-  refine ⟨x0, fun x hx i => ?_⟩
-  obtain ⟨⟨a1, a2⟩, a3⟩ := hx0 x hx
-  apply order_statement_at_scale (Fm.L x i) C₄ (h4 x i) (Fm.sizes x a3 i).1
-  · rw [Fm.L_x x i a3, Fm.L_eps]; exact a1
-  · rw [Fm.L_x x i a3, Fm.L_eps]; exact a2
 
 theorem two_mul_first_length_le_window (D : D7) (s : Scale) {p : ℕ} (hp : p.Prime) (hc : IsResidueClassZero D p) : 2 * L1 D s p ≤ L2 D s := by
   unfold L2
@@ -1958,7 +1817,7 @@ theorem bt_real_tI {sm kappaThresholdOne kappaThresholdTwo N N1 v br n' c B : �
     show (4 + 2 * kappaThresholdOne + kappaThresholdTwo) * (N * B) =
       4 * (N * B) + 2 * kappaThresholdOne * (N * B) + kappaThresholdTwo * (N * B) by ring]
 
-theorem bt_real_NE {S Np N E lb B : ℝ} (hS : 40 ≤ S) (hN : 0 ≤ N) (hNp : Np ≤ 40 * S * N) (hNp0 : 0 ≤ Np)
+theorem bt_real_NE {S Np N E lb B : ℝ} (hS : 40 ≤ S) (hN : 0 ≤ N) (hNp : Np ≤ 40 * S * N)
     (hE0 : 0 ≤ E) (hE : E ≤ S ^ 8) (hl0 : 0 ≤ lb) (hl : lb ≤ S) (hB : S ^ 20 ≤ B) : Np * E * lb ≤ N * B := by
   have hS0 : 0 ≤ S := by linarith
   have a1 : Np * E * lb ≤ (40 * S * N) * S ^ 8 * S := by
@@ -2084,7 +1943,7 @@ theorem pow_sum_le_pow_eight {S u v w : ℝ} (hS : 40 ≤ S) (hu0 : 0 ≤ u) (hu
   have b4 : 0 < S ^ 5 := by positivity
   linarith
 
-theorem mul_pow_add_pow_le_pow_eight {S z u w : ℝ} (hS : 40 ≤ S) (hz0 : 0 ≤ z) (hz : z ≤ S) (hu0 : 0 ≤ u) (hu : u ≤ S) (hw0 : 0 ≤ w)
+theorem mul_pow_add_pow_le_pow_eight {S z u w : ℝ} (hS : 40 ≤ S) (hz : z ≤ S) (hu0 : 0 ≤ u) (hu : u ≤ S) (hw0 : 0 ≤ w)
     (hw : w ≤ S) : z * (u ^ 5 + w ^ 3) ≤ S ^ 8 := by
   have a1 := pow_le_pow_left₀ hu0 hu 5
   have a2 := pow_le_pow_left₀ hw0 hw 3
@@ -2336,7 +2195,7 @@ theorem bt_II (X : Inst D L) (K : Consts) (hK : K.Nonneg) (Ce S Ce9 : ℝ) (H : 
     refine bt_fin (c1 := K.DII + 3 * (rG L.sc : ℝ)) (by linarith only [hDII, hr0])
       (by unfold bt_C; linarith only [hr0, hrC, htI1, htI2, hDI, h90]) hNB ?_
     refine bt_real_DII hDII hr0 ?_ A5 ?_
-    · exact bt_real_NE hS hN0 O.Np hNp0 (by positivity)
+    · exact bt_real_NE hS hN0 O.Np (by positivity)
         (pow_sum_le_pow_eight hS (by positivity) hN1S hr0 H.r hk0.le H.k) O.lb0 O.lb O.SB
     · exact mul_le_of_density_bounds H.cl0 hN0 ha0 hX0 hp0 hpp hNC hc0n hc00 H.pX
 
@@ -2371,7 +2230,7 @@ theorem bt_I (X : Inst D L) (K : Consts) (hK : K.Nonneg) (Ce S Ce9 : ℝ) (H : b
   have hB0 : 0 ≤ L.sc.a / p := by positivity
   have hE0 : 0 ≤ (L.sc.x ^ (Scale.A / 2)) ^ 2 * ((N1 L.sc : ℝ) ^ 5 + (D.R.k : ℝ) ^ 3) := by positivity
   have hE : (L.sc.x ^ (Scale.A / 2)) ^ 2 * ((N1 L.sc : ℝ) ^ 5 + (D.R.k : ℝ) ^ 3) ≤ S ^ 8 :=
-    mul_pow_add_pow_le_pow_eight hS (by positivity) (by rw [rpow_half_sq_eq]; exact H.xA) (by positivity) hN1S hk0.le H.k
+    mul_pow_add_pow_le_pow_eight hS (by rw [rpow_half_sq_eq]; exact H.xA) (by positivity) hN1S hk0.le H.k
   have hDeq : DIf K L p (addOrderOf (hP D p)) = ⌈K.DI * NplusF L.sc (addOrderOf (hP D p)) *
       ((L.sc.x ^ (Scale.A / 2)) ^ 2 * ((N1 L.sc : ℝ) ^ 5 + (D.R.k : ℝ) ^ 3)) * Real.logb p L.sc.a⌉₊ := by
     unfold DIf
@@ -2412,7 +2271,7 @@ theorem bt_I (X : Inst D L) (K : Consts) (hK : K.Nonneg) (Ce S Ce9 : ℝ) (H : b
         (by positivity) O.nS O.SB
   · rw [hDeq]
     refine bt_fin (c1 := K.DI) hDI (by unfold bt_C; linarith only [hr0, hrC, hDII, htI1, htI2, h90]) hNB ?_
-    have := bt_real_NE hS hN0 O.Np hNp0 hE0 hE O.lb0 O.lb O.SB
+    have := bt_real_NE hS hN0 O.Np hE0 hE O.lb0 O.lb O.SB
     have h2 := mul_le_mul_of_nonneg_left this hDI
     linarith only [h2]
 
@@ -2922,8 +2781,8 @@ theorem bt_X'S (s : Scale) : s.X' ≤ Real.exp (s.x ^ (s.eps / 2)) := by
   apply Real.exp_le_exp.2
   exact Real.rpow_le_rpow_of_exponent_le s.one_lt_alt.le (by have := s.eps_pos; linarith)
 
-theorem bt_bo {S C f n k la X c : ℝ} (hS : 40 ≤ S) (hC0 : 0 ≤ C) (hC : C ≤ S) (hf : f = 2 * n) (hn0 : 0 ≤ n) (hn : n ≤ S)
-    (hk0 : 0 ≤ k) (hk : k ≤ S) (hl0 : 0 ≤ la) (hl : 2 * la ≤ S) (hX1 : 1 ≤ X) (hX : X ≤ S) (hc0 : 0 ≤ c)
+theorem bt_bo {S C f n k la X c : ℝ} (hS : 40 ≤ S) (hC : C ≤ S) (hf : f = 2 * n) (hn0 : 0 ≤ n) (hn : n ≤ S)
+    (hk0 : 0 ≤ k) (hk : k ≤ S) (hl0 : 0 ≤ la) (hl : 2 * la ≤ S) (hX : X ≤ S) (hc0 : 0 ≤ c)
     (hc : c ≤ X + 1) : 2 * (C * f * k ^ 2 * la * c) ≤ S ^ 8 := by
   have hS0 : (0 : ℝ) ≤ S := by linarith
   have h1 : C * f * k ^ 2 * la * c ≤ S * (2 * S) * S ^ 2 * S * (2 * S) := by
@@ -3003,8 +2862,8 @@ theorem stmtFTa_proved {eps : ℝ} (Fm : FamP eps) : CornerGLContinuity.FamilyWe
   have hX1 : (1 : ℝ) ≤ (Fm.L x i).sc.X' := by
     unfold Scale.X'
     exact Real.one_le_exp (Real.rpow_nonneg (lt_trans one_pos (Fm.L x i).sc.one_lt_alt).le _)
-  refine bt_bo H.forty_le_bound (le_max_right _ _) ?_ (n := ((Fm.D x i).R.n : ℝ)) ?_ (Nat.cast_nonneg _) H.n (Nat.cast_nonneg _) H.k
-    (Real.log_nonneg ha1.le) H.la hX1 (bt_X'S _) (Nat.cast_nonneg _) (Nat.ceil_lt_add_one (by linarith only [hX1])).le
+  refine bt_bo H.forty_le_bound ?_ (n := ((Fm.D x i).R.n : ℝ)) ?_ (Nat.cast_nonneg _) H.n (Nat.cast_nonneg _) H.k
+    (Real.log_nonneg ha1.le) H.la (bt_X'S _) (Nat.cast_nonneg _) (Nat.ceil_lt_add_one (by linarith only [hX1])).le
   · rw [hX, hE]
     linarith only [hCy, Real.add_one_le_exp (x ^ (eps / 2))]
   · unfold Ranks.f

@@ -1122,23 +1122,6 @@ private theorem germSec_secTrace_eq_trace {Z Y : Scheme.{0}} [IsIntegral Z] [IsI
   rw [algTrace_eq_trace] at key
   exact key.symm
 
-private theorem kaehlerDifferential_map_eq_semiHom_m1 (K L : Type) [Field K] [Field L] [Algebra ℂ K] [Algebra ℂ L] [Algebra K L]
-    [IsScalarTower ℂ K L] (ω : Ω[K⁄ℂ]) :
-    KaehlerDifferential.map ℂ ℂ K L ω = (semiHom_algebraMap ℂ K L).m1 ω := by
-  have hsp : ω ∈ Submodule.span K (Set.range (KaehlerDifferential.D ℂ K)) := by
-    rw [KaehlerDifferential.span_range_derivation]; trivial
-  induction hsp using Submodule.span_induction with
-  | mem y hy =>
-    obtain ⟨t, rfl⟩ := hy
-    rw [KaehlerDifferential.map_D, SemiHom.m1_D]
-  | zero => simp
-  | add y z _ _ hy hz => rw [map_add (f := _), map_add (f := _), hy, hz]
-  | smul r y _ hy =>
-    rw [LinearMap.map_smul_of_tower, hy]
-    show _ = (semiHom_algebraMap ℂ K L).m1' (r • y)
-    rw [LinearMap.map_smulₛₗ, algebra_compatible_smul L r]
-    rfl
-
 theorem gm_trace (hc : c ≫ p = p') (hinst : inst = ffAlg p) (hinst' : inst' = ffAlg p')
     (hU : IsAffCover p U B) (hU' : IsAffCover p' (fun i => c ⁻¹ᵁ U i) B')
     (hg : GermCompat c (algebraMap Z.functionField Y.functionField))

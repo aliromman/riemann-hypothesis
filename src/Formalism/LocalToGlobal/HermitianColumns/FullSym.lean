@@ -3,41 +3,6 @@ module
 public import Formalism.LocalToGlobal.HermitianColumns.StarConj
 public import Formalism.LocalToGlobal.HermitianColumns.SymAll
 public import Formalism.LocalToGlobal.HermitianColumns.BaseModelLevelEq
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -48,34 +13,17 @@ open scoped TensorProduct
 
 namespace Formalism.L2.Herm
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 structure SymmetricHermitianColumns (D : D7) extends HermColsCh D where
 
   dt : unitaryOneFiniteAdeles D.sp.cm →* D.Dt
-  dt_surj : Function.Surjective dt
 
   dt_ker : ∀ x : unitaryOneFiniteAdeles D.sp.cm, dt x = 1 → (x : GL (Fin 1) (D.host.E ⊗[D.host.F] Af D.host.F)) ∈ IntegralUnitGroup D.sp.cm
-
-  dt_open : letI := tensTopL (F := D.host.F) (E := D.host.E) (Af D.host.F)
-    IsOpen {x : unitaryOneFiniteAdeles D.sp.cm | dt x = 1}
 
   dt_UO : D.UO = ((IntegralUnitGroup D.sp.cm).subgroupOf (unitaryOneFiniteAdeles D.sp.cm)).map dt
 
   dt_rat : ∀ (z : unitary D.host.E) (x : unitaryOneFiniteAdeles D.sp.cm),
     Matrix.GeneralLinearGroup.det (x : GL (Fin 1) (D.host.E ⊗[D.host.F] Af D.host.F)) = unitaryOneRationalAdele D.host.F z →
     D.e1Dt z = dt x
-
-  det0 : ∀ (u : D.what₂.Word) (c : (D.mem u).C.cls 0) (x : unitaryOneFiniteAdeles D.sp.cm),
-    Matrix.GeneralLinearGroup.det (x : GL (Fin 1) (D.host.E ⊗[D.host.F] Af D.host.F)) =
-      Matrix.GeneralLinearGroup.det (((lev0 u).y c : GL (Fin D.R.k) (D.host.E ⊗[D.host.F] Af D.host.F))) →
-    D.detCls u 0 c = dt x
-
-  detI : ∀ (u : D.what₂.Word) (i : ℕ) (h1 : 1 ≤ i) (hm : i ≤ D.R.m) (c : (D.mem u).C.cls i) (x : unitaryOneFiniteAdeles D.sp.cm),
-    Matrix.GeneralLinearGroup.det (x : GL (Fin 1) (D.host.E ⊗[D.host.F] Af D.host.F)) =
-      Matrix.GeneralLinearGroup.det
-        (((cls u i h1 hm (chOf u i c)).y ⟨c, rfl⟩ : GL (Fin (D.sp.X i).rank) (D.host.E ⊗[D.host.F] Af D.host.F))) →
-    D.detCls u i c = dt x
 
 def SymmetricGroupCompatibility (D : D7) (H : HermColsCh D) : Type :=
   ∀ u (w : D.what₂.places.Pl) (hg : GIdx D.host (D.mem u).A.T (D.what₂.places.resChar w)),
@@ -100,7 +48,6 @@ structure FullTiedS (D : D7) extends SymmetricCompatibleData D where
   fvI : SymmetricResidueFieldLevels D base.toHermColsCh atT
   relDet : SymmetricRelativeDeterminant D base
   std : StdTied D
-  vpos : PositiveVolumeCompatible D
   baseL : SymmetricBaseCompatibility D base.toHermColsCh atT
 
 def FullTiedS.cols {D : D7} (X : FullTiedS D) : ColsHermS D where

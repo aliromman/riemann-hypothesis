@@ -94,7 +94,6 @@ import GroundTheory.PAdicHodge.NormalizedTraceTower
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
@@ -398,7 +397,6 @@ section -- clump:auto
 @[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 
 noncomputable section
 
@@ -489,7 +487,6 @@ section -- clump:auto
 @[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 
 noncomputable section
 
@@ -576,7 +573,6 @@ section -- clump:auto
 @[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 
 noncomputable section
 
@@ -743,7 +739,6 @@ section -- clump:auto
 @[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 
 noncomputable section
 
@@ -931,7 +926,6 @@ section -- clump:auto
 @[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 set_option linter.unusedVariables false
 
 noncomputable section
@@ -988,7 +982,6 @@ section -- clump:auto
 @[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 
 noncomputable section
 
@@ -1007,7 +1000,7 @@ theorem acris_zero_surjective : Function.Surjective (PAlg.base l).cris0 := by
     obtain ⟨k, rfl⟩ := hy
     have hx : xi0 l ∈ RingHom.ker (theta0 l) := by
       rw [ker_theta0]; exact Ideal.mem_span_singleton_self _
-    refine ⟨⟨dpw k (xi0 l), ACris.dpow_mem hx k⟩, Subtype.ext ?_⟩
+    refine ⟨⟨dpw k (xi0 l), by rw [← dpow_eq_dpw]; exact ACris.dpow_mem hx k⟩, Subtype.ext ?_⟩
     show awayW (RingHom.id (Ob l)) (dpw k (xi0 l)) = _
     rw [awayW_id, RingHom.id_apply, dpw]
     show _ = Ring.inverse _ * algebraMap _ _ (WittVector.map (RingHom.id (Ob l)) (xi0 l)) ^ k
@@ -1047,7 +1040,6 @@ section -- clump:auto
 @[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 
 noncomputable section
 
@@ -1108,7 +1100,6 @@ section -- clump:auto
 @[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 
 noncomputable section
 
@@ -1136,7 +1127,6 @@ section -- clump:auto
 @[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 set_option linter.unusedVariables false
 
 noncomputable section
@@ -1185,7 +1175,6 @@ section -- clump:auto
 @[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 
 noncomputable section
 
@@ -1226,7 +1215,6 @@ section -- clump:auto
 @[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 set_option linter.unusedVariables false
 
 noncomputable section
@@ -1307,7 +1295,6 @@ section -- clump:auto
 @[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 
 noncomputable section
 
@@ -1428,7 +1415,6 @@ section -- clump:auto
 @[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 set_option linter.unusedVariables false
 
 noncomputable section
@@ -1496,7 +1482,6 @@ section -- clump:auto
 @[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 set_option linter.unusedVariables false
 
 noncomputable section
@@ -1599,17 +1584,8 @@ theorem rhoSys_ex : Nonempty (RhoSys S Model.Sm (dat Amp) fun a c => IsFirstCher
      act := rho_act_of S hS hC fun M m s g => by
        have hL := hS.lev m
        have hRed := galRed_rHof (dOf S hS hC m) (hcOf S hS hC m) hL g M s
-       exact
-         { ℓ := rfl
-           lam c := hL.σ_lam g c
-           ι a := (hL.σ_ι g a).symm
-           o k := hL.σB_K g k
-           tS n j x := ((M.galH false j (IntermediateField.fixingSubgroupEquiv K g)).comm n x).symm
-           r n j x := hRed n j x
-           red n j z := nmHM_redM _ l s none n j z
-           b j z := nmHO_nmGB_bMap hL g M s _ j z
-           μ j v := (nm_muB (nmGB hL g M) (Category.id_comp _) 1 s (hL.σB_K g) j v).trans
-             (congrArg _ (pullR_id' M.q j v)) }
+       exact homGal_good_of_galRed hL g M s (qb_le_pf hL M s)
+         (rHof (dOf S hS hC m) (hcOf S hS hC m) M s) hRed
      nat := rho_nat_of S hS hC fun M N u hu m s => homPull_rHof_good _ _ u hu s _ _ _
      fil := rho_fil_pf S hS hC
      cup := rho_cup_pf S hS hC
@@ -1627,7 +1603,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section

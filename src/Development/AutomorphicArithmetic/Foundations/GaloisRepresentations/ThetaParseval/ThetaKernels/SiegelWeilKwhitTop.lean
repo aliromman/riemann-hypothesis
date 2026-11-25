@@ -1,6 +1,5 @@
 module
 
-import Mathlib
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.SiegelWeilKwhitCut
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.SiegelWeilKwhitIwa
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.SiegelWeilKwhitCutX
@@ -33,55 +32,14 @@ public import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeil
 public import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerCovolume.ThMSymmApply
 public import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerCovolume.ThGramIncM
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.SiegelWeilKwhitRelEx
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.ReduceModChar
-import Mathlib.Topology.Sheaves.Init
 import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.HeightLattices.FinAlg
 import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerCovolume.ParabolicLowerBlockZero
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.Polynomial.Basic
-import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.Analysis.SpecialFunctions.Pow.Real
 import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DetSqNormEqHermitianBlockFormula
 import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.HeightLattices.FinIndex
-import Mathlib.Tactic.Linter.Style
 import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhittakerCovolume.SectionLinearFinsetSum
 import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.FourierCompactness.SigmaSigmaOfGood
-import Mathlib.Tactic.Linter.HaveILetI
 import Development.WeilBound.CoreStatements.AutomorphicKernels.EisensteinSeriesG2.UnitsBorelSpace.BorelSpaceDoubledGroup
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerOrbitVolume.TopoAF
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.SiegelWeilKwhitMeasND
@@ -104,7 +62,7 @@ open GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.Inde
 namespace PositivityTheory.SiegelWeilFormula.KWhit
 open PositivityTheory.SiegelWeilFormula
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}
-theorem T_zero_k (d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ) {Φ : d.Fn} (_hΦ : Φ ∈ d.sch) : d.T Φ 0 = d.l Φ := by
+theorem T_zero_k (d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ) (Φ : d.Fn) : d.T Φ 0 = d.l Φ := by
   have h0 : d.dd.rho d.B.ψ 0 Φ = Φ := by
     funext y
     simp [GlobalTheory.WeilM.Darboux.rho, GlobalTheory.WeilM.schr]
@@ -117,7 +75,7 @@ theorem cellFormula_k : _root_.PositivityTheory.SiegelWeilFormula.KWhit.CellForm
     simp [_root_.PositivityTheory.SiegelWeilFormula.SD_k.sec0, map_mul]
   have hx := _root_.PositivityTheory.SiegelWeilFormula.KWhit.om_mem_sch_k d x hΦ
   have hgx := _root_.PositivityTheory.SiegelWeilFormula.KWhit.om_mem_sch_k d g hx
-  rw [h1, ← _root_.PositivityTheory.SiegelWeilFormula.KWhit.T_zero_k d (_root_.PositivityTheory.SiegelWeilFormula.KWhit.om_mem_sch_k d w hgx), hT.2.2.1 F E σ d ν hν ε w hw _ hgx 0]
+  rw [h1, ← _root_.PositivityTheory.SiegelWeilFormula.KWhit.T_zero_k d (d.om w (d.om g (d.om x Φ))), hT.2.2.1 F E σ d ν hν ε w hw _ hgx 0]
   refine integral_congr_ae (Filter.Eventually.of_forall fun Z => ?_)
   simp only [_root_.PositivityTheory.SiegelWeilFormula.KWhit.gram_zero_left_k, _root_.PositivityTheory.SiegelWeilFormula.SD_k.tt, Matrix.trace_zero, map_zero, mul_zero, AddChar.map_zero_eq_one, one_mul]
   exact (hT.2.1 F E σ d _ hx).1 g β hg Z
@@ -403,7 +361,7 @@ theorem par_topleft_k (d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ) (p
     rw [incM_mul']
     congr 1
     ext i j
-    cases i <;> simp [DC, diagCols, incM, Matrix.one_apply, apply_ite] <;> split_ifs <;> simp_all
+    cases i <;> simp [DC, diagCols, incM, Matrix.one_apply, apply_ite] <;> split_ifs
   have hb : incM F d.b.1 * E1 = DC * incM F tb.1 := h1.trans ((congrArg (incM F) htb').trans h2)
   have hTb : incM F tb.1 * incM F (tb⁻¹).1 = 1 := by
     rw [← incM_mul', Units.mul_inv]
@@ -819,8 +777,8 @@ open GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.Inde
 namespace PositivityTheory.SiegelWeilFormula.KWhit
 open PositivityTheory.SiegelWeilFormula
 -- The clump also imports `GJMatrixCoord`, whose matrix `MeasurableSpace` instance would otherwise
--- shadow the one (`instMeasMat`) used in the statements this member proves.
-attribute [local instance high] Formalism.DoubleCosetMeasures.instMeasMat
+-- shadow the one (`matrixMeasurableSpace`) used in the statements this member proves.
+attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace
 theorem linRedC_k :_root_.PositivityTheory.SiegelWeilFormula.KWhit.LinRedC_k := by
   intro hT hTC hLB hU hS c F E _ _ _ _ _ σ d hE k cs Φs hK x hW nb lam 𝓖 hcd ε w hw T hND
   have hTT : _root_.PositivityTheory.SiegelWeilFormula.TTheta_k := hT.2.2.2.1
@@ -1032,8 +990,8 @@ def ratE_k (hne : η ≠ 0)
   left_inv S := Subtype.ext ((_root_.PositivityTheory.SiegelWeilFormula.MeasD.hEq_k hOf hne hof herm).apply_symm_apply S.1)
   right_inv γ := Subtype.ext ((_root_.PositivityTheory.SiegelWeilFormula.MeasD.hEq_k hOf hne hof herm).symm_apply_apply γ.1)
 end Rat
--- See the note in `linRedC_k`: prefer the `instMeasMat` matrix measurable space here.
-attribute [local instance high] Formalism.DoubleCosetMeasures.instMeasMat in
+-- See the note in `linRedC_k`: prefer the `matrixMeasurableSpace` matrix measurable space here.
+attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace in
 theorem meas_hOf_k{d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ} {R : _root_.PositivityTheory.SiegelWeilFormula.RD_k d} {x : d.G} {t u : GL (Fin d.n) (AE F E)} {T : nF σ d.Y d.b} {η : E}
     {T₀ : Matrix (Fin d.n) (Fin d.n) E} {hOf : nA σ d.Y d.b → HeckeCharacterZeroLocus.SiegelWeilU.HermR (AF F) σ d.n}
     {θ : InfinitePlace F → (HeckeCharacterZeroLocus.SiegelWeilU.Ainf F ⊗[F] E →+* ℂ)} {fr : InfinitePlace F → GL (Fin d.m) ℂ}

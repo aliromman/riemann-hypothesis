@@ -107,7 +107,6 @@ import Mathlib.Tactic.Basify
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 noncomputable section
 open NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.DIV.Cons Formalism.L2.Pj Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Indef.Tree Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx
@@ -489,8 +488,6 @@ open Formalism.L2.Host (embLL0)
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-set_option autoImplicit false
-
 
 
 noncomputable section
@@ -607,7 +604,6 @@ open scoped TensorProduct
 
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-set_option autoImplicit false
 
 namespace GlobalTheory.PhaseOneOnto
 
@@ -898,7 +894,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 noncomputable section
 open NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.DIV.Cons Formalism.L2.Pj Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Indef.Tree Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx
@@ -1006,7 +1001,6 @@ section -- clump:auto
 
 
 section
-set_option autoImplicit false
 noncomputable section
 open NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.DIV.Cons Formalism.L2.Pj Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Indef.Tree Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx
@@ -1075,8 +1069,8 @@ section -- clump:auto
 section
 open GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.BigOn.Exp GlobalTheory.BigOn.Exp.SerBase
 
-theorem _root_.GlobalTheory.T.kernel_rationality_of_reciprocity_hypotheses_alt : GlobalTheory.Published.CuspRapidDecay → GlobalTheory.Published.GlobalArtinReciprocity → GlobalTheory.Published.RayClassFieldSt → GlobalTheory.SerStd.SeriesRatS → _root_.GlobalTheory.BigOn.Exp.SerBase.KernelRationalAt := by
-  first | exact @_root_.GlobalTheory.BigOn.Exp.SerBase.kerRatAt_alt
+theorem _root_.GlobalTheory.T.kernel_rationality_of_reciprocity_hypotheses_alt : GlobalTheory.Published.CuspRapidDecay → GlobalTheory.Published.GlobalArtinReciprocity → GlobalTheory.Published.RayClassFieldSt → GlobalTheory.SerStd.SeriesRatS → _root_.GlobalTheory.BigOn.Exp.SerBase.KernelRationalAt :=
+  @_root_.GlobalTheory.BigOn.Exp.SerBase.kerRatAt_alt
 end
 end -- clump:auto
 end -- clump:auto

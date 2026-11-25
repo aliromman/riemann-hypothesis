@@ -129,20 +129,8 @@ theorem eq_one_of_pow_eq_one (A : ValuationSubring Ω) {N : ℕ} (hN : ¬ A.valu
 
 theorem valuation_eq_one_of_pow_eq_one (A : ValuationSubring Ω) {N : ℕ} (hN0 : N ≠ 0) {b : Ω}
     (hb : b ^ N = 1) : A.valuation b = 1 := by
-  obtain ⟨M, rfl⟩ : ∃ M, N = M + 1 := Nat.exists_eq_succ_of_ne_zero hN0
-  have h1 : A.valuation b ^ (M + 1) = 1 := by rw [← Valuation.map_pow, hb, Valuation.map_one]
-  rcases lt_trichotomy (A.valuation b) 1 with hlt | heq | hgt
-  · exfalso
-    have h2 : A.valuation b ^ M * A.valuation b ≤ A.valuation b :=
-      mul_le_of_le_one_left' (pow_le_one' hlt.le M)
-    rw [← pow_succ, h1] at h2
-    exact absurd hlt (not_lt.2 h2)
-  · exact heq
-  · exfalso
-    have h2 : A.valuation b ≤ A.valuation b ^ M * A.valuation b :=
-      le_mul_of_one_le_left' (one_le_pow_of_one_le' hgt.le M)
-    rw [← pow_succ, h1] at h2
-    exact absurd hgt (not_lt.2 h2)
+  apply (pow_left_inj hN0).mp
+  rw [← map_pow, hb, map_one, one_pow]
 
 theorem eq_of_pow_eq_one (A : ValuationSubring Ω) {N : ℕ} (hN : ¬ A.valuation (N : Ω) < 1)
     {a b : Ω} (ha : a ^ N = 1) (hb : b ^ N = 1) (h : A.valuation (a - b) < 1) : a = b := by

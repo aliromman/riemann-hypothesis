@@ -47,8 +47,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formali
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.BarMatrix
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 def SignCompat {p q n : ℕ} (ε : Fin n → Bool) (e : Ix p q ≃ Fin n) : Prop := ∀ a, ε (e a) = a.isLeft
 
 def plainMat {p q n : ℕ} (e : Ix p q ≃ Fin n) (g : Mat p q) : Matrix (Fin n) (Fin n) ℂ := Matrix.reindex e e g
@@ -124,7 +122,7 @@ theorem barMat_mem {p q n : ℕ} {ε : Fin n → Bool} {e : Ix p q ≃ Fin n} (h
   refine plainMat_mem h ?_
   have hJ : (Formalism.UG.Jpq p q).map (starRingEnd ℂ) = Formalism.UG.Jpq p q := by
     ext a b
-    rcases a with a | a <;> rcases b with b | b <;> simp [Formalism.UG.Jpq, Matrix.one_apply] <;> split_ifs
+    rcases a with a | a <;> rcases b with b | b <;> simp [Formalism.UG.Jpq, Matrix.one_apply]
   have h1 := congrArg (fun A : Mat p q => A.map (starRingEnd ℂ)) hg
   simp only [Matrix.map_mul, hJ] at h1
   exact h1

@@ -18,7 +18,7 @@ public import Mathlib.Topology.MetricSpace.Pseudo.Defs
 public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.InfiniteProductRenormalization
 public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.IntegralAlmostAllPlaces
 public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.SiegelWeilFormulaRange
-public import Development.WeilBound.CoreStatements.ThetaDilations.ThetaLint
+public import CompanionTheory.AutomorphicTheory.ThetaDilations.ThetaLint
 public import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.TnsIsTopologicalAddGroup
 import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.SiegelWeilOrbitalMeasure
 import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.SummableOneDivAbsNormSq
@@ -129,7 +129,7 @@ theorem theta_locFin {F E : Type} [Field F] [NumberField F] [Field E] [NumberFie
   have hbound : ∀ h : HA (AF F) σ J, ∑' X : S, K.indicator (1 : (Fin n → Fin M → AF F ⊗[F] E) → ℝ≥0∞)
       (actW (AF F) σ J h⁻¹ (ratTup (AF F) (X : Fin n → Fin M → E))) ≤ (P.encard : ℝ≥0∞) := fun h => by
     obtain ⟨γ, c, hc, rfl⟩ := hcov' h
-    choose t ht using fun X : Fin n → Fin M → E => PositivityTheory.PlacePermOperatorBicommutantSpan.act_rat (n := n) γ⁻¹ X
+    choose t ht using fun X : Fin n → Fin M → E => CompanionTheory.PlacePermOperatorBicommutantSpan.act_rat (n := n) γ⁻¹ X
     have ht' : ∀ X, actW (AF F) σ J (γ : HA (AF F) σ J)⁻¹ (ratTup (AF F) X) = ratTup (AF F) (t X) := ht
     have hti : Function.Injective t := fun X Y e => by
       have h1 := congrArg (actW (AF F) σ J (γ : HA (AF F) σ J)) ((ht' X).trans ((congrArg (ratTup (AF F)) e).trans (ht' Y).symm))
@@ -154,7 +154,7 @@ theorem theta_locFin {F E : Type} [Field F] [NumberField F] [Field E] [NumberFie
   refine ⟨K, hX, ?_⟩
   have hm : Measurable (K.indicator (1 : (Fin n → Fin M → AF F ⊗[F] E) → ℝ≥0∞)) :=
     measurable_one.indicator hK.measurableSet
-  rw [← lintegral_indicator_one hK.measurableSet, PositivityTheory.PlacePermOperatorBicommutantSpan.theta_lint F E σ hcm M J hJ μ 𝓕 hμ h𝓕 _ _ _ hm]
+  rw [← lintegral_indicator_one hK.measurableSet, CompanionTheory.PlacePermOperatorBicommutantSpan.theta_lint F E σ hcm M J hJ μ 𝓕 hμ h𝓕 _ _ _ hm]
   have hle : ∫⁻ h in 𝓕, ∑' X : S, K.indicator (1 : (Fin n → Fin M → AF F ⊗[F] E) → ℝ≥0∞)
       (actW (AF F) σ J h⁻¹ (ratTup (AF F) (X : Fin n → Fin M → E))) ∂μ ≤ (P.encard : ℝ≥0∞) * μ 𝓕 := by
     refine (lintegral_mono hbound).trans ?_
@@ -282,7 +282,7 @@ theorem vector_length_formula_up_to_constant : CoCpt → LocMass → Prop1 := by
   obtain ⟨β', e, -, hh⟩ := _root_.GlobalTheory.CompanionTheory.SW.hermOne_eq_scal F E σ hcm T hT
   have hββ : β' = β := (algebraMap F E).injective (congrFun (congrFun e 0) 0).symm
   rw [hββ] at hh
-  obtain ⟨t1, t2⟩ := PositivityTheory.PlacePermOperatorBicommutantSpan.theta_inv F E σ hcm 2 J hJ μ 𝓕 hμ h𝓕 1 T
+  obtain ⟨t1, t2⟩ := CompanionTheory.PlacePermOperatorBicommutantSpan.theta_inv F E σ hcm 2 J hJ μ 𝓕 hμ h𝓕 1 T
   have hlf : IsLocallyFiniteMeasure (thetaMeas σ J μ 𝓕 {X : Fin 1 → Fin 2 → E | gramE σ J X = T}) :=
     theta_locFin σ hcm 2 J hJ μ 𝓕 hμ h𝓕 C hC hcov hμ0 hμt 1 _
   have hfin : ∀ v, m v (hermOf (Fv F v) σ T hT) (latV b v) < ⊤ := fun v => by

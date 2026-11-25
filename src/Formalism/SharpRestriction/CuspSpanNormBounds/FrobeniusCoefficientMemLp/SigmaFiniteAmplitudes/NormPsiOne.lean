@@ -134,7 +134,7 @@ attribute [local instance] Formalism.FourierDecayAlt.P.B7.properFD
 
 theorem norm_psi_one (z : Fin (2 * r + k + 1) → ℂ) (c : ℂ)
     (g : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ) : ‖psi k r z c g‖ = 1 :=
-  Formalism.FourierDecayAlt.P.S3dx6.norm_psi z c g
+  PI.WBL.Cv.norm_psi z c g
 
 theorem norm_Psi_le (L : LocBessel k r) (w0 v v' : L.Hs) (ξ : L.Wp) (ξ' : L.Wq)
     (γ : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ) {p : PairSp k r} (hp : InPair L p) (x : Mt k r) :

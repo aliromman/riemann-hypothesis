@@ -1033,7 +1033,7 @@ theorem theta_lower_bound : ThetaLower := by
       I / (Real.pi * Ct * C ^ 2 * A0 * Real.sqrt k * N) ≤ Th := fun h' => by
     have e : I / (Real.pi * Ct * C ^ 2 * A0 * Real.sqrt k * N) =
         (Ct * (C * A0 * Real.sqrt k * (C * Real.pi * N / I)))⁻¹ := by
-      field_simp; try ring
+      field_simp
     rw [e]; exact hinv _ (by positivity) h'
   rcases h with h | h | h | h
   · have h' := Sz8.cmRing_idempotent_unitRatio_identity f hf Ct (C * A0 * Real.sqrt (k * N ^ 3 / Del)) Th hCt (by positivity) hTh
@@ -1092,9 +1092,7 @@ theorem theta_power_bound : ThetaPower := by
   have hkM : (Real.pi * Ct * C * A0) ^ 2 ≤ k := by linarith
   have hkC : 40 * C * Real.pi ≤ k := by linarith
   have hke : Real.exp (2 / Cb) ≤ k := by linarith
-  have hk4 : (4:ℝ) ≤ k := by
-    have := mul_le_mul hC Real.pi_gt_three.le (by norm_num) (by linarith)
-    linarith
+  have hk4 : (4:ℝ) ≤ k := by grind
   have hk1 : (1:ℝ) ≤ k := by linarith
   have hkpos : (0:ℝ) < k := by linarith
   have hk1N : 1 ≤ k := by exact_mod_cast hk1
@@ -1182,7 +1180,7 @@ theorem final_smallness : FinalSmall := by
   have hu : C / Th ≤ (2 * T ^ 15)⁻¹ := by
     rw [div_le_iff₀ hThpos]
     calc C ≤ T / 2 := by linarith
-      _ = (2 * T ^ 15)⁻¹ * T ^ 16 := by field_simp; try ring
+      _ = (2 * T ^ 15)⁻¹ * T ^ 16 := by field_simp
       _ ≤ (2 * T ^ 15)⁻¹ * Th := mul_le_mul_of_nonneg_left (by rw [← hkc]; exact hTh) (by positivity)
   have hu0 : 0 ≤ C / Th := by positivity
   have huf : (C / Th) ^ f ≤ ((2 * T ^ 15)⁻¹) ^ f := pow_le_pow_left₀ hu0 hu f

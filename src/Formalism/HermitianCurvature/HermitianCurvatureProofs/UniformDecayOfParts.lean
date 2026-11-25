@@ -322,7 +322,7 @@ theorem continuous_fsv₂ : Continuous (fun q : ℂ × ℂ => fsv q.1 q.2) := by
   exact Complex.continuous_exp.comp ((continuous_fst.mul continuous_snd).sub
     ((Complex.continuous_conj.comp continuous_fst).mul (Complex.continuous_conj.comp continuous_snd)))
 
-theorem integrable_fsv_mul {φ : ℂ → ℂ} (hφ : Continuous φ) (hi : Integrable φ) (a : ℂ) :
+theorem integrable_fsv_mul {φ : ℂ → ℂ} (hi : Integrable φ) (a : ℂ) :
     Integrable (fun t => fsv a t * φ t) := by
   refine hi.bdd_mul (c := 1) ?_ (Filter.Eventually.of_forall fun t => (norm_fsv a t).le)
   exact (continuous_fsv₂.comp (continuous_const.prodMk continuous_id)).aestronglyMeasurable
@@ -446,7 +446,6 @@ theorem norm_le_integral_fsv (φ : ℂ → ℂ) (hφ : Continuous φ) (hi : Meas
       | exact (integrable_comp_smul_iff volume (𝓕 φ) hc).mp hint1
   have hinv : 𝓕⁻ (𝓕 φ) t = φ t := by
     first
-      | exact hi.fourier_inversion hint hφ.continuousAt
       | exact hi.fourierInv_fourier_eq hint hφ.continuousAt
   have hb : ‖φ t‖ ≤ ∫ w : ℂ, ‖𝓕 φ w‖ := by
     rw [← hinv]
@@ -469,8 +468,8 @@ theorem norm_le_integral_fsv (φ : ℂ → ℂ) (hφ : Continuous φ) (hi : Meas
   have h0 : 0 ≤ ∫ w : ℂ, ‖𝓕 φ w‖ := integral_nonneg fun _ => norm_nonneg _
   have hπ : 1 ≤ |((π⁻¹ : ℝ) ^ 2)⁻¹| := by
     rw [inv_pow, inv_inv, abs_of_pos (by positivity)]
-    nlinarith [Real.pi_gt_three]
-  nlinarith
+    exact one_le_pow₀ (by linarith [Real.pi_gt_three])
+  exact hb.trans (le_mul_of_one_le_left h0 hπ)
 
 end Formalism.FourierDecayAlt.P.PBO
 end -- clump:auto
@@ -582,7 +581,7 @@ theorem xi_bound (hP : P5.ThmPActualCpt) {Wp Wq : Type} [NormedAddCommGroup Wp] 
         _ = 8 := by norm_num
     calc ‖p.form j hj w (KB.waveG (p.T.bs j) s w (Mo x)) y‖ * (1 + ‖s‖) ^ 3 ≤ R * 8 :=
           mul_le_mul hCS hu8 (by positivity) hR
-      _ ≤ 8 * (1 + K) * R := by nlinarith
+      _ ≤ 8 * (1 + K) * R := by linarith [mul_nonneg hK hR]
   · push Not at hs
     have hu8 : (1 + ‖s‖) ^ 3 ≤ 8 * ‖s‖ ^ 3 := by
       calc (1 + ‖s‖) ^ 3 ≤ (2 * ‖s‖) ^ 3 := pow_le_pow_left₀ hu.le (by linarith) 3
@@ -592,7 +591,7 @@ theorem xi_bound (hP : P5.ThmPActualCpt) {Wp Wq : Type} [NormedAddCommGroup Wp] 
           mul_le_mul_of_nonneg_left hu8 (norm_nonneg _)
       _ = 8 * (‖s‖ ^ 3 * ‖p.form j hj w (KB.waveG (p.T.bs j) s w (Mo x)) y‖) := by ring
       _ ≤ 8 * (K * R) := by linarith
-      _ ≤ 8 * (1 + K) * R := by nlinarith
+      _ ≤ 8 * (1 + K) * R := by linarith
 
 end Formalism.FourierDecayAlt.P.PBO
 end -- clump:auto
@@ -614,7 +613,7 @@ namespace Formalism.FourierDecayAlt.P.PBO
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.Q Formalism.FourierDecayAlt.Wd Formalism.YangianSpanCharacter.T Formalism.FourierDecayAlt.P5
 
-theorem transform_diff3 {φ : ℂ → ℂ} (hφ : Continuous φ) (hi : Integrable φ) (σ s : ℂ) :
+theorem transform_diff3 {φ : ℂ → ℂ} (hi : Integrable φ) (σ s : ℂ) :
     ∫ t, fsv s t * ((fsv σ t - 1) ^ 3 * φ t) =
       (∫ t, fsv (s + 3 * σ) t * φ t) - 3 * (∫ t, fsv (s + 2 * σ) t * φ t) + 3 * (∫ t, fsv (s + σ) t * φ t) -
         ∫ t, fsv s t * φ t := by
@@ -628,10 +627,10 @@ theorem transform_diff3 {φ : ℂ → ℂ} (hφ : Continuous φ) (hi : Integrabl
       rw [fsv_mul_fsv, fsv_mul_fsv, fsv_mul_fsv]; congr 1; ring
     rw [e1, e2, e3]; ring
   simp only [e]
-  have i0 := integrable_fsv_mul hφ hi s
-  have i1 := integrable_fsv_mul hφ hi (s + σ)
-  have i2 := integrable_fsv_mul hφ hi (s + 2 * σ)
-  have i3 := integrable_fsv_mul hφ hi (s + 3 * σ)
+  have i0 := integrable_fsv_mul hi s
+  have i1 := integrable_fsv_mul hi (s + σ)
+  have i2 := integrable_fsv_mul hi (s + 2 * σ)
+  have i3 := integrable_fsv_mul hi (s + 3 * σ)
   have j1 : Integrable (fun t => fsv (s + 3 * σ) t * φ t - 3 * (fsv (s + 2 * σ) t * φ t)) := i3.sub (i2.const_mul 3)
   have j2 : Integrable (fun t => fsv (s + 3 * σ) t * φ t - 3 * (fsv (s + 2 * σ) t * φ t) +
       3 * (fsv (s + σ) t * φ t)) := j1.add (i1.const_mul 3)
@@ -657,18 +656,18 @@ theorem decayUnif_of (hRH : KB.RadHead) (hHT : KB.HeadTop) (hWDF : WaveDiffForm)
   have hthrF : CcF * ((P.r : ℝ) + 1) ^ 4 * (((N + 3 : ℕ) : ℝ) * (2 * (P.r : ℝ) + P.k + 1) ^ 2 +
       (2 * (P.r : ℝ) + P.k + 1) ^ 3) ≤ A := by
     have := mul_le_mul_of_nonneg_right (le_max_left CcF CcW) hX
-    nlinarith
+    rw [mul_assoc] at hthr ⊢; exact this.trans hthr
   have hthrW : CcW * ((P.r : ℝ) + 1) ^ 4 * (((N + 3 : ℕ) : ℝ) * (2 * (P.r : ℝ) + P.k + 1) ^ 2 +
       (2 * (P.r : ℝ) + P.k + 1) ^ 3) ≤ A := by
     have := mul_le_mul_of_nonneg_right (le_max_right CcF CcW) hX
-    nlinarith
+    rw [mul_assoc] at hthr ⊢; exact this.trans hthr
   obtain ⟨hcpt, hlim⟩ := hFL Wp Wq P p f χ ε A (N + 3) cut hθ hχ hε hf hfA hthrF hcut
   have hWDa := hWD Wp Wq P p f χ ε A N cut hθ hχ hε hf hfA hthrW hcut j hj w hw hN h hh
 
   obtain ⟨grid, hinj, hgr⟩ := grid_exists P p.l0 lo hi hon w hw j (by
     have h1 : (w.length : ℝ) ≤ N := by exact_mod_cast hN
     have h2 : (j : ℝ) ≤ P.r := by exact_mod_cast hj
-    nlinarith)
+    linarith)
   have hlp : ∀ n : Fin 3 → Fin (2 * j + 1), (KB.plusW (List.ofFn fun a => grid a (n a)) w).length ≤ N + 3 := by
     intro n; rw [Formalism.FourierDecayAlt.P.PBD.plusW_eq]; simp; omega
   have hlm : ∀ n : Fin 3 → Fin (2 * j + 1), (KB.minusW (List.ofFn fun a => grid a (n a)) w).length ≤ N + 3 := by
@@ -777,7 +776,7 @@ theorem decayUnif_of (hRH : KB.RadHead) (hHT : KB.HeadTop) (hWDF : WaveDiffForm)
     have hΨb : ∀ s, ‖∫ t, fsv s t * ((fsv σ t - 1) ^ 3 * φ t)‖ ≤
         (8 * (1 + K) * Real.sqrt (CW * ‖σ‖ ^ 6 * B)) * ((1 + ‖s‖) ^ 3)⁻¹ := by
       intro s
-      rw [transform_diff3 hφc hφi σ s, hφs, hφs, hφs, hφs, ← form_wave_mDiff P p j hj w _ _ hxc hyc s σ]
+      rw [transform_diff3 hφi σ s, hφs, hφs, hφs, hφs, ← form_wave_mDiff P p j hj w _ _ hxc hyc s σ]
       have hA0 : ‖p.form j hj w (mDiff (p.T.bs j) σ w (KB.slv p.T (fun g => cut m g • D.cutF p.T.base χ f ε g) j hj w h hh.2)) (mDiff (p.T.bs j) σ w (KB.slv p.T (fun g => cut m g • D.cutF p.T.base χ f ε g) j hj w h hh.2))‖ ≤ CW * ‖σ‖ ^ 6 :=
         (hC0 m σ hσ2).trans (mul_le_mul_of_nonneg_right hC0W hσ6)
       have hB0' : ‖p.form j hj w (KB.slv p.T (fun g => cut m g • D.cutF p.T.base χ f ε g) j hj w h' hh'.2) (KB.slv p.T (fun g => cut m g • D.cutF p.T.base χ f ε g) j hj w h' hh'.2)‖ ≤ B := by
@@ -872,8 +871,8 @@ theorem waveDiffForm_of (hO : OnOldBound) : PBO.WaveDiffForm := by
       rw [hXdef, hN₂]
       push_cast
       have : 0 ≤ n0 ^ 3 := by positivity
-      nlinarith
-    have hRX : 1 ≤ R * X := by nlinarith
+      linarith
+    have hRX : 1 ≤ R * X := one_le_mul_of_one_le_of_one_le (one_le_pow₀ (by linarith [Nat.cast_nonneg (α := ℝ) P.r])) hX1
     have h0 : (2 * Cs + 2) * R * X ≤ A := hA
     calc Cs * R * ((N₂ : ℝ) * n0 ^ 2 + n0 ^ 3) ≤ Cs * R * (2 * X) :=
           mul_le_mul_of_nonneg_left hX2 (by positivity)
@@ -975,9 +974,7 @@ theorem waveDiffForm_of (hO : OnOldBound) : PBO.WaveDiffForm := by
   have hord : mo ≤ P5.mmUser P N₂ := by
     have h1 : 2 * (P.r - j) + P.k + 1 ≤ P5.nV P := by unfold P5.nV; omega
     have h2 : w'.length ≤ 3 * (P.r + 1) * (N₂ + 2) := by
-      have : N + 3 ≤ 3 * (P.r + 1) * (N₂ + 2) := by
-        have : 1 ≤ 3 * (P.r + 1) := by omega
-        nlinarith
+      have : N + 3 ≤ 3 * (P.r + 1) * (N₂ + 2) := (show N + 3 ≤ N₂ + 2 by omega).trans (Nat.le_mul_of_pos_left _ (by omega))
       omega
     have h3 : (2 * (P.r - j) + P.k + 1) * w'.length ≤ P5.nV P * (3 * (P.r + 1) * (N₂ + 2)) :=
       Nat.mul_le_mul h1 h2
@@ -1031,7 +1028,7 @@ theorem norm_exp_mul_I_sub_one (y : ℝ) : ‖Complex.exp ((y : ℂ) * I) - 1‖
   rw [e]
   have h2 : ‖(↑(Real.cos y - 1) + ↑(Real.sin y) * I : ℂ)‖ ^ 2 ≤ |y| ^ 2 := by
     rw [Complex.sq_norm, Complex.normSq_add_mul_I, sq_abs]
-    nlinarith
+    linarith
   exact (pow_le_pow_iff_left₀ (norm_nonneg _) (abs_nonneg _) two_ne_zero).1 h2
 
 theorem norm_exp_sub_one_of_re (z : ℂ) (hz : z.re = 0) : ‖Complex.exp z - 1‖ ≤ ‖z‖ := by
@@ -1119,7 +1116,7 @@ theorem mult_phase {E : Type} [NormedAddCommGroup E] [NormedSpace ℂ E] (m : �
         _ ≤ t * ‖g‖ := hθM g
         _ ≤ t * (‖g‖ + L ^ m) := by
           have : 0 ≤ L ^ m := by positivity
-          nlinarith
+          exact mul_le_mul_of_nonneg_left (by linarith) ht0
     · rw [show f1 = fun y => f0 y + (-1 : ℂ) from rfl, iter_add_const]
       calc ‖iteratedFDeriv ℝ (j + 1) f0 g‖ ≤ t ^ (j + 1) := hit0 _ g
         _ = t * t ^ j := by ring
@@ -1129,7 +1126,7 @@ theorem mult_phase {E : Type} [NormedAddCommGroup E] [NormedSpace ℂ E] (m : �
             _ ≤ L ^ m := pow_le_pow_right₀ hL1 (by omega)
         _ ≤ t * (‖g‖ + L ^ m) := by
           have : 0 ≤ ‖g‖ := norm_nonneg _
-          nlinarith
+          exact mul_le_mul_of_nonneg_left (by linarith) ht0
   set Cm : ℝ := C1 * (2 ^ m * (((m + 1 : ℕ) : ℝ) * (‖Lid‖ * (t * (1 + L ^ m))))) with hCm
   have hab : ∀ u v : List (Mat k r), (∀ X ∈ u, unitLie k r X) → (∀ X ∈ v, unitLie k r X) →
       u.length + v.length ≤ m → ∀ g ∈ GV k r, g ∉ (∅ : Set (Mat k r)) →
@@ -1148,9 +1145,7 @@ theorem mult_phase {E : Type} [NormedAddCommGroup E] [NormedSpace ℂ E] (m : �
     have hpow : (1 + ‖g‖) ^ m ≤ 2 ^ m * gN g ^ m := by
       rw [← mul_pow]
       exact pow_le_pow_left₀ (by positivity) (by linarith) m
-    have hgL : ‖g‖ + L ^ m ≤ (1 + L ^ m) * gN g := by
-      have : 0 ≤ L ^ m := by positivity
-      nlinarith
+    have hgL : ‖g‖ + L ^ m ≤ (1 + L ^ m) * gN g := by linarith [le_mul_of_one_le_right (by positivity : 0 ≤ L ^ m) hg1]
     have hS0 : 0 ≤ ∑ i ∈ Finset.range (m + 1), ‖iteratedFDeriv ℝ i Λ g‖ :=
       Finset.sum_nonneg fun _ _ => norm_nonneg _
     have hLid0 : 0 ≤ ‖Lid‖ := norm_nonneg _
@@ -1230,9 +1225,9 @@ theorem waveL_sub_one_ccle (Bs : B.RealPlaceData k ρ Wp Wq) (w : List C.Letter)
       · rw [if_pos he]
         have hxe : x e = x (Fin.cons (0 : Fin 2) (fun a => e a.succ)) := by
           conv_lhs => rw [hce, he]
-        refine ⟨JCx2.pd_ccle_mono_c ih0.1 (by rw [hp]; nlinarith), ?_⟩
+        refine ⟨JCx2.pd_ccle_mono_c ih0.1 (by rw [hp]; linarith [mul_nonneg h3 hc]), ?_⟩
         rw [hxe]
-        exact JCx2.pd_ccle_mono_c ih0.2 (by rw [hp]; nlinarith [mul_nonneg h3 hσ0])
+        exact JCx2.pd_ccle_mono_c ih0.2 (by rw [hp]; linarith [mul_nonneg (mul_nonneg h3 hσ0) hc])
       · rw [if_neg he]
         have he1 : e 0 = 1 := by
           rcases Fin.exists_fin_two.1 ⟨e 0, rfl⟩ with h | h
@@ -1245,7 +1240,7 @@ theorem waveL_sub_one_ccle (Bs : B.RealPlaceData k ρ Wp Wq) (w : List C.Letter)
           rw [hs] at this
           exact JCx2.pd_ccle_mono_c (show B.CCle A m ((KB.uInv σ w (fun e' => x (Fin.cons (1 : Fin 2) e')) (fun a => e a.succ)) +
             (if l.1 then σ else (starRingEnd ℂ) σ) • KB.uInv σ w (fun e' => x (Fin.cons (0 : Fin 2) e')) (fun a => e a.succ)) _ from this)
-            (by rw [hp]; nlinarith [mul_nonneg h3 hc])
+            (by rw [hp]; linarith [mul_le_mul_of_nonneg_right hσ (mul_nonneg h3 hc)])
         · have := BetaSesquilinearity.CCle_add ih1.2 (BetaSesquilinearity.CCle_smul (if l.1 then σ else (starRingEnd ℂ) σ) ih0.1)
           rw [hs] at this
           rw [hxe]
@@ -1259,7 +1254,7 @@ theorem waveL_sub_one_ccle (Bs : B.RealPlaceData k ρ Wp Wq) (w : List C.Letter)
             simp only [Pi.add_apply, Pi.smul_apply]
             abel
           rw [hf]
-          exact JCx2.pd_ccle_mono_c this (by rw [hp]; nlinarith [mul_nonneg h3 hc, mul_nonneg (mul_nonneg h3 hσ0) hc])
+          exact JCx2.pd_ccle_mono_c this (by rw [hp]; linarith [mul_nonneg (mul_nonneg h3 hσ0) hc])
   obtain ⟨K1, hK1, hmul⟩ := mult_phase (E := Wq →L[ℂ] Wp) m
     (JCx2.mnLinHerm (fvec k ρ Bs.z' 0) (fvec k ρ Bs.z 0))
   refine ⟨(K1 + 1) * 3 ^ w.length, by positivity, ?_⟩

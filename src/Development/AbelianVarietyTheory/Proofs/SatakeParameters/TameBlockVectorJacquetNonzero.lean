@@ -57,7 +57,6 @@ import ReciprocityTheory.Automorphisms.PlaceA
 @[expose] public section
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal ReciprocityTheory.Aut Formalism.AUTREP Formalism.L2 Formalism.L2.Host Formalism.L2.NT NumberField IsDedekindDomain Polynomial GlobalTheory.HeightCounting GlobalTheory.RowTie GlobalTheory.SplitRead GlobalTheory.NPin
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 noncomputable section
 
@@ -106,7 +105,7 @@ theorem det_of_lowerLeft {R : Type} [CommRing R] {r t : ℕ} (M : Matrix (Fin (r
   have : (M.submatrix finSumFinEquiv finSumFinEquiv).toBlocks₂₁ = 0 := by
     ext i j; simp [Matrix.toBlocks₂₁, h0]
   rw [this, Matrix.det_fromBlocks_zero₂₁]
-  congr 2 <;> ext i j
+  congr 2
 
 theorem det_lowerRight {R : Type} [CommRing R] {r t : ℕ} (M : Matrix (Fin (r + t)) (Fin (r + t)) R)
     (h0 : ∀ (i : Fin t) (j : Fin r), M (Fin.natAdd r i) (Fin.castAdd t j) = 0)

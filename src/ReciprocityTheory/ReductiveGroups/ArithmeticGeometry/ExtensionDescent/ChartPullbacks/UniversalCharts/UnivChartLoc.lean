@@ -46,8 +46,6 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDesc
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
@@ -191,7 +189,6 @@ theorem univChartLoc [IsLocalRing R] (G : Over (Spec (CommRingCat.of R))) [GrpOb
     change Spec.map eps0 ≫ jU = Spec.map (CommRingCat.ofHom (algebraMap R R)) ≫ e
     rw [hε, he']
     first
-    | rw [Algebra.id.map_eq_id, CommRingCat.ofHom_id, Spec.map_id, Category.id_comp]
     | simp
 
   obtain ⟨n, pr, hpr1, hpr2, hpr3⟩ := algChart Bc eps
@@ -211,7 +208,6 @@ theorem univChartLoc [IsLocalRing R] (G : Over (Spec (CommRingCat.of R))) [GrpOb
       rw [h0]
       change Spec.map (CommRingCat.ofHom (algebraMap R R)) ≫ e = e
       first
-      | rw [Algebra.id.map_eq_id, CommRingCat.ofHom_id, Spec.map_id, Category.id_comp]
       | simp
 
     have hyU : Set.range y.left.base ⊆ Set.range jU.base := by
@@ -221,7 +217,7 @@ theorem univChartLoc [IsLocalRing R] (G : Over (Spec (CommRingCat.of R))) [GrpOb
       have key : y.left.base ((Spec.map (CommRingCat.ofHom aug.toRingHom)).base w) =
           e.base w := by
         rw [← hyl]
-        first | rfl | simp
+        first | rfl
       rw [key]
       exact he_mem w
     let y' : Spec (CommRingCat.of A) ⟶ Spec Bc := IsOpenImmersion.lift jU y.left hyU

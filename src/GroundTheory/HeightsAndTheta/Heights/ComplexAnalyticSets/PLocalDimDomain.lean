@@ -2,47 +2,8 @@ module
 
 public import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StLocalDimDomain
 public import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PMaximalIdealHeightFG
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
-import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.TotallySplit
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -63,19 +24,9 @@ theorem LocalDimDomain.proof : LocalDimDomain.Statement := by
       (by rw [Ideal.mk_ker]; exact hJM)
   have hsub : Algebra.algebraMapSubmonoid (MvPolynomial (Fin n) ℂ ⧸ J) M.primeCompl =
       m.primeCompl := by
-    ext x
-    obtain ⟨y, rfl⟩ := Ideal.Quotient.mk_surjective x
-    constructor
-    · rintro ⟨z, hz, hzy⟩
-      change Ideal.Quotient.mk J y ∉ m
-      rw [← hzy]
-      change Ideal.Quotient.mk J z ∉ M.map (Ideal.Quotient.mk J)
-      rw [Ideal.mem_quotient_iff_mem hJM]
-      exact hz
-    · intro h
-      change Ideal.Quotient.mk J y ∉ M.map (Ideal.Quotient.mk J) at h
-      rw [Ideal.mem_quotient_iff_mem hJM] at h
-      exact ⟨y, h, rfl⟩
+    have hM : m.comap (Ideal.Quotient.mk J) = M := Ideal.comap_map_mk hJM
+    simpa only [Algebra.algebraMapSubmonoid, Ideal.Quotient.algebraMap_eq, hM] using
+      Ideal.map_primeCompl_comap_of_surjective (Ideal.Quotient.mk J) Ideal.Quotient.mk_surjective m
   have : m.IsPrime := hm.isPrime
   have : IsLocalization.AtPrime (localRingAt J q) m := by
     unfold IsLocalization.AtPrime

@@ -106,6 +106,13 @@ def unitaryLevelIntersection {D : D7} (X : HidaSetting D) (hb : AdBridgeIso X.B.
     rw [finHA_inv, ← e1]
     group
 
+theorem coe_K2Hg {D : D7} (X : HidaSetting D) (hb : AdBridgeIso X.B.I) (hK : X.LevelSubgroupCharacter) (u : D.what₂.Word) :
+    (unitaryLevelClosureSubgroup X hb u : Set (Hsub (Af X.B.I.F) X.B.I.cm.sig X.B.I.J (frameOf X u))) = Subtype.val ⁻¹' K2u X hb u := by
+  unfold unitaryLevelClosureSubgroup
+  have : (Subtype.val ⁻¹' K2u X hb u : Set (Hsub (Af X.B.I.F) X.B.I.cm.sig X.B.I.J (frameOf X u))) =
+      (unitaryLevelIntersection X hb hK u : Set (Hsub (Af X.B.I.F) X.B.I.cm.sig X.B.I.J (frameOf X u))) := rfl
+  rw [this, Subgroup.closure_eq]
+
 theorem idxGroupStep_of (hKf : KfBridgeStep) : IdxGroupStep := by
   intro D X hb hK u _hM hL
 

@@ -47,6 +47,7 @@ import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Init
+public import Formalism.SharedLemmas.HpkSq
 
 @[expose] public section
 
@@ -97,11 +98,9 @@ theorem sgn_mul_self (i : Fin (2 * r + k + 1)) : sgn k r i * sgn k r i = 1 := by
   split_ifs <;> norm_num
 
 theorem hpk_sq : Hpk k r * Hpk k r = 1 := by
-  ext i j
-  rw [hpk_mul_apply, hpk_row, tau_tau, sgn_tau, Matrix.one_apply]
-  by_cases h : j = i
-  · rw [if_pos h, if_pos h.symm, sgn_mul_self]
-  · rw [if_neg h, if_neg (Ne.symm h), mul_zero]
+  first
+  | exact _root_.Formalism.SharedLemmas.upq_hpk_mul_self
+  | (apply _root_.Formalism.SharedLemmas.upq_hpk_mul_self <;> assumption)
 
 theorem hpk_conjT : (Hpk k r)ᴴ = Hpk k r := by
   ext i j
@@ -198,7 +197,7 @@ lemma mul_EmT_out {X : Type*} [Fintype X] (A : Matrix X (Fin (k + 1)) ℂ) (j : 
   exact hj (h ▸ mid_wI b)
 
 lemma EmT_Em : (Em k r)ᵀ * Em k r = 1 := by
-  apply Formalism.FourierDecayAlt.P.B2x3.EmT_Em <;> assumption
+  apply Formalism.FourierDecayAlt.P.B2x3.EmT_Em
 
 lemma Em_conjT : (Em k r)ᴴ = (Em k r)ᵀ := by
   ext a b
@@ -210,7 +209,7 @@ lemma EmT_conjT : ((Em k r)ᵀ)ᴴ = Em k r := by
 
 lemma emb_eq (μ : Matrix (Fin (k + 1)) (Fin (k + 1)) ℂ) :
     embWb k r μ = Em k r * μ * (Em k r)ᵀ + (1 - Em k r * (Em k r)ᵀ) := by
-  apply Formalism.FourierDecayAlt.P.B2x3.emb_eq <;> assumption
+  apply Formalism.FourierDecayAlt.P.B2x3.emb_eq
 
 lemma EmT_Q : (Em k r)ᵀ * (1 - Em k r * (Em k r)ᵀ) = 0 := by
   rw [Matrix.mul_sub, Matrix.mul_one, ← Matrix.mul_assoc, EmT_Em, Matrix.one_mul, sub_self]
@@ -240,7 +239,7 @@ lemma Hb_conjT : (Hb k)ᴴ = Hb k := by
   by_cases h : j = Fin.last k <;> simp [h]
 
 lemma Hpk_Em : Hpk k r * Em k r = Em k r * Hb k := by
-  apply Formalism.FourierDecayAlt.P.B2x3.Hpk_Em <;> assumption
+  apply Formalism.FourierDecayAlt.P.B2x3.Hpk_Em
 
 lemma EmT_Hpk : (Em k r)ᵀ * Hpk k r = Hb k * (Em k r)ᵀ := by
   have h := congrArg Matrix.conjTranspose (Hpk_Em (k := k) (r := r))

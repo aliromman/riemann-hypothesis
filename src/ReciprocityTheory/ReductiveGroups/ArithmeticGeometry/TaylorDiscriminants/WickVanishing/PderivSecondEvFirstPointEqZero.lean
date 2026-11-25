@@ -59,8 +59,6 @@ import Mathlib.Tactic.Polynomial.Basic
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open MvPowerSeries
@@ -145,8 +143,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open MvPowerSeries ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
@@ -186,10 +182,6 @@ theorem d_evY (h : PS k 1 d) (b : Fin d) :
     | (simp [MvPowerSeries.pderiv_X, Pi.single_apply]; done)
     | (by_cases hvw : v = w <;> simp [hvw, MvPowerSeries.pderiv_X_self, MvPowerSeries.pderiv_X_of_ne]; done)
     | (by_cases hvw : v = w <;> simp [hvw, MvPowerSeries.pderiv_X]; done)
-    | (by_cases hvw : v = w
-       · subst hvw
-         simp
-       · simp [hvw])
   have hcz : CZ (![pt k d 1] : Fin 1 → Pt k 2 d) := by
     intro j i
     have hj : j = 0 := Subsingleton.elim _ _
@@ -217,10 +209,6 @@ theorem d_evX (h : PS k 1 d) (a : Fin d) :
     | (simp [MvPowerSeries.pderiv_X, Pi.single_apply]; done)
     | (by_cases hvw : v = w <;> simp [hvw, MvPowerSeries.pderiv_X_self, MvPowerSeries.pderiv_X_of_ne]; done)
     | (by_cases hvw : v = w <;> simp [hvw, MvPowerSeries.pderiv_X]; done)
-    | (by_cases hvw : v = w
-       · subst hvw
-         simp
-       · simp [hvw])
   have hcz : CZ (![pt k d 0] : Fin 1 → Pt k 2 d) := by
     intro j i
     have hj : j = 0 := Subsingleton.elim _ _
@@ -247,10 +235,6 @@ theorem pderiv_first_ev_second_point_eq_zero (h : PS k 1 d) (a : Fin d) : pderiv
     | (simp [MvPowerSeries.pderiv_X, Pi.single_apply]; done)
     | (by_cases hvw : v = w <;> simp [hvw, MvPowerSeries.pderiv_X_self, MvPowerSeries.pderiv_X_of_ne]; done)
     | (by_cases hvw : v = w <;> simp [hvw, MvPowerSeries.pderiv_X]; done)
-    | (by_cases hvw : v = w
-       · subst hvw
-         simp
-       · simp [hvw])
   have hcz : CZ (![pt k d 1] : Fin 1 → Pt k 2 d) := by
     intro j i
     have hj : j = 0 := Subsingleton.elim _ _
@@ -275,10 +259,6 @@ theorem pderiv_second_ev_first_point_eq_zero (h : PS k 1 d) (b : Fin d) : pderiv
     | (simp [MvPowerSeries.pderiv_X, Pi.single_apply]; done)
     | (by_cases hvw : v = w <;> simp [hvw, MvPowerSeries.pderiv_X_self, MvPowerSeries.pderiv_X_of_ne]; done)
     | (by_cases hvw : v = w <;> simp [hvw, MvPowerSeries.pderiv_X]; done)
-    | (by_cases hvw : v = w
-       · subst hvw
-         simp
-       · simp [hvw])
   have hcz : CZ (![pt k d 0] : Fin 1 → Pt k 2 d) := by
     intro j i
     have hj : j = 0 := Subsingleton.elim _ _
@@ -349,7 +329,7 @@ theorem addPt : (![G.add (pt k (n := 2) d 0) (pt k d 1)] : Fin 1 → Pt k 2 d) =
   exact hid (G.F i)
 
 theorem logSt : LogSt := by
-  apply GlobalTheory.FormalLog.logSt <;> assumption
+  apply GlobalTheory.FormalLog.logSt
 
 omit [Algebra ℚ k] in
 theorem ez_y (h : PS k 1 d) : ev (n := 1) ![pt k d 0, 0] (ev (n := 2) ![pt k d 1] h) = C (constantCoeff h) := by

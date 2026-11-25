@@ -220,8 +220,6 @@ lemma hasSum_pairs {a b : ℕ → ℝ} {D : ℝ} (ha : ∀ n, |a n| ≤ D * n) (
         rw [norm_mul, norm_mul, Real.norm_of_nonneg (by positivity : 0 ≤ Real.exp (-(v * p.1 / w)) * Real.exp (-(w * p.2)) / w)]
         rfl
       rw [e]
-      have h1' : (0 : ℝ) < p.1 := by positivity
-      have h2' : (0 : ℝ) < p.2 := by positivity
       calc |a p.1| * |b p.2| * besW (v * p.1 * p.2)
           ≤ (D * p.1) * (D * p.2) * (G / (v * p.1 * p.2) ^ 3) := by
             gcongr
@@ -334,7 +332,6 @@ lemma integral_le {P Q : ℝ → ℝ} (hP : Measurable P) (hQ : Measurable Q) {�
   have hRb : ∀ w ∈ Set.Ioi (0 : ℝ), |R w| ≤ E ^ 2 * Real.sqrt v * wt w := by
     intro w hw
     have h0 : 0 < w := hw
-    have hs : 0 < Real.sqrt w := Real.sqrt_pos.2 h0
     simp only [hR]
     rw [abs_div, abs_mul, abs_of_pos h0]
     have e1 : |P (v / w) - ρ / (v / w)| ≤ E * (Real.sqrt v / Real.sqrt w) := by
@@ -419,7 +416,6 @@ theorem norm_F_one_ge : ∃ A c : ℝ, 0 < A ∧ 0 < c ∧ ∀ (𝓕 : LFam) (χ
   rw [Real.rpow_natCast]
   have hB := 𝓕.B_ge
   have hB1 : 1 ≤ 𝓕.B := by linarith
-  have hB0 : 0 < 𝓕.B := by linarith
   have hκ : 0 < 𝓕.κ := lt_of_lt_of_le (by positivity) 𝓕.κ_ge
   have hcard : (1 : ℝ) ≤ Fintype.card 𝓕.G := by exact_mod_cast Fintype.card_pos
   by_cases h1 : χ = 1
@@ -471,7 +467,6 @@ theorem norm_F_one_ge : ∃ A c : ℝ, 0 < A ∧ 0 < c ∧ ∀ (𝓕 : LFam) (χ
   have e1 : (C * 𝓕.B ^ 11) ^ 2 * s * K = C ^ 2 * K * δ := by
     rw [hs]; field_simp
   have h2 : w0 / 2 ≤ ρ / s ^ 2 * L := by linarith
-  have hρ0 : 0 < ρ := by positivity
   have hρ1 : ρ ≤ 4 * 𝓕.B := mul_le_mul 𝓕.κ_le 𝓕.card_le (by positivity) (by norm_num)
   have h3 : w0 / 2 ≤ 4 * 𝓕.B / s ^ 2 * |L| :=
     h2.trans ((mul_le_mul_of_nonneg_left (le_abs_self L) (by positivity)).trans (by gcongr))
@@ -985,7 +980,6 @@ theorem inv_le_ell : ∃ K : ℝ, 0 < K ∧ ∀ (𝓕 : LFam) (χ : AddChar 𝓕
   have hℓ1 := one_le_ell 𝓕 γ
   have hCℓ0 : C * 𝓕.ell 0 ≤ C * 𝓕.ell γ := mul_le_mul_of_nonneg_left hℓ0 hC.le
   have hCℓ2 : C * 𝓕.ell (2 * γ) ≤ 2 * (C * 𝓕.ell γ) := by nlinarith
-  have hCℓ : 0 ≤ C * 𝓕.ell γ := mul_nonneg hC.le (by linarith)
   obtain ⟨v, hv⟩ : ∃ v : ℝ, v = 1 / ε := ⟨_, rfl⟩
   have hv0 : 0 < v := by rw [hv]; positivity
   rw [← hv]
@@ -1113,7 +1107,6 @@ theorem inv_le_ell : ∃ K : ℝ, 0 < K ∧ ∀ (𝓕 : LFam) (χ : AddChar 𝓕
         (show (0 : ℝ) ≤ 6 * ε + δ by linarith)]
     have i1 : 1 / (6 * ε) = v / 6 := by rw [hv]; ring
     have i2 : 1 / (7 * ε) = v / 7 := by rw [hv]; ring
-    have i3 : 1 / 156 * (1 / ε) = v / 156 := by rw [hv]; ring
     nlinarith
 
 theorem zero_free_region : ∃ c : ℝ, 0 < c ∧ ∀ (𝓕 : LFam) (χ : AddChar 𝓕.G ℂ) (s : ℂ), 3 / 4 ≤ s.re → 𝓕.F χ s = 0 → (χ * χ ≠ 1 ∨ s.im ≠ 0) → s.re < 1 - c / 𝓕.ell s.im := by
@@ -1269,14 +1262,13 @@ lemma exc_le {X h β δ : ℝ} (hX : Real.exp 1 ≤ X) (hh : 0 ≤ h) (hβ : 3 /
     gcongr
     have e2 : Real.exp (-(Real.log X * (1 - β))) ≤ Real.exp (-δ) := by
       apply Real.exp_le_exp.2
-      nlinarith
+      linarith [hβ, le_mul_of_one_le_left (show 0 ≤ 1 - β by linarith) hlog]
     refine e2.trans ?_
     rw [Real.exp_neg, inv_le_iff_one_le_mul₀ (Real.exp_pos _)]
     have := Real.add_one_le_exp δ
     have h3 : 0 ≤ 1 - δ / 2 := by linarith
-    nlinarith [mul_le_mul_of_nonneg_left this h3]
+    linarith [hh, mul_le_mul_of_nonneg_left this h3, mul_nonneg hδ.le (show 0 ≤ 1 - δ by linarith)]
   rw [Real.mul_rpow hX0.le (by linarith), ← sub_div, div_le_iff₀ hβ0]
-  have hp : 0 ≤ X ^ β := by positivity
   calc X ^ β * (1 + h) ^ β - X ^ β ≤ X ^ β * (1 + β * h) - X ^ β := by gcongr
     _ = X ^ β * (β * h) := by ring
     _ ≤ X * (1 - δ / 2) * (β * h) := by gcongr
@@ -1317,7 +1309,7 @@ lemma sum_le_of_unique {ι : Type} [Fintype ι] (Z : ι → Finset ℝ) (f : ℝ
   refine (Finset.sum_le_card_nsmul _ _ M fun x hx => hf x.1 x.2 (Finset.mem_sigma.1 hx).2).trans ?_
   rw [nsmul_eq_mul]
   have : ((((Finset.univ : Finset ι).sigma Z).card : ℕ) : ℝ) ≤ 1 := by exact_mod_cast hc
-  nlinarith
+  exact mul_le_of_le_one_left hM this
 
 lemma err_le {B A c c₇ c₉ C L h : ℝ} (hB : 4 ≤ B) (hA : 0 < A) (hc : 0 < c) (hc₇ : 0 < c₇) (hc₉ : 0 < c₉)
     (hC : 0 < C) (h1 : (A + 2) * c ≤ c₇ / 2) (h2 : c ≤ c₇ * c₉ / (24 * C))
@@ -1330,7 +1322,7 @@ lemma err_le {B A c c₇ c₉ C L h : ℝ} (hB : 4 ≤ B) (hA : 0 < A) (hc : 0 <
   have hL0 : 0 < L := by
     by_contra hn
     rw [not_lt] at hn
-    nlinarith
+    linarith [mul_nonpos_of_nonneg_of_nonpos hc.le hn]
   have a1 : B ≤ Real.exp (c * L) := by
     rw [← Real.exp_log hB0]; exact Real.exp_le_exp.2 hL
   have a2 : B ^ A ≤ Real.exp (c * L * A) := by
@@ -1340,13 +1332,13 @@ lemma err_le {B A c c₇ c₉ C L h : ℝ} (hB : 4 ≤ B) (hA : 0 < A) (hc : 0 <
     rw [le_div_iff₀ (by positivity)] at h2
     have b1 : c * (24 * C) * L ≤ c₇ * c₉ * L := by gcongr
     have b2 : 24 * C * 1 ≤ 24 * C * (c * L) := by gcongr
-    nlinarith
+    linarith [hc₇, mul_le_mul_of_nonneg_left this hc₉.le]
   have hBA : 0 < B ^ A := by positivity
   have a4 : Real.exp (c * L) * Real.exp (c * L * A) * Real.exp (c₇ / 2 * L) * Real.exp (-c₇ * L) ≤
       Real.exp (-c * L) := by
     rw [← Real.exp_add, ← Real.exp_add, ← Real.exp_add]
     apply Real.exp_le_exp.2
-    nlinarith [mul_le_mul_of_nonneg_right h1 hL0.le]
+    linarith [hBA, mul_le_mul_of_nonneg_right h1 hL0.le]
   rw [mul_div_assoc', div_div, le_div_iff₀ (by positivity)]
   calc 3 * B * C * Real.exp (-c₇ * L) * (B ^ A * 4)
       = B * B ^ A * (12 * C) * Real.exp (-c₇ * L) := by ring
@@ -1383,8 +1375,8 @@ theorem trivialClass_shortInterval : ∃ A c c' : ℝ, 0 < A ∧ 0 < c ∧ 0 < c
   have hlogX : 1 ≤ Real.log X := Real.one_le_sqrt.1 (hlogB.trans hL')
   have hXe : Real.exp 1 ≤ X := (Real.le_log_iff_exp_le hX0).1 hlogX
   have hX2 : 2 ≤ X := by linarith [Real.exp_one_gt_d9]
-  have hXY : X ≤ X * (1 + h) := by nlinarith
-  have hY2 : X * (1 + h) ≤ 2 * X := by nlinarith
+  have hXY : X ≤ X * (1 + h) := le_mul_of_one_le_right hX0.le (by linarith)
+  have hY2 : X * (1 + h) ≤ 2 * X := by linarith [mul_le_mul_of_nonneg_left hh1 hX0.le]
   have hLY : Real.sqrt (Real.log X) ≤ Real.sqrt (Real.log (X * (1 + h))) :=
     Real.sqrt_le_sqrt (Real.log_le_log hX0 hXY)
   set E := Real.exp (-c₇ * Real.sqrt (Real.log X)) with hE
@@ -1393,7 +1385,7 @@ theorem trivialClass_shortInterval : ∃ A c c' : ℝ, 0 < A ∧ 0 < c ∧ 0 < c
   have e2 := sum_est 𝓕 Z (X * (1 + h)) (C * (2 * X) * E) (by positivity) (by positivity) fun χ =>
     (h7 𝓕 χ (Z χ) (X * (1 + h)) (hZ χ) (hX2.trans hXY) (hL'.trans hLY)).trans (by
       have : Real.exp (-c₇ * Real.sqrt (Real.log (X * (1 + h)))) ≤ E :=
-        Real.exp_le_exp.2 (by nlinarith)
+        Real.exp_le_exp.2 (by linarith [mul_le_mul_of_nonneg_left hLY hc₇.le])
       gcongr)
   set δ := c₉ / 𝓕.B ^ A with hδ
   have hBA : 1 ≤ 𝓕.B ^ A := Real.one_le_rpow (by linarith) hA.le
@@ -1414,7 +1406,7 @@ theorem trivialClass_shortInterval : ∃ A c c' : ℝ, 0 < A ∧ 0 < c ∧ 0 < c
   have e1' := (abs_le.1 e1).2
   have e2' := (abs_le.1 e2).1
   have herrX := mul_le_mul_of_nonneg_left herr hX0.le
-  have main : h * X * δ / 4 ≤ (Fintype.card 𝓕.G : ℝ) * S := by nlinarith
+  have main : h * X * δ / 4 ≤ (Fintype.card 𝓕.G : ℝ) * S := by linarith [hX, hY2, hE0, hδ1]
   have main2 : h * X * δ / 4 ≤ 𝓕.B * S := main.trans (mul_le_mul_of_nonneg_right 𝓕.card_le hS0)
   rw [Real.rpow_add_one hB0.ne', ← div_div, div_le_iff₀ hB0]
   calc c₉ / 4 * h * X / 𝓕.B ^ A = h * X * δ / 4 := by rw [hδ]; ring

@@ -54,8 +54,6 @@ import Mathlib.Tactic.ReduceModChar
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.FWT Formalism.L2.Pj
@@ -163,38 +161,7 @@ theorem hecke {k P} (h : HkIdx i k P) : ∃ s : T0.Q.c.F, ‖embC YS (T.iC i) b 
   beta_reduce
   rw [h5, Z.ev_some (h1 c), e.symm_apply_apply, valAt_frBor YS fw j (h4 c), mul_assoc]
 
-
-
-
-include Z in
-theorem detects : Detects YS fw (T.iC i) b j := fun x hx => by
-  obtain ⟨f, rfl⟩ := (toK YS j b).surjective x
-  have : f = 0 := T.ev_inj i _ b (funext fun y => by
-    rw [map_zero, Pi.zero_apply, ← norm_le_zero_iff]
-    exact (Z.norm_le_iff le_rfl f).2 (fun z => by rw [hx z, norm_zero]) y)
-  rw [this, map_zero]
-
 end SideTie
-
-
-variable {YS} in
-theorem mem_span_toK {i : D.ntw.Tw} {j : Fin D.R.m} {b : Bool} {s : Set (D.nexp.Fm i ((j : ℕ) + 1) b)}
-    {s' : Set (NX.Fm S i ((j : ℕ) + 1) b)} (h : ∀ f, f ∈ s ↔ toK YS j b f ∈ s') (f : D.nexp.Fm i ((j : ℕ) + 1) b) :
-    f ∈ Submodule.span (D.ntw.O i) s ↔ toK YS j b f ∈ Submodule.span (D.ntw.O i) s' := by
-  have e : s' = (toK YS j b).restrictScalars (D.ntw.O i) '' s := by
-    ext x
-    obtain ⟨g, rfl⟩ := (toK YS j b).surjective x
-    exact ⟨fun hx => ⟨g, (h g).2 hx, rfl⟩, fun ⟨g', hg, e⟩ => (h g).1 ((toK YS j b).injective e ▸ hg)⟩
-  rw [e, Submodule.span_image_linearEquiv]
-  exact ⟨fun hf => ⟨f, hf, rfl⟩, fun ⟨g, hg, e⟩ => (toK YS j b).injective e ▸ hg⟩
-
-def SupPin (i : D.ntw.Tw) (j : Fin D.R.m) (b : Bool) : Prop :=
-  ∀ f : D.nexp.Fm i ((j : ℕ) + 1) b, f ∈ D.nexp.Bsup i _ b ↔ toK YS j b f ∈ NX.Bsup S i ((j : ℕ) + 1) b
-
-
-
-
-
 
 section Record
 
@@ -259,9 +226,6 @@ def hkUnit (j : Fin D.R.m) (b : Bool) (k : ℕ) (P : PlE D.host) : ℂ_[D.ntw.l 
   if h : ∃ s : T0.Q.c.F, ‖embC YS iC b s‖ = 1 ∧ HeckeIs YS fw iC b j k P (embC YS iC b s) then embC YS iC b h.choose else 1
 
 structure GeoLaws : Prop where
-  detects : ∀ b j, Detects YS fw iC b j
-  sup : ∀ b j, SupDescent YS fw iC b j
-  pin : ∀ b j, SupPin YS i j b
   hecke : ∀ b j, HeckeGeo YS fw iC b j
   stable : ∀ b j, HeckeStable YS iC b j
   count : ∀ j, HeckeCount YS iC j
@@ -299,17 +263,6 @@ theorem allEv_same {j : Fin D.R.m} {b : Bool} (f : D.nexp.Fm i ((j : ℕ) + 1) b
 theorem allEv_other {j : Fin D.R.m} {b : Bool} (f : D.nexp.Fm i ((j : ℕ) + 1) b) {y : AllPts YS iC ((j : ℕ) + 1)} (h : y.1 ≠ b) :
     allEv YS fw iC j b f y = 0 :=
   congrArg (fun o : Option (Pts YS iC b ((j : ℕ) + 1)) => o.elim 0 fun z => valAt YS fw j z.1 (toK YS j b f)) (atSide_other h)
-
-theorem allEv_ball {j : Fin D.R.m} {b : Bool} {B : ℝ} (hB : 0 ≤ B) (f : D.nexp.Fm i ((j : ℕ) + 1) b) :
-    (∀ y, ‖allEv YS fw iC j b f y‖ ≤ B) ↔ ∀ z : Pts YS iC b ((j : ℕ) + 1), ‖valAt YS fw j z.1 (toK YS j b f)‖ ≤ B := by
-  refine ⟨fun h z => allEv_same (fw := fw) f z ▸ h ⟨b, z⟩, fun h ⟨b', z⟩ => ?_⟩
-  by_cases hb : b' = b
-  · subst hb
-    rw [allEv_same]
-    exact h z
-  · rw [allEv_other f hb, norm_zero]
-    exact hB
-
 
 variable (YS fw) in
 def evN (j : ℕ) : ∀ b, D.nexp.Fm i j b →+ (AllPts YS iC j → ℂ_[D.ntw.l i]) :=
@@ -353,18 +306,6 @@ theorem ev_smul (j : ℕ) (b : Bool) (a : FractionRing (D.ntw.O i)) (f : D.nexp.
   | h2 j hj =>
     have := h.off j hj b
     rw [Subsingleton.elim (a • f) 0, Subsingleton.elim f 0, map_zero, Pi.zero_apply, mul_zero]
-
-theorem ev_inj (j : ℕ) (b : Bool) : Function.Injective (evN YS fw (iC := iC) j b) := by
-  induction j using lift_cases (m := D.R.m) with
-  | h1 j =>
-    rw [evN_succ]
-    refine (injective_iff_map_eq_zero _).2 fun f hf => (toK YS j b).injective ?_
-    rw [map_zero]
-    refine h.detects b j _ fun z => ?_
-    rw [← allEv_same, hf, Pi.zero_apply]
-  | h2 j hj =>
-    have := h.off j hj b
-    exact fun _ _ _ => Subsingleton.elim _ _
 
 theorem hk_ev (j : ℕ) (b : Bool) {k : ℕ} {P : PlE D.host} (hk : HkIdx i k P) (f : D.nexp.Fm i j b) (y : AllPts YS iC j) :
     evN YS fw j b (D.nexp.hkF i j b k P f) y = ∑ c, hkUnitN YS fw iC j b k P * evN YS fw j b f (allMove YS iC j k P c y) := by
@@ -410,17 +351,6 @@ theorem fmUr_span (j : ℕ) (b : Bool) :
     have := h.off j hj b
     exact Subsingleton.elim _ _
 
-theorem bsup_def (j : ℕ) (b : Bool) : D.nexp.Bsup i j b =
-    Submodule.span (D.ntw.O i) {f | f ∈ fmUrN YS iC j b ∧ ∀ y, ‖evN YS fw (iC := iC) j b f y‖ ≤ 1} := by
-  induction j using lift_cases (m := D.R.m) with
-  | h1 j =>
-    ext f
-    rw [h.pin b j f, h.sup b j, evN_succ]
-    exact (mem_span_toK (fun f => and_congr (mem_fmUrN j b f) (allEv_ball zero_le_one f)) f).symm
-  | h2 j hj =>
-    have := h.off j hj b
-    exact Subsingleton.elim _ _
-
 end GeoLaws
 
 variable {T}
@@ -430,7 +360,6 @@ def geoNTh (h : ∀ i, GeoLaws YS fw (T.iC i)) : NTh D.R D.host D.what₂ D.LL0 
     Pt := fun i j => AllPts YS (T.iC i) j
     ev := fun _ j => evN YS fw j
     ev_smul := fun i => (h i).ev_smul
-    ev_inj := fun i => (h i).ev_inj
     thV := fun _ _ _ _ _ => 0
     thV_add := fun _ _ _ _ _ _ => (add_zero _).symm
     thV_smul := fun _ _ _ _ _ _ => (mul_zero _).symm
@@ -452,8 +381,7 @@ def geoNTh (h : ∀ i, GeoLaws YS fw (T.iC i)) : NTh D.R D.host D.what₂ D.LL0 
     MaximalUnramifiedExtension := fun i => kurAt YS (T.iC i) true ⊓ kurAt YS (T.iC i) false
     FmUr := fun i => fmUrN YS (T.iC i)
     FmUr_smul := fun i => (h i).fmUr_smul
-    FmUr_span := fun i => (h i).fmUr_span
-    Bsup_def := fun i => (h i).bsup_def }
+    FmUr_span := fun i => (h i).fmUr_span }
 
 theorem GeoLaws.hk_tie (h : GeoLaws YS fw iC) (j : Fin D.R.m) (b : Bool) {k P} (hk : HkIdx i k P) :
     ∃ s : T0.Q.c.F, ‖embC YS iC b s‖ = 1 ∧ ∀ (y : AllPts YS iC ((j : ℕ) + 1)) (z : Pts YS iC b ((j : ℕ) + 1)), atSide b y = some z →

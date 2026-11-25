@@ -56,8 +56,6 @@ import Mathlib.Tactic.Linter.Style
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace Formalism.L2.FormalSeriesBounds.MapFB
@@ -67,21 +65,6 @@ open MvPowerSeries ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 variable {R S : Type} [CommRing R] [CommRing S] (φ : R →+* S) {d : ℕ}
 
 def mpt {n : ℕ} (a : Pt R n d) : Pt S n d := fun i => MvPowerSeries.map φ (a i)
-
-private theorem cc_subst_lemma {σ τ A : Type} [Finite σ] [CommRing A] (a : σ → MvPowerSeries τ A)
-    (ha : ∀ s, constantCoeff (a s) = 0) (f : MvPowerSeries σ A) :
-    constantCoeff (MvPowerSeries.subst a f) = constantCoeff f := by
-  rw [MvPowerSeries.constantCoeff_subst (MvPowerSeries.hasSubst_of_constantCoeff_zero ha)]
-  rw [finsum_eq_single _ 0]
-  · simp
-  · intro e he
-    obtain ⟨s, hs⟩ : ∃ s, e s ≠ 0 := by
-      by_contra h
-      push_neg at h
-      exact he (Finsupp.ext h)
-    rw [map_finsuppProd]
-    simp only [map_pow, ha, Finsupp.prod]
-    rw [Finset.prod_eq_zero (Finsupp.mem_support_iff.mpr hs) (zero_pow hs), smul_zero]
 
 theorem map_ev {m n : ℕ} (a : Fin m → Pt R n d) (ha : ∀ j i, constantCoeff (a j i) = 0)
     (f : PS R m d) : MvPowerSeries.map φ (ev a f) = ev (fun j => mpt φ (a j)) (MvPowerSeries.map φ f) := by
@@ -109,7 +92,9 @@ omit [CommRing S] in
 theorem cc_ev {m n : ℕ} (a : Fin m → Pt R n d) (ha : ∀ j i, constantCoeff (a j i) = 0) (f : PS R m d)
     (hf : constantCoeff f = 0) : constantCoeff (ev a f) = 0 := by
   unfold ev
-  exact (cc_subst_lemma (fun p : Fin m × Fin d => a p.1 p.2) (fun p => ha p.1 p.2) f).trans hf
+  exact MvPowerSeries.constantCoeff_subst_eq_zero
+    (MvPowerSeries.hasSubst_of_constantCoeff_zero fun p : Fin m × Fin d => ha p.1 p.2)
+    (fun p => ha p.1 p.2) hf
 
 omit [CommRing S] in
 @[simp] theorem cc_pt {n : ℕ} (j : Fin n) (i : Fin d) : constantCoeff (pt R d j i) = 0 := by
@@ -151,8 +136,6 @@ end -- clump:auto
 -- clump-header: {"m": "Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBr", "h": "module\n\npublic import Formalism.LocalToGlobal.CharacterGerms.RowTiePFBMapSt\npublic import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PlaceDivisors.StChartF\npublic import Formalism.LocalToGlobal.CharacterGerms.CharacteristicFromRanks\npublic import Formalism.LocalToGlobal.CharacterGerms.PlugUP\npublic import Formalism.LocalToGlobal.CharacterGerms.RowTieChar\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}
 section -- clump:auto
 @[expose] public section
-
-set_option autoImplicit false
 
 noncomputable section
 

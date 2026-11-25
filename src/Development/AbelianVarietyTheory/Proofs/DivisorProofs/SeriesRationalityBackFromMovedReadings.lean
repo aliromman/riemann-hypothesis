@@ -44,8 +44,6 @@ open Formalism.IndefR.FWT GlobalTheory.BigTop GlobalTheory.OntoChain GlobalTheor
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RealGeo GlobalTheory.Unframe GlobalTheory.UnframePt
 
-set_option autoImplicit false
-
 noncomputable section
 
 open scoped TensorProduct

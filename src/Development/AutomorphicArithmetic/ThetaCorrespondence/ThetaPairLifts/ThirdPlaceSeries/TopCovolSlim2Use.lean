@@ -1,6 +1,5 @@
 module
 
-public import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.FubiniStudyChowHeight
 public import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.EqOfIsometricTrivShift
 public import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.GenIdeal
 public import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.MahlerSectionStatementHolds
@@ -146,188 +145,7 @@ import Mathlib.Algebra.Order.Star.Int
 import Development.AbelianVarietyTheory.Definitions.Divisors.CuspIso
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.WeilBound.CoreStatements.AbelianHeightsDuality.FubiniStudyChowHeight.FubiniStudyChowHeightOfArExists, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.FubiniStudyChowHeightFormula, Development.AbelianVarietyTheory.Definitions.Divisors.NotIsChowFormIntLineZero, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIsRatSecOfPull, Development.WeilBound.CoreStatements.NefModelVolumes.InjectivityWeightSectionsOf, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.SmallSectionsInjectiveOfSelfIntersectionBound, Development.WeilBound.CoreStatements.MinimalPrimeDimensions.ContinuousAeval, Development.WeilBound.CoreStatements.MinimalPrimeDimensions.FiniteTypeSections, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.WeilHeightComparisonOfDegreeBound, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.SmallSectionsInjective, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsNonvanishingOfToroidal, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.TopCovolSlim2Use
-
--- ===== clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.FubiniStudyChowHeight.FubiniStudyChowHeightOfArExists =====
--- clump-header: {"m": "Development.WeilBound.CoreStatements.AbelianHeightsDuality.FubiniStudyChowHeight.FubiniStudyChowHeightOfArExists", "h": "module\n\npublic import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.FubiniStudyChowHeight\npublic import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.EqOfIsometricTrivShift\npublic import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.GenIdeal\npublic import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.MahlerSectionStatementHolds\npublic import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.ChowDegreeSection\npublic import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.EvaluationGenEqZero\npublic import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.FormHeightOneEq\npublic import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.IntegralOfLintegral\npublic import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.IsClosedOfCoheight\nimport Development.WeilBound.CoreStatements.MinimalPrimeDimensions.ResGAppLE\nimport Development.WeilBound.CoreStatements.MinimalPrimeDimensions.SpecializesIff\npublic import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.StCharts\npublic import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.SumNormSqUnitary\nimport GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.Assembly\nimport GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.OfLeaves\nimport GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.Assembly\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Real\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\n\n"}
-section -- clump:auto
-@[expose] public section
-
-set_option autoImplicit false
-
-noncomputable section
-
-open CategoryTheory AlgebraicGeometry NumberField MvPolynomial
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
-open ReciprocityTheory.ChartRestriction.G.DVR.FlatBC (algX)
-open GlobalTheory GlobalTheory.CxPts GlobalTheory.ProjSpace ChowFormHeightComparison₂.CF
-
-attribute [local instance] MvPolynomial.gradedAlgebra
-
-namespace FubiniStudyChowHeightFormula₂.Fs
-
-variable (R : Type) [CommRing R] (N : ℕ)
-
-theorem eval₂Hom_eq (U : (PSpace R N).Opens) (t : Fin (N + 1) → Γ(PSpace R N, U)) (g : MvPolynomial (Fin (N + 1)) R) :
-    eval₂Hom (algX (PSpace.str R N) U) t g = aeval t g := rfl
-
-theorem emb : Emb (PSpace.str R N) (coord R N) := by
-  refine ⟨O1_isLB R N, ?_, fun k => ?_⟩
-  · simp only [nonzeroLocus_coord]
-    exact (O1_isLB R N).cover
-  · have hk : nonzeroLocus (coord R N k) = chart R N k := by rw [nonzeroLocus_coord, twistingSheafOne_chart_eq_preimage_standardChart]
-    refine ⟨hk ▸ isAffineOpen_chart R N k, ?_⟩
-    rw [hk]
-    refine ⟨ratio R N k, ?_, ?_⟩
-    · have e : ⇑(eval₂Hom (algX (PSpace.str R N) (chart R N k)) (ratio R N k)) = ⇑(aeval (ratio R N k)) :=
-        funext (eval₂Hom_eq R N _ _)
-      rw [e]
-      exact aeval_ratio_surjective R N k
-    · intro j i
-      erw [coord_f R N j i, coord_f R N k i, resG_ratioOn, resG_ratioOn]
-      rw [mul_comm]
-      exact (ratioOn_mul_ratioOn (R := R) (N := N) (U := chart R N k ⊓ chart R N i) (i := i) (j := k) (k := j)).symm
-
-theorem ptIdeal_eq (z : PSpace R N) :
-    ptIdeal (PSpace.str R N) (coord R N) z =
-      (z : ProjectiveSpectrum (homogeneousSubmodule (Fin (N + 1)) R)).asHomogeneousIdeal.toIdeal := by
-  have key : ∀ (i : (O1 R N).ι) (h : (z : PSpace R N) ∈ (O1 R N).U i) (q : MvPolynomial (Fin (N + 1)) R),
-      (coneHom (PSpace.str R N) (coord R N) z i h q = 0 ↔
-        ∀ d, homogeneousComponent d q ∈ (z : ProjectiveSpectrum (homogeneousSubmodule (Fin (N + 1)) R)).asHomogeneousIdeal) := by
-    intro i h q
-    rw [C.coneHom_eq, Polynomial.ext_iff]
-    apply forall_congr'
-    intro d
-    rw [Polynomial.coeff_map, Polynomial.coeff_zero]
-    erw [A.coeff_cone]
-    erw [Scheme.evaluation_eq_zero_iff_notMem_basicOpen]
-    have hd := homogeneousComponent_isHomogeneous d q
-    have e : (eval₂Hom (algX (PSpace.str R N) ((O1 R N).U i)) fun n => (coord R N n).f i) (homogeneousComponent d q) =
-        formOn (chart R N i) i le_rfl d _ hd :=
-      ((formOn_eq_aeval (R := R) (N := N) (U := chart R N i) (i := i) (hi := le_rfl) hd).trans
-        (eval₂Hom_eq R N ((O1 R N).U i) _ _).symm).symm
-    erw [e, basicOpen_formOn]
-    constructor
-    · intro hn
-      by_contra hc
-      exact hn ⟨h, (Proj.mem_basicOpen _ _ _).2 hc⟩
-    · rintro hm ⟨_, hb⟩
-      exact (Proj.mem_basicOpen _ _ _).1 hb hm
-  have hom : ∀ q : MvPolynomial (Fin (N + 1)) R,
-      q ∈ (z : ProjectiveSpectrum (homogeneousSubmodule (Fin (N + 1)) R)).asHomogeneousIdeal.toIdeal ↔
-        ∀ d, homogeneousComponent d q ∈ (z : ProjectiveSpectrum (homogeneousSubmodule (Fin (N + 1)) R)).asHomogeneousIdeal := by
-    intro q
-    rw [(z : ProjectiveSpectrum (homogeneousSubmodule (Fin (N + 1)) R)).asHomogeneousIdeal.isHomogeneous.mem_iff]
-    exact forall_congr' fun d => by
-      rw [show ((DirectSum.decompose (homogeneousSubmodule (Fin (N + 1)) R) q d : MvPolynomial (Fin (N + 1)) R)) =
-        homogeneousComponent d q from decomposition.decompose'_apply q d]
-      rfl
-  ext q
-  simp only [ptIdeal, Ideal.mem_iInf, RingHom.mem_ker]
-  rw [hom]
-  constructor
-  · intro H
-    have hz : (z : PSpace R N) ∈ ⨆ i, (O1 R N).U i := by
-      rw [(O1_isLB R N).cover]
-      trivial
-    obtain ⟨i, hi⟩ := TopologicalSpace.Opens.mem_iSup.1 hz
-    exact (key i hi q).1 (H i hi)
-  · intro H i hi
-    exact (key i hi q).2 H
-
-open GroundTheory.Heights₂.Heights in
-theorem stMain : StMain :=
-  stMain_of (stVert stPts stPull stDiv) (stArch stPts (stCharts stPts))
-    (ChowHeightRecursion.of_leaves ChowFormSectionVertical.full GlobalTheory.CompanionTheory.Ar.Short.mahlerSection ChowFormBaseChange.full
-      BaseChangeAvoid.full) ChowFormSection.full ChowHeightMul.full ProjPrimeHasPoint.full
-
-end FubiniStudyChowHeightFormula₂.Fs
-
-private theorem isFS_fsBasis_normOf {k : Type} [CommRing k] {Z : Scheme} (p : Z ⟶ Sp k) (σ : k →+* ℂ)
-    {B : LB Z} {m : ℕ} (hB : B.IsLB) (b : Fin m → B.Sec) (hb : ⨆ (j : Fin m), nonzeroLocus (b j) = ⊤)
-    (M : Matrix (Fin m) (Fin m) ℂ) (hM : M.det ≠ 0) :
-    IsFS (Weight.fsBasis p σ hB b hb M hM) b (normOf M hM) := by
-  intro i y _
-  rw [Weight.fsBasis_φ, dualNorm_normOf, Real.sq_sqrt (Finset.sum_nonneg fun _ _ => sq_nonneg _)]
-  rfl
-
-
-open FubiniStudyChowHeightFormula₂.Fs GroundTheory.Heights₂.Heights in
-theorem FubiniStudyChowHeightFormula₂.fubiniStudyChowHeight_of_arExists (hE : GlobalTheory.Published.ArExists) : GlobalTheory.Published.FubiniStudyChowHeight := by
-  intro K _ _ N e δ Y _ i _ hvar A hA hc f hf
-  let Lfs := HermLB.fs (PSpace.str (𝓞 K) N) (O1_isLB (𝓞 K) N) (coord (𝓞 K) N) (FubiniStudyChowHeightFormula₂.Fs.emb (𝓞 K) N).cover A hA hc
-  let L := Lfs.pull i (rfl : i ≫ PSpace.str (𝓞 K) N = i ≫ PSpace.str (𝓞 K) N)
-  show L.IsSelfInter _
-  obtain ⟨ht, hht⟩ := (hE (𝓞 K) Y (i ≫ PSpace.str (𝓞 K) N) e hvar).1 L
-  let H : ArchData K (N + 1) :=
-    ⟨fun σ => normOf (A (σ.comp (algebraMap (𝓞 K) K))) (hA _), fun σ u => by
-      obtain ⟨U, hU, hAU⟩ := hc (σ.comp (algebraMap (𝓞 K) K))
-      exact norm_normOf_conj (hA _) (hA _) hU hAU u⟩
-  have hs := stPull (𝓞 K) (PSpace (𝓞 K) N) Y (PSpace.str (𝓞 K) N) (O1 (𝓞 K) N) (N + 1) (coord (𝓞 K) N) i
-    (FubiniStudyChowHeightFormula₂.Fs.emb (𝓞 K) N)
-  have hFS : ∀ σ : K →+* ℂ, IsFS (L.φ (σ.comp (algebraMap (𝓞 K) K)))
-      (fun k => secPull (coord (𝓞 K) N k) i) (H.normAt σ) := fun σ =>
-    M.isFS_pull (isFS_fsBasis_normOf (PSpace.str (𝓞 K) N) (σ.comp (algebraMap (𝓞 K) K)) (O1_isLB (𝓞 K) N)
-      (coord (𝓞 K) N) (FubiniStudyChowHeightFormula₂.Fs.emb (𝓞 K) N).cover (A (σ.comp (algebraMap (𝓞 K) K))) (hA _)) i
-  have hgen : genIdeal (i ≫ PSpace.str (𝓞 K) N) (fun k => secPull (coord (𝓞 K) N k) i) =
-      Ideal.map (MvPolynomial.map (algebraMap (𝓞 K) K)) (i (genericPoint Y)).asHomogeneousIdeal.toIdeal := by
-    simp only [genIdeal]
-    rw [hs.2.1, FubiniStudyChowHeightFormula₂.Fs.ptIdeal_eq]
-  have hCF : IsChowForm (genIdeal (i ≫ PSpace.str (𝓞 K) N) (fun k => secPull (coord (𝓞 K) N k) i)) (e + 1) f := by
-    rw [hgen]
-    refine ⟨hf.ne_zero, fun g => ⟨fun hg => hf.dvd_of_forall_aeval_eq_zero
-      (fun u hu => hg u ((hf.zero_iff u).1 hu)), ?_⟩⟩
-    rintro ⟨c, rfl⟩ u hu
-    rw [map_mul, (hf.zero_iff u).2 hu, zero_mul]
-  have hMH : GroundTheory.Heights₂.Heights.IsMultiHomog δ f := by
-    intro d hd
-    have h : ∀ b, ∑ j : Fin (N + 1), d (b, j) = δ := hf.homog d (MvPolynomial.mem_support_iff.2 hd)
-    funext b
-    rw [← h b, Finsupp.weight_apply, Finsupp.sum_fintype _ _ (by intro; simp)]
-    simp only [Finset.sum_apply, groupWeight, Fintype.sum_prod_type]
-    rw [Finset.sum_eq_single b (fun a _ hab => by simp [Ne.symm hab]) (by simp)]
-    simp
-  have key := FubiniStudyChowHeightFormula₂.Fs.stMain K (N + 1) H e Y (i ≫ PSpace.str (𝓞 K) N) L
-    (fun k => secPull (coord (𝓞 K) N k) i) hvar hs.1 hFS δ f hCF hMH _ ⟨ht, hht, rfl⟩
-  have hfh := D.formHeight_one_eq (by omega : 1 ≤ N + 1) H δ hf.ne_zero
-  have hmat : (fun σ : K →+* ℂ => (H.normAt σ).mat⁻¹) = fun σ => A (σ.comp (algebraMap (𝓞 K) K)) :=
-    funext fun σ => Matrix.nonsing_inv_nonsing_inv _ (isUnit_iff_ne_zero.2 (hA _))
-  rw [hmat] at hfh
-  rw [hfh, ← key]
-  exact ⟨ht, hht, rfl⟩
-
-theorem FubiniStudyChowHeightFormula₂.fubiniStudyChowHeight_of (h : GlobalTheory.Published.ArCalc) : GlobalTheory.Published.FubiniStudyChowHeight :=
-  FubiniStudyChowHeightFormula₂.fubiniStudyChowHeight_of_arExists h.arExists
-end -- clump:auto
-end -- clump:auto
-end -- clump:auto
--- ===== end clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.FubiniStudyChowHeight.FubiniStudyChowHeightOfArExists =====
-
--- ===== clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.FubiniStudyChowHeightFormula =====
--- clump-header: {"m": "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.FubiniStudyChowHeightFormula", "h": "module\n\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.ToKnownTheoremsOf\npublic import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.FubiniStudyChowHeight\npublic import Development.WeilBound.CoreStatements.AbelianHeightsDuality.FubiniStudyChowHeight.FubiniStudyChowHeightOfArExists\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}
-section -- clump:auto
-@[expose] public section
-
-section
-set_option autoImplicit false
-noncomputable section
-open CategoryTheory AlgebraicGeometry NumberField MvPolynomial
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
-open ReciprocityTheory.ChartRestriction.G.DVR.FlatBC (algX)
-open GlobalTheory GlobalTheory.CxPts GlobalTheory.ProjSpace ChowFormHeightComparison₂.CF
-attribute [local instance] MvPolynomial.gradedAlgebra
-namespace FubiniStudyChowHeightFormula₂.Fs
-variable (R : Type) [CommRing R] (N : ℕ)
-end FubiniStudyChowHeightFormula₂.Fs
-theorem FubiniStudyChowHeightFormula₂.fubiniStudy_chowHeight_formula (h : _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems) : GlobalTheory.Published.FubiniStudyChowHeight :=
-  FubiniStudyChowHeightFormula₂.fubiniStudyChowHeight_of h.p4
-end
-end
-end -- clump:auto
-end -- clump:auto
--- ===== end clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.FubiniStudyChowHeightFormula =====
+-- Members: Development.AbelianVarietyTheory.Definitions.Divisors.NotIsChowFormIntLineZero, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIsRatSecOfPull, Development.WeilBound.CoreStatements.NefModelVolumes.InjectivityWeightSectionsOf, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.SmallSectionsInjectiveOfSelfIntersectionBound, Development.WeilBound.CoreStatements.MinimalPrimeDimensions.ContinuousAeval, Development.WeilBound.CoreStatements.MinimalPrimeDimensions.FiniteTypeSections, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.WeilHeightComparisonOfDegreeBound, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.SmallSectionsInjective, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsNonvanishingOfToroidal, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.TopCovolSlim2Use
 
 -- ===== clump member: Development.AbelianVarietyTheory.Definitions.Divisors.NotIsChowFormIntLineZero =====
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Definitions.Divisors.NotIsChowFormIntLineZero", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.AevalEqZeroOfMemConeIdeal\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Development.AbelianVarietyTheory.Definitions.Foundations.IsProbabilityMeasureMuPart\npublic import Formalism.LocalToGlobal.ProjectiveLattices.PetersonNormSubspace\n\n"}
@@ -1014,10 +832,10 @@ end GlobalTheory.CompanionTheory.Ar.Rec
 
 namespace GlobalTheory.CompanionTheory.Ar.Rec
 
-theorem exists_nonvanishing_of_toroidal : GlobalTheory.Published.SiegelToroidalIntegral → GlobalTheory.Published.ToroidalForFanKS → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (σ : c.F →+* ℂ), 1 ≤ Dw.p + Dw.q → ∀ (a : (E →+* ℂ) × ℕ → ℕ) (n : ℕ), Dom a n → ∀ y : FrPt Xo c (CAt σ), ∃ (a' : (E →+* ℂ) × ℕ → ℕ) (n' : ℕ), Dom a' n' ∧ ∃ g ∈ sec Xo c a' n', ∃ f ∈ sec Xo c (a + a') (n + n'), evR Xo c g y ≠ 0 ∧ evR Xo c f y ≠ 0 := by
-  intro hS hK E _ _ _ H Dw l Xo c σ hr a n hD y
+theorem exists_nonvanishing_of_toroidal : GlobalTheory.Published.ToroidalForFanKS → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (σ : c.F →+* ℂ), 1 ≤ Dw.p + Dw.q → ∀ (a : (E →+* ℂ) × ℕ → ℕ) (n : ℕ), Dom a n → ∀ y : FrPt Xo c (CAt σ), ∃ (a' : (E →+* ℂ) × ℕ → ℕ) (n' : ℕ), Dom a' n' ∧ ∃ g ∈ sec Xo c a' n', ∃ f ∈ sec Xo c (a + a') (n + n'), evR Xo c g y ≠ 0 ∧ evR Xo c f y ≠ 0 := by
+  intro hK E _ _ _ H Dw l Xo c σ hr a n hD y
   classical
-  obtain ⟨φ, Y, BD, d, k, -, -, -, -, -, a₁, a₂, a₃, a₄, -, -, hY, hA⟩ := hK.exists_model hS hr Xo c
+  obtain ⟨φ, Y, BD, d, k, -, -, -, -, -, a₁, a₂, a₃, a₄, -, -, hY, hA⟩ := hK.exists_model hr Xo c
   obtain ⟨fl⟩ := _root_.GlobalTheory.FlagMod.FieldFlag.nonempty_flagModel E H Dw l Xo c Y a₁ (GlobalTheory.CompHS.TorFlagEx.pushInvertible_of_hasTheta Y
     (GlobalTheory.ThetaNormal.hasTheta_of_smooth E H Dw hr l Xo c Y a₁))
   let TF : TorFlag Xo c := ⟨Y, a₁, a₂, a₃, fl⟩
@@ -1123,7 +941,7 @@ end -- clump:auto
 -- ===== end clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsNonvanishingOfToroidal =====
 
 -- ===== clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.TopCovolSlim2Use =====
--- clump-header: {"m": "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.TopCovolSlim2Use", "h": "module\n\npublic import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.GrothendieckDeformation\npublic import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.ToroidalCompactificationBis\npublic import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.InterNumDetNonposSplitTorus\npublic import Development.AutomorphicSpectrum.PublishedTheorems.Algebra₂.FarguesExact\npublic import Development.AutomorphicSpectrum.PublishedTheorems.Algebra₂.ZarhinStatement\npublic import Development.AutomorphicSpectrum.PublishedTheorems.Geometry₂.NefRR\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.ToKnownTheoremsOf\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LiftLambdaBound\npublic import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.ArBirational\npublic import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.PointSeparationPair\npublic import Development.AutomorphicSpectrum.PublishedTheorems.Geometry₂.ConclusionOfSmooth\npublic import Development.AutomorphicSpectrum.PublishedTheorems.Geometry₂.NotSubsetOfDenseCompl\npublic import Development.AutomorphicSpectrum.PublishedTheorems.Metrics₂.PoincareLelongInv\npublic import Development.WeilBound.CoreStatements.AutomorphicKernels.MoriwakiBigness.HilbertSamuelApplications.SmallGeneratedCountUpperOfUse\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ChowFormIntExistsAndChowFormExists\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GreenCuspidalCharsByRegularCharsProof\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SumRangeEqRoots\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.ChowFormHeightComparison\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.FubiniStudyChowHeightFormula\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.SmallSectionsInjective\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.TopCovolG\npublic import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsNonvanishingOfToroidal\npublic import Development.WeilBound.CoreStatements.AbelianHeightsDuality.PublishedTheoremStatements.BridgesMore\npublic import Development.WeilBound.CoreStatements.AutomorphicKernels.MoriwakiBigness.HilbertSamuelApplications.AhSlimU\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.HypothesesX\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.SemiposAtOfPositive\n\n"}
+-- clump-header: {"m": "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.TopCovolSlim2Use", "h": "module\n\npublic import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.GrothendieckDeformation\npublic import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.ToroidalCompactificationBis\npublic import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.InterNumDetNonposSplitTorus\npublic import Development.AutomorphicSpectrum.PublishedTheorems.Algebra₂.FarguesExact\npublic import Development.AutomorphicSpectrum.PublishedTheorems.Algebra₂.ZarhinStatement\npublic import Development.AutomorphicSpectrum.PublishedTheorems.Geometry₂.NefRR\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.ToKnownTheoremsOf\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LiftLambdaBound\npublic import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.ArBirational\npublic import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.PointSeparationPair\npublic import Development.AutomorphicSpectrum.PublishedTheorems.Geometry₂.ConclusionOfSmooth\npublic import Development.AutomorphicSpectrum.PublishedTheorems.Geometry₂.NotSubsetOfDenseCompl\npublic import Development.AutomorphicSpectrum.PublishedTheorems.Metrics₂.PoincareLelongInv\npublic import Development.WeilBound.CoreStatements.AutomorphicKernels.MoriwakiBigness.HilbertSamuelApplications.SmallGeneratedCountUpperOfUse\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ChowFormIntExistsAndChowFormExists\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GreenCuspidalCharsByRegularCharsProof\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SumRangeEqRoots\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.ChowFormHeightComparison\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.SmallSectionsInjective\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.TopCovolG\npublic import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsNonvanishingOfToroidal\npublic import Development.WeilBound.CoreStatements.AbelianHeightsDuality.PublishedTheoremStatements.BridgesMore\npublic import Development.WeilBound.CoreStatements.AutomorphicKernels.MoriwakiBigness.HilbertSamuelApplications.AhSlimU\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.HypothesesX\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.SemiposAtOfPositive\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -1134,14 +952,12 @@ section
 open NumberField Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Indef.Tree
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 namespace SelfIntersectionVolumeEstimates
 
-theorem topCovolSlim2_use_alt_alt : GlobalTheory.CompanionTheory.Hypotheses₂.ResolutionCharZero → GlobalTheory.CompanionTheory.Hypotheses₂.PrincipalisationCharZero → GlobalTheory.CompanionTheory.Hypotheses₂.PoincareLelongInv → PositivityTheory.MbHsUse.HSUse → ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.MoriwakiBigStatement → HT.FarguesExact → GR.ZarhinStatement → Pub.NefRR → GlobalTheory.Published.SiegelToroidalIntegral → GlobalTheory.Published.ToroidalForFanKS → GlobalTheory.Published.SemiAbelianLieSeminegative → GlobalTheory.Published.PointSeparationPair → _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → GlobalTheory.Published.GrothendieckDeformation → _root_.GlobalTheory.CovTop.CovolumeBoundOfX :=
-  fun h₁ h₂ hPL hU hBig hFar hZar hRR hS hK hN hSep hP hGD =>
-    have hX : GlobalTheory.CovTop.HypothesesX := ⟨hK, hN, GlobalTheory.GreenBridge.green_of_regular GlobalTheory.greenRegularCharacters_holds, hSep, _root_.FubiniStudyChowHeightFormula₂.fubiniStudy_chowHeight_formula hP⟩
-    have hH : GlobalTheory.CovHt.HypothesesH := ⟨hS⟩
-    _root_.SelfIntersectionVolumeEstimates.topCovolG_alt_alt ⟨_root_.ChowFormHeightComparison₂.chow_form_height_comparison, _root_.PositivityTheory.Xj7N.small_sections_injective (GlobalTheory.CompanionTheory.Ar.Rec.exists_nonvanishing_of_toroidal hH.sieg hX.ks)⟩ hX hP hH hGD ⟨hP.q6, hP.q7, GlobalTheory.Published.chowFormIntExists_holds⟩
+theorem topCovolSlim2_use_alt_alt : GlobalTheory.CompanionTheory.Hypotheses₂.ResolutionCharZero → GlobalTheory.CompanionTheory.Hypotheses₂.PrincipalisationCharZero → GlobalTheory.CompanionTheory.Ar.Pub.PoincareLelong → PositivityTheory.MbHsUse.HSUse → ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.MoriwakiBigStatement → HT.FarguesExact → GR.ZarhinStatement → Pub.NefRR → GlobalTheory.Published.ToroidalForFanKS → GlobalTheory.Published.SemiAbelianLieSeminegative → GlobalTheory.Published.PointSeparationPair → _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → GlobalTheory.Published.GrothendieckDeformation → _root_.GlobalTheory.CovTop.CovolumeBoundOfX :=
+  fun h₁ h₂ hPL hU hBig hFar hZar hRR hK hN hSep hP hGD =>
+    have hX : GlobalTheory.CovTop.HypothesesX := ⟨hK, hN, GlobalTheory.GreenBridge.green_of_regular GlobalTheory.greenRegularCharacters_holds, hSep⟩
+    _root_.SelfIntersectionVolumeEstimates.topCovolG_alt_alt ⟨_root_.ChowFormHeightComparison₂.chow_form_height_comparison, _root_.PositivityTheory.Xj7N.small_sections_injective (GlobalTheory.CompanionTheory.Ar.Rec.exists_nonvanishing_of_toroidal hX.ks)⟩ hX hP hGD ⟨hP.q6, hP.q7, GlobalTheory.Published.chowFormIntExists_holds⟩
       (PositivityTheory.HtPt.Ah.deep_slim_use h₁ h₂ hPL hU hBig hFar hZar hRR)
 end SelfIntersectionVolumeEstimates
 end

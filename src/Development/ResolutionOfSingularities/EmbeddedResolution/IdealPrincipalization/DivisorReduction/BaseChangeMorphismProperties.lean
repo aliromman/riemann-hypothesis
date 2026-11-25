@@ -1,6 +1,9 @@
 module
 
-public import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.DivisorReduction.FieldBaseChangeCompatibility
+public import Development.ResolutionOfSingularities.EmbeddedResolution.IteratedBlowups.RemoveIsoBlowups
+public import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.DivisorReduction.SmoothBaseChangeOnDivisor
+public import Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.IsoBlowupRemovalBaseChange
+public import Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.PullbackBlowupSequenceIsomorphism
 import Development.ResolutionOfSingularities.Foundations.Schemes.IdealSheafData
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
@@ -61,12 +64,6 @@ theorem surjective_id :
   intro x
   exact ⟨x, rfl⟩
 
-theorem comap_comap :
-    ∀ (X Y Z : Scheme.{u}) (f : X ⟶ Y) (g : Y ⟶ Z) (I : Z.IdealSheafData),
-      (I.comap g).comap f = I.comap (f ≫ g) := by
-  intro X Y Z f g I
-  simp
-
 theorem comap_ne_top_of_surjective :
     ∀ (X Y : Scheme.{u}) (h : Y ⟶ X) [AlgebraicGeometry.Surjective h] (Z : X.IdealSheafData),
       Z ≠ ⊤ → Z.comap h ≠ ⊤ := by
@@ -80,33 +77,5 @@ theorem comap_ne_top_of_surjective :
   subst hy
   refine (Scheme.IdealSheafData.support_nonempty_iff_ne_top _).mp ⟨y, ?_⟩
   simpa [AlgebraicGeometry.Scheme.IdealSheafData.support_comap] using hx
-
-theorem flat_fieldBaseChangeProjection :
-    ∀ (T : MarkedIdealWithBoundary.{u}) (K : Type u) [Field K] (f : T.base →+* K),
-      AlgebraicGeometry.Flat (fieldBaseChangeProjection T K f) := by
-  intro T K _ f
-  have hflat : AlgebraicGeometry.Flat (specMapOfFieldHom T.base K f) := instFlatSpecMapOfFieldHom ..
-  exact MorphismProperty.of_isPullback
-    ((CategoryTheory.IsPullback.of_hasPullback T.structMap (specMapOfFieldHom T.base K f)).flip)
-    hflat
-
-theorem surjective_fieldBaseChangeProjection :
-    ∀ (T : MarkedIdealWithBoundary.{u}) (K : Type u) [Field K] (f : T.base →+* K),
-      AlgebraicGeometry.Surjective (fieldBaseChangeProjection T K f) := by
-  intro T K _ f
-  have hsurj : AlgebraicGeometry.Surjective (specMapOfFieldHom T.base K f) :=
-    instSurjectiveSpecMapOfFieldHom ..
-  exact surjective_snd_of_isPullback_of_surjective T.structMap
-    (CategoryTheory.Limits.pullback.snd T.structMap (specMapOfFieldHom T.base K f))
-    (specMapOfFieldHom T.base K f) (fieldBaseChangeProjection T K f)
-    (CategoryTheory.IsPullback.of_hasPullback T.structMap (specMapOfFieldHom T.base K f)).flip
-
-theorem comap_fieldBaseChangeProjection_ne_top :
-    ∀ (T : MarkedIdealWithBoundary.{u}) (K : Type u) [Field K] (f : T.base →+* K)
-      (I : T.scheme.IdealSheafData), I ≠ ⊤ → I.comap (fieldBaseChangeProjection T K f) ≠ ⊤ := by
-  intro T K _ f I hI
-  have : AlgebraicGeometry.Surjective (fieldBaseChangeProjection T K f) :=
-    surjective_fieldBaseChangeProjection T K f
-  exact comap_ne_top_of_surjective _ _ (fieldBaseChangeProjection T K f) I hI
 
 end FunctorialResolution.EmbeddedResolution

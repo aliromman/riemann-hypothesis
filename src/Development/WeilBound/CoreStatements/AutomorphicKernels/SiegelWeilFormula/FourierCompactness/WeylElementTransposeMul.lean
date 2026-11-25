@@ -139,12 +139,6 @@ theorem exists_w {b : GL (Fin n ⊕ Fin n) E} (hb : IsFrame2 σ Y b) :
   obtain ⟨ε, hε⟩ := hb.1
   exact ⟨ε, wA σ Y b ε hε, wA_inFrame hε, wA_rat hε⟩
 
-theorem auxEx : AuxiliaryPrimeFunction := by
-  intro F E _ _ _ _ _ σ d
-  obtain ⟨ν, 𝓕, hν, h𝓕, h1⟩ := exists_cov (F := F) (E := E) d.m d.n
-  obtain ⟨i1, i2, i3, i4⟩ := doubled_group_topological_properties σ d.Y
-  exact ⟨⟨ν, hν, 𝓕, h𝓕, h1⟩, exists_w d.ok.frame, i1, i2, i3, i4⟩
-
 end PositivityTheory.SiegelWeilFormula.kfour
 
 end

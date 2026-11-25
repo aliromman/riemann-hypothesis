@@ -11,7 +11,7 @@ public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.
 public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.TensorLocallyCompactRing
 public import Formalism.UnipotentAdelicQuotients.SiegelWeilUnitaryConvergent
 public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.UnitaryGroupFiniteVolume
-public import Development.WeilBound.CoreStatements.ThetaDilations.ThetaLint
+public import CompanionTheory.AutomorphicTheory.ThetaDilations.ThetaLint
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
 import Mathlib.Algebra.Order.Interval.Basic
@@ -75,8 +75,8 @@ theorem thetaMeas_gram_indep : ∀ (F E : Type) [Field F] [NumberField F] [Field
   obtain ⟨_, _, _, _, _, hact⟩ := _root_.GlobalTheory.CompanionTheory.SW.TopH.topH_props F E σ hcm M J hJ (AF F)
   obtain ⟨ac, a1, a2, ag⟩ := hact n
   have hrat := (_root_.GlobalTheory.CompanionTheory.SW.GramLocal.gram_local F E σ hcm M J hJ n 0 T).2
-  have hl := PositivityTheory.PlacePermOperatorBicommutantSpan.theta_lint F E σ hcm M J hJ μ 𝓕 hμ h𝓕 n {X | gramE σ J X = T}
-  have hl' := PositivityTheory.PlacePermOperatorBicommutantSpan.theta_lint F E σ hcm M J hJ μ' 𝓕' hμ' h𝓕₂ n {X | gramE σ J X = T}
+  have hl := CompanionTheory.PlacePermOperatorBicommutantSpan.theta_lint F E σ hcm M J hJ μ 𝓕 hμ h𝓕 n {X | gramE σ J X = T}
+  have hl' := CompanionTheory.PlacePermOperatorBicommutantSpan.theta_lint F E σ hcm M J hJ μ' 𝓕' hμ' h𝓕₂ n {X | gramE σ J X = T}
   have hinj : Function.Injective (inclR (F := F) (E := E) (AF F)) :=
     Algebra.TensorProduct.includeRight_injective (AdeleRing.algebraMap_injective _ _)
   have hri : Function.Injective (ratTup (F := F) (AF F) : (Fin n → Fin M → E) → _) := fun X Y h =>
@@ -102,7 +102,7 @@ theorem thetaMeas_gram_indep : ∀ (F E : Type) [Field F] [NumberField F] [Field
   set f : HA (AF F) σ J → ℝ≥0∞ := fun g => ∑' X : {X | gramE σ J X = T},
     Φ (actW (AF F) σ J g⁻¹ (ratTup (AF F) (X : Fin n → Fin M → E))) with hf
   have hle : ∀ (γ : Γ) g, f (γ • g) ≤ f g := fun γ g => by
-    choose t ht using fun X : {X | gramE σ J X = T} => PositivityTheory.PlacePermOperatorBicommutantSpan.act_rat (n := n) γ⁻¹ X.1
+    choose t ht using fun X : {X | gramE σ J X = T} => CompanionTheory.PlacePermOperatorBicommutantSpan.act_rat (n := n) γ⁻¹ X.1
     have ht' : ∀ X, actW (AF F) σ J (γ : HA (AF F) σ J)⁻¹ (ratTup (AF F) X.1) = ratTup (AF F) (t X) := ht
     have hT : ∀ X, gramE σ J (t X) = T := fun X =>
       Matrix.map_injective hinj (by simp only [← hrat, ← ht', ag]; rw [hrat, X.2])

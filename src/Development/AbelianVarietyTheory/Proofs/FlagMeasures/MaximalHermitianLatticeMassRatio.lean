@@ -306,7 +306,6 @@ theorem discAut_eq (J : JD h L 𝔭 b a) {i : Fin m} (hi : vF 𝔭 (a i) = 1)
 
 end GlobalTheory.DiscAutLenOne
 
-
 open GlobalTheory.DiscAutLenOne in
 theorem GlobalTheory.DiscAutLenOne.discAut_eq_normRepCount : ∀ (K F V : Type) [Field K] [NumberField K] [StarRing K] [Field F] [NumberField F] [Algebra F K] [AddCommGroup V] [Module K V] [FiniteDimensional K V] [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V], IsCMUnram K → IsFixF K F → ∀ h : V →ₗ⋆[K] V →ₗ[K] K, h.IsSymm → ∀ L : Submodule (𝓞 K) V, Submodule.IsLattice K L → ∀ 𝔭 : Ideal (𝓞 F), 𝔭.IsMaximal → ∀ (b : Fin (Module.finrank K (⊤ : Submodule K V)) → V) (a : Fin (Module.finrank K (⊤ : Submodule K V)) → 𝓞 F), IsJordanIn h ⊤ L 𝔭 b a → ∀ i, vF 𝔭 (a i) = 1 → (∀ j, j ≠ i → vF 𝔭 (a j) = 0) → discAut h ⊤ L 𝔭 = normRepCount K (extP K 𝔭 ^ 1) 1 1 := by
   intro K F V _ _ _ _ _ _ _ _ _ _ _ _ hF h _ L hL 𝔭 h𝔭 b a hJ i hi hj
@@ -348,75 +347,15 @@ variable {K F V : Type} [Field K] [NumberField K] [StarRing K] [Field F] [Number
 local notation "jK" => algebraMap (𝓞 K) K
 local notation "ι" => algebraMap (𝓞 F) (𝓞 K)
 
-private theorem coe_iota_eq_algebraMap_coe (a : 𝓞 F) : jK (ι a) = algebraMap F K (a : F) := by
-  rw [← IsScalarTower.algebraMap_apply (𝓞 F) (𝓞 K) K, IsScalarTower.algebraMap_apply (𝓞 F) F K]
-
-private theorem jK_iota_ne_zero {a : 𝓞 F} (ha : a ≠ 0) : jK (ι a) ≠ 0 := by
-  rw [coe_iota_eq_algebraMap_coe]
-  refine (map_ne_zero (algebraMap F K)).mpr ?_
-  exact (map_ne_zero_iff _ (IsFractionRing.injective (𝓞 F) F)).mpr ha
-
-private theorem jK_ne_zero_of_mem_closure_prime_compl {𝔭 : Ideal (𝓞 F)} {s : 𝓞 K}
-    (hs : s ∈ Submonoid.closure {s : 𝓞 K | ∃ t : 𝓞 F, t ∉ 𝔭 ∧ algebraMap (𝓞 F) (𝓞 K) t = s}) :
-    jK s ≠ 0 := by
-  induction hs using Submonoid.closure_induction with
-  | mem y hy =>
-    obtain ⟨t, ht, rfl⟩ := hy
-    refine jK_iota_ne_zero ?_
-    rintro rfl
-    exact ht 𝔭.zero_mem
-  | one => simp
-  | mul y z _ _ hy hz => rw [map_mul]; exact mul_ne_zero hy hz
-
-theorem smul_eq_jK (c : 𝓞 K) (v : V) : c • v = jK c • v := (algebraMap_smul K c v).symm
-
 section
 
 variable {h : V →ₗ⋆[K] V →ₗ[K] K} {X : Submodule K V} {L : Submodule (𝓞 K) V} {𝔭 : Ideal (𝓞 F)}
   {n : ℕ} {b : Fin n → V} {a : Fin n → 𝓞 F}
 
-theorem h_sum (horth : ∀ i j, i ≠ j → h (b i) (b j) = 0) (hdiag : ∀ i, h (b i) (b i) = jK (ι (a i)))
-    (c : Fin n → K) (k : Fin n) : h (b k) (∑ i, c i • b i) = c k * jK (ι (a k)) := by
-
-  simp only [map_sum, map_smul, smul_eq_mul]
-  rw [Finset.sum_eq_single k]
-  · rw [hdiag]
-  · intro i _ hik
-    rw [horth k i (Ne.symm hik), mul_zero]
-  · intro hk
-    exact absurd (Finset.mem_univ k) hk
-
-theorem locF_le_spanK (h𝔭 : 𝔭.IsPrime) :
-    locF 𝔭 (Submodule.span (𝓞 K) (Set.range b)) ≤
-      (Submodule.span K (Set.range b)).restrictScalars (𝓞 K) := by
-  intro x hx
-  obtain ⟨s, hs, hsx⟩ := hx
-  have hs0 : jK s ≠ 0 := jK_ne_zero_of_mem_closure_prime_compl hs
-  have h1 : s • x ∈ Submodule.span K (Set.range b) :=
-    Submodule.span_le_restrictScalars (𝓞 K) K _ hsx
-  have h2 : (jK s)⁻¹ • (s • x) ∈ Submodule.span K (Set.range b) := Submodule.smul_mem _ _ h1
-  rw [← algebraMap_smul K s x, smul_smul, inv_mul_cancel₀ hs0, one_smul] at h2
-  exact h2
-
 variable (hbX : ∀ i, b i ∈ X) (hloc : locF 𝔭 (Submodule.span (𝓞 K) (Set.range b)) = locF 𝔭 L)
   (horth : ∀ i j, i ≠ j → h (b i) (b j) = 0)
   (hdiag : ∀ i, h (b i) (b i) = algebraMap F K ((a i : 𝓞 F) : F)) (ha : ∀ i, a i ≠ 0)
 include hbX hloc horth hdiag ha
-
-theorem coords (h𝔭 : 𝔭.IsPrime) (hL : IsLatIn X L) {x : V} (hx : x ∈ X) :
-    x = ∑ i, (h (b i) x / jK (ι (a i))) • b i := by
-  have hxs : x ∈ Submodule.span K (Set.range b) := by
-    rw [← hL.2] at hx
-    refine (Submodule.span_le.mpr ?_) hx
-    intro y hy
-    haveI := h𝔭
-    have h1 : y ∈ locF 𝔭 L := Formalism.HermitianLattices.Ext.L3.localizedQuotients.le_locF 𝔭 L hy
-    rw [← hloc] at h1
-    exact locF_le_spanK h𝔭 h1
-  obtain ⟨c, rfl⟩ := (Submodule.mem_span_range_iff_exists_fun K).mp hxs
-  refine Finset.sum_congr rfl fun i _ => ?_
-  rw [h_sum horth (fun j => by rw [hdiag j]; exact (coe_iota_eq_algebraMap_coe (a j)).symm) c i,
-    mul_div_cancel_right₀ _ (jK_iota_ne_zero (ha i))]
 
 theorem mem_B_iff (h𝔭 : 𝔭.IsPrime) (hL : IsLatIn X L) (x : V) :
     x ∈ locF 𝔭 L ↔ x ∈ X ∧ ∀ i, h (b i) x / jK (ι (a i)) ∈ HU.SP K 𝔭 := by
@@ -433,36 +372,13 @@ theorem jK_ι_ne_zero {t : 𝓞 F} (ht : t ≠ 0) : jK (ι t) ≠ 0 := by
   have h1 : ((t : F)) = 0 := (map_eq_zero_iff _ (algebraMap F K).injective).1 h
   exact_mod_cast h1
 
-theorem jordan_ne_zero_of_notMem {𝔭 : Ideal (𝓞 F)} {t : 𝓞 F} (ht : t ∉ 𝔭) : t ≠ 0 := by
-  rintro rfl
-  exact ht 𝔭.zero_mem
-
 theorem exists_inv_mod {𝔭 : Ideal (𝓞 F)} (h𝔭 : 𝔭.IsMaximal) {t : 𝓞 F} (ht : t ∉ 𝔭) (e : ℕ) :
-    ∃ u : 𝓞 F, 1 - t * u ∈ 𝔭 ^ e := by
-  obtain ⟨y, i, hi, hyi⟩ := h𝔭.exists_inv ht
-  refine ⟨y * ∑ k ∈ Finset.range e, i ^ k, ?_⟩
-  have h1 : t * (y * ∑ k ∈ Finset.range e, i ^ k) = 1 - i ^ e := by
-    rw [← mul_neg_geom_sum, ← hyi]
-    ring
-  rw [h1, sub_sub_cancel]
-  exact Ideal.pow_mem_pow hi e
+    ∃ u : 𝓞 F, 1 - t * u ∈ 𝔭 ^ e :=
+  Formalism.L2.SG.Pf.G2.exists_inv_mod h𝔭 ht e
 
 theorem exists_mul_mem_span {𝔭 : Ideal (𝓞 F)} (h𝔭 : 𝔭.IsMaximal) {a : 𝓞 F} (ha : a ≠ 0) :
-    ∃ t : 𝓞 F, t ∉ 𝔭 ∧ ∀ x ∈ 𝔭 ^ vF 𝔭 a, t * x ∈ Ideal.span {a} := by
-  have hle : Ideal.span {a} ≤ 𝔭 ^ vF 𝔭 a :=
-    (Ideal.span_singleton_le_iff_mem _).2 (localValuationFiltration.mem_pow_vF h𝔭 ha)
-  obtain ⟨J, hJ⟩ := Ideal.dvd_iff_le.2 hle
-  have hJp : ¬ J ≤ 𝔭 := by
-    intro hJ𝔭
-    apply localValuationFiltration.notMem_pow_vF h𝔭 ha
-    have : Ideal.span {a} ≤ 𝔭 ^ (vF 𝔭 a + 1) := by
-      rw [hJ, pow_succ]
-      exact Ideal.mul_mono_right hJ𝔭
-    exact this (Ideal.mem_span_singleton_self a)
-  obtain ⟨t, htJ, ht𝔭⟩ := SetLike.not_le_iff_exists.1 hJp
-  refine ⟨t, ht𝔭, fun x hx => ?_⟩
-  rw [hJ, mul_comm t x]
-  exact Ideal.mul_mem_mul hx htJ
+    ∃ t : 𝓞 F, t ∉ 𝔭 ∧ ∀ x ∈ 𝔭 ^ vF 𝔭 a, t * x ∈ Ideal.span {a} :=
+  Formalism.L2.SG.Pf.G2.exists_mul_mem_span h𝔭 ha
 
 theorem div_mem_SP_iff {𝔭 : Ideal (𝓞 F)} (h𝔭 : 𝔭.IsMaximal) {a : 𝓞 F} (ha : a ≠ 0) (z : 𝓞 K) :
     haveI := h𝔭.isPrime

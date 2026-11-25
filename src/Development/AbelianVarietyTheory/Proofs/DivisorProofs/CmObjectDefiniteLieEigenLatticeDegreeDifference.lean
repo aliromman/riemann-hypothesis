@@ -119,8 +119,6 @@ import Mathlib.Algebra.Ring.IsFormallyReal
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open NumberField
@@ -610,7 +608,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 noncomputable section
 open NumberField
 
@@ -926,35 +923,11 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open NumberField
 
 namespace GlobalTheory.IdxTensor
-theorem cut_idxmap : ∀ {F V : Type} [Field F] [NumberField F] [AddCommGroup V] [Module F V] [Module (𝓞 F) V]
-    [IsScalarTower (𝓞 F) F V] (p : ℕ) (φ : (Fin p → F) →ₗ[F] V), Function.Injective φ →
-    ∀ (L N : Submodule (𝓞 F) (Fin p → F)),
-    GlobalTheory.FlatCM.idx F p (L.map (φ.restrictScalars (𝓞 F))) (N.map (φ.restrictScalars (𝓞 F))) =
-      (GlobalTheory.IdxTensor.dets F p N).colon (GlobalTheory.IdxTensor.dets F p L : Set F) := _root_.GlobalTheory.IdxMap.idx_map_eq_colon_dets
-
-theorem cut_detsspan : ∀ {F : Type} [Field F] [NumberField F] (p : ℕ) (S : Set (Fin p → F)),
-    GlobalTheory.IdxTensor.dets F p (Submodule.span (𝓞 F) S) =
-      Submodule.span (𝓞 F) {d | ∃ y : Fin p → Fin p → F, (∀ i, y i ∈ S) ∧ d = (Matrix.of y).det} := _root_.GlobalTheory.IdxTensor.dets_span_eq
-
-theorem cut_rankone : ∀ {K : Type} [Field K] [NumberField K] {m : ℕ} (ell : Submodule (𝓞 K) (Fin m → K)),
-    ReciprocityTheory.GeometryOfNumbersTheory.latRank K ell = 1 → ell.FG →
-    ∃ v : Fin m → K, v ≠ 0 ∧ ∃ 𝔟 : Submodule (𝓞 K) K, 𝔟.FG ∧ 𝔟 ≠ ⊥ ∧
-      ∀ e, e ∈ ell ↔ ∃ β ∈ 𝔟, e = β • v := _root_.GlobalTheory.latRank_one_eq_ideal_smul
-
-theorem cut_linindep : ∀ {K : Type} [Field K] [NumberField K] {p m n : ℕ} (ell : Submodule (𝓞 K) (Fin m → K))
-    (M : Fin p → ((Fin m → K) →ₗ[K] (Fin n → K))) (v : Fin m → K), v ≠ 0 → ∀ (𝔟 : Submodule (𝓞 K) K),
-    𝔟 ≠ ⊥ → (∀ e, e ∈ ell ↔ ∃ β ∈ 𝔟, e = β • v) → (∀ a, Function.Injective (M a)) →
-    iSupIndep (fun a => Submodule.span K
-      ((ell.map ((M a).restrictScalars (𝓞 K)) : Submodule (𝓞 K) (Fin n → K)) : Set (Fin n → K))) →
-    LinearIndependent K (fun a => M a v) := _root_.GlobalTheory.linearIndependent_images_of_rankOne_lattice
-
 theorem span_image_one {E K : Type} [Field E] [NumberField E] [Field K] [NumberField K]
     (τ : 𝓞 E →+* 𝓞 K) (τE : E →+* K) (hτ : ∀ x : 𝓞 E, τE x = ((τ x : 𝓞 K) : K)) :
     Submodule.span (𝓞 K) (τE '' (1 : Submodule (𝓞 E) E)) = 1 := by
@@ -1245,7 +1218,7 @@ namespace GlobalTheory.SumIndex
 
 theorem relIndex_pi_pi_of {ι G : Type} [Fintype ι] [AddCommGroup G] (A B : ι → AddSubgroup G) :
     (AddSubgroup.pi Set.univ A).relIndex (AddSubgroup.pi Set.univ B) = ∏ i, (A i).relIndex (B i) := by
-  apply _root_.GlobalTheory.LowerHeckeCount.relIndex_pi_univ <;> assumption
+  apply _root_.GlobalTheory.LowerHeckeCount.relIndex_pi_univ
 
 theorem eq_zero_of_sum_eq_zero {ι R V : Type} [Fintype ι] [DecidableEq ι] [Ring R] [AddCommGroup V]
     [Module R V] (S : ι → Submodule R V) (hS : iSupIndep S) (y : ι → V) (hy : ∀ a, y a ∈ S a)

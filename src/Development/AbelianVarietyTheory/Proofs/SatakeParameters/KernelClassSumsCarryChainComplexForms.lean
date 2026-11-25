@@ -32,11 +32,11 @@ public import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.SelfDual
 public import Formalism.LocalToGlobal.KernelLattices.FirstKernelLawReading
 public import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.JetLL
 public import Formalism.LocalToGlobal.HermitianForms.TiedTwGen
-public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ThetaDistributionUnfolded
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.TrueWeightConsecutiveStepsPartition
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.PairKernelTermTargetStabiliserLaw
 public import Formalism.LocalRingCardinality.DataKerP
 public import Formalism.SharpRestriction.Divisibility.OrbitPlaces
+import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.PeriodLatticeFinitelyGenerated
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.DatumPeriodicMulLatticeFinal
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
@@ -1030,7 +1030,7 @@ end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.KerTieEntire =====
 
 -- ===== clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.PairKernelMapsStepWeightValues =====
--- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.SatakeParameters.PairKernelMapsStepWeightValues", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.JetLL\npublic import Formalism.LocalToGlobal.HermitianForms.TiedTwGen\npublic import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ThetaDistributionUnfolded\npublic import Formalism.LocalToGlobal.KernelLattices.FirstKernelLawReading\npublic import Development.AbelianVarietyTheory.Proofs.SatakeParameters.TrueWeightConsecutiveStepsPartition\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\n\n"}
+-- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.SatakeParameters.PairKernelMapsStepWeightValues", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.JetLL\npublic import Formalism.LocalToGlobal.HermitianForms.TiedTwGen\nimport Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.PeriodLatticeFinitelyGenerated\npublic import Formalism.LocalToGlobal.KernelLattices.FirstKernelLawReading\npublic import Development.AbelianVarietyTheory.Proofs.SatakeParameters.TrueWeightConsecutiveStepsPartition\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -1053,13 +1053,13 @@ theorem Kmap_isVal : ∀ (D : D7) (u : D.what₂.Word) (C : ColumnChain D.R D.wh
   have hle : D.R.N i ≤ D.R.N (i + 1) := by
     unfold Ranks.N
     exact Nat.add_le_add_left (Nat.mul_le_mul_right _ (Nat.le_succ _)) _
-  have key := GlobalTheory.KerWt.tied_on_models D u C O i hi (nuT D u i) hU ℂ (RingHom.id ℂ) (lamTG M i) n h1 c c'
+  have key := Formalism.L2.Ker.tied_on_models D u C O i hi (nuT D u i) hU ℂ (RingHom.id ℂ) (lamTG M i) n h1 c c'
     (jetC O.dgen (O.Th i c c')) 1 (fun m => by simp) (fun τ => (lamTG M i τ).detShift) h2 P hP
   rw [one_smul] at key
   have hsh : (fun τ => -C.sDiv i τ) = fun τ => (lamTG M (i + 1) τ).detShift := funext fun τ => (h4 τ).symm
   rw [hsh] at key
   refine ⟨(C.rhoDet i c * C.rhoDet' i c') • jetMap (jetC O.dgen (O.Th i c c')) n P, ?_, ?_⟩
-  · exact Submodule.smul_mem _ _ (GlobalTheory.KerWt.jet_in_vv_of_weight ℂ D.what₂.Tau _ _ hle (lamTG M i) (lamTG M (i + 1)) n h3 _ P hP)
+  · exact Submodule.smul_mem _ _ (Formalism.L2.Ker.jet_in_vv_of_weight ℂ D.what₂.Tau _ _ hle (lamTG M i) (lamTG M (i + 1)) n h3 _ P hP)
   · rw [key, evG_id_smul]
 
 end GlobalTheory.KerJ

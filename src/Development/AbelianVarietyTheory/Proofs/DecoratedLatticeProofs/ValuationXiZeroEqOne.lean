@@ -55,7 +55,6 @@ import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SplitPlace
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum MeasureTheory IsDedekindDomain NumberField Matrix
 open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Unf GlobalTheory.SplitWeil GlobalTheory.LatPair GlobalTheory.SeeSaw GlobalTheory.FinPl ValuativeRel
 open scoped TensorProduct nonZeroDivisors
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 noncomputable section
 
@@ -175,7 +174,7 @@ theorem exists_modify {ι : Type} {p : ι → SplitPt D k} (hp : Function.Inject
   | nil => exact ⟨L, hL, by simp, fun _ _ => rfl⟩
   | cons i l ih =>
     obtain ⟨M, hM, h1, h2⟩ := ih
-    obtain ⟨M', hM', h3, h4⟩ := (_root_.GlobalTheory.FrameAt.frame_facts D k (p i) S n (β i)).2.2.2.2.1 M (Λ i) hM (by first | exact hΛ i | exact (hΛ i).toIsLattice)
+    obtain ⟨M', hM', h3, h4⟩ := (_root_.GlobalTheory.FrameAt.frame_facts D k (p i) S n (β i)).2.2.2.2.1 M (Λ i) hM (by first | exact hΛ i)
     refine ⟨M', hM', fun i' hi' => ?_, fun v hv => (latV_eq_at h4 (hv i)).trans (h2 v hv)⟩
     by_cases e : i' = i
     · subst e; exact h3

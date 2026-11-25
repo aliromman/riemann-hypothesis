@@ -51,8 +51,6 @@ import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.IsSplitGau
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace PositivityTheory.HtPt.Cd
@@ -291,6 +289,7 @@ theorem ex_ph1A (hch : IsChartG t x0 d F act tg uvec x) (i0 : t.PP.L.ι) (hi0 : 
       apply ofMul_eq
       simp only [ofMul_mul, ofMul_inv, _root_.mul_one]
       erw [ha]
+      generalize jptG t x0 d x m (0 : Fin 3) = p0, jptG t x0 d x m (1 : Fin 3) = p1, jptG t x0 d x m (2 : Fin 3) = p2
       abel!)
     (fun m y J hJ => (val_pull hJ _ _ _).trans ((congrArg (fun r => val t.cub.t r y J) (triple_point_truncation_alt hch m 0 1 2)).trans
       (val_pull hJ _ _ _).symm))
@@ -357,6 +356,7 @@ theorem ex_ph2A (hch : IsChartG t x0 d F act tg uvec x) (i0 : t.PP.L.ι) (hi0 : 
       apply ofMul_eq
       simp only [ofMul_mul, ofMul_inv, _root_.mul_one]
       erw [ha2]
+      generalize jptG t x0 d x m (0 : Fin 3) = p0, jptG t x0 d x m (1 : Fin 3) = p1, jptG t x0 d x m (2 : Fin 3) = p2
       abel!)
     (fun m y J hJ => (val_pull hJ _ _ _).trans ((congrArg (fun r => val t.cub.t r y J) (triple_point_truncation_alt hch m 1 2 0)).trans
       (val_pull hJ _ _ _).symm))
@@ -393,7 +393,7 @@ theorem ex_syA (hch : IsChartG t x0 d F act tg uvec x) (i0 : t.PP.L.ι) (hi0 : (
       simp only [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons]
       apply ofMul_eq
       simp only [ofMul_mul, ofMul_inv, _root_.mul_one]
-      abel!)
+      abel)
     (fun m y J hJ => pe_trunc t x0 d htr
       (fun _ => ![fun j => MvPolynomial.X ((1 : Fin 2), j), fun j => MvPolynomial.X ((0 : Fin 2), j)])
       (fun m i j => by fin_cases i <;> exact hXX m _ j) m y J hJ)

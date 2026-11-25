@@ -295,7 +295,6 @@ section -- clump:auto
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 open scoped Matrix
 open scoped Classical
-open GlobalTheory.WeilM
 
 namespace GlobalTheory.ArchLineContPairLeft
 
@@ -1065,7 +1064,7 @@ namespace GlobalTheory.HoweGlobalPair
 theorem decomp {M₀ : Type} [AddCommGroup M₀] [Module ℂ M₀] {ι : Type} [Fintype ι] {M : ι → Type}
     [∀ i, AddCommGroup (M i)] [∀ i, Module ℂ (M i)] (t : M₀ ⊗[ℂ] (⨂[ℂ] i, M i)) :
     ∃ (m : ℕ) (f : Fin m → M₀) (φ : Fin m → ∀ i, M i), t = ∑ j, f j ⊗ₜ[ℂ] PiTensorProduct.tprod ℂ (φ j) := by
-  apply GlobalTheory.HoweGlobal.decomp <;> assumption
+  apply GlobalTheory.HoweGlobal.decomp
 
 theorem det_ne_sig_map {E : Type} [Field E] {n r s : ℕ} {J : Matrix (Fin n) (Fin n) E} (τ : E →+* ℂ) (c : ℂ)
     (h : HasSig (c • J.map τ) r s) : J.det ≠ 0 := by
@@ -1114,7 +1113,6 @@ open scoped Classical
 
 namespace GlobalTheory.HoweGlobalPair.Transfer
 
-open Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 open GlobalTheory.HoweGlobal.Transfer (ext ext_of_mem ext_of_not_mem ext_update ext_vac)
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E} {n d : ℕ}
@@ -1290,7 +1288,6 @@ noncomputable section
 
 namespace GlobalTheory.HoweGlobalPair.FinPlaceSmall
 
-open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}
 

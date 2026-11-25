@@ -5,50 +5,8 @@ public import Mathlib.RingTheory.DedekindDomain.AdicValuation.Completion
 public import Mathlib.RingTheory.Henselian
 public import Mathlib.RingTheory.RegularLocalRing.Defs
 public import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
 import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 public import Mathlib.Topology.Algebra.Valued.LocallyCompact
-import Mathlib.Topology.Sheaves.Init
 public import Mathlib.RingTheory.DedekindDomain.Factorization
 
 @[expose] public section
@@ -66,15 +24,8 @@ theorem exists_mul_mem (x : K) (hx : v.valuation K x ≤ 1) :
     ∃ s : 𝓞 K, s ∉ v.asIdeal ∧ ∃ a : 𝓞 K, (s : K) * x = (a : K) := by
   apply Formalism.MainNotions.BridgeLemma.exists_den <;> assumption
 
-theorem dense_algebraMap : DenseRange (algebraMap K (v.adicCompletion K)) := by
-  have h1 := HeightOneSpectrum.adicCompletion.continuous_ofCompletion K v
-  have h2 : DenseRange (HeightOneSpectrum.adicCompletion.ofCompletion (K := K) (v := v)) :=
-    Function.Surjective.denseRange fun x => ⟨x.toCompletion, rfl⟩
-  have h3 : DenseRange (UniformSpace.Completion.coe' ∘ (WithVal.equiv (HeightOneSpectrum.valuation K v)).symm) := by
-    unfold DenseRange
-    rw [Set.range_comp, (WithVal.equiv (HeightOneSpectrum.valuation K v)).symm.surjective.range_eq, Set.image_univ]
-    exact UniformSpace.Completion.denseRange_coe
-  exact h2.comp h3 h1
+theorem dense_algebraMap : DenseRange (algebraMap K (v.adicCompletion K)) :=
+  _root_.IsDedekindDomain.HeightOneSpectrum.denseRange_algebraMap (K := K) v
 
 theorem valued_algebraMap (x : K) : Valued.v (algebraMap K (v.adicCompletion K) x) = v.valuation K x :=
   HeightOneSpectrum.valuedAdicCompletion_eq_valuation' v x

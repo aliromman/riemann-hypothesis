@@ -47,6 +47,7 @@ import Mathlib.Data.Nat.Choose.Multinomial
 import Mathlib.Algebra.Module.StablyFree.Basic
 import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.Tactic.Linter.Style
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.StandardAddCharSymplecticLocalLatticeEqOne
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.ThetaLifts.TowerModels.TwistedSums.LatAtVAtStable, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.TraceMixedEmbedding, Development.WeilBound.ThetaLifts.TowerModels.TwistedSums.StandardAddCharSymplecticLocalLatticeEqOne
@@ -132,7 +133,7 @@ end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.TraceMixedEmbedding =====
 
 -- ===== clump member: Development.WeilBound.ThetaLifts.TowerModels.TwistedSums.StandardAddCharSymplecticLocalLatticeEqOne =====
--- clump-header: {"m": "Development.WeilBound.ThetaLifts.TowerModels.TwistedSums.StandardAddCharSymplecticLocalLatticeEqOne", "h": "module\n\npublic import Development.WeilBound.ThetaLifts.TowerModels.TwistedSums.LatAtVAtStable\npublic import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.AddCharTrivialIntegralFiniteAdeleMul\npublic import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.TraceMixedEmbedding\nimport Mathlib.Algebra.Module.StablyFree.Basic\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.PiTensorProduct\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
+-- clump-header: {"m": "Development.WeilBound.ThetaLifts.TowerModels.TwistedSums.StandardAddCharSymplecticLocalLatticeEqOne", "h": "module\n\npublic import Development.WeilBound.ThetaLifts.TowerModels.TwistedSums.LatAtVAtStable\npublic import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.AddCharTrivialIntegralFiniteAdeleMul\npublic import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.TraceMixedEmbedding\nimport Mathlib.Algebra.Module.StablyFree.Basic\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.PiTensorProduct\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.StandardAddCharSymplecticLocalLatticeEqOne\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -186,78 +187,8 @@ theorem psi_int {ψ : AddChar (AF F) ℂ} (hψ : IsStd ψ) (t : F)
   rw [psi_fin_rat hψ, hk, Complex.exp_eq_one_iff]
   exact ⟨k, by push_cast; ring⟩
 
-section Gen
-variable {E : Type} [Field E] [NumberField E] [Algebra F E]
-
-theorem hTens_vecMulVec (σ : E →ₐ[F] E) {n d : ℕ} (JA : Matrix (Fin n) (Fin n) E) (JB : Matrix (Fin d) (Fin d) E)
-    (x x' : Fin n → E) (y y' : Fin d → E) :
-    GlobalTheory.WeilM.hTens σ JA JB (Matrix.vecMulVec x y) (Matrix.vecMulVec x' y') = form σ JA x x' * form σ JB y y' := by
-  unfold GlobalTheory.WeilM.hTens form
-  simp only [Matrix.vecMulVec_apply, dotProduct, Matrix.mulVec, map_mul, Finset.sum_mul, Finset.mul_sum]
-  conv_lhs => rw [Finset.sum_comm]
-  refine Finset.sum_congr rfl fun j _ => ?_
-  conv_rhs => rw [Finset.sum_comm]
-  refine Finset.sum_congr rfl fun i _ => ?_
-  conv_rhs => rw [Finset.sum_comm]
-  refine Finset.sum_congr rfl fun k _ => Finset.sum_congr rfl fun l _ => ?_
-  ring
-
-theorem symp_incM (σ : E →ₐ[F] E) {n d : ℕ} (JA : Matrix (Fin n) (Fin n) E) (JB : Matrix (Fin d) (Fin d) E)
-    (θ : E) (x x' : Fin n → E) (y y' : Fin d → E) :
-    GlobalTheory.WeilM.symp (R := AF F) (cA σ) (inclR (F := F) (AF F) θ) (incM F JA) (incM F JB)
-      (incM F (Matrix.vecMulVec x y)) (incM F (Matrix.vecMulVec x' y')) =
-      algebraMap F (AF F) (Algebra.trace F E (θ * (form σ JA x x' * form σ JB y y'))) := by
-  have ht : ∀ e : E, Algebra.trace (AF F) (AF F ⊗[F] E) (inclR (F := F) (AF F) e) =
-      algebraMap F (AF F) (Algebra.trace F E e) := fun e => by
-    show Algebra.trace (AF F) (AF F ⊗[F] E) ((1 : AF F) ⊗ₜ[F] e) = _
-    rw [Algebra.trace_apply, Algebra.trace_apply, ← Algebra.baseChange_lmul, LinearMap.trace_baseChange]
-  have hc : ∀ e : E, cA σ (inclR (F := F) (AF F) e) = inclR (F := F) (AF F) (σ e) := fun e => rfl
-  rw [← hTens_vecMulVec, ← ht, GlobalTheory.WeilM.symp]
-
-  simp only [GlobalTheory.WeilM.hTens, incM, Matrix.map_apply, hc, map_mul, map_sum]
-end Gen
-
 section Main
 variable {E : Type} [Field E] [NumberField E] [Algebra F E]
-
-theorem trace_int_of_lat (σ : E →ₐ[F] E) (B : Base F E) {n d r s r' s' : ℕ} (X : Spc F E n) (Y : Spc F E d)
-    (hX : X.IsHerm σ B r s) (hY : Y.IsSkew σ B r' s') (θ : 𝓞 E) {x x' : Fin n → E} (hx : x ∈ X.L) (hx' : x' ∈ X.L)
-    {y y' : Fin d → E} (hy : y ∈ Y.L) (hy' : y' ∈ Y.L) (a : 𝓞 F) :
-    ∃ k : ℤ, Algebra.trace ℚ F ((a : F) * Algebra.trace F E ((θ : E) * (form σ X.J x x' * form σ Y.J y y'))) = k := by
-  have hfX : IsIntegral ℤ (form σ X.J x x') := (hX.dual x).1 hx x' hx'
-  have ha : IsIntegral ℤ (algebraMap F E (a : F)) := (NumberField.RingOfIntegers.isIntegral_coe a).algebraMap
-  let o : 𝓞 E := ⟨algebraMap F E (a : F) * (θ : E) * form σ X.J x x',
-    (ha.mul (NumberField.RingOfIntegers.isIntegral_coe θ)).mul hfX⟩
-  have h := (hY.dual y).1 hy y' hy' o
-  have e : (a : F) * Algebra.trace F E ((θ : E) * (form σ X.J x x' * form σ Y.J y y')) =
-      Algebra.trace F E ((o : E) * form σ Y.J y y') := by
-    rw [← smul_eq_mul, ← LinearMap.map_smul, Algebra.smul_def]
-    congr 1
-    show _ = algebraMap F E (a : F) * (θ : E) * form σ X.J x x' * form σ Y.J y y'
-    ring
-  rw [e, Algebra.trace_trace]
-  obtain ⟨k, hk⟩ := IsIntegrallyClosed.isIntegral_iff.1 h
-  exact ⟨k, by rw [← hk]; simp⟩
-
-theorem liftV_one_mul (v : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Pl (F := F)) (w : AF F) :
-    Tw.LatVac.liftV v 1 * w = Tw.LatVac.liftV v (GlobalTheory.AdelicU.evFin F v w) := by
-  refine Prod.ext ?_ ?_
-  · change (0 : Ainf F) * w.1 = 0
-    rw [zero_mul]
-  · change GlobalTheory.AdelicU.singleFin v 1 * w.2 = GlobalTheory.AdelicU.singleFin v (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.evalV F v w.2)
-    apply GlobalTheory.AdelicU.af_ext
-    intro u
-    rw [map_mul]
-    by_cases hu : u = v
-    · subst hu
-      rw [GlobalTheory.AdelicU.evalV_singleFin_self, GlobalTheory.AdelicU.evalV_singleFin_self, one_mul]
-    · rw [GlobalTheory.AdelicU.evalV_singleFin_ne hu, GlobalTheory.AdelicU.evalV_singleFin_ne hu, zero_mul]
-
-theorem eq_liftV_of_at {v : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Pl (F := F)} {a : AF F} (ha : At (GlobalTheory.AdelicU.evFin F v) a) :
-    a = Tw.LatVac.liftV v 1 * a := by
-  have h := ha (1 - Tw.LatVac.liftV v 1) (by rw [map_sub, map_one, Tw.LatVac.evFin_liftV, sub_self])
-  rw [smul_eq_mul, sub_mul, one_mul, sub_eq_zero] at h
-  exact h
 
 theorem psi_gen (σ : E →ₐ[F] E) (B : Base F E) {n d r s r' s' : ℕ} (X : Spc F E n) (Y : Spc F E d)
     (hX : X.IsHerm σ B r s) (hY : Y.IsSkew σ B r' s') (hstd : IsStd B.ψ) (v : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Pl (F := F)) (θ : 𝓞 E) (b : AF F)
@@ -266,30 +197,8 @@ theorem psi_gen (σ : E →ₐ[F] E) (B : Base F E) {n d r s r' s' : ℕ} (X : S
     (hav' : GlobalTheory.AdelicU.evFin F v a' ∈ v.adicCompletionIntegers F)
     {x x' : Fin n → E} (hx : x ∈ X.L) (hx' : x' ∈ X.L) {y y' : Fin d → E} (hy : y ∈ Y.L) (hy' : y' ∈ Y.L) :
     B.ψ (b * GlobalTheory.WeilM.symp (R := AF F) (cA σ) (inclR (F := F) (AF F) (θ : E)) (incM F X.J) (incM F Y.J)
-      (a • incM F (Matrix.vecMulVec x y)) (a' • incM F (Matrix.vecMulVec x' y'))) = 1 := by
-  rw [Tw.LatVac.symp_smul_smul, symp_incM]
-  set t := Algebra.trace F E ((θ : E) * (form σ X.J x x' * form σ Y.J y y')) with ht
-  set c := b * a * a' with hc
-  have hcv : GlobalTheory.AdelicU.evFin F v c ∈ v.adicCompletionIntegers F := by
-    rw [hc, map_mul, map_mul]
-    exact mul_mem (mul_mem hb hav) hav'
-  have key : b * (a * a' * algebraMap F (AF F) t) =
-      pairA F 0 (GlobalTheory.AdelicU.singleFin v (GlobalTheory.AdelicU.evFin F v c) * algebraMap F (Af F) t) := by
-    have e1 : b * (a * a' * algebraMap F (AF F) t) = t • (Tw.LatVac.liftV v 1 * c) := by
-      rw [Algebra.smul_def, hc]
-      conv_lhs => rw [eq_liftV_of_at ha]
-      ring
-    rw [e1, liftV_one_mul, ← LinearMap.map_smul]
-    show pairA F 0 (GlobalTheory.AdelicU.singleFin v (t • GlobalTheory.AdelicU.evFin F v c)) = _
-    rw [LinearMap.map_smul, Algebra.smul_def, mul_comm]
-  rw [key]
-  refine psi_int hstd t (trace_int_of_lat σ B X Y hX hY θ hx hx' hy hy') _ fun w => ?_
-  by_cases hw : w = v
-  · subst hw
-    rw [GlobalTheory.AdelicU.evalV_singleFin_self]
-    exact hcv
-  · rw [GlobalTheory.AdelicU.evalV_singleFin_ne hw]
-    exact zero_mem _
+      (a • incM F (Matrix.vecMulVec x y)) (a' • incM F (Matrix.vecMulVec x' y'))) = 1 :=
+  by apply _root_.GlobalTheory.LatVacArith.psi_gen <;> assumption
 
 end Main
 
@@ -355,30 +264,8 @@ theorem psi_symp_latAtV : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [
     GlobalTheory.AdelicU.evFin F v b ∈ v.adicCompletionIntegers F →
     ∀ γ ∈ GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.latAtV X Y v, ∀ γ' ∈ GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.latAtV X Y v,
       B.ψ (b * GlobalTheory.WeilM.symp (R := AF F) (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.cA σ) (inclR (F := F) (AF F) (θ : E))
-        (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.incM F X.J) (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.incM F Y.J) γ γ') = 1 := by
-  intro F E _ _ _ _ _ σ B n d X Y r s r' s' hB hX hY v θ b hb γ hγ γ' hγ'
-  have step : ∀ z' ∈ {z | ∃ a : AF F, At (GlobalTheory.AdelicU.evFin F v) a ∧ GlobalTheory.AdelicU.evFin F v a ∈ v.adicCompletionIntegers F ∧
-      ∃ x ∈ X.L, ∃ y ∈ Y.L, z = a • GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.incM F (Matrix.vecMulVec x y)},
-      ∀ γ ∈ GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.latAtV X Y v, B.ψ (b * GlobalTheory.WeilM.symp (R := AF F) (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.cA σ) (inclR (F := F) (AF F) (θ : E))
-        (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.incM F X.J) (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.incM F Y.J) γ z') = 1 := by
-    intro z' hz' γ hγ
-    obtain ⟨a', -, ha', x', hx', y', hy', rfl⟩ := hz'
-    induction hγ using AddSubgroup.closure_induction with
-    | mem z hz =>
-      obtain ⟨a, ha, hav, x, hx, y, hy, rfl⟩ := hz
-      exact psi_gen σ B X Y hX hY hB.std v θ b hb ha hav ha' hx hx' hy hy'
-    | zero => rw [symp_zero_left, mul_zero, AddChar.map_zero_eq_one]
-    | add x y _ _ hx hy =>
-      rw [symp_add_left, mul_add, AddChar.map_add_eq_mul, hx, hy, one_mul]
-    | neg x _ hx =>
-      rw [symp_neg_left, mul_neg, AddChar.map_neg_eq_inv, hx, inv_one]
-  induction hγ' using AddSubgroup.closure_induction with
-  | mem z hz => exact step z hz γ hγ
-  | zero => rw [symp_zero_right, mul_zero, AddChar.map_zero_eq_one]
-  | add x y _ _ hx hy =>
-    rw [symp_add_right, mul_add, AddChar.map_add_eq_mul, hx, hy, one_mul]
-  | neg x _ hx =>
-    rw [symp_neg_right, mul_neg, AddChar.map_neg_eq_inv, hx, inv_one]
+        (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.incM F X.J) (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.incM F Y.J) γ γ') = 1 :=
+  _root_.GlobalTheory.LatVacArith.psi_symp_latAtV
 
 end Final
 

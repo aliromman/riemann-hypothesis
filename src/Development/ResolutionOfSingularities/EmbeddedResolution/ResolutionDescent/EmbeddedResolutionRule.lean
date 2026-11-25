@@ -1,7 +1,7 @@
 module
 
 public import Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.AffineResolutionRule
-public import Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.FieldExtensionEtaleCover
+public import Development.ResolutionOfSingularities.EmbeddedResolution.AlgebraicPreliminaries.DisjointUnionOfOpens
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
 import Mathlib.Algebra.Order.Interval.Basic
@@ -50,30 +50,6 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 noncomputable section
 
 namespace FunctorialResolution.EmbeddedResolution
-
-theorem locallyOfFiniteType_baseChangeToSpec {X : Scheme.{u}} {k : Type u} [Field k]
-    (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.LocallyOfFiniteType p]
-    (K : Type u) [Field K] [Algebra k K] :
-    AlgebraicGeometry.LocallyOfFiniteType (baseChangeToSpec p K) :=
-  MorphismProperty.IsStableUnderBaseChange.of_isPullback
-    (IsPullback.of_hasPullback p (specMapAlgebraMap k K))
-    (inferInstanceAs (AlgebraicGeometry.LocallyOfFiniteType p))
-
-theorem quasiCompact_baseChangeToSpec {X : Scheme.{u}} {k : Type u} [Field k]
-    (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.QuasiCompact p]
-    (K : Type u) [Field K] [Algebra k K] :
-    AlgebraicGeometry.QuasiCompact (baseChangeToSpec p K) :=
-  MorphismProperty.IsStableUnderBaseChange.of_isPullback
-    (IsPullback.of_hasPullback p (specMapAlgebraMap k K))
-    (inferInstanceAs (AlgebraicGeometry.QuasiCompact p))
-
-theorem smooth_baseChangeToSpec {X : Scheme.{u}} {k : Type u} [Field k]
-    (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p]
-    (K : Type u) [Field K] [Algebra k K] :
-    AlgebraicGeometry.Smooth (baseChangeToSpec p K) :=
-  MorphismProperty.IsStableUnderBaseChange.of_isPullback
-    (IsPullback.of_hasPullback p (specMapAlgebraMap k K))
-    (inferInstanceAs (AlgebraicGeometry.Smooth p))
 
 structure EmbeddingDatum (k : Type u) [Field k] [CharZero k] (Y : Scheme.{u})
     (p : Y ⟶ Spec (CommRingCat.of k)) where
@@ -137,87 +113,6 @@ namespace EmbeddingDatum
 variable {k : Type u} [Field k] [CharZero k] {Y : Scheme.{u}}
   {p : Y ⟶ Spec (CommRingCat.of k)}
 
-theorem pullbackCondition_baseChangeEmb (D : EmbeddingDatum k Y p) (K : Type u) [Field K]
-    [Algebra k K] :
-    (baseChangeProjection p K ≫ D.emb) ≫ D.ambientStruct =
-      baseChangeToSpec p K ≫ specMapAlgebraMap k K := by
-  rw [Category.assoc, D.comp_eq]
-  exact pullback.condition
-
-def baseChangeEmb (D : EmbeddingDatum k Y p) (K : Type u) [Field K] [Algebra k K] :
-    baseChange p K ⟶ baseChange D.ambientStruct K :=
-  pullback.lift (baseChangeProjection p K ≫ D.emb) (baseChangeToSpec p K)
-    (by exact pullbackCondition_baseChangeEmb D K)
-
-@[simp]
-theorem baseChangeEmb_comp_baseChangeProjection (D : EmbeddingDatum k Y p) (K : Type u) [Field K]
-    [Algebra k K] :
-    D.baseChangeEmb K ≫ baseChangeProjection D.ambientStruct K = baseChangeProjection p K ≫ D.emb :=
-  pullback.lift_fst _ _ _
-
-@[simp]
-theorem baseChangeEmb_comp_baseChangeToSpec (D : EmbeddingDatum k Y p) (K : Type u)
-    [Field K] [Algebra k K] :
-    D.baseChangeEmb K ≫ baseChangeToSpec D.ambientStruct K = baseChangeToSpec p K :=
-  pullback.lift_snd _ _ _
-
-theorem isPullback_baseChangeEmb (D : EmbeddingDatum k Y p) (K : Type u) [Field K]
-    [Algebra k K] :
-    IsPullback (D.baseChangeEmb K) (baseChangeProjection p K) (baseChangeProjection D.ambientStruct K)
-      D.emb := by
-  have hbig : IsPullback (D.baseChangeEmb K ≫ baseChangeToSpec D.ambientStruct K)
-      (baseChangeProjection p K) (specMapAlgebraMap k K) (D.emb ≫ D.ambientStruct) := by
-    rw [baseChangeEmb_comp_baseChangeToSpec D K, D.comp_eq]
-    exact (IsPullback.of_hasPullback p (specMapAlgebraMap k K)).flip
-  exact IsPullback.of_right hbig (baseChangeEmb_comp_baseChangeProjection D K)
-    (IsPullback.of_hasPullback D.ambientStruct (specMapAlgebraMap k K)).flip
-
-theorem isClosedImmersion_baseChangeEmb (D : EmbeddingDatum k Y p) (K : Type u) [Field K]
-    [Algebra k K] : AlgebraicGeometry.IsClosedImmersion (D.baseChangeEmb K) :=
-  MorphismProperty.IsStableUnderBaseChange.of_isPullback
-    (isPullback_baseChangeEmb D K).flip D.isClosedImmersion_emb
-
-instance instIsClosedImmersionBaseChangeEmb (D : EmbeddingDatum k Y p) (K : Type u) [Field K]
-    [Algebra k K] : AlgebraicGeometry.IsClosedImmersion (D.baseChangeEmb K) :=
-  isClosedImmersion_baseChangeEmb D K
-
-theorem isAffine_baseChange_ambientToSpec (D : EmbeddingDatum k Y p) (K : Type u) [Field K]
-    [Algebra k K] : AlgebraicGeometry.IsAffine (baseChange D.ambientStruct K) :=
-  isAffine_baseChange D.ambientStruct K
-
-theorem smooth_baseChangeToSpec_ambientToSpec (D : EmbeddingDatum k Y p) (K : Type u) [Field K]
-    [Algebra k K] :
-    AlgebraicGeometry.Smooth (baseChangeToSpec D.ambientStruct K) :=
-  smooth_baseChangeToSpec D.ambientStruct K
-
-theorem locallyOfFiniteType_baseChangeToSpec_ambientToSpec (D : EmbeddingDatum k Y p) (K : Type u)
-    [Field K] [Algebra k K] :
-    AlgebraicGeometry.LocallyOfFiniteType (baseChangeToSpec D.ambientStruct K) :=
-  locallyOfFiniteType_baseChangeToSpec D.ambientStruct K
-
-theorem quasiCompact_baseChangeToSpec_ambientToSpec (D : EmbeddingDatum k Y p) (K : Type u)
-    [Field K] [Algebra k K] :
-    AlgebraicGeometry.QuasiCompact (baseChangeToSpec D.ambientStruct K) :=
-  quasiCompact_baseChangeToSpec D.ambientStruct K
-
-def baseChange (D : EmbeddingDatum k Y p) (K : Type u) [Field K] [CharZero K]
-    [Algebra k K]
-    (hker : NonzeroOnComponents (D.baseChangeEmb K).ker)
-    (hsnc : InStrictNormalCrossingPosition (baseChangeToSpec D.ambientStruct K)
-      ([] : List (EmbeddedResolution.baseChange D.ambientStruct K).IdealSheafData)) :
-    EmbeddingDatum K (EmbeddedResolution.baseChange p K) (baseChangeToSpec p K) where
-  ambient := EmbeddedResolution.baseChange D.ambientStruct K
-  ambientStruct := baseChangeToSpec D.ambientStruct K
-  emb := D.baseChangeEmb K
-  isAffine_ambient := isAffine_baseChange_ambientToSpec D K
-  smooth_ambientStruct := smooth_baseChangeToSpec_ambientToSpec D K
-  locallyOfFiniteType_ambientStruct := locallyOfFiniteType_baseChangeToSpec_ambientToSpec D K
-  quasiCompact_ambientStruct := quasiCompact_baseChangeToSpec_ambientToSpec D K
-  isClosedImmersion_emb := isClosedImmersion_baseChangeEmb D K
-  nonzeroOnComponents_ker := hker
-  comp_eq := baseChangeEmb_comp_baseChangeToSpec D K
-  sncEmpty := hsnc
-
 end EmbeddingDatum
 
 abbrev EmbeddedResolutionRule : Type (u + 1) :=
@@ -263,24 +158,6 @@ def EmbeddedResolutionRule.IsCompatibleWithSmoothAmbientMaps (R : EmbeddedResolu
     φ ≫ D.ambientStruct = D'.ambientStruct →
     IsPullback D'.emb ψ φ D.emb →
     IsPullbackBlowupSequence ψ (R k Y' p' D') (R k Y p D)
-
-def EmbeddedResolutionRule.IsCompatibleWithFieldBaseChange (R : EmbeddedResolutionRule.{u}) : Prop :=
-  ∀ (k : Type u) [Field k] [CharZero k] (Y : Scheme.{u})
-    (p : Y ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.LocallyOfFiniteType p]
-    [AlgebraicGeometry.QuasiCompact p] [AlgebraicGeometry.IsReduced Y]
-    [AlgebraicGeometry.IsAffine Y] (D : EmbeddingDatum k Y p) (K : Type u) [Field K]
-    [CharZero K] [Algebra k K] [AlgebraicGeometry.IsReduced (baseChange p K)]
-    (hker : NonzeroOnComponents (D.baseChangeEmb K).ker)
-    (hsnc : InStrictNormalCrossingPosition (baseChangeToSpec D.ambientStruct K)
-      ([] : List (baseChange D.ambientStruct K).IdealSheafData)),
-    haveI : AlgebraicGeometry.IsAffine (baseChange p K) := isAffine_baseChange p K
-    haveI : AlgebraicGeometry.LocallyOfFiniteType (baseChangeToSpec p K) :=
-      locallyOfFiniteType_baseChangeToSpec p K
-    haveI : AlgebraicGeometry.QuasiCompact (baseChangeToSpec p K) :=
-      quasiCompact_baseChangeToSpec p K
-    IsStrictPullbackBlowupSeq (baseChangeProjection p K)
-      (R K (baseChange p K) (baseChangeToSpec p K) (D.baseChange K hker hsnc))
-      (R k Y p D)
 
 end FunctorialResolution.EmbeddedResolution
 

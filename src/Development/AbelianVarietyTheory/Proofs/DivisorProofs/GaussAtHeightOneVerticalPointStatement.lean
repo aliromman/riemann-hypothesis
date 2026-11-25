@@ -461,8 +461,6 @@ open GlobalTheory GlobalTheory.Cartier GlobalTheory.Toroidal GlobalTheory.LocM G
 open scoped CategoryTheory.Obj
 open GlobalTheory.Desc
 
-set_option autoImplicit false
-
 namespace GlobalTheory.Desc.FlatLin
 
 theorem fnOf_algX {X : Scheme.{0}} [IsIntegral X] {R : Type} [CommRing R] (p : X ⟶ Sp R) (U : X.Opens)

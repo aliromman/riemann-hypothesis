@@ -9,52 +9,13 @@ public import Formalism.LocalToGlobal.UnitaryNorms.AdjoinCycZeta
 public import Formalism.LocalToGlobal.Columns.NonDeg
 public import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExistsGenerators
 public import Formalism.LocalToGlobal.Divisibility.CoeffLemmas
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
 import Mathlib.GroupTheory.Nilpotent
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
 import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Topology.Sheaves.Init
-import Mathlib.Tactic.Linter.HaveILetI
 import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.HostFacts
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
+public import Development.AutomorphicArithmetic.PrimeDiscriminants.CycImage
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.UnitaryNorms.PowValCast, Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.HostRam, Formalism.LocalToGlobal.UnitaryNorms.ExistsCycAct, Formalism.LocalToGlobal.Columns.CyclotomicIsCyclotomicExtension
@@ -192,16 +153,6 @@ theorem jacobi_pred {p : ℕ} (hp4 : p % 4 = 3) : Nat.Coprime (p - 1) p ∧ jaco
       simp
     rw [jacobiSym.mod_left, hmod, ← jacobiSym.mod_left, jacobiSym.at_neg_one hodd, ZMod.χ₄_nat_three_mod_four hp4]
 
-theorem ordCompl_mul_prime {m l : ℕ} (hl : l.Prime) (hm : Nat.Coprime m l) : ordCompl[l] (m * l) = m := by
-  have hnd : ¬ l ∣ m := (Nat.Prime.coprime_iff_not_dvd hl).mp (Nat.Coprime.symm hm)
-  have hm0 : m ≠ 0 := by
-    rintro rfl
-    exact hnd (dvd_zero l)
-  have hf : (m * l).factorization l = 1 := by
-    rw [Nat.factorization_mul hm0 hl.ne_zero, Finsupp.add_apply, Nat.factorization_eq_zero_of_not_dvd hnd,
-      hl.factorization_self, zero_add]
-  rw [hf, pow_one, Nat.mul_div_cancel _ hl.pos]
-
 namespace HostRaw
 
 variable {φ : Frame} (H : HostRaw φ)
@@ -217,13 +168,6 @@ theorem condN_div_q : H.condN / H.q = H.QS * H.d := by
 theorem condN_div_d : H.condN / H.d = H.QS * H.q := by
   obtain ⟨-, hd, -, -, -⟩ := H.hyp
   rw [HostRaw.condN, Nat.mul_div_cancel _ hd.pos]
-
-theorem ordCompl_q : ordCompl[H.q] H.condN = H.QS * H.d := by
-  obtain ⟨hq, hd, hq8, hd16, -⟩ := H.hyp
-  rw [condN_eq_q]
-  apply ordCompl_mul_prime hq
-  have hqd : Nat.Coprime H.d H.q := (Nat.coprime_primes hd hq).mpr (by omega)
-  exact Nat.Coprime.mul_left (Nat.Coprime.coprime_dvd_right (Nat.dvd_mul_right H.q H.d) H.QS_coprime) hqd
 
 variable {H}
 

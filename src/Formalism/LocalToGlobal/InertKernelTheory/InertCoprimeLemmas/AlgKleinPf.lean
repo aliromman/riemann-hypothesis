@@ -365,7 +365,7 @@ section AllK
 
 theorem th0TransAll_of (hP : PTorsAll) (hK : KleinAll) : PeriodTranscendenceAllLattices := by
   intro D cc δ B hcc hδ
-  have sd : B.StdOK := Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.SO.stdOK B hcc hδ
+  have sd : B.StdOK := GlobalTheory.FourthRootStd.stdOK B hcc hδ
   obtain ⟨h2, h3⟩ := _root_.Formalism.L2.KerInert.Sigma.ChartWirtingerDerivatives.weierstrass_invariants_algebraic D cc δ hcc hδ B.L B.lat
   exact th0TransAlg_of B.L B.ω₀ sd.per sd.half h2 h3 (Sigma.secondEisensteinAlgebraic D cc δ hcc hδ B.L B.lat)
     (hP D cc δ B hcc hδ) (hK D cc δ B hcc hδ)
@@ -958,7 +958,7 @@ section KleinAllPf
 
 theorem klein_forms_algebraic : KleinAll := by
   intro D cc δ B hcc hδ
-  have sd : B.StdOK := Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.SO.stdOK B hcc hδ
+  have sd : B.StdOK := GlobalTheory.FourthRootStd.stdOK B hcc hδ
   obtain ⟨h2, h3⟩ := _root_.Formalism.L2.KerInert.Sigma.ChartWirtingerDerivatives.weierstrass_invariants_algebraic D cc δ hcc hδ B.L B.lat
   exact kleinAlg_of B.L B.ω₀ sd.per sd.half h2 h3
 

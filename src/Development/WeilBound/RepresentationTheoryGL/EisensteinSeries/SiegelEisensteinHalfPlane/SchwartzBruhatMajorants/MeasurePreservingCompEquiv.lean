@@ -51,7 +51,6 @@ open PositivityTheory.He2M1 GroundTheory.Global GroundTheory.Automorphic GroundT
 
 namespace GlobalTheory.CompanionTheory.LtrFourier.Hd
 
-
 open MeasureTheory in
 theorem measurePreserving_comp_equiv {ι κ : Type} [Fintype ι] [Fintype κ] {α : Type*} [MeasurableSpace α] (μ : Measure α)
     [SigmaFinite μ] (e : κ ≃ ι) :
@@ -75,47 +74,14 @@ theorem map_mulVec_fin {k : Type} [Field k] [NumberField k] {n : ℕ} (A : GL (F
     (adeleMeasurePi k).map (fun x : Fin n → 𝔸[k] => (A : Matrix (Fin n) (Fin n) 𝔸[k]) *ᵥ x) =
       ENNReal.ofReal ((ideleModule k (Matrix.GeneralLinearGroup.det A) : ℝ))⁻¹ •
         adeleMeasurePi k (ι := Fin n) := by
-  apply GlobalTheory.CompanionTheory.LtrFourier.map_mulVec_fin <;> assumption
+  apply GlobalTheory.CompanionTheory.LtrFourier.map_mulVec_fin
 
 theorem map_mulVec {k : Type} [Field k] [NumberField k] {ι : Type} [Fintype ι] [DecidableEq ι]
     (A : GL ι 𝔸[k]) :
     (adeleMeasurePi k).map (fun x : ι → 𝔸[k] => (A : Matrix ι ι 𝔸[k]) *ᵥ x) =
       ENNReal.ofReal ((ideleModule k (Matrix.GeneralLinearGroup.det A) : ℝ))⁻¹ •
-        adeleMeasurePi k (ι := ι) := by
-  set e : ι ≃ Fin (Fintype.card ι) := Fintype.equivFin ι
-  let P : GL (Fin (Fintype.card ι)) 𝔸[k] :=
-    ⟨(A : Matrix ι ι 𝔸[k]).submatrix e.symm e.symm,
-      ((A⁻¹ : GL ι 𝔸[k]) : Matrix ι ι 𝔸[k]).submatrix e.symm e.symm,
-      by rw [Matrix.submatrix_mul_equiv, Units.mul_inv, Matrix.submatrix_one_equiv],
-      by rw [Matrix.submatrix_mul_equiv, Units.inv_mul, Matrix.submatrix_one_equiv]⟩
-  have hdet : Matrix.GeneralLinearGroup.det P = Matrix.GeneralLinearGroup.det A := by
-    ext
-    rw [Matrix.GeneralLinearGroup.val_det_apply, Matrix.GeneralLinearGroup.val_det_apply]
-    exact Matrix.det_submatrix_equiv_self _ _
-  have h1 : MeasurePreserving (fun x : ι → 𝔸[k] => x ∘ e.symm) (adeleMeasurePi k)
-      (adeleMeasurePi k) := measurePreserving_comp_equiv (adeleMeasure k) e.symm
-  have h3 : MeasurePreserving (fun x : Fin (Fintype.card ι) → 𝔸[k] => x ∘ e) (adeleMeasurePi k)
-      (adeleMeasurePi k) := measurePreserving_comp_equiv (adeleMeasure k) e
-  have hP : Measurable fun x : Fin (Fintype.card ι) → 𝔸[k] =>
-      (P : Matrix (Fin (Fintype.card ι)) (Fin (Fintype.card ι)) 𝔸[k]) *ᵥ x :=
-    (continuous_const.matrix_mulVec continuous_id).measurable
-  have hfun : (fun x : ι → 𝔸[k] => (A : Matrix ι ι 𝔸[k]) *ᵥ x) =
-      (fun x => x ∘ e) ∘
-        (fun x => (P : Matrix (Fin (Fintype.card ι)) (Fin (Fintype.card ι)) 𝔸[k]) *ᵥ x) ∘
-          (fun x => x ∘ e.symm) := by
-    funext x
-    simp only [Function.comp_apply]
-    change _ = ((A : Matrix ι ι 𝔸[k]).submatrix e.symm e.symm *ᵥ (x ∘ e.symm)) ∘ e
-    have hx : (x ∘ e.symm) ∘ e = x := by
-      funext j
-      simp
-    rw [Matrix.submatrix_mulVec_equiv, Equiv.symm_symm, hx]
-    funext i
-    simp
-  rw [hfun, ← Measure.map_map h3.measurable (hP.comp h1.measurable),
-    ← Measure.map_map hP h1.measurable, h1.map_eq, map_mulVec_fin P, hdet, Measure.map_smul,
-    h3.map_eq]
-  exact h3.measurable.aemeasurable
+        adeleMeasurePi k (ι := ι) :=
+  _root_.GlobalTheory.CompanionTheory.LtrFourier.map_mulVec A
 
 def mulVecHomeo {k : Type} [Field k] [NumberField k] {ι : Type} [Fintype ι] [DecidableEq ι]
     (A : GL ι 𝔸[k]) : (ι → 𝔸[k]) ≃ₜ (ι → 𝔸[k]) where
@@ -128,21 +94,10 @@ def mulVecHomeo {k : Type} [Field k] [NumberField k] {ι : Type} [Fintype ι] [D
   continuous_toFun := continuous_const.matrix_mulVec continuous_id
   continuous_invFun := continuous_const.matrix_mulVec continuous_id
 
-theorem integral_comp_mulVec {k : Type} [Field k] [NumberField k] {ι : Type} [Fintype ι]
-    [DecidableEq ι] (A : GL ι 𝔸[k]) (f : (ι → 𝔸[k]) → ℂ) :
-    ∫ x, f ((A : Matrix ι ι 𝔸[k]) *ᵥ x) ∂adeleMeasurePi k =
-      (((ideleModule k (Matrix.GeneralLinearGroup.det A) : ℝ))⁻¹ : ℂ) *
-        ∫ x, f x ∂adeleMeasurePi k := by
-  have hemb : MeasurableEmbedding (fun x : ι → 𝔸[k] => (A : Matrix ι ι 𝔸[k]) *ᵥ x) :=
-    (mulVecHomeo A).measurableEmbedding
-  rw [← hemb.integral_map, map_mulVec, integral_smul_measure, ENNReal.toReal_ofReal
-      (inv_nonneg.2 (ideleModule k (Matrix.GeneralLinearGroup.det A)).2.le),
-    Complex.real_smul, Complex.ofReal_inv]
-
 theorem adelicFourierPi_ltr : ∀ {k : Type} [Field k] [NumberField k], ∀ {ι : Type} [Fintype ι] [DecidableEq ι], ∀ (A : GL ι 𝔸[k]) (F : (ι → 𝔸[k]) → ℂ), adelicFourierPi k (ltr A F) =
       (((ideleModule k (Matrix.GeneralLinearGroup.det A) : ℝ))⁻¹ : ℂ) •
         ltr (tInv A) (adelicFourierPi k F) := by
-  apply GlobalTheory.CompanionTheory.LtrFourier.adelicFourierPi_ltr <;> assumption
+  apply GlobalTheory.CompanionTheory.LtrFourier.adelicFourierPi_ltr
 
 end
 

@@ -65,8 +65,6 @@ section -- clump:auto
 
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.Ls CrystallineSemistableComparison.Pb CrystallineSemistableComparison.Pb.LsG
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.CompanionTheory.FlatLevel
@@ -153,7 +151,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
@@ -388,7 +385,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
@@ -783,7 +779,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
@@ -1110,7 +1105,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section

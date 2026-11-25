@@ -195,7 +195,7 @@ theorem matrix_eq_zero_of_im {g : ℕ} {La : Type} [AddCommGroup La] (P : La →
 
 theorem trace_mul_sesq (D : Datum H) (a : 𝓞 E) (x y : D.La) :
     Algebra.trace ℚ E ((a : E) * sesq D x y) = ((D.EF (a • x) y : ℤ) : ℚ) := by
-  apply GlobalTheory.CompanionTheory.Ar.Fl.trace_mul_sesq_eq_form <;> assumption
+  apply GlobalTheory.CompanionTheory.Ar.Fl.trace_mul_sesq_eq_form
 
 theorem sesq_smul_left (D : Datum H) (a : 𝓞 E) (x y : D.La) :
     sesq D (a • x) y = (a : E) * sesq D x y := by
@@ -326,9 +326,9 @@ theorem exists_smul_eq_sum (D : Datum H) {I : Type} [Fintype I] (e : I → D.La)
     (hcard : Fintype.card I = D.p + D.q) (he : LinearIndependent (𝓞 E) e) (y : D.La) :
     ∃ (b : 𝓞 E) (c : I → 𝓞 E), b ≠ 0 ∧ b • y = ∑ n, c n • e n := by
   classical
-  haveI := D.fin
+  have := D.fin
   by_contra hno
-  push_neg at hno
+  push Not at hno
   set n := Fintype.card I with hn
   let eq := Fintype.equivFin I
   have hv : LinearIndependent (𝓞 E) (e ∘ eq.symm) := he.comp _ eq.symm.injective

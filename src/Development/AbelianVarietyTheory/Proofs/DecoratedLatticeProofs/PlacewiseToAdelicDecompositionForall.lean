@@ -56,7 +56,6 @@ noncomputable section
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR.Datum MeasureTheory IsDedekindDomain NumberField Matrix
 open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Unf GlobalTheory.LatPair GlobalTheory.SplitWeil
 open GlobalTheory.IndefiniteRowSideFullHecke.UnramifiedCharacter (compFin ExtUnramAt CharUnramAt)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.FinPl.PlacesAdeles
 
@@ -155,7 +154,6 @@ theorem latV_eq_ae : ∀ (D : D7) (S : HSp D) (L M : Lat S), Submodule.IsFullLat
   intro D S L M hL hM
   first
   | exact _root_.GlobalTheory.FinPl.latV_eq_off_finite D S L M hL hM
-  | exact _root_.GlobalTheory.FinPl.latV_eq_off_finite D S L M hL.toIsLattice hM.toIsLattice
 
 end GlobalTheory.FinPl.PlacesAdeles
 

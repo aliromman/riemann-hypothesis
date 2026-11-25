@@ -236,7 +236,7 @@ theorem mem_latO_iff (h : Chart e σ π) (hσ : ∀ x, Valued.v (σ x) = Valued.
 
         simp only [Matrix.smul_apply, smul_eq_mul, vecMulVec_apply, Matrix.vecMul, dotProduct, Matrix.map_apply,
         RingHom.map_mul, map_sum, hs', h.2.2.2.1]
-        ring
+        ring_nf
       rw [e1, Matrix.mul_smul, Matrix.smul_mul, mul_vecMulVec, vecMulVec_mul, vecMul_vecMul, hS.gram_mul]
       convert h5 using 1
       have e2 : ((fun k => σ (π (incA D (s k)))) ᵥ* cT σ (βS⁻¹).1) j = σ (((βS⁻¹).1 *ᵥ fun k => π (incA D (s k))) j) := by

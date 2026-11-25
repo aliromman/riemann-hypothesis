@@ -8,51 +8,7 @@ public import GroundTheory.ProfiniteCohomology.LocalEulerCharacteristic.UnitsPow
 public import Mathlib.Algebra.Field.ZMod
 public import GroundTheory.LocalFields.ExistsUnitFiltrationUnitsLeAndRangePowLe
 public import GroundTheory.ProfiniteCohomology.LocalEulerCharacteristic.Additive
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.RingTheory.WittVector.IsPoly
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
-import Mathlib.Topology.Sheaves.Init
-import Mathlib.Tactic.ENatToNat
-import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.ProfiniteCohomology.LocalEulerCharacteristic.UnitsLattice, GroundTheory.ProfiniteCohomology.LocalEulerCharacteristic.ModNEquivOfSurjectiveApplyModNRep
@@ -486,7 +442,7 @@ noncomputable def modNEquivOfSurjective (φ : A →+ X) (hs : Function.Surjectiv
     (((LinearMap.range (LinearMap.lsmul ℤ A n)).liftQ φ.toIntLinearMap
       fun a ha ↦ LinearMap.mem_ker.mpr ((hker a).mpr ha)).toAddMonoidHom.toZModLinearMap n)
     ⟨by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro x hx
       obtain ⟨a, rfl⟩ := Submodule.Quotient.mk_surjective _ x
       exact (Submodule.Quotient.mk_eq_zero _).mpr ((hker a).mp hx),
@@ -708,7 +664,7 @@ theorem finite_modN_maxPow (k : ℕ) : Finite (ModN (maxPow F k) p) := by
   let L := (LinearMap.range (LinearMap.lsmul ℤ (maxPow F k) p)).liftQ φ.toIntLinearMap
     fun a ha ↦ LinearMap.mem_ker.mpr ((hφ a).mpr ha)
   refine Finite.of_injective L ?_
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨a, rfl⟩ := Submodule.Quotient.mk_surjective _ x
   exact (Submodule.Quotient.mk_eq_zero _).mpr ((hφ a).mp hx)

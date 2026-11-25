@@ -2,7 +2,7 @@ module
 
 import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.ParCols
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.TermOp
-public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.RankTwoDimensionFormula.FlagLevelCharacterEqPsiDivN
+public import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.LevelSubgroupCharacterUnitary
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.RankTwoDimensionFormula.DualBetaReferenceCongruence
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.RankTwoDimensionFormula.ReferenceReprMemLattice
 import Mathlib.Algebra.Order.Floor.Extended
@@ -51,7 +51,7 @@ noncomputable section
 
 open scoped Classical ComplexConjugate TensorProduct
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Matrix Formalism.L2.SG.TermOp Formalism.L2.SG.HidaSetting
-  PI.UnitaryDimensionFormula.unitaryCongruence
+  Formalism.L2.SG.Pf.unitaryCongruence
 
 namespace PI.UnitaryDimensionFormula.NormCutK
 
@@ -131,7 +131,7 @@ theorem leviM_mul_par {x y : X.B.I.Gf} (hx : Par X x) (hy : Par X y) (v : TR.Pl)
   leviM_mul TR hx.1 hy.1 hy.2.2 hx.2.1 v
 
 theorem leviM_one (v : TR.Pl) : leviM TR 1 v = 1 := by
-  apply Formalism.L2.SG.NormCut.leviM_one <;> assumption
+  apply Formalism.L2.SG.NormCut.leviM_one
 
 end Par
 

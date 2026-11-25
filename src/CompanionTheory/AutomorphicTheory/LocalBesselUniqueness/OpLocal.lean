@@ -66,7 +66,7 @@ namespace Formalism.FourierDecayAlt.P.CutBP.LimitNormalForms
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.B Formalism.FourierDecayAlt.P.BetaSesquilinearity
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
+open scoped Matrix.Norms.Elementwise
 
 section gen
 
@@ -344,7 +344,7 @@ def scalTerm (P : Mat k r → ℂ) (w : List (Mat k r)) (hw : ∀ X ∈ w, inLie
   word_lie := hw
   adj_id := by
     intro x A B
-    simp only [ContinuousLinearMap.smul_apply, ContinuousLinearMap.id_apply, hsInner,
+    simp only [_root_.smul_apply, ContinuousLinearMap.id_apply, hsInner,
       PI.UnitaryGroupMassFormula.UsCompose.hsVec_smul, inner_smul_right, inner_smul_left, Complex.star_def, Complex.conj_conj]
 
 theorem polyDeg_mono {κ κ' : ℕ} (h : κ ≤ κ') {P : Mat k r → ℂ} (hP : U.IsPolyDeg κ P) : U.IsPolyDeg κ' P := by

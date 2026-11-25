@@ -107,7 +107,6 @@ theorem card_free (j0 : Fin N) : Fintype.card (Fin (D + 1) × Fin N) = Fintype.c
     Fintype.card {p : Fin (D + 1) × Fin N // p.1 = 0 ∨ p.2 ≠ j0} := by congr
   omega
 
-
 open Classical in
 def subst (x : Fin N → Ω) (j0 : Fin N) (p : Fin (D + 1) × Fin N) : MvPolynomial (Free D N j0) Ω :=
   if h : p.1 = 0 ∨ p.2 ≠ j0 then X ⟨p, h⟩
@@ -150,8 +149,6 @@ section Gauss
 variable {K : Type} [Field K] [NumberField K] (la : HeightOneSpectrum (𝓞 K)) {Ω : Type} [Field Ω] [Algebra K Ω]
   {D N : ℕ}
 
-
-
 theorem free_indep (htr : Algebra.trdeg K Ω = D) (x : Fin N → Ω) (j0 : Fin N) (hx : x j0 ≠ 0)
     {F : Type} [Field F] [Algebra Ω F] (w : AddValuation F (WithTop ℤ)) (u : Fin (D + 1) × Fin N → F)
     (hu : ∀ p, u p ∈ vRing w)
@@ -168,8 +165,6 @@ theorem free_indep (htr : Algebra.trdeg K Ω = D) (x : Fin N → Ω) (j0 : Fin N
     (fun s => hu s.1) (Fin (D + 1) × Fin N) (fun p => ⟨u p, hu p⟩) (subst x j0)
     (fun p α => subst_mem x j0 hint p α)
     (card_free j0) (aeval_subst x j0 hx u hrel) (ValuationResidueLemmas.indep_u (K := K) (Ω := Ω) w la (fun p => ⟨u p, hu p⟩) h0 h1)).2.2
-
-
 
 theorem gauss_one (htr : Algebra.trdeg K Ω = D) (x : Fin N → Ω) (j0 : Fin N) (hx : x j0 ≠ 0)
     {F : Type} [Field F] (w : AddValuation F (WithTop ℤ)) (ι : Ω →+* F) (u : Fin (D + 1) × Fin N → F)
@@ -528,9 +523,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-
-
-
 noncomputable section
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.WeightAlgebra Formalism.MainNotions.Gaps.EtaleWeightGaps Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -543,41 +535,6 @@ section Rec
 variable {D : D7} {B : WeightFamilies.Prov D} {P : ModuliIntegralCharts.Prov D} {j : ℕ} (X : PJ D B P j) (la : HeightOneSpectrum (𝓞 B.KO))
   (N : ℕ) {wL : WeightFamilies.Wt D j} (w : Fin N → B.Cusp j wL)
 
-theorem range_mul_step {m : ℕ} {x y : X.Forms} (hx : x ∈ LinearMap.range (X.inc (addL (wt0 D j) wL m)))
-    (hy : y ∈ LinearMap.range (X.inc wL)) : x * y ∈ LinearMap.range (X.inc (addL (wt0 D j) wL (m + 1))) := by
-  obtain ⟨F, rfl⟩ := hx
-  obtain ⟨G, rfl⟩ := hy
-  obtain ⟨H, hH⟩ := X.inc_mul wL _ G F
-  rw [← wadd_addL, mul_comm, hH]
-  exact ⟨H, rfl⟩
-
-theorem range_pow {m : ℕ} {y x : X.Forms} (hy : y ∈ LinearMap.range (X.inc (addL (wt0 D j) wL m)))
-    (hx : x ∈ LinearMap.range (X.inc wL)) (e : ℕ) :
-    y * x ^ e ∈ LinearMap.range (X.inc (addL (wt0 D j) wL (m + e))) := by
-  induction e with
-  | zero => simpa using hy
-  | succ e ih =>
-    rw [pow_succ, ← mul_assoc, ← add_assoc]
-    exact range_mul_step X ih hx
-
-theorem range_prod (d : Fin N →₀ ℕ) {m : ℕ} {y : X.Forms}
-    (hy : y ∈ LinearMap.range (X.inc (addL (wt0 D j) wL m))) (s : Finset (Fin N)) :
-    y * ∏ i ∈ s, X.inc wL (w i) ^ d i ∈ LinearMap.range (X.inc (addL (wt0 D j) wL (m + ∑ i ∈ s, d i))) := by
-  classical
-  refine Finset.induction_on s (by rwa [Finset.prod_empty, Finset.sum_empty, mul_one, add_zero]) ?_
-  intro a s ha ih
-  rw [Finset.prod_insert ha, Finset.sum_insert ha]
-  have e1 : y * (X.inc wL (w a) ^ d a * ∏ i ∈ s, X.inc wL (w i) ^ d i) =
-      (y * ∏ i ∈ s, X.inc wL (w i) ^ d i) * X.inc wL (w a) ^ d a := by ring
-  have e2 : m + (d a + ∑ i ∈ s, d i) = m + ∑ i ∈ s, d i + d a := by ring
-  rw [e1, e2]
-  exact range_pow X ih ⟨w a, rfl⟩ (d a)
-
-theorem range_aeval {k : ℕ} (Pw : MvPolynomial (Fin N) B.KO) (hPw : Pw.IsHomogeneous k) {m : ℕ} {y : X.Forms}
-    (hy : y ∈ LinearMap.range (X.inc (addL (wt0 D j) wL m))) :
-    y * MvPolynomial.aeval (fun i => X.inc wL (w i)) Pw ∈ LinearMap.range (X.inc (addL (wt0 D j) wL (m + k))) := by
-  apply _root_.GlobalTheory.SecPoint.range_aeval <;> assumption
-
 theorem exists_ratio {Ω : Type} [Field Ω] [Algebra B.KO Ω] (gF : X.Forms →ₐ[B.KO] Ω)
     (hB : CurveLoc.BirAt X N w gF) (hk : ∃ k, gF (X.inc wL (w k)) ≠ 0) (a : Ω) :
     ∃ (m : ℕ) (p q : B.Cusp j (addL (wt0 D j) wL m)), gF (X.inc _ p) ≠ 0 ∧ a * gF (X.inc _ p) = gF (X.inc _ q) := by
@@ -589,13 +546,6 @@ def evK {F : Type} [Field F] (ev : Rp X la N →+* F) : Kp X la N →+* F :=
 theorem ev_smul {F : Type} [Field F] (ev : Rp X la N →+* F) (c : Kp X la N) (g : Rp X la N) :
     ev (c • g) = evK X la N ev c * ev g := by
   rw [Algebra.smul_def, map_mul]; rfl
-
-theorem lift_algKp {F : Type} [Field F] (ev : Rp X la N →+* F) (hu : IsUnit (ev (sec X la w 0))) (c : Kp X la N) :
-    IsLocalization.Away.lift (sec X la w 0) hu
-      ((algebraMap (Kp X la N) ↥(Frac0 X la w) c : ↥(Frac0 X la w)) : Lw X la w) = evK X la N ev c := by
-  show IsLocalization.Away.lift (sec X la w 0) hu (algebraMap (Kp X la N) (Lw X la w) c) = _
-  rw [IsScalarTower.algebraMap_apply (Kp X la N) (Rp X la N) (Lw X la w), liftEv_alg]
-  rfl
 
 section Fam
 
@@ -758,7 +708,7 @@ theorem evK_op (o : Op (xplus X E hM) la G.N) :
     _ = IsLocalization.Away.lift (sec (xplus X E hM) la G.w 0) h.s0
         ((algebraMap (Kp (xplus X E hM) la G.N) ↥(Frac0 (xplus X E hM) la G.w)
           (algebraMap _ (Kp (xplus X E hM) la G.N) o) : ↥(Frac0 (xplus X E hM) la G.w)) : Lw (xplus X E hM) la G.w) :=
-      (lift_algKp (xplus X E hM) la G.N G.w h.ev h.s0 _).symm
+      (GlobalTheory.SecPoint.lift_algKp (xplus X E hM) la G.N G.w h.ev h.s0 _).symm
     _ = _ := by
       rw [h.evW _ (algebraMap _ _ o) ((toOsK (xplus X E hM) la G.w).commutes _), ← IsScalarTower.algebraMap_apply]
 
@@ -922,7 +872,6 @@ theorem sep {Ω : Type} [Field Ω] [Algebra B.KO Ω] (gF : (xplus X E hM).Forms 
       ring
     rw [e]
     exact nval_lt_of_pos h'.T n2 ha'
-
 
 omit h in
 theorem valSep_fam {ι : Type} [Finite ι] (Ω : ι → Type) [∀ Z, Field (Ω Z)] [∀ Z, Algebra B.KO (Ω Z)]

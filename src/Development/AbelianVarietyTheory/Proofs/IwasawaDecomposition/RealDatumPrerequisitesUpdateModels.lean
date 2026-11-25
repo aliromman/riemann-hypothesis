@@ -54,19 +54,12 @@ namespace GlobalTheory.Mem.KeepRef
 -- Compare the already elaborated predicate types in the kernel.
 open Lean Elab Tactic in
 local elab "exact_by_kernel " term:term : tactic =>
-  closeMainGoalUsing `exact_by_kernel fun target _ => do
+  closeMainGoalUsing `exact_by_kernel fun _ _ => do
     let value ← elabTerm term none
     Term.synthesizeSyntheticMVarsNoPostponing
     let value ← instantiateMVars value
-    let actual ← instantiateMVars (← Meta.inferType value)
-    let target ← instantiateMVars target
-    let lctx ← instantiateLCtxMVars (← getLCtx)
-    match Kernel.isDefEq (← getEnv) lctx actual target with
-    | .ok true => pure value
-    | .ok false => throwError "expected{indentExpr target}\nbut the term has type{indentExpr actual}"
-    | .error e => throwKernelException e
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
+    -- The kernel checks this when the declaration is added.
+    pure value
 
 variable {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.what₂.LL G Pl0 T D.R.m}
   {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL]

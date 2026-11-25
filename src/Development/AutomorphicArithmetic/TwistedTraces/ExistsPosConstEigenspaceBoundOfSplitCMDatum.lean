@@ -516,55 +516,6 @@ private theorem ops_key {M : Type*} [Monoid M] (b₁ b₂ P Q O : M) (habs : b�
   subst hO
   rw [← mul_assoc b₂, hc, mul_assoc P, ← mul_assoc b₁, ← habs, mul_assoc]
 
-section Hil
-variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
-
-private theorem prj_mem {V : Submodule ℂ H} (hV : IsClosed (V : Set H)) (v : H) : prj V v ∈ V := by
-  have hc : V.topologicalClosure = V := hV.submodule_topologicalClosure_eq
-  have h : prj V v ∈ V.topologicalClosure := Submodule.starProjection_apply_mem V.topologicalClosure v
-  rwa [hc] at h
-
-private theorem prj_inner {V : Submodule ℂ H} (hV : IsClosed (V : Set H)) (v w : H) (hw : w ∈ V) :
-    ⟪v - prj V v, w⟫_ℂ = 0 := by
-  have hc : V.topologicalClosure = V := hV.submodule_topologicalClosure_eq
-  exact Submodule.starProjection_inner_eq_zero v w (hc.symm ▸ hw)
-
-private theorem prj_eq_of {V : Submodule ℂ H} (hV : IsClosed (V : Set H)) (x y : H) (hy : y ∈ V)
-    (h : ∀ w ∈ V, ⟪x - y, w⟫_ℂ = 0) : prj V x = y := by
-  have hc : V.topologicalClosure = V := hV.submodule_topologicalClosure_eq
-  show V.topologicalClosure.starProjection x = y
-  have hy' : y ∈ V.topologicalClosure := by rw [hc]; exact hy
-  have h' : ∀ w ∈ V.topologicalClosure, ⟪x - y, w⟫_ℂ = 0 := fun w hw => h w (by rwa [hc] at hw)
-  exact Submodule.eq_starProjection_of_mem_of_inner_eq_zero hy' h'
-
-private theorem prj_comp_of_commute {E G : Submodule ℂ H} (hE : IsClosed (E : Set H)) (hG : IsClosed (G : Set H))
-    (hc : Commute (prj E) (prj G)) : prj E ∘L prj G = prj (E ⊓ G) := by
-  have hEG : IsClosed ((E ⊓ G : Submodule ℂ H) : Set H) := by
-    rw [Submodule.coe_inf]; exact hE.inter hG
-  refine ContinuousLinearMap.ext fun x => ?_
-  symm
-  refine prj_eq_of hEG x _ ⟨prj_mem hE _, ?_⟩ fun w hw => ?_
-  · have : (prj E * prj G) x = (prj G * prj E) x := by rw [hc.eq]
-    show prj E (prj G x) ∈ G
-    have h2 : prj E (prj G x) = prj G (prj E x) := this
-    rw [h2]; exact prj_mem hG _
-  · have h1 := prj_inner hG x w hw.2
-    have h2 := prj_inner hE (prj G x) w hw.1
-    have : x - (prj E ∘L prj G) x = (x - prj G x) + (prj G x - prj E (prj G x)) := by
-      simp
-    rw [this, inner_add_left, h1, h2, add_zero]
-
-private theorem prj_commute {V : Submodule ℂ H} (hV : IsClosed (V : Set H)) (T : H →L[ℂ] H) (h1 : ∀ v ∈ V, T v ∈ V)
-    (h2 : ∀ v ∈ V, ContinuousLinearMap.adjoint T v ∈ V) : Commute T (prj V) := by
-  refine ContinuousLinearMap.ext fun v => ?_
-  show T (prj V v) = prj V (T v)
-  symm
-  refine prj_eq_of hV _ _ (h1 _ (prj_mem hV v)) fun w hw => ?_
-  rw [← map_sub, ← ContinuousLinearMap.adjoint_inner_right]
-  exact prj_inner hV v _ (h2 w hw)
-
-end Hil
-
 section Alg
 variable {M : Type*} [Monoid M]
 
@@ -635,7 +586,8 @@ private theorem GA_stable {A : Set (Pl K)} {v : Pl K} (hv : v ∉ A) (g : Gw n v
 
 private theorem GA_commute (hco : ∀ w, CO (J w) ∧ IsChr (J w) (χ w)) {A : Set (Pl K)} {v : Pl K} (hv : v ∉ A) (g : Gw n v) :
     Commute (rhoL μ v g) (prj (GAx μ J χ A)) := by
-  refine prj_commute (GA_closed μ hco A) _ (GA_stable μ hv g) fun x hx => ?_
+  refine UpperTheory.ConvolutionTheory.L1.prj_commute
+    (GA_closed μ hco A) _ (GA_stable μ hv g) fun x hx => ?_
   rw [rhoL_adj]
   exact GA_stable μ hv _ x hx
 
@@ -656,7 +608,8 @@ private theorem list_prj (hco : ∀ w, CO (J w) ∧ IsChr (J w) (χ w)) (L : Lis
       ext u; simp only [Set.mem_union, Set.mem_setOf_eq, List.mem_cons, Set.mem_insert_iff]; tauto
     have hG : GAx μ J χ (insert v (A ∪ {v | v ∈ L})) = eigL μ v (J v) (χ v) ⊓ GAx μ J χ (A ∪ {v | v ∈ L}) := by
       simp only [GAx]; rw [iInf_insert]
-    rw [List.map_cons, List.prod_cons, hs, hG, ← prj_comp_of_commute hcl (GA_closed μ hco _) hc, ← h1]
+    rw [List.map_cons, List.prod_cons, hs, hG,
+      ← UpperTheory.ConvolutionTheory.L1.prj_comp_of_commute hcl (GA_closed μ hco _) hc, ← h1]
     rfl
 
 end Loc
@@ -778,19 +731,6 @@ private theorem glue_cont {ι : Type} {R : ι → Type} [∀ i, CommRing (R i)] 
     exact (Units.continuous_val.comp (continuous_apply i)).matrix_elem a b
   · refine continuous_pi fun a => continuous_pi fun b => continuous_pi fun i => ?_
     exact (Units.continuous_coe_inv.comp (continuous_apply i)).matrix_elem a b
-
-private theorem exists_ext {ι A : Type*} {X : A → Type*} (wi : ι → A) (hw : Function.Injective wi)
-    (ψ : ∀ i, X (wi i)) (d : ∀ a, X a) :
-    ∃ h : ∀ a, X a, (∀ i, h (wi i) = ψ i) ∧ ∀ a, a ∉ Set.range wi → h a = d a := by
-  refine ⟨fun a => if ha : ∃ i, wi i = a then ha.choose_spec ▸ ψ ha.choose else d a, fun i => ?_,
-    fun a ha => dif_neg ha⟩
-  have key : ∀ j (hj : wi j = wi i), (hj ▸ ψ j : X (wi i)) = ψ i := by
-    intro j hj
-    obtain rfl := hw hj
-    rfl
-  have ha : ∃ j, wi j = wi i := ⟨i, rfl⟩
-  simp only [dif_pos ha]
-  exact key _ _
 
 private theorem finprod_split {A M : Type*} [CommMonoid M] {r : ℕ} (wi : Fin r → A) (hw : Function.Injective wi)
     (X : A → M) (hX : (Function.mulSupport X).Finite) :
@@ -1035,7 +975,8 @@ theorem UpperTheory.exists_pos_const_eigenspace_bound_of_split_CMDatum :
   have hwi : Function.Injective fun i => (T.mk' (pp i)).1 := fun i j e => hpp (by
     have e' : (T.mk' (pp i)).1 = (T.mk' (pp j)).1 := e
     rw [← under_eq (T.mk' (pp i)), e', under_eq])
-  obtain ⟨h, hh1, hh2⟩ := exists_ext (X := fun w : Pl E => Gw n w → ℂ) (fun i => (T.mk' (pp i)).1) hwi
+  obtain ⟨h, hh1, hh2⟩ := UpperTheory.ConvolutionTheory.L1.dep_extend
+    (β := fun w : Pl E => Gw n w → ℂ) (fun i => (T.mk' (pp i)).1) hwi
     (fun i => ψ (pp i)) (dflt T)
   have h1 : ∀ v ∈ T.S, h (T.mk' v).1 = ψ v := fun v hv => by
     obtain ⟨i, rfl⟩ := hsurj v hv

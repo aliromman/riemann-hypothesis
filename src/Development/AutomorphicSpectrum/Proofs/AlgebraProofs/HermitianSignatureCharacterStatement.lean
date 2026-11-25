@@ -194,7 +194,7 @@ theorem charpoly_lmul [Fintype (E →+* K)] (h : Nat.card (E →+* K) = Module.f
     simp [Nat.card_eq_fintype_card] at hlt
   have hbc : regAct K E a = (Algebra.lmul ℤ (𝓞 E) a).baseChange K := by
     apply TensorProduct.AlgebraTensorModule.curry_injective
-    ext c y
+    ext c
     simp [regAct]
   rw [← algebraMap_int_eq, ← LinearMap.charpoly_baseChange, ← hbc, hc a]
   simp [hone]

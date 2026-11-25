@@ -2,52 +2,9 @@ module
 
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PResolutionMetricPair
 public import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsResolutionPullback
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Ring.IsFormallyReal
 public import Mathlib.Analysis.Analytic.Polynomial
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.Order.CompletePartialOrder
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.RingTheory.WittVector.IsPoly
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.ReduceModChar
-import Mathlib.Topology.Sheaves.Init
 public import ReciprocityTheory.AnalyticForms.PotentialTheory.PshShiftA
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.ADensStC
 
@@ -153,28 +110,6 @@ theorem blockRatio_eq_div {k₀ : K} {z z' : (Σ k, ι k) → ℂ} (hzz : SameOr
   obtain ⟨c, -, rfl⟩ := hzz
   rw [blockRatio_eq c ⟨i, hi⟩]
   exact (mul_div_cancel_right₀ _ hi).symm
-
-theorem isConeTangent_of_map {P0 P : Ideal (MRing ι)} (hP0 : P0 ≤ P) {e : ℕ}
-    {γ : (Fin e → ℂ) → (Σ k, ι k) → ℂ} {y : Fin e → ℂ} (hγ : AnalyticAt ℂ γ y)
-    (hpts : ∀ᶠ y' in 𝓝 y, γ y' ∈ mcPts P) (ξ : Fin e → ℂ) :
-    IsConeTangent (Int.castRingHom ℂ) P0 (γ y) (fderiv ℂ γ y ξ) := by
-  intro f hf
-  set F := map (Int.castRingHom ℂ) f
-  have hzero : (fun w => eval w F) ∘ γ =ᶠ[𝓝 y] fun _ => (0 : ℂ) := by
-    filter_upwards [hpts] with w hw
-    exact hw.2 f (hP0 hf)
-  have hd := (adens_hasFDerivAt_eval F (γ y)).comp y hγ.differentiableAt.hasFDerivAt
-  have h0 : HasFDerivAt ((fun w => eval w F) ∘ γ) (0 : (Fin e → ℂ) →L[ℂ] ℂ) y :=
-    (hasFDerivAt_const (0 : ℂ) y).congr_of_eventuallyEq hzero
-  have := congrArg (fun L => L ξ) (hd.unique h0)
-  simpa [_root_.sum_apply, smul_eq_mul] using this
-
-theorem levi_const_mul {κ : Type} [Fintype κ] {f : (κ → ℂ) → ℝ} {z : κ → ℂ} (c : ℝ)
-    (hf : ContDiffAt ℝ 2 f z) (w : κ → ℂ) : levi (fun y => c * f y) z w = c * levi f z w := by
-  have h := levi_add_smul (f := fun _ => (0 : ℝ)) c contDiffAt_const hf w
-  simp only [zero_add] at h
-  rw [h]
-  simp [levi]
 
 end Torus
 
@@ -299,8 +234,8 @@ theorem weight_isSemipositive : (weight d pt hcov).IsSemipositive := by
   have hcomp : (weight d pt hcov).φ l ∘ ((atlas d pt hcov).chart l).symm =
       (fun z => 2 * Real.log (d.A.h z)) ∘
         (fun y p => d.R.lift (pt l) (((atlas d pt hcov).chart l).symm y) p) := rfl
-  rw [hcomp, levi_comp w hG (contDiffAt_const.mul hlog), levi_const_mul 2 hlog]
-  exact mul_nonneg (by norm_num) (d.semipos.2 _ hmem _ (isConeTangent_of_map d.normalForm_baseLattice_le_dualSpan_sup_line hG hpts w))
+  rw [hcomp, levi_comp w hG (contDiffAt_const.mul hlog), GroundTheory.Heights₂.Heights.HilbertSamuel.ResolutionMetricPair.levi_const_mul 2 hlog]
+  exact mul_nonneg (by norm_num) (d.semipos.2 _ hmem _ (GroundTheory.Heights₂.Heights.HilbertSamuel.ResolutionMetricPair.isConeTangent_of_map d.normalForm_baseLattice_le_dualSpan_sup_line hG hpts w))
 
 def smoothVol : SmoothVolume (atlas d pt hcov) where
   μ := d.dV

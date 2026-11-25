@@ -2,53 +2,9 @@ module
 
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PSectionBoundedMul
 public import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsSmallSectionsNonzero
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.RingTheory.WittVector.IsPoly
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
-import Mathlib.Topology.Sheaves.Init
-import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
 
@@ -74,15 +30,6 @@ theorem isMultiHomog_mul {g h : MRing ι} {a b : K → ℕ} (hg : IsMultiHomog g
   simp only [Finsupp.add_apply, Finset.sum_add_distrib, Pi.add_apply]
   rw [hg m₁ hm₁ k, hh m₂ hm₂ k]
 
-
-omit [Fintype K] in
-theorem isMultiHomog_sub {g h : MRing ι} {d : K → ℕ} (hg : IsMultiHomog g d)
-    (hh : IsMultiHomog h d) : IsMultiHomog (g - h) d := by
-  classical
-  intro m hm
-  rcases Finset.mem_union.mp (support_sub _ g h hm) with hm | hm
-  · exact hg m hm
-  · exact hh m hm
 
 
 omit [Fintype K] in
@@ -211,7 +158,7 @@ theorem isSmallH_one (y : (Σ k, ι k) → Ω) (A : HermLine ι) : IsSmallH (mCo
   intro dg dh g h z hg hh hdeg he hz
   have hd : dg = dh := funext fun k => by simpa using hdeg k
   subst hd
-  have hmem := mem_mCoordIdeal_of_aeval_eq_zero y (isMultiHomog_sub hg hh) (by rw [map_sub, he, one_mul, sub_self])
+  have hmem := mem_mCoordIdeal_of_aeval_eq_zero y (GroundTheory.Heights₂.Heights.HilbertSamuel.SectionBoundedMul.isMultiHomog_sub hg hh) (by rw [map_sub, he, one_mul, sub_self])
   have hz0 := hz.2 _ hmem
   simp only [map_sub] at hz0
   rw [sub_eq_zero] at hz0
@@ -243,7 +190,7 @@ theorem isSmallH_mul {y : (Σ k, ι k) → Ω} {A : HermLine ι} {n m : ℕ} {s 
       linear_combination e1 + e2 - e3
     exact_mod_cast this
   have hF : IsMultiHomog (gs * gt * h - g * chartMono c (N + M)) (dgs + dgt + dh) := by
-    refine isMultiHomog_sub (isMultiHomog_mul (isMultiHomog_mul hgs hgt) hh) ?_
+    refine GroundTheory.Heights₂.Heights.HilbertSamuel.SectionBoundedMul.isMultiHomog_sub (isMultiHomog_mul (isMultiHomog_mul hgs hgt) hh) ?_
     rw [hdeq]
     exact isMultiHomog_mul hg (isMultiHomog_chartMono c (N + M))
   have hmono : ∀ (w : (Σ k, ι k) → Ω), aeval w (chartMono c (N + M)) =

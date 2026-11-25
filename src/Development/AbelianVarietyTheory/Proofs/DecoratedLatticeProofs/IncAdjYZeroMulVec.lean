@@ -54,7 +54,6 @@ noncomputable section
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Matrix ValuativeRel IsLocalRing
 open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Unf GlobalTheory.LatPair GlobalTheory.SplitWeil GlobalTheory.SeeSaw GlobalTheory.FinPl GlobalTheory.FinPlLoc GlobalTheory.IwaPlace NumberField Filter
 open scoped TensorProduct nonZeroDivisors
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 
@@ -145,7 +144,8 @@ theorem herm_kap {L L'' S : HSp D} (τ : Matrix (Fin L.rank) (Fin L''.rank) D.ho
     ← mulVec_mulVec, dotProduct_mulVec]
   congr 2
   ext i
-  simp [Matrix.vecMul, Matrix.mulVec, dotProduct, adj, map_sum, map_mul, mul_comm]
+  simp only [Matrix.vecMul, Matrix.mulVec, dotProduct, adj, map_sum, map_mul, Matrix.transpose_apply, Matrix.map_apply]
+  exact Finset.sum_congr rfl fun j _ => mul_comm _ _
 
 theorem kap_of {L L'' S : HSp D} (τ : Matrix (Fin L.rank) (Fin L''.rank) D.host.E) {ζ : Fin L.rank → D.host.E}
     {ζ₀ : Fin L''.rank → D.host.E} (hζ : IsLineVec L ζ) (hζ₀ : IsLineVec L'' ζ₀) {lam : D.host.E} (hlam : lam ≠ 0)

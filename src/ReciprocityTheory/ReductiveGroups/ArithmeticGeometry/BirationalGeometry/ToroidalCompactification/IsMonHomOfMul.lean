@@ -576,7 +576,9 @@ theorem cub_pull (hG : GlobalFnsSt) (hD : IsPullDeg φ D D') {T' : Over (Sp R')}
         congr 1 <;> simp [x2, pzero, Hom.one_def]
       change cubV D.cub (T := Over.mk ((𝟙_ (Over (Sp R'))).hom ≫ spMap φ)) y I 1 1 1 = _
       rw [face']
-      simp) _ (lift x (lift x' y)).left z J hJ
+      apply Additive.ofMul.injective
+      simp only [ofMul_mul, ofMul_inv, ofMul_one]
+      abel) _ (lift x (lift x' y)).left z J hJ
   exact (val_pull hJ _ _ _).symm.trans (key.trans (hv' _ _ z J J' hJ hJ'))
 
 def vS {F : Type} [Field F] {X : Scheme.{0}} {M : LB X} {K : Type} [Fintype K] {ψ : K → (Sp F ⟶ X)} {ε : K → ℤ}
@@ -649,7 +651,9 @@ theorem qkPullExists (hG : GlobalFnsSt) : QkPullExistsSt := by
         have z : vS (g'.s 0) y J' = 1 := (val_corr hJ' g'.s_zero _).trans (val_one _)
         show vS (t (hD.xe.symm 0)) y J = 1
         rw [map_zero, vt 0 y J J' hJ hJ', cPoint_zero, _root_.one_mul, z]
-        simp [mul_comm]) (fun χ χ' y J hJ => by
+        apply Additive.ofMul.injective
+        simp only [ofMul_mul, ofMul_inv, ofMul_one]
+        abel) (fun χ χ' y J hJ => by
         obtain ⟨J', hJ'⟩ := good' y
         obtain ⟨χ, rfl⟩ := hD.xe.surjective χ
         obtain ⟨χ', rfl⟩ := hD.xe.surjective χ'
@@ -725,8 +729,7 @@ theorem qkPullExists (hG : GlobalFnsSt) : QkPullExistsSt := by
     obtain ⟨χ, rfl⟩ := hD.xe.surjective χ
     have z₃ : vS ((gs 0).s χ) y J' = 1 := z₂ _ y J' hJ'
     show vS ((up (gs 0)).s (hD.xe χ)) y J = 1
-    rw [hv _ _ y J J' hJ hJ', z₃, z₁, _root_.mul_one]
-    simp
+    rw [hv _ _ y J J' hJ hJ', z₃, z₁, _root_.mul_one, _root_.mul_one, inv_mul_cancel, _root_.one_mul, mul_inv_cancel]
   · obtain ⟨J', hJ'⟩ := good' y
     obtain ⟨χ, rfl⟩ := hD.xe.surjective χ
     have ι₁ : vS (h.s χ) y J' = vK (D'.tau p'.y χ) y J' := ιv _ y J' hJ'

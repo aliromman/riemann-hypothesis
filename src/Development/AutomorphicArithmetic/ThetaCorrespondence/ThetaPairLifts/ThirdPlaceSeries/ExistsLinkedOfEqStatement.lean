@@ -1167,7 +1167,7 @@ noncomputable section
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.Inhab Formalism.L2.Host GlobalTheory.EX GlobalTheory.EX.OB GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.Mem.Top GlobalTheory.Mem.Top.GroupRetwisting GlobalTheory.Mem.Top.Bl NumberField IsDedekindDomain
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 namespace GlobalTheory.Mem.Top.Bl
-theorem exists_core_parameters_agree : ∀ (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (p : _root_.GlobalTheory.Mem.Top.Bl.Parameters hL) (K : Ctx) (q : WPt p.s K), ∃ (I : TwIn (q.w.D q.Z)) (n : _root_.Formalism.L2.NTiedAllAlt (q.w.D q.Z) q.O.ex.nch I), I.E = twEOf q.O.ex.xd ∧ DQ.GoodAllAt (q.w.D q.Z) q.O.ex.nch I ∧ (⟨n.cf, n.tp⟩ : Σ c : CharFrame (q.w.D q.Z), TupTied (q.w.D q.Z) c q.O.ex.nch) = ⟨TC.cf q.w.I q.w.l q.Z, q.x.n.tp⟩ ∧ n.gal = q.core_data_of_point.a.all.gal ∧ n.n = q.core_data_of_point.a.all.n ∧ n.exp = q.core_data_of_point.a.all.exp ∧ n.chiD = q.core_data_of_point.a.all.chiD ∧ n.twF = q.core_data_of_point.a.all.twF ∧ HEq n.types q.core_data_of_point.a.all.types ∧ HEq n.cover q.core_data_of_point.a.all.cover ∧ n.plB = q.core_data_of_point.a.all.plB := by
+theorem exists_core_parameters_agree : ∀ (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (p : _root_.GlobalTheory.Mem.Top.Bl.Parameters hL) (K : Ctx) (q : WPt p.s K), ∃ (I : TwIn (q.w.D q.Z)) (n : _root_.Formalism.L2.NTiedAllAlt (q.w.D q.Z) q.O.ex.nch I), I.E = twEOf q.O.ex.xd ∧ DQ.GoodAllAt (q.w.D q.Z) q.O.ex.nch I ∧ (⟨n.cf, n.tp⟩ : Σ c : CharFrame (q.w.D q.Z), TupTied (q.w.D q.Z) c q.O.ex.nch) = ⟨TC.cf q.w.I q.w.l q.Z, q.x.n.tp⟩ ∧ n.gal = q.core_data_of_point.a.all.gal ∧ n.exp = q.core_data_of_point.a.all.exp ∧ n.chiD = q.core_data_of_point.a.all.chiD ∧ n.twF = q.core_data_of_point.a.all.twF ∧ HEq n.types q.core_data_of_point.a.all.types ∧ HEq n.cover q.core_data_of_point.a.all.cover ∧ n.plB = q.core_data_of_point.a.all.plB := by
   intro hL p K q
   obtain ⟨I, hE, hG, hC⟩ := q.x.good.tw
   have hch := q.core_data_of_point.a.chr_eq
@@ -1176,7 +1176,7 @@ theorem exists_core_parameters_agree : ∀ (hL : _root_.UpperTheory.Zero.LLC.Rec
     first
     | exact { twI_conj := c.twI_conj, sd_place := c.sd_place, emb_side := c.emb_side, sd_conj := c.sd_conj, one := c.one,
               good := fun w hw h => hC w hw h, conj := c.conj }
-  refine ⟨I, { q.core_data_of_point.a.all with choice := hc }, hE, hG, hch, rfl, rfl, rfl, rfl, rfl, HEq.rfl, HEq.rfl, rfl⟩
+  refine ⟨I, { q.core_data_of_point.a.all with choice := hc }, hE, hG, hch, rfl, rfl, rfl, rfl, HEq.rfl, HEq.rfl, rfl⟩
 end GlobalTheory.Mem.Top.Bl
 end
 end
@@ -1207,7 +1207,7 @@ theorem tiedDataS_assemble_alt {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi
     (thetaChr : Formalism.L2.Host.ThetaChrTied D cf ex.nch tp ex.th) (chrVal : Formalism.L2.Host.ValLL0 D cf) (chrDt : Formalism.L2.Host.DtTied D cf)
     (chrN : Formalism.L2.Host.NCharTied D cf ex.nch tp) (chrGal : Formalism.L2.Host.NGalChrTied D cf ex.nch tp)
     (chrPsi : Formalism.L2.Host.PsiChoiceCompatible D cf ex.nch tp) (sameChr : Formalism.L2.JoinChr.SameChr theta.T thetaChr)
-    (what₂ : Formalism.L2.Rows.RowsCompatible D host cf tp) (inK : Y.Lev → ℕ → Prop) (geo : Formalism.L2.Geo.GeoTiedP Y inK)
+    (what₂ : Formalism.L2.Rows.RowsCompatible D host cf tp)
     (tw0 : TwForms D) (he : ex.tw = tw0) (tw : Formalism.L2.Forms.SymmetricTwistedColumnsAtPrimes tp cols tw0) (emt : Formalism.L2.Rows.EMtTied D cols tw)
     (g : Formalism.L2.G.GroupCompatibilityAll D hT ex.cmp) (herm_eq : g.herm = full.1.to0) (forms_eq : g.forms = fun u => (cols.forms u).to0)
     (P : ∀ (c : Formalism.L2.Host.CharFrame D) (t : Formalism.L2.Host.TupTied D c ex.nch) (C : Formalism.L2.Forms.ColsTiedSym D), Formalism.L2.Forms.SymmetricTwistedColumnsAtPrimes t C tw0 → Prop)
@@ -1217,20 +1217,20 @@ theorem tiedDataS_assemble_alt {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi
       (⟨S.twIn, S.n⟩ : Σ I, _root_.Formalism.L2.NTiedAllAlt D ex.nch I) = ⟨twIn, n⟩ ∧ HEq S.thetaChr thetaChr ∧
       (∀ a, S.chrDt.eDt a = chrDt.eDt a) ∧
       (S.what₂.O.pieces.rcf = what₂.O.pieces.rcf ∧ S.what₂.O.pieces.MDel = what₂.O.pieces.MDel) ∧
-      S.inK = inK ∧ HEq S.geo geo ∧ P _ _ _ (he ▸ S.tw) := by
+      P _ _ _ (he ▸ S.tw) := by
   cases h
   subst he
   first
   | exact ⟨{ host := host, level := level, cols := cols, full := full, extra := extra, provA := provA, theta := theta,
                twIn := twIn, n := n, frameN := frameN, thetaChr := thetaChr, chrVal := chrVal, chrDt := chrDt, chrN := chrN,
-               chrGal := chrGal, chrPsi := chrPsi, sameChr := sameChr, what₂ := what₂, inK := inK, geo := geo, tw := tw, emt := emt,
+               chrGal := chrGal, chrPsi := chrPsi, sameChr := sameChr, what₂ := what₂, tw := tw, emt := emt,
                g := g, herm_eq := herm_eq, forms_eq := forms_eq },
-        rfl, rfl, HEq.rfl, rfl, rfl, rfl, HEq.rfl, fun _ => rfl, ⟨rfl, rfl⟩, rfl, HEq.rfl, hP⟩
+        rfl, rfl, HEq.rfl, rfl, rfl, rfl, HEq.rfl, fun _ => rfl, ⟨rfl, rfl⟩, hP⟩
 
 theorem WPt.exists_pinned_spectral_data_compatible : GlobalTheory.Published.GlobalArtinReciprocity → GlobalTheory.Published.WeberRayFieldSt → ∀ (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (p : _root_.GlobalTheory.Mem.Top.Bl.Parameters hL) (K : Ctx) (q : WPt p.s K), Formalism.L2.Host.LevelTied (q.w.D q.Z) → Formalism.L2.Rows.ZetaCompatible (q.w.D q.Z) → ∃ S : _root_.Formalism.L2.TiedDataSAlt q.O.ex, _root_.GlobalTheory.Mem.Top.Bl.SpectralDataCompatible q S := by
   intro hA hW hL p K q hlev hze
   obtain ⟨extra, g, hg, hherm, hforms⟩ := WPt.extraTied_col p.s K q
-  obtain ⟨I, n, hE, hgood, hchr, h1, h2, h3, h4, h5, h6, h7, h8⟩ := _root_.GlobalTheory.Mem.Top.Bl.exists_core_parameters_agree hL p K q
+  obtain ⟨I, n, hE, hgood, hchr, h1, h3, h4, h5, h6, h7, h8⟩ := _root_.GlobalTheory.Mem.Top.Bl.exists_core_parameters_agree hL p K q
   obtain ⟨he, tw, hstd, emt⟩ := GlobalTheory.Mem.Top.Bl.WPt.colsTwTied p.s K q
   obtain ⟨dt, hdt⟩ := TC.dtTied_true q.w.I q.w.ok q.w.pins q.w.l q.Z
   have hO : ∃ O : Formalism.L2.Rows.OTied (q.w.D q.Z) q.core_data_of_point.a.host (TC.cf q.w.I q.w.l q.Z),
@@ -1245,18 +1245,18 @@ theorem WPt.exists_pinned_spectral_data_compatible : GlobalTheory.Published.Glob
   have hfr : ∀ x, n.gal.fr.jE x = q.core_data_of_point.a.host.fr.j x := by
     rw [h1]
     exact q.core_data_of_point.a.frameN
-  obtain ⟨S, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12⟩ :=
+  obtain ⟨S, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10⟩ :=
     _root_.GlobalTheory.Mem.Top.Bl.tiedDataS_assemble_alt q.O.ex q.core_data_of_point.a.host hlev q.x.col.C q.x.col.full extra q.x.th.provA q.x.th.all I n hfr
       (TC.cf q.w.I q.w.l q.Z) q.x.n.tp hchr q.x.th.chr hval dt q.core_data_of_point.a.chrN q.core_data_of_point.a.chrGal q.x.n.chrPsi q.x.th.same
-      ⟨O, q.O.ex.kap_def, hze⟩ q.x.div.inK q.x.div.geo (q.w.tw q.Z) he tw emt g hherm hforms
+      ⟨O, q.O.ex.kap_def, hze⟩ (q.w.tw q.Z) he tw emt g hherm hforms
       (fun _ _ _ t => TC.StdTw q.w.I q.w.l q.Z q.w.l0 t) hstd
   have key : ∀ Q : (Σ I, _root_.Formalism.L2.NTiedAllAlt (q.w.D q.Z) q.O.ex.nch I) → Prop, Q ⟨I, n⟩ → Q ⟨S.twIn, S.n⟩ :=
     fun Q hQ => s6 ▸ hQ
   refine ⟨S, s1, s2, s3, s4 ▸ hg, s5, key (fun z => z.1.E = _) hE, key (fun z => DQ.GoodAllAt _ _ z.1) hgood,
     key (fun z => (⟨z.2.cf, z.2.tp⟩ : Σ c : CharFrame (q.w.D q.Z), TupTied (q.w.D q.Z) c q.O.ex.nch) = _) hchr,
-    key (fun z => z.2.gal = _) h1, key (fun z => z.2.n = _) h2, key (fun z => z.2.exp = _) h3,
+    key (fun z => z.2.gal = _) h1, key (fun z => z.2.exp = _) h3,
     key (fun z => z.2.chiD = _) h4, key (fun z => z.2.twF = _) h5, key (fun z => HEq z.2.types _) h6,
-    key (fun z => HEq z.2.cover _) h7, key (fun z => z.2.plB = _) h8, s7, fun a => (s8 a).trans (hdt a), ?_, s10, s11, he, s12⟩
+    key (fun z => HEq z.2.cover _) h7, key (fun z => z.2.plB = _) h8, s7, fun a => (s8 a).trans (hdt a), ?_, he, s10⟩
   rw [s9.1, s9.2, s1]
   exact ⟨hO1, hO2⟩
 end GlobalTheory.Mem.Top.Bl
@@ -1599,7 +1599,7 @@ theorem exBL_isLinked_alt : GlobalTheory.Published.GlobalArtinReciprocity → Gl
     obtain ⟨sp, hT, hY, hA', hV, hz, e, -⟩ := β.c.isOver
     exact ⟨sp, hT, hY, hA', hV, hz, β.X, e, rfl⟩
   have hP : K.P.H.levelPrimes = {K.P.H.g 0, K.P.H.g 1, K.P.H.pde, K.P.H.pde', DC.q0H K.P.H} :=
-    hG.host.2.2.2.2.2.2.2.2.2.2.2.2.2
+    hG.host.2.2.2.2.2.2.2.2.2.2.2.2
   have hLT : Formalism.L2.Host.LevelTied β.D :=
     GlobalTheory.Mem.HD.levelTied_of_levEx _ ((GlobalTheory.Mem.HD.levEx_of_over _ _ _ hO hP).2 _ _)
   have hD : β.D = q.w.D q.Z := congrArg Sigma.fst hq

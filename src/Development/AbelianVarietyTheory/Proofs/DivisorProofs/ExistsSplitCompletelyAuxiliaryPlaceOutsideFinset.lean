@@ -100,11 +100,11 @@ end GlobalTheory.GoodPlace
 
 namespace GlobalTheory.GoodPlace
 
-theorem exists_good_place : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc} {μ₀ : T} (_hL : L.Is μ₀) (t : T)
+theorem exists_good_place : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc} (t : T)
     (P₀ : Finset (HeightOneSpectrum (𝓞 D.host.F))), ∃ v₁ : HeightOneSpectrum (𝓞 D.host.F), v₁ ∉ P₀ ∧
       SplitsFully D.host.E v₁ ∧ (∀ w ∈ locPl G t, w.under (𝓞 D.host.F) ≠ v₁) ∧
       Nonempty (D.host.E →ₐ[D.host.F] Fv D.host.F v₁) := by
-  intro D T L sc G μ₀ _ t P₀
+  intro D T L sc G t P₀
   classical
   set S : Finset (HeightOneSpectrum (𝓞 D.host.F)) :=
     P₀ ∪ (locPl G t).image (fun w => w.under (𝓞 D.host.F)) with hS

@@ -56,7 +56,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.S
 
 open AlgebraicGeometry CategoryTheory Limits NumberField IsDedekindDomain IsLocalRing ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Pj Formalism.MainNotions.DIV.Cons
 open scoped TensorProduct
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.SmallClosedField
 
@@ -76,7 +75,7 @@ theorem mk_le_of_denseRange {A C : Type} [MetricSpace C] (f : A → C) (hf : Den
 
 theorem mk_le_continuum_of_finite_residueField (V : Type) [CommRing V] [IsLocalRing V]
     [IsNoetherianRing V] [Finite (ResidueField V)] : #V ≤ 𝔠 := by
-  apply _root_.GlobalTheory.ComplexEmbedding.mk_le_continuum_of_finite_residueField <;> assumption
+  apply _root_.GlobalTheory.ComplexEmbedding.mk_le_continuum_of_finite_residueField
 
 theorem exists_small_closed_subfield {K C : Type} [Field K] [NontriviallyNormedField C]
     [IsUltrametricDist C] [CompleteSpace C] [IsAlgClosed C] [Algebra K C] (hK : #K ≤ 𝔠)

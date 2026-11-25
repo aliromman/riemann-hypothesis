@@ -97,33 +97,13 @@ private theorem not_dvd_one'_lemma_2 : ¬ (l : ℤ_[l]) ∣ 1 := by
   rw [PadicInt.valuation_one] at h1
   omega
 
-private theorem prime_l_lemma_3 : Prime (l : ℤ_[l]) := by
-  refine ⟨?_, ?_, ?_⟩
-  · exact Nat.cast_ne_zero.2 (Fact.out : l.Prime).ne_zero
-  · intro h
-    exact not_dvd_one'_lemma_2 (isUnit_iff_dvd_one.mp h)
-  · intro a b hab
-    by_cases ha : a = 0
-    · left; rw [ha]; exact dvd_zero _
-    by_cases hb : b = 0
-    · right; rw [hb]; exact dvd_zero _
-    have h1 := (pow_dvd_iff_le_valuation_lemma (mul_ne_zero ha hb) 1).1 (by rwa [pow_one])
-    rw [PadicInt.valuation_mul ha hb] at h1
-    rcases Nat.eq_zero_or_pos a.valuation with h0 | h0
-    · right
-      have h2 := (pow_dvd_iff_le_valuation_lemma hb 1).2 (by omega)
-      rwa [pow_one] at h2
-    · left
-      have h2 := (pow_dvd_iff_le_valuation_lemma ha 1).2 (by omega)
-      rwa [pow_one] at h2
-
 end Padic
 
 lemma lte_unit (l : ℕ) [Fact l.Prime] (hl2 : l ≠ 2) (u : ℤ_[l]) (hu : (u - 1).valuation = 1)
     (i : ℕ) (hi : 1 ≤ i) : ((u ^ i - 1).valuation : ℕ) = 1 + padicValNat l i := by
   classical
   have hp : l.Prime := Fact.out
-  have hprime := prime_l_lemma_3 (l := l)
+  have hprime := PadicInt.prime_p (p := l)
   have hu0 : u - 1 ≠ 0 := by
     intro h
     rw [h, PadicInt.valuation_zero] at hu

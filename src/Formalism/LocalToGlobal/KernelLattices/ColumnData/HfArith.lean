@@ -1,54 +1,23 @@
 module
 
+public import Formalism.LocalToGlobal.ComplexLatticeArea
 public import Formalism.LocalToGlobal.KernelLattices.ColumnData.HfTrace
 public import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.IntegralClosureCriterion
+public import Formalism.LocalToGlobal.GlobalTheory.GL3.PHfArith
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
 import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Int
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
-import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
 noncomputable section
 
 namespace Formalism.L2.Ker.Cd.IntegralLatticeDensity.AR
+
+export Formalism.ComplexLatticeArea
+  (Bf Bf_swap Bf_sub_zsmul_left Bf_sub_zsmul_right cramer Bf_comb cast_toNat area_spec)
 
 open Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity hiding CMConjEmb CMTransitive DedekindFactor LinkChi LinkPer LinkThIndep LinkThU LinkThUFam ThetaNormIndependent theta_norm_independent_of_bounds th22U theta_norm_unitary_invariant_of_bounds
 
@@ -104,155 +73,6 @@ namespace Formalism.L2.Ker.Cd.IntegralLatticeDensity.AR
 
 open Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity hiding CMConjEmb CMTransitive DedekindFactor LinkChi LinkPer LinkThIndep LinkThU LinkThUFam ThetaNormIndependent theta_norm_independent_of_bounds th22U theta_norm_unitary_invariant_of_bounds
 
-open Formalism.L2.Ker.Cd.TaylorLogMetric
-open Formalism.MainNotions.TaylorLogMetric hiding admitted AdmittedStatements AllSplit CoefIn DataIn DualB EqAt EqAway FamE Hf IdE InProd Iop IsChi IsComb IsCurveIdeal IsDiscriminantTwelfthRootOfIdealLattice IsFrobC IsIdem JetsInt La LocBasis LocBasisW Mono N1 NNBasis OrthoBasisW Orthonormal Pos Qd QdB Stmt TVar TVarB Th ThSp Tor TorsPrime U VC Wop XiF YYl adm1 al atLog chK chg chgB coordV der detId logDerivativeAtOne ellT embT embV eq22 fF fnConj hYY hh homL int22 jet kap lamOf letterOf liftY logOmVal meanLogNormSq meanLogOm mmM mom22 LargerSupportMomentCondition mono normSq pSer pairN per22 posEmb posG aux₃ pull qH sE sgm str22 tauEmb tauSg taylor th22 tor0 torConj vec22 vecN wPh zB
-
-def Bf (w₁ w₂ : ℂ) : ℝ := (starRingEnd ℂ w₁ * w₂).im
-
-theorem Bf_swap (w₁ w₂ : ℂ) : Bf w₂ w₁ = -Bf w₁ w₂ := by
-  simp only [Bf, Complex.mul_im, Complex.conj_re, Complex.conj_im]; ring
-
-theorem Bf_sub_zsmul_left (u w w₂ : ℂ) (q : ℤ) : Bf (u - q • w) w₂ = Bf u w₂ - q * Bf w w₂ := by
-  simp only [Bf, zsmul_eq_mul, map_sub, map_mul, map_intCast, Complex.mul_im, Complex.sub_re,
-    Complex.sub_im, Complex.mul_re, Complex.intCast_re, Complex.intCast_im, Complex.conj_re,
-    Complex.conj_im]; ring
-
-theorem Bf_sub_zsmul_right (w₁ u w : ℂ) (q : ℤ) : Bf w₁ (u - q • w) = Bf w₁ u - q * Bf w₁ w := by
-  simp only [Bf, zsmul_eq_mul, Complex.mul_im, Complex.sub_re,
-    Complex.sub_im, Complex.mul_re, Complex.intCast_re, Complex.intCast_im, Complex.conj_re,
-    Complex.conj_im]; ring
-
-theorem cramer (w₁ w₂ u : ℂ) :
-    (Bf u w₂ : ℂ) * w₁ + (Bf w₁ u : ℂ) * w₂ = (Bf w₁ w₂ : ℂ) * u := by
-  apply Complex.ext <;>
-    simp only [Bf, Complex.mul_im, Complex.mul_re, Complex.add_re, Complex.add_im,
-      Complex.ofReal_re, Complex.ofReal_im, Complex.conj_re, Complex.conj_im] <;> ring
-
-theorem Bf_comb (w₁ w₂ : ℂ) (s t s' t' : ℝ) :
-    Bf ((s : ℂ) * w₁ + (t : ℂ) * w₂) ((s' : ℂ) * w₁ + (t' : ℂ) * w₂) = (s * t' - t * s') * Bf w₁ w₂ := by
-  simp only [Bf, map_add (f := _), map_mul, Complex.conj_ofReal, Complex.mul_im, Complex.mul_re,
-    Complex.add_re, Complex.add_im, Complex.ofReal_re, Complex.ofReal_im, Complex.conj_re,
-    Complex.conj_im]; ring
-
-theorem cast_toNat (n : ℤ) (h : 0 ≤ n) : ((n.toNat : ℕ) : ℝ) = (n : ℝ) := by
-  rw [← Int.cast_natCast, Int.toNat_of_nonneg h]
-
-theorem area_spec (Λ : AddSubgroup ℂ) (κ : ℝ) (hκ : 0 < κ)
-    (hdisc : ∀ w₁ ∈ Λ, ∀ w₂ ∈ Λ, ∃ n : ℤ, Bf w₁ w₂ = κ * n)
-    (hne : ∃ w₁ ∈ Λ, ∃ w₂ ∈ Λ, Bf w₁ w₂ ≠ 0) :
-    ∃ m : ℕ, 0 < m ∧ area Λ = κ * m ∧ ∀ w₁ ∈ Λ, ∀ w₂ ∈ Λ, ∃ n : ℤ, Bf w₁ w₂ = area Λ * n := by
-  classical
-
-  have hQ : ∃ n : ℕ, 0 < n ∧ ∃ w₁ ∈ Λ, ∃ w₂ ∈ Λ, Bf w₁ w₂ = κ * n := by
-    obtain ⟨w₁, h₁, w₂, h₂, h0⟩ := hne
-    obtain ⟨n, hn⟩ := hdisc w₁ h₁ w₂ h₂
-    rcases lt_trichotomy n 0 with hn0 | hn0 | hn0
-    · refine ⟨(-n).toNat, by omega, w₂, h₂, w₁, h₁, ?_⟩
-      rw [Bf_swap, hn, cast_toNat _ (by omega)]; push_cast; ring
-    · exact absurd (by rw [hn, hn0]; simp) h0
-    · refine ⟨n.toNat, by omega, w₁, h₁, w₂, h₂, ?_⟩
-      rw [hn, cast_toNat _ hn0.le]
-  set m := Nat.find hQ with hm
-  obtain ⟨hm0, w₁, h₁, w₂, h₂, hw⟩ := Nat.find_spec hQ
-  have hmin : ∀ n : ℕ, 0 < n → ∀ u ∈ Λ, ∀ v ∈ Λ, Bf u v = κ * n → m ≤ n :=
-    fun n hn u hu v hv h => Nat.find_min' hQ ⟨hn, u, hu, v, hv, h⟩
-
-  have harea : area Λ = κ * m := by
-    unfold area
-    refine IsLeast.csInf_eq ⟨⟨by positivity, w₁, h₁, w₂, h₂, ?_⟩, ?_⟩
-    · change κ * m = |Bf w₁ w₂|
-      rw [hw, abs_of_nonneg (by positivity)]
-    · rintro a ⟨ha, u, hu, v, hv, rfl⟩
-      change κ * m ≤ |Bf u v|
-      obtain ⟨n, hn⟩ := hdisc u hu v hv
-      rcases lt_trichotomy n 0 with hn0 | hn0 | hn0
-      · have := hmin (-n).toNat (by omega) v hv u hu (by
-          rw [Bf_swap, hn, cast_toNat _ (by omega)]; push_cast; ring)
-        rw [hn, abs_mul, abs_of_pos hκ, abs_of_neg (by exact_mod_cast hn0 : (n : ℝ) < 0)]
-        have h' : ((m : ℤ) : ℝ) ≤ ((-n : ℤ) : ℝ) := by exact_mod_cast (by omega : (m : ℤ) ≤ -n)
-        push_cast at h'
-        exact mul_le_mul_of_nonneg_left h' hκ.le
-      · exfalso; change 0 < |Bf u v| at ha; rw [hn, hn0] at ha; simp at ha
-      · have := hmin n.toNat (by omega) u hu v hv (by rw [hn, cast_toNat _ hn0.le])
-        rw [hn, abs_mul, abs_of_pos hκ, abs_of_pos (by exact_mod_cast hn0 : (0 : ℝ) < n)]
-        have h' : ((m : ℤ) : ℝ) ≤ ((n : ℤ) : ℝ) := by exact_mod_cast (by omega : (m : ℤ) ≤ n)
-        push_cast at h'
-        exact mul_le_mul_of_nonneg_left h' hκ.le
-  refine ⟨m, hm0, harea, ?_⟩
-  set g := κ * m with hg
-  have hg0 : 0 < g := by positivity
-
-  have hleft : ∀ u ∈ Λ, ∃ q : ℤ, Bf u w₂ = g * q := by
-    intro u hu
-    obtain ⟨n, hn⟩ := hdisc u hu w₂ h₂
-    refine ⟨n / m, ?_⟩
-    have hr : Bf (u - (n / m) • w₁) w₂ = κ * ((n % m : ℤ) : ℝ) := by
-      rw [Bf_sub_zsmul_left, hn, hw]
-      have := Int.mul_ediv_add_emod n m
-      have : (n : ℝ) = ((n % m : ℤ) : ℝ) + m * ((n / m : ℤ) : ℝ) := by
-        have h2 : (n : ℝ) = ((m : ℤ) : ℝ) * ((n / m : ℤ) : ℝ) + ((n % m : ℤ) : ℝ) := by exact_mod_cast this.symm
-        rw [h2]; push_cast; ring
-      rw [this]; ring
-    have hr0 : n % (m : ℤ) = 0 := by
-      by_contra hne0
-      have hpos : 0 < n % (m : ℤ) := lt_of_le_of_ne (Int.emod_nonneg _ (by omega)) (Ne.symm hne0)
-      have hlt : n % (m : ℤ) < m := Int.emod_lt_of_pos _ (by omega)
-      have := hmin (n % (m : ℤ)).toNat (by omega) _ (Λ.sub_mem hu (Λ.zsmul_mem h₁ _)) w₂ h₂
-        (by rw [hr, cast_toNat _ hpos.le])
-      omega
-    have := Int.mul_ediv_add_emod n m
-    rw [hr0, add_zero] at this
-    have h3 : (n : ℝ) = (m : ℝ) * ((n / m : ℤ) : ℝ) := by exact_mod_cast this.symm
-    rw [hn, hg, h3]; ring
-  have hright : ∀ u ∈ Λ, ∃ q : ℤ, Bf w₁ u = g * q := by
-    intro u hu
-    obtain ⟨n, hn⟩ := hdisc w₁ h₁ u hu
-    refine ⟨n / m, ?_⟩
-    have hr : Bf w₁ (u - (n / m) • w₂) = κ * ((n % m : ℤ) : ℝ) := by
-      rw [Bf_sub_zsmul_right, hn, hw]
-      have := Int.mul_ediv_add_emod n m
-      have : (n : ℝ) = ((n % m : ℤ) : ℝ) + m * ((n / m : ℤ) : ℝ) := by
-        have h2 : (n : ℝ) = ((m : ℤ) : ℝ) * ((n / m : ℤ) : ℝ) + ((n % m : ℤ) : ℝ) := by exact_mod_cast this.symm
-        rw [h2]; push_cast; ring
-      rw [this]; ring
-    have hr0 : n % (m : ℤ) = 0 := by
-      by_contra hne0
-      have hpos : 0 < n % (m : ℤ) := lt_of_le_of_ne (Int.emod_nonneg _ (by omega)) (Ne.symm hne0)
-      have hlt : n % (m : ℤ) < m := Int.emod_lt_of_pos _ (by omega)
-      have := hmin (n % (m : ℤ)).toNat (by omega) w₁ h₁ _ (Λ.sub_mem hu (Λ.zsmul_mem h₂ _))
-        (by rw [hr, cast_toNat _ hpos.le])
-      omega
-    have := Int.mul_ediv_add_emod n m
-    rw [hr0, add_zero] at this
-    have h3 : (n : ℝ) = (m : ℝ) * ((n / m : ℤ) : ℝ) := by exact_mod_cast this.symm
-    rw [hn, hg, h3]; ring
-
-  have hdec : ∀ u ∈ Λ, ∃ s t : ℤ, u = ((s : ℝ) : ℂ) * w₁ + ((t : ℝ) : ℂ) * w₂ := by
-    intro u hu
-    obtain ⟨s, hs⟩ := hleft u hu
-    obtain ⟨t, ht⟩ := hright u hu
-    refine ⟨s, t, ?_⟩
-    have hc := cramer w₁ w₂ u
-    rw [hs, ht, hw] at hc
-    have hg0' : (g : ℂ) ≠ 0 := by exact_mod_cast hg0.ne'
-    apply mul_left_cancel₀ hg0'
-    rw [← hc]; push_cast; ring
-  intro u hu v hv
-  obtain ⟨s, t, rfl⟩ := hdec u hu
-  obtain ⟨s', t', rfl⟩ := hdec v hv
-  refine ⟨s * t' - t * s', ?_⟩
-  rw [Bf_comb, hw, harea]; push_cast; ring
-
-end Formalism.L2.Ker.Cd.IntegralLatticeDensity.AR
-
-end
-
-noncomputable section
-
-namespace Formalism.L2.Ker.Cd.IntegralLatticeDensity.AR
-
-open Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity hiding CMConjEmb CMTransitive DedekindFactor LinkChi LinkPer LinkThIndep LinkThU LinkThUFam ThetaNormIndependent theta_norm_independent_of_bounds th22U theta_norm_unitary_invariant_of_bounds
-
 open NumberField Formalism.BasicNotions Formalism.FrobeniusOrbits Formalism.L2.Ker.Cd.IntegralLatticeDensity.IO
 open Formalism.L2.Ker.Cd.TaylorLogMetric
 open Formalism.MainNotions.TaylorLogMetric hiding admitted AdmittedStatements AllSplit CoefIn DataIn DualB EqAt EqAway FamE Hf IdE InProd Iop IsChi IsComb IsCurveIdeal IsDiscriminantTwelfthRootOfIdealLattice IsFrobC IsIdem JetsInt La LocBasis LocBasisW Mono N1 NNBasis OrthoBasisW Orthonormal Pos Qd QdB Stmt TVar TVarB Th ThSp Tor TorsPrime U VC Wop XiF YYl adm1 al atLog chK chg chgB coordV der detId logDerivativeAtOne ellT embT embV eq22 fF fnConj hYY hh homL int22 jet kap lamOf letterOf liftY logOmVal meanLogNormSq meanLogOm mmM mom22 LargerSupportMomentCondition mono normSq pSer pairN per22 posEmb posG aux₃ pull qH sE sgm str22 tauEmb tauSg taylor th22 tor0 torConj vec22 vecN wPh zB
@@ -295,21 +115,13 @@ theorem good_of_okc {u : ℂ} (hu : OKc D u) : Good D (2 * u / (Real.sqrt D.host
   push_cast
   field_simp
 
-theorem half_int {F : Type*} [Field F] [CharZero F] (x : F) (k : ℤ)
-    (hx : x ^ 2 = -(4 * (k : F) + 3)) : IsIntegral ℤ ((1 + x) / 2) := by
-  refine ⟨Polynomial.X ^ 2 - Polynomial.X + Polynomial.C (k + 1), by monicity!, ?_⟩
-  simp only [Polynomial.eval₂_add, Polynomial.eval₂_sub, Polynomial.eval₂_X_pow,
-    Polynomial.eval₂_X, Polynomial.eval₂_C]
-  push_cast
-  linear_combination hx / 4
-
 theorem bK_sq : bK D ^ 2 = -(D.host.d : D.host.K) := by
   apply Subtype.ext
   push_cast
   exact b_sq D
 
 def om : 𝓞 D.host.K :=
-  ⟨(1 + bK D) / 2, half_int _ (d_mod D).choose (by
+  ⟨(1 + bK D) / 2, Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.AR.half_int _ (d_mod D).choose (by
     have h2 : ((D.host.d : ℤ) : D.host.K) = ((4 * (d_mod D).choose + 3 : ℤ) : D.host.K) :=
       congrArg (fun t : ℤ => (t : D.host.K)) (d_mod D).choose_spec
     push_cast at h2
@@ -325,11 +137,11 @@ theorem ph_om : ph D (om D) = (1 + be D) / 2 := by
   exact congrArg (fun t => (1 + t) / 2) (phi_b D)
 
 theorem Bf_lat (δ : ℂ) (c₁ c₂ : 𝓞 D.host.K) :
-    Bf (δ * ph D c₁) (δ * ph D c₂) = Complex.normSq δ * (starRingEnd ℂ (ph D c₁) * ph D c₂).im := by
+    Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.AR.Bf (δ * ph D c₁) (δ * ph D c₂) = Complex.normSq δ * (starRingEnd ℂ (ph D c₁) * ph D c₂).im := by
   have : starRingEnd ℂ (δ * ph D c₁) * (δ * ph D c₂) =
       (Complex.normSq δ : ℂ) * (starRingEnd ℂ (ph D c₁) * ph D c₂) := by
     rw [Complex.normSq_eq_conj_mul_self, map_mul]; ring
-  rw [Bf, this]; simp [Complex.mul_im]
+  rw [Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.AR.Bf, this]; simp [Complex.mul_im]
 
 theorem okc_pair (c₁ c₂ : 𝓞 D.host.K) : OKc D (starRingEnd ℂ (ph D c₁) * ph D c₂) :=
   okc_mul D (okc_conj D (okc_of D c₁)) (okc_of D c₂)
@@ -341,14 +153,14 @@ theorem div_okc (cc : Ideal (𝓞 D.host.K)) (hcc : cc ≠ ⊥) (δ : ℂ) (hδ 
   have hs := sqrt_pos D
   have hκ : 0 < Complex.normSq δ * (Real.sqrt D.host.d / 2) := by positivity
   have hdisc : ∀ w₁ ∈ lamOf D cc δ, ∀ w₂ ∈ lamOf D cc δ, ∃ n : ℤ,
-      Bf w₁ w₂ = Complex.normSq δ * (Real.sqrt D.host.d / 2) * n := by
+      Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.AR.Bf w₁ w₂ = Complex.normSq δ * (Real.sqrt D.host.d / 2) * n := by
     intro w₁ h₁ w₂ h₂
     obtain ⟨c₁, -, rfl⟩ := FL.lam_mem D cc δ w₁ h₁
     obtain ⟨c₂, -, rfl⟩ := FL.lam_mem D cc δ w₂ h₂
     obtain ⟨x, y, -, hz⟩ := okc_pair D c₁ c₂
     refine ⟨y, ?_⟩
     rw [Bf_lat, hz, im_coord]; ring
-  have hne : ∃ w₁ ∈ lamOf D cc δ, ∃ w₂ ∈ lamOf D cc δ, Bf w₁ w₂ ≠ 0 := by
+  have hne : ∃ w₁ ∈ lamOf D cc δ, ∃ w₂ ∈ lamOf D cc δ, Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.AR.Bf w₁ w₂ ≠ 0 := by
     obtain ⟨c, hc, hc0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot hcc
     refine ⟨δ * ph D c, AddSubgroup.subset_closure ⟨c, hc, rfl⟩,
       δ * ph D (c * om D), AddSubgroup.subset_closure ⟨c * om D, cc.mul_mem_right _ hc, rfl⟩, ?_⟩
@@ -372,7 +184,7 @@ theorem div_okc (cc : Ideal (𝓞 D.host.K)) (hcc : cc ≠ ⊥) (δ : ℂ) (hδ 
         Complex.normSq (ph D c) * (Real.sqrt D.host.d / 2) := by simp [Complex.mul_im]
     rw [e, e4, e5]
     exact mul_ne_zero hn.ne' (mul_ne_zero (Complex.normSq_pos.2 hc1).ne' (by positivity))
-  obtain ⟨m, hm, harea, hall⟩ := area_spec (lamOf D cc δ) _ hκ hdisc hne
+  obtain ⟨m, hm, harea, hall⟩ := Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.AR.area_spec (lamOf D cc δ) _ hκ hdisc hne
   refine ⟨m, hm, harea, fun c hc c' hc' => ?_⟩
   obtain ⟨x, y, -, hz⟩ := okc_pair D c' c
   obtain ⟨n₁, h₁⟩ := hall _ (AddSubgroup.subset_closure ⟨c', hc', rfl⟩) _

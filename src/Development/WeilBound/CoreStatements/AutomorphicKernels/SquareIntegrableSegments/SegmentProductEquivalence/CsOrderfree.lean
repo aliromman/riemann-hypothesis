@@ -5,7 +5,6 @@ public import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.
 public import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.IrreducibleAdmissibleGL
 public import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.ZelevinskyJacquet.ZelevinskyCosocles.LUnlinkedComm
 public import Development.WeilBound.CoreStatements.AutomorphicKernels.SquareIntegrableSegments.SegmentProductEquivalence.CsReorderord
-import Development.WeilBound.CoreStatements.AutomorphicKernels.SquareIntegrableSegments.SegmentProductEquivalence.ReorderCommon
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
 import Mathlib.Algebra.Order.Interval.Basic
@@ -89,6 +88,6 @@ theorem perm_of_univ_map_eq {α : Type*} {l : ℕ} {x y : Fin l → α}
 end OrderFree
 
 theorem cs_orderfree : ∀ {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k], GlobalTheory.Published.IrreducibleAdmissibleGL → LUnlinkedComm k → LOrderFree k := by
-  apply CompanionTheory.PfEss.Zc2.cs_orderfree <;> assumption
+  apply CompanionTheory.PfEss.Zc2.cs_orderfree
 
 end PositivityTheory.PfEss.Zc2

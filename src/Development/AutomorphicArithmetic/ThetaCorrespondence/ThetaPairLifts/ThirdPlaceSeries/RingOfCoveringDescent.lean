@@ -495,7 +495,7 @@ open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.L2 Forma
 open GlobalTheory.AllWt GlobalTheory.CompHt GlobalTheory.BigTop GlobalTheory.CovTop
 namespace GlobalTheory.CovTop.RingStep
 set_option maxHeartbeats 1000000 in
-theorem ring_of_covering_descent_alt (_hP : _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems) (hG : _root_.GlobalTheory.CovTop.GramCondition) (hD : _root_.GlobalTheory.CovTop.DeepGoodness) : _root_.GlobalTheory.CovTop.RingCondition := by
+theorem ring_of_covering_descent_alt (hG : _root_.GlobalTheory.CovTop.GramCondition) (hD : _root_.GlobalTheory.CovTop.DeepGoodness) : _root_.GlobalTheory.CovTop.RingCondition := by
   have hH := _root_.GlobalTheory.CovTop.Sizes.hostN_alt 4
   refine Closed.imp ((hG.and hD).and hH) fun Fm CH _ h => ?_
   obtain ⟨⟨⟨C1, -, h1⟩, ⟨C2, -, h2⟩⟩, ⟨A, -, h3⟩⟩ := h

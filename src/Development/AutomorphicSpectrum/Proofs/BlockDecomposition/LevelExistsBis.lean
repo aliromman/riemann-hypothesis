@@ -57,8 +57,6 @@ open NumberField IsDedekindDomain Matrix Filter Topology
 open GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC GlobalTheory.BCT PositivityTheory.Rg.BcB.F.Eig
 open scoped Classical
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
 namespace GlobalTheory.CompanionTheory.LevelU
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {n : ℕ}

@@ -57,15 +57,8 @@ open Formalism.G
 variable {K : Type u} [NormedField K] [IsUltrametricDist K]
 
 theorem norm_sigma_le {p q : ℕ} {σ : K →+* K} (hσ : IsFrobLift p q σ) (hp : ‖(p : K)‖ < 1)
-    (a : K) (ha : ‖a‖ ≤ 1) : ‖σ a‖ ≤ 1 := by
-  have h1 : ‖σ a - a ^ q‖ ≤ ‖(p : K)‖ := hσ a ha
-  have h2 : ‖a ^ q‖ ≤ 1 := by
-    rw [norm_pow]
-    first
-      | exact pow_le_one₀ (norm_nonneg a) ha
-  calc ‖σ a‖ = ‖(σ a - a ^ q) + a ^ q‖ := by rw [sub_add_cancel]
-    _ ≤ max ‖σ a - a ^ q‖ ‖a ^ q‖ := IsUltrametricDist.norm_add_le_max _ _
-    _ ≤ 1 := max_le (h1.trans hp.le) h2
+    (a : K) (ha : ‖a‖ ≤ 1) : ‖σ a‖ ≤ 1 :=
+  frobenius_norm_le_one hσ hp.le ha
 
 def sigmaO {p q : ℕ} {σ : K →+* K} (hσ : IsFrobLift p q σ) (hp : ‖(p : K)‖ < 1) :
     unitBall K →+* unitBall K :=

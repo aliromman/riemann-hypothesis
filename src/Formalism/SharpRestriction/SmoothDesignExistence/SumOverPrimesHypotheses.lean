@@ -588,7 +588,7 @@ theorem four_orbit_conditions_of_proof {X : Inst D L} {K : Consts} {Dx : DivX D}
     {lev : LevelData D} {Xe : ErrX D} {ce : ErrC} {sp C : ℝ} (h : Formalism.MainNotions.OrbitPlaces.Conclusion₂ D L X K Dx T E lev Xe ce sp C) :
     Formalism.MainNotions.WeilJacquetShalikaLaw.OrbitsWithoutOperator D L X K Dx T lev Xe ce sp ∧ Formalism.MainNotions.WeilJacquetShalikaLaw.MediumInertPrimeLengthBound D L K Dx T lev Xe ce sp ∧
       Formalism.MainNotions.WeilJacquetShalikaLaw.LossAtDiscriminant D L K Dx T lev Xe ce sp ∧ Formalism.MainNotions.WeilJacquetShalikaLaw.IsotypicPartsInternalDirectSum D Dx T sp := by
-  obtain ⟨_, _, _, _, _, _, _, _, _, _, _, _, _, _, h1, h2, h3, h4⟩ := h
+  obtain ⟨_, _, _, _, _, _, _, _, _, _, _, _, h1, h2, h3, h4⟩ := h
   exact ⟨h1, h2, h3, h4⟩
 
 end Formalism.MainNotions.J
@@ -859,7 +859,6 @@ theorem mem_intW_of (D : D7) (w : D.what₂.places.Pl) {x : D.what₂.LL} (hx : 
 
 theorem vAdd_one (D : D7) (w : D.what₂.places.Pl) : vAdd (D.plEq w) (1 : D.what₂.LL) = 0 := by
   first
-  | rfl
   | (simp [vAdd]; done)
 
 theorem div_mem_intW (D : D7) (w : D.what₂.places.Pl) {a b : D.what₂.LL} (ha : a ≠ 0) (hb : b ≠ 0)
@@ -1006,7 +1005,6 @@ theorem sum_bounds (m : ℕ) (hm : 1 ≤ m) (sp v : ℝ) :
 
 theorem card_lifts (D : D7) : ((SizeData₂.lifts D).card : ℝ) = (D.R.m : ℝ) := by
   first
-  | rfl
   | (simp [SizeData₂.lifts]; done)
 
 theorem base_map_mem_local_lattice {D : D7} (T : TwForms D) (u : D.what₂.Word) (μ : D.what₂.Tup) (w : D.what₂.places.Pl)
@@ -1192,7 +1190,7 @@ theorem UAt_of (D : D7) (L : SizeData₂ D) (X : Inst D L) (Y : LatInst D) (K : 
     have heq : yProd Y u w hg VV' F =
         (VV'.toList.map vOf).foldr (fun v F' => ((D.gat u w hg).yv v)^[(Y.Fl u w hg).mm] F') F := by
       unfold yProd
-      rw [foldr_map_comp, foldr_map', hmm]
+      rw [foldr_map_comp, List.foldr_map, hmm]
     refine ⟨BB, subset_refl _, VV'.toList.map vOf, hnodup, by ext; simp [BB], F, ?_, heq⟩
     rw [Finset.sdiff_self, Finset.sum_empty, zpow_zero]
     exact ⟨F, hF, one_smul (D.gat u w hg).Kf F⟩
@@ -1328,8 +1326,8 @@ theorem unit_bound_of_sum_over_primes (D : D7) (L : SizeData₂ D) (X : Inst D L
   have hP := hS.1 _ _ Y5 hA
   have hfr : IsFractionRing (D.gat u w hg).O (D.gat u w hg).Kf :=
     ((D.gat u w hg).P.setting (Y.vOf u w hg 0)).frac_O
-  exact ⟨hF, std, vp, unif, eO, eO_spec, dG, dG_spec, om, Y5, hP.2.2.2.2.2.1, hA.2.2.2.2.2.2.2.2.2.2.2.2,
-    hP.2.2.2.2.2.2.2.2.2.2, IsFractionRing.injective _ _, Fn, h1, h2⟩
+  exact ⟨hF, std, vp, unif, eO, eO_spec, dG, dG_spec, om, Y5, hP.2.1, hA.2.2.2.2.2.2.2.2.2.2.2.2,
+    hP.2.2.2.2.2, IsFractionRing.injective _ _, Fn, h1, h2⟩
 
 end Formalism.MainNotions.G.Joints
 end -- clump:auto

@@ -204,7 +204,7 @@ theorem ex_neg {x : Matrix n n R} (h : x * x * x = 0) : ex A x * ex A (-x) = 1 :
   simp only [ex, Matrix.add_mul, Matrix.mul_add, Matrix.mul_neg, Matrix.neg_mul, neg_neg, Matrix.mul_one, Matrix.one_mul,
     Matrix.smul_mul, Matrix.mul_smul, h, h', h'', smul_zero]
   nth_rw 2 [← half (A := A) (x * x)]
-  abel
+  abel_nf
 
 theorem map_ex (x : Matrix n n R) : (ex A x).map c = ex A (x.map c) := by
   have := (c.mapMatrix (m := n))

@@ -65,8 +65,6 @@ public import ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.CmpbHessA
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open MeasureTheory GroundTheory.Heights₂.Heights Metric Set Filter Topology Matrix
@@ -109,7 +107,7 @@ theorem integral_ball_pow (e : ℕ) {R : ℝ} (hR : 0 ≤ R) :
 
 theorem gram_nonneg {e n : ℕ} (v : (Fin e → ℂ) → (Fin n → ℂ)) (y : Fin e → ℂ) :
     0 ≤ gramVol v y := by
-  apply _root_.GroundTheory.Heights₂.Heights.gramVol_nonneg <;> assumption
+  apply _root_.GroundTheory.Heights₂.Heights.gramVol_nonneg
 
 def fsDens {e n : ℕ} (v : (Fin e → ℂ) → (Fin n → ℂ)) (x : Fin e → ℂ) : ℝ :=
   (e.factorial : ℝ) / Real.pi ^ e * gramVol v x / ‖WithLp.toLp 2 (v x)‖ ^ (2 * (e + 1))

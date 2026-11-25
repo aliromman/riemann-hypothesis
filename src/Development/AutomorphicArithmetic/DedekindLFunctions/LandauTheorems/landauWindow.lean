@@ -263,6 +263,17 @@ theorem eq_ofReal_sub_of_dist_le_of_le_sub_re {w : ℂ} {σ D : ℝ} (h1 : dist 
   · rw [Complex.ofReal_re]; exact hre
   · rw [Complex.ofReal_im]; exact him
 
+/-- Include the cap among the candidate radii, so the minimum exists even with no competing poles. -/
+private theorem exists_capped_radius {α : Type*} {S : Set α} (hS : S.Finite) (f : α → ℝ)
+    {d cap : ℝ} (hcap : d < cap) (h : ∀ w ∈ S, d < f w) :
+    ∃ r, d < r ∧ r ≤ cap ∧ ∀ w ∈ S, r ≤ f w := by
+  obtain ⟨r, hr, hmin⟩ := Set.exists_min_image (insert cap (f '' S)) id
+    ((hS.image f).insert cap) ⟨cap, by simp⟩
+  refine ⟨r, ?_, hmin cap (by simp), fun w hw => hmin (f w) (Set.mem_insert_of_mem _ ⟨w, hw, rfl⟩)⟩
+  rcases Set.mem_insert_iff.mp hr with rfl | ⟨w, hw, rfl⟩
+  · exact hcap
+  · exact h w hw
+
 theorem landau_dichotomy {Z : Set ℂ} (hiso : ∀ z : ℂ, 0 < z.re → ∀ᶠ w in 𝓝[≠] z, w ∉ Z) {σ θ : ℝ}
     (hle : ∀ ρ ∈ Z, ρ.re < σ) (hθ : 0 < θ) (hθσ : θ < σ) {ρ₀ : ℂ} (h₀ : ρ₀ ∈ Z) (hρ₀ : θ < ρ₀.re) :
     (∃ D : ℝ, D ≤ σ - θ ∧ (∀ w ∈ Z, w ∉ Metric.ball (σ : ℂ) D) ∧ ∃ ρ₁ ∈ Z, σ - ρ₁.re < D) ∨
@@ -308,25 +319,15 @@ theorem landau_dichotomy {Z : Set ℂ} (hiso : ∀ z : ℂ, 0 < z.re → ∀ᶠ 
         rcases lt_or_eq_of_le hm with h | h
         · exact h
         · exact absurd (hreal t ht.1 h.symm) ht.2
-      obtain ⟨r, hr, hrT⟩ : ∃ r, d < r ∧ ∀ t ∈ F \ {((σ - d : ℝ) : ℂ)}, r ≤ dist t (σ : ℂ) := by
-        rcases (F \ {((σ - d : ℝ) : ℂ)}).eq_empty_or_nonempty with hTe | hTne
-        · refine ⟨d + 1, by linarith, ?_⟩
-          intro t ht
-          rw [hTe] at ht
-          exact absurd ht (Set.notMem_empty t)
-        · obtain ⟨t₀, ht₀, htmin⟩ := Set.exists_min_image (F \ {((σ - d : ℝ) : ℂ)})
-            (fun w => dist w (σ : ℂ)) (hfin.subset Set.diff_subset) hTne
-          exact ⟨dist t₀ (σ : ℂ), hT t₀ ht₀, htmin⟩
-      refine ⟨min r (σ - θ), ?_, min_le_right _ _, ?_⟩
-      · rw [sub_sub_cancel]
-        exact lt_min hr hdlt
+      obtain ⟨r, hr, hrCap, hrT⟩ := exists_capped_radius (hfin.subset Set.diff_subset)
+        (fun w => dist w (σ : ℂ)) hdlt hT
+      refine ⟨r, ?_, hrCap, ?_⟩
+      · rwa [sub_sub_cancel]
       · intro w hw hb
         rw [Metric.mem_ball] at hb
-        have hwF : w ∈ F := ⟨hw, Metric.mem_closedBall.mpr (le_trans hb.le (min_le_right _ _))⟩
+        have hwF : w ∈ F := ⟨hw, Metric.mem_closedBall.mpr (hb.le.trans hrCap)⟩
         by_contra hne
-        have h3 := hrT w ⟨hwF, hne⟩
-        have h4 := min_le_left r (σ - θ)
-        linarith
+        exact (not_lt_of_ge (hrT w ⟨hwF, hne⟩)) hb
 
 end Deduction
 
@@ -364,9 +365,7 @@ theorem landau_growth_contra {c d e C : ℝ} (hc : 0 < c) (hd : 0 < d) (hde : d 
   rw [ge_iff_le, div_le_iff₀ hcL] at hU
   have h1 : L / 2 * U + 1 ≤ X := Real.add_one_le_exp _
   have hX : |C| < c * X := by
-    have hm := mul_le_mul_of_nonneg_left h1 hc.le
-    have heq : c * (L / 2 * U + 1) = U * (c * L) / 2 + c := by ring
-    linarith
+    grind [mul_le_mul_of_nonneg_left h1 hc.le]
   have hY : X * X ≤ Real.exp (k * L) := by
     rw [hXdef, ← Real.exp_add]
     apply Real.exp_le_exp.mpr
@@ -479,16 +478,9 @@ theorem landau_nearest {Z : Set ℂ} (hiso : ∀ z : ℂ, 0 < z.re → ∀ᶠ w 
       apply hw.2
       exact landau_nearest_equi (hle w hw.1.1) (hle ρ hρF.1) h.symm
         (fun hb => hγB ⟨(w, ρ), ⟨hw.1, hρF⟩, hb.symm⟩)
-  obtain ⟨r, hr, hrT⟩ : ∃ r, ‖c - ρ‖ < r ∧ ∀ t ∈ F \ {ρ}, r ≤ ‖c - t‖ := by
-    rcases (F \ {ρ}).eq_empty_or_nonempty with hTe | hTne
-    · refine ⟨‖c - ρ‖ + 1, by linarith, ?_⟩
-      intro t ht
-      rw [hTe] at ht
-      exact absurd ht (Set.notMem_empty t)
-    · obtain ⟨t₀, ht₀, htmin⟩ := Set.exists_min_image (F \ {ρ}) (fun w => ‖c - w‖)
-        (hF.subset Set.diff_subset) hTne
-      exact ⟨‖c - t₀‖, hT t₀ ht₀, htmin⟩
-  refine ⟨γ, ρ, hρF.1, min r D, lt_min hr (by linarith), min_le_right _ _, ?_⟩
+  obtain ⟨r, hr, hrD, hrT⟩ := exists_capped_radius (hF.subset Set.diff_subset)
+    (fun w => ‖c - w‖) (hm.trans_lt hρ₁c) hT
+  refine ⟨γ, ρ, hρF.1, r, hr, hrD, ?_⟩
   intro w hw hb
   rw [Metric.mem_ball, dist_eq_norm, norm_sub_rev] at hb
   have hwF : w ∈ F := by
@@ -496,10 +488,9 @@ theorem landau_nearest {Z : Set ℂ} (hiso : ∀ z : ℂ, 0 < z.re → ∀ᶠ w 
     rw [Metric.mem_closedBall, dist_eq_norm]
     have := norm_add_le (w - c) (c - c₀)
     rw [sub_add_sub_cancel, norm_sub_rev w c, hcc₀] at this
-    linarith [min_le_right r D]
+    linarith
   by_contra hne
-  have h3 := hrT w ⟨hwF, hne⟩
-  linarith [min_le_left r D]
+  exact (not_lt_of_ge (hrT w ⟨hwF, hne⟩)) hb
 
 end Deduction
 
@@ -693,7 +684,7 @@ end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.DedekindLFunctions.LandauTheorems.kernelIntegral =====
 
 -- ===== clump member: Development.AutomorphicArithmetic.DedekindLFunctions.LandauTheorems.landauTails =====
--- clump-header: {"m": "Development.AutomorphicArithmetic.DedekindLFunctions.LandauTheorems.landauTails", "h": "module\n\npublic import Mathlib.MeasureTheory.Integral.Bochner.Basic\npublic import Mathlib.MeasureTheory.Integral.IntegrableOn\npublic import Mathlib.MeasureTheory.Measure.Haar.OfBasis\npublic import Development.AutomorphicArithmetic.DedekindLFunctions.LandauTheorems.kernelIntegral\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Real\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Lemma\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
+-- clump-header: {"m":"Development.AutomorphicArithmetic.DedekindLFunctions.LandauTheorems.landauTails","h":"module\n\npublic import Mathlib.MeasureTheory.Integral.Bochner.Basic\npublic import Mathlib.MeasureTheory.Integral.IntegrableOn\npublic import Mathlib.MeasureTheory.Measure.Haar.OfBasis\npublic import Development.AutomorphicArithmetic.DedekindLFunctions.LandauTheorems.kernelIntegral\npublic import Development.AutomorphicArithmetic.DedekindLFunctions.LandauTheorems.IteratedDerivLaplace\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Real\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Lemma\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -704,12 +695,8 @@ noncomputable section
 namespace Deduction
 
 lemma landau_tails_integrable (k : ℕ) {a : ℝ} (ha : 0 < a) :
-    IntegrableOn (fun u : ℝ => u ^ k * Real.exp (-a * u) / (k.factorial : ℝ)) (Ioi 0) := by
-  by_contra h
-  have h1 := kernel_integral k a ha
-  rw [integral_undef h] at h1
-  have : 0 < (a ^ (k + 1))⁻¹ := by positivity
-  linarith
+    IntegrableOn (fun u : ℝ => u ^ k * Real.exp (-a * u) / (k.factorial : ℝ)) (Ioi 0) :=
+  Integrable.div_const (iteratedDeriv_laplace_int k a ha) (k.factorial : ℝ)
 
 lemma landau_tails_chernoff (k : ℕ) {s l U V : ℝ} (hl : 0 ≤ l) (hs : l < s) :
     ∫ u in Ioi (0 : ℝ) \ Icc U V, u ^ k * Real.exp (-s * u) / (k.factorial : ℝ) ≤
@@ -788,12 +775,7 @@ theorem landau_tails {δ : ℝ} (hδ : 0 < δ) :
       _ < l * (1 + δ) := mul_lt_mul_of_pos_left (by linarith) hl_pos
   obtain ⟨σ, hσ⟩ : ∃ σ : ℝ, σ = M * (2 + l) := ⟨_, rfl⟩
   have hσ1 : l * (2 + l) < σ := by rw [hσ]; gcongr
-  have hs : l < σ - 2 := by
-    have h4l : l + 2 ≤ l * (2 + l) := by
-      have : 4 ≤ 2 + l := by linarith
-      have : l * 4 ≤ l * (2 + l) := mul_le_mul_of_nonneg_left this hl_pos.le
-      linarith
-    linarith
+  have hs : l < σ - 2 := by nlinarith
   have ha : 0 < σ - 2 - l := by linarith
   have hb : 0 < σ - 2 + l := by linarith
   have hσ0 : 0 < σ := by linarith
@@ -847,10 +829,7 @@ theorem landau_tails {δ : ℝ} (hδ : 0 < δ) :
         have h1 : (1 + δ / 2) * σ * U * (l - 2) ≤ k * (l - 2) :=
           mul_le_mul_of_nonneg_right hk1 (by linarith)
         have h2 : (1 + δ / 2) * σ * U * (l - 2) = (l + 1) * σ * U := by rw [← e2]; ring
-        have h3 : l * (σ - 2 + l) ≤ (l + 1) * σ := by
-          have hll : l * (l - 2) ≤ l * (2 + l) := mul_le_mul_of_nonneg_left (by linarith) hl_pos.le
-          have hd_eq : (l + 1) * σ - l * (σ - 2 + l) = σ - l * (l - 2) := by ring
-          linarith
+        have h3 : l * (σ - 2 + l) ≤ (l + 1) * σ := by grind
         have h4 := mul_le_mul_of_nonneg_right h3 (by linarith : 0 ≤ U)
         calc l * U * (σ - 2 + l) = l * (σ - 2 + l) * U := by ring
           _ ≤ (l + 1) * σ * U := h4
@@ -896,7 +875,7 @@ end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.DedekindLFunctions.LandauTheorems.LandauKernelMax =====
 
 -- ===== clump member: Development.AutomorphicArithmetic.DedekindLFunctions.LandauTheorems.landauWindowIneq =====
--- clump-header: {"m": "Development.AutomorphicArithmetic.DedekindLFunctions.LandauTheorems.landauWindowIneq", "h": "module\n\npublic import Mathlib.MeasureTheory.Integral.Bochner.Basic\npublic import Mathlib.MeasureTheory.Integral.IntegrableOn\npublic import Mathlib.MeasureTheory.Measure.Haar.OfBasis\npublic import Development.AutomorphicArithmetic.DedekindLFunctions.LandauTheorems.LandauKernelMax\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Real\nimport Mathlib.Analysis.CStarAlgebra.Classes\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\npublic import Mathlib.MeasureTheory.Order.Group.Lattice\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\npublic import Mathlib.MeasureTheory.Integral.Bochner.ContinuousLinearMap\npublic import Mathlib.MeasureTheory.Integral.ExpDecay\n\n"}
+-- clump-header: {"m":"Development.AutomorphicArithmetic.DedekindLFunctions.LandauTheorems.landauWindowIneq","h":"module\n\npublic import Mathlib.MeasureTheory.Integral.Bochner.Basic\npublic import Mathlib.MeasureTheory.Integral.IntegrableOn\npublic import Mathlib.MeasureTheory.Measure.Haar.OfBasis\npublic import Development.AutomorphicArithmetic.DedekindLFunctions.LandauTheorems.LandauKernelMax\npublic import Development.AutomorphicArithmetic.DedekindLFunctions.LandauTheorems.landauTails\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Real\nimport Mathlib.Analysis.CStarAlgebra.Classes\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\npublic import Mathlib.MeasureTheory.Order.Group.Lattice\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\npublic import Mathlib.MeasureTheory.Integral.Bochner.ContinuousLinearMap\npublic import Mathlib.MeasureTheory.Integral.ExpDecay\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -908,20 +887,7 @@ namespace Deduction
 
 theorem landau_window_ineq_int (k : ℕ) {σ : ℝ} (hσ : 2 < σ) :
     IntegrableOn (fun u : ℝ => u ^ k * Real.exp ((2 - σ) * u) / (k.factorial : ℝ)) (Ioi 0) := by
-  have ha : 0 < (σ - 2) / 2 := by linarith
-  have h1 : IntegrableOn (fun u : ℝ => (1 / ((σ - 2) / 2) ^ k) * Real.exp (-((σ - 2) / 2) * u)) (Ioi 0) :=
-    (exp_neg_integrableOn_Ioi 0 ha).const_mul _
-  refine Integrable.mono' h1 (by fun_prop) ?_
-  refine (ae_restrict_iff' measurableSet_Ioi).2 (Eventually.of_forall fun u hu => ?_)
-  have hu0 : 0 ≤ u := le_of_lt hu
-  rw [Real.norm_of_nonneg (by positivity)]
-  have h2 := landau_kernel_max k ha hu0
-  have h3 : u ^ k * Real.exp ((2 - σ) * u) / (k.factorial : ℝ)
-      = (u ^ k * Real.exp (-((σ - 2) / 2) * u) / (k.factorial : ℝ)) * Real.exp (-((σ - 2) / 2) * u) := by
-    have : (2 - σ) * u = -((σ - 2) / 2) * u + -((σ - 2) / 2) * u := by ring
-    rw [this, Real.exp_add]; ring
-  rw [h3]
-  exact mul_le_mul_of_nonneg_right h2 (Real.exp_pos _).le
+  simpa only [neg_sub] using landau_tails_integrable k (a := σ - 2) (sub_pos.mpr hσ)
 
 theorem landau_window_ineq {g R : ℝ → ℝ} (hg : Measurable g) {C₀ : ℝ}
     (hC : ∀ u : ℝ, 0 ≤ u → |g u| ≤ C₀ * Real.exp (2 * u)) {σ θ U V : ℝ} (hσ : 2 < σ) (hθ : θ < σ) (hU : 0 < U)

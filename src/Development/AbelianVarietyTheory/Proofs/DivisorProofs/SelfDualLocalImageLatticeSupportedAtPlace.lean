@@ -2,7 +2,7 @@ module
 
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatAtVAtStable
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsGivenStageEqOne
-public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EventuallySelfDualLatticeIndicatorIsVacuum
+public import Development.WeilBound.ThetaLifts.TowerModels.TwistedSums.EventuallySelfDualLatticeIndicatorIsVacuum
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
 import Mathlib.Algebra.Order.Interval.Basic
@@ -47,7 +47,7 @@ open IsDedekindDomain NumberField MeasureTheory Matrix
 open scoped TensorProduct
 open GlobalTheory.FunObj GlobalTheory.ChiGrid GlobalTheory.SplitFlip GlobalTheory.SplitWeil GlobalTheory.StdFrames Formalism.L2.DIV
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw
+attribute [local instance] Formalism.BasicNotions.Host.cmStar borelKw borelSpaceKw
 
 open GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun
 open ValuativeRel
@@ -85,7 +85,7 @@ theorem psi_form {W : Type} [AddCommGroup W] [Module (AF F) W] {B : W → W → 
     (hz : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.At (evFin F v) z) (γ : W) :
     ψ (B z γ) = GlobalTheory.LatVac.psiAt ψ v ((GlobalTheory.LatVac.locCo co v z).1 ⬝ᵥ (GlobalTheory.LatVac.locCo co v γ).2 -
       (GlobalTheory.LatVac.locCo co v γ).1 ⬝ᵥ (GlobalTheory.LatVac.locCo co v z).2) := by
-  rw [GlobalTheory.VacIndic.psi_of_at ψ (at_form co v hz γ), ← evFin_form co v z γ]
+  rw [Tw.VacIndic.psi_of_at ψ (at_form co v hz γ), ← evFin_form co v z γ]
   rfl
 
 theorem map_selfDual : ∀ {F : Type} [Field F] [NumberField F] (v : IsDedekindDomain.HeightOneSpectrum (𝓞 F)) {W : Type} [AddCommGroup W]

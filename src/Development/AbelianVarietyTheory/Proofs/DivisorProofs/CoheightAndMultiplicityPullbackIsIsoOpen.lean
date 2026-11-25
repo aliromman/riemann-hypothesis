@@ -44,8 +44,6 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.IsEtCoord
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry TopologicalSpace Filter

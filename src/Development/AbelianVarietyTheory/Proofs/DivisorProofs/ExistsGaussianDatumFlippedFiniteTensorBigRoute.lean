@@ -12,7 +12,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdelicHeisen
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdelicSchwartzEqPureTensorOfFiniteSlices
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AtWAtPlSelf
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.BoxGraphGraphHeis
-public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqAdeleSupportedAtFinitePlaceOfSupportedAt
+public import Development.WeilBound.ThetaLifts.TowerModels.TwistedSums.EqAdeleSupportedAtFinitePlaceOfSupportedAt
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqOfComponentTensorAdelicFunctionEq
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsINeZeroKind
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockVacuumThetaFunctionDerivativeComplexStructur
@@ -82,7 +82,7 @@ open GlobalTheory.FunObj GlobalTheory.ChiGrid GlobalTheory.SplitFlip GlobalTheor
 open GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation (spV spW spW₁ spV₁ Num IsTripleOf IsDatumA skewGram mulG colV adjV₁)
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Chars Rep IsTriple Acts SInf At latAtV realAd evI)
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw
+attribute [local instance] Formalism.BasicNotions.Host.cmStar borelKw borelSpaceKw
 
 noncomputable section
 
@@ -107,7 +107,7 @@ theorem schr_slice (co : Darboux B κ) (ψ : AddChar (AF F) ℂ) {v : HeightOneS
   have hc : ∀ u : AF F, evFin F v u = 0 → u • co.e γ = 0 := fun u hu => by rw [← map_smul, hγ u hu, map_zero]
   have h1 : ∀ k, At (evFin F v) ((co.e γ).1 k) := fun k u hu => congrArg (fun z => z.1 k) (hc u hu)
   have h2 : ∀ k, At (evFin F v) ((co.e γ).2 k) := fun k u hu => congrArg (fun z => z.2 k) (hc u hu)
-  have hl : ∀ z : AF F, At (evFin F v) z → liftV v (evFin F v z) = z := fun z hz => (GlobalTheory.VacAny.eq_atPlace_of_at v z hz).symm
+  have hl : ∀ z : AF F, At (evFin F v) z → liftV v (evFin F v z) = z := fun z hz => (Tw.VacAny.eq_atPlace_of_at v z hz).symm
   conv_rhs => rw [← h]
   simp only [Darboux.rho, schr]
   congr 1

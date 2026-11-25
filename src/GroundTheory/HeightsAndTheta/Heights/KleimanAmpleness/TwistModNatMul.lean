@@ -4,51 +4,7 @@ public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsRestT
 public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsFurtherRest
 public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsTailTail
 public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.AssemblyBase
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.WittVector.IsPoly
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
-import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -65,45 +21,26 @@ section Charts
 variable {F : Type} [Field F] {Ω : Type} [Field Ω] [Algebra F Ω] {N : ℕ} {x : Fin (N + 1) → Ω}
 
 theorem PowRealises.twist_sub (G Q : Kleiman.SubSystem F x Ω) (I : Kleiman.Chart x) :
-    (G.twist Q).sub I = Q.sub I * G.sub I := by
-  rw [Submodule.mul_eq_span_mul_set]
-  show Submodule.span _ _ = _
-  congr 1
-  ext z
-  simp only [Set.mem_ofPred_eq, Set.mem_mul, SetLike.mem_coe, smul_eq_mul]
-  constructor
-  · rintro ⟨q, hq, g, hg, rfl⟩; exact ⟨q, hq, g, hg, rfl⟩
-  · rintro ⟨q, hq, g, hg, rfl⟩; exact ⟨q, hq, g, hg, rfl⟩
+    (G.twist Q).sub I = Q.sub I * G.sub I :=
+  Kleiman.StepThree.Away.twist_sub G Q I
 
 theorem PowRealises.twistSys_sub (c : ℤ) (I : Kleiman.Chart x) :
     (Kleiman.twistSys F x c).sub I = Kleiman.twistMod F x c I := rfl
 
 theorem PowRealises.twistMod_mul (a b : ℤ) (I : Kleiman.Chart x) :
-    Kleiman.twistMod F x a I * Kleiman.twistMod F x b I = Kleiman.twistMod F x (a + b) I := by
-  obtain ⟨i, hi⟩ := I.2.1
-  have hxi : x i ≠ 0 := (Kleiman.mem_support x).mp (I.2.2 hi)
-  rw [Kleiman.twistMod_eq_span a I hi, Kleiman.twistMod_eq_span b I hi, Kleiman.twistMod_eq_span (a + b) I hi,
-    Submodule.span_mul_span, Set.singleton_mul_singleton, ← zpow_add₀ hxi]
+    Kleiman.twistMod F x a I * Kleiman.twistMod F x b I = Kleiman.twistMod F x (a + b) I :=
+  Kleiman.StepThree.Away.twistMod_mul a b I
 
-theorem PowRealises.twistMod_zero (I : Kleiman.Chart x) : Kleiman.twistMod F x 0 I = 1 := by
-  obtain ⟨i, hi⟩ := I.2.1
-  rw [Kleiman.twistMod_eq_span 0 I hi, zpow_zero, Submodule.one_eq_span]
+theorem PowRealises.twistMod_zero (I : Kleiman.Chart x) : Kleiman.twistMod F x 0 I = 1 :=
+  Kleiman.StepThree.Away.twistMod_zero I
 
 theorem PowRealises.twistMod_nat_mul (c : ℤ) (I : Kleiman.Chart x) :
-    ∀ p : ℕ, Kleiman.twistMod F x ((p : ℤ) * c) I = Kleiman.twistMod F x c I ^ p
-  | 0 => by rw [Nat.cast_zero, zero_mul, pow_zero]; exact PowRealises.twistMod_zero I
-  | p + 1 => by
-    rw [pow_succ', ← PowRealises.twistMod_nat_mul c I p, PowRealises.twistMod_mul]
-    congr 1
-    push_cast
-    ring
+    ∀ p : ℕ, Kleiman.twistMod F x ((p : ℤ) * c) I = Kleiman.twistMod F x c I ^ p :=
+  fun p => (Kleiman.StepThree.Away.twistMod_pow c I p).symm
 
 theorem PowRealises.pow_sub (Q : Kleiman.SubSystem F x Ω) (I : Kleiman.Chart x) :
-    ∀ p : ℕ, (Q.pow p).sub I = Q.sub I ^ p
-  | 0 => by rw [pow_zero]; exact PowRealises.twistMod_zero I
-  | p + 1 => by
-    show ((Q.pow p).twist Q).sub I = _
-    rw [PowRealises.twist_sub, PowRealises.pow_sub Q I p, pow_succ']
+    ∀ p : ℕ, (Q.pow p).sub I = Q.sub I ^ p :=
+  Kleiman.StepThree.Away.pow_sub Q I
 
 end Charts
 

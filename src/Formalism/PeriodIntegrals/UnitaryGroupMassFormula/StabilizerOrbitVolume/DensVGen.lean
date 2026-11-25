@@ -248,7 +248,7 @@ theorem densApprox_lc (μ : Measure V) [IsFiniteMeasureOnCompacts μ] (f : V →
   have hcos : ∀ x y, -x + y ∈ Λ₀ → y ∈ K' → x ∈ K' := by
     intro x y h hy
     obtain ⟨k, hk, l, hl, rfl⟩ := hy
-    exact ⟨k, hk, l - (-x + (k + l)), Λ₀.sub_mem hl h, by abel⟩
+    exact ⟨k, hk, l - (-x + (k + l)), Λ₀.sub_mem hl h, by abel_nf⟩
   have hcos' : ∀ x y, -x + y ∈ Λ₀ → (y ∈ K' ↔ x ∈ K') := by
     intro x y h
     refine ⟨hcos x y h, hcos y x ?_⟩

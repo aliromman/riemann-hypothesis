@@ -6,7 +6,7 @@ public import ReciprocityTheory.Hypotheses.GalCohDefs
 public import ReciprocityTheory.GaloisValuations.Global
 public import Development.AutomorphicSpectrum.Proofs.GlobalProofs.GaloisUnramifiedOutsideCohomology
 public import Development.AutomorphicSpectrum.Proofs.GlobalProofs.NormalSubgroupLeUnramifiedFixing
-public import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohCmp
+public import CompanionTheory.AutomorphicTheory.PadicCyclotomicFields.GcohCmp
 public import Mathlib.FieldTheory.Galois.Profinite
 public import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.Transport
 import GroundTheory.ProfiniteCohomology.RestrictedRamification.IsUnramifiedOutsideIffLeMaxUnramifiedOutside
@@ -154,18 +154,18 @@ theorem cohDict {F Ω : Type} [Field F] [NumberField F] [Field Ω] [Algebra F Ω
   let rho' : Representation (ZMod (l ^ r)) (galUnramifiedOutside F Ω (S : Set (HeightOneSpectrum (𝓞 F)))) M :=
     rhoS.comp (e : galUnramifiedOutside F Ω (S : Set (HeightOneSpectrum (𝓞 F))) →*
       GS Ω (S : Set (HeightOneSpectrum (𝓞 F))))
-  obtain ⟨A, hA, eA, he⟩ := PositivityTheory.LocalTateOrthogonality.Gcoh.gcRep _ (ZMod (l ^ r)) M rho' hc'
+  obtain ⟨A, hA, eA, he⟩ := CompanionTheory.LocalTateOrthogonality.Gcoh.gcRep _ (ZMod (l ^ r)) M rho' hc'
   have hAf : Finite A.V := Finite.of_equiv _ eA.toEquiv
   have hn : ∀ a : A.V, (l ^ r) • a = 0 := by
     intro a
     obtain ⟨m, rfl⟩ := eA.surjective a
     rw [← map_nsmul, ← Nat.cast_smul_eq_nsmul (ZMod (l ^ r)), ZMod.natCast_self, zero_smul, map_zero]
-  obtain ⟨e1, -⟩ := PositivityTheory.LocalTateOrthogonality.Gcoh.gc1 _ (ZMod (l ^ r)) M rho' A eA he
-  obtain ⟨e2, -⟩ := PositivityTheory.LocalTateOrthogonality.Gcoh.gc2 _ (ZMod (l ^ r)) M rho' A eA he
+  obtain ⟨e1, -⟩ := CompanionTheory.LocalTateOrthogonality.Gcoh.gc1 _ (ZMod (l ^ r)) M rho' A eA he
+  obtain ⟨e2, -⟩ := CompanionTheory.LocalTateOrthogonality.Gcoh.gc2 _ (ZMod (l ^ r)) M rho' A eA he
   have t1 := ReciprocityTheory.Neutral.Bridge.equivH1OfIso e rhoS rho' (fun _ _ => rfl)
   have t2 := ReciprocityTheory.Neutral.Bridge.equivH2OfIso e rhoS rho' (fun _ _ => rfl)
   refine ⟨A, hA, hAf, hn, ⟨t1.toAddEquiv.trans e1⟩, ⟨t2.toAddEquiv.trans e2⟩, fun n => ?_⟩
-  obtain ⟨en⟩ := PositivityTheory.LocalTateOrthogonality.Gcoh.gcn _ (ZMod (l ^ r)) M rho' A eA he n
+  obtain ⟨en⟩ := CompanionTheory.LocalTateOrthogonality.Gcoh.gcn _ (ZMod (l ^ r)) M rho' A eA he n
   exact ⟨(ReciprocityTheory.Neutral.Bridge.isoHn e rhoS rho' (fun _ _ => rfl) n).toAddEquiv.trans en⟩
 
 end PositivityTheory.Lit1.GFTransport

@@ -56,78 +56,16 @@ open UpperTheory.V.Z.Sym UpperTheory.V.Z.Sym.Loc UpperTheory.V.Z.Sym.Glob UpperT
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
-section Gl2
-
-open Matrix
-
-variable {K : Type} [Field K]
-
-private def upU (x : K) : GL (Fin 2) K :=
-  ⟨!![1, x; 0, 1], !![1, -x; 0, 1], by simp [Matrix.one_fin_two],
-    by simp [Matrix.one_fin_two]⟩
-
-private def loU (x : K) : GL (Fin 2) K :=
-  ⟨!![1, 0; x, 1], !![1, 0; -x, 1], by simp [Matrix.one_fin_two],
-    by simp [Matrix.one_fin_two]⟩
-
-private def sc1 (h : (2 : K) ≠ 0) : GL (Fin 2) K :=
-  ⟨!![2, 0; 0, 1], !![2⁻¹, 0; 0, 1], by simp [Matrix.one_fin_two, h],
-    by simp [Matrix.one_fin_two, h]⟩
-
-private def sc2 (h : (2 : K) ≠ 0) : GL (Fin 2) K :=
-  ⟨!![1, 0; 0, 2], !![1, 0; 0, 2⁻¹], by simp [Matrix.one_fin_two, h],
-    by simp [Matrix.one_fin_two, h]⟩
-
-variable {C : Type} [CommGroup C] (D : GL (Fin 2) K →* C)
-
-private theorem D_upU (h : (2 : K) ≠ 0) (x : K) : D (upU x) = 1 := by
-  have e1 : sc1 h * upU x * (sc1 h)⁻¹ = upU x * upU x := by
-    rw [mul_inv_eq_iff_eq_mul]
-    apply Units.ext
-    simp [sc1, upU]
-    ring
-  have e2 := congrArg D e1
-  rw [map_mul, map_mul, map_inv, map_mul, mul_comm (D (sc1 h)), mul_inv_cancel_right] at e2
-  exact (left_eq_mul.1 e2)
-
-private theorem D_loU (h : (2 : K) ≠ 0) (x : K) : D (loU x) = 1 := by
-  have e1 : sc2 h * loU x * (sc2 h)⁻¹ = loU x * loU x := by
-    rw [mul_inv_eq_iff_eq_mul]
-    apply Units.ext
-    simp [sc2, loU]
-    ring
-  have e2 := congrArg D e1
-  rw [map_mul, map_mul, map_inv, map_mul, mul_comm (D (sc2 h)), mul_inv_cancel_right] at e2
-  exact (left_eq_mul.1 e2)
-
-private theorem D_of_ne (h : (2 : K) ≠ 0) (g : GL (Fin 2) K) (hg : GeneralLinearGroup.det g = 1)
-    (hc : g.val 1 0 ≠ 0) : D g = 1 := by
-  have hd : g.val 0 0 * g.val 1 1 - g.val 0 1 * g.val 1 0 = 1 := by
-    have := congrArg Units.val hg
-    simpa [Matrix.det_fin_two] using this
-  have e : g = upU ((g.val 0 0 - 1) / g.val 1 0) * loU (g.val 1 0) * upU ((g.val 1 1 - 1) / g.val 1 0) := by
-    apply Units.ext
-    ext i j
-    fin_cases i <;> fin_cases j <;> simp [upU, loU, Matrix.mul_apply, Fin.sum_univ_two] <;> field_simp <;>
-      first | ring1 | linear_combination hd | linear_combination -hd
-  rw [e, map_mul, map_mul, D_upU D h, D_upU D h, D_loU D h, mul_one, mul_one]
-
-private theorem hom_trivial_on_det_one (h : (2 : K) ≠ 0) (g : GL (Fin 2) K) (hg : GeneralLinearGroup.det g = 1) : D g = 1 := by
-  by_cases hc : g.val 1 0 = 0
-  · have hd : g.val 0 0 * g.val 1 1 - g.val 0 1 * g.val 1 0 = 1 := by
-      have := congrArg Units.val hg
-      simpa [Matrix.det_fin_two] using this
-    have h11 : g.val 1 1 ≠ 0 := fun h0 => by simp [hc, h0] at hd
-    have h2 : D (g * loU 1) = 1 := by
-      refine D_of_ne D h _ ?_ ?_
-      · rw [map_mul, hg, one_mul]
-        ext
-        simp [loU, Matrix.det_fin_two]
-      · simpa [loU, Matrix.mul_apply, Fin.sum_univ_two, hc] using h11
-    rwa [map_mul, D_loU D h, mul_one] at h2
-  · exact D_of_ne D h g hg hc
-
-end Gl2
+private theorem hom_trivial_on_det_one {K C : Type} [Field K] [CharZero K] [CommGroup C]
+    (D : GL (Fin 2) K →* C) (g : GL (Fin 2) K) (hg : Matrix.GeneralLinearGroup.det g = 1) :
+    D g = 1 := by
+  let s : Matrix.SpecialLinearGroup (Fin 2) K := ⟨g.val, by simpa using congrArg Units.val hg⟩
+  have hs : Matrix.SpecialLinearGroup.toGL s = g := Units.ext rfl
+  have htop : commutator (Matrix.SpecialLinearGroup (Fin 2) K) = ⊤ :=
+    Matrix.SL2.commutator_eq_top (a := (2 : K)) (by norm_num) (by norm_num)
+  have hmem : s ∈ (D.comp Matrix.SpecialLinearGroup.toGL).ker :=
+    Group.Abelianization.commutator_le_ker _ (htop.symm ▸ Subgroup.mem_top s)
+  simpa [hs] using MonoidHom.mem_ker.1 hmem
 
 section Lev
 
@@ -156,10 +94,6 @@ private theorem dg_comm {n : ℕ} (a b : Fin n → kˣ) : Sig.dg a * Sig.dg b = 
   rw [Sig.dg, Sig.dg, ← map_mul, ← map_mul, mul_comm]
 
 end Lev
-
-private theorem two_ne {L : Type} [Field L] [NumberField L] (w : Plc L) : (2 : Kw w) ≠ 0 := by
-  have h : algebraMap L (Kw w) 2 ≠ 0 := (map_ne_zero _).2 two_ne_zero
-  rwa [map_ofNat] at h
 
 theorem UpperTheory.V.Z.Sym.So.torUA :
     UpperTheory.V.Z.Sym.So.TorUA := by
@@ -202,7 +136,9 @@ theorem UpperTheory.V.Z.Sym.So.torUA :
       · rw [Subgroup.mem_comap, hoff u' h]
         exact one_mem _
     · refine Subgroup.mem_inf.2 ⟨hfin, ?_⟩
-      exact hom_trivial_on_det_one ((Matrix.GeneralLinearGroup.det.comp (UA L 2).subtype).comp (secW 2 w)) (two_ne w) _ (hg1 w)
+      have : CharZero (Kw w) := charZero_of_injective_algebraMap (algebraMap L (Kw w)).injective
+      exact hom_trivial_on_det_one
+        ((Matrix.GeneralLinearGroup.det.comp (UA L 2).subtype).comp (secW 2 w)) _ (hg1 w)
   have prod : ∀ T : Finset (Plc L), T ⊆ S → ∃ p : UA L 2, p ∈ U₀ ∧ p ∈ finU (E := L) (n := 2) ⊓ SUA L ∧
       (∀ w ∈ T, cLoc w p = g w) ∧ ∀ w ∈ S, w ∉ T → cLoc w p = 1 := fun T => by
     induction T using Finset.induction_on with

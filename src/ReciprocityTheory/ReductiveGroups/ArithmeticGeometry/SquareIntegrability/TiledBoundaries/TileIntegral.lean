@@ -2,51 +2,7 @@ module
 
 public import Mathlib.Algebra.Module.ZLattice.Basic
 public import Mathlib.MeasureTheory.Integral.Average
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.Order.CompletePartialOrder
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.RingTheory.WittVector.IsPoly
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
-import Mathlib.Topology.Sheaves.Init
-import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
 
@@ -165,15 +121,6 @@ theorem bdd_trans {s : Set V} (hs : Bornology.IsBounded s) (c : V) :
 
 variable (μ : Measure V) [μ.IsAddHaarMeasure]
 
-private theorem isAddFundamentalDomain_zspan_fundamentalDomain (b : Basis ι ℝ V) (μ : Measure V) :
-    IsAddFundamentalDomain (span ℤ (range b)).toAddSubgroup (ZSpan.fundamentalDomain b) μ := by
-  refine IsAddFundamentalDomain.mk' (ZSpan.fundamentalDomain_measurableSet b).nullMeasurableSet ?_
-  intro x
-  obtain ⟨β, hβ, hβx⟩ := fd_exists b x
-  refine ⟨⟨β, hβ⟩, hβx, ?_⟩
-  rintro ⟨g, hg⟩ hgx
-  exact Subtype.ext (fd_uniq b hg hβ hgx hβx)
-
 private theorem setIntegral_preimage_sub_of_periodic (h : V → ℝ) (s : Set V) (c : V)
     (hper : ∀ x, h (x + c) = h x) :
     ∫ x in (fun x => x - c) ⁻¹' s, h x ∂μ = ∫ x in s, h x ∂μ := by
@@ -218,7 +165,7 @@ theorem tile_integral (bA bB : Basis ι ℝ V) (hAB : span ℤ (range bA) ≤ sp
       (reps bA bB).card * ∫ x in ZSpan.fundamentalDomain bB, h x ∂μ := by
   have : VAddInvariantMeasure (span ℤ (range bA)).toAddSubgroup V μ :=
     ⟨fun g s _ => measure_preimage_add μ (g : V) s⟩
-  have hA := isAddFundamentalDomain_zspan_fundamentalDomain bA μ
+  have hA := ZSpan.isAddFundamentalDomain' bA μ
   have hT := tile_fund bA bB hAB μ
   have hperA : ∀ (g : (span ℤ (range bA)).toAddSubgroup) (x : V), h (g +ᵥ x) = h x := by
     intro g x

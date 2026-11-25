@@ -3,7 +3,7 @@ module
 public import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.LevConstOfEv
 public import Formalism.SharpRestriction.LevelLetterCocycles.DownSlotProposition
 public import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelFPfB
-public import Lemmata.PowerMembership.PowMem
+public import Mathlib.Algebra.Polynomial.AlgebraMap
 public import Mathlib.RingTheory.DiscreteValuationRing.Basic
 public import Mathlib.LinearAlgebra.Dimension.Constructions
 public import Mathlib.LinearAlgebra.Dimension.RankNullity
@@ -323,7 +323,7 @@ end -- clump:auto
 -- ===== end clump member: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.AevalEndApply =====
 
 -- ===== clump member: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.AevalMemOfStable =====
--- clump-header: {"m": "Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.AevalMemOfStable", "h": "module\n\npublic import Formalism.SharpRestriction.LevelLetterCocycles.DownSlotProposition\npublic import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelFPfB\npublic import Lemmata.PowerMembership.PowMem\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.PowerSeries.Inverse\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Sheaves.Init\n\n"}
+-- clump-header: {"m": "Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.AevalMemOfStable", "h": "module\n\npublic import Formalism.SharpRestriction.LevelLetterCocycles.DownSlotProposition\npublic import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelFPfB\npublic import Mathlib.Algebra.Polynomial.AlgebraMap\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.PowerSeries.Inverse\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -1145,7 +1145,8 @@ theorem universal_lift_frame [IsDomain O] (hdvr : IsDiscreteValuationRing O) (hf
       simp only [LinearMap.mulLeft_apply, twA_apply, map_mul, hγπ', Formalism.MainNotions.LiftingTheory.gammaA_letter_idempotent]
       ring
     have hzmem : ∀ j, Polynomial.aeval (twA W uE' h') PΩ (π' * ((letE c : LetA O n) * H j)) ∈ Sπ :=
-      fun j => _root_.Bl.PowerMembership.goal1 Sπ (twA W uE' h') hSπ PΩ ⟨H j, hHΔ j, by simp⟩
+      fun j => Polynomial.aeval_apply_smul_mem_of_le_comap (q := Sπ)
+        ⟨H j, hHΔ j, by simp⟩ PΩ (twA W uE' h') (fun _ hv => hSπ _ hv)
     choose zj hzjΔ hzj using fun j => Submodule.mem_map.1 (hzmem j)
     simp only [LinearMap.mulLeft_apply] at hzj
 
@@ -1330,7 +1331,7 @@ theorem universal_lift_frame [IsDomain O] (hdvr : IsDiscreteValuationRing O) (hf
     have hPb : γLA W T₂ π' c (Polynomial.aeval (γLA W T₂ π' c) PΩ b₀) - Polynomial.aeval (γLA W T₂ π' c) PΩ b₀ ∈
         piNL W T₂ Pt π' Eπ h' c 1 := by
       rw [← aeval_comm, ← map_sub]
-      exact _root_.Bl.PowerMembership.goal1 _ _ hpiγ PΩ hγb1
+      exact Polynomial.aeval_apply_smul_mem_of_le_comap hγb1 PΩ _ (fun _ hv => hpiγ _ hv)
     have hxrI : xr ∈ InvL W T₂ Pt π' Eπ h' c Lr := by
       refine Submodule.mem_inf.2 ⟨hxrL, ?_⟩
       rw [Submodule.mem_comap]
@@ -1369,7 +1370,8 @@ theorem universal_lift_frame [IsDomain O] (hdvr : IsDiscreteValuationRing O) (hf
         rw [← h3, map_sub, LinearMap.sub_apply, Polynomial.aeval_C, Module.algebraMap_end_apply, hPΩ1, hstar]
         abel
       rw [e2]
-      exact Submodule.neg_mem _ (_root_.Bl.PowerMembership.goal1 _ _ hpiγ R hγb1)
+      exact Submodule.neg_mem _
+        (Polynomial.aeval_apply_smul_mem_of_le_comap hγb1 R _ (fun _ hv => hpiγ _ hv))
 
 end Formalism.MainNotions.N.Ln34.UniversalLiftFrames
 end -- clump:auto

@@ -48,8 +48,6 @@ import Formalism.FormalGroupWitt.FormalGroupWittProofs.SolveV
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.LinEig
@@ -82,36 +80,8 @@ theorem tanV_mk (v : κ → S) (P : MvPolynomial κ S) :
 theorem aeval_tan [Fintype κ] [DecidableEq κ] (v : κ → S) (P : MvPolynomial κ S) :
     MvPolynomial.aeval (fun i => v i • (DualNumber.eps : DualNumber S)) P =
       algebraMap S (DualNumber S) (MvPolynomial.constantCoeff P) +
-        (∑ i, AddMonoidAlgebra.coeff P (Finsupp.single i 1) * v i) • (DualNumber.eps : DualNumber S) := by
-  induction P using MvPolynomial.induction_on with
-  | C a =>
-    have h : ∀ i, AddMonoidAlgebra.coeff (MvPolynomial.C a : MvPolynomial κ S) (Finsupp.single i 1) = 0 := fun i => by
-      rw [MvPolynomial.coeff_C, if_neg (Finsupp.single_ne_zero.2 one_ne_zero).symm]
-    simp [h]
-  | add p q hp hq =>
-    rw [map_add (f := _), hp, hq, map_add (f := _), map_add (f := _)]
-    simp only [AddMonoidAlgebra.coeff_add, Finsupp.add_apply, add_mul, Finset.sum_add_distrib, add_smul]
-    abel
-  | mul_X p n hp =>
-    rw [map_mul, hp, MvPolynomial.aeval_X]
-    have hc : ∀ i, AddMonoidAlgebra.coeff (p * MvPolynomial.X n) (Finsupp.single i 1) =
-        if i = n then MvPolynomial.constantCoeff p else 0 := by
-      intro i
-      rw [MvPolynomial.coeff_mul_X']
-      by_cases h : i = n
-      · subst h
-        rw [if_pos (by simp), if_pos rfl, tsub_self, MvPolynomial.constantCoeff_eq]
-      · rw [if_neg (by simp [Ne.symm h]), if_neg h]
-    simp only [hc, ite_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ, if_true, map_mul,
-      MvPolynomial.constantCoeff_X, mul_zero, map_zero, zero_add]
-    apply TrivSqZeroExt.ext <;> simp [Algebra.smul_def, TrivSqZeroExt.algebraMap_eq_inl, mul_comm]
-
-theorem const_of_mem_orig {P : MvPolynomial κ S} (h : P ∈ orig S κ) : MvPolynomial.constantCoeff P = 0 := by
-  have hle : orig S κ ≤ RingHom.ker (MvPolynomial.constantCoeff : MvPolynomial κ S →+* S) := by
-    rw [orig, Ideal.span_le]
-    rintro _ ⟨i, rfl⟩
-    simp
-  exact hle h
+        (∑ i, AddMonoidAlgebra.coeff P (Finsupp.single i 1) * v i) • (DualNumber.eps : DualNumber S) :=
+  _root_.GlobalTheory.EigDir.aeval_tan v P
 
 theorem tanV_comp_jetMap {κ' : Type} [Fintype κ'] [DecidableEq κ'] (φ : κ → MvPolynomial κ' S)
     (hφ : ∀ i, φ i ∈ orig S κ') (v : κ' → S) :
@@ -126,7 +96,7 @@ theorem tanV_comp_jetMap {κ' : Type} [Fintype κ'] [DecidableEq κ'] (φ : κ �
       Ideal.Quotient.mk _ (φ i) := by
     show Ideal.Quotient.mk _ (MvPolynomial.aeval φ (MvPolynomial.X i)) = _
     rw [MvPolynomial.aeval_X]
-  rw [e, tanV_mk, tanV_mk, aeval_tan, MvPolynomial.aeval_X, const_of_mem_orig (hφ i), map_zero, zero_add]
+  rw [e, tanV_mk, tanV_mk, aeval_tan, MvPolynomial.aeval_X, GlobalTheory.EigDir.const_of_mem_orig (hφ i), map_zero, zero_add]
 
 theorem coeff_psTrunc' {ιt : Type} [Fintype ιt] [DecidableEq ιt] (m : ℕ) (f : MvPowerSeries ιt S) (e : ιt →₀ ℕ)
     (he : e.degree ≤ m) : AddMonoidAlgebra.coeff (psTrunc m f) e = MvPowerSeries.coeff e f := by
@@ -156,7 +126,7 @@ alias coeff_single_subst' := _root_.UpperTheory.Reformulated.B.LinearTermOfSubst
 
 theorem law_coeff (G : Germ.FGLaw S d) (i j : Fin d) (k : Fin 2) :
     MvPowerSeries.coeff (Finsupp.single (k, j) 1) (G.F i) = if j = i then 1 else 0 := by
-  apply GlobalTheory.EigDir.law_coeff <;> assumption
+  apply GlobalTheory.EigDir.law_coeff
 
 end Law
 
@@ -172,28 +142,13 @@ def Tv (v : Fin 1 × Fin d → S) : overAt y.x (DualNumber S) ⟶ Xo.univ.t.G :=
   homAt y.x (tanV v : Jet S (Fin 1 × Fin d) (0 + 1) →ₐ[S] DualNumber S) ≫ x 1
 
 theorem tanV_smul {κ : Type} (a : S) (v : κ → S) :
-    (tm (a • (LinearMap.id : S →ₗ[S] S))).comp (tanV v : Jet S κ (0 + 1) →ₐ[S] DualNumber S) = tanV (a • v) := by
-  apply Ideal.Quotient.algHom_ext
-  apply MvPolynomial.algHom_ext
-  intro i
-  show tm (a • (LinearMap.id : S →ₗ[S] S)) (tanV v (Ideal.Quotient.mk _ (MvPolynomial.X i))) =
-    tanV (a • v) (Ideal.Quotient.mk _ (MvPolynomial.X i))
-  rw [tanV_mk, tanV_mk, MvPolynomial.aeval_X, MvPolynomial.aeval_X]
-  apply TrivSqZeroExt.ext <;> simp [tm, mul_comm]
+    (tm (a • (LinearMap.id : S →ₗ[S] S))).comp (tanV v : Jet S κ (0 + 1) →ₐ[S] DualNumber S) = tanV (a • v) :=
+  _root_.GlobalTheory.EigDir.tanV_smul a v
 
 theorem tanV_zero {κ : Type} :
     (tanV (0 : κ → S) : Jet S κ (0 + 1) →ₐ[S] DualNumber S) =
-      (Algebra.ofId S (DualNumber S)).comp (jetAug : Jet S κ (0 + 1) →ₐ[S] S) := by
-  apply Ideal.Quotient.algHom_ext
-  apply MvPolynomial.algHom_ext
-  intro i
-  show tanV 0 (Ideal.Quotient.mk _ (MvPolynomial.X i)) =
-    Algebra.ofId S (DualNumber S) ((jetAug : Jet S κ (0 + 1) →ₐ[S] S) (Ideal.Quotient.mk _ (MvPolynomial.X i)))
-  have h2 : (jetAug : Jet S κ (0 + 1) →ₐ[S] S) (Ideal.Quotient.mk _ (MvPolynomial.X i)) = 0 := by
-    show (MvPolynomial.aeval fun _ => (0 : S)) (MvPolynomial.X i) = _
-    rw [MvPolynomial.aeval_X]
-  rw [tanV_mk, MvPolynomial.aeval_X, h2, map_zero]
-  simp
+      (Algebra.ofId S (DualNumber S)).comp (jetAug : Jet S κ (0 + 1) →ₐ[S] S) :=
+  _root_.GlobalTheory.EigDir.tanV_zero
 
 theorem jetTan_eq {κ : Type} [DecidableEq κ] (ℓ : κ) :
     (jetTan ℓ : Jet S κ (0 + 1) →ₐ[S] DualNumber S) = tanV (Pi.single ℓ 1) := by
@@ -240,17 +195,6 @@ theorem localization_quotient_separated_dvd {T A : Type} [DecidableEq T] (φ : A
       ∏ τ ∈ s, W τ = 1 → ∀ τ ∈ s, W τ = 1 := by
   apply GlobalTheory.EigDir.localization_quotient_separated_dvd <;> assumption
 
-theorem combT_add {m : ℕ} (D : Fin m → (overAt x0 (DualNumber S) ⟶ G)) (hD : ∀ j, smT x0 0 (D j) = 1)
-    (p q : Fin m → S) : combT x0 D (p + q) = combT x0 D p * combT x0 D q := by
-  simp only [combT, Pi.add_apply, smT_add x0 _ (hD _), Finset.prod_mul_distrib]
-
-theorem combT_sum {m : ℕ} (D : Fin m → (overAt x0 (DualNumber S) ⟶ G)) (hD : ∀ j, smT x0 0 (D j) = 1)
-    {κ : Type} (s : Finset κ) (f : κ → Fin m → S) : combT x0 D (∑ k ∈ s, f k) = ∏ k ∈ s, combT x0 D (f k) := by
-  classical
-  induction s using Finset.induction_on with
-  | empty => simpa using combT_zero x0 D hD
-  | insert k s hk ih => rw [Finset.sum_insert hk, Finset.prod_insert hk, combT_add x0 D hD, ih]
-
 end Sep
 
 section Pts2
@@ -273,40 +217,16 @@ def Dt (y : FrPt Xo c S) (x : ∀ m, jO y d m 1 ⟶ Xo.univ.t.G) (j : Fin d) :
   homAt y.x (jetTan ((0 : Fin 1), j) : Jet S (Fin 1 × Fin d) (0 + 1) →ₐ[S] DualNumber S) ≫ x 1
 
 theorem combT_Dt (h0 : Tv y x 0 = 1) (hadd : ∀ v w, Tv y x (v + w) = Tv y x v * Tv y x w) (w : Fin d → S) :
-    combT y.x (Dt y x) w = Tv y x (fun p => w p.2) := by
-  have hD : ∀ j, Dt y x j = Tv y x (Pi.single ((0 : Fin 1), j) 1) := fun j => by
-    unfold Dt Tv
-    rw [jetTan_eq]
-  have e : (fun p : Fin 1 × Fin d => w p.2) = ∑ j, w j • (Pi.single ((0 : Fin 1), j) 1 : Fin 1 × Fin d → S) := by
-    funext p
-    obtain ⟨p1, p2⟩ := p
-    fin_cases p1
-    simp [Finset.sum_apply, Pi.single_apply]
-  rw [e, Tv_sum h0 hadd]
-  unfold combT
-  refine Finset.prod_congr rfl fun j _ => ?_
-  rw [Tv_smul, hD]
+    combT y.x (Dt y x) w = Tv y x (fun p => w p.2) :=
+  _root_.GlobalTheory.EigDir.combT_Dt h0 hadd w
 
 theorem Tv_act (a : 𝓞 E) (act : Fin d → MvPowerSeries (Fin 1 × Fin d) S)
     (hact : x 1 ≫ Xo.univ.t.act.act a =
       homAt y.x (jetSubstP 1 fun p : Fin 1 × Fin d => psTrunc 1 (act p.2)) ≫ x 1)
     (v : Fin 1 × Fin d → S) :
     Tv y x v ≫ Xo.univ.t.act.act a =
-      Tv y x (fun p => ∑ j, ReciprocityTheory.ChartRestriction.G.TB.dLin act p.2 j * v ((0 : Fin 1), j)) := by
-  unfold Tv
-  rw [Category.assoc, hact, ← Category.assoc, homAt_comp]
-  unfold jetSubstP
-  rw [tanV_comp_jetMap]
-  congr 3
-  funext p
-  have hco : ∀ s : Fin 1 × Fin d, AddMonoidAlgebra.coeff (psTrunc 1 (act p.2) - MvPolynomial.C (MvPolynomial.constantCoeff (psTrunc 1 (act p.2))))
-      (Finsupp.single s 1) =
-      MvPowerSeries.coeff (Finsupp.single s 1) (act p.2) := by
-    intro s
-    rw [MvPolynomial.coeff_sub, MvPolynomial.coeff_C, if_neg (Finsupp.single_ne_zero.2 one_ne_zero).symm,
-      sub_zero, coeff_psTrunc' 1 _ _ (by simp)]
-  simp only [hco, Fintype.sum_prod_type, Fin.sum_univ_one]
-  rfl
+      Tv y x (fun p => ∑ j, ReciprocityTheory.ChartRestriction.G.TB.dLin act p.2 j * v ((0 : Fin 1), j)) :=
+  _root_.GlobalTheory.EigDir.Tv_act a act hact v
 
 end Pts2
 
@@ -314,23 +234,11 @@ section Main
 
 attribute [local instance] Over.cartesianMonoidalCategory
 
-theorem embK_sep {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {l : Level H} (c : Coeff l)
-    (τ τ' : E →+* ℂ) (h : τ ≠ τ') : ∃ a : 𝓞 E, embK c τ a ≠ embK c τ' a := by
-  by_contra hc
-  push Not at hc
-  apply h
-  have hF : embF c τ = embF c τ' :=
-    IsLocalization.ringHom_ext (nonZeroDivisors (𝓞 E)) (RingHom.ext fun a => hc a)
-  ext x
-  exact congrArg (fun f : E →+* c.F => ((f x : c.F) : ℂ)) hF
-
-
-
 theorem linEig_holds : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H)
     (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) [StarRing (𝓞 E)] (S : Type) [CommRing S] [Algebra c.F S]
     [Algebra ℚ S] (y : FrPt Xo c S) (C : ChartAt Xo c y) (a : 𝓞 E) (ℓ : Lt1 Dw) (i : Fin C.d),
     ∑ j, ReciprocityTheory.ChartRestriction.G.TB.dLin (C.B.A.act a) i j * C.uvec ℓ j = algebraMap c.F S (embK c ℓ.1 a) * C.uvec ℓ i := by
-  apply GlobalTheory.EigDir.linEig_holds <;> assumption
+  apply GlobalTheory.EigDir.linEig_holds
 
 end Main
 

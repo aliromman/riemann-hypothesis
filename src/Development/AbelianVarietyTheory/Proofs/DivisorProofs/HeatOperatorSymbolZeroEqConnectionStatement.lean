@@ -84,8 +84,6 @@ open GlobalTheory.RayEv (Ray)
 open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.RigChart GlobalTheory.Heat
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.UnitPart
@@ -326,8 +324,6 @@ open GlobalTheory.LogKS (IsField)
 open GlobalTheory.RayEv (Ray)
 open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.RigChart GlobalTheory.Heat
 attribute [local instance] Over.cartesianMonoidalCategory
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -616,7 +612,6 @@ open GlobalTheory.RayEv (Ray)
 open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.RigChart GlobalTheory.Heat
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.ConnUnit
 open GlobalTheory.KS
@@ -848,7 +843,6 @@ open GlobalTheory.RayEv (Ray)
 open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.RigChart GlobalTheory.Heat
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.HeatConn.Vert
 open GlobalTheory.KS
@@ -1020,8 +1014,6 @@ open GlobalTheory.RayEv (Ray)
 open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.RigChart GlobalTheory.Heat
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.HeatConn
@@ -1085,7 +1077,6 @@ open GlobalTheory.RayEv (Ray)
 open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.RigChart GlobalTheory.Heat
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
 set_option maxHeartbeats 800000
 
 noncomputable section

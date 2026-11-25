@@ -727,24 +727,24 @@ theorem lev_mem : (∀ l, L.p l ∈ TS P) ∧ (∀ l, L.pb l ∈ TS P) ∧ (∀ 
   obtain ⟨hp, hpb, hc, hci, hcb, hcbi, hz, hzi, hzb, hzbi, hg, hgi, hn, hns, -⟩ := hL
   have gm : ∀ a ∈ (DQ P).gens P.TT, sc P (DQ P) a ∈ TS P := fun a ha => sc_mem P (gen_mem P ha)
   refine ⟨fun l => ?_, fun l => ?_, fun l => ?_, fun l => ?_, fun l => ?_, fun l => ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
-  · rw [hp]; exact gm _ (by simp [DAlg.gens])
-  · rw [hpb]; exact gm _ (by simp [DAlg.gens])
-  · rw [hc]; exact gm _ (by simp [DAlg.gens])
-  · rw [hci]; exact gm _ (by simp [DAlg.gens])
-  · rw [hcb]; exact gm _ (by simp [DAlg.gens])
-  · rw [hcbi]; exact gm _ (by simp [DAlg.gens])
-  · rw [hz]; exact gm _ (by simp [DAlg.gens])
-  · rw [hzi]; exact gm _ (by simp [DAlg.gens])
-  · rw [hzb]; exact gm _ (by simp [DAlg.gens])
-  · rw [hzbi]; exact gm _ (by simp [DAlg.gens])
-  · rw [hg]; exact gm _ (by simp [DAlg.gens])
-  · rw [hgi]; exact gm _ (by simp [DAlg.gens])
+  · rw [hp]; exact gm _ (Or.inl (Or.inl (Or.inr ⟨l, rfl⟩)))
+  · rw [hpb]; exact gm _ (Or.inl (Or.inr ⟨l, rfl⟩))
+  · rw [hc]; exact gm _ (Or.inl (Or.inl (Or.inl (Or.inl (Or.inl (Or.inl ⟨l, rfl⟩))))))
+  · rw [hci]; exact gm _ (Or.inl (Or.inl (Or.inl (Or.inl (Or.inl (Or.inr ⟨l, rfl⟩))))))
+  · rw [hcb]; exact gm _ (Or.inl (Or.inl (Or.inl (Or.inl (Or.inr ⟨l, rfl⟩)))))
+  · rw [hcbi]; exact gm _ (Or.inl (Or.inl (Or.inl (Or.inr ⟨l, rfl⟩))))
+  · rw [hz]; exact gm _ (Or.inr (Or.inl rfl))
+  · rw [hzi]; exact gm _ (Or.inr (Or.inr (Or.inl rfl)))
+  · rw [hzb]; exact gm _ (Or.inr (Or.inr (Or.inr (Or.inl rfl))))
+  · rw [hzbi]; exact gm _ (Or.inr (Or.inr (Or.inr (Or.inr (Or.inl rfl)))))
+  · rw [hg]; exact gm _ (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inl rfl))))))
+  · rw [hgi]; exact gm _ (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inl rfl)))))))
   · rw [hn]
-    refine diag_mem _ _ fun π => add_mem (gen_mem P (by simp [DAlg.gens])) (Subalgebra.smul_mem _
-      (mul_mem (gen_mem P (by simp [DAlg.gens])) (gen_mem P (by simp [DAlg.gens]))) _)
+    refine diag_mem _ _ fun π => add_mem (gen_mem P (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inl rfl))))))))) (Subalgebra.smul_mem _
+      (mul_mem (gen_mem P (Or.inr (Or.inr (Or.inr (Or.inl rfl))))) (gen_mem P (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inl rfl))))))))) _)
   · rw [hns]
-    refine diag_mem _ _ fun π => add_mem (neg_mem (gen_mem P (by simp [DAlg.gens]))) (Subalgebra.smul_mem _
-      (mul_mem (gen_mem P (by simp [DAlg.gens])) (gen_mem P (by simp [DAlg.gens]))) _)
+    refine diag_mem _ _ fun π => add_mem (neg_mem (gen_mem P (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr rfl)))))))))) (Subalgebra.smul_mem _
+      (mul_mem (gen_mem P (Or.inr (Or.inl rfl))) (gen_mem P (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inl rfl))))))))) _)
 
 theorem Dr_mem : L.Dr ∈ TS P ∧ L.Drb ∈ TS P ∧ L.Dri ∈ TS P ∧ L.Drbi ∈ TS P := by
   obtain ⟨hp, hpb, hc, hci, hcb, hcbi, -⟩ := lev_mem P hL
@@ -803,7 +803,7 @@ theorem frame_mem (l : ℕ) {L : LevelData (A P (DQ P)) P.r} (hL : IsModelLevel 
   | nil =>
     refine ⟨fun Y => io_mem P ?_, fun Y => io_mem P (kap_mem P _), fun Y => io_mem P (kap_mem P _)⟩
     show eeA P (DQ P) Y ∈ TS P
-    refine mul_mem (mul_mem (sc_mem P (gen_mem P (by simp [DAlg.gens]))) (sc_mem P (gen_mem P (by simp [DAlg.gens]))))
+    refine mul_mem (mul_mem (sc_mem P (gen_mem P (Or.inr (Or.inl rfl)))) (sc_mem P (gen_mem P (Or.inr (Or.inr (Or.inr (Or.inr (Or.inl rfl))))))))
       (Subalgebra.sum_mem _ fun j _ => mul_mem (kap_mem P _) (SS_mem P j))
   | cons lt w ih =>
     obtain ⟨he, hx, hxi⟩ := ih

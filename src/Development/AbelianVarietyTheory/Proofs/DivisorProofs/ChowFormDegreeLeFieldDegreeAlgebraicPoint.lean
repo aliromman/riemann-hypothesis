@@ -45,8 +45,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open MvPolynomial GlobalTheory.ChowHt GlobalTheory.CompHt
@@ -161,21 +159,6 @@ private theorem exists_algHom_adjoin_of_ker_le {K Ω : Type} [Field K] [Field Ω
   exact aeval_X w i
 
 open MvPolynomial in
-private theorem aeval_smul_eq_pow_mul_of_isHomogeneous {K Ω : Type} [Field K] [Field Ω] [Algebra K Ω] {N n : ℕ}
-    {φ : MvPolynomial (Fin N) K} (hφ : φ.IsHomogeneous n) (c : Ω) (x : Fin N → Ω) :
-    aeval (c • x) φ = c ^ n * aeval x φ := by
-  conv_lhs => rw [φ.as_sum]
-  conv_rhs => rw [φ.as_sum]
-
-  rw [map_sum, map_sum, Finset.mul_sum]
-  refine Finset.sum_congr rfl fun m hm => ?_
-  have hdeg := hφ (mem_support_iff.mp hm)
-  simp only [aeval_monomial, Pi.smul_apply, smul_eq_mul, mul_pow, Finsupp.prod_mul]
-  have : ∑ a, m a = n := by
-    rw [← hdeg, Finsupp.weight_apply, Finsupp.sum_fintype] <;> simp
-  rw [Finsupp.prod_pow, Finset.prod_pow_eq_pow_sum, this]; ring
-
-open MvPolynomial in
 private theorem aeval_inv_smul_eq_zero_of_mem_coneIdeal_zero {K Ω : Type} [Field K] [Field Ω] [Algebra K Ω] {N : ℕ}
     (y z : Fin N → Ω) (j : Fin N) (hy : y j = 1) (hz : z j ≠ 0)
     (hzI : ∀ g ∈ _root_.GlobalTheory.CompHt.coneIdeal K y, aeval z g = 0)
@@ -203,8 +186,8 @@ private theorem aeval_inv_smul_eq_zero_of_mem_coneIdeal_zero {K Ω : Type} [Fiel
   rw [← hzh]
   refine Finset.sum_congr rfl fun d hd => ?_
   have hdD : d ≤ D := Nat.lt_succ_iff.mp (Finset.mem_range.mp hd)
-  rw [aeval_smul_eq_pow_mul_of_isHomogeneous (homogeneousComponent_isHomogeneous d g), map_mul, map_pow,
-    aeval_X, inv_pow, ← mul_assoc]
+  rw [aeval_def, ← eval_map, ((homogeneousComponent_isHomogeneous d g).map _).eval_smul, eval_map,
+    ← aeval_def, map_mul, map_pow, aeval_X, inv_pow, ← mul_assoc]
   congr 1
   rw [← Nat.sub_add_cancel hdD, pow_add, mul_assoc, mul_inv_cancel₀ (pow_ne_zero _ hz), mul_one,
     Nat.add_sub_cancel]

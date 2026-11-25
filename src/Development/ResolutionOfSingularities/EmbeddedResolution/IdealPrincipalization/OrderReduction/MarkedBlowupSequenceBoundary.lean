@@ -86,25 +86,6 @@ theorem EtaleChart.coordIdeal_restrict {U : X.Opens} {n : ℕ} (c : EtaleChart p
   rw [EtaleChart.coordIdeal_eq_comap_coordSubspaceIdeal, EtaleChart.coordIdeal_eq_comap_coordSubspaceIdeal, c.restrict_map hVU]
   simp only [Scheme.IdealSheafData.comap_comp]
 
-private theorem getElemOpt_append_length_add.{v} {α : Type v} (L₂ : List α) :
-    ∀ (L₁ : List α) (i : ℕ), (L₁ ++ L₂)[L₁.length + i]? = L₂[i]? := by
-  intro L₁
-  induction L₁ with
-  | nil => intro i; simp
-  | cons b L ih =>
-      intro i
-      have hlen : (b :: L).length + i = (L.length + i) + 1 := by
-        simp only [List.length_cons]; omega
-      rw [List.cons_append, hlen, List.getElem?_cons_succ]
-      exact ih i
-
-private theorem getElem_append_length_add.{v} {α : Type v} (L₁ L₂ : List α) (i : ℕ)
-    (hi : i < L₂.length) (hi' : L₁.length + i < (L₁ ++ L₂).length) :
-    (L₁ ++ L₂)[L₁.length + i]'hi' = L₂[i]'hi := by
-  have h1 := getElemOpt_append_length_add L₂ L₁ i
-  rw [List.getElem?_eq_getElem hi', List.getElem?_eq_getElem hi] at h1
-  exact Option.some.inj h1
-
 theorem HasStrictNormalCrossingsWith.of_append {Z : X.IdealSheafData} {L₁ L₂ : List X.IdealSheafData}
     (h : HasStrictNormalCrossingsWith p Z (L₁ ++ L₂)) : HasStrictNormalCrossingsWith p Z L₂ := by
   refine hasStrictNormalCrossingsWith_of_forall_exists_etaleChart ?_
@@ -122,12 +103,12 @@ theorem HasStrictNormalCrossingsWith.of_append {Z : X.IdealSheafData} {L₁ L₂
     have hi' : L₁.length + i < (L₁ ++ L₂).length := by
       rw [List.length_append]; omega
     have h2 := hnone _ hi' hni
-    rwa [getElem_append_length_add L₁ L₂ i hi hi'] at h2
+    simpa only [List.getElem_append_right, Nat.le_add_right, Nat.add_sub_cancel_left] using h2
   · intro i hi t hti
     have hi' : L₁.length + i < (L₁ ++ L₂).length := by
       rw [List.length_append]; omega
     have h2 := hsome _ hi' t hti
-    rwa [getElem_append_length_add L₁ L₂ i hi hi'] at h2
+    simpa only [List.getElem_append_right, Nat.le_add_right, Nat.add_sub_cancel_left] using h2
 
 private theorem hasStrictNormalCrossingsWith_cons_of_disjoint_support {Z : X.IdealSheafData}
     {M : List X.IdealSheafData} (h : HasStrictNormalCrossingsWith p Z M) {D : X.IdealSheafData}
@@ -277,39 +258,7 @@ theorem preimage_iUnion_support_boundary_subset (u : MarkedBlowupSequenceData p 
       exact subset_closure (Set.mem_preimage.mpr (Set.mem_sdiff_of_mem hxD hc))
     exact Set.mem_iUnion₂.mpr ⟨_, hmem, h2⟩
 
-private theorem eq_of_exceptionalIdeal_pow_mul_eq_mul {Y Y' : Scheme.{u}} {π : Y' ⟶ Y}
-    {Z : Y.IdealSheafData} (h : Blowup.IsBlowupAlongIdealSheaf π Z) (n : ℕ) {A B : Y'.IdealSheafData}
-    (e : Blowup.exceptionalIdeal π Z ^ n * A = Blowup.exceptionalIdeal π Z ^ n * B) : A = B := by
-  rw [Blowup.exceptionalIdeal_eq_comap] at e
-  exact eq_of_isLocallyGeneratedByNonZeroDivisor_pow_mul_eq_mul h.1 n e
-
 alias isMarked := _root_.FunctorialResolution.EmbeddedResolution.MarkedBlowupSequenceData.isMarked_toBlowupSequenceData
-
-private theorem getElemOpt_map_append.{v, w} {α : Type v} {β : Type w} (f : α → β) (T : List β) :
-    ∀ (L : List α) (i : ℕ), i < L.length → (List.map f L ++ T)[i]? = Option.map f (L[i]?) := by
-  intro L
-  induction L with
-  | nil =>
-      intro i hi
-      simp at hi
-  | cons a L ih =>
-      intro i hi
-      cases i with
-      | zero => simp
-      | succ j =>
-          have hj : j < L.length := by
-            simp only [List.length_cons] at hi
-            omega
-          simp only [List.map_cons, List.cons_append, List.getElem?_cons_succ]
-          exact ih j hj
-
-private theorem getElem_map_append.{v, w} {α : Type v} {β : Type w} (f : α → β)
-    (L : List α) (T : List β) (i : ℕ) (hi : i < L.length)
-    (hi' : i < (List.map f L ++ T).length) :
-    (List.map f L ++ T)[i]'hi' = f (L[i]'hi) := by
-  have h := getElemOpt_map_append f T L i hi
-  rw [List.getElem?_eq_getElem hi', List.getElem?_eq_getElem hi] at h
-  simpa using h
 
 theorem orderAtLeastLocus_disjoint_boundary_of_le (u : MarkedBlowupSequenceData p I m E)
     (hdesc : ∀ t < u.length,
@@ -333,16 +282,11 @@ theorem orderAtLeastLocus_disjoint_boundary_of_le (u : MarkedBlowupSequenceData 
       have ihy := ih (le_of_lt htlt)
       have hxl : i < (u.boundary t).length :=
         u.index_lt_boundary_length (le_of_lt htlt) hi
-      have hlen2 : i < (List.map (Blowup.strictTransform (u.map t) (u.center t)) (u.boundary t)
-          ++ [Blowup.exceptionalIdeal (u.map t) (u.center t)]).length := by
-        rw [List.length_append, List.length_map]
-        omega
       have hbeq : (u.boundary (t + 1))[i]'(u.index_lt_boundary_length ht hi)
           = Blowup.strictTransform (u.map t) (u.center t) ((u.boundary t)[i]'hxl) := by
         refine Eq.trans (List.getElem_of_eq (u.boundary_succ t htlt)
           (u.index_lt_boundary_length ht hi)) ?_
-        exact getElem_map_append (Blowup.strictTransform (u.map t) (u.center t))
-          (u.boundary t) [Blowup.exceptionalIdeal (u.map t) (u.center t)] i hxl hlen2
+        rw [List.getElem_append_left (by simpa using hxl), List.getElem_map]
       refine Set.eq_empty_of_subset_empty ?_
       rintro x ⟨hx1, hx2⟩
       rw [hbeq] at hx2

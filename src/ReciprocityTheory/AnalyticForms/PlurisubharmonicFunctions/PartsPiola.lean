@@ -221,7 +221,7 @@ theorem dzb_of_eventually_zero (h : f =ᶠ[𝓝 z] fun _ => 0) : dzb j f z = 0 :
 
 theorem differentiableAt_dzb (hf : ContDiffAt ℝ 2 f z) : DifferentiableAt ℝ (dzb j f) z := by
   have hd : DifferentiableAt ℝ (fderiv ℝ f) z :=
-    (hf.fderiv_right (m := 1) (by first | norm_num | simp | rfl)).differentiableAt (by first | norm_num | simp | exact one_ne_zero)
+    (hf.fderiv_right (m := 1) (by first | norm_num)).differentiableAt (by first | norm_num)
   have h1 : DifferentiableAt ℝ (fun y => fderiv ℝ f y (Pi.single j 1)) z :=
     hd.clm_apply (differentiableAt_const _)
   have h2 : DifferentiableAt ℝ (fun y => fderiv ℝ f y (Complex.I • Pi.single j 1)) z :=
@@ -233,134 +233,10 @@ theorem differentiableAt_dzb (hf : ContDiffAt ℝ 2 f z) : DifferentiableAt ℝ 
   have h5 : DifferentiableAt ℝ (fun y => (fderiv ℝ f y (Pi.single j 1) +
       Complex.I * fderiv ℝ f y (Complex.I • Pi.single j 1)) / 2) z := by
     first
-      | (exact h4.div_const (2 : ℂ))
       | (simpa only [div_eq_mul_inv] using h4.mul_const (2⁻¹ : ℂ))
   exact h5
 
 end DzCalc
-
-private lemma sum_superset_neg_one_pow_fin_eq_ite_univ (N : ℕ) (T : Finset (Fin N)) :
-    ∑ S : Finset (Fin N), (if T ⊆ S then (-1 : ℂ) ^ (N - S.card) else 0) =
-      if T = Finset.univ then 1 else 0 := by
-  rw [← (Equiv.mk (compl : Finset (Fin N) → Finset (Fin N)) compl compl_compl
-    compl_compl).sum_comp]
-  simp only [Equiv.coe_fn_mk]
-  have hc : ∀ S : Finset (Fin N), N - Sᶜ.card = S.card := by
-    intro S
-    have h1 := Finset.card_le_univ S
-    rw [Fintype.card_fin] at h1
-    rw [Finset.card_compl, Fintype.card_fin]
-    omega
-  have hsub : ∀ S : Finset (Fin N), (T ⊆ Sᶜ) ↔ (S ⊆ Tᶜ) := fun S => by
-    constructor
-    · intro h x hx
-      rw [Finset.mem_compl]
-      intro hxT
-      exact (Finset.mem_compl.mp (h hxT)) hx
-    · intro h x hx
-      rw [Finset.mem_compl]
-      intro hxS
-      exact (Finset.mem_compl.mp (h hxS)) hx
-  simp only [hc, hsub]
-  rw [← Finset.sum_filter]
-  have hf : Finset.univ.filter (fun S : Finset (Fin N) => S ⊆ Tᶜ) = Tᶜ.powerset := by
-    ext S; simp
-  rw [hf]
-  have h0 : (∑ m ∈ Tᶜ.powerset, (-1 : ℤ) ^ m.card) = if Tᶜ = ∅ then 1 else 0 :=
-    Finset.sum_powerset_neg_one_pow_card
-  have h1 : (∑ m ∈ Tᶜ.powerset, (-1 : ℂ) ^ m.card) =
-      ((∑ m ∈ Tᶜ.powerset, (-1 : ℤ) ^ m.card : ℤ) : ℂ) := by simp
-  rw [h1, h0]
-  by_cases hT : T = Finset.univ
-  · have h2 : Tᶜ = ∅ := by rw [hT]; simp
-    simp [hT]
-  · have h2 : Tᶜ ≠ ∅ := by
-      intro h
-      apply hT
-      ext x
-      simp only [Finset.mem_univ, iff_true]
-      by_contra hx
-      have hx' : x ∈ Tᶜ := Finset.mem_compl.mpr hx
-      rw [h] at hx'
-      simp at hx'
-    simp [h2, hT]
-
-private lemma mdisc_eq_inv_factorial_mul_sum_sign_prod {N : ℕ} (M : Fin N → Matrix (Fin N) (Fin N) ℂ) :
-    mdisc M = (1 / (N.factorial : ℂ)) * ∑ σ : Equiv.Perm (Fin N), ∑ f : Fin N → Fin N,
-      (if Finset.univ.image f = Finset.univ then
-        ((Equiv.Perm.sign σ : ℤ) : ℂ) * ∏ i, M (f i) (σ i) i else 0) := by
-  unfold mdisc
-  congr 1
-  have hdet : ∀ S : Finset (Fin N), (∑ k ∈ S, M k).det =
-      ∑ σ : Equiv.Perm (Fin N), ∑ f : Fin N → Fin N,
-        (if ∀ i, f i ∈ S then ((Equiv.Perm.sign σ : ℤ) : ℂ) * ∏ i, M (f i) (σ i) i else 0) := by
-    intro S
-    rw [Matrix.det_apply']
-    refine Finset.sum_congr rfl fun σ _ => ?_
-    have hpf : Fintype.piFinset (fun _ : Fin N => S) =
-        Finset.univ.filter (fun f : Fin N → Fin N => ∀ i, f i ∈ S) := by
-      ext f; simp [Fintype.mem_piFinset]
-    have hp : ∏ i, (∑ k ∈ S, M k) (σ i) i =
-        ∑ f ∈ Fintype.piFinset (fun _ : Fin N => S), ∏ i, M (f i) (σ i) i := by
-      simp only [Matrix.sum_apply]
-      rw [Finset.prod_univ_sum]
-    rw [hp, hpf, Finset.sum_filter, Finset.mul_sum]
-    refine Finset.sum_congr rfl fun f _ => ?_
-    rw [mul_ite, mul_zero]
-  simp only [hdet, Finset.mul_sum]
-  rw [Finset.sum_comm (s := (Finset.univ : Finset (Finset (Fin N))))]
-  refine Finset.sum_congr rfl fun σ _ => ?_
-  rw [Finset.sum_comm (s := (Finset.univ : Finset (Finset (Fin N))))]
-  refine Finset.sum_congr rfl fun f _ => ?_
-  have hiff : ∀ S : Finset (Fin N), (∀ i, f i ∈ S) ↔ Finset.univ.image f ⊆ S := fun S => by
-    simp [Finset.image_subset_iff]
-  have hS : ∀ S : Finset (Fin N), (-1 : ℂ) ^ (N - S.card) *
-      (if ∀ i, f i ∈ S then ((Equiv.Perm.sign σ : ℤ) : ℂ) * ∏ i, M (f i) (σ i) i else 0) =
-      (if Finset.univ.image f ⊆ S then (-1 : ℂ) ^ (N - S.card) else 0) *
-        (((Equiv.Perm.sign σ : ℤ) : ℂ) * ∏ i, M (f i) (σ i) i) := by
-    intro S
-    by_cases h : ∀ i, f i ∈ S
-    · rw [if_pos h, if_pos ((hiff S).mp h)]
-    · rw [if_neg h, if_neg (fun h' => h ((hiff S).mpr h')), mul_zero, zero_mul]
-  rw [Finset.sum_congr rfl fun S _ => hS S, ← Finset.sum_mul, sum_superset_neg_one_pow_fin_eq_ite_univ]
-  split_ifs <;> simp
-
-private lemma prod_cons_eq_sum_mul_prod_cons_single {n : ℕ} (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℂ)
-    (B : Fin n → Matrix (Fin (n + 1)) (Fin (n + 1)) ℂ) (σ : Equiv.Perm (Fin (n + 1)))
-    (f : Fin (n + 1) → Fin (n + 1)) (hf : Finset.univ.image f = Finset.univ) :
-    ∏ i, (Fin.cons A B : Fin (n + 1) → Matrix (Fin (n + 1)) (Fin (n + 1)) ℂ) (f i) (σ i) i =
-      ∑ j, ∑ k, A j k * ∏ i, (Fin.cons (Matrix.single j k 1) B :
-        Fin (n + 1) → Matrix (Fin (n + 1)) (Fin (n + 1)) ℂ) (f i) (σ i) i := by
-  have hs : Function.Surjective f := fun y => by
-    have hy : y ∈ Finset.univ.image f := by rw [hf]; exact Finset.mem_univ y
-    simpa using hy
-  have hi : Function.Injective f := Finite.injective_iff_surjective.mpr hs
-  obtain ⟨i0, hi0⟩ := hs 0
-  have hne : ∀ i ∈ Finset.univ.erase i0, f i ≠ 0 := fun i hi' h =>
-    (Finset.mem_erase.mp hi').1 (hi (h.trans hi0.symm))
-  have hrest : ∀ X : Matrix (Fin (n + 1)) (Fin (n + 1)) ℂ,
-      ∏ i ∈ Finset.univ.erase i0,
-        (Fin.cons X B : Fin (n + 1) → Matrix (Fin (n + 1)) (Fin (n + 1)) ℂ) (f i) (σ i) i =
-      ∏ i ∈ Finset.univ.erase i0,
-        (Fin.cons 0 B : Fin (n + 1) → Matrix (Fin (n + 1)) (Fin (n + 1)) ℂ) (f i) (σ i) i := by
-    intro X
-    refine Finset.prod_congr rfl fun i hi' => ?_
-    obtain ⟨m, hm⟩ := Fin.exists_succ_eq.mpr (hne i hi')
-    rw [← hm, Fin.cons_succ, Fin.cons_succ]
-  have hsplit : ∀ X : Matrix (Fin (n + 1)) (Fin (n + 1)) ℂ,
-      ∏ i, (Fin.cons X B : Fin (n + 1) → Matrix (Fin (n + 1)) (Fin (n + 1)) ℂ) (f i) (σ i) i =
-        X (σ i0) i0 * ∏ i ∈ Finset.univ.erase i0,
-          (Fin.cons 0 B : Fin (n + 1) → Matrix (Fin (n + 1)) (Fin (n + 1)) ℂ) (f i) (σ i) i := by
-    intro X
-    rw [← Finset.mul_prod_erase Finset.univ _ (Finset.mem_univ i0), hrest X, hi0, Fin.cons_zero]
-  simp only [hsplit]
-  simp only [← mul_assoc, ← Finset.sum_mul]
-  congr 1
-  simp only [Matrix.single_apply]
-  first
-    | (rw [Finset.sum_eq_single (σ i0) (fun x _ hx => by simp [hx]) (by simp)]
-       rw [Finset.sum_eq_single i0 (fun x _ hx => by simp [hx]) (by simp)]
-       simp)
 
 theorem maDens_cons_eq {n : ℕ} (φ : Fin n → (Fin (n + 1) → ℂ) → ℝ) (v : (Fin (n + 1) → ℂ) → ℝ)
     (z : Fin (n + 1) → ℂ) :
@@ -378,7 +254,7 @@ theorem monge_ampere_density_cofactor : MaDensCofStatement := by
     intro j k
     have hv2 : ContDiffAt ℝ 2 v z := hv.contDiffAt (hU.mem_nhds hz)
     have hDv : DifferentiableAt ℝ (fderiv ℝ v) z :=
-      (hv2.fderiv_right (m := 1) (by first | norm_num | simp | rfl)).differentiableAt (by first | norm_num | simp | exact one_ne_zero)
+      (hv2.fderiv_right (m := 1) (by first | norm_num)).differentiableAt (by first | norm_num)
     have hw : ∀ w : Fin (n + 1) → ℂ, HasFDerivAt (fun y => ((fderiv ℝ v y w : ℝ) : ℂ))
         (Complex.ofRealCLM.comp
           ((ContinuousLinearMap.apply ℝ ℝ w).comp (fderiv ℝ (fderiv ℝ v) z))) z :=
@@ -398,7 +274,7 @@ theorem monge_ampere_density_cofactor : MaDensCofStatement := by
           Complex.I * ((fderiv ℝ v y (Complex.I • Pi.single k 1) : ℝ) : ℂ)) := by
       filter_upwards [hU.mem_nhds hz] with y hy
       have hdy : DifferentiableAt ℝ v y :=
-        (hv.contDiffAt (hU.mem_nhds hy)).differentiableAt (by first | norm_num | simp | exact one_ne_zero)
+        (hv.contDiffAt (hU.mem_nhds hy)).differentiableAt (by first | norm_num)
       have hf : fderiv ℝ (cplx v) y = Complex.ofRealCLM.comp (fderiv ℝ v y) :=
         (Complex.ofRealCLM.hasFDerivAt.comp y hdy.hasFDerivAt).fderiv
       unfold dzb

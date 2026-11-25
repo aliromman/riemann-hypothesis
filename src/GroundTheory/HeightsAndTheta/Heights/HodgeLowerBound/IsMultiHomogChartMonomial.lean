@@ -4,50 +4,8 @@ public import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.IsVerticalCar
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ArithmeticHilbertSamuelLowerBound
 public import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.ArithModel
 public import GroundTheory.HeightsAndTheta.Heights.WeightedHomogeneous.PConeTrdeg
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.RingTheory.WittVector.IsPoly
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
-import Mathlib.Topology.Sheaves.Init
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterBridgeB
+import GroundTheory.HeightsAndTheta.Heights.HeightComparison.IsMultiHomogIdealIff
 
 @[expose] public section
 
@@ -63,14 +21,8 @@ section Homog
 
 variable {κ : Type} [Fintype κ] {ι : κ → Type} [∀ k, Fintype (ι k)]
 
-theorem isMultiHomog_C (c : ℤ) : IsMultiHomog (C c : MRing ι) 0 := by
-  classical
-  intro m hm k
-  rw [mem_support_iff, coeff_C] at hm
-  split_ifs at hm with h
-  · subst h
-    simp
-  · exact absurd rfl hm
+theorem isMultiHomog_C (c : ℤ) : IsMultiHomog (C c : MRing ι) 0 :=
+  GroundTheory.Heights₂.Heights.Bridge.isMultiHomog_C c
 
 theorem isMultiHomog_prod {σ : Type} (s : Finset σ) (f : σ → MRing ι) (d : σ → κ → ℕ)
     (h : ∀ a ∈ s, IsMultiHomog (f a) (d a)) : IsMultiHomog (∏ a ∈ s, f a) (∑ a ∈ s, d a) := by
@@ -84,13 +36,7 @@ theorem isMultiHomog_prod {σ : Type} (s : Finset σ) (f : σ → MRing ι) (d :
 
 theorem isMultiHomog_chartMonomial (c : ∀ k, ι k) :
     IsMultiHomog (∏ k, (X ⟨k, c k⟩ : MRing ι)) (fun _ => 1) := by
-  classical
-  have h := isMultiHomog_prod (Finset.univ : Finset κ) (fun k => (X ⟨k, c k⟩ : MRing ι))
-    (fun k => fun k1 => if k1 = k then 1 else 0) (fun k _ => ProjLine.isMultiHomog_X ⟨k, c k⟩)
-  have hs : (∑ k : κ, (fun k1 : κ => if k1 = k then 1 else 0 : κ → ℕ)) = fun _ => 1 := by
-    funext k1
-    simp [Finset.sum_apply]
-  rwa [hs] at h
+  simpa using GroundTheory.Heights₂.Heights.Bridge.isMultiHomog_chartMono (R := ℤ) c (fun _ => 1)
 
 end Homog
 

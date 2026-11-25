@@ -484,8 +484,7 @@ lemma v_one_nonneg (c : Cfg) (hc : c.Ok) : 0 ≤ c.v 1 := by
   have h2 := hc.hv0
   unfold Cfg.v
   push_cast
-  have h3 : 0 ≤ 4 * c.Del * ((c.k : ℝ) - 1 - 1) := mul_nonneg (by linarith) (by linarith)
-  linarith
+  nlinarith
 
 lemma edge_factor (c : Cfg) (de : ℕ → ℝ) (hc : c.Ok) (hw : IsWord c.k de) (i : ℕ) (h2 : 2 ≤ i)
     (hik : i ≤ c.k) (h : i < c.k ∨ c.top = false) :
@@ -504,9 +503,7 @@ lemma edge_factor (c : Cfg) (de : ℕ → ℝ) (hc : c.Ok) (hw : IsWord c.k de) 
   rw [hv]
   have m1 : 0 ≤ c.Del * ((l : ℝ) - 1) := mul_nonneg (by linarith) (by linarith)
   have m2 : 0 ≤ c.Del * ((c.k : ℝ) - 1 - l) := mul_nonneg (by linarith) (by linarith)
-  have hring : 4 * c.Del * ((l : ℝ) - 1) + 4 * (c.Del * ((c.k : ℝ) - 1 - l)) =
-      4 * (c.k : ℝ) * c.Del - 8 * c.Del := by ring
-  rcases hw.1 l with e | e <;> rw [e] <;> constructor <;> linarith
+  rcases hw.1 l with e | e <;> rw [e] <;> constructor <;> grind
 
 lemma prod_ratio_le (s : Finset ℕ) (f g : ℕ → ℝ) (ε : ℝ) (hg : ∀ i ∈ s, 0 < g i)
     (hf : ∀ i ∈ s, 0 < f i) (h : ∀ i ∈ s, f i ≤ (1 + ε) * g i) :
@@ -697,16 +694,10 @@ lemma combine (E E' C R R' W α β γ M : ℝ) (hE : 0 < E) (hE' : 0 < E') (hC :
   have a2 : E' * β ≤ α * E * β := mul_le_mul_of_nonneg_right h1 hβ.le
   have a3 : α * β * E ≤ M * γ * E := mul_le_mul_of_nonneg_right h4 hE.le
   have a4 : M * E * γ ≤ M * E * R := mul_le_mul_of_nonneg_left h3 (mul_pos hM hE).le
-  have a5 : E' * R' ≤ M * E * R := by
-    calc E' * R' ≤ E' * β := a1
-      _ ≤ α * E * β := a2
-      _ = α * β * E := by ring
-      _ ≤ M * γ * E := a3
-      _ = M * E * γ := by ring
-      _ ≤ M * E * R := a4
-  calc E' * C * (R' * W) = E' * R' * (C * W) := by ring
-    _ ≤ M * E * R * (C * W) := mul_le_mul_of_nonneg_right a5 (mul_pos hC hW).le
-    _ = M * (E * C * (R * W)) := by ring
+  have a5 : E' * R' ≤ M * E * R := by grind
+  have a6 : E' * R' * (C * W) ≤ M * E * R * (C * W) :=
+    mul_le_mul_of_nonneg_right a5 (mul_pos hC hW).le
+  grind
 
 lemma prod_le_of_ratio (s : Finset ℕ) (f g : ℕ → ℝ) (A : ℝ) (hg : ∀ i ∈ s, 0 < g i)
     (h : ∏ i ∈ s, f i / g i ≤ A) : ∏ i ∈ s, f i ≤ A * ∏ i ∈ s, g i := by

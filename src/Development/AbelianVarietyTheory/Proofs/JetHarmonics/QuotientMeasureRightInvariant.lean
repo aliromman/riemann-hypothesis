@@ -70,28 +70,6 @@ theorem measurable_rmulQ {m : ℕ} (g : Matrix (Fin m) (Fin m) ℂ) : Measurable
   simp only [rmulQ, Matrix.mul_apply, Matrix.of_apply]
   fun_prop
 
-theorem measurableSet_not_mem {m : ℕ} {G : Set (Matrix (Fin m) (Fin m) ℂ)} (hG : IsMatGroup G) :
-    MeasurableSet {x : MtM m | Matrix.of x ∉ G} := by
-  have hc : IsClosed {x : MtM m | Matrix.of x ∈ G} := by
-    have hof : Continuous (fun x : MtM m => (Matrix.of x : Matrix (Fin m) (Fin m) ℂ)) := continuous_id
-    exact hG.1.preimage hof
-  exact hc.measurableSet.compl
-
-private lemma mul_not_mem_of_mem_of_not_mem {m : ℕ} {G S : Set (Matrix (Fin m) (Fin m) ℂ)} (hG : IsMatGroup G)
-    (hSG : S ⊆ G) {s x : Matrix (Fin m) (Fin m) ℂ} (hs : s ∈ S) (hx : x ∉ G) : s * x ∉ G := by
-  intro hsx
-  apply hx
-  obtain ⟨hinv, hone⟩ := hG.2.2.2 s (hSG hs)
-  have hleft : s⁻¹ * s = 1 := mul_eq_one_comm.mp hone
-  have h1 := hG.2.2.1 _ hinv _ hsx
-  rwa [← Matrix.mul_assoc, hleft, Matrix.one_mul] at h1
-
-private lemma continuous_mul_swap_pair {m : ℕ} :
-    Continuous (fun p : MtM m × MtM m => (fun i j => (Matrix.of p.2 * Matrix.of p.1) i j : MtM m)) := by
-  refine continuous_pi fun i => continuous_pi fun j => ?_
-  simp only [Matrix.mul_apply, Matrix.of_apply]
-  fun_prop
-
 theorem ae_mem_of_quot {m : ℕ} {G S : Set (Matrix (Fin m) (Fin m) ℂ)} {μG μS ν : Measure (MtM m)}
     (h : QuotientSetting G S μG μS ν) : ∀ᵐ x ∂ν, Matrix.of x ∈ G := by
   apply PI.QuotInvW.ae_mem_G <;> assumption

@@ -12,6 +12,7 @@ import Mathlib.Algebra.Order.Floor.Semifield
 import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
 import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Log.Sum
 import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
 import Mathlib.Combinatorics.Enumerative.DyckWord
 import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
@@ -220,15 +221,6 @@ lemma Icc_one_eq_Ioc (k : ℕ) : Finset.Icc 1 k = Finset.Ioc 0 k := by
   simp only [Finset.mem_Icc, Finset.mem_Ioc]
   omega
 
-lemma sum_log_eq_log_factorial (k : ℕ) :
-    ∑ n ∈ Finset.Ioc 0 k, Real.log n = Real.log (k.factorial : ℝ) := by
-  induction k with
-  | zero => simp
-  | succ k ih =>
-    rw [Finset.sum_Ioc_succ_top (Nat.zero_le k), ih, Nat.factorial_succ, Nat.cast_mul,
-      Real.log_mul (by positivity) (Nat.cast_ne_zero.2 (Nat.factorial_ne_zero k))]
-    ring
-
 lemma sum_log_eq (k : ℕ) :
     ∑ n ∈ Finset.Ioc 0 k, Real.log n = ∑ n ∈ Finset.Ioc 0 k, Λ n * ((k / n : ℕ) : ℝ) := by
   have h1 : ∀ n ∈ Finset.Ioc 0 k, Real.log n = ∑ d ∈ n.divisors, Λ d :=
@@ -274,14 +266,14 @@ lemma mertens_upper (k : ℕ) (hk : 1 ≤ k) : A k ≤ Real.log k + (Real.log 4 
     have h3 : (k:ℝ) * (Λ n / n) = Λ n * ((k:ℝ) / n) := by ring
     rw [h3]
     nlinarith [mul_le_mul_of_nonneg_left h2 hΛ]
-  rw [← sum_log_eq, sum_log_eq_log_factorial] at hmain
+  rw [← sum_log_eq, Real.sum_log_eq_log_factorial] at hmain
   have h4 : (k:ℝ) * A k ≤ k * (Real.log k + (Real.log 4 + 4)) := by nlinarith
   exact le_of_mul_le_mul_left h4 hk0
 
 lemma mertens_lower (k : ℕ) (hk : 1 ≤ k) : Real.log k - 1 ≤ A k := by
   have hk0 : (0:ℝ) < k := by exact_mod_cast hk
   have hfl : Real.log (k.factorial : ℝ) ≤ k * A k := by
-    rw [← sum_log_eq_log_factorial, sum_log_eq, A, Finset.mul_sum]
+    rw [← Real.sum_log_eq_log_factorial, sum_log_eq, A, Finset.mul_sum]
     apply Finset.sum_le_sum
     intro n _
     have hΛ : 0 ≤ Λ n := ArithmeticFunction.vonMangoldt_nonneg
@@ -450,12 +442,10 @@ open Formalism Formalism.D5 Formalism.LFunctionChainParameters.characterSumData
 
 namespace SZ
 
-lemma rp {x : ℝ} (hx0 : 0 < x) (u v : ℝ) : x ^ (u + v) = x ^ u * x ^ v := Real.rpow_add hx0 u v
-
 lemma nT_bound {x ε : ℝ} {n nT : ℝ} (hx0 : 0 < x) (hnT : x ^ (-(ε / 8)) * n / 2 ≤ nT) :
     n ≤ 2 * nT * x ^ (ε / 8) := by
   have h8 : 0 < x ^ (ε / 8) := Real.rpow_pos_of_pos hx0 _
-  have hinv : x ^ (-(ε / 8)) * x ^ (ε / 8) = 1 := by rw [← rp hx0]; simp
+  have hinv : x ^ (-(ε / 8)) * x ^ (ε / 8) = 1 := by rw [← Real.rpow_add hx0]; simp
   have := mul_le_mul_of_nonneg_right hnT h8.le
   have e : x ^ (-(ε / 8)) * n / 2 * x ^ (ε / 8) = n / 2 := by
     calc x ^ (-(ε / 8)) * n / 2 * x ^ (ε / 8) = (x ^ (-(ε / 8)) * x ^ (ε / 8)) * n / 2 := by ring
@@ -491,7 +481,7 @@ lemma T3 {x ε Y m n nT b : ℝ} (hx0 : 0 < x) (hm0 : 0 ≤ m) (hb : 0 ≤ b)
   have pe := Real.rpow_pos_of_pos hx0 ε
   have p8 := Real.rpow_pos_of_pos hx0 (ε / 8)
   have hY' : x ^ ((1 : ℝ) / 2 + ε / 2) * x ^ ε * x ^ (ε / 8) = Y := by
-    rw [← rp hx0, ← rp hx0, hY]; ring_nf
+    rw [← Real.rpow_add hx0, ← Real.rpow_add hx0, hY]; ring_nf
   have hmY : m * x ^ ε * x ^ (ε / 8) ≤ Y := by
     rw [← hY']; gcongr
   have hnT' := nT_bound hx0 hnT
@@ -515,7 +505,7 @@ lemma T4 {x ε Y m n nT nT2 b k : ℝ} (hx0 : 0 < x) (hx1 : 1 ≤ x) (hm0 : 0 �
   have pe := Real.rpow_pos_of_pos hx0 ε
   have pne := Real.rpow_pos_of_pos hx0 (-ε)
   have p8 := Real.rpow_pos_of_pos hx0 (ε / 8)
-  have hneg : x ^ (-ε) * x ^ ε = 1 := by rw [← rp hx0]; simp
+  have hneg : x ^ (-ε) * x ^ ε = 1 := by rw [← Real.rpow_add hx0]; simp
   have he : m * (nT2 * k * b * x ^ ε / (n * (n * x ^ (-ε))))
       = (m * b) * (nT2 * k * (x ^ ε * x ^ ε) / n ^ 2) := by
     have h2 : x ^ ε = 1 / x ^ (-ε) := by rw [eq_div_iff pne.ne', mul_comm, hneg]
@@ -525,13 +515,13 @@ lemma T4 {x ε Y m n nT nT2 b k : ℝ} (hx0 : 0 < x) (hx1 : 1 ≤ x) (hm0 : 0 �
     rw [div_le_iff₀ (by positivity)]
     have hxe : 0 ≤ x ^ ε * x ^ ε := by positivity
     have e2 : n * x ^ ((1 : ℝ) / 2 + ε) * n ^ 2 = n * (n ^ 2 * x ^ ((1 : ℝ) / 2 - ε)) * (x ^ ε * x ^ ε) := by
-      rw [show (1 : ℝ) / 2 + ε = ((1 : ℝ) / 2 - ε) + ε + ε by ring, rp hx0, rp hx0]; ring
+      rw [show (1 : ℝ) / 2 + ε = ((1 : ℝ) / 2 - ε) + ε + ε by ring, Real.rpow_add hx0, Real.rpow_add hx0]; ring
     rw [e2]
     have := mul_le_mul hnT2 hk2 hk0 hn.le
     exact mul_le_mul_of_nonneg_right this hxe
   have hnT' := nT_bound hx0 hnT
   have hXe : x ^ ((1 : ℝ) / 2 + ε) * x ^ (ε / 8) ≤ Y := by
-    rw [← rp hx0, hY]; exact Real.rpow_le_rpow_of_exponent_le hx1 (by linarith)
+    rw [← Real.rpow_add hx0, hY]; exact Real.rpow_le_rpow_of_exponent_le hx1 (by linarith)
   have hB : n * x ^ ((1 : ℝ) / 2 + ε) ≤ 2 * Y * nT := by
     have hp := Real.rpow_pos_of_pos hx0 ((1 : ℝ) / 2 + ε)
     have hnT0 : 0 ≤ nT := by nlinarith
@@ -683,7 +673,7 @@ theorem proposition_size_bound : GrowthSizeBound := by
   have hQ : 0 < (nT : ℝ) * m * b := by positivity
   have hxX : x ≤ x ^ ((1 : ℝ) / 2 + ε) * m := by
     have e : x ^ ((1 : ℝ) / 2 + ε) * x ^ ((1 : ℝ) / 2 - ε) = x := by
-      rw [← SZ.rp hx0]; norm_num
+      rw [← Real.rpow_add hx0]; norm_num
     calc x = x ^ ((1 : ℝ) / 2 + ε) * x ^ ((1 : ℝ) / 2 - ε) := e.symm
       _ ≤ x ^ ((1 : ℝ) / 2 + ε) * m := mul_le_mul_of_nonneg_left hm1 (pos _).le
   have h1 := SZ.T1 hxX hXY hnT0.le hm0.le hb.le haE
@@ -716,7 +706,7 @@ theorem proposition_size_bound : GrowthSizeBound := by
   have hδ0 : 0 < δ := lt_of_lt_of_le (pos _) hd2
   have hxδ : 1 ≤ x ^ ε * δ := by
     have := mul_le_mul_of_nonneg_left hd2 (pos ε).le
-    have e : x ^ ε * x ^ (-ε) = 1 := by rw [← SZ.rp hx0]; simp
+    have e : x ^ ε * x ^ (-ε) = 1 := by rw [← Real.rpow_add hx0]; simp
     linarith
   have h2x : 2 / x ≤ 1 := by rw [div_le_one hx0]; linarith
   have hPY : 1 ≤ P * Y := by nlinarith
@@ -740,11 +730,11 @@ theorem proposition_size_bound : GrowthSizeBound := by
         _ ≤ x ^ ε * (22 * (P * Y)) := mul_le_mul_of_nonneg_left hmain hxe.le
         _ = 22 * (P * Y) * x ^ ε := by ring
   have hZ : P * Y * x ^ ε = x ^ ((1 : ℝ) / 2 + (C + 21 / 8) * ε) := by
-    rw [← hPd, ← hYd, ← SZ.rp hx0, ← SZ.rp hx0]; ring_nf
+    rw [← hPd, ← hYd, ← Real.rpow_add hx0, ← Real.rpow_add hx0]; ring_nf
   have hXZ : X ≤ x ^ ((1 : ℝ) / 2 + (C + 21 / 8) * ε) := by
     rw [← hXd]; exact mono _ _ (by have := mul_nonneg hC hε.le; linarith)
   have hfin : x ^ (3 * ε / 8) * x ^ ((1 : ℝ) / 2 + (C + 21 / 8) * ε) = x ^ ((1 : ℝ) / 2 + (C + 3) * ε) := by
-    rw [← SZ.rp hx0]; ring_nf
+    rw [← Real.rpow_add hx0]; ring_nf
   have hZ0 := pos ((1 : ℝ) / 2 + (C + 21 / 8) * ε)
   have hG26 : Gx ≤ 26 * x ^ ((1 : ℝ) / 2 + (C + 21 / 8) * ε) := by
     have : 22 * (P * Y) * x ^ ε = 22 * x ^ ((1 : ℝ) / 2 + (C + 21 / 8) * ε) := by rw [mul_assoc, hZ]
@@ -1044,6 +1034,9 @@ lemma lip_triv (A w w' : ℝ) (hA : 0 < A) (hw : 0 < w) (hw' : 0 < w') :
 
 end AN
 
+/-- Uniform weight-Lipschitz bound for both trivial (`Gz`) and nontrivial (`GPsi`) character
+prime-sum functions: changing the weight `w` to `w'` shifts `w * GPsi (A / w)` by at most
+`O(A / min w w' * |w - w'|)`. -/
 theorem lipschitz_weight_all : LipWAll := by
   intro H _ _ _ D ell ψ A w w' hA hw hw'
   by_cases hψ : ψ = 0
@@ -1053,6 +1046,9 @@ theorem lipschitz_weight_all : LipWAll := by
     exact AN.lip_triv A w w' hA hw hw'
   · exact AN.lip_char D ell ψ hψ A w w' hA hw hw'
 
+/-- Uniform Lipschitz bound on `GPsi` and `Gz` in the cutoff argument `y`, combining the Mertens
+bound for nontrivial characters (`deriv_char`) with `zetaPrimeSumErrorLipschitz` for the trivial
+character. -/
 theorem derivative_integral_all : DerivIntAll := by
   obtain ⟨K, hK⟩ := Formalism.zetaPrimeSumErrorLipschitz
   have hl4 : 0 ≤ Real.log 4 := Real.log_nonneg (by norm_num)

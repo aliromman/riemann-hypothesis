@@ -68,8 +68,6 @@ public import Mathlib.Algebra.Algebra.ZMod
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Set Filter Topology MeasureTheory

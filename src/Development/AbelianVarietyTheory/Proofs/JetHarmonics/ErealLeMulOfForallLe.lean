@@ -50,15 +50,13 @@ import Formalism.LocalToGlobal.Divisibility.Numbers
 
 @[expose] public section
 
-set_option autoImplicit false
-
 open Formalism.L2.FormalSeriesBounds Formalism.IncomingBounds Formalism.UnitaryBoundIntegral Formalism.L2.DIV Formalism.L2.Pj Formalism.BasicNotions GlobalTheory.GoodDepth NumberField IsDedekindDomain ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
 namespace GlobalTheory.GoodDepth
 
 theorem ramOverZ_ne_zero' {K : Type} [Field K] [NumberField K] (la : HeightOneSpectrum (𝓞 K)) :
     ramOverZ la ≠ 0 := by
-  apply Formalism.MainNotions.ModuliIntegralCharts.H1.H1algLink.ramOverZ_ne_zero <;> assumption
+  apply Formalism.MainNotions.ModuliIntegralCharts.H1.H1algLink.ramOverZ_ne_zero
 
 theorem ereal_le_mul_of_forall_le {x : EReal} {e B : ℝ} (he : 0 < e)
     (h : ∀ ν : ℝ, ((e * ν : ℝ) : EReal) ≤ x → ν ≤ B) : x ≤ ((e * B : ℝ) : EReal) := by

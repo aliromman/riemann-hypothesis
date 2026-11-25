@@ -4,43 +4,8 @@ public import Formalism.LocalToGlobal.KernelLattices.ColumnData.HfArith
 public import Formalism.LocalToGlobal.KernelLattices.ColumnData.LinkThIndep
 public import Lemmata.GeneralBFactThirdBis.Imports
 public import Formalism.LocalToGlobal.KernelLattices.ColumnData.IopNorm
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
-import Mathlib.Topology.Sheaves.Init
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.KernelLattices.ColumnData.HermitianPairingIntegral, Formalism.LocalToGlobal.KernelLattices.ColumnData.ThIndep
@@ -142,7 +107,9 @@ theorem sE_hom_gen {N N' : ℕ} (L : Submodule (𝓞 D.host.E) (Fin N → D.host
     intro x hx
     rw [← Matrix.mulVec_mulVec]
     exact hBs_mem _ (hA x hx)
-  have h := _root_.Bl.general_b_fact_third_bis.goal1 D.host.φ₀ L hL.1 hL.2.1 (Bs * A) hM
+  have hInt := _root_.Bl.general_b_fact_third_bis.isIntegral_of_preserves_span
+    (L.restrictScalars ℤ) hL.1.restrictScalars hL.2.1 (Bs * A) hM
+  have h := _root_.Bl.general_b_fact_third_bis.isIntegral_trace_of_isIntegral D.host.φ₀ (Bs * A) hInt
   have htr : (Bs * A).trace = sE D A B := by
     simp only [Matrix.trace, Matrix.diag, Matrix.mul_apply, sE, hBs, Matrix.of_apply]
     rw [Finset.sum_comm]

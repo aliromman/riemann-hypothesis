@@ -95,7 +95,7 @@ lemma wsum_eq (χ : MulChar F R) (g : F → C) (h0 : wsum χ g 0 = 0) (x : F) :
     calc algebraMap R C (χ⁻¹ a) * g (a * x)
         = algebraMap R C (χ x * χ⁻¹ x) * (algebraMap R C (χ⁻¹ a) * g (a * x)) := by
           rw [hu, map_one, one_mul]
-      _ = _ := by rw [map_mul]; ring
+      _ = _ := by rw [map_mul]; ring_nf
 
 omit [DecidableEq F] in
 lemma wsum_zero_of_ne (hv : v.Integers R) {χ : MulChar F R} (hχ : χ ≠ 1) (g : F → C) :

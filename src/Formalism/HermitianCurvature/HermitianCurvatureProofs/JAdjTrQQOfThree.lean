@@ -250,10 +250,10 @@ theorem locAdd_thr (k r : ℕ) {A : ℝ} (hA : 10 * ((r : ℝ) + 1) * nDim k r ^
   have hn : (1 : ℝ) ≤ ((2 * r + k + 1 : ℕ) : ℝ) := by exact_mod_cast (by omega : 1 ≤ 2 * r + k + 1)
   have hr : (0 : ℝ) < (r : ℝ) + 1 := by positivity
   have hA' : 10 * ((r : ℝ) + 1) * ((2 * r + k + 1 : ℕ) : ℝ) ^ 2 ≤ A := by simpa [nDim] using hA
-  have hn2 : (1 : ℝ) ≤ ((2 * r + k + 1 : ℕ) : ℝ) ^ 2 := by nlinarith
+  have hn2 : (1 : ℝ) ≤ ((2 * r + k + 1 : ℕ) : ℝ) ^ 2 := one_le_pow₀ hn
   rw [lt_div_iff₀ (by positivity)]
   simp only [Nat.cast_zero, mul_zero, sub_zero]
-  nlinarith [mul_pos hr (lt_of_lt_of_le one_pos hn2)]
+  linarith [mul_pos hr (lt_of_lt_of_le one_pos hn2)]
 
 theorem local_additivity_transfer : JALocAdd := by
   refine ⟨10, ?_⟩
@@ -470,7 +470,7 @@ theorem local_square_integrable_transfer : LocalSquareIntegrableTransfer := by
     intro m hm
     refine inCC_antiA ?_ (hCC m)
     have : (m : ℝ) ≤ 5 := by exact_mod_cast hm
-    rw [hA']; nlinarith
+    rw [hA']; linarith [mul_le_mul_of_nonneg_left this hBg]
 
   have hAB : B.AB S.G.k S.G.r ≤ A' := by
     have := jd_AB_le S.G.k S.G.r
@@ -516,10 +516,10 @@ theorem local_square_integrable_transfer : LocalSquareIntegrableTransfer := by
       have h2' : ((‖B.hsVec (e π q.1.2)‖ ^ 2 : ℝ) : ℂ) = ((1 : ℝ) : ℂ) := by
         rw [Complex.ofReal_pow, Complex.ofReal_one]; exact h1
       have h2 : ‖B.hsVec (e π q.1.2)‖ ^ 2 = 1 := Complex.ofReal_injective h2'
-      nlinarith [norm_nonneg (B.hsVec (e π q.1.2))]
+      exact le_of_sq_le_sq (by linarith : ‖B.hsVec (e π q.1.2)‖ ^ 2 ≤ 1 ^ 2) zero_le_one
     have hi : ‖inner ℂ (B.hsVec (e π q.1.2)) (B.hsVec (B.JF Db F (B.gq Db q.1)))‖ ≤
         ‖B.hsVec (B.JF Db F (B.gq Db q.1))‖ :=
-      (norm_inner_le_norm _ _).trans (by nlinarith [norm_nonneg (B.hsVec (B.JF Db F (B.gq Db q.1)))])
+      (norm_inner_le_norm _ _).trans (mul_le_of_le_one_left (norm_nonneg _) he1)
     exact pow_le_pow_left₀ (norm_nonneg _) hi 2
   have p2 : ∀ x ∈ MA.Qset (D.parOf S v).r (D.parOf S v).TT, MA.dens0 x * H x ≤
       ENNReal.ofReal (bcWeight S.G.k S.G.r (Tz S.G.k S.G.r Db.z) (Tz S.G.k S.G.r Db.z') x *
@@ -694,7 +694,7 @@ theorem coefLeib {O UU : Set (B.Mat k r)} (hO : IsOpen O) (hcov : ∀ g ∈ B.GV
       rw [← Real.rpow_add hp]
       refine Real.rpow_le_one_of_one_le_of_nonpos hg1 ?_
       have h6 : (((wL u ++ wR v).length : ℕ) : ℝ) ≤ n := by exact_mod_cast hlen
-      nlinarith [mul_le_mul_of_nonneg_left h6 hBg]
+      linarith [mul_le_mul_of_nonneg_left h6 hBg]
     have e3 : (2 : ℝ) ^ (wL u ++ wR v).length ≤ 2 ^ n := pow_le_pow_right₀ (by norm_num) hlen
     calc B.gN g ^ (A - d - Bg * n) * ‖Dw (wL u ++ wR v) (ap a Φ) g‖
         ≤ B.gN g ^ (A - d - Bg * n) * (2 ^ (wL u ++ wR v).length *
@@ -768,7 +768,7 @@ theorem operator_in_class_holds : OpCCg := by
     have hlen : (T.word.length : ℝ) ≤ (B.opOrder Θ : ℝ) := by
       exact_mod_cast Formalism.FourierDecayAlt.P.B5.len_le_order Θ hT
     refine ⟨hc.1, fun m => sInCC_mono ?_ le_rfl (hc.2 m)⟩
-    nlinarith [mul_le_mul_of_nonneg_left hlen hBg]
+    linarith [mul_le_mul_of_nonneg_left hlen hBg]
   have hAdj : ∀ T ∈ Θ, B.CkOn ⊤ (B.GV k r)
         (fun g => ((-1 : ℂ) ^ T.word.length) • B.Rw T.word.reverse (fun x => T.coefAdj x (F x)) g) ∧
       ∀ m : ℕ, B.InCC (A - d - Bg * (B.opOrder Θ : ℝ) - Bg * m) m
@@ -782,7 +782,7 @@ theorem operator_in_class_holds : OpCCg := by
     have h2 := hR.2 m
     rw [List.length_reverse] at h2
     obtain ⟨c, hcc⟩ := sInCC_mono (A := A - d - Bg * (B.opOrder Θ : ℝ) - Bg * m) (by
-      nlinarith [mul_le_mul_of_nonneg_left hlen hBg]) le_rfl h2
+      linarith [mul_le_mul_of_nonneg_left hlen hBg]) le_rfl h2
     exact ⟨_, CCle_smul _ hcc⟩
   exact ⟨listSumG Θ (fun T => ap T.coef (B.Rw T.word F)) hApp,
     listSumG Θ (fun T g => ((-1 : ℂ) ^ T.word.length) • B.Rw T.word.reverse (fun x => T.coefAdj x (F x)) g) hAdj⟩
@@ -1068,7 +1068,7 @@ theorem pairing_integrable_of_square_integrable {U V : M.Ty P → MA.SmQ P.r P.T
       (MA.mu0 P.r P.TT) := by
     refine Integrable.mono' (((hU2 π).add (hV2 π)).div_const 2) hm.restrict (Filter.Eventually.of_forall fun q => ?_)
     simp only [norm_mul, Complex.norm_conj, Pi.add_apply]
-    nlinarith [sq_nonneg (‖MA.evQ P (U π) q‖ - ‖MA.evQ P (V π) q‖)]
+    linarith [sq_nonneg (‖MA.evQ P (U π) q‖ - ‖MA.evQ P (V π) q‖)]
   have heq : (fun q => MA.evQ P (U π) q * conj (MA.evQ P (V π) q)) =
       Set.indicator {q | ε ≤ MA.Gq P q} (fun q => MA.evQ P (U π) q * conj (MA.evQ P (V π) q)) := by
     funext q
@@ -1109,8 +1109,6 @@ theorem ja_arith (Cj Cl Cgr Sg R n N A AB : ℝ) (hCj : 0 ≤ Cj) (hSg : 0 ≤ S
   have f3 : (R + 1) * n ≤ W := hY _ _ hX0 hn0 hX4 hn3
   have f4 : R * n ≤ W := hY _ _ hR hn0 (by linarith) hn3
   have f5 : R + 1 ≤ W := by have := hY _ _ hX0 (by norm_num : (0:ℝ) ≤ 1) hX4 h1n3; linarith
-  have f6 : 1 ≤ W := le_trans hX f5
-  have f8 : R ≤ W := by linarith
   have f7 : (N + 1) * ((R + 1) * n) ≤ W := by
     have h1' : N * n ≤ N * n ^ 2 := mul_le_mul_of_nonneg_left hn2 hN
     have h2' : (R + 1) * (N * n + n) ≤ (R + 1) ^ 4 * (N * n ^ 2 + n ^ 3) :=
@@ -1132,7 +1130,6 @@ theorem ja_arith (Cj Cl Cgr Sg R n N A AB : ℝ) (hCj : 0 ≤ Cj) (hSg : 0 ≤ S
   have g4 : Cj * ((R + 1) * n) ≤ Cj * W := mul_le_mul_of_nonneg_left f3 hCj
   have g5 : Sg * Cj * ((R + 1) * n) ≤ Sg * Cj * W := mul_le_mul_of_nonneg_left f3 (by positivity)
   have g6 : Sg * (R + 1) ≤ Sg * W := mul_le_mul_of_nonneg_left f5 hSg
-  have g7 : n * (R + 1) ≤ W := by linarith
   have hAbs : 0 ≤ |Cl| + |Cgr| := by positivity
   have hK : (40 + |Cl| + |Cgr| + 10 * Cj + 10 * Sg + 10 * Cj * Sg) * W ≤
       200 * (1 + |Cl| + |Cgr|) * (1 + Cj) * (1 + Sg) * W := by
@@ -1148,8 +1145,6 @@ theorem ja_arith (Cj Cl Cgr Sg R n N A AB : ℝ) (hCj : 0 ≤ Cj) (hSg : 0 ≤ S
     have : 0 ≤ |Cl| + |Cgr| := hAbs
     linarith
   have hA' : (40 + |Cl| + |Cgr| + 10 * Cj + 10 * Sg + 10 * Cj * Sg) * W ≤ A := le_trans hK (by rw [hW] at hA ⊢; linarith)
-  have hAbs1 : 0 ≤ |Cl| := abs_nonneg _
-  have hAbs2 : 0 ≤ |Cgr| := abs_nonneg _
   have hCjW : 0 ≤ Cj * W := by positivity
   have hSgW : 0 ≤ Sg * W := by positivity
   have hCSW : 0 ≤ Cj * Sg * W := by positivity
@@ -1164,8 +1159,6 @@ theorem ja_arith (Cj Cl Cgr Sg R n N A AB : ℝ) (hCj : 0 ≤ Cj) (hSg : 0 ≤ S
         AB + Cgr * ((R + 1) * n ^ 2) + 6 * (Cj * (R * n)) + 30 * R + Cj * ((R + 1) * n) +
           2 * (Sg * Cj * ((R + 1) * n)) + 10 * (Sg * (R + 1)) := by ring
     rw [e]
-    have hABW : AB ≤ 3 * W := by linarith
-    have h30 : 30 * R ≤ 30 * W := by linarith
     linarith
   · have e : Cl * (R + 1) ^ 2 * n + 5 * (Sg * (R + 1)) = Cl * ((R + 1) ^ 2 * n) + 5 * (Sg * (R + 1)) := by ring
     rw [e]; linarith
@@ -1463,15 +1456,15 @@ theorem one_op {Θ : OpT S v} (hΘ : Good S T v c.Bg c.Dh c.Oh Θ) :
   have hOh := c.hOh
   by_cases hL : Lt S T v c.Bg Θ
   · refine ⟨0, le_rfl, hL.2, ?_, ?_, ?_⟩
-    · rw [hL.1]; unfold Top; push_cast; nlinarith
-    · rw [hL.1]; unfold Tga; push_cast; nlinarith
+    · rw [hL.1]; unfold Top; push_cast; linarith [mul_nonneg hR hOh, mul_nonneg hBg hOh]
+    · rw [hL.1]; unfold Tga; push_cast; linarith [mul_nonneg hR hOh, mul_nonneg hBg hOh]
     · rw [if_pos hL, hL.1]; simp
   · rcases hΘ.2 with h | ⟨hc, ho⟩
     · exact absurd h hL
     · refine ⟨c.Dh, hDh, hc, ?_, ?_, ?_⟩
-      · unfold Top; nlinarith
-      · unfold Tga; nlinarith
-      · rw [if_neg hL]; unfold Ch; nlinarith
+      · unfold Top; linarith [mul_le_mul_of_nonneg_left ho hR, mul_le_mul_of_nonneg_left ho hBg]
+      · unfold Tga; linarith [mul_le_mul_of_nonneg_left ho hR, mul_le_mul_of_nonneg_left ho hBg]
+      · rw [if_neg hL]; unfold Ch; linarith [mul_le_mul_of_nonneg_left ho hBg]
 
 theorem applyL_loc : ∀ (l : List (OpT S v)), (∀ Θ ∈ l, Good S T v c.Bg c.Dh c.Oh Θ) →
     ∀ (A : ℝ) (J : GFn S v), LocCC S T v A c.Bg J → J ∈ smoothFormsPositiveCone S T v → c.Top ≤ A - heavy S T v c.Bg l * c.Ch →
@@ -1586,7 +1579,7 @@ theorem cutCoef_of_glob {Θ : OpT S v} {d Bg : ℝ} (hΘ : GlobCoef Θ d) (hBg :
   have hg1 : 1 ≤ B.gN g := Formalism.FourierDecayAlt.P.BetaSesquilinearity.gN_ge_one hg
   have hm : (0 : ℝ) ≤ m := Nat.cast_nonneg m
   have hpow : B.gN g ^ d ≤ B.gN g ^ (d + Bg * m) :=
-    Real.rpow_le_rpow_of_exponent_le hg1 (by nlinarith)
+    Real.rpow_le_rpow_of_exponent_le hg1 (by linarith [mul_nonneg hBg hm])
   have hp0 : 0 ≤ B.gN g ^ d := Real.rpow_nonneg (by linarith) _
   obtain ⟨h1, h2⟩ := hCb u w hu hw hl g hg
   constructor
@@ -1605,7 +1598,7 @@ theorem cutCoef_mono {Θ : OpT S v} {d Bg Bg' : ℝ} (hB : Bg ≤ Bg') (hΘ : Cu
   have hg1 : 1 ≤ B.gN g := Formalism.FourierDecayAlt.P.BetaSesquilinearity.gN_ge_one hg
   have hm : (0 : ℝ) ≤ m := Nat.cast_nonneg m
   have hpow : B.gN g ^ (d + Bg * m) ≤ B.gN g ^ (d + Bg' * m) :=
-    Real.rpow_le_rpow_of_exponent_le hg1 (by nlinarith)
+    Real.rpow_le_rpow_of_exponent_le hg1 (by linarith [mul_le_mul_of_nonneg_right hB hm])
   have hp0 : 0 ≤ B.gN g ^ (d + Bg * m) := Real.rpow_nonneg (by linarith) _
   obtain ⟨h1, h2⟩ := hC u w hu hw hl g hg hGg
   constructor
@@ -1640,7 +1633,7 @@ theorem builtOW_mono {E : Type} [Field E] [NumberField E] [IsCMField E] {Wp Wq :
     {A₀ : ℝ} (hB : BuiltOW C₂ S T f χ ν' m₀ top A₀) : BuiltOW C₁ S T f χ ν' m₀ top A₀ :=
   ⟨_root_.Formalism.FourierDecayAlt.P.CutMP.isBuiltPlace_mono3 h hB.1, hB.2⟩
 
-theorem weight_budget_linear_inequality (A K x a b : ℝ) (hx : 0 ≤ x) (hab : a + b ≤ K) : A - K * x ≤ A - a * x - b * x := by nlinarith
+theorem weight_budget_linear_inequality (A K x a b : ℝ) (hx : 0 ≤ x) (hab : a + b ≤ K) : A - K * x ≤ A - a * x - b * x := by linarith [mul_le_mul_of_nonneg_right hab hx]
 
 theorem quadratic_assembly_holds : JAAssembleQQ := by
   intro hHat _ _ _ _ _ hBdd _ _ hPhi hStar hGrp hLoc hFFs
@@ -1730,7 +1723,7 @@ theorem quadratic_assembly_holds : JAAssembleQQ := by
     unfold B.AB
     rw [hn, hR]; unfold nDim; push_cast
     have hk : (0 : ℝ) ≤ S.G.k := Nat.cast_nonneg _
-    nlinarith
+    linarith [sq_nonneg (S.G.r : ℝ), mul_nonneg hR0 hk]
   have hKbA : Kb * ((R + 1) ^ 4 * (N * n ^ 2 + n ^ 3)) ≤ A₀ := by
     have hW0 : 0 ≤ (R + 1) ^ 4 * (N * n ^ 2 + n ^ 3) := by positivity
     have hle : Kb ≤ Cbig := by simp [hCbig]

@@ -73,7 +73,6 @@ section -- clump:auto
 open NumberField IsDedekindDomain Filter Topology
 open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.MainNotions
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec GlobalTheory.CompanionTheory.Ar.Plug
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 open AlgebraicGeometry CategoryTheory Limits
 open scoped Matrix
 
@@ -116,7 +115,6 @@ section -- clump:auto
 open NumberField IsDedekindDomain Filter Topology
 open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.MainNotions
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec GlobalTheory.CompanionTheory.Ar.Plug
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 open AlgebraicGeometry CategoryTheory Limits
 open scoped Matrix
 
@@ -133,7 +131,6 @@ section -- clump:auto
 open NumberField IsDedekindDomain Filter Topology
 open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.MainNotions
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec GlobalTheory.CompanionTheory.Ar.Plug
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 open AlgebraicGeometry CategoryTheory Limits
 open scoped Matrix
 
@@ -208,7 +205,6 @@ section -- clump:auto
 open NumberField IsDedekindDomain Filter Topology
 open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.MainNotions
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec GlobalTheory.CompanionTheory.Ar.Plug
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 open AlgebraicGeometry CategoryTheory Limits
 open scoped Matrix
 
@@ -281,7 +277,6 @@ section -- clump:auto
 open NumberField IsDedekindDomain Filter Topology
 open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.MainNotions
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec GlobalTheory.CompanionTheory.Ar.Plug
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 open AlgebraicGeometry CategoryTheory Limits
 open scoped Matrix
 
@@ -298,7 +293,6 @@ section -- clump:auto
 open NumberField IsDedekindDomain Filter Topology
 open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.MainNotions
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec GlobalTheory.CompanionTheory.Ar.Plug
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 open AlgebraicGeometry CategoryTheory Limits
 open scoped Matrix
 
@@ -316,7 +310,6 @@ section -- clump:auto
 open NumberField IsDedekindDomain Filter Topology
 open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.MainNotions
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec GlobalTheory.CompanionTheory.Ar.Plug
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 open AlgebraicGeometry CategoryTheory Limits
 open scoped Matrix
 
@@ -352,7 +345,6 @@ section -- clump:auto
 open NumberField IsDedekindDomain Filter Topology
 open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.MainNotions
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec GlobalTheory.CompanionTheory.Ar.Plug
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 open AlgebraicGeometry CategoryTheory Limits
 open scoped Matrix
 
@@ -370,7 +362,6 @@ section -- clump:auto
 open NumberField IsDedekindDomain Filter Topology
 open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.MainNotions
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec GlobalTheory.CompanionTheory.Ar.Plug
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 open AlgebraicGeometry CategoryTheory Limits
 open scoped Matrix
 
@@ -412,7 +403,6 @@ section -- clump:auto
 open NumberField IsDedekindDomain Filter Topology
 open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.MainNotions
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec GlobalTheory.CompanionTheory.Ar.Plug
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 open AlgebraicGeometry CategoryTheory Limits
 open scoped Matrix
 
@@ -429,7 +419,6 @@ section -- clump:auto
 open NumberField IsDedekindDomain Filter Topology
 open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.MainNotions
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec GlobalTheory.CompanionTheory.Ar.Plug
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 open AlgebraicGeometry CategoryTheory Limits
 open scoped Matrix
 
@@ -447,7 +436,6 @@ section -- clump:auto
 open NumberField IsDedekindDomain Filter Topology
 open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.MainNotions
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec GlobalTheory.CompanionTheory.Ar.Plug
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 open AlgebraicGeometry CategoryTheory Limits
 open scoped Matrix
 
@@ -455,14 +443,9 @@ noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Plug.RdEx
 
-theorem spMap_comp' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap g ≫ spMap f = spMap (g.comp f) := by
-  show Spec.map _ ≫ Spec.map _ = Spec.map _
-  rw [← Spec.map_comp, ← CommRingCat.ofHom_comp]
-
 theorem spMap_dual_comp' {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
     spMap (Formalism.L2.Pj.dualMap g) ≫ spMap (Formalism.L2.Pj.dualMap f) = spMap (Formalism.L2.Pj.dualMap (g.comp f)) := by
-  rw [spMap_comp']
+  rw [GlobalTheory.ZM.GenericTrdeg.spMap_comp]
   congr 1
   refine RingHom.ext fun t => ?_
   ext <;> simp [Formalism.L2.Pj.dualMap]
@@ -493,7 +476,7 @@ theorem core : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Recip
   have hxx : y'.x = y₂.x := by
     rw [hy'.1, hy₂.1, hyx, hy₀]
     show spMap φ ≫ spMap _ ≫ _ = spMap χ.toRingHom ≫ _
-    rw [← Category.assoc, spMap_comp', hφχ]
+    rw [← Category.assoc, GlobalTheory.ZM.GenericTrdeg.spMap_comp, hφχ]
   have hptF : Small.ptF y' = Small.ptF y₂ := pullback.hom_ext (by rw [Small.ptF_fst, Small.ptF_fst, hxx])
     (by rw [Small.ptF_snd, Small.ptF_snd])
   have hpt' : Small.ptY Y y' = Or.𝔐.ξ ≫ Or.𝔐.f := by
@@ -580,7 +563,6 @@ section -- clump:auto
 open NumberField IsDedekindDomain Filter Topology
 open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.MainNotions
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec GlobalTheory.CompanionTheory.Ar.Plug
-attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 end -- clump:auto
 end -- clump:auto

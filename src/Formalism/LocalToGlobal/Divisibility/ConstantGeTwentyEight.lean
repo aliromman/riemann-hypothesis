@@ -181,6 +181,16 @@ structure DivInputsR {Pl : Type} [Fintype Pl] [DecidableEq Pl] (P : IndefCoreR D
   val2 : ∀ w, ∀ φ ∈ Nu, ∀ F ∈ Df1.Mt (P.cols.μ w),
     Dc.Pt u (P.cols.μ w) φ F = 0 ∨ sg w ≤ (vw w (Dc.Pt u (P.cols.μ w) φ F) : ℝ)
 
+/-- The three arithmetic clauses used in the per-word bridge. -/
+def DivCoreClausesR {Pl : Type} [Fintype Pl] [DecidableEq Pl] (P : IndefCoreR Df0 Df1 Dc Sp N) (R : RecNums Bs.J Pl)
+    (u : Dc.Mem) (Nu : Submodule (𝓞 K) (Fin (Dc.a u) → K)) (sg : HeightOneSpectrum (𝓞 K) → ℝ) : Prop :=
+  (∀ φ ∈ shiftLat Nu sg, P.cols.col.B u φ ∈ Formalism.HN.dualLat P.cols.RR) ∧
+  (∃ cu : InfinitePlace K → ℝ, (∀ v, 0 < cu v ∧
+      Formalism.HN.opNormAt (Pi.basisFun K (Fin (Dc.a u))) (Dc.Xc u) (Pi.basisFun K (Fin P.cols.D)).dualBasis
+        (Formalism.HN.dualFrame P.cols.XE) v (P.cols.col.B u) ^ 2 ≤ cu v) ∧
+    (1 / (Formalism.HN.nPl K : ℝ)) * ∑ v, Real.log (cu v) = R.hu - meanLog P.cols.κ) ∧
+  P.cols.muCC - meanLog P.cols.κ + R.hu - 2 * FoOfR P ≤ R.rhs
+
 def DivClausesR {Pl : Type} [Fintype Pl] [DecidableEq Pl] (P : IndefCoreR Df0 Df1 Dc Sp N) (R : RecNums Bs.J Pl)
     (u : Dc.Mem) (Nu : Submodule (𝓞 K) (Fin (Dc.a u) → K)) (sg : HeightOneSpectrum (𝓞 K) → ℝ) : Prop :=
   (∀ φ ∈ shiftLat Nu sg, P.cols.col.B u φ ∈ Formalism.HN.dualLat P.cols.RR) ∧
@@ -254,12 +264,12 @@ theorem height_chain_atR {Df : DefSide Bs} {Dc : DefCols Df} {Sp : SPer Dc} [Non
   rw [e, h4]
   linarith [h2]
 
-theorem divClausesR_of [_root_.NumberField.IsTotallyComplex K] {Pl : Type} [Fintype Pl] [DecidableEq Pl] (wf0 : Df0.WF) (wf1 : Df1.WF)
+theorem divCoreClausesR_of [_root_.NumberField.IsTotallyComplex K] {Pl : Type} [Fintype Pl] [DecidableEq Pl] (wf0 : Df0.WF) (wf1 : Df1.WF)
     (P : IndefCoreR Df0 Df1 Dc Sp N) (R : RecNums Bs.J Pl) (u : Dc.Mem) (Nu : Submodule (𝓞 K) (Fin (Dc.a u) → K))
-    (sg : HeightOneSpectrum (𝓞 K) → ℝ) (I : DivInputsR P R u Nu sg) : DivClausesR P R u Nu sg := by
+    (sg : HeightOneSpectrum (𝓞 K) → ℝ) (I : DivInputsR P R u Nu sg) : DivCoreClausesR P R u Nu sg := by
   have : Nonempty Bs.Ix := nonempty_Ix wf0 P.base.pos
   have hsh := shiftEx K (Dc.a u) Nu I.Nu_lat (shiftZ sg) I.sg_fin
-  refine ⟨?_, ?_, ?_, ?_⟩
+  refine ⟨?_, ?_, ?_⟩
   ·
     exact P.cols.intoDual divIntoDualShift latticeGlue wf1 u Nu (shiftLat Nu sg) sg (shiftZ sg) I.val2
       (fun w => Int.floor_le_ceil _) hsh.1
@@ -316,8 +326,15 @@ theorem divClausesR_of [_root_.NumberField.IsTotallyComplex K] {Pl : Type} [Fint
       have h2 : boundBR P I.LG I.E3 I.E2 = (∑ j, N.l3 j) + 2 * FoOfR P + I.LG + (∑ j, (N.E1 j + I.E2 j)) + I.E3 := rfl
       linarith
     exact R.divIneq _ mu0 (FoOfR P) _ _ hC hM hpass I.errB
-  ·
-    exact ((shiftMu K (Dc.a u) (Dc.Xc u) I.Xc_unit Nu (shiftLat Nu sg) I.Nu_lat hsh.2.1 (shiftZ sg) hsh.1).2 I.a_pos).2
+
+theorem divClausesR_of [_root_.NumberField.IsTotallyComplex K] {Pl : Type} [Fintype Pl] [DecidableEq Pl] (wf0 : Df0.WF) (wf1 : Df1.WF)
+    (P : IndefCoreR Df0 Df1 Dc Sp N) (R : RecNums Bs.J Pl) (u : Dc.Mem) (Nu : Submodule (𝓞 K) (Fin (Dc.a u) → K))
+    (sg : HeightOneSpectrum (𝓞 K) → ℝ) (I : DivInputsR P R u Nu sg) : DivClausesR P R u Nu sg := by
+  have : Nonempty Bs.Ix := nonempty_Ix wf0 P.base.pos
+  obtain ⟨hIntegral, hNorm, hSlope⟩ := divCoreClausesR_of wf0 wf1 P R u Nu sg I
+  have hsh := shiftEx K (Dc.a u) Nu I.Nu_lat (shiftZ sg) I.sg_fin
+  exact ⟨hIntegral, hNorm, hSlope,
+    ((shiftMu K (Dc.a u) (Dc.Xc u) I.Xc_unit Nu (shiftLat Nu sg) I.Nu_lat hsh.2.1 (shiftZ sg) hsh.1).2 I.a_pos).2⟩
 
 end GenericR
 

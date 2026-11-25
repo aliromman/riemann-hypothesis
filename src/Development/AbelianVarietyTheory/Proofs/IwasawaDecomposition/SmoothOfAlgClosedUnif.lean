@@ -301,7 +301,6 @@ theorem exists_completion (hk : k τ < m τ) (c : Rest m k τ → K) (i : Rest m
 
 end StepLoc
 
-
 open StepLoc in
 theorem exists_fr_stepSet (F Ω Ω' : Type) [Field F] [Field Ω] [Algebra F Ω] [Field Ω'] [Algebra F Ω']
     (M : RatModel F Ω) (M' : RatModel F Ω') (φ : Ω →ₐ[F] Ω') (f : M'.Z ⟶ M.Z) (ι : Type) [Finite ι]
@@ -489,7 +488,6 @@ def genPt (Ω : Type) [Field Ω] (j₀ j : J) : FractionRing (MvPolynomial {j //
 
 omit [Fintype J] in
 theorem genPt_self (j₀ : J) : genPt Ω j₀ j₀ = 1 := by simp [genPt, genPoly]
-
 
 omit [Fintype J] in
 theorem eq_top_of_genPt_mem (j₀ : J) (K : Subfield (FractionRing (MvPolynomial {j // j ≠ j₀} Ω)))
@@ -1451,7 +1449,7 @@ theorem main : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Recip
   have hc : constF e Y = (φ : B.Fn →+* Y.Fn).comp (constF e B) :=
     RingHom.ext fun a => (φ.commutes _).symm
   have hst₀ : f₀.Stable := _root_.GlobalTheory.ShFam.EigStable.stable_of_isLocalRing E H Dw l Xo c O β Z _ _ _ f₀ inferInstance
-  obtain ⟨g₀, hg₀⟩ := (GlobalTheory.T.lie_eigenspace_frame_coordinates_unique_invertible E H Dw l Xo c O β Z _ _ _ f₀ Y.Fn (constF e Y)
+  obtain ⟨g₀, hg₀⟩ := (GlobalTheory.ShFam.EigCoord.coord_spec E H Dw l Xo c O β Z _ _ _ f₀ Y.Fn (constF e Y)
     (genericPt Y ≫ (f ≫ j) ≫ genι Z) (φ : B.Fn →+* Y.Fn) inferInstance hst₀ hx hc).2
     (A₁ * (A₀.map (φ : B.Fn →+* Y.Fn))⁻¹) fun τ => by
       rw [Pi.mul_apply, Matrix.det_mul, Pi.inv_apply, Matrix.det_nonsing_inv, Ring.inverse_eq_inv']
@@ -1472,7 +1470,7 @@ theorem main : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Recip
   have hσ : spMap σ ≫ stalkPt B (f y) = stalkPt Y y ≫ f := Scheme.SpecMap_stalkMap_fromSpecStalk f
   have hx' : stalkPt Y y ≫ (f ≫ j) ≫ genι Z = spMap σ ≫ stalkPt B (f y) ≫ j ≫ genι Z := by
     rw [Category.assoc, ← Category.assoc, ← hσ, Category.assoc]
-  obtain ⟨f', hf'⟩ := (GlobalTheory.T.lie_eigenspace_frame_coordinates_unique_invertible E H Dw l Xo c O β Z _ _ _ fA (Y.X.presheaf.stalk y) (σ.comp φ₁)
+  obtain ⟨f', hf'⟩ := (GlobalTheory.ShFam.EigCoord.coord_spec E H Dw l Xo c O β Z _ _ _ fA (Y.X.presheaf.stalk y) (σ.comp φ₁)
     (stalkPt Y y ≫ (f ≫ j) ≫ genι Z) σ inferInstance hstA hx' rfl).2 G hGd
   have hst' : f'.Stable := _root_.GlobalTheory.ShFam.EigStable.stable_of_isLocalRing E H Dw l Xo c O β Z _ _ _ f' inferInstance
   have haY : spMap aY ≫ stalkPt Y y = genericPt Y :=
@@ -1481,13 +1479,13 @@ theorem main : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Recip
     rw [← haY, Category.assoc]
   have hc' : constF e Y = aY.comp (σ.comp φ₁) := by
     rw [← RingHom.comp_assoc, ← hcomp, RingHom.comp_assoc, hc, hfA.2.1]
-  obtain ⟨T, hTc, -⟩ := ((GlobalTheory.T.lie_eigenspace_frame_coordinates_unique_invertible E H Dw l Xo c O β Z _ _ _ f' Y.Fn (constF e Y)
+  obtain ⟨T, hTc, -⟩ := ((GlobalTheory.ShFam.EigCoord.coord_spec E H Dw l Xo c O β Z _ _ _ f' Y.Fn (constF e Y)
     (genericPt Y ≫ (f ≫ j) ≫ genι Z) aY inferInstance hst' hx'' hc').1 g₀).1
   have h1 := GlobalTheory.ShFam.CoordComp.coord_comp E H Dw l Xo c O β Z _ _ _ fA _ _ _ f' _ _ _ g₀ σ aY G T inferInstance hf' hTc
   have h2 := GlobalTheory.ShFam.CoordComp.coord_comp E H Dw l Xo c O β Z _ _ _ fA _ _ _ f₀ _ _ _ g₀ aB (φ : B.Fn →+* Y.Fn) _ _
     inferInstance hfA hg₀
   rw [hcomp] at h2
-  have hu := ((GlobalTheory.T.lie_eigenspace_frame_coordinates_unique_invertible E H Dw l Xo c O β Z _ _ _ fA Y.Fn (constF e Y)
+  have hu := ((GlobalTheory.ShFam.EigCoord.coord_spec E H Dw l Xo c O β Z _ _ _ fA Y.Fn (constF e Y)
     (genericPt Y ≫ (f ≫ j) ≫ genι Z) (aY.comp σ) inferInstance hstA h1.1 h1.2.1).1 g₀).1.unique h1 h2
   have hG' : G.map aY = A' * (A.map (φ : B.Fn →+* Y.Fn))⁻¹ := hG
   rw [hG', Mat.map_mul, Mat.map_inv, ← mul_assoc, ← mul_assoc, mul_assoc A₁, Mat.inv_mul (hmapd hA₀d), mul_one] at hu

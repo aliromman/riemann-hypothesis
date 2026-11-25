@@ -185,10 +185,7 @@ theorem step (γ : V →ₗ[O] V) (K' : Submodule O V) (hK : ∀ x ∈ K', γ x 
           Module.rank O (InvQ γ K' F1) :=
         add_le_add hquot (by
           first
-          | exact LinearMap.rank_le_of_surjective f.rangeRestrict f.surjective_rangeRestrict
-          | exact LinearMap.rank_le_of_surjective f.rangeRestrict (fun y => by
-              obtain ⟨x, hx⟩ := LinearMap.mem_range.mp y.2
-              exact ⟨x, Subtype.ext hx⟩))
+          | exact LinearMap.rank_le_of_surjective f.rangeRestrict f.surjective_rangeRestrict)
     _ = _ := add_comm _ _
 
 end Formalism.MainNotions.N.Ln34.RankInverseBounds
@@ -419,7 +416,7 @@ theorem Fl_last (Pt : ZMod n → LL → (K →ₐ[Qp] LL) → Prop) (Eπ : LetA 
     rw [R_smul_letE S _ hr, hprod, ← R_smul_letE S _ hr, ← smulLA_mul]
     congr 1
     rw [mul_comm 2 h', pow_mul]
-    ring
+    ring_nf
   rw [h1] at hrx
   have hu : IsUnit (algebraMap (LetA O n) W.EE (Eπ ^ h')) := by rw [map_pow]; exact hEu.pow h'
   have hx' := smulE_inj (W := W) (T := T) (π' := π') (c := c) hu hrx

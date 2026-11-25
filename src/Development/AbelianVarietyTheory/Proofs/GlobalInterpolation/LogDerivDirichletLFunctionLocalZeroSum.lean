@@ -1,6 +1,8 @@
 module
 
+import Mathlib.Data.Nat.Periodic
 import Mathlib.NumberTheory.LSeries.Nonvanishing
+import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.LogDerivLFunctionStrip
 
 public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.NumberTheory.LSeries.DirichletContinuation
@@ -59,7 +61,7 @@ import Mathlib.Algebra.Order.Star.Real
 -- Members: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.DifferentiableAtMellinSummatory, Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.LogDerivDirichletLFunctionLocalZeroSum
 
 -- ===== clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.DifferentiableAtMellinSummatory =====
--- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.DifferentiableAtMellinSummatory", "h": "module\n\npublic import Mathlib.Analysis.CStarAlgebra.Classes\npublic import Mathlib.NumberTheory.LSeries.DirichletContinuation\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\npublic import Mathlib.MeasureTheory.Function.Floor\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\npublic import Mathlib.NumberTheory.LSeries.SumCoeff\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\n\n"}
+-- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.DifferentiableAtMellinSummatory", "h": "module\n\nimport Mathlib.Data.Nat.Periodic\npublic import Mathlib.Analysis.CStarAlgebra.Classes\npublic import Mathlib.NumberTheory.LSeries.DirichletContinuation\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\npublic import Mathlib.MeasureTheory.Function.Floor\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\npublic import Mathlib.NumberTheory.LSeries.SumCoeff\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -84,6 +86,18 @@ private lemma sum_period_eq_zero (q : ℕ) [NeZero q] (χ : DirichletCharacter �
   · intro a _
     simp
 
+
+private lemma partialSum_eq_sum_range_mod (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q)
+    (hχ : χ ≠ 1) (n : ℕ) :
+    ∑ k ∈ Finset.Icc 1 n, χ (k : ZMod q) =
+      ∑ k ∈ Finset.range (n % q), χ ((1 + k : ℕ) : ZMod q) := by
+  have hp : Function.Periodic (fun m => ∑ k ∈ Finset.range m, χ ((1 + k : ℕ) : ZMod q)) q := by
+    intro m
+    dsimp only
+    rw [Finset.sum_range_add]
+    simp only [← add_assoc, sum_period_eq_zero q χ hχ (1 + m), add_zero]
+  rw [← Finset.Ico_add_one_right_eq_Icc, Finset.sum_Ico_eq_sum_range]
+  simpa using (hp.map_mod_nat n).symm
 
 private lemma sum_norm_eq_totient {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) :
     ∑ a : ZMod q, ‖χ a‖ = (q.totient : ℝ) := by
@@ -116,72 +130,21 @@ theorem norm_partialSum_le_totient_half (q : ℕ) [NeZero q] (χ : DirichletChar
     (hχ : χ ≠ 1) (n : ℕ) : ‖∑ k ∈ Finset.Icc 1 n, χ (k : ZMod q)‖ ≤ (q.totient : ℝ) / 2 := by
   classical
   have hq : 0 < q := NeZero.pos q
-  have hper := sum_period_eq_zero q χ hχ
-  have hI : ∀ n : ℕ, ∑ k ∈ Finset.Icc 1 n, χ (k : ZMod q)
-      = ∑ k ∈ Finset.range n, χ ((1 + k : ℕ) : ZMod q) := by
-    intro n
-    rw [← Finset.Ico_add_one_right_eq_Icc, Finset.sum_Ico_eq_sum_range]
-    simp
-  rw [hI]
-  induction n using Nat.strong_induction_on with
-  | _ n ih =>
-    rcases lt_or_ge n q with h | h
-    · have hinj : ∀ a ∈ Finset.range n, ∀ b ∈ Finset.range n,
-          ((1 + a : ℕ) : ZMod q) = ((1 + b : ℕ) : ZMod q) → a = b := by
-        intro a ha b hb hab
-        have hab' : (a : ZMod q) = (b : ZMod q) := by
-          simpa only [Nat.cast_add, Nat.cast_one, add_right_inj] using hab
-        have he := (ZMod.natCast_eq_natCast_iff' a b q).mp hab'
-        rwa [Nat.mod_eq_of_lt ((Finset.mem_range.mp ha).trans h),
-          Nat.mod_eq_of_lt ((Finset.mem_range.mp hb).trans h)] at he
-      have he : (∑ a ∈ (Finset.range n).image (fun k => ((1 + k : ℕ) : ZMod q)), χ a) =
-          ∑ k ∈ Finset.range n, χ ((1 + k : ℕ) : ZMod q) := Finset.sum_image hinj
-      rw [← he]
-      exact norm_sum_subset_le_totient_half χ hχ _
-    · obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le' h
-      rw [Finset.sum_range_add]
-      have := hper (1 + m)
-      simp only [← add_assoc]
-      rw [this, add_zero]
-      exact ih m (by omega)
-
-
-/-- Bound a partial character sum by either side of the remaining period. -/
-theorem norm_partialSum_le_min (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) (n : ℕ) :
-    ‖∑ k ∈ Finset.Icc 1 n, χ (k : ZMod q)‖ ≤ min ((n % q : ℕ) : ℝ) ((q - n % q : ℕ) : ℝ) := by
-  have hq : 0 < q := Nat.pos_of_ne_zero (NeZero.ne q)
-  have hper := sum_period_eq_zero q χ hχ
-  have hI : ∀ n : ℕ, ∑ k ∈ Finset.Icc 1 n, χ (k : ZMod q)
-      = ∑ k ∈ Finset.range n, χ ((1 + k : ℕ) : ZMod q) := by
-    intro n
-    rw [← Finset.Ico_add_one_right_eq_Icc, Finset.sum_Ico_eq_sum_range]
-    simp
-  rw [hI]
-  induction n using Nat.strong_induction_on with
-  | _ n ih =>
-    rcases lt_or_ge n q with h | h
-    · rw [Nat.mod_eq_of_lt h]
-      have hfirst : ‖∑ k ∈ Finset.range n, χ ((1 + k : ℕ) : ZMod q)‖ ≤ (n : ℝ) := by
-        refine (norm_sum_le _ _).trans ?_
-        simpa using Finset.sum_le_sum
-          (fun k (_ : k ∈ Finset.range n) => χ.norm_le_one ((1 + k : ℕ) : ZMod q))
-      have hlast : ‖∑ k ∈ Finset.range (q - n), χ ((1 + (n + k) : ℕ) : ZMod q)‖ ≤ (q - n : ℕ) := by
-        refine (norm_sum_le _ _).trans ?_
-        simpa using Finset.sum_le_sum
-          (fun k (_ : k ∈ Finset.range (q - n)) => χ.norm_le_one ((1 + (n + k) : ℕ) : ZMod q))
-      have hsplit : (∑ k ∈ Finset.range n, χ ((1 + k : ℕ) : ZMod q)) +
-          (∑ k ∈ Finset.range (q - n), χ ((1 + (n + k) : ℕ) : ZMod q)) = 0 := by
-        rw [← Finset.sum_range_add, Nat.add_sub_of_le h.le]
-        exact hper 1
-      refine le_min hfirst ?_
-      rw [eq_neg_of_add_eq_zero_left hsplit, norm_neg]
-      exact hlast
-    · obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le' h
-      rw [Finset.sum_range_add]
-      have := hper (1 + m)
-      simp only [← add_assoc]
-      rw [this, add_zero]
-      simpa [Nat.add_mod] using ih m (by omega)
+  rw [partialSum_eq_sum_range_mod q χ hχ]
+  generalize hk : n % q = r
+  have h : r < q := hk ▸ Nat.mod_lt n hq
+  have hinj : ∀ a ∈ Finset.range r, ∀ b ∈ Finset.range r,
+      ((1 + a : ℕ) : ZMod q) = ((1 + b : ℕ) : ZMod q) → a = b := by
+    intro a ha b hb hab
+    have hab' : (a : ZMod q) = (b : ZMod q) := by
+      simpa only [Nat.cast_add, Nat.cast_one, add_right_inj] using hab
+    have he := (ZMod.natCast_eq_natCast_iff' a b q).mp hab'
+    rwa [Nat.mod_eq_of_lt ((Finset.mem_range.mp ha).trans h),
+      Nat.mod_eq_of_lt ((Finset.mem_range.mp hb).trans h)] at he
+  have he : (∑ a ∈ (Finset.range r).image (fun k => ((1 + k : ℕ) : ZMod q)), χ a) =
+      ∑ k ∈ Finset.range r, χ ((1 + k : ℕ) : ZMod q) := Finset.sum_image hinj
+  rw [← he]
+  exact norm_sum_subset_le_totient_half χ hχ _
 
 /-- Completing the remaining part of a period bounds a nonprincipal character sum by half
 its modulus. -/
@@ -353,16 +316,8 @@ open Complex DirichletCharacter ArithmeticFunction MeasureTheory
 
 namespace GlobalTheory.LLocal
 
-theorem analyticOrderNatAt_comp_const_add (g : ℂ → ℂ) (c w : ℂ) :
-    analyticOrderNatAt (fun z => g (c + z)) w = analyticOrderNatAt g (c + w) := by
-  unfold analyticOrderNatAt
-  congr 1
-  have h := analyticOrderAt_comp_of_deriv_ne_zero (f := g) (g := fun z : ℂ => c + z) (z₀ := w)
-    (by fun_prop) (by simp)
-  exact h
-
 theorem logDeriv_LFunction_local : ∃ C : ℝ, 0 < C ∧ ∀ (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q), χ ≠ 1 → ∀ (t : ℝ) (s : ℂ), ‖s - (3/2 + t * I)‖ ≤ 2/3 → LFunction χ s ≠ 0 → {w : ℂ | ‖w - (3/2 + t * I)‖ ≤ 5/6 ∧ LFunction χ w = 0}.Finite ∧ ‖deriv (LFunction χ) s / LFunction χ s - ∑ᶠ w ∈ {w : ℂ | ‖w - (3/2 + t * I)‖ ≤ 5/6 ∧ LFunction χ w = 0}, (analyticOrderNatAt (LFunction χ) w : ℂ) / (s - w)‖ ≤ C * Real.log (q * (|t| + 2)) := by
-  obtain ⟨C, hC, H⟩ := GlobalTheory.LogDerivZeros.main (2/3) (5/6) (by norm_num) (by norm_num) (by norm_num)
+  obtain ⟨C, hC, H⟩ := GlobalTheory.LWide.disc (2/3) (5/6) (by norm_num) (by norm_num) (by norm_num)
   refine ⟨6 * C, by positivity, ?_⟩
   intro q _ χ hχ t s hs hLs
   set c : ℂ := 3/2 + t * I with hc
@@ -373,63 +328,44 @@ theorem logDeriv_LFunction_local : ∃ C : ℝ, 0 < C ∧ ∀ (q : ℕ) [NeZero 
   have hq : (1 : ℝ) ≤ q := by exact_mod_cast Nat.one_le_iff_ne_zero.2 (NeZero.ne q)
   have ht : 0 ≤ |t| := abs_nonneg t
   have hd : Differentiable ℂ (LFunction χ) := differentiable_LFunction hχ
-  have hf : AnalyticOnNhd ℂ (fun z => LFunction χ (c + z)) (Metric.closedBall 0 1) := by
-    intro z _
-    have : Differentiable ℂ (fun z => LFunction χ (c + z)) := hd.comp (by fun_prop)
-    exact this.analyticAt z
-  have hlow : 1/3 ≤ ‖LFunction χ (c + 0)‖ := by
+  have hlow : 1/3 ≤ ‖LFunction χ c‖ := by
     have := GlobalTheory.LLower.norm_LFunction_ge q χ c (by rw [hcre]; norm_num)
     rw [hcre] at this
-    rw [add_zero]
     linarith
-  have hf0 : LFunction χ (c + 0) ≠ 0 := by
+  have hf0 : LFunction χ c ≠ 0 := by
     intro h
     rw [h, norm_zero] at hlow
     linarith
-  have hM : ∀ z ∈ Metric.closedBall (0 : ℂ) 1,
-      ‖LFunction χ (c + z)‖ ≤ q * (2 * |t| + 5) := by
+  have hM : ∀ z : ℂ, ‖z - c‖ ≤ 1 → ‖LFunction χ z‖ ≤ q * (2 * |t| + 5) := by
     intro z hz
-    have hz1 : ‖z‖ ≤ 1 := by simpa using hz
-    have hre : 1/2 ≤ (c + z).re := by
-      have := (abs_le.1 ((Complex.abs_re_le_norm z).trans hz1)).1
-      rw [add_re, hcre]; linarith
-    have hn : ‖c + z‖ ≤ |t| + 5/2 := by
-      have := norm_add_le c z
+    have hre : 1/2 ≤ z.re := by
+      have := (abs_le.1 ((Complex.abs_re_le_norm (z - c)).trans hz)).1
+      rw [sub_re, hcre] at this
       linarith
-    refine (GlobalTheory.LGrowth.norm_LFunction_le q χ hχ (c + z) (by linarith)).trans ?_
+    have hn : ‖z‖ ≤ |t| + 5/2 := by
+      have := norm_le_norm_sub_add z c
+      linarith
+    refine (GlobalTheory.LGrowth.norm_LFunction_le q χ hχ z (by linarith)).trans ?_
     rw [div_le_iff₀ (by linarith)]
-    calc (q : ℝ) * ‖c + z‖ ≤ q * (|t| + 5/2) := by gcongr
+    calc (q : ℝ) * ‖z‖ ≤ q * (|t| + 5/2) := by gcongr
       _ = q * (2 * |t| + 5) * (1/2) := by ring
       _ ≤ _ := by gcongr
-  obtain ⟨⟨hfin, -⟩, hb⟩ := H _ _ hf hf0 hM
-  have hb' := hb (s - c) hs (by simpa using hLs)
-  have hset : {w : ℂ | ‖w - c‖ ≤ 5/6 ∧ LFunction χ w = 0} =
-      (fun z => c + z) '' {w : ℂ | ‖w‖ ≤ 5/6 ∧ LFunction χ (c + w) = 0} := by
-    ext w
-    constructor
-    · rintro ⟨h1, h2⟩
-      exact ⟨w - c, ⟨h1, by simpa using h2⟩, by simp⟩
-    · rintro ⟨z, ⟨h1, h2⟩, rfl⟩
-      exact ⟨by simpa using h1, h2⟩
-  rw [hset]
-  refine ⟨hfin.image _, ?_⟩
-  rw [finsum_mem_image (fun a _ b _ h => add_left_cancel h)]
-  rw [deriv_comp_const_add] at hb'
-  simp only [analyticOrderNatAt_comp_const_add, add_sub_cancel, sub_sub] at hb'
-  refine hb'.trans ?_
+  obtain ⟨hfin, _, hb⟩ := H (LFunction χ) c 1 _ (by norm_num) hd hf0 hM
+  simp only [mul_one, one_mul] at hfin hb
+  refine ⟨hfin, (hb s hs hLs).trans ?_⟩
   set X : ℝ := q * (|t| + 2) with hX
   have hX2 : 2 ≤ X := by nlinarith
   have hl2 : Real.log 2 ≤ Real.log X := Real.log_le_log (by norm_num) hX2
   have hl : (1 : ℝ) / 2 ≤ Real.log 2 := by linarith [Real.log_two_gt_d9]
-  have hp : 0 < ‖LFunction χ (c + 0)‖ := by linarith
-  have h8 : q * (2 * |t| + 5) / ‖LFunction χ (c + 0)‖ ≤ 2 ^ 3 * X := by
+  have hp : 0 < ‖LFunction χ c‖ := by linarith
+  have h8 : q * (2 * |t| + 5) / ‖LFunction χ c‖ ≤ 2 ^ 3 * X := by
     rw [div_le_iff₀ hp]
     calc (q : ℝ) * (2 * |t| + 5) ≤ 2 ^ 3 * X * (1/3) := by rw [hX]; nlinarith
       _ ≤ _ := by gcongr
   have h9 := Real.log_le_log (by positivity) h8
   rw [Real.log_mul (by norm_num) (by linarith), Real.log_pow] at h9
   push_cast at h9
-  have : 1 + Real.log (q * (2 * |t| + 5) / ‖LFunction χ (c + 0)‖) ≤ 6 * Real.log X := by
+  have : 1 + Real.log (q * (2 * |t| + 5) / ‖LFunction χ c‖) ≤ 6 * Real.log X := by
     linarith
   calc _ ≤ C * (6 * Real.log X) := by gcongr
     _ = _ := by ring

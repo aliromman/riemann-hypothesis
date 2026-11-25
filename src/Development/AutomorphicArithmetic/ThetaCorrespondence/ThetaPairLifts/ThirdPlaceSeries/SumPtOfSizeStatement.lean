@@ -136,10 +136,7 @@ theorem sq_le_dim (f r m : ℕ) (hf : 2 ≤ f) (hr : 2 ≤ r) (hm : 2 ≤ m) : r
     exact this.symm
   have h4 : 2 * (2 * (s + 2).choose 2) ≤ m * (f * (s + 2).choose 2) :=
     Nat.mul_le_mul hm (Nat.mul_le_mul hf le_rfl)
-  calc (s + 2) ^ 2 = (s + 2) * (s + 2) := sq _
-    _ ≤ (s + 2) * (2 * (s + 1)) := Nat.mul_le_mul_left _ (by omega)
-    _ = 2 * (2 * (s + 2).choose 2) := by linarith
-    _ ≤ m * (f * (s + 2).choose 2) := h4
+  lia
 
 variable {D : D7} {L : SizeData₂ D}
 
@@ -1081,11 +1078,7 @@ theorem len_mul_total_le {T F m q N B Sg b l x C₁ C₂ K U : ℝ} (hT : 1 ≤ 
   have c5 : T * (2 * B + 1) ≤ 2 * (C₁ * b) := by linarith
   have c6 : (4 * C₁ * K ^ 2 + C₂ * K + 2 * C₁) * (F * m * b * l * x) ≤ (4 * C₁ * K ^ 2 + C₂ * K + 2 * C₁) * (C₂ * U) :=
     mul_le_mul_of_nonneg_left a4 (by positivity)
-  have hR1 : (4 * C₁ * K ^ 2 + C₂ * K + 2 * C₁) * (F * m * b * l * x) =
-      4 * (m * (C₁ * b)) * (F * (K * l) * (K * x)) + C₂ * b * (F * (K * l)) * (m * x) + 2 * (C₁ * b * (F * l * (m * x))) := by ring
-  have hL1 : T * ((F * m * (B + 1) + F * (Sg + 2 * q * B)) * (K * l) * (K * x) + F * N ^ 3 * (K * l) + (2 * B + 1)) =
-      T * (m * (B + 1) + (Sg + 2 * q * B)) * (F * (K * l) * (K * x)) + T * N ^ 3 * (F * (K * l)) + T * (2 * B + 1) := by ring
-  linarith
+  grind
 
 theorem log_top_le {T B b l C₁ C₂ : ℝ} (hT : 1 ≤ T) (hB : 0 ≤ B) (hb : 1 ≤ b) (hl : 1 ≤ l) (h1 : 0 ≤ C₁)
     (a1 : T * (B + 1) ≤ C₁ * b) (a2 : Real.log b ≤ C₂ * l) : Real.log (2 * B + 1) ≤ (2 * C₁ + C₂ + 1) * l := by
@@ -1206,6 +1199,7 @@ set_option autoImplicit false
 noncomputable section
 
 open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AllWt GlobalTheory.FactorDepth GlobalTheory.CovTop GlobalTheory.BigTop GlobalTheory.MeanTop
+open scoped GlobalTheory.CompHt
 
 namespace GlobalTheory.RefSum.DivWt
 
@@ -1371,8 +1365,7 @@ theorem wtAt_of_wtNum {PP : ℝ} (h : WtNum p i PP) (hP : (D.R.f : ℝ) * (D.R.r
     linarith
 
 theorem le_PP {P : ParameterChoice' D L} (T : ParamsT D L P) : (D.R.f : ℝ) * (D.R.r : ℝ) ^ 2 ≤ T.PP := by
-  have h1 : D.R.f * D.R.r ^ 2 ≤ T.nWn :=
-    le_trans (by rw [sq, ← mul_assoc]; exact Nat.mul_le_mul_left _ (Nat.le_succ _)) T.nW_lo.1
+  have h1 : D.R.f * D.R.r ^ 2 ≤ T.nWn := le_trans (by lia) T.nW_lo.1
   exact le_trans (by exact_mod_cast h1) T.nW_le
 
 end GlobalTheory.RefSum.DivWt

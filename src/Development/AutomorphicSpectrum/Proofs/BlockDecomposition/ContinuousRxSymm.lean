@@ -47,7 +47,6 @@ noncomputable section
 open scoped NNReal Matrix TensorProduct
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont
 open PositivityTheory.RgEis ResidueKilled.Tr
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.StdChart
 
@@ -153,7 +152,7 @@ theorem Jst_map : (GlobalTheory.StdUnn.Jst D n).map D.sp.cm.sig = GlobalTheory.S
   ext i j
   simp only [Matrix.map_apply, GlobalTheory.StdUnn.Jst, GlobalTheory.StdUnn.blk4, Matrix.submatrix_apply]
   rcases finSumFinEquiv.symm i with a | a <;> rcases finSumFinEquiv.symm j with b | b <;>
-    simp [Matrix.one_apply] <;> split_ifs
+    simp [Matrix.one_apply]
 
 theorem JR_map : (JR (AF D.host.F) (GlobalTheory.StdUnn.Jst D n)).map (sigR (AF D.host.F) D.sp.cm.sig) =
     JR (AF D.host.F) (GlobalTheory.StdUnn.Jst D n) := by

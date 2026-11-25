@@ -114,7 +114,6 @@ theorem dehom_homog {D : ℕ} (k : Fin (D + 1)) {N : ℕ} (G : MvPolynomial (Fin
   refine Finset.sum_congr rfl fun e _ => ?_
   first
     | rw [map_mul, map_pow, bind₁_X_right, dif_pos rfl, one_pow, one_mul]
-    | rw [map_mul, map_pow, aeval_X, dif_pos rfl, one_pow, one_mul]
 
 theorem ne_zero_of_generic {Ω : Type} [Field Ω] [CharZero Ω] {D : ℕ} {l : Fin (D + 1) → Ω}
     (hgen : ∀ (d : ℕ) (F : MvPolynomial (Fin (D + 1)) ℚ), F.IsHomogeneous d → aeval l F = 0 → F = 0)
@@ -125,7 +124,7 @@ theorem injective_chart {Ω : Type} [Field Ω] [CharZero Ω] {D : ℕ} {l : Fin 
     (hgen : ∀ (d : ℕ) (F : MvPolynomial (Fin (D + 1)) ℚ), F.IsHomogeneous d → aeval l F = 0 → F = 0)
     (k : Fin (D + 1)) :
     Function.Injective (aeval (R := ℚ) (fun i : {i // i ≠ k} => l i / l k)) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro G hG
   set G' : MvPolynomial (Fin (D + 1)) ℚ := rename Subtype.val G with hG'
   have h1 : aeval (fun i => l i / l k) G' = 0 := by rw [hG', aeval_rename]; exact hG

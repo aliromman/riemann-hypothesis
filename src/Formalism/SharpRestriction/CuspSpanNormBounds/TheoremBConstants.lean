@@ -369,10 +369,8 @@ theorem rdE_le (b Ch : ℝ) (hb : 2 ≤ b) (hka : 0 < kaRe D) (hkinv : (kaRe D)�
   have h1 : D.host.rdE ≤ 2 * Real.pi * (kaRe D)⁻¹ := by
     rw [e]
     have hpi := Real.pi_pos
-    have hcancel : 2 * Real.pi * ((D.host.g 0 : ℝ) * (D.host.g 1 : ℝ) * D.host.rdE / (2 * Real.pi)) =
-        ((D.host.g 0 : ℝ) * (D.host.g 1 : ℝ)) * D.host.rdE := by field_simp
-    rw [hcancel]
-    exact le_mul_of_one_le_left hrd.le hgg
+    field_simp
+    lia
   have h2 : 2 * Real.pi ≤ b ^ (3 : ℝ) := by
     have : (2 : ℝ) ^ 3 ≤ b ^ 3 := pow_le_pow_left₀ (by norm_num) hb 3
     have h4 := Real.pi_le_four
@@ -472,10 +470,7 @@ theorem num_Fr (D : D7) (Ch Cf b ka : ℝ) (hCh : 0 ≤ Ch) (hCf : 0 ≤ Cf) (hb
         apply Real.rpow_le_rpow_of_exponent_le hb1
         have h1 : Ch * Cf * ((D.R.rS : ℝ) * m) ≤ Ch * Cf * (m * m) :=
           mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_right hrm hm0) (mul_nonneg hCh hCf)
-        have e1 : Ch * (Cf * m ^ 2) + Ch * (D.R.rS : ℝ) * (Cf * m) =
-            Ch * Cf * (m * m) + Ch * Cf * ((D.R.rS : ℝ) * m) := by ring
-        have e2 : 2 * Ch * Cf * m ^ 2 = 2 * (Ch * Cf * (m * m)) := by ring
-        linarith
+        grind
 
 theorem GsC_pos (D : D7) (ka : ℝ) (hka : 0 < ka) : 0 < GsC D ka := by
   unfold GsC

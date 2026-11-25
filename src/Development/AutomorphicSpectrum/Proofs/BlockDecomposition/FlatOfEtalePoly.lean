@@ -49,7 +49,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 @[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 
 noncomputable section
 
@@ -126,6 +125,6 @@ theorem rep_lift {O R : Type} [CommRing O] [CommRing R] {I : Ideal R} {X : Schem
 theorem exists_flat_chart : ∀ {O R : Type} [CommRing O] [CommRing R] {I : Ideal R} (γ : DividedPowers I) (p : ℕ) (hp : p ≠ 0)
     (hn : IsNilpotent (p : R)) {X : Scheme.{0}} (q : X ⟶ Spec (CommRingCat.of O)) (κ : O →+* R ⧸ I) {V : X.Opens} {d : ℕ}
     (c : Coord q V d), ∃ c' : Chart γ p q κ V d, FlatT c'.D ∧ ∀ i, ev c'.D c'.inV (c.t i) = Ideal.Quotient.mk _ (c'.t i) := by
-  apply GlobalTheory.CompanionTheory.ChartP.exists_chart <;> assumption
+  apply GlobalTheory.CompanionTheory.ChartP.exists_chart
 
 end GlobalTheory.CompanionTheory.FlatChartP

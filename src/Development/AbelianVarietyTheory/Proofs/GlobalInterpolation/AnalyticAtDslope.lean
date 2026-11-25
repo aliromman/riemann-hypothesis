@@ -1,5 +1,7 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DirichletLZerosInWindowFiniteAndPosOrder
+
 public import Mathlib.Analysis.Analytic.Order
 public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.NumberTheory.LSeries.DirichletContinuation
@@ -61,12 +63,6 @@ open Complex DirichletCharacter ArithmeticFunction MeasureTheory Filter Topology
 
 namespace GlobalTheory.ExplicitRect
 
-theorem analyticAt_dslope {f : ℂ → ℂ} {p : ℂ} (hf : AnalyticAt ℂ f p) :
-    AnalyticAt ℂ (dslope f p) p := hf.dslope p
-
-theorem eq_add_dslope (f : ℂ → ℂ) (p s : ℂ) : f s = f p + (s - p) * dslope f p s := by
-  simpa only [smul_eq_mul, add_comm] using (eq_add_of_sub_eq (sub_smul_dslope f p s).symm)
-
 theorem logDeriv_pole {f : ℂ → ℂ} {p : ℂ} (hf : AnalyticAt ℂ f p)
     (hn : analyticOrderAt f p ≠ ⊤) : ∃ g : ℂ → ℂ, AnalyticAt ℂ g p ∧ ∀ᶠ s in 𝓝[≠] p,
       deriv f s / f s = ((analyticOrderNatAt f p : ℕ) : ℂ) / (s - p) + g s := by
@@ -108,61 +104,18 @@ theorem expand_zero {φ h : ℂ → ℂ} {m : ℂ} {u : ℝ} (hu : 0 < u)
   ring
 
 theorem analyticOff {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) :
-    AnalyticOnNhd ℂ (LFunction χ) ({1}ᶜ : Set ℂ) := DifferentiableOn.analyticOnNhd
-    (fun s hs => (DirichletCharacter.differentiableAt_LFunction χ s (.inl hs)).differentiableWithinAt)
-    isOpen_compl_singleton
-
-theorem exists_entire {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) :
-    ∃ F : ℂ → ℂ, Differentiable ℂ F ∧ F 1 ≠ 0 ∧ ∀ s, s ≠ 1 → LFunction χ s = 0 → F s = 0 := by
-  by_cases h1 : χ = 1
-  · subst h1
-    refine ⟨DirichletCharacter.LFunctionTrivChar₁ q, DirichletCharacter.differentiable_LFunctionTrivChar₁ q,
-      DirichletCharacter.LFunctionTrivChar₁_apply_one_ne_zero q, fun s hs hL => ?_⟩
-    rw [DirichletCharacter.LFunctionTrivChar₁, Function.update_of_ne hs]
-    show (s - 1) * LFunction 1 s = 0
-    rw [hL, mul_zero]
-  · exact ⟨LFunction χ, DirichletCharacter.differentiable_LFunction h1,
-      DirichletCharacter.LFunction_apply_one_ne_zero h1, fun s _ h => h⟩
+    AnalyticOnNhd ℂ (LFunction χ) ({1}ᶜ : Set ℂ) := by
+  exact GlobalTheory.Mem.An.ZeroWindow.analyticOff χ
 
 theorem finite_zeros {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (T : ℝ) :
     {ρ : ℂ | 0 < ρ.re ∧ ρ.re < 1 ∧ |ρ.im| < T ∧ LFunction χ ρ = 0}.Finite := by
-  obtain ⟨F, hF, hF1, hFz⟩ := exists_entire χ
-  have hZc : IsCompact ({ρ : ℂ | F ρ = 0} ∩ Metric.closedBall 0 (1 + T)) :=
-    (isCompact_closedBall 0 (1 + T)).inter_left (isClosed_eq hF.continuous continuous_const)
-  have hFa : AnalyticOnNhd ℂ F Set.univ := fun z _ => hF.analyticAt z
-  rcases hFa.eqOn_zero_or_eventually_ne_zero_of_preconnected isPreconnected_univ with h | h
-  · exact absurd (h (Set.mem_univ 1)) hF1
-  have hd : IsDiscrete ({ρ : ℂ | F ρ = 0} ∩ Metric.closedBall 0 (1 + T)) := by
-    rw [isDiscrete_iff_nhdsNE]
-    intro x _
-    rw [Filter.eventually_iff, mem_codiscreteWithin] at h
-    have hx := h x (Set.mem_univ _)
-    rw [disjoint_iff] at hx
-    have hsub : {ρ : ℂ | F ρ = 0} ∩ Metric.closedBall 0 (1 + T) ⊆ Set.univ \ {x | F x ≠ 0} :=
-      fun y hy => ⟨Set.mem_univ _, fun h' => h' hy.1⟩
-    exact le_bot_iff.mp ((inf_le_inf_left _ (Filter.principal_mono.mpr hsub)).trans hx.le)
-  refine (hZc.finite hd).subset fun ρ hρ => ?_
-  obtain ⟨h0, h1, hT, hL⟩ := hρ
-  have hρ1 : ρ ≠ 1 := by
-    rintro rfl
-    simp at h1
-  refine ⟨hFz ρ hρ1 hL, ?_⟩
-  rw [Metric.mem_closedBall, dist_zero_right]
-  refine (Complex.norm_le_abs_re_add_abs_im ρ).trans ?_
-  rw [abs_of_pos h0]
-  linarith
+  refine (GlobalTheory.Mem.An.ZeroWindow.finite_zeros χ 0 T).subset ?_
+  intro ρ hρ
+  exact ⟨hρ.1, hρ.2.1, by simpa using hρ.2.2.1.le, hρ.2.2.2⟩
 
 theorem order_ne_top {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) {ρ : ℂ} (hρ : ρ ≠ 1) :
     analyticOrderAt (LFunction χ) ρ ≠ ⊤ := by
-  have hU : IsPreconnected ({1}ᶜ : Set ℂ) :=
-    (isConnected_compl_singleton_of_one_lt_rank (by rw [Complex.rank_real_complex]; norm_num) 1).isPreconnected
-  have h2 : analyticOrderAt (LFunction χ) 2 ≠ ⊤ := by
-    intro htop
-    have hne : LFunction χ 2 ≠ 0 :=
-      DirichletCharacter.LFunction_ne_zero_of_one_le_re χ (.inr (by norm_num)) (by norm_num)
-    exact hne (analyticOrderAt_eq_top.mp htop).self_of_nhds
-  exact (analyticOff χ).analyticOrderAt_ne_top_of_isPreconnected hU
-    (by norm_num : (2 : ℂ) ∈ ({1}ᶜ : Set ℂ)) hρ h2
+  exact GlobalTheory.Mem.An.ZeroWindow.order_ne_top χ hρ
 
 open scoped Classical in
 /-- At one, the logarithmic derivative has residue `-1` for every principal

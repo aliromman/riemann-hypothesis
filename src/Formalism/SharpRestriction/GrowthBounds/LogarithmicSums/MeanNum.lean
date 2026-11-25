@@ -1260,7 +1260,7 @@ theorem second_estimate_and_mean_along_family {eps : ℝ} (Fm : FamP eps) (K : C
   have h1 : x ≥ x1 := le_trans (le_trans (le_max_left _ _) (le_max_right _ _)) hx
   have h2 : x ≥ x2 := le_trans (le_trans (le_trans (le_max_left _ _) (le_max_right _ _)) (le_max_right _ _)) hx
   have h3 : x ≥ x3 := le_trans (le_trans (le_trans (le_max_right _ _) (le_max_right _ _)) (le_max_right _ _)) hx
-  obtain ⟨a1, _, _, a4, a5, _, _, a8, _, _, _, aSz⟩ := H1 x h1 i
+  obtain ⟨a1, a4, a5, _, _, a8, _, _, _, aSz⟩ := H1 x h1 i
   have NM := H2 x h2 (Fm.D x i) (Fm.L x i) (Fm.L_x x i h0) (Fm.L_eps x i) aSz.1 a5
   have HI := H3 x h3 (Fm.D x i) (Fm.L x i) (X x i) (Fm.L_x x i h0) (Fm.L_eps x i) aSz a5 a4 a1 NM
   have p2 := slopeEstimate_of_lemmaB_slopeLine (X x i) K hK Cm a8 NM HI a4.2.2.1

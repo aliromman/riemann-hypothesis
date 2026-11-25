@@ -705,7 +705,7 @@ theorem cube_mem_norm (L : RigLB G) (c : CubicalStr G L) {T T₀ T' : Over S} (e
     have e := congrArg Multiplicative.toAdd this
     simp only [toAdd_prod, toAdd_zpow, toAdd_mul, toAdd_inv, toAdd_ofAdd] at e
     rw [e, lam, lam, lam]
-    abel
+    abel_nf
   · refine (val_cub c e hI a a' b).trans ?_
     rw [hb]
     exact (isCub_cubV c hI).face₃ _ _
@@ -1716,7 +1716,7 @@ theorem wp_eq_prod : ∀ (F : Type) [Field F] (N N' : NumD F) {r : ℕ} (W : Mat
   have h1' := congrArg Additive.ofMul h1
   have h2' := congrArg Additive.ofMul h2
   simp only [ofMul_mul, ofMul_pow, ofMul_div] at h1' h2' ⊢
-  linear_combination (norm := abel) h1' - h2'
+  linear_combination (norm := abel_nf) h1' - h2'
 
 end GlobalTheory.Mum.TensTor.PairVal
 end -- clump:auto

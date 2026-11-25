@@ -588,7 +588,7 @@ theorem nbm_mul (Ba B : Matrix (Fin r) (Fin (k + 1)) ℂ) (Sa S : Matrix (Fin r)
       Finset.sum_ite_eq', Finset.mem_univ, if_true, Matrix.add_apply, star_add]
   all_goals first
     | done
-    | (rw [nbm_cm, mul_diagonal_conjTranspose_apply, ← Finset.sum_neg_distrib]; ring)
+    | (rw [nbm_cm, mul_diagonal_conjTranspose_apply, ← Finset.sum_neg_distrib]; ring_nf)
     | ring
 
 end NBk

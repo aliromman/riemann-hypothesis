@@ -218,7 +218,7 @@ theorem exists_isotropic_skew : ∀ (F E : Type) [Field F] [NumberField F] [Fiel
     simp only [ReciprocityTheory.ChartRestriction.G.FD.cc, AlgHom.coe_toRingHom, hcc]
   obtain ⟨P, d, hP, hPg, hdfix, -⟩ := GlobalTheory.HermDiag.exists_congr_diagonal_herm hh
   have hPg' : Pᵀ * G * P.map σ = Matrix.diagonal d := by
-    rw [← hPg]; congr 2; ext a b; simp [ReciprocityTheory.ChartRestriction.G.FD.cc, hcc]
+    rw [← hPg]; congr 2; ext a; simp [ReciprocityTheory.ChartRestriction.G.FD.cc, hcc]
   have hdσ : ∀ i, σ (d i) = d i := fun i => by
     rw [hcc]; exact hdfix i
   have hdiag : ∀ i, GlobalTheory.UTrans.hf (σ : E →+* E) G (fun a => P a i) (fun a => P a i) = d i := fun i => by
@@ -400,7 +400,7 @@ section -- clump:auto
 namespace GlobalTheory.HermitianEigenvalueInequality
 
 theorem main : ∀ {E : Type} [inst : Field E] [NumberField E] {n : ℕ} (L : Submodule (NumberField.RingOfIntegers E) (Fin n → E)), ∀ x ∈ Submodule.span E (↑L : Set (Fin n → E)), ∃ (d : NumberField.RingOfIntegers E), d ≠ (0 : NumberField.RingOfIntegers E) ∧ d • x ∈ L := by
-  apply ReciprocityTheory.MultiplicativeHeights.SemiPt.clear_denom <;> assumption
+  apply ReciprocityTheory.MultiplicativeHeights.SemiPt.clear_denom
 
 end GlobalTheory.HermitianEigenvalueInequality
 end -- clump:auto
@@ -424,7 +424,6 @@ theorem exists_ne_zero_smul_mem_of_mem_span {E : Type} [Field E] [NumberField E]
     ∃ d : 𝓞 E, d ≠ 0 ∧ d • x ∈ L := by
   first
   | (apply _root_.GlobalTheory.HermitianEigenvalueInequality.main <;> assumption)
-  | (intros; exact _root_.GlobalTheory.HermitianEigenvalueInequality.main ..)
 
 theorem isLattice_lowLat : ∀ (E : Type) [Field E] [NumberField E] (n n₁ : ℕ) (L : Submodule (𝓞 E) (Fin n → E))
     (ι : Matrix (Fin n) (Fin n₁) E), L.IsLattice E → Function.Injective ι.mulVec → (lowLat ι L).IsLattice E := by

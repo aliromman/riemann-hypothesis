@@ -682,17 +682,46 @@ open GlobalTheory.Mem.Col2 GlobalTheory.Mem.Top.Bl GlobalTheory.Mem.R3 GlobalThe
 
 
 
+private abbrev PackSigma (D : D7) :=
+  Σ' (G : Type) (_ : Group G) (_ : Fintype G) (Pl0 I0 T0 : Type)
+    (A3 : Formalism.L2.DIV.FamIn3 D.what₂.LL G Pl0 I0 (List ℕ) T0 D.R.m) (C : Formalism.L2.Pj.CoreJ D)
+    (_ : Algebra C.Q.c.F D.what₂.LL) (R : RealDat3 D A3 C.Q.c.F) (_ : Face3 D A3), G0 R.Pg D.R.r ≃* G0g D.nd
+
+private def PackLev {B : GlobalTheory.Mem.Base} {f : Fr B.toPre} {T : TwDat B} (w : ColW B f T) (Z : w.Lt) : PackSigma (w.st Z).toD7 → Prop
+  | ⟨_, grp, fin, _, _, _, _, _, alg, R, F, _⟩ =>
+    letI := grp; letI := fin; letI := alg
+    ∀ g : G0 R.Pg (w.st Z).toD7.R.r,
+      g ∈ (R.toRealDat.levR F.lv2 true).H ↔
+        ∀ PP (h : PP ∈ (B.primes w.px).vGs) (h' : PP ∈ R.Pg), g ⟨PP, h'⟩ ∈ (TC.Ps w.I ⟨PP, h⟩).H
+
+private theorem pack_lev {B : GlobalTheory.Mem.Base} {f : Fr B.toPre} {T : TwDat B} (w : ColW B f T) (Z : w.Lt)
+    {G₁ G₂ : Type} {grp₁ : Group G₁} {grp₂ : Group G₂} {fin₁ : Fintype G₁} {fin₂ : Fintype G₂} {Pl₁ Pl₂ I₁ I₂ T₁ T₂ : Type}
+    {A₁ : letI := grp₁; letI := fin₁; Formalism.L2.DIV.FamIn3 (w.st Z).toD7.what₂.LL G₁ Pl₁ I₁ (List ℕ) T₁ (w.st Z).toD7.R.m}
+    {A₂ : letI := grp₂; letI := fin₂; Formalism.L2.DIV.FamIn3 (w.st Z).toD7.what₂.LL G₂ Pl₂ I₂ (List ℕ) T₂ (w.st Z).toD7.R.m}
+    {C₁ C₂ : Formalism.L2.Pj.CoreJ (w.st Z).toD7}
+    {alg₁ : Algebra C₁.Q.c.F (w.st Z).toD7.what₂.LL} {alg₂ : Algebra C₂.Q.c.F (w.st Z).toD7.what₂.LL}
+    {R₁ : letI := grp₁; letI := fin₁; letI := alg₁; RealDat3 (w.st Z).toD7 A₁ C₁.Q.c.F}
+    {R₂ : letI := grp₂; letI := fin₂; letI := alg₂; RealDat3 (w.st Z).toD7 A₂ C₂.Q.c.F}
+    {F₁ : letI := grp₁; letI := fin₁; Face3 (w.st Z).toD7 A₁} {F₂ : letI := grp₂; letI := fin₂; Face3 (w.st Z).toD7 A₂}
+    {cG₁ : letI := grp₁; letI := fin₁; letI := alg₁; G0 R₁.Pg (w.st Z).toD7.R.r ≃* G0g (w.st Z).toD7.nd}
+    {cG₂ : letI := grp₂; letI := fin₂; letI := alg₂; G0 R₂.Pg (w.st Z).toD7.R.r ≃* G0g (w.st Z).toD7.nd}
+    (hp : (⟨G₁, grp₁, fin₁, Pl₁, I₁, T₁, A₁, C₁, alg₁, R₁, F₁, cG₁⟩ : PackSigma (w.st Z).toD7) = ⟨G₂, grp₂, fin₂, Pl₂, I₂, T₂, A₂, C₂, alg₂, R₂, F₂, cG₂⟩)
+    (h : letI := grp₂; letI := fin₂; letI := alg₂
+         ∀ g : G0 R₂.Pg (w.st Z).toD7.R.r,
+           g ∈ (R₂.toRealDat.levR F₂.lv2 true).H ↔
+             ∀ PP (h : PP ∈ (B.primes w.px).vGs) (h' : PP ∈ R₂.Pg), g ⟨PP, h'⟩ ∈ (TC.Ps w.I ⟨PP, h⟩).H) :
+    letI := grp₁; letI := fin₁; letI := alg₁
+    ∀ g : G0 R₁.Pg (w.st Z).toD7.R.r,
+      g ∈ (R₁.toRealDat.levR F₁.lv2 true).H ↔
+        ∀ PP (h : PP ∈ (B.primes w.px).vGs) (h' : PP ∈ R₁.Pg), g ⟨PP, h'⟩ ∈ (TC.Ps w.I ⟨PP, h⟩).H :=
+  (congrArg (PackLev w Z) hp).mpr h
+
 theorem lev_twArgs {K : Ctx} {B : GlobalTheory.Mem.Base} {f : Fr B.toPre} {T : TwDat B} {w : ColW B f T} {Z : w.Lt} {Wt : Set B.places.Pl}
     {L : SizeData₂ (w.st Z).toD7} {hT : GatTies (w.st Z).toD7} {Gi : Formalism.MainNotions.G.Inst (w.st Z).toD7 L} {Gl : Formalism.MainNotions.G.LatInst (w.st Z).toD7}
     {Kc : Formalism.MainNotions.G.Consts} {Yd : DivX (w.st Z).toD7} {cX : ExtraC} {ex : Extra (w.st Z).toD7 L hT Gi Gl Kc Yd cX}
     {t : RowsT K w Z Wt ex.p0} (a : TwArgs ex t) (g : G0 a.x.R.Pg (w.st Z).toD7.R.r) :
     g ∈ (a.x.R.toRealDat.levR a.x.F.lv2 true).H ↔
       ∀ PP (h : PP ∈ (B.primes w.px).vGs) (h' : PP ∈ a.x.R.Pg), g ⟨PP, h'⟩ ∈ (TC.Ps w.I ⟨PP, h⟩).H := by
-  cases a with
-  | mk Dc Sp Zsc lam err lam_eq x pack intersectionNumber_baseChange hκ hv hfw htup htupT hjA hjA0 heMt hPY hPW heFT hIL heE heW hjW heRR =>
-  cases x with
-  | mk G Pl0 I0 T' A3 core R F cG geo pins err' Y Z' C' sEE div JA amb0 JM mjH =>
-  cases pack
   have key : ∀ g : G0 t.r.z.R.Pg (w.st Z).toD7.R.r, t.r.z.R.eG.symm g ∈ lev1 w.I ↔
       ∀ PP (h : PP ∈ (B.primes w.px).vGs) (h' : PP ∈ t.r.z.R.Pg), g ⟨PP, h'⟩ ∈ (TC.Ps w.I ⟨PP, h⟩).H := by
     intro g
@@ -701,16 +730,11 @@ theorem lev_twArgs {K : Ctx} {B : GlobalTheory.Mem.Base} {f : Fr B.toPre} {T : T
     refine ⟨fun hg PP h h' => ?_, fun hg PP _ => ?_⟩
     · rw [e PP h h']
       exact hg ⟨PP, h⟩ (Set.mem_univ _)
-    · have h' : PP.1 ∈ t.r.z.R.Pg := by
-        have := t.r.z.lev.Pg
-        exact (congrArg (PP.1 ∈ ·) this).mpr PP.2
+    · have h' : PP.1 ∈ t.r.z.R.Pg := (congrArg (PP.1 ∈ ·) t.r.z.lev.Pg).mpr PP.2
       have := hg PP.1 PP.2 h'
       rw [e PP.1 PP.2 h'] at this
       exact this
-  run_tac Lean.Elab.Tactic.withMainContext do
-    let e ← Lean.Elab.Term.elabTerm (← `($(Lean.mkIdent `key) $(Lean.mkIdent `g))) none
-    (← Lean.Elab.Tactic.getMainGoal).assign e
-    Lean.Elab.Tactic.replaceMainGoal []
+  exact pack_lev w Z a.pack (by with_unfolding_all exact key) g
 
 end Args
 

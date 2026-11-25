@@ -225,78 +225,8 @@ theorem _root_.GlobalTheory.T.exists_multilinear_columnRowKernelPairing : ∀ {D
         (MultilinearMap (RingHom.id ℂ) (fun i : Fin D.R.m => thSub W (.chi i D.R.m : Pair T)) ℂ),
       ∀ fs gs, M fs gs = (brPair (listedWt G (.grid D.R.m D.R.m)) G.sp.topDec.rank.symm (wt G (.top D.R.m))).compl₁₂
         (colMapV S (fun j => (fs j : WO (G.pS (.top t j)) (G.pT (.top t j)) → ℂ)) x)
-        (rowMapV S (fun i => (gs i : WO (G.pS (.chi i D.R.m : Pair T)) (G.pT (.chi i D.R.m : Pair T)) → ℂ)) y) Ψ₀ F₀ := by
-  intro D T L sc G W U S t x y Ψ₀ F₀
-  have chain {V : ℕ → Type} [∀ j, AddCommGroup (V j)] [∀ j, Module ℂ (V j)] :
-      ∀ (m : ℕ) (A : Fin m → Type) [∀ j, AddCommGroup (A j)] [∀ j, Module ℂ (A j)]
-        (k : ∀ j : Fin m, A j →ₗ[ℂ] (V j →ₗ[ℂ] V (j + 1))),
-        ∃ M : MultilinearMap (RingHom.id ℂ) A (V 0 →ₗ[ℂ] V m), ∀ fs,
-          M fs = chainTo (fun j => if h : j < m then k ⟨j, h⟩ (fs ⟨j, h⟩) else 0) m := by
-    intro m
-    induction m with
-    | zero =>
-      intro A _ _ k
-      exact ⟨MultilinearMap.constOfIsEmpty (RingHom.id ℂ) A LinearMap.id, fun _ => rfl⟩
-    | succ m ih =>
-      intro A _ _ k
-      obtain ⟨M, hM⟩ := ih (fun j => A j.castSucc) (fun j => k j.castSucc)
-      let kl : A (Fin.last m) →ₗ[ℂ] (V m →ₗ[ℂ] V (m + 1)) := k (Fin.last m)
-      refine ⟨MultilinearMap.uncurryRight
-        (((LinearMap.llcomp ℂ (V 0) (V m) (V (m + 1)) ∘ₗ kl).flip).compMultilinearMap M),
-        fun fs => ?_⟩
-      show kl (fs (Fin.last m)) ∘ₗ M (Fin.init fs) = _ ∘ₗ chainTo _ m
-      rw [hM]
-      beta_reduce
-      rw [dite_eq_left (Nat.lt_succ_self m)]
-      congr 1
-      refine GlobalTheory.ArrowMultilinear.chainTo_congr m fun j hj => ?_
-      rw [dite_eq_left hj, dite_eq_left (Nat.lt_succ_of_lt hj)]
-      rfl
-  obtain ⟨Mc, hc⟩ := chain (V := fun j => VV ℂ (wt G (.top j))) D.R.m
-    (fun j : Fin D.R.m => thSub W (.top t j))
-    (fun j => S.Z.scal 1 (.top t j) •
-      GlobalTheory.ArrowMultilinear.fockLin W S.N.frC (.top t j)
-        (x j * S.N.u _) (x (j + 1) * S.N.u _))
-  obtain ⟨Mr, hr⟩ := chain (V := fun i => VV ℂ (wt G (.grid i D.R.m))) D.R.m
-    (fun i : Fin D.R.m => thSub W (.chi i D.R.m : Pair T))
-    (fun i => S.Z.scal 1 (.chi i D.R.m : Pair T) •
-      GlobalTheory.ArrowMultilinear.fockLin W S.N.frC (.chi i D.R.m : Pair T)
-        (y i * S.N.u _) (y (i + 1) * S.N.u _))
-  let col := (LinearMap.applyₗ (R := ℂ) (rhoVr (tauE D) _ (S.N.fr (.top 0))⁻¹ Ψ₀)).compMultilinearMap Mc
-  let row := (LinearMap.applyₗ (R := ℂ)
-    (rhoVr (tauE D) _ (S.N.fr (.grid 0 D.R.m))⁻¹ (funOf (listedWt G (.grid 0 D.R.m)) F₀))).compMultilinearMap Mr
-  have hcol (fs : ∀ j : Fin D.R.m, thSub W (.top t j)) :
-      col fs = colMapV S (t := t) (fun j => (fs j : WO _ _ → ℂ)) x Ψ₀ := by
-    show Mc fs _ = _
-    rw [hc]
-    refine LinearMap.congr_fun (GlobalTheory.ArrowMultilinear.chainTo_congr
-      (V := fun j => VV ℂ (wt G (.top j))) D.R.m fun j hj => ?_) _
-    exact dite_congr rfl (fun _ => rfl) (fun _ => rfl)
-  have hrow (gs : ∀ i : Fin D.R.m, thSub W (.chi i D.R.m : Pair T)) :
-      row gs = rowMapV S (fun i => (gs i : WO _ _ → ℂ)) y F₀ := by
-    show Mr gs _ = _
-    rw [hr]
-    refine LinearMap.congr_fun (GlobalTheory.ArrowMultilinear.chainTo_congr
-      (V := fun i => VV ℂ (wt G (.grid i D.R.m))) D.R.m fun j hj => ?_) _
-    exact dite_congr rfl (fun _ => rfl) (fun _ => rfl)
-  let β := brPair (listedWt G (.grid D.R.m D.R.m)) G.sp.topDec.rank.symm (wt G (.top D.R.m))
-  let pairWithRow : VV ℂ (wt G (.top D.R.m)) →ₗ[ℂ]
-      MultilinearMap (RingHom.id ℂ) (fun i : Fin D.R.m => thSub W (.chi i D.R.m : Pair T)) ℂ :=
-    { toFun := fun v => (β v).compMultilinearMap row
-      map_add' := fun v v' => by
-        ext gs
-        change β (v + v') (row gs) = β v (row gs) + β v' (row gs)
-        simp only [map_add]
-        rfl
-      map_smul' := fun c v => by
-        ext gs
-        change β (c • v) (row gs) = c • β v (row gs)
-        simp only [map_smul]
-        rfl }
-  refine ⟨pairWithRow.compMultilinearMap col, fun fs gs => ?_⟩
-  show β (col fs) (row gs) = _
-  rw [hcol, hrow]
-  rfl
+        (rowMapV S (fun i => (gs i : WO (G.pS (.chi i D.R.m : Pair T)) (G.pT (.chi i D.R.m : Pair T)) → ℂ)) y) Ψ₀ F₀ :=
+  @GlobalTheory.ArrowMultilinear.pairing_multilinear
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsMultilinearColumnRowKernelPairingStatement =====
@@ -318,8 +248,8 @@ theorem _root_.GlobalTheory.T.multilinear_sum_eq_of_function_product_sums_eq : �
     (∀ (x : ∀ i, X i) (y : ∀ j, Y j),
       (τ.sum fun d a => a * (∏ i, (f d i : X i → ℂ) (x i)) * ∏ j, (g d j : Y j → ℂ) (y j)) =
         τ.sum fun d a => a * (∏ i, (f' d i : X i → ℂ) (x i)) * ∏ j, (g' d j : Y j → ℂ) (y j)) →
-    (τ.sum fun d a => a * M (f d) (g d)) = τ.sum fun d a => a * M (f' d) (g' d) := by
-  exact @GlobalTheory.funProd_multilinear_sum_eq
+    (τ.sum fun d a => a * M (f d) (g d)) = τ.sum fun d a => a * M (f' d) (g' d) :=
+  @GlobalTheory.funProd_multilinear_sum_eq
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.MultilinearSumEqOfFunctionProductSumsEqStatement =====
@@ -404,7 +334,6 @@ theorem sum_prod_map_eq_zero₂ {κ : Type} {m : ℕ} {X Y : Fin m → Type} (TX
     exact Finset.sum_congr rfl fun d _ => by ring) y
   rw [← hy]
 
-
 end GlobalTheory.FirstRowDatum
 
 end
@@ -484,7 +413,6 @@ theorem vac_first : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : G
 
 end GlobalTheory.FirstRowShift
 
-
 open GlobalTheory.FirstRowShift in
 theorem GlobalTheory.FirstRowShift.rowShift0_model : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc} {W : G.Weil} {U : Set T} (S : GridChoice W U) {μ₀ : T}, L.Is μ₀ → ∀ {t : T} {e : AE D},
     t ∈ U → IsIdemSum e (locPl G t) →
@@ -519,9 +447,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open IsDedekindDomain NumberField MeasureTheory GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.RowTest GlobalTheory.StdFrames GlobalTheory.RowClaim
 attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw
 noncomputable section
-
-
-
 
 namespace GlobalTheory.FirstRowCoord
 
@@ -674,7 +599,6 @@ end GlobalTheory.FirstRowTermLaw
 
 namespace GlobalTheory.FirstRowTermLaw
 
-
 end GlobalTheory.FirstRowTermLaw
 
 end
@@ -738,9 +662,6 @@ private theorem eq_locIdele_of_idemAt {e : AE D} {w : Pl D.host.E} (he : Formali
     · rw [GlobalTheory.LFun.finSingle_ne hQ, hout Q (by simpa using hQ)]
       ring
 
-
-
-
 theorem detIdl_conj {e : AE D} {w : Pl D.host.E} (he : Formalism.L2.NTheta.IsIdemAt e w) (V : HSp D) (k u : GfC V) {n : ℕ}
     (h : n = V.rank) (β : GL (Fin V.rank) (Lev.EAf D)) :
     detIdl e V ((u⁻¹ * k * u : GfC V) : GA D V) = GlobalTheory.LFun.locIdele D.host.F w (gdet (inBasis h β w (finG V k))) := by
@@ -761,8 +682,6 @@ theorem kapAt_mem (S : GridChoice W U) {t : T} {k : FinPt G (.grid 0 D.R.m)}
     (hk : finG (G.V (.grid 0 D.R.m)) k ∈ S.levRow t 0 (Nat.zero_le _)) (w : locPl G t) :
     kapAt S t w.1 k ∈ givenLevel G t w.1 (0, D.R.m) := by
   exact Subgroup.mem_iInf.mp (Subgroup.mem_inf.mp hk).1 w
-
-
 
 theorem splitScal_eq (S : GridChoice W U) {μ₀ : T} (hL : L.Is μ₀) {t : T} {k : FinPt G (.grid 0 D.R.m)}
     (hk : finG (G.V (.grid 0 D.R.m)) k ∈ S.levRow t 0 (Nat.zero_le _)) (w : locPl G t) :
@@ -821,8 +740,6 @@ theorem toPair_zero (G : GridData L sc) (x : GA D (G.V (.grid 0 D.R.m))) :
     G.toPair (.chi 0 D.R.m : Pair T) x 1 = (1, x) := by
   simp [GridData.toPair]
 
-
-
 theorem moved_latT (S : GridChoice W U) {μ₀ : T} (hL : L.Is μ₀) {t : T} {k : FinPt G (.grid 0 D.R.m)}
     (hk : finG (G.V (.grid 0 D.R.m)) k ∈ S.levRow t 0 (Nat.zero_le _)) (y) :
     y ∈ latHat D.host.F D.host.E (S.N.latT (.chi 0 D.R.m) : Set (Fin (G.pT (.chi 0 D.R.m)).rank → D.host.E)) ↔
@@ -842,8 +759,6 @@ theorem moved_latT (S : GridChoice W U) {μ₀ : T} (hL : L.Is μ₀) {t : T} {k
       Formalism.L2.Herm.hatL (F := D.host.F) (colLat (S.N.fr (.grid 0 D.R.m)))
   rw [hm, hU z, hK, hU, Matrix.mulVec_mulVec, Matrix.mulVec_mulVec, ← Units.val_mul, ← Units.val_mul]
   simp only [mul_assoc, mul_inv_cancel_left]
-
-
 
 theorem vac_scalar (S : GridChoice W U) {μ₀ : T} (hL : L.Is μ₀) {t : T} {k : FinPt G (.grid 0 D.R.m)}
     (hk : finG (G.V (.grid 0 D.R.m)) k ∈ S.levRow t 0 (Nat.zero_le _)) (c : ℂ)
@@ -915,7 +830,6 @@ theorem iter_lam_eq {μ : ℕ → Kˣ →* ℂˣ} (hμ : ∀ c, IsTame (μ c)) (
   rw [iter_lam_eq_prod_chi hμ j hχ (N.submatrix ea ea) (fun c => dBlk (blkOf r t) (c.val + 1) g) hu g' hg']
   exact (Finset.prod_range (fun c => χ (c + 1) (dBlk (blkOf r t) (c + 1) g))).symm
 
-
 omit [ValuativeRel K] [TopologicalSpace K] [IsNonarchimedeanLocalField K] in
 theorem block_triangular_second_diagonal_block_det_eq (ha : IsIx ea) {g : GL (Fin a) κ} (hg : g ∈ blockTri (blk2 r)) :
     (dBlk (blk2 r) 1 g : κ) = ((g.val.submatrix ea ea).toBlocks₂₂).det := by
@@ -953,7 +867,6 @@ theorem parahoric_lam_eq {δ : Kˣ →* ℂˣ} (hδ : IsTame δ) (h : IsRed φ �
     (by rw [Matrix.GeneralLinearGroup.val_det_apply, eD, hg']; rfl)).symm
 
 end Red
-
 
 open GlobalTheory.FunObj.Comparison₂ Classical in
 theorem stepType_lam {μ₀ : T} (hL : L.Is μ₀) (t : T) {j n : ℕ} (hj : j ≤ D.R.m) (w : Pl D.host.E)
@@ -1042,8 +955,6 @@ theorem stepType_lam {μ₀ : T} (hL : L.Is μ₀) (t : T) {j n : ℕ} (hj : j �
       rw [if_neg hP', if_neg hQ', mul_one]
       rfl
 
-
-
 open GlobalTheory.FunObj.Comparison₂ Classical in
 theorem endLamAt_eq {μ₀ : T} (hL : L.Is μ₀) (G : GridData L sc) (t : T) {j n : ℕ} (hj : j ≤ D.R.m) (w : Pl D.host.E)
     (h : (locGrid G t w).rank (0, j) = n) (β x : GL (Fin n) (Lev.EAf D)) (hx : x ∈ St β)
@@ -1077,8 +988,6 @@ theorem endLamAt_eq {μ₀ : T} (hL : L.Is μ₀) (G : GridData L sc) (t : T) {j
   obtain ⟨hk', hlam⟩ := stepType_lam hL t hj w ha y.val (redFn β w (frGL β y)) hr _ hv hP hQ hk
   unfold endLamAt
   rw [dif_pos hk', hlam, Units.val_inv_eq_inv_val]
-
-
 
 theorem levFn_mul_endLamAt {μ₀ : T} (hL : L.Is μ₀) (G : GridData L sc) (t : T)
     (h : ∀ w, (locGrid G t w).rank (0, D.R.m) = D.sp.X'.rank) (x : GL (Fin D.sp.X'.rank) (Lev.EAf D))
@@ -1132,8 +1041,6 @@ private theorem reGL_symm_mem_of_mem_givenLevel (G : GridData L sc) (t : T) (w :
   | succ j =>
     obtain ⟨y, hy, rfl⟩ := Subgroup.mem_map.mp hκ
     simpa using hy
-
-
 
 theorem chi_mul_endLam {G : GridData L sc} {W : G.Weil} {U : Set T} (S : GridChoice W U) {μ₀ : T} (hL : L.Is μ₀) {t : T}
     {k : FinPt G (.grid 0 D.R.m)} (hk : finG (G.V (.grid 0 D.R.m)) k ∈ S.levRow t 0 (Nat.zero_le _))

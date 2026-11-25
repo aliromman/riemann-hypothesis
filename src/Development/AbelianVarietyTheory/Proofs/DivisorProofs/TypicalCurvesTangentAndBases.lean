@@ -151,7 +151,7 @@ theorem sub_exists (G : LogFGL v d) {ga ge : Fin d → PowerSeries C} (hg : PTGo
       simp [K, G.F_const]
     obtain ⟨s, rfl⟩ := pt_degree_eq_one h1
     have hc : coeff (Finsupp.single s 1) (K b) = if s = Sum.inr b then 1 else 0 := by
-      simp only [K, map_sub, pt_F_lin, pt_coeff_single_X]; ring
+      simp only [K, map_sub, pt_F_lin, pt_coeff_single_X]; ring_nf
     rw [hc] at hα
     have hs : s = Sum.inr b := by
       by_contra hs; exact hα (if_neg hs)

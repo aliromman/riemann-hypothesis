@@ -380,7 +380,7 @@ theorem kernel_valuation_served (W : TwLoc D Y) (hV : CmpV c Dx T W) (hG : Tuple
 theorem local_theorem_of_statement (W : TwLoc D Y) (h : Formalism.MainNotions.FormalGroupSystem.ErrorExponentStatement D) : SmallInertPrimeSmallOrderLengthBound D W := by
   intro μ _ u w hg Xs Ys hXs hA
   obtain ⟨std, vp, unif, eO, eO_spec, dG, dG_spec, om, rfl⟩ := hXs
-  exact (@h u w ⟨D.what₂.places.resChar_prime w⟩ hg _ Ys rfl hA).2.2.2.2.2.2.2.2.2.2
+  exact (@h u w ⟨D.what₂.places.resChar_prime w⟩ hg _ Ys rfl hA).2.2.2.2.2
 
 theorem serv_of {C : ℝ} (hS : Stmt D L X Y K c Dx) (W : TwLoc D Y) (hV : CmpV c Dx T W)
     (hA : admitted D L X Y K Dx T W lev Xe ce 1) (hZ : TypePrimeSizeConds D L K ce C) : Serv D L X Y K c Dx T lev Xe ce C := by

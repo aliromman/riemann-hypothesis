@@ -15,7 +15,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.FourierJacobiAverage (app HasTensor
 
 noncomputable section
 namespace GlobalTheory.PosOne.SymComb
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 open GlobalTheory.RootEx.Unfolding (opL orbit_locallyConstant)
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
@@ -149,7 +148,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 namespace GlobalTheory.PosOne.SymComb
 
 section
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 
 theorem symmetricDoubleIntegral_combination_of_pointValues : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] [MeasurableSpace k] [BorelSpace k]
     (n₀ n₁ n₂ : Type) [Fintype n₀] [DecidableEq n₀] [Fintype n₁] [DecidableEq n₁] [Fintype n₂] [DecidableEq n₂] (c ρ : ℕ),

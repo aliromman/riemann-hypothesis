@@ -1,48 +1,8 @@
 module
 
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ValuationLocalVolumes.VolUTr
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.DiffProd
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalJacobianType.ContinuousTrESymm
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
-import Mathlib.Topology.Sheaves.Init
+public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.HRSumSmulRight
 
 @[expose] public section
 
@@ -123,26 +83,7 @@ theorem alg_mem {c : Fv F v} (hc : c ∈ v.adicCompletionIntegers F) :
 
 theorem mul_mem {x y : Fv F v ⊗[F] E} (hx : x ∈ OEv (E := E) v) (hy : y ∈ OEv (E := E) v) :
     x * y ∈ OEv (E := E) v := by
-  simp only [OEv, SetLike.mem_coe] at hx hy ⊢
-  have key : ∀ a : 𝓞 E, ∀ y ∈ Submodule.span (v.adicCompletionIntegers F)
-      ((fun x : 𝓞 E => inclR (F := F) (Fv F v) (x : E)) '' Set.univ),
-      inclR (F := F) (Fv F v) (a : E) * y ∈ Submodule.span (v.adicCompletionIntegers F)
-        ((fun x : 𝓞 E => inclR (F := F) (Fv F v) (x : E)) '' Set.univ) := by
-    intro a y hy
-    induction hy using Submodule.span_induction with
-    | mem z hz =>
-      obtain ⟨b, -, rfl⟩ := hz
-      exact Submodule.subset_span ⟨a * b, Set.mem_univ _, by simp [map_mul]⟩
-    | zero => rw [mul_zero]; exact Submodule.zero_mem _
-    | add x z _ _ hx hz => rw [mul_add]; exact Submodule.add_mem _ hx hz
-    | smul c x _ hx => rw [mul_smul_comm]; exact Submodule.smul_mem _ c hx
-  induction hx using Submodule.span_induction with
-  | mem z hz =>
-    obtain ⟨a, -, rfl⟩ := hz
-    exact key a y hy
-  | zero => rw [zero_mul]; exact Submodule.zero_mem _
-  | add x z _ _ hx hz => rw [add_mul]; exact Submodule.add_mem _ hx hz
-  | smul c x _ hx => rw [smul_mul_assoc]; exact Submodule.smul_mem _ c hx
+  first | exact _root_.PI.OmLocU.oEv_mul | (apply _root_.PI.OmLocU.oEv_mul <;> assumption)
 
 theorem trace_mem {x : Fv F v ⊗[F] E} (hx : x ∈ OEv (E := E) v) :
     Algebra.trace (Fv F v) (Fv F v ⊗[F] E) x ∈ v.adicCompletionIntegers F := by
@@ -165,7 +106,31 @@ theorem trace_v (σ : E →ₐ[F] E) (hinv : ∀ y, σ (σ y) = y) (hnt : ∃ x,
     (hfin : Module.finrank F E = 2) (w : Fv F v ⊗[F] E) :
     algebraMap (Fv F v) (Fv F v ⊗[F] E) (Algebra.trace (Fv F v) (Fv F v ⊗[F] E) w) =
       w + sigR (Fv F v) σ w := by
-  apply Formalism.L2.SG.Pf.NcVal.VolUTr.TrW.trace_v <;> assumption
+  haveI : FiniteDimensional F E := Module.finite_of_finrank_pos (by omega)
+  have h1 : ∀ e : E, algebraMap (Fv F v) (Fv F v ⊗[F] E)
+      (Algebra.trace (Fv F v) (Fv F v ⊗[F] E) ((1 : Fv F v) ⊗ₜ e)) =
+      (1 : Fv F v) ⊗ₜ e + (1 : Fv F v) ⊗ₜ σ e := by
+    intro e
+    have ht : Algebra.trace (Fv F v) (Fv F v ⊗[F] E) ((1 : Fv F v) ⊗ₜ e) =
+        algebraMap F (Fv F v) (Algebra.trace F E e) := by
+      rw [Algebra.trace_apply, Algebra.trace_apply]
+      have h : Algebra.lmul (Fv F v) (Fv F v ⊗[F] E) ((1 : Fv F v) ⊗ₜ e) =
+          (Algebra.lmul F E e).baseChange (Fv F v) := by
+        ext k
+        simp
+      rw [h, LinearMap.trace_baseChange]
+    rw [ht, ← inclR_alg v, trace_eq_add σ hinv hnt hfin e, map_add (f := _)]
+    rfl
+  have hL : (Algebra.linearMap (Fv F v) (Fv F v ⊗[F] E)) ∘ₗ
+        (Algebra.trace (Fv F v) (Fv F v ⊗[F] E)) =
+      LinearMap.id + σ.toLinearMap.baseChange (Fv F v) := by
+    ext e
+    simpa using h1 e
+  have hw := LinearMap.congr_fun hL w
+  simp only [LinearMap.comp_apply, Algebra.linearMap_apply, LinearMap.add_apply,
+    LinearMap.id_apply] at hw
+  rw [hw]
+  congr 1
 
 theorem dual_mem (σ : E →ₐ[F] E) (hinv : ∀ y, σ (σ y) = y) (hnt : ∃ x, σ x ≠ x)
     (hfin : Module.finrank F E = 2) (θ t : 𝓞 E) (ht : σ (θ : E) = (t : E)) (e : 𝓞 F)
@@ -173,7 +138,41 @@ theorem dual_mem (σ : E →ₐ[F] E) (hinv : ∀ y, σ (σ y) = y) (hnt : ∃ x
     (hz : ∀ x ∈ OEv (E := E) v,
       Algebra.trace (Fv F v) (Fv F v ⊗[F] E) (x * z) ∈ v.adicCompletionIntegers F) :
     z ∈ OEv (E := E) v := by
-  apply Formalism.L2.SG.Pf.NcVal.VolUTr.TrW.dual_mem <;> assumption
+  set A := Algebra.trace (Fv F v) (Fv F v ⊗[F] E) z with hAdef
+  set B := Algebra.trace (Fv F v) (Fv F v ⊗[F] E) (inclR (F := F) (Fv F v) (θ : E) * z) with hBdef
+  have hA : A ∈ v.adicCompletionIntegers F := by simpa using hz 1 (one_mem v)
+  have hB : B ∈ v.adicCompletionIntegers F := hz _ (inclR_mem' v θ)
+  have tA := trace_v v σ hinv hnt hfin z
+  have tB := trace_v v σ hinv hnt hfin (inclR (F := F) (Fv F v) (θ : E) * z)
+  have hsθ : sigR (Fv F v) σ (inclR (F := F) (Fv F v) (θ : E)) = inclR (F := F) (Fv F v) (t : E) := by
+    simp [sigR, inclR, ht]
+  set Δ := inclR (F := F) (Fv F v) ((θ : E) - t) with hΔ
+  have key : Δ * z = algebraMap (Fv F v) (Fv F v ⊗[F] E) B -
+      inclR (F := F) (Fv F v) (t : E) * algebraMap (Fv F v) (Fv F v ⊗[F] E) A := by
+    rw [tA, tB, map_mul, hsθ, hΔ, map_sub]
+    ring
+  have hΔ2 : Δ * Δ = algebraMap (Fv F v) (Fv F v ⊗[F] E) (algebraMap F (Fv F v) (e : F)) := by
+    rw [hΔ, ← map_mul, ← sq, he, inclR_alg]
+  have hΔm : Δ ∈ OEv (E := E) v := by
+    have := inclR_mem' (E := E) v (θ - t)
+    simpa [hΔ] using this
+  have hmem : Δ * (algebraMap (Fv F v) (Fv F v ⊗[F] E) B -
+      inclR (F := F) (Fv F v) (t : E) * algebraMap (Fv F v) (Fv F v ⊗[F] E) A) ∈ OEv (E := E) v :=
+    mul_mem v hΔm (Submodule.sub_mem _ (alg_mem v hB)
+      (mul_mem v (inclR_mem' v t) (alg_mem v hA)))
+  have hval : Valued.v (algebraMap F (Fv F v) (e : F)) = 1 := by
+    have h := HeightOneSpectrum.valuedAdicCompletion_eq_valuation' (R := 𝓞 F) v (algebraMap (𝓞 F) F e)
+    rw [HeightOneSpectrum.valuation_of_algebraMap, HeightOneSpectrum.intValuation_eq_one_iff.2 hev] at h
+    exact h
+  have he0 : algebraMap F (Fv F v) (e : F) ≠ 0 := by
+    intro h0; rw [h0, map_zero] at hval; exact zero_ne_one hval
+  have hinvm : (algebraMap F (Fv F v) (e : F))⁻¹ ∈ v.adicCompletionIntegers F := by
+    rw [HeightOneSpectrum.mem_adicCompletionIntegers, map_inv₀, hval, inv_one]
+  have hzeq : z = (algebraMap F (Fv F v) (e : F))⁻¹ • (Δ * (algebraMap (Fv F v) (Fv F v ⊗[F] E) B -
+      inclR (F := F) (Fv F v) (t : E) * algebraMap (Fv F v) (Fv F v ⊗[F] E) A)) := by
+    rw [← key, ← mul_assoc, hΔ2, ← Algebra.smul_def, smul_smul, inv_mul_cancel₀ he0, one_smul]
+  rw [hzeq]
+  exact oev_smul' v hinvm hmem
 
 end Gen
 

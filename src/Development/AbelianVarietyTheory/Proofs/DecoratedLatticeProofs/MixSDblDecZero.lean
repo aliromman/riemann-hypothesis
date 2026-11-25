@@ -49,22 +49,7 @@ import Development.AbelianVarietyTheory.Definitions.Foundations.EventuallyEqOfIs
 import Development.AbelianVarietyTheory.Definitions.Foundations.WittIndexEqZeroIff
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IntegrandSZero
 import Formalism.LocalToGlobal.ProjectiveLattices.ErealAddIInf
-
-namespace I195MixedCoordinates_38e171c1cdbf76962db34e8f
-
-open Formalism.BasicNotions Formalism.BasicNotions.TH
-open Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
-open Formalism.L2.Theta Formalism.IndefR.Datum GlobalTheory.MixModel MeasureTheory
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-public noncomputable abbrev source
-    {D : D7} {S S₀ : HSp D} {ρ : ℕ} (d : HypDec S S₀ ρ) (T : HSp D)
-    (ψ : AddChar (AF D.host.F) ℂ) (μ : Measure (Mx D T.rank ρ))
-    (𝓕 : Set (Mx D T.rank ρ)) (f : WO S T → ℂ) (x : Mx D T.rank ρ) : WO S₀ T → ℂ :=
-  fun w₀ => ∫ a in 𝓕, heisO ψ S T (a * d.pY)
-    (heisO ψ S T (x * d.pX) (heisO ψ S T (w₀ * d.p0) f)) 0 ∂μ
-
-end I195MixedCoordinates_38e171c1cdbf76962db34e8f
+public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.MixedCoordinates
 
 @[expose] public section
 
@@ -74,7 +59,6 @@ open GlobalTheory.AutomorphicL2Unitary GlobalTheory.Cusp GlobalTheory.AdelicU Gl
 open GlobalTheory.IndefiniteRowSideFullHecke.SphericalVolumeLift (FinPl RealMat Lat IsFockVec IsSphOff HidaSetting volQ)
 open GlobalTheory.IndefiniteRowSideFullHecke.SphericalZero (ip delta swSec sZero IsKFinVec ThetaClause SectionClause CoefClause)
 open GlobalTheory.Mem.Th (CptF)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Core.Rk.IP
 
 open GlobalTheory.MixModel Matrix

@@ -457,14 +457,14 @@ theorem radius_neg_one {p : ℕ} (hp : 3 ≤ p) : radius p (-1) = 1 / ((p : ℝ)
   have h1 : -(2 * (-1 : ℤ) + 1) = 1 := by norm_num
   rw [h1, zpow_one]
   have h2 : (p : ℝ) - 1 ≠ 0 := by linarith
-  have h3 : (p : ℝ) ^ 2 - 1 ≠ 0 := by nlinarith
+  have h3 : (p : ℝ) ^ 2 - 1 ≠ 0 := by linarith [pow_le_pow_left₀ (by norm_num : (0 : ℝ) ≤ 3) hp' 2]
   rw [div_eq_div_iff h3 h2]
   ring
 
 theorem radius_anti {p : ℕ} (hp : 3 ≤ p) {j k : ℤ} (h : j ≤ k) : radius p k ≤ radius p j := by
   have hp' : (3 : ℝ) ≤ p := by exact_mod_cast hp
   unfold radius
-  have hden : 0 < (p : ℝ) ^ 2 - 1 := by nlinarith
+  have hden : 0 < (p : ℝ) ^ 2 - 1 := by linarith [pow_le_pow_left₀ (by norm_num : (0 : ℝ) ≤ 3) hp' 2]
   have : (p : ℝ) ^ (-(2 * k + 1)) ≤ (p : ℝ) ^ (-(2 * j + 1)) :=
     zpow_le_zpow_right₀ (by linarith) (by omega)
   exact div_le_div_of_nonneg_right (by linarith) hden.le
@@ -476,19 +476,19 @@ theorem radius_le_top {p : ℕ} (hp : 3 ≤ p) {k : ℤ} (h : -1 ≤ k) : radius
 theorem radius_ge {p : ℕ} (hp : 3 ≤ p) (k : ℤ) : 1 / ((p : ℝ) ^ 2 - 1) ≤ radius p k := by
   have hp' : (3 : ℝ) ≤ p := by exact_mod_cast hp
   unfold radius
-  have hden : 0 < (p : ℝ) ^ 2 - 1 := by nlinarith
+  have hden : 0 < (p : ℝ) ^ 2 - 1 := by linarith [pow_le_pow_left₀ (by norm_num : (0 : ℝ) ≤ 3) hp' 2]
   have : 0 < (p : ℝ) ^ (-(2 * k + 1)) := zpow_pos (by linarith) _
   exact div_le_div_of_nonneg_right (by linarith) hden.le
 
 theorem radius_pos {p : ℕ} (hp : 3 ≤ p) (k : ℤ) : 0 ≤ radius p k := by
   have hp' : (3 : ℝ) ≤ p := by exact_mod_cast hp
-  have hden : 0 < (p : ℝ) ^ 2 - 1 := by nlinarith
+  have hden : 0 < (p : ℝ) ^ 2 - 1 := by linarith [pow_le_pow_left₀ (by norm_num : (0 : ℝ) ≤ 3) hp' 2]
   exact le_trans (div_nonneg zero_le_one hden.le) (radius_ge hp k)
 
 theorem radius_rec {p : ℕ} (hp : 3 ≤ p) (k : ℤ) : (p : ℝ) ^ 2 * radius p k - 1 = radius p (k - 1) := by
   have hp' : (3 : ℝ) ≤ p := by exact_mod_cast hp
   unfold radius
-  have hden : (p : ℝ) ^ 2 - 1 ≠ 0 := by nlinarith
+  have hden : (p : ℝ) ^ 2 - 1 ≠ 0 := by linarith [pow_le_pow_left₀ (by norm_num : (0 : ℝ) ≤ 3) hp' 2]
   have hp0 : (p : ℝ) ≠ 0 := by linarith
   have e : (p : ℝ) ^ (-(2 * (k - 1) + 1)) = (p : ℝ) ^ 2 * (p : ℝ) ^ (-(2 * k + 1)) := by
     rw [show -(2 * (k - 1) + 1) = (2 : ℤ) + -(2 * k + 1) by ring, zpow_add₀ hp0, zpow_two, sq]
@@ -503,13 +503,12 @@ theorem big_pow {p : ℝ} (hp : 3 ≤ p) (m : ℕ) :
   induction m with
   | zero =>
     simp only [Nat.cast_zero, zero_add]
-    nlinarith [mul_nonneg (sq_nonneg p) h0, mul_nonneg (by linarith : (0 : ℝ) ≤ p)
-      (by linarith : (0 : ℝ) ≤ p - 1)]
+    linarith [mul_nonneg (sq_nonneg p) h0, mul_nonneg (by linarith : (0 : ℝ) ≤ p) (by linarith : (0 : ℝ) ≤ p - 1)]
   | succ m ih =>
     have h3 : p ^ 3 ≤ p ^ (m + 3) := pow_le_pow_right₀ (by linarith) (by omega)
     rw [show m + 1 + 3 = (m + 3) + 1 by ring, pow_succ p (m + 3)]
     push_cast
-    nlinarith [mul_nonneg (by linarith : (0 : ℝ) ≤ p - 1) (by linarith : (0 : ℝ) ≤ p ^ (m + 3) - (p + 1))]
+    linarith [mul_nonneg (by linarith : (0 : ℝ) ≤ p - 1) (by linarith : (0 : ℝ) ≤ p ^ (m + 3) - (p + 1))]
 
 theorem term_bound {C : Type} [Field C] (v : AddValuation C (WithTop ℝ)) {p : ℕ} (hp : 3 ≤ p)
     {d : ℕ} (dp : Fin d → ℤ) (c : Fin d → ℕ → Fin d → C) (hdp : ∀ a, -1 ≤ dp a)
@@ -521,7 +520,7 @@ theorem term_bound {C : Type} [Field C] (v : AddValuation C (WithTop ℝ)) {p : 
     ((radius p (dp b) - (p : ℝ) ^ n * radius p (dp a) : ℝ) : WithTop ℝ) ≤ v (c a n b) := by
   have hp' : (3 : ℝ) ≤ p := by exact_mod_cast hp
   have hpm : 0 < (p : ℝ) - 1 := by linarith
-  have hQ : 0 < (p : ℝ) ^ 2 - 1 := by nlinarith
+  have hQ : 0 < (p : ℝ) ^ 2 - 1 := by linarith [pow_le_pow_left₀ (by norm_num : (0 : ℝ) ≤ 3) hp' 2]
   rcases lt_or_ge (dp a) 0 with ha | ha
   ·
     have ha' : dp a = -1 := by have := hdp a; omega
@@ -536,7 +535,7 @@ theorem term_bound {C : Type} [Field C] (v : AddValuation C (WithTop ℝ)) {p : 
       simpa using this
     have hprod := mul_nonneg (sub_nonneg.mpr hbern) hw0.le
     have hnw : (n : ℝ) * (((p : ℝ) - 1) * w) = n := by rw [hw, mul_one]
-    nlinarith [hprod, hnw, hb]
+    linarith [hprod, hnw, hb]
   · obtain ⟨hc1, hcn, hc2⟩ := hgood a ha
     refine le_trans (WithTop.coe_le_coe.mpr ?_) (hcn n b hn)
     rcases (show n = 1 ∨ n = 2 ∨ 3 ≤ n by omega) with h1 | h2 | h3
@@ -564,7 +563,7 @@ theorem term_bound {C : Type} [Field C] (v : AddValuation C (WithTop ℝ)) {p : 
       have hB := mul_le_mul_of_nonneg_left hge (pow_nonneg (by linarith : (0 : ℝ) ≤ p) (m + 3))
       have hu' : ((m : ℝ) + 2) * (((p : ℝ) ^ 2 - 1) * u) = (m : ℝ) + 2 := by rw [hu, mul_one]
       push_cast
-      nlinarith [hA, hB, hb, hC, hu']
+      linarith [hA, hB, hb, hC, hu']
 
 end GlobalTheory.DepthRadii
 
@@ -1447,13 +1446,13 @@ theorem digits_sum_le_logb (p n : ℕ) (hp : p.Prime) :
       have hprod : (((n / p : ℕ) : ℝ) + 1) * (((n % p : ℕ) : ℝ) + 1) ≤ (n : ℝ) + 1 := by
         have h1 : (n / p + 1) * (n % p + 1) ≤ n + 1 := by
           have : (n / p) * (n % p + 1) ≤ (n / p) * p := Nat.mul_le_mul_left _ hdp
-          nlinarith
+          grind
         exact_mod_cast h1
       have hlog : Real.logb p (((n / p : ℕ) : ℝ) + 1) + Real.logb p (((n % p : ℕ) : ℝ) + 1)
           ≤ Real.logb p ((n : ℝ) + 1) := by
         rw [← Real.logb_mul (by positivity) (by positivity)]
         exact Real.logb_le_logb_of_le hp1 (by positivity) hprod
-      nlinarith [mul_le_mul_of_nonneg_left hlog hpm]
+      linarith [mul_le_mul_of_nonneg_left hlog hpm]
 
 end GlobalTheory
 end -- clump:auto
@@ -1520,7 +1519,7 @@ theorem low_count_third_bound : RadiusExponentInequality := by
   have hp1 : (1 : ℝ) < p := by linarith
   have hex' : (1 : ℝ) ≤ ex := by exact_mod_cast hex
   set D : ℝ := (p : ℝ) ^ 2 - 1 with hD
-  have hD8 : 8 ≤ D := by nlinarith
+  have hD8 : 8 ≤ D := by linarith [pow_le_pow_left₀ (by norm_num : (0 : ℝ) ≤ 3) hp' 2]
   set q : ℝ := (p : ℝ) ^ (-(2 * (K : ℤ) + 1)) with hq
   have hq0 : 0 ≤ q := zpow_nonneg (by linarith) _
   have hqe : (ex : ℝ) * q ≤ 1 := by
@@ -1534,7 +1533,7 @@ theorem low_count_third_bound : RadiusExponentInequality := by
   have hrm : radius p (-1) = (1 + p) / D := by
     rw [hD]; simp only [radius]; norm_num
   have hpm : 1 / ((p : ℝ) - 1) = (1 + p) / D := by
-    rw [hD, div_eq_div_iff (by linarith) (by nlinarith)]; ring
+    rw [hD, div_eq_div_iff (by linarith) (by linarith)]; ring
   have hL : Real.logb p (ex + 1) ≤ Real.logb p ex + 7 / 8 := by
     have h2 : ((ex : ℝ) + 1) ≤ ex * 2 := by linarith
     have := Real.logb_le_logb_of_le hp1 (by linarith) h2
@@ -1546,7 +1545,7 @@ theorem low_count_third_bound : RadiusExponentInequality := by
     rcases Nat.eq_zero_or_pos i with h | h
     · simp [h]
     · have : (1 : ℝ) ≤ i := by exact_mod_cast h
-      nlinarith
+      exact le_self_pow₀ this two_ne_zero
   refine ⟨?_, ?_⟩
   · rw [hrK, hrm]
     have hdiv : (i : ℝ) * ex / ((p : ℝ) - 1) = i * ex * (1 / ((p : ℝ) - 1)) := by ring
@@ -1561,11 +1560,10 @@ theorem low_count_third_bound : RadiusExponentInequality := by
       field_simp; ring
     have h1 : ((i : ℝ) - cr) * (ex * q) / D ≤ i / 8 := by
       rw [div_le_iff₀ (by linarith)]
-      have : ((i : ℝ) - cr) * (ex * q) ≤ (i : ℝ) - cr :=
-        by nlinarith [mul_le_mul_of_nonneg_left hqe (sub_nonneg.2 hi)]
-      nlinarith
+      have : ((i : ℝ) - cr) * (ex * q) ≤ (i : ℝ) - cr := mul_le_of_le_one_right (sub_nonneg.2 hi) hqe
+      linarith [mul_le_mul_of_nonneg_left hD8 (div_nonneg hi0 (by norm_num : (0 : ℝ) ≤ 8)), show (0 : ℝ) ≤ cr by positivity]
     have h2 : (i : ℝ) ^ 2 / 8 ≤ (i : ℝ) ^ 2 * (Real.logb p ex + 1 - Real.logb p (ex + 1)) := by
-      nlinarith [sq_nonneg (i : ℝ)]
+      linarith [mul_le_mul_of_nonneg_left (show (1 : ℝ) / 8 ≤ Real.logb p ex + 1 - Real.logb p (ex + 1) by linarith) (sq_nonneg (i : ℝ))]
     linarith
   · rcases Nat.eq_zero_or_pos K with h0 | h0
     · subst h0
@@ -1637,7 +1635,7 @@ theorem low_count_second_bound : FactorialMultiindexBound := by
       have h0 : (0 : ℝ) < (p : ℝ) - 1 := by linarith
       rw [sub_div]
       have : (((Nat.digits p (α x)).sum : ℕ) : ℝ) / ((p : ℝ) - 1) ≤ Real.logb p ((ex : ℝ) + 1) := by
-        rw [div_le_iff₀ h0]; nlinarith
+        rw [div_le_iff₀ h0]; linarith [mul_le_mul_of_nonneg_right hlog h0.le]
       linarith
     have hsum := Finset.sum_le_sum (s := Finset.univ) (fun x _ => hterm x)
     rw [Finset.sum_sub_distrib, ← Finset.sum_div, Finset.sum_const, Finset.card_univ,
@@ -1646,7 +1644,7 @@ theorem low_count_second_bound : FactorialMultiindexBound := by
       rw [Finsupp.degree_eq_sum] at hdeg; exact_mod_cast hdeg
     rw [htot] at hsum
     push_cast at hsum ⊢
-    nlinarith [hsum]
+    linarith [hsum, show (i : ℝ) * (i : ℝ) = (i : ℝ) ^ 2 by ring]
 
 theorem lowC_all : FactorialWeightedSumBound ∧ FactorialMultiindexBound ∧ RadiusExponentInequality :=
   ⟨low_count_first_bound, low_count_second_bound, low_count_third_bound⟩
@@ -1670,7 +1668,7 @@ variable {C : Type} [Field C] {v : AddValuation C (WithTop ℝ)}
 theorem radius_nonneg {p : ℕ} (hp : 3 ≤ p) (k : ℤ) : 0 ≤ radius p k := by
   have h3 : (3 : ℝ) ≤ p := by exact_mod_cast hp
   unfold radius
-  refine div_nonneg ?_ (by nlinarith)
+  refine div_nonneg ?_ (by linarith [pow_le_pow_left₀ (by norm_num : (0 : ℝ) ≤ 3) h3 2])
   have : (0 : ℝ) < (p : ℝ) ^ (-(2 * k + 1)) := zpow_pos (by linarith) _
   linarith
 

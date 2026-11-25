@@ -117,13 +117,7 @@ theorem ptWeightFrom_tB (k r : ℕ) (T T' : ℝ) : ∀ (bs : List (ℂ × ℕ)) 
     simp only [tB, ptWeightFrom]
     rw [ptWeightFrom_tB k r T T' bs (o + s) (a + s)]
     congr 1
-    have h1 : Complex.normSq ((-1 : ℂ) ^ r * (-Complex.I) ^ (2 * o + s - 1) * t) = Complex.normSq t := by
-      rw [map_mul, unit_normSq, one_mul]
-    have h2 : ‖(-1 : ℂ) ^ r * (-Complex.I) ^ (2 * o + s - 1) * t‖ = ‖t‖ := by
-      rw [norm_mul]
-      have : ‖(-1 : ℂ) ^ r * (-Complex.I) ^ (2 * o + s - 1)‖ = 1 := by simp
-      rw [this, one_mul]
-    rw [h1, h2]
+    simp [map_mul]
 
 theorem ptWeight_turnPt (k r : ℕ) (T T' : ℝ) (p : Point ℂ (r + 1)) : ptWeight k r T T' (turnPt p) = ptWeight k r T T' p :=
   ptWeightFrom_tB k r T T' p.1 0 0

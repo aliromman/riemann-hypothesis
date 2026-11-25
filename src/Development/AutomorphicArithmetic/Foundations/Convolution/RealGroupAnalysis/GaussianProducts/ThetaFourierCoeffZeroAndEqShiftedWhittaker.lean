@@ -84,9 +84,6 @@ private theorem coe_al {F E : Type} [Field F] [NumberField F] [Field E] [NumberF
   rw [e', e, al, dite_eq_right h, IdeleGroup.coe_diagonal]
   simp [sub_eq_add_neg]
 
-private theorem vcD {F : Type} [Field F] [NumberField F] (t : (A F)ˣ) (x : G1 F) :
-    (gl (cD t x)).val = !![x 0 0, x 0 1 * ((t⁻¹ : (A F)ˣ) : A F); (t : A F) * x 1 0, x 1 1] := rfl
-
 private theorem vmD {F : Type} [Field F] [NumberField F] (t : (A F)ˣ) :
     (gl (mD t)).val = !![(t : A F), 0; 0, ((t⁻¹ : (A F)ˣ) : A F)] := rfl
 

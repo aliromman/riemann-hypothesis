@@ -168,14 +168,13 @@ theorem proof : ProjectionUnramifiedGeneric.Statement := by
     intro c b G
     induction G using Polynomial.induction_on with
     | C a => simp [hDι]
-    | add f g hf hg => simp only [Polynomial.eval₂_add, hDadd, hf, hg, Polynomial.derivative_add,
-        map_add, add_mul]
+    | add f g hf hg => simp only [Polynomial.eval₂_add, hDadd, hf, hg, map_add, add_mul]
     | monomial n a h =>
       have e : (Polynomial.C a * Polynomial.X ^ (n + 1) : Polynomial (MvPolynomial α ℂ)) =
           Polynomial.C a * Polynomial.X ^ n * Polynomial.X := by ring
       rw [e, Polynomial.eval₂_mul, hDmul, h, Polynomial.eval₂_X, hDX]
       simp only [Polynomial.derivative_mul, Polynomial.derivative_X, Polynomial.eval₂_add,
-        Polynomial.eval₂_mul, Polynomial.eval₂_one, Polynomial.eval₂_X, map_add, map_mul, mul_one]
+        Polynomial.eval₂_mul, Polynomial.eval₂_X, map_add, map_mul, mul_one]
       ring
 
   have hker : ∀ c : β → L, (∀ j, D c (q j) = 0) → c = 0 := by
@@ -226,7 +225,7 @@ theorem proof : ProjectionUnramifiedGeneric.Statement := by
 
   let M : Matrix (Fin r) β L := Matrix.of fun j b => φ (pderiv (Sum.inr b) (q j))
   have hMinj : Function.Injective M.mulVecLin := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro c hc
     apply hker c
     intro j

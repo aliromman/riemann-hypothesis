@@ -725,28 +725,58 @@ theorem move_set {D D' : D7} {N : NData D.R D.host D.what₂} {N' : NData D'.R D
 
 
 
-set_option maxRecDepth 100000 in
+private theorem move_pack_aux {Y Y' Tw Tw' : Type} (hY : Y = Y') (hTw : Tw = Tw')
+    {RCG : Tw → Finset Y → Type} {RCG' : Tw' → Finset Y' → Type}
+    {gR : ∀ i Q, CommGroup (RCG i Q)} {gR' : ∀ i Q, CommGroup (RCG' i Q)}
+    {Ok : Tw → ℕ → Type} {Ok' : Tw' → ℕ → Type}
+    {cO : ∀ i k, CommRing (Ok i k)} {cO' : ∀ i k, CommRing (Ok' i k)}
+    (hRCG : HEq RCG RCG') (hgR : HEq gR gR') (hOk : HEq Ok Ok') (hcO : HEq cO cO')
+    {i : Tw} {i' : Tw'} (hi : HEq i i') {Q : Finset Y} {k : ℕ} (ψ : RCG i Q →* (Ok i k)ˣ) :
+    ∃ (Q' : Finset Y') (ψ' : RCG' i' Q' →* (Ok' i' k)ˣ), HEq Q Q' ∧ ∀ a : ℤ, HEq (ψ ^ a) (ψ' ^ a) := by
+  subst hY hTw
+  cases hRCG; cases hgR; cases hOk; cases hcO; cases hi
+  exact ⟨Q, ψ, HEq.rfl, fun _ => HEq.rfl⟩
+
 theorem move_pack {D D' : D7} {N : NData D.R D.host D.what₂} {N' : NData D'.R D'.host D'.what₂}
     {X : NTw D.R D.host D.what₂ D.LL0 N} {X' : NTw D'.R D'.host D'.what₂ D'.LL0 N'} (h1 : SameGalois N N') (h2 : TwistDataAgreeAcrossCoefficients X X')
     {i : X.Tw} {i' : X'.Tw} (hi : HEq i i') {Q : Finset (PlE D.host)} {k : ℕ} (ψ : X.RCG i Q →* (X.Ok i k)ˣ) :
-    ∃ (Q' : Finset (PlE D'.host)) (ψ' : X'.RCG i' Q' →* (X'.Ok i' k)ˣ), HEq Q Q' ∧ ∀ a : ℤ, HEq (ψ ^ a) (ψ' ^ a) := by
-  obtain ⟨a1, a2, a3, nOm, ninstOm, nalgOm, nplOm, nPlG⟩ := h1
-  obtain ⟨xcc, xTw, xl, fixedFieldTransport_baseIntegerRing_heq, fixedFieldTransport_baseIntegerCommRing_heq, fixedFieldTransport_baseIntegerAlgebra_heq, fixedFieldTransport_baseIntegerTopology_heq, xO, xcrO, xalgO, xOk, xcrOk, xalgOk, xzk, xpD, xchi1, xSig, xfinSig, xjS, xside, xrhoS, fixedFieldTransport_initialPlaceSet_heq, xhEig, xLam, xsideL, xRCG, xgrpRCG, xfinRCG, xart, xth⟩ := h2
-  cases D; cases D'
-  dsimp only at a1 a2 a3
-  subst a1; subst a2; subst a3
-  cases N; cases N'
-  dsimp only at nOm ninstOm nalgOm nplOm nPlG
-  subst nOm; subst ninstOm; subst nalgOm; subst nplOm; subst nPlG
-  cases X; cases X'
-  dsimp only at xcc xTw xl fixedFieldTransport_baseIntegerRing_heq fixedFieldTransport_baseIntegerCommRing_heq fixedFieldTransport_baseIntegerAlgebra_heq fixedFieldTransport_baseIntegerTopology_heq xO xcrO xalgO xOk xcrOk xalgOk xzk xpD xchi1 xSig xfinSig xjS xside xrhoS fixedFieldTransport_initialPlaceSet_heq xhEig xLam xsideL xRCG xgrpRCG xfinRCG xart xth
-  subst xcc; subst xTw; subst xl; subst fixedFieldTransport_baseIntegerRing_heq; subst fixedFieldTransport_baseIntegerCommRing_heq; subst fixedFieldTransport_baseIntegerAlgebra_heq; subst fixedFieldTransport_baseIntegerTopology_heq; subst xO; subst xcrO; subst xalgO; subst xOk; subst xcrOk; subst xalgOk; subst xzk; subst xpD; subst xchi1; subst xSig; subst xfinSig; subst xjS; subst xside; subst xrhoS; subst fixedFieldTransport_initialPlaceSet_heq; subst xhEig; subst xLam; subst xsideL; subst xRCG; subst xgrpRCG; subst xfinRCG; subst xart; subst xth
-  subst hi
-  exact ⟨Q, ψ, HEq.rfl, fun _ => HEq.rfl⟩
+    ∃ (Q' : Finset (PlE D'.host)) (ψ' : X'.RCG i' Q' →* (X'.Ok i' k)ˣ), HEq Q Q' ∧ ∀ a : ℤ, HEq (ψ ^ a) (ψ' ^ a) :=
+  move_pack_aux (GoodPrimeSelection.plE_eq h1.R h1.host) (eq_of_heq h2.Tw)
+    (RCG := X.RCG) (RCG' := X'.RCG) (gR := X.grpRCG) (gR' := X'.grpRCG)
+    (Ok := X.Ok) (Ok' := X'.Ok) (cO := X.crOk) (cO' := X'.crOk)
+    h2.RCG h2.grpRCG h2.Ok h2.crOk hi ψ
 
 
 
-set_option maxRecDepth 100000 in
+private theorem move_xd_aux {R R' : Ranks} (hR : R = R') {H : Host R} {H' : Host R'} (hH : HEq H H')
+    {PlG PlG' : Fin 2 → Type} (hPlG : HEq PlG PlG') {Tw Tw' : Type} (hTw : Tw = Tw')
+    {O : Tw → Type} {O' : Tw' → Type} {crO : ∀ i, CommRing (O i)} {crO' : ∀ i, CommRing (O' i)}
+    {Fm : Tw → ℕ → Bool → Type} {Fm' : Tw' → ℕ → Bool → Type}
+    {acgFm : ∀ i j b, AddCommGroup (Fm i j b)} {acgFm' : ∀ i j b, AddCommGroup (Fm' i j b)}
+    {modFmK : ∀ i j b, Module (FractionRing (O i)) (Fm i j b)} {modFmK' : ∀ i j b, Module (FractionRing (O' i)) (Fm' i j b)}
+    {actG : ∀ i j b, (∀ kv : (Σ k : Fin 2, PlG k), GL (Fin R.r) (ZMod (H.g kv.1))) →* (Fm i j b ≃ₗ[FractionRing (O i)] Fm i j b)}
+    {actG' : ∀ i j b, (∀ kv : (Σ k : Fin 2, PlG' k), GL (Fin R'.r) (ZMod (H'.g kv.1))) →* (Fm' i j b ≃ₗ[FractionRing (O' i)] Fm' i j b)}
+    {U : Subgroup (∀ kv : (Σ k : Fin 2, PlG k), GL (Fin R.r) (ZMod (H.g kv.1)))}
+    {U' : Subgroup (∀ kv : (Σ k : Fin 2, PlG' k), GL (Fin R'.r) (ZMod (H'.g kv.1)))}
+    {psiU : ∀ i, Bool → U →* (FractionRing (O i))ˣ} {psiU' : ∀ i, Bool → U' →* (FractionRing (O' i))ˣ}
+    {Dat : Tw → ℕ → Bool → Type} {Dat' : Tw' → ℕ → Bool → Type}
+    {th : ∀ i j b, Dat i j b → Fm i j b} {th' : ∀ i j b, Dat' i j b → Fm' i j b}
+    (hO : HEq O O') (hcrO : HEq crO crO') (hFm : HEq Fm Fm') (hacgFm : HEq acgFm acgFm')
+    (hmodFmK : HEq modFmK modFmK') (hactG : HEq actG actG') (hU : HEq U U') (hpsiU : HEq psiU psiU')
+    (hDat : HEq Dat Dat') (hth : HEq th th') (m : ℕ)
+    (x0 : ∀ i j b, Set (Dat i j b))
+    (hP : ∀ i j b, ∀ a ∈ x0 i j b, ∀ u : U, actG i j b u (th i j b a) =
+      ((psiU i b u : (FractionRing (O i))ˣ) : FractionRing (O i)) • th i j b a)
+    (N0 : Tw → ℕ) (S : ∀ i j b, Finset (Dat i j b)) :
+    ∃ x0' : ∀ i j b, Set (Dat' i j b), (∀ i j b, ∀ a ∈ x0' i j b, ∀ u : U', actG' i j b u (th' i j b a) =
+      ((psiU' i b u : (FractionRing (O' i))ˣ) : FractionRing (O' i)) • th' i j b a) ∧ HEq x0 x0' ∧
+      ((∀ i j b, 1 ≤ j → j ≤ m → x0 i j b = Set.univ) → ∀ i j b, 1 ≤ j → j ≤ m → x0' i j b = Set.univ) ∧
+      (∃ N0' : Tw' → ℕ, HEq N0 N0') ∧ ∃ S' : ∀ i j b, Finset (Dat' i j b), HEq S S' := by
+  subst hR hTw
+  cases hH; cases hPlG; cases hO; cases hcrO; cases hFm; cases hacgFm; cases hmodFmK
+  cases hactG; cases hU; cases hpsiU; cases hDat; cases hth
+  exact ⟨x0, hP, HEq.rfl, id, ⟨N0, HEq.rfl⟩, S, HEq.rfl⟩
+
 theorem move_xd {D D' : D7} {N : NData D.R D.host D.what₂} {N' : NData D'.R D'.host D'.what₂}
     {X : NTw D.R D.host D.what₂ D.LL0 N} {X' : NTw D'.R D'.host D'.what₂ D'.LL0 N'}
     {Y : NExp D.R D.host D.what₂ D.LL0 N X} {Y' : NExp D'.R D'.host D'.what₂ D'.LL0 N' X'}
@@ -758,23 +788,14 @@ theorem move_xd {D D' : D7} {N : NData D.R D.host D.what₂} {N' : NData D'.R D'
     ∃ x0' : ∀ i j b, Set (Y'.Dat i j b), (∀ i j b, ∀ a ∈ x0' i j b, ∀ u : Y'.U, Y'.actG i j b u (Y'.th i j b a) =
       ((Y'.psiU i b u : (FractionRing (X'.O i))ˣ) : FractionRing (X'.O i)) • Y'.th i j b a) ∧ HEq x0 x0' ∧
       ((∀ i j b, 1 ≤ j → j ≤ m → x0 i j b = Set.univ) → ∀ i j b, 1 ≤ j → j ≤ m → x0' i j b = Set.univ) ∧
-      (∃ N0' : X'.Tw → ℕ, HEq N0 N0') ∧ ∃ S' : ∀ i j b, Finset (Y'.Dat i j b), HEq S S' := by
-  obtain ⟨a1, a2, a3, nOm, ninstOm, nalgOm, nplOm, nPlG⟩ := h1
-  obtain ⟨xcc, xTw, xl, fixedFieldTransport_baseIntegerRing_heq, fixedFieldTransport_baseIntegerCommRing_heq, fixedFieldTransport_baseIntegerAlgebra_heq, fixedFieldTransport_baseIntegerTopology_heq, xO, xcrO, xalgO, xOk, xcrOk, xalgOk, xzk, xpD, xchi1, xSig, xfinSig, xjS, xside, xrhoS, fixedFieldTransport_initialPlaceSet_heq, xhEig, xLam, xsideL, xRCG, xgrpRCG, xfinRCG, xart, xth⟩ := h2
-  obtain ⟨yFm, yacgFm, ymodFmK, ymodFmO, yactG, yU, ypsiU, yeAlg, yDat, yth, ylev, ythPsi, yMtV, yacgMt, ymodMtK, ymodMtO, yMtLat, ythP, yhkF⟩ := h3
-  cases D; cases D'
-  dsimp only at a1 a2 a3
-  subst a1; subst a2; subst a3
-  cases N; cases N'
-  dsimp only at nOm ninstOm nalgOm nplOm nPlG
-  subst nOm; subst ninstOm; subst nalgOm; subst nplOm; subst nPlG
-  cases X; cases X'
-  dsimp only at xcc xTw xl fixedFieldTransport_baseIntegerRing_heq fixedFieldTransport_baseIntegerCommRing_heq fixedFieldTransport_baseIntegerAlgebra_heq fixedFieldTransport_baseIntegerTopology_heq xO xcrO xalgO xOk xcrOk xalgOk xzk xpD xchi1 xSig xfinSig xjS xside xrhoS fixedFieldTransport_initialPlaceSet_heq xhEig xLam xsideL xRCG xgrpRCG xfinRCG xart xth
-  subst xcc; subst xTw; subst xl; subst fixedFieldTransport_baseIntegerRing_heq; subst fixedFieldTransport_baseIntegerCommRing_heq; subst fixedFieldTransport_baseIntegerAlgebra_heq; subst fixedFieldTransport_baseIntegerTopology_heq; subst xO; subst xcrO; subst xalgO; subst xOk; subst xcrOk; subst xalgOk; subst xzk; subst xpD; subst xchi1; subst xSig; subst xfinSig; subst xjS; subst xside; subst xrhoS; subst fixedFieldTransport_initialPlaceSet_heq; subst xhEig; subst xLam; subst xsideL; subst xRCG; subst xgrpRCG; subst xfinRCG; subst xart; subst xth
-  cases Y; cases Y'
-  dsimp only at yFm yacgFm ymodFmK ymodFmO yactG yU ypsiU yeAlg yDat yth ylev ythPsi yMtV yacgMt ymodMtK ymodMtO yMtLat ythP yhkF
-  subst yFm; subst yacgFm; subst ymodFmK; subst ymodFmO; subst yactG; subst yU; subst ypsiU; subst yeAlg; subst yDat; subst yth; subst ylev; subst ythPsi; subst yMtV; subst yacgMt; subst ymodMtK; subst ymodMtO; subst yMtLat; subst ythP; subst yhkF
-  exact ⟨x0, hP, HEq.rfl, id, ⟨N0, HEq.rfl⟩, S, HEq.rfl⟩
+      (∃ N0' : X'.Tw → ℕ, HEq N0 N0') ∧ ∃ S' : ∀ i j b, Finset (Y'.Dat i j b), HEq S S' :=
+  move_xd_aux h1.R h1.host h1.PlG (eq_of_heq h2.Tw)
+    (O := X.O) (O' := X'.O) (crO := X.crO) (crO' := X'.crO)
+    (Fm := Y.Fm) (Fm' := Y'.Fm) (acgFm := Y.acgFm) (acgFm' := Y'.acgFm)
+    (modFmK := Y.modFmK) (modFmK' := Y'.modFmK) (actG := Y.actG) (actG' := Y'.actG)
+    (U := Y.U) (U' := Y'.U) (psiU := Y.psiU) (psiU' := Y'.psiU)
+    (Dat := Y.Dat) (Dat' := Y'.Dat) (th := Y.th) (th' := Y'.th)
+    h2.O h2.crO h3.Fm h3.acgFm h3.modFmK h3.actG h3.U h3.psiU h3.Dat h3.th m x0 hP N0 S
 
 end GlobalTheory.HeightCounting.Up.SymmetryOfAgreementRelations
 
@@ -1640,7 +1661,63 @@ theorem pow_of_tied (hc : GlobalTheory.TwSys.Cheb) {D : D7} (cf : CharFrame D) (
 
 
 
-set_option maxRecDepth 100000 in
+open Classical in
+private theorem transfer_aux {R₁ R₂ : Ranks} (hR : R₁ = R₂) {H₁ : Host R₁} {H₂ : Host R₂} (hH : HEq H₁ H₂)
+    {Om₁ Om₂ : Type} (hOm : Om₁ = Om₂) {instOm₁ : Field Om₁} {instOm₂ : Field Om₂} (hinstOm : HEq instOm₁ instOm₂)
+    {algOm₁ : Algebra H₁.E Om₁} {algOm₂ : Algebra H₂.E Om₂} (halgOm : HEq algOm₁ algOm₂)
+    {Tw₁ Tw₂ : Type} (hTw : Tw₁ = Tw₂) {l₁ : Tw₁ → ℕ} {l₂ : Tw₂ → ℕ} (hl : HEq l₁ l₂)
+    {cc₁ : Om₁ ≃+* Om₁} {cc₂ : Om₂ ≃+* Om₂} (hcc : HEq cc₁ cc₂)
+    {S0₁ : Tw₁ → Finset (PlE H₁)} {S0₂ : Tw₂ → Finset (PlE H₂)} (hS0 : HEq S0₁ S0₂)
+    {Ok₁ : Tw₁ → ℕ → Type} {Ok₂ : Tw₂ → ℕ → Type} (hOk : HEq Ok₁ Ok₂)
+    {crOk₁ : ∀ i k, CommRing (Ok₁ i k)} {crOk₂ : ∀ i k, CommRing (Ok₂ i k)} (hcrOk : HEq crOk₁ crOk₂)
+    {zk₁ : ∀ i k, (Ok₁ i k)ˣ} {zk₂ : ∀ i k, (Ok₂ i k)ˣ} (hzk : HEq zk₁ zk₂)
+    {RCG₁ : Tw₁ → Finset (PlE H₁) → Type} {RCG₂ : Tw₂ → Finset (PlE H₂) → Type} (hRCG : HEq RCG₁ RCG₂)
+    {grpRCG₁ : ∀ i Q, CommGroup (RCG₁ i Q)} {grpRCG₂ : ∀ i Q, CommGroup (RCG₂ i Q)} (hgrpRCG : HEq grpRCG₁ grpRCG₂)
+    {art₁ : ∀ i Q, Formalism.ConjugateSelfDual.G H₁.E Om₁ →* RCG₁ i Q}
+    {art₂ : ∀ i Q, Formalism.ConjugateSelfDual.G H₂.E Om₂ →* RCG₂ i Q} (hart : HEq art₁ art₂)
+    {i : Tw₁} {Q : Finset (PlE H₁)} {k : ℕ} (ψ : RCG₁ i Q →* (Ok₁ i k)ˣ) (A : Finset (PlE H₁))
+    (ι : rootsOfUnity (l₁ i ^ k) (Ok₁ i k) ≃* rootsOfUnity (l₁ i ^ k) ℂ) (χ : HChar H₁.E)
+    (hO : (∀ P ∈ Q, Formalism.BasicNotions.IsSplitPl H₁ P ∧ P.asIdeal.inertiaDeg ℤ = 1 ∧ Formalism.BasicNotions.eWL H₁.E P = 1) ∧
+      Disjoint Q (S0₁ i ∪ A) ∧ 1 ≤ k ∧
+      IsOpen ((ψ.comp (art₁ i Q)).ker : Set (Formalism.ConjugateSelfDual.G H₁.E Om₁)) ∧
+      AntiHom cc₁ (ψ.comp (art₁ i Q)) ∧
+      (∀ g, ψ.comp (art₁ i Q) g ∈ Subgroup.zpowers (zk₁ i k)) ∧
+      RamExactly (ψ.comp (art₁ i Q)) ↑Q ∧
+      ∀ v ∈ placesOver H₁.E (l₁ i), ∀ A' : ValuationSubring Om₁, Formalism.ConjugateSelfDual.IsPlaceOver A' v →
+        ∀ σ ∈ ReciprocityTheory.Gal.Dec (F := H₁.E) A', (ψ.comp (art₁ i Q)) σ = 1)
+    (hF : ∀ v, v ∉ Q → ∀ A' : ValuationSubring Om₁, Formalism.ConjugateSelfDual.IsPlaceOver A' v →
+      ∀ σ : Formalism.ConjugateSelfDual.G H₁.E Om₁,
+        Formalism.ConjugateSelfDual.IsFrob (F := H₁.E) A' (Formalism.ConjugateSelfDual.normV v) σ →
+        ∃ u : rootsOfUnity (l₁ i ^ k) (Ok₁ i k), (u : (Ok₁ i k)ˣ) = ψ (art₁ i Q σ) ∧
+          χ.val v = ((ι u : rootsOfUnity (l₁ i ^ k) ℂ) : ℂˣ)⁻¹)
+    {i₂ : Tw₂} {Q₂ : Finset (PlE H₂)} {χ₂ : HChar H₂.E}
+    (hi : HEq i₂ i) (hQ : HEq Q₂ Q) (hχ : HEq χ₂ χ) :
+    ∃ (ψ₂ : RCG₂ i₂ Q₂ →* (Ok₂ i₂ k)ˣ)
+      (ι₂ : rootsOfUnity (l₂ i₂ ^ k) (Ok₂ i₂ k) ≃* rootsOfUnity (l₂ i₂ ^ k) ℂ)
+      (A₂ : Finset (PlE H₂)),
+      ((∀ P ∈ Q₂, Formalism.BasicNotions.IsSplitPl H₂ P ∧ P.asIdeal.inertiaDeg ℤ = 1 ∧ Formalism.BasicNotions.eWL H₂.E P = 1) ∧
+        Disjoint Q₂ (S0₂ i₂ ∪ A₂) ∧ 1 ≤ k ∧
+        IsOpen ((ψ₂.comp (art₂ i₂ Q₂)).ker : Set (Formalism.ConjugateSelfDual.G H₂.E Om₂)) ∧
+        AntiHom cc₂ (ψ₂.comp (art₂ i₂ Q₂)) ∧
+        (∀ g, ψ₂.comp (art₂ i₂ Q₂) g ∈ Subgroup.zpowers (zk₂ i₂ k)) ∧
+        RamExactly (ψ₂.comp (art₂ i₂ Q₂)) ↑Q₂ ∧
+        ∀ v ∈ placesOver H₂.E (l₂ i₂), ∀ A' : ValuationSubring Om₂, Formalism.ConjugateSelfDual.IsPlaceOver A' v →
+          ∀ σ ∈ ReciprocityTheory.Gal.Dec (F := H₂.E) A', (ψ₂.comp (art₂ i₂ Q₂)) σ = 1) ∧
+      (∀ v, v ∉ Q₂ → ∀ A' : ValuationSubring Om₂, Formalism.ConjugateSelfDual.IsPlaceOver A' v →
+        ∀ σ : Formalism.ConjugateSelfDual.G H₂.E Om₂,
+          Formalism.ConjugateSelfDual.IsFrob (F := H₂.E) A' (Formalism.ConjugateSelfDual.normV v) σ →
+          ∃ u : rootsOfUnity (l₂ i₂ ^ k) (Ok₂ i₂ k), (u : (Ok₂ i₂ k)ˣ) = ψ₂ (art₂ i₂ Q₂ σ) ∧
+            χ₂.val v = ((ι₂ u : rootsOfUnity (l₂ i₂ ^ k) ℂ) : ℂˣ)⁻¹) ∧
+      l₂ i₂ = l₁ i ∧
+      ∀ a : ℤ,
+        HEq (⟨i₂, Q₂, k, ψ₂ ^ a⟩ : Σ (i : Tw₂) (Q : Finset (PlE H₂)) (k : ℕ), RCG₂ i Q →* (Ok₂ i k)ˣ)
+          (⟨i, Q, k, ψ ^ a⟩ : Σ (i : Tw₁) (Q : Finset (PlE H₁)) (k : ℕ), RCG₁ i Q →* (Ok₁ i k)ˣ) := by
+  subst hR hOm hTw
+  cases hH; cases hinstOm; cases halgOm; cases hl; cases hcc; cases hS0
+  cases hOk; cases hcrOk; cases hzk; cases hRCG; cases hgrpRCG; cases hart
+  cases hi; cases hQ; cases hχ
+  exact ⟨ψ, ι, A, hO, hF, rfl, fun _ => HEq.rfl⟩
+
 theorem transfer {D₁ D₂ : D7} (h : SameExport D₁ D₂) (p : TwPack D₁) (A : Finset (PlE D₁.host))
     (ι : TwChar.RootIso D₁ p.1 p.2.2.1) (χ : HChar D₁.host.E) (hO : BlochKatoReduction.Gen.PsiOk p.1 A p.2.1 p.2.2.1 p.2.2.2)
     (hF : TwChar.FrobPick p.1 p.2.1 p.2.2.1 p.2.2.2 ι χ) (i₂ : D₂.ntw.Tw) (Q₂ : Finset (PlE D₂.host)) (k₂ : ℕ)
@@ -1648,23 +1725,13 @@ theorem transfer {D₁ D₂ : D7} (h : SameExport D₁ D₂) (p : TwPack D₁) (
     ∃ (ψ₂ : D₂.ntw.RCG i₂ Q₂ →* (D₂.ntw.Ok i₂ k₂)ˣ) (ι₂ : TwChar.RootIso D₂ i₂ k₂) (A₂ : Finset (PlE D₂.host)),
       BlochKatoReduction.Gen.PsiOk i₂ A₂ Q₂ k₂ ψ₂ ∧ TwChar.FrobPick i₂ Q₂ k₂ ψ₂ ι₂ χ₂ ∧ D₂.ntw.l i₂ = D₁.ntw.l p.1 ∧
       ∀ a : ℤ, HEq (⟨i₂, Q₂, k₂, ψ₂ ^ a⟩ : TwPack D₂) (GlobalTheory.HeightCounting.twPackPow D₁ a p) := by
-  obtain ⟨h1, h2, -, -, -⟩ := h
   obtain ⟨i, Q, k, ψ⟩ := p
   dsimp only at hi hQ hk hO hF ι ⊢
   subst hk
-  obtain ⟨a1, a2, a3, nOm, ninstOm, nalgOm, nplOm, nPlG⟩ := h1
-  obtain ⟨xcc, xTw, xl, fixedFieldTransport_baseIntegerRing_heq, fixedFieldTransport_baseIntegerCommRing_heq, fixedFieldTransport_baseIntegerAlgebra_heq, fixedFieldTransport_baseIntegerTopology_heq, xO, xcrO, xalgO, xOk, xcrOk, xalgOk, xzk, xpD, xchi1, xSig, xfinSig, xjS, xside, xrhoS, fixedFieldTransport_initialPlaceSet_heq, xhEig, xLam, xsideL, xRCG, xgrpRCG, xfinRCG, xart, xth⟩ := h2
-  cases D₁; cases D₂
-  dsimp only at a1 a2 a3
-  subst a1; subst a2; subst a3
-  cases ‹NData _ _ _›; cases ‹NData _ _ _›
-  dsimp only at nOm ninstOm nalgOm nplOm nPlG
-  subst nOm; subst ninstOm; subst nalgOm; subst nplOm; subst nPlG
-  cases ‹@NTw _ _ _ _ _ _ _›; cases ‹@NTw _ _ _ _ _ _ _›
-  dsimp only at xcc xTw xl fixedFieldTransport_baseIntegerRing_heq fixedFieldTransport_baseIntegerCommRing_heq fixedFieldTransport_baseIntegerAlgebra_heq fixedFieldTransport_baseIntegerTopology_heq xO xcrO xalgO xOk xcrOk xalgOk xzk xpD xchi1 xSig xfinSig xjS xside xrhoS fixedFieldTransport_initialPlaceSet_heq xhEig xLam xsideL xRCG xgrpRCG xfinRCG xart xth
-  subst xcc; subst xTw; subst xl; subst fixedFieldTransport_baseIntegerRing_heq; subst fixedFieldTransport_baseIntegerCommRing_heq; subst fixedFieldTransport_baseIntegerAlgebra_heq; subst fixedFieldTransport_baseIntegerTopology_heq; subst xO; subst xcrO; subst xalgO; subst xOk; subst xcrOk; subst xalgOk; subst xzk; subst xpD; subst xchi1; subst xSig; subst xfinSig; subst xjS; subst xside; subst xrhoS; subst fixedFieldTransport_initialPlaceSet_heq; subst xhEig; subst xLam; subst xsideL; subst xRCG; subst xgrpRCG; subst xfinRCG; subst xart; subst xth
-  subst hi; subst hQ; subst hχ
-  exact ⟨ψ, ι, A, hO, hF, rfl, fun _ => HEq.rfl⟩
+  exact transfer_aux h.gal.R h.gal.host (eq_of_heq h.gal.Om) h.gal.instOm h.gal.algOm
+    (eq_of_heq h.set.Tw) h.set.l h.set.cc h.set.S0 h.set.Ok h.set.crOk h.set.zk
+    h.set.RCG h.set.grpRCG h.set.art
+    ψ A ι χ hO hF hi hQ hχ
 
 end GlobalTheory.HeightCounting.Rigid
 end -- clump:auto

@@ -754,9 +754,6 @@ theorem action_elementary_unit_apply (a : S) (i j : Fin 2) (u : Ix S → RadSp k
   · intro b _ hb; simp [hb, pfst_zero]
   · simp
 
-theorem fin_two_eq_one_of_ne_zero {q : Fin 2} (h : q ≠ 0) : q = 1 := by
-  fin_cases q <;> simp_all
-
 theorem sum_split (a : S) {M : Type} [AddCommMonoid M] (f : Ix S → M) :
     ∑ y, f y = ∑ y, if y a = 0 then f y + f (Function.update y a 1) else 0 := by
   rw [Finset.sum_ite, Finset.sum_const_zero, add_zero, Finset.sum_add_distrib,
@@ -767,7 +764,7 @@ theorem sum_split (a : S) {M : Type} [AddCommMonoid M] (f : Ix S → M) :
   · intro y _; simp
   · intro y hy
     simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hy
-    have h1 := fin_two_eq_one_of_ne_zero hy
+    have h1 := Fin.eq_one_of_ne_zero _ hy
     funext b
     by_cases hb : b = a
     · subst hb; simp [h1]
@@ -780,7 +777,7 @@ theorem sum_split (a : S) {M : Type} [AddCommMonoid M] (f : Ix S → M) :
     · simp [Function.update_of_ne hb]
   · intro y hy
     simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hy
-    have h1 := fin_two_eq_one_of_ne_zero hy
+    have h1 := Fin.eq_one_of_ne_zero _ hy
     congr 1
     funext b
     by_cases hb : b = a
@@ -1115,7 +1112,7 @@ theorem split_y (a : S) (y : Ix S) : ∃ y0 : Ix S, y0 a = 0 ∧ (y = y0 ∨ y =
   by_cases h : y a = 0
   · left; rw [upd_self y a h]
   · right
-    rw [upd_upd, ← fin_two_eq_one_of_ne_zero h]
+    rw [upd_upd, ← Fin.eq_one_of_ne_zero _ h]
     exact (Function.update_eq_self a y).symm
 
 theorem act_letter_lc (X : ActualOps k r z z' π π') (L : R.LevelData (Pr (RadSp k r z z' π π')) r)

@@ -23,6 +23,11 @@ Don't open a pull request until the change is finished and you have checked that
 If you open one before then, open it as a draft (`gh pr create --draft`) and mark it ready for
 review once it is done. A draft stays out of the maintainers' review queue.
 
+When a maintainer hands a pull request back to you, it gets the `awaiting-author` label and
+leaves the review queue. Once you have made the changes they asked for, or answered their
+question, comment `ready` on the pull request, with nothing else in the comment. That takes the
+label off and puts the pull request back in the queue.
+
 To check that it compiles, bring your branch up to date with `main`, fetch the cache and run
 `lake build`. Lake rebuilds the files you changed and every file that imports them, so this also
 catches a lemma you removed that is still used somewhere else. It must finish without errors.
@@ -60,6 +65,12 @@ removes, renames or moves.>
 
 Drop the part from `---` on if the pull request depends on no other.
 
+## Batches
+
+If you assemble a batch of pull requests, leave out every pull request labelled `deferred`: it
+should not be merged for now. If a batch already contains one, take it out before the batch is
+merged, by rebuilding the batch without it or by reverting the merge commit that brought it in.
+
 ## Do not
 
 - change the Comparator challenge files: `src/Challenge.lean`, `comparator.json`,
@@ -68,15 +79,26 @@ Drop the part from `---` on if the pull request depends on no other.
   CI rejects any pull request that does.
 - add axioms or `sorry`. `src/Main.lean` may use only `propext`, `Quot.sound` and
   `Classical.choice`.
-- rewrite the proof along a substantially different path, or add files the proof does not need.
+- rewrite the proof along a substantially different path, or add files or lemmas the proof does
+  not need.
 - report the results of your own builds or Comparator runs in a pull request. Check that your
   change compiles, but don't write that it builds on your machine; maintainers build pull
   requests themselves.
+- add references to the literature, in docstrings or in `docs/references.bib`. Many of the
+  references agents have added were wrong: the wrong title, no theorem number in a long book, or
+  a result credited to a paper that doesn't prove it. A wrong reference is worse than none. We
+  will say here when we have a way to check them.
 
 ## Mistakes we keep seeing
 
 These are changes agents often make that we don't want. Most of them hide a problem in one file
 instead of fixing it where it comes from. We add to this list as we find more.
+
+### Keeping the old lemma next to a new one
+
+A sharper or more general version of a lemma is welcome if its proof is about as easy as the old
+one and it replaces the old one: update the callers and delete the old statement instead of
+keeping it as a corollary. Don't add lemmas nothing uses.
 
 ### Rewriting `nlinarith` by hand
 
@@ -92,10 +114,44 @@ available in the versions pinned in `lean-toolchain` and `lake-manifest.json`. I
 use `lia` for linear arithmetic over `ℕ` and `ℤ` rather than `omega`, and try `grind` before
 writing a long proof by hand. Don't open a pull request that only swaps one tactic for another.
 
-### Switching off instances
+### Working around a slow instance search
 
-Don't speed up a file by switching instances off with `attribute [-instance]` or promoting
-others with `attribute [local instance high]`. That hides a slow instance search instead of
-fixing it, and it ties the file to instances declared elsewhere, so it is hard to undo later.
-Find the instance that sends the search the wrong way, for example with
-`set_option trace.Meta.synthInstance true in` on the slow declaration, and fix it there.
+Don't speed up a file by steering Lean around a slow instance search, however it is done.
+Switching instances off with `attribute [-instance]`, adding a `local instance` or a shortcut such
+as `instance : CommRing (LocAlg v) := inferInstance`, and proving private copies of `map_add` so
+that the search never runs all make one file faster and leave the search as slow as before
+everywhere else. Put `set_option trace.Meta.synthInstance true in` and
+`set_option trace.profiler true in` in front of the slow declaration, follow the time to the
+instance that sends the search the wrong way, and fix it where it is declared.
+
+### Turning on old behaviour with `set_option backward`
+
+Don't add options such as `set_option backward.isDefEq.respectTransparency false`. They bring
+back how an older Lean behaved, and Lean removes them later, so a proof that needs one breaks on
+a future bump. Many files still have them from earlier bumps; don't copy those. Fix the proof
+instead: often it is enough to rewrite with a lemma rather than rely on Lean to unfold a
+definition.
+
+### Replacing `exact` or `rfl` with your own tactic
+
+Don't write a tactic with `elab` or `run_tac` that closes the goal in place of `exact` or `rfl`,
+whether it assigns the goal without checking the term's type or checks it with `Kernel.isDefEq`.
+Both hide a slow unification instead of fixing it, and the first leaves a wrong term to show up only
+as a kernel error at the end of the declaration. Some files already have one, such as
+`exact_by_kernel`; don't copy those. If `exact` is slow because the term and the goal only agree
+after unfolding, leave the proof as it is and open an issue with the profile instead.
+
+### Working around the unused-section-variable linter
+
+Don't speed up a theorem by putting `omit … in` or `set_option linter.unusedSectionVars false in`
+in front of it. That skips the linter's check for one declaration and leaves it as slow as before
+everywhere else. If the linter is what makes your file slow, open an issue with the profile.
+
+### Small speed-ups to the CI scripts
+
+We get many pull requests that shave a fraction of a second off a script in `scripts/` or
+`tools/ci_native/`, such as reading a file once instead of twice or batching a few `git` calls.
+Each one still needs a review from someone who knows the CI, and the time it saves disappears in
+a build that takes hours, so please don't open these. Changes to the CI are welcome when they fix
+a bug, close a gap in what is checked, or save time someone will notice, measured on the data the
+step really handles rather than on a small fixture.

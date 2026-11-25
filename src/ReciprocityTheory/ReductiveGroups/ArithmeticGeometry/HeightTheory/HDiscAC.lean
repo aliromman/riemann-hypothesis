@@ -1,54 +1,10 @@
 module
 
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.AlgebraMapOLInjective
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
 public import Mathlib.RingTheory.DedekindDomain.PID
 import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.Valuation.LocalSubring
-import Mathlib.RingTheory.WittVector.IsPoly
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Presheaf
 public import Mathlib.RingTheory.DedekindDomain.Factorization
 
@@ -108,75 +64,8 @@ theorem addv_eq_of_mem {w : AddValuation L (WithTop ℤ)} (hw : w ∈ PlacesOver
 
 variable (O F) in
 include F in
-theorem addv_mem (v : HeightOneSpectrum (integralClosure O L)) : addv L v ∈ PlacesOver O L := by
-  have hval : ∀ y : L, y ≠ 0 →
-      addv L v y = ((-WithZero.log (v.valuation L y) : ℤ) : WithTop ℤ) := by
-    intro y hy
-    unfold addv
-    rw [AddValuation.of_apply, if_neg hy]
-  have hP : v.asIdeal.comap (algebraMap O (integralClosure O L)) = IsLocalRing.maximalIdeal O := by
-    haveI := v.isMaximal
-    apply IsLocalRing.eq_maximalIdeal
-    first
-      | exact Ideal.IsMaximal.under O v.asIdeal
-  simp only [PlacesOver, IsNormDiscrete, Set.mem_setOf_eq]
-  refine ⟨⟨fun a ha => ?_, ?_⟩, fun x => ?_⟩
-  · rw [hval a ha]
-    exact WithTop.coe_ne_top
-  · obtain ⟨π, hπ⟩ := v.valuation_exists_uniformizer L
-    have hπ0 : π ≠ 0 := by
-      rintro rfl
-      rw [map_zero] at hπ
-      exact absurd hπ.symm (by simp)
-    refine ⟨π, ?_⟩
-    rw [hval π hπ0, hπ]
-    first
-      | simp
-  · have hx : algebraMap O L x =
-        algebraMap (integralClosure O L) L (algebraMap O (integralClosure O L) x) :=
-      IsScalarTower.algebraMap_apply O (integralClosure O L) L x
-    by_cases hx0 : algebraMap O L x = 0
-    · have hx00 : x = 0 := by
-        have h1 : algebraMap O F x = 0 := by
-          apply (algebraMap F L).injective
-          rw [← IsScalarTower.algebraMap_apply, map_zero]
-          exact hx0
-        exact IsFractionRing.injective O F (by rw [h1, map_zero])
-      subst hx00
-      simp
-    · rw [hval _ hx0]
-      have hv : v.valuation L (algebraMap O L x) ≠ 0 := by simpa using hx0
-      have hle := WithZero.log_le_log hv one_ne_zero
-      have hge := WithZero.log_le_log one_ne_zero hv
-      rw [WithZero.log_one] at hle hge
-      have hmem : v.valuation L (algebraMap O L x) < 1 ↔
-          algebraMap O (integralClosure O L) x ∈ v.asIdeal := by
-        rw [hx]
-        first
-          | exact v.valuation_lt_one_iff_mem _
-      have hint : v.valuation L (algebraMap O L x) ≤ 1 := by
-        rw [hx]
-        first
-          | exact v.valuation_le_one _
-      rw [← hP, Ideal.mem_comap, ← hmem]
-      constructor
-      · have h3 := hle.2 hint
-        exact_mod_cast (show (0 : ℤ) ≤ -WithZero.log (v.valuation L (algebraMap O L x)) by omega)
-      · constructor
-        · intro h
-          have h' : (0 : ℤ) < -WithZero.log (v.valuation L (algebraMap O L x)) := by
-            exact_mod_cast h
-          refine lt_of_le_of_ne hint (fun he => ?_)
-          rw [he, WithZero.log_one] at h'
-          omega
-        · intro h
-          have h1 : ¬ (0 ≤ WithZero.log (v.valuation L (algebraMap O L x))) :=
-            fun h0 => (not_le.2 h) (hge.1 h0)
-          have h2 : (0 : ℤ) < -WithZero.log (v.valuation L (algebraMap O L x)) := by omega
-          exact_mod_cast h2
-
-
-omit [IsFractionRing O F] [FiniteDimensional F L] [Algebra.IsSeparable F L] [IsScalarTower O F L] in
+theorem addv_mem (v : HeightOneSpectrum (integralClosure O L)) : addv L v ∈ PlacesOver O L :=
+  _root_.ReciprocityTheory.ChartRestriction.G.T0.ValPl.addv_mem_placesOver v
 theorem addv_nonneg_iff (v : HeightOneSpectrum (integralClosure O L)) {y : L} (hy : y ≠ 0) :
     0 ≤ addv L v y ↔ v.valuation L y ≤ 1 := by
   have hv : v.valuation L y ≠ 0 := by simpa using hy

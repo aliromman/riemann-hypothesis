@@ -50,7 +50,6 @@ noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta GlobalTheory.Mem.Th MeasureTheory IsDedekindDomain NumberField Matrix GlobalTheory.IndefiniteRowSideFullHecke.BesselData GlobalTheory.RootExch
 open scoped TensorProduct RestrictedProduct
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.SplitAnnihilator
 
@@ -60,7 +59,7 @@ open GlobalTheory.IdemModTwo
 open Classical in
 theorem continuous_singleV (F : Type) [Field F] [NumberField F] (v : HeightOneSpectrum (𝓞 F)) :
     Continuous (singleV F v) := by
-  apply _root_.GlobalTheory.FinPl.SplitPoint.continuous_single_at <;> assumption
+  apply _root_.GlobalTheory.FinPl.SplitPoint.continuous_single_at
 
 theorem trace_split {D : D7} {v : HeightOneSpectrum (𝓞 D.host.F)} {e : AE D} (he : SplitAt D v e)
     (x y : Fv D.host.F v) :

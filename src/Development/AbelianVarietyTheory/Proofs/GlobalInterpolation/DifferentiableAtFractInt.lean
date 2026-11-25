@@ -215,10 +215,10 @@ lemma zeta_eq_of_one_lt {s : ℂ} (hs : 1 < s.re) :
     riemannZeta s = s / (s - 1) - s * fractInt s := by
   first
   | (apply _root_.GlobalTheory.ZetaFractionalIntegral.zeta_eq_sub_integral_fract <;> assumption)
-  | (intros; exact _root_.GlobalTheory.ZetaFractionalIntegral.zeta_eq_sub_integral_fract ..)
 
-theorem zeta_eq {s : ℂ} (hs : 0 < s.re) (hs1 : s ≠ 1) :
-    riemannZeta s = s / (s - 1) - s * fractInt s := by
+/-- The fractional-part integral represents the regular part of zeta also at the pole. -/
+theorem zeta₀_eq {s : ℂ} (hs : 0 < s.re) :
+    riemannZeta₀ s = 1 - s * fractInt s := by
   have hU : IsOpen {z : ℂ | 0 < z.re} := isOpen_lt continuous_const continuous_re
   have hf : AnalyticOnNhd ℂ riemannZeta₀ {z : ℂ | 0 < z.re} :=
     differentiable_riemannZeta₀.differentiableOn.analyticOnNhd hU
@@ -242,15 +242,20 @@ theorem zeta_eq {s : ℂ} (hs : 0 < s.re) (hs1 : s ≠ 1) :
       have h1 := zeta_eq_of_one_lt hz
       rw [riemannZeta_eq_inv_sub_add hz1, key z hz1] at h1
       linear_combination h1)
-  have h2 : riemannZeta₀ s = 1 - s * fractInt s := heq hs
-  rw [riemannZeta_eq_inv_sub_add hs1, key s hs1, h2]
+  exact heq hs
+
+theorem zeta_eq {s : ℂ} (hs : 0 < s.re) (hs1 : s ≠ 1) :
+    riemannZeta s = s / (s - 1) - s * fractInt s := by
+  rw [riemannZeta_eq_inv_sub_add hs1, zeta₀_eq hs]
+  field_simp [sub_ne_zero.mpr hs1]
   ring
 
-theorem norm_zeta_sub_le :
-    ∀ s : ℂ, 0 < s.re → s ≠ 1 → ‖riemannZeta s - s / (s - 1)‖ ≤ ‖s‖ / s.re := by
-  intro s hs hs1
-  rw [zeta_eq hs hs1, sub_sub_cancel_left, norm_neg, norm_mul, div_eq_mul_one_div]
+/-- A uniform bound for the regular part, with no exclusion of `s = 1`. -/
+theorem norm_zeta₀_sub_one_le {s : ℂ} (hs : 0 < s.re) :
+    ‖riemannZeta₀ s - 1‖ ≤ ‖s‖ / s.re := by
+  rw [zeta₀_eq hs, sub_sub_cancel_left, norm_neg, norm_mul, div_eq_mul_one_div]
   exact mul_le_mul_of_nonneg_left (norm_fractInt_le hs) (norm_nonneg s)
+
 
 end GlobalTheory.ZetaHalfPlane
 end -- clump:auto

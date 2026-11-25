@@ -85,7 +85,7 @@ theorem gl_rep_operator_weight_shift {E : GLOps n (KK O) V} (hE : IsGLRep E) {mu
   simp only [Pi.add_apply, rootW, Pi.sub_apply, Pi.single_apply]
   split_ifs <;> subst_vars <;>
     (try simp only [Int.cast_add, Int.cast_sub, Int.cast_one, add_smul, sub_smul, one_smul,
-      sub_zero, add_zero, zero_sub]) <;> (try abel) <;> (try simp_all)
+      sub_zero, add_zero, zero_sub]) <;> (try abel_nf) <;> (try simp_all)
 
 theorem mem_weight_sup_exists_finset_sum (E : GLOps n (KK O) V) (Pr : (Fin n → ℤ) → Prop) {x : V}
     (hx : x ∈ ⨆ mu, ⨆ (_ : Pr mu), weightSp E mu) :

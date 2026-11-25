@@ -65,6 +65,8 @@ namespace Formalism.BasicNotions
 
 open Formalism.WeaklyAdmissibleFiltrations PowerSeries TensorProduct
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure LocLat (G : Type) [Group G] [TopologicalSpace G] (Qp LL O : Type) [Field Qp] [Field LL]
     [Algebra Qp LL] [CommRing O] [Algebra O LL] [TopologicalSpace LL] where
   V : Type
@@ -217,6 +219,8 @@ def herrZ1Δ {O D ι : Type} [CommRing O] [AddCommGroup D] [Module O D] (γ φ :
 
 
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure LocWach (PD : PeriodData G Qp K₀ K B BdR) (LL O : Type) [Field LL] [Algebra Qp LL]
     [CommRing O] [Algebra O LL] [TopologicalSpace LL] (v : AddValuation LL (WithTop ℚ)) (n : ℕ) where
 
@@ -515,6 +519,8 @@ open Loc
 
 variable {l : ℕ} [Fact l.Prime]
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure LocRings (l : ℕ) [Fact l.Prime] where
   B : Type
   BdR : Type
@@ -542,6 +548,8 @@ instance maxUnramifiedCrisTower (R : LocRings l) (K : FinExt l) : IsScalarTower 
 instance maxUnramifiedDeRhamTower (R : LocRings l) (K : FinExt l) : IsScalarTower ↥(K0 K) ↥K.1 R.BdR :=
   IsScalarTower.of_algebraMap_eq fun _ => rfl
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure LocPrime (l : ℕ) [Fact l.Prime] where
   R : LocRings l
   PD : ∀ K : FinExt l, PeriodData ↥(GK K) ℚ_[l] ↥(K0 K) ↥K.1 R.B R.BdR
@@ -589,6 +597,8 @@ open Loc
 
 variable {l : ℕ} [Fact l.Prime]
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure LocBridge (l : ℕ) [Fact l.Prime] (E Ω : Type) [Field E] [Field Ω] [Algebra E Ω]
     (Gw : Subgroup (Ω ≃ₐ[E] Ω)) (O : Type) [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] where
   Kw : FinExt l
@@ -802,6 +812,8 @@ def autCb (g : OCb l ≃+* OCb l) : Cb l ≃+* Cb l :=
 
 end Loc
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure LocAinf (l : ℕ) [Fact l.Prime] (P : LocPrime l) where
 
   actC : GQ l →* (PadicComplex l ≃+* PadicComplex l)
@@ -1066,6 +1078,8 @@ def TWact {R : Type} [CommRing R] [Algebra O R] (f : R →ₐ[O] R) (T : LocLat 
     TW R T →ₗ[O] TW R T :=
   TensorProduct.map f.toLinearMap (T.actT g)
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure EtTie (W : LocWach PD LL O v n) (RA RW : Type) [CommRing RA] [CommRing RW] [Algebra O RA]
     [Algebra O RW] (inclR : RA →ₐ[O] RW) (φR : RW →ₐ[O] RW) (gR : G → (RW →ₐ[O] RW)) (πA : RA) where
 
@@ -1140,6 +1154,8 @@ def LocAinf.gRW {P : LocPrime l} (AI : LocAinf l P) (LL : FinExt l) (g : GQ l) :
     RW LL →ₐ[↥(OL LL)] RW LL :=
   Algebra.TensorProduct.map (AlgHom.id _ _) (AI.actWCbHom g).toAlgHom
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure EtSit (P : LocPrime l) (AI : LocAinf l P) (K : FinExt l) (s : ℕ) (LL : FinExt l)
     (_h : Good K s LL) (W : LocWach (P.PD K) ↥LL.1 ↥(OL LL) (P.v LL) (Module.finrank ℚ_[l] ↥(K0 K))) where
   tie : EtTie W (RA LL) (RW LL) (inclR LL) (φRW LL)
@@ -1179,6 +1195,8 @@ def TWincl {R R' : Type} [CommRing R] [CommRing R'] [Algebra O R] [Algebra O R']
 
 variable {Zl Ai : Type} [CommRing Zl] [CommRing Ai] [Algebra Zl O] [Algebra Zl Ai]
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure CmpTie (W : LocWach PD LL O v n) {RW : Type} [CommRing RW] [Algebra O RW]
     {inclR : (O ⊗[Zl] Ai) →ₐ[O] RW} {φR : RW →ₐ[O] RW} {gR : G → (RW →ₐ[O] RW)} {πA : O ⊗[Zl] Ai}
     (E : EtTie W (O ⊗[Zl] Ai) RW inclR φR gR πA) (ιdR : Ai →+* BdR) (p1 : Ai) (tS zS : BdR) where
@@ -1233,6 +1251,8 @@ end Generic
 
 variable {l : ℕ} [Fact l.Prime]
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure CmpSit (P : LocPrime l) (AI : LocAinf l P) (K : FinExt l) (s : ℕ) (LL : FinExt l)
     (h : Good K s LL) {W : LocWach (P.PD K) ↥LL.1 ↥(OL LL) (P.v LL) (Module.finrank ℚ_[l] ↥(K0 K))}
     (E : EtSit P AI K s LL h W) where
@@ -1243,6 +1263,8 @@ structure CmpSit (P : LocPrime l) (AI : LocAinf l P) (K : FinExt l) (s : ℕ) (L
 
   π₁_inv : ∃ u ∈ (P.PD K).Fil 0, P.ιB (AI.ιA AI.π₁) * u = 1
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure LocHW (l : ℕ) [Fact l.Prime] (P : LocPrime l) where
 
   W : ∀ (K : FinExt l) (s : ℕ) (LL : FinExt l), Good K s LL →
@@ -1254,9 +1276,13 @@ structure LocHW (l : ℕ) [Fact l.Prime] (P : LocPrime l) where
     @Module.Projective (PowerSeries ℤ_[l]) _ ↥((W K s LL h).N T) _
       (Module.compHom _ (zlA LL (Module.finrank ℚ_[l] ↥(K0 K))))
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure LocFon (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P) (H : LocHW l P) where
   E : ∀ (K : FinExt l) (s : ℕ) (LL : FinExt l) (h : Good K s LL), EtSit P AI K s LL h (H.W K s LL h)
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure LocCmpT (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P) (H : LocHW l P)
     (F : LocFon l P AI H) where
   C : ∀ (K : FinExt l) (s : ℕ) (LL : FinExt l) (h : Good K s LL), CmpSit P AI K s LL h (F.E K s LL h)

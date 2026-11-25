@@ -5,13 +5,9 @@ public import Mathlib.RingTheory.Ideal.Height
 public import Mathlib.RingTheory.Ideal.AssociatedPrime.Basic
 public import Mathlib.RingTheory.Ideal.KrullsHeightTheorem
 import Mathlib.Tactic.Lemma
-import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.TypeStar
 
 @[expose] public section
-
-set_option autoImplicit false
 
 namespace ReciprocityTheory.ChartRestriction.G.Out.KrullAlg
 

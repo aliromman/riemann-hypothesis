@@ -73,7 +73,6 @@ import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 set_option maxSynthPendingDepth 1
 
@@ -180,7 +179,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
@@ -287,8 +285,6 @@ section -- clump:auto
 @[expose] public section
 
 open DividedPowers CrystallineSemistableComparison.Pb
-
-set_option autoImplicit false
 
 namespace GlobalTheory.CompanionTheory.LatIdeal
 
@@ -461,8 +457,6 @@ section -- clump:auto
 
 open DividedPowers CrystallineSemistableComparison.Pb
 
-set_option autoImplicit false
-
 namespace GlobalTheory.CompanionTheory.LatDP
 
 variable {B : Type} [CommRing B] [Algebra ℚ B]
@@ -544,7 +538,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
@@ -577,7 +570,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
@@ -633,8 +625,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open GroundTheory.PAdicHodge Formalism.Per6 DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb CrystallineSemistableComparison.Pb.Lat
@@ -677,8 +667,6 @@ section -- clump:auto
 
 open GroundTheory.PAdicHodge Formalism.Per6 DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb CrystallineSemistableComparison.Pb.Lat
 
-set_option autoImplicit false
-
 namespace GlobalTheory.CompanionTheory.LatLevel
 
 theorem dk_fk (l : ℕ) [Fact l.Prime] (k : ℕ) (w : Ainf l) :
@@ -715,7 +703,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
@@ -971,7 +958,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
@@ -1071,7 +1057,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
@@ -1108,7 +1093,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
@@ -1180,7 +1164,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
@@ -1237,7 +1220,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
@@ -1387,7 +1369,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
@@ -1455,7 +1436,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
@@ -1529,7 +1509,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
@@ -1564,7 +1543,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section

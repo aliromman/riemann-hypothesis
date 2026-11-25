@@ -5,46 +5,7 @@ public import Mathlib.RepresentationTheory.Coinduced
 public import Mathlib.RepresentationTheory.Homological.TateCohomology.Basic
 public import GroundTheory.TateCohomology.CupConnecting
 public import Mathlib.Algebra.Homology.HomologicalComplexAbelian
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
 import Mathlib.CategoryTheory.Monoidal.Mon
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -70,7 +31,6 @@ theorem tate_d_iCycles (A : Rep k G) (n : ℕ) (z : (tateComplex A).cycles n) :
   exact h
 
 
-set_option backward.isDefEq.respectTransparency false in
 theorem tateIsoH_homology_class_eq (A : Rep k G) (n : ℕ) [NeZero n] :
     ∃ C : (tateComplex A).cycles n ⟶ cocycles A n,
       (tateComplex A).homologyπ n ≫ (tateIsoH A n n rfl).hom = C ≫ π A n ∧
@@ -126,7 +86,6 @@ noncomputable abbrev tδ {S : ShortComplex (Rep k G)} (hS : S.ShortExact) (i j :
   (TateCohomology.map_tateComplexFunctor_shortExact hS).δ i j hij
 
 
-set_option backward.isDefEq.respectTransparency false in
 theorem tδ_apply {S : ShortComplex (Rep k G)} (hS : S.ShortExact) (i : ℤ)
     (x₃ : (tateComplex S.X₃).X i) (hx₃ : ((tateComplex S.X₃).d i (i + 1)).hom x₃ = 0)
     (x₂ : (tateComplex S.X₂).X i) (hx₂ : ((tateComplex.map S.g).f i).hom x₂ = x₃)
@@ -139,13 +98,11 @@ theorem tδ_apply {S : ShortComplex (Rep k G)} (hS : S.ShortExact) (i : ℤ)
     (i + 1 + 1) (by simp)
 
 
-set_option backward.isDefEq.respectTransparency false in
 theorem tδ_comp_tateIsoH {S : ShortComplex (Rep k G)} (hS : S.ShortExact) (n : ℕ) [NeZero n] :
     tδ hS n (n + 1) rfl ≫ (tateIsoH S.X₁ (n + 1) (n + 1) (Nat.cast_succ n).symm).hom =
       (tateIsoH S.X₃ n n rfl).hom ≫ δ hS n (n + 1) rfl := by
   apply (cancel_epi ((tateComplex S.X₃).homologyπ n)).1
   ext z
-  simp only [ModuleCat.hom_comp, LinearMap.comp_apply]
   have hz := tate_d_iCycles_int _ _ z
   obtain ⟨y, x, hy, hx⟩ := exists_lift_of_cocycle hS
     (cocyclesMk (((tateComplex S.X₃).iCycles n).hom z) (tate_d_iCycles _ n z))
@@ -247,15 +204,15 @@ variable (Q : ShortComplex (ShortComplex (Rep k G)))
 
 
 include hR₂ hC₂ in
-set_option backward.isDefEq.respectTransparency false in
-
 theorem tδ_comp_tδ (p : ℤ) :
     tδ hC₃ p (p + 1) rfl ≫ tδ hR₁ (p + 1) (p + 1 + 1) rfl =
       -(tδ hR₃ p (p + 1) rfl ≫ tδ hC₁ (p + 1) (p + 1 + 1) rfl) := by
   apply (cancel_epi ((tateComplex Q.X₃.X₃).homologyπ p)).1
   ext z
-  simp only [Preadditive.comp_neg, ModuleCat.hom_comp, ModuleCat.hom_neg, LinearMap.comp_apply,
-    LinearMap.neg_apply]
+  change (tδ hR₁ (p + 1) (p + 1 + 1) rfl).hom ((tδ hC₃ p (p + 1) rfl).hom
+      (((tateComplex Q.X₃.X₃).homologyπ p).hom z)) =
+    -(tδ hC₁ (p + 1) (p + 1 + 1) rfl).hom ((tδ hR₃ p (p + 1) rfl).hom
+      (((tateComplex Q.X₃.X₃).homologyπ p).hom z))
   have hz := tate_d_iCycles_int _ _ z
   rw [← tateCyclesMk_iCycles _ _ z hz]
   set x33 := ((tateComplex Q.X₃.X₃).iCycles p).hom z
@@ -327,7 +284,8 @@ theorem tδ_comp_tδ (p : ℤ) :
       (((tateComplex Q.X₃.X₃).homologyπ p).hom (tateCyclesMk Q.X₃.X₃ p x33 hz))) =
       -(tδ hC₁ (p + 1) (p + 1 + 1) rfl).hom ((tδ hR₃ p (p + 1) rfl).hom
         (((tateComplex Q.X₃.X₃).homologyπ p).hom (tateCyclesMk Q.X₃.X₃ p x33 hz))) := by
-    rw [e1', e2, e3, e4', tateCyclesMk_neg _ _ w hdw hdnw, map_neg, neg_neg]
+    rw [e1', e2, e3, e4', tateCyclesMk_neg _ _ w hdw hdnw, map_neg]
+    exact (neg_neg _).symm
   exact key
 
 end Anticomm

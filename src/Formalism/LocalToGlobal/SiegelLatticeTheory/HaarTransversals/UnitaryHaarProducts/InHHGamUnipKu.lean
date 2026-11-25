@@ -403,10 +403,6 @@ theorem transport_fixes_z : X.B.I.fmat (X.xu u) *ᵥ (X.B.I.fmat (X.xu u)⁻¹ *
     simp only [Formalism.MainNotions.S.AutInst.fmat, Subgroup.coe_inv, Units.mul_inv]
   rw [h1, Matrix.one_mulVec]
 
-private theorem hA_eq_dotProduct_sigR (x y : VA X.B.I) :
-    hA X.B.I x y = (fun i => Formalism.UG.sigR X.B.I.cm.sig (Af X.B.I.F) (x i)) ⬝ᵥ ((X.B.I.J.map ⇑(Formalism.UG.inclE (F := X.B.I.F) (Af X.B.I.F))) *ᵥ y) := by
-  simp only [hA, Formalism.UG.hform, dotProduct, Matrix.mulVec, Finset.mul_sum, mul_assoc]
-
 private theorem dotProduct_mulVec_eq_transpose (A : Matrix (Fin X.B.I.n) (Fin X.B.I.n) (X.B.I.E ⊗[X.B.I.F] Af X.B.I.F)) (a b : VA X.B.I) :
     (A *ᵥ a) ⬝ᵥ b = a ⬝ᵥ (Aᵀ *ᵥ b) := by
   simp only [dotProduct, Matrix.mulVec, Matrix.transpose_apply, Finset.sum_mul, Finset.mul_sum]

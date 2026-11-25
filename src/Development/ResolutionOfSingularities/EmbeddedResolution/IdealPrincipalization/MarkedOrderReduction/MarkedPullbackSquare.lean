@@ -79,35 +79,6 @@ theorem orderAtPullbackInvariant_of_smooth (T : MarkedIdealWithBoundary.{u}) (_h
       (P := @AlgebraicGeometry.Smooth) hpb.flip inferInstance
   exact orderAt_comap T.base pB q A y
 
-theorem orderAtPullbackInvariant_baseChange_field (hG : PrincipalizationGeometryHypotheses.{u}) (T : MarkedIdealWithBoundary.{u})
-    (_hT : T.IsAdmissible) (L : Type u) [Field L] [CharZero L] (f : T.base →+* L) :
-    OrderAtPullbackInvariant T (pullback.fst T.structMap (specMapOfFieldHom T.base L f)) := by
-  intro B b pB IB EB hB hcomm Q q p hpb A y
-  have hbig : IsPullback q (p ≫ pullback.snd T.structMap (specMapOfFieldHom T.base L f)) pB
-      (specMapOfFieldHom T.base L f) := by
-    rw [← hcomm]
-    exact hpb.paste_vert (IsPullback.of_hasPullback T.structMap (specMapOfFieldHom T.base L f))
-  have he : hbig.isoPullback.hom ≫ pullback.fst pB (specMapOfFieldHom T.base L f) = q :=
-    hbig.isoPullback_hom_fst
-  have : IsOpenImmersion hbig.isoPullback.hom := inferInstance
-  have hkey := hG.orderAt_baseChange (MarkedIdealWithBoundary.mk T.base B pB IB T.mult EB) hB L f A
-      (hbig.isoPullback.hom.base y)
-  have hq : (pullback.fst pB (specMapOfFieldHom T.base L f)).base (hbig.isoPullback.hom.base y)
-      = q.base y := congrArg (fun m : Q ⟶ B => m.base y) he
-  calc orderAt (A.comap q) y
-      = orderAt (A.comap (hbig.isoPullback.hom ≫
-          pullback.fst pB (specMapOfFieldHom T.base L f))) y := by
-        rw [he]
-    _ = orderAt ((A.comap (pullback.fst pB (specMapOfFieldHom T.base L f))).comap
-          hbig.isoPullback.hom) y := by
-        rw [Scheme.IdealSheafData.comap_comp]
-    _ = orderAt (A.comap (pullback.fst pB (specMapOfFieldHom T.base L f)))
-          (hbig.isoPullback.hom.base y) :=
-        orderAt_comap_of_isOpenImmersion _ _ y
-    _ = orderAt A ((pullback.fst pB (specMapOfFieldHom T.base L f)).base
-          (hbig.isoPullback.hom.base y)) := hkey
-    _ = orderAt A (q.base y) := by rw [hq]
-
 end FunctorialResolution.EmbeddedResolution
 
 end
@@ -176,11 +147,6 @@ theorem orderAt_comap_verticalMap_le (S : MarkedPullbackSquare T g) (hT : T.IsAd
     orderAt (A.comap S.left) y ≤ c := by
   rw [S.orderAt_comap_verticalMap hT hg A y]
   exact hA (S.left.base y)
-
-theorem flat_verticalMap (S : MarkedPullbackSquare T g) [AlgebraicGeometry.Flat g] :
-    AlgebraicGeometry.Flat S.left :=
-  MorphismProperty.IsStableUnderBaseChange.of_isPullback
-    (P := @AlgebraicGeometry.Flat) S.isPullback.flip ‹AlgebraicGeometry.Flat g›
 
 end MarkedPullbackSquare
 

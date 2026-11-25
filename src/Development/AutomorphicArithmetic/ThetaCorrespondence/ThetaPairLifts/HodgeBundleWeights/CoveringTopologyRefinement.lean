@@ -529,7 +529,7 @@ theorem main : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host 
   have hc : constF e C.Y = (φ : X.Fn →+* C.Y.Fn).comp (constF e X) :=
     RingHom.ext fun a => (φ.commutes _).symm
   have hst₀ : f₀.Stable := _root_.GlobalTheory.ShFam.EigStable.stable_of_isLocalRing E H Dw l Xo c O β Z _ _ _ f₀ inferInstance
-  obtain ⟨⟨M, hM, -⟩, hMu⟩ := (GlobalTheory.T.lie_eigenspace_frame_coordinates_unique_invertible E H Dw l Xo c O β Z _ _ _ f₀ C.Y.Fn (constF e C.Y)
+  obtain ⟨⟨M, hM, -⟩, hMu⟩ := (GlobalTheory.ShFam.EigCoord.coord_spec E H Dw l Xo c O β Z _ _ _ f₀ C.Y.Fn (constF e C.Y)
     (genericPt C.Y ≫ C.π ≫ genι Z) (φ : X.Fn →+* C.Y.Fn) inferInstance hst₀ hx hc).1 C.f0
   have hA₀d : ∀ τ, (A₀ τ).det ≠ 0 := Fr.det_ne hT.1
   have hA₀φ : ∀ τ, ((A₀.map φ) τ).det ≠ 0 := fun τ =>
@@ -632,7 +632,7 @@ theorem main : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host 
   have hc : constF e C.Y = (φ : X.Fn →+* C.Y.Fn).comp (constF e X) :=
     RingHom.ext fun a => (φ.commutes _).symm
   have hst₀ : f₀.Stable := _root_.GlobalTheory.ShFam.EigStable.stable_of_isLocalRing E H Dw l Xo c O β Z _ _ _ f₀ inferInstance
-  obtain ⟨⟨M, hM, -⟩, hMu⟩ := (GlobalTheory.T.lie_eigenspace_frame_coordinates_unique_invertible E H Dw l Xo c O β Z _ _ _ f₀ C.Y.Fn (constF e C.Y)
+  obtain ⟨⟨M, hM, -⟩, hMu⟩ := (GlobalTheory.ShFam.EigCoord.coord_spec E H Dw l Xo c O β Z _ _ _ f₀ C.Y.Fn (constF e C.Y)
     (genericPt C.Y ≫ C.π ≫ genι Z) (φ : X.Fn →+* C.Y.Fn) inferInstance hst₀ hx hc).1 C.f0
   have hA₀d : ∀ τ, (A₀ τ).det ≠ 0 := Fr.det_ne hT.1
   have hA₀φ : ∀ τ, ((A₀.map φ) τ).det ≠ 0 := fun τ =>
@@ -859,9 +859,7 @@ theorem mdbar_blockDiagonal' (A : ∀ i, E → Matrix (m i) (m' i) ℂ) (z ξ : 
   · subst h; simp
   · simp [blockDiagonal'_apply_ne _ _ _ h]
 
-
 variable [Fintype o] [∀ i, Fintype (m i)] [∀ i, Fintype (m' i)]
-
 
 variable [∀ i, DecidableEq (m i)] {H : ∀ i, E → Matrix (m i) (m i) ℂ} {z : E}
 
@@ -892,7 +890,6 @@ theorem curv_blockDiagonal' {k : WithTop ℕ∞} (d : ∀ i, MContDiffAt k (H i)
       fun x hx => conn_blockDiagonal' hx ξ
   rw [curv, mdbar_congr he, mdbar_blockDiagonal' fun i x => conn (H i) x ξ, ← blockDiagonal'_neg]
   rfl
-
 
 end Family
 
@@ -1604,6 +1601,7 @@ noncomputable section
 
 open AlgebraicGeometry CategoryTheory MvPolynomial NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.Toroidal GlobalTheory.ShFam GlobalTheory.ProjVar GlobalTheory.FlagBundle GlobalTheory.GoodMetric GlobalTheory.LieBase
 open Classical
+open scoped GlobalTheory.CompHt
 
 theorem GlobalTheory.LieBase.exists_goodBase : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l)
     (c : Coeff l) (O : Type) [CommRing O] (β : O →+* c.F) (Y : Model Xo c β) (T : TorModel Y) (F : Type) [Field F]

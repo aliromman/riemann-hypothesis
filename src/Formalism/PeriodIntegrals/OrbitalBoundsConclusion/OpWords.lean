@@ -600,7 +600,7 @@ theorem bihom_le_Sc : ∀ c, c ≤ d → Bihom K k c ≤ Sc K k d c := by
         monomial (m' + single (Sum.inl a) 1 + single (Sum.inr b) 1) 1 := by
       simp only [X, monomial_mul, one_mul]
       congr 1
-      abel
+      abel_nf
     have hw1' : weight (wx k) m' = c := by
       have := hw1
       rw [← wtXSum, map_add (f := _), map_add (f := _), weight_single, weight_single] at this

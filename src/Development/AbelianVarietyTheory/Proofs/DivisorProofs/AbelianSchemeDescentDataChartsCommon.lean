@@ -575,9 +575,6 @@ theorem spc {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B
     spMap g ≫ spMap f = spMap (g.comp f) := by
   rw [← Spec.map_comp]; rfl
 
-theorem spinj {A B : Type} [CommRing A] [CommRing B] {f g : A →+* B} (h : spMap f = spMap g) : f = g :=
-  congrArg CommRingCat.Hom.hom (Spec.map_injective h)
-
 theorem flat_generic {X Y : Scheme.{0}} [IsIntegral X] [IsIntegral Y] (φ : Y ⟶ X) [Flat φ] :
     φ (genericPoint Y) = genericPoint X := by
   have hg : GeneralizingMap φ := Flat.generalizingMap φ
@@ -720,7 +717,7 @@ theorem ring_setup (σ : Setup) (x x' : Sp σ.R) (Ω : Type) [Field Ω] (u : (σ
   letI : Algebra σ.R ((Sp σ.R).presheaf.stalk z) := (StructureSheaf.toStalk σ.R z).hom.toAlgebra
   haveI : IsLocalization.AtPrime ((Sp σ.R).presheaf.stalk z) z.asIdeal := StructureSheaf.IsLocalization.to_stalk σ.R z
   have e : (Scheme.stalkClosedPointTo (σ.C x').ξ).hom.comp (algebraMap σ.R ((Sp σ.R).presheaf.stalk z)) = σ.ρ x' := by
-    apply spinj
+    apply GlobalTheory.FullPoint.spMap_inj
     rw [← spc, ← σ.hρ x']
     have h := Scheme.Spec_stalkClosedPointTo_fromSpecStalk (σ.C x').ξ
     rw [Spec.fromSpecStalk_eq'] at h
@@ -782,7 +779,7 @@ theorem setup_common : ∀ σ : Setup, σ.Common := by
   have e₂ := ff_eq σ x' θb (m ≫ e.hom.left ≫ lb) (by
     rw [Category.assoc, Category.assoc, hlb, reassoc_of% hE, ← Category.assoc, hm, hb])
   haveI : Mono (gp σ.A.left) := by unfold gp; infer_instance
-  apply spinj
+  apply GlobalTheory.FullPoint.spMap_inj
   rw [← cancel_mono (gp σ.A.left), ← e₁, ← e₂, Category.assoc, Category.assoc, Category.assoc, hee]
 
 end GlobalTheory.Desc

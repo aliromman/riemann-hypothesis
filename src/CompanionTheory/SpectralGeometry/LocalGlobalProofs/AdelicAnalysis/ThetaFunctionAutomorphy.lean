@@ -828,8 +828,7 @@ theorem rational_coset_param : ∀ (F : Type) [Field F] [NumberField F] (ι : Ty
 
     simp only [emb, gM, EM, Matrix.mulVec, dotProduct, Matrix.smul_apply, Matrix.kroneckerMap_apply,
     Matrix.one_apply, Pi.add_apply, map_add, map_mul, map_sum, map_natCast, map_intCast,
-    Fintype.sum_prod_type, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq, Finset.mem_univ, if_true,
-    nsmul_eq_mul, Finset.mul_sum]
+    Fintype.sum_prod_type, ite_mul, one_mul, zero_mul, Finset.mul_sum]
     congr 1
     rw [Finset.sum_eq_single i (fun j _ hj => by simp [Ne.symm hj]) (by simp)]
     refine Finset.sum_congr rfl fun v _ => ?_
@@ -1094,7 +1093,7 @@ theorem _root_.GlobalTheory.T.poisson_summation_gaussian :
         ∑' n : κ → ℤ, fh ((g⁻¹)ᵀ *ᵥ fun i => (n i : ℝ)) *
           Complex.exp (-(2 * (Real.pi : ℂ) * Complex.I) *
             ((a ⬝ᵥ ((g⁻¹)ᵀ *ᵥ fun i => (n i : ℝ)) : ℝ) : ℂ)) := by
-  apply GlobalTheory.CompanionTheory.SW.Core.PoiLat.poisson_shifted_lattice <;> assumption
+  apply GlobalTheory.CompanionTheory.SW.Core.PoiLat.poisson_shifted_lattice
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.PoissonSummationGaussianStatement =====
@@ -1642,14 +1641,6 @@ namespace GlobalTheory.CompanionTheory.SW.ThW
 
 section Linear
 
-theorem sb_integrable {V : Type} [AddCommGroup V] [TopologicalSpace V] [MeasurableSpace V]
-    {χ : V → V → ℂ} {μ : Measure V} (hV : NADual V χ μ) {φ : V → ℂ} (h : SB φ) (y : V) :
-    Integrable (fun x => φ x * χ x y) μ := by
-  obtain ⟨hT, _, _, _, hB, hH, _, _, hC, _⟩ := hV
-  have hc : Continuous fun x => φ x * χ x y :=
-    h.1.continuous.mul (hC.comp (by fun_prop : Continuous fun x : V => (x, y)))
-  exact hc.integrable_of_hasCompactSupport h.2.mul_right
-
 theorem fou_smul {V : Type} [MeasurableSpace V] (χ : V → V → ℂ) (μ : Measure V) (c : ℂ)
     (φ : V → ℂ) : fou χ μ (c • φ) = c • fou χ μ φ := by
   funext y
@@ -1870,10 +1861,10 @@ theorem core [MeasurableSpace (A F)] [BorelSpace (A F)] {lf : Measure (A F)}
       exact ⟨h0, by rw [hf0, ht0, ht0, mul_zero]⟩
     | insert a t ha ih =>
       obtain ⟨ihs, ihe⟩ := ih
-      have hca := _root_.CompanionTheory.PlacePermOperatorBicommutantSpan.sb_smul (c a) (hI a)
+      have hca := _root_.PositivityTheory.PlacePermOperatorBicommutantSpan.sb_smul (c a) (hI a)
       simp only [Finset.sum_insert ha]
-      refine ⟨_root_.CompanionTheory.PlacePermOperatorBicommutantSpan.sb_add hca ihs, ?_⟩
-      rw [_root_.CompanionTheory.PlacePermOperatorBicommutantSpan.fou_add hV hca ihs, theta_add (hsum hτ' (hsb hca)) (hsum hτ' (hsb ihs)),
+      refine ⟨_root_.PositivityTheory.PlacePermOperatorBicommutantSpan.sb_add hca ihs, ?_⟩
+      rw [_root_.PositivityTheory.PlacePermOperatorBicommutantSpan.fou_add hV hca ihs, theta_add (hsum hτ' (hsb hca)) (hsum hτ' (hsb ihs)),
         theta_add (hsum hτ hca) (hsum hτ ihs), mul_add, ihe, fou_smul, theta_smul, theta_smul]
       congr 1
       rw [← base hl h1 hψ hQ hV a hN hτ]

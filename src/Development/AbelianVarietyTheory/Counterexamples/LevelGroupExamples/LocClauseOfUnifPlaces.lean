@@ -48,8 +48,6 @@ noncomputable section
 open scoped TensorProduct Topology
 open NumberField Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta ReciprocityTheory.ChartRestriction.G.FD Formalism.L2.Pj
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 namespace GlobalTheory.DictLocTest
 
 variable {D : D7} {E : Type} [Field E] [NumberField E] [IsCMField E] {r : ℕ} {Comp : Type}
@@ -71,7 +69,7 @@ theorem mem_dom_iff (X : Data E r) {γ : GL (Fin r) E} (hγ : γ ∈ X.Γ) (y : 
     intro τ
     show ((γ : Matrix (Fin r) (Fin r) E).map τ.1 * mat y τ).det = _
     exact Matrix.det_mul _ _
-  simp only [Data.dom, GG, Set.mem_setOf_eq, hd, mul_ne_zero_iff, GlobalTheory.NormFactor.dmin_lact X hγ y]
+  simp only [Data.dom, GG, Set.mem_ofPred_eq, hd, mul_ne_zero_iff, GlobalTheory.NormFactor.dmin_lact X hγ y]
   constructor
   · intro h τ
     exact ⟨(h τ).1.2, (h τ).2⟩
@@ -136,8 +134,8 @@ theorem locClause_of_unif {V : HSp D} {X : Comp → Data E r} {dict : GA D V →
 theorem continuous_place {F L : Type} [Field F] [NumberField F] [Field L] [NumberField L] [Algebra F L]
     {τ : L →+* ℂ} {θ : Ainf F ⊗[F] L →+* ℂ} (hθ : Formalism.MainNotions.StandardLattice.IsInfEmb τ θ) :
     Continuous fun z : AF F ⊗[F] L => θ (Algebra.TensorProduct.map (fstA F) (AlgHom.id F L) z) := by
-  haveI : IsModuleTopology (AF F) (AF F ⊗[F] L) := ⟨rfl⟩
-  haveI : FiniteDimensional F L := Module.Finite.of_restrictScalars_finite ℚ F L
+  have : IsModuleTopology (AF F) (AF F ⊗[F] L) := ⟨rfl⟩
+  have : FiniteDimensional F L := Module.Finite.of_restrictScalars_finite ℚ F L
   let b := Module.finBasis F L
   let B := Algebra.TensorProduct.basis (AF F) b
   have hz : ∀ z : AF F ⊗[F] L, θ (Algebra.TensorProduct.map (fstA F) (AlgHom.id F L) z) =

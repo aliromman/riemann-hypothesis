@@ -301,7 +301,7 @@ namespace Formalism.FourierDecayAlt.P.Ux10
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt.B Formalism.FourierDecayAlt.P.B4
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
+open scoped Matrix.Norms.Elementwise
 
 variable {k r : ℕ}
 
@@ -402,7 +402,7 @@ def kap (Y : Mat k r) : Mat k r := (1 + Y) * (1 - Y)⁻¹
 def iot (Z : Mat k r) : Mat k r := (Z - 1) * (Z + 1)⁻¹
 
 lemma kap_mem {Y : Mat k r} (hY : inLie k r Y) (hu : IsUnit (1 - Y).det) : kap Y ∈ GV k r := by
-  first | (apply UpperTheory.Reformulated.B.Qk20.kap_mem <;> assumption) | exact @UpperTheory.Reformulated.B.Qk20.kap_mem k r Y hY hu | exact @UpperTheory.Reformulated.B.Qk20.kap_mem k r Y hY | exact @UpperTheory.Reformulated.B.Qk20.kap_mem k r Y | exact @UpperTheory.Reformulated.B.Qk20.kap_mem k r | exact @UpperTheory.Reformulated.B.Qk20.kap_mem k
+  first | (apply UpperTheory.Reformulated.B.Qk20.kap_mem <;> assumption)
 
 lemma iot_facts {h : Mat k r} (hh : h ∈ GV k r) (hu : IsUnit (h + 1).det) :
     inLie k r (iot h) ∧ IsUnit (1 - iot h).det ∧ kap (iot h) = h := by
@@ -643,7 +643,7 @@ namespace Formalism.FourierDecayAlt.P.Ux10
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt.B Formalism.FourierDecayAlt.P.B4
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
+open scoped Matrix.Norms.Elementwise
 
 variable {k r : ℕ} {α : Type*} [MeasurableSpace α] {μ : Measure α}
   {E : Type} [NormedAddCommGroup E] [NormedSpace ℂ E]
@@ -1069,7 +1069,7 @@ end psi
 
 section cd
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
+open scoped Matrix.Norms.Elementwise
 
 lemma block3_middle_contDiffOn {k j ρ : ℕ} (A11 : Matrix (Fin j) (Fin j) ℂ) (A12 : Matrix (Fin j) (Fin (2 * ρ + k + 1)) ℂ)
     (A13 : Matrix (Fin j) (Fin j) ℂ) (A21 : Matrix (Fin (2 * ρ + k + 1)) (Fin j) ℂ)
@@ -1118,7 +1118,7 @@ namespace Formalism.FourierDecayAlt.P.Ux10
 
 open Formalism.FourierDecayAlt Formalism.FourierDecayAlt.U Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt.P.B4
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
+open scoped Matrix.Norms.Elementwise
 
 lemma slice_vanish (hM : SliceMem) (hR : RadicalParam) (hZh : ZhSlice) {k p s ρ : ℕ} (σ : Equiv.Perm (Fin p))
     (d : Fin p → ℂ) (hd : ∀ i, d i ≠ 0) {E : Type} [NormedAddCommGroup E] [NormedSpace ℂ E]
@@ -1220,7 +1220,7 @@ namespace Formalism.FourierDecayAlt.P.Ux10
 
 open Formalism.FourierDecayAlt Formalism.FourierDecayAlt.U Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt.P.B4
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
+open scoped Matrix.Norms.Elementwise
 
 lemma fin_step {x g a T c I : ℝ} (hg : 0 < g) (hx : x ≤ c * (T * g ^ (-a)) * I) :
     g ^ a * x ≤ c * I * T := by

@@ -69,8 +69,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.Cha
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
@@ -218,7 +216,6 @@ lemma famφB0_one : D.toPre.famφB 0 1 = 𝟙 _ := by
     rw [c_zero D]
     first
     | simp [Hom.one_def]
-    | (rw [Hom.one_def, Hom.one_def, ← Category.assoc]; congr 1)
   show (padd D.toPre.P.A (𝟙 D.toPre.P.A) (toUnit _ ≫ D.toPre.c 0)).left = 𝟙 _
   rw [h1]
   show ((𝟙 D.toPre.P.A) * 1 : D.toPre.P.A ⟶ D.toPre.P.A).left = _
@@ -387,7 +384,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option linter.overlappingInstances false
 
 noncomputable section
@@ -527,7 +523,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option linter.overlappingInstances false
 
 noncomputable section

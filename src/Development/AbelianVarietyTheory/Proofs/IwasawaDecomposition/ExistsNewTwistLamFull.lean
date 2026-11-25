@@ -1106,13 +1106,6 @@ def cutEmb (p : Prop) (K : Type) [CommRing K] [Algebra R K] {V : Type} [AddCommG
 theorem cutEmb_inj {f : M →ₗ[R] V} (hf : Function.Injective f) : Function.Injective (cutEmb p K f) :=
   fun _ _ h => Subtype.ext (hf (congrArg Subtype.val h))
 
-theorem cut_comap_span (S : Set V) (h0 : (0 : V) ∈ S) :
-    (Submodule.span R S).comap (cutVal p R K V) = Submodule.span R (Subtype.val ⁻¹' S : Set ↥(cut p K V)) := by
-  by_cases h : p
-  · exact (Submodule.span_preimage_eq (f := cutVal p R K V) ⟨0, h0⟩ fun x _ => ⟨⟨x, fun hn => absurd h hn⟩, rfl⟩).symm
-  · haveI := cut_subsingleton (R := K) (M := V) h
-    exact Subsingleton.elim _ _
-
 theorem cut_span_top (S : Set M) (h0 : (0 : M) ∈ S) (hS : Submodule.span R S = ⊤) :
     Submodule.span R (Subtype.val ⁻¹' S : Set ↥(cut p R M)) = ⊤ := by
   by_cases h : p
@@ -1258,31 +1251,20 @@ def evC (i : D.ntw.Tw) (j : ℕ) (b : Bool) : FmC D i j b →+ (D.nth.Pt i j →
 
 def urC (i : D.ntw.Tw) (j : ℕ) (b : Bool) : AddSubgroup (FmC D i j b) := (D.nth.FmUr i j b).comap (valC D i j b)
 
-theorem evC_inj (i : D.ntw.Tw) (j : ℕ) (b : Bool) : Function.Injective (evC D i j b) :=
-  (D.nth.ev_inj i j b).comp Subtype.val_injective
-
 theorem span_ur (i : D.ntw.Tw) (j : ℕ) (b : Bool) :
     Submodule.span (FractionRing (D.ntw.O i)) (urC D i j b : Set (FmC D i j b)) = ⊤ :=
   cut_span_top _ (D.nth.FmUr i j b).zero_mem (D.nth.FmUr_span i j b)
-
-theorem bsup_ur (i : D.ntw.Tw) (j : ℕ) (b : Bool) :
-    bsupC D i j b = Submodule.span (D.ntw.O i) {f : FmC D i j b | f ∈ urC D i j b ∧ ∀ y, ‖evC D i j b f y‖ ≤ 1} := by
-  unfold bsupC
-  rw [D.nth.Bsup_def]
-  exact cut_comap_span _ ⟨(D.nth.FmUr i j b).zero_mem, fun y => by simp⟩
 
 def cutTh : NTh D.R D.host D.what₂ D.LL0 D.nd (cutTw D) (cutEx D) :=
   { D.nth with
     ev := evC D
     ev_smul := fun i j b a f y => D.nth.ev_smul i j b a (valC D i j b f) y
-    ev_inj := evC_inj D
     datPhi := fun _ _ _ d => Empty.elim d
     datP := fun _ _ _ d => Empty.elim d
     hk_ev := fun i j b k P h1 h2 h3 h4 f y => D.nth.hk_ev i j b k P h1 h2 h3 h4 (valC D i j b f) y
     FmUr := urC D
     FmUr_smul := fun i j b a f ha hf => D.nth.FmUr_smul i j b a (valC D i j b f) ha hf
-    FmUr_span := span_ur D
-    Bsup_def := bsup_ur D }
+    FmUr_span := span_ur D }
 
 def cutN : TwNew D := ⟨cutTw D, cutEx D, D.nStage_trivialCharacter_coeff_eq, cutTh D, D.ntwbr, D.ntwbr_ind⟩
 

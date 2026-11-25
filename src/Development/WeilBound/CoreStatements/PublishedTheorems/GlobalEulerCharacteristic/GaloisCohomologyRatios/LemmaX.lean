@@ -1312,7 +1312,7 @@ theorem finite_modN_AA [Finite S] (i : ℕ) (hi : i ≤ 1) : Finite (ModN (AA hL
   have : NeZero ℓ := ⟨hℓ.ne_zero⟩
   interval_cases i
   · have := module_finite_S_units hL
-    exact finite_modN_of_moduleFinite ℓ
+    exact inferInstance
   · have := finite_H1_S_units hL
     exact Finite.of_surjective _ (Submodule.Quotient.mk_surjective _)
 

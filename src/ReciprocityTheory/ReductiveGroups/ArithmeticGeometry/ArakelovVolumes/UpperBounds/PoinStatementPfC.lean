@@ -97,7 +97,6 @@ private theorem gram_continuous_comp {α : Type*} [TopologicalSpace α] (τ : E 
   refine ((hf.matrix_elem k a).mul continuous_const).mul ?_
   first
     | exact Complex.continuous_conj.comp (hf.matrix_elem l b)
-    | fun_prop
 
 theorem isOpen_Bset (X : Data E r) (x : Frame X.Ψ r) (ρ : ℝ) : IsOpen (Bset X x ρ) := by
   have hdom : IsOpen X.dom := by
@@ -164,30 +163,6 @@ theorem supR_ne_top (X : Data E r) (la : Wt X.Ψ r) (W : Frame X.Ψ r → ℝ≥
     _ = 1 / ENNReal.ofReal c := ENNReal.mul_div_mul_right _ _ he heT
     _ = (ENNReal.ofReal c)⁻¹ := one_div _
 
-private theorem transpose_mul_mul_map_cc_eq_of_isUStab' {γ : GL (Fin r) E} {G : Matrix (Fin r) (Fin r) E}
-    {Λ : Submodule (𝓞 E) (Fin r → E)} (h : IsUStab G Λ γ) :
-    (γ : Matrix (Fin r) (Fin r) E).transpose * G * (γ : Matrix (Fin r) (Fin r) E).map cc = G := by
-  ext p q
-  have hcs : ∀ b, cc ((Pi.single q (1 : E) : Fin r → E) b) = (Pi.single q (1 : E) : Fin r → E) b := by
-    intro b
-    by_cases hb : b = q
-    · subst hb
-      simp [cc]
-    · simp [cc, hb]
-  have hv : ∀ (j a : Fin r), ((γ : Matrix (Fin r) (Fin r) E) *ᵥ (Pi.single j (1 : E) : Fin r → E)) a =
-      (γ : Matrix (Fin r) (Fin r) E) a j := by
-    intro j a
-    simp [Matrix.mulVec, dotProduct, Pi.single_apply]
-  have h2 : ∑ a, ∑ b, (Pi.single p (1 : E) : Fin r → E) a * G a b * (Pi.single q (1 : E) : Fin r → E) b =
-      G p q := by
-    simp [Pi.single_apply]
-  have h1 := h.1 (Pi.single p (1 : E) : Fin r → E) (Pi.single q (1 : E) : Fin r → E)
-  simp only [herm, hv, hcs] at h1
-  rw [h2] at h1
-  simp only [Matrix.mul_apply, Matrix.transpose_apply, Matrix.map_apply, Finset.sum_mul]
-  rw [Finset.sum_comm]
-  exact h1
-
 private theorem differentiable_lact_upper_bounds (X : Data E r) (γ : GL (Fin r) E) :
     Differentiable ℂ (fun y : Frame X.Ψ r => lact γ y) := by
   refine differentiable_pi.mpr fun τ => differentiable_pi.mpr fun a =>
@@ -249,7 +224,6 @@ theorem key_int (X : Data E r) (la : Wt X.Ψ r) (W : Frame X.Ψ r → ℝ≥0∞
         _ ≤ supR X la W ρ x ^ 2 := by
           first
             | exact pow_le_pow_left' h1 2
-            | gcongr
     have he : e ≤ supR X la W ρ x ^ 2 * W (cpt X x w) := by
       calc e = e / W (cpt X x w) * W (cpt X x w) := (ENNReal.div_mul_cancel hW0 hWT).symm
         _ ≤ supR X la W ρ x ^ 2 * W (cpt X x w) := by gcongr

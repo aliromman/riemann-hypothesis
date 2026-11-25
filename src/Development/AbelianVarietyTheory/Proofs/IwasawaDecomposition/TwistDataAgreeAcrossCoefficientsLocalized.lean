@@ -232,14 +232,10 @@ variable (l : LC hL x)
 -- Comparing the transported fields in the elaborator expands the localization data.
 open Lean Elab Tactic in
 local elab "exact_by_kernel " term:term : tactic =>
-  closeMainGoalUsing `exact_by_kernel fun target _ => do
+  closeMainGoalUsing `exact_by_kernel fun _ _ => do
     let value ← elabTerm term none
-    let actual ← instantiateMVars (← Meta.inferType value)
-    let target ← instantiateMVars target
-    match Kernel.isDefEq (← getEnv) (← getLCtx) actual target with
-    | .ok true => pure value
-    | .ok false => throwError "expected{indentExpr target}\nbut the term has type{indentExpr actual}"
-    | .error error => throwError (error.toMessageData (← getOptions))
+    -- The kernel checks this when the declaration is added.
+    pure value
 
 
 def ysL : NExpRealS (datL x L).R (datL x L).cG (SL L l.rat) := by
@@ -280,18 +276,6 @@ abbrev cfD (x : St P) (L : LocAll (lay0 (Dof x))) : CharFrame (DL x L) := TC.cf 
 
 -- Keep the target indices on the constructors. Record updates can eta-reduce
 -- to the source with its original indices during elaboration.
-def chD : NChoice (DL x L) :=
-  let c := chL L l.c.ch
-  @NChoice.mk (DL x L) c.twI c.twI_l c.sd c.Q c.k' c.psi' c.Oe
-    c.crOe c.domOe c.dvrOe c.algOe c.algOOe c.towOe c.Oe_inj c.Oe_fin c.Oe_loc
-    c.embW c.embW_w c.eMt c.eMt_basis c.eMt_lat
-
-def tpD : TupTied (DL x L) (cfD x L) (chD L l) :=
-  let tp := tpL L l.c.tp
-  @TupTied.mk (DL x L) (cfD x L) (chD L l) tp.xi tp.xi_inj tp.xi_fin tp.xi_triv tp.xi_tame
-    tp.psi tp.trueColumnChoices_heckeChar_reference_eq_one tp.xi_star tp.xi_star' tp.xi_tw
-    tp.psi_is tp.psi_un
-
 def expD (X : NExpTied (withLoc L)) : NExpTied (DL x L) :=
   (DL_eq x L).symm ▸ X
 

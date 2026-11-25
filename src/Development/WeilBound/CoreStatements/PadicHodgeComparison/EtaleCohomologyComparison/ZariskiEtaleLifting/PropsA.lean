@@ -96,8 +96,6 @@ import Mathlib.RingTheory.MvPolynomial.IrreducibleQuadratic
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CategoryTheory
@@ -535,7 +533,6 @@ section -- clump:auto
 @[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 
 open CategoryTheory AlgebraicGeometry Polynomial DividedPowers GlobalTheory.LogCris GlobalTheory.PDA CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.B
 
@@ -877,7 +874,6 @@ section -- clump:auto
 @[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 
 noncomputable section
 
@@ -1069,7 +1065,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 open CategoryTheory AlgebraicGeometry Polynomial DividedPowers GlobalTheory.LogCris GlobalTheory.PDA CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.B

@@ -57,7 +57,6 @@ import Development.AbelianVarietyTheory.Definitions.LatticeFrames.FiniteDimensio
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.Forms Formalism.L2.Ker Formalism.UG
 open NumberField IsDedekindDomain Matrix MeasureTheory GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.MixPer GlobalTheory.Core.Rk GlobalTheory.AdForm
 open scoped TensorProduct Classical
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 noncomputable section
 
 namespace GlobalTheory.AdForm.HalfASign
@@ -341,7 +340,7 @@ theorem alV_mul_self_halfA : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ :
   obtain ⟨n, hn⟩ := (char_rat hP.std _).1 hpair
   have key := GlobalTheory.SemiTrace.alV_embH_eq_neg_one_zpow D ψ θ S T S.rank T.rank rfl rfl δ sc hP x' n (by
     rw [← hn]
-    congr 3 <;> ext i j)
+    congr 3)
   rw [key, ← mul_zpow]
   norm_num
 

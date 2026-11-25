@@ -857,7 +857,7 @@ end -- clump:auto
 -- ===== end clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginFrameLocalBoundStatement =====
 
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginFrameTotalBound =====
--- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginFrameTotalBound", "h": "module\n\npublic import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsFrameVec\npublic import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.GoodOrigin\npublic import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IntegralClosureHeightEqOneOfLiesOver\npublic import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LabelSigBijective\npublic import Development.AutomorphicSpectrum.PublishedTheorems.Algebra₂.FarguesHodgeTate\npublic import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsSandwichOfHodgeTateFree\npublic import Development.AutomorphicSpectrum.Proofs.GeometryProofs.SandwichPointOverFieldExt\npublic import GroundTheory.HeightsAndTheta.Heights.LatticeLemmas.PRootsOfUnityValuation\nimport Formalism.LocalToGlobal.ProjectiveLattices.CrudeVal\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Development.AutomorphicSpectrum.Definitions.GlobalGeometry.DefiniteFormStabilizerFiniteAwayFromP\nimport ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.ArakelovInstances.IsStrictDom\nimport ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.PolyGrowthStatementPfB\n\n"}
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginFrameTotalBound", "h": "module\n\npublic import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsFrameVec\npublic import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.GoodOrigin\npublic import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IntegralClosureHeightEqOneOfLiesOver\npublic import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LabelSigBijective\npublic import Development.AutomorphicSpectrum.PublishedTheorems.Algebra₂.FarguesHodgeTate\npublic import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsSandwichOfHodgeTateFree\npublic import Development.AutomorphicSpectrum.Proofs.GeometryProofs.SandwichPointOverFieldExt\npublic import GroundTheory.HeightsAndTheta.Heights.LatticeLemmas.PRootsOfUnityValuation\nimport Formalism.LocalToGlobal.ProjectiveLattices.CrudeVal\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Development.AutomorphicSpectrum.Definitions.GlobalGeometry.DefiniteFormStabilizerFiniteAwayFromP\nimport ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.ArakelovInstances.IsStrictDom\nimport ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.PolyGrowthStatementPfB\nimport Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsAlgebraMapEqOfValVLeOne\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -877,13 +877,10 @@ section Dvr
 variable {V : Type} {K : Type} [CommRing V] [IsDomain V] [IsDiscreteValuationRing V] [Field K] [Algebra V K]
   [IsFractionRing V K]
 
-theorem valV_algebraMap_le_one (x : V) : valV V (algebraMap V K x) ≤ 1 :=
-  HeightOneSpectrum.valuation_le_one _ x
-
 theorem vV_unit {u : V} (hu : IsUnit u) : vV V (algebraMap V K u) = 0 := by
   obtain ⟨w, rfl⟩ := hu
-  have h1 : valV V (algebraMap V K (w : V)) ≤ 1 := valV_algebraMap_le_one _
-  have h2 : valV V (algebraMap V K ((w⁻¹ : Vˣ) : V)) ≤ 1 := valV_algebraMap_le_one _
+  have h1 : valV V (algebraMap V K (w : V)) ≤ 1 := GlobalTheory.PlaceCompletion.valV_algebraMap_le_one _
+  have h2 : valV V (algebraMap V K ((w⁻¹ : Vˣ) : V)) ≤ 1 := GlobalTheory.PlaceCompletion.valV_algebraMap_le_one _
   have h3 : valV V (algebraMap V K (w : V)) * valV V (algebraMap V K ((w⁻¹ : Vˣ) : V)) = 1 := by
     rw [← map_mul, ← map_mul]
     simp
@@ -938,7 +935,7 @@ theorem realVal_lt_one_iff {x : K} : realVal V K x < 1 ↔ valV V x < 1 := by
 theorem realVal_integers : (realVal V K).Integers V := by
   refine ⟨IsFractionRing.injective V K, ?_, ?_⟩
   · intro x
-    exact (realVal_le_one_iff (V := V)).2 (valV_algebraMap_le_one x)
+    exact (realVal_le_one_iff (V := V)).2 (GlobalTheory.PlaceCompletion.valV_algebraMap_le_one x)
   · intro x hx
     exact IsDiscreteValuationRing.exists_lift_of_le_one ((realVal_le_one_iff (V := V)).1 hx)
 
@@ -1083,7 +1080,7 @@ theorem lieEig_htDual : Top.Given → ∀ (E : Type) [Field E] [NumberField E] [
   have : CharZero T.Fr := IsFractionRing.charZero T.V
   have hv1 : realVal T.V T.Fr (p : T.Fr) < 1 := by
     refine realVal_lt_one_iff.2 (lt_of_le_of_ne ?_ fun h1 => ?_)
-    · simpa using valV_algebraMap_le_one (K := T.Fr) (p : T.V)
+    · simpa using GlobalTheory.PlaceCompletion.valV_algebraMap_le_one (K' := T.Fr) (p : T.V)
     · have h2 : vV T.V (algebraMap T.V T.Fr (p : T.V)) = 0 := by simp [vV, h1]
       rw [hvp] at h2
       omega

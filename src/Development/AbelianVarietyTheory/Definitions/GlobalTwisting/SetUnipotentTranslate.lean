@@ -515,8 +515,7 @@ variable {D : D7} (N : ∀ u, Submodule (𝓞 D.what₂.LL) (D.div.Nu u).V) (h :
 
 @[reducible] def xdTr (x : ThData D) : ThData (setDiv D N h) := { x with }
 
-open DivX (md) in
-@[reducible] def divTr (X : DivX D) : DivX (setDiv D N h) := { X with md := fun S κ p _ la z => { md X S κ p la z with } }
+@[reducible] def divTr (X : DivX D) : DivX (setDiv D N h) := { X with }
 
 @[reducible] def sideTr {EE : Type} [NormedAddCommGroup EE] [InnerProductSpace ℂ EE] [FiniteDimensional ℂ EE] (S : RowSide D EE) :
     RowSide (setDiv D N h) EE := { S with }
@@ -715,7 +714,7 @@ theorem chGood_of_host (eps C5 c6 Cb cD ch : ℝ) (C : FC) (he : 0 < eps) (he1 :
   refine ⟨max x1 x3, fun s R H a b M c u0 hs hx hR hT hH hW hM hc => ?_⟩
   simp only [max_le_iff] at hx
   have hH' : HostGood s C.P.Cpde C5 c6 Cb (setUnipotentTranslate H u0) (DC.q0H (setUnipotentTranslate H u0)) := hH
-  obtain ⟨hv, har, hT2, hT3, -, -, hdl, -, -, hBB, hgn, hpde, ⟨hp0, hmod0, hq0le, hq1, hq2⟩, hlev⟩ := hH
+  obtain ⟨hv, har, hT2, hT3, -, -, hdl, -, hBB, hgn, hpde, ⟨hp0, hmod0, hq0le, hq1, hq2⟩, hlev⟩ := hH
   have hN2 : 2 ≤ H.QS * H.q * H.d := by
     have h1 : 0 < H.QS * H.q := Nat.mul_pos H.QS_pos H.hyp.1.pos
     exact H.hyp.2.1.two_le.trans (Nat.le_mul_of_pos_left _ h1)

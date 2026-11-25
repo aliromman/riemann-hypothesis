@@ -73,8 +73,6 @@ section -- clump:auto
 open MeasureTheory Matrix Filter Topology
 open scoped InnerProductSpace
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace Formalism.L2.SG.Pf.admitted
@@ -250,8 +248,6 @@ section -- clump:auto
 
 open MeasureTheory Matrix Filter Topology
 open scoped InnerProductSpace
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -430,8 +426,6 @@ section -- clump:auto
 open MeasureTheory Matrix Filter Topology
 open scoped InnerProductSpace
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace Formalism.L2.SG.Pf.admitted
@@ -529,8 +523,6 @@ section -- clump:auto
 
 open MeasureTheory Matrix Filter Topology
 open scoped InnerProductSpace
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -893,8 +885,6 @@ section -- clump:auto
 open MeasureTheory Matrix Filter Topology
 open scoped InnerProductSpace
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace Formalism.L2.SG.Pf.admitted
@@ -920,7 +910,7 @@ theorem wt_le (p : Fin n × Fin n) : wt p ≤ 1 := by
   split_ifs <;> norm_num
 
 theorem gen_mem (ε : Fin n → Bool) (p : Fin n × Fin n) : inG ε (gen ε p) := by
-  apply Formalism.L2.SG.Pf.admitted.AdmissibleVectors.inG_gen <;> assumption
+  apply Formalism.L2.SG.Pf.admitted.AdmissibleVectors.inG_gen
 
 variable {ε : Fin n → Bool} {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
   {σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)} {D : Submodule ℂ H}
@@ -1011,8 +1001,6 @@ end -- clump:auto
 -- clump-header: {"m": "Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.AdmissibleCasimirScalars.KFinSmooth", "h": "module\n\npublic import Formalism.SharpRestriction.CuspSpanNormBounds.BridgeCPX\npublic import Formalism.SharpRestriction.CuspSpanNormBounds.ExpansionFromLemmaB\npublic import Formalism.SharpRestriction.CuspSpanNormBounds.LowestKTypeMultiplicity\npublic import Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.AdmissibleCasimirScalars.HcMultDSOfAll\npublic import Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.AdmissibleCasimirScalars.SmoothGeneratorAverages.GenApplyEqZero\npublic import Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.AdmissibleCasimirScalars.SmoothGeneratorAverages.GenApplyZero\npublic import Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.AdmissibleCasimirScalars.SmoothGeneratorAverages.HasDerivAtDS\npublic import Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.AdmissibleCasimirScalars.SmoothGeneratorAverages.ImInnerSelf\npublic import Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.AdmissibleCasimirScalars.SmoothGeneratorAverages.IntegralSumCoef\npublic import Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.AdmissibleCasimirScalars.SmoothGeneratorAverages.KavgFixRange\npublic import Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.AdmissibleCasimirScalars.SmoothGeneratorAverages.OneParamHasDerivAt\npublic import Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.AdmissibleCasimirScalars.SmoothGeneratorAverages.SgCases\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 section -- clump:auto
 @[expose] public section
-
-set_option autoImplicit false
 
 namespace Formalism.L2.SG.Pf.admitted
 

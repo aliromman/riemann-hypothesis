@@ -84,7 +84,6 @@ open GlobalTheory.RayEv (Ray)
 open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.LogKSChart GlobalTheory.Heat
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.Heat.AbDescent
 
@@ -187,7 +186,6 @@ open GlobalTheory.RayEv (Ray)
 open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.LogKSChart GlobalTheory.Heat
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.LieRigid
 
@@ -308,8 +306,6 @@ open GlobalTheory.LogKS (IsField)
 open GlobalTheory.RayEv (Ray)
 open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.LogKSChart GlobalTheory.Heat
 attribute [local instance] Over.cartesianMonoidalCategory
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -497,8 +493,6 @@ open GlobalTheory.RayEv (Ray)
 open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.LogKSChart GlobalTheory.Heat
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.Heat.AbConstGlob
@@ -616,7 +610,6 @@ open GlobalTheory.LogKS (IsField)
 open GlobalTheory.RayEv (Ray)
 open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.LogKSChart GlobalTheory.Heat
 attribute [local instance] Over.cartesianMonoidalCategory
-set_option autoImplicit false
 
 noncomputable section
 

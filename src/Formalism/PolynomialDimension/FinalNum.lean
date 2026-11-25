@@ -68,12 +68,7 @@ lemma pII0_basic (r N N₁ k : ℝ) (hr : 2 ≤ r) (hrN1 : r ≤ N₁) (hN1 : N�
     rw [sq] at hN1
     exact le_trans (mul_le_mul hrN1 hrN1 (by linarith) (by linarith)) hN1
   have hrN : r ≤ N := le_of_mul_le_mul_left h1 (by linarith)
-  refine ⟨hrN, by linarith, ?_⟩
-  have h2N1 : N₁ + 1 ≤ N₁ ^ 2 := by
-    have : 2 * N₁ ≤ N₁ * N₁ := mul_le_mul_of_nonneg_right (by linarith) (by linarith)
-    rw [sq]; linarith
-  have hrN0 : 0 ≤ r * N := mul_nonneg (by linarith) (by linarith)
-  linarith
+  exact ⟨hrN, by linarith, by nlinarith⟩
 
 lemma sizeBound_frame_le (r N N₁ Nₛ k : ℝ) (hr : 2 ≤ r) (hrN1 : r ≤ N₁) (hN1 : N₁ ^ 2 ≤ r * N)
     (hk8 : 8 ≤ k) (hN0 : 0 ≤ N) (hNs1 : Nₛ ≤ N₁) (hNs2 : Nₛ ≤ 2 * N) :

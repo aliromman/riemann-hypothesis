@@ -413,7 +413,7 @@ end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsGoodLocalDatumOfNonzeroPeriodsGapStatement =====
 
 -- ===== clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.TrivialWedgeDecompositionDiscreteSeriesLargeGaps =====
--- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.FlagMeasures.TrivialWedgeDecompositionDiscreteSeriesLargeGaps", "h": "module\n\npublic import CompanionTheory.AutomorphicTheory.PieriRules.ThetaBesselIsometries.IsDSOfIsDG\npublic import CompanionTheory.AutomorphicTheory.PieriRules.ThetaBesselIsometries.DiscreteSeriesParameterUnique\npublic import CompanionTheory.AutomorphicTheory.PieriRules.ThetaBesselIsometries.DiscreteSeriesUnitarySmoothBasicStatement\npublic import CompanionTheory.AutomorphicTheory.PieriRules.ThetaBesselIsometries.SmoothMapsClosureStatement\npublic import CompanionTheory.AutomorphicTheory.PieriRules.ThetaBesselIsometries.TensorDecompositionInjectiveParameters\nimport Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ChainRuleSmooth.ExpIntertwine\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}
+-- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.FlagMeasures.TrivialWedgeDecompositionDiscreteSeriesLargeGaps", "h": "module\n\npublic import CompanionTheory.AutomorphicTheory.PieriRules.ThetaBesselIsometries.IsDSOfIsDG\npublic import CompanionTheory.AutomorphicTheory.PieriRules.ThetaBesselIsometries.DiscreteSeriesParameterUnique\npublic import CompanionTheory.AutomorphicTheory.PieriRules.ThetaBesselIsometries.DiscreteSeriesUnitarySmoothBasicStatement\npublic import CompanionTheory.AutomorphicTheory.PieriRules.ThetaBesselIsometries.SmoothMapsClosureStatement\npublic import CompanionTheory.AutomorphicTheory.PieriRules.ThetaBesselIsometries.TensorDecompositionInjectiveParameters\nimport Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ChainRuleSmooth.ExpIntertwine\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\nimport CompanionTheory.AutomorphicTheory.PieriRules.ThetaBesselIsometries.TensorMomentEstimate\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -508,20 +508,6 @@ attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 variable {k r : ℕ}
 
-theorem dsigW_zero (R : Rep k r) (W : List (Mx k r)) : PI.UpqRep.dsigW (k := k) (r := r) R.σ W 0 = 0 := by
-  induction W with
-  | nil => rfl
-  | cons X W ih =>
-    show PI.UpqRep.dsig R.σ X (PI.UpqRep.dsigW R.σ W 0) = 0
-    rw [ih]
-    simp [PI.UpqRep.dsig]
-
-theorem smMap_zero (R R' : Rep k r) : SmMap R R' (fun _ => 0) := by
-  refine ⟨fun _ _ => R'.smSub.zero_mem, fun _ _ _ _ => (add_zero 0).symm,
-    fun a _ _ => (smul_zero a).symm, ?_⟩
-  intro W _
-  exact ⟨0, [], by simp, fun _ _ => by simp [dsigW_zero]⟩
-
 theorem isInvForm_of_smMap (hK : PI.KFinSmooth) {ε : Fin (2 * r + k + 1) → Bool} {m' : Fin (2 * r + k + 1) → ℝ}
     {R R' : Rep k r} (hR' : R'.IsDG ε m') {T : R.H → R'.H} (hT : SmMap R R' T)
     (hTg : ∀ g ∈ GG k r, ∀ y ∈ R.sm, T (R.σ g y) = R'.σ g (T y)) :
@@ -574,7 +560,7 @@ theorem exists_equiv (hH : HypsG) {ε : Fin (2 * r + k + 1) → Bool} {κ ι : T
     have key : ∀ t : Finset ι, SmMap (RI1 a) (RI2 s) (fun y => ∑ c ∈ t, pr2 s c (io1 a c y)) := by
       intro t
       induction t using Finset.induction_on with
-      | empty => simpa using smMap_zero (RI1 a) (RI2 s)
+      | empty => simpa using Gp91.GlobalTheory.KapBes.smMap_zero (RI1 a) (RI2 s)
       | insert c t hc' ih =>
         have := (_root_.Gp91.GlobalTheory.SmMapAct.smMap_act hK k r ε (m1 a) (m2 s) (m2 s) (RI1 a) (RI2 s) (RI2 s) (hd1 a) (hd2 s)
           (hd2 s)).2.2.1 _ _ 1 (hc c) ih
@@ -887,7 +873,8 @@ theorem line_of_tens (hH : GlobalTheory.GapIn.Hyp) (hKF : GlobalTheory.GapIn.Amp
       (M * s * η / d) • (DminN W.z W.z' g₀ l * (d : ℂ)) • amp R B B' w0 ν₀ g₀ := by
     simp only [smul_smul]
     congr 1
-    field_simp
+    rw [div_mul_eq_mul_div, eq_div_iff hdc]
+    ring
   have key' : (DminN W.z W.z' g₀ l * (d : ℂ)) • amp R B B' w0 ν₀ g₀ =
       ∑ I, ((ep I : ℂ) * κ₁ I * star (κ₀ I) * (PI.BesselPeriodGGP.fdegH W.μG (RI I).σ (wI I) : ℂ)) •
         amp (RI I) (BI I) (BI' I) (wI I) ν₀ g₀ := by
@@ -903,9 +890,10 @@ theorem line_of_tens (hH : GlobalTheory.GapIn.Hyp) (hKF : GlobalTheory.GapIn.Amp
       rpow_ratio hK hc hd0 (hdI0 I)]
     simp only [smul_smul]
     congr 1
-    have := hη0 I hI
+    have hηI0 := hη0 I hI
     push_cast
-    field_simp
+    calc _ = _ * (ηI I / ηI I) := by rw [div_self hηI0, mul_one]
+      _ = _ := by ring
   · rw [if_neg hI]
     rcases hz I hI with h0 | h0 <;> simp only [h0, mul_zero, zero_mul, star_zero, zero_smul, smul_zero]
 

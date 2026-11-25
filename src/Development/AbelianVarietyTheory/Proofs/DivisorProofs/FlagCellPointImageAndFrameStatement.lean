@@ -83,7 +83,7 @@ theorem cellpt : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Hos
     rw [key, uC, Matrix.map_mul, Matrix.submatrix_map, Matrix.map_map]
     congr 1
     · congr 1
-      ext i j
+      ext i
       simp [cC]
     · ext i j
       simp only [cellMat, Matrix.map_apply, Matrix.of_apply, cell]

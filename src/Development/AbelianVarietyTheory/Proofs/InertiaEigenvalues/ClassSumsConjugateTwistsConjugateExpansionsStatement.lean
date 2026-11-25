@@ -70,8 +70,6 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.ExportSeries GlobalTheory.ConjTwist
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.TwistSeriesConj
@@ -175,8 +173,6 @@ open GlobalTheory.ExportSeries GlobalTheory.ConjTwist
 noncomputable section
 
 namespace GlobalTheory.ConjSpan
-
-set_option autoImplicit false
 
 section Generic
 

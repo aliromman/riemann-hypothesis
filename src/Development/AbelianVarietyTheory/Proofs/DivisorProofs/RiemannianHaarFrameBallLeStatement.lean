@@ -1,5 +1,6 @@
 module
 
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TangentHaarChartComparison
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PermMMulTranspose
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TangentHaarRealSUOfMap
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.InstMeasurableSpaceRealSU
@@ -270,8 +271,7 @@ theorem GlobalTheory.SUVol.Degenerate.riemHaar_le_one : ∀ (E : Type) [Field E]
     rcases Nat.mul_eq_zero.1 hc with h | h
     · exact Or.inl h
     · right
-      have : r ^ 2 ≤ 1 := by omega
-      nlinarith
+      exact le_antisymm ((Nat.pow_le_one_iff (by decide : 2 ≠ 0)).mp (by omega : r ^ 2 ≤ 1)) hr
   haveI := realSU_subsingleton Ψ G h
   haveI : CompactSpace (realSU Ψ G) := Finite.compactSpace
   set K := (realLie Ψ G).comap (fromFrame x) with hK
@@ -808,7 +808,7 @@ theorem riemLie_frameBox_le : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
   have h2 : 2 * t * √2 ≤ 3 * t := by
     have hs : √2 ≤ 3 / 2 := by
       rw [Real.sqrt_le_left (by norm_num)]; norm_num
-    nlinarith
+    exact (mul_le_mul_of_nonneg_left hs (by linarith : (0 : ℝ) ≤ 2 * t)).trans_eq (by ring)
   exact pow_le_pow_left₀ (by positivity) h2 _
 
 end GlobalTheory.CovTop.VolUp.FrameBox
@@ -835,7 +835,7 @@ end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RiemannianLieMeasureFrameBoxLeStatement =====
 
 -- ===== clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TangentNormalizedHaarLeTwoMulLieHaar =====
--- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.TangentNormalizedHaarLeTwoMulLieHaar", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TangentHaarRealSUOfMap\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.InstMeasurableSpaceRealSU\nimport Development.AbelianVarietyTheory.Proofs.FoundationProofs.TranslateChartBallDistortion\npublic import Formalism.LocalRingCardinality.DataHost\npublic import Formalism.LocalRingCardinality.SpanPowerMembership.LeOfEventuallyDown\nimport Formalism.PadicSubsetSums.StableGradedCounts.ZBrauerNesbittAlg\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Real\nimport Mathlib.Analysis.Calculus.InverseFunctionTheorem.FDeriv\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.LocallyConvex.AbsConvexOpen\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.Order.CompletePartialOrder\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Algebra.Group.Units\nimport Mathlib.Topology.Separation.CompletelyRegular\nimport Mathlib.Topology.Sheaves.Presheaf\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.PermMMulTranspose\nimport ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.PolyGrowthStatementPfB\n\n"}
+-- clump-header: {"m":"Development.AbelianVarietyTheory.Proofs.DivisorProofs.TangentNormalizedHaarLeTwoMulLieHaar","h":"module\n\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.TangentHaarChartComparison\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TangentHaarRealSUOfMap\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.InstMeasurableSpaceRealSU\nimport Development.AbelianVarietyTheory.Proofs.FoundationProofs.TranslateChartBallDistortion\npublic import Formalism.LocalRingCardinality.DataHost\npublic import Formalism.LocalRingCardinality.SpanPowerMembership.LeOfEventuallyDown\nimport Formalism.PadicSubsetSums.StableGradedCounts.ZBrauerNesbittAlg\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Real\nimport Mathlib.Analysis.Calculus.InverseFunctionTheorem.FDeriv\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.LocallyConvex.AbsConvexOpen\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.Order.CompletePartialOrder\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Algebra.Group.Units\nimport Mathlib.Topology.Separation.CompletelyRegular\nimport Mathlib.Topology.Sheaves.Presheaf\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.PermMMulTranspose\nimport ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.PolyGrowthStatementPfB\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -855,179 +855,8 @@ attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 theorem tangentHaar_le_two_mul_lam : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (r : ℕ) (Ψ : Finset (E →+* ℂ)) (G : Matrix (Fin r) (Fin r) E) (hG : G.det ≠ 0) (lam : Measure (realLie Ψ G)) [lam.IsAddHaarMeasure], ∃ δ : ℝ, 0 < δ ∧ ∀ s : Set (realLie Ψ G), MeasurableSet s → s ⊆ Metric.ball 0 δ → tangentHaar (realSU Ψ G) (lam.map Subtype.val) (GlobalTheory.SUVol.DensOne.chartExp Ψ G hG '' s) ≤ 2 * lam s := by
   intro E _ _ _ r Ψ G hG lam _
-  obtain ⟨hH, hD⟩ := tangentHaar_realSU_of_det Ψ G hG lam
-  generalize tangentHaar (realSU Ψ G) (lam.map Subtype.val) = μ at hH hD ⊢
-  let ι : realLie Ψ G →ₗᵢ[ℝ] (Ψ → Matrix (Fin r) (Fin r) ℂ) :=
-    ⟨(incl Ψ G).toLinearMap, fun X => norm_incl Ψ G X⟩
-  let L₀ : (Ψ → Matrix (Fin r) (Fin r) ℂ) →ₗ[ℝ]
-      ((Ψ → Matrix (Fin r) (Fin r) ℂ) →L[ℝ] (Ψ → Matrix (Fin r) (Fin r) ℂ)) :=
-    LinearMap.toContinuousLinearMap.toLinearMap ∘ₗ LinearMap.mul ℝ _
-  have hL₀ : Continuous L₀ := L₀.continuous_of_finiteDimensional
-  have he : Continuous (chartExp Ψ G hG) := continuous_chartExp Ψ G hG
-  have he0 : chartExp Ψ G hG 0 = 1 := chartExp_zero Ψ G hG
-  have hd : HasStrictFDerivAt (fun x => matR Ψ G (chartExp Ψ G hG x)) ι.toContinuousLinearMap 0 :=
-    hasStrictFDerivAt_chart Ψ G hG
-  have hL : ContinuousAt (fun g => L₀ (matR Ψ G g)) 1 := (hL₀.comp (continuous_matR Ψ G)).continuousAt
-  have hL1 : (fun g => L₀ (matR Ψ G g)) 1 = ContinuousLinearMap.id ℝ _ := by ext1 A; exact one_mul A
-  have hm : ∀ g h, matR Ψ G (g * h) = (fun g => L₀ (matR Ψ G g)) g (matR Ψ G h) := fun g h => rfl
-  have hn : ∀ ρ : ℝ, 0 < ρ → chartExp Ψ G hG '' ball 0 ρ ∈ 𝓝 (1 : realSU Ψ G) := fun ε hε =>
-    (tendsto_iff_comap.1 ((continuous_matR Ψ G).tendsto 1))
-      (eventually_mem_image Ψ G hG (ball_mem_nhds 0 hε))
-
-  haveI : ProperSpace (realLie Ψ G) := FiniteDimensional.proper_real _
-  obtain ⟨δ₀, hδ₀, hinj⟩ : ∃ δ₀ : ℝ, 0 < δ₀ ∧ InjOn (chartExp Ψ G hG) (closedBall 0 δ₀) := by
-    obtain ⟨s, hs, ha⟩ := hd.approximates_deriv_on_nhds (c := 1 / 2) (Or.inr (by norm_num))
-    obtain ⟨δ, hδ, hsub⟩ := nhds_basis_closedBall.mem_iff.1 hs
-    refine ⟨δ, hδ, fun x hx y hy hxy => ?_⟩
-    have h1 := ha x (hsub hx) y (hsub hy)
-    simp only [hxy, sub_self, zero_sub, norm_neg, LinearIsometry.coe_toContinuousLinearMap,
-      LinearIsometry.norm_map] at h1
-    have h2 : ‖x - y‖ ≤ 0 := by
-      have h3 : ((1 / 2 : ℝ≥0) : ℝ) = 1 / 2 := by norm_num
-      rw [h3] at h1
-      linarith
-    exact sub_eq_zero.1 (norm_le_zero_iff.1 h2)
-  have hK : MeasurableSet (closedBall (0 : realLie Ψ G) δ₀) := measurableSet_closedBall
-  have hemb := ContinuousOn.measurableEmbedding hK he.continuousOn hinj
-  set ν : Measure (realLie Ψ G) :=
-    (μ.comap ((closedBall (0 : realLie Ψ G) δ₀).domRestrict (chartExp Ψ G hG))).map Subtype.val with hν
-  have hνS : ∀ S : Set (realLie Ψ G), MeasurableSet S →
-      ν S = μ (chartExp Ψ G hG '' (S ∩ closedBall 0 δ₀)) := by
-    intro S hS
-    rw [hν, Measure.map_apply measurable_subtype_coe hS, hemb.comap_apply]
-    congr 1
-    ext g
-    constructor
-    · rintro ⟨x, hx, rfl⟩
-      exact ⟨x.1, ⟨hx, x.2⟩, rfl⟩
-    · rintro ⟨x, hx, rfl⟩
-      exact ⟨⟨x, hx.2⟩, hx.1, rfl⟩
-  have hνsub : ∀ S : Set (realLie Ψ G), MeasurableSet S → S ⊆ closedBall 0 δ₀ →
-      ν S = μ (chartExp Ψ G hG '' S) := fun S hS h => by rw [hνS S hS, inter_eq_left.2 h]
-  haveI : IsFiniteMeasure ν := by
-    refine ⟨?_⟩
-    rw [hνS _ MeasurableSet.univ, univ_inter]
-    exact ((isCompact_closedBall _ _).image he).measure_lt_top
-  have hball : ∀ (X : realLie Ψ G) (ρ : ℝ), ‖X‖ + ρ ≤ δ₀ → ball X ρ ⊆ closedBall 0 δ₀ := by
-    intro X ρ h y hy
-    rw [mem_ball_iff_norm] at hy
-    rw [mem_closedBall_zero_iff]
-    have := norm_le_norm_add_norm_sub' y X
-    linarith
-  have hpos : ∀ ρ > 0, 0 < ν (closedBall (0 : realLie Ψ G) ρ) := by
-    intro ρ hρ
-    have h1 : ν (ball 0 (min ρ δ₀)) ≠ 0 := by
-      rw [hνsub _ measurableSet_ball (hball 0 _ (by simp))]
-      exact (μ.measure_pos_of_mem_nhds (hn _ (lt_min hρ hδ₀))).ne'
-    exact pos_iff_ne_zero.2 fun h => h1 (measure_mono_null
-      ((ball_subset_closedBall).trans (closedBall_subset_closedBall (min_le_left _ _))) h)
-
-  have himg : ∀ (g : realSU Ψ G) (S : Set (realSU Ψ G)), μ ((fun h => g * h) '' S) = μ S := fun g S => by
-    rw [image_mul_left, measure_preimage_mul]
-  have hq : ∀ ε : ℝ, 0 < ε → ε < 1 → ∃ δ > 0, Formalism.BasicNotions.Examples₂.CD.QInv ν ε δ := by
-    intro ε hε0 hε1
-    obtain ⟨δ, hδ, H⟩ := GlobalTheory.translate_chart_ball_distortion _ _ _ (chartExp Ψ G hG) (matR Ψ G) ι
-      (fun g => L₀ (matR Ψ G g)) he he0 hd hL hL1 hm hn (1 + ε / 3) (by linarith)
-    refine ⟨min (δ / 2) (δ₀ / 4), by positivity, fun X hX ρ hρ0 hρ => ?_⟩
-    have hXδ : ‖X‖ < δ / 2 := lt_of_lt_of_le hX (min_le_left _ _)
-    have hX4 : ‖X‖ < δ₀ / 4 := lt_of_lt_of_le hX (min_le_right _ _)
-    have hρδ : ρ < δ / 2 := lt_of_lt_of_le hρ (min_le_left _ _)
-    have hρ4 : ρ < δ₀ / 4 := lt_of_lt_of_le hρ (min_le_right _ _)
-    have hXb : X ∈ ball (0 : realLie Ψ G) δ := mem_ball_zero_iff.2 (by linarith)
-    have hκ0 : 0 < 1 + ε / 3 := by linarith
-    have hκ2 : 1 + ε / 3 < 2 := by linarith
-    have hcl0 : closedBall (0 : realLie Ψ G) ρ ⊆ closedBall 0 δ₀ :=
-      closedBall_subset_closedBall (by linarith)
-    constructor
-    · have hr1 : 0 < ρ / (1 + ε / 3) := div_pos hρ0 hκ0
-      have hr2 : ρ / (1 + ε / 3) < ρ := div_lt_self hρ0 (by linarith)
-      have hr3 : (1 - ε) * ρ < ρ / (1 + ε / 3) := by
-        rw [lt_div_iff₀ hκ0]; nlinarith [mul_pos hρ0 hε0, mul_pos (mul_pos hρ0 hε0) hε0]
-      have H2 := (H X hXb (ρ / (1 + ε / 3)) ⟨hr1, by linarith⟩).2
-      rw [mul_div_cancel₀ _ hκ0.ne'] at H2
-      calc ν (closedBall X ((1 - ε) * ρ)) ≤ ν (ball X (ρ / (1 + ε / 3))) :=
-            measure_mono (closedBall_subset_ball hr3)
-        _ = μ (chartExp Ψ G hG '' ball X (ρ / (1 + ε / 3))) :=
-            hνsub _ measurableSet_ball (hball X _ (by linarith))
-        _ ≤ μ ((fun h => chartExp Ψ G hG X * h) '' (chartExp Ψ G hG '' ball 0 ρ)) := measure_mono H2
-        _ = μ (chartExp Ψ G hG '' ball 0 ρ) := himg _ _
-        _ ≤ μ (chartExp Ψ G hG '' closedBall 0 ρ) := measure_mono (image_mono ball_subset_closedBall)
-        _ = ν (closedBall 0 ρ) := (hνsub _ measurableSet_closedBall hcl0).symm
-    · have hr1 : 0 < (1 + ε / 3) * ρ := by positivity
-      have hr2 : (1 + ε / 3) * ρ < δ := by nlinarith
-      have H1 := (H X hXb ((1 + ε / 3) * ρ) ⟨hr1, hr2⟩).1
-      have hsq : (1 + ε / 3) * ((1 + ε / 3) * ρ) ≤ (1 + ε) * ρ := by
-        nlinarith [mul_pos (mul_pos hρ0 hε0) (by linarith : (0:ℝ) < 3 - ε)]
-      calc ν (closedBall 0 ρ) ≤ ν (ball 0 ((1 + ε / 3) * ρ)) :=
-            measure_mono (closedBall_subset_ball (by nlinarith))
-        _ = μ (chartExp Ψ G hG '' ball 0 ((1 + ε / 3) * ρ)) :=
-            hνsub _ measurableSet_ball (hball 0 _ (by rw [norm_zero]; nlinarith))
-        _ = μ ((fun h => chartExp Ψ G hG X * h) '' (chartExp Ψ G hG '' ball 0 ((1 + ε / 3) * ρ))) :=
-            (himg _ _).symm
-        _ ≤ μ (chartExp Ψ G hG '' ball X ((1 + ε / 3) * ((1 + ε / 3) * ρ))) := measure_mono H1
-        _ = ν (ball X ((1 + ε / 3) * ((1 + ε / 3) * ρ))) :=
-            (hνsub _ measurableSet_ball (hball X _ (by nlinarith))).symm
-        _ ≤ ν (closedBall X ((1 + ε) * ρ)) :=
-            measure_mono (ball_subset_closedBall.trans (closedBall_subset_closedBall hsq))
-  obtain ⟨c, hc0, hct, hup, hdown⟩ := Formalism.BasicNotions.Examples₂.CD.exists_density lam ν hq hpos
-
-  have hνt : ∀ ε : ℝ, 0 < ε → (lam.map Subtype.val) (tanBall Ψ r ε) = lam (ball 0 ε) := by
-    intro ε hε
-    rw [Measure.map_apply measurable_subtype_coe, preimage_tanBall Ψ G hε]
-    rw [show tanBall Ψ r ε = ball (0 : Ψ → Fin r → Fin r → ℂ) ε by
-      ext X; rw [mem_ball_zero_iff, pi_norm_lt_iff hε]; simp only [pi_norm_lt_iff hε]; rfl]
-    exact measurableSet_ball
-  have hc : c < ((2 : ℝ≥0) : ℝ≥0∞) := by
-    by_contra hcon
-    rw [not_lt] at hcon
-    have h32 : (((3 / 2 : ℝ≥0)) : ℝ≥0∞) < c :=
-      lt_of_lt_of_le (by rw [ENNReal.coe_lt_coe]; norm_num) hcon
-    obtain ⟨δ₁, hδ₁, H1⟩ := hdown (3 / 2) h32
-    obtain ⟨t, ht1, htn⟩ : ∃ t : ℝ, 1 < t ∧ t ^ Module.finrank ℝ (realLie Ψ G) < 4 / 3 := by
-      have h := ((continuous_pow (Module.finrank ℝ (realLie Ψ G))).tendsto (1 : ℝ)).eventually
-        (gt_mem_nhds (show (1 : ℝ) ^ Module.finrank ℝ (realLie Ψ G) < 4 / 3 by norm_num))
-      have h' : ∀ᶠ x in 𝓝[>] (1 : ℝ), x ^ Module.finrank ℝ (realLie Ψ G) < 4 / 3 :=
-        h.filter_mono nhdsWithin_le_nhds
-      obtain ⟨t, h1, h2⟩ := (h'.and self_mem_nhdsWithin).exists
-      exact ⟨t, h2, h1⟩
-    have ht0 : 0 < t := by linarith
-    have hti0 : 0 < t⁻¹ := inv_pos.2 ht0
-    have hev : ∀ᶠ ε in 𝓝[>] (0 : ℝ), ((3 / 2 : ℝ≥0) : ℝ≥0∞) * ENNReal.ofReal (t⁻¹ ^ Module.finrank ℝ (realLie Ψ G)) ≤
-        μ (grpBall (realSU Ψ G) ε) / (lam.map Subtype.val) (tanBall Ψ r ε) := by
-      filter_upwards [chart_squeeze Ψ G hG ht1,
-        Ioo_mem_nhdsGT (show 0 < min δ₁ δ₀ * t by positivity)] with ε hsq hε
-      obtain ⟨hε0, hε1⟩ := hε
-      have hte : t⁻¹ * ε < min δ₁ δ₀ := by
-        rw [inv_mul_lt_iff₀ ht0, mul_comm]; exact hε1
-      rw [lt_min_iff] at hte
-      rw [hνt ε hε0]
-      rw [ENNReal.le_div_iff_mul_le (Or.inl (measure_ball_pos lam 0 hε0).ne')
-        (Or.inl measure_ball_lt_top.ne)]
-      calc ((3 / 2 : ℝ≥0) : ℝ≥0∞) * ENNReal.ofReal (t⁻¹ ^ Module.finrank ℝ (realLie Ψ G)) * lam (ball 0 ε)
-          = ((3 / 2 : ℝ≥0) : ℝ≥0∞) * lam (ball 0 (t⁻¹ * ε)) := by
-            rw [Measure.addHaar_ball_mul_of_pos lam 0 hti0 ε, mul_assoc]
-        _ ≤ ν (ball 0 (t⁻¹ * ε)) := H1 _ (ball_subset_ball hte.1.le)
-        _ = μ (chartExp Ψ G hG '' ball 0 (t⁻¹ * ε)) :=
-            hνsub _ measurableSet_ball (hball 0 _ (by rw [norm_zero]; linarith))
-        _ ≤ μ (grpBall (realSU Ψ G) ε) := measure_mono hsq.1
-    have h1 := ge_of_tendsto hD hev
-    have h2 : 1 < ((3 / 2 : ℝ≥0) : ℝ≥0∞) * ENNReal.ofReal (t⁻¹ ^ Module.finrank ℝ (realLie Ψ G)) := by
-      rw [← ENNReal.ofReal_coe_nnreal, ← ENNReal.ofReal_mul (by positivity), ← ENNReal.ofReal_one,
-        ENNReal.ofReal_lt_ofReal_iff (by positivity)]
-      have hp : 0 < t ^ Module.finrank ℝ (realLie Ψ G) := by positivity
-      rw [inv_pow]
-      push_cast
-      rw [← div_eq_mul_inv, lt_div_iff₀ hp]
-      linarith
-    exact absurd h1 (not_le.2 h2)
-  obtain ⟨δ₂, hδ₂, H2⟩ := hup 2 hc
-  refine ⟨min δ₂ δ₀, lt_min hδ₂ hδ₀, fun s hs hsub => ?_⟩
-  have h1 := H2 s (hsub.trans (ball_subset_ball (min_le_left _ _)))
-  have h2 : ν s = μ (chartExp Ψ G hG '' s) :=
-    hνsub s hs (hsub.trans ((ball_subset_ball (min_le_right _ _)).trans ball_subset_closedBall))
-  rw [← h2]
-  calc ν s ≤ ((2 : ℝ≥0) : ℝ≥0∞) * lam s := h1
-    _ = 2 * lam s := by norm_num
+  obtain ⟨δ, hδ, h⟩ := GlobalTheory.SUVol.tangentHaar_compare_lieHaar E r Ψ G hG lam
+  exact ⟨δ, hδ, fun s hs hsub => (h s hs hsub).2⟩
 
 end GlobalTheory.CovTop.VolUp.UpDens
 end -- clump:auto
@@ -1159,7 +988,7 @@ theorem riemHaar_frBall_le : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
   have hr2 : 3 ≤ r ^ 2 - 1 := by
     have : r ≠ 1 := fun h => hd (by rw [h]; simp)
     have : 2 ≤ r := by omega
-    have : 4 ≤ r ^ 2 := by nlinarith
+    have : 4 ≤ r ^ 2 := by rw [sq]; exact Nat.mul_le_mul this this
     omega
   have hd3 : 3 ≤ Ψ.card * (r ^ 2 - 1) := le_trans hr2 (Nat.le_mul_of_pos_left _ hΨ)
   obtain ⟨lam, hlam, hmap⟩ := exists_lam Ψ G x hx

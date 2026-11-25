@@ -100,18 +100,18 @@ theorem UpperTheory.Gal.TP.Sub.clTw_holds :
   intro P AI hT A h O _ _ _ Bw hj
   obtain ⟨c1, d1, j1, p1⟩ := h1.2 P AI hT A h O Bw hj
   obtain ⟨c2, d2, j2, p2⟩ := h2.2 P AI hT A h O Bw hj
-  have e1 : (rk1 μ).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype = rk1 (μ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := by
+  have e1 : (rk1 μ).comp (Dec (F := E) A).subtype = rk1 (μ.comp (Dec (F := E) A).subtype) := by
     ext g i j
     rfl
-  have e2 : (tw s μ).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype =
-      tw (s.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) (μ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := by
+  have e2 : (tw s μ).comp (Dec (F := E) A).subtype =
+      tw (s.comp (Dec (F := E) A).subtype) (μ.comp (Dec (F := E) A).subtype) := by
     ext g i j
     simp [UpperTheory.V.Af.tw_val]
-  have e3 : Formalism.MainNotions.SumRepresentations.At.twGL (s.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)
-      (Matrix.GeneralLinearGroup.det.comp (rk1 (μ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype))) =
-      tw (s.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) (μ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := by
-    have hdet : Matrix.GeneralLinearGroup.det.comp (rk1 (μ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype))
-        = μ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype := by
+  have e3 : Formalism.MainNotions.SumRepresentations.At.twGL (s.comp (Dec (F := E) A).subtype)
+      (Matrix.GeneralLinearGroup.det.comp (rk1 (μ.comp (Dec (F := E) A).subtype))) =
+      tw (s.comp (Dec (F := E) A).subtype) (μ.comp (Dec (F := E) A).subtype) := by
+    have hdet : Matrix.GeneralLinearGroup.det.comp (rk1 (μ.comp (Dec (F := E) A).subtype))
+        = μ.comp (Dec (F := E) A).subtype := by
       ext g
       simp [GlobalTheory.TripleGal.rk1, Matrix.det_unique]
     rw [hdet]
@@ -119,11 +119,11 @@ theorem UpperTheory.Gal.TP.Sub.clTw_holds :
     simp [Formalism.MainNotions.SumRepresentations.At.twGL, UpperTheory.V.Af.tw_val, Algebra.algebraMap_eq_smul_one, Matrix.smul_apply]
   rw [e1] at c1 d1 j1 p1
   rw [e2]
-  have cs : Continuous (s.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := hs.comp continuous_subtype_val
-  have cμ : Continuous (μ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := hμ.comp continuous_subtype_val
+  have cs : Continuous (s.comp (Dec (F := E) A).subtype) := hs.comp continuous_subtype_val
+  have cμ : Continuous (μ.comp (Dec (F := E) A).subtype) := hμ.comp continuous_subtype_val
   have ck := (hC _ (Qbar l) 1 1).2.2.2 _ cμ
   have ct := (hC _ (Qbar l) a 1).2.2.1 _ _ cs cμ
-  obtain ⟨l1, l2⟩ := hL l P AI hT E Ω A O Bw a (s.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) (μ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)
+  obtain ⟨l1, l2⟩ := hL l P AI hT E Ω A O Bw a (s.comp (Dec (F := E) A).subtype) (μ.comp (Dec (F := E) A).subtype)
   have dt := l1 d2 d1
   refine ⟨l2 c2 c1, dt, ?_, ?_⟩
   · intro τ LL' τ' hi
@@ -132,11 +132,11 @@ theorem UpperTheory.Gal.TP.Sub.clTw_holds :
     have q1 := hP l P AI hT E Ω A O Bw a _ cs d2
     have q2 := hP l P AI hT E Ω A O Bw 1 _ ck d1
     have q3 := hP l P AI hT E Ω A O Bw a _ ct dt
-    have hcs : Continuous fun g : ↥(ReciprocityTheory.Gal.Dec (F := E) A) =>
-        ((s.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype g : GL (Fin a) (Loc.Om l)) : Matrix (Fin a) (Fin a) (Loc.Om l)) :=
+    have hcs : Continuous fun g : ↥(Dec (F := E) A) =>
+        ((s.comp (Dec (F := E) A).subtype g : GL (Fin a) (Loc.Om l)) : Matrix (Fin a) (Fin a) (Loc.Om l)) :=
       Units.continuous_val.comp cs
-    have hck : Continuous fun g : ↥(ReciprocityTheory.Gal.Dec (F := E) A) =>
-        ((rk1 (μ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) g : GL (Fin 1) (Loc.Om l)) : Matrix (Fin 1) (Fin 1) (Loc.Om l)) :=
+    have hck : Continuous fun g : ↥(Dec (F := E) A) =>
+        ((rk1 (μ.comp (Dec (F := E) A).subtype) g : GL (Fin 1) (Loc.Om l)) : Matrix (Fin 1) (Fin 1) (Loc.Om l)) :=
       Units.continuous_val.comp ck
     rw [← e3] at q3
     have key := _root_.GlobalTheory.TwistParamAbove.wdAt_twist l P AI hT ι E Ω A w h O Bw hj a _ _ hcs hck q1 q2 q3
@@ -166,8 +166,8 @@ theorem UpperTheory.Gal.TP.Sub.charAbove_holds :
   obtain ⟨a, ha'⟩ := GlobalTheory.localArtinExists_holds E Ω A w h
   have hξ := GlobalTheory.Published.ParamAboveModel.isComp_loc (w := w) χ
   have d := hD E Ω l P AI hT ι art ha χ n μ h1 h2 h3 w A h O Bw hj
-  have hc : Continuous ((rk1 μ).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) :=
-    ((hC (Formalism.ConjugateSelfDual.G E Ω) (Qbar l) 0 0).2.2.2 μ h2).comp continuous_subtype_val
+  have hc : Continuous ((rk1 μ).comp (Dec (F := E) A).subtype) :=
+    ((hC (G E Ω) (Qbar l) 0 0).2.2.2 μ h2).comp continuous_subtype_val
   have hr := hP l P AI hT E Ω A O Bw 1 _ hc d.1
   have e := hW E Ω l P AI hT ι art ha χ n μ h1 h2 h3 w A h O Bw hj _ hξ a ha'
   have hun := (GlobalTheory.Published.CharCrysModel.isUnram_iff χ w).2 hu
@@ -217,9 +217,9 @@ theorem UpperTheory.Gal.TP.Sub.charEx_holds :
   intro H hF hA hI E Ω _ _ _ _ _ l _ ι
   obtain ⟨art, hart, hex⟩ := H E Ω
   have hL : ∀ (χ : HChar E) (n : (E →+* ℂ) → ℤ), IsAlgPos χ n →
-      ∃ r : Formalism.ConjugateSelfDual.G E Ω →* (Qbar l)ˣ, Continuous r ∧ IsLAdicOf art ι χ n r :=
+      ∃ r : G E Ω →* (Qbar l)ˣ, Continuous r ∧ IsLAdicOf art ι χ n r :=
     fun χ n h => (hex l ι χ n h).exists
-  let L : HChar E → ((E →+* ℂ) → ℤ) → (Formalism.ConjugateSelfDual.G E Ω →* (Qbar l)ˣ) :=
+  let L : HChar E → ((E →+* ℂ) → ℤ) → (G E Ω →* (Qbar l)ˣ) :=
     fun χ n => if h : IsAlgPos χ n then (hL χ n h).choose else 1
   have hspec : ∀ (χ : HChar E) (n : (E →+* ℂ) → ℤ), IsAlgPos χ n →
       Continuous (L χ n) ∧ IsLAdicOf art ι χ n (L χ n) := by
@@ -312,7 +312,7 @@ open UpperTheory.V.Af (FrobEig algSat RepIso tw)
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open UpperTheory.Gal.TP.Sub
 
-private theorem exists_finExt_gl {l n : ℕ} [Fact l.Prime] (A : GL (Fin n) (Qbar l)) :
+protected theorem UpperTheory.Gal.TP.Sub.exists_finExt_gl {l n : ℕ} [Fact l.Prime] (A : GL (Fin n) (Qbar l)) :
     ∃ K : FinExt l, ∀ i j, (A : Matrix (Fin n) (Fin n) (Qbar l)) i j ∈ K.1 ∧
       ((A⁻¹ : GL (Fin n) (Qbar l)) : Matrix (Fin n) (Fin n) (Qbar l)) i j ∈ K.1 := by
   let s : Set (Qbar l) := Set.range (fun p : Fin n × Fin n => (A : Matrix (Fin n) (Fin n) (Qbar l)) p.1 p.2) ∪
@@ -324,7 +324,7 @@ private theorem exists_finExt_gl {l n : ℕ} [Fact l.Prime] (A : GL (Fin n) (Qba
   · exact IntermediateField.subset_adjoin _ _ (Or.inl ⟨(i, j), rfl⟩)
   · exact IntermediateField.subset_adjoin _ _ (Or.inr ⟨(i, j), rfl⟩)
 
-private theorem isdRAt_conj {l : ℕ} [Fact l.Prime] {P : LocPrime l} {E Ω : Type} [Field E] [Field Ω] [Algebra E Ω]
+protected theorem UpperTheory.Gal.TP.Sub.isdRAt_conj {l : ℕ} [Fact l.Prime] {P : LocPrime l} {E Ω : Type} [Field E] [Field Ω] [Algebra E Ω]
     {O : Type} [CommRing O] [Algebra ℤ_[l] O] [TopologicalSpace O] {Gw : Subgroup (Ω ≃ₐ[E] Ω)}
     {Bw : LocBridge l E Ω Gw O} {m : ℕ} {r : ↥Gw →* GL (Fin m) (Qbar l)} (A : GL (Fin m) (Qbar l)) (K : FinExt l)
     (hA : ∀ i j, (A : Matrix (Fin m) (Fin m) (Qbar l)) i j ∈ K.1 ∧
@@ -347,30 +347,30 @@ theorem UpperTheory.Gal.TP.Sub.clConj_holds :
       simp
     · have e : (r' σ⁻¹ : Matrix (Fin a) (Fin a) (Qbar l)).charpoly =
           (r σ⁻¹ : Matrix (Fin a) (Fin a) (Qbar l)).charpoly :=
-        (hCp (Formalism.ConjugateSelfDual.G E Ω) (Qbar l) a a).2.2 r r' hiso σ⁻¹
+        (hCp (G E Ω) (Qbar l) a a).2.2 r r' hiso σ⁻¹
       rw [e]
       exact i2 σ hσ
   · intro P AI hT A h O _ _ _ Bw hj
     obtain ⟨c1, c2, c3, c4⟩ := h2 P AI hT A h O Bw hj
-    obtain ⟨K, hK⟩ := exists_finExt_gl (g⁻¹)
-    have e : r'.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype =
+    obtain ⟨K, hK⟩ := UpperTheory.Gal.TP.Sub.exists_finExt_gl (g⁻¹)
+    have e : r'.comp (Dec (F := E) A).subtype =
         (MulAut.conj (g⁻¹)⁻¹).toMonoidHom.comp
           (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := by
       ext1 x
       simp [hg, MulAut.conj_apply]
-    have hc' : Continuous r' := (hCont (Formalism.ConjugateSelfDual.G E Ω) (Qbar l) a a).2.1 r r' hiso hr
-    have cρ : Continuous (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := hr.comp continuous_subtype_val
-    have cρ' : Continuous (r'.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := hc'.comp continuous_subtype_val
-    have d' : IsdRAt P Bw (r'.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := by
+    have hc' : Continuous r' := (hCont (G E Ω) (Qbar l) a a).2.1 r r' hiso hr
+    have cρ : Continuous (r.comp (Dec (F := E) A).subtype) := hr.comp continuous_subtype_val
+    have cρ' : Continuous (r'.comp (Dec (F := E) A).subtype) := hc'.comp continuous_subtype_val
+    have d' : IsdRAt P Bw (r'.comp (Dec (F := E) A).subtype) := by
       rw [e]
-      exact isdRAt_conj _ K hK c2
+      exact UpperTheory.Gal.TP.Sub.isdRAt_conj _ K hK c2
     refine ⟨?_, d', fun τ LL' τ' hI => ?_, fun x => ?_⟩
     · rw [e]
       exact GlobalTheory.ConjCrys.isCrysAt_conj _ K hK c1
     · rw [e]
       exact GlobalTheory.ConjCrys.isJumpsAt_conj _ K hK (c3 τ LL' τ' hI)
-    · rw [GlobalTheory.ConjGal.wdAt_conj P ι Bw h hj (r.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)
-        (r'.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) g (fun x => hg x)
+    · rw [GlobalTheory.ConjGal.wdAt_conj P ι Bw h hj (r.comp (Dec (F := E) A).subtype)
+        (r'.comp (Dec (F := E) A).subtype) g (fun x => hg x)
         (hPst l P AI hT E Ω A O Bw a _ cρ c2) (hPst l P AI hT E Ω A O Bw a _ cρ' d')]
       exact c4 x
 end -- clump:auto
@@ -418,18 +418,18 @@ theorem UpperTheory.Gal.TP.Sub.clSub_holds :
   intro P AI hT A h O _ _ _ Bw hj
   obtain ⟨-, d1, j1, p1⟩ := hc.2 P AI hT A h O Bw hj
   obtain ⟨c2, d2, j2, p2⟩ := hsum.2 P AI hT A h O Bw hj
-  have ci : Continuous (ReciprocityTheory.Gal.Dec (F := E) A).subtype := continuous_subtype_val
-  have cμ : Continuous (rk1 μ) := (contLeft_holds (Formalism.ConjugateSelfDual.G E Ω) (Qbar l) a 1).2.2.2 μ hμ
-  have cS : Continuous ((sumRep s (rk1 μ)).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) :=
+  have ci : Continuous (Dec (F := E) A).subtype := continuous_subtype_val
+  have cμ : Continuous (rk1 μ) := (contLeft_holds (G E Ω) (Qbar l) a 1).2.2.2 μ hμ
+  have cS : Continuous ((sumRep s (rk1 μ)).comp (Dec (F := E) A).subtype) :=
     (cont_sum s (rk1 μ) hs cμ).comp ci
-  have e : (sumRep s (rk1 μ)).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype =
-      sumRep (s.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) ((rk1 μ).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := by
+  have e : (sumRep s (rk1 μ)).comp (Dec (F := E) A).subtype =
+      sumRep (s.comp (Dec (F := E) A).subtype) ((rk1 μ).comp (Dec (F := E) A).subtype) := by
     ext; rfl
   rw [e] at c2 d2 j2 p2 cS
   obtain ⟨dS, -, jS⟩ := hD l P AI hT E Ω A O Bw a 1 _ _ d2
-  have pS : IsPstAt P Bw (s.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) :=
+  have pS : IsPstAt P Bw (s.comp (Dec (F := E) A).subtype) :=
     hP l P AI hT E Ω A O Bw a _ (hs.comp ci) dS
-  have pM : IsPstAt P Bw ((rk1 μ).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) :=
+  have pM : IsPstAt P Bw ((rk1 μ).comp (Dec (F := E) A).subtype) :=
     hP l P AI hT E Ω A O Bw 1 _ (cμ.comp ci) d1
   have pT := hP l P AI hT E Ω A O Bw (a + 1) _ cS d2
   have hw := _root_.GlobalTheory.Pst.SumParam.wdAt_sumRep l P AI hT ι E Ω A w O Bw h hj a 1 _ _ pS pM pT
@@ -622,7 +622,7 @@ theorem UpperTheory.Gal.TP.Sub.frobSub_holds :
       ι.toRingHom (μ σ⁻¹ : Qbar l) = c := by
     intro A hA σ hσ
     have h1 := (hμ A hA).2 σ hσ
-    have h2 := (h (Formalism.ConjugateSelfDual.G E Ω) (Qbar l) 1 1).2.1 μ σ⁻¹
+    have h2 := (h (G E Ω) (Qbar l) 1 1).2.1 μ σ⁻¹
     unfold cp at h2
     rw [h2] at h1
     simpa using h1
@@ -637,8 +637,8 @@ theorem UpperTheory.Gal.TP.Sub.frobSub_holds :
       rw [← hij]
       simp [Matrix.one_apply]
     · have e := hF σ hσ
-      have h3 := (h (Formalism.ConjugateSelfDual.G E Ω) (Qbar l) a 1).1 s (rk1 μ) σ⁻¹
-      have h4 := (h (Formalism.ConjugateSelfDual.G E Ω) (Qbar l) 1 1).2.1 μ σ⁻¹
+      have h3 := (h (G E Ω) (Qbar l) a 1).1 s (rk1 μ) σ⁻¹
+      have h4 := (h (G E Ω) (Qbar l) 1 1).2.1 μ σ⁻¹
       unfold cp at h3 h4
       rw [h3, Polynomial.map_mul, h4] at e
       simp only [Polynomial.map_sub, Polynomial.map_X, Polynomial.map_C] at e
@@ -705,9 +705,9 @@ theorem UpperTheory.Gal.TP.Sub.peelAll_holds :
   | succ t ih =>
     intro r a hc hss ha hne hid
     obtain ⟨s₁, hs₁, hiso, hid₁⟩ :=
-      hP (Formalism.ConjugateSelfDual.G E Ω) (Qbar l) (n + t) m' t t' r r' a a' hss hr' hne hid
-    have hC' := hC (Formalism.ConjugateSelfDual.G E Ω) (Qbar l) (n + t) 1
-    have hC1 := hC (Formalism.ConjugateSelfDual.G E Ω) (Qbar l) (n + t + 1) 1
+      hP (G E Ω) (Qbar l) (n + t) m' t t' r r' a a' hss hr' hne hid
+    have hC' := hC (G E Ω) (Qbar l) (n + t) 1
+    have hC1 := hC (G E Ω) (Qbar l) (n + t + 1) 1
     have hcl : Continuous (sumRep s₁ (rk1 (a (Fin.last t)))) := hC1.2.1 _ _ hiso hc
     have hcs₁ : Continuous s₁ := hC'.1 _ _ hcl
     obtain ⟨s, hsc, hss', hcl'⟩ := ih s₁ (fun i => a i.castSucc) hcs₁ hs₁
@@ -958,21 +958,21 @@ section Alg
 
 variable {Γ : Type} [Group Γ] {k k' : Type} [CommRing k] [CommRing k']
 
-private theorem sumRep_ll {a b : ℕ} (r : Γ →* GL (Fin a) k) (s : Γ →* GL (Fin b) k) (g : Γ) (i j : Fin a) :
+protected theorem sumRep_ll {a b : ℕ} (r : Γ →* GL (Fin a) k) (s : Γ →* GL (Fin b) k) (g : Γ) (i j : Fin a) :
     (sumRep r s g : Matrix (Fin (a + b)) (Fin (a + b)) k) (Fin.castAdd b i) (Fin.castAdd b j) =
       (r g : Matrix (Fin a) (Fin a) k) i j := by
   change Matrix.fromBlocks (r g : Matrix (Fin a) (Fin a) k) 0 0 (s g : Matrix (Fin b) (Fin b) k)
       (finSumFinEquiv.symm (Fin.castAdd b i)) (finSumFinEquiv.symm (Fin.castAdd b j)) = _
   simp
 
-private theorem sumRep_rr {a b : ℕ} (r : Γ →* GL (Fin a) k) (s : Γ →* GL (Fin b) k) (g : Γ) (i j : Fin b) :
+protected theorem sumRep_rr {a b : ℕ} (r : Γ →* GL (Fin a) k) (s : Γ →* GL (Fin b) k) (g : Γ) (i j : Fin b) :
     (sumRep r s g : Matrix (Fin (a + b)) (Fin (a + b)) k) (Fin.natAdd a i) (Fin.natAdd a j) =
       (s g : Matrix (Fin b) (Fin b) k) i j := by
   change Matrix.fromBlocks (r g : Matrix (Fin a) (Fin a) k) 0 0 (s g : Matrix (Fin b) (Fin b) k)
       (finSumFinEquiv.symm (Fin.natAdd a i)) (finSumFinEquiv.symm (Fin.natAdd a j)) = _
   simp
 
-private theorem map_sum' {a b : ℕ} (f : k →+* k') (r₁ : Γ →* GL (Fin a) k) (r₂ : Γ →* GL (Fin b) k) :
+protected theorem map_sum' {a b : ℕ} (f : k →+* k') (r₁ : Γ →* GL (Fin a) k) (r₂ : Γ →* GL (Fin b) k) :
     mapRep f (sumRep r₁ r₂) = sumRep (mapRep f r₁) (mapRep f r₂) := by
   ext g i j
   change f (Matrix.fromBlocks (r₁ g : Matrix (Fin a) (Fin a) k) 0 0 (r₂ g : Matrix (Fin b) (Fin b) k)
@@ -981,7 +981,7 @@ private theorem map_sum' {a b : ℕ} (f : k →+* k') (r₁ : Γ →* GL (Fin a)
       (finSumFinEquiv.symm i) (finSumFinEquiv.symm j)
   rcases finSumFinEquiv.symm i with i | i <;> rcases finSumFinEquiv.symm j with j | j <;> simp [mapRep]
 
-private theorem descend {n : ℕ} (f : k →+* k') (hf : Function.Injective f) (r : Γ →* GL (Fin n) k')
+protected theorem descend {n : ℕ} (f : k →+* k') (hf : Function.Injective f) (r : Γ →* GL (Fin n) k')
     (A : Γ → Matrix (Fin n) (Fin n) k) (hA : ∀ g i j, f (A g i j) = (r g : Matrix (Fin n) (Fin n) k') i j) :
     ∃ r₁ : Γ →* GL (Fin n) k, mapRep f r₁ = r := by
   let M : Γ →* Matrix (Fin n) (Fin n) k :=
@@ -1017,13 +1017,13 @@ private theorem model_split {L : FinExt l} {ρ : ↥Gw →* GL (Fin (a + b)) ↥
       (sumRep r s g : Matrix (Fin (a + b)) (Fin (a + b)) (Om l)) i j := fun g i j => by
     rw [← h.2]
     simp [mapRep]
-  obtain ⟨r₁, hr⟩ := descend (algebraMap ↥L.1 (Om l)) hf r
+  obtain ⟨r₁, hr⟩ := Sub.descend (algebraMap ↥L.1 (Om l)) hf r
     (fun g i j => (ρ g : Matrix _ _ ↥L.1) (Fin.castAdd b i) (Fin.castAdd b j))
-    (fun g i j => by rw [e, sumRep_ll])
-  obtain ⟨s₁, hs⟩ := descend (algebraMap ↥L.1 (Om l)) hf s
+    (fun g i j => by rw [e, Sub.sumRep_ll])
+  obtain ⟨s₁, hs⟩ := Sub.descend (algebraMap ↥L.1 (Om l)) hf s
     (fun g i j => (ρ g : Matrix _ _ ↥L.1) (Fin.natAdd a i) (Fin.natAdd a j))
-    (fun g i j => by rw [e, sumRep_rr])
-  exact ⟨r₁, s₁, ⟨h.1, hr⟩, ⟨h.1, hs⟩, ⟨h.1, by rw [map_sum', hr, hs]⟩⟩
+    (fun g i j => by rw [e, Sub.sumRep_rr])
+  exact ⟨r₁, s₁, ⟨h.1, hr⟩, ⟨h.1, hs⟩, ⟨h.1, by rw [Sub.map_sum', hr, hs]⟩⟩
 
 theorem sumDR_holds : SumDR := by
   intro l _ P AI tied E Ω _ _ _ _ _ A O _ _ _ Bw a b r s hd

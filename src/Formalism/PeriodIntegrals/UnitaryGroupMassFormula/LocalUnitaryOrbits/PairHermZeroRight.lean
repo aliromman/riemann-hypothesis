@@ -6,7 +6,7 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerOrbitV
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompactness.T2SpaceTensorProductFiniteExtension
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.OmAtComplZero
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.VolSqMulIndex
-import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerOrbitVolume.LocDensHI
+import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.LocDensHI
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerOrbitVolume.LocDensHL
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerOrbitVolume.TensTop
 import Mathlib.Algebra.Order.Floor.Extended
@@ -62,6 +62,7 @@ namespace PI.OmLocU
 
 open Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.SG.LocVol NumberField IsDedekindDomain MeasureTheory PI.VolStabSW
   PI.VolStabSW.SdUniqW PI.VolStabSW.LatFactsW
+open PI.VolStabS (measure_eq_relIndex_mul)
 open scoped TensorProduct
 
 section Oev
@@ -256,7 +257,7 @@ theorem sdVolH_of_top (a : ℕ) (hC : CondV σ J ψ v) (hT : TopH σ v a) (hD : 
     rw [h, Nat.cast_zero] at hN2
     have := pow_pos (qv_pos v) (a ^ 2)
     linarith
-  have h2 := PI.VolStabSW.measure_eq_relIndex_mul ν (smulSub ϖ L) L hle2 hLo.measurableSet
+  have h2 := PI.VolStabS.measure_eq_relIndex_mul ν (smulSub ϖ L) L hle2 hLo.measurableSet
     hPo.measurableSet hNz2
   have h3 : ν.real (L : Set (HermR (Fv F v) σ a)) =
       ((smulSub ϖ L).relIndex L : ℝ) * ν.real (smulSub ϖ L : Set (HermR (Fv F v) σ a)) := by

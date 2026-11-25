@@ -2,54 +2,11 @@ module
 
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.EigLatBasis
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.SabComp
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.AlgebraicGeometry.Modules.Sheaf
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.RingTheory.WittVector.IsPoly
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.SabPull
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ChartPullbacks.UniversalCharts.AlgChart
 
 @[expose] public section
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -76,6 +33,26 @@ def jetMapA (n m : ℕ) : JetR R (Fin n) m →ₐ[R] JetR R' (Fin n) m :=
 theorem jetMapA_zR (m : ℕ) (j : Fin n) : jetMapA (R := R) (R' := R') n m (zR m j) = zR m j := by
   unfold jetMapA
   rw [jetLift_zR]
+
+private theorem jetTruncR_comp_jetMapA (m : ℕ) :
+    ((jetTruncR R' (Fin n) m).restrictScalars R).comp (jetMapA n (m + 1)) =
+      (jetMapA n m).comp (jetTruncR R (Fin n) m) := by
+  apply jet_ext
+  intro j
+  simp only [AlgHom.comp_apply, AlgHom.restrictScalars_apply, jetMapA_zR]
+  have h1 : jetTruncR R (Fin n) m (zR (m + 1) j) = zR m j := rfl
+  have h2 : jetTruncR R' (Fin n) m (zR (m + 1) j) = zR m j := rfl
+  rw [h1, h2, jetMapA_zR]
+
+private theorem jetZeroR_comp_jetMapA (m : ℕ) :
+    ((jetZeroR R' (Fin n) m).restrictScalars R).comp (jetMapA n m) =
+      (jetMapA n 0).comp (jetZeroR R (Fin n) m) := by
+  apply jet_ext
+  intro j
+  simp only [AlgHom.comp_apply, AlgHom.restrictScalars_apply, jetMapA_zR]
+  have h1 : jetZeroR R (Fin n) m (zR m j) = zR 0 j := rfl
+  have h2 : jetZeroR R' (Fin n) m (zR m j) = zR 0 j := rfl
+  rw [h1, h2, jetMapA_zR]
 
 theorem isUnivRing_bc (m : ℕ) (π : B →ₐ[R] JetR R (Fin n) m) (hπ : IsUnivRing eps m π)
     (hπa : (jetAug R (Fin n) m).comp π = eps) (A : Type) [CommRing A] [Algebra R' A] [Algebra R A]
@@ -203,19 +180,32 @@ abbrev fB (R R' : Type) [CommRing R] [CommRing R'] [Algebra R R'] :
 
 variable {P : Type} [CommRing P] [Algebra R' P] [Algebra R P] [IsScalarTower R R' P]
 
+-- Building the `Over.mk` identity morphism polymorphically over an abstract object `X`
+-- prevents the kernel from unifying `(sp (R₀ := R) P).left` directly with `(sp (R₀ := R') P).left`.
+def overMkEq {C : Type*} [Category C] {S X : C} {f g : X ⟶ S} (h : g = f) :
+    Over.mk f ⟶ Over.mk g :=
+  Over.homMk (𝟙 X) (by simp [h])
+
+private theorem overMkEq_comp_left {C : Type*} [Category C] {S X : C} {f g : X ⟶ S} (h : g = f)
+    {Y : Over S} (u : Over.mk g ⟶ Y) : (overMkEq h ≫ u).left = u.left := by
+  simp [overMkEq]
+
 theorem sp_hom_fB : (sp (R₀ := R') P).hom ≫ fB R R' = (sp (R₀ := R) P).hom := by
   simp only [sp, Over.mk_hom, fB]
   rw [← Spec.map_comp, ← CommRingCat.ofHom_comp, ← IsScalarTower.algebraMap_eq]
 
 def iotaB : sp (R₀ := R) P ⟶ Over.mk ((sp (R₀ := R') P).hom ≫ fB R R') :=
-  Over.homMk (𝟙 _) (by rw [Category.id_comp]; exact sp_hom_fB (R := R) (R' := R') (P := P))
+  overMkEq (X := Spec (CommRingCat.of P))
+    (f := Spec.map (CommRingCat.ofHom (algebraMap R P)))
+    (g := Spec.map (CommRingCat.ofHom (algebraMap R' P)) ≫ fB R R')
+    (sp_hom_fB (R := R) (R' := R') (P := P))
 
 def pushR (y : sp (R₀ := R') P ⟶ (Over.pullback (fB R R')).obj G) : sp (R₀ := R) P ⟶ G :=
   iotaB ≫ pushPt (isGrpPullback_pullback G (fB R R')).1.w y
 
 theorem pushR_left (y : sp (R₀ := R') P ⟶ (Over.pullback (fB R R')).obj G) :
-    (pushR G y).left = y.left ≫ pullback.fst G.hom (fB R R') := by
-  simp only [pushR, iotaB, pushPt, Over.comp_left, Over.homMk_left, Category.id_comp]
+    (pushR G y).left = y.left ≫ pullback.fst G.hom (fB R R') :=
+  overMkEq_comp_left _ _
 
 def pullR (q : sp (R₀ := R) P ⟶ G) : sp (R₀ := R') P ⟶ (Over.pullback (fB R R')).obj G :=
   Over.homMk ((isGrpPullback_pullback G (fB R R')).1.lift q.left (sp (R₀ := R') P).hom
@@ -241,21 +231,8 @@ theorem pushR_spMap {P' : Type} [CommRing P'] [Algebra R' P'] [Algebra R P'] [Is
   rw [pushR_left, Over.comp_left, Over.comp_left, pushR_left, Category.assoc]
   rfl
 
-theorem pushR_one : pushR G (1 : sp (R₀ := R') P ⟶ (Over.pullback (fB R R')).obj G) = 1 := by
-  have hw := (isGrpPullback_pullback G (fB R R')).1.w
-  have hmul : ∀ x y : sp (R₀ := R') P ⟶ (Over.pullback (fB R R')).obj G,
-      pushR G (x * y) = pushR G x * pushR G y := by
-    intro x y
-    have hpp : pushPt hw (x * y) = pushPt hw x * pushPt hw y := by
-      apply Over.OverMorphism.ext
-      exact ((isGrpPullback_pullback G (fB R R')).2 _ x y (pushPt hw x) (pushPt hw y) rfl rfl).symm
-    simp only [pushR]
-    rw [hpp, MonObj.comp_mul]
-  have h1 : pushR G (1 : sp (R₀ := R') P ⟶ (Over.pullback (fB R R')).obj G) *
-      pushR G (1 : sp (R₀ := R') P ⟶ (Over.pullback (fB R R')).obj G) =
-      pushR G (1 : sp (R₀ := R') P ⟶ (Over.pullback (fB R R')).obj G) := by
-    rw [← hmul, _root_.mul_one]
-  exact mul_eq_left.mp h1
+theorem pushR_one : pushR G (1 : sp (R₀ := R') P ⟶ (Over.pullback (fB R R')).obj G) = 1 :=
+  map_one ((preHom (G := G) iotaB).comp (pushHom (isGrpPullback_pullback G (fB R R')) _))
 
 
 variable (R R') in
@@ -263,9 +240,17 @@ def dualMapA : DualNumber R →ₐ[R] DualNumber R' :=
   { dualMapR (algebraMap R R') with
     commutes' := fun r => by ext <;> simp [dualMapR, TrivSqZeroExt.algebraMap_eq_inl'] }
 
-theorem dualMapA_inr (t : R) : dualMapA R R' (TrivSqZeroExt.inr t) = TrivSqZeroExt.inr (algebraMap R R' t) := by
-  show dualMapR (algebraMap R R') (TrivSqZeroExt.inr t) = _
-  ext <;> simp [dualMapR]
+theorem dualMapA_inr (t : R) :
+    dualMapA R R' (TrivSqZeroExt.inr t) = TrivSqZeroExt.inr (algebraMap R R' t) :=
+  TrivSqZeroExt.ext (by simp [dualMapA, dualMapR]) (by simp [dualMapA, dualMapR])
+
+private theorem dualMapA_comp_dualLift {n : ℕ} (c : Fin n → R) :
+    (dualMapA R R').comp (dualLift c) =
+      ((dualLift (algebraMap R R' ∘ c)).restrictScalars R).comp (jetMapA n 1) := by
+  apply jet_ext
+  intro j
+  simp only [AlgHom.comp_apply, AlgHom.restrictScalars_apply, jetMapA_zR, dualLift_zR,
+    dualMapA_inr, Function.comp_apply]
 
 end Geo
 
@@ -299,23 +284,12 @@ theorem tanBC_alg {R R' : Type} [CommRing R] [IsLocalRing R] [CommRing R'] [Alge
     rw [hπ, spMap_pt, ← hψ₂.2]
   refine ⟨fun m => pullR G (pt C ((jetMapA n m).comp (π m))), ⟨fun m => ?_, fun m => ?_, ?_⟩, fun c => ?_⟩
   · apply pushR_inj G
-    rw [pushR_spMap, pushR_pullR, pushR_pullR, spMap_pt, ← hπtr m, ← AlgHom.comp_assoc, ← AlgHom.comp_assoc]
-    congr 2
-    apply jet_ext
-    intro j
-    show jetTruncR R' (Fin n) m (jetMapA n (m + 1) (zR (m + 1) j)) = jetMapA n m (zR m j)
-    rw [jetMapA_zR, jetMapA_zR]
-    rfl
+    rw [pushR_spMap, pushR_pullR, pushR_pullR, spMap_pt, ← hπtr m, ← AlgHom.comp_assoc,
+      ← AlgHom.comp_assoc, jetTruncR_comp_jetMapA]
   · apply pushR_inj G
     rw [pushR_spMap, pushR_pullR, spMap_pt, pushR_one, ← pt_eps C (JetR R' (Fin n) 0)]
     congr 1
-    have e : ((jetZeroR R' (Fin n) m).restrictScalars R).comp (jetMapA n m) = (jetMapA n 0).comp (jetZeroR R (Fin n) m) := by
-      apply jet_ext
-      intro j
-      show jetZeroR R' (Fin n) m (jetMapA n m (zR m j)) = jetMapA n 0 (zR 0 j)
-      rw [jetMapA_zR, jetMapA_zR]
-      rfl
-    rw [← AlgHom.comp_assoc, e, AlgHom.comp_assoc, hπ0, ← AlgHom.comp_assoc]
+    rw [← AlgHom.comp_assoc, jetZeroR_comp_jetMapA, AlgHom.comp_assoc, hπ0, ← AlgHom.comp_assoc]
     congr 1
     exact AlgHom.ext fun r => (jetMapA n 0).commutes r
   · intro A _ _ aug m hJ y hy
@@ -344,18 +318,13 @@ theorem tanBC_alg {R R' : Type} [CommRing R] [IsLocalRing R] [CommRing R'] [Alge
         pt C (((dualLift (algebraMap R R' ∘ c)).restrictScalars R).comp ((jetMapA n 1).comp (π 1))) := by
       show pushR G (spMap _ ≫ _) = _
       rw [pushR_spMap, pushR_pullR, spMap_pt]
-    have e2 : spMap (dualMapA R R') ≫ tvec (x := x) c = pt C ((dualMapA R R').comp ((dualLift c).comp (π 1))) := by
+    have e2 : spMap (dualMapA R R') ≫ tvec (x := x) c =
+        pt C ((dualMapA R R').comp ((dualLift c).comp (π 1))) := by
       show spMap _ ≫ spMap _ ≫ x 1 = _
       rw [hπ 1, spMap_pt, spMap_pt]
     have e3 : (dualMapA R R').comp ((dualLift c).comp (π 1)) =
         ((dualLift (algebraMap R R' ∘ c)).restrictScalars R).comp ((jetMapA n 1).comp (π 1)) := by
-      rw [← AlgHom.comp_assoc, ← AlgHom.comp_assoc]
-      congr 1
-      apply jet_ext
-      intro j
-      show dualMapA R R' (dualLift c (zR 1 j)) = dualLift (algebraMap R R' ∘ c) (jetMapA n 1 (zR 1 j))
-      rw [jetMapA_zR, dualLift_zR, dualLift_zR, dualMapA_inr]
-      rfl
+      rw [← AlgHom.comp_assoc, ← AlgHom.comp_assoc, dualMapA_comp_dualLift]
     rw [← pushR_left, e1, ← e3, ← e2]
     rfl
 

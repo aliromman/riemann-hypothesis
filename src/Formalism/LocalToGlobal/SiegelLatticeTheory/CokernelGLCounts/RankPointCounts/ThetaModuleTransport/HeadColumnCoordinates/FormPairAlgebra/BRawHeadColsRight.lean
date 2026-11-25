@@ -166,7 +166,7 @@ theorem bRaw_cjT (hcj : ∀ x, cj (cj x) = x) (Z : Matrix (Fin (r + 1)) (Fin (r 
       cj (w a) * ((Z.map O.subtype).mulVec ((Z.map O.subtype)⁻¹.mulVec (fun i => (y i : E)))) a := by
     simp only [Matrix.mulVec, dotProduct, Finset.mul_sum]
     refine Finset.sum_congr rfl fun j _ => ?_
-    ring
+    ring_nf
   rw [e, Matrix.mulVec_mulVec, Matrix.mul_nonsing_inv _ hu, Matrix.one_mulVec]
 
 theorem lamS_cjT (Z : Matrix (Fin (r + 1)) (Fin (r + 1)) O) (hu : IsUnit (Z.map O.subtype).det)
@@ -197,8 +197,7 @@ theorem cj_bRaw_single (hcj : ∀ x, cj (cj x) = x) (Z : Matrix (Fin (r + 1)) (F
     (y' : Fin (r + 1) → O) :
     cj (bRaw O cj Z (Pi.single (Fin.last r) 1) y') = lamS O cj Z y' := by
 
-  simp only [bRaw, lamS, lamStarC, coe_single, Matrix.mulVec_single_one, map_sum, map_mul, hcj,
-  Matrix.transpose_apply]
+  simp only [bRaw, lamS, lamStarC, coe_single, Matrix.mulVec_single_one, map_sum, map_mul, hcj]
   exact Finset.sum_congr rfl fun j _ => mul_comm _ _
 
 end Formalism.L2.SG.LocalCountModules.UnramifiedPairingLinear

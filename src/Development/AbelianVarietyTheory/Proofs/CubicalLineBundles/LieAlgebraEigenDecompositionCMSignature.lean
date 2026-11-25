@@ -57,8 +57,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
 
-set_option autoImplicit false
-
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.GeometryOfNumbersTheory
 open scoped CategoryTheory.Obj
@@ -146,7 +144,7 @@ theorem finrank_eigenSub {K : Type} [Field K] [NumberField K] {P : Out.PolAV (Sp
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] (H : Host E)
 
 theorem bar_rt : H.bar H.rt = -H.rt := by
-  apply GlobalTheory.QuadTrace.bar_rt <;> assumption
+  apply GlobalTheory.QuadTrace.bar_rt
 
 theorem card_half {K : Type} [Field K] [NumberField K] {ρ : 𝓞 K} (hs : Splits E K) (hρ : ρ ^ 2 = -(H.d : 𝓞 K)) :
     (∀ τ : 𝓞 E →+* 𝓞 K, ¬ τ H.rt = ρ ↔ τ H.rt = -ρ) ∧

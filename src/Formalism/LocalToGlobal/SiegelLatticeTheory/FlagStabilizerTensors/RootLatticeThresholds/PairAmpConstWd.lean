@@ -266,11 +266,9 @@ theorem pair_form (hW : WRowIso D) (hC : AmpCov Y) (hK : PairAmpConst Y) (hN : F
 theorem pvalForm_exists (hW : WRowIso D) (hC : AmpCov Y) (hK : PairAmpConst Y) (hN : FibreCountEq hF) :
     ∃ A : AmpDat X, PvalForm W hI A := by
   have H := fun (u u' : D.what₂.Word) (p : D.s.Pair u u') => pair_form W hI hW hC hK hN u u' p
-  choose c U hc hv using H
+  choose c U _ hv using H
   exact ⟨{ chi := fun {u u'} p => c u u' p
-           chi_norm := fun {u u'} p => hc u u' p
-           piB := fun {u u'} p => cl (U u u' p)
-           piB_unit := fun {u u'} p x => (U u u' p).norm_map x },
+           piB := fun {u u'} p => cl (U u u' p) },
     fun {u u'} p => hv u u' p⟩
 
 end Formalism.L2.SG.Pf.KernelOfEmbedding

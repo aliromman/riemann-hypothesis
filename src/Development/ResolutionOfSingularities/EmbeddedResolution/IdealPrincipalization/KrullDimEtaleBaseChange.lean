@@ -1,7 +1,9 @@
 module
 
 public import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReductionProperties
-public import Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.EtaleChartFieldBaseChange
+public import Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.ChartRing
+public import Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.CoordinateDivisorSmoothness
+public import Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.SmoothCenterChart
 public import Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.StalkKrullDimension
 import Development.ResolutionOfSingularities.Foundations.Schemes.AffineOpens
 import Mathlib.Algebra.Order.Floor.Extended
@@ -54,58 +56,6 @@ universe u v w
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry TopologicalSpace
 
 namespace FunctorialResolution.EmbeddedResolution
-
-theorem krullDimSucc_eq_of_topologicalKrullDim_eq {V P : Scheme.{u}}
-    (h : topologicalKrullDim ↥V = topologicalKrullDim ↥P) :
-    krullDimSucc V = krullDimSucc P := by
-  rw [krullDimSucc_eq_withBotSuccToNat_topologicalKrullDim, krullDimSucc_eq_withBotSuccToNat_topologicalKrullDim, h]
-
-theorem ringKrullDim_stalk_opens (X : Scheme.{u}) (U : X.Opens) (x : U.toScheme) :
-    ringKrullDim (U.toScheme.presheaf.stalk x) = ringKrullDim (X.presheaf.stalk (U.ι.base x)) := by
-  have : IsIso (Scheme.Hom.stalkMap U.ι x) := inferInstance
-  exact (ringKrullDim_eq_of_ringEquiv
-    (asIso (Scheme.Hom.stalkMap U.ι x)).commRingCatIsoToRingEquiv).symm
-
-private theorem isNoetherianRing_stalk_of_opens {X : Scheme.{u}} (U : X.Opens)
-    (y : U.toScheme) (h : IsNoetherianRing (X.presheaf.stalk (U.ι.base y))) :
-    IsNoetherianRing (U.toScheme.presheaf.stalk y) := by
-  have : IsIso (Scheme.Hom.stalkMap U.ι y) := inferInstance
-  have := h
-  exact isNoetherianRing_of_ringEquiv _
-    (asIso (Scheme.Hom.stalkMap U.ι y)).commRingCatIsoToRingEquiv
-
-theorem ringKrullDim_stalk_le_of_etaleChart_of_isLocallyNoetherian {k : Type u} [Field k] {X : Scheme.{u}}
-    (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.IsLocallyNoetherian X]
-    {U : X.Opens} {m : ℕ} (c : EtaleChart p U m) (x : X) (hx : x ∈ U) :
-    ringKrullDim (X.presheaf.stalk x) ≤ ((m : ℕ∞) : WithBot ℕ∞) := by
-  have := c.isEtale
-  have : IsNoetherianRing (U.toScheme.presheaf.stalk (⟨x, hx⟩ : U.toScheme)) :=
-    isNoetherianRing_stalk_of_opens U _ inferInstance
-  have h1 : ringKrullDim (U.toScheme.presheaf.stalk (⟨x, hx⟩ : U.toScheme))
-      ≤ ((m : ℕ∞) : WithBot ℕ∞) :=
-    ringKrullDim_stalk_le_of_etale_affineSpace c.map (⟨x, hx⟩ : U.toScheme)
-  rw [ringKrullDim_stalk_opens X U (⟨x, hx⟩ : U.toScheme)] at h1
-  exact h1
-
-theorem etaleChart_dim_le_topologicalKrullDim {k : Type u} [Field k] {X : Scheme.{u}}
-    (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.IsLocallyNoetherian X]
-    {U : X.Opens} {m : ℕ} (c : EtaleChart p U m) (hU : IsAffineOpen U)
-    (hne : (U : Set ↥X).Nonempty) :
-    ((m : ℕ∞) : WithBot ℕ∞) ≤ topologicalKrullDim ↥X := by
-  obtain ⟨x, hx, hcl⟩ := exists_mem_isClosed_singleton_of_isAffineOpen U hU hne
-  have : IsAffine U.toScheme := hU
-  have := c.isEtale
-  have : IsNoetherianRing (U.toScheme.presheaf.stalk (⟨x, hx⟩ : U.toScheme)) :=
-    isNoetherianRing_stalk_of_opens U _ inferInstance
-  have h1 : ringKrullDim (U.toScheme.presheaf.stalk (⟨x, hx⟩ : U.toScheme))
-      = ((m : ℕ∞) : WithBot ℕ∞) :=
-    ringKrullDim_stalk_eq_of_etale_affineSpace c.map (⟨x, hx⟩ : U.toScheme) hcl
-  have h2 := ringKrullDim_stalk_opens X U (⟨x, hx⟩ : U.toScheme)
-  have h3 := ringKrullDim_stalk_le_topologicalKrullDim X (U.ι.base (⟨x, hx⟩ : U.toScheme))
-  calc ((m : ℕ∞) : WithBot ℕ∞)
-      = ringKrullDim (U.toScheme.presheaf.stalk (⟨x, hx⟩ : U.toScheme)) := h1.symm
-    _ = ringKrullDim (X.presheaf.stalk (U.ι.base (⟨x, hx⟩ : U.toScheme))) := h2
-    _ ≤ topologicalKrullDim ↥X := h3
 
 private theorem isField_of_formallyUnramified (K : Type v) (D : Type w) [Field K]
     [CommRing D] [IsDomain D] [Algebra K D] [Algebra.EssFiniteType K D]
@@ -340,64 +290,5 @@ theorem krullDimSucc_le_of_etale {V P : Scheme.{u}} (f : V ⟶ P)
     (hP : topologicalKrullDim ↥P < ⊤) :
     krullDimSucc V ≤ krullDimSucc P :=
   krullDimSucc_le_krullDimSucc_of_topologicalKrullDim_le _ _ (topologicalKrullDim_le_of_etale f) hP
-
-private theorem isLocallyNoetherian_of_smooth_over_field {k : Type u} [Field k]
-    {P : Scheme.{u}} (pP : P ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth pP] :
-    AlgebraicGeometry.IsLocallyNoetherian P := by
-  refine ⟨fun U => ?_⟩
-  exact @isNoetherianRing_sections k _ _ P pP _ U (sectionsAlgebra k pP U.1)
-    (algebraMap_sectionsAlgebra k pP U.1)
-
-private theorem surjective_base_pullback_fst_specMapOfFieldHom {k K : Type u} [Field k] [Field K]
-    {X : Scheme.{u}} (p : X ⟶ Spec (CommRingCat.of k)) (f : k →+* K) :
-    Function.Surjective (pullback.fst p (specMapOfFieldHom k K f)).base := by
-  have hsq := isPullback_pullback_specMap p (CommRingCat.ofHom f)
-  have hS : AlgebraicGeometry.Surjective (specMapOfFieldHom k K f) :=
-    FunctorialResolution.EmbeddedResolution.instSurjectiveSpecMapOfFieldHom k K f
-  have : AlgebraicGeometry.Surjective (pullback.fst p (specMapOfFieldHom k K f)) :=
-    MorphismProperty.IsStableUnderBaseChange.of_isPullback
-      (P := @AlgebraicGeometry.Surjective) hsq hS
-  exact Scheme.Hom.surjective _
-
-private theorem topologicalKrullDim_pullback_spec_map_of_surjective {k K : Type u} [Field k] [Field K]
-    {X : Scheme.{u}} (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p]
-    (φ : CommRingCat.of k ⟶ CommRingCat.of K)
-    (hsurj : Function.Surjective (pullback.fst p (Spec.map φ)).base) :
-    topologicalKrullDim ↥(pullback p (Spec.map φ)) = topologicalKrullDim ↥X := by
-  have : AlgebraicGeometry.IsLocallyNoetherian X :=
-    isLocallyNoetherian_of_smooth_over_field p
-  have : AlgebraicGeometry.IsLocallyNoetherian (pullback p (Spec.map φ)) :=
-    isLocallyNoetherian_of_smooth_over_field (pullback.snd p (Spec.map φ))
-  refine le_antisymm ?_ ?_
-  · refine topologicalKrullDim_le_of_forall_ringKrullDim_stalk_le _ _ ?_
-    intro y
-    obtain ⟨U, m, hxU, hU, ⟨c⟩⟩ := exists_etaleChart p ((pullback.fst p (Spec.map φ)).base y)
-    obtain ⟨V, -, c', -, hyV, -⟩ := exists_etaleChart_pullback_specMap p φ c y hxU
-    exact le_trans
-      (ringKrullDim_stalk_le_of_etaleChart_of_isLocallyNoetherian (pullback.snd p (Spec.map φ)) c' y hyV)
-      (etaleChart_dim_le_topologicalKrullDim p c hU
-        ⟨(pullback.fst p (Spec.map φ)).base y, hxU⟩)
-  · refine topologicalKrullDim_le_of_forall_ringKrullDim_stalk_le _ _ ?_
-    intro x
-    obtain ⟨U, m, hxU, hU, ⟨c⟩⟩ := exists_etaleChart p x
-    obtain ⟨y, rfl⟩ := hsurj x
-    obtain ⟨V, -, c', hVaff, hyV, -⟩ := exists_etaleChart_pullback_specMap p φ c y hxU
-    exact le_trans (ringKrullDim_stalk_le_of_etaleChart_of_isLocallyNoetherian p c _ hxU)
-      (etaleChart_dim_le_topologicalKrullDim (pullback.snd p (Spec.map φ)) c' hVaff ⟨y, hyV⟩)
-
-theorem topologicalKrullDim_pullback_specMapOfFieldHom {k K : Type u} [Field k] [Field K]
-    {X : Scheme.{u}} (p : X ⟶ Spec (CommRingCat.of k)) [AlgebraicGeometry.Smooth p]
-    (f : k →+* K) :
-    topologicalKrullDim ↥(pullback p (specMapOfFieldHom k K f)) = topologicalKrullDim ↥X :=
-  topologicalKrullDim_pullback_spec_map_of_surjective p (CommRingCat.ofHom f)
-    (surjective_base_pullback_fst_specMapOfFieldHom p f)
-
-theorem MarkedIdealWithBoundary.dim_baseChange (T : MarkedIdealWithBoundary.{u}) (hT : T.IsAdmissible) (L : Type u) [Field L]
-    [CharZero L] (f : T.base →+* L) :
-    (T.baseChange L f).krullDimSucc = T.krullDimSucc := by
-  have : AlgebraicGeometry.Smooth T.structMap := hT.smooth
-  have h : topologicalKrullDim ↥(T.baseChange L f).scheme = topologicalKrullDim ↥T.scheme :=
-    topologicalKrullDim_pullback_specMapOfFieldHom T.structMap f
-  exact krullDimSucc_eq_of_topologicalKrullDim_eq h
 
 end FunctorialResolution.EmbeddedResolution

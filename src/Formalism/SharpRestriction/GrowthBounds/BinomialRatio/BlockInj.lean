@@ -76,10 +76,6 @@ def xiExp (N r t : ℕ) (β : Fin r → ℕ) : BVar N r t →₀ ℕ := ∑ c, F
 def xiMon (K : Type) [CommRing K] (N r t : ℕ) (β : Fin r → ℕ) : MvPolynomial (BVar N r t) K :=
   monomial (xiExp N r t β) 1
 
-theorem xiVar_inj (N r t : ℕ) : Function.Injective (xiVar N r t) := by
-  intro c c' h
-  simpa [xiVar] using h
-
 theorem xiExp_xi (N r t : ℕ) (β : Fin r → ℕ) (c : Fin r) : xiExp N r t β (xiVar N r t c) = β c := by
   classical
   simp only [xiExp, Finsupp.finsetSum_apply, Finsupp.single_apply, (xiVar_inj N r t).eq_iff]
@@ -476,7 +472,7 @@ theorem eExp_inj {x x' : (Fin D.T.t → ℕ) × ℕ} {β β' : Fin r → ℕ} (h
 
 theorem ltot_inj : Function.Injective (Ltot (O := O) (r := r) D) := by
   classical
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro v hv
   rw [Ltot_apply] at hv
   simp only [ell_eq_tau] at hv

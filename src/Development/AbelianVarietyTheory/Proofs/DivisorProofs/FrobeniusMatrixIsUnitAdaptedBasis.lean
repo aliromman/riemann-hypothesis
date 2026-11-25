@@ -212,8 +212,6 @@ section -- clump:auto
 
 open MvPowerSeries GlobalTheory GlobalTheory.Katz GlobalTheory.QLog GlobalTheory.PDivGroup GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.EpsilonPairingZeta GlobalTheory.PDivLat
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.FrobCongr
@@ -481,8 +479,6 @@ section -- clump:auto
 
 open MvPowerSeries GlobalTheory GlobalTheory.Katz GlobalTheory.QLog GlobalTheory.PDivGroup GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.EpsilonPairingZeta GlobalTheory.PDivLat
 
-set_option autoImplicit false
-
 namespace GlobalTheory.SmallSecond.ToO
 
 theorem frob_eq_expand {Q τ : Type} [CommRing Q] (p : ℕ) (hp : p ≠ 0) (s : Q →+* Q)
@@ -629,8 +625,6 @@ section -- clump:auto
 
 open MvPowerSeries GlobalTheory GlobalTheory.Katz GlobalTheory.QLog GlobalTheory.PDivGroup GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.EpsilonPairingZeta GlobalTheory.PDivLat
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.FrobComb
@@ -699,8 +693,6 @@ section -- clump:auto
 @[expose] public section
 
 open MvPowerSeries GlobalTheory GlobalTheory.Katz GlobalTheory.QLog GlobalTheory.PDivGroup GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.EpsilonPairingZeta GlobalTheory.PDivLat
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -975,8 +967,6 @@ section -- clump:auto
 
 open MvPowerSeries GlobalTheory GlobalTheory.Katz GlobalTheory.QLog GlobalTheory.PDivGroup GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.EpsilonPairingZeta GlobalTheory.PDivLat
 
-set_option autoImplicit false
-
 namespace GlobalTheory.BasisTrans
 
 variable {B Q : Type} [CommRing B] [CommRing Q] [Algebra B Q] {σ : Type}
@@ -1048,8 +1038,6 @@ section -- clump:auto
 @[expose] public section
 
 open MvPowerSeries GlobalTheory GlobalTheory.Katz GlobalTheory.QLog GlobalTheory.PDivGroup GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.EpsilonPairingZeta GlobalTheory.PDivLat
-
-set_option autoImplicit false
 
 namespace GlobalTheory.TangentComb
 

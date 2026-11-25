@@ -4,7 +4,6 @@ public import Mathlib.LinearAlgebra.Trace
 public import Mathlib.Analysis.Complex.Basic
 public import Mathlib.Analysis.InnerProductSpace.Defs
 public import Mathlib.Analysis.InnerProductSpace.Projection.Basic
-import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.TypeStar
 
 @[expose] public section

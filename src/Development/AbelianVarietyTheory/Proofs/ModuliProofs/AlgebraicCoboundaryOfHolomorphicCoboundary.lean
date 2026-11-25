@@ -354,11 +354,6 @@ theorem local_extension (u : HolUnif A L g) (hL : L.IsLB) {I : Type} (O : I → 
     field_simp
     ring
 
-private theorem top_le_preimage_iff_point_mem {X : Scheme.{0}} (x : Sp ℂ ⟶ X) (V : X.Opens) :
-    ⊤ ≤ x ⁻¹ᵁ V ↔ x (default : PrimeSpectrum ℂ) ∈ V :=
-  ⟨fun h => h (show (default : PrimeSpectrum ℂ) ∈ (⊤ : (Sp ℂ).Opens) from trivial),
-    fun h q _ => by rw [Subsingleton.elim q (default : PrimeSpectrum ℂ)]; exact h⟩
-
 theorem entire_extension (u : HolUnif A L g) [CompactSpace A.left] (f θ : (Fin g → ℂ) → ℂ)
     (hd : Differentiable ℂ θ)
     (hloc : ∀ x : A.left, ∃ (Q : A.left.Opens) (N : ℕ) (F : (Fin g → ℂ) → ℂ), x ∈ Q ∧
@@ -372,7 +367,7 @@ theorem entire_extension (u : HolUnif A L g) [CompactSpace A.left] (f θ : (Fin 
   obtain ⟨x, hxt, hx⟩ : ∃ x ∈ t, (u.ex z).left (default : PrimeSpectrum ℂ) ∈ Q x := by
     simpa using ht (Set.mem_univ ((u.ex z).left (default : PrimeSpectrum ℂ)))
   have hS : IsOpen {w | ⊤ ≤ (u.ex w).left ⁻¹ᵁ Q x} := (u.8 (Q x) 0).1
-  have hz : z ∈ {w | ⊤ ≤ (u.ex w).left ⁻¹ᵁ Q x} := (top_le_preimage_iff_point_mem _ _).2 hx
+  have hz : z ∈ {w | ⊤ ≤ (u.ex w).left ⁻¹ᵁ Q x} := (top_le_preimage_iff_mem' _ _).2 hx
   have hN : N x < t.sup N + 1 := Nat.lt_succ_of_le (Finset.le_sup hxt)
   have hD : DifferentiableAt ℂ (fun w => θ w ^ (t.sup N + 1 - N x) * F x w) z :=
     ((hd z).pow _).mul ((hF x).differentiableAt (hS.mem_nhds hz))

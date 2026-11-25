@@ -107,52 +107,6 @@ theorem scalar_core (n : ℕ) (hn : 2 ≤ n) (ρ μ a : Fin n → ℂ) (b : Fin 
       = ((∑ l, μ l) ^ 2 - ∑ l, μ l ^ 2) * e := by
   apply GlobalTheory.CapelliCasimir.scalar_core <;> assumption
 
-theorem sum_sq_split {A : Type} [AddCommGroup A] {n : ℕ} (F : Fin n → Fin n → A) :
-    ∑ i, ∑ j, F i j = ∑ i, F i i + ∑ i, ∑ j ∈ univ.filter (fun j => i < j), (F i j + F j i) := by
-  have h1 : ∀ i j, F i j = (if i = j then F i j else 0) + (if i < j then F i j else 0)
-      + (if j < i then F i j else 0) := by
-    intro i j
-    rcases lt_trichotomy i j with h | h | h
-    · simp [h, h.ne, h.not_gt]
-    · simp [h]
-    · simp [h, h.ne', h.not_gt]
-  rw [sum_congr rfl fun i _ => sum_congr rfl fun j _ => h1 i j]
-  simp only [sum_add_distrib, sum_filter, sum_ite_eq, mem_univ, if_true]
-  rw [add_assoc, sum_comm (f := fun i j => if j < i then F i j else 0)]
-
-theorem sum_diff {A : Type} [AddCommGroup A] [Module ℂ A] {n : ℕ} (x : Fin n → A) :
-    ∑ i, ∑ j ∈ univ.filter (fun j => i < j), (x i - x j)
-      = ∑ i : Fin n, ((n : ℂ) - 1 - 2 * (i : ℕ)) • x i := by
-  simp only [sum_sub_distrib]
-  have : ∑ i, ∑ j ∈ univ.filter (fun j => i < j), x j
-      = ∑ j, ∑ i ∈ univ.filter (fun i => i < j), x j := by
-    simp only [sum_filter]; exact sum_comm
-  rw [this, ← sum_sub_distrib]
-  refine sum_congr rfl fun i _ => ?_
-  rw [sum_const, sum_const, filter_lt_eq_Ioi, filter_gt_eq_Iio, Fin.card_Ioi, Fin.card_Iio,
-    ← Nat.cast_smul_eq_nsmul ℂ, ← Nat.cast_smul_eq_nsmul ℂ, ← sub_smul]
-  congr 1
-  have := i.2
-  rw [Nat.cast_sub (by omega), Nat.cast_sub (by omega)]
-  push_cast; ring
-
-theorem sq_sub_cas {A : Type} [Ring A] [Algebra ℂ A] {n : ℕ} (E : Fin n → Fin n → A)
-    (hE : Formalism.REAL.GlRel E) :
-    (∑ i, E i i) * (∑ i, E i i) - Formalism.REAL.Cas E
-      = (2 : ℂ) • ∑ i, ∑ j ∈ univ.filter (fun j => i < j), (E i i * E j j - E j i * E i j)
-        - ∑ i : Fin n, ((n : ℂ) - 1 - 2 * (i : ℕ)) • E i i := by
-  rw [← sum_diff, Formalism.REAL.Cas, sum_mul_sum, ← sum_sub_distrib]
-  simp only [← sum_sub_distrib]
-  rw [sum_sq_split]
-  simp only [sub_self, sum_const_zero, zero_add, smul_sum, ← sum_sub_distrib]
-  refine sum_congr rfl fun i _ => sum_congr rfl fun j hj => ?_
-  have hij : i ≠ j := (mem_filter.1 hj).2.ne
-  have h1 := hE i j j i
-  have h2 := hE i i j j
-  simp only [if_true, hij, hij.symm, if_false, sub_zero] at h1 h2
-  rw [two_smul, ← h1, ← sub_eq_zero.1 h2]
-  abel
-
 
 end GlobalTheory.CompanionTheory.Inh.CapelliCasimir
 end -- clump:auto
@@ -160,7 +114,7 @@ end -- clump:auto
 -- ===== end clump member: Development.AutomorphicSpectrum.Proofs.HermitianForms.CasOfCapelliVec =====
 
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CasimirMemCenterEnveloping =====
--- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CasimirMemCenterEnveloping", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ContinuousConjFin\npublic import Development.AbelianVarietyTheory.Proofs.JetHarmonics.QdetTopThreeOrders\npublic import Development.AutomorphicSpectrum.Proofs.HermitianForms.CasOfCapelliVec\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport GroundTheory.AutomorphicForms.CuspidalDiscreteness.AltSum\nimport GroundTheory.AutomorphicForms.ReductionBlock\nimport GroundTheory.GlobalFields.KummerTheory.LocalIndex\n\n"}
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CasimirMemCenterEnveloping", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ContinuousConjFin\npublic import Development.AbelianVarietyTheory.Proofs.JetHarmonics.QdetTopThreeOrders\npublic import Development.AutomorphicSpectrum.Proofs.HermitianForms.CasOfCapelliVec\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport GroundTheory.AutomorphicForms.CuspidalDiscreteness.AltSum\nimport GroundTheory.AutomorphicForms.ReductionBlock\nimport GroundTheory.GlobalFields.KummerTheory.LocalIndex\nimport Development.AbelianVarietyTheory.Proofs.JetHarmonics.CasimirScalarOfCapelliDeterminantEigenvalue\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -241,7 +195,7 @@ theorem cas_mem_of_qdet_mem {A : Type} [Ring A] [Algebra ℂ A] (S : Subalgebra 
     rw [h5]
     simp only [map_sub f] at h2
     linear_combination h2
-  have h3 := sq_sub_cas E hE
+  have h3 := GlobalTheory.CapelliCasimir.sq_sub_cas E hE
   have : Formalism.REAL.Cas E = (∑ i, E i i) * (∑ i, E i i)
       - ((2 : ℂ) • ∑ i, ∑ j ∈ univ.filter (fun j => i < j), (E i i * E j j - E j i * E i j)
         - ∑ i : Fin n, ((n : ℂ) - 1 - 2 * (i : ℕ)) • E i i) := by

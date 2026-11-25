@@ -2,50 +2,8 @@ module
 
 public import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.StatementsBlowUpOrderLe
 import Mathlib.Algebra.AffineMonoid.UniqueSums
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
 public import Mathlib.RingTheory.Ideal.KrullsHeightTheorem
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.RingTheory.WittVector.IsPoly
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
-import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -167,7 +125,7 @@ theorem BlowUpLocalChart.proof : BlowUpLocalChart.Statement.{u} := by
       (fun p hp => Ideal.Quotient.eq_zero_iff_mem.mpr ((liftForm_mem_blowUpOf_iff P u p).mpr hp))
   have hg : ∀ p, g (Ideal.Quotient.mk P p) = Ideal.Quotient.mk (blowUpOf P u) (liftForm p) := fun p => rfl
   have hg_inj : Function.Injective g := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     obtain ⟨p, rfl⟩ := Ideal.Quotient.mk_surjective a
     rw [hg, Ideal.Quotient.eq_zero_iff_mem, liftForm_mem_blowUpOf_iff] at ha
@@ -196,7 +154,7 @@ theorem BlowUpLocalChart.proof : BlowUpLocalChart.Statement.{u} := by
   let ιA := (algebraMap (MRing (extIdx ι J) R ⧸ (blowUpOf P u)) (Localization.AtPrime W₀)).comp g
   have hιA : Function.Injective ιA := hB_inj.comp hg_inj
   have hF_inj : Function.Injective F := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro z hz
     obtain ⟨⟨a, s⟩, rfl⟩ := IsLocalization.mk'_surjective G₀.primeCompl z
     have h2 := congrArg F (IsLocalization.mk'_spec (Localization.AtPrime G₀) a s)
@@ -294,7 +252,7 @@ theorem BlowUpLocalChart.proof : BlowUpLocalChart.Statement.{u} := by
   have hu_nzd : Ideal.Quotient.mk P (u j) ∈ nonZeroDivisors (MRing ι R ⧸ P) :=
     mem_nonZeroDivisors_of_ne_zero (fun h => huj (Ideal.Quotient.eq_zero_iff_mem.mp h))
   have hinj : Function.Injective (Polynomial.eval₂RingHom C.subtype w) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro p hp
     obtain ⟨l, hl, q, e₁⟩ := hpoly p
     have h1 : (q.map ιA).eval w = 0 := by

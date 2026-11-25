@@ -317,8 +317,6 @@ theorem card_diag (q : ℕ) (hq0 : 0 < q) (hK : Fintype.card K = q ^ 2) (hσ : �
     all_goals first
       | (refine Finset.prod_congr rfl (fun j _ => ?_)
          simp only [Fin.val_succ, hsub j])
-      | simp only [Fin.val_zero, Nat.sub_zero]
-      | rfl
 
 end PI.VolStabS.FFHS
 end -- clump:auto
@@ -349,7 +347,7 @@ private theorem ffH_single_right {M : ℕ} (J : Matrix (Fin M) (Fin M) K) (x : F
   rw [Fintype.sum_eq_single j]
   · simp
   · intro b hb
-    simp [Pi.single_apply, hb]
+    simp [hb]
 
 theorem ffH_isHS (hσ : ∀ x, σ (σ x) = x) {M : ℕ} (J : Matrix (Fin M) (Fin M) K)
     (hJ : ∀ i j, σ (J j i) = J i j) (hdet : IsUnit J.det) : IsHS σ (ffH σ J) := by
@@ -381,7 +379,7 @@ theorem ffH_single {n : ℕ} (T : Matrix (Fin n) (Fin n) K) (i j : Fin n) :
   rw [ffH_single_right, Fintype.sum_eq_single i]
   · simp
   · intro b hb
-    simp [Pi.single_apply, hb]
+    simp [hb]
 
 end matrix
 
@@ -685,11 +683,11 @@ theorem card_transport {k K : Type} [Field k] [CommRing K] [Algebra k K] (σ : K
     (J : Matrix (Fin M) (Fin M) K) (T : Matrix (Fin a) (Fin a) K) :
     Nat.card {X : Fin a → Fin M → K // ffGram (σ : K →+* K) J X = T} =
       Nat.card {Y : Fin a → Fin M → k × k //
-        ffGram (FiniteFieldSplitting.swapR k) (J.map e) Y = T.map e} := by
+        ffGram (PI.VolStabS.FiniteFieldSplitting.swapR k) (J.map e) Y = T.map e} := by
   apply Nat.card_congr
   refine Equiv.subtypeEquiv (Equiv.piCongrRight fun _ => Equiv.piCongrRight fun _ => e.toEquiv) ?_
   intro X
-  have key : ffGram (FiniteFieldSplitting.swapR k) (J.map e)
+  have key : ffGram (PI.VolStabS.FiniteFieldSplitting.swapR k) (J.map e)
       ((Equiv.piCongrRight fun _ => Equiv.piCongrRight fun _ => e.toEquiv) X) =
         (ffGram (σ : K →+* K) J X).map e := by
     funext i j
@@ -740,7 +738,7 @@ theorem fFCount_of (hS : FFSplit) (hI : FFInert) : FFCount := by
       have h := hTd.map (e : K →+* k × k)
       rwa [RingHom.map_det] at h
     have hs : (Nat.card {Y : Fin a → Fin M → k × k //
-        ffGram (FiniteFieldSplitting.swapR k) (J.map e) Y = T.map e} : ℝ) =
+        ffGram (PI.VolStabS.FiniteFieldSplitting.swapR k) (J.map e) Y = T.map e} : ℝ) =
         (∏ i : Fin a, ((Nat.card k : ℝ) ^ M - (Nat.card k : ℝ) ^ (i : ℕ))) *
           (Nat.card k : ℝ) ^ (a * (M - a)) := hS k M a haM (J.map e) hJ' hJd' (T.map e) hT' hTd'
     rw [hc, hs, FiniteFieldCounting.split_ratio M a haM _ hq0]

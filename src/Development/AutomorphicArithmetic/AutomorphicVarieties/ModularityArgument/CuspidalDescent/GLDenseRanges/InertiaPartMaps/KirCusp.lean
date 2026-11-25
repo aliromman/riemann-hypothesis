@@ -7,7 +7,7 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsS
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnipotentBlockColumnIndex
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsStandardAdelicAddChar
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsGenericOfIsLocComp
-public import Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.WhittakerCuspidal.WhitCuspOfSegCuspGeneric
+public import CompanionTheory.RealGroups.GeneralUnitaryRepresentations.WhittakerModels.WhitCuspOfSegCuspGeneric
 public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NonemptyEquivMultiProdOne
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsContinuousPadic
@@ -65,8 +65,6 @@ import Mathlib.Topology.Sheaves.Init
 open UpperTheory.V.Z.Desc.V0
 
 open NumberField IsDedekindDomain MeasureTheory Matrix GlobalTheory.CuspRep GlobalTheory.CuspGeneric
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace UpperTheory.V.Z.Desc.V0.KC
 
@@ -288,7 +286,7 @@ theorem UpperTheory.V.Z.Desc.V0.kirCusp :
     apply hy
     have := congrArg (fun c : Circle => (c : ℂ)) (DFunLike.congr_fun h1 y)
     simpa [coe_locPsi] using this
-  have hrank := PositivityTheory.rg.gu.whit.whitLeOne (w.adicCompletion E) a (locPsi hψ w) σ.V σ.ρ σ.5 σ.6 hcont hnt
+  have hrank := CompanionTheory.rg.gu.whit.whitLeOne (w.adicCompletion E) a (locPsi hψ w) σ.V σ.ρ σ.5 σ.6 hcont hnt
   refine ⟨locPsi hψ w, L h₀, hcont, hnt, ?_, ?_⟩
   · intro u hu v
     rw [hlaw h₀ hc₀ ⟨u, hu⟩ v]

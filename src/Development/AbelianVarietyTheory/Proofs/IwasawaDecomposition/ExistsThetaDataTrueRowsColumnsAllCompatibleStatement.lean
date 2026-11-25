@@ -711,7 +711,7 @@ theorem exists_realPlace_record_tied :
       exact ⟨R, fun h' => absurd h' h⟩
   choose ds hds using key
   exact ⟨⟨grp, fun p q r s => Classical.choice (_root_.GlobalTheory.nonempty_fockData_pair p q r s _ _ _), ds⟩,
-    ⟨hgrp, fun p q lam h => by first | exact hds p q lam h | exact fun _ => hds p q lam h⟩⟩
+    ⟨hgrp, fun p q lam h => by first | exact fun _ => hds p q lam h⟩⟩
 
 end GlobalTheory
 end -- clump:auto
@@ -1501,7 +1501,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 namespace GlobalTheory.Mem.Th
 
 theorem weilTiedEq_of_eqTied : ∀ (D : D7) (X : ThetaX D) (T : ThetaTied D X) (W : WeilTied D X T), WeilThetaCompatibility W → WeilCompatibleEquivariance W :=
-  fun _ _ _ _ h => ⟨h.range, h.Heisenberg₂, h.aut, h.cont, h.unit, h.split, ⟨h.twW, h.twV⟩, h.th⟩
+  fun _ _ _ _ _ => ⟨⟩
 
 end GlobalTheory.Mem.Th
 end -- clump:auto

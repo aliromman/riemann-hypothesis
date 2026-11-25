@@ -50,8 +50,6 @@ namespace Formalism.L2.GlobalTheoryTheory.GenusMassVolumes
 open Formalism.BasicNotions Formalism.MainNotions.StandardLattice Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes MeasureTheory
 open scoped TensorProduct
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 def VolSigIndep (D : D7) : Prop :=
   ∀ (W W₀ : HSpace D.host.E) (P Q P₀ Q₀ : ℕ), W.SigOK → W₀.SigOK → (∀ τ, W.sig τ = (P, Q)) →
     (∀ τ, W₀.sig τ = (P₀, Q₀)) → W.rank = W₀.rank →
@@ -70,7 +68,7 @@ def band (m a b : ℕ) : Fin m → Bool := fun i => decide (a ≤ (i : ℕ) ∧ 
 
 theorem card_band (m a b : ℕ) (hb : b ≤ m) :
     (Finset.univ.filter (fun i : Fin m => band m a b i = true)).card = b - a := by
-  first | (apply UpperTheory.Reformulated.B.CardinalityOfBand.card_band <;> assumption) | exact @UpperTheory.Reformulated.B.CardinalityOfBand.card_band m a b hb | exact @UpperTheory.Reformulated.B.CardinalityOfBand.card_band m a b | exact @UpperTheory.Reformulated.B.CardinalityOfBand.card_band m a | exact @UpperTheory.Reformulated.B.CardinalityOfBand.card_band m
+  first | (apply UpperTheory.Reformulated.B.CardinalityOfBand.card_band <;> assumption)
 
 theorem hasSig_diag_sgn {N : ℕ} (d : Fin N → Bool) (q : ℕ)
     (hq : (Finset.univ.filter (fun i => d i = true)).card = q) :

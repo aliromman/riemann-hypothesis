@@ -5,8 +5,8 @@ public import Mathlib.RingTheory.DedekindDomain.Ideal.Lemmas
 public import ReciprocityTheory.Hypotheses.GalCoh
 public import Formalism.GaloisCohomology.StatementLoc
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.DecompositionGroupMulEquivLocalGaloisCyclotomic
-public import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohCmp
-public import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohField
+public import CompanionTheory.AutomorphicTheory.PadicCyclotomicFields.GcohCmp
+public import CompanionTheory.AutomorphicTheory.PadicCyclotomicFields.GcohField
 public import GroundTheory.ProfiniteCohomology.LocalTateDuality.TensorHomDualRepRootsOfUnityIsoCartierPairing
 public import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.Transport
 import Mathlib.Algebra.Order.Floor.Extended
@@ -67,7 +67,7 @@ end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CapelliComplements.FirstLemmaD =====
 
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.ExistsPrimeMemAsIdeal =====
--- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.GlobalProofs.ExistsPrimeMemAsIdeal", "h": "module\n\npublic import ReciprocityTheory.Hypotheses.GalCoh\npublic import Formalism.GaloisCohomology.StatementLoc\npublic import Development.AbelianVarietyTheory.Proofs.FoundationProofs.DecompositionGroupMulEquivLocalGaloisCyclotomic\npublic import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CapelliComplements.FirstLemmaD\npublic import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohCmp\npublic import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohField\npublic import GroundTheory.ProfiniteCohomology.LocalTateDuality.TensorHomDualRepRootsOfUnityIsoCartierPairing\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\npublic import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.Transport\nimport Formalism.LocalRingCardinality.SpanPowerMembership.Places\n\n"}
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.GlobalProofs.ExistsPrimeMemAsIdeal", "h": "module\n\npublic import ReciprocityTheory.Hypotheses.GalCoh\npublic import Formalism.GaloisCohomology.StatementLoc\npublic import Development.AbelianVarietyTheory.Proofs.FoundationProofs.DecompositionGroupMulEquivLocalGaloisCyclotomic\npublic import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CapelliComplements.FirstLemmaD\npublic import CompanionTheory.AutomorphicTheory.PadicCyclotomicFields.GcohCmp\npublic import CompanionTheory.AutomorphicTheory.PadicCyclotomicFields.GcohField\npublic import GroundTheory.ProfiniteCohomology.LocalTateDuality.TensorHomDualRepRootsOfUnityIsoCartierPairing\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\npublic import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.Transport\nimport Formalism.LocalRingCardinality.SpanPowerMembership.Places\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -85,20 +85,20 @@ theorem finCd2_GK (p : ℕ) [Fact p.Prime] (K : IntermediateField ℚ_[p] (Padic
     (rho : Representation R (GK p K) M) (hrho : ContAction rho) :
     Finite (H0 rho) ∧ Finite (H1 rho) ∧ Finite (H2 rho) ∧
       ∀ n, 3 ≤ n → Subsingleton (Hn rho n) := by
-  obtain ⟨hsep, _, _, hloc, -⟩ := PositivityTheory.LocalTateOrthogonality.Gcoh.gcField p K hK
+  obtain ⟨hsep, _, _, hloc, -⟩ := CompanionTheory.LocalTateOrthogonality.Gcoh.gcField p K hK
   have : CharZero K := algebraRat.charZero K
-  obtain ⟨A, _, e, he⟩ := PositivityTheory.LocalTateOrthogonality.Gcoh.gcRep (GK p K) R M rho hrho
+  obtain ⟨A, _, e, he⟩ := CompanionTheory.LocalTateOrthogonality.Gcoh.gcRep (GK p K) R M rho hrho
   have : Finite A := Finite.of_equiv _ e.toEquiv
   have hn : ((Nat.card A : ℕ) : K) ≠ 0 := Nat.cast_ne_zero.2 Nat.card_pos.ne'
-  obtain ⟨e0, -⟩ := PositivityTheory.LocalTateOrthogonality.Gcoh.gc0 (GK p K) R M rho A e he
-  obtain ⟨e1, -⟩ := PositivityTheory.LocalTateOrthogonality.Gcoh.gc1 (GK p K) R M rho A e he
-  obtain ⟨e2, -⟩ := PositivityTheory.LocalTateOrthogonality.Gcoh.gc2 (GK p K) R M rho A e he
+  obtain ⟨e0, -⟩ := CompanionTheory.LocalTateOrthogonality.Gcoh.gc0 (GK p K) R M rho A e he
+  obtain ⟨e1, -⟩ := CompanionTheory.LocalTateOrthogonality.Gcoh.gc1 (GK p K) R M rho A e he
+  obtain ⟨e2, -⟩ := CompanionTheory.LocalTateOrthogonality.Gcoh.gc2 (GK p K) R M rho A e he
   have := finite_cohomology_localField A hn 0
   have := finite_cohomology_localField A hn 1
   have := finite_cohomology_localField A hn 2
   refine ⟨Finite.of_equiv _ e0.symm.toEquiv, Finite.of_equiv _ e1.symm.toEquiv,
     Finite.of_equiv _ e2.symm.toEquiv, fun n h => ?_⟩
-  obtain ⟨en⟩ := PositivityTheory.LocalTateOrthogonality.Gcoh.gcn (GK p K) R M rho A e he n
+  obtain ⟨en⟩ := CompanionTheory.LocalTateOrthogonality.Gcoh.gcn (GK p K) R M rho A e he n
   have := subsingleton_cohomology_localField A hn n h
   exact en.toEquiv.subsingleton
 

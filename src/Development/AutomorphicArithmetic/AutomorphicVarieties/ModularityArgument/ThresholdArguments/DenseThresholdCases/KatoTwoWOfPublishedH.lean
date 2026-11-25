@@ -1174,8 +1174,7 @@ section -- clump:auto
 
 section
 noncomputable section
-open Neutral.B1 hiding G Dec
-open NumberField IsDedekindDomain Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N Polynomial
+open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N Polynomial
 open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.LocGL GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.Published
 open UpperTheory.Zero.LLC UpperTheory.V.Z.Win UpperTheory.V.Z.Kato UpperTheory.V.Z.Kato.WeilSphericalRecords
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
@@ -1283,13 +1282,8 @@ local instance (priority := high + 1)  (L Ω : Type) [Field L] [Field Ω] [Algeb
     Module.IsTorsionFree L Ω :=
   DivisionSemiring.to_moduleIsTorsionFree
 private theorem cofinite_notMem (N : ℕ) (hN : N ≠ 0) :
-    ∀ᶠ w : HeightOneSpectrum (𝓞 ℚ) in Filter.cofinite, ((N : ℕ) : 𝓞 ℚ) ∉ w.asIdeal := by
-  have h0 : Ideal.span {((N : ℕ) : 𝓞 ℚ)} ≠ 0 := by
-    rw [Ne, Ideal.zero_eq_bot, Ideal.span_singleton_eq_bot]
-    exact_mod_cast hN
-  refine Filter.eventually_cofinite.2 ((Ideal.finite_factors h0).subset fun w hw => ?_)
-  simp only [Set.mem_setOf_eq, not_not] at hw
-  exact Ideal.dvd_span_singleton.2 hw
+    ∀ᶠ w : HeightOneSpectrum (𝓞 ℚ) in Filter.cofinite, ((N : ℕ) : 𝓞 ℚ) ∉ w.asIdeal :=
+  _root_.GlobalTheory.Ord2.SrcForm.ev_not_mem N hN
 private theorem mem_of_normV_dvd {N : ℕ} {w : HeightOneSpectrum (𝓞 ℚ)} (h : normV w ∣ N) :
     ((N : ℕ) : 𝓞 ℚ) ∈ w.asIdeal := by
   obtain ⟨c, rfl⟩ := h
@@ -1421,8 +1415,7 @@ section -- clump:auto
 
 section
 noncomputable section
-open Neutral.B1 hiding G Dec
-open NumberField IsDedekindDomain Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N Polynomial
+open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N Polynomial
 open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.Published
 open UpperTheory.Zero.LLC UpperTheory.V.Z.Win UpperTheory.V.Z.Kato UpperTheory.V.Z.Kato.WeilSphericalRecords
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField

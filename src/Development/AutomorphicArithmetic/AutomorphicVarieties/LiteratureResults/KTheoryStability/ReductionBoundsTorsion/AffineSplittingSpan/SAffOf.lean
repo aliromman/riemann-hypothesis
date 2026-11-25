@@ -146,9 +146,6 @@ namespace PositivityTheory.KB.SplitAffineSpectral.unitAtAlt
 
 variable {L : Type} [Field L] [NumberField L]
 
-omit [NumberField L] in
-theorem place_pos (v : (𝓞 L)ˣ) (w : InfinitePlace L) : 0 < w (algebraMap (𝓞 L) L (v : 𝓞 L)) := w.pos_iff.mpr (by simp)
-
 def lchar (a : InfinitePlace L → ℕ) : (𝓞 L)ˣ →* Multiplicative ℝ where
   toFun v := Multiplicative.ofAdd (∑ w, (a w : ℝ) * Real.log (w (algebraMap (𝓞 L) L (v : 𝓞 L))))
   map_one' := by simp
@@ -156,13 +153,13 @@ def lchar (a : InfinitePlace L → ℕ) : (𝓞 L)ˣ →* Multiplicative ℝ whe
     rw [← ofAdd_add, ← Finset.sum_add_distrib]
     congr 1
     refine Finset.sum_congr rfl fun w _ => ?_
-    rw [Units.val_mul, map_mul, map_mul, Real.log_mul (place_pos x w).ne' (place_pos y w).ne']
+    rw [Units.val_mul, map_mul, map_mul, Real.log_mul (NumberField.Units.pos_at_place x w).ne' (NumberField.Units.pos_at_place y w).ne']
     ring
 
 theorem lchar_eq_one_iff (a : InfinitePlace L → ℕ) (v : (𝓞 L)ˣ) :
     lchar a v = 1 ↔ ∏ w, (w (algebraMap (𝓞 L) L (v : 𝓞 L))) ^ a w = 1 := by
   have hpos : ∀ w : InfinitePlace L, 0 < w (algebraMap (𝓞 L) L (v : 𝓞 L)) ^ a w :=
-    fun w => pow_pos (place_pos v w) _
+    fun w => pow_pos (NumberField.Units.pos_at_place v w) _
   have hP : 0 < ∏ w, w (algebraMap (𝓞 L) L (v : 𝓞 L)) ^ a w :=
     Finset.prod_pos fun w _ => hpos w
   have hlog : Real.log (∏ w, w (algebraMap (𝓞 L) L (v : 𝓞 L)) ^ a w) =
@@ -1085,7 +1082,7 @@ private theorem wData_prism_ps_tcup_lR_iota_eq_neg (W : WData G P) {q : ℕ} (Y 
     rw [inv_mul_eq_iff_eq_mul, ← mul_assoc, W.tc x, mul_assoc, mul_inv_cancel, mul_one]
   have h1 : tcup W.lR (fun z : Fin (q + 1) → P => Y (fun i => W.ρ (z i)))
       (Fin.cons (W.ι (g 0)) fun i => W.ps (W.ι (g i))) = - Y g := by
-    simp only [tcup, Fin.cons_zero, Fin.cons_one, Fin.tail_cons, wData_rho_ps_eq_rho, W.ρι, wData_ps_iota_eq_t_inv_mul]
+    simp only [tcup, Fin.cons_zero, Fin.cons_one, Fin.tail_cons, wData_ps_iota_eq_t_inv_mul]
     rw [htc, ← mul_assoc, inv_mul_cancel, one_mul, wData_lR_ofMul_t_inv_eq_neg_one]
     simp [W.ρt, W.ρι]
   have h2 : prism W.ps (fun w : Fin (q + 1) → P =>
@@ -1659,7 +1656,7 @@ section -- clump:auto
 
 namespace PositivityTheory.KB
 
-theorem sAff_of (hCh : SChain) (_hEv : SEv) (hSep : SSep) (_hBr : SBridge) : SAff :=
+theorem sAff_of (hCh : SChain) (hSep : SSep) : SAff :=
   SplitAffineSpectral.sAff_of_parts hCh hSep SplitAffineSpectral.core SplitAffineSpectral.transfer SplitAffineSpectral.span SplitAffineSpectral.unit SplitAffineSpectral.eigen
     SplitAffineSpectral.evCob
 

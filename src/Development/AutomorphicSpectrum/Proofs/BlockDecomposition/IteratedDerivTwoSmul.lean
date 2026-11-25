@@ -56,7 +56,7 @@ open scoped ContDiff Topology
 open PositivityTheory.RgBcC GlobalTheory.CompanionTheory.WaveK GlobalTheory.CompanionTheory.WaveK.Base
 open PositivityTheory.RgTw (Mat G)
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
+open scoped Matrix.Norms.Elementwise
 
 namespace GlobalTheory.CompanionTheory.WaveK.Lin
 
@@ -65,12 +65,6 @@ variable {n : ℕ}
 section Ops
 
 variable {V : Type} [NormedAddCommGroup V] [NormedSpace ℂ V]
-
-theorem Eu_smooth {f : Mat n → V} (hf : ContDiffOn ℝ ∞ f (GLs n)) (s : Bool) (a b : Fin n) :
-    ContDiffOn ℝ ∞ (Eu s a b f) (GLs n) := by
-  have h := fun X : Mat n => GlobalTheory.CompanionTheory.RCalc.Rd_contDiffOn X hf
-  unfold Eu
-  exact ((h _).add (contDiffOn_const.smul (h _))).const_smul _
 
 theorem Epow_smooth {f : Mat n → V} (hf : ContDiffOn ℝ ∞ f (GLs n)) (s : Bool) (m : ℕ) :
     ∀ a b : Fin n, ContDiffOn ℝ ∞ (Epow s m a b f) (GLs n) := by

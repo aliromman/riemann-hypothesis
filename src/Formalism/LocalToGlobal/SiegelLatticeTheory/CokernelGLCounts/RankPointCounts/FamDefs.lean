@@ -50,8 +50,6 @@ open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Fo
 
 namespace Formalism.L2.SG.FamDefs
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section Loc
 
 open Formalism.MainNotions.S.LocNG Formalism.MainNotions.S.Loc
@@ -195,7 +193,6 @@ theorem hp_nonneg {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
   apply Real.rpow_nonneg
   refine mul_nonneg (mul_nonneg ?_ ?_) (Finset.prod_nonneg fun l _ => ?_)
   all_goals first
-    | exact M.modK_nonneg _
     | (unfold Loc.Model.modK; positivity)
 
 def HTie : Prop :=

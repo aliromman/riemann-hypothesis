@@ -46,8 +46,6 @@ open scoped TensorProduct
 
 namespace Formalism.L2.Theta
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7}
 
 def IsKinf (θ : D.what₂.Tau → (Ainf D.host.F ⊗[D.host.F] D.host.E →+* ℂ)) (V : HSp D)
@@ -105,9 +103,6 @@ structure KfinTied {X : ThetaX D} {T : ThetaTied D X} (Wl : WeilTied D X T) wher
 
   cpt_bas : ∀ V : HSp D, V.SigOK → ∀ τ a i j,
     (cpt V τ * (bas V).map (tauE D τ)) a i ≠ 0 → (cpt V τ * (bas V).map (tauE D τ)) a j ≠ 0 → i = j
-
-  kfin : AllSome (IsInfFam (D := D)) fun θ => ∀ (V W : HSp D), V.rank ≠ W.rank → V.SigOK → W.SigOK →
-    ∀ Φ : X.Sch V W, Φ ∈ X.kfin V W ↔ IsPolFock Wl.ψ θ V W (cpt V) (cpt W) (Wl.evS V W Φ)
 
 end Formalism.L2.Theta
 

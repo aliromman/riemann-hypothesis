@@ -121,7 +121,7 @@ theorem Xflag_mono (j : ℕ) : Xflag F j ≤ Xflag F (j + 1) := by
   exact Submodule.span_mono (Set.image_mono fun i (hi : i.1 < j) => Nat.lt_succ_of_lt hi)
 
 theorem X_le_orth : Xsp F ≤ orth S (Xsp F) := by
-  apply PI.UnitaryGroupMassFormula.BetaModX.xsp_le_orth <;> assumption
+  apply PI.UnitaryGroupMassFormula.BetaModX.xsp_le_orth
 
 theorem symm_sub_mem (n : S.V ≃ₗ[E] S.V) {A B : Submodule E S.V} (hAB : A ≤ B)
     (h : ∀ x ∈ B, n x - x ∈ A) : ∀ x ∈ B, n.symm x - x ∈ A := by
@@ -227,8 +227,6 @@ theorem uni_inv {k : ℕ} {O : Type} [CommRing O] {ξ : Matrix (Fin k) (Fin k) O
   exact hd.symm
 
 end Grp
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem TEqv_equivalence (D : D7) (Λ : LatV D) {T T' : D.host.E} (F : Fg D T) :
     Equivalence (TEqv D Λ F (T' := T')) := by

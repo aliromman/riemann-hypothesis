@@ -212,14 +212,14 @@ open GlobalTheory.Mem.R3.Tr GlobalTheory.LayerMove
 noncomputable section
 namespace UpperTheory.One.M
 
-def stageAOfSwitch (s : _root_.UpperTheory.One.M.TrivialCondition) {D : D7} (N : TwNew D) {hL : _root_.UpperTheory.Zero.LLC.RecTExists} {cf : CharFrame D} {rep : D.what₂.FT → NG.FinTyp D.host.E D.R.r} (a : _root_.GlobalTheory.HeightCounting.HeightCountingBaseData hL D cf rep)
+def stageAOfSwitch {D : D7} (N : TwNew D) {hL : _root_.UpperTheory.Zero.LLC.RecTExists} {cf : CharFrame D} {rep : D.what₂.FT → NG.FinTyp D.host.E D.R.r} (a : _root_.GlobalTheory.HeightCounting.HeightCountingBaseData hL D cf rep)
     (rep' : N.toD7.what₂.FT → NG.FinTyp N.toD7.host.E N.toD7.R.r) (e : HEq rep' rep) :
     _root_.GlobalTheory.HeightCounting.HeightCountingBaseData hL N.toD7 (N.cf cf) rep' where
   host := ⟨a.host.fr, a.host.jLL, a.host.embLL⟩
   jE := a.jE
   frame := a.frame
   A := _root_.GlobalTheory.HeightCounting.Up.LiTw.sideA_alt N a.A
-  cg := _root_.UpperTheory.One.M.New.cgMk s a.cg.e (_root_.UpperTheory.One.M.New.cgGood s a.cg) (_root_.UpperTheory.One.M.New.cgSurj a.cg) a.cg.zero a.cg.loc a.cg.tw a.cg.inf a.cg.csd
+  cg := _root_.UpperTheory.One.M.New.cgMk a.cg.e (_root_.UpperTheory.One.M.New.cgGood a.cg) (_root_.UpperTheory.One.M.New.cgSurj a.cg) a.cg.zero a.cg.loc a.cg.tw a.cg.inf a.cg.csd
   au := a.au
   row := by obtain rfl : rep' = rep := eq_of_heq e; exact a.row
   fr := ⟨a.fr.jE, a.fr.eOm, a.fr.comm⟩
@@ -300,7 +300,7 @@ private def reindexBase {hL : _root_.UpperTheory.Zero.LLC.RecTExists} {D D' : D7
       apply charFrame_heq hD <;> rfl
   let rep := repOf r.Y
   have hrep := HEq.refl rep
-  let a := _root_.UpperTheory.One.M.stageAOfSwitch trivial N l.a
+  let a := _root_.UpperTheory.One.M.stageAOfSwitch N l.a
     (by with_unfolding_all exact rep) (by with_unfolding_all exact e)
   with_unfolding_all
     exact reindexBase hD hcf hrep a (cusp N l.cusp)

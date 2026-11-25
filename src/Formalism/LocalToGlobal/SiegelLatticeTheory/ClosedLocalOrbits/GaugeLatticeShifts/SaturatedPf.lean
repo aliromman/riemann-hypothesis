@@ -283,19 +283,6 @@ theorem generic_isomorphism_holds (g : ℕ) : GenIso S r g := by
   intro T T' β hβ Λ F F'
   simp only [IsGeneric, AdmWit_mapL β hβ, BLat_mapL β hβ, Mplus_mapL β hβ, UU_mapL β hβ, gmap_locP, gmap_inj]
 
-theorem flag_equivalence_isomorphism : FeqFIso S r := by
-  intro T T' β hβ Λ F F'
-  simp only [frame_mapL' β hβ]
-  constructor
-  · rintro ⟨n, hn, h⟩
-    refine ⟨β⁻¹ * n * β, (mem_NLam_map β hβ Λ F n).1 hn, fun a => ?_⟩
-    have := h a
-    change β.symm (n (β (frame F a))) = frame F' a
-    rw [this, LinearEquiv.symm_apply_apply]
-  · rintro ⟨n, hn, h⟩
-    refine ⟨β * n * β⁻¹, (conj_mem_NLam β hβ Λ F n).2 hn, fun a => ?_⟩
-    rw [conj_apply, LinearEquiv.symm_apply_apply, h a]
-
 theorem double_coset_isomorphism : DCIso S r := by
   intro T T' β hβ Λ F F₁ F₂
   simp only [DCRel, frame_mapL' β hβ, zt_mapL]
@@ -315,106 +302,12 @@ theorem double_coset_isomorphism : DCIso S r := by
 
 section Rel
 
-variable (β : S.V ≃ₗ[E] S.V) (hβ : β ∈ Formalism.HermitianLatticesTheory.isom S.hT) {T T' : E}
-
-def conjL (Y : S.V →ₗ[E] S.V) : S.V →ₗ[E] S.V :=
-  (β : S.V →ₗ[E] S.V) ∘ₗ Y ∘ₗ (β.symm : S.V →ₗ[E] S.V)
-
-theorem conjL_apply (Y : S.V →ₗ[E] S.V) (x : S.V) : conjL β Y (β x) = β (Y x) := by
-  simp [conjL]
-
-theorem conjL_symm (Y : S.V →ₗ[E] S.V) : conjL β (conjL β.symm Y) = Y := by
-  ext x; simp [conjL]
-
-theorem Xa_mapFlag (F : FlagG S r T) (j : ℕ) :
-    (mapFlag β hβ F).Xa j = (F.Xa j).map (β : S.V →ₗ[E] S.V) := by
-  simp only [FlagG.Xa, mapFlag, span_image_E, Set.image_image]
+variable (β : S.V ≃ₗ[E] S.V) (hβ : β ∈ Formalism.HermitianLatticesTheory.isom S.hT) {T : E}
 
 theorem X_mapFlag (F : FlagG S r T) : (mapFlag β hβ F).X = F.X.map (β : S.V →ₗ[E] S.V) := by
   simp only [FlagG.X, mapFlag]
   rw [span_image_E, ← Set.range_comp]
   rfl
-
-include hβ in
-theorem perpS_map (U : Submodule E S.V) :
-    perpS S (U.map (β : S.V →ₗ[E] S.V)) = (perpS S U).map (β : S.V →ₗ[E] S.V) := by
-  have h1 : ∀ U' : Submodule E S.V, perpS S U' = orth S U' := by
-    intro U'
-    ext v
-    rw [mem_orth_iff_sat β hβ]
-    rfl
-  rw [h1, h1, orth_map_sat β hβ]
-
-theorem mem_map_apply (U : Submodule E S.V) (x : S.V) : β x ∈ U.map (β : S.V →ₗ[E] S.V) ↔ x ∈ U := by
-  rw [Submodule.mem_map_equiv, LinearEquiv.symm_apply_apply]
-
-theorem coefX_mapFlag (F : FlagG S r T) (y : S.V) (a : Fin r) :
-    (mapFlag β hβ F).coefX (β y) a = F.coefX y a := by
-  have hsp : ∀ y, β y ∈ Submodule.span E (Set.range (mapFlag β hβ F).e) ↔
-      y ∈ Submodule.span E (Set.range F.e) := by
-    intro y
-    have := X_mapFlag β hβ F
-    simp only [FlagG.X] at this
-    rw [this, mem_map_apply]
-  unfold FlagG.coefX
-  by_cases h : y ∈ Submodule.span E (Set.range F.e)
-  · rw [dite_eq_left ((hsp y).2 h), dite_eq_left h]
-    congr 1
-    apply LinearIndependent.repr_eq
-    have e1 := F.e_indep.linearCombination_repr ⟨y, h⟩
-    simp only at e1 ⊢
-    have : (mapFlag β hβ F).e = (β : S.V →ₗ[E] S.V) ∘ F.e := rfl
-    rw [this, ← Finsupp.apply_linearCombination, e1]
-    rfl
-  · rw [dite_eq_right (fun h' => h ((hsp y).1 h')), dite_eq_right h]
-
-theorem ell_mapFlag (F : FlagG S r T) (Y : S.V →ₗ[E] S.V) :
-    (mapFlag β hβ F).ell (conjL β Y) = F.ell Y := by
-  simp only [FlagG.ell, fvec_mapFlag, conjL_apply, coefX_mapFlag]
-
-include hβ in
-theorem conjL_mem_LieU (Y : S.V →ₗ[E] S.V) : conjL β Y ∈ LieU S ↔ Y ∈ LieU S := by
-  simp only [LieU, Set.mem_ofPred_eq]
-  constructor
-  · intro h x y
-    have := h (β x) (β y)
-    rwa [conjL_apply, conjL_apply, isom_apply hβ, isom_apply hβ] at this
-  · intro h x y
-    obtain ⟨x, rfl⟩ := β.surjective x
-    obtain ⟨y, rfl⟩ := β.surjective y
-    rw [conjL_apply, conjL_apply, isom_apply hβ, isom_apply hβ]
-    exact h x y
-
-theorem conjL_forall_map (Y : S.V →ₗ[E] S.V) (U W : Submodule E S.V) :
-    (∀ x ∈ U.map (β : S.V →ₗ[E] S.V), conjL β Y x ∈ W.map (β : S.V →ₗ[E] S.V)) ↔
-      ∀ y ∈ U, Y y ∈ W := by
-  constructor
-  · intro h y hy
-    have := h (β y) (Submodule.mem_map_of_mem hy)
-    rwa [conjL_apply, mem_map_apply] at this
-  · intro h x hx
-    rw [Submodule.mem_map_equiv] at hx
-    have := h _ hx
-    rw [← mem_map_apply β, ← conjL_apply, LinearEquiv.apply_symm_apply] at this
-    exact this
-
-include hβ in
-theorem conjL_mem_LieN (F : FlagG S r T) (Y : S.V →ₗ[E] S.V) :
-    conjL β Y ∈ (mapFlag β hβ F).LieN ↔ Y ∈ F.LieN := by
-  simp only [FlagG.LieN, Set.mem_ofPred_eq, conjL_mem_LieU β hβ, Xa_mapFlag β hβ, X_mapFlag β hβ,
-    perpS_map β hβ, conjL_forall_map]
-
-theorem relevant_mapFlag (K : Type) [Field K] [Algebra K E] (F : FlagG S r T) (F' : FlagG S r T') :
-    Relevant K (mapFlag β hβ F) (mapFlag β hβ F') ↔ Relevant K F F' := by
-  constructor
-  · rintro h Y ⟨h1, h2⟩
-    have := h (conjL β Y) ⟨(conjL_mem_LieN β hβ F Y).2 h1, (conjL_mem_LieN β hβ F' Y).2 h2⟩
-    simpa only [FlagG.dpsi, ell_mapFlag] using this
-  · rintro h Y ⟨h1, h2⟩
-    rw [← conjL_symm β Y] at h1 h2 ⊢
-    rw [conjL_mem_LieN β hβ] at h1 h2
-    simp only [FlagG.dpsi, ell_mapFlag]
-    exact h _ ⟨h1, h2⟩
 
 end Rel
 
@@ -443,8 +336,6 @@ end Conv
 end Transport
 
 section D7
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable (D : D7)
 
@@ -921,8 +812,6 @@ end DC
 
 section D7
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable (D : D7)
 
 theorem big_block_function_holds (u u' : D.what₂.Word) : BBFun D u u' := by
@@ -1122,8 +1011,6 @@ end SplitEquiv
 
 section D7
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable (D : D7)
 
 theorem Xa_r' {E : Type} [Field E] [NumberField E] [StarRing E] {S : HSpace E} {r : ℕ} {T : E}
@@ -1235,8 +1122,6 @@ theorem automorphism_induces_lattice_map (u : D.what₂.Word) (F0 : FlagG (VS D)
 end D7
 
 section D7
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7}
 
@@ -1355,8 +1240,6 @@ theorem eq_of_locP {A B : Submodule (𝓞 E) S.V}
 end Int
 
 section D7
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable (D : D7)
 

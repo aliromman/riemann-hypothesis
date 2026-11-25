@@ -61,8 +61,6 @@ import Development.AbelianVarietyTheory.PublishedTheorems.RelativeAmpleness.RelA
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 open scoped Pointwise
 
 namespace GlobalTheory.IntegralFractionLift
@@ -373,8 +371,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.HTLat GlobalTheory.Published GlobalTheory.Published.AbVarRed IsLocalRing
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
-
 namespace GlobalTheory.InertiaRestrict
 
 variable {Ω : Type} [Field Ω]
@@ -518,7 +514,6 @@ theorem exists_mem_inertia_eq_on : ∀ (R K Ω : Type) [CommRing R] [IsDomain R]
     ∃ σ ∈ inertia K V, ∀ y : L, σ (y : Ω) = (τ y : Ω) := by
   first
   | exact @_root_.GlobalTheory.IntegralFractionLift.inertia_surjective
-  | (intros; exact _root_.GlobalTheory.IntegralFractionLift.inertia_surjective ..)
 
 end GlobalTheory.InertiaRestrict
 end -- clump:auto

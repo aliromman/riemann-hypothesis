@@ -69,7 +69,6 @@ import ReciprocityTheory.GaloisValuations.GlobalA
 @[expose] public section
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations Formalism.MainNotions.N GlobalTheory.WeilDeligne GlobalTheory.Pst Polynomial Module Matrix UpperTheory.V.W UpperTheory.V.Hi
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem UpperTheory.exists_common_eigenvector_of_charpoly_split_characters :
     ∀ {Γ I W : Type} [Group Γ] [Group I] [AddCommGroup W] [Module ℂ W] [FiniteDimensional ℂ W] {n : ℕ} (i : I →* Γ) (Φ : Γ) (ρ : Γ →* Module.End ℂ W) (μ : Fin n → Γ →* ℂˣ), (∀ σ s, ∃ t, σ * i s = i t * σ) → (∀ σ, ∃ (m : ℤ) (s : I), σ = Φ ^ m * i s) → (Set.range fun s => ρ (i s)).Finite → (∀ σ, (ρ σ).charpoly = ∏ j, (X - C (μ j σ : ℂ))) → ∀ j, ∃ y : W, y ≠ 0 ∧ ∀ σ, ρ σ y = (μ j σ : ℂ) • y := by
@@ -107,11 +106,11 @@ theorem UpperTheory.exists_common_eigenvector_of_charpoly_split_characters :
     intro q
     obtain ⟨s, rfl⟩ := QuotientGroup.mk_surjective q
     exact ⟨s, (QuotientGroup.kerLift_mk φ s).symm⟩
-  haveI : Finite (I ⧸ φ.ker) := by
-    haveI := hfinU.to_subtype
+  have : Finite (I ⧸ φ.ker) := by
+    have := hfinU.to_subtype
     exact Finite.of_injective (fun q => (⟨_, hr q⟩ : Set.range φ))
       (fun a b hab => QuotientGroup.kerLift_injective φ (congrArg Subtype.val hab))
-  letI : Fintype (I ⧸ φ.ker) := Fintype.ofFinite _
+  let : Fintype (I ⧸ φ.ker) := Fintype.ofFinite _
   let R : I ⧸ φ.ker →* Module.End ℂ W := (Units.coeHom (Module.End ℂ W)).comp (QuotientGroup.kerLift φ)
   let c : Fin n → (I ⧸ φ.ker →* ℂˣ) := fun k => QuotientGroup.lift φ.ker ((μ k).comp i) (hker k)
   have hR : ∀ s : I, R (s : I ⧸ φ.ker) = ρ (i s) := fun s => rfl
@@ -140,7 +139,7 @@ theorem UpperTheory.exists_common_eigenvector_of_charpoly_split_characters :
       _ = (μ j (i s) : ℂ) • ρ Φ y := by rw [hy t, map_smul, e2]
   have hmain : ∃ y ∈ E, y ≠ 0 ∧ ρ Φ y = (μ j Φ : ℂ) • y := by
     by_contra hno
-    push_neg at hno
+    push Not at hno
     let A : Module.End ℂ E := (ρ Φ).restrict hEinv
     let p := LinearMap.charpoly A
     have hp : p.eval (μ j Φ : ℂ) ≠ 0 := by

@@ -168,8 +168,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.LatticeBetaCompare
@@ -301,7 +299,7 @@ theorem isBe_unique {𝔞 : Ideal (𝓞 E)} (h0 : 𝔞 ≠ ⊥) {β β' : c.F} (
 
 theorem mult_add_mult_conjugate (τ : E →+* ℂ) :
     Dw.mult τ + Dw.mult (ComplexEmbedding.conjugate τ) = Dw.p + Dw.q := by
-  apply GlobalTheory.PeriodTorus.mult_add_mult_conj <;> assumption
+  apply GlobalTheory.PeriodTorus.mult_add_mult_conj
 
 theorem norm_reflexNorm (γ : E) (s : c.F →+* ℂ) :
     ‖s (reflexNorm Dw c γ)‖ ^ 2 = |(Algebra.norm ℚ γ : ℝ)| ^ (Dw.p + Dw.q) := by
@@ -730,8 +728,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.WeightAlgebra Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.OrbitAdapt
 
@@ -968,7 +964,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.OnCmp GlobalTheory.BigOn GlobalTheory.RealIndexBound
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Datum Level Moduli Coeff)
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 200000
 
 namespace GlobalTheory.OrbitAdapt
@@ -1162,8 +1157,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.RowSpan
@@ -1221,7 +1214,6 @@ open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Datum Level Moduli Coeff)
 
 namespace GlobalTheory.HarmInCoef
 
-open NumberField IsDedekindDomain Formalism.L2.DIV
 
 private theorem not_isBasisAt_dualFr_tauLat {E K : Type} [Field E] [NumberField E]
     [Field K] [NumberField K] {ι : Type} {n : ℕ} (emb : ι → E →+* K) (τ : ι)
@@ -1712,7 +1704,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.CompareOff
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.DIV.Cons Formalism.L2.Pj Formalism.L2.Indef Formalism.L2.Indef.Tree

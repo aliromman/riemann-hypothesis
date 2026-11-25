@@ -1,5 +1,6 @@
 module
 
+import Formalism.LandauZeroFreeBounds.ExceptionalZeroBounds.LRight
 public import Formalism.LandauZeroFreeBounds.LogDerivRegionChiOf
 public import Formalism.DefsOC
 public import Formalism.ZetaNonvanishing.MellinSAux
@@ -117,26 +118,13 @@ variable {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q)
 
 lemma lseries_summable_of_vonMangoldt_bound {a : ℕ → ℝ} (ha : ∀ n, |a n| ≤ 1 * Λ n) {w : ℂ} (hw : 1 < w.re) :
     LSeriesSummable (fun n => (a n : ℂ)) w := by
-  have hΛ := ArithmeticFunction.LSeriesSummable_vonMangoldt hw
-  have hb : ∀ n, ‖LSeries.term (fun n => (a n : ℂ)) w n‖ ≤ ‖LSeries.term (fun n => (Λ n : ℂ)) w n‖ := by
-    intro n
-    rw [LSeries.norm_term_eq, LSeries.norm_term_eq]
-    split_ifs
-    · exact le_rfl
-    · gcongr
-      have h2 := ha n
-      have h3 : (0 : ℝ) ≤ Λ n := ArithmeticFunction.vonMangoldt_nonneg
-      simpa [Complex.norm_real, abs_of_nonneg h3] using h2
-  first
-  | exact Summable.of_norm_bounded hΛ.norm hb
+  refine Summable.of_norm_bounded (ArithmeticFunction.LSeriesSummable_vonMangoldt hw).norm
+    fun n => LSeries.norm_term_le w ?_
+  simpa [Complex.norm_real, Real.norm_eq_abs,
+    abs_of_nonneg ArithmeticFunction.vonMangoldt_nonneg] using ha n
 
 lemma neg_log_deriv_eq_lseries_mul_vonMangoldt {w : ℂ} (hw : 1 < w.re) : negLD χ w = LSeries (↗χ * ↗Λ) w := by
-  unfold negLD
-  rw [DirichletCharacter.LSeries_twist_vonMangoldt_eq χ hw, neg_div]
-  have hev : DirichletCharacter.LFunction χ =ᶠ[𝓝 w] L (fun n => χ n) := by
-    filter_upwards [(isOpen_lt continuous_const Complex.continuous_re).mem_nhds hw] with s hs
-    exact DirichletCharacter.LFunction_eq_LSeries χ hs
-  rw [hev.deriv_eq, DirichletCharacter.LFunction_eq_LSeries χ hw]
+  exact negLD_eq_LSeries_mul_vonMangoldt χ hw
 
 lemma neg_log_deriv_eq_lseries_re_im {w : ℂ} (hw : 1 < w.re) :
     negLD χ w = LSeries (fun n => (vonMangoldtCharRe χ n : ℂ)) w +
@@ -154,24 +142,9 @@ lemma neg_log_deriv_eq_lseries_re_im {w : ℂ} (hw : 1 < w.re) :
 
 lemma norm_neg_log_deriv_le_tsum {σ₀ : ℝ} (hσ : 1 < σ₀) (w : ℂ) (hw : w.re = σ₀) :
     ‖negLD χ w‖ ≤ ∑' n, ‖LSeries.term ↗Λ (σ₀ : ℂ) n‖ := by
-  have hw' : 1 < w.re := by rw [hw]; exact hσ
-  rw [neg_log_deriv_eq_lseries_mul_vonMangoldt χ hw']
-  have hs : LSeriesSummable (fun n => (Λ n : ℂ)) (σ₀ : ℂ) :=
-    ArithmeticFunction.LSeriesSummable_vonMangoldt (by simpa using hσ)
-  have hb : ∀ n, ‖LSeries.term (↗χ * ↗Λ) w n‖ ≤ ‖LSeries.term (fun n => (Λ n : ℂ)) (σ₀ : ℂ) n‖ := by
-    intro n
-    rw [LSeries.norm_term_eq, LSeries.norm_term_eq]
-    split_ifs
-    · exact le_rfl
-    · rw [hw, Complex.ofReal_re]
-      gcongr
-      rw [Pi.mul_apply, norm_mul]
-      exact mul_le_of_le_one_left (norm_nonneg _) (DirichletCharacter.norm_le_one χ _)
-  have hsum : Summable fun n => ‖LSeries.term (↗χ * ↗Λ) w n‖ :=
-    Summable.of_nonneg_of_le (fun _ => norm_nonneg _) hb hs.norm
-  refine (norm_tsum_le_tsum_norm hsum).trans ?_
-  first
-  | exact Summable.tsum_le_tsum hb hsum hs.norm
+  have hw' : 1 < w.re := by rwa [hw]
+  rw [negLD_eq_LSeries_mul_vonMangoldt χ hw']
+  simpa [Formalism.ZF.lamF, hw] using norm_LSeries_twist_vonMangoldt_le χ hw'
 
 lemma perron_integrand_continuous {y : ℝ} (hy : 0 < y) {σ₀ : ℝ} (hσ : 1 < σ₀) :
     Continuous (fun t : ℝ => Fchi χ y ((σ₀ : ℂ) + t * I)) := by

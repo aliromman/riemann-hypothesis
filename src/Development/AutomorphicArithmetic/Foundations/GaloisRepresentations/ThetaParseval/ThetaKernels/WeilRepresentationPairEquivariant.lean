@@ -101,14 +101,6 @@ theorem continuous_transportF_apply_k : ∀ (F E : Type) [Field F] [NumberField 
       apply Units.inv_eq_of_mul_eq_one_right
       change mtF σ JS (g p) * _ = 1
       rw [hg p, ← Matrix.transpose_mul, Subgroup.coe_inv, Units.mul_inv, Matrix.transpose_one]
-    have hcH' : Continuous fun p => matHomF σ JT (h p) := by
-      refine Units.continuous_iff.2 ⟨?_, ?_⟩
-      · have e : (Units.val ∘ fun p => matHomF σ JT (h p)) = fun p => p.1.1.1 := funext fun p => hh p
-        rw [e]
-        exact Units.continuous_val.comp (continuous_subtype_val.comp continuous_fst)
-      · have e : (fun p => (matHomF σ JT (h p))⁻¹.1) = fun p => (p.1.1)⁻¹.1 := funext fun p => by rw [hhU p]
-        rw [e]
-        exact Units.continuous_coe_inv.comp (continuous_subtype_val.comp continuous_fst)
     have hcG' : Continuous fun p => matHomF σ JS (g p) := by
       refine Units.continuous_iff.2 ⟨?_, ?_⟩
       · have e : (Units.val ∘ fun p => matHomF σ JS (g p)) = fun p => ((p.2.1)⁻¹).1ᵀ := funext fun p => hg p
@@ -117,7 +109,8 @@ theorem continuous_transportF_apply_k : ∀ (F E : Type) [Field F] [NumberField 
       · have e : (fun p => (matHomF σ JS (g p))⁻¹.1) = fun p => p.2.1.1ᵀ := funext hgU
         rw [e]
         exact (Units.continuous_val.comp (continuous_subtype_val.comp continuous_snd)).matrix_transpose
-    have hcH : Continuous h := continuous_induced_rng.2 hcH'
+    have hcH : Continuous h := continuous_induced_rng.2
+      ((continuous_subtype_val.comp continuous_fst).congr fun p => (hhU p).symm)
     have hcG : Continuous g := continuous_induced_rng.2 hcG'
     have heq : ∀ p, GlobalTheory.WeilSchrodinger.thetaTr F co B.ψ (om p Φ) w =
         ω (g p, h p) (GlobalTheory.WeilSchrodinger.thetaTr F co B.ψ Φ) w := fun p =>

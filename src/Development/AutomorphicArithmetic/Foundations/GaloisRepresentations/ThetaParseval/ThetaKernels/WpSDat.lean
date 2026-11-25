@@ -458,7 +458,12 @@ end Arith
 theorem normK : NormK := by
   intro F E _ _ _ _ _ σ B hG
   classical
-  obtain ⟨x, d, hd, hx⟩ := hG.galois
+  rcases hG.galois with hK | hGal
+  swap
+  · haveI := hGal
+    obtain ⟨lam, h, -⟩ := PositivityTheory.ThKW.LatB.exists_goodNorm hG.cm hG.unram
+    exact ⟨lam, h⟩
+  obtain ⟨x, d, hd, hx⟩ := hK
   obtain ⟨a, b, ha, hb, hab, hsq⟩ := Nat.sq_mul_squarefree_of_pos hd
   have hbE : (b : E) ≠ 0 := by exact_mod_cast hb.ne'
   have hz : (x / b) ^ 2 = -(a : E) := by

@@ -185,7 +185,7 @@ private theorem main (hPF : ParaFactor) {π : Representation ℂ (GL (Fin N) k) 
     exact congrArg Subtype.val h1
   have hγ : ∃ γ, evalOne S (levelZero S.toRepresentation γ (sec y0)) ≠ 0 := by
     by_contra hc
-    push_neg at hc
+    push Not at hc
     exact hsx (eq_zero_of_evalOne S _ hc)
   obtain ⟨γ, hγ⟩ := hγ
   refine ⟨Φ ∘ₗ (evalOne S ∘ₗ sec), ?_, ?_⟩
@@ -210,7 +210,6 @@ open NumberField IsDedekindDomain ValuativeRel Polynomial Formalism.ConjugateSel
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.LocGL GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.LocLanglands GlobalTheory.Shin
 open GroundTheory.Global GroundTheory.Global.SemiLocal UpperTheory.V.Published UpperTheory.CBC UpperTheory.Gal.InertialTypesAlt
 open scoped Classical
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 open UpperTheory.Gal.InertialTypesAlt.SubquotientMaps in
 set_option synthInstance.maxHeartbeats 400000 in

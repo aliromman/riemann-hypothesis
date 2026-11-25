@@ -1428,9 +1428,6 @@ def recKE : KfinTied (recWE hP hT hB hL hE hθ hψ Wf hW Tw Rc) where
   bas_unit := Rc.dec.bas_unit
   bas_orth := Rc.dec.bas_orth
   cpt_bas := Rc.dec.cpt_bas
-  kfin := ⟨⟨θ, hθ⟩, fun θ' h' V W _ hV hW' Φ => by
-    obtain rfl : θ' = θ := (GlobalTheory.Mem.InfFamUnique.existsUnique_infFam D).unique h' hθ
-    exact mem_KfinS hθ hψ Rc.dec hV hW' Φ⟩
 
 theorem besGlobE_inl {A B : HSp D} {ι : A.V →ₗ[D.host.E] B.V} (ho : Odd (B.rank - A.rank)) (hA : A.SigOK)
     (hι : HSpace.IsIsomEmb A B ι) (f : Odd (B.rank - A.rank) → Bes1 A B ι) :

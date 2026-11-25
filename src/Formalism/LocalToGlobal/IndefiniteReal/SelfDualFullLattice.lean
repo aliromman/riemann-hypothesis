@@ -5,7 +5,6 @@ public import Formalism.LocalToGlobal.IndefiniteReal.LocalNewformFunction
 public section
 
 open NumberField Formalism.BasicNotions Formalism.BasicNotions.TH
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace Formalism.IndefR.Datum
 
@@ -32,7 +31,7 @@ theorem IsSelfDualC.isFullLattice (V : HSp D) (Λ : Submodule (𝓞 D.host.E) (F
       refine ⟨b + c, ?_⟩
       change (b : D.host.E) + c = _
       rw [hb, hc]
-      simp [f, map_add, add_mul, Finset.sum_add_distrib, mul_add]
+      simp [f, add_mul, Finset.sum_add_distrib, mul_add]
     smul_mem' := by
       rintro c x ⟨b, hb⟩
       refine ⟨RingOfIntegers.mapRingHom (starRingEnd D.host.E) c * b, ?_⟩

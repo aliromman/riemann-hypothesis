@@ -1,5 +1,6 @@
 module
 
+import Formalism.LocalToGlobal.IndefiniteReal.SelfDualFullLattice
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.SplitOff
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsVacuumMovedThetaVacuum
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.OddnessConditionHolds
@@ -103,7 +104,7 @@ import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 import Formalism.LocalToGlobal.IndefiniteReal.LocalNewformFunction
 import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GapAtLeast
 import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIdeleAt
+import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIdeleAt
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockMonomialAtOriginGaussianEntireOrthonormalStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockPureTensorAtOriginEqThetaSeries
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockVacuumRealRestrictionGaussianEntireStatement
@@ -152,8 +153,6 @@ open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLattice
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 
 noncomputable section
 
@@ -207,8 +206,6 @@ open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLattice
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 
 noncomputable section
 
@@ -256,8 +253,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (Tri)
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RowEx
 open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 noncomputable section
@@ -315,8 +310,6 @@ open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLattice
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 open GlobalTheory.RatMoveJets
 
 
@@ -344,8 +337,6 @@ open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLattice
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 
 noncomputable section
 
@@ -370,7 +361,7 @@ end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.JetScalarRationalTranslate =====
 
 -- ===== clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.TwistFockJetThetaRational =====
--- clump-header: {"m": "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.TwistFockJetThetaRational", "h": "module\n\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.BernsteinUnitaryProductIrreducible\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.JetKapIff\npublic import Formalism.LocalToGlobal.InertKernelTheory.DefsInt\npublic import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MoveRationalInvariant\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIdeleAt\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockJetsUnitVacuumEqScaledThetaJets\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockMonomialAtOriginGaussianEntireOrthonormalStatement\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockPureTensorAtOriginEqThetaSeries\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockVacuumRealRestrictionGaussianEntireStatement\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockVectorNegHermitianSpaceConjMonomialStatement\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsVacuumConjOfNegHermitianSpaceStatement\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilDatumRealPlacesFockVacuumCharacterStatement\nimport Development.AbelianVarietyTheory.Proofs.HeightProofs.EmbeddingXiZeroNeZero\nimport Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsUnramifiedHeckeCharHalfExponentRestrictQuaStatement\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HeckeCharacterInfinityExponentGroupLaws\npublic import Development.AbelianVarietyTheory.Proofs.SatakeParameters.NatCastMemPrimeOf\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.EntireEqOfMonomialDerivationsAtZeroEq\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsUnitScalarFourier\nimport Development.AbelianVarietyTheory.Proofs.TwistedOperators.InfPartOneSubEInfSmul\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.SplittingHeckeCharExistsArchimedeanExponent\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.MovedVacuumIsVacuumIntegral\nimport Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExistsGenerators\nimport Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.IntPull\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Coalgebra.IsFrobenius\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\npublic import Development.AbelianVarietyTheory.Definitions.LatticeFrames.SplitPart\nimport Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.TwistPlacesOffPrimeQZero\n\n"}
+-- clump-header: {"m": "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.TwistFockJetThetaRational", "h": "module\n\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.BernsteinUnitaryProductIrreducible\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.JetKapIff\npublic import Formalism.LocalToGlobal.InertKernelTheory.DefsInt\npublic import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MoveRationalInvariant\nimport Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIdeleAt\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockJetsUnitVacuumEqScaledThetaJets\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockMonomialAtOriginGaussianEntireOrthonormalStatement\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockPureTensorAtOriginEqThetaSeries\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockVacuumRealRestrictionGaussianEntireStatement\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockVectorNegHermitianSpaceConjMonomialStatement\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsVacuumConjOfNegHermitianSpaceStatement\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilDatumRealPlacesFockVacuumCharacterStatement\nimport Development.AbelianVarietyTheory.Proofs.HeightProofs.EmbeddingXiZeroNeZero\nimport Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsUnramifiedHeckeCharHalfExponentRestrictQuaStatement\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HeckeCharacterInfinityExponentGroupLaws\npublic import Development.AbelianVarietyTheory.Proofs.SatakeParameters.NatCastMemPrimeOf\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.EntireEqOfMonomialDerivationsAtZeroEq\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsUnitScalarFourier\nimport Development.AbelianVarietyTheory.Proofs.TwistedOperators.InfPartOneSubEInfSmul\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.SplittingHeckeCharExistsArchimedeanExponent\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.MovedVacuumIsVacuumIntegral\nimport Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExistsGenerators\nimport Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.IntPull\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Coalgebra.IsFrobenius\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\npublic import Development.AbelianVarietyTheory.Definitions.LatticeFrames.SplitPart\nimport Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.TwistPlacesOffPrimeQZero\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -382,8 +373,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (Tri)
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RowEx
 open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 open GlobalTheory.RatMoveJets
@@ -532,7 +521,7 @@ private theorem sq_exp {θ : InfFam D} (hθ : IsInfFam θ) {χ η : (Formalism.L
     ∃ c : D.what₂.Tau → ℤ, ∀ τ, HasInfExp D ((χ * (η ^ k)⁻¹) * (χ * (η ^ k)⁻¹)) τ (c τ) := by
   have key : ∀ τ, ∃ c : ℤ, HasInfExp D ((χ * (η ^ k)⁻¹) * (χ * (η ^ k)⁻¹)) τ c := fun τ => by
     obtain ⟨a, ha⟩ := GlobalTheory.SplitCharExp.exists_hasInfExp D θ χ n τ hθ h1 h2
-    have hb := GlobalTheory.VacuumCharacter.hasInfExp_twist ha (hη τ) k
+    have hb := GlobalTheory.OneMapRef.RealMove.hasInfExp_twist ha (hη τ) k
     obtain ⟨c, hc, -⟩ := id hb
     refine ⟨c, ?_⟩
     rw [hc, two_mul]
@@ -561,8 +550,8 @@ private theorem vac_scalar {ψ : AddChar (AF D.host.F) ℂ} {θ : InfFam D} (hθ
     have := hG.2.2.det_pos.ne'
     rw [Matrix.det_mul] at this
     exact left_ne_zero_of_mul this
-  obtain ⟨x, hx, hxv⟩ := GlobalTheory.VacuumCharacter.exists_root hθ S (fun τ => hdet (hS τ)) g hg
-  obtain ⟨y, hy, hyv⟩ := GlobalTheory.VacuumCharacter.exists_root hθ T (fun τ => hdet (hT τ)) h hh
+  obtain ⟨x, hx, hxv⟩ := GlobalTheory.OneMapRef.RealMove.exists_root hθ S (fun τ => hdet (hS τ)) g hg
+  obtain ⟨y, hy, hyv⟩ := GlobalTheory.OneMapRef.RealMove.exists_root hθ T (fun τ => hdet (hT τ)) h hh
   obtain ⟨e, he⟩ := detPlus_def (m := T.rank) hs
   obtain ⟨a, ha⟩ := sq_exp hθ hW.hecT hW.resT e2 T.rank
   obtain ⟨b, hb⟩ := sq_exp hθ hW.hecS hW.resS e2 S.rank
@@ -571,7 +560,7 @@ private theorem vac_scalar {ψ : AddChar (AF D.host.F) ℂ} {θ : InfFam D} (hθ
     fun F _ lam h1 h2 => ?_⟩
   have inv : ∀ τ, (compAt θ τ (Formalism.L2.Theta.mt S g⁻¹)).det = ((compAt θ τ (Formalism.L2.Theta.mt S g)).det)⁻¹ := fun τ => by
     refine eq_inv_of_mul_eq_one_right ?_
-    rw [GlobalTheory.VacuumCharacter.det_compAt, GlobalTheory.VacuumCharacter.det_compAt, ← map_mul, ← map_mul, ← Matrix.det_mul]
+    rw [GlobalTheory.OneMapRef.RealMove.det_compAt, GlobalTheory.OneMapRef.RealMove.det_compAt, ← map_mul, ← map_mul, ← Matrix.det_mul]
     unfold Formalism.L2.Theta.mt
     rw [← Units.val_mul, ← map_mul, mul_inv_cancel, map_one, Units.val_one, Matrix.det_one, map_one, map_one]
   have k1 := hxv _ a ha
@@ -963,8 +952,6 @@ open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLattice
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 open GlobalTheory.RatMoveJets
 
 noncomputable section
@@ -1245,8 +1232,6 @@ open GlobalTheory.RowEx
 open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 open GlobalTheory.RatMoveJets
 noncomputable section
 namespace GlobalTheory.RatMoveIop
@@ -1293,8 +1278,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (Tri)
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RowEx
 open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 noncomputable section
@@ -1359,7 +1342,7 @@ end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.ExistsRationalMoveOfJets =====
 
 -- ===== clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.MovedVacuumRootExistsAlgebraic =====
--- clump-header: {"m": "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.MovedVacuumRootExistsAlgebraic", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.SplitOff\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.BernsteinUnitaryProductIrreducible\npublic import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExtendByZeroTrivialDecomposition\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsThetaAtOfVac\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnitVacuumStandardLatticesDefinitePair\nimport Development.AbelianVarietyTheory.Proofs.FoundationProofs.KernelLatticesFormSelfDualTriples\npublic import Development.AbelianVarietyTheory.Proofs.FoundationProofs.SphericalPair\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsNeZeroOfIsVacO\npublic import Development.AbelianVarietyTheory.Proofs.SatakeParameters.AbsNormCoprimeOfSup\nimport Development.AbelianVarietyTheory.Proofs.SatakeParameters.LevelHyperspecialTrivialCharacterSplitsOffPlaces\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsUnitScalarFourier\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.LatticeOrbitVectorsMovedPair\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.VacuumValueAlgebraicCongruence\nimport Development.AbelianVarietyTheory.Proofs.UnitaryExistence.LatHatOpenAndContinuous\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.MovedVacuumIsVacuumIntegral\nimport Formalism.LocalToGlobal.GlobalTheory.GL5.FamilyMassVolumeIdentityOfClassDecomp\nimport Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.IdemElt\npublic import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.KerDiag\nimport Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompactness.T2SpaceTensorProductFiniteExtension\nimport Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsApprox\nimport Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsSpan\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.PiTensorProduct\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.TwistPlacesOffPrimeQZero\n\n"}
+-- clump-header: {"m": "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.MovedVacuumRootExistsAlgebraic", "h": "module\n\nimport Formalism.LocalToGlobal.IndefiniteReal.SelfDualFullLattice\n\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.SplitOff\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.BernsteinUnitaryProductIrreducible\npublic import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExtendByZeroTrivialDecomposition\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsThetaAtOfVac\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnitVacuumStandardLatticesDefinitePair\nimport Development.AbelianVarietyTheory.Proofs.FoundationProofs.KernelLatticesFormSelfDualTriples\npublic import Development.AbelianVarietyTheory.Proofs.FoundationProofs.SphericalPair\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsNeZeroOfIsVacO\npublic import Development.AbelianVarietyTheory.Proofs.SatakeParameters.AbsNormCoprimeOfSup\nimport Development.AbelianVarietyTheory.Proofs.SatakeParameters.LevelHyperspecialTrivialCharacterSplitsOffPlaces\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsUnitScalarFourier\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.LatticeOrbitVectorsMovedPair\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.VacuumValueAlgebraicCongruence\nimport Development.AbelianVarietyTheory.Proofs.UnitaryExistence.LatHatOpenAndContinuous\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.MovedVacuumIsVacuumIntegral\nimport Formalism.LocalToGlobal.GlobalTheory.GL5.FamilyMassVolumeIdentityOfClassDecomp\nimport Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.IdemElt\npublic import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.KerDiag\nimport Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompactness.T2SpaceTensorProductFiniteExtension\nimport Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsApprox\nimport Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsSpan\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.PiTensorProduct\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.TwistPlacesOffPrimeQZero\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -1371,8 +1354,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (Tri)
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RowEx
 open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 noncomputable section
@@ -1424,63 +1405,8 @@ private theorem exists_pow_mem_open_subgroup {G : Type} [Group G] [TopologicalSp
     (H := U.subgroupOf K) Subgroup.index_ne_zero_of_finite ⟨k, hk⟩
   exact ⟨m, hm, h⟩
 private theorem selfDual_full {D : D7} (V : HSp D) (Λ : Submodule (𝓞 D.host.E) (Fin V.rank → D.host.E))
-    (hΛ : IsSelfDualC V Λ) : Submodule.IsFullLattice D.host.E Λ := by
-  haveI : Submodule.IsLattice D.host.E Λ := hΛ.1
-  refine ⟨?_⟩
-  obtain ⟨s, hs⟩ := hΛ.1.fg
-  apply eq_top_iff.mpr
-  intro y _
-  let f : (Fin V.rank → D.host.E) → D.host.E := fun x =>
-    ∑ i, ∑ j, star (x i) * V.gram i j * y j
-  obtain ⟨a, ha⟩ := IsLocalization.exist_integer_multiples (nonZeroDivisors (𝓞 D.host.E)) s f
-  have ha0 : (algebraMap (𝓞 D.host.E) D.host.E a) ≠ 0 := by
-    exact (FaithfulSMul.algebraMap_injective _ _).ne (mem_nonZeroDivisors_iff_ne_zero.mp a.2)
-  let P : Submodule (𝓞 D.host.E) (Fin V.rank → D.host.E) := {
-    carrier := {x | ∃ b : 𝓞 D.host.E, (b : D.host.E) = (algebraMap (𝓞 D.host.E) D.host.E a) * f x}
-    zero_mem' := by refine ⟨0, ?_⟩; simp [f]
-    add_mem' := by
-      rintro x z ⟨b, hb⟩ ⟨c, hc⟩
-      refine ⟨b + c, ?_⟩
-      change (b : D.host.E) + c = _
-      rw [hb, hc]
-      simp [f, add_mul, Finset.sum_add_distrib, mul_add]
-    smul_mem' := by
-      rintro c x ⟨b, hb⟩
-      refine ⟨RingOfIntegers.mapRingHom (starRingEnd D.host.E) c * b, ?_⟩
-      simp only [map_mul, hb, f, Pi.smul_apply, Algebra.smul_def, map_mul, RingOfIntegers.mapRingHom_apply, star_mul]
-      simp only [Finset.mul_sum]
-      apply Finset.sum_congr rfl
-      intro i _
-      apply Finset.sum_congr rfl
-      intro j _
-      change star (c : D.host.E) * _ = _
-      ring }
-  have hsP : (s : Set (Fin V.rank → D.host.E)) ⊆ P := by
-    intro x hx
-    obtain ⟨b, hb⟩ := ha x hx
-    exact ⟨b, by simpa [Algebra.smul_def] using hb⟩
-  have hy : (algebraMap (𝓞 D.host.E) D.host.E a) • y ∈ Λ := by
-    apply (hΛ.2 _).2
-    intro x hx
-    have hxP : x ∈ P := (hs ▸ Submodule.span_le.mpr hsP) hx
-    obtain ⟨b, hb⟩ := hxP
-    refine ⟨b, ?_⟩
-    rw [hb]
-    dsimp only [f, Pi.smul_apply]
-    simp only [smul_eq_mul, Finset.mul_sum]
-    apply Finset.sum_congr rfl
-    intro i _
-    apply Finset.sum_congr rfl
-    intro j _
-    ring
-  have hy' : (algebraMap (𝓞 D.host.E) D.host.E a) • y ∈ Submodule.span D.host.E (Λ : Set (Fin V.rank → D.host.E)) :=
-    Submodule.subset_span hy
-  have := (Submodule.span D.host.E (Λ : Set (Fin V.rank → D.host.E))).smul_mem
-    (algebraMap (𝓞 D.host.E) D.host.E a)⁻¹ hy' 
-  change (algebraMap (𝓞 D.host.E) D.host.E a)⁻¹ •
-    ((algebraMap (𝓞 D.host.E) D.host.E a) • y) ∈ _ at this
-  rw [← smul_assoc, smul_eq_mul, inv_mul_cancel₀ ha0, one_smul] at this
-  exact this
+    (hΛ : IsSelfDualC V Λ) : Submodule.IsFullLattice D.host.E Λ :=
+  Formalism.IndefR.Datum.IsSelfDualC.isFullLattice V Λ hΛ
 
 
 
@@ -1653,8 +1579,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (Tri)
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RowEx
 open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 noncomputable section

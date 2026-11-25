@@ -426,7 +426,7 @@ end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.FiniteDoubleCosetsRationalLocalLatticeStabilizerStatement =====
 
 -- ===== clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.FiniteRationalIsometriesFixingFramesConjStabiliz =====
--- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.FlagMeasures.FiniteRationalIsometriesFixingFramesConjStabiliz", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.FlagMeasures.MemH0sub\npublic import Development.AbelianVarietyTheory.Proofs.FlagMeasures.FrameFixingIsometriesEmbedProdLocalUnitary\npublic import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HermitianLatticeLocalGlobalPrinciple\npublic import Development.AbelianVarietyTheory.Proofs.FlagMeasures.RationalLatticeClassesFiniteLocalOrbitsStatement\npublic import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.PlacesOf\nimport Development.AbelianVarietyTheory.Definitions.SemilocalFrames.GFrames\nimport Mathlib.Algebra.Module.Lattice.Full\nimport Development.AbelianVarietyTheory.Proofs.FlagMeasures.NumberFieldLatticeDeterminedByLocalLattices\nimport Development.AbelianVarietyTheory.Proofs.FlagMeasures.RationalAutomorphismLocalExtensionMovesLatticesStatement\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
+-- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.FlagMeasures.FiniteRationalIsometriesFixingFramesConjStabiliz", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.FlagMeasures.MemH0sub\npublic import Development.AbelianVarietyTheory.Proofs.FlagMeasures.FrameFixingIsometriesEmbedProdLocalUnitary\npublic import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HermitianLatticeLocalGlobalPrinciple\npublic import Development.AbelianVarietyTheory.Proofs.FlagMeasures.RationalLatticeClassesFiniteLocalOrbitsStatement\npublic import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.PlacesOf\nimport Development.AbelianVarietyTheory.Definitions.SemilocalFrames.GFrames\nimport Mathlib.Algebra.Module.Lattice.Full\nimport Development.AbelianVarietyTheory.Proofs.FlagMeasures.NumberFieldLatticeDeterminedByLocalLattices\nimport Development.AbelianVarietyTheory.Proofs.FlagMeasures.RationalAutomorphismLocalExtensionMovesLatticesStatement\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Formalism.SharpRestriction.CuspSpanNormBounds.KappaEndpoints\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -456,21 +456,6 @@ theorem img_one (Λ : Submodule M.L.O V) : LocNG.img (1 : V ≃ₗ[E] V) Λ = Λ
   constructor
   · rintro ⟨x, hx, rfl⟩; exact hx
   · intro hv; exact ⟨v, hv, rfl⟩
-
-theorem img_inv {g : V ≃ₗ[E] V} {Λ Λ' : Submodule M.L.O V} (h : LocNG.img g Λ = Λ') :
-    LocNG.img g⁻¹ Λ' = Λ := by
-  rw [← h, ← img_mul, inv_mul_cancel, img_one]
-
-theorem mem_Aut {g : V ≃ₗ[E] V} {Λ : Submodule M.L.O V} : g ∈ LocNG.Aut Λ ↔ LocNG.img g Λ = Λ := by
-  constructor
-  · intro hg
-    unfold LocNG.Aut at hg
-    induction hg using Subgroup.closure_induction with
-    | mem x hx => exact hx
-    | one => exact img_one Λ
-    | mul x y _ _ hx hy => rw [img_mul, hy, hx]
-    | inv x _ hx => exact img_inv hx
-  · intro h; exact Subgroup.subset_closure h
 
 theorem img_fg_span (g : V ≃ₗ[E] V) (L : Submodule M.L.O V)
     (h : L.FG ∧ Submodule.span E (L : Set V) = ⊤) :
@@ -535,7 +520,7 @@ theorem GlobalTheory.Unfold.FixFin.conj_aut_finite : ∀ (D : D7) (X : HidaSetti
   obtain ⟨Λa, hΛa, hΛap⟩ := hLG.2 Λ₀ hΛ₀
     (fun p => LocNG.img ((a p : ↥(FP p).UW0) : Vp D p ≃ₗ[(D.s.atP p).Ep] Vp D p) (lattice₂ D Z.M p Λ₀))
     (fun p => img_fg_span _ _ (localLattice_fg_span Z Λ₀ hΛ₀ p))
-    (ha.subset fun p hp hA => hp (mem_Aut.1 hA))
+    (ha.subset fun p hp hA => hp (Formalism.MainNotions.KappaEndpoints.ng_mem_Aut.1 hA))
   obtain ⟨p⟩ := GlobalTheory.PhiEmbed.exists_place D
   have hΛaFull : Submodule.IsFullLattice D.host.E Λa := by
     apply isFullLattice_of_local_span Z p Λa hΛa
@@ -554,7 +539,7 @@ theorem GlobalTheory.Unfold.FixFin.conj_aut_finite : ∀ (D : D7) (X : HidaSetti
   apply (hLG.1 _ _ hgl hΛaFull).2
   intro p
   rw [H128.2.2.1 (h : GV D) p _ Λa (hφ h p), hΛap p]
-  have e := mem_Aut.1 (hh p)
+  have e := Formalism.MainNotions.KappaEndpoints.ng_mem_Aut.1 (hh p)
   rw [Subgroup.coe_mul, Subgroup.coe_mul, Subgroup.coe_inv, img_mul, img_mul] at e
   have e2 := congrArg (LocNG.img ((a p : ↥(FP p).UW0) : Vp D p ≃ₗ[(D.s.atP p).Ep] Vp D p)) e
   rwa [← img_mul, mul_inv_cancel, img_one] at e2
@@ -604,15 +589,10 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.Unfold
 
-theorem gmap_isLattice_rat {D : D7} (g : GV D) (Λ : LV D) (hΛ : Submodule.IsLattice D.host.E Λ) :
-    Submodule.IsLattice D.host.E (Formalism.HermitianLatticesTheory.gmap g Λ) := by
-  unfold Formalism.HermitianLatticesTheory.gmap
-  exact Submodule.IsLattice.of_fg D.host.E (hΛ.fg.map _)
-
 theorem gmap_isFullLattice_rat {D : D7} (g : GV D) (Λ : LV D)
     (hΛ : Submodule.IsFullLattice D.host.E Λ) :
     Submodule.IsFullLattice D.host.E (Formalism.HermitianLatticesTheory.gmap g Λ) := by
-  refine { toIsLattice := gmap_isLattice_rat g Λ hΛ.toIsLattice, span_eq_top := ?_ }
+  refine { toIsLattice := GlobalTheory.RatLocMove.isLattice_gmap' g Λ hΛ.toIsLattice, span_eq_top := ?_ }
   change Submodule.span D.host.E (g.toLinearMap '' (Λ : Set (VS D).V)) = ⊤
   rw [Submodule.span_image, hΛ.span_eq_top, Submodule.map_top, LinearMap.range_eq_top]
   exact g.surjective
@@ -737,7 +717,7 @@ end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.GenusMassEqSumOverRationalGroupOrbitsStatement =====
 
 -- ===== clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.DatumStabilizerPreservesTermLatticeGoodPlace =====
--- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.FlagMeasures.DatumStabilizerPreservesTermLatticeGoodPlace", "h": "module\n\npublic import Formalism.SharpRestriction.CuspSpanNormBounds.KappaEndpoints\nimport Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.NormAdditiveCharacterTypePrimeEqOne\nimport Formalism.SharpRestriction.CuspSpanNormBounds.LocalModelPeriodLattices\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
+-- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.FlagMeasures.DatumStabilizerPreservesTermLatticeGoodPlace", "h": "module\n\npublic import Formalism.SharpRestriction.CuspSpanNormBounds.KappaEndpoints\nimport Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.NormAdditiveCharacterTypePrimeEqOne\nimport Formalism.SharpRestriction.CuspSpanNormBounds.LocalModelPeriodLattices\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AbelianVarietyTheory.Proofs.FlagMeasures.LocalTermLatticeOverInnerDatumFgSpanStatement\nimport Development.AbelianVarietyTheory.Proofs.FlagMeasures.FramePairCoordinatesTransportInnerLattices\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -762,20 +742,6 @@ theorem perpX_of (Fr : FrameD H r) {k : V} (h : ∀ a : Fin r, H.h k (Fr.f a.cas
   | add x y _ _ hx hy => rw [H.h_herm (x + y) _, H.h_add_left, map_add (f := _), ← H.h_herm, ← H.h_herm, hx, hy, add_zero]
   | smul c x _ hx => rw [H.h_herm (c • x) _, H.h_smul_left, map_mul, ← H.h_herm, hx, mul_zero]
 
-theorem e_mem_X (Fr : FrameD H r) (a : Fin r) : Fr.e a ∈ H.X Fr.f :=
-  Submodule.subset_span ⟨a, rfl⟩
-
-theorem sub_prF_mem (Fr : FrameD H r) {y : V} (hy : y ∈ H.perp (H.X Fr.f)) : y - Fr.prF y ∈ H.X Fr.f := by
-  have h0 : ∀ a, H.h y (Fr.e a) = 0 := fun a => hy _ (e_mem_X Fr a)
-  have e : y - Fr.prF y = ∑ a, H.h y (Fr.es a) • Fr.e a := by
-    unfold FrameD.prF
-    simp only [h0, zero_smul, Finset.sum_const_zero, sub_zero, sub_sub_cancel]
-  rw [e]
-  exact Submodule.sum_mem _ (fun a _ => Submodule.smul_mem _ _ (e_mem_X Fr a))
-
-theorem prF_mem_perp (Fr : FrameD H r) (y : V) : Fr.prF y ∈ H.perp (H.X Fr.f) :=
-  perpX_of Fr (fun a => ng_prF_e (Fr := Fr) y a)
-
 theorem mkW_eq (Fr : FrameD H r) {x y : ↥(H.perp (H.X Fr.f))} (h : (x : V) - y ∈ H.X Fr.f) :
     H.mkW Fr.f x = H.mkW Fr.f y := by
   unfold HermSp.mkW
@@ -785,23 +751,20 @@ theorem mkW_eq (Fr : FrameD H r) {x y : ↥(H.perp (H.X Fr.f))} (h : (x : V) - y
 theorem prF_mem_LamStd (Fr : FrameD H r) {L : Submodule M.L.O (H.Wb Fr.f)} {y : V}
     (hy : y ∈ H.perp (H.X Fr.f)) (hyL : H.mkW Fr.f ⟨y, hy⟩ ∈ L) : Fr.prF y ∈ Fr.LamStd L := by
   apply Submodule.subset_span
-  refine ⟨fun a => ?_, fun a => ?_, ⟨Fr.prF (Fr.prF y), prF_mem_perp Fr _⟩, rfl, ?_⟩
+  refine ⟨fun a => ?_, fun a => ?_, ⟨Fr.prF (Fr.prF y), GlobalTheory.TermLat.prF_perp Fr _⟩, rfl, ?_⟩
   · rw [ng_prF_es]; exact M.L.O.zero_mem
   · rw [ng_prF_e]; exact M.L.O.zero_mem
-  · have e : H.mkW Fr.f ⟨Fr.prF (Fr.prF y), prF_mem_perp Fr _⟩ = H.mkW Fr.f ⟨y, hy⟩ := by
+  · have e : H.mkW Fr.f ⟨Fr.prF (Fr.prF y), GlobalTheory.TermLat.prF_perp Fr _⟩ = H.mkW Fr.f ⟨y, hy⟩ := by
       apply mkW_eq
-      have h1 := sub_prF_mem Fr hy
-      have h2 := sub_prF_mem Fr (prF_mem_perp Fr y)
+      have h1 := GlobalTheory.HL.CoordInnerSnd.sub_prF Fr hy
+      have h2 := GlobalTheory.HL.CoordInnerSnd.sub_prF Fr (GlobalTheory.TermLat.prF_perp Fr y)
       have : Fr.prF (Fr.prF y) - y = -((y - Fr.prF y) + (Fr.prF y - Fr.prF (Fr.prF y))) := by abel
-      rw [show ((⟨Fr.prF (Fr.prF y), prF_mem_perp Fr _⟩ : ↥(H.perp (H.X Fr.f))) : V) = Fr.prF (Fr.prF y) from rfl,
+      rw [show ((⟨Fr.prF (Fr.prF y), GlobalTheory.TermLat.prF_perp Fr _⟩ : ↥(H.perp (H.X Fr.f))) : V) = Fr.prF (Fr.prF y) from rfl,
         show ((⟨y, hy⟩ : ↥(H.perp (H.X Fr.f))) : V) = y from rfl, this]
       exact Submodule.neg_mem _ (Submodule.add_mem _ h1 h2)
     rw [e]; exact hyL
 
 variable {P : FPair H r}
-
-theorem h_add_right' (k u y : V) : H.h k (u + y) = H.h k u + H.h k y := by
-  rw [H.h_herm (u + y) k, H.h_add_left, map_add (f := _), ← H.h_herm, ← H.h_herm]
 
 theorem cls_mem {d : Datum P} {t : Term V M r} (ht : IsTermOver P d t) {k : V} (hk : k ∈ t.abelian₂)
     (hkp : k ∈ H.perp (H.X P.A.f)) : H.mkW P.A.f ⟨k, hkp⟩ ∈ d.L := by
@@ -815,12 +778,12 @@ theorem cls_mem {d : Datum P} {t : Term V M r} (ht : IsTermOver P d t) {k : V} (
   have hny : n (P.A.prF y) ∈ t.abelian₂ := by rw [hL]; exact ⟨_, h0, rfl⟩
   have hint := ng_term_int ht hk hny
   have hu : n (P.A.prF y) - y ∈ H.X P.A.f := by
-    have h1 := hN.2.2 _ (prF_mem_perp P.A (y : V))
-    have h2 := sub_prF_mem P.A hy
+    have h1 := hN.2.2 _ (GlobalTheory.TermLat.prF_perp P.A (y : V))
+    have h2 := GlobalTheory.HL.CoordInnerSnd.sub_prF P.A hy
     have : n (P.A.prF y) - y = (n (P.A.prF y) - P.A.prF y) - ((y : V) - P.A.prF y) := by abel
     rw [this]; exact Submodule.sub_mem _ h1 h2
   have e : n (P.A.prF y) = (n (P.A.prF y) - y) + y := by abel
-  rw [e, h_add_right', hkp _ hu, zero_add] at hint
+  rw [e, GlobalTheory.HL.CoordInnerSnd.h_add_right, hkp _ hu, zero_add] at hint
   exact hint
 
 theorem mem_of_cls (hP : P.PrimeTo) {d : Datum P} {t : Term V M r} (ht : IsTermOver P d t) {k : V}
@@ -838,8 +801,8 @@ theorem mem_of_cls (hP : P.PrimeTo) {d : Datum P} {t : Term V M r} (ht : IsTermO
     rintro _ ⟨a, rfl⟩
     exact Submodule.subset_span ⟨Sum.inl a.castSucc, rfl⟩
   have hx : n (P.A.prF k) - k ∈ H.X P.A.f := by
-    have h1 := hN.2.2 _ (prF_mem_perp P.A k)
-    have h2 := sub_prF_mem P.A hkp
+    have h1 := hN.2.2 _ (GlobalTheory.TermLat.prF_perp P.A k)
+    have h2 := GlobalTheory.HL.CoordInnerSnd.sub_prF P.A hkp
     have : n (P.A.prF k) - k = (n (P.A.prF k) - P.A.prF k) - (k - P.A.prF k) := by abel
     rw [this]; exact Submodule.sub_mem _ h1 h2
   have hz : k - (n (P.A.prF k) - m0) = 0 := by

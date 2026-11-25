@@ -77,7 +77,7 @@ namespace Formalism.FourierDecayAlt.P.NFx4
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.Q Formalism.FourierDecayAlt.NF
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
+open scoped Matrix.Norms.Elementwise
 
 section MulZ
 
@@ -473,7 +473,7 @@ namespace Formalism.FourierDecayAlt.P.NFx4
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.Q Formalism.FourierDecayAlt.NF Formalism.FourierDecayAlt.P.Qx2 Formalism.FourierDecayAlt.P.Qx5
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
+open scoped Matrix.Norms.Elementwise
 
 section Op
 
@@ -657,7 +657,7 @@ namespace Formalism.FourierDecayAlt.P.NFx4
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.Q Formalism.FourierDecayAlt.NF Formalism.FourierDecayAlt.P.Qx2 Formalism.FourierDecayAlt.P.Qx5
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
+open scoped Matrix.Norms.Elementwise
 
 section Peel
 
@@ -848,7 +848,7 @@ namespace Formalism.FourierDecayAlt.P.NFx4
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.Q Formalism.FourierDecayAlt.NF Formalism.FourierDecayAlt.P.Qx2 Formalism.FourierDecayAlt.P.Qx5
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
+open scoped Matrix.Norms.Elementwise
 
 theorem isOpen_normSq_gt (c : ℝ) : IsOpen {w : ℂ | c < Complex.normSq w} :=
   isOpen_lt continuous_const Complex.continuous_normSq
@@ -1187,20 +1187,20 @@ theorem kap_comm_fn (hRel : d.Rel) (f : M.Ty P → ℂ) {g : A} (hg : g ∈ d.L.
     Commute (d.κ f) g := hRel.2.1 f g hg
 
 theorem kap_GG (hRel : d.Rel) (f : M.Ty P → ℂ) : Commute (d.κ f) d.L.GG :=
-  kap_comm_fn hRel f (Or.inl (by simp [R.LevelData.fns]))
+  kap_comm_fn hRel f (Or.inl (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inl rfl)))))))
 
 theorem kappa_commute_l0 (hRel : d.Rel) (f : M.Ty P → ℂ) (Y : ℂ) : Commute (d.κ f) (d.L.l0 Y) := by
   unfold R.LevelData.l0
-  have h1 : Commute (d.κ f) d.L.nab := kap_comm_fn hRel f (Or.inr (by simp))
-  have h2 : Commute (d.κ f) d.L.ζb := kap_comm_fn hRel f (Or.inl (by simp [R.LevelData.fns]))
-  have h3 : Commute (d.κ f) d.L.GGi := kap_comm_fn hRel f (Or.inl (by simp [R.LevelData.fns]))
+  have h1 : Commute (d.κ f) d.L.nab := kap_comm_fn hRel f (Or.inr (Or.inl rfl))
+  have h2 : Commute (d.κ f) d.L.ζb := kap_comm_fn hRel f (Or.inl (Or.inr (Or.inr (Or.inr (Or.inl rfl)))))
+  have h3 : Commute (d.κ f) d.L.GGi := kap_comm_fn hRel f (Or.inl (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr rfl)))))))
   exact h1.neg_right.sub_right ((Algebra.commute_algebraMap_left _ _).symm.mul_right (h2.mul_right h3))
 
 theorem kappa_commute_raising_constant (hRel : d.Rel) (f : M.Ty P → ℂ) (Y : ℂ) : Commute (d.κ f) (d.L.m0 Y) := by
   unfold R.LevelData.m0
-  have h1 : Commute (d.κ f) d.L.nabs := kap_comm_fn hRel f (Or.inr (by simp))
-  have h2 : Commute (d.κ f) d.L.ζ := kap_comm_fn hRel f (Or.inl (by simp [R.LevelData.fns]))
-  have h3 : Commute (d.κ f) d.L.GGi := kap_comm_fn hRel f (Or.inl (by simp [R.LevelData.fns]))
+  have h1 : Commute (d.κ f) d.L.nabs := kap_comm_fn hRel f (Or.inr (Or.inr rfl))
+  have h2 : Commute (d.κ f) d.L.ζ := kap_comm_fn hRel f (Or.inl (Or.inr (Or.inl rfl)))
+  have h3 : Commute (d.κ f) d.L.GGi := kap_comm_fn hRel f (Or.inl (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr rfl)))))))
   exact h1.neg_right.sub_right ((Algebra.commute_algebraMap_left _ _).symm.mul_right (h2.mul_right h3))
 
 theorem normal_form_lower_left (Y : ℂ) : d.QQ Y 1 0 = d.L.GG * d.x Y * d.L.l0 Y + d.weightedSumBis Y := by simp [Q.NFData.QQ]
@@ -1656,8 +1656,11 @@ structure Hyp (d : Q.NFData P A) : Prop where
 
 theorem hyp_of_rel (d : Q.NFData P A) (h : d.Rel) : Hyp d := by
   obtain ⟨h1, h2, -, h4, -, h6⟩ := h
-  refine ⟨h1, fun f => ⟨h2 f _ (by simp), h2 f _ (by simp), h2 f _ (by simp [R.LevelData.fns]),
-    h2 f _ (by simp [R.LevelData.fns]), h2 f _ (by simp [R.LevelData.fns]), h2 f _ (by simp [R.LevelData.fns])⟩, h4, h6⟩
+  refine ⟨h1, fun f => ⟨h2 f _ (Or.inr (Or.inl rfl)), h2 f _ (Or.inr (Or.inr rfl)),
+    h2 f _ (Or.inl (Or.inr (Or.inl rfl))),
+    h2 f _ (Or.inl (Or.inr (Or.inr (Or.inr (Or.inl rfl))))),
+    h2 f _ (Or.inl (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inl rfl))))))),
+    h2 f _ (Or.inl (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr rfl)))))))⟩, h4, h6⟩
 
 variable {d : Q.NFData P A} (hd : Hyp d)
 include hd
@@ -2442,11 +2445,11 @@ section Op
 variable {A : Type} [Ring A] [Algebra ℂ A] {r : ℕ} (L : R.LevelData A r)
 
 theorem zeta_mem_functions : L.ζ ∈ Set.range L.c ∪ Set.range L.ci ∪ Set.range L.cb ∪ Set.range L.cbi ∪
-    {L.ζ, L.ζi, L.ζb, L.ζbi, L.GG, L.GGi} := by simp
+    {L.ζ, L.ζi, L.ζb, L.ζbi, L.GG, L.GGi} := Or.inr (Or.inl rfl)
 theorem fnmem_zb : L.ζb ∈ Set.range L.c ∪ Set.range L.ci ∪ Set.range L.cb ∪ Set.range L.cbi ∪
-    {L.ζ, L.ζi, L.ζb, L.ζbi, L.GG, L.GGi} := by simp
+    {L.ζ, L.ζi, L.ζb, L.ζbi, L.GG, L.GGi} := Or.inr (Or.inr (Or.inr (Or.inl rfl)))
 theorem fnmem_G : L.GG ∈ Set.range L.c ∪ Set.range L.ci ∪ Set.range L.cb ∪ Set.range L.cbi ∪
-    {L.ζ, L.ζi, L.ζb, L.ζbi, L.GG, L.GGi} := by simp
+    {L.ζ, L.ζi, L.ζb, L.ζbi, L.GG, L.GGi} := Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (Or.inl rfl)))))
 
 theorem zG : L.ζ * L.GG = L.GG * L.ζ := L.fns_comm _ (zeta_mem_functions L) _ (fnmem_G L)
 theorem zbG : L.ζb * L.GG = L.GG * L.ζb := L.fns_comm _ (fnmem_zb L) _ (fnmem_G L)

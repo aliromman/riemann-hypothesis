@@ -45,8 +45,6 @@ import Formalism.LocalToGlobal.ProjectiveLattices.ErealAddIInf
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.BigOn.Inhab

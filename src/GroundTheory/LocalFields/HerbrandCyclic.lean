@@ -2,46 +2,7 @@ module
 
 public import GroundTheory.GlobalFields.HerbrandQuotients.CycTate
 public import GroundTheory.LocalFields.CompleteTrivial
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.TypeStar
-import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -174,13 +135,6 @@ theorem toAdditive_cycNorm (i : M →* N) (hi : ∀ (g : G) (x : M), i (g • x)
   simp_rw [hi]
   rfl
 
-private theorem range_toAdditive (i : M →* N) :
-    (MonoidHom.toAdditive i).range = i.range.toAddSubgroup := by
-  ext y
-  rw [AddMonoidHom.mem_range, Additive.mem_toAddSubgroup, MonoidHom.mem_range]
-  exact ⟨fun ⟨x, hx⟩ => ⟨x.toMul, by rw [← hx]; rfl⟩,
-    fun ⟨x, hx⟩ => ⟨Additive.ofMul x, Additive.toMul.injective hx⟩⟩
-
 theorem cycHerbrand_eq_of_injective (i : M →* N) (hinj : Function.Injective i)
     (hi : ∀ (g : G) (x : M), i (g • x) = g • i x) [i.range.FiniteIndex] (τ : G) :
     (HasHerbrandQuotient (cycSubOne (Representation.ofMulDistribMulAction G M) τ)
@@ -191,7 +145,7 @@ theorem cycHerbrand_eq_of_injective (i : M →* N) (hinj : Function.Injective i)
       cycHerbrand (Representation.ofMulDistribMulAction G N) τ := by
   have hfi : (MonoidHom.toAdditive i).range.FiniteIndex := by
     constructor
-    rw [range_toAdditive, Subgroup.index_toAddSubgroup]
+    rw [MonoidHom.coe_toAdditive_range, Subgroup.index_toAddSubgroup]
     exact Subgroup.FiniteIndex.index_ne_zero
   have : Finite (Additive N ⧸ (MonoidHom.toAdditive i).range) :=
     AddSubgroup.finite_quotient_of_finiteIndex

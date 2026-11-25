@@ -56,8 +56,6 @@ namespace Formalism.MainNotions
 
 open Formalism.BasicNotions Formalism.MainNotions.S NumberField IsDedekindDomain
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 theorem two_le_absNorm (D : D7) (p : HeightOneSpectrum (𝓞 D.host.F)) : 2 ≤ Ideal.absNorm p.asIdeal := by
   have h0 : Ideal.absNorm p.asIdeal ≠ 0 := by
     rw [Ne, Ideal.absNorm_eq_zero_iff]
@@ -535,10 +533,8 @@ theorem numNV' (N m t : ℝ) (hN : 6 ≤ N) (hm : m ≤ N) (hm0 : 0 ≤ m) (ht :
   subst ht
   have hN2 : 6 * N ≤ N ^ 2 := by rw [sq]; exact mul_le_mul_of_nonneg_right hN (by linarith)
   have a : m * (N + 1800) ≤ N * (N + 1800) := mul_le_mul_of_nonneg_right hm (by linarith)
-  have b : 1801 * N ≤ 301 * N ^ 2 := by linarith
-  have h1 : N + m * (N + 1800) ≤ 302 * N ^ 2 := by
-    have heq : N * (N + 1800) = N ^ 2 + 1800 * N := by ring
-    linarith
+  have b : 1801 * N ≤ 301 * N ^ 2 := by grind
+  have h1 : N + m * (N + 1800) ≤ 302 * N ^ 2 := by grind
   have h0 : 0 ≤ N + m * (N + 1800) := by
     have : 0 ≤ m * (N + 1800) := mul_nonneg hm0 (by linarith)
     linarith
@@ -767,8 +763,6 @@ section S8c
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.CayleySignature
 
 namespace Formalism.MainNotions.ConjugationAmplitude
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7} (X : ThetaX D)
 

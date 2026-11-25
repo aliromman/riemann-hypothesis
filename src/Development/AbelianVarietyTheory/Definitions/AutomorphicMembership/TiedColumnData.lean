@@ -9,7 +9,6 @@ public import Formalism.LocalToGlobal.GroupLattices.TiedFamilies.CmpHyp0P
 public import Formalism.LocalToGlobal.UnitaryNorms.CharGal
 public import Formalism.LocalToGlobal.UnitaryNorms.DefsDatum
 public import Formalism.LocalToGlobal.Divisibility.QLocTied
-public import Formalism.LocalToGlobal.LatticeGeometry.GeoTiedP
 public import Formalism.LocalToGlobal.BesselHermitianTheta.AllTied
 public import Formalism.LocalToGlobal.BesselHermitianTheta.TiedWeilEq
 public import Formalism.LocalToGlobal.JointCharacters.SameChr
@@ -54,8 +53,6 @@ noncomputable section
 namespace GlobalTheory.Mem.Top.Bl
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.Inhab Formalism.L2.Host GlobalTheory.EX GlobalTheory.EX.OB GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.Mem.Top.GroupRetwisting NumberField IsDedekindDomain
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section Rec
 
@@ -158,9 +155,6 @@ structure DivT {w : ColW B f T} {Z : w.Lt} {Wt : Set B.places.Pl} {nch : NChoice
     Type 1 where
   Qp : TC.QpIs w.I Y.Qp
   chr : DivisorCharacterCompatibility (w.D Z) (TC.cf w.I w.l Z) nch n.tp Y
-  loc : Formalism.L2.DIV.QLocTiedC chr w.I.sel
-  inK : Y.Lev → ℕ → Prop
-  geo : Formalism.L2.Geo.GeoTiedP Y inK
 
 structure ThT {w : ColW B f T} {Z : w.Lt} {Wt : Set B.places.Pl} {nch : NChoice (w.D Z)} (n : NchT w Z Wt nch) (th : ThetaX (w.D Z)) :
     Type 1 where

@@ -108,7 +108,6 @@ import Mathlib.Tactic.Linter.Style
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
@@ -326,8 +325,6 @@ section -- clump:auto
 
 open CrystallineSemistableComparison.Onto
 
-set_option autoImplicit false
-
 namespace GlobalTheory.CompanionTheory.OntoDLog
 
 variable {K A : Type} [CommRing K] [CommRing A] [Algebra K A]
@@ -411,7 +408,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
@@ -609,7 +605,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
@@ -809,7 +804,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
@@ -935,7 +929,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
@@ -1166,7 +1159,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
@@ -1230,7 +1222,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
@@ -1428,7 +1419,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
@@ -1539,7 +1529,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
@@ -1711,7 +1700,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
@@ -1813,7 +1801,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section

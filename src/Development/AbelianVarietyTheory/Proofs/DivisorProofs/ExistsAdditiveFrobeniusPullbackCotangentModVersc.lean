@@ -118,15 +118,6 @@ open CategoryTheory TensorProduct Coalgebra Bialgebra GlobalTheory GlobalTheory.
 
 namespace GlobalTheory.PDivGroup
 
-theorem frobProj_frobTwist_app {p : ℕ} [Fact p.Prime] {R : Type} [CommRing R] (h : (p : R) = 0)
-    (G : PDivGroup p R) (n : ℕ) (x : (frobTwist h G).A n) :
-    ((frobProj h G).frobTwist h h).app n x = (frobProj h (frobTwist h G)).app n x := by
-  induction x using frobTwist_induction h n with
-  | h0 => simp only [map_zero]
-  | h2 x y hx hy => simp only [map_add (f := _), hx, hy]
-  | h1 r a =>
-    rw [SemiBialgHom.smul_map, SemiBialgHom.smul_map, SemiHom.frobTwist_app_frobProj]
-
 private theorem frobProj_app_verschiebung {p : ℕ} [Fact p.Prime] {R : Type} [CommRing R]
     (h : (p : R) = 0) (G : PDivGroup p R) (n : ℕ) (a : G.A n) :
     (frobProj h (frobTwist h G)).app n ((verschiebung h G).app n a) =
@@ -163,8 +154,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CategoryTheory TensorProduct Coalgebra Bialgebra GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup
@@ -173,7 +162,7 @@ namespace GlobalTheory.PDiv
 
 theorem isHopfIdeal_kerIdeal {R A C : Type} [CommRing R] [CommRing A] [CommRing C]
     [HopfAlgebra R A] [HopfAlgebra R C] (f : C →ₐc[R] A) : (kerIdeal f).IsHopfIdeal R := by
-  apply GlobalTheory.PDiv.isHopfIdeal_kerIdeal_of_bialgHom <;> assumption
+  apply GlobalTheory.PDiv.isHopfIdeal_kerIdeal_of_bialgHom
 
 theorem isCocomm_of_surjective {R A B : Type} [CommRing R] [CommRing A] [CommRing B]
     [Bialgebra R A] [Bialgebra R B] [IsCocomm R A] (f : A →ₐc[R] B)

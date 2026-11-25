@@ -249,7 +249,7 @@ theorem trace_one_tmul (R : Type) [CommRing R] [Algebra F R] (e : E) :
   have h : Algebra.lmul R (R ⊗[F] E) ((1 : R) ⊗ₜ[F] e) =
       (Algebra.lmul F E e).baseChange R := by
     apply TensorProduct.AlgebraTensorModule.curry_injective
-    ext r x
+    ext r
     simp
   rw [Algebra.trace_apply, h, LinearMap.trace_baseChange, Algebra.trace_apply]
 

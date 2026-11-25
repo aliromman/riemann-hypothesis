@@ -121,7 +121,7 @@ theorem adm8_and_lamUsed_of_rational_reading_and_parameters : _root_.GlobalTheor
   have hT : TypesTrue (w.st Z).toD7.ntypes z.R.C.P z.R.C.W := by
     rw [z.lev.C, w.C_eq]
     exact hGrp
-  have hME := _root_.GlobalTheory.MultEqFinal.twisted_multiplicity_eq hPX.ana hPX.dsc hN.decay hN.hc hPX.trc hPX.dm hPX.flath hN.zel
+  have hME := _root_.GlobalTheory.MultEqFinal.twisted_multiplicity_eq hPX.dsc hN.decay hN.hc hPX.trc hPX.dm hN.zel
     hN.what₂.geo hN.greenC z.R z.F hHo.ok z.pins.char hEx hH hp B.ccK_top z.pins.keep.guard
     (GlobalTheory.LiftRows.Inh.goodTypes_of_typesTrue z.pins.char.base.lev hT)
   have hIR : Formalism.BasicNotions.Rows.IsotRank (w.st Z).toD7.what₂ :=

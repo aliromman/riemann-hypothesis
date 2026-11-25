@@ -8,13 +8,9 @@ import Mathlib.LinearAlgebra.FreeModule.PID
 import Mathlib.RingTheory.AdicCompletion.Noetherian
 public import Mathlib.RingTheory.DiscreteValuationRing.TFAE
 import Mathlib.Tactic.Lemma
-import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.TypeStar
 
 @[expose] public section
-
-set_option autoImplicit false
 
 open IsLocalRing Polynomial
 

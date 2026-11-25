@@ -6,16 +6,18 @@ public import Mathlib.RingTheory.DedekindDomain.AdicValuation.Valuation
 
 namespace Bl.general_b_fact_upper_bis
 
-theorem goal1 {A K : Type} [CommRing A] [IsDedekindDomain A] [Field K]
+/-- Membership in the scalar extension of a submodule can be witnessed after multiplying by
+an element outside the chosen prime, without finite-generation or finite-rank assumptions. -/
+theorem exists_primeCompl_smul_mem_of_mem_span {A K : Type} [CommRing A] [IsDedekindDomain A] [Field K]
     [Algebra A K] [IsFractionRing A K] (w : IsDedekindDomain.HeightOneSpectrum A)
     {V : Type} [AddCommGroup V] [Module K V] [Module A V] [IsScalarTower A K V]
-    {ι : Type} [Fintype ι] (b : Module.Basis ι K V) {O Kf Fn : Type}
+    {ι : Type} (b : Module.Basis ι K V) {O Kf Fn : Type}
     [CommRing O] [Field Kf] [Algebra O Kf] [AddCommGroup Fn] [Module Kf Fn] [Module O Fn]
     [IsScalarTower O Kf Fn] (φ : K →+* Kf) (cmp : V →+ Fn)
     (h1 : ∀ x : K, w.valuation K x ≤ 1 ↔ φ x ∈ Set.range (algebraMap O Kf))
     (h2 : ∀ (a : K) (x : V), cmp (a • x) = φ a • cmp x)
     (h3 : LinearIndependent Kf fun a : ι => cmp (b a))
-    (Lat : Submodule A V) (hLat : Lat.FG) (v : V)
+    (Lat : Submodule A V) (v : V)
     (hv : cmp v ∈ Submodule.span O (cmp '' (Lat : Set V))) :
     ∃ s : A, s ∉ w.asIdeal ∧ s • v ∈ Lat := by
   classical
@@ -26,7 +28,7 @@ theorem goal1 {A K : Type} [CommRing A] [IsDedekindDomain A] [Field K]
       have := congrArg (fun F => F (Module.Basis.span h3 i)) hg
       simp only [Module.Basis.constr_basis] at this
       simpa using this
-    rw [← b.sum_repr y]
+    rw [← b.linearCombination_repr y, Finsupp.linearCombination_apply, Finsupp.sum]
     simp only [map_sum, h2, map_smul, smul_eq_mul, hb, map_mul]
   have hsm : ∀ c : K, w.valuation K c ≤ 1 → ∀ (Tt : Set Fn) (z : Fn),
       z ∈ Submodule.span O Tt → φ c • z ∈ Submodule.span O Tt := fun c hc Tt z hz => by
@@ -69,22 +71,20 @@ theorem goal1 {A K : Type} [CommRing A] [IsDedekindDomain A] [Field K]
       obtain ⟨S', hS'sub, hS'li, hS'le⟩ :=
         ih _ (hSn ▸ Finset.card_erase_lt_of_mem x0.2) (S.erase x0) rfl
       exact ⟨S', hS'sub.trans (Finset.erase_subset _ _), hS'li, hstep.trans hS'le⟩
-  obtain ⟨S, hS⟩ := hLat
-  have hle : Submodule.span O (cmp '' (Lat : Set V)) ≤ Submodule.span O (cmp '' (S : Set V)) := by
-    refine Submodule.span_le.2 ?_
-    rintro _ ⟨y, hy, rfl⟩
-    have hy' : y ∈ Submodule.span A (S : Set V) := hS ▸ hy
-    clear hy
-    induction hy' using Submodule.span_induction with
-    | mem x hx => exact Submodule.subset_span ⟨x, hx, rfl⟩
-    | zero => simp
-    | add x y _ _ hx hy => rw [map_add]; exact Submodule.add_mem _ hx hy
-    | smul a x _ hx =>
-      rw [← algebraMap_smul K a x, h2]
-      exact hsm _ (w.valuation_le_one (K := K) a) _ _ hx
+  obtain ⟨F, hF, hvF⟩ := Submodule.mem_span_finite_of_mem_span hv
+  choose u huLat huCmp using fun z : F => hF z.2
+  let S : Finset V := Finset.univ.image u
+  have hSLat : ∀ x ∈ S, x ∈ Lat := by
+    intro x hx
+    obtain ⟨z, -, rfl⟩ := Finset.mem_image.mp hx
+    exact huLat z
+  have hvS : cmp v ∈ Submodule.span O (cmp '' (S : Set V)) := by
+    apply Submodule.span_mono (s := (F : Set Fn)) _ hvF
+    intro z hz
+    exact ⟨u ⟨z, hz⟩, by simp [S], huCmp _⟩
   obtain ⟨S', hS'sub, hli, hS'le⟩ := hred S.card S rfl
   have hv' : cmp v ∈ Submodule.span O (Set.range fun x : S' => cmp x) := by
-    convert hS'le (hle hv) using 2
+    convert hS'le hvS using 2
     ext; simp
   obtain ⟨o, ho⟩ := (Submodule.mem_span_range_iff_exists_fun O).1 hv'
   have hvK : v ∈ Submodule.span K (Set.range ((↑) : S' → V)) := by
@@ -116,7 +116,7 @@ theorem goal1 {A K : Type} [CommRing A] [IsDedekindDomain A] [Field K]
   refine ⟨∏ x : S', (d x : A), w.asIdeal.primeCompl.prod_mem fun x _ => (d x).2, ?_⟩
   have hvsum : v = ∑ x : S', c x • (x : V) := by
     simpa [c, bs] using (congrArg Subtype.val (bs.sum_repr ⟨v, hvK⟩)).symm
-  rw [hvsum, Finset.smul_sum, ← hS]
+  rw [hvsum, Finset.smul_sum]
   refine Submodule.sum_mem _ fun x _ => ?_
   have hterm : (∏ y : S', (d y : A)) • (c x • (x : V)) =
       ((∏ y ∈ Finset.univ.erase x, (d y : A)) * nn x) • (x : V) := by
@@ -126,6 +126,21 @@ theorem goal1 {A K : Type} [CommRing A] [IsDedekindDomain A] [Field K]
       map_mul, map_mul, ← hnd x]
     congr 1; ring
   rw [hterm]
-  exact Submodule.smul_mem _ _ (Submodule.subset_span (Finset.mem_coe.2 (hS'sub x.2)))
+  exact Submodule.smul_mem Lat _ (hSLat x (hS'sub x.2))
+
+theorem goal1 {A K : Type} [CommRing A] [IsDedekindDomain A] [Field K]
+    [Algebra A K] [IsFractionRing A K] (w : IsDedekindDomain.HeightOneSpectrum A)
+    {V : Type} [AddCommGroup V] [Module K V] [Module A V] [IsScalarTower A K V]
+    {ι : Type} [Fintype ι] (b : Module.Basis ι K V) {O Kf Fn : Type}
+    [CommRing O] [Field Kf] [Algebra O Kf] [AddCommGroup Fn] [Module Kf Fn] [Module O Fn]
+    [IsScalarTower O Kf Fn] (φ : K →+* Kf) (cmp : V →+ Fn)
+    (h1 : ∀ x : K, w.valuation K x ≤ 1 ↔ φ x ∈ Set.range (algebraMap O Kf))
+    (h2 : ∀ (a : K) (x : V), cmp (a • x) = φ a • cmp x)
+    (h3 : LinearIndependent Kf fun a : ι => cmp (b a))
+    (Lat : Submodule A V) (hLat : Lat.FG) (v : V)
+    (hv : cmp v ∈ Submodule.span O (cmp '' (Lat : Set V))) :
+    ∃ s : A, s ∉ w.asIdeal ∧ s • v ∈ Lat := by
+  have _ := hLat
+  exact exists_primeCompl_smul_mem_of_mem_span w b φ cmp h1 h2 h3 Lat v hv
 
 end Bl.general_b_fact_upper_bis

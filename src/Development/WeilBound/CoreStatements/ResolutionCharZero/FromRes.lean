@@ -91,7 +91,7 @@ theorem isBlowupSeq_topMap {X : Scheme.{0}} (s : BlowupSequence X) : Resolution.
 
 theorem resW_of_functorialResolution (H : FunctorialResolutionCharZero.{0}) : ResW := by
   intro K _ _ M D X i U ⟨hi, hred, hdense, hU⟩
-  obtain ⟨R, hR, -, -⟩ := H
+  obtain ⟨R, hR, -⟩ := H
   have : IsProper (PSpace.str K M) := isProper_str K M
   let f : X ⟶ Spec (CommRingCat.of K) := i ≫ PSpace.str K M
   have : LocallyOfFiniteType f := by dsimp [f]; infer_instance
@@ -112,7 +112,7 @@ theorem hasSimpleNormalCrossings_nil {X : Scheme.{0}} {k : Type} [Field k] (p : 
 
 theorem princW_of_functorialPrincipalization (H : FunctorialPrincipalizationCharZero.{0}) : PrincW := by
   intro K _ _ d X g hd hp U hU
-  obtain ⟨R, hR, -, -⟩ := H
+  obtain ⟨R, hR, -⟩ := H
   have hP : IsProper g := isProper_of_isProjOver hp
   have : Smooth g := hd.smooth d _
   have : CompactSpace X := QuasiCompact.compactSpace_of_compactSpace g

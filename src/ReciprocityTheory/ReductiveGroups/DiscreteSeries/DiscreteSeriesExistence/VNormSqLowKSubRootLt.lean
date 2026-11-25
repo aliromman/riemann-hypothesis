@@ -117,7 +117,7 @@ theorem vNormSq_lowK_sub_root_lt {ε : Fin n → Bool} {lam : Fin n → ℝ} (hm
   have hsum : ∑ c, (root a b c * root a b c - 2 * (w c * root a b c)) = 2 - 2 * (w a - w b) := by
     rw [Fintype.sum_eq_add a b hab']
     · rw [hr a, hr b]
-      simp only [if_neg hab', if_neg hab'.symm, eq_self_iff_true, ↓reduceIte]
+      simp only [if_neg hab', if_neg hab'.symm, ↓reduceIte]
       ring
     · intro c hc
       rw [hr c]
@@ -224,7 +224,7 @@ variable {n : ℕ}
 
 section Equiv
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
+open scoped Matrix.Norms.Elementwise
 
 variable {ε : Fin n → Bool}
   {H₁ : Type*} [NormedAddCommGroup H₁] [InnerProductSpace ℂ H₁] {σ₁ : Matrix (Fin n) (Fin n) ℂ → (H₁ →L[ℂ] H₁)}

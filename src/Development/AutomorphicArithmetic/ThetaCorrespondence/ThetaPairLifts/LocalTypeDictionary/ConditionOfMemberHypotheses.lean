@@ -3,7 +3,6 @@ module
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.RowRatW
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.MultiplicityCoverHypotheses
 public import Development.AbelianVarietyTheory.PublishedTheorems.DiscreteSeriesUnitary₂.DiscreteSeriesClassificationIff
-public import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.AdmissibleCoefficientsAnalytic
 public import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.CuspDiscreteDecompositionOfTraceClass
 public import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.ExistsFactorisationCuspidal
 import Mathlib.Algebra.Order.Floor.Extended
@@ -46,17 +45,14 @@ noncomputable section
 namespace GlobalTheory.Mem.LiteralAutomorphy
 open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum Formalism.IndefR.Cx Formalism.L2.Pj Formalism.IndefR.FWT
 open scoped TensorProduct InnerProductSpace Matrix
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Mem GlobalTheory.Mem.Top GlobalTheory.Mem.Top.Bl GlobalTheory.Mem.Col2
 open GlobalTheory.Mem.R3 GlobalTheory.Mem.R3.Rw
 structure MemberHypotheses : Prop where
-  m1 : GlobalTheory.Published.HarishChandraAnalyticity
   m2 : GlobalTheory.Published.DiscreteSeriesClassification
   m3 : GlobalTheory.Published.CuspRapidDecay
   m4 : GlobalTheory.Published.HarishChandraFinite
   m5 : GlobalTheory.Published.CuspTraceClass
   m6 : GlobalTheory.Published.DixmierMalliavinFactorisation
-  m7 : GlobalTheory.Published.FlathFactorisation
   m12 : GlobalTheory.Published.ZelevinskyPolynomialRing
   m13 : GlobalTheory.Published.GeometricLemma
   m14 : GlobalTheory.Published.GreenCuspidal

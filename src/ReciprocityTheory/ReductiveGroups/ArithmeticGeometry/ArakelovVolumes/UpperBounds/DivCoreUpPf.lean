@@ -78,10 +78,6 @@ theorem bchar_add (la la' : Wt X.Ψ r) {b : Frame X.Ψ r} (hb : b ∈ Bor X.Ψ r
     bchar (la + la') b = bchar la b * bchar la' b := by
   apply ReciprocityTheory.ChartRestriction.G.FD.BoundedSectionAlgebra.bchar_add <;> assumption
 
-private lemma exp_neg_neg_two_mul_log (P : ℝ) (hP : 0 < P) : Real.exp (-(-2 * Real.log P)) = P ^ 2 := by
-  rw [show -(-2 * Real.log P) = Real.log P + Real.log P by ring, Real.exp_add, Real.exp_log hP]
-  ring
-
 theorem nfac_meas (la : Wt X.Ψ r) : Measurable (X.nfac la) := by
   have hc : ∀ (τ : X.Ψ) (i : Fin (r + 1)), Continuous fun x : Frame X.Ψ r => dmin X.Gm x τ i := by
     intro τ i

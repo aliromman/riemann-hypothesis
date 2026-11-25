@@ -99,7 +99,7 @@ theorem pOf_le_of_conj {n : ℕ} (ε ε' : Fin n → Bool) (Q : Matrix (Fin n) (
     (hQ : Qᴴ * Formalism.REAL.Jm ε * Q = Formalism.REAL.Jm ε') : pOf ε' ≤ pOf ε := by
   classical
   by_contra hlt
-  push_neg at hlt
+  push Not at hlt
   let f1 : ({i // ε' i = true} → ℂ) →ₗ[ℂ] (Fin n → ℂ) :=
     Q.mulVecLin ∘ₗ extL (fun i => ε' i = true)
   let f2 := extL (fun i : Fin n => ε i = false)
@@ -110,7 +110,7 @@ theorem pOf_le_of_conj {n : ℕ} (ε ε' : Fin n → Bool) (Q : Matrix (Fin n) (
     rw [form_conj, hQ, jm_ext_pos]
     exact Matrix.dotProduct_star_self_pos_iff.2 hu
   have hf1 : Function.Injective f1 := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro u hu
     by_contra hne
     have hz : extL (fun i => ε' i = true) u ≠ 0 := fun h =>

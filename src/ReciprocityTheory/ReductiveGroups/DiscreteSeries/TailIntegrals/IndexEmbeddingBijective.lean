@@ -660,7 +660,7 @@ theorem hc1 (k r' : ℕ) (hk : 1 ≤ k) (x : HPar k r') (j : Fin (1 + r')) : (hc
   unfold AN herm
   rw [dif_pos hj]
   unfold phiV aF
-  try simp only [Fin.coe_cast, Fin.val_mk]
+  try simp only [Fin.coe_cast]
   split_ifs with h
   · rw [star_bvec, bvec_dotProduct, Hpk_mulVec_apply_of_outer]
     · refine congrArg x.1 (Fin.ext ?_)
@@ -877,8 +877,6 @@ theorem shear_mp {n : ℕ} (i j : Fin (n + 1)) (hij : i ≠ j) (c : ℂ) :
   rw [key]
   exact (MeasurePreserving.symm e he).comp (hS.comp he)
 
-theorem fne {n : ℕ} (a b : Fin n) (h : a.val ≠ b.val) : a ≠ b := fun e => h (congrArg Fin.val e)
-
 theorem w_ne (k r' : ℕ) (hk : 1 ≤ k) : wI k r' 0 ≠ wI k r' (Fin.last k) := by
   intro h
   have h' := congrArg Fin.val h
@@ -962,9 +960,9 @@ theorem lin_eq (k r' : ℕ) (hk : 1 ≤ k) (y : Fin (2 * r' + k + 1) → ℂ) :
     split_ifs with hj
     · have hj' : j.val < r' := hj
       have n1 : (⟨j.val, by omega⟩ : Fin (2 * r' + k + 1)) ≠ wI k r' (Fin.last k) :=
-        fne _ _ (by simp only [wI, Fin.val_last]; omega)
+        Fin.ne_of_val_ne (by simp only [wI, Fin.val_last]; omega)
       have n0 : (⟨j.val, by omega⟩ : Fin (2 * r' + k + 1)) ≠ wI k r' 0 :=
-        fne _ _ (by simp only [wI, Fin.val_zero]; omega)
+        Fin.ne_of_val_ne (by simp only [wI, Fin.val_zero]; omega)
       rw [rotF, Function.update_of_ne n1, Function.update_of_ne n0]
       try rfl
     · have hj' : ¬ j.val < r' := hj
@@ -977,9 +975,9 @@ theorem lin_eq (k r' : ℕ) (hk : 1 ≤ k) (y : Fin (2 * r' + k + 1) → ℂ) :
     split_ifs with hj
     · have hj' : j.val < r' := hj
       have n1 : (⟨2 * r' + k - j.val, by omega⟩ : Fin (2 * r' + k + 1)) ≠ wI k r' (Fin.last k) :=
-        fne _ _ (by simp only [wI, Fin.val_last]; omega)
+        Fin.ne_of_val_ne (by simp only [wI, Fin.val_last]; omega)
       have n0 : (⟨2 * r' + k - j.val, by omega⟩ : Fin (2 * r' + k + 1)) ≠ wI k r' 0 :=
-        fne _ _ (by simp only [wI, Fin.val_zero]; omega)
+        Fin.ne_of_val_ne (by simp only [wI, Fin.val_zero]; omega)
       rw [rotF, Function.update_of_ne n1, Function.update_of_ne n0]
       try rfl
     · have hj' : ¬ j.val < r' := hj
@@ -989,9 +987,9 @@ theorem lin_eq (k r' : ℕ) (hk : 1 ≤ k) (y : Fin (2 * r' + k + 1) → ℂ) :
   · have := i.isLt
     show rotF k r' y ⟨r' + i.val + 1, by omega⟩ = (hcoord k r' (y, 0)).2.2.1 i
     have n1 : (⟨r' + i.val + 1, by omega⟩ : Fin (2 * r' + k + 1)) ≠ wI k r' (Fin.last k) :=
-      fne _ _ (by simp only [wI, Fin.val_last]; omega)
+      Fin.ne_of_val_ne (by simp only [wI, Fin.val_last]; omega)
     have n0 : (⟨r' + i.val + 1, by omega⟩ : Fin (2 * r' + k + 1)) ≠ wI k r' 0 :=
-      fne _ _ (by simp only [wI, Fin.val_zero]; omega)
+      Fin.ne_of_val_ne (by simp only [wI, Fin.val_zero]; omega)
     rw [rotF, Function.update_of_ne n1, Function.update_of_ne n0]
     try rfl
 

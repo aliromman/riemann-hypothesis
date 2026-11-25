@@ -96,27 +96,6 @@ theorem pullback_sep {K B₁ B₂ I J : Type} [Field K] [Algebra R K] [IsFractio
 
 variable {T : Type} [CommGroup T]
 
-theorem valAt_chart {B C : Type} [CommRing B] [CommRing C] {X : Scheme.{0}} (c : Spec (CommRingCat.of B) ⟶ X)
-    [IsOpenImmersion c] (φ : B →+* C) (h : ⊤ ≤ (Spec.map (CommRingCat.ofHom φ) ≫ c) ⁻¹ᵁ (c ''ᵁ ⊤)) (b : B) :
-    valAt (Spec.map (CommRingCat.ofHom φ) ≫ c) (c ''ᵁ ⊤) h
-      ((c.appIso ⊤).inv ((Scheme.ΓSpecIso (CommRingCat.of B)).inv b)) = φ b := by
-  have h1 : (Spec.map (CommRingCat.ofHom φ) ≫ c).appLE (c ''ᵁ ⊤) ⊤ h =
-      (c.appIso ⊤).hom ≫ (Spec.map (CommRingCat.ofHom φ)).appTop := by
-    rw [Scheme.Hom.appIso_hom', ← Scheme.Hom.appLE_comp_appLE _ _ _ ⊤ ⊤ _ le_rfl]
-    rfl
-  unfold valAt
-  rw [h1]
-  have h2 : (Scheme.ΓSpecIso (CommRingCat.of C)).hom ((Spec.map (CommRingCat.ofHom φ)).appTop
-      ((Scheme.ΓSpecIso (CommRingCat.of B)).inv b)) =
-      φ ((Scheme.ΓSpecIso (CommRingCat.of B)).hom ((Scheme.ΓSpecIso (CommRingCat.of B)).inv b)) :=
-    congr($(Scheme.ΓSpecIso_naturality (CommRingCat.ofHom φ)) ((Scheme.ΓSpecIso (CommRingCat.of B)).inv b))
-  have h3 : (c.appIso ⊤).hom ((c.appIso ⊤).inv ((Scheme.ΓSpecIso (CommRingCat.of B)).inv b)) =
-      (Scheme.ΓSpecIso (CommRingCat.of B)).inv b := Iso.inv_hom_id_apply _ _
-  have h4 : (Scheme.ΓSpecIso (CommRingCat.of B)).hom ((Scheme.ΓSpecIso (CommRingCat.of B)).inv b) = b :=
-    Iso.inv_hom_id_apply _ _
-  rw [h4, ← h3] at h2
-  exact h2
-
 theorem chart_sep [Finite T] (Γ : QFGroup R T) (B : Type) [CommRing B] [Algebra R B]
     (c : Spec (CommRingCat.of B) ⟶ Γ.G.left) [IsOpenImmersion c]
     (hc : c ≫ Γ.G.hom = Spec.map (CommRingCat.ofHom (algebraMap R B))) :
@@ -153,7 +132,7 @@ theorem chart_sep [Finite T] (Γ : QFGroup R T) (B : Type) [CommRing B] [Algebra
           (hp : Spec.map (CommRingCat.ofHom (e ⟨t, hr⟩).toRingHom) ≫ c = p) (h' : ⊤ ≤ p ⁻¹ᵁ (c ''ᵁ ⊤)),
           valAt p (c ''ᵁ ⊤) h' ((c.appIso ⊤).inv ((Scheme.ΓSpecIso (CommRingCat.of B)).inv b)) = 0 := by
         rintro p rfl h'
-        rw [valAt_chart]
+        rw [GlobalTheory.CompanionTheory.Ar.BT.CharMul.valAt_chart]
         exact hb ⟨t, hr⟩
       exact key _ (he ⟨t, hr⟩) h)
   have h1 := congr((c.appIso ⊤).hom $hs)
@@ -187,61 +166,19 @@ theorem sec_prod_zero [Finite T] (Γ : QFGroup R T) (u : Γ((Γ.G ⊗ Γ.G).left
     (hu : ∀ a b, (lift (Γ.pt a) (Γ.pt b)).left.appTop u = 0) : u = 0 := by
   exact GlobalTheory.CompanionTheory.Ar.BT.CharMul.sec_prod_zero Γ u hu
 
-theorem pull {S : Scheme.{0}} {Y Y' G : Over S} (q : Y' ⟶ Y) (g : Y ⟶ G) (s : Γ(G.left, ⊤)) :
-    q.left.appTop (g.left.appTop s) = (q ≫ g).left.appTop s := by
-  rw [Over.comp_left, Scheme.Hom.comp_appTop, CommRingCat.comp_apply]
-
-theorem appTop_pt (Γ : QFGroup R T) (s : Γ(Γ.G.left, ⊤)) (f : T → R) (hs : Γ.HasValues s f) (t : T) :
-    (Γ.pt t).left.appTop s =
-      (Scheme.ΓSpecIso (CommRingCat.of (FractionRing R))).inv (algebraMap R (FractionRing R) (f t)) := by
-  have h := congr((Scheme.ΓSpecIso (CommRingCat.of (FractionRing R))).inv $(hs t))
-  rw [← h]
-  unfold valAt
-  simp
-  rfl
-
 theorem mul_univ [Finite T] (Γ : QFGroup R T) (χ : T →* Rˣ) (s : Γ(Γ.G.left, ⊤))
     (hs : Γ.HasValues s (fun t => ((χ t : Rˣ) : R))) :
     (fst Γ.G Γ.G * snd Γ.G Γ.G).left.appTop s =
       (fst Γ.G Γ.G).left.appTop s * (snd Γ.G Γ.G).left.appTop s := by
   rw [← sub_eq_zero]
   refine sec_prod_zero Γ _ fun a b => ?_
-  rw [map_sub, map_mul, pull, pull, pull, comp_mul, lift_fst, lift_snd, ← map_mul, appTop_pt Γ s _ hs,
-    appTop_pt Γ s _ hs, appTop_pt Γ s _ hs, ← map_mul, ← map_mul, map_mul χ, Units.val_mul, sub_self]
-
-theorem appTop_gen_injective :
-    Function.Injective (Spec.map (CommRingCat.ofHom (algebraMap R (FractionRing R)))).appTop := by
-  intro x y hxy
-  have n := Scheme.ΓSpecIso_naturality (CommRingCat.ofHom (algebraMap R (FractionRing R)))
-  have hx : ∀ x, (Scheme.ΓSpecIso (CommRingCat.of (FractionRing R))).hom
-      ((Spec.map (CommRingCat.ofHom (algebraMap R (FractionRing R)))).appTop x) =
-      algebraMap R (FractionRing R) ((Scheme.ΓSpecIso (CommRingCat.of R)).hom x) := fun x => congr($n x)
-  have h2 := congr((Scheme.ΓSpecIso (CommRingCat.of (FractionRing R))).hom $hxy)
-  rw [hx, hx] at h2
-  have h3 := IsFractionRing.injective R (FractionRing R) h2
-  exact (Scheme.ΓSpecIso (CommRingCat.of R)).commRingCatIsoToRingEquiv.injective h3
-
-theorem one_univ (Γ : QFGroup R T) (χ : T →* Rˣ) (s : Γ(Γ.G.left, ⊤))
-    (hs : Γ.HasValues s (fun t => ((χ t : Rˣ) : R))) :
-    (η[Γ.G]).left.appTop s = 1 := by
-  let g : genPt R ⟶ 𝟙_ (Over (Spec (CommRingCat.of R))) := toUnit _
-  have hg : g.left = Spec.map (CommRingCat.ofHom (algebraMap R (FractionRing R))) := by
-    have := Over.w g
-    simpa using this
-  have h1 : g.left.appTop ((η[Γ.G]).left.appTop s) = 1 := by
-    rw [pull]
-    have : g ≫ η[Γ.G] = Γ.pt 1 := by
-      rw [map_one, Hom.one_def]
-    rw [this, appTop_pt Γ s _ hs, map_one χ, Units.val_one, map_one, map_one]
-  have inj : Function.Injective (g.left.appTop) := by
-    rw [hg]
-    exact appTop_gen_injective
-  exact inj (h1.trans (map_one _).symm)
+  rw [map_sub, map_mul, GlobalTheory.CompanionTheory.Ar.BT.CharMul.pull, GlobalTheory.CompanionTheory.Ar.BT.CharMul.pull, GlobalTheory.CompanionTheory.Ar.BT.CharMul.pull, comp_mul, lift_fst, lift_snd, ← map_mul, GlobalTheory.CompanionTheory.Ar.BT.CharMul.appTop_pt Γ s _ hs,
+    GlobalTheory.CompanionTheory.Ar.BT.CharMul.appTop_pt Γ s _ hs, GlobalTheory.CompanionTheory.Ar.BT.CharMul.appTop_pt Γ s _ hs, ← map_mul, ← map_mul, map_mul χ, Units.val_mul, sub_self]
 
 end PositivityTheory.HtPt.Htat.SeparatedTensorPullback
 
 
-open PositivityTheory.HtPt.Htat.SeparatedTensorPullback in
+open PositivityTheory.HtPt.Htat.SeparatedTensorPullback GlobalTheory.CompanionTheory.Ar.BT.CharMul in
 theorem PositivityTheory.HtPt.Htat.SeparatedTensorPullback.charValues_mul : ∀ (R : Type) [CommRing R] [IsDomain R] (T : Type) [CommGroup T] [Finite T] (Γ : QFGroup R T) (χ : T →* Rˣ) (s : Γ(Γ.G.left, ⊤)), Γ.HasValues s (fun t => ((χ t : Rˣ) : R)) → ∀ (Y : Over (Spec (CommRingCat.of R))), (∀ y z : Y ⟶ Γ.G, (y * z).left.appTop s = y.left.appTop s * z.left.appTop s) ∧ (1 : Y ⟶ Γ.G).left.appTop s = 1 := by
   intro R _ _ T _ _ Γ χ s hs Y
   refine ⟨fun y z => ?_, ?_⟩

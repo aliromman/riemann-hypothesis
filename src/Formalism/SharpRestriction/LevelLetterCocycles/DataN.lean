@@ -93,6 +93,8 @@ def IsSplitPl {R : Ranks} (H : Host R) (v : HeightOneSpectrum (𝓞 H.E)) : Prop
 
 
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure NData (R : Ranks) (H : Host R) (what₂ : Rows.Data R) where
 
   Om : Type
@@ -283,6 +285,8 @@ def RamExactly {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E Ω]
 
 
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure NTw (R : Ranks) (H : Host R) (what₂ : Rows.Data R) [NumberField what₂.LL] [StarRing what₂.LL]
     (LL0 : IntermediateField ℚ what₂.LL) (N : NData R H what₂) where
 
@@ -512,6 +516,8 @@ def SplitOut {R : Ranks} {H : Host R} {what₂ : Rows.Data R} (N : NData R H wha
 
 
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure NAut {R : Ranks} {H : Host R} {what₂ : Rows.Data R} (N : NData R H what₂) where
 
   iotaQ : ∀ i, FractionRing (N.O i) →+* Qbar (N.l i)
@@ -723,6 +729,8 @@ end Aut
 
 
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure NBC {R : Ranks} {H : Host R} {what₂ : Rows.Data R} {N : NData R H what₂} (A : NAut N) where
 
   AU : ℕ → Type
@@ -764,6 +772,8 @@ abbrev DelQM {R : Ranks} (H : Host R) (l : ℕ) (Q : Finset (PlE H)) (M : ℕ) :
 
 
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure NExp (R : Ranks) (H : Host R) (what₂ : Rows.Data R) [NumberField what₂.LL] [StarRing what₂.LL]
     (LL0 : IntermediateField ℚ what₂.LL) (N : NData R H what₂) (tw : NTw R H what₂ LL0 N) where
 
@@ -877,6 +887,8 @@ abbrev Fb (l : ℕ) (hl : l.Prime) : Type := @Formalism.CyclotomicNorms.Fbar l �
 
 
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure NTypes {R : Ranks} {H : Host R} {what₂ : Rows.Data R} {N : NData R H what₂} (A : NAut N) where
 
   Mray : Type
@@ -1002,6 +1014,8 @@ end Types
 
 open scoped TensorProduct in
 
+set_option genInjectivity false in
+set_option genSizeOfSpec false in
 structure NTh (R : Ranks) (H : Host R) (what₂ : Rows.Data R) [NumberField what₂.LL] [StarRing what₂.LL]
     (LL0 : IntermediateField ℚ what₂.LL) (N : NData R H what₂) (tw : NTw R H what₂ LL0 N)
     (ex : NExp R H what₂ LL0 N tw) where
@@ -1019,7 +1033,6 @@ structure NTh (R : Ranks) (H : Host R) (what₂ : Rows.Data R) [NumberField what
   ev : ∀ i j b, ex.Fm i j b →+ (Pt i j → ℂ_[tw.l i])
   ev_smul : ∀ i j b (a : FractionRing (tw.O i)) (f : ex.Fm i j b) (y : Pt i j),
     ev i j b (a • f) y = iC i a * ev i j b f y
-  ev_inj : ∀ i j b, Function.Injective (ev i j b)
 
   Lt : tw.Tw → ℕ → Type
   [acgLt : ∀ i j, AddCommGroup (Lt i j)]
@@ -1078,8 +1091,6 @@ structure NTh (R : Ranks) (H : Host R) (what₂ : Rows.Data R) [NumberField what
   FmUr_smul : ∀ i j b (a : FractionRing (tw.O i)) (f : ex.Fm i j b), a ∈ MaximalUnramifiedExtension i → f ∈ FmUr i j b →
     a • f ∈ FmUr i j b
   FmUr_span : ∀ i j b, Submodule.span (FractionRing (tw.O i)) (FmUr i j b : Set (ex.Fm i j b)) = ⊤
-  Bsup_def : ∀ i j b, ex.Bsup i j b =
-    Submodule.span (tw.O i) {f | f ∈ FmUr i j b ∧ ∀ y, ‖ev i j b f y‖ ≤ 1}
 
 attribute [instance] NTh.acgLt NTh.modLt NTh.freeLt NTh.finLt NTh.finLet NTh.grpKq NTh.finHk
 

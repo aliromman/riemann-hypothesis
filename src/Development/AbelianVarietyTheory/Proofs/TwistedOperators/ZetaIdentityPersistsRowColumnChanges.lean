@@ -66,7 +66,6 @@ noncomputable section
 namespace GlobalTheory.FlipMatch.ZMat
 
 section
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
   [MeasurableSpace k] [BorelSpace k]

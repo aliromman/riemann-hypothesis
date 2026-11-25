@@ -452,8 +452,6 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory GlobalTheory.USep
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.DefOverIntegral
@@ -783,7 +781,6 @@ theorem finite_injective_localHom_and_extend (V R K : Type) [CommRing V] [IsDoma
     Function.Injective ρ → ρ.Finite → IsLocalHom ρ ∧ ∀ ev : V →+* K, ∃ ev₁ : R →+* K, ev₁.comp ρ = ev := by
   first
   | (apply _root_.GlobalTheory.ValuationExtensionExistence.main <;> assumption)
-  | (intros; exact _root_.GlobalTheory.ValuationExtensionExistence.main ..)
 
 end GlobalTheory
 end -- clump:auto

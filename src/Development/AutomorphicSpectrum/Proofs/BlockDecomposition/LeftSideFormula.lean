@@ -12,7 +12,7 @@ public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.
 public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.InfiniteAdelesLocalRingTotallyReal
 public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.UnitaryActionPreservesHaarLocal
 public import Development.AutomorphicSpectrum.Proofs.GlobalProofs.ExistsLocalApproximateIdentity
-public import Development.WeilBound.CoreStatements.ThetaDilations.ThetaLint
+public import CompanionTheory.AutomorphicTheory.ThetaDilations.ThetaLint
 import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.AdelesLocallyCompactSecondCountable
 import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.CompletionIsLocalRing
 import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.TensorLocallyCompactRing
@@ -726,7 +726,7 @@ theorem sum_inv {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E]
       ∑' X : ({X : Fin 1 → Fin 2 → E | X ≠ 0} : Set _), f (actW (AF F) σ J c⁻¹ (ratTup (AF F) X.1)) := fun γ c => by
     let g : HA (AF F) σ J := γ.1
     have hsm : γ • c = g * c := rfl
-    choose t ht using fun X : ({X : Fin 1 → Fin 2 → E | X ≠ 0} : Set _) => PositivityTheory.PlacePermOperatorBicommutantSpan.act_rat (n := 1) γ⁻¹ X.1
+    choose t ht using fun X : ({X : Fin 1 → Fin 2 → E | X ≠ 0} : Set _) => CompanionTheory.PlacePermOperatorBicommutantSpan.act_rat (n := 1) γ⁻¹ X.1
     have ht' : ∀ X, actW (AF F) σ J g⁻¹ (ratTup (AF F) X.1) = ratTup (AF F) (t X) := ht
     have hback : ∀ X, ratTup (AF F) X.1 = actW (AF F) σ J g (ratTup (AF F) (t X)) := fun X => by
       rw [← ht', ← a2, mul_inv_cancel, a1]
@@ -805,7 +805,7 @@ theorem lside : Equi → CoCpt → LSide := by
       (μ 𝓕)⁻¹ * ∫⁻ h in 𝓕, ∑' X : ({X : Fin 1 → Fin 2 → E | X ≠ 0} : Set _),
         Phi θ ε φ A (actW (AF F) σ J h⁻¹ (ratTup (AF F) X.1)) ∂μ := fun ε => by
     rw [← lintegral_indicator hP.measurableSet]
-    exact PositivityTheory.PlacePermOperatorBicommutantSpan.theta_lint F E σ hcm 2 J hJ μ 𝓕 hμ h𝓕 1 _ _ (hΦm ε)
+    exact CompanionTheory.PlacePermOperatorBicommutantSpan.theta_lint F E σ hcm 2 J hJ μ 𝓕 hμ h𝓕 1 _ _ (hΦm ε)
   set c : ℝ → ℝ≥0∞ := fun ε => ENNReal.ofReal (ε ^ (4 * Module.finrank ℚ F)) with hc
   set f : ℝ → HA (AF F) σ J → ℝ≥0∞ := fun ε h => c ε * ∑' X : ({X : Fin 1 → Fin 2 → E | X ≠ 0} : Set _),
         Phi θ ε φ A (actW (AF F) σ J h⁻¹ (ratTup (AF F) X.1)) with hf

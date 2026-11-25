@@ -12,47 +12,7 @@ public import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.SelfDual
 public import Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.ZeroInjectionMemFourthPower
 public import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.SelfDualLatticeNorms.SelfDualComap
 import Formalism.LocalToGlobal.KernelLattices.ColumnData.StdOKP
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
-import Mathlib.Topology.Sheaves.Init
-import Std.Tactic.BVDecide.Normalize.Prop
 import Formalism.LocalToGlobal.KernelLattices.ColumnData.IsAdmissibleFlagPairOfUnitriangularLeftAutomorph
 import Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.LocalComponentGL
 import Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.MatrixFormFourfoldBlock
@@ -63,7 +23,6 @@ import Formalism.LocalToGlobal.KernelLattices.ColumnData.StdLat
 import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.AnalyticIdentityTheorems.QuasiPeriodConstUniqueOf
 import Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.FinitelyGeneratedModPow
 import Formalism.LocalToGlobal.KernelLattices.ColumnData.LinkThU
-import Mathlib.Tactic.Linter.HaveILetI
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.RkVolSeam, Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.RkVolChain, Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.RkVolLat, Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.RkVolLaHyp
@@ -450,7 +409,7 @@ open NumberField Formalism.BasicNotions
 
 namespace Formalism.L2.Ker.Cd.KS
 
-open Formalism.L2.Ker.KS hiding La_left La_nsmul La_right YYl_nsmul al_flat alpha_flat fixed_pb fnPow_eq form_flat hPow_hOne herm_pb homL_nsmul inter_pb lamM' latPow_eq locNorm_ambOf_of locNorm_thF_of not_dvd_relIdx opU_pb pb relIdx_pb reps_pb selfDual_pb semi_pb thF_ambOf thM' th_pb
+open Formalism.L2.Ker.KS hiding La_left La_nsmul La_right YYl_nsmul al_flat alpha_flat fixed_pb fnPow_eq form_flat homL_nsmul inter_pb lamM' latPow_eq locNorm_ambOf_of locNorm_thF_of opU_pb pb relIdx_pb reps_pb selfDual_pb semi_pb thF_ambOf thM' th_pb
 
 open Formalism.MainNotions Formalism.L2.Col
 open Formalism.L2.Th1.H (Sesq IsHerm IsPosDef altE opU dualLat IsSelfDual IsSemiChar fixedBy sumU IsReps relIdx inter Th IsLat matH alphaQ
@@ -474,8 +433,6 @@ variable (H : Sesq V) (H' : Sesq W) (hH : ∀ x y, H x y = H' (e x) (e y))
 include hH
 
 alias opU_pb := _root_.Formalism.L2.Ker.KS.opU_pb
-
-theorem herm_pb (h : IsHerm H') : IsHerm H := fun x y => by rw [hH, hH]; exact h _ _
 
 theorem semi_pb {Λ : AddSubgroup W} {α : V → ℂ} {α' : W → ℂ} (hα : ∀ x, e x ∈ Λ → α x = α' (e x))
     (h : IsSemiChar H' Λ α') : IsSemiChar H (pb e Λ) α := by
@@ -566,22 +523,6 @@ theorem th_pb {Λ : AddSubgroup W} {α : V → ℂ} {α' : W → ℂ} (hα : ∀
 
 end GenTh
 
-theorem not_dvd_relIdx {V : Type*} [AddCommGroup V] (Λ₁ Λ₂ : AddSubgroup V) (p s : ℕ) [Fact p.Prime] (hs : Nat.Coprime s p)
-    (h0 : relIdx Λ₁ Λ₂ ≠ 0) (hk : ∀ x ∈ Λ₂, s • x ∈ Λ₁) : ¬ p ∣ relIdx Λ₁ Λ₂ := by
-  intro hd
-  have h0' : Nat.card (Λ₂ ⧸ Λ₁.addSubgroupOf Λ₂) ≠ 0 := h0
-  have hd' : p ∣ Nat.card (Λ₂ ⧸ Λ₁.addSubgroupOf Λ₂) := hd
-  have : Finite (Λ₂ ⧸ Λ₁.addSubgroupOf Λ₂) := Nat.finite_of_card_ne_zero h0'
-  obtain ⟨q, hq⟩ := exists_prime_addOrderOf_dvd_card' p hd'
-  have hsq : s • q = 0 := by
-    induction q using QuotientAddGroup.induction_on with | H a => ?_
-    rw [← QuotientAddGroup.mk_nsmul, QuotientAddGroup.eq_zero_iff, AddSubgroup.mem_addSubgroupOf, AddSubgroup.coe_nsmul]
-    exact hk _ a.2
-  have h1 : p ∣ s := hq ▸ addOrderOf_dvd_of_nsmul_eq_zero hsq
-  have h2 : p ∣ Nat.gcd s p := Nat.dvd_gcd h1 dvd_rfl
-  rw [hs] at h2
-  exact (Fact.out : p.Prime).one_lt.ne' (Nat.dvd_one.1 h2)
-
 section LaS
 
 variable {D : Car} {N N' : ℕ}
@@ -664,19 +605,6 @@ theorem form_flat (A : ℝ) (x y : DVar X.Tau a b → ℂ) :
 theorem alpha_flat (c A : ℝ) (x : DVar X.Tau a b → ℂ) :
     alphaQ c (matH (hSc X.Tau a b A⁻¹)) x = alphaQ c (formV A D.what₂.Tau a b) (s.flatV a b x) := by
   simp only [alphaQ, Formalism.L2.Th1.H.qOf, form_flat s]
-
-theorem hPow_hOne (L : PeriodPair) :
-    hPow (Fin b × Fin a) (hOne L X.Tau) = hSc X.Tau a b (Formalism.L2.Th1.F.area L)⁻¹ := by
-  ext w w'
-  simp only [hPow, hOne, hSc, Matrix.smul_apply, Matrix.one_apply, Matrix.diagonal_apply, smul_eq_mul]
-  by_cases h1 : w = w'
-  · subst h1
-    simp
-  · rw [if_neg h1]
-    by_cases h2 : w.2 = w'.2
-    · have h3 : w.1 ≠ w'.1 := fun h => h1 (Prod.ext h h2)
-      simp [h2, h3]
-    · simp [h2]
 
 variable {cc : Ideal (𝓞 D.host.K)} {δ : ℂ} (B : Base D cc δ)
 

@@ -4,11 +4,11 @@ public import Formalism.SharpRestriction.LevelLetterCocycles.LocCoh
 public import Development.AutomorphicSpectrum.Definitions.NonGaloisLines.TopLine
 public import Formalism.LocalRingCardinality.AdicCompletionLocal.LocTied
 public import Formalism.GaloisCohomology.LocalTateDualityK
-public import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohDefs
+public import CompanionTheory.AutomorphicTheory.PadicCyclotomicFields.GcohDefs
 public import GroundTheory.ProfiniteCohomology.LocalTateDuality.InjectiveCohomologyMapKummerSeqOpenFTwo
-public import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohCmp
-public import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohField
-public import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohTate
+public import CompanionTheory.AutomorphicTheory.PadicCyclotomicFields.GcohCmp
+public import CompanionTheory.AutomorphicTheory.PadicCyclotomicFields.GcohField
+public import CompanionTheory.AutomorphicTheory.PadicCyclotomicFields.GcohTate
 public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.RationalDualityOfAllCoefficients
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.H2EquivOfTorsionCharacter
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FinrankH1fDeRham
@@ -17,7 +17,7 @@ public import Development.AutomorphicSpectrum.Proofs.GlobalProofs.CupFlip
 public import Development.AutomorphicSpectrum.Proofs.GlobalProofs.TateDualityH2FiniteCoefficients
 public import Mathlib.RingTheory.DiscreteValuationRing.Basic
 public import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.BkMain
-public import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohTopEuler
+public import CompanionTheory.AutomorphicTheory.PadicCyclotomicFields.GcohTopEuler
 public import Development.AbelianVarietyTheory.Definitions.Foundations.HTBasis
 import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
 import Mathlib.NumberTheory.Padics.PadicIntegers
@@ -67,62 +67,22 @@ import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsCycCycChar
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BlochKatoExactAnnihilatorsPeriodDatum
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BlochKatoLocalAllPrimesOfBlochKato
+public import CompanionTheory.AutomorphicTheory.PadicCyclotomicFields.GcohTop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohMu, Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohTop, Development.WeilBound.CoreStatements.EulerCharacteristicCounts.LocalBoundOfAllInputs, Development.AutomorphicSpectrum.Proofs.GlobalProofs.BlochKatoLocal
-
--- ===== clump member: Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohMu =====
--- clump-header: {"m": "Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohMu", "h": "module\n\npublic import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohDefs\npublic import GroundTheory.ProfiniteCohomology.LocalTateDuality.InjectiveCohomologyMapKummerSeqOpenFTwo\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}
-section -- clump:auto
-@[expose] public section
-
-open CategoryTheory GroundTheory.ProfCoh ReciprocityTheory.Gal ValuativeRel
-
-namespace PositivityTheory.LocalTateOrthogonality.Gcoh
-
-theorem cycKSpec : Formalism.GaloisCohomology.CycKSpec := by
-  intro l _ K r σ ζ hζ
-  exact cyclotomicCharacter.spec l (MulSemiringAction.toRingAut _ (PadicAlgCl l) σ) ζ hζ
-
-theorem gcMu : SgcMu := by
-  intro l hl K r
-  have : IsSepClosure ↥K (PadicAlgCl l) :=
-    ⟨inferInstance, Algebra.isSeparable_tower_top_of_isSeparable ℚ_[l] K _⟩
-  have hn : ((l ^ r : ℕ) : K) ≠ 0 := Nat.cast_ne_zero.2 (pow_ne_zero _ hl.out.ne_zero)
-  have : NeZero (l ^ r) := ⟨pow_ne_zero _ hl.out.ne_zero⟩
-  obtain ⟨e⟩ := nonempty_addEquiv_galRootsOfUnity (K := K) (Ksep := PadicAlgCl l) hn
-  refine ⟨e.symm, fun g m => ?_⟩
-  have key : ∀ x : Additive (rootsOfUnity (l ^ r) (PadicAlgCl l)),
-      (galRootsOfUnity.{0} ↥K (PadicAlgCl l) (l ^ r)).ρ g x =
-        (Formalism.GaloisCohomology.cycK l K r g : ZMod (l ^ r)).val • x := by
-    intro x
-    rw [galRootsOfUnity_ρ_apply]
-    apply Additive.toMul.injective
-    rw [toMul_ofMul, toMul_nsmul]
-    apply Subtype.ext
-    apply Units.ext
-    rw [coe_galRootsOfUnityHom_apply, SubmonoidClass.coe_pow, Units.val_pow_eq_pow_val]
-    refine cycKSpec l K r g _ ?_
-    rw [← Units.val_pow_eq_pow_val, (mem_rootsOfUnity _ _).1 x.toMul.2, Units.val_one]
-  refine Eq.trans ?_ (key _).symm
-  refine Eq.trans ?_ (map_nsmul e.symm _ m)
-  rw [nsmul_eq_mul, ZMod.natCast_zmod_val]
-
-end PositivityTheory.LocalTateOrthogonality.Gcoh
-end -- clump:auto
-end -- clump:auto
--- ===== end clump member: Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohMu =====
+-- Members: Development.WeilBound.CoreStatements.Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohTop, Development.WeilBound.CoreStatements.EulerCharacteristicCounts.LocalBoundOfAllInputs, Development.AutomorphicSpectrum.Proofs.GlobalProofs.BlochKatoLocal
 
 -- ===== clump member: Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohTop =====
--- clump-header: {"m": "Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohTop", "h": "module\n\npublic import Formalism.GaloisCohomology.LocalTateDualityK\npublic import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohCmp\npublic import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohField\npublic import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohMu\npublic import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohTate\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
+-- clump-header: {"m": "Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohTop", "h": "module\n\npublic import Formalism.GaloisCohomology.LocalTateDualityK\npublic import CompanionTheory.AutomorphicTheory.PadicCyclotomicFields.GcohCmp\npublic import CompanionTheory.AutomorphicTheory.PadicCyclotomicFields.GcohField\npublic import CompanionTheory.AutomorphicTheory.PadicCyclotomicFields.GcohTop\npublic import CompanionTheory.AutomorphicTheory.PadicCyclotomicFields.GcohTate\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 section -- clump:auto
 @[expose] public section
 
 open CategoryTheory GroundTheory.ProfCoh ReciprocityTheory.Gal ValuativeRel
 
 namespace PositivityTheory.LocalTateOrthogonality.Gcoh
+open CompanionTheory.LocalTateOrthogonality.Gcoh (gc0 gc1 gc2 gcField gcMu gcRep)
 
-theorem top_tate : Formalism.GaloisCohomology.LocalTateDualityK := tate_of gcRep gc0 gc1 gc2 gcField gcMu
+theorem top_tate : Formalism.GaloisCohomology.LocalTateDualityK := CompanionTheory.LocalTateOrthogonality.Gcoh.tate_of gcRep gc0 gc1 gc2 gcField gcMu
 
 end PositivityTheory.LocalTateOrthogonality.Gcoh
 end -- clump:auto
@@ -238,7 +198,7 @@ end -- clump:auto
 -- ===== end clump member: Development.WeilBound.CoreStatements.EulerCharacteristicCounts.LocalBoundOfAllInputs =====
 
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.BlochKatoLocal =====
--- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.GlobalProofs.BlochKatoLocal", "h": "module\n\npublic import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.RationalDualityOfAllCoefficients\npublic import Development.AutomorphicSpectrum.Definitions.NonGaloisLines.TopLine\npublic import Development.AbelianVarietyTheory.Proofs.FoundationProofs.H2EquivOfTorsionCharacter\npublic import Formalism.LocalRingCardinality.AdicCompletionLocal.LocTied\npublic import Formalism.SharpRestriction.LevelLetterCocycles.LocCoh\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FinrankH1fDeRham\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TateDualDeRhamAndFilZeroDimAll\npublic import Development.AutomorphicSpectrum.Proofs.GlobalProofs.CupFlip\npublic import Development.AutomorphicSpectrum.Proofs.GlobalProofs.TateDualityH2FiniteCoefficients\npublic import Mathlib.RingTheory.DiscreteValuationRing.Basic\npublic import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.BkMain\npublic import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohTop\npublic import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohTopEuler\npublic import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.LocalBoundOfAllInputs\npublic import Development.AbelianVarietyTheory.Definitions.Foundations.HTBasis\nimport Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsCycCycChar\nimport Mathlib.NumberTheory.Padics.PadicIntegers\nimport Development.AutomorphicSpectrum.Proofs.NonGaloisProofs.GoodOAdicCompleteCompactBasis\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BlochKatoExactAnnihilatorsPeriodDatum\nimport Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BlochKatoLocalAllPrimesOfBlochKato\n\n"}
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.GlobalProofs.BlochKatoLocal", "h": "module\n\npublic import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.RationalDualityOfAllCoefficients\npublic import Development.AutomorphicSpectrum.Definitions.NonGaloisLines.TopLine\npublic import Development.AbelianVarietyTheory.Proofs.FoundationProofs.H2EquivOfTorsionCharacter\npublic import Formalism.LocalRingCardinality.AdicCompletionLocal.LocTied\npublic import Formalism.SharpRestriction.LevelLetterCocycles.LocCoh\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FinrankH1fDeRham\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TateDualDeRhamAndFilZeroDimAll\npublic import Development.AutomorphicSpectrum.Proofs.GlobalProofs.CupFlip\npublic import Development.AutomorphicSpectrum.Proofs.GlobalProofs.TateDualityH2FiniteCoefficients\npublic import Mathlib.RingTheory.DiscreteValuationRing.Basic\npublic import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.BkMain\npublic import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohTop\npublic import CompanionTheory.AutomorphicTheory.PadicCyclotomicFields.GcohTopEuler\npublic import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.LocalBoundOfAllInputs\npublic import Development.AbelianVarietyTheory.Definitions.Foundations.HTBasis\nimport Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsCycCycChar\nimport Mathlib.NumberTheory.Padics.PadicIntegers\nimport Development.AutomorphicSpectrum.Proofs.NonGaloisProofs.GoodOAdicCompleteCompactBasis\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BlochKatoExactAnnihilatorsPeriodDatum\nimport Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BlochKatoLocalAllPrimesOfBlochKato\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -281,7 +241,7 @@ theorem bkBL (l : ℕ) [Fact l.Prime] (Lp : LocPrime l) (K : FinExt l) (hD : Dua
 theorem blochKatoLocal : GlobalTheory.Published.BlochKatoLocal := by
   intro l _ Lp AI T K
   have hT := PositivityTheory.LocalTateOrthogonality.Gcoh.top_tate
-  have hE := PositivityTheory.LocalTateOrthogonality.Gcoh.top_euler
+  have hE := CompanionTheory.LocalTateOrthogonality.Gcoh.top_euler
   have hD : DualD (Lp.PD K) := GlobalTheory.tate_double_annihilator hT l Lp K
   have hC : CobLO (Lp.PD K) := cobLO l Lp K (finZQ hT hE l Lp K) (topInj hT l Lp K)
   have hA := GlobalTheory.BlochKatoAnn.bkA_exact_annihilators hT hE l Lp AI T K

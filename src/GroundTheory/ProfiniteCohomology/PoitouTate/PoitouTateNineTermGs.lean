@@ -1387,8 +1387,7 @@ attribute [local irreducible] GsBaseBijective gsCompactInv compactCores compactC
 
 include hℓ hnk hS in
 theorem gsBaseBijective_of_fixing (hP : GsPairingInput n ℓ)
-    (hcores : ∀ U : OpenSubgroup (galUnramifiedOutside K.1 ℚ̄ S),
-      Function.Surjective (compactCores (gsFinFamily S ιs) U (gsRoots S n) 3).hom)
+    (hcores : ∀ U, GsCompactCoresSurjective S ιs n U)
     (W₀ : OpenSubgroup (galUnramifiedOutside K.1 ℚ̄ S))
     (hW₀ : ∀ σ ∈ W₀, ∀ ζ : (maxUnramifiedOutside K.1 ℚ̄ S)ˣ, ζ ^ n = 1 →
       σ (ζ : maxUnramifiedOutside K.1 ℚ̄ S) = ζ)
@@ -1413,8 +1412,7 @@ theorem exists_compactDualityHypotheses_gs_of_pairing (hP : GsPairingInput n ℓ
   have hD := nonempty_addEquiv_gsRoots_of_places S n hnS
   have hfin : Finite (gsRoots S n) := hD.elim fun e => Finite.of_equiv (ZMod n) e.toEquiv.symm
   have hn : n ≠ 0 := NeZero.ne n
-  have hcores : ∀ U : OpenSubgroup (galUnramifiedOutside K.1 ℚ̄ S),
-      Function.Surjective (compactCores (gsFinFamily S ιs) U (gsRoots S n) 3).hom := fun U =>
+  have hcores : ∀ U, GsCompactCoresSurjective S ιs n U := fun U =>
     @surjective_gs_compactCores_three K S ιs n hn hSn hodd U (gsRoots S n)
       (isDiscreteRep_gsRoots S n) hfin (nsmul_gsRoots S n)
   obtain ⟨W₀, hW₀⟩ := exists_openSubgroup_fixing_rootsOfUnity K S n hn

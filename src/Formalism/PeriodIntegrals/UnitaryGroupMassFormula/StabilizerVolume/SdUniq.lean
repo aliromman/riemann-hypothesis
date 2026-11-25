@@ -213,7 +213,7 @@ theorem testEx_of_trivial (hχ : ∀ x y, χ x y = 1) (L : AddSubgroup V)
     · refine HasCompactSupport.intro (hLc.union (hLc.image (show Continuous (fun x : V => t + x) from continuous_const.add continuous_id))) ?_
       intro x hx
       have h1 : x ∉ L := fun h => hx (Or.inl h)
-      have h2 : -t + x ∉ L := fun h => hx (Or.inr ⟨-t + x, h, by abel⟩)
+      have h2 : -t + x ∉ L := fun h => hx (Or.inr ⟨-t + x, h, by abel_nf⟩)
       simp [hg, h1, h2]
     · have h0 : ∀ y, ∫ x, (g x - g (-t + x)) * χ x y ∂μ = 0 := by
         intro y
@@ -305,7 +305,7 @@ theorem psiInf_add (ψ : AddChar (AF F) ℂ) (r s : Ainf F) :
   rw [e, AddChar.map_add_eq_mul]
 
 theorem continuous_singleV (v : HeightOneSpectrum (𝓞 F)) : Continuous (singleV F v) := by
-  apply PI.VolStabSW.SdUniqW.continuous_singleV <;> assumption
+  apply PI.VolStabSW.SdUniqW.continuous_singleV
 
 theorem continuous_psiV (ψ : AddChar (AF F) ℂ) (hψ : Continuous ψ) (v : HeightOneSpectrum (𝓞 F)) :
     Continuous (psiV F ψ v) := by

@@ -387,8 +387,7 @@ theorem arith_alt {C N r m e z e' a b' S lg η bd Sgv : ℝ} (hC : 320 ≤ C) (h
         _ ≤ C * (N * m) := mul_le_mul_of_nonneg_right (by linarith) hNm
         _ = C * N * m := by ring
     exact mul_le_mul_of_nonneg_right this he'
-  linarith [show (N + 1) * r * (C * (a + b' + S + 1 + lg + η * bd)) =
-    C * (N + 1) * r * (a + b' + S + 1 + lg + η * bd) by ring]
+  grind
 
 theorem arith_big {C N r m e₀ e' a b' S lg η bd Sgv : ℝ} (hC : 320 ≤ C) (hN : 0 ≤ N) (hr : 0 ≤ r)
     (hm : 0 ≤ m) (he' : 0 ≤ e') (ha : 0 ≤ a) (hb' : 0 ≤ b') (hS : 0 ≤ S) (hlg : 0 ≤ lg) (hη : 0 ≤ η)
@@ -405,8 +404,7 @@ theorem arith_big {C N r m e₀ e' a b' S lg η bd Sgv : ℝ} (hC : 320 ≤ C) (
   have h5 : 0 ≤ C * N * m * e' := by
     have : 0 ≤ C := by linarith
     positivity
-  linarith [show (N + 1) * r * (C * (a + b' + S + 1 + lg + η * bd)) =
-    C * (N + 1) * r * (a + b' + S + 1 + lg + η * bd) by ring]
+  grind
 
 theorem arith_one {C N r m e z e' a b' S lg η bd Sgv R : ℝ} (hC : 320 ≤ C) (hN : 0 ≤ N) (hr : 0 ≤ r)
     (hm : 0 ≤ m) (he' : 0 ≤ e') (ha : 0 ≤ a) (hb' : 0 ≤ b') (hS : 0 ≤ S) (hlg : 0 ≤ lg) (hη : 0 ≤ η)
@@ -436,8 +434,7 @@ theorem arith_one {C N r m e z e' a b' S lg η bd Sgv R : ℝ} (hC : 320 ≤ C) 
         _ ≤ (C * R ^ 2) * (N * m) := mul_le_mul_of_nonneg_right h6 hNm
         _ = C * N * m * R ^ 2 := by ring
     exact mul_le_mul_of_nonneg_right this he'
-  linarith [show (N + 1) * r * (C * (a + b' + R ^ 2 * (S + 1 + lg) + η * bd)) =
-    C * (N + 1) * r * (a + b' + R ^ 2 * (S + 1 + lg) + η * bd) by ring]
+  grind
 
 theorem thmB_at (C : ℝ) (hC : C0 ≤ C) {CR CA CB CK : ℝ} (hU : AdmBoundsB D HW F Cm CR CA CB CK)
     (hJ : UsedJ D HW F)

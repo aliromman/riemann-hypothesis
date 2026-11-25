@@ -371,12 +371,8 @@ private theorem UpperTheory.V.KT.orbit_number_power_bound (D d N p : ℕ) (hD : 
         _ = d ^ 3 * N * (p + 1) := by ring
     have e4 : d ^ 2 * N * (p + 1) ≤ d ^ 3 * N * (p + 1) := by
       have : d ^ 2 * N * (p + 1) * 1 ≤ d ^ 2 * N * (p + 1) * d := Nat.mul_le_mul_left _ hd1
-      calc d ^ 2 * N * (p + 1) = d ^ 2 * N * (p + 1) * 1 := (mul_one _).symm
-        _ ≤ d ^ 2 * N * (p + 1) * d := this
-        _ = d ^ 3 * N * (p + 1) := by ring
-    have e5 : 2 * d * (1 + d * N) + ((5 * d + 2) * d + 1) * (d * N * (p + 1)) = 2 * d + 2 * (d ^ 2 * N) + 5 * (d ^ 3 * N * (p + 1)) + 2 * (d ^ 2 * N * (p + 1)) + d * N * (p + 1) := by ring
-    have e6 : 12 * (p + 1) * d ^ 3 * N = 12 * (d ^ 3 * N * (p + 1)) := by ring
-    omega
+      lia
+    lia
   calc (D ^ N * d ^ d) ^ (1 + d * N) *
         ((2 * (N ^ N * (D ^ N * d ^ d) ^ 2) + 1) ^ d + 1) ^ (d * N * (p + 1))
       ≤ B ^ (2 * d * (1 + d * N)) * B ^ (((5 * d + 2) * d + 1) * (d * N * (p + 1))) :=

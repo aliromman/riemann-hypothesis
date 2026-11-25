@@ -50,7 +50,6 @@ noncomputable section
 
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N
 open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open GlobalTheory.GalCut GlobalTheory.UnitaryBC GlobalTheory.Cong GlobalTheory.CongL GlobalTheory.CongW
 
 namespace UpperTheory.Gal.Int.Cong
@@ -148,7 +147,7 @@ theorem dGen_ne_zero (a : ℕ) : DGen a ≠ 0 := by
   · refine Finset.prod_ne_zero_iff.2 fun i _ => Finset.prod_ne_zero_iff.2 fun j _ => Finset.prod_ne_zero_iff.2 fun k _ => ?_
     split_ifs with h
     · exact one_ne_zero
-    · push_neg at h
+    · push Not at h
       rw [X_pow_eq_monomial, X, X, monomial_mul, one_mul]
       refine hm _ _ fun e => ?_
       have := DFunLike.congr_fun e j

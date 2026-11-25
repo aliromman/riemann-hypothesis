@@ -23,23 +23,24 @@ lemma zcomp_ofHom {C : Type*} [Category C] [Preadditive C] {K L M : CochainCompl
 section
 variable (R : Type) [CommRing R] [HasDerivedCategory (Shv R)]
 
-private theorem isIso_resAug (F : Shv R) : IsIso (DerivedCategory.Q.map (resAug F)) :=
-  (DerivedCategory.isIso_Q_map_iff_quasiIso (φ := resAug F)).2 (LateralTheory.EtaleFoundations.etaleSheaf_injectiveResolution_properties_of_mathlib R F).2.2.2.1
-
 def isoL (hres : LateralTheory.EtaleFoundations.EtaleInjectiveResolutionBasicProperties) (F : Shv R) : DerivedCategory.Q.obj (res R F) ≅ (DerivedCategory.singleFunctor (Shv R) 0).obj F :=
   letI : IsIso (DerivedCategory.Q.map (resAug F)) :=
     (DerivedCategory.isIso_Q_map_iff_quasiIso (φ := resAug F)).2 (hres R F).2.2.2.1
   (asIso (DerivedCategory.Q.map (resAug F))).symm
 
+private lemma iso_nat_of_inv {C : Type*} [Category C] {X₁ X₂ Y₁ Y₂ : C}
+    (e₁ : X₁ ≅ Y₁) (e₂ : X₂ ≅ Y₂) (f : X₁ ⟶ X₂) (g : Y₁ ⟶ Y₂)
+    (h : e₁.inv ≫ f = g ≫ e₂.inv) : f ≫ e₂.hom = e₁.hom ≫ g := by
+  rw [← cancel_epi e₁.inv, Iso.inv_hom_id_assoc, ← cancel_mono e₂.inv, Category.assoc,
+    Category.assoc, Iso.hom_inv_id, Category.comp_id, h]
+
 lemma isoL_nat (hres : LateralTheory.EtaleFoundations.EtaleInjectiveResolutionBasicProperties) {F G : Shv R} (φ : F ⟶ G) :
     DerivedCategory.Q.map (resMap R φ) ≫ (isoL R hres G).hom =
-      (isoL R hres F).hom ≫ (DerivedCategory.singleFunctor (Shv R) 0).map φ := by
-  let := isIso_resAug R F
-  let := isIso_resAug R G
-  have sq : CommSq ((CochainComplex.singleFunctor (Shv R) 0).map φ) (resAug F) (resAug G) (resMap R φ) :=
-    ⟨((hres R F).2.2.2.2.2.2.2 G φ).1.symm⟩
-  exact (CommSq.vert_inv (g := asIso (DerivedCategory.Q.map (resAug F)))
-    (h := asIso (DerivedCategory.Q.map (resAug G))) (DerivedCategory.Q.map_commSq sq)).w
+      (isoL R hres F).hom ≫ (DerivedCategory.singleFunctor (Shv R) 0).map φ :=
+  iso_nat_of_inv (isoL R hres F) (isoL R hres G) _ _ <|
+    (DerivedCategory.Q.map_comp _ _).symm.trans <|
+      (congrArg DerivedCategory.Q.map ((hres R F).2.2.2.2.2.2.2 G φ).1).trans
+        (DerivedCategory.Q.map_comp _ _)
 
 def jIso (hres : LateralTheory.EtaleFoundations.EtaleInjectiveResolutionBasicProperties) (F : Shv R) (n : ℤ) :
     DerivedCategory.Qh.obj ((HomotopyCategory.quotient (Shv R) _).obj ((res R F)⟦n⟧)) ≅

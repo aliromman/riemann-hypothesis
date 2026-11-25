@@ -2,7 +2,7 @@ module
 
 public import Development.AutomorphicArithmetic.LocalEmbeddings.FinMatchDefs
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsReading
-public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqAdeleSupportedAtFinitePlaceOfSupportedAt
+public import Development.WeilBound.ThetaLifts.TowerModels.TwistedSums.EqAdeleSupportedAtFinitePlaceOfSupportedAt
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ScaledBlockSumSelfDualTraceSkewForm
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmulMemScLatOfMem
 import Mathlib.Algebra.Order.Floor.Extended
@@ -52,7 +52,7 @@ open scoped TensorProduct ComplexConjugate GlobalTheory.IndefiniteRowSideFullHec
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model piW chrW unifAt latAtV At SInf)
 open GlobalTheory.TripleRead (thO ptO)
 open GlobalTheory.AdelicU (evFin splitPrime)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
+attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 private theorem ptO_eq {D : D7} (S : HSp D) {d n : ℕ} (e : Fin d ≃ Fin n) (x : Matrix (Fin n) (Fin S.rank) (AE D))
     (p : Fin S.rank) (q : Fin d) : ptO S.gram e x p q = GlobalTheory.BigDat.divG S x (e q) p := rfl
@@ -83,7 +83,7 @@ private theorem ptO_gen {D : D7} (S : HSp D) {d n : ℕ} (e : Fin d ≃ Fin n) (
 
 private theorem at_eq_pairA {F : Type} [Field F] [NumberField F] {v : HeightOneSpectrum (𝓞 F)} {b : AF F}
     (hb : At (evFin F v) b) (hi : evFin F v b ∈ v.adicCompletionIntegers F) : ∃ α ∈ intAf F, b = pairA F 0 α := by
-  refine ⟨GlobalTheory.AdelicU.singleFin v (evFin F v b), fun w => ?_, GlobalTheory.VacAny.eq_atPlace_of_at v b hb⟩
+  refine ⟨GlobalTheory.AdelicU.singleFin v (evFin F v b), fun w => ?_, Tw.VacAny.eq_atPlace_of_at v b hb⟩
   by_cases h : w = v
   · subst h
     rw [GlobalTheory.AdelicU.evalV_singleFin_self]

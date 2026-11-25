@@ -50,47 +50,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.CechPic GlobalTheory.QCoh GlobalTheory.Discrepancy GlobalTheory.LogPair
 
-private theorem unitAt_of_ord_eq_zero_coheight_one {X : Scheme.{0}} [IsIntegral X] [IsLocallyNoetherian X]
-    (hufd : ∀ x : X, UniqueFactorizationMonoid (X.presheaf.stalk x)) {v : X}
-    (hv : Order.coheight v = 1) {h : X.functionField} (h0 : h ≠ 0)
-    (hord : Scheme.ord h v = 0) : UnitAt v h := by
-  haveI := hufd v
-  haveI : Ring.KrullDimLE 1 (X.presheaf.stalk v) := krullDimLE_of_coheight_le hv.le
-  by_cases hF : IsField (X.presheaf.stalk v)
-  · obtain ⟨a, b, hb, hab⟩ := IsFractionRing.div_surjective (A := X.presheaf.stalk v) h
-    have hb0 : b ≠ 0 := nonZeroDivisors.ne_zero hb
-    obtain ⟨b', hbb'⟩ := hF.mul_inv_cancel hb0
-    have ha0 : a ≠ 0 := by
-      rintro rfl
-      apply h0
-      rw [← hab, map_zero, zero_div]
-    obtain ⟨a', haa'⟩ := hF.mul_inv_cancel ha0
-    refine ⟨a * b', ?_, ?_⟩
-    · refine isUnit_iff_exists_inv.mpr ⟨a' * b, ?_⟩
-      calc a * b' * (a' * b) = (a * a') * (b * b') := by ring
-        _ = 1 := by rw [haa', hbb', one_mul]
-    · rw [← hab, map_mul]
-      have : algebraMap (X.presheaf.stalk v) X.functionField b *
-          algebraMap (X.presheaf.stalk v) X.functionField b' = 1 := by
-        rw [← map_mul, hbb', map_one]
-      rw [eq_div_iff (fun h' => hb0 (IsFractionRing.injective (X.presheaf.stalk v) X.functionField
-        (by rw [h', map_zero]))), mul_assoc, mul_comm _ (algebraMap _ _ b), this, mul_one]
-  · haveI : IsDiscreteValuationRing (X.presheaf.stalk v) := by
-      have hmax : ∀ I : Ideal (X.presheaf.stalk v), I ≠ ⊥ → I.IsPrime → I.IsMaximal :=
-        Ring.krullDimLE_one_iff_of_isPrime_bot.mp inferInstance
-      have hne : IsLocalRing.maximalIdeal (X.presheaf.stalk v) ≠ ⊥ :=
-        IsLocalRing.isField_iff_maximalIdeal_eq.not.mp hF
-      have key := (IsDiscreteValuationRing.TFAE (X.presheaf.stalk v) hF).out 4 1
-      exact key.mp ⟨inferInstance, ⟨IsLocalRing.maximalIdeal _, ⟨hne, inferInstance⟩,
-        fun P hP => IsLocalRing.eq_maximalIdeal (hmax P hP.1 hP.2)⟩⟩
-    have h1 : Scheme.ordHom v hv h = 1 := by
-      have := (Scheme.ord_eq_iff hv h0 (n := 0)).mp hord
-      simpa using this
-    have hmem : h ∈ MonoidHom.mker (Ring.ordFrac (X.presheaf.stalk v) (K := X.functionField)) :=
-      MonoidHom.mem_mker.mpr h1
-    rw [Ring.mker_ordFrac_eq_isUnitSubmonoid] at hmem
-    obtain ⟨a, ha, rfl⟩ := hmem
-    exact ⟨a, ha, rfl⟩
 private alias Scheme_ord_one := _root_.GlobalTheory.Cartier.MultEff.ord_one
 
 private theorem Scheme_ord_units_zpow {X : Scheme.{0}} [IsIntegral X] [IsLocallyNoetherian X]
@@ -107,26 +66,6 @@ private theorem Scheme_ord_units_zpow {X : Scheme.{0}} [IsIntegral X] [IsLocally
   simpa [φ, toAdd_zpow, smul_eq_mul] using h2
 
 private alias Scheme_ord_units_inv := _root_.GlobalTheory.Cartier.MultEff.ord_inv
-
-private theorem unitAt_of_ord_eq_zero_on_open {X : Scheme.{0}} [IsIntegral X] [IsLocallyNoetherian X]
-    (hufd : ∀ x : X, UniqueFactorizationMonoid (X.presheaf.stalk x)) {y : X} (U : X.Opens)
-    (hy : y ∈ U) (h : (X.functionField)ˣ)
-    (hord : ∀ v ∈ U, Scheme.ord (h : X.functionField) v = 0) : UnitAt y (h : X.functionField) := by
-  haveI : GlobalTheory.IsNormalScheme X :=
-    ⟨fun x => inferInstance, fun x => by haveI := hufd x; infer_instance⟩
-  have key : ∀ g : (X.functionField)ˣ, (∀ v ∈ U, Scheme.ord (g : X.functionField) v = 0) →
-      RegAt y (g : X.functionField) := by
-    intro g hg
-    apply regAt_of_forall_coheight_eq_one
-    intro z hz hz1
-    exact (unitAt_of_ord_eq_zero_coheight_one hufd hz1 g.ne_zero (hg z (hz.mem_open U.isOpen hy))).regAt
-  obtain ⟨a, ha⟩ := key h hord
-  obtain ⟨b, hb⟩ := key h⁻¹ (fun v hv => by rw [Scheme_ord_units_inv, hord v hv, neg_zero])
-  refine ⟨a, ?_, ha⟩
-  have hab : algebraMap (X.presheaf.stalk y) X.functionField (a * b) =
-      algebraMap (X.presheaf.stalk y) X.functionField 1 := by
-    rw [map_mul, ha, hb, map_one, Units.mul_inv]
-  exact isUnit_iff_exists_inv.mpr ⟨b, IsFractionRing.injective _ _ hab⟩
 
 private theorem exists_local_unit_ord_eq_finite_sum {X : Scheme.{0}} [IsIntegral X] [IsLocallyNoetherian X]
     [DecidableEq X] (hufd : ∀ x : X, UniqueFactorizationMonoid (X.presheaf.stalk x)) (c : X → ℤ)
@@ -151,6 +90,8 @@ theorem _root_.GlobalTheory.Cartier.CartierDiv.exists_mult_eq_of_locallyFactoria
           ∃ D : CartierDiv X, ∀ z, D.mult z = c z := by
   intro X _ _ hufd c hfin hc
   classical
+  have : GlobalTheory.IsNormalScheme X :=
+    ⟨fun _ => inferInstance, fun x => by have := hufd x; infer_instance⟩
   have hS : ∀ z ∈ hfin.toFinset, Order.coheight z = 1 :=
     fun z hz => hc z (hfin.mem_toFinset.mp hz)
   have hsum : ∀ v, (∑ z ∈ hfin.toFinset, if v = z then c z else 0) = c v := by
@@ -167,10 +108,9 @@ theorem _root_.GlobalTheory.Cartier.CartierDiv.exists_mult_eq_of_locallyFactoria
     intro x
     refine ⟨U x, hxU x, f x, fun y hy => ?_⟩
     rw [germOf_eq_iff]
-    have hu := unitAt_of_ord_eq_zero_on_open hufd (U x ⊓ U y) ⟨hy, hxU y⟩ (f x * (f y)⁻¹)
-      (fun v hv => by
-        rw [Units.val_mul, Scheme.ord_mul (f x).ne_zero ((f y)⁻¹).ne_zero, Scheme_ord_units_inv,
-          hf x v hv.1, hf y v hv.2, add_neg_cancel])
+    have hu := MultEff.unitAt_of_ord y (f x * (f y)⁻¹) fun v hv => by
+      rw [Units.val_mul, Scheme.ord_mul (f x).ne_zero ((f y)⁻¹).ne_zero, Scheme_ord_units_inv,
+        hf x v (hv.mem_open (U x).isOpen hy), hf y v (hv.mem_open (U y).isOpen (hxU y)), add_neg_cancel]
     simpa [div_eq_mul_inv] using hu
   let D : CartierDiv X := (⟨fun x => germOf x (f x), hmem⟩ : cartierGroup X)
   refine ⟨D, fun z => ?_⟩

@@ -1371,7 +1371,7 @@ namespace PositivityTheory.Xgp.tsg_smul
 
 theorem toWt_inj (Ψ : Type) (N : ℕ) :
     Function.Injective (toWt : MvPolynomial (Ψ × Fin N) ℝ → MvPolynomial (Ψ × Fin N) ℝ) := by
-  apply GlobalTheory.CompanionTheory.Ar.Top.FlDeg.toWt_leftInverse_injective <;> assumption
+  apply GlobalTheory.CompanionTheory.Ar.Top.FlDeg.toWt_leftInverse_injective
 
 end PositivityTheory.Xgp.tsg_smul
 
@@ -1461,7 +1461,7 @@ theorem antisymmetry : Antisymmetry := by
     congr 1
     simp [toWt, MvPolynomial.algebraMap_eq]
 
-  obtain ⟨Cst, hC⟩ := GlobalTheory.T.weighted_polynomial_homogeneous_coeff_bound Ψ N (antisymDegree Ψ N + 1)
+  obtain ⟨Cst, hC⟩ := PositivityTheory.Xgp.t_poly_towt_bound Ψ N (antisymDegree Ψ N + 1)
   have hhomT : (toWt (Re.PB II)).IsHomogeneous (antisymDegree Ψ N + 1) := by
     refine (hC.1 _ 0 ?_).1
     rw [← hdim]

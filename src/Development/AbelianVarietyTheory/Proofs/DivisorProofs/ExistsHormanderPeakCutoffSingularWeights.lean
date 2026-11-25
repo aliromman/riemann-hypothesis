@@ -343,12 +343,12 @@ theorem wdb_cutoff_sq_le : ∀ (χ : ℝ → ℝ) (A : ℝ), ContDiff ℝ ∞ χ
       rcases not_and_or.mp hann with h | h
       · push_neg at h
         have ht4 : t ≤ 1 / 4 := by
-          rw [ht, div_le_iff₀ (by positivity)]; nlinarith [norm_nonneg z]
+          rw [ht, div_le_iff₀ (by positivity)]; linarith [pow_le_pow_left₀ (norm_nonneg z) h.le 2]
         apply IsLocalMax.deriv_eq_zero
         exact Filter.Eventually.of_forall fun s => by rw [h1 t ht4]; exact (h01 s).2
       · push_neg at h
         have ht1 : 1 ≤ t := by
-          rw [ht, le_div_iff₀ (by positivity)]; nlinarith
+          rw [ht, le_div_iff₀ (by positivity)]; linarith [pow_le_pow_left₀ hρ.le h 2]
         apply IsLocalMin.deriv_eq_zero
         exact Filter.Eventually.of_forall fun s => by rw [h0 t ht1]; exact (h01 s).1
     rw [hd0]; simp
@@ -518,7 +518,7 @@ theorem frobCmp_le {r : ℕ} (A B : Matrix (Fin r) (Fin r) ℂ)
     rw [frobCmp_normSq, frobCmp_normSq]
     gcongr with i _ j _
     exact h i j
-  nlinarith [norm_nonneg A, norm_nonneg B]
+  exact (sq_le_sq₀ (norm_nonneg A) (norm_nonneg B)).1 hsq
 
 theorem frobCmp_le_const {r : ℕ} (A : Matrix (Fin r) (Fin r) ℂ) (ε : ℝ) (hε : 0 ≤ ε)
     (h : ∀ i j, ‖A i j‖ ≤ ε) : ‖A‖ ≤ r * ε := by
@@ -530,14 +530,14 @@ theorem frobCmp_le_const {r : ℕ} (A : Matrix (Fin r) (Fin r) ℂ) (ε : ℝ) (
       _ = ((r : ℝ) * ε) ^ 2 := by
           simp [Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul]; ring
   have : 0 ≤ (r : ℝ) * ε := by positivity
-  nlinarith [norm_nonneg A]
+  exact (sq_le_sq₀ (norm_nonneg A) this).1 hsq
 
 theorem frobenius_lower_comparison : ∀ (r : ℕ) (g n b B W H : Matrix (Fin r) (Fin r) ℂ) (δ : ℝ), 0 ≤ δ → (r : ℝ) * δ ≤ 1 / 100 → (∀ a c : Fin r, a < c → n a c = 0) → (∀ a : Fin r, n a a = 1) → (∀ a c : Fin r, c < a → ‖n a c‖ ≤ δ) → (∀ a c : Fin r, c < a → b a c = 0) → (∀ a : Fin r, |‖b a a‖ ^ 2 - 1| ≤ 6 * δ) → (∀ a c : Fin r, a < c → ‖b a c‖ ≤ 6 * δ) → (∀ a c : Fin r, c < a → B a c = 0) → (∀ a c : Fin r, a ≤ c → W a c = 0) → (∀ a c : Fin r, a ≤ c → H a c = 0) → g * n = b → g * W = H * b + B → ∑ a, ∑ c, ‖W a c‖ ^ 2 ≤ 2 * ∑ a, ∑ c, ‖H a c‖ ^ 2 := by
   intro r g n b B W H δ hδ hrδ hn_up hn_diag hn_low hb_low hb_diag hb_up hB hW hH hgn hgW
   rcases Nat.eq_zero_or_pos r with rfl | hr
   · simp
   have hr1 : (1 : ℝ) ≤ r := by exact_mod_cast hr
-  have hδ1 : δ ≤ 1 / 100 := by nlinarith
+  have hδ1 : δ ≤ 1 / 100 := (le_mul_of_one_le_left hδ hr1).trans hrδ
 
   have hnT : n.BlockTriangular OrderDual.toDual := fun i j hij => hn_up i j (by simpa using hij)
   have hdet : n.det = 1 := by
@@ -568,11 +568,11 @@ theorem frobenius_lower_comparison : ∀ (r : ℕ) (g n b B W H : Matrix (Fin r)
   have hdlow : ∀ a, (0.969 : ℝ) ≤ ‖b a a‖ := by
     intro a
     have h1 := (abs_le.mp (hb_diag a)).1
-    nlinarith [norm_nonneg (b a a)]
+    exact (sq_le_sq₀ (by norm_num) (norm_nonneg (b a a))).1 (by linarith)
   have hdup : ∀ a, ‖b a a‖ ≤ (1.03 : ℝ) := by
     intro a
     have h1 := (abs_le.mp (hb_diag a)).2
-    nlinarith [norm_nonneg (b a a)]
+    exact (sq_le_sq₀ (norm_nonneg (b a a)) (by norm_num)).1 (by linarith)
   have hunorm : ‖u‖ ≤ 6 / 100 := by
     have h := frobCmp_le_const u (6 * δ) (by positivity) (by
       intro a c
@@ -582,7 +582,7 @@ theorem frobenius_lower_comparison : ∀ (r : ℕ) (g n b B W H : Matrix (Fin r)
       · simp; positivity
       · rw [Matrix.diagonal_apply_ne _ (ne_of_gt hac), sub_zero, hb_low a c hac, norm_zero]
         positivity)
-    nlinarith
+    linarith
   have hn1 : ‖n - 1‖ ≤ 1 / 100 := by
     have h := frobCmp_le_const (n - 1) δ hδ (by
       intro a c
@@ -626,15 +626,15 @@ theorem frobenius_lower_comparison : ∀ (r : ℕ) (g n b B W H : Matrix (Fin r)
   have hHn := norm_nonneg H
   have hYn := norm_nonneg Y
   have hun := norm_nonneg u
-  have hY12 : ‖Y‖ ≤ 1.2 * ‖H‖ := by nlinarith
+  have hY12 : ‖Y‖ ≤ 1.2 * ‖H‖ := by linarith [mul_le_mul_of_nonneg_left hunorm hHn, mul_le_mul_of_nonneg_right hunorm hYn]
   have hWY : ‖W‖ ≤ (1.01 : ℝ) * ‖Y‖ := by
     have e : W = Y + (n - 1) * Y := by rw [hWnY, Matrix.sub_mul, Matrix.one_mul]; abel
     have h1 : ‖W‖ ≤ ‖Y‖ + ‖n - 1‖ * ‖Y‖ := by
       rw [e]; exact (norm_add_le _ _).trans (by gcongr; exact Matrix.frobenius_norm_mul _ _)
-    nlinarith [norm_nonneg (n - 1)]
+    linarith [mul_le_mul_of_nonneg_right hn1 hYn]
   have hWn := norm_nonneg W
   rw [← frobCmp_normSq, ← frobCmp_normSq]
-  nlinarith
+  linarith [pow_le_pow_left₀ hWn (show ‖W‖ ≤ (1.212 : ℝ) * ‖H‖ by linarith) 2, sq_nonneg ‖H‖]
 
 end GlobalTheory
 end -- clump:auto
@@ -845,7 +845,7 @@ theorem cutLog_bounds (χ : ℝ → ℝ) (A : ℝ) (hχ : ContDiff ℝ ∞ χ) (
       · exact deriv_zero_of_eqOn isOpen_Ioi (fun s hs => h0 s (le_of_lt hs)) t hc
     rw [hz.1, hz.2]
     have : 0 ≤ χ t * u := mul_nonneg hc0.1 hu.le
-    constructor <;> nlinarith
+    constructor <;> linarith
   · push_neg at hc
     have hx1 : (t + δ) / 2 ≤ 1 := by linarith
     have hx0 : 1 / 8 ≤ (t + δ) / 2 := by linarith
@@ -873,7 +873,7 @@ theorem cutLog_bounds (χ : ℝ → ℝ) (A : ℝ) (hχ : ContDiff ℝ ∞ χ) (
         exact mul_le_mul (hA1 t) htu htu0 hA
       linarith [neg_abs_le (deriv χ t * (t * u))]
     have : 0 ≤ χ t * u := mul_nonneg hc0.1 hu.le
-    constructor <;> nlinarith
+    constructor <;> linarith
 
 theorem normSq_sum_conj_mul_le {n : ℕ} (a b : Fin n → ℂ) :
     Complex.normSq (∑ m, conj (a m) * b m) ≤
@@ -961,12 +961,12 @@ theorem levi_cutLog_lower : ∀ (χ : ℝ → ℝ) (A : ℝ), ContDiff ℝ ∞ �
   by_cases hs : 0 ≤ deriv (deriv k) (v z)
   · have := mul_le_mul_of_nonneg_right b1 hP0
     have := mul_nonneg hs hN0
-    nlinarith
+    linarith
   · push_neg at hs
     have h3 : deriv (deriv k) (v z) * (v z * P) ≤ deriv (deriv k) (v z) * N :=
       mul_le_mul_of_nonpos_left hNt hs.le
     have := mul_le_mul_of_nonneg_right b2 hP0
-    nlinarith
+    linarith [show deriv (deriv k) (v z) * (v z * P) = (v z * deriv (deriv k) (v z)) * P by ring]
 
 end GlobalTheory.PeakWeightLevi
 end -- clump:auto
@@ -1162,7 +1162,7 @@ theorem coeff_la {r : ℕ} (X : Data E r) (la : Wt X.Ψ r) (g : ℝ) (hp0 : 0 < 
     rw [e, hfa, hfa] at this
     have hn : (1 : ℝ) ≤ (((a : ℕ) - b : ℕ) : ℝ) := by
       exact_mod_cast (show 1 ≤ (a : ℕ) - b by omega)
-    nlinarith
+    linarith [le_mul_of_one_le_left hg0 hn]
   rcases GlobalTheory.CurvMargin.coeff_cases X.p0 hab' (la τ a : ℝ) (la τ b : ℝ) with ⟨h, e⟩ | ⟨h, e⟩ | ⟨h, h', e⟩
   · rw [e]; exact hsame (fun k _ hk => by omega)
   · rw [e]; exact hsame (fun k hk _ => by omega)
@@ -1207,7 +1207,7 @@ theorem coeff_kap {r : ℕ} (X : Data E r) (τ : X.Ψ) (a b : Fin r) (hab : b < 
   have hba : (b : ℝ) < a := by exact_mod_cast hab'
   have har : (a : ℝ) < r := by exact_mod_cast ha
   unfold sgn
-  split_ifs <;> nlinarith
+  split_ifs <;> linarith
 
 theorem levi_margin_origin : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (r : ℕ) (X : Data E r) (la : Wt X.Ψ r) (x : Frame X.Ψ r) (g bb : ℝ), 0 < X.p0 → X.p0 < r → IsOrth X x → 0 ≤ g → 0 ≤ bb → (∀ τ (a b : Fin r), (b : ℕ) = a + 1 → (b : ℕ) ≠ X.p0 → g ≤ (la τ a : ℝ) - la τ b) → (∀ τ (a b : Fin r), (a : ℕ) = 0 → (b : ℕ) = r - 1 → g ≤ (la τ b : ℝ) - la τ a) → ∀ ξ : Fin (nd X) → ℂ, (g - bb - 2 * r) * ∑ j, ‖ξ j‖ ^ 2 ≤ leviM X (phla X la) x 0 ξ - bb * leviM X (phla X (GlobalTheory.CurvMargin.blockWt X)) x 0 ξ - leviM X (phla X (kapW X)) x 0 ξ := by
   intro E _ _ _ r X la x g bb hp0 hpr ho hg0 hbb h1 h2 ξ
@@ -1224,8 +1224,7 @@ theorem levi_margin_origin : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
   set N := ‖ξ (Fintype.equivFin (Ent X) ⟨τ, ⟨(a, b), hab⟩⟩)‖ ^ 2
   have hN : 0 ≤ N := by positivity
   simp only at c1 c2 c3 ⊢
-  nlinarith [mul_nonneg hbb hN, mul_nonneg (mul_nonneg hbb c2.1) hN, mul_nonneg (sub_nonneg.2 c2.2) (mul_nonneg hbb hN),
-    mul_nonneg (sub_nonneg.2 c1) hN, mul_nonneg (sub_nonneg.2 c3) hN]
+  linarith [mul_le_mul_of_nonneg_right c1 hN, mul_le_mul_of_nonneg_right (mul_le_mul_of_nonneg_left c2.2 hbb) hN, mul_le_mul_of_nonneg_right c3 hN]
 
 end GlobalTheory.LeviOriginMargin
 end -- clump:auto
@@ -1259,7 +1258,7 @@ theorem upperTriangular_near_diag_of_gram_near (r : ℕ) (ε : Fin r → ℝ)
     induction a using WellFoundedLT.induction with
     | _ a ih =>
     have hr1 : (1 : ℝ) ≤ r := by exact_mod_cast (Nat.one_le_iff_ne_zero.mpr (Fin.pos a).ne')
-    have hδ1 : δ ≤ 1 / 100 := by nlinarith
+    have hδ1 : δ ≤ 1 / 100 := (le_mul_of_one_le_left hδ hr1).trans hrδ
 
     have hR : ∀ c, a ≤ c → ‖∑ j ∈ Finset.univ.erase a, b j a * ((ε j : ℝ) : ℂ) * starRingEnd ℂ (b j c)‖
         ≤ 36 / 100 * δ := by
@@ -1274,7 +1273,7 @@ theorem upperTriangular_near_diag_of_gram_near (r : ℕ) (ε : Fin r → ℝ)
         · have h1 := (ih j hlt).2 a hlt
           have h2 := (ih j hlt).2 c (lt_of_lt_of_le hlt hac)
           have := mul_le_mul h1 h2 (norm_nonneg _) (by linarith)
-          nlinarith
+          linarith
         · rw [htri j a hgt]; simp; positivity
       refine (Finset.sum_le_card_nsmul _ _ _ hterm).trans ?_
       rw [nsmul_eq_mul]
@@ -1284,7 +1283,7 @@ theorem upperTriangular_near_diag_of_gram_near (r : ℕ) (ε : Fin r → ℝ)
         exact_mod_cast this
       have : ((Finset.univ.erase a).card : ℝ) * (36 * δ ^ 2) ≤ r * (36 * δ ^ 2) :=
         mul_le_mul_of_nonneg_right hc (by positivity)
-      nlinarith
+      linarith [mul_le_mul_of_nonneg_right hrδ (by linarith : (0 : ℝ) ≤ 36 * δ), show (r : ℝ) * (36 * δ ^ 2) = (r : ℝ) * δ * (36 * δ) by ring]
     have hsplit : ∀ c, (bᵀ * Matrix.diagonal (fun a => ((ε a : ℝ) : ℂ)) * b.map (starRingEnd ℂ)) a c
         = b a a * ((ε a : ℝ) : ℂ) * starRingEnd ℂ (b a c)
           + ∑ j ∈ Finset.univ.erase a, b j a * ((ε j : ℝ) : ℂ) * starRingEnd ℂ (b j c) := by
@@ -1324,9 +1323,9 @@ theorem upperTriangular_near_diag_of_gram_near (r : ℕ) (ε : Fin r → ℝ)
       exact (norm_sub_le _ _).trans (add_le_add h0 hR0)
     have hsq : 9 / 10 ≤ ‖b a a‖ := by
       have h1 := (abs_le.mp hdiag).1
-      nlinarith [norm_nonneg (b a a)]
+      exact (sq_le_sq₀ (by norm_num) (norm_nonneg (b a a))).1 (by linarith)
     have hy := norm_nonneg (b a c)
-    nlinarith
+    linarith [mul_le_mul_of_nonneg_right hsq hy]
   exact ⟨fun a => (key a).1, fun a c h => (key a).2 c h⟩
 
 end GlobalTheory
@@ -1387,7 +1386,7 @@ theorem levi_ball (X : Data E r) {x : Frame X.Ψ r} (hx : IsOrth X x) (hr : 0 < 
   have hr1 : (1 : ℝ) ≤ r := by exact_mod_cast hr
   have hδ : (r : ℝ) * ‖z‖ ≤ 1 / 100 := by
     rw [le_div_iff₀ (by positivity)] at hz
-    nlinarith [mul_nonneg (norm_nonneg z) (mul_nonneg (sub_nonneg.2 hr1) (by positivity : (0 : ℝ) ≤ r))]
+    linarith [mul_le_mul_of_nonneg_left (le_self_pow₀ hr1 two_ne_zero) (by positivity : (0 : ℝ) ≤ 100 * ‖z‖)]
   rw [sum_entries, sum_entries, Finset.mul_sum]
   refine Finset.sum_le_sum fun τ _ => ?_
   have hu : IsUnit (mat x1 τ).det := isUnit_iff_ne_zero.mpr ((IW.orth_mem_dom X x1 ho) τ).1
@@ -1514,7 +1513,7 @@ theorem levi_lower (X : Data E r) {x : Frame X.Ψ r} (hx : IsOrth X x) (hp0 : 0 
     have hS : 0 ≤ ∑ j, ‖ξ j‖ ^ 2 := by positivity
     have hS' : 0 ≤ ∑ j, ‖ξ' j‖ ^ 2 := by positivity
     rw [smoothLevi, e, e, e, hψ]
-    nlinarith [mul_le_mul_of_nonneg_right hm hS', mul_le_mul_of_nonneg_left hle (add_nonneg hK hM)]
+    linarith [mul_le_mul_of_nonneg_right hm hS', mul_le_mul_of_nonneg_left hle (add_nonneg hK hM)]
   refine ⟨hball, fun z hz ξ => ?_⟩
   by_cases hc : ∃ γ ∈ X.Γ, ∃ b ∈ Bor X.Ψ r, ∃ z' : V (nd X), ‖z'‖ ≤ ρ ∧
       cpt X x z = lact γ (rmul (cpt X x z') b)
@@ -1653,7 +1652,7 @@ theorem margin_num {A D f r T ρ : ℝ} (hA : 0 ≤ A) (hρ2 : 1 / ρ ^ 2 = 4000
 
 theorem quarter {a ρ : ℝ} (hρ : 0 < ρ) (ha : 0 ≤ a) (h : a ≤ ρ / 2) : a ^ 2 / ρ ^ 2 ≤ 1 / 4 := by
   rw [div_le_iff₀ (by positivity)]
-  nlinarith
+  linarith [pow_le_pow_left₀ ha h 2]
 
 theorem contDiff_cut {n : ℕ} {χ : ℝ → ℝ} (hχ : ContDiff ℝ ∞ χ) (ρ : ℝ) :
     ContDiff ℝ ∞ fun w : V n => χ (‖w‖ ^ 2 / ρ ^ 2) :=
@@ -1696,7 +1695,7 @@ theorem eta_lower {n : ℕ} {χ : ℝ → ℝ} (hr : ∀ t, 0 ≤ χ t ∧ χ t 
     (k : ℕ) {w : V n} (hw : ρ / 2 ≤ ‖w‖) : -(3 * n) ≤ eta n χ ρ k w := by
   have ht : 1 / 4 ≤ ‖w‖ ^ 2 / ρ ^ 2 := by
     rw [le_div_iff₀ (by positivity)]
-    nlinarith
+    linarith [pow_le_pow_left₀ (by positivity) hw 2]
   have hδ : 0 < 1 / ((k : ℝ) + 1) := by positivity
   have h8 : -3 ≤ Real.log ((‖w‖ ^ 2 / ρ ^ 2 + 1 / ((k : ℝ) + 1)) / 2) := by
     have h1 : Real.log (1 / 8) ≤ Real.log ((‖w‖ ^ 2 / ρ ^ 2 + 1 / ((k : ℝ) + 1)) / 2) :=

@@ -53,8 +53,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open MvPowerSeries ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
@@ -63,11 +61,6 @@ namespace ReciprocityTheory.ChartRestriction.G.TB.WickVanishing.Val
 
 open ReciprocityTheory.ChartRestriction.G.TB.WickVanishing.Nab
 
-
-private theorem hasSubst_lemma {σ τ k : Type} [CommRing k] [Finite σ] {a : σ → MvPowerSeries τ k}
-    (ha : ∀ s, constantCoeff (a s) = 0) : HasSubst a := by
-  first
-  | exact MvPowerSeries.hasSubst_of_constantCoeff_zero ha
 
 private theorem mvPowerSeries_subst_C {σ τ k : Type} [CommRing k] {a : σ → MvPowerSeries τ k} (hs : HasSubst a) (c : k) :
     subst a (C c : MvPowerSeries σ k) = (C c : MvPowerSeries τ k) := by
@@ -78,7 +71,7 @@ private theorem mvPowerSeries_subst_C {σ τ k : Type} [CommRing k] {a : σ → 
 
 theorem const_subst {σ τ k : Type} [CommRing k] [Finite σ] {a : σ → MvPowerSeries τ k}
     (ha : ∀ s, constantCoeff (a s) = 0) (G : MvPowerSeries σ k) : constantCoeff (subst a G) = constantCoeff G := by
-  have hs : HasSubst a := hasSubst_lemma ha
+  have hs : HasSubst a := MvPowerSeries.hasSubst_of_constantCoeff_zero ha
   have h0 : constantCoeff (G - C (constantCoeff G)) = 0 := by simp
   have h1 : constantCoeff (subst a (G - C (constantCoeff G))) = 0 := by
     first
@@ -110,8 +103,8 @@ theorem bE_const (h : PS k 2 d) (hax : ev (n := 1) ![0, pt k d 0] h = 0) : ∀ t
 
 theorem E_liftX (h : PS k 2 d) (hax : ev (n := 1) ![0, pt k d 0] h = 0) (f : PS k 1 d) :
     subst (bE k h) (liftX k f) = f := by
-  have hb : HasSubst (bE k h) := hasSubst_lemma (bE_const k h hax)
-  have hl : HasSubst (fun p : Fin 1 × Fin d => (X (Sum.inl p.2) : AA k d)) := hasSubst_lemma (fun p => by simp)
+  have hb : HasSubst (bE k h) := MvPowerSeries.hasSubst_of_constantCoeff_zero (bE_const k h hax)
+  have hl : HasSubst (fun p : Fin 1 × Fin d => (X (Sum.inl p.2) : AA k d)) := MvPowerSeries.hasSubst_of_constantCoeff_zero (fun p => by simp)
   unfold liftX
   first
   | rw [subst_comp_subst_apply hl hb]
@@ -126,7 +119,6 @@ theorem E_liftX (h : PS k 2 d) (hax : ev (n := 1) ![0, pt k d 0] h = 0) (f : PS 
   rw [e]
   first
   | (rw [subst_self]; rfl)
-  | (rw [← map_algebraMap_eq_subst_X]; simp)
 
 section Inter
 
@@ -161,7 +153,6 @@ theorem E_nabla (B : FB R d O) (h : PS k 2 d) (hax : ev (n := 1) ![0, pt k d 0] 
     have e : Finsupp.degree (d + Finsupp.single t 1) = Finsupp.degree d + 1 := by
       first
       | rw [map_add (f := _), Finsupp.degree_single]
-      | (unfold Finsupp.degree; rw [Finsupp.sum_add_index' (by simp) (by simp)]; simp)
     omega
   have low_mul_lemma {τ : Type} {m n : ℕ} {f g : MvPowerSeries τ k} (hf : Low m f) (hg : Low n g) :
       Low (m + n) (f * g) := by
@@ -228,8 +219,7 @@ theorem E_nabla (B : FB R d O) (h : PS k 2 d) (hax : ev (n := 1) ![0, pt k d 0] 
     next p s0 hp =>
       rw [map_mul, MvPolynomial.aeval_X, Derivation.leibniz, hp, smul_eq_mul, smul_eq_mul, Finset.mul_sum]
       simp only [Derivation.leibniz, MvPolynomial.pderiv_X, Pi.single_apply, smul_eq_mul, map_add (f := _), map_mul,
-        MvPolynomial.aeval_X, add_mul, Finset.sum_add_distrib, mul_ite, mul_one, mul_zero, map_one, map_zero,
-        ite_mul, zero_mul, Finset.sum_ite_eq, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+        MvPolynomial.aeval_X, add_mul, Finset.sum_add_distrib, mul_ite, mul_one, mul_zero]
       simp only [apply_ite (MvPolynomial.aeval a), map_zero, ite_mul, zero_mul, Finset.sum_ite_eq,
         Finset.mem_univ, if_true, mul_assoc]
       try ring
@@ -265,7 +255,6 @@ theorem E_nabla (B : FB R d O) (h : PS k 2 d) (hax : ev (n := 1) ![0, pt k d 0] 
       have h1 := finsupp_apply_le_degree' m s
       first
       | (change m s ≤ M; omega)
-      | (simp; omega)
     ext d
     obtain ⟨p, hp⟩ := hpoly (d.degree + 1 + 1)
     have hf : f = (f - (p : MvPowerSeries σ k)) + (p : MvPowerSeries σ k) := (sub_add_cancel _ _).symm
@@ -281,8 +270,8 @@ theorem E_nabla (B : FB R d O) (h : PS k 2 d) (hax : ev (n := 1) ![0, pt k d 0] 
     rw [h1 d (by omega), h2 d (by omega)]
   simp only [pderiv_subst hc, Finset.mul_sum]
   simp only [Fintype.sum_sum_type, Finset.sum_add_distrib]
-  simp only [bE, Sum.elim_inl, Sum.elim_inr, pderiv_X, Pi.single_apply, ite_mul, mul_ite, mul_zero, mul_one, Finset.sum_ite_eq, Finset.mem_univ, if_true]
-  simp only [Prod.mk.injEq, true_and, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+  simp only [bE, Sum.elim_inl, Sum.elim_inr, pderiv_X, Pi.single_apply, mul_ite, mul_zero, mul_one]
+  simp only [Prod.mk.injEq, true_and]
   simp only [Finset.sum_ite_eq', Finset.mem_univ, if_true]
   congr 1
   rw [Finset.sum_comm]
@@ -312,7 +301,7 @@ theorem E_foldr (B : FB R d O) (h : PS k 2 d) (hax : ev (n := 1) ![0, pt k d 0] 
 theorem E_nablaPoly (B : FB R d O) (h : PS k 2 d) (hax : ev (n := 1) ![0, pt k d 0] h = 0) (m : ℕ) {ι : Type}
     [Fintype ι] (u : ι → Fin d → k) (P : MvPolynomial ι k) (G : AA k d) :
     subst (bE k h) (nablaPoly k B h m u P G) = DpolyOf (B.FK k) u P (subst (bE k h) G) := by
-  have hb : HasSubst (bE k h) := hasSubst_lemma (bE_const k h hax)
+  have hb : HasSubst (bE k h) := MvPowerSeries.hasSubst_of_constantCoeff_zero (bE_const k h hax)
   unfold nablaPoly DpolyOf DmonOf
 
   rw [← coe_substAlgHom hb, map_sum]

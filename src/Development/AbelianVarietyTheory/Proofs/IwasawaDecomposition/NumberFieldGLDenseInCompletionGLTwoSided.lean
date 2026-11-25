@@ -44,7 +44,7 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LiftsInvOne
 @[expose] public section
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Col Formalism.L2.DIV Formalism.L2.Ker Formalism.UG Formalism.L2.Forms GlobalTheory.Mem GlobalTheory.Mem.Chr GlobalTheory.Mem.Col2 GlobalTheory.Mem.Col2.TC GlobalTheory.Mem.Col2.AdT Matrix
-attribute [local instance] GlobalTheory.Mem.Col2.starE Formalism.BasicNotions.Host.cmStar
+attribute [local instance] GlobalTheory.Mem.Col2.starE
 namespace GlobalTheory.DenseGL
 
 variable {E : Type} [Field E] [NumberField E] (P : HeightOneSpectrum (𝓞 E))
@@ -97,7 +97,7 @@ def smallIdeal : Ideal (P.adicCompletionIntegers E) where
   zero_mem' := by simp
   add_mem' := by
     intro a b ha hb
-    simp only [Set.mem_setOf_eq, Subring.coe_add] at *
+    simp only [Set.mem_setOf_eq] at *
     exact lt_of_le_of_lt (Valuation.map_add _ _ _) (max_lt ha hb)
   smul_mem' := by
     intro c x hx

@@ -85,19 +85,6 @@ lake comparator --config comparator.json \
   --challenge-from-export challenge.export --solution-from-export solution.export
 ```
 
-The published source uses Lean 4.33.1, which has neither `lake comparator` nor `leanexport`.
-[An older version of this README](https://github.com/leanprover-community/riemann-hypothesis/blob/7cce738ba719a32964ca3822d0994f4c6952c7ae/README.md#checking-it)
-has the two-toolchain steps for checking it.
-
-## The formal-conjectures statement
-
-[`comparator/`](comparator/) holds a second Comparator setup. Its challenge states the Riemann
-Hypothesis and the Generalized Riemann Hypothesis the way
-[formal-conjectures](https://github.com/google-deepmind/formal-conjectures/blob/d8d031d4998c78575159ccab9a7a9e95ce043883/FormalConjectures/Millennium/RiemannHypothesis.lean)
-does, in statements that neither the author nor we wrote, and the files next to it prove them
-from `src/Main.lean`. [NOTES.md](verification/NOTES.md#formal-conjectures) says how to check it
-and what has been checked so far.
-
 ## CI
 
 To lend a Linux machine with plenty of memory and disk, see

@@ -48,7 +48,6 @@ noncomputable section
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR.Datum Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.FinPl ValuativeRel NumberField Filter
 open IsDedekindDomain
 open scoped TensorProduct RestrictedProduct
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace GlobalTheory.FinPl.SplitPoint
 
@@ -57,7 +56,7 @@ open GlobalTheory.IdemModTwo GlobalTheory.SplitIdem GlobalTheory.SplitChart Glob
 open Classical in
 theorem continuous_single_at (F : Type) [Field F] [NumberField F] (v : HeightOneSpectrum (𝓞 F)) :
     Continuous (singleV F v) := by
-  apply _root_.GlobalTheory.LocalComponentChar.continuous_singleV <;> assumption
+  apply _root_.GlobalTheory.LocalComponentChar.continuous_singleV
 
 theorem continuous_eval_at (F : Type) [Field F] [NumberField F] (v : HeightOneSpectrum (𝓞 F)) :
     Continuous (evalV F v) :=

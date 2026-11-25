@@ -2,6 +2,7 @@ module
 
 public import Formalism.MahlerMeasure.HasOrder
 public import Formalism.MahlerMeasure.MahlerMeasureProofs.LevelAct
+import Formalism.MahlerMeasure.MahlerMeasureProofs.FockPairing
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
 import Mathlib.Algebra.Order.Interval.Basic
@@ -64,18 +65,6 @@ open MvPolynomial Finset
 
 section
 variable {R σ : Type} [CommSemiring R]
-
-theorem pderiv_comm' (i j : σ) (p : MvPolynomial σ R) :
-    pderiv i (pderiv j p) = pderiv j (pderiv i p) := by
-  classical
-  induction p using MvPolynomial.induction_on
-  · simp
-  · rename_i p q hp hq; simp only [map_add (f := _), hp, hq]
-  · rename_i p n hp
-    have h0 : ∀ a b : σ, pderiv a (Pi.single (M := fun _ => MvPolynomial σ R) b 1 n) = 0 := by
-      intro a b; rw [Pi.single_apply]; split_ifs <;> simp
-    simp only [Derivation.leibniz, map_add (f := _), smul_eq_mul, pderiv_X, h0, hp, mul_zero, zero_add]
-    ring
 
 noncomputable abbrev Dp (v : σ) : Module.End R (MvPolynomial σ R) := (pderiv v).toLinearMap
 
@@ -155,29 +144,15 @@ theorem fw_eq (m : σ →₀ ℕ) : fw p m = ∏ x, ((m x).factorial : ℚ_[p]) 
 
 theorem fw_add_single (m : σ →₀ ℕ) (v : σ) :
     fw p (m + Finsupp.single v 1) = fw p m * ((m v + 1 : ℕ) : ℚ_[p]) := by
-  rw [fw_eq, fw_eq]
-  have key : ∀ x, (((m + Finsupp.single v 1 : σ →₀ ℕ) x).factorial : ℚ_[p]) =
-      ((m x).factorial : ℚ_[p]) * (if x = v then ((m v + 1 : ℕ) : ℚ_[p]) else 1) := by
-    intro x
-    by_cases h : x = v
-    · subst h
-      simp only [Finsupp.add_apply, Finsupp.single_eq_same, if_true, Nat.factorial_succ, Nat.cast_mul]
-      ring
-    · simp [h]
-  simp_rw [key, Finset.prod_mul_distrib, Finset.prod_ite_eq']
-  simp
+  rw [mul_comm (fw p m)]
+  exact factorial_prod_add_single m v
 
 theorem fock_eq_sum (F G : MvPolynomial σ ℚ_[p]) (s : Finset (σ →₀ ℕ)) (hs : F.support ⊆ s) :
     M.fock p F G = ∑ m ∈ s, F.coeff m * G.coeff m * fw p m := by
-  simp only [M.fock, fw]
-  refine Finset.sum_subset hs fun m _ hm => ?_
-  simp only [MvPolynomial.mem_support_iff, not_not] at hm
-  simp [hm]
+  simpa only [M.fock_eq_pair, cast_fock_weight, fw] using FockPairing.pair_eq_sum F G s hs
 
 theorem fock_comm (F G : MvPolynomial σ ℚ_[p]) : M.fock p F G = M.fock p G F := by
-  rw [fock_eq_sum p F G (F.support ∪ G.support) (fun x hx => Finset.mem_union_left _ hx),
-    fock_eq_sum p G F (F.support ∪ G.support) (fun x hx => Finset.mem_union_right _ hx)]
-  exact Finset.sum_congr rfl fun m _ => by ring
+  simpa only [M.fock_eq_pair] using FockPairing.pair_comm F G
 
 theorem fock_eq_sum' (F G : MvPolynomial σ ℚ_[p]) (s : Finset (σ →₀ ℕ)) (hs : G.support ⊆ s) :
     M.fock p F G = ∑ m ∈ s, F.coeff m * G.coeff m * fw p m := by
@@ -186,65 +161,30 @@ theorem fock_eq_sum' (F G : MvPolynomial σ ℚ_[p]) (s : Finset (σ →₀ ℕ)
 
 theorem fock_add_left (F F' G : MvPolynomial σ ℚ_[p]) :
     M.fock p (F + F') G = M.fock p F G + M.fock p F' G := by
-  rw [fock_eq_sum' p _ G G.support (Finset.Subset.refl _), fock_eq_sum' p F G G.support (Finset.Subset.refl _),
-    fock_eq_sum' p F' G G.support (Finset.Subset.refl _), ← Finset.sum_add_distrib]
-  exact Finset.sum_congr rfl fun m _ => by rw [MvPolynomial.coeff_add]; ring
+  simpa only [M.fock_eq_pair] using FockPairing.pair_add_left F F' G
 
 theorem fock_smul_left (c : ℚ_[p]) (F G : MvPolynomial σ ℚ_[p]) :
     M.fock p (c • F) G = c * M.fock p F G := by
-  rw [fock_eq_sum' p _ G G.support (Finset.Subset.refl _), fock_eq_sum' p F G G.support (Finset.Subset.refl _),
-    Finset.mul_sum]
-  exact Finset.sum_congr rfl fun m _ => by rw [MvPolynomial.coeff_smul, smul_eq_mul]; ring
+  simpa only [M.fock_eq_pair] using FockPairing.pair_smul_left c F G
 
 theorem fock_zero_left (G : MvPolynomial σ ℚ_[p]) : M.fock p 0 G = 0 := by
-  rw [fock_eq_sum' p 0 G G.support (Finset.Subset.refl _)]
-  simp
+  simpa only [M.fock_eq_pair] using FockPairing.pair_zero_left G
 
 theorem fock_sum_left {ι : Type} (t : Finset ι) (F : ι → MvPolynomial σ ℚ_[p]) (G : MvPolynomial σ ℚ_[p]) :
     M.fock p (∑ i ∈ t, F i) G = ∑ i ∈ t, M.fock p (F i) G := by
-  classical
-  refine Finset.induction_on t (by simp [fock_zero_left]) ?_
-  intro a s ha ih
-  rw [Finset.sum_insert ha, Finset.sum_insert ha, fock_add_left, ih]
+  simpa only [M.fock_eq_pair] using FockPairing.pair_sum_left t F G
 
 theorem fock_smul_right (c : ℚ_[p]) (F G : MvPolynomial σ ℚ_[p]) :
     M.fock p F (c • G) = c * M.fock p F G := by
-  rw [fock_comm p F (c • G), fock_smul_left, fock_comm p G F]
+  simpa only [M.fock_eq_pair] using FockPairing.pair_smul_right c F G
 
 theorem fock_sum_right {ι : Type} (t : Finset ι) (F : MvPolynomial σ ℚ_[p]) (G : ι → MvPolynomial σ ℚ_[p]) :
     M.fock p F (∑ i ∈ t, G i) = ∑ i ∈ t, M.fock p F (G i) := by
-  rw [fock_comm, fock_sum_left]
-  exact Finset.sum_congr rfl fun i _ => fock_comm p _ _
-
-private theorem coeff_pderiv_lemma_7 (v : σ) (b : MvPolynomial σ ℚ_[p]) (m : σ →₀ ℕ) :
-    AddMonoidAlgebra.coeff (pderiv v b) m = AddMonoidAlgebra.coeff b (m + Finsupp.single v 1) * ((m v + 1 : ℕ) : ℚ_[p]) := by
-  induction b using MvPolynomial.induction_on'
-  · rename_i t d
-    rw [pderiv_monomial, coeff_monomial, coeff_monomial]
-    by_cases h : t = m + Finsupp.single v 1
-    · subst h
-      rw [if_pos (add_tsub_cancel_right m _), if_pos rfl]
-      simp
-    · rw [if_neg h, zero_mul]
-      split_ifs with h2
-      · have ht : t v = 0 := by
-          by_contra hne
-          apply h
-          rw [← h2, tsub_add_cancel_of_le (Finsupp.single_le_iff.2 (Nat.one_le_iff_ne_zero.2 hne))]
-        simp [ht]
-      · rfl
-  · rename_i f g hf hg
-    rw [map_add (f := _), MvPolynomial.coeff_add, MvPolynomial.coeff_add, hf, hg, add_mul]
+  simpa only [M.fock_eq_pair] using FockPairing.pair_sum_right t F G
 
 theorem fock_X_mul (v : σ) (a b : MvPolynomial σ ℚ_[p]) :
     M.fock p (X v * a) b = M.fock p a (pderiv v b) := by
-  have hsupp : (X v * a).support ⊆ a.support.map (addRightEmbedding (Finsupp.single v 1)) := by
-    rw [mul_comm, support_mul_X]
-  rw [fock_eq_sum p _ b _ hsupp, Finset.sum_map, fock_eq_sum p a _ a.support (Finset.Subset.refl _)]
-  refine Finset.sum_congr rfl fun m _ => ?_
-  simp only [addRightEmbedding_apply]
-  rw [mul_comm (X v) a, coeff_mul_X, coeff_pderiv_lemma_7, fw_add_single]
-  ring
+  simpa only [M.fock_eq_pair, mul_comm (X v) a] using FockPairing.pair_mul_X v a b
 
 theorem fock_X_pow_mul (v : σ) (k : ℕ) (a b : MvPolynomial σ ℚ_[p]) :
     M.fock p (X v ^ k * a) b = M.fock p a ((Dp v ^ k) b) := by
@@ -262,16 +202,11 @@ theorem fock_E (a b : MvPolynomial σ ℚ_[p]) :
   simp only [tieE, LinearMap.mulLeft_apply, Finset.sum_mul, fock_sum_left]
   rw [hF, fock_sum_right]
   refine Finset.sum_congr rfl fun c _ => ?_
-  rw [mul_assoc, fock_X_mul, fock_X_mul, pderiv_comm' (e c) (w c)]
+  rw [mul_assoc, fock_X_mul, fock_X_mul, pderiv_comm (e c) (w c)]
 
 theorem fock_E_pow (j : ℕ) (a b : MvPolynomial σ ℚ_[p]) :
     M.fock p ((tieE w e ^ j) a) b = M.fock p a ((tieF w e ^ j) b) := by
-  induction j generalizing b with
-  | zero => simp
-  | succ j ih =>
-    have h1 : (tieE w e ^ (j + 1)) a = tieE w e ((tieE w e ^ j) a) := by rw [pow_succ'] <;> rfl
-    have h2 : (tieF w e ^ (j + 1)) b = (tieF w e ^ j) (tieF w e b) := by rw [pow_succ] <;> rfl
-    rw [h1, h2, fock_E, ih]
+  simpa only [M.fock_eq_pair] using pair_tieE_pow w e j a b
 
 theorem fock_phi_symm (o n z : ℕ) (u v : MvPolynomial σ ℚ_[p]) :
     M.fock p (tiePhi w e o n z u) v = M.fock p (tiePhi w e o n z v) u := by
@@ -299,7 +234,7 @@ theorem EW_add_single (hwe : ∀ c d, w c ≠ e d) (c : Fin r) (g : MvPolynomial
 
   simp only [EW, map_sum, Derivation.leibniz, pderiv_X, smul_eq_mul]
   refine Finset.sum_congr rfl fun c' _ => ?_
-  rw [Pi.single_apply, if_neg (hwe c' c), pderiv_comm' (w c') (e c)]
+  rw [Pi.single_apply, if_neg (hwe c' c), pderiv_comm (w c') (e c)]
   simp
 
 theorem EW_pderiv_w (hw : Function.Injective w) (c : Fin r) (g : MvPolynomial σ k) :
@@ -310,7 +245,7 @@ theorem EW_pderiv_w (hw : Function.Injective w) (c : Fin r) (g : MvPolynomial σ
     simp only [EW, map_sum, Derivation.leibniz, pderiv_X, smul_eq_mul, Pi.single_apply, hw.eq_iff]
     rw [Finset.sum_add_distrib]
     congr 1
-    · exact Finset.sum_congr rfl fun c' _ => by rw [pderiv_comm' (w c) (w c')]
+    · exact Finset.sum_congr rfl fun c' _ => by rw [pderiv_comm (w c) (w c')]
     · simp
   rw [h]; ring
 
@@ -334,7 +269,7 @@ theorem EH_F (he : Function.Injective e) (hwe : ∀ c d, w c ≠ e d) (β : k) (
     (h : EW e g = β • g) : EW e (tieF w e g) = (β - 1) • tieF w e g := by
   have hs : tieF w e g = tieF e w g := by
     rw [tieF_apply_lemma, tieF_apply_lemma]
-    exact Finset.sum_congr rfl fun c _ => pderiv_comm' _ _ _
+    exact Finset.sum_congr rfl fun c _ => pderiv_comm _ _ _
   rw [hs]
   exact EW_F he (fun c d => (hwe d c).symm) β g h
 
@@ -679,7 +614,7 @@ theorem Dp_comm_F (ρ : Fin r) (g : MvPolynomial σ k) : Dp (e ρ) (tieF w e g) 
 
   simp only [Dp_apply, map_sum]
   refine Finset.sum_congr rfl fun c _ => ?_
-  rw [pderiv_comm' (e ρ) (w c), pderiv_comm' (e ρ) (e c)]
+  rw [pderiv_comm (e ρ) (w c), pderiv_comm (e ρ) (e c)]
 
 theorem powDp_comm_powF (ρ : Fin r) (a b : ℕ) (g : MvPolynomial σ k) :
     (Dp (e ρ) ^ a) ((tieF w e ^ b) g) = (tieF w e ^ b) ((Dp (e ρ) ^ a) g) := by

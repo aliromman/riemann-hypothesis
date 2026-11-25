@@ -52,7 +52,7 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 open GlobalTheory.SplitFlip GlobalTheory.SplitWeil
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw
+attribute [local instance] borelKw borelSpaceKw
 
 namespace GlobalTheory.RowVal
 

@@ -282,11 +282,6 @@ private lemma eval_expSeries {m n : ℕ} (a : Fin m → Pt S n d)
     (hf : MvPowerSeries.constantCoeff f = 0) : ev a (expP f) = expP (ev a f) :=
   subst_exp (fun p : Fin m × Fin d => a p.1 p.2) (fun s => ha s.1 s.2) hf
 
-private lemma cc_lg_lemma_7 {n : ℕ} (G : FGLaw S d) (j : Fin n) (i : Fin d) :
-    MvPowerSeries.constantCoeff (Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix.lg G j i) = 0 :=
-  ReciprocityTheory.ChartRestriction.G.TB.WickVanishing.cc_ev (a := ![pt S d j])
-    (fun j' i' => by fin_cases j'; exact _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.cc_pt' j i') (_root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix2b.cc_logOf G i)
-
 private lemma ev_bilL_lemma_9 {n : ℕ} (G : FGLaw S d) (c : Fin d → Fin d → S) (x y : Pt S n d)
     (ha : ∀ j i, MvPowerSeries.constantCoeff ((![x, y] : Fin 2 → Pt S n d) j i) = 0) :
     ev ![x, y] (bilL G c) = ∑ i, ∑ l, c i l •

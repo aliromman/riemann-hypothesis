@@ -177,6 +177,7 @@ open GlobalTheory.LevDesc (TypeFrame grpHR grpGHR latN levDet secRing transl pul
 open GlobalTheory.IndefiniteRowSideFullHecke.LevelStructureAutomorphisms (LevelAut)
 open GlobalTheory.BadCount
 open scoped TensorProduct
+open scoped GlobalTheory.CompHt
 
 noncomputable section
 
@@ -342,6 +343,7 @@ open GlobalTheory.LevDesc (TypeFrame grpHR grpGHR latN levDet secRing transl pul
 open GlobalTheory.IndefiniteRowSideFullHecke.LevelStructureAutomorphisms (LevelAut)
 open GlobalTheory.BadCount
 open scoped TensorProduct
+open scoped GlobalTheory.CompHt
 
 namespace GlobalTheory.CovTop.WtRun
 open GlobalTheory.FlagTan (dimFlag)
@@ -704,6 +706,7 @@ open GlobalTheory.LevDesc (TypeFrame grpHR grpGHR latN levDet secRing transl pul
 open GlobalTheory.IndefiniteRowSideFullHecke.LevelStructureAutomorphisms (LevelAut)
 open GlobalTheory.BadCount
 open scoped TensorProduct
+open scoped GlobalTheory.CompHt
 namespace GlobalTheory.CovTop.WtRun
 open GlobalTheory.FlagTan (dimFlag)
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H}
@@ -770,12 +773,12 @@ open GlobalTheory.LevDesc (TypeFrame grpHR grpGHR latN levDet secRing transl pul
 open GlobalTheory.IndefiniteRowSideFullHecke.LevelStructureAutomorphisms (LevelAut)
 open GlobalTheory.BadCount
 open scoped TensorProduct
+open scoped GlobalTheory.CompHt
 
 noncomputable section
 
 namespace GlobalTheory.CovTop.WtSz
 
-open GlobalTheory.CompHS
 
 theorem abs_ofGaps_le {N : ℕ} (a : ℕ) (g : ℕ → ℤ) (hg : ∀ k, N ≤ k → g k = 0) (j : Fin N) :
     |((ofGaps a g j : ℤ) : ℝ)| ≤ 2 * ∑ k ∈ Finset.range N, |(g k : ℝ)| := by
@@ -847,7 +850,6 @@ end GlobalTheory.CovTop.WtSz
 
 namespace GlobalTheory.CovTop.WtSz
 
-open GlobalTheory.CompHS
 
 theorem gap_sub_const {N : ℕ} (w : Fin N → ℤ) (c : ℤ) (k : ℕ) : gap (fun j => w j - c) k = gap w k := by
   unfold gap; split_ifs <;> ring
@@ -1196,12 +1198,11 @@ open GlobalTheory.LevDesc (TypeFrame grpHR grpGHR latN levDet secRing transl pul
 open GlobalTheory.IndefiniteRowSideFullHecke.LevelStructureAutomorphisms (LevelAut)
 open GlobalTheory.BadCount
 open scoped TensorProduct
+open scoped GlobalTheory.CompHt
 noncomputable section
 namespace GlobalTheory.CovTop.WtSz
-open GlobalTheory.CompHS
 end GlobalTheory.CovTop.WtSz
 namespace GlobalTheory.CovTop.WtSz
-open GlobalTheory.CompHS
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H}
 end GlobalTheory.CovTop.WtSz
 namespace GlobalTheory.CovTop.WtSz
@@ -1260,6 +1261,7 @@ open GlobalTheory.LevDesc (TypeFrame grpHR grpGHR latN levDet secRing transl pul
 open GlobalTheory.IndefiniteRowSideFullHecke.LevelStructureAutomorphisms (LevelAut)
 open GlobalTheory.BadCount
 open scoped TensorProduct
+open scoped GlobalTheory.CompHt
 noncomputable section
 namespace GlobalTheory.CovTop.CovSz
 theorem sizes_of_cover_alt : _root_.GlobalTheory.CovTop.CoversCondition fun Fm x _ ι p i Y PP _ => LawsJ p.T ∧ InR (Fm.D x ι) ((i : ℕ) + 1) ∧ 1 ≤ (Fm.L x ι).sc.L ∧ Real.log Y.d.l₂.M ≤ 30 * (Fm.L x ι).sc.L ∧ fieldSz (Fm.D x ι).host.E ≤ 3 * (Fm.L x ι).sc.L ∧ Real.log ((Fm.D x ι).R.f * (Fm.D x ι).R.r) ≤ (Fm.L x ι).sc.L ∧ 4 ≤ expL (Fm.L x ι).sc.L ∧ (∀ k, (Fm.D x ι).R.r + 1 < (Fm.D x ι).host.g k) ∧ 8 ≤ (Fm.D x ι).R.f ∧ 100 ≤ (Fm.D x ι).R.r ∧ zBase (Fm.L x ι) ^ 12 ≤ PP := by

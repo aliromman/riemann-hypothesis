@@ -6,7 +6,7 @@ public import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.P
 public import Development.WeilBound.ThetaLifts.EigenvalueEndgame.EigenKilling.ConeIntegralFactorisation
 public import Development.WeilBound.ThetaLifts.CTKernel
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HermitianSelfDualLatticeSpaceFormHermitianNondeg
-import Development.AbelianVarietyTheory.Proofs.DivisorProofs.StandardTraceAdelicAddCharLocalComponentNeOne
+import Development.WeilBound.ThetaLifts.TowerModels.TwistedSums.StandardTraceAdelicAddCharLocalComponentNeOne
 import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.PureEqPureA
 import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.IndicatorMem
 import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.KdMulRight
@@ -85,7 +85,7 @@ open Filter Topology NumberField IsDedekindDomain Matrix GlobalTheory.WeilM Glob
   GlobalTheory.CompanionTheory.Ar.RT.Move GlobalTheory.LatVac PositivityTheory.KCo GlobalTheory.ThK PositivityTheory.ThKCT
 open scoped TensorProduct
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField Classical.propDecidable
+attribute [local instance] Classical.propDecidable
 
 section
 
@@ -588,7 +588,7 @@ namespace PositivityTheory.ThKEnd.Comp.SoL
 open Filter Topology NumberField IsDedekindDomain Matrix GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
   GlobalTheory.CompanionTheory.Ar.RT.Move GlobalTheory.LatVac PositivityTheory.KCo GlobalTheory.ThK PositivityTheory.ThKCT PositivityTheory.ThKG.Loc GlobalTheory.LFun
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField Classical.propDecidable
+attribute [local instance] Classical.propDecidable
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E} {v : Pl F} {n d d₁ : ℕ}
   {X : Spc F E n} {W : Spc F E d} {W₁ : Spc F E d₁} {B : Base F E} {M : Model σ X W} {M₁ : Model σ X W₁}
@@ -691,7 +691,7 @@ theorem acts_rho (M : Model σ X W) (ψ) {u} (hu : At (evFin F v) u) (φ) : Acts
 
 theorem sep {ψ : AddChar (AF F) ℂ} (hψ : IsStd ψ) {s s' : Fv F v} (h : ∀ c, ψ (liftV v (s * c)) = ψ (liftV v (s' * c))) : s = s' := by
   by_contra hne
-  refine GlobalTheory.PsiNontriv.psiV_ne_one ψ hψ v (AddChar.ext _ _ fun y => ?_)
+  refine Tw.PsiNontriv.psiV_ne_one ψ hψ v (AddChar.ext _ _ fun y => ?_)
   have h1 := h ((s - s')⁻¹ * y)
   have h2 : s * ((s - s')⁻¹ * y) = y + s' * ((s - s')⁻¹ * y) := by
     have := sub_ne_zero.2 hne

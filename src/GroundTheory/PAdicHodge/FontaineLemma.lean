@@ -6,51 +6,8 @@ public import GroundTheory.PAdicHodge.FactorizationFactorialLe
 public import GroundTheory.PAdicHodge.ACrisFrobFixed
 public import GroundTheory.PAdicHodge.ACrisBdRGalois
 public import GroundTheory.PAdicHodge.FontaineLemmaPeriod
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
-import Mathlib.Topology.Sheaves.Init
-import Mathlib.RingTheory.WittVector.IsPoly
-import Mathlib.Tactic.Linter.Style
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.PAdicHodge.FontaineLemmaAInf, GroundTheory.PowerSubgroups.CountableNeighbourhoods.FontainePhiPowerSubgroups, GroundTheory.PAdicHodge.FontaineLemmaPhi, GroundTheory.PAdicHodge.FontaineLemma
@@ -331,6 +288,7 @@ theorem exists_phiAway_eq_add_mul {ξ : AInf K p} (hξ : RingHom.ker θ = Ideal.
     (hy : y ∈ ACrisZero K p) :
     ∃ b : AInf K p, ∃ s ∈ ACrisZero K p,
       phiAway K p y = algebraMap (AInf K p) 𝔸 b + (X : 𝔸) * s := by
+  rw [acrisZero_eq_adjoin_dpow] at hy
   induction hy using Algebra.adjoin_induction with
   | mem y hy =>
     obtain ⟨n, x, hx, rfl⟩ := hy
@@ -378,7 +336,7 @@ theorem exists_phi_eq_add_mul [CharZero K] {ξ : AInf K p} (hξ : RingHom.ker θ
       algebraMap (AInf K p) (ACris K p) b + algebraMap (ACrisZero K p) (ACris K p) X * s := by
   refine _root_.GroundTheory.Variant₂.N1.exists_eq_add_mul_of_forall' (a := (p : AInf K p)) (r := (p : ACris K p))
     (algebraMap (AInf K p) (ACris K p)) (map_natCast _ p) _ (phi (K := K) (p := p)) (fun y => ?_) y
-  obtain ⟨y₀, z₁, rfl⟩ := exists_eq_add_p_pow_mul 1 y
+  obtain ⟨y₀, z₁, rfl⟩ := Reformulated.AutPerF.Acris.exists_eq_add 1 y
   obtain ⟨b, s, hs, e⟩ := exists_phiAway_eq_add_mul hξ hX y₀.2
   refine ⟨b, algebraMap (ACrisZero K p) (ACris K p) ⟨s, hs⟩, z₁, ?_⟩
   have e' : phiZero (K := K) (p := p) y₀ =
@@ -388,7 +346,7 @@ theorem exists_phi_eq_add_mul [CharZero K] {ξ : AInf K p} (hξ : RingHom.ker θ
       algebraMap (ACrisZero K p) (ACris K p) (phiZero (K := K) (p := p) y₀) := phi_of y₀
   have hb : algebraMap (AInf K p) (ACris K p) b =
       algebraMap (ACrisZero K p) (ACris K p) (algebraMap (AInf K p) (ACrisZero K p) b) :=
-    AdicCompletion.algebraMap_apply _ b
+    IsScalarTower.algebraMap_apply (AInf K p) (ACrisZero K p) (ACris K p) b
   rw [RingHom.map_add (phi (K := K) (p := p)), map_mul, pow_one, map_natCast, hof, e',
     RingHom.map_add (algebraMap (ACrisZero K p) (ACris K p)), map_mul, hb]
 
@@ -437,7 +395,7 @@ theorem p_mul_phi_mem_span_mu {ε : 𝒪♭} (hε : PreTilt.untilt ε = 1)
     have hof : algebraMap (ACrisZero K p) (ACris K p) ((p : ACrisZero K p) * X) =
         algebraMap (AInf K p) (ACris K p) (AInf.mu ε * d) := by
       rw [h1]
-      exact (AdicCompletion.algebraMap_apply _ _).symm
+      exact (IsScalarTower.algebraMap_apply (AInf K p) (ACrisZero K p) (ACris K p) _).symm
     rw [map_mul, map_natCast] at hof
     rw [hof, map_mul]
   have hp0 := AInf.natCast_ne_zero hε hζ

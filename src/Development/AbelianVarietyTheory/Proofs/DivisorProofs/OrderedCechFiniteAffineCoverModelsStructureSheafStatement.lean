@@ -79,7 +79,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CechPoset
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.CechPoset
 
@@ -350,8 +349,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CechPoset
 
-set_option autoImplicit false
-
 namespace GlobalTheory.CechPoset
 
 theorem Φ_one_tmul : ∀ {R R' : Type} [CommRing R] [CommRing R'] [Algebra R R'] {X X' : Scheme.{0}} {s : X ⟶ Sp R} {s' : X' ⟶ Sp R'} {φ : X' ⟶ X} (w : φ ≫ s = s' ≫ spMap (algebraMap R R')) {κ : Type} [LinearOrder κ] (D : κ → X.Opens) (hD' : ∀ I : Finset κ, I.Nonempty → IsAffineOpen (⨅ i ∈ I, φ ⁻¹ᵁ D i)), Φ w D hD' 0 ((1 : R') ⊗ₜ[R] one s D) = fun _ => 1 := by
@@ -466,8 +463,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry KaehlerDifferential MonoidalCategory CartesianMonoidalCategory MonObj TensorProduct
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.AbCoh
 
@@ -527,8 +522,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry KaehlerDifferential MonoidalCategory CartesianMonoidalCategory MonObj TensorProduct
@@ -587,8 +580,6 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry KaehlerDifferential 
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.AbCoh
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CechPoset
-
-set_option autoImplicit false
 
 namespace GlobalTheory.CechPoset.CechPosetH1Surjective
 
@@ -912,8 +903,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CechPoset
 
-set_option autoImplicit false
-
 namespace GlobalTheory.CechPoset
 
 variable {κ : Type} [LinearOrder κ] {R : Type} [CommRing R] (F : (NE κ)ᵒᵖ ⥤ CommAlgCat.{0} R)
@@ -1044,7 +1033,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CechPoset
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.CechPosetDegreeOne
 variable {κ : Type} [LinearOrder κ] {R : Type} [CommRing R] (F : (NE κ)ᵒᵖ ⥤ CommAlgCat.{0} R)
@@ -1174,8 +1162,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CechPoset
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.CechPoset
@@ -1266,8 +1252,6 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry KaehlerDifferential 
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.AbCoh
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CechPoset
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -1403,8 +1387,6 @@ section -- clump:auto
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry KaehlerDifferential MonoidalCategory CartesianMonoidalCategory MonObj TensorProduct
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.AbCoh
 attribute [local instance] Over.cartesianMonoidalCategory
-
-set_option autoImplicit false
 
 namespace GlobalTheory.AbCohCover
 
@@ -1551,7 +1533,6 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry KaehlerDifferential 
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.AbCoh
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.CechPoset
 

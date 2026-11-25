@@ -48,8 +48,6 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.ExportSeries GlobalTheory.ConjTwist
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.CoefLatConj

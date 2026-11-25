@@ -150,7 +150,7 @@ theorem dHS_polar {k X : Matrix (Fin n) (Fin n) ℂ} (hk : k ∈ Matrix.unitaryG
     congr 2
     funext i
     push_cast
-    ring
+    ring_nf
   have hE : (k * NormedSpace.exp X)ᴴ * (k * NormedSpace.exp X) =
       U * diagonal (fun i => ((Real.exp (2 * hX.eigenvalues i) : ℝ) : ℂ)) * Uᴴ := by
     rw [Matrix.conjTranspose_mul, ← Matrix.exp_conjTranspose, hX.eq, Matrix.mul_assoc,

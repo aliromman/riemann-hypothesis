@@ -234,35 +234,9 @@ lemma word_apply {ε : Fin n → Bool} (w : List (Fin n × Fin n)) (F : smoothSp
     simp only [List.map_cons, List.prod_cons, Module.End.mul_apply, Formalism.REAL.Eword]
     rw [eabEnd_apply p.1 p.2 _ ih hg, Formalism.REAL.eabV_eq]
 
-private lemma matrix_of_pow_succ_apply_eq_sum_prod {A : Type} [Ring A] (E : Fin n → Fin n → A) (k : ℕ) :
-    ∀ i j : Fin n, (Matrix.of E ^ (k + 1)) i j = ∑ a : Fin (k + 1) → Fin n, if a 0 = i then
-      (List.ofFn fun t : Fin (k + 1) =>
-        E ((Fin.snoc a j : Fin (k + 2) → Fin n) t.castSucc) ((Fin.snoc a j : Fin (k + 2) → Fin n) t.succ)).prod
-      else 0 := by
-  induction k with
-  | zero =>
-    intro i j
-    rw [pow_succ, pow_zero, Matrix.one_mul, Matrix.of_apply]
-    rw [Fintype.sum_equiv (Equiv.funUnique (Fin 1) (Fin n)) _ (fun c => if c = i then E c j else 0)
-      (fun a => by simp [Fin.snoc, Equiv.funUnique, Fin.default_eq_zero])]
-    simp
-  | succ k ih =>
-    intro i j
-    rw [pow_succ, Matrix.mul_apply]
-    simp_rw [ih, Finset.sum_mul, ite_mul, zero_mul]
-    rw [← (Fin.snocEquiv (fun _ => Fin n)).sum_comp, Fintype.sum_prod_type]
-    refine Finset.sum_congr rfl fun c _ => Finset.sum_congr rfl fun a _ => ?_
-    have h0 : (Fin.snoc a c : Fin (k + 2) → Fin n) 0 = a 0 := by
-      simpa only [Fin.castSucc_zero] using Fin.snoc_castSucc (α := fun _ => Fin n) c a 0
-    simp only [Fin.snocEquiv, Equiv.coe_fn_mk, h0]
-    split_ifs with hi
-    · conv_rhs => rw [List.ofFn_succ', List.prod_concat]
-      simp only [Fin.snoc_castSucc, Fin.succ_castSucc, Fin.snoc_last, Fin.succ_last, Matrix.of_apply]
-    · rfl
-
 lemma sum_cycWord {A : Type} [Ring A] (E : Fin n → Fin n → A) (m : ℕ) :
     ∑ a : Fin (m + 1) → Fin n, ((cycWord a).map fun p => E p.1 p.2).prod = ∑ c, (Matrix.of E ^ (m + 1)) c c := by
-  apply GlobalTheory.PhiEigenfun.sum_cycWord <;> assumption
+  apply GlobalTheory.PhiEigenfun.sum_cycWord
 
 
 open GlobalTheory.CapelliCentral in
@@ -488,8 +462,8 @@ theorem wordConj : ∀ (n : ℕ) (ε : Fin n → Bool) (f : Matrix (Fin n) (Fin 
 theorem eigConj : ∀ (n : ℕ) (ε : Fin n → Bool) (χ : Fin n → ℂ) (f : Matrix (Fin n) (Fin n) ℂ → ℂ), SmoothOnG ε f → IsZEigen ε χ f → SmoothOnG ε (fun x => f (x.map star)) ∧ IsZEigen ε (fun a => -χ a) (fun x => f (x.map star)) := by
   intro n ε χ f hf hz
   have hsm : SmoothOnG ε (fun x => f (x.map star)) := by
-    letI : NormedAddCommGroup (Matrix (Fin n) (Fin n) ℂ) := Matrix.normedAddCommGroup
-    letI : NormedSpace ℝ (Matrix (Fin n) (Fin n) ℂ) := Matrix.normedSpace
+    let : NormedAddCommGroup (Matrix (Fin n) (Fin n) ℂ) := Matrix.normedAddCommGroup
+    let : NormedSpace ℝ (Matrix (Fin n) (Fin n) ℂ) := Matrix.normedSpace
     intro g₀ hg₀
     obtain ⟨U, F, hU, hgU, hF, hfF⟩ := hf (g₀.map star) (UJ_star hg₀)
     have hc : ∀ {k : WithTop ℕ∞}, ContDiff ℝ k (fun x : Matrix (Fin n) (Fin n) ℂ => x.map star) :=

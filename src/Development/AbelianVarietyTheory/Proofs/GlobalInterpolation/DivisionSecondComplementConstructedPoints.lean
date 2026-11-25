@@ -243,11 +243,7 @@ theorem arith (k m t N S η : ℝ) (hm : 1 ≤ m) (hk : 1 ≤ k) (hkm : k + m �
   have h4 : N ≤ N * N := le_mul_of_one_le_left (by linarith) (by linarith)
   have h5 : η ≤ m * η := le_mul_of_one_le_left hη hm
   have h6 : m * η ≤ t * (m * η) := le_mul_of_one_le_left (by linarith) ht
-  have h7 : 1 ≤ N * N := by linarith
-  have hsq : N ^ 2 = N * N := sq N
-  have hmt : m * (t + 1) * (2 * η) = 2 * (m * t * η) + 2 * (m * η) := by ring
-  have hmt2 : t * (m * η) = m * t * η := by ring
-  linarith
+  grind
 
 theorem degree_fine : ∀ {D : D7} (L : SizeData₂ D), SizesAt L → ParameterChoice' D L → KapDef D → 2 ≤ L.sc.x → ∀ (u : D.what₂.Word), ∀ j ∈ SizeData₂.lifts D, |degPi D u j - (fockDeg D j : ℝ) - (topSum L + sizeOffTops D j)| ≤ 20 * degErr L := by
   intro D L h P hK hx u j hj
@@ -420,10 +416,7 @@ theorem true_entry_le (h : SizesAt L) (P : ParameterChoice' D L) (hx : 2 ≤ L.s
     |((((D.fm u).lam i τ).w a - ((i * (D.R.t + 1) / 2 : ℕ) : ℤ) : ℤ) : ℝ)| ≤ 5 * L.sc.b := by
   have hN := N_le_b h P
   have hNe : (D.R.N D.R.m : ℝ) = D.R.k + D.R.m * (D.R.t + 1) := by unfold Ranks.N; push_cast; ring
-  have hk0 : (0 : ℝ) ≤ D.R.k := Nat.cast_nonneg _
-  have ht0 : (0 : ℝ) ≤ D.R.t := Nat.cast_nonneg _
   have hm0 : (0 : ℝ) ≤ (D.R.m : ℝ) * (D.R.t + 1) := by positivity
-  have s0 : (0 : ℝ) ≤ ((i * (D.R.t + 1) / 2 : ℕ) : ℝ) := Nat.cast_nonneg _
   have s1 : ((i * (D.R.t + 1) / 2 : ℕ) : ℝ) ≤ (D.R.m : ℝ) * (D.R.t + 1) := by
     have : i * (D.R.t + 1) / 2 ≤ D.R.m * (D.R.t + 1) :=
       (Nat.div_le_self _ _).trans (Nat.mul_le_mul_right _ hi)
@@ -434,7 +427,6 @@ theorem true_entry_le (h : SizesAt L) (P : ParameterChoice' D L) (hx : 2 ≤ L.s
   split_ifs with hk
   · have b := abs_le.1 (u_bound_off_top h P hx u τ ⟨a.1, hk⟩ ha)
     have a1 : (a.1 : ℝ) ≤ D.R.k := by exact_mod_cast hk.le
-    have a0 : (0 : ℝ) ≤ a.1 := Nat.cast_nonneg _
     unfold hcToWeightQ rhoVec
     push_cast
     rw [abs_le]
@@ -554,7 +546,6 @@ theorem trace_sq_le (x : H.E) (a : ℤ) (T : ℕ) (ha : (a : H.E) = x + H.conj x
   have h4 : (H.φ₀ x).re * (H.φ₀ x).re + (H.φ₀ x).im * (H.φ₀ x).im = (T : ℝ) := by exact_mod_cast h2
   have h5 : (a : ℝ) ^ 2 ≤ 4 * T := by
     rw [h3, ← h4]
-    have heq : (2 * (H.φ₀ x).re) ^ 2 = 4 * ((H.φ₀ x).re * (H.φ₀ x).re) := by ring
     linarith [mul_self_nonneg (H.φ₀ x).im]
   exact_mod_cast h5
 
@@ -808,9 +799,7 @@ theorem ETpi_le (h : SizesAt L) (P : ParameterChoice' D L) (hx : 2 ≤ L.sc.x) (
     have := Finset.card_le_univ (Formalism.MainNotions.product_first_zeroth_parts.tops D)
     rw [D.what₂.card_Tau] at this
     exact_mod_cast this
-  have h3 : ((D.R.t : ℝ) + 1) * ((D.R.m : ℝ) + 1) ≤ L.sc.b := by
-    have heq : ((D.R.t : ℝ) + 1) * ((D.R.m : ℝ) + 1) = (D.R.m : ℝ) * ((D.R.t : ℝ) + 1) + ((D.R.t : ℝ) + 1) := by ring
-    linarith
+  have h3 : ((D.R.t : ℝ) + 1) * ((D.R.m : ℝ) + 1) ≤ L.sc.b := by grind
   have h4 : ((Formalism.MainNotions.product_first_zeroth_parts.tops D).card : ℝ) * (((D.R.t : ℝ) + 1) * ((D.R.m : ℝ) + 1)) ≤ D.R.f * L.sc.b :=
     mul_le_mul h2 h3 (by positivity) hf0
   have h5 : (D.R.f : ℝ) * D.R.N D.R.m ≤ D.R.f * L.sc.b :=

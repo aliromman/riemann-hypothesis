@@ -343,11 +343,11 @@ def eps (v : InfinitePlace F) : GL (Fin 2) (UpperTheory.V.TR.Rinf F) where
   val_inv := by
     rw [Matrix.mul_fin_two, Matrix.one_fin_two]
     ext i j w
-    fin_cases i <;> fin_cases j <;> simp [atv] <;> split_ifs <;> simp
+    fin_cases i <;> fin_cases j <;> simp [atv]; split_ifs <;> simp
   inv_val := by
     rw [Matrix.mul_fin_two, Matrix.one_fin_two]
     ext i j w
-    fin_cases i <;> fin_cases j <;> simp [atv] <;> split_ifs <;> simp
+    fin_cases i <;> fin_cases j <;> simp [atv]; split_ifs <;> simp
 
 def XA (v : InfinitePlace F) : UpperTheory.V.TR.Lie F 2 :=
   UpperTheory.V.TR.toL (Matrix.single 0 0 (Pi.single v 1)) - UpperTheory.V.TR.toL (Matrix.single 1 1 (Pi.single v 1))
@@ -577,14 +577,6 @@ theorem term_low (c : HeightOneSpectrum (𝓞 F) → ℕ) (v : InfinitePlace F) 
         Phi c (η ᵥ* ((UpperTheory.V.TR.infGL F 2 (eps v) : GA F 2) : Matrix (Fin 2) (Fin 2) (Ad F))) := by
   rw [term_eps]
   linear_combination Rt c v η * low_identity' (pI η 0 v) (pI η 1 v)
-
-theorem norm_infEq (w : InfinitePlace F) (r : ℝ) :
-    ‖((InfinitePlace.Completion.ringEquivRealOfIsReal (IsTotallyReal.isReal w)).symm r : w.Completion)‖ = |r| := by
-  have h := (InfinitePlace.Completion.isometryEquivRealOfIsReal (IsTotallyReal.isReal w)).symm.dist_eq r 0
-  have h0 : ((InfinitePlace.Completion.ringEquivRealOfIsReal (IsTotallyReal.isReal w)).symm 0 : w.Completion) = 0 :=
-    map_zero _
-  rw [← dist_zero_right, ← Real.norm_eq_abs, ← dist_zero_right, ← h0]
-  exact h
 
 theorem absD_mul_infGL (g : GA F 2) (y : GL (Fin 2) (UpperTheory.V.TR.Rinf F)) :
     absD (g * UpperTheory.V.TR.infGL F 2 y) = absD g * ∏ w, |(Matrix.GeneralLinearGroup.det y).val w| := by

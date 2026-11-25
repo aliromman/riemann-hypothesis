@@ -1,55 +1,13 @@
 module
 
 public import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsSectionsRank
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.Order.Interval.Finset.Box
-import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.RingTheory.WittVector.IsPoly
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
-import Mathlib.Topology.Sheaves.Init
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.ABridgeStB
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.SectionModuleEqSpanPow
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.LemCone
+import Mathlib.RingTheory.MvPolynomial.Localization
 
 @[expose] public section
 
@@ -76,22 +34,14 @@ theorem sec_eq_span (o : Type*) [CommRing o] {Ω : Type*} [CommRing Ω] [Algebra
 
 theorem exists_int_multiple {ι : Type*} (f : MvPolynomial ι ℚ) :
     ∃ N : ℕ, 0 < N ∧ ∃ p : MvPolynomial ι ℤ, map (Int.castRingHom ℚ) p = (N : ℚ) • f := by
-  induction f using MvPolynomial.induction_on with
-  | C q =>
-    refine ⟨q.den, q.pos, C q.num, ?_⟩
-    rw [map_C, smul_eq_C_mul, ← C_mul, Rat.den_mul_eq_num]
-    rfl
-  | add f g hf hg =>
-    obtain ⟨a, ha, p, hp⟩ := hf
-    obtain ⟨b, hb, r, hr⟩ := hg
-    refine ⟨a * b, Nat.mul_pos ha hb, (b : ℤ) • p + (a : ℤ) • r, ?_⟩
-    rw [map_add (f := _), smul_eq_C_mul, smul_eq_C_mul, map_mul, map_mul, hp, hr, map_C, map_C]
-    simp only [smul_eq_C_mul, eq_intCast, Int.cast_natCast, Nat.cast_mul, map_mul]
-    ring
-  | mul_X f i hf =>
-    obtain ⟨a, ha, p, hp⟩ := hf
-    refine ⟨a, ha, p * X i, ?_⟩
-    rw [map_mul, hp, map_X, smul_mul_assoc]
+  let := MvPolynomial.algebraMvPolynomial (R := ℤ) (S := ℚ) (σ := ι)
+  obtain ⟨⟨p, _, ⟨d, hd, rfl⟩⟩, h⟩ := IsLocalization.surj ((nonZeroDivisors ℤ).map (C : ℤ →+* MvPolynomial ι ℤ)) f
+  have h' : map (Int.castRingHom ℚ) p = (d : ℚ) • f := by
+    rw [MvPolynomial.algebraMap_def, algebraMap_int_eq, map_C, mul_comm, ← smul_eq_C_mul] at h; exact h.symm
+  rcases Int.natAbs_eq d with h0 | h0
+  · exact ⟨d.natAbs, Int.natAbs_pos.mpr (nonZeroDivisors.ne_zero hd), p, by rw [h', ← Int.cast_natCast, ← h0]⟩
+  · exact ⟨d.natAbs, Int.natAbs_pos.mpr (nonZeroDivisors.ne_zero hd), -p, by
+      rw [map_neg, h', ← Int.cast_natCast, neg_eq_iff_eq_neg.mp h0.symm, Int.cast_neg, neg_smul]⟩
 
 variable {Ω : Type} [Field Ω] [CharZero Ω] {J : Type}
 

@@ -1484,7 +1484,7 @@ theorem pair_unit_local : PairUnitLoc := by
       h w w + algebraMap (𝓞 K) K (l + conjO K l) + algebraMap (𝓞 K) K (conjO K l * l) * h y y := by
     rw [star_add, star_add, star_mul, hsa, hsb, ← algebraMap_conjO, ← algebraMap_conjO,
       map_add, map_mul, Formalism.HermitianLattices.Ext.L3.conjO_conjO]
-    ring
+    ring_nf
   obtain ⟨n, t, ht, hve, hn, -⟩ := num_mem_both hpp hvmem hvs hnu
   have hnz : ∀ {u : 𝓞 K}, u ∈ Formalism.HermitianLatticesTheory.hcompl (K := K) p → algebraMap (𝓞 K) K u ≠ 0 := by
     intro u hu h0

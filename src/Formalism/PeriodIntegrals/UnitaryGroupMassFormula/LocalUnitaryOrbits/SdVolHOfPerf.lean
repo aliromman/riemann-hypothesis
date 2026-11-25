@@ -197,7 +197,7 @@ noncomputable section
 namespace PI.OmLocU
 
 open Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.SG.Sub Formalism.L2.SG.LocVol NumberField IsDedekindDomain MeasureTheory
-  PI.VolStabSW PI.VolStabSW.PositiveNearLattice PI.VolStabSW.SdDualW
+ PI.VolStabSW PI.VolStabSW.SdDualW
 open scoped TensorProduct
 
 section TopWs

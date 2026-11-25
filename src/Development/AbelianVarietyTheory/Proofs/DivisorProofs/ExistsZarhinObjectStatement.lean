@@ -106,8 +106,6 @@ import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.Si
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj
@@ -1413,9 +1411,6 @@ theorem one_pa {Y : Over S} (i : Fin 4) : (1 : Y ⟶ Zob A B) ≫ pa A B i = 1 :
 theorem one_pb {Y : Over S} (j : Fin 4) : (1 : Y ⟶ Zob A B) ≫ pb A B j = 1 := by
   simp [pb]
 
-theorem one_pb_assoc {Y X : Over S} (j : Fin 4) (f : B ⟶ X) : (1 : Y ⟶ Zob A B) ≫ pb A B j ≫ f = 1 ≫ f := by
-  rw [← Category.assoc, one_pb]
-
 end
 
 section Sym
@@ -1503,7 +1498,7 @@ theorem zarhinBundle_rigidified_symmetric₂ : ∀ (h M d : ℕ) (S : Scheme.{0}
     simp only [one_pa, one_pb, Category.id_comp, evc_one_left c.isLB c.rig₁,
       hQ.additive.evc_one hQ.isLB, evc_one_right hQ.isLB hQ.zero, smul_zero, Finset.sum_const_zero, add_zero]
   · rw [pull_zCls]
-    simp only [one_pa, one_pb, one_pb_assoc, MonObj.one_comp, Category.id_comp, evc_one_right c.isLB c.rig₂,
+    simp only [MonObj.one_comp, Category.id_comp, evc_one_right c.isLB c.rig₂,
       hQ.additive.evc_one hQ.isLB, evc_one_right hQ.isLB hQ.zero, smul_zero, Finset.sum_const_zero, add_zero]
   · have hz := zarhinBundle_isLineBundle c.A B c.isLB hQ.isLB d mu
     refine (CechPic.cls_eq_iff hz (pull_isLB hz _)).1 ?_

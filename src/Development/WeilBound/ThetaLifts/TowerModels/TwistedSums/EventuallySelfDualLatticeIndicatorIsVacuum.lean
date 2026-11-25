@@ -54,8 +54,6 @@ open Classical
 open scoped TensorProduct ComplexConjugate GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model HasExp SplitsFully Chars)
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
 open GlobalTheory.AdelicU GlobalTheory.WeilM GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels Filter Topology
 
 namespace Tw.VacIndic
@@ -271,6 +269,10 @@ variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algeb
 theorem cA_smul (σ : E →ₐ[F] E) (c : AF F) (z : AE F E) : cA σ (c • z) = c • cA σ z := map_smul (cA σ) c z
 
 theorem cA_inclR (σ : E →ₐ[F] E) (e : E) : cA σ (inclR (F := F) (AF F) e) = inclR (F := F) (AF F) (σ e) := rfl
+
+theorem smul_inclR_eq (c : AF F) (e : E) : c • inclR (F := F) (AF F) e = c ⊗ₜ[F] e := by
+  show c • ((1 : AF F) ⊗ₜ[F] e) = c ⊗ₜ[F] e
+  rw [TensorProduct.smul_tmul', smul_eq_mul, mul_one]
 
 theorem trace_inclR [FiniteDimensional F E] (e : E) :
     Algebra.trace (AF F) (AE F E) (inclR (F := F) (AF F) e) = algebraMap F (AF F) (Algebra.trace F E e) := by

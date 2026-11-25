@@ -4,48 +4,8 @@ public import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsBlock
 public import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsBlockGenFinite
 public import GroundTheory.HeightsAndTheta.Heights.Intersections.AvoidRing
 public import GroundTheory.HeightsAndTheta.Heights.Intersections.IsHorizontalImageZ
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Topology.Sheaves.Init
+import GroundTheory.HeightsAndTheta.Heights.BlockScaling
 
 @[expose] public section
 
@@ -66,17 +26,8 @@ theorem eval_smul_of_isMultiHomog {s : MRing ι} {a : K → ℕ} (hs : IsMultiHo
     (u : (Σ k, ι k) → ℂ) :
     eval (fun p ↦ c p.1 * u p) (map (Int.castRingHom ℂ) s) =
       (∏ k, c k ^ a k) * eval u (map (Int.castRingHom ℂ) s) := by
-  rw [eval_map, eval_map, eval₂_eq', eval₂_eq', Finset.mul_sum]
-  refine Finset.sum_congr rfl fun d hd ↦ ?_
-  have hprod : ∏ p, (c p.1 * u p) ^ d p = (∏ k, c k ^ a k) * ∏ p, u p ^ d p := by
-    simp only [mul_pow, Finset.prod_mul_distrib]
-    congr 1
-    rw [Fintype.prod_sigma]
-    refine Finset.prod_congr rfl fun k _ ↦ ?_
-    show ∏ i, c k ^ d ⟨k, i⟩ = c k ^ a k
-    rw [Finset.prod_pow_eq_pow_sum, hs d hd k]
-  rw [hprod]
-  ring
+  rw [eval_map, eval_map]
+  exact BlockScaling.eval₂_mul_block_left (Int.castRingHom ℂ) c u hs
 
 
 omit [Fintype K] [∀ k, Fintype (ι k)] [Fintype K'] [∀ k, Fintype (ι' k)] in

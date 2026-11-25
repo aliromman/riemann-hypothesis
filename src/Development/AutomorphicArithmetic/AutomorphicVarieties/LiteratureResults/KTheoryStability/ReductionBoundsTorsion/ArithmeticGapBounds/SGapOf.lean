@@ -401,30 +401,30 @@ theorem diagonal_decomposition_transvections {ι F : Type*} [Fintype ι] [Decida
   · subst x
     by_cases hyi : i = y
     · subst y; (simp [Matrix.add_apply, hij.symm, *]
-        <;> (try field_simp) <;> (try ring))
+        <;> (try field_simp))
     by_cases hyj : j = y
     · subst y; (simp [Matrix.add_apply, hij.symm, *]
-        <;> (try field_simp) <;> (try ring))
+        <;> (try field_simp))
     (simp [Matrix.add_apply, hij.symm, *]
-        <;> (try field_simp) <;> (try ring))
+        <;> (try field_simp))
   by_cases hxj : j = x
   · subst x
     by_cases hyi : i = y
     · subst y; (simp [Matrix.add_apply, hij.symm, *]
-        <;> (try field_simp) <;> (try ring))
+        <;> (try field_simp))
     by_cases hyj : j = y
     · subst y; (simp [Matrix.add_apply, hij.symm, *]
-        <;> (try field_simp) <;> (try ring))
+        <;> (try field_simp))
     (simp [Matrix.add_apply, *]
-        <;> (try field_simp) <;> (try ring))
+        <;> (try field_simp))
   by_cases hyi : i = y
   · subst y; (simp [Matrix.add_apply, Matrix.one_apply, diagonal_apply, hij.symm, *]
-        <;> (try field_simp) <;> (try ring) <;> (try (split_ifs <;> simp_all)))
+        <;> (try field_simp) <;> (try ring_nf) <;> (try (split_ifs <;> simp_all)))
   by_cases hyj : j = y
   · subst y; (simp [Matrix.add_apply, Matrix.one_apply, diagonal_apply, *]
-        <;> (try field_simp) <;> (try ring) <;> (try (split_ifs <;> simp_all)))
+        <;> (try field_simp) <;> (try ring_nf) <;> (try (split_ifs <;> simp_all)))
   (simp [Matrix.add_apply, Matrix.one_apply, diagonal_apply, *]
-        <;> (try field_simp) <;> (try ring) <;> (try (split_ifs <;> simp_all)))
+        <;> (try field_simp) <;> (try ring_nf) <;> (try (split_ifs <;> simp_all)))
 
 theorem sl_top {ι F : Type*} [Fintype ι] [DecidableEq ι] [Nontrivial ι] [Field F]
     (S : Subgroup (SpecialLinearGroup ι F))

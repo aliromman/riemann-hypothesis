@@ -3,64 +3,20 @@ module
 public import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsHSMTransport
 public import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsKrullDimMatAct
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.StepTStA
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
 import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.Order.CompletePartialOrder
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
 import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.RingTheory.TotallySplit
-import Mathlib.RingTheory.WittVector.IsPoly
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
-import Mathlib.Topology.Sheaves.Init
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.StepTStB
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterBridgeB
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.LemSec
-import Std.Tactic.BVDecide.Normalize.Prop
+import Mathlib.RingTheory.Localization.Integer
 
 @[expose] public section
 
@@ -172,16 +128,13 @@ theorem dirD_subC (M : J → J → ℤ) (z w : J → ℂ) (h : MvPolynomial J �
     rw [map_mul, dirD_mul, dirD_mul, hp, eval_subC, hX, h1, h2, dirD_X, eval_X]
 
 theorem exists_clear_den (A : Matrix J J ℚ) : ∃ c : ℕ, c ≠ 0 ∧ ∀ i j, ∃ k : ℤ, (c : ℚ) * A i j = k := by
-  classical
-  refine ⟨∏ i, ∏ j, (A i j).den,
-    Finset.prod_ne_zero_iff.2 fun i _ => Finset.prod_ne_zero_iff.2 fun j _ => (A i j).den_nz, fun i j => ?_⟩
-  obtain ⟨t, ht⟩ : (A i j).den ∣ ∏ i, ∏ j, (A i j).den :=
-    (Finset.dvd_prod_of_mem (fun j => (A i j).den) (Finset.mem_univ j)).trans
-      (Finset.dvd_prod_of_mem (fun i => ∏ j, (A i j).den) (Finset.mem_univ i))
-  refine ⟨t * (A i j).num, ?_⟩
-  rw [ht]
-  push_cast
-  rw [mul_comm ((A i j).den : ℚ) t, mul_assoc, Rat.den_mul_eq_num]
+  obtain ⟨d, hd⟩ := IsLocalization.exist_integer_multiples_of_finite (nonZeroDivisors ℤ) (fun p : J × J => A p.1 p.2)
+  refine ⟨d.1.natAbs, Int.natAbs_ne_zero.mpr (nonZeroDivisors.ne_zero d.2), fun i j => ?_⟩
+  obtain ⟨k, hk⟩ := hd (i, j)
+  have hk' : (d.1 : ℚ) * A i j = k := by simpa [zsmul_eq_mul] using hk.symm
+  rcases Int.natAbs_eq d.1 with h | h
+  · exact ⟨k, by rw [← Int.cast_natCast, ← h, hk']⟩
+  · exact ⟨-k, by rw [← Int.cast_natCast, neg_eq_iff_eq_neg.mp h.symm, Int.cast_neg, neg_mul, hk', Int.cast_neg]⟩
 
 theorem intAct_eq {Ω : Type*} [Field Ω] [CharZero Ω] {B' : Matrix J J ℚ} {c : ℕ} {M : J → J → ℤ}
     (hM : ∀ i j, (c : ℚ) * B' i j = M i j) (v : J → Ω) : intAct M v = (c : Ω) • matAct B' v := by

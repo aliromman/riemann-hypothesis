@@ -163,7 +163,7 @@ theorem inv_entry_le (Y : Matrix (Fin g) (Fin g) ℝ) {c : ℝ} (hc : 0 < c)
     obtain ⟨x, hx, hx0⟩ := (Matrix.exists_mulVec_eq_zero_iff).2 h0
     have h1 := hY x
     rw [hx0, dotProduct_zero] at h1
-    have h2 : x ⬝ᵥ x ≤ 0 := by nlinarith [show 0 ≤ x ⬝ᵥ x from Finset.sum_nonneg fun i _ => mul_self_nonneg (x i)]
+    have h2 : x ⬝ᵥ x ≤ 0 := nonpos_of_mul_nonpos_right h1 hc
     apply hx
     funext i
     have h3 : ∀ i ∈ Finset.univ, 0 ≤ x i * x i := fun i _ => mul_self_nonneg _
@@ -191,7 +191,7 @@ theorem inv_entry_le (Y : Matrix (Fin g) (Fin g) ℝ) {c : ℝ} (hc : 0 < c)
   have h3 : c ^ 2 * N ≤ 1 := by
     rcases hN0.eq_or_lt with h | h
     · rw [← h]; simp
-    · nlinarith
+    · exact le_of_mul_le_mul_right (by linarith [show c ^ 2 * N * N = c ^ 2 * N ^ 2 by ring]) h
   have h4 : (c * u j) ^ 2 ≤ 1 := by
     calc (c * u j) ^ 2 = c ^ 2 * u j ^ 2 := by ring
       _ ≤ c ^ 2 * N := mul_le_mul_of_nonneg_left (hcomp j) (sq_nonneg c)
@@ -392,7 +392,7 @@ theorem dual_bound : ∀ (g a : ℕ) (Y : Matrix (Fin g) (Fin g) ℝ) (Bs : Fin 
       fun w => by
         refine sq_sum_le_card_mul_sum_sq.trans ?_
         rw [Finset.card_univ, Fintype.card_fin, div_mul_eq_mul_div, le_div_iff₀ hc]
-        nlinarith [hgY w, (Nat.cast_nonneg g : (0 : ℝ) ≤ g)]
+        linarith [mul_le_mul_of_nonneg_left (hgY w) (Nat.cast_nonneg g : (0 : ℝ) ≤ g)]
     have hab : (∑ j, ‖u j‖) * (∑ k, ‖v k‖) ≤
         g / c * gnorm (Y.map ofReal) u * gnorm (Y.map ofReal) v := by
       rw [← pow_le_pow_iff_left₀ (by positivity)
@@ -497,9 +497,9 @@ theorem quad_abs_le {m : Type} [Fintype m] (A : Matrix m m ℝ) (E : ℝ)
         rw [abs_mul, abs_mul]
         have h2 := hE j k
         have h3 : |x j| * |x k| ≤ ((x j) ^ 2 + (x k) ^ 2) / 2 := by
-          nlinarith [sq_nonneg (|x j| - |x k|), sq_abs (x j), sq_abs (x k)]
+          linarith [sq_nonneg (|x j| - |x k|), sq_abs (x j), sq_abs (x k)]
         have h4 : 0 ≤ |A j k| := abs_nonneg _
-        nlinarith [mul_nonneg (abs_nonneg (x j)) (abs_nonneg (x k))]
+        linarith [mul_le_mul h2 h3 (mul_nonneg (abs_nonneg (x j)) (abs_nonneg (x k))) (h4.trans h2)]
     _ = E * Fintype.card m * (x ⬝ᵥ x) := by
         have h5 : ∀ j, ∑ k : m, (E / 2 * (x j) ^ 2 + E / 2 * (x k) ^ 2) =
             Fintype.card m * (E / 2 * (x j) ^ 2) + E / 2 * ∑ k, (x k) ^ 2 := by
@@ -530,7 +530,7 @@ theorem uniform_posDef {X : Type} [TopologicalSpace X] {ι : Type} [Fintype ι] 
           gcongr with i
           have := norm_le_pi_norm y i
           rw [Real.norm_eq_abs] at this
-          nlinarith [abs_nonneg (y i), sq_abs (y i)]
+          simpa [sq_abs, sq] using pow_le_pow_left₀ (abs_nonneg (y i)) this 2
       _ = _ := by simp
 
   have hscale : ∀ z y, y ≠ 0 →
@@ -829,7 +829,7 @@ theorem half_le_pdiag {n a : ℕ} (ha : a ≤ n) {ρ : ℝ} (hρ : ρ ≤ 1) {z 
     have hs : ‖z k‖ ^ 2 * tlog (z k) ^ 2 = (‖z k‖ * tlog (z k)) ^ 2 := by ring
     rw [hs]
     have h2 : 0 < (‖z k‖ * tlog (z k)) ^ 2 := by positivity
-    have h3 : (‖z k‖ * tlog (z k)) ^ 2 < 1 := by nlinarith
+    have h3 : (‖z k‖ * tlog (z k)) ^ 2 < 1 := by simpa using pow_lt_pow_left₀ hl hp.le two_ne_zero
     rw [div_le_div_iff₀ (by norm_num) (by positivity)]
     linarith
   · exact le_rfl
@@ -852,8 +852,8 @@ theorem poincare_bounds : ∀ (n a : ℕ) (ha : a ≤ n) (ρ : ℝ), ρ ≤ 1 �
     have h2 := half_le_pdiag ha hρ hz k
     have hG := gnorm_nonneg (poincareGram a z) ξ
     have hx := norm_nonneg (ξ k)
-    have h3 : ‖ξ k‖ ^ 2 ≤ 2 * gnorm (poincareGram a z) ξ ^ 2 := by nlinarith
-    nlinarith
+    have h3 : ‖ξ k‖ ^ 2 ≤ 2 * gnorm (poincareGram a z) ξ ^ 2 := by linarith [mul_le_mul_of_nonneg_right h2 (sq_nonneg ‖ξ k‖)]
+    exact le_of_sq_le_sq (by linarith [sq_nonneg (gnorm (poincareGram a z) ξ)] : ‖ξ k‖ ^ 2 ≤ (2 * gnorm (poincareGram a z) ξ) ^ 2) (by linarith)
   · set k := Fin.castLE ha i with hkdef
     have hk : k.val < a := i.2
     have h0 : z k ≠ 0 := hz.2 i
@@ -870,7 +870,7 @@ theorem poincare_bounds : ∀ (n a : ℕ) (ha : a ≤ n) (ρ : ℝ), ρ ≤ 1 �
       have hs2 : 0 < 2 * s ^ 2 := by positivity
       rw [div_mul_eq_mul_div, one_mul, div_le_iff₀ hs2] at h1
       linarith
-    nlinarith [mul_nonneg hp.le hG]
+    exact le_of_sq_le_sq (by linarith [mul_nonneg (sq_nonneg s) (sq_nonneg G)] : ‖ξ k‖ ^ 2 ≤ (2 * s * G) ^ 2) (by linarith [mul_nonneg hp.le hG])
 
 end GlobalTheory.PoincareBounds
 end
@@ -946,7 +946,7 @@ theorem hodgeChartBounds_of_schur_lemW (hS : ∀ (k l : ℕ) (a bt : Matrix (Fin
     have h2 : Real.log ‖z (Fin.castLE ha i)‖ < -(4 * Real.pi * T₀) := by
       rw [← Real.log_exp (-(4 * Real.pi * T₀))]; exact Real.log_lt_log h0 h1
     rw [tlog, lt_div_iff₀ (by positivity)]
-    nlinarith [Real.pi_pos]
+    linarith [Real.pi_pos]
   have hdec : ∀ z, imPeriod ha τ₀ B z = ((τ₀ z).map Complex.im + T₀ • ∑ i, (B i).map (Int.cast : ℤ → ℝ))
       + ∑ i, (tlog (z (Fin.castLE ha i)) - T₀) • (B i).map (Int.cast : ℤ → ℝ) := fun z => by
     simp only [imPeriod, sub_smul, Finset.sum_sub_distrib, Finset.smul_sum]; abel
@@ -971,7 +971,7 @@ theorem hodgeChartBounds_of_schur_lemW (hS : ∀ (k l : ℕ) (a bt : Matrix (Fin
     have h3 := Finset.single_le_sum (f := fun i => (tlog (z (Fin.castLE ha i)) - T₀) *
       (x ⬝ᵥ ((B i).map (Int.cast : ℤ → ℝ)) *ᵥ x))
       (fun i _ => mul_nonneg (by linarith [ht z hz i]) (hBnn i x)) (Finset.mem_univ i)
-    nlinarith
+    linarith [mul_nonneg hc₁.le h2]
 
   set K₁ : ℝ := 2 * g * M / c₁ + a with hK₁
   have hK₁0 : 0 ≤ K₁ := by positivity
@@ -1003,14 +1003,10 @@ theorem hodgeChartBounds_of_schur_lemW (hS : ∀ (k l : ℕ) (a bt : Matrix (Fin
           ≤ S * (β * (x ⬝ᵥ x)) := by
         rw [Finset.sum_mul]
         refine Finset.sum_le_sum fun i _ => ?_
-        have := hBq i x
-        have := hBnn i x
-        have := ht z hz i
-        nlinarith
+        exact mul_le_mul (by linarith [ht z hz i]) (hBq i x) (hBnn i x) (by linarith [ht z hz i])
       have hC1 : C₁ ≤ C := (le_max_left _ _).trans (le_max_left _ _)
       have hCβ : β ≤ C := (le_max_right _ _).trans (le_max_left _ _)
-      nlinarith [mul_le_mul_of_nonneg_right hC1 h2,
-        mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_right hCβ h2) hS0]
+      linarith [mul_le_mul_of_nonneg_right hC1 h2, mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_right hCβ h2) hS0]
   ·
     intro z hz
     have hzp := hz1 z hz
@@ -1050,7 +1046,7 @@ theorem hodgeChartBounds_of_schur_lemW (hS : ∀ (k l : ℕ) (a bt : Matrix (Fin
       rw [e, div_div, div_le_iff₀ (mul_pos (by positivity) (by linarith))]
       have h1 := hξi i
       have h2 : tlog (z (Fin.castLE ha i)) ≤ Real.pi * (tlog (z (Fin.castLE ha i)) - T₀) := by
-        nlinarith
+        linarith [mul_le_mul_of_nonneg_right hpi.le (show (0 : ℝ) ≤ tlog (z (Fin.castLE ha i)) - T₀ by linarith)]
       calc ‖ξ (Fin.castLE ha i)‖ ≤ 2 * (‖z (Fin.castLE ha i)‖ * tlog (z (Fin.castLE ha i))) *
             gnorm (poincareGram a z) ξ := h1
         _ ≤ 2 * (‖z (Fin.castLE ha i)‖ * (Real.pi * (tlog (z (Fin.castLE ha i)) - T₀))) *
@@ -1112,7 +1108,7 @@ theorem hodgeChartBounds_of_schur_lemW (hS : ∀ (k l : ℕ) (a bt : Matrix (Fin
       rw [e, div_div, div_le_iff₀ (mul_pos (by positivity) (by linarith))]
       have h1 := hξi i
       have h2 : tlog (z (Fin.castLE ha i)) ≤ Real.pi * (tlog (z (Fin.castLE ha i)) - T₀) := by
-        nlinarith
+        linarith [mul_le_mul_of_nonneg_right hpi.le (show (0 : ℝ) ≤ tlog (z (Fin.castLE ha i)) - T₀ by linarith)]
       calc ‖ξ (Fin.castLE ha i)‖ ≤ 2 * (‖z (Fin.castLE ha i)‖ * tlog (z (Fin.castLE ha i))) *
             gnorm (poincareGram a z) ξ := h1
         _ ≤ 2 * (‖z (Fin.castLE ha i)‖ * (Real.pi * (tlog (z (Fin.castLE ha i)) - T₀))) *
@@ -1139,7 +1135,7 @@ theorem hodgeChartBounds_of_schur_lemW (hS : ∀ (k l : ℕ) (a bt : Matrix (Fin
     have hv0 : 0 ≤ gnorm (hodgeGram ha τ₀ B z) v ^ 2 := sq_nonneg _
     have hv0' : 0 ≤ gnorm ((imPeriod ha τ₀ B z).map Complex.ofReal) v ^ 2 := sq_nonneg _
     have hstep := mul_le_mul_of_nonneg_right hsq hv0'
-    nlinarith [hbd', hstep]
+    linarith [hbd', hstep]
 
 end GlobalTheory.HodgeChartRow
 end -- clump:auto

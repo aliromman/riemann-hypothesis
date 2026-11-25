@@ -194,52 +194,6 @@ theorem prod_eq (hψ : IsCharAF F ψ)
 
 end Lemmas
 
-theorem schur : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (B : Base F E),
-    B.IsGood σ → ∀ (nS nT : ℕ) (JS : Matrix (Fin nS) (Fin nS) E) (JT : Matrix (Fin nT) (Fin nT) E),
-      IsHermND σ JS → IsHermND σ JT → ∀ ξ₀ : E, ξ₀ ≠ 0 → σ ξ₀ = -ξ₀ → ∀ M : Module.End ℂ (WOF F E nS nT → ℂ),
-      (∀ f, IsThetaFunOF σ JS JT ξ₀ B.ψ f → IsThetaFunOF σ JS JT ξ₀ B.ψ (M f)) →
-      (∀ w f, IsThetaFunOF σ JS JT ξ₀ B.ψ f → M (heisOF σ JS JT ξ₀ B.ψ w f) = heisOF σ JS JT ξ₀ B.ψ w (M f)) →
-      (∀ (μ : MeasureTheory.Measure (WOF F E nS nT)) (𝓕 : Set (WOF F E nS nT)), μ.IsAddHaarMeasure →
-        MeasureTheory.IsAddFundamentalDomain (ratLF F E nS nT) 𝓕 μ → ∀ f, IsThetaFunOF σ JS JT ξ₀ B.ψ f →
-          ∫⁻ w in 𝓕, ‖M f w‖ₑ ^ 2 ∂μ = ∫⁻ w in 𝓕, ‖f w‖ₑ ^ 2 ∂μ) →
-      ∃ c : ℂ, ∀ f, IsThetaFunOF σ JS JT ξ₀ B.ψ f → M f = c • f := by
-  intro F E _ _ _ _ _ σ B hB nS nT JS JT hJS hJT ξ₀ hξ hσξ M hM hc hn
-  have hψ : IsCharAF F B.ψ := (GlobalTheory.StdCharWeilDatum.isStdCharF_of_isGood F E σ B hB).1
-  have hinv : ∀ e, σ (σ e) = e := fun e => by
-    obtain ⟨τ⟩ : Nonempty (E →+* ℂ) := inferInstance
-    apply τ.injective
-    rw [hB.cm.2.2.2 τ, hB.cm.2.2.2 τ, star_star]
-  have hskew := _root_.GlobalTheory.SymplSkew.symplOF_swap F E σ hinv nS nT JS JT hJS hJT ξ₀ hσξ
-  have hann := _root_.GlobalTheory.RatAnnihF.ratLF_annihilator F E σ B hB nS nT JS JT hJS hJT ξ₀ hξ
-  have hth : ∀ w f, IsThetaFunOF σ JS JT ξ₀ B.ψ f → IsThetaFunOF σ JS JT ξ₀ B.ψ (heisOF σ JS JT ξ₀ B.ψ w f) :=
-    fun w f hf => GlobalTheory.HeisThetaF.isThetaFunOF_heisOF F E σ B hB nS nT JS JT ξ₀ w f hf
-  have h2 : ∀ f f', IsThetaFunOF σ JS JT ξ₀ B.ψ f → IsThetaFunOF σ JS JT ξ₀ B.ψ f' → ∀ x y,
-      M f x * star (M f' y) = f x * star (f' y) := fun f f' hf hf' x y => by
-    have h := prod_eq hψ hskew hann hth M hM hc hn hf (hth (y - x) f' hf') x
-    rw [hc _ _ hf'] at h
-    simp only [heisOF, add_sub_cancel, star_mul'] at h
-    linear_combination B.ψ (symplOHF σ JS JT ξ₀ x (y - x)) * h -
-      (M f x * star (M f' y) - f x * star (f' y)) * mul_star_psi hψ.2.1 (symplOHF σ JS JT ξ₀ x (y - x))
-  by_cases h0 : ∃ f₀ y, IsThetaFunOF σ JS JT ξ₀ B.ψ f₀ ∧ f₀ y ≠ 0
-  · obtain ⟨f₀, y, hf₀, hy⟩ := h0
-    have h1 := h2 f₀ f₀ hf₀ hf₀ y y
-    have hn1 : ‖M f₀ y‖ = ‖f₀ y‖ := by
-      have := congrArg norm h1
-      rw [norm_mul, norm_mul, norm_star, norm_star] at this
-      exact (mul_self_inj_of_nonneg (norm_nonneg _) (norm_nonneg _)).1 this
-    have hy' : M f₀ y ≠ 0 := by
-      rw [← norm_ne_zero_iff, hn1]
-      exact norm_ne_zero_iff.2 hy
-    have hs : star (M f₀ y) ≠ 0 := star_ne_zero.2 hy'
-    refine ⟨star (f₀ y) / star (M f₀ y), fun f hf => ?_⟩
-    funext x
-    rw [Pi.smul_apply, smul_eq_mul, div_mul_eq_mul_div, eq_div_iff hs, h2 f f₀ hf hf₀, mul_comm]
-  · refine ⟨1, fun f hf => ?_⟩
-    have : f = 0 := funext fun y => by
-      by_contra hy
-      exact h0 ⟨f, y, hf, hy⟩
-    rw [this, map_zero, smul_zero]
-
 end GlobalTheory.ThetaSchurF
 
 end

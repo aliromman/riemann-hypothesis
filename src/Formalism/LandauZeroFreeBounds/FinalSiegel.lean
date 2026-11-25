@@ -198,17 +198,6 @@ theorem dirichlet_product_coefficients : BqCoeff := by
     (toArithmeticFunction (fun m : ℕ => χ₂ (m : ZMod q₂)) *
       toArithmeticFunction (fun m : ℕ => ψ (m : ZMod (q₁ * q₂)))) with hf
 
-  have hvals : ∀ {N : ℕ} (χ : DirichletCharacter ℂ N), χ ^ 2 = 1 →
-      ∀ x, χ x = 0 ∨ χ x = 1 ∨ χ x = -1 := by
-    intro N χ hχ x
-    by_cases hx : IsUnit x
-    · have h := congrArg (fun φ : DirichletCharacter ℂ N => φ x) hχ
-      simp only [MulChar.pow_apply' χ two_ne_zero, MulChar.one_apply hx] at h
-      have h' : χ x * χ x = 1 := by rw [← sq]; exact h
-      rcases (mul_self_eq_one_iff).mp h' with h' | h'
-      · exact Or.inr (Or.inl h')
-      · exact Or.inr (Or.inr h')
-    · exact Or.inl (MulChar.map_nonunit χ hx)
   have hmul : f.IsMultiplicative :=
     (DirichletCharacter.isMultiplicative_zetaMul χ₁).mul
       ((DirichletCharacter.isMultiplicative_toArithmeticFunction χ₂).mul
@@ -223,10 +212,10 @@ theorem dirichlet_product_coefficients : BqCoeff := by
     rw [hψ n, mul_comm]
   have hpp : ∀ p k : ℕ, p.Prime → 0 ≤ f (p ^ k) := by
     intro p k hp
-    rcases hvals χ₂ h2 (p : ZMod q₂) with h | h | h
+    rcases MulChar.isQuadratic_iff_sq_eq_one.mpr h2 (p : ZMod q₂) with h | h | h
     · exact prime_power_coefficient_nonneg h1 hψ hp (Or.inl h) k
     · exact prime_power_coefficient_nonneg h1 hψ hp (Or.inr (Or.inl h)) k
-    · rcases hvals χ₁ h1 (p : ZMod q₁) with h' | h' | h'
+    · rcases MulChar.isQuadratic_iff_sq_eq_one.mpr h1 (p : ZMod q₁) with h' | h' | h'
       · rw [hswap]; exact prime_power_coefficient_nonneg h2 hψ' hp (Or.inl h') k
       · rw [hswap]; exact prime_power_coefficient_nonneg h2 hψ' hp (Or.inr (Or.inl h')) k
       · exact prime_power_coefficient_nonneg h1 hψ hp (Or.inr (Or.inr ⟨h, h'⟩)) k
@@ -969,14 +958,9 @@ theorem changeLevel_eq_of_agree_coprime {q₁ q : ℕ} [NeZero q₁] [NeZero q] 
 
 theorem euler_factor_term_norm_le {M : ℕ} (φ : DirichletCharacter ℂ M) (p : ℕ) :
     ‖φ (p : ZMod M) * (p : ℂ) ^ (-(1 : ℂ))‖ ≤ 1 / (p : ℝ) := by
-  rw [norm_mul]
-  rcases Nat.eq_zero_or_pos p with rfl | hp
-  · simp
-  · have h1 : ‖(p : ℂ) ^ (-(1 : ℂ))‖ = 1 / (p : ℝ) := by
-      rw [Complex.norm_natCast_cpow_of_pos hp]
-      simp [Real.rpow_neg_one]
-    rw [h1]
-    exact mul_le_of_le_one_left (by positivity) (DirichletCharacter.norm_le_one φ _)
+  rw [norm_mul, Complex.cpow_neg_one, norm_inv, Complex.norm_natCast, one_div]
+  exact mul_le_of_le_one_left (by positivity) (DirichletCharacter.norm_le_one φ _)
+
 
 theorem euler_factor_product_upper {M : ℕ} (φ : DirichletCharacter ℂ M) (S : Finset ℕ) :
     ‖∏ p ∈ S, (1 - φ (p : ZMod M) * (p : ℂ) ^ (-(1 : ℂ)))‖ ≤ ∏ p ∈ S, (1 + 1 / (p : ℝ)) := by

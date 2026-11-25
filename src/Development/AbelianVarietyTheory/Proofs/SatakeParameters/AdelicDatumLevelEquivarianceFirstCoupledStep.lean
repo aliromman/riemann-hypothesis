@@ -81,43 +81,12 @@ variable {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : G.Inst D L} {Gl : G
   {ex : Extra D L hT Gi Gl Kc Y cX} {t : KerEntTied ex} {u : D.what₂.Word} {μ : D.what₂.Tup} {St : ChainCharts D u μ}
   (A : AdData t u μ St) (a : 𝓞 D.host.E)
 
-def mvN (i : ℕ) (hi : i ≤ D.R.m) (β : (St i hi).Ch)
-    (x : UPts (sigD D) (gramN D i hi) (FiniteAdeleRing (𝓞 D.host.F) D.host.F)) : Submodule (𝓞 t.X.E) (Sp t.X.E (D.R.N i)) :=
-  Submodule.span (𝓞 t.X.E) ((fun (y : Fin (D.R.N i) → D.host.E) (l : Fin (D.R.N i)) => t.seam.iE.symm (y l)) ''
-    (latCo D.sp (gramN D i hi) (A.crd i hi) a x.1 ((St i hi).K β).lev.Lb : Set (Fin (D.R.N i) → D.host.E)))
-
 def vUnder (P : HeightOneSpectrum (𝓞 t.X.E)) : HeightOneSpectrum (𝓞 D.host.F) :=
   HeightOneSpectrum.under (𝓞 D.host.F) (seamP t.seam P)
 
 theorem isOver_vUnder (P : HeightOneSpectrum (𝓞 t.X.E)) : IsOver (vUnder (t := t) P) (seamP t.seam P) := by
   unfold IsOver vUnder
   rw [HeightOneSpectrum.under_asIdeal]
-
-def vecAt {n : ℕ} (g : GL (Fin n) (D.host.E ⊗[D.host.F] FiniteAdeleRing (𝓞 D.host.F) D.host.F)) (v : HeightOneSpectrum (𝓞 D.host.F))
-    (w : Sp t.X.E n) : Fin n → D.host.E ⊗[D.host.F] v.adicCompletion D.host.F :=
-  fun l => prV (E := D.host.E) v (pullV (F := D.host.F) g (fun b => t.seam.iE (w b)) l)
-
-def iotaSel (i : ℕ) (hi : i ≤ D.R.m) (β : (St i hi).Ch) (P : t.Pr.vT (t.word u)) (v : HeightOneSpectrum (𝓞 D.host.F))
-    (h : (((St i hi).T : ℕ) : 𝓞 D.host.F) ∈ v.asIdeal) : ((St i hi).K β).lev.fM v h →+ 𝓞 t.X.E ⧸ P.1.asIdeal := by
-  classical
-  exact if hι : ∃ ι : ((St i hi).K β).lev.fM v h →+ 𝓞 t.X.E ⧸ P.1.asIdeal,
-      ∀ c, (St i hi).chOf c = β → FunMoved t.seam ((St i hi).K β).lev P v h ι (A.mov i hi c) (A.pt i hi c).deco.1
-    then hι.choose else 0
-
-def InDom (i : ℕ) (hi : i ≤ D.R.m) (β : (St i hi).Ch)
-    (x : UPts (sigD D) (gramN D i hi) (FiniteAdeleRing (𝓞 D.host.F) D.host.F)) (P : t.Pr.vT (t.word u)) (w : Sp t.X.E (D.R.N i)) : Prop :=
-  vecAt (t := t) (ratA D.host.F (A.crd i hi) * x.1) (vUnder (t := t) P.1) w ∈
-    latS (F := D.host.F) ((vUnder (t := t) P.1).adicCompletion D.host.F) (intV D.host.E (vUnder (t := t) P.1))
-      (Submodule.span (𝓞 D.host.E) (dualSet (sigD D : D.host.E →+* D.host.E) (gramN D i hi) ((St i hi).K β).lev.Lb))
-
-def mvG (i : ℕ) (hi : i ≤ D.R.m) (β : (St i hi).Ch)
-    (x : UPts (sigD D) (gramN D i hi) (FiniteAdeleRing (𝓞 D.host.F) D.host.F)) (P : t.Pr.vT (t.word u)) (w : Sp t.X.E (D.R.N i)) :
-    𝓞 t.X.E ⧸ P.1.asIdeal := by
-  classical
-  exact if h : (((St i hi).T : ℕ) : 𝓞 D.host.F) ∈ (vUnder (t := t) P.1).asIdeal then
-    (if hz : InDom A i hi β x P w then
-      iotaSel A i hi β P (vUnder (t := t) P.1) h (((St i hi).K β).lev.fT (vUnder (t := t) P.1) h ⟨_, hz⟩) else 0)
-    else 0
 
 end MidDatum
 
@@ -263,107 +232,10 @@ section Cong
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {N : ℕ}
   {P : HeightOneSpectrum (𝓞 E)}
 
-theorem intAtA_add {a b : E ⊗[F] FiniteAdeleRing (𝓞 F) F} (ha : IntAtA (F := F) P a) (hb : IntAtA (F := F) P b) :
-    IntAtA (F := F) P (a + b) := by
-  obtain ⟨s, hs, h1⟩ := ha
-  obtain ⟨r, hr, h2⟩ := hb
-  have hi : ∀ x : 𝓞 E, iA F E (algebraMap (𝓞 E) E x) ∈ Formalism.L2.Herm.intAf F E := fun x => (toRInt F E x).2
-  refine ⟨s * r, fun h => (P.isPrime.mem_or_mem h).elim hs hr, ?_⟩
-  have e : iA F E (algebraMap (𝓞 E) E (s * r)) * (a + b) =
-      iA F E (algebraMap (𝓞 E) E r) * (iA F E (algebraMap (𝓞 E) E s) * a) +
-        iA F E (algebraMap (𝓞 E) E s) * (iA F E (algebraMap (𝓞 E) E r) * b) := by
-    rw [map_mul, map_mul]; ring
-  rw [e]
-  exact add_mem (mul_mem (hi r) h1) (mul_mem (hi s) h2)
-
-theorem intAtA_mul {a b : E ⊗[F] FiniteAdeleRing (𝓞 F) F} (ha : IntAtA (F := F) P a) (hb : IntAtA (F := F) P b) :
-    IntAtA (F := F) P (a * b) := by
-  obtain ⟨s, hs, h1⟩ := ha
-  obtain ⟨r, hr, h2⟩ := hb
-  refine ⟨s * r, fun h => (P.isPrime.mem_or_mem h).elim hs hr, ?_⟩
-  have e : iA F E (algebraMap (𝓞 E) E (s * r)) * (a * b) =
-      (iA F E (algebraMap (𝓞 E) E s) * a) * (iA F E (algebraMap (𝓞 E) E r) * b) := by
-    rw [map_mul, map_mul]; ring
-  rw [e]
-  exact mul_mem h1 h2
-
-theorem intAtA_int (x : 𝓞 E) : IntAtA (F := F) P (iA F E (algebraMap (𝓞 E) E x)) :=
-  ⟨1, fun h => P.isPrime.ne_top ((Ideal.eq_top_iff_one _).2 h), by
-    rw [map_one, map_one, one_mul]; exact (toRInt F E x).2⟩
-
-def intAtSub (P : HeightOneSpectrum (𝓞 E)) :
-    Subring (E ⊗[F] FiniteAdeleRing (𝓞 F) F) where
-  carrier := {a | IntAtA (F := F) P a}
-  mul_mem' := GlobalTheory.CplMuDet.intAtA_mul
-  one_mem' := by simpa using GlobalTheory.CplMuDet.intAtA_int (F := F) (P := P) 1
-  add_mem' := GlobalTheory.CplMuDet.intAtA_add
-  zero_mem' := by simpa using GlobalTheory.CplMuDet.intAtA_int (F := F) (P := P) 0
-  neg_mem' := by
-    intro a ha
-    have := GlobalTheory.CplMuDet.intAtA_mul (GlobalTheory.CplMuDet.intAtA_int (F := F) (P := P) (-1)) ha
-    simpa using this
-
 theorem det_congAt {d : ℕ} (hd : 1 ≤ d) {k : GL (Fin N) (E ⊗[F] FiniteAdeleRing (𝓞 F) F)} (h : CongAt P d k) :
     IntAtA (F := F) P (iA F E ((qOf P : ℕ) : E)⁻¹ *
-      (((Matrix.GeneralLinearGroup.det k : (E ⊗[F] FiniteAdeleRing (𝓞 F) F)ˣ) : E ⊗[F] FiniteAdeleRing (𝓞 F) F) - 1)) := by
-  classical
-  set S := intAtSub (F := F) P with hS
-  have hq : ((qOf P : ℕ) : E) ≠ 0 := by
-    have : qOf P ≠ 0 := fun h0 => P.ne_bot (Ideal.absNorm_eq_zero_iff.1 h0)
-    exact_mod_cast this
-  set Q := iA F E ((qOf P : ℕ) : E) with hQ
-  have hcQ : iA F E ((qOf P : ℕ) : E)⁻¹ * Q = 1 := by rw [hQ, ← map_mul, inv_mul_cancel₀ hq, map_one]
-  have hQS : Q ∈ S := by
-    have := GlobalTheory.CplMuDet.intAtA_int (F := F) (P := P) ((qOf P : ℕ) : 𝓞 E)
-    simpa [hQ] using this
-  have hZ : ∀ a b, Q ^ (d - 1) * (iA F E (((qOf P : ℕ) : E) ^ d)⁻¹ *
-      ((k : Matrix (Fin N) (Fin N) (E ⊗[F] FiniteAdeleRing (𝓞 F) F)) - 1) a b) ∈ S :=
-    fun a b => S.mul_mem (S.pow_mem hQS _) (h a b)
-  have hZe : ∀ a b, Q * (Q ^ (d - 1) * (iA F E (((qOf P : ℕ) : E) ^ d)⁻¹ *
-      ((k : Matrix (Fin N) (Fin N) (E ⊗[F] FiniteAdeleRing (𝓞 F) F)) - 1) a b)) =
-      ((k : Matrix (Fin N) (Fin N) (E ⊗[F] FiniteAdeleRing (𝓞 F) F)) - 1) a b := by
-    intro a b
-    have e : Q * Q ^ (d - 1) * iA F E (((qOf P : ℕ) : E) ^ d)⁻¹ = 1 := by
-      rw [← pow_succ', Nat.sub_add_cancel hd, hQ, ← map_pow, ← map_mul, mul_inv_cancel₀ (pow_ne_zero _ hq), map_one]
-    rw [← mul_assoc, ← mul_assoc, e, one_mul]
-  let Z : Matrix (Fin N) (Fin N) S := fun a b => ⟨_, hZ a b⟩
-  let q' : S := ⟨Q, hQS⟩
-  let M : Matrix (Fin N) (Fin N) S := 1 + q' • Z
-  have hM : M.map S.subtype = (k : Matrix (Fin N) (Fin N) (E ⊗[F] FiniteAdeleRing (𝓞 F) F)) := by
-    ext a b
-    have e1 : S.subtype ((1 : Matrix (Fin N) (Fin N) S) a b) = (1 : Matrix (Fin N) (Fin N) (E ⊗[F] FiniteAdeleRing (𝓞 F) F)) a b := by
-      rw [Matrix.one_apply, Matrix.one_apply]; split_ifs <;> simp
-    rw [Matrix.map_apply]
-    simp only [M]
-    rw [Matrix.add_apply, map_add (f := _), e1, Matrix.smul_apply, smul_eq_mul, map_mul]
-    show _ + Q * (Q ^ (d - 1) * _) = _
-    rw [hZe, Matrix.sub_apply]
-    ring_nf
-  set I : Ideal S := Ideal.span {q'}
-  have hMI : M.map (Ideal.Quotient.mk I) = 1 := by
-    ext a b
-    have hq0 : Ideal.Quotient.mk I q' = 0 := Ideal.Quotient.eq_zero_iff_mem.2 (Ideal.subset_span rfl)
-    rw [Matrix.map_apply]
-    simp only [M]
-    rw [Matrix.add_apply, map_add (f := _), Matrix.smul_apply, smul_eq_mul, map_mul, hq0, zero_mul, add_zero,
-      Matrix.one_apply, Matrix.one_apply]
-    split_ifs <;> simp
-  have hdet : Ideal.Quotient.mk I M.det = Ideal.Quotient.mk I 1 := by
-    rw [RingHom.map_det, map_one]
-    show (M.map (Ideal.Quotient.mk I)).det = 1
-    rw [hMI, Matrix.det_one]
-  obtain ⟨w, hw⟩ := Ideal.mem_span_singleton'.1 (Ideal.Quotient.eq.1 hdet)
-  have hk : ((Matrix.GeneralLinearGroup.det k : (E ⊗[F] FiniteAdeleRing (𝓞 F) F)ˣ) : E ⊗[F] FiniteAdeleRing (𝓞 F) F) =
-      S.subtype M.det := by
-    rw [RingHom.map_det, Matrix.GeneralLinearGroup.val_det_apply]
-    exact congrArg Matrix.det hM.symm
-  have e2 : iA F E ((qOf P : ℕ) : E)⁻¹ *
-      (((Matrix.GeneralLinearGroup.det k : (E ⊗[F] FiniteAdeleRing (𝓞 F) F)ˣ) : E ⊗[F] FiniteAdeleRing (𝓞 F) F) - 1) = (w : _) := by
-    rw [hk, show S.subtype M.det - 1 = S.subtype (M.det - 1) by simp, ← hw, map_mul]
-    show iA F E ((qOf P : ℕ) : E)⁻¹ * ((w : _) * Q) = _
-    rw [mul_comm (w : E ⊗[F] FiniteAdeleRing (𝓞 F) F), ← mul_assoc, hcQ, one_mul]
-  rw [e2]
-  exact w.2
+      (((Matrix.GeneralLinearGroup.det k : (E ⊗[F] FiniteAdeleRing (𝓞 F) F)ˣ) : E ⊗[F] FiniteAdeleRing (𝓞 F) F) - 1)) :=
+  GlobalTheory.FramesDet.det_congAt hd h
 
 end Cong
 
@@ -480,8 +352,6 @@ theorem xiCpl1_moved (hX : X.Ok) (hPr : Pr.Ok) (hL : L.Ok Ch sel mu cst G m2) {u
 
 end Local
 
-
-
 theorem levAt_target : UnderTie (fun {D L hT Gi Gl Kc Y cX ex t u μ St} A dtU a => PtEx A a → MuLaw t u μ dtU → ∀ i hi, i = t.m2 → PtAway A a i hi →
   ∀ β β' (x : UA D i (Nat.le_of_succ_le hi)) (x' x₁' : UA D (i + 1) hi) (κ' : ((St (i + 1) hi).K β').lev.U) p p' p₁',
     x₁'.1 = x'.1 * κ'.1 → IsPtAd A a i (Nat.le_of_succ_le hi) β x p → IsPtAd A a (i + 1) hi β' x' p' →
@@ -533,8 +403,6 @@ noncomputable section
 namespace GlobalTheory.PtMove
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-
 
 theorem isPtAd_mul_lev : UnderTie (fun {D L hT Gi Gl Kc Y cX ex t u μ St} A dtU a =>
   ∀ (i : ℕ) (hi : i ≤ D.R.m) (β : (St i hi).Ch) (κ : ((St i hi).K β).lev.U) (x x₁ : UA D i hi)
@@ -730,7 +598,6 @@ variable {X : Fields} {Pr : Primes X} {R : Ranks} {Ch : Chars X Pr R.m}
   {sel : HeightOneSpectrum (𝓞 X.F) → HeightOneSpectrum (𝓞 X.E)} {S : Set ℕ} {mu : Tup X.F X.E X.K S}
   {cst : LocCst X (rowSG Pr sel mu)} {L : ChIdx X Pr R (QE sel (mu : Chr X.F X.E X.K))} {G : ChGlob X R.m} {m2 : ℕ}
 
-
 open GlobalTheory.TopLaw GlobalTheory.CoupledLaw in
 theorem firstCoupledDatum_source_level_law {u : Pr.Word} (hX : X.Ok) (hPr : Pr.Ok) (hL : L.Ok Ch sel mu cst G m2) {al : L.β m2}
     {p q : ChPt (R := R) sel mu u m2} (p' : ChPt (R := R) sel mu u (m2 + 1)) (Y : Set (Sp X.E (R.N (m2 + 1))))
@@ -759,8 +626,6 @@ end GlobalTheory.LevSrcCpl
 
 namespace GlobalTheory.LevSrcCpl
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-
 
 theorem levSrc_cpl : UnderTie (fun {D L hT Gi Gl Kc Y cX ex t u μ St} A dtU a => PtEx A a → MuLaw t u μ dtU → ∀ i hi, i = t.m2 → PtAway A a i hi →
   ∀ β β' (x x₁ : UA D i (Nat.le_of_succ_le hi)) (x' : UA D (i + 1) hi) (κ : ((St i (Nat.le_of_succ_le hi)).K β).lev.U) p p' p₁,

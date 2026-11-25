@@ -1678,7 +1678,7 @@ theorem PositivityTheory.Sph.Tr.closeSph
   have h_GlobalTheory_ThK_TowerA : GlobalTheory.ThK.TowerA := (PositivityTheory.ThKG.Tow.towerA_of PositivityTheory.ThKG.Tow.planeEx PositivityTheory.ThKG.Tow.modelEx h_Weil6_ThKG_Tow_WeilEx)
   have h_GlobalTheory_ThK_TowerB : GlobalTheory.ThK.TowerB := (PositivityTheory.ThKG.Tow.towerB_of PositivityTheory.ThKG.Tow.planeEx PositivityTheory.ThKG.Tow.modelEx h_Weil6_ThKG_Tow_WeilEx)
   have h_GlobalTheory_ThK_FacNe : GlobalTheory.ThK.FacNe := (PositivityTheory.ThK.Close.facNe)
-  have h_Weil6_KCo_DictX : PositivityTheory.KCo.DictX := (PositivityTheory.ThKG.StdDict.dictX)
+  have h_Weil6_KCo_DictX : PositivityTheory.KCo.DictX := (PositivityTheory.ThK.SplitDict.dictX)
   have h_Weil6_KCo_SecSt : PositivityTheory.KCo.SecSt := (PositivityTheory.KCo.section_statement)
   have h_Weil6_KCo_DictSt : PositivityTheory.KCo.DictSt := (PositivityTheory.KCo.dictSt_of h_Weil6_KCo_DictX h_Weil6_KCo_SecSt)
   have h_GlobalTheory_ThK_KCoinv : GlobalTheory.ThK.KCoinv := (hKCo h_Weil6_KCo_DictSt)

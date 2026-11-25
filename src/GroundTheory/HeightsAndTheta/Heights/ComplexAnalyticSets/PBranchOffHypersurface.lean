@@ -4,55 +4,12 @@ public import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StBranchO
 public import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.StHolomorphicFibreInfinite
 public import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.Statements
 public import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PLinearNoetherNormalization
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.Order.CompletePartialOrder
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.RingTheory.KrullDimension.NonZeroDivisors
-import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.RingTheory.WittVector.IsPoly
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
-import Mathlib.Topology.Sheaves.Init
-import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
 
@@ -91,42 +48,10 @@ theorem ringKrullDim_sup_span_add_one_le {R : Type*} [CommRing R] {Q : Ideal R} 
   obtain ⟨c', rfl⟩ := Ideal.Quotient.mk_surjective c
   simp only [Ideal.Quotient.factor_mk, Ideal.Quotient.eq_zero_iff_mem.2 hx, mul_zero]
 
-theorem eval_comp_pullback {n d : ℕ} (A : Matrix (Fin d) (Fin n) ℂ) (x : Fin n → ℂ) :
-    (eval x).comp (GroundTheory.Heights₂.Heights.ComplexSets.pullback A).toRingHom = eval (A.mulVec x) := by
-  apply MvPolynomial.ringHom_ext
-  · intro a; simp [GroundTheory.Heights₂.Heights.ComplexSets.pullback]
-  · intro i
-    simp [GroundTheory.Heights₂.Heights.ComplexSets.pullback, GroundTheory.Heights₂.Heights.ComplexSets.linPoly,
-      Matrix.mulVec, dotProduct]
-
 theorem fibre_finite {n d : ℕ} (I : Ideal (MvPolynomial (Fin n) ℂ)) (A : Matrix (Fin d) (Fin n) ℂ)
     (hA : GroundTheory.Heights₂.Heights.ComplexSets.IsFiniteProjection I A) (y : Fin d → ℂ) :
-    {x : Fin n → ℂ | (∀ q ∈ I, eval x q = 0) ∧ A.mulVec x = y}.Finite := by
-  classical
-  let _ : Algebra (MvPolynomial (Fin d) ℂ) (MvPolynomial (Fin n) ℂ ⧸ I) :=
-    (GroundTheory.Heights₂.Heights.ComplexSets.projHom I A).toRingHom.toAlgebra
-  let _ : Module (MvPolynomial (Fin d) ℂ) (MvPolynomial (Fin n) ℂ ⧸ I) := Algebra.toModule
-  have : Module.Finite (MvPolynomial (Fin d) ℂ) (MvPolynomial (Fin n) ℂ ⧸ I) := hA.finite
-  have : Algebra.IsIntegral (MvPolynomial (Fin d) ℂ) (MvPolynomial (Fin n) ℂ ⧸ I) :=
-    Algebra.IsIntegral.of_finite _ _
-  have key : ∀ i : Fin n, ∃ f : Polynomial (MvPolynomial (Fin d) ℂ), f.Monic ∧
-      Polynomial.eval₂ (GroundTheory.Heights₂.Heights.ComplexSets.pullback A).toRingHom (X i) f ∈ I := by
-    intro i
-    obtain ⟨f, hfm, hf⟩ :=
-      Algebra.IsIntegral.isIntegral (R := MvPolynomial (Fin d) ℂ) (Ideal.Quotient.mk I (X i))
-    refine ⟨f, hfm, ?_⟩
-    rw [← Ideal.Quotient.eq_zero_iff_mem, Polynomial.hom_eval₂]
-    exact hf
-  choose f hfm hfI using key
-  refine (Set.Finite.pi (t := fun i => {z : ℂ | z ∈ ((f i).map (eval y)).roots})
-    (fun i => Multiset.finite_toSet _)).subset ?_
-  rintro x ⟨hx, hAx⟩
-  simp only [Set.mem_pi, Set.mem_univ, true_implies, Set.mem_ofPred_eq]
-  intro i
-  have h0 := hx _ (hfI i)
-  rw [Polynomial.hom_eval₂, eval_comp_pullback, hAx, eval_X] at h0
-  rw [Polynomial.mem_roots ((hfm i).map _).ne_zero, Polynomial.IsRoot, Polynomial.eval_map]
-  exact h0
+    {x : Fin n → ℂ | (∀ q ∈ I, eval x q = 0) ∧ A.mulVec x = y}.Finite :=
+  IndefiniteRowSideFullHecke.ComplexSets.fibre_finite hA y
 
 theorem proof (hF : HolomorphicFibreInfinite.Statement) : BranchOffHypersurface.Statement := by
   intro n k J b U φ hJ hdim hb hU hne hφd hφi hφJ

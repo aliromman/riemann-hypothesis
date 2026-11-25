@@ -138,7 +138,7 @@ code only in the sandbox of `scripts/ci-build.py`: offline, `--unshare-all`, `--
 whose lakefile, manifest or toolchain differ from `main`, prepares dependencies from `main`'s
 own lakefile outside the sandbox, publishes nothing and holds no cache credentials.
 
-`python3 scripts/rh-buildq/test_sandbox.py` checks the sandbox with a hostile lakefile that
+`python3 scripts/tests/rh-buildq/test_sandbox.py` checks the sandbox with a hostile lakefile that
 tries to write into `$HOME`, read `~/.ssh`, read the runner's files and connect to the
 network: all fail, and a normal build of the same project succeeds. It checks that the
 sandbox cannot reach loopback services, the metadata address or the host's abstract Unix

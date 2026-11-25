@@ -53,7 +53,7 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 
 namespace GlobalTheory.TypeRec.Model
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField GlobalTheory.TypeRec.factG
+attribute [local instance] GlobalTheory.TypeRec.factG
 
 section Compl
 variable {F : Type} [Field F] [NumberField F] (w : HeightOneSpectrum (𝓞 F)) (p : ℕ) [hp : Fact p.Prime]

@@ -22,56 +22,10 @@ public import GroundTheory.HeightsAndTheta.Heights.MatrixCharts.PInvEntryBound
 public import GroundTheory.HeightsAndTheta.Heights.Regularisation.PGlueRegularised
 public import GroundTheory.HeightsAndTheta.Heights.Regularisation.PHodgeDerivative
 public import GroundTheory.HeightsAndTheta.Heights.Regularisation.PosSemidefOfIntQuadNonneg
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
 import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.RingTheory.WittVector.IsPoly
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Topology.Sheaves.Init
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Order.CompletePartialOrder
-import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.MatrixCharts.PInvEntryDeriv, GroundTheory.HeightsAndTheta.Heights.MatrixCharts.PLogDetGramDeriv, GroundTheory.HeightsAndTheta.Heights.MatrixCharts.PMatrixDetDeriv, GroundTheory.HeightsAndTheta.Heights.Regularisation.PExpExtension, GroundTheory.HeightsAndTheta.Heights.Regularisation.PImTauBounds, GroundTheory.HeightsAndTheta.Heights.Regularisation.PKernelPositive, GroundTheory.HeightsAndTheta.Heights.Regularisation.Assembly
@@ -482,7 +436,7 @@ theorem tau_shifted_periodic (j : Fin a) (w : Fin n → ℂ) (hw : w ∈ logCove
     intro i
     by_cases hij : i = j
     · subst hij
-      simp only [Pi.add_apply, Pi.single_eq_same, add_div, div_self two_pi_I_ne_zero, add_smul,
+      simp only [Pi.add_apply, Pi.single_eq_same, add_div, div_self Complex.two_pi_I_ne_zero, add_smul,
         one_smul]
     · simp [cusp_ne P hij, hij]
   simp only [PeriodPolydisc.tau0, P.periodic j w hw]
@@ -521,7 +475,7 @@ theorem exp_quad (w : Fin n → ℂ) :
   rw [qf_tau, mul_add, Complex.exp_add, phi, Finset.mul_sum]
   congr 2
   refine Finset.sum_congr rfl fun i _ => ?_
-  field_simp [two_pi_I_ne_zero]
+  field_simp [Complex.two_pi_I_ne_zero]
 
 theorem norm_exp_quad_le (w : Fin n → ℂ) (hw : w ∈ logCover P.a_le) :
     ‖Complex.exp (2 * Real.pi * Complex.I * qf (P.τ w) v)‖ ≤ 1 := by

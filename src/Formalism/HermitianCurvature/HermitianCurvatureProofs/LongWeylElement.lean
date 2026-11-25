@@ -250,13 +250,13 @@ theorem t_bigcellrec : BigCellRec := by
           by_cases hB : j.val ≤ 1 + r' + k
           · have hB' : j.val - 1 ≤ r' + k := by omega
             simp only [hA, hA', hB, hB', dite_true, dite_false]
-            split_ifs <;> first | rfl | (exfalso; omega) | (simp only [mul_one, mul_zero]; done) | (exact matrix_apply_congr_of_eq _ (by omega) (by omega)) | (congr 3 <;> (try dsimp only [Fin.val_mk, Fin.coe_natAdd] at *) <;> first | omega | (ext; simp only [Fin.coe_natAdd, Fin.val_mk]; omega))
+            split_ifs <;> first | rfl | (exfalso; omega) | (simp only [mul_one, mul_zero]; done) | (exact matrix_apply_congr_of_eq _ (by omega) (by omega))
           · have hB' : ¬ (j.val - 1 ≤ r' + k) := by omega
             simp only [hA, hA', hB, hB', dite_false]
             split_ifs <;> first | rfl | (exfalso; omega) | (simp only [mul_one, mul_zero]; done) | (exact matrix_apply_congr_of_eq _ (by omega) (by omega)) | (simp only [mul_one]; congr 3 <;> (try dsimp only [Fin.val_mk, Fin.coe_natAdd] at *) <;> first | omega | (ext; simp only [Fin.coe_natAdd, Fin.val_mk]; omega)) | (congr 3 <;> (try dsimp only [Fin.val_mk, Fin.coe_natAdd] at *) <;> first | omega | (ext; simp only [Fin.coe_natAdd]; omega))
       · rw [lev_mn k r' _ i j hmi hmj]
         simp only [bigCell, esI, Fin.ext_iff]
-        split_ifs <;> first | rfl | (exfalso; omega) | (congr 3 <;> (try dsimp only [Fin.val_mk, Fin.coe_natAdd] at *) <;> first | omega | (ext; simp only [Fin.coe_natAdd, Fin.val_mk]; omega))
+        split_ifs <;> first | rfl | (exfalso; omega)
 
 end PartW
 
@@ -320,8 +320,6 @@ lemma long_weyl_element_sq_one (k r' : ℕ) : w0 k r' 1 * w0 k r' 1 = 1 := by
   ext i j
   rw [weylMatrix_mul_apply]
   simp only [w0_apply_eq_ite_first_index]
-  have hi := i.isLt
-  have hj := j.isLt
   simp only [iL, iZ, Matrix.one_apply, Fin.ext_iff, Fin.val_mk, star_one, inv_one, one_mul]
   split_ifs <;> first | rfl | (exfalso; omega)
 
@@ -394,7 +392,6 @@ lemma fin_cases' (a : Fin (1 + r')) : a = a0 r' ∨ ∃ a' : Fin r', a = Fin.nat
     omega
 
 lemma Hpk_Z (q : Fin (2 * (1 + r') + k + 1)) : Hpk k (1 + r') (iZ k r') q = if q = iL k r' then 1 else 0 := by
-  have hq := q.isLt
   simp only [Hpk, iZ, iL, Fin.ext_iff, Fin.val_mk]
   split_ifs <;> first | rfl | (exfalso; omega)
 
@@ -514,14 +511,11 @@ lemma emb_mid (μ : Matrix (Fin (k + 1)) (Fin (k + 1)) ℂ) (q j : Fin (2 * r + 
 lemma bc_mid_col (c : Fin r → ℂ) (μ : Matrix (Fin (k + 1)) (Fin (k + 1)) ℂ) (i j : Fin (2 * r + k + 1)) (hj : midW k r j) :
     bigCell k r c μ i j = if hi : midW k r i then μ ⟨i.val - r, by have := hi; omega⟩ ⟨j.val - r, by have := hj; omega⟩
       else 0 := by
-  have h1 := hj.1
   have h2 := hj.2
   simp only [bigCell, dif_neg (show ¬ j.val < r by omega), dif_pos h2]
 
 lemma bc_mid_row_out (c : Fin r → ℂ) (μ : Matrix (Fin (k + 1)) (Fin (k + 1)) ℂ) (i j : Fin (2 * r + k + 1))
     (hi : midW k r i) (hj : ¬ midW k r j) : bigCell k r c μ i j = 0 := by
-  have h1 := hi.1
-  have h2 := hi.2
   have hj' : ¬ (r ≤ j.val ∧ j.val ≤ r + k) := hj
   simp only [bigCell, esI, Fin.ext_iff]
   split_ifs <;> first | rfl | (exfalso; omega)
@@ -534,9 +528,6 @@ lemma bc_out_col (c : Fin r → ℂ) (μ ν : Matrix (Fin (k + 1)) (Fin (k + 1))
 
 lemma bc_one_mid (c : Fin r → ℂ) (i j : Fin (2 * r + k + 1)) (hi : midW k r i) (hj : midW k r j) :
     bigCell k r c 1 i j = if i = j then 1 else 0 := by
-  have h1 := hi.1
-  have h2 := hi.2
-  have h3 := hj.1
   have h4 := hj.2
   simp only [bigCell, Matrix.one_apply, Fin.ext_iff]
   split_ifs <;> first | rfl | (exfalso; omega)

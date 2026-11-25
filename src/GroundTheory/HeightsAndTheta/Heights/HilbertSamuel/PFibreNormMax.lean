@@ -3,56 +3,14 @@ module
 public import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsFibreNormMax
 public import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsFibreNormPullback
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterRedG
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Int
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.RingTheory.WittVector.IsPoly
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.ReduceModChar
 public import Mathlib.Topology.Algebra.MvPolynomial
-import Mathlib.Topology.Sheaves.Init
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterBridgeB
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.ProjDefs
+import GroundTheory.HeightsAndTheta.Heights.HeightComparison.IsMultiHomogIdealIff
 
 @[expose] public section
 
@@ -71,23 +29,12 @@ variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
 
 omit [Fintype K] in
 theorem isMultiHomog_mul {f g : MRing ι} {a b : K → ℕ} (hf : IsMultiHomog f a) (hg : IsMultiHomog g b) :
-    IsMultiHomog (f * g) (a + b) := by
-  classical
-  intro m hm k
-  obtain ⟨m1, hm1, m2, hm2, rfl⟩ := Finset.mem_add.mp (MvPolynomial.support_mul f g hm)
-  simp only [Finsupp.add_apply, Finset.sum_add_distrib, Pi.add_apply, hf m1 hm1 k, hg m2 hm2 k]
+    IsMultiHomog (f * g) (a + b) :=
+  GroundTheory.Heights₂.Heights.Bridge.isMultiHomog_mul hf hg
 
 theorem isMultiHomog_pow {f : MRing ι} {a : K → ℕ} (hf : IsMultiHomog f a) (n : ℕ) :
-    IsMultiHomog (f ^ n) (n • a) := by
-  induction n with
-  | zero =>
-    intro m hm k
-    rw [pow_zero, MvPolynomial.support_one, Finset.mem_singleton] at hm
-    subst hm
-    simp
-  | succ n ih =>
-    rw [pow_succ, succ_nsmul]
-    exact isMultiHomog_mul ih hf
+    IsMultiHomog (f ^ n) (n • a) :=
+  GroundTheory.Heights₂.Heights.Bridge.isMultiHomog_pow hf n
 
 theorem exists_lower {P : Ideal (MRing ι)} (hP : IsMultiHomogIdeal P) {m : ℕ} (e : K → ℕ)
     (L : Fin m → MRing ι) (hL : ∀ j, IsMultiHomog (L j) e)

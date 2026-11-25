@@ -167,95 +167,12 @@ theorem nMul_subst_nMul {R : Type*} [CommRing R] (F : FormalGroup R) (i j : ℕ)
     · exact ih
     · exact PowerSeries.subst_X (nMul_hasSubst F j)
 
-open MvPowerSeries Finsupp in
-private theorem coeff_one_subst_pair_X {R : Type*} [CommRing R] (F : FormalGroup R)
-    {f : PowerSeries R} (hf : PowerSeries.constantCoeff f = 0) :
-    PowerSeries.coeff 1 (MvPowerSeries.subst (![f, PowerSeries.X] : Fin 2 → MvPowerSeries Unit R)
-      F.toPowerSeries : PowerSeries R) = PowerSeries.coeff 1 f + 1 := by
-  have ha := _root_.GlobalTheory.ConvSer.nMul_hasSubst_pair hf PowerSeries.constantCoeff_X
-  obtain ⟨g, rfl⟩ := PowerSeries.X_dvd_iff.mpr hf
-  have hprod : ∀ d : Fin 2 →₀ ℕ, (d.prod fun s e => (![PowerSeries.X * g, PowerSeries.X] :
-      Fin 2 → MvPowerSeries Unit R) s ^ e) = PowerSeries.X ^ (d 0 + d 1) * g ^ d 0 := by
-    intro d
-    rw [Finsupp.prod_fintype _ _ (fun _ => pow_zero _), Fin.prod_univ_two]
-    show (PowerSeries.X * g) ^ d 0 * PowerSeries.X ^ d 1 = _
-    ring
-  have hcoeff : ∀ h : PowerSeries R, MvPowerSeries.coeff (single () 1) h = PowerSeries.coeff 1 h :=
-    fun _ => rfl
-  have hne : (single 0 1 : Fin 2 →₀ ℕ) ≠ single 1 1 := by
-    intro h
-    have := congrArg (fun d => d 0) h
-    simp at this
-  show MvPowerSeries.coeff (single () 1) _ = _
-  rw [coeff_subst ha, finsum_eq_sum_of_support_subset (s := {single 0 1, single 1 1}),
-    Finset.sum_pair hne]
-  · simp only [hprod, hcoeff, F.3, F.4]
-    simp
-  · intro d hd
-    simp only [Function.mem_support, hprod, hcoeff, PowerSeries.coeff_X_pow_mul'] at hd
-    simp only [Finset.coe_insert, Finset.coe_singleton, Set.mem_insert_iff, Set.mem_singleton_iff]
-    by_cases h2 : d 0 + d 1 ≤ 1
-    · rcases Nat.le_one_iff_eq_zero_or_eq_one.mp h2 with h | h
-      · exfalso
-        apply hd
-        have hd0 : d = 0 := Finsupp.ext fun i => by fin_cases i <;> simp <;> omega
-        simp [hd0, MvPowerSeries.coeff_zero_eq_constantCoeff_apply, F.2]
-      · have h0 : d 0 ≤ 1 := by omega
-        rcases Nat.le_one_iff_eq_zero_or_eq_one.mp h0 with h0 | h0
-        · right
-          ext i
-          fin_cases i <;> simp <;> omega
-        · left
-          ext i
-          fin_cases i <;> simp <;> omega
-    · exact absurd (by simp [h2]) hd
-
 
 open MvPowerSeries Finsupp in
 theorem _root_.GlobalTheory.ConvSer.nMul_props : ∀ (R : Type) [CommRing R] (F : FormalGroup R), (∀ n, PowerSeries.constantCoeff (_root_.GlobalTheory.ConvSer.nMul F n) = 0 ∧ PowerSeries.coeff 1 (_root_.GlobalTheory.ConvSer.nMul F n) = (n : R)) ∧ _root_.GlobalTheory.ConvSer.nMul F 1 = PowerSeries.X ∧ (∀ i j, MvPowerSeries.subst (![_root_.GlobalTheory.ConvSer.nMul F i, _root_.GlobalTheory.ConvSer.nMul F j] : Fin 2 → MvPowerSeries Unit R) F.toPowerSeries = _root_.GlobalTheory.ConvSer.nMul F (i + j)) ∧ (∀ i j, (_root_.GlobalTheory.ConvSer.nMul F i).subst (_root_.GlobalTheory.ConvSer.nMul F j) = _root_.GlobalTheory.ConvSer.nMul F (i * j)) ∧ (∀ (S : Type) [CommRing S] (φ : R →+* S) (n : ℕ), PowerSeries.map φ (_root_.GlobalTheory.ConvSer.nMul F n) = _root_.GlobalTheory.ConvSer.nMul (F.map φ) n) := by
   intro R _ F
-  have hc := _root_.GlobalTheory.ConvSer.nMul_constantCoeff F
-  have hs : ∀ n, PowerSeries.HasSubst (_root_.GlobalTheory.ConvSer.nMul F n) :=
-    fun n => PowerSeries.HasSubst.of_constantCoeff_zero' (hc n)
-  have hX : PowerSeries.HasSubst (PowerSeries.X : PowerSeries R) :=
-    PowerSeries.HasSubst.of_constantCoeff_zero' PowerSeries.constantCoeff_X
-  have hadd : ∀ i j, MvPowerSeries.subst (![_root_.GlobalTheory.ConvSer.nMul F i,
-      _root_.GlobalTheory.ConvSer.nMul F j] : Fin 2 → MvPowerSeries Unit R) F.toPowerSeries =
-      _root_.GlobalTheory.ConvSer.nMul F (i + j) := by
-    intro i j
-    induction j with
-    | zero =>
-      rw [_root_.GlobalTheory.ConvSer.nMul_zero, Nat.add_zero]
-      exact F.add_zero (hs i)
-    | succ j ih =>
-      rw [_root_.GlobalTheory.ConvSer.nMul_succ F j, show i + (j + 1) = (i + j) + 1 by omega,
-        _root_.GlobalTheory.ConvSer.nMul_succ F (i + j), ← ih]
-      exact (F.assoc' (hs i) (hs j) hX).symm
-  refine ⟨fun n => ⟨hc n, ?_⟩, ?_, hadd, ?_, ?_⟩
-  · induction n with
-    | zero => simp [_root_.GlobalTheory.ConvSer.nMul_zero]
-    | succ n ih =>
-      rw [_root_.GlobalTheory.ConvSer.nMul_succ, coeff_one_subst_pair_X F (hc n), ih]
-      push_cast
-      rfl
-  · rw [_root_.GlobalTheory.ConvSer.nMul_succ, _root_.GlobalTheory.ConvSer.nMul_zero]
-    exact F.zero_add hX
-  · intro i j
-    induction i with
-    | zero =>
-      rw [_root_.GlobalTheory.ConvSer.nMul_zero, Nat.zero_mul, _root_.GlobalTheory.ConvSer.nMul_zero,
-        ← PowerSeries.coe_substAlgHom (hs j), map_zero]
-    | succ i ih =>
-      rw [_root_.GlobalTheory.ConvSer.nMul_succ F i, Nat.succ_mul, ← hadd (i * j) j, ← ih]
-      show MvPowerSeries.subst (fun _ => _root_.GlobalTheory.ConvSer.nMul F j) _ = _
-      rw [MvPowerSeries.subst_comp_subst_apply
-        (_root_.GlobalTheory.ConvSer.nMul_hasSubst_pair (hc i) PowerSeries.constantCoeff_X)
-        (hasSubst_of_constantCoeff_zero fun _ => hc j)]
-      congr 1
-      funext s
-      fin_cases s
-      · rfl
-      · exact PowerSeries.subst_X (hs j)
+  refine ⟨fun n => ⟨nMul_constantCoeff F n, nMul_coeff_one F n⟩,
+    nMul_one F, nMul_add F, nMul_subst_nMul F, ?_⟩
   · intro S _ φ n
     induction n with
     | zero => simp [_root_.GlobalTheory.ConvSer.nMul_zero]
@@ -264,7 +181,7 @@ theorem _root_.GlobalTheory.ConvSer.nMul_props : ∀ (R : Type) [CommRing R] (F 
         ← ih]
       show MvPowerSeries.map φ _ = _
       rw [MvPowerSeries.map_subst
-        (_root_.GlobalTheory.ConvSer.nMul_hasSubst_pair (hc n) PowerSeries.constantCoeff_X)]
+        (nMul_hasSubst_pair (nMul_constantCoeff F n) PowerSeries.constantCoeff_X)]
       congr 1
       funext s
       fin_cases s

@@ -283,11 +283,11 @@ lemma herm_symm (k r : ℕ) (v w : Fin (2 * r + k + 1) → ℂ) :
 
 lemma herm_e (k r : ℕ) (v : Fin (2 * r + k + 1) → ℂ) (a : Fin r) :
     herm (Hpk k r) v (bvec (eI k r a)) = v (esI k r a) := by
-  apply PI.StabPairsW.herm_e <;> assumption
+  apply PI.StabPairsW.herm_e
 
 lemma herm_es (k r : ℕ) (v : Fin (2 * r + k + 1) → ℂ) (a : Fin r) :
     herm (Hpk k r) v (bvec (esI k r a)) = v (eI k r a) := by
-  apply PI.StabPairsW.herm_es <;> assumption
+  apply PI.StabPairsW.herm_es
 
 lemma herm_smul_left {n : ℕ} (H : Matrix (Fin n) (Fin n) ℂ) (c : ℂ) (v w : Fin n → ℂ) :
     herm H (c • v) w = c * herm H v w := by
@@ -369,10 +369,7 @@ lemma pluck_flag {k r n : ℕ} (hn : n ≤ r) (z : Fin (2 * r + k + 1) → ℂ) 
       · intro h; have := congrArg Fin.val h; simp at this; omega
       · rw [Fin.lt_def]; simp; omega
   have hp := GlobalTheory.PlueckerBound.norm_det_inner_le_of_det_eq_one _ n (fun i => WithLp.toLp 2 (x⁻¹ *ᵥ bvec (eI k r (Fin.castLE hn i))))
-    (fun a => WithLp.toLp 2 (Hpk k r *ᵥ y a)) _ hdet (by
-      intro a a' h
-      rw [hsum, hsum, inner_toLp]
-      exact h2 _ _ fun h' => h (Fin.castLE_injective hn h'))
+    (fun a => WithLp.toLp 2 (Hpk k r *ᵥ y a)) _ hdet
   simp only [inner_H, hsum, norm_H] at hp
   simp only [← _root_.GlobalTheory.Amp.GramFlag.eucl_eq] at hp
   refine hp.trans (mul_le_mul ?_ ?_ ?_ ?_)

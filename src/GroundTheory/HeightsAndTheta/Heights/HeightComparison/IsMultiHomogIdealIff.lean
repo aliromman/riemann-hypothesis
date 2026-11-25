@@ -2,48 +2,7 @@ module
 
 public import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.Objects
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.IsIntersectionFamily
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.RingTheory.WittVector.IsPoly
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
-import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -79,7 +38,7 @@ theorem weight_blockWeight (m : (Σ k, ι k) →₀ ℕ) :
   have h2 : ∑ x ∈ T, (if k = x.1 then m x else 0) =
       ∑ x ∈ m.support ∪ T, (if k = x.1 then m x else 0) := by
     refine Finset.sum_subset Finset.subset_union_right fun x _ hx => ?_
-    rw [if_neg]
+    rw [ite_eq_right]
     rintro rfl
     exact hx (Finset.mem_map.mpr ⟨x.2, Finset.mem_univ _, rfl⟩)
   rw [h1, ← h2, Finset.sum_map]
@@ -90,7 +49,83 @@ theorem isMultiHomog_iff (f : NumbersDVR.MRing ι R) (a : K → ℕ) :
   unfold NumbersDVR.IsMultiHomog ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog IsWeightedHomogeneous
   simp only [weight_blockWeight, mem_support_iff, funext_iff]
 
+theorem isMultiHomog_X (p : Σ k, ι k) :
+    ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (R := R) (X p) (Pi.single p.1 1) :=
+  (isMultiHomog_iff _ _).mp (isWeightedHomogeneous_X R (NumbersDVR.blockWeight ι) p)
+
+theorem isMultiHomog_X_ite (p : Σ k, ι k) :
+    ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (R := R) (X p) (fun k => if k = p.1 then 1 else 0) := by
+  convert isMultiHomog_X (R := R) p; simp [Pi.single_apply]
+
 end Homog
+
+section HomogOps
+
+variable [∀ k, Fintype (ι k)]
+
+theorem isMultiHomog_zero (a : K → ℕ) :
+    ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (R := R) (0 : NumbersDVR.MRing ι R) a := by
+  classical exact (isMultiHomog_iff _ _).mp (isWeightedHomogeneous_zero R _ a)
+
+theorem isMultiHomog_C (r : R) :
+    ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (R := R) (C r : NumbersDVR.MRing ι R) 0 := by
+  classical exact (isMultiHomog_iff _ _).mp (isWeightedHomogeneous_C _ r)
+
+theorem isMultiHomog_one :
+    ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (R := R) (1 : NumbersDVR.MRing ι R) 0 := by
+  classical exact (isMultiHomog_iff _ _).mp (isWeightedHomogeneous_one R _)
+
+theorem isMultiHomog_monomial (d : (Σ k, ι k) →₀ ℕ) (r : R) :
+    ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (R := R) (monomial d r) (fun k => ∑ i, d ⟨k, i⟩) := by
+  classical exact (isMultiHomog_iff _ _).mp (weight_blockWeight d ▸ isWeightedHomogeneous_monomial (NumbersDVR.blockWeight ι) d r rfl)
+
+theorem isMultiHomog_add {f g : NumbersDVR.MRing ι R} {a : K → ℕ}
+    (hf : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (R := R) f a)
+    (hg : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (R := R) g a) :
+    ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (R := R) (f + g) a := by
+  classical exact (isMultiHomog_iff _ _).mp (((isMultiHomog_iff _ _).mpr hf).add ((isMultiHomog_iff _ _).mpr hg))
+
+theorem isMultiHomog_neg {f : NumbersDVR.MRing ι R} {a : K → ℕ}
+    (hf : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (R := R) f a) :
+    ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (R := R) (-f) a := by
+  classical exact (isMultiHomog_iff _ _).mp (((isMultiHomog_iff _ _).mpr hf).neg)
+
+theorem isMultiHomog_sub {f g : NumbersDVR.MRing ι R} {a : K → ℕ}
+    (hf : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (R := R) f a)
+    (hg : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (R := R) g a) :
+    ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (R := R) (f - g) a := by
+  classical exact (isMultiHomog_iff _ _).mp (((isMultiHomog_iff _ _).mpr hf).sub ((isMultiHomog_iff _ _).mpr hg))
+
+theorem isMultiHomog_mul {f g : NumbersDVR.MRing ι R} {a b : K → ℕ}
+    (hf : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (R := R) f a)
+    (hg : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (R := R) g b) :
+    ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (R := R) (f * g) (a + b) := by
+  classical exact (isMultiHomog_iff _ _).mp (((isMultiHomog_iff _ _).mpr hf).mul ((isMultiHomog_iff _ _).mpr hg))
+
+theorem isMultiHomog_pow {f : NumbersDVR.MRing ι R} {a : K → ℕ}
+    (hf : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (R := R) f a) (n : ℕ) :
+    ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (R := R) (f ^ n) (n • a) := by
+  classical exact (isMultiHomog_iff _ _).mp (((isMultiHomog_iff _ _).mpr hf).pow n)
+
+theorem isMultiHomog_sum {β : Type*} (s : Finset β) (f : β → NumbersDVR.MRing ι R) {a : K → ℕ}
+    (h : ∀ b ∈ s, ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (R := R) (f b) a) :
+    ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (R := R) (∑ b ∈ s, f b) a := by
+  classical exact (isMultiHomog_iff _ _).mp (IsWeightedHomogeneous.sum s f a fun b hb => (isMultiHomog_iff _ _).mpr (h b hb))
+
+theorem isMultiHomog_prod {β : Type*} (s : Finset β) (f : β → NumbersDVR.MRing ι R) (a : β → K → ℕ)
+    (h : ∀ b ∈ s, ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (R := R) (f b) (a b)) :
+    ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (R := R) (∏ b ∈ s, f b) (∑ b ∈ s, a b) := by
+  classical exact (isMultiHomog_iff _ _).mp (IsWeightedHomogeneous.prod s f a fun b hb => (isMultiHomog_iff _ _).mpr (h b hb))
+
+theorem isMultiHomog_chartMono [Fintype K] (c : ∀ k, ι k) (d : K → ℕ) :
+    ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomog (R := R)
+      (∏ k, (X ⟨k, c k⟩ : NumbersDVR.MRing ι R) ^ d k) d := by
+  classical
+  convert isMultiHomog_prod (R := R) Finset.univ (fun k => (X ⟨k, c k⟩ : NumbersDVR.MRing ι R) ^ d k)
+    (fun k => d k • Pi.single k 1) fun k _ => isMultiHomog_pow (isMultiHomog_X (R := R) ⟨k, c k⟩) (d k)
+  ext k; simp [Finset.sum_apply, Pi.single_apply]
+
+end HomogOps
 
 section Ideals
 

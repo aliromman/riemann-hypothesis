@@ -233,8 +233,6 @@ theorem rowVal_col {A R : Type} [CommRing A] [CommRing R] (f : A →+* R) (g : A
   rw [← hx, ← map_pow, ← map_pow, ← map_mul, ← map_mul, hy, Matrix.mul_apply, Finset.mul_sum]
   simp only [hj, mul_left_comm]
 
-
-
 theorem functional_mem (p : SplitPt D k) {w : HeightOneSpectrum (𝓞 D.host.E)} (he : Formalism.L2.NTheta.IsIdemAt p.e w)
     {S T : HSp D} {LS : Set (Fin S.rank → D.host.E)} {Λ : Lat T} (hΛ : IsSelfDualC T Λ) {n : Type} [Fintype n] [DecidableEq n]
     (β : Frame p T n) (hβ : β.IsLat Λ (Submodule.pi Set.univ fun _ => (1 : Submodule 𝒪[k] k)))
@@ -1097,7 +1095,6 @@ theorem mul_mem_idAt {Q : GlobalTheory.FinPl.Pl D → Prop} {m n k : ℕ} (A : M
   exact Ideal.sum_mem _ fun l _ => Ideal.mul_mem_left _ _ (hB l j)
 
 end GlobalTheory.AscFin.CondCut
-
 
 open GlobalTheory.AscFin.CondCut in
 theorem GlobalTheory.AscFin.Cond.of_mul_grpOff : ∀ {D : D7} {V₀ W W₀ : HSp D} {ρ σ : ℕ} (dW : HypDec W W₀ σ) (p : Pieces V₀ W W₀ ρ σ) (x : Mx D W.rank ρ) (y : Mx D V₀.rank σ) (ψ : AddChar (AF D.host.F) ℂ) (P Q : GlobalTheory.FinPl.Pl D → Prop) (g₁ g₂ : GA D W), (∀ v, Q v → P v) → g₁ ∈ grpAt W Q → g₂ ∈ grpOff W Q → g₁ * g₂ = g₂ * g₁ → Cond dW p x y ψ P (g₁ * g₂) → Cond dW p x y ψ Q g₁ := by

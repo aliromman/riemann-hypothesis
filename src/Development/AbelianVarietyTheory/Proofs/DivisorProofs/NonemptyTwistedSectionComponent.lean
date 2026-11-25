@@ -79,11 +79,20 @@ namespace GlobalTheory.KeyTwDeep
 
 open NumberField IsDedekindDomain ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.L2.Pj Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta
   GlobalTheory.AllWt GlobalTheory.FlatLine GlobalTheory.FlatTw GlobalTheory.IndefiniteRowSideFullHecke.ComponentMassSum GlobalTheory.ShFam GlobalTheory.LamT GlobalTheory.KeyFourth GlobalTheory.IndefiniteRowSideFullHecke.DifferentConjugateDefects GlobalTheory.KeyRootTw in
-theorem twSec_keyRoot : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E)
+/-- Keep the key-root equation and its evaluation rule with the constructed section. -/
+theorem twSec_keyRoot_with_evaluation : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E)
     (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (r : ℕ) (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (x : ℝ),
     (∀ σ, GoodEmb c σ → IsUnf (U σ)) → (∀ σ, GoodEmb c σ → ∀ k (τ : E →+* ℂ), ‖τ ((U σ).X k).ξ0‖ = x) →
     FnAlgClosed (Xo := Xo) (c := c) → 1 ≤ Dw.p + Dw.q → (∀ p : ℕ, p.Prime → l.GoodAt p) →
-    ∀ Z : Comp Xo c, Nonempty (TwSec U x Z (wtOf Dw 0 1)) := by
+    ∀ Z : Comp Xo c, ∃ (t : TwSec U x Z (wtOf Dw 0 1))
+      (κ : GlobalTheory.KeyCl.Rule)
+      (e : Fin (Fintype.card (Σ τ : E →+* ℂ, Fin (Dw.mult τ))) ≃ Σ τ : E →+* ℂ, Fin (Dw.mult τ))
+      (K ρ : (Rul Xo c)ˣ) (a : c.F),
+      GlobalTheory.IndefiniteRowSideFullHecke.FibreFramesOnModels.IsKeyRule κ ∧
+      (∀ (F : Type) [Field F] [CharZero F] [Algebra c.F F] (y : FrPt Xo c F) (Φ : FibKey Xo F y.x),
+        Tied e y.s y.u Φ → evR Xo c (K : Rul Xo c) y = (κ F Φ.key : F)) ∧
+      a ≠ 0 ∧ idem Z * (ρ : Rul Xo c) ^ 4 = a • (idem Z * (K : Rul Xo c)) ∧
+      t.sig = idem Z * ((ρ⁻¹ : (Rul Xo c)ˣ) : Rul Xo c) := by
   intro E _ _ _ H Dw l Xo c r U x hU hx hF hpq hg
   obtain ⟨κ, k₁, k₂, k₃, k₄, k₅, k₆, -, -⟩ := GlobalTheory.KeyFamClosing.keyFam_one
   let e : Fin (Fintype.card (Σ τ : E →+* ℂ, Fin (Dw.mult τ))) ≃ Σ τ : E →+* ℂ, Fin (Dw.mult τ) :=
@@ -194,6 +203,17 @@ theorem twSec_keyRoot : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
         apply hw
         simp [hn]
       pts := hP }
+  exact ⟨t, κ, e, K, ρ, a, hkr, hKval, ha, haK, hs⟩
+
+open NumberField IsDedekindDomain ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.L2.Pj Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta
+  GlobalTheory.AllWt GlobalTheory.FlatLine GlobalTheory.FlatTw GlobalTheory.IndefiniteRowSideFullHecke.ComponentMassSum GlobalTheory.ShFam GlobalTheory.LamT GlobalTheory.KeyFourth GlobalTheory.IndefiniteRowSideFullHecke.DifferentConjugateDefects GlobalTheory.KeyRootTw in
+theorem twSec_keyRoot : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E)
+    (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (r : ℕ) (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (x : ℝ),
+    (∀ σ, GoodEmb c σ → IsUnf (U σ)) → (∀ σ, GoodEmb c σ → ∀ k (τ : E →+* ℂ), ‖τ ((U σ).X k).ξ0‖ = x) →
+    FnAlgClosed (Xo := Xo) (c := c) → 1 ≤ Dw.p + Dw.q → (∀ p : ℕ, p.Prime → l.GoodAt p) →
+    ∀ Z : Comp Xo c, Nonempty (TwSec U x Z (wtOf Dw 0 1)) := by
+  intro E _ _ _ H Dw l Xo c r U x hU hx hF hpq hg Z
+  obtain ⟨t, _⟩ := twSec_keyRoot_with_evaluation E H Dw l Xo c r U x hU hx hF hpq hg Z
   exact ⟨t⟩
 
 end GlobalTheory.KeyTwDeep

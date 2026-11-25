@@ -52,33 +52,14 @@ noncomputable section
 
 namespace Formalism.ZF
 
-private theorem hasDerivAt_sub_pow_of_sub_ne_zero (a z : ℂ) (n : ℕ) (h : z - a ≠ 0) :
-    HasDerivAt (fun w => (w - a) ^ n) ((z - a) ^ n * ((n : ℂ) / (z - a))) z := by
-  have h1 : HasDerivAt (fun w : ℂ => w - a) 1 z := by simpa using (hasDerivAt_id z).sub_const a
-  have h2 := (hasDerivAt_pow n (z - a)).comp z h1
-  refine h2.congr_deriv ?_
-  rcases n with _ | k
-  · simp
-  · rw [pow_succ, Nat.add_sub_cancel]; field_simp
-
-private theorem hasDerivAt_prod_sub_pow (Z : Finset ℂ) (m : ℂ → ℕ) (z : ℂ)
-    (hz : ∀ ρ ∈ Z, z - ρ ≠ 0) :
-    HasDerivAt (fun w => ∏ ρ ∈ Z, (w - ρ) ^ m ρ)
-      ((∏ ρ ∈ Z, (z - ρ) ^ m ρ) * ∑ ρ ∈ Z, (m ρ : ℂ) / (z - ρ)) z := by
-  classical
-  induction Z using Finset.induction_on with
-  | empty => simpa using hasDerivAt_const z (1 : ℂ)
-  | insert a s ha ih =>
-    have hd := (hasDerivAt_sub_pow_of_sub_ne_zero a z (m a) (hz a (Finset.mem_insert_self a s))).mul
-      (ih fun ρ hρ => hz ρ (Finset.mem_insert_of_mem hρ))
-    simp only [Finset.prod_insert ha, Finset.sum_insert ha]
-    exact hd.congr_deriv (by ring)
-
 lemma landauLocal_logDeriv_prod (Z : Finset ℂ) (m : ℂ → ℕ) (z : ℂ)
     (hz : ∀ ρ ∈ Z, z - ρ ≠ 0) :
     logDeriv (fun w => ∏ ρ ∈ Z, (w - ρ) ^ m ρ) z = ∑ ρ ∈ Z, (m ρ : ℂ) / (z - ρ) := by
-  rw [logDeriv_apply, (hasDerivAt_prod_sub_pow Z m z hz).deriv]
-  exact (div_eq_iff (Finset.prod_ne_zero_iff.mpr fun ρ hρ => pow_ne_zero _ (hz ρ hρ))).mpr (mul_comm _ _)
+  rw [logDeriv_fun_prod (f := fun ρ w : ℂ => (w - ρ) ^ m ρ) (fun ρ hρ => pow_ne_zero _ (hz ρ hρ))
+    (fun ρ _ => (differentiableAt_id.sub_const ρ).pow (m ρ))]
+  refine Finset.sum_congr rfl fun ρ _ => ?_
+  rw [logDeriv_fun_pow (f := fun w : ℂ => w - ρ) (by fun_prop) (m ρ)]
+  simp [logDeriv_apply, div_eq_mul_inv]
 
 theorem localZeroExpansionOfFactorization : LandauLocalOf := by
   intro hfac hlog f z₀ r M hr hM hf hf0 hbound
@@ -135,10 +116,11 @@ theorem localZeroExpansionOfFactorization : LandauLocalOf := by
   have hPz : (∏ ρ ∈ Z, (z - ρ) ^ m ρ) ≠ 0 := fun h0 => hfz (by rw [hfeqz, h0, zero_mul])
   have hhz : h z ≠ 0 := fun h0 => hfz (by rw [hfeqz, h0, mul_zero])
   have hzρ : ∀ ρ ∈ Z, z - ρ ≠ 0 := fun ρ hρ h0 => hfz (by rw [sub_eq_zero.mp h0]; exact ((hZ ρ).1 hρ).2)
-  have hd := ((hasDerivAt_prod_sub_pow Z m z hzρ).mul (hh.differentiableAt hnhds).hasDerivAt).congr_of_eventuallyEq
-    (Filter.mem_of_superset hnhds hfeq)
+  have heq := (logDeriv_congr_nhds (Filter.mem_of_superset hnhds hfeq)).self_of_nhds
   rw [show deriv f z / f z - ∑ ρ ∈ Z, (m ρ : ℂ) / (z - ρ) = deriv h z / h z by
-    rw [hd.deriv, hfeqz]; field_simp; ring]
+    change logDeriv f z - _ = logDeriv h z
+    rw [heq, logDeriv_fun_mul z hPz hhz (by fun_prop) (hh.differentiableAt hnhds),
+      landauLocal_logDeriv_prod Z m z hzρ, add_sub_cancel_left]]
   exact (hlogb z (by rw [mem_closedBall] at hz ⊢; linarith)).trans_eq (by rw [div_div_eq_mul_div]; ring)
 
 end Formalism.ZF

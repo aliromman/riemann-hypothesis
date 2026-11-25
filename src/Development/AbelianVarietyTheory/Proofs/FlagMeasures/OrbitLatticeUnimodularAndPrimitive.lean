@@ -119,17 +119,6 @@ noncomputable section
 
 namespace GlobalTheory.RowsOrb.Basic
 
-section Gen
-
-variable {E V : Type*} [Field E] [NumberField E] [AddCommGroup V] [Module E V] [Module (𝓞 E) V]
-  [IsScalarTower (𝓞 E) E V]
-
-theorem exists_smul_mem_lat (Λ : Submodule (𝓞 E) V) (hL : Submodule.IsFullLattice E Λ) (v : V) :
-    ∃ o : 𝓞 E, o ≠ 0 ∧ o • v ∈ Λ := by
-  exact _root_.GlobalTheory.NonzeroSmulMemSpanLattice.exists_ne_zero_smul_mem Λ hL v
-
-end Gen
-
 variable {D : D7}
 
 theorem hT_span_left {ι : Type*} (v : ι → (VS D).V) (w : (VS D).V) (h : ∀ a, (VS D).hT (v a) w = 0)
@@ -190,8 +179,7 @@ theorem pr_mem (v : (VS D).V) : pr X v ∈ Wb X := by
     mul_ite, mul_one, Finset.sum_ite_eq, Finset.mem_univ, if_true, sub_self]
   · rw [pr_apply]
 
-    simp only [map_sub, map_sum, map_smul, X.ff, hT_fe, smul_eq_mul, mul_zero, Finset.sum_const_zero, sub_zero,
-    mul_ite, mul_one, Finset.sum_ite_eq', Finset.mem_univ, if_true, sub_self]
+    simp only [map_sub, map_sum, map_smul, X.ff, hT_fe, smul_eq_mul, mul_zero, Finset.sum_const_zero, mul_ite, mul_one, Finset.sum_ite_eq', Finset.mem_univ, if_true, sub_self]
 
 theorem pr_eX (c : Fin D.R.rS) : pr X (X.eX c) = 0 := by
   rw [pr_apply]

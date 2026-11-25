@@ -425,22 +425,6 @@ private theorem re_star_dotProduct_self_eq_nsq (v : Fin N → ℂ) : (star v ⬝
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [Complex.star_def, Complex.conj_mul', ← Complex.ofReal_pow, Complex.ofReal_re]
 
-private theorem dualH_hB_iv_eq_hB_tp (x : Gp L N) : dualH (hB (iv x)) = hB (tp x) := by
-  apply Subtype.ext
-  funext w
-  show (((((x w)⁻¹ : GL (Fin N) ℂ) : Matrix (Fin N) (Fin N) ℂ)ᴴ *
-      (((x w)⁻¹ : GL (Fin N) ℂ) : Matrix (Fin N) (Fin N) ℂ))⁻¹)ᵀ =
-    ((x w : Matrix (Fin N) (Fin N) ℂ)ᵀ)ᴴ * (x w : Matrix (Fin N) (Fin N) ℂ)ᵀ
-  have hinv : ((((x w)⁻¹ : GL (Fin N) ℂ) : Matrix (Fin N) (Fin N) ℂ)ᴴ *
-      (((x w)⁻¹ : GL (Fin N) ℂ) : Matrix (Fin N) (Fin N) ℂ))⁻¹ =
-      (x w : Matrix (Fin N) (Fin N) ℂ) * (x w : Matrix (Fin N) (Fin N) ℂ)ᴴ := by
-    apply Matrix.inv_eq_right_inv
-    rw [Matrix.mul_assoc, ← Matrix.mul_assoc (((x w)⁻¹ : GL (Fin N) ℂ) : Matrix (Fin N) (Fin N) ℂ),
-      Units.inv_mul, Matrix.one_mul, ← Matrix.conjTranspose_mul, Units.mul_inv,
-      Matrix.conjTranspose_one]
-  rw [hinv, Matrix.transpose_mul]
-  rfl
-
 theorem ht_emb (γ : Gm L N) (x : Gp L N) : ht (emb L N γ * x) = ht x := by
   rw [ht_eq, ht_eq, lm_iv_emb, lm_tp_emb]
 

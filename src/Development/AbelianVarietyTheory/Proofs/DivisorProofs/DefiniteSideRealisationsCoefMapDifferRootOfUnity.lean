@@ -77,7 +77,6 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.TupleReadBaseTupleE
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 noncomputable section
 open NumberField Formalism.BasicNotions Formalism.L2.DIV Formalism.L2.Theta Formalism.IndefR
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
@@ -97,7 +96,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 noncomputable section
 open NumberField
 
@@ -158,7 +156,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 noncomputable section
 open NumberField
 
@@ -327,7 +324,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 noncomputable section
 open NumberField Formalism.BasicNotions Formalism.L2.DIV Formalism.L2.Theta Formalism.IndefR
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
@@ -506,8 +502,6 @@ theorem ratDense (D : D7) (V : Formalism.BasicNotions.TH.HSp D)
           γ ∈ Formalism.UG.UJ (D.sp.cm.sig : D.host.E →+* D.host.E) V.gram ∧
             (γ : Matrix (Fin V.rank) (Fin V.rank) D.host.E) = (1 + S) * (1 - S)⁻¹ := by
         first
-          | exact _root_.GlobalTheory.CayleyUnitary.cayley_mem_UJ (D.sp.cm.sig : D.host.E →+* D.host.E) V.gram S hS h0
-          | exact _root_.GlobalTheory.CayleyUnitary.cayley_mem_UJ (D.sp.cm.sig : D.host.E →+* D.host.E) V.gram S hS hJ h0
           | exact _root_.GlobalTheory.CayleyUnitary.cayley_mem_UJ (D.sp.cm.sig : D.host.E →+* D.host.E) V.gram S hJ hS h0
       have hne : ∀ τ, (1 - y τ).det ≠ 0 := fun τ => by
         rw [hdS]; exact (map_ne_zero _).2 h0
@@ -659,7 +653,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 noncomputable section
 open NumberField Formalism.BasicNotions Formalism.L2.DIV Formalism.L2.Theta Formalism.IndefR
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
@@ -682,7 +675,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 noncomputable section
 open NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.DIV.Cons Formalism.L2.Pj Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Indef.Tree Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx

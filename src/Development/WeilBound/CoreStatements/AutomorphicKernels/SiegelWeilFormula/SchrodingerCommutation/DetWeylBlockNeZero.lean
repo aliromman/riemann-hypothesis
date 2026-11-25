@@ -4,7 +4,6 @@ public import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeil
 public import Development.AbelianVarietyTheory.Definitions.Divisors.HilbertNinetyQuotientHomEqIff
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAdelicSchwartzNeZeroAtOrigin
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilRepresentationPreservesSchwartz
-public import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.SchrodingerCommutation.Imports
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
 import Mathlib.Algebra.Order.Interval.Basic
@@ -74,20 +73,6 @@ theorem det_weyl_block_ne_zero {n : ℕ} (ε : ℤˣ) :
 
 variable (d : SD σ)
 
-theorem detY : d.Y.J.det ≠ 0 := by
-  obtain ⟨⟨ε, hε⟩, -⟩ := d.ok.frame
-  intro h0
-  have hd : (dbl d.Y.J).det = 0 := by
-    rw [dbl, Matrix.det_fromBlocks_zero₁₂, h0, zero_mul]
-  have h := congrArg Matrix.det hε
-  rw [Matrix.det_mul, Matrix.det_mul, hd, mul_zero, zero_mul] at h
-  exact det_weyl_block_ne_zero ε h.symm
-
-theorem signY : ∃ ε : ℤˣ, ∀ i j, σ (d.Y.J j i) = ((ε : ℤ) : E) * d.Y.J i j := by
-  rcases d.ok.sign with ⟨-, h⟩ | ⟨-, h⟩
-  · exact ⟨-1, fun i j => by rw [h]; simp⟩
-  · exact ⟨1, fun i j => by rw [h]; simp⟩
-
 omit [NumberField F] [NumberField E] in
 theorem siegel_factor_ne {G H : Type} [Group G] [Group H] (χ : G →* Circle) (u : G) (m : H →* ℝ≥0) (v : H) (r : ℝ) :
     (χ u : ℂ) * (((m v : ℝ) ^ r : ℝ) : ℂ) ≠ 0 := by
@@ -97,14 +82,5 @@ theorem siegel_factor_ne {G H : Type} [Group G] [Group H] (χ : G →* Circle) (
     exact one_ne_zero this
   refine mul_ne_zero (Circle.coe_ne_zero _) (Complex.ofReal_ne_zero.mpr (Real.rpow_pos_of_pos ?_ _).ne')
   exact lt_of_le_of_ne (NNReal.coe_nonneg _) (by exact_mod_cast hv.symm)
-
-theorem exists_l_ne (hT : TBij) : ∃ φ ∈ schA F d.κ, d.l φ ≠ 0 := by
-  obtain ⟨φz, hφz, hφz0⟩ := _root_.GlobalTheory.SchANonzero.exists_mem_schA_ne_zero F d.κ
-  have hne : d.T φz ≠ 0 := fun h => hφz0 (by rw [(hT F E σ d).2.2 φz hφz h]; rfl)
-  obtain ⟨X, hX⟩ : ∃ X, d.T φz X ≠ 0 := by
-    by_contra h
-    push Not at h
-    exact hne (funext h)
-  exact ⟨_, GlobalTheory.HeisSchA.schr_mem_schA d.B.ψ (std d) _ φz hφz, hX⟩
 
 end PositivityTheory.SiegelWeilFormula.tweyl

@@ -94,8 +94,6 @@ section -- clump:auto
 open MvPowerSeries GlobalTheory GlobalTheory.Katz GlobalTheory.QLog GlobalTheory.PDivGroup GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.EpsilonPairingZeta GlobalTheory.PDivLat
 open TensorProduct
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.Chart.Assoc
@@ -756,8 +754,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 open GlobalTheory GlobalTheory.PDivGroup
 open scoped TensorProduct
 
@@ -1068,8 +1064,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 open MvPowerSeries GlobalTheory GlobalTheory.Katz GlobalTheory.QLog GlobalTheory.PDivGroup GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.EpsilonPairingZeta GlobalTheory.PDivLat
 open scoped TensorProduct
 
@@ -1357,7 +1351,7 @@ end GlobalTheory.FinProjComplete
 
 open GlobalTheory.FinProjComplete in
 theorem GlobalTheory.FinProjComplete.isAdicComplete_span_natCast : ∀ (p : ℕ) (O A : Type) [CommRing O] [CommRing A] [Algebra O A] [Module.Finite O A] [Module.Projective O A] [IsAdicComplete (Ideal.span {(p : O)}) O], IsAdicComplete (Ideal.span {(p : A)}) A := by
-  apply GlobalTheory.FinProjComplete.isAdicComplete_span_natCast_of_finite_projective <;> assumption
+  apply GlobalTheory.FinProjComplete.isAdicComplete_span_natCast_of_finite_projective
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsAdicCompleteSpanNatCast =====
@@ -1369,8 +1363,6 @@ section -- clump:auto
 
 open MvPowerSeries GlobalTheory GlobalTheory.Katz GlobalTheory.QLog GlobalTheory.PDivGroup GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.EpsilonPairingZeta GlobalTheory.PDivLat
 open TensorProduct
-
-set_option autoImplicit false
 
 noncomputable section
 

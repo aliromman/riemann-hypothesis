@@ -1357,7 +1357,7 @@ theorem cc_lev_φpow (hlevφ : ∀ (i : ZMod n) (ζ : LL), (∃ j : ℕ, IsPrimi
       PowerSeries.coeff_rescale, pow_zero, one_mul, PowerSeries.coeff_zero_eq_constantCoeff_apply,
       ih (a - 1) (ζ ^ PD.p) (prim_pow_p hζ) f, ← pow_mul, ← pow_succ']
     congr 2
-    push_cast; ring
+    push_cast; ring_nf
 
 variable {levB : ∀ T : LocLat G Qp LL O, ZMod n → LL → ↥(W.N T) →+ (ℤ → T.V ⊗[Qp] B)}
 

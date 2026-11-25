@@ -51,8 +51,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry TopologicalSpace
@@ -136,9 +134,9 @@ theorem exists_pull {T T' : Over S} (a : ℤ) (h : T' ⊗ A ⟶ T ⊗ A) (hh : h
   obtain ⟨s', hs'⟩ := key (fun _ => (snd T' A).left) (fun _ => congrArg CommaMorphism.left hh)
   exact ⟨s', fun j => hs' j _⟩
 
-theorem exists_basisOn (hS : SecBaseChangeSt) [IsLocallyNoetherian S] (P : PolAV S) (x : S) :
+theorem exists_basisOn_of_secBaseChangeAt {P : PolAV S} {x : S} (h : SecBaseChangeAt P 1 x) :
     ∃ V : S.Opens, x ∈ V ∧ ∃ θ ∈ secOn P.L (P.A.hom ⁻¹ᵁ V), IsBasisOn P.A P.L V θ := by
-  obtain ⟨V, hV, b, hb⟩ := hS S P 1 le_rfl x
+  obtain ⟨V, hV, b, hb⟩ := h
   have hq : Unique (Fin (1 ^ P.g)) := by rw [one_pow]; infer_instance
   let T : Over S := overRes (T := baseOver S) V
   have hT : T.hom = V.ι := Category.comp_id _
@@ -195,6 +193,10 @@ theorem exists_basisOn (hS : SecBaseChangeSt) [IsLocallyNoetherian S] (P : PolAV
       have hi := (mem_chart P.A P.L (baseAt t) (1 : ℕ) z (fun _ => i)).1 hz
       refine (gs_smul P.A P.L (baseAt t) _ r (SecM.ofSec P.A (b' hq.default)) (fun _ => i) z hz).trans ?_
       exact ((congrArg _ (val z i hi)).trans (h0 z i hi)).trans (gs_zero _ z _ hz).symm
+
+theorem exists_basisOn (hS : SecBaseChangeSt) [IsLocallyNoetherian S] (P : PolAV S) (x : S) :
+    ∃ V : S.Opens, x ∈ V ∧ ∃ θ ∈ secOn P.L (P.A.hom ⁻¹ᵁ V), IsBasisOn P.A P.L V θ :=
+  exists_basisOn_of_secBaseChangeAt (hS S P 1 le_rfl x)
 
 variable {A L} {V : S.Opens} {θ : ∀ i, Γ(A.left, A.hom ⁻¹ᵁ V ⊓ L.U i)}
 

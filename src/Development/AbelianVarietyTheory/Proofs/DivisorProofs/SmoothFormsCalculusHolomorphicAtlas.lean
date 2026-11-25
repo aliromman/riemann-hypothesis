@@ -64,8 +64,6 @@ open GlobalTheory GlobalTheory.CxForm GlobalTheory.GoodMetric
 open ReciprocityTheory.L2DbarEstimates (V)
 open scoped ContDiff ComplexConjugate Topology
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.CxForm.HolAtlas
@@ -204,8 +202,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxForm GlobalTheory.CxPts GlobalTheory.VB GlobalTheory.Cartier GlobalTheory.CovTest GlobalTheory.LineForm
 open scoped Classical
 
-set_option autoImplicit false
-
 namespace GlobalTheory
 
 theorem formCalculus : ∀ (M : Type) [TopologicalSpace M] (n : ℕ) (A : HolAtlas M n),
@@ -233,7 +229,7 @@ theorem formCalculus : ∀ (M : Type) [TopologicalSpace M] (n : ℕ) (A : HolAtl
       have e : evalF A w (C r) = ((r : ℂ) • (1 : A.Fld)) := by
         funext x
         simp [evalF, fld, Algebra.algebraMap_eq_smul_one]
-        first | rfl | exact Subalgebra.coe_smul _ _ _ | (rw [SetLike.val_smul]; simp) | simp [Subalgebra.coe_algebraMap]
+        first | rfl
       have h1 := (_root_.GlobalTheory.CxForm.HolAtlas.isForm_algebra M n A).1
       have hf := ((_root_.GlobalTheory.CxForm.HolAtlas.isForm_algebra M n A).2 (r : ℂ) 1 1 h1 h1).2.2
       obtain ⟨⟨z1, z2⟩, hl⟩ := _root_.GlobalTheory.CxForm.HolAtlas.del_dbar_linear M n A

@@ -2,46 +2,6 @@ module
 
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.DensCut
 public import Lemmata.GeneralBFactThirdAltForm.Imports
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Topology.Sheaves.Init
-import Mathlib.Tactic.ReduceModChar
-import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.DensEqZeroOfNotMem, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.NotIntDensOfSteps
@@ -148,20 +108,16 @@ variable {M : Loc.Model F E} {V : Type} [AddCommGroup V] [Module E V] (H : Loc.H
 
 alias h_zero_left := _root_.Formalism.MainNotions.S.Loc.HermSp.h_zero_left
 
-theorem h_smul_right (c : E) (x y : V) : H.h x (c • y) = M.L.cj c * H.h x y := by
-  rw [H.h_herm (c • y) x, H.h_smul_left, map_mul, ← H.h_herm y x]
+theorem h_smul_right (c : E) (x y : V) : H.h x (c • y) = M.L.cj c * H.h x y :=
+  CntLocal.h_smul_right' H c x y
 
 theorem h_sum_left {ι : Type} (s : Finset ι) (x : ι → V) (y : V) :
-    H.h (∑ i ∈ s, x i) y = ∑ i ∈ s, H.h (x i) y := by
-  induction s using Finset.induction_on with
-  | empty => simp [h_zero_left]
-  | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, H.h_add_left, ih]
+    H.h (∑ i ∈ s, x i) y = ∑ i ∈ s, H.h (x i) y :=
+  CntLocal.h_sum_left H s x y
 
 theorem h_sum_right {ι : Type} (s : Finset ι) (x : ι → V) (y : V) :
-    H.h y (∑ i ∈ s, x i) = ∑ i ∈ s, H.h y (x i) := by
-
-  rw [H.h_herm (∑ i ∈ s, x i) y, h_sum_left, map_sum]
-  exact Finset.sum_congr rfl fun i _ => (H.h_herm (x i) y).symm
+    H.h y (∑ i ∈ s, x i) = ∑ i ∈ s, H.h y (x i) :=
+  CntLocal.h_sum_right H s y x
 
 theorem gram_comb {ι : Type} [Fintype ι] (v : ι → V) (A : Matrix ι ι E) :
     (Matrix.of fun a b => H.h (∑ d, A d b • v d) (∑ c, A c a • v c)) =

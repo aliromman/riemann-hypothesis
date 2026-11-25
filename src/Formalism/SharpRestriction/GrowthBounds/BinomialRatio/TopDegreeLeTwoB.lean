@@ -159,9 +159,7 @@ private theorem mul_sum_pow_lt_le_pow_of_segHyp (H : SegHyp p S b' de be aS Q) :
         _ = (p : ℝ) ^ 2 := (sq _).symm
     calc (p : ℝ) * ((∑ j : Fin s, if (j : ℕ) < n then (p : ℝ) ^ (S.d j) else 0) +
           (p : ℝ) ^ (S.d ⟨n, hn'⟩))
-        ≤ (p : ℝ) ^ (S.d ⟨n, hn'⟩) * (1 + p) := by
-          rw [mul_add, mul_add, mul_one, mul_comm ((p : ℝ) ^ _)]
-          linarith
+        ≤ (p : ℝ) ^ (S.d ⟨n, hn'⟩) * (1 + p) := by grind
       _ ≤ (p : ℝ) ^ (S.d ⟨n, hn'⟩) * (p : ℝ) ^ 2 := mul_le_mul_of_nonneg_left h12 hpe
       _ = (p : ℝ) ^ (S.d ⟨n, hn'⟩ + 2) := (pow_add _ _ _).symm
       _ ≤ (p : ℝ) ^ (S.d ⟨n + 1, hn⟩) := pow_le_pow_right₀ (by linarith) hgap
@@ -649,7 +647,7 @@ theorem ord_all {C0 Cde CE1 CE2 H Ct : ℝ} {X : Loc} (St : Std C0 Cde CE1 CE2 H
     push_cast
     exact Finset.sum_le_sum fun j _ => hseg j
   have h2 : (∑ j : Fin (numSeg X.TT), ((segS X.TT j : ℝ) + 1)) ≤ (X.TT.card : ℝ) := by
-    have h := sum_segS X.TT St.seg2
+    have h := sum_segS X.TT
     have e : (∑ j : Fin (numSeg X.TT), ((segS X.TT j : ℝ) + 1)) = (((∑ j, segS X.TT j) + numSeg X.TT : ℕ) : ℝ) := by
       push_cast
       rw [Finset.sum_add_distrib]

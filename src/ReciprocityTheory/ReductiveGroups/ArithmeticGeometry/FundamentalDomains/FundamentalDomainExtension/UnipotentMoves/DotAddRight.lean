@@ -271,15 +271,6 @@ lemma en_adj_le (Z : X.Coord) (τ : X.Ψ) {ρ : ℝ} (hρ : 0 ≤ ρ) (hZ : X.zN
     positivity
   · exact le_of_mul_le_mul_right (by nlinarith) h
 
-private lemma hermC_sum_smul_left_fin_p0 (τ : E →+* ℂ) (G : Matrix (Fin r) (Fin r) E)
-    (α : Fin X.p0 → ℂ) (w : Fin X.p0 → Fin r → ℂ) (z : Fin r → ℂ) :
-    hermC τ G (∑ a, α a • w a) z = ∑ a, α a * hermC τ G (w a) z := by
-  simp only [hermC, Finset.sum_apply, Pi.smul_apply, smul_eq_mul, Finset.sum_mul, Finset.mul_sum]
-  rw [sum_three_rotate]
-  refine Finset.sum_congr rfl fun a _ => Finset.sum_congr rfl fun i _ =>
-    Finset.sum_congr rfl fun j _ => ?_
-  ring
-
 theorem maj_xZ' {x : Frame X.Ψ r} (hx : x ∈ X.dom) (ho : X.IsOrtho x) {ρ : ℝ} (hρ0 : 0 < ρ)
     (hρ : ρ ≤ 1 / 10) {Z : X.Coord} (hZ : X.zN Z ≤ ρ) (τ : X.Ψ) (v : Fin r → ℂ) :
     (1 - ρ) / (1 + ρ) * X.maj x τ v ≤ X.maj (X.xZ x Z) τ v ∧

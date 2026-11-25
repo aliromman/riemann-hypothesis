@@ -985,7 +985,7 @@ end WhittakerCocycle
 
 open WhittakerCocycle
 
-theorem sWhit_of (_hEv : SEv) (hSt : SStokes) : SWhit := by
+theorem sWhit_of (hSt : SStokes) : SWhit := by
   intro L _ _ N k Ht P hHt hHt0 c hc hdc
   have H := hyp_of P
   have hoc : Coc c := ⟨fun g y => by simpa using hc g y, fun y => by simpa [dC] using congrFun hdc y⟩

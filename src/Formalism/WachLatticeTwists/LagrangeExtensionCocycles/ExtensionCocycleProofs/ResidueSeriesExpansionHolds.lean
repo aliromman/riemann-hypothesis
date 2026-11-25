@@ -220,7 +220,7 @@ theorem residue_series_expansion_holds : StatResSeries := by
         (inv_lt_one_of_one_lt₀ hq1)).const_mul (∑ k, |s k|)
   have hlim : Filter.Tendsto (fun N : ℕ => s i - s (i + (N : ZMod n)) / (ℓ - 1) ^ N)
       Filter.atTop (nhds (s i - 0)) := tendsto_const_nhds.sub hrem
-  have hfin := le_of_tendsto' hlim (fun N => by
+  have hfin : s i - 0 ≤ ∑' a, f a := le_of_tendsto' hlim (fun N => by
     have h1 := hunroll N
     have h2 := hsum.sum_le_tsum (Finset.range N) (fun a _ => hf0 a)
     linarith)

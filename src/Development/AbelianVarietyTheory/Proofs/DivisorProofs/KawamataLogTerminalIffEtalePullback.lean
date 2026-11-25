@@ -304,7 +304,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.Discrepancy
 open IsLocalRing
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.EtaleKlt
 
@@ -361,7 +360,6 @@ open CategoryTheory AlgebraicGeometry TopologicalSpace
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.Discrepancy
 
-set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.EtaleKlt
@@ -431,7 +429,6 @@ open CategoryTheory AlgebraicGeometry TopologicalSpace
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.Discrepancy
 
-set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.EtaleKlt
@@ -992,7 +989,7 @@ theorem mem_of_nonunits_of_localization {L : Type} [Field L] (V : ValuationSubri
   obtain ⟨b, d, hd0, hdinv, hwbd⟩ := hloc (w : L) w.2
   have hL : ι x ^ n = ι y * (ι b / ι d) := by
     have := congrArg Subtype.val hw
-    simp only [SubmonoidClass.coe_pow, Subring.coe_mul] at this
+    simp only [SubmonoidClass.coe_pow] at this
     rw [this, ← hwbd]
     rfl
   have hA : x ^ n * d = y * b := by
@@ -1177,8 +1174,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.Discrepancy
 open scoped TensorProduct
 
-set_option autoImplicit false
-
 namespace GlobalTheory.FunctionFieldEtale
 
 theorem finiteDimensional_fractionRing_of_etale {R S K L : Type} [CommRing R] [IsDomain R]
@@ -1331,7 +1326,6 @@ open CategoryTheory AlgebraicGeometry TopologicalSpace
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.Discrepancy
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.RestrictOrd
 
@@ -1631,7 +1625,6 @@ open CategoryTheory AlgebraicGeometry TopologicalSpace
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.Discrepancy
 
-set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.EtaleKlt
@@ -1707,7 +1700,6 @@ open CategoryTheory AlgebraicGeometry TopologicalSpace
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.Discrepancy
 
-set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.EtaleKlt
@@ -1801,7 +1793,6 @@ open CategoryTheory AlgebraicGeometry TopologicalSpace Limits
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.Discrepancy
 
-set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.EtaleKlt

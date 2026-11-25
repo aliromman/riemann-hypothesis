@@ -1,52 +1,9 @@
 module
 
 public import GroundTheory.HeightsAndTheta.Heights.Intersections.LocRing
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.RingTheory.WittVector.IsPoly
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
-import Mathlib.Topology.Sheaves.Init
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterDivSupp
-import Std.Tactic.BVDecide.Normalize.Prop
+import GroundTheory.HeightsAndTheta.Heights.HeightComparison.IsMultiHomogIdealIff
 
 @[expose] public section
 
@@ -64,62 +21,30 @@ variable {K : Type*} [Fintype K] {ι : K → Type*} [∀ k, Fintype (ι k)]
 
 section Forms
 
-theorem homog_zero (a : K → ℕ) : IsMultiHomog (0 : MRing ι) a := by
-  intro m hm
-  simp at hm
+theorem homog_zero (a : K → ℕ) : IsMultiHomog (0 : MRing ι) a :=
+  GroundTheory.Heights₂.Heights.Bridge.isMultiHomog_zero a
 
-theorem homog_one : IsMultiHomog (1 : MRing ι) 0 := by
-  classical
-  intro m hm k
-  rw [support_one, Finset.mem_singleton] at hm
-  subst hm
-  simp
+theorem homog_one : IsMultiHomog (1 : MRing ι) 0 :=
+  GroundTheory.Heights₂.Heights.Bridge.isMultiHomog_one
 
 theorem homog_mul {f g : MRing ι} {a b : K → ℕ} (hf : IsMultiHomog f a) (hg : IsMultiHomog g b) :
-    IsMultiHomog (f * g) (a + b) := by
-  classical
-  intro m hm k
-  obtain ⟨m1, hm1, m2, hm2, rfl⟩ := Finset.mem_add.mp (support_mul f g hm)
-  simp only [Finsupp.add_apply, Finset.sum_add_distrib, Pi.add_apply, hf m1 hm1 k, hg m2 hm2 k]
+    IsMultiHomog (f * g) (a + b) :=
+  GroundTheory.Heights₂.Heights.Bridge.isMultiHomog_mul hf hg
 
 theorem homog_add {f g : MRing ι} {a : K → ℕ} (hf : IsMultiHomog f a) (hg : IsMultiHomog g a) :
-    IsMultiHomog (f + g) a := by
-  classical
-  intro m hm k
-  rcases Finset.mem_union.mp (support_add hm) with h | h
-  · exact hf m h k
-  · exact hg m h k
+    IsMultiHomog (f + g) a :=
+  GroundTheory.Heights₂.Heights.Bridge.isMultiHomog_add hf hg
 
-theorem homog_neg {f : MRing ι} {a : K → ℕ} (hf : IsMultiHomog f a) : IsMultiHomog (-f) a := by
-  intro m hm k
-  rw [support_neg] at hm
-  exact hf m hm k
+theorem homog_neg {f : MRing ι} {a : K → ℕ} (hf : IsMultiHomog f a) : IsMultiHomog (-f) a :=
+  GroundTheory.Heights₂.Heights.Bridge.isMultiHomog_neg hf
 
 theorem homog_X [DecidableEq K] (k : K) (i : ι k) :
-    IsMultiHomog (X ⟨k, i⟩ : MRing ι) (Pi.single k 1) := by
-  classical
-  intro m hm k'
-  rw [support_X, Finset.mem_singleton] at hm
-  subst hm
-  by_cases h : k' = k
-  · subst h
-    rw [Finset.sum_eq_single i]
-    · simp
-    · intro j _ hj
-      rw [Finsupp.single_apply, if_neg]
-      intro e
-      exact hj (sigma_mk_injective e).symm
-    · simp
-  · have : ∀ j : ι k', (⟨k, i⟩ : Σ k, ι k) ≠ ⟨k', j⟩ := fun j e => h (congrArg Sigma.fst e).symm
-    simp [h]
+    IsMultiHomog (X ⟨k, i⟩ : MRing ι) (Pi.single k 1) :=
+  GroundTheory.Heights₂.Heights.Bridge.isMultiHomog_X ⟨k, i⟩
 
 theorem homog_pow {f : MRing ι} {a : K → ℕ} (hf : IsMultiHomog f a) (n : ℕ) :
-    IsMultiHomog (f ^ n) (n • a) := by
-  induction n with
-  | zero => simpa using (homog_one (ι := ι))
-  | succ n ih =>
-    rw [pow_succ, succ_nsmul]
-    exact homog_mul ih hf
+    IsMultiHomog (f ^ n) (n • a) :=
+  GroundTheory.Heights₂.Heights.Bridge.isMultiHomog_pow hf n
 
 theorem mem_of_sum_mem {I : Ideal (MRing ι)} (hI : IsMultiHomogIdeal I) {β : Type*} (s : Finset β)
     (h : β → MRing ι) (d : β → K → ℕ) (hd : Set.InjOn d s) (hh : ∀ b ∈ s, IsMultiHomog (h b) (d b))

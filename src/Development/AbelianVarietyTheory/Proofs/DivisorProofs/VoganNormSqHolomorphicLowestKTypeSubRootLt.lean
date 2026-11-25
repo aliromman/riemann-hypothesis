@@ -53,7 +53,6 @@ import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMa
 
 open NumberField IsDedekindDomain MeasureTheory Matrix Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Lev Formalism.IndefR.Datum Formalism.L2.Pj Formalism.IndefR.FWT Formalism.IndefR GlobalTheory.HolDict
 open scoped TensorProduct InnerProductSpace ContDiff
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.HolDict.VoganRoot
 
@@ -61,7 +60,7 @@ open Finset Formalism.REAL
 
 theorem rhoN_add_rhoC {n : ℕ} (ε : Fin n → Bool) (a : Fin n) :
     Formalism.REAL.rhoN ε a + Formalism.REAL.rhoC ε a = ((n : ℝ) - 1) / 2 - ((a : ℕ) : ℝ) := by
-  apply GlobalTheory.Jet.Schmid.rhoN_add_rhoC <;> assumption
+  apply GlobalTheory.Jet.Schmid.rhoN_add_rhoC
 
 theorem nsq_sub_root {n : ℕ} (u : Fin n → ℝ) {a b : Fin n} (hab : a ≠ b) :
     Formalism.REAL.nsq (u - Formalism.REAL.root a b) = Formalism.REAL.nsq u - 2 * (u a - u b) + 2 := by

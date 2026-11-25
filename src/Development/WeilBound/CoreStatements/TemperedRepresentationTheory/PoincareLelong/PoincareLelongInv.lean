@@ -150,7 +150,6 @@ public import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PoincareLelongAlt
 public import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PotFinCons
 public import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.Stokes
 public import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.LelongChartLimit
-public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegrableAbsFibreSumOfIsCxVar
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
 import Mathlib.Algebra.Order.Interval.Basic
@@ -223,6 +222,10 @@ import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PSliceReducedAwa
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PChartSectionNotMem
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PLocalMultComap
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PtsIntegrable
+import Development.AutomorphicSpectrum.Proofs.MetricProofs.ResolutionExistsOfResolutionStatementStatement
+import Development.WeilBound.CoreStatements.ResolutionCharZero.PlugResK
+import GroundTheory.HeightsAndTheta.Heights.Intersections.PPtsAbsMeasurable
+import GroundTheory.HeightsAndTheta.Heights.SemipositiveHeights.PtsIntegrable
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartDivisorCompare, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DivisorGeneralPointBranches, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BranchIntDecompose, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SliceBranchInt, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LelongLimitAtBranches, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SheetIdentityAll, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BranchNormalisationHolds, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CurveBranchLengthHolds, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SliceBranchesHolds, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SliceReducedAwayZariski, Development.WeilBound.CoreStatements.TemperedRepresentationTheory.PoincareLelong.Development, Development.WeilBound.CoreStatements.TemperedRepresentationTheory.PoincareLelong.PoincareLelongInv
@@ -1251,38 +1254,26 @@ theorem poincareLelong_of_leaves (hAbs : GroundTheory.Heights₂.Heights.Inter.P
     (hReg : GroundTheory.Heights₂.Heights.RegMassNearSmall.Statement) : GlobalTheory.CompanionTheory.Ar.Pub.PoincareLelong :=
   poincareLelong_of hAbs hSCI hCDC (lelongPolyLimit (lelongLimit hBr hLim hOrd hReg))
 
-theorem poincareLelongInv_of_leaves (hAbs : GroundTheory.Heights₂.Heights.Inter.PtsAbsIntegrable.Statement)
-    (hSCI : GroundTheory.Heights₂.Heights.SegreChartIntegral.Statement)
-    (hCDC : GroundTheory.Heights₂.Heights.Targets.ChartDivisorCompare.Statement)
-    (hBr : GroundTheory.Heights₂.Heights.DivisorGeneralPointBranches.Statement)
-    (hLim : GroundTheory.Heights₂.Heights.LelongLimitAtBranches.Statement)
-    (hOrd : GroundTheory.Heights₂.Heights.LocalOrder.Statement)
-    (hReg : GroundTheory.Heights₂.Heights.RegMassNearSmall.Statement) : GlobalTheory.CompanionTheory.Hypotheses₂.PoincareLelongInv := by
-  intro K _ ι _ P n L A B s hP hL hA hB _ _ _ hB0 hs
-  have h : ReciprocityTheory.ChartRestriction.G.Geo.ArithmeticPoincareLelongFormula :=
-    poincareLelong_of_leaves hAbs hSCI hCDC hBr hLim hOrd hReg
-  exact h K ι P n L A B s hP hL hA hB hB0 hs
-
 end PositivityTheory.Tls2.Pl
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.WeilBound.CoreStatements.TemperedRepresentationTheory.PoincareLelong.Development =====
 
 -- ===== clump member: Development.WeilBound.CoreStatements.TemperedRepresentationTheory.PoincareLelong.PoincareLelongInv =====
--- clump-header: {"m": "Development.WeilBound.CoreStatements.TemperedRepresentationTheory.PoincareLelong.PoincareLelongInv", "h": "module\n\npublic import Development.AutomorphicSpectrum.PublishedTheorems.Metrics₂.PoincareLelong\npublic import Development.AutomorphicSpectrum.PublishedTheorems.Metrics₂.PoincareLelongInv\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartDivisorCompare\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DivisorGeneralPointBranches\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegrableAbsFibreSumOfIsCxVar\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LelongLimitAtBranches\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SegreChartIntegralHolds\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SheetIdentityAll\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SliceReducedAwayZariski\npublic import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.PoincareLelong.Development\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
+-- clump-header: {"m": "Development.WeilBound.CoreStatements.TemperedRepresentationTheory.PoincareLelong.PoincareLelongInv", "h": "module\n\npublic import Development.AutomorphicSpectrum.PublishedTheorems.Metrics₂.PoincareLelong\npublic import Development.AutomorphicSpectrum.PublishedTheorems.Metrics₂.PoincareLelongInv\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartDivisorCompare\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DivisorGeneralPointBranches\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LelongLimitAtBranches\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SegreChartIntegralHolds\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SheetIdentityAll\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SliceReducedAwayZariski\npublic import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.PoincareLelong.Development\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AutomorphicSpectrum.Proofs.MetricProofs.ResolutionExistsOfResolutionStatementStatement\nimport Development.WeilBound.CoreStatements.ResolutionCharZero.PlugResK\nimport GroundTheory.HeightsAndTheta.Heights.Intersections.PPtsAbsMeasurable\nimport GroundTheory.HeightsAndTheta.Heights.SemipositiveHeights.PtsIntegrable\n\n"}
 section -- clump:auto
 @[expose] public section
 
 namespace PositivityTheory.Tls2.Pl
 
-theorem poincareLelong : GlobalTheory.CompanionTheory.Ar.Pub.PoincareLelong :=
-  poincareLelong_of_leaves GlobalTheory.CompanionTheory.Ar.Pub.CxAbs.ptsAbsIntegrable GlobalTheory.CompanionTheory.Ar.SegreChart.Chart.SegreChartIntegral
-    GlobalTheory.CompanionTheory.Ar.chartDivisorCompare GlobalTheory.CompanionTheory.ComplexSets.divisorGeneralPointBranches
-    GlobalTheory.CompanionTheory.Ar.Lelong.lelongLimitAtBranches GlobalTheory.CompanionTheory.Heights.BranchOrder.localOrder
-    GlobalTheory.CompanionTheory.VarLelong.regMassNearSmall
+theorem ptsAbsIntegrable : GroundTheory.Heights₂.Heights.Inter.PtsAbsIntegrable.Statement :=
+  have hE := GlobalTheory.T.resolution_exists_of_resolution_statement PositivityTheory.ResPlug.FromRes.resK
+  GroundTheory.Heights₂.Heights.Inter.PtsAbsIntegrable.proof
+    (GroundTheory.Heights₂.Heights.ForSecondHalf.PtsIntegrable.of_resExists hE)
+    (GroundTheory.Heights₂.Heights.Inter.PtsAbsMeasurable.proof hE)
 
-theorem poincareLelongInv : GlobalTheory.CompanionTheory.Hypotheses₂.PoincareLelongInv :=
-  poincareLelongInv_of_leaves GlobalTheory.CompanionTheory.Ar.Pub.CxAbs.ptsAbsIntegrable GlobalTheory.CompanionTheory.Ar.SegreChart.Chart.SegreChartIntegral
+theorem poincareLelong : GlobalTheory.CompanionTheory.Ar.Pub.PoincareLelong :=
+  poincareLelong_of_leaves ptsAbsIntegrable GlobalTheory.CompanionTheory.Ar.SegreChart.Chart.SegreChartIntegral
     GlobalTheory.CompanionTheory.Ar.chartDivisorCompare GlobalTheory.CompanionTheory.ComplexSets.divisorGeneralPointBranches
     GlobalTheory.CompanionTheory.Ar.Lelong.lelongLimitAtBranches GlobalTheory.CompanionTheory.Heights.BranchOrder.localOrder
     GlobalTheory.CompanionTheory.VarLelong.regMassNearSmall

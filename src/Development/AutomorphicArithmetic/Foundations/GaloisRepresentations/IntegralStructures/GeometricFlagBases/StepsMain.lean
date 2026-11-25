@@ -119,7 +119,7 @@ theorem UpperTheory.Gal.Int.Geo.twES :
     simp
   · have hk : ι ((χ σ⁻¹ : (Qbar l)ˣ) : Qbar l) = c := by
       have h1 := (hχ.2 σ hσ)
-      have h2 := (UpperTheory.Gal.TP.Sub.cpFacts_holds (Formalism.ConjugateSelfDual.G E Ω) (Qbar l) 0 0).2.1 χ σ⁻¹
+      have h2 := (UpperTheory.Gal.TP.Sub.cpFacts_holds (G E Ω) (Qbar l) 0 0).2.1 χ σ⁻¹
       simp only [UpperTheory.Gal.TP.Sub.cp] at h2
       rw [h2] at h1
       simp only [Multiset.map_singleton, Multiset.prod_singleton, Polynomial.map_sub, Polynomial.map_X,
@@ -951,7 +951,7 @@ variable {l : ℕ} [Fact l.Prime]
 variable {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] {A : ValuationSubring Ω}
 
 theorem exists_bridge (j : Ω →+* Om l) (hj : ∀ x, x ∈ A ↔ ‖j x‖ ≤ 1) :
-    ∃ (L : FinExt l) (Bw : LocBridge l E Ω (ReciprocityTheory.Gal.Dec (F := E) A) ↥(OL L)), Bw.j = j ∧ Bw.Kw.1 ≤ Bw.LL.1 ∧
+    ∃ (L : FinExt l) (Bw : LocBridge l E Ω (Dec (F := E) A) ↥(OL L)), Bw.j = j ∧ Bw.Kw.1 ≤ Bw.LL.1 ∧
       Bw.Kw.1 = IntermediateField.adjoin ℚ_[l] (Set.range fun x : E => j (algebraMap E Ω x)) := by
   let K : FinExt l := ⟨IntermediateField.adjoin ℚ_[l] (Set.range fun x : E => j (algebraMap E Ω x)),
     GlobalTheory.PlaceBridge.finiteDimensional_adjoin_range (j.comp (algebraMap E Ω))⟩
@@ -1054,7 +1054,7 @@ theorem UpperTheory.Gal.Int.Geo.richOf :
   obtain ⟨A, hA⟩ := exists_place j
   obtain ⟨L, Bw, hBj, -, -⟩ := GlobalTheory.PhtCompare.exists_bridge (E := E) (A := A) j hA
   have hBw : Induces Bw := fun x => by rw [hBj]; exact hA x
-  have hP : Formalism.ConjugateSelfDual.IsPlaceOver A v := fun x => by
+  have hP : IsPlaceOver A v := fun x => by
     rw [hBw.valuation_lt_one_iff, hBj, hjτ]
     exact norm_lt_one_iff_mem τ₀ v hsmall x
   have hi : IsInduced Bw τ₀ (AlgHom.id ℚ_[l] ↥Bw.Kw.1) := fun x => by
@@ -1088,17 +1088,17 @@ theorem UpperTheory.Gal.Int.Geo.twCrys :
   intro E Ω _ _ _ _ _ l _ ι dd ρ χ _ _ w c m hχ hρ P AI hT A h O _ _ _ Bw hj
   obtain ⟨c1, -, -, -⟩ := hχ.2 P AI hT A h O Bw hj
   have c2 := hρ P AI hT A h O Bw hj
-  have e1 : (rk1 χ).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype = rk1 (χ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := by
+  have e1 : (rk1 χ).comp (Dec (F := E) A).subtype = rk1 (χ.comp (Dec (F := E) A).subtype) := by
     ext g i j
     rfl
-  have e2 : (tw ρ χ).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype =
-      tw (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) (χ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := by
+  have e2 : (tw ρ χ).comp (Dec (F := E) A).subtype =
+      tw (ρ.comp (Dec (F := E) A).subtype) (χ.comp (Dec (F := E) A).subtype) := by
     ext g i j
     simp [UpperTheory.V.Af.tw_val]
   rw [e1] at c1
   rw [e2]
-  exact (UpperTheory.Gal.TP.Sub.twLoc_holds l P AI hT E Ω A O Bw dd (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)
-    (χ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype)).2 c2 c1
+  exact (UpperTheory.Gal.TP.Sub.twLoc_holds l P AI hT E Ω A O Bw dd (ρ.comp (Dec (F := E) A).subtype)
+    (χ.comp (Dec (F := E) A).subtype)).2 c2 c1
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.GeometricFlagBases.TwCrys =====
@@ -1123,17 +1123,17 @@ theorem UpperTheory.Gal.Int.Geo.twJ :
   intro E Ω _ _ _ _ _ l _ ι dd ρ χ hρ hχ w c m h1 Q hQ P AI hT A hA O _ _ _ Bw hj τ LL' τ' hi
   obtain ⟨J, hJ, hJQ⟩ := hQ P AI hT A hA O Bw hj τ LL' τ' hi
   obtain ⟨-, -, j1, -⟩ := h1.2 P AI hT A hA O Bw hj
-  have e1 : (rk1 χ).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype = rk1 (χ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := by
+  have e1 : (rk1 χ).comp (Dec (F := E) A).subtype = rk1 (χ.comp (Dec (F := E) A).subtype) := by
     ext g i j
     rfl
-  have e2 : (tw ρ χ).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype =
-      tw (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) (χ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := by
+  have e2 : (tw ρ χ).comp (Dec (F := E) A).subtype =
+      tw (ρ.comp (Dec (F := E) A).subtype) (χ.comp (Dec (F := E) A).subtype) := by
     ext g i j
     simp [UpperTheory.V.Af.tw_val]
   have j2 := j1 τ LL' τ' hi
   rw [e1] at j2
-  have cs : Continuous (ρ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := hρ.comp continuous_subtype_val
-  have cμ : Continuous (χ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := hχ.comp continuous_subtype_val
+  have cs : Continuous (ρ.comp (Dec (F := E) A).subtype) := hρ.comp continuous_subtype_val
+  have cμ : Continuous (χ.comp (Dec (F := E) A).subtype) := hχ.comp continuous_subtype_val
   refine ⟨J.map (· + m (ι.toRingHom.comp τ)), ?_, fun j hj' => ?_⟩
   · rw [e2]
     exact UpperTheory.Gal.TP.Sub.twJumps_holds l P AI hT E Ω A O Bw dd _ _ cs cμ τ J _ hJ j2

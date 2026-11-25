@@ -10,51 +10,11 @@ public import Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters
 public import Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.MatrixFormFourfoldBlock
 public import Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.QuadraticSemicharactersOfProductThetaMem
 public import Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.Th0CharMulOpUTh0HalfPeriodEq
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.AlgebraicTopology.FundamentalGroupoid.SimplyConnected
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
 import Mathlib.Analysis.Convex.Contractible
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.RingTheory.WittVector.IsPoly
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
-import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.LogarithmEquivalence
 import Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.MatrixFormFourfoldBlockFirstBlockEmb
 import Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.CayleyGaussianIntegrals.NormLtOne
@@ -246,7 +206,7 @@ theorem TaylorMvTens4_of (hU : LineUnique) (hL : TaylorLine) : TaylorMvTens4 := 
   rw [hL _ _ (hA a) v, lineRestr_block, hL n θ hθ]
   rfl
 
-theorem TaylorMvInj_of (_hU : LineUnique) (hL : TaylorLine) : TaylorMvInj := by
+theorem TaylorMvInj_of (hL : TaylorLine) : TaylorMvInj := by
   intro n _ _ F G hF hG h
   funext v
   have hF' : AnalyticOnNhd ℂ (fun t : ℂ => F (t • v)) Set.univ := fun t _ =>
@@ -300,7 +260,7 @@ theorem taylorMvMul : TaylorMvMul := TaylorMvMul_of _root_.Formalism.L2.Th1.H.li
 theorem taylorMvComp : TaylorMvComp := TaylorMvComp_of _root_.Formalism.L2.Th1.H.lineUnique' _root_.Formalism.L2.Th1.H.taylorLine'
 theorem taylorMvProd : TaylorMvProd := TaylorMvProd_of _root_.Formalism.L2.Th1.H.lineUnique' _root_.Formalism.L2.Th1.H.taylorLine'
 theorem taylorMvTens4 : TaylorMvTens4 := TaylorMvTens4_of _root_.Formalism.L2.Th1.H.lineUnique' _root_.Formalism.L2.Th1.H.taylorLine'
-theorem taylorMvInj : TaylorMvInj := TaylorMvInj_of _root_.Formalism.L2.Th1.H.lineUnique' _root_.Formalism.L2.Th1.H.taylorLine'
+theorem taylorMvInj : TaylorMvInj := TaylorMvInj_of _root_.Formalism.L2.Th1.H.taylorLine'
 
 theorem quadraticSemicharacter_identity_reformulated₂ : quadraticSemicharacterIdentityReformulated₂ := quadraticSemicharacters_of_productThetaMem product_theta_mem'
 theorem quadraticSemicharacters_fact : quadraticSemicharacterIdentity :=

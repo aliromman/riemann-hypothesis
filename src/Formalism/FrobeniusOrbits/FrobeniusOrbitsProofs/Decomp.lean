@@ -260,7 +260,7 @@ theorem hPart_inertia (hqd : HypOdd q d) (h : IsLayer (e + 2) q d ζ a b) (p : �
       first
         | rfl
     rw [e3, hzz, hζN]
-    all_goals first | rfl | simp
+    all_goals first | rfl
   have hneg : ζ ^ (2 ^ (e + 1)) = -1 := by
     have hsq : ζ ^ (2 ^ (e + 1)) * ζ ^ (2 ^ (e + 1)) = 1 := by
       rw [← pow_add, ← two_mul, ← pow_succ']
@@ -279,7 +279,7 @@ theorem hPart_inertia (hqd : HypOdd q d) (h : IsLayer (e + 2) q d ζ a b) (p : �
       first
         | rfl
     rw [e4, hzz, hneg]
-    all_goals first | rfl | simp
+    all_goals first | rfl
   have h2notQ : (2 : 𝓞 L) ∉ Q := by
     intro h2
     have h2' : (2 : ℤ) ∈ Q.under ℤ := Ideal.mem_comap.mpr (by simpa using h2)
@@ -412,7 +412,7 @@ theorem stab_two_sgn (hqd : HypOdd q d) (hd16 : d % 16 = 7) (h : IsLayer (e + 2)
           | rfl
           | push_cast; rfl
       rw [e1, e2, hωv, map_div₀, map_add (f := _), map_one, hσb, map_ofNat]
-      ring
+      ring_nf
     have hsmul : ∀ z, σ • z ∈ P ↔ z ∈ P := smul_mem_iff_of_stab σ P hσ
     have hprodP : ω * (1 - ω) ∈ P := by
       rw [hprod]
@@ -642,7 +642,7 @@ theorem hostDecompConj : HostDecompConj := by
       simpa using h4
     have hd7 : ((p : ℕ) : ZMod 16) = 7 := by
       rw [← ZMod.natCast_mod, hd16]
-      all_goals first | rfl | decide
+      all_goals first | rfl
     have h49 : (7 : ZMod 16) ^ 2 = 1 := by decide
     have h7 : (7 : ZMod 16) ^ (2 * j + 1) = 7 := by
       rw [pow_succ, pow_mul, h49, one_pow, one_mul]

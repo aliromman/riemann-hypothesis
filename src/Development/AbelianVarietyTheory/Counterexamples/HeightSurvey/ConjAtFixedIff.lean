@@ -52,8 +52,6 @@ open scoped TensorProduct
 
 namespace GlobalTheory.SmoothAutCheck
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section Lin
 variable {n : ℕ} {H : Matrix (Fin n) (Fin n) ℂ}
 
@@ -109,7 +107,7 @@ end Lin
 variable {D : D7} (θ : D.what₂.Tau → (Ainf D.host.F ⊗[D.host.F] D.host.E →+* ℂ)) (V : HSp D)
 
 theorem gram_det_ne : V.gram.det ≠ 0 := by
-  apply GlobalTheory.SplitOnto.gram_det_ne <;> assumption
+  apply GlobalTheory.SplitOnto.gram_det_ne
 
 theorem gramAt_unit (τ : D.what₂.Tau) : IsUnit (gramAt D V τ).det := by
   have : (gramAt D V τ).det = tauE D τ V.gram.det := (RingHom.map_det _ _).symm

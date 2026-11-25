@@ -59,6 +59,7 @@ import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
 import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExistsGenerators
 import Mathlib.RingTheory.PicardGroup
+import Development.AbelianVarietyTheory.Proofs.DivisorProofs.KernelConstantExponentsFinite
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.KernelLattices.BaseEx, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.DeterminantKernelFiniteness.ExistsNatMulMemFracFam, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.DeterminantKernelFiniteness.ValuationLeOneOfDenom, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.DeterminantKernelFiniteness.ExistsDenomBackward, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.DeterminantKernelOrder.ValNatCastEqOne, Formalism.PeriodIntegrals.SelfDualOfDiff, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.KernelSplitting.IsIntegralHalf, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.KerSplit, Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.BaseEx
@@ -796,7 +797,7 @@ end -- clump:auto
 -- ===== end clump member: Formalism.PeriodIntegrals.OrbitalBoundsConclusion.KerSplit =====
 
 -- ===== clump member: Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.BaseEx =====
--- clump-header: {"m": "Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.BaseEx", "h": "module\n\npublic import Formalism.LocalToGlobal.KernelLattices.BaseEx\npublic import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.SplitK\npublic import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension\npublic import Formalism.PeriodIntegrals.KerIso\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.DeterminantKernelFiniteness.ExistsDenomBackward\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.DeterminantKernelOrder.ValNatCastEqOne\npublic import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.KerSplit\nimport Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExistsGenerators\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.PicardGroup\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
+-- clump-header: {"m": "Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.BaseEx", "h": "module\n\npublic import Formalism.LocalToGlobal.KernelLattices.BaseEx\npublic import Formalism.FrobeniusOrbits.FrobeniusOrbitsProofs.SplitK\npublic import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension\npublic import Formalism.PeriodIntegrals.KerIso\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.DeterminantKernelFiniteness.ExistsDenomBackward\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.DeterminantKernelOrder.ValNatCastEqOne\npublic import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.KerSplit\nimport Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExistsGenerators\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.PicardGroup\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.KernelConstantExponentsFinite\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -982,18 +983,8 @@ theorem yIndep (γ₀ : IsoK D) : YIndep γ₀ :=
   fun p 𝔭 γ γ' hp _ hm h1 h2 =>
     _root_.PI.KerIso.DetOrdW.detOrdIndep D.host.K D.host.E D.what₂.Tau {x | x ∈ D.host.AA0} p 𝔭 γ.g γ'.g γ₀.g hp hm h1 h2
 
-theorem distinguished_ideal_ne_zero : D.host.AA0 ≠ 0 := by
-  have hd : differentIdeal (𝓞 D.host.K) (𝓞 D.host.E) ≠ ⊥ := differentIdeal_ne_bot
-  have hb : D.host.𝔟 ≠ ⊥ := by
-    intro h0
-    apply hd
-    rw [D.host.𝔟_spec.1, h0]
-    exact Ideal.bot_mul _
-  exact inv_ne_zero (FractionalIdeal.coeIdeal_ne_zero.mpr hb)
-
 theorem yFinite (γ₀ : IsoK D) (k : KapChoice γ₀) : k.YFinite :=
-  _root_.PI.KerDetFinW.detOrdFin D.host.K D.host.E D.what₂.Tau D.host.AA0 (distinguished_ideal_ne_zero D) (SplitK D) k.pp (fun p => (k.gaP p).g) γ₀.g
-    k.pp_over k.gaP_at
+  GlobalTheory.ExponentsFinite.yFinite D γ₀ k
 
 theorem Base.half_not_mem {D : D7} {cc : Ideal (𝓞 D.host.K)} {δ : ℂ} (B : Base D cc δ) : B.ω₀ / 2 ∉ B.L.lattice := by
   intro h
@@ -1001,10 +992,6 @@ theorem Base.half_not_mem {D : D7} {cc : Ideal (𝓞 D.host.K)} {δ : ℂ} (B : 
   exact B.t0.2.1 (latStable D cc δ _ h1)
 
 end Final
-
-namespace Test
-
-end Test
 
 end Formalism.L2.Ker
 end -- clump:auto

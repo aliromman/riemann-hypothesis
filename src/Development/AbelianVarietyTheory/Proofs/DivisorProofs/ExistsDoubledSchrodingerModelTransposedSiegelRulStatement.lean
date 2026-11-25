@@ -96,6 +96,7 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchrodingerOperator
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DoubledUnitaryPartnerDiagStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TransportedWeilDatumIsUnitaryAdelicSchwartzStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DoubledSchroedingerModelSiegelRuleStatement
+public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.MixedCoordinates
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiagonalSiegelHeisenbergInvariantFormUnique, Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiagonalSiegelHeisenbergInvariantFormUniqueStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaDiagonalSiegelParabolicRule, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaDiagonalSiegelParabolicRuleStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SiegelRuleTransportedWeilDatumDoubledTarget, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SiegelRuleTransportedWeilDatumDoubledTargetStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.DoubledWeilDatumDiagActsOnExternalProduct, Development.AbelianVarietyTheory.Proofs.DivisorProofs.DoubledWeilDatumDiagActsOnExternalProductStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.DoubledSpaceBoxProductInnerFactorizes, Development.AbelianVarietyTheory.Proofs.DivisorProofs.DoubledSpaceBoxProductInnerFactorizesStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsThetaFunDoubledSpaceBoxProduct, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsThetaFunDoubledSpaceBoxProductStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaFunFamiliesSameHeisenbergInnerEqSmul, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaFunFamiliesSameHeisenbergInnerEqSmulStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.DoubledWeilDatumDiagThetaProductEqScalarSmul, Development.AbelianVarietyTheory.Proofs.DivisorProofs.DoubledWeilDatumDiagThetaProductEqScalarSmulStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaTransformDoubledCoordsBoxProduct, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaTransformDoubledCoordsBoxProductStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.TransportedWeilDatumDoubledTargetRestrictBoxTens, Development.AbelianVarietyTheory.Proofs.DivisorProofs.TransportedWeilDatumDoubledTargetRestrictBoxTensStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDoubledSchrodingerModelTransposedSiegelRul, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDoubledSchrodingerModelTransposedSiegelRulStatement
@@ -277,25 +278,8 @@ end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiagonalSiegelHeisenbergInvariantFormUniqueStatement =====
 
 -- ===== clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaDiagonalSiegelParabolicRule =====
--- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaDiagonalSiegelParabolicRule", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsUSplittingInl\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaDiagInt\npublic import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.SkewGramHalfModule\npublic import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MixSDblDecZero\npublic import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.WeilRepresentationUnitaryPair\npublic import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ImportsBis\npublic import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MixedModelFormulasWittTarget\npublic import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SiegelWeilSectionDegeneratePrincipalSeriesLaw\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsThetaFunctionThetaTransformRationalDarboux\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ModulusOfNormEqAbs\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\n\n"}
+-- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaDiagonalSiegelParabolicRule", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsUSplittingInl\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaDiagInt\npublic import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.SkewGramHalfModule\npublic import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MixSDblDecZero\npublic import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.WeilRepresentationUnitaryPair\npublic import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ImportsBis\npublic import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MixedModelFormulasWittTarget\npublic import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SiegelWeilSectionDegeneratePrincipalSeriesLaw\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsThetaFunctionThetaTransformRationalDarboux\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ModulusOfNormEqAbs\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\npublic import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.MixedCoordinates\n\n"}
 section -- clump:auto
-namespace I195MixedCoordinates_7b6bb7feeb7e0cab6de7cdc9
-
-open Formalism.BasicNotions Formalism.BasicNotions.TH
-open Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
-open Formalism.L2.Theta Formalism.IndefR.Datum GlobalTheory.MixModel MeasureTheory
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-public noncomputable abbrev target
-    {D : D7} {T T₀ : HSp D} {ρ : ℕ} (d : HypDec T T₀ ρ) (S : HSp D)
-    (ψ : AddChar (AF D.host.F) ℂ) (μ : Measure (Mx D ρ S.rank))
-    (𝓕 : Set (Mx D ρ S.rank)) (f : WO S T → ℂ) (y : Mx D S.rank ρ) : WO S T₀ → ℂ :=
-  fun w₀ => ∫ ξ in 𝓕, heisO ψ S T (d.jX * ξ)
-    (heisO ψ S T (d.jY * (incA D (-D.host.xi0⁻¹) • (adj y * gA S)))
-      (heisO ψ S T (d.j0 * w₀) f)) 0 ∂μ
-
-end I195MixedCoordinates_7b6bb7feeb7e0cab6de7cdc9
-
 @[expose] public section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta
@@ -476,7 +460,7 @@ theorem mixT_law (hP : GlobalTheory.Published.WeilRepresentationUnitaryPair) (ψ
   have e1 : ωd (1, h) f = ωd (1, (dblDec T).levi a) (ωd (1, (dblDec T).nC c) f) := by
     rw [hp, ← Module.End.mul_apply, ← map_mul, Prod.mk_mul_mk, one_mul]
   have hq : (dblDec T).qT S c 0 = 0 := by rw [HypDec.qT, map_zero, symplOH_zero_left]
-  change _root_.I195MixedCoordinates_a63f0715cbf334f1e52c5d7b.target (dblDec T) S ψ μ 𝓕 (ωd (1, h) f) 0 0 = _ * _root_.I195MixedCoordinates_a63f0715cbf334f1e52c5d7b.target (dblDec T) S ψ μ 𝓕 f 0 0
+  change _root_.I195MixedCoordinates.target (dblDec T) S ψ μ 𝓕 (ωd (1, h) f) 0 0 = _ * _root_.I195MixedCoordinates.target (dblDec T) S ψ μ 𝓕 f 0 0
   rw [e1, h1, Matrix.zero_mul, h2, hq, AddChar.map_zero_eq_one, one_smul, Pi.smul_apply, smul_eq_mul,
     ruleFac_eq χS S.rank a t (haP.symm.trans ht)]
 
@@ -807,7 +791,7 @@ open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Ch
 open Formalism.IndefR.Datum
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 noncomputable section
 
@@ -958,7 +942,7 @@ open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Ch
 open Formalism.IndefR.Datum
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 
 end -- clump:auto
@@ -977,7 +961,7 @@ open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Ch
 open Formalism.IndefR.Datum
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 namespace GlobalTheory.DblBoxTheta
 
@@ -1045,7 +1029,7 @@ open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Ch
 open Formalism.IndefR.Datum
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 
 end -- clump:auto
@@ -1064,7 +1048,7 @@ open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Ch
 open Formalism.IndefR.Datum
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 open MeasureTheory
 
@@ -1178,7 +1162,7 @@ open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Ch
 open Formalism.IndefR.Datum
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 
 end -- clump:auto
@@ -1196,7 +1180,7 @@ open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorMode
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Chr incM)
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open Formalism.IndefR.Datum
 
 noncomputable section
