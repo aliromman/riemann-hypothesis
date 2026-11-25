@@ -5,8 +5,11 @@ import Mathlib.Algebra.Order.Star.Real
 import Mathlib.Analysis.CStarAlgebra.ContinuousLinearMap
 import Mathlib.Analysis.Calculus.BumpFunction.FiniteDimension
 public import Mathlib.Analysis.Real.Pi.Bounds
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Algebra.Group.Units
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.EigenvalueSeparation.LeftInv
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.HeckeFubiniCompatibility.EntZero
@@ -161,22 +164,9 @@ theorem phiOf_cs {n : ℕ} [MeasurableSpace (G n)] (μ : Measure (G n)) (M : KMo
     exact hLc.comp (hkc.comp_continuous Units.continuous_val hval)
   · choose R hR using fun i => (hks i).2.2.1
     let f : G n → Mat n × Mat n := fun y => ((y : Mat n), ((y⁻¹ : G n) : Mat n))
-    have hemb : Topology.IsClosedEmbedding f := by
-      refine ⟨?_, ?_⟩
-      · have e : f = (Prod.map id MulOpposite.unop) ∘ Units.embedProduct (Mat n) := rfl
-        rw [e]
-        exact ((Homeomorph.refl _).prodCongr MulOpposite.opHomeomorph.symm).isEmbedding.comp
-          Units.isEmbedding_embedProduct
-      · have e : Set.range f = {p | p.1 * p.2 = 1 ∧ p.2 * p.1 = 1} := by
-          ext p
-          constructor
-          · rintro ⟨y, rfl⟩
-            exact ⟨y.mul_inv, y.inv_mul⟩
-          · rintro ⟨h1, h2⟩
-            exact ⟨⟨p.1, p.2, h1, h2⟩, rfl⟩
-        rw [e]
-        exact (isClosed_eq (continuous_fst.mul continuous_snd) continuous_const).inter
-          (isClosed_eq (continuous_snd.mul continuous_fst) continuous_const)
+    have hemb : Topology.IsClosedEmbedding f :=
+      ((Homeomorph.refl _).prodCongr MulOpposite.opHomeomorph.symm).isClosedEmbedding.comp
+        Units.isClosedEmbedding_embedProduct
     have hterm : ∀ p : Mat n × Mat n, ∀ a b, ‖p.1 a b‖ ^ 2 + ‖p.2 a b‖ ^ 2 ≤
         ∑ a, ∑ b, (‖p.1 a b‖ ^ 2 + ‖p.2 a b‖ ^ 2) := by
       intro p a b

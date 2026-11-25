@@ -6,6 +6,27 @@ public import GroundTheory.AutomorphicForms.IwahoriFactorization
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.InductionEstimates.IwahoriHeckeInjectivity.HeckeInj
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.InductionEstimates.IwahoriBlocks.IwahoriCentralBorel.BlockFrameConjugationIdentity
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.InductionEstimates.IwahoriBlocks.IwahoriCentralBorel.HopEmb
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -18,9 +39,12 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.InductionEstimates.IwahoriBlocks.IwahoriCentralBorel.LevLaws
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.InductionEstimates.IwahoriBlocks.IwahoriCentralBorel.PiHomExt
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.InductionEstimates.IwahoriBlocks.IwahoriCentralBorel.RepsSmul
+import Mathlib.Tactic.Basify
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -49,16 +73,6 @@ private noncomputable def onSub (ρ : Representation ℂ G V) (Z : Submodule ℂ
   toFun g := (ρ g).restrict (hZ g)
   map_one' := by ext v; simp
   map_mul' g h := by ext v; simp
-
-private theorem cosets_finite [TopologicalSpace G] [IsTopologicalGroup G] (I : Subgroup G)
-    (hc : IsCompact (I : Set G)) (ho : IsOpen (I : Set G)) (t : G) :
-    {c : G ⧸ I | ∃ u ∈ I, c = QuotientGroup.mk (u * t)}.Finite := by
-  haveI := QuotientGroup.discreteTopology ho
-  have h : IsCompact ((fun u : G => (QuotientGroup.mk (u * t) : G ⧸ I)) '' (I : Set G)) :=
-    hc.image (QuotientGroup.continuous_mk.comp (continuous_id.mul continuous_const))
-  refine h.finite_of_discrete.subset ?_
-  rintro c ⟨u, hu, rfl⟩
-  exact ⟨u, hu, rfl⟩
 
 private theorem mem_twKer_of_sum (π : Representation ℂ G V) (I N : Subgroup G) (t : G) (v : V)
     (hv : ∀ u ∈ I, π u v = v) (T : Finset (G ⧸ I))
@@ -175,8 +189,12 @@ private theorem local_inj {V : Type} [AddCommGroup V] [Module ℂ V]
     (hsm : ∀ v ∈ Z, IsOpen {g | ρ g v = v}) (ν : Fin n → ℤ) (hν : Antitone ν) (v : V) (hvZ : v ∈ Z)
     (hv : ∀ u ∈ GLnLocal.iwahori F n, ρ u v = v)
     (h0 : hopR ρ (GLnLocal.iwahori F n) (Cartan.diagPow F n ν) v = 0) : v = 0 := by
-  have hS := cosets_finite (GLnLocal.iwahori F n) (GLnLocal.isCompact_iwahori F n)
-    (GLnLocal.isOpen_iwahori F n) (Cartan.diagPow F n ν)
+  haveI := QuotientGroup.discreteTopology (GLnLocal.isOpen_iwahori F n)
+  have hS : {c : GL (Fin n) F ⧸ GLnLocal.iwahori F n |
+      ∃ u ∈ GLnLocal.iwahori F n, c = QuotientGroup.mk (u * Cartan.diagPow F n ν)}.Finite :=
+    ((GLnLocal.isCompact_iwahori F n).image (QuotientGroup.continuous_mk.comp
+      (continuous_id.mul continuous_const))).finite_of_discrete.subset
+      fun _ ⟨u, hu, h⟩ => ⟨u, hu, h.symm⟩
   have h1 : ∑ c ∈ hS.toFinset, ρ c.out v = 0 := by
     rw [← finsum_mem_eq_finite_toFinset_sum _ hS]
     exact h0

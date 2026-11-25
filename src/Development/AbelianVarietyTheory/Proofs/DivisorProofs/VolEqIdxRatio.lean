@@ -3,18 +3,6 @@ module
 public import Development.AbelianVarietyTheory.Definitions.Divisors.PointSide
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.InverseUnipotentVolumeConjDiagonalUnitsGLMul
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedOrbitalIntegralProductGroup
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.StableTwistedOrbitalProduct
 
 @[expose] public section
@@ -43,12 +31,6 @@ theorem vol_prod {G' : Type} [Group G'] (C H : Subgroup G) (C' H' : Subgroup G')
   rw [relIndex_prod_prod, relIndex_prod_prod]
   push_cast
   exact mul_div_mul_comm _ _ _ _
-
-theorem map_conj_mul (K : Subgroup G) (t x : G) :
-    K.map (MulAut.conj (t * x)).toMonoidHom =
-      (K.map (MulAut.conj x).toMonoidHom).map (MulAut.conj t).toMonoidHom := by
-  have h := map_conj_mul_three_subgroup_of_mem K K.one_mem t x
-  rwa [mul_one] at h
 
 theorem inf_map_conj (T A : Subgroup G) {t : G} (ht : t ∈ T) :
     T ⊓ A.map (MulAut.conj t).toMonoidHom = (T ⊓ A).map (MulAut.conj t).toMonoidHom := by

@@ -3,6 +3,27 @@ module
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.HeckeAdjoints.HasPairingOfHerm
 public import GroundTheory.AutomorphicForms.UnitaryAdmissible.CuspCentral
 public import GroundTheory.AutomorphicForms.TensorProductTheorem.CentralCusp
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -15,6 +36,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 
 @[expose] public section
 
@@ -31,15 +53,6 @@ def LieMatch : Prop :=
   ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (a : ℕ),
     ∃ e : TR.Lie F a →ₗ[ℝ] (isExpLieAlgebra F a).lieSubalgebra, centralZ F a = centralExp F a • e (oneL F a) ∧
       ∀ X (φ : Sm F a) (h : φ.1 ∈ cuspForms F a), (lieActionCusp F a (e X) ⟨φ.1, h⟩).1 = (TR.lie F a X φ).1
-
-private theorem isHerm_of_inner {F : Type} [Field F] [NumberField F] [IsTotallyReal F] {a : ℕ} {π : CuspSub F a} {L : Type}
-    [NormedAddCommGroup L] [InnerProductSpace ℂ L] (p : π.V →ₗ[ℂ] L) (h1 : ∀ φ, inner ℂ (p φ) (p φ) = 0 → φ = 0)
-    (h2 : ∀ k φ ψ, inner ℂ (p (π.op (.fin k) φ)) (p (π.op (.fin k) ψ)) = inner ℂ (p φ) (p ψ))
-    (h3 : ∀ k φ ψ, inner ℂ (p (π.op (.cpt k) φ)) (p (π.op (.cpt k) ψ)) = inner ℂ (p φ) (p ψ))
-    (h4 : ∀ X φ ψ, inner ℂ (p (π.op (.lie X) φ)) (p ψ) + inner ℂ (p φ) (p (π.op (.lie X) ψ)) = 0) : ∃ H, IsHerm π H :=
-  ⟨LinearMap.mk₂'ₛₗ (starRingEnd ℂ) (RingHom.id ℂ) (fun φ ψ => inner ℂ (p φ) (p ψ))
-    (fun _ _ _ => by rw [map_add (f := _), inner_add_left]) (fun _ _ _ => by rw [map_smul, inner_smul_left]; rfl)
-    (fun _ _ _ => by rw [map_add (f := _), inner_add_right]) (fun _ _ _ => by rw [map_smul, inner_smul_right]; rfl), h1, h2, h3, h4⟩
 
 theorem hermEx_of (h1 : ToFound) (h2 : LieMatch) : HermEx := by
   intro F _ _ _ a _ π h0
@@ -61,8 +74,8 @@ theorem hermEx_of (h1 : ToFound) (h2 : LieMatch) : HermEx := by
     (congrArg₂ (inner ℂ) (cuspFormLp_rightTranslate_eq_rep μ (hc φ) g (ψ := j φ') (congrArg Subtype.val e1))
       (cuspFormLp_rightTranslate_eq_rep μ (hc ψ) g (ψ := j ψ') (congrArg Subtype.val e2))).trans
       (UnitaryRep.inner_map_map (CuspidalSpectrum.cuspRep μ) _ _ _)
-  refine isHerm_of_inner p (fun φ h => ?_) (fun k φ ψ => hr _ _ _ _ _ rfl rfl) (fun k φ ψ => hr _ _ _ _ _ rfl rfl)
-    fun X φ ψ => ?_
+  refine ⟨((innerₛₗ ℂ).comp p).compl₂ p, ⟨fun φ h => ?_, fun k φ ψ => hr _ _ _ _ _ rfl rfl,
+    fun k φ ψ => hr _ _ _ _ _ rfl rfl, fun X φ ψ => ?_⟩⟩
   · have h5 : (j φ).1 = (0 : cuspForms F a).1 := congrArg Subtype.val (eq_zero_of_petersson_inner_self_eq_zero μ (hc φ) h)
     exact Subtype.ext (Subtype.ext h5)
   · have e1 : p (π.op (.lie X) φ) = CuspidalSpectrum.cuspToL2 μ ((gkModuleCusp F a).ρ (e X) (j φ)) :=

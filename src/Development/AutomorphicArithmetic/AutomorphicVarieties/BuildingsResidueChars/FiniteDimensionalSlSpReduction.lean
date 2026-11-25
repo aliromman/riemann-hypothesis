@@ -4,6 +4,30 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.Automorphic
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.FormsFiniteness.FormsFiniteAlt
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.BlockEmbeddingAdelicNormCompat
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.BlockEmbeddingCommInfEmbAndExp
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -16,6 +40,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -43,18 +68,6 @@ private theorem aux2 (K : Type) [Field K] [NumberField K] (a n : ℕ) (e : Fin a
   rw [(UpperTheory.blockEmbedding_comm_infEmb_and_exp K a n e).1] at h
   exact Subgroup.mem_comap.2 h
 
-private theorem aux3 {G X : Type} (A : Submodule ℂ (G → ℂ)) (s : Set A) (p : X → G) (W : Submodule ℂ (X → ℂ))
-    (h : ∀ f ∈ s, (fun k => f.1 (p k)) ∈ W) : ∀ f ∈ Submodule.span ℂ s, (fun k => f.1 (p k)) ∈ W := by
-  intro f hf
-  induction hf using Submodule.span_induction with
-  | mem x hx => exact h x hx
-  | zero =>
-    convert W.zero_mem using 1
-  | add x y _ _ hx hy =>
-    convert W.add_mem hx hy using 1
-  | smul c x _ hx =>
-    convert W.smul_mem c hx using 1
-
 theorem UpperTheory.finiteDimensional_slSp_reduction :
     ∀ (K : Type) [Field K] [NumberField K] (a n : ℕ) (e : Fin a ↪ Fin n) (Γ : Set (AdelicGLn.AdelicGL K n)) (S : Submodule ℂ (archSmooth K n)), Types S → Types (slSp e Γ S) := by
   intro K _ _ a n e Γ S hS
@@ -70,7 +83,8 @@ theorem UpperTheory.finiteDimensional_slSp_reduction :
   · exact Module.Finite.map V _
   · intro f hf g
     unfold slSp at hf
-    refine aux3 (archSmooth K a) _ (fun k : archCompact K a => g * infEmb K a k.1)
-      (V.map (LinearMap.funLeft ℂ ℂ j)) ?_ f hf
+    refine (Submodule.span_le (p := (V.map (LinearMap.funLeft ℂ ℂ j)).comap
+      ((LinearMap.funLeft ℂ ℂ fun k : archCompact K a => g * infEmb K a k.1).comp
+        (archSmooth K a).subtype))).2 ?_ hf
     rintro f' ⟨ψ, hψ, g₀, -, hf'⟩
     exact key.2 f'.1 ψ.1 g₀ (hV ψ hψ) hf' g

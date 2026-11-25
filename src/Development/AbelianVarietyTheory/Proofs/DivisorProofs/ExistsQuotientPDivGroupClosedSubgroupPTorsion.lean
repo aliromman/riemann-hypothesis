@@ -6,17 +6,42 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.ToSpanSingle
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsMulPowFibreRankEqPDivGroup
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LinearMapFibreRankSplitCompSurjective
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.FiniteAlgebrasOverHenselianAndComplete
-import Mathlib.Algebra.Order.Ring.Star
 public import Mathlib.RingTheory.HopfAlgebra.Quotient
 public import Mathlib.RingTheory.Bialgebra.Quotient
 public import Development.AbelianVarietyTheory.Definitions.Divisors.KerIdealCompOfSurjective
 public import Mathlib.RingTheory.Bialgebra.Hom
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.BialgHomFactorThroughSplitInjection
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsQuotientFiniteCommGroupSchemeClosedSubgrou
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.RingTheory.Unramified.LocalStructure
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -501,11 +526,7 @@ namespace GlobalTheory.QuotField
 
 variable {p : ℕ} {O : Type} [CommRing O] (G : PDivGroup p O)
 
-def levelRes (m : ℕ) : G.A (m + 1) →ₐc[O] G.A 1 :=
-  Nat.rec (motive := fun m => G.A (m + 1) →ₐc[O] G.A 1) (BialgHom.id O _)
-    (fun m f => f.comp (G.res (m + 1))) m
-
-theorem levelRes_surjective (m : ℕ) : Function.Surjective (levelRes G m) := by
+theorem levelRes_surjective (m : ℕ) : Function.Surjective (GlobalTheory.PDivGroup.resOne G m) := by
   induction m with
   | zero => exact Function.surjective_id
   | succ m ih =>
@@ -515,22 +536,21 @@ theorem levelRes_surjective (m : ℕ) : Function.Surjective (levelRes G m) := by
     exact ⟨b, rfl⟩
 
 theorem ker_succ {C : Type} [CommRing C] [Bialgebra O C] (π : G.A 1 →ₐc[O] C) (m : ℕ) :
-    RingHom.ker (π.comp (levelRes G (m + 1))) =
+    RingHom.ker (π.comp (GlobalTheory.PDivGroup.resOne G (m + 1))) =
       Ideal.comap (G.res (m + 1) : G.A (m + 2) →ₐ[O] G.A (m + 1))
-        (RingHom.ker (π.comp (levelRes G m))) :=
+        (RingHom.ker (π.comp (GlobalTheory.PDivGroup.resOne G m))) :=
   Ideal.ext fun _ => Iff.rfl
 
 theorem torsion_le {C : Type} [CommRing C] [Bialgebra O C] (π : G.A 1 →ₐc[O] C) (m : ℕ) :
-    torsionIdeal (R := O) (A := G.A (m + 1)) p ≤ RingHom.ker (π.comp (levelRes G m)) := by
+    torsionIdeal (R := O) (A := G.A (m + 1)) p ≤ RingHom.ker (π.comp (GlobalTheory.PDivGroup.resOne G m)) := by
   refine (kerIdeal_le_ker_iff _
-    ((π.comp (levelRes G m) : G.A (m + 1) →ₐc[O] C) : G.A (m + 1) →ₐ[O] C)).2 fun c => ?_
-  change π (levelRes G m (mulBy (R := O) (A := G.A (m + 1)) p c)) = _
-  have h := G.mulBy_pow_self 1 (levelRes G m c)
+    ((π.comp (GlobalTheory.PDivGroup.resOne G m) : G.A (m + 1) →ₐc[O] C) : G.A (m + 1) →ₐ[O] C)).2 fun c => ?_
+  change π (GlobalTheory.PDivGroup.resOne G m (mulBy (R := O) (A := G.A (m + 1)) p c)) = _
+  have h := G.mulBy_pow_self 1 (GlobalTheory.PDivGroup.resOne G m c)
   rw [pow_one] at h
   rw [map_mulBy, h, AlgHomClass.commutes, CoalgHomClass.counit_comp_apply]
 
 end GlobalTheory.QuotField
-
 
 open GlobalTheory.QuotField GlobalTheory.HTPair.QuotIsog in
 theorem GlobalTheory.HTPair.exists_quot_field : ∀ (p : ℕ) [Fact p.Prime] (k : Type) [Field k] [CharP k p]
@@ -539,10 +559,10 @@ theorem GlobalTheory.HTPair.exists_quot_field : ∀ (p : ℕ) [Fact p.Prime] (k 
     ∃ (Q : PDivGroup p k) (q : G ⟶ Q) (q' : Q ⟶ G), q ≫ q' = (p : ℤ_[p]) • 𝟙 G ∧
       q' ≫ q = (p : ℤ_[p]) • 𝟙 Q ∧ kerIdeal (q.app 1) = RingHom.ker π := by
   intro p _ k _ _ G C _ _ _ _ π hπ
-  have hsurj : ∀ m, Function.Surjective (π.comp (levelRes G m)) := fun m =>
+  have hsurj : ∀ m, Function.Surjective (π.comp (GlobalTheory.PDivGroup.resOne G m)) := fun m =>
     hπ.comp (levelRes_surjective G m)
   choose B iR iH iC iF j hinj hker huniv using
-    fun m => _root_.GlobalTheory.HopfQuot.exists_quotient k (G.A (m + 1)) C (π.comp (levelRes G m)) (hsurj m)
+    fun m => _root_.GlobalTheory.HopfQuot.exists_quotient k (G.A (m + 1)) C (π.comp (GlobalTheory.PDivGroup.resOne G m)) (hsurj m)
   letI := iR
   letI := iH
   letI := iC
@@ -553,7 +573,7 @@ theorem GlobalTheory.HTPair.exists_quot_field : ∀ (p : ℕ) [Fact p.Prime] (k 
     exact ⟨g, fun b => LinearMap.congr_fun hg b⟩
   choose ρ hρ using hρ
   have hfac : ∀ m (D : Type) [CommRing D] [Bialgebra k D] (f : D →ₐc[k] G.A (m + 1)),
-      kerIdeal f ≤ RingHom.ker (π.comp (levelRes G m)) →
+      kerIdeal f ≤ RingHom.ker (π.comp (GlobalTheory.PDivGroup.resOne G m)) →
         ∃ g : D →ₐc[k] B m, ∀ d, j m (g d) = f d := fun m D _ _ f hf =>
     _root_.GlobalTheory.bialgHom_factor_through_split k (G.A (m + 1)) (B m) D (j m) (ρ m) f (hρ m) (huniv m D f hf)
   choose r hr using fun m => hfac m (B (m + 1)) ((G.res (m + 1)).comp (j (m + 1))) (by

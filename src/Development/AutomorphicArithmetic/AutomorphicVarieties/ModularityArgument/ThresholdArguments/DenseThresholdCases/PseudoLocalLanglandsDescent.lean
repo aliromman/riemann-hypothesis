@@ -13,7 +13,29 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.Spheric
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SupercuspidalSupportUniqueGL
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.PlainTorExistsChars
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.SingularWeightMonotoneRegularization
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -25,6 +47,8 @@ import Mathlib.Tactic.NormNum.NatSqrt
 import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 
 @[expose] public section
 
@@ -33,9 +57,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Polynomial ValuativeRel GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.LocLanglands GlobalTheory.LocGL GlobalTheory.GalOfCusp GlobalTheory.SmGL GlobalTheory.SplitWeil UpperTheory.V.Hi
-private theorem multiset_eq_of_sum {Γ : Type} [Monoid Γ] (s t : Multiset (Γ →* ℂ))
-    (h : ∀ g, (s.map fun f => f g).sum = (t.map fun f => f g).sum) : s = t := by
-  apply _root_.UpperTheory.Reformulated.B.Qf50.multiset_eq_of_sum <;> assumption
 section
 variable {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω]
   {A : ValuationSubring Ω} {w : HeightOneSpectrum (𝓞 E)} {h : IsPlaceOver A w}
@@ -76,7 +97,8 @@ private theorem hasSupport_of_charPol (hZ : GlobalTheory.Published.ZelevinskyPol
     Subtype.ext (MonoidHom.ext fun y => Units.ext (DFunLike.congr_fun e y))
   let t' : Multiset S := Finset.univ.val.map fun i => ⟨ω i, hω i⟩
   have htt : t = t' := by
-    refine Multiset.map_injective hc (multiset_eq_of_sum _ _ fun y => ?_)
+    refine Multiset.map_injective hc
+      (_root_.UpperTheory.Reformulated.B.Qf50.multiset_eq_of_sum _ _ fun y => ?_)
     obtain ⟨g, rfl⟩ := ha.surj y
     have h1 : (((t.map c).map fun f => f (a g)).map fun r => X - C r).prod =
         (((t'.map c).map fun f => f (a g)).map fun r => X - C r).prod := by
@@ -133,9 +155,7 @@ theorem UpperTheory.V.Z.Desc.W.pseudo_local_langlands_descent :
   have h2 := SupportRing.hasSupport_nu hs (((n : ℂ) - 1) / 2)
   have e2 : (algNorm σ).nu (((n : ℂ) - 1) / 2) = IrrGL.of σ.ρ σ.smooth σ.irred := by
     rw [algNorm, IrrGL.nu_nu, add_comm, e0, IrrGL.nu_zero]
-  have key : ∀ (x y : IrrGL (k := w.adicCompletion L)) s, x = y → HasSupport x.rep s → HasSupport y.rep s := by
-    rintro _ _ _ rfl h; exact h
-  have h3 := (key _ _ _ e2 h2).of_equiv (IrrGL.equivOf σ.ρ σ.smooth σ.irred).symm
+  have h3 := (e2 ▸ h2).of_equiv (IrrGL.equivOf σ.ρ σ.smooth σ.irred).symm
   simp only [Multiset.map_map, Function.comp_def, e1] at h3
   exact isSubquotient_of_hasSupport P.loc.zel τ _ hμ h3
 end

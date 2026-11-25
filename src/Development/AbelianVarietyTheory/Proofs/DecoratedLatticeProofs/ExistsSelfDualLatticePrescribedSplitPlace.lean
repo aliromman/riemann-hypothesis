@@ -6,6 +6,29 @@ public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.Exi
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SplitPlaceLocalGroupElementsJacobiBessel
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.AdelicPointComponentsAtPlacesLatticesVacua
 import Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.MarkSpec
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -19,6 +42,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.JointSmooth
 
@@ -32,30 +58,20 @@ namespace GlobalTheory.SplitLat
 
 variable {D : D7} {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
 
-def place (q : SplitPt D k) : GlobalTheory.LocMod.Place D k where
-  e := q.e
-  split := q.split
-  π := q.pr
-  ι := q.sec
-  π_ι := q.pr_sec
-  ι_π := q.sec_pr
-  cont_π := q.cont_pr
-  cont_ι := q.cont_sec
-
 theorem suppAt_one (e : AE D) (S : HSp D) : SuppAt e S 1 := by
   intro i j
   simp [Formalism.L2.Theta.mt]
 
 theorem isLoc_one (q : SplitPt D k) {S : HSp D} {Y : Type} [Fintype Y] [DecidableEq Y]
-    (F : GlobalTheory.LocMod.Frame k S.rank Y) : (place q).IsLoc F 1 1 := by
+    (F : GlobalTheory.LocMod.Frame k S.rank Y) : (GlobalTheory.LocMod.Place.ofSplitPt q).IsLoc F 1 1 := by
   refine ⟨suppAt_one _ _, ?_⟩
-  simp [Formalism.L2.Theta.mt, F.βγ, place]
+  simp [Formalism.L2.Theta.mt, F.βγ, GlobalTheory.LocMod.Place.ofSplitPt]
 
 theorem locGrp (q : SplitPt D k) (S : HSp D) (Y : Type) [Fintype Y] [DecidableEq Y]
     (F : GlobalTheory.LocMod.Frame k S.rank Y) :
-    (∀ gk : GL Y k, ∃! g, (place q).IsLoc F g gk) ∧ (∀ g, SuppAt (place q).e S g → ∃ gk, (place q).IsLoc F g gk) ∧
-      ∀ g gk h hk, (place q).IsLoc F g gk → (place q).IsLoc F h hk → (place q).IsLoc F (g * h) (gk * hk) :=
-  (_root_.GlobalTheory.LocGrp.local_groups D k (place q)).1 S Y F
+    (∀ gk : GL Y k, ∃! g, (GlobalTheory.LocMod.Place.ofSplitPt q).IsLoc F g gk) ∧ (∀ g, SuppAt (GlobalTheory.LocMod.Place.ofSplitPt q).e S g → ∃ gk, (GlobalTheory.LocMod.Place.ofSplitPt q).IsLoc F g gk) ∧
+      ∀ g gk h hk, (GlobalTheory.LocMod.Place.ofSplitPt q).IsLoc F g gk → (GlobalTheory.LocMod.Place.ofSplitPt q).IsLoc F h hk → (GlobalTheory.LocMod.Place.ofSplitPt q).IsLoc F (g * h) (gk * hk) :=
+  (_root_.GlobalTheory.LocGrp.local_groups D k (GlobalTheory.LocMod.Place.ofSplitPt q)).1 S Y F
 
 def frameOf (q : SplitPt D k) (S : HSp D) (Y : Type) [Fintype Y] [DecidableEq Y]
     (F : GlobalTheory.LocMod.Frame k S.rank Y) : Frame q S Y where

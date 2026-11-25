@@ -6,18 +6,6 @@ public import Development.AbelianVarietyTheory.Proofs.ToricGeometry.ExistsLinear
 import Mathlib.AlgebraicGeometry.Modules.Sheaf
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.ThetaQuasiPeriods.PeriodLattice
 
 @[expose] public section
@@ -156,11 +144,7 @@ theorem top_le_const (y : 𝟙_ (Over (Sp ℂ)) ⟶ A) (U : A.left.Opens) (h' : 
 
 theorem surjective_residue_slice [Subsingleton (PrimeSpectrum R)] (ρ : R →ₐ[ℂ] ℂ) :
     Function.Surjective (lift (toUnit A ≫ resPt ρ) (𝟙 A)).left := by
-  have hc : spMap ρ.toRingHom ≫ spMap (algebraMap ℂ R) = 𝟙 (Sp ℂ) := by
-    rw [← Spec.map_comp, ← Spec.map_id]
-    congr 1
-    ext a
-    exact ρ.commutes a
+  have hc : spMap ρ.toRingHom ≫ spMap (algebraMap ℂ R) = 𝟙 (Sp ℂ) := Over.w (resPt ρ)
   have wP : (fst (spO R) A).left ≫ (spO R).hom = (snd (spO R) A).left ≫ A.hom :=
     (Over.w (fst (spO R) A)).trans (Over.w (snd (spO R) A)).symm
   have hL1 : (lift (toUnit A ≫ resPt ρ) (𝟙 A)).left ≫ (fst (spO R) A).left = A.hom ≫ spMap ρ.toRingHom := by

@@ -7,19 +7,6 @@ public import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsGenMul
 public import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ExistsShiftedNormalisation
 public import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsFrameRatio
 import Mathlib.AlgebraicGeometry.Modules.Sheaf
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.PhiPow
 
 @[expose] public section
@@ -97,16 +84,8 @@ theorem phiRel_zero (hG : GlobalFnsSt) {k : ℕ} (p : QkPt D F k) (w : Frm D F k
 
 theorem bijective_of_pow {F V : Type} [Field F] [AddCommGroup V] [Module F V] (Φ : V →ₗ[F] V) {k : ℕ} (hk : 1 ≤ k)
     {c : F} (hc : c ≠ 0) (h : ∀ s, (Φ ^ k) s = c • s) : Function.Bijective Φ := by
-  obtain ⟨k, rfl⟩ : ∃ n, k = n + 1 := ⟨k - 1, by omega⟩
-  constructor
-  · intro a b hab
-    have : (Φ ^ (k + 1)) a = (Φ ^ (k + 1)) b := by
-      rw [pow_succ, Module.End.mul_apply, Module.End.mul_apply, hab]
-    rw [h, h] at this
-    exact smul_right_injective V hc this
-  · intro b
-    refine ⟨(Φ ^ k) (c⁻¹ • b), ?_⟩
-    rw [← Module.End.mul_apply, ← pow_succ', h, smul_smul, mul_inv_cancel₀ hc, one_smul]
+  have e : Φ ^ k = algebraMap F (Module.End F V) c := LinearMap.ext h
+  exact (Module.End.isUnit_iff Φ).1 ((isUnit_pow_iff (Nat.one_le_iff_ne_zero.mp hk)).1 (by rw [e]; exact hc.isUnit.map _))
 
 theorem phi_projective : LL → AllD fun {R} _ _ {I} D F _ _ => ∀ (k : ℕ), 1 ≤ k → ∃ Φ : ∀ (p : QkPt D.toPre F k), Frm D.toPre F k p.g.b → (Fam D.toPre F k →ₗ[F] Fam D.toPre F k), (∀ p w, w.IsGen → Function.Bijective (Φ p w) ∧ ∀ s t, PhiRel D.toPre F k p w s t ↔ t = Φ p w s) ∧ (∀ p w, w.IsGen → ∀ c : F, c ≠ 0 → ∃ w', w'.IsGen ∧ Φ p w' = c • Φ p w) ∧ (∀ p w w', w.IsGen → w'.IsGen → ∃ c : F, c ≠ 0 ∧ Φ p w' = c • Φ p w) ∧ (∀ p p' w, w.IsGen → QkPt.Equiv D.toPre F p p' → ∃ w', w'.IsGen ∧ Φ p' w' = Φ p w) ∧ (∀ p p' p'' w w', w.IsGen → w'.IsGen → QkAdd p p' p'' → ∃ w'', w''.IsGen ∧ Φ p'' w'' = Φ p w ∘ₗ Φ p' w') ∧ ∀ p w, p.y = 0 → p.g.IsZero → FrmOne w → Φ p w = LinearMap.id := by
   intro hL R _ _ _ I _ D F _ _ _ k hk

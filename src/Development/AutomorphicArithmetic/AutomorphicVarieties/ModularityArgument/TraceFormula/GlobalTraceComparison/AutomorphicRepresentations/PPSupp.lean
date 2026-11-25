@@ -4,6 +4,32 @@ public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.MeasureTheory.Function.LpSpace.Basic
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.AutomorphicRepresentations.EvalBasis
 public import Development.DiscreteGroups.PiInvariants.CompactSupportTwists.LogAbsEqLogIdeleNorm
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -17,7 +43,9 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.TypeStar
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.ReduceModChar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.MultiplicationNormBound, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.MulLinearAe, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.AutomorphicRepresentations.PPSupp
@@ -91,14 +119,7 @@ theorem UpperTheory.Reformulated.B.MulLinearAe.mulL_ae.{u_1} :
           X → ℂ) =ᵐ[ν]
         fun (x : X) ↦ (↑(c x) : ℂ) * (↑(↑f : X →ₘ[ν] ℂ) : X → ℂ) x := by
   intro X _ ν c hc hb f
-  have h : MeasureTheory.MemLp (fun x : X => (c x : ℂ) * f x) 2 ν :=
-    (MeasureTheory.Lp.memLp f).of_le
-      ((Complex.measurable_ofReal.comp hc).aestronglyMeasurable.mul
-        (MeasureTheory.Lp.aestronglyMeasurable f))
-      (Filter.Eventually.of_forall fun x => by
-        rw [norm_mul, Complex.norm_real, Real.norm_eq_abs]
-        exact mul_le_of_le_one_left (norm_nonneg _) (hb x))
-  exact h.coeFn_toLp
+  exact (UpperTheory.Reformulated.B.MultiplicationNormBound.memLp_mul c hc hb f).coeFn_toLp
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.MulLinearAe =====
@@ -146,14 +167,10 @@ end Abs
 
 section Mul
 
+open _root_.UpperTheory.Reformulated.B.MultiplicationNormBound (mulL)
+open _root_.UpperTheory.Reformulated.B.MulLinearAe (mulL_ae)
+
 variable {X : Type*} [MeasurableSpace X] {ν : Measure X} (c : X → ℝ)
-
-private noncomputable def mulL (hc : Measurable c) (hb : ∀ x, |c x| ≤ 1) : Lp ℂ 2 ν →L[ℂ] Lp ℂ 2 ν :=
-  by apply _root_.UpperTheory.Reformulated.B.MultiplicationNormBound.mulL <;> assumption
-
-private theorem mulL_ae (hc : Measurable c) (hb : ∀ x, |c x| ≤ 1) (f : Lp ℂ 2 ν) :
-    (mulL c hc hb f : X → ℂ) =ᵐ[ν] fun x => (c x : ℂ) * (f : X → ℂ) x :=
-  by apply _root_.UpperTheory.Reformulated.B.MulLinearAe.mulL_ae
 
 private theorem mulL_inner (hc : Measurable c) (hb : ∀ x, |c x| ≤ 1) (f g : Lp ℂ 2 ν) :
     inner ℂ (mulL c hc hb f) g = inner ℂ f (mulL c hc hb g) := by
@@ -222,6 +239,8 @@ end UpperTheory.V.Z.Tf.GlobalTraceComparison.Pi.PS
 
 end
 
+open UpperTheory.Reformulated.B.MultiplicationNormBound (mulL) in
+open UpperTheory.Reformulated.B.MulLinearAe (mulL_ae) in
 open UpperTheory.V.Z.Tf.GlobalTraceComparison.Pi.PS PositivityTheory.Rg.BcB.E PositivityTheory.Rg.BcB.Desc MeasureTheory in
 attribute [local instance] PositivityTheory.Rg.BcB.E.borelH in
 theorem UpperTheory.V.Z.Tf.GlobalTraceComparison.Pi.pSupp_pf :

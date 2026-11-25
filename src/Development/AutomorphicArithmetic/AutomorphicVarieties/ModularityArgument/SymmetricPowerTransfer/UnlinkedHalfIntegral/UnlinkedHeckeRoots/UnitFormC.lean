@@ -3,6 +3,29 @@ module
 import all Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.HolomorphicIrreducibility.UnitForm
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.UnlinkedHalfIntegral.UnitFormC
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.UnlinkedHalfIntegral.UnlinkedHeckeRoots.UnitFamC
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -15,6 +38,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 
 @[expose] public section
 
@@ -22,13 +47,6 @@ open Formalism.ConjugateSelfDual CongruenceSubgroup UpperHalfPlane UpperTheory.V
 open scoped MatrixGroups ModularForm
 
 namespace UpperTheory.V.Z.Sym.Unl
-
-private theorem coe_comb {N : ℕ} {k : ℤ} {I : Type} (s : Finset I) (c : I → ℂ) (f : I → ModularForm (Gamma1 N) k) :
-    ((∑ a ∈ s, c a • f a : ModularForm (Gamma1 N) k) : ℍ → ℂ) = ∑ a ∈ s, c a • (f a : ℍ → ℂ) := by
-  classical
-  induction s using Finset.induction_on with
-  | empty => simp
-  | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, ← ih]; rfl
 
 private theorem one_mem_per (N : ℕ) :
     (1 : ℝ) ∈ (Subgroup.map (Matrix.SpecialLinearGroup.mapGL ℝ) (Gamma1 N)).strictPeriods := by
@@ -39,10 +57,6 @@ private theorem coef_smul {N : ℕ} {k : ℤ} (c : ℂ) (f : ModularForm (Gamma1
   unfold coef
   rw [ModularForm.qExpansion_smul one_pos (one_mem_per N) c f]
   simp
-
-private theorem coef_comb {N : ℕ} {k : ℤ} {I : Type} (s : Finset I) (c : I → ℂ) (f : I → ModularForm (Gamma1 N) k) (n : ℕ) :
-    coef (∑ a ∈ s, c a • f a : ModularForm (Gamma1 N) k) n = ∑ a ∈ s, c a * coef (f a) n := by
-  apply _root_.UpperTheory.V.Sd.coef_comb <;> assumption
 
 private theorem slash_neg_one (k : ℕ) (f : ℍ → ℂ) : f ∣[(k : ℤ)] (-1 : SL(2, ℤ)) = ((-1 : ℂ) ^ k) • f := by
   funext τ
@@ -76,8 +90,10 @@ private theorem hasChar_comb {N k : ℕ} [NeZero N] (χ : DirichletCharacter ℂ
     rw [Gamma0_mem.1 hγ, mul_zero, sub_zero] at h2
     exact IsUnit.of_mul_eq_one_right _ h2
   obtain ⟨d, hd⟩ := hd
-  rw [coe_comb, SlashAction.sum_slash, Finset.smul_sum, ← hd]
+  rw [← FunLike.coe_coeAddMonoidHom (F := ModularForm (Gamma1 N) (k : ℤ)), map_sum,
+    SlashAction.sum_slash, Finset.smul_sum, ← hd]
   refine Fintype.sum_equiv (Equiv.mulRight d) _ _ fun a => ?_
+  simp only [FunLike.coeAddMonoidHom_apply, FunLike.coe_smul]
   rw [ModularForm.SL_smul_slash, hfam a (a * d) γ hγ (by rw [← hd]; rfl), smul_smul]
   congr 1
   simp only [Equiv.coe_mulRight]
@@ -89,9 +105,10 @@ private theorem vanOff_comb {N k : ℕ} [NeZero N] (c : (ZMod N)ˣ → ℂ)
     (f : (ZMod N)ˣ → ModularForm (Gamma1 N) (k : ℤ)) (hvan : ∀ a, VanOff N k (f a)) :
     VanOff N k (∑ a : (ZMod N)ˣ, c a • f a : ModularForm (Gamma1 N) (k : ℤ)) := by
   intro γ hγ
-  rw [coe_comb, SlashAction.sum_slash]
+  rw [← FunLike.coe_coeAddMonoidHom (F := ModularForm (Gamma1 N) (k : ℤ)), map_sum,
+    SlashAction.sum_slash]
   refine (zeroAtImInftySubmodule ℂ).sum_mem fun a _ => ?_
-  rw [ModularForm.SL_smul_slash]
+  rw [FunLike.coeAddMonoidHom_apply, FunLike.coe_smul, ModularForm.SL_smul_slash]
   exact (zeroAtImInftySubmodule ℂ).smul_mem _ (hvan a γ hγ)
 
 end UpperTheory.V.Z.Sym.Unl

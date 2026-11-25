@@ -4,6 +4,29 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityA
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CompactGroupIntegrability.InstCompactUG
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeilStabilizerVolume.UnfoldAbs
 import GroundTheory.AutomorphicForms.RealIwasawaIntegration
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -140,9 +163,6 @@ private theorem reps_int {X : Type} [TopologicalSpace X] [CompactSpace X] [Topol
   filter_upwards [h1, h2] with y hy1 hy2
   simp only [hy2] at hy1
   exact tendsto_nhds_unique hy1 ((hPl y).comp hmono.tendsto_atTop)
-
-private theorem cont_ae_eq {f g : G1 K n → ℂ} (hf : Continuous f) (hg : Continuous g) (h : f =ᵐ[μ] g) : f = g :=
-  Continuous.ae_eq_iff_eq μ hf hg |>.1 h
 end
 
 theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.EA.ptPi :
@@ -175,7 +195,7 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.EA.ptPi :
       filter_upwards [MeasureTheory.QuasiMeasurePreserving.ae (quasiMeasurePreserving_mk (Gam K 2) μ) (Lp.coeFn_zero ℂ 2 (quotientMeasure (Gam K 2) μ))] with y hy
       simpa only [Pi.zero_apply] using hy
     have he : (fun y => ∫ m, T n q m * φ (y * C.un i m) ∂μK) = fun _ => 0 := by
-      refine cont_ae_eq (μ := μ) hc continuous_const ?_
+      refine (hc.ae_eq_iff_eq μ continuous_const).1 ?_
       filter_upwards [hr, hz] with y h1 h2
       rw [← h1, h2]
     have hx := congrFun he x
@@ -191,7 +211,7 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.EA.ptPi :
     · intro h
       rw [h] at hr
       have he : (fun y => ∫ k, p k * φ (y * arc1 k) ∂κ) = φ := by
-        refine cont_ae_eq (μ := μ) hc hφ ?_
+        refine (hc.ae_eq_iff_eq μ hφ).1 ?_
         filter_upwards [hr, hv] with y h1 h2
         rw [← h1, h2]
       exact fun g => congrFun he g

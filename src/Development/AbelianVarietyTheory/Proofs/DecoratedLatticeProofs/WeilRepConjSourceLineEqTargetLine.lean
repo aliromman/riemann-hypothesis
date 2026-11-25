@@ -9,6 +9,28 @@ public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.WeilConjugationAdjointRuleStandardCharStatement
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsHaarFundamentalDomainIsometryTransportStatement
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsNeZeroAtZero
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -22,6 +44,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsThetaFam
 
 @[expose] public section
@@ -39,42 +63,15 @@ open GlobalTheory.Mem.Isom
 
 variable {D : D7}
 
-theorem entries_fix {A : Type} [CommRing A] {m n : ℕ} (c : A) {M : Matrix (Fin n) (Fin n) A} (hM : ∀ i j, c * M i j = M i j)
-    (P : Matrix (Fin m) (Fin n) A) (Q : Matrix (Fin n) (Fin m) A) (i j : Fin m) : c * (P * M * Q) i j = (P * M * Q) i j := by
-  simp only [Matrix.mul_apply, Finset.mul_sum, Finset.sum_mul]
-  refine Finset.sum_congr rfl fun k _ => Finset.sum_congr rfl fun l _ => ?_
-  conv_rhs => rw [← hM l k]
-  ring
-
-theorem entries_fix' {A : Type} [CommRing A] {m n k : ℕ} (c : A) {M : Matrix (Fin n) (Fin k) A} (hM : ∀ i j, c * M i j = M i j)
-    (P : Matrix (Fin m) (Fin n) A) (i : Fin m) (j : Fin k) : c * (P * M) i j = (P * M) i j := by
-  simp only [Matrix.mul_apply, Finset.mul_sum]
-  refine Finset.sum_congr rfl fun l _ => ?_
-  conv_rhs => rw [← hM l j]
-  ring
-
-theorem sub_one_conj {A : Type} [CommRing A] {m n : ℕ} {P : Matrix (Fin m) (Fin n) A} {Q : Matrix (Fin n) (Fin m) A} (PQ : P * Q = 1)
-    (M : Matrix (Fin n) (Fin n) A) : P * M * Q - 1 = P * (M - 1) * Q := by
-  rw [Matrix.mul_sub, Matrix.sub_mul, Matrix.mul_one, PQ]
-
-theorem det_conj_rect {A : Type} [CommRing A] {m n : ℕ} (h : n = m) {P : Matrix (Fin m) (Fin n) A} {Q : Matrix (Fin n) (Fin m) A}
-    (QP : Q * P = 1) (M : Matrix (Fin n) (Fin n) A) : (P * M * Q).det = M.det := by
-  subst h
-  rw [Matrix.det_mul, Matrix.det_mul, mul_comm (P.det), mul_assoc, ← Matrix.det_mul, mul_eq_one_comm.1 QP, Matrix.det_one, mul_one]
-
 variable {V V' : HSp D} (I : IsoMat V V')
-
-theorem isThetaFunO_tr (S : HSp D) {ψ : AddChar (AF D.host.F) ℂ} {f : WO S V → ℂ} (hf : IsThetaFunO ψ S V f) :
-    IsThetaFunO ψ S V' (I.trW S f) := by
-  first | exact _root_.GlobalTheory.Mem.Isom.IsoMat.isThetaFunO_tr | exact @_root_.GlobalTheory.Mem.Isom.IsoMat.isThetaFunO_tr | apply _root_.GlobalTheory.Mem.Isom.IsoMat.isThetaFunO_tr <;> assumption
 
 theorem isWeilDatumO_tr (S : HSp D) {ψ : AddChar (AF D.host.F) ℂ} {χ χ' : (AE D)ˣ →* Circle}
     {om : GA D S × GA D V →* Module.End ℂ (WO S V → ℂ)}
     (h : IsWeilDatumO ψ S V χ χ' om) : IsWeilDatumO ψ S V' χ χ' (I.omT S om) := by
-  have hT : ∀ f, IsThetaFunO ψ S V' f → IsThetaFunO ψ S V (I.symm.trW S f) := fun f hf => isThetaFunO_tr I.symm S hf
+  have hT : ∀ f, IsThetaFunO ψ S V' f → IsThetaFunO ψ S V (I.symm.trW S f) := fun f hf => _root_.GlobalTheory.Mem.Isom.IsoMat.isThetaFunO_tr I.symm S hf
   refine ⟨h.std, h.hecS, h.hecT, h.resS, I.rank_eq ▸ h.resT, fun p f hf => ?_, fun g k w₀ f hf => ?_, fun γ hγ γ' hγ' f hf => ?_,
     fun f hf w => ?_, fun μ 𝓕 hμ h𝓕 p f hf => ?_, fun e he g k hg hk x y hx hy => ?_⟩
-  · exact isThetaFunO_tr I S (h.om_pres _ _ (hT f hf))
+  · exact _root_.GlobalTheory.Mem.Isom.IsoMat.isThetaFunO_tr I S (h.om_pres _ _ (hT f hf))
   · rw [IsoMat.omT_apply, IsoMat.omT_apply, ← I.symm.heisO_trW S ψ w₀ f, h.om_heis _ _ _ _ (hT f hf), ← I.heisO_trW, I.actO_phi]
     congr 2
     · exact I.kap.apply_symm_apply k
@@ -94,12 +91,12 @@ theorem isWeilDatumO_tr (S : HSp D) {ψ : AddChar (AF D.host.F) ℂ} {χ χ' : (
     simp only [e3] at e2
     rw [IsoMat.omT_apply]
     exact e1.trans ((h.om_unit ν 𝓖 hν h𝓖 _ _ (hT f hf)).trans e2.symm)
-  · have e0 : mt V (I.kap.symm k) - 1 = _ := sub_one_conj I.aQ_aP (mt V' k)
+  · have e0 : mt V (I.kap.symm k) - 1 = _ := _root_.GlobalTheory.Mem.Isom.sub_one_conj I.aQ_aP (mt V' k)
     have hsupp : SuppAt e V (I.kap.symm k) := fun i j => by
       unfold SuppAt at hk
       rw [e0]
-      exact entries_fix _ hk _ _ i j
-    have e1 : (mt V (I.kap.symm k)).det = (mt V' k).det := det_conj_rect I.rank_eq.symm I.aP_aQ (mt V' k)
+      exact _root_.GlobalTheory.Mem.Isom.entries_fix _ hk _ _ i j
+    have e1 : (mt V (I.kap.symm k)).det = (mt V' k).det := _root_.GlobalTheory.Mem.Isom.det_conj_rect I.rank_eq.symm I.aP_aQ (mt V' k)
     have hdet : IsDetAt e V (I.kap.symm k) y := by
       unfold IsDetAt at hy ⊢
       rw [e1]
@@ -111,7 +108,7 @@ theorem isWeilDatumO_tr (S : HSp D) {ψ : AddChar (AF D.host.F) ℂ} {χ χ' : (
       intro u hu f hf
       show ℓ (I.trW S (heisO ψ S V u f)) = ℓ (I.trW S f)
       rw [← I.heisO_trW]
-      exact hℓ _ (fun i j => entries_fix' _ hu I.aP i j) _ (isThetaFunO_tr I S hf)
+      exact hℓ _ (fun i j => _root_.GlobalTheory.Mem.Isom.entries_fix' _ hu I.aP i j) _ (_root_.GlobalTheory.Mem.Isom.IsoMat.isThetaFunO_tr I S hf)
     have := H (ℓ ∘ₗ I.trL S) hinv _ (hT f hf)
     have e1 : (ℓ ∘ₗ I.trL S) (I.symm.trW S f) = ℓ f := congrArg ℓ (I.symm.trW_symm_trW S f)
     rw [e1] at this
@@ -198,7 +195,7 @@ theorem conj_line : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (L L' S : HSp 
   have hW : IsWeilDatumO ψ S L χ χz (conjAdjoint om) := (CA.conj_adjoint χz χ om hom).1
   have hF₁ : IsThetaFunO ψ S L (cj (dagger S L) f) := (CA.theta_dagger f).2 hf
   set I := (isoOf L L' τ hr hg).symm with hI
-  have hG : IsThetaFunO ψ S L' (I.trW S (cj (dagger S L) f)) := isThetaFunO_tr I S hF₁
+  have hG : IsThetaFunO ψ S L' (I.trW S (cj (dagger S L) f)) := _root_.GlobalTheory.Mem.Isom.IsoMat.isThetaFunO_tr I S hF₁
   rw [hI, trW_cj] at hG
   refine ⟨hG, fun h => ?_⟩
   have hW₀ : IsWeilDatumO ψ S L' χ χz (I.omT S (conjAdjoint om)) := isWeilDatumO_tr I S hW

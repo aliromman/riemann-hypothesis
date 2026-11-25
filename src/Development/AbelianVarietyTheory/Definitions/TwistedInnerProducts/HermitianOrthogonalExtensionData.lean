@@ -2,6 +2,28 @@ module
 
 public import Formalism.LocalToGlobal.IndefiniteReal.LinksChar
 public import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasWeil
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -15,6 +37,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -386,18 +409,6 @@ structure HermitianOrthogonalExtensionData (A B : Node D) (c : ℕ) where
   a : Fin c → B.V.V
 
 abbrev FrId (D : D7) : Type := FractionalIdeal (nonZeroDivisors (𝓞 D.host.E)) D.host.E
-
-structure HermitianOrthogonalExtensionData.Is {A B : Node D} {c : ℕ} (d : HermitianOrthogonalExtensionData A B c) (g : Fin c → Fin c → D.host.E) (𝔟 : Fin c → FrId D) : Prop where
-
-  isom : Formalism.BasicNotions.HSpace.IsIsomEmb A.V B.V d.ι
-
-  orth : ∀ x p, B.V.hD (d.ι x) (d.a p) = 0
-
-  gram : ∀ p q, B.V.hD (d.a p) (d.a q) = g p q
-
-  rank : A.V.rank + c = B.V.rank
-
-  lat : ∀ y, B.InLat y ↔ ∃ x, A.InLat x ∧ ∃ t : Fin c → D.host.E, (∀ p, t p ∈ 𝔟 p) ∧ y = d.ι x + ∑ p, t p • d.a p
 
 def antiDiagonalSignGramMatrix (K : Type) [Ring K] (c : ℕ) (p q : Fin c) : K :=
   if p.1 + q.1 + 1 = c then (if p = q then -1 else 1) else 0

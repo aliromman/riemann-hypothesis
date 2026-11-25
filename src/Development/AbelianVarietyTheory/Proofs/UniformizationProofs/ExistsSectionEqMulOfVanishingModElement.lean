@@ -5,18 +5,6 @@ public import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.Exi
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.ValCalc
 import Mathlib.AlgebraicGeometry.Modules.Sheaf
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -121,12 +109,8 @@ theorem surjective_of_isNilpotent (hg : Function.Surjective g₀)
     (P : IsPullback j f₀ f (Spec.map (CommRingCat.ofHom g₀))) : Function.Surjective j := by
   have h2 : Surjective (Spec.map (CommRingCat.ofHom g₀)) := ⟨fun x => by
     obtain ⟨n, hn⟩ := hn
-    have hx : x ∈ PrimeSpectrum.zeroLocus (RingHom.ker g₀ : Set A) := fun a ha =>
-      x.isPrime.mem_of_pow_mem n (by
-        have := Ideal.pow_mem_pow ha n
-        rw [hn, Ideal.zero_eq_bot, Ideal.mem_bot] at this
-        rw [this]
-        exact zero_mem _)
+    have hx : x ∈ PrimeSpectrum.zeroLocus (RingHom.ker g₀ : Set A) :=
+      Ideal.IsPrime.le_of_pow_le (hP := x.isPrime) (I := RingHom.ker g₀) (by rw [hn]; exact bot_le)
     rw [← range_comap_of_surjective _ g₀ hg] at hx
     exact hx⟩
   have : Surjective j := MorphismProperty.of_isPullback P.flip h2

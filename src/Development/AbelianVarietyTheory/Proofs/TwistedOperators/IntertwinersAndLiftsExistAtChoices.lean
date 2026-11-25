@@ -18,6 +18,28 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsLas
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsLowestKTypeFockMapThetaVectorsStatement
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsThetaLiftLinearMapCuspFormMultiplicityStatement
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PostOnSumMemRange
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -30,6 +52,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.HasInfExpOfOrder
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -73,7 +96,7 @@ theorem ex_ioY_holds : GlobalTheory.Published.DiscreteSeriesCover → GlobalTheo
   have hI : R.chain_ItY := fun t k hk => (hW.ItY k hk).1 (hE k hk) t
   have hS : GlobalTheory.Chain.StepsOK R :=
     GlobalTheory.Chain.StepVac.stepsOK D G Pl0 T A Ks R hL hθ hW.ωY hW.ωX hW.vY hW.vX
-  have hLw : GlobalTheory.Chain.LawsOK R := GlobalTheory.T.chainSteps_levelCharacter_conditions_hold D G Pl0 T A Ks R hL hθ hW.ωY hW.ωX hW.vY hW.vX
+  have hLw : GlobalTheory.Chain.LawsOK R := GlobalTheory.Chain.SourceLaw.lawsOK D G Pl0 T A Ks R hL hθ hW.ωY hW.ωX hW.vY hW.vX
   have hY := GlobalTheory.Chain.ioYSt_of_ioPair D G Pl0 T A Ks R (GlobalTheory.T.exists_thetaLift_multiplicitySpaces_of_hypotheses hDS hHC hCR hCW D)
     (GlobalTheory.Chain.ParOfNodeGap.chainPar_of_nodeGap D hH.nodeGap) hθ hS hLw hM.νY hM.νY' hI
   exact fun t k hk => hY t k hk
@@ -98,7 +121,7 @@ theorem exists_lastStep_lift : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl
     R.IsChainW → R.ex_ioX := by
   intro D G _ _ Pl0 T A Ks _ _ _ R hlev hfam hmod hc
   have hIt : R.chain_ItX := hc.ItX.1 (GlobalTheory.T.exists_lastStep_intertwiner_chain D G Pl0 T A Ks R hlev hfam hmod hc)
-  obtain ⟨io, hio⟩ := GlobalTheory.T.exists_multiplicityLift_lastChainStep D G Pl0 T A Ks R hlev hfam hmod hc.ωX hc.vX hc.ptX hIt
+  obtain ⟨io, hio⟩ := GlobalTheory.DefLift.exists_lift_last D G Pl0 T A Ks R hlev hfam hmod hc.ωX hc.vX hc.ptX hIt
   exact fun t => ⟨io t, hio t⟩
 
 end GlobalTheory.Twist.LastStepLift

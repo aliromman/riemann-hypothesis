@@ -10,6 +10,32 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityA
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.InductionEstimates.UnipotentBlockMatrices.ClosedKernelMinors.SecCrit
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.InductionEstimates.UnipotentBlockMatrices.ClosedKernelMinors.SecFun
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ScatteringLimits.Carries
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -23,6 +49,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -33,36 +61,20 @@ open PositivityTheory.Rg.Tf.Core PositivityTheory.Rg.Tf.Adel PositivityTheory.Rg
 open scoped ENNReal NumberField.AdeleRing InnerProductSpace ComplexConjugate
 open UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial
 
-private theorem ext_two {E F H : Type} [NormedAddCommGroup E] [NormedSpace ℂ E] [NormedAddCommGroup F] [NormedSpace ℂ F]
-    [NormedAddCommGroup H] [InnerProductSpace ℂ H] (T T' : E →L[ℂ] H) (S S' : F →L[ℂ] H) (a : Set E) (b : Set F)
+private theorem ext_two {E F H : Type} [NormedAddCommGroup E] [NormedSpace ℂ E]
+    [NormedAddCommGroup F] [NormedSpace ℂ F] [NormedAddCommGroup H] [InnerProductSpace ℂ H]
+    (T T' : E →L[ℂ] H) (S S' : F →L[ℂ] H) (a : Set E) (b : Set F)
     (h : ∀ u ∈ a, ∀ v ∈ b, ⟪T u, S v⟫_ℂ = ⟪T' u, S' v⟫_ℂ) :
     ∀ u ∈ closure (Submodule.span ℂ a : Set E), ∀ v ∈ closure (Submodule.span ℂ b : Set F),
-      ⟪T u, S v⟫_ℂ = ⟪T' u, S' v⟫_ℂ := by
-  have h1 : ∀ u ∈ a, ∀ v ∈ closure (Submodule.span ℂ b : Set F), ⟪T u, S v⟫_ℂ = ⟪T' u, S' v⟫_ℂ := by
-    intro u hu v hv
-    have hc : IsClosed {v : F | ⟪T u, S v⟫_ℂ = ⟪T' u, S' v⟫_ℂ} := isClosed_eq (by fun_prop) (by fun_prop)
-    refine hc.closure_subset_iff.2 (fun w hw => ?_) hv
-    induction hw using Submodule.span_induction with
-    | mem x hx => exact h u hu x hx
-    | zero => simp
-    | add x y _ _ hx hy =>
-      simp only [mem_setOf_eq] at hx hy ⊢
-      rw [map_add (f := _), map_add (f := _), inner_add_right, inner_add_right, hx, hy]
-    | smul c x _ hx =>
-      simp only [mem_setOf_eq] at hx ⊢
-      rw [map_smul, map_smul, inner_smul_right, inner_smul_right, hx]
-  intro u hu v hv
-  have hc : IsClosed {u : E | ⟪T u, S v⟫_ℂ = ⟪T' u, S' v⟫_ℂ} := isClosed_eq (by fun_prop) (by fun_prop)
-  refine hc.closure_subset_iff.2 (fun w hw => ?_) hu
-  induction hw using Submodule.span_induction with
-  | mem x hx => exact h1 x hx v hv
-  | zero => simp
-  | add x y _ _ hx hy =>
-    simp only [mem_setOf_eq] at hx hy ⊢
-    rw [map_add (f := _), map_add (f := _), inner_add_left, inner_add_left, hx, hy]
-  | smul c x _ hx =>
-    simp only [mem_setOf_eq] at hx ⊢
-    rw [map_smul, map_smul, inner_smul_left, inner_smul_left, hx]
+      ⟪T u, S v⟫_ℂ = ⟪T' u, S' v⟫_ℂ := fun u hu v hv => by
+  have h1 : ∀ u ∈ a, ⟪T u, S v⟫_ℂ = ⟪T' u, S' v⟫_ℂ := fun u hu =>
+    ContinuousLinearMap.eqOn_closure_span
+      (f := (innerSL ℂ (T u)).comp S) (g := (innerSL ℂ (T' u)).comp S') (h u hu) hv
+  have h2 : ⟪S v, T u⟫_ℂ = ⟪S' v, T' u⟫_ℂ := ContinuousLinearMap.eqOn_closure_span
+    (f := (innerSL ℂ (S v)).comp T) (g := (innerSL ℂ (S' v)).comp T')
+    (fun w hw => show ⟪S v, T w⟫_ℂ = ⟪S' v, T' w⟫_ℂ by
+      simpa only [inner_conj_symm] using congrArg conj (h1 w hw)) hu
+  simpa only [inner_conj_symm] using congrArg conj h2
 
 private theorem pure_pair {K : Type} [Field K] [NumberField K] [_root_.NumberField.IsTotallyComplex K] (μ : Measure (G1 K (2 + 2)))
     [μ.IsHaarMeasure] (μ₂ : Measure (G1 K 2)) [μ₂.IsHaarMeasure] (τ₁ τ₂ : Submodule ℂ (L2 μ₂)) (hP : Pair μ₂ τ₁ τ₂)

@@ -9,7 +9,29 @@ public import Development.AbelianVarietyTheory.Definitions.Foundations.UnitarySi
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsFrameOfHasSignature
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.GridParamRegularCardMinusCount
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.GridParameterRegularCardEqRankFormula
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Rat
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -22,8 +44,13 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.SignatureConjugationInvariant
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.CardWeightSetGridEqGridRowSpaceRank, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsPermOfCardFalse
@@ -321,12 +348,10 @@ theorem parXp_counts (D : D7) (hH : HostHyp D) (τ : D.what₂.Tau) {j : ℕ} (h
 theorem exists_weil_ordered : ∀ {D : D7} {Γ : Type} [Group Γ] [Fintype Γ] {Pl0 T : Type} {A : FamIn D.what₂.LL Γ Pl0 T D.R.m}
     {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] {R : RealDat D A Ks} {sc : GlobalTheory.ChiGrid.Consts},
     HostHyp D → sc.cGap = 1 → ∀ {G' : GlobalTheory.ChiGrid.GridData R.toLevCh sc} (W : G'.Weil), W.Over R →
-    ∃ W' : G'.Weil, W'.Over R ∧ W'.ψ = W.ψ ∧ W'.θ = W.θ ∧ W'.cart = W.cart ∧ W'.om = W.om ∧ W'.vac = W.vac ∧
+    ∃ W' : G'.Weil, W'.Over R ∧ W'.cart = W.cart ∧ W'.om = W.om ∧ W'.vac = W.vac ∧
       W'.cosVec = W.cosVec ∧ (∀ j, W'.onb (.grid 0 j) = W.onb (.grid 0 j)) ∧
       (∀ X : GlobalTheory.ChiGrid.Node, X.InRange D.R.m → (∀ j, X ≠ .grid 0 j) → X ≠ .top 0 → ∀ τ,
         ∃ σ : Equiv.Perm (Fin (G'.V X).rank), W'.onb X τ = (W.onb X τ).submatrix id σ) ∧
-      (∀ τ, ∃ σ : Equiv.Perm (Fin (G'.V (.core D.R.m)).rank),
-        W'.onb (.top 0) τ = (W.onb (.core D.R.m) τ).submatrix id σ) ∧
       (∀ i j, 1 ≤ i → i ≤ D.R.m → j ≤ D.R.m → ∀ τ, ∃ (lam : Fin (G'.V (.grid i j)).rank → ℝ)
         (ε : Fin (G'.V (.grid i j)).rank → Bool), IsEnum (GlobalTheory.Grid.parV D i j τ) lam ε ∧
         (W'.onb (.grid i j) τ)ᴴ * gramAt D (G'.V (.grid i j)) τ * W'.onb (.grid i j) τ = Formalism.REAL.Jm ε) ∧
@@ -407,8 +432,8 @@ theorem exists_weil_ordered : ∀ {D : D7} {Γ : Type} [Group Γ] [Fintype Γ] {
     · obtain ⟨-, ε, -, h1, h2⟩ := hσX (j + 1) τ ⟨by omega, hX⟩
       exact ⟨ε, h1, h2⟩
   let W' : G'.Weil := { W with onb := onb', onb_is := honb }
-  refine ⟨W', ⟨hW.ψ, hW.θ, hW.cartY, hW.cartX, hW.onbY, hW.onbX, hW.omY, hW.omX⟩, rfl, rfl, rfl, rfl, rfl, rfl,
-    fun j => rfl, ?_, fun τ => ⟨σP D.R.m τ, rfl⟩, ?_, ?_, ?_, ?_, funext fun τ => rfl⟩
+  refine ⟨W', ⟨hW.ψ, hW.θ, hW.cartY, hW.cartX, hW.onbY, hW.onbX, hW.omY, hW.omX⟩, rfl, rfl, rfl, rfl,
+    fun j => rfl, ?_, ?_, ?_, ?_, ?_, funext fun τ => rfl⟩
   · intro X hX h0 h1 τ
     rcases X with ⟨_ | i, j⟩ | i | _ | j
     · exact absurd rfl (h0 j)

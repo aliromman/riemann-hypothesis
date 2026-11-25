@@ -2,18 +2,6 @@ module
 
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.InductionEstimates.SpectralOperatorNorms.KillExempt
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ScatteringLimits.ConvolutionSpectra.ConvSpec
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -37,19 +25,6 @@ private theorem exTest (z : ℂ) (v : V) (R : ℝ) :
   filter_upwards [hm.coeFn_toLp] with y hy hm'
   rw [hy, Set.indicator_of_mem hm']
 
-private theorem sumAe (S : Finset ℝ) (c : ℝ → V →L[ℂ] V) (x : L V) :
-    ∀ᵐ y : ℝ, (∑ t ∈ S, (c t).compLpL 2 volume (sh V t x) : L V) y = ∑ t ∈ S, c t (x (y + t)) := by
-  classical
-  induction S using Finset.induction_on with
-  | empty =>
-    filter_upwards [Lp.coeFn_zero V 2 (volume : Measure ℝ)] with y hy
-    simpa using hy
-  | insert a S ha ih =>
-    rw [Finset.sum_insert ha]
-    filter_upwards [ih, Lp.coeFn_add ((c a).compLpL 2 volume (sh V a x)) (∑ t ∈ S, (c t).compLpL 2 volume (sh V t x) : L V),
-      (c a).coeFn_compLpL (sh V a x), sh_ae V a x] with y h1 h2 h3 h4
-    rw [h2, Pi.add_apply, h1, h3, h4, Finset.sum_insert ha]
-
 private theorem actTest (u : ℝ →₀ (V →L[ℂ] V)) (κ : ℝ → V →L[ℂ] V) (hk : Ker κ) (z : ℂ) (v : V) :
     ∃ R₀ : ℝ, ∀ R, R₀ ≤ R → ∀ x : L V, (∀ᵐ y : ℝ, y ∈ Set.Icc (-R) R → x y = Complex.exp (z * y) • v) →
       ∀ᵐ y : ℝ, y ∈ Set.Icc (0 : ℝ) 1 →
@@ -69,13 +44,19 @@ private theorem actTest (u : ℝ →₀ (V →L[ℂ] V)) (κ : ℝ → V →L[�
   have hint : Integrable fun t : ℝ => Complex.exp (z * t) • κ t := by
     have h1 : Continuous fun t : ℝ => Complex.exp (z * t) := by fun_prop
     exact (h1.smul hk.1).integrable_of_hasCompactSupport (hk.2.smul_left (f := fun t : ℝ => Complex.exp (z * t)))
-  filter_upwards [hs, sumAe u.support u x, (convSpec κ hk x).1,
-    Lp.coeFn_add (u.sum fun t c => c.compLpL 2 volume (sh V t x) : L V) (conv κ x)] with y h1 h2 h3 h4 hy
+  filter_upwards [hs,
+    Lp.coeFn_fun_finsetSum u.support (fun t => (u t).compLpL 2 volume (sh V t x)),
+    (Filter.eventually_all_finset u.support).2 fun t _ => (u t).coeFn_compLpL (sh V t x),
+    (Filter.eventually_all_finset u.support).2 fun t _ => sh_ae V t x,
+    (convSpec κ hk x).1,
+    Lp.coeFn_add (u.sum fun t c => c.compLpL 2 volume (sh V t x) : L V) (conv κ x)]
+    with y h1 h2 h2a h2b h3 h4 hy
   rw [h4, Pi.add_apply, h3, ContinuousLinearMap.add_apply, smul_add]
   congr 1
   · rw [Finsupp.sum, h2, Finsupp.sum, ContinuousLinearMap.sum_apply, Finset.smul_sum]
     refine Finset.sum_congr rfl fun t ht => ?_
-    rw [h1 t ht (hmem t (Or.inl ht) y hy), map_smul, ContinuousLinearMap.smul_apply, smul_smul, ← Complex.exp_add]
+    rw [h2a t ht, h2b t ht, h1 t ht (hmem t (Or.inl ht) y hy), map_smul,
+      _root_.smul_apply, smul_smul, ← Complex.exp_add]
     push_cast
     rw [mul_add]
   · rw [symb, ContinuousLinearMap.integral_apply hint, ← integral_smul]

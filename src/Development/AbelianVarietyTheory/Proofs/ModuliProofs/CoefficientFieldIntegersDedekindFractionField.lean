@@ -7,18 +7,6 @@ import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.Valuation.LocalSubring
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -95,11 +83,7 @@ private theorem isDedekindDomain_valuationSubring_of_not_isUnit_natCast {K : Typ
   letI : Algebra (𝓞 K) V := f.toAlgebra
   have hcoe : ∀ x : 𝓞 K, ((algebraMap (𝓞 K) V x : V) : K) = algebraMap (𝓞 K) K x := fun _ => rfl
   let P : Ideal (𝓞 K) := (IsLocalRing.maximalIdeal V).comap (algebraMap (𝓞 K) V)
-  have hM : P.primeCompl ≤ nonZeroDivisors (𝓞 K) := by
-    intro s hs
-    refine mem_nonZeroDivisors_of_ne_zero ?_
-    rintro rfl
-    exact hs P.zero_mem
+  have hM : P.primeCompl ≤ nonZeroDivisors (𝓞 K) := P.primeCompl_le_nonZeroDivisors
   have hpP : ((p : 𝓞 K)) ∈ P := by
     show algebraMap (𝓞 K) V p ∈ IsLocalRing.maximalIdeal V
     rw [map_natCast]

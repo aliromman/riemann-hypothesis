@@ -2,6 +2,30 @@ module
 
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.EntryMem
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.SInternal
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -16,40 +40,12 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 
 @[expose] public section
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal IsLocalRing UpperTheory.V UpperTheory.V.Base UpperTheory.V.Alg UpperTheory.V.HV UpperTheory.V.GradeZeroInterpolatingElement
-
-private theorem UpperTheory.V.GradeZeroInterpolatingElement.ptAct_internal {O R X : Type} [CommRing O] [CommRing R] [Algebra O R] [AddCommGroup X]
-    [DecidableEq X] (𝒜 : X → Submodule O R) [SetLike.GradedMonoid 𝒜] (h : iSupIndep 𝒜) :
-    DirectSum.IsInternal fun j => (𝒜 j).comap (gradedSub 𝒜).val.toLinearMap := by
-  set f := (gradedSub 𝒜).val.toLinearMap with hf
-  have hinj : Function.Injective f := fun a b hab => Subtype.ext hab
-  have hind : iSupIndep fun j => (𝒜 j).comap f := by
-    intro i
-    rw [disjoint_iff_inf_le]
-    have h1 : (⨆ (j) (_ : j ≠ i), (𝒜 j).comap f) ≤ (⨆ (j) (_ : j ≠ i), 𝒜 j).comap f :=
-      iSup₂_le fun j hj => Submodule.comap_mono (le_iSup₂ (f := fun j (_ : j ≠ i) => 𝒜 j) j hj)
-    calc (𝒜 i).comap f ⊓ ⨆ (j) (_ : j ≠ i), (𝒜 j).comap f
-        ≤ (𝒜 i).comap f ⊓ (⨆ (j) (_ : j ≠ i), 𝒜 j).comap f := inf_le_inf_left _ h1
-      _ = (𝒜 i ⊓ ⨆ (j) (_ : j ≠ i), 𝒜 j).comap f := (Submodule.comap_inf _ _ _).symm
-      _ = ⊥ := by rw [(h i).eq_bot, Submodule.comap_bot, LinearMap.ker_eq_bot.2 hinj]
-      _ ≤ ⊥ := le_rfl
-  have hr : LinearMap.range f = ⨆ j, 𝒜 j := by
-    ext x
-    constructor
-    · rintro ⟨y, rfl⟩
-      exact y.2
-    · intro hx
-      exact ⟨⟨x, hx⟩, rfl⟩
-  have htop : ⨆ j, (𝒜 j).comap f = ⊤ := by
-    apply Submodule.map_injective_of_injective hinj
-    rw [Submodule.map_iSup, Submodule.map_top]
-    simp_rw [Submodule.map_comap_eq, hr]
-    exact le_antisymm (iSup_le fun j => inf_le_left)
-      (iSup_le fun j => le_trans (le_inf (le_iSup 𝒜 j) le_rfl) (le_iSup (fun k => (⨆ j, 𝒜 j) ⊓ 𝒜 k) j))
-  exact (DirectSum.isInternal_submodule_iff_iSupIndep_and_iSup_eq_top _).2 ⟨hind, htop⟩
 
 private def UpperTheory.V.GradeZeroInterpolatingElement.ptAct_chr {K : Type} [CommRing K] (t : Kˣ × Kˣ) : Multiplicative (ℤ × ℤ) →* Kˣ where
   toFun w := wv t w.toAdd
@@ -62,7 +58,16 @@ theorem UpperTheory.V.GradeZeroInterpolatingElement.ptAct :
     ∀ {Ω : Type} [Field Ω] [CharZero Ω] [IsAlgClosure ℚ Ω] {l : ℕ} [Fact l.Prime] {c : Coef l} (D : Raw Ω c), D.Good → ∀ M : Model D, ∀ (K : Type) [CommRing K] [Algebra c.O K] (ξ : M.SS →ₐ[c.O] K) (t : Kˣ × Kˣ), ∃ ξ' : M.SS →ₐ[c.O] K, (∀ g, M.rep ξ' g = tconj t (M.rep ξ g)) ∧ ∀ w (f : M.SS), f.1 ∈ M.sPart w → ξ' f = (wv t w : K) * ξ f := by
   intro Ω _ _ _ l _ c D hD M K _ _ ξ t
   let 𝒜' : ℤ × ℤ → Submodule c.O M.SS := fun j => (M.sPart j).comap M.SS.val.toLinearMap
-  have hint : DirectSum.IsInternal 𝒜' := UpperTheory.V.GradeZeroInterpolatingElement.ptAct_internal M.sPart (sInternal D hD M).1
+  have hint : DirectSum.IsInternal 𝒜' := by
+    obtain ⟨-, -, WS, hpart, -⟩ := sInternal D hD M
+    have hp : WS.part = M.sPart := funext hpart
+    have hA : WS.A = M.SS := by unfold WPres.A Model.SS; congr
+    have hgr : DirectSum.IsInternal (fun j => (WS.part j).comap WS.A.val.toLinearMap) :=
+      gr_internal c.O (ℤ × ℤ) M.S WS
+    rw [hp] at hgr
+    generalize WS.A = B at hA hgr
+    subst hA
+    exact hgr
   letI hgm : SetLike.GradedMonoid 𝒜' :=
     { one_mem := by
         show ((1 : M.SS) : M.S) ∈ M.sPart 0
