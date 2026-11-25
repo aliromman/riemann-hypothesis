@@ -185,8 +185,6 @@ namespace GlobalTheory.InertConjSq
 
 open Matrix GlobalTheory.InertDbl
 
-attribute [-instance] CStarMatrix.instHMulOfFintypeOfMulOfAddCommMonoid
-
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
 
 theorem blk_mul_fromRows (d : ℕ) (x y : AE F E) (X Y : Matrix (Fin d) (Fin d) (AE F E)) :
@@ -235,8 +233,6 @@ namespace GlobalTheory.InertConjSq
 
 open Matrix GlobalTheory.InertDbl
 
-attribute [-instance] CStarMatrix.instHMulOfFintypeOfMulOfAddCommMonoid
-
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
 
 def mkS (σ : E →ₐ[F] E) {d : ℕ} (W : Spc F E d) (α β : AE F E) (h1 : α * cA σ α - β * cA σ β = 1)
@@ -253,8 +249,6 @@ noncomputable section
 namespace GlobalTheory.InertConjSq
 
 open Matrix GlobalTheory.InertDbl
-
-attribute [-instance] CStarMatrix.instHMulOfFintypeOfMulOfAddCommMonoid
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
 
@@ -314,8 +308,6 @@ noncomputable section
 namespace GlobalTheory.InertConjSq
 
 open Matrix GlobalTheory.InertDbl
-
-attribute [-instance] CStarMatrix.instHMulOfFintypeOfMulOfAddCommMonoid
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
 
@@ -440,8 +432,6 @@ noncomputable section
 namespace GlobalTheory.InertConjSq
 
 open Matrix GlobalTheory.InertDbl IsDedekindDomain.HeightOneSpectrum
-
-attribute [-instance] CStarMatrix.instHMulOfFintypeOfMulOfAddCommMonoid
 
 theorem conj_sq : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E)
     (B : Base F E), B.IsGood σ → ∀ (d : ℕ) (W : Spc F E d) (v : Pl (F := F)) (w : HeightOneSpectrum (𝓞 E)),
