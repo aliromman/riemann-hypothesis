@@ -1,0 +1,32 @@
+{
+  "merge": "c3679d4a79d297efdb223876790f02faf1819618",
+  "base": "fcb6eac7534875d32d68030967e2deae6d686151",
+  "source_tree": "3210c9c8d5820bbaa1eb146c1cba0dd196b2c1dd",
+  "lean": "Lean (version 4.37.0-rc1, arm64-apple-darwin24.6.0, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)",
+  "donor": "77916dea364269ca66b1f6f05987dd1c7b6ef0d9",
+  "manifest": "bf9d8189a208f3b7b104e1cd9eaa95c7972800283f37a942b9ae0bb7bb60cfd5",
+  "changed": [
+    "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle",
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnramifiedEnlargementCutCocyclesBlochKato",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TOrdVan",
+    "Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.ImportsSide",
+    "Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.Smooth"
+  ],
+  "total_modules": 59764,
+  "all_affected": 1595,
+  "targets": [
+    "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle",
+    "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ResBound",
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnramifiedEnlargementCutCocyclesBlochKato",
+    "Development.AbelianVarietyTheory.Proofs.SatakeParameters.DmulMulDRight",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TOrdVan",
+    "Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.ImportsSide",
+    "Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.Smooth"
+  ],
+  "closure": 11974,
+  "affected_in_closure": 272,
+  "newly_restored": 11702,
+  "reused_archives": 10525,
+  "downloads": 1177,
+  "previously_restored": 0
+}

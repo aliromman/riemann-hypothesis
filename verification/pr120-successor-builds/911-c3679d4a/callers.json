@@ -1,0 +1,93 @@
+{
+  "merge": "c3679d4a79d297efdb223876790f02faf1819618",
+  "head": "b57e4300c7a69d82a26b6262670ffe1274f2722e",
+  "base": "fcb6eac7534875d32d68030967e2deae6d686151",
+  "tree": "935485e3f3102a038b2a7f645da05ca48b8c52df",
+  "source_tree": "3210c9c8d5820bbaa1eb146c1cba0dd196b2c1dd",
+  "lean": "Lean (version 4.37.0-rc1, arm64-apple-darwin24.6.0, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)",
+  "targets": [
+    "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle",
+    "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ResBound",
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnramifiedEnlargementCutCocyclesBlochKato",
+    "Development.AbelianVarietyTheory.Proofs.SatakeParameters.DmulMulDRight",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TOrdVan",
+    "Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.ImportsSide",
+    "Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.Smooth"
+  ],
+  "closure": 11974,
+  "affected_in_closure": 272,
+  "cache_manifest": "bf9d8189a208f3b7b104e1cd9eaa95c7972800283f37a942b9ae0bb7bb60cfd5",
+  "cache_donor": "77916dea364269ca66b1f6f05987dd1c7b6ef0d9",
+  "jobs": 3,
+  "started": "2026-11-25T04:13:05.885017+00:00",
+  "runs": [
+    {
+      "command": [
+        "lake",
+        "--no-cache",
+        "build",
+        "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle",
+        "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ResBound",
+        "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnramifiedEnlargementCutCocyclesBlochKato",
+        "Development.AbelianVarietyTheory.Proofs.SatakeParameters.DmulMulDRight",
+        "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TOrdVan",
+        "Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.ImportsSide",
+        "Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.Smooth"
+      ],
+      "exit": 0,
+      "log_sha256": "01e38e62670a43758eacdef99400dca6137b488fc21474d23b9a482ad991436b",
+      "errors": [],
+      "finished": "2026-11-25T04:21:30.379205+00:00"
+    },
+    {
+      "command": [
+        "lake",
+        "--no-cache",
+        "build",
+        "--no-build",
+        "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle",
+        "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ResBound",
+        "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnramifiedEnlargementCutCocyclesBlochKato",
+        "Development.AbelianVarietyTheory.Proofs.SatakeParameters.DmulMulDRight",
+        "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TOrdVan",
+        "Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.ImportsSide",
+        "Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.Smooth"
+      ],
+      "exit": 0,
+      "log_sha256": "ae6aef999cca6473c20e4cac6f86d4a9674113e3528b429d22424d73f41e5c36",
+      "errors": [],
+      "finished": "2026-11-25T04:21:48.605596+00:00"
+    }
+  ],
+  "target_oleans": {
+    "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle": {
+      "bytes": 1874992,
+      "sha256": "420e749bd492ad5b2e43d047c2d9d8a208854705718f55e9bc09b45ba5ed453e"
+    },
+    "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ResBound": {
+      "bytes": 979920,
+      "sha256": "29cf33dba29d7ca182e952389c5096fe8a3f4c910d4e622147d3f77339706aed"
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnramifiedEnlargementCutCocyclesBlochKato": {
+      "bytes": 1113456,
+      "sha256": "34c3e652fd8f06464a5134508876c7dec21ca367a2a162de7d1c8b4952076f2d"
+    },
+    "Development.AbelianVarietyTheory.Proofs.SatakeParameters.DmulMulDRight": {
+      "bytes": 601888,
+      "sha256": "80a735bdf176b98fffedaee6f68bf46da3acdde4d18d897ed5a3a4819c1df2be"
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TOrdVan": {
+      "bytes": 810408,
+      "sha256": "775b9580a9107cbf9d8cda44f3b009badd221c4ac9015aa1f50889128a16c4f0"
+    },
+    "Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.ImportsSide": {
+      "bytes": 119824,
+      "sha256": "12f35d8cc72bc2a03354ac1e9315443f13bc725e0e93af3c22af70e2e8dbd909"
+    },
+    "Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.Smooth": {
+      "bytes": 100288,
+      "sha256": "994b46cc6b327f93367159b718d202e504d658d935443ec5a031a484faa0e190"
+    }
+  },
+  "completed": "2026-11-25T04:21:49.571507+00:00"
+}
