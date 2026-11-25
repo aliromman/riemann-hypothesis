@@ -1,0 +1,120 @@
+name: Stock default Lake build for PR 977
+on:
+  push:
+    branches: ['ci/batch-1410/default-lake-977']
+permissions:
+  contents: read
+jobs:
+  stock:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    env:
+      PARENT: '82c577caf1b8a66c76212d78a399234f55813d28'
+      CANDIDATE: '13345ac952b571c8f08a856fcedab838bfef0af8'
+      SOURCE: '1963e10e232f5316fbf9fb44f1651d59bc6cf9e4'
+      LEAN_NUM_THREADS: '4'
+      LEAN_ABORT_ON_PANIC: '1'
+      RUST_MIN_STACK: '8388608'
+      MATHLIB_CACHE_GET_URL: https://cache.mathlib.org/mathlib4
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: /ci/current-default/
+      - name: Allocate a compressed workspace on the hosted runner
+        shell: bash
+        run: |
+          set -euo pipefail
+          report="$RUNNER_TEMP/stock-report"
+          mkdir -p "$report"
+          df -hT | tee "$report/filesystems-before.txt"
+          free -b > "$report/memory.txt"
+          where="$RUNNER_TEMP"
+          available=$(df --output=avail -B1 "$where" | tail -1)
+          if test -d /mnt; then
+            alternate=$(df --output=avail -B1 /mnt | tail -1)
+            if test "$alternate" -gt "$available"; then where=/mnt; available=$alternate; fi
+          fi
+          image="$where/rh-default-977.img"
+          filesystem="$RUNNER_TEMP/rh-files"
+          mkdir -p "$filesystem"
+          if ! command -v mkfs.btrfs >/dev/null; then
+            sudo apt-get -qq update
+            sudo apt-get -qq install -y --no-install-recommends btrfs-progs
+          fi
+          bytes=$((available-4*1024*1024*1024))
+          test "$bytes" -gt $((8*1024*1024*1024))
+          sudo truncate -s "$bytes" "$image"
+          sudo mkfs.btrfs -q -f -m single -d single "$image"
+          sudo mount -o loop,compress-force=zstd:3 "$image" "$filesystem"
+          sudo chown "$(id -u):$(id -g)" "$filesystem"
+          echo "FILESYSTEM=$filesystem" >> "$GITHUB_ENV"
+          echo "PROJECT=$filesystem/project" >> "$GITHUB_ENV"
+          echo "ELAN_HOME=$filesystem/elan" >> "$GITHUB_ENV"
+          echo "MATHLIB_CACHE_DIR=$filesystem/mathlib-downloads" >> "$GITHUB_ENV"
+          echo "REPORT=$report" >> "$GITHUB_ENV"
+      - name: Check out the official parent and install the pinned release
+        shell: bash
+        run: |
+          set -euo pipefail
+          git init -q "$PROJECT"
+          git -C "$PROJECT" remote add origin https://github.com/leanprover-community/riemann-hypothesis.git
+          git -C "$PROJECT" fetch --depth=1 --no-tags -q origin "$PARENT"
+          git -C "$PROJECT" checkout --detach -q "$PARENT"
+          git -C "$PROJECT" fetch --depth=1 --no-tags -q https://github.com/aliromman/riemann-hypothesis.git refs/heads/ci/batch-1410/pr-977-published
+          test "$(git -C "$PROJECT" rev-parse FETCH_HEAD)" = "$CANDIDATE"
+          test "$(git -C "$PROJECT" rev-parse "$CANDIDATE:src")" = "$SOURCE"
+          curl --fail --silent --show-error --location --retry 3 https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh --output "$FILESYSTEM/elan-init.sh"
+          sh "$FILESYSTEM/elan-init.sh" -y --default-toolchain none --no-modify-path
+          "$ELAN_HOME/bin/elan" toolchain install "$(cat "$PROJECT/lean-toolchain")"
+          echo "$ELAN_HOME/bin" >> "$GITHUB_PATH"
+      - name: Restore the community Mathlib and project caches
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$PROJECT"
+          /usr/bin/time -v -o "$REPORT/cache.resources" lake exe cache get > "$REPORT/cache.log" 2>&1 || { tail -60 "$REPORT/cache.log"; exit 1; }
+          lake -q --log-level=error build --no-build > "$REPORT/parent-no-build.log" 2>&1
+          python3 "$GITHUB_WORKSPACE/ci/current-default/recover.py" before
+          btrfs filesystem usage --raw "$FILESYSTEM" > "$REPORT/parent-disk.txt"
+          git checkout -q --detach "$CANDIDATE"
+          git diff --exit-code -- src lake-manifest.json lean-toolchain lakefile.toml
+          test "$(git rev-parse HEAD:src)" = "$SOURCE"
+          git diff --name-only "$PARENT" HEAD -- src > "$REPORT/selected-sources.txt"
+          lean --version | tee "$REPORT/toolchain.txt"
+      - name: Build all default targets with the community producer
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$PROJECT"
+          tc=$(dirname "$(dirname "$(elan which lean)")")
+          export PATH="$tc/bin:$ELAN_HOME/bin:$PATH"
+          status=0
+          /usr/bin/time -v -o "$REPORT/producer.resources" timeout --signal=TERM --kill-after=60s 285m python3 scripts/run-complete-build.py --project "$PROJECT" --build-map "$REPORT/outputs.jsonl" --build-log "$REPORT/default.log" --receipt "$REPORT/full-build.json" --release "$(cat lean-toolchain)" --toolchain "$tc" --jobs "$LEAN_NUM_THREADS" || status=$?
+          echo "$status" > "$REPORT/producer.exit"
+          if test "$status" -eq 0; then
+            lake -q --log-level=error build --no-build > "$REPORT/candidate-no-build.log" 2>&1
+            test "$(git rev-parse HEAD)" = "$CANDIDATE"
+            cat "$REPORT/full-build.json"
+          else
+            tail -40 "$REPORT/default.log" 2>/dev/null || true
+            timeout --signal=TERM --kill-after=20s 35m python3 "$GITHUB_WORKSPACE/ci/current-default/recover.py" recover
+          fi
+          btrfs filesystem usage --raw "$FILESYSTEM" > "$REPORT/candidate-disk.txt"
+          exit "$status"
+      - name: Preserve the build report
+        if: always()
+        shell: bash
+        run: |
+          set -eu
+          mkdir -p "$RUNNER_TEMP/stock-report"
+          df -hT > "$RUNNER_TEMP/stock-report/filesystems-after.txt"
+          find "$RUNNER_TEMP/stock-report" -maxdepth 1 -name '*.log' -size +0c -exec gzip -2 {} +
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: stock-default-977-attempt-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/stock-report/
+          compression-level: 0
+          retention-days: 14
