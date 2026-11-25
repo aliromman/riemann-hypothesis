@@ -1,0 +1,1489 @@
+{
+  "previous_base": "fcb6eac7534875d32d68030967e2deae6d686151",
+  "previous_commit": "994d457f6607d27553d756955fce43c47aa33ace",
+  "current_base": "a18a350c3e5aad997766cff2670b292313e46574",
+  "current_commit": "0dcfc72d4bb68df93f2e1e18eb9d09d78e86f53f",
+  "previous_edited_files": 2858,
+  "current_edited_files": 2846,
+  "identical_source_pairs": 2700,
+  "updated_source_pairs": 146,
+  "dropped": 12,
+  "added": 0,
+  "changed": {
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/ArchimedeanJacquetFirstTerm/ArchimedeanWhittakerTrace/LZfcCore.lean": {
+      "previous": [
+        "ccd96e0044192522b1bda2f25a3db626557ad247",
+        "de1784e57450a4334a5487bf84b3e23f9a7efa4f"
+      ],
+      "current": [
+        "bd1c1582c0cd621d05259ed92cf8c9fcf23c4fcd",
+        "3db16b19eda114d1a4b0db847482ef40a8d5c146"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/BernsteinUnitaryProducts/BernsteinTheoremA/UnitaryKirillovModel/KirillovEndUnitaryOfTheoremA.lean": {
+      "previous": [
+        "59083937cf362644254bcaeab17abd578a0e67bd",
+        "e76b7d7b6248994a8cb6c45d56fac0f138fb522b"
+      ],
+      "current": [
+        "cabbd3b1ae4a21fd6e8b4a4e8db1e0e62ef4577f",
+        "2fdb33729a93635baea9dc77a7696c48228b2a6f"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/IsobaricBaseChange/IntegralCoefficientBaseChange/UnitaryBaseChangeCharacters/UnitaryBaseChangeLinks/UnitaryConjugacySignProductStatement.lean": {
+      "previous": [
+        "384c7b41aa281c77d7f3e1a1a1c237261a3989dd",
+        "3489f970b1db72c7a5469a88cbfd425dafe6ba72"
+      ],
+      "current": [
+        "ee71260ef205b160a8dc3f3c30272f572fe7ecb1",
+        "4c3f3de541fb498d11a0a76485905757a70b3adc"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/LanglandsExhaustion/LanglandsMultisegmentsOfSeg.lean": {
+      "previous": [
+        "a85343cf0cee0c63218fa1c8d3900774a62141d9",
+        "669b81b5e683ea1ae14a214cae0f33bcd183960a"
+      ],
+      "current": [
+        "1b3fe7656488f29e6d3e9643058d45ef14266622",
+        "b9404aa4712b7cffab88bbd13a46f1f54b75ffbb"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/MoriwakiBigness/HilbertSamuelApplications/GoodTowerVolumeTheoremBis.lean": {
+      "previous": [
+        "ebf69cacf701174d9ffb79747d78807364c3cd4b",
+        "4b070a0618a9dfd625988c19d056c1e6b3e9ecc8"
+      ],
+      "current": [
+        "e0d548f5111de149c4cd47e5f2106f842222d400",
+        "d708cd39de621a23b5bbb1caa732f119f3711c70"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/NadelVanishing/TopNSI.lean": {
+      "previous": [
+        "a47a3350f281cc1371318a571d544822b9efa3d3",
+        "3c2969342a2a853cd4f4d93df62a599ae4b75ec6"
+      ],
+      "current": [
+        "090162ab5d70ee37f1f81c88975e63bd2100a932",
+        "f68120bfdf22448c950d1196e1105af81bea86cc"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/DilationDecomposition/LocAlg.lean": {
+      "previous": [
+        "3eecac7d8e76d6d32d5d11c12e8f6eddba5fb47f",
+        "649f1338e31a31b96ec15439664a1e574cbd835b"
+      ],
+      "current": [
+        "09aefe1ac792fc80430265289ecfea4ca7976ae6",
+        "4f62d28c32d2c5e0ce2f8501910da5d14fa0c8a5"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/FockSpaces/EvXTemperate.lean": {
+      "previous": [
+        "950a1fc8cb6db90f700183438b6f07888239b0ab",
+        "720934fabe9674cc27435a37c63e0f598b09a85f"
+      ],
+      "current": [
+        "964f63a67b427b1ee71c2c52352ab06755ede681",
+        "461334a4d0e7d87a2b1bc294d7b70e5b2e0b0fe4"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/LagrangianDecomposition/PartCharInvAlt.lean": {
+      "previous": [
+        "ba5898d241de703b20453c14cc270e82fbc23257",
+        "f438a58d548c98643e9043e2d0ecc7d6b66bec7b"
+      ],
+      "current": [
+        "ca77ec1f5b0a6680ca721635265e1ed4c197818e",
+        "83ebac099d0dd09329a6c7e6d7cd881d18cc5fb4"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/SiegelWeilActions/CBDM.lean": {
+      "previous": [
+        "79a9fef29d4785e85c36dfbe96fd094a53340ddb",
+        "30af7a7589bd12344cad4c72ada4cad012ef5114"
+      ],
+      "current": [
+        "311941ba99fd069d33d12b784a702e16cb531fd1",
+        "bdc472207ffa63bbd7b01f5e393b9458974c7eb3"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/ThetaBijections/SymplecticFormCoordinates.lean": {
+      "previous": [
+        "d3382cb60f47da9c19cc5b4e0599cd6cc354e4fe",
+        "135b84c1a5d4b1fc06d7e57fdebd841b483c254f"
+      ],
+      "current": [
+        "cf0cd4205717d03c75958a3354d2e033318c5722",
+        "e8bb30e8860c9b12aad92480ebc39db3450cb162"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/UnfoldingCompactness/FrameInvPf.lean": {
+      "previous": [
+        "a2a781386dd9b0b5eac0bb1b4f764d935abd6cc2",
+        "3ec6c59941144b2b041bf81170303e83850ed115"
+      ],
+      "current": [
+        "001944f8dff46efd3f5aa3c337744c0a4824852d",
+        "71a7190f558c49e9c9742884697012749e70d8b6"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/UnramifiedWhittaker/CFinal.lean": {
+      "previous": [
+        "3592d9cc63235017e21c8af9ba0f55124176305a",
+        "79f2c4cec2c6184d1771bb4eef5ca5a4285c011f"
+      ],
+      "current": [
+        "8dccff5d193642b0851001f302eeede8f36d1818",
+        "bb9ee1be748498be23d679a4b9a0a9c2e38e7bf7"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/WeylIntegralCovariance/RpSmulLeft.lean": {
+      "previous": [
+        "a04d7839ea6664e90526778a5b5c89fc5a69b5ba",
+        "3e1b230b1db82c34d37af3ed2e4d86c88dd8b71a"
+      ],
+      "current": [
+        "63a48fbb245cccae2d2d2501a4c2673326dc82aa",
+        "8909b6d652ce34072435c3ad5068143edff3584c"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/ZetaEulerProducts/MeromorphicAtProd.lean": {
+      "previous": [
+        "a62f67ca22d3158a24ce2ee58e540ec5a0a47cf7",
+        "728bc54727fb6b1400bcf41c6b9b9658a03dd047"
+      ],
+      "current": [
+        "6c7a0aedc4da4a579b0236799fea4c5dd9b4eb5a",
+        "63eeafaf987e3c47fcbb37445c4601815363048c"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/WeilSiegelFormula/HeadOfSiegel.lean": {
+      "previous": [
+        "aa1265c2a9f86f027642367bd95413351f11b7cd",
+        "5991127afda3266c4c42c918c4e32cc74c7eed1b"
+      ],
+      "current": [
+        "0203358bc4a702aa434b4034d78c56cadeb7322a",
+        "d46761d42de2ec07392f9d282da6b86c78c67019"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/FiniteTypeHarishChandra/FiniteDimensionalHcSpace.lean": {
+      "previous": [
+        "fd8c316aabaad70c3d08d26f1adb6b3e38f36108",
+        "7b25b43137866b33b265b6812c058aab53aa95db"
+      ],
+      "current": [
+        "897135fd747756197072ece65c2c750886e751ff",
+        "bad65078ac62a892e348e156e9a58bb333c367ee"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/FiniteTypeHarishChandra/GreenCuspLabels/GreenCuspidal.lean": {
+      "previous": [
+        "fcffe462c2cb3b579825937ad30da209066f8849",
+        "109f28691d2cdec390cc152c38d082d5a62263ab"
+      ],
+      "current": [
+        "e252ef69d1cc901b4893f7530e59356257926af1",
+        "f0a5b739713fb3f268dfa07d6fd8005dad5af868"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/FiniteTypeHarishChandra/SupportExistsAll.lean": {
+      "previous": [
+        "ba452edb85d1ff173f30fd543ea5249e1b91d938",
+        "5362839f42b6bcf96e4d87dfa747413281604d36"
+      ],
+      "current": [
+        "f917f5f4dcc86d7a8d1cb4fd51cce7174ff89d55",
+        "61b037d4ade37127cd213c8e501a51a257b4a687"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/FlagImmersions/GlobalModelTowerFifthCondition.lean": {
+      "previous": [
+        "449ae5061fe1f7c3027ff1d90e523971ca7c3f13",
+        "0f1986e1d0f9ab7548e9a16a74e4cd0eea08f605"
+      ],
+      "current": [
+        "125bafb7ab75060bb9e3aadda04b4526baa15b97",
+        "100db7c0384e2243a7320110e6982ac2cd5c6b83"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/FlagImmersions/RootFlatOnHodgeOf.lean": {
+      "previous": [
+        "aaa36c5665e5983dfde10dd6d2ec158c7f526cb2",
+        "fdce5d8930876f90542933f8498c727804023a34"
+      ],
+      "current": [
+        "766d09e41001698a1e227c36566e0307d9c1e9c5",
+        "805af31fc682c7bcfd61bfb81dd029ee076f75d7"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/FlagImmersions/TauInInjective.lean": {
+      "previous": [
+        "e74f01a93480456b19e6b4b8065c84522afcda27",
+        "ddd804f536f795ae999c0a833dc8946c14c6ce2b"
+      ],
+      "current": [
+        "56110e1449a81824e51e6f38e7e055736b05a5b6",
+        "134c5240424b4cc1684223906863fa0220991133"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/FlagImmersions/UnitAtOfSpan.lean": {
+      "previous": [
+        "3f9505ff8fbe2364f362714a69d91a63a72fe8a9",
+        "67ea0686ca66181faee94ef7e95dc1692a836262"
+      ],
+      "current": [
+        "aba9755d9ada085b11817b5bde4292c12625a02c",
+        "ae764a96cc8ce4f3c24b38da99508b6237cc82e0"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/FlagImmersions/VertCloseStep.lean": {
+      "previous": [
+        "f8c0c345e14cc9f1f9d5858c1495f5681d540405",
+        "9efa869e7db6ea503b82cafa01ad3d06aa589271"
+      ],
+      "current": [
+        "3856632d1d9b725f6afa28fb89c1bf66032dd783",
+        "7ae2c252e0b85a2224b2b11cee898cecf52e4d53"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/GaussianSeminormBounds/RealSeminormFiltration/CoreCyc.lean": {
+      "previous": [
+        "e15fc9511b4e4e4ba15b4bc7113ac4fa0ad9540e",
+        "53c48807e98b28085f8a014ded5af8fc31a89128"
+      ],
+      "current": [
+        "e5644f013a99d7dcd620ecfa9c97d6bb3f06e4e4",
+        "5b74164d79bf7c7b938eb4dbe14ea67083276c0b"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/GaussianSeminormBounds/RealSeminormFiltration/CoreHarm.lean": {
+      "previous": [
+        "c695ae81798a704fc59640ef3c710042d97752a9",
+        "b3fb2163ea4f26d0f7e72acc9d480bdda70956bb"
+      ],
+      "current": [
+        "1ade575fba229bcd224d7f0fb42621bc33f340c5",
+        "e42d5d0fc6b9a4de27d6f9dc5cb2e2619f54f568"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/GaussianSeminormBounds/RealSeminormFiltration/CoreMain.lean": {
+      "previous": [
+        "8711443a829c457a0877d149e604082e5316fa69",
+        "1b8f0e25edc38d3c1920f65810cc22eef5e5b947"
+      ],
+      "current": [
+        "ff30c970f9013587f47beb7d467a66ab512f02b8",
+        "7845e9fa9b023420763212738081009a24628286"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/GaussianSeminormBounds/RealSeminormFiltration/CoreNonv.lean": {
+      "previous": [
+        "d7b859a2211d042e7f3a1a1da732c6f469bfffd1",
+        "b237917bf25750aa8fb7f8bdecdb1576d01f054c"
+      ],
+      "current": [
+        "151501378ca555b5a9ff7e6b69595f0c2b995ce9",
+        "1d37753008e296ec020c0a689ffaf3d9651e4412"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/GaussianSeminormBounds/RealSeminormFiltration/CoreSide.lean": {
+      "previous": [
+        "0d667c6fc572eb843174f2267ba8da9c07f7a3ea",
+        "8bc4be8e0b2e26f3b5272d9794ccf4cdbc8feabb"
+      ],
+      "current": [
+        "fae00d61062fdb9a6ee3b2fee8fe350d4cd2e31c",
+        "0bf58bff27196b6deb0d58066773b82ec7f0f480"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/GaussianSeminormBounds/RealSeminormFiltration/EvIHalfTrace.lean": {
+      "previous": [
+        "712af5f2f8526283360f64f464b8b723d90b81a1",
+        "6e2b257b80b60b035e15c663e1afe9f5a3d31097"
+      ],
+      "current": [
+        "41e48546d3d155501e10a14264c89c13449b703c",
+        "f6b7cd104f6b0c55857a9b8fa778e7ac18e4596a"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/GaussianSeminormBounds/RealSeminormFiltration/KRealAsm.lean": {
+      "previous": [
+        "a75d5dc220469de56832d5db43f567705c385edd",
+        "bcc9a96fe7da01f39d8f3097e8561984e2d3fc73"
+      ],
+      "current": [
+        "7cf1affe31c9fda2c9fb6b62969fb0dc9e7a8fb5",
+        "ab21ba4e4d3579d9ce2ac4d0d8840607389f1abe"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/HeckeCharacterDeRham/DeRhamHeckeResults/LAdicHeckeDeRham/LAdicHeckeFields/FieldOfLeaves.lean": {
+      "previous": [
+        "599c6626b75acb0c99f8306be4fe2f216a8dfda5",
+        "61d3fb220a53512f0d03bb25b3492f5e82b408a1"
+      ],
+      "current": [
+        "a5482f4fe022234562cd54856b75b39491669a5d",
+        "fcf873efb97e3e12085b99c42e6b1f6553c1e904"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/HodgeTatePoints/CbFrob.lean": {
+      "previous": [
+        "40b294637e710a677190ec42ca89bd94d996e446",
+        "728f77fd07bb0f3416ecc0ed0997a81357b3f112"
+      ],
+      "current": [
+        "e616a2cdbe05072d0b1ca311ae94105810ca2ae3",
+        "a14d5c3c232cfa8884ac70c7de472c98e851138b"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/HodgeTatePoints/ChSplit.lean": {
+      "previous": [
+        "b9b6dc5ceded5898dcb95de834101b09c0389b1a",
+        "eaeb0ad20c8392fbb7b541aad2464323e60a324c"
+      ],
+      "current": [
+        "110c9b85649859ea6e87b7246aa88037b3aa9c98",
+        "90d1e4d99b26fa76bc32a843ee9a5dc76be9ea9f"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/HodgeTatePoints/Comp1IdentityLeft.lean": {
+      "previous": [
+        "bc6d550c94af89a05579e9d2e1b1ba7427593a5a",
+        "201aba435f977ac0647531e23132b2ae0a7d798f"
+      ],
+      "current": [
+        "ea22b6653e1fd82e5604f55b2d4eda39e181f2d3",
+        "4fdbfb79f39a21b8d1e0f616fd57bbc22ce53676"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/HodgeTatePoints/GaSurj.lean": {
+      "previous": [
+        "503888b44e9d90ab84f1130a8a6a2f48a4a0edb5",
+        "d7490bd3d0009982d6d633b8b62f832555f13b1c"
+      ],
+      "current": [
+        "9379281229e8c09b2988ff4b71d09d1f0c0fc5c1",
+        "45b3879bf540b9a864820dfe58ffad64155657b1"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/HodgeTatePoints/GcChart.lean": {
+      "previous": [
+        "b328fcd188c6cdc8c62fd36973b3cf48c0051250",
+        "3512bc65709160508d1672e7cea01e3eccb97d4b"
+      ],
+      "current": [
+        "c5a04682c996b1179780066e0cbdf9459450d5d1",
+        "8b9f5d9367b3a24810b0f9beecf20068c45bf2aa"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/HodgeTatePoints/GcIncl.lean": {
+      "previous": [
+        "e1044c006c737bf462dc77d5560d7189b2173757",
+        "24c81174bc7cab6fbca9c4919d1681da2ca04dd4"
+      ],
+      "current": [
+        "8e8ed5b76ebe146657b72da6803d5dacb3f8ab25",
+        "9469506e844aa84d2758f7dc671c54e4efe0e6ec"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/HodgeTatePoints/GdSplit.lean": {
+      "previous": [
+        "e01d4a10ca9c9d462577dc849f71d99a765e4388",
+        "785bb6444062c477aa7326a0ef4b893fdbc3d26f"
+      ],
+      "current": [
+        "1055d736ed9310500ac21c31d2aa62daf2ac7f58",
+        "a84789ff58ab12b54b7bb61fda2422e8f079d3b8"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/HodgeTatePoints/KTwins.lean": {
+      "previous": [
+        "61ce80e9ddba606d39928c29cf48ade9e7a63ec7",
+        "de89f0cb936d5960b55e654a285ac366e13c67c6"
+      ],
+      "current": [
+        "9f1eba246990d1d27009ef00f1f93699ddff3343",
+        "17fa68f250f10f98ea4ff31263a1555da893708c"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/HodgeTatePoints/LiftComul.lean": {
+      "previous": [
+        "150319b9bd93943162eda9850a1e67b8c578603a",
+        "2ad61a0ebd932a0d6148dd0f80b0f8098ecbe0cf"
+      ],
+      "current": [
+        "502e02a68503aea2d4e4d5c2ca3d9bb13730da1f",
+        "2d0451da50cc3cb90c68bc6d5ff88c49f64f600d"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/HodgeTatePoints/MbLMorph.lean": {
+      "previous": [
+        "420da21b7545890f5e52a57e0efcbbf1b6955704",
+        "0439d8051c108aae92b9f8b67baac47b75dd426d"
+      ],
+      "current": [
+        "817e1f56f1f1d161057f54622954c9d306cc878b",
+        "3d198df0230acd50755f7a0f27bba8dbc8a411fb"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/HodgeTatePoints/RbProj.lean": {
+      "previous": [
+        "48d5e268875715a8f3f189071e7117ea60a683ea",
+        "66ebda7905eb6d18ed4f010cdf71b867c4a78b46"
+      ],
+      "current": [
+        "7ce4091d797c352ba823cd9b4f9e5f759722351d",
+        "64cdcd694a04142c82539de6afdbdf7d3a9ffff4"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/HodgeTatePoints/ReTens.lean": {
+      "previous": [
+        "6fbd3b126574c938c22cd10502cac04b5a634e0d",
+        "2acf143616d419ebaafb83eaeb78eb8f3f8b055b"
+      ],
+      "current": [
+        "d8e06aafb851f9dfeeda660fa3f17db0ce44cdd7",
+        "dfd7bab6da70168ad2776b7fc6e8fd532d62b2e7"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/HodgeTatePoints/StightBad.lean": {
+      "previous": [
+        "fb7e08baa6335d46851eb658d0e0d70b402cf4c5",
+        "ff769114d59d096b9dbdbb1d9d3159cd1c8a13db"
+      ],
+      "current": [
+        "308c549b6f399fee2d88e8309ed6d5a5bba11580",
+        "7e22ccf56c5cd27499f330ab3b20fe59a083b9b5"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/BocksteinBaseChange/CstSmoothOf.lean": {
+      "previous": [
+        "92143b66724c0ee0468c32417abe617bd621fe4f",
+        "13d8d08674f58c060a8476b689ab2d56a72d9c02"
+      ],
+      "current": [
+        "56889a3a06c61393e5c2c4fcf6733da74b56f6ab",
+        "14097befab7bcd52a167be780c885227f6c77d50"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/BocksteinBaseChange/CstSmoothOfEtSide.lean": {
+      "previous": [
+        "7c32cd2112fa748d4fb41d18e4f9044ef983c432",
+        "4c78d291b528ee80e6407e121c2bd692c9b66626"
+      ],
+      "current": [
+        "ddda713597ec84cdbb13d62caa3a5cf8226b9a40",
+        "fc74fbd413b0673afa90903f094403e3ce1e4994"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/BocksteinBaseChange/IsUnitWitt.lean": {
+      "previous": [
+        "50771592cc969e3c3881d37c7f182ec091e49a22",
+        "3a9f884f0cd05c147c7db9ca241aa487b57fea13"
+      ],
+      "current": [
+        "790355f4c17ac27bcbd10f3fdbecc45a66eabe84",
+        "5baea86883e225f7daec527dba4a1471f752d272"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/BocksteinBaseChange/StmtPhi.lean": {
+      "previous": [
+        "7d2ff9f9b1ad5206e32910617027928298342200",
+        "065234b545ca93e9e7d0514946e704b4cd6d3144"
+      ],
+      "current": [
+        "e475e11b3ad4794e7602bf4a564b12824da76202",
+        "1174c9bd70ba45dead9b27515c4f45c73c7b95d2"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/BocksteinBaseChange/TiltSectionUnits/FcIsUnitSub.lean": {
+      "previous": [
+        "7dae28b80a1c4ca60d938279f9250e2e140e1bb0",
+        "4011b714755fd71ad67024fed360e198e193b49c"
+      ],
+      "current": [
+        "9f89f36750027ea46aff9690d36e850f202f6dfd",
+        "c95c79cc37df16ce98548db1f419f67001af0e99"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/CstSmooth.lean": {
+      "previous": [
+        "90ab005eb784e5790b5bd3a94584b3a96de1fe03",
+        "1d3cca4183d979153c763b15a17c99ad5b735795"
+      ],
+      "current": [
+        "6e73feef724a6cf5e2cd8890f4840e278e38e5d8",
+        "65ba394a29538a077e95628bf00f8d384166f83b"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/HodgeTateResidues/HtOf.lean": {
+      "previous": [
+        "9c988cadb8cf3530863f8f6630bdbd21b5dc8de3",
+        "12247fa68c66f7184f4d5d2fe80102399224c1a1"
+      ],
+      "current": [
+        "8206b3b96d6fc15b9da98032a4fa46030787fc83",
+        "9be099061eacf3a1bf7ffb0b58431f2c39900dba"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/HodgeTateResidues/LatLink.lean": {
+      "previous": [
+        "68ef465fb598cb4714df4221291e8484e2e45799",
+        "d8e904e5e14c14b9fe44b3ed621ba2d25e59f851"
+      ],
+      "current": [
+        "ef20a6cbb7813aa0816b5a2f03cbc1c19497038f",
+        "03ab1c9a43de9f9191f33a41b9daf171116075b5"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/PerfectoidPullbacks/ConeSectionRestriction/PowTop.lean": {
+      "previous": [
+        "8f2cafee0595d10b976cd6a4797c8bba700af544",
+        "cca591fd4c37f656b623769a62c5f8aaf69dcf95"
+      ],
+      "current": [
+        "14dd07dad8a103005db9355bbf213dbdfd8d257b",
+        "41b6c620b2be40f48bffd9360549726491b9f716"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/PerfectoidPullbacks/FrobeniusFactorisation/NuPull.lean": {
+      "previous": [
+        "3006b7023aca21b53c68140563d178c1b54b5c22",
+        "6aef4bf0197ac3e5a456c2f3d7260394e921ee02"
+      ],
+      "current": [
+        "b584f47d7f1b823f561425b4aa486708f4c2d314",
+        "0865dc782a5ad9c0c4a3c504f7983f4dc51d8393"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/PerfectoidPullbacks/FrobeniusFactorisation/PhiAIter.lean": {
+      "previous": [
+        "1222cd037ac8c2c5106f72570bd3004c0f14cf08",
+        "2ab4c0f8f8898cf110ff19eb095e31453e7367d9"
+      ],
+      "current": [
+        "7ff0afe2c94dce86d91c4b1517dc8a4784b5fa19",
+        "842395d4d5c1c3563a0e0b229b3ee3f38ff3d397"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/PerfectoidPullbacks/FrobeniusFactorisation/PullT.lean": {
+      "previous": [
+        "d9a86003ed6b1889e12f1dcc59e400c3a6edb84b",
+        "a1de660046603fa4d04afdc65c019a9db474dec1"
+      ],
+      "current": [
+        "9457410d5ac801f6e16d388a56ac0277d5b3364b",
+        "197c2b7027e3561bb45b86e4a7b35a6aeaf47652"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/PerfectoidPullbacks/FrobeniusWittActions/PhiTTmul.lean": {
+      "previous": [
+        "73173a2d20a79cbdc81f64009418feaaddc2cd89",
+        "095ffdf471a0b0abb2b4236fa2b6ffb980476795"
+      ],
+      "current": [
+        "e9299240c343ef6d7bbab0d07fadb7a36a584500",
+        "f7905e0976771e8fe1f13f80497958063681add3"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/PerfectoidPullbacks/LocalSystemQuotients/LsSeqEq.lean": {
+      "previous": [
+        "a83c9f489762ba11002b2076fbe2c39d27d72db9",
+        "bbc336ae3835b457feb0aa76e1124293471073ea"
+      ],
+      "current": [
+        "3e92392723608177feee7387bce19e20ceaef862",
+        "8ed5ce353968bc2001992cd5563516ca9a3b2dc9"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/PerfectoidPullbacks/LocalSystemQuotients/QuoZeroSub.lean": {
+      "previous": [
+        "2bd2a5b8cc0445d1819daa9a46c496776945fe14",
+        "67a7d697aac3d3d58ca1c36389588dcdc621f323"
+      ],
+      "current": [
+        "cb26afa87d133f1bab19341ed7118035ff5102db",
+        "824bd00917124a4cd8229bea91697bff2a392085"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/PerfectoidPullbacks/LocalSystemQuotients/SmoothModelFiniteLengthLink.lean": {
+      "previous": [
+        "19a85fc137e0f326e0fbcf82f3a438a39f6be141",
+        "11b5af74b7e41ad058ebc5d19d799f1ff8baf12f"
+      ],
+      "current": [
+        "934f4440955e3b7f0c301d2775a3159c289da5d6",
+        "397f4afbd5c8fcfaeb5b079b75e776c5f17d6ff2"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/PerfectoidPullbacks/PolynomialSiteTraces/PolyAll.lean": {
+      "previous": [
+        "d8291c990594d6ea7b3e9943c9ba0b56074e8690",
+        "e7b4ac8165f07f02f00cc395a775594b2da5357a"
+      ],
+      "current": [
+        "09ce9d374238718e684b028fed4ab7a3c43dcdbc",
+        "5cc61fe06865b4713fa8e02a549321ba4722cbfc"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/PerfectoidPullbacks/SumCoord.lean": {
+      "previous": [
+        "b8dc1654c269b7531beb00c05dc684ab327b2493",
+        "e147dc268d0debfafe1cebc08196cee8ea897b4c"
+      ],
+      "current": [
+        "53a23ebd93656d2c818ff344f453cccd8a8b3b1a",
+        "45a7c892e59c236aae976f93b059db188443df30"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/WittExactSequences/InWmTeichmullerSubOne.lean": {
+      "previous": [
+        "a64f861080d639223c2094acc155b53d0cd1f975",
+        "fc1fa998f0740205dc722e675c5d959f145874a1"
+      ],
+      "current": [
+        "91660b5f30c98da0eaf90fe32ea16b9fc15f65ae",
+        "33743692358462ea84a4371121948b86743c0896"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/HodgeSurjectivity/HtBijOf.lean": {
+      "previous": [
+        "9086de6a90f780326b56ed03ba92f8ebc1086127",
+        "6a6902bbac8e72cb65a67c9da72bbc70847f46e7"
+      ],
+      "current": [
+        "e9bead4f73fe2ba2df52eecf134f4d5589cfdb4c",
+        "7483782b72632b460339dd0cf6621d72ec475293"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PluriharmonicCharts/XCBmExistsBlockpos.lean": {
+      "previous": [
+        "c2f96d712cdd55b3db0e28fdcdefc9531a31f4cf",
+        "98689c4fbb685ae6ce20b35838c4588d585f44f1"
+      ],
+      "current": [
+        "31835b723a93d63666ce9cbfb689b464b4d67400",
+        "717c912b52ce10f049221a7455486704fcf461a4"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PlurisubharmonicCones/FiniteOfTorsion.lean": {
+      "previous": [
+        "c6bdd03f4627807b805d14589a807273189aec88",
+        "e23e5a16ab41a74bd393568b3901cdf09c37afd1"
+      ],
+      "current": [
+        "cc250a0e0ee46d482c194872717fcd65aa4b27d2",
+        "f184b2f8bc11419d96138e4138f24ebd007edae7"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PublishedTheorems/CasselmanWallach/FinalB.lean": {
+      "previous": [
+        "6f7cf63403953f92ae858d0fb28da343fafe901e",
+        "a12c5f4f16367f640626da1063311cf22f0b86ef"
+      ],
+      "current": [
+        "ba383bb06740be2a100c6f700ab080d6bb8600aa",
+        "5932bd0a5405ba841fb6cb62f32a1b4552704fcd"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PublishedTheorems/GlobalEulerCharacteristic/WorkKilledC.lean": {
+      "previous": [
+        "d9ecfdd4bd4cd2d0226ea3e756761f90b917e33c",
+        "03fdbe9fbc3af4d5e6f7801dcecd232b69b61058"
+      ],
+      "current": [
+        "e7ad66e526387531dc54b3b9a3c007195029ebc3",
+        "b82c0802b7694cab41a4d540a8769a744b73f57e"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PublishedTheorems/JacquetShalikaBound/JacquetShalikaBound.lean": {
+      "previous": [
+        "11319d922e99a1f6d351104dbe058430da8ca6a0",
+        "a0c961e60771d6b93c69fd2a3cd896b4d1b043fe"
+      ],
+      "current": [
+        "7ced10acb11c66f8d86ef7726dee057755de6ffa",
+        "e2e7b951dbd390c6c1dc019d1c8dfeea6af16144"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PublishedTheorems/JacquetShalikaRigidity/CuspOrthogonalityOf.lean": {
+      "previous": [
+        "30e2b59c387e258254b0207a18f790275a6cf395",
+        "01de1dea240b6144cf607ddead8a6a49cbc54204"
+      ],
+      "current": [
+        "2240817072f3735713c2400221e8dc4066cb8683",
+        "550d32e5a2abe065111f3cabc8a97d9f7094d439"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PublishedTheorems/JacquetShalikaRigidity/RsPoleOfInputs.lean": {
+      "previous": [
+        "d6e1ec67acfc98aebb755644bd450c58288e3e46",
+        "2ad70632dfe3bc73f0103d5ca256a6f015b20a9a"
+      ],
+      "current": [
+        "d2c22f7587f99e1c72558fe08b5a6b5ffd59aa14",
+        "3a7d7f6f6d579d68ad1f6c66af617763ea95acaa"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PublishedTheorems/NadelVanishingPairs/NadelVanishingLemmas/FrobeniusDecompositionOfLift.lean": {
+      "previous": [
+        "e047f61f3c8b09d7ce4a27c974fea89dda51c217",
+        "94756f8d2ed7b4e9477d19982cb2bad55a0be3b0"
+      ],
+      "current": [
+        "0e6d5611d724b1bccd2831f53ab4b828f5845d77",
+        "965b931b4435e3eb33e136df023e50511794104d"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PublishedTheorems/NadelVanishingPairs/NadelVanishingLemmas/SplittingLocalIntegrality.lean": {
+      "previous": [
+        "1ffcc71b6e2110e56d51d9d31d0a061d0af3f38d",
+        "c5221f7c5d1fa052335d0f7cb7c574440937dc92"
+      ],
+      "current": [
+        "04cfec7d4fe6707a4c2a1969c1d58ada14fc83e1",
+        "932b6c868412fea8990487c9a61cd40ea9517fb8"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PublishedTheorems/PoitouTateDuality/Bridge.lean": {
+      "previous": [
+        "0831824379a04b02ef89f5f4b67fb40089265d44",
+        "4c9b37ec24c49da98ed092a1d772baba66096bee"
+      ],
+      "current": [
+        "1a992df0cad41efc01620e5ebed6a9514feb7e43",
+        "511f58488987cd072ccb12e72285b16a4de02cf3"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/PublishedTheorems/SmoothVectorEstimates/ConvergenceEntriesGeneralLinearHolds.lean": {
+      "previous": [
+        "49c12cb303297bac36dd6aafd0357f9806dc2812",
+        "30691616a7736fd5191d6349bbc9b117e9ba3380"
+      ],
+      "current": [
+        "a9cae18b9f043e073f404e425f9fce473d8bee01",
+        "42ba67cb5c21485948438d19a008b498caa1432e"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/TemperedRepresentationTheory/PrincipalSeriesSupport/IsIrreducibleOfIsIrrRep.lean": {
+      "previous": [
+        "df87ab5abb193bdb25dae07a0fe9bb9e79797807",
+        "bb3fe7460f5564a3ff6487d1dd0d9353aebee552"
+      ],
+      "current": [
+        "f2d070c372b668cf2aa7c2a515a6823a3769920c",
+        "c0cb83d14144f888fb4827fc1b042144acc94f79"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/TemperedRepresentationTheory/SquareIntegrableTempered/CasselmanCriterion/Development.lean": {
+      "previous": [
+        "80ac59ddd43a5d58fac1a51422d5adb968e5b685",
+        "17ea5b48906053e0dafb96c6e85ddb0f43a6ac04"
+      ],
+      "current": [
+        "d179638e300ca32f44a917182a6ff9a3303b4ecb",
+        "2f57f12e239b90fdd8426bb1ca96ce710cff4c64"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/VolumeEquality/BaseUnifGood.lean": {
+      "previous": [
+        "3642e7232a692aab5198f020354efefa0929cb74",
+        "beb5894cc461aa8181bcdbbfd1f8f4057eaff56b"
+      ],
+      "current": [
+        "61c407eeb279fc03be91b23a46e9eaa5c860038c",
+        "7985d82293d79a0df05f17095d49c9cee16036b4"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/VolumeEquality/DegPushFib.lean": {
+      "previous": [
+        "5739b3b04ee4acf54d7fd51d8fc4364bddd8c0b0",
+        "8ddbc207c567d5ac33e8f4b57639b3fbc9c1154b"
+      ],
+      "current": [
+        "10f4bb0279f74d4921976bd51bb94037601ba1c9",
+        "d11fcfa6cd2e72634a99c780cd9c8a378d2ddf56"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/VolumeEquality/DegPushFibLink.lean": {
+      "previous": [
+        "1093c5a0ae0386f73814748471185b02c1fc771e",
+        "e9f92980917ca3679b606c146063ad892240e79f"
+      ],
+      "current": [
+        "780af92b0c95b3e92edbf6207f67849bd8445041",
+        "e3cca74c9057c73290eeb8a48d80904800b1ff7a"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/VolumeEquality/VolEqOfDegPush.lean": {
+      "previous": [
+        "ddfb9c49b5f0e0a28d2a75797f75a97c65476b17",
+        "fa47081f6fb64475a9f1db0598ae737178481b80"
+      ],
+      "current": [
+        "14ec59c1f77c8697f432bd8106c4e5a37eeb149d",
+        "364ce786a9cfed3348dd278e2ec6d8143d095397"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/ArchimedeanGelfandKernels/LeftEquivariantFunctions/GLMatrixDerivatives/LOfOfKChain.lean": {
+      "previous": [
+        "69fe37b66b99412f3c51480f3659ddfbff5581d5",
+        "68130e2514b9a9199fc9ce48d28ef393a8bf77f5"
+      ],
+      "current": [
+        "d57fa3dfc8869b4bbcecadd496daeabc6b171cf7",
+        "1688e99a24791f2c5b077b80ca53c4b83380625d"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/HeckeFubiniCompatibility/GelOfHolds.lean": {
+      "previous": [
+        "f4b5edea384519fa3d4ee8326973199941c33215",
+        "4e12ea54b428620a3db2c1cd6fcca947f7abddac"
+      ],
+      "current": [
+        "d43cc7574b793d9015363c9ac1cb24fa0bd2d8de",
+        "810276a280fb8ae11adb5a11aa7ffb1893641e78"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/InfinitesimalCharacterLimits/LieSumDecompositions/SeparationHolds.lean": {
+      "previous": [
+        "feff8f2dcdcc3ef1d53a328cf73a98c5f00f2eab",
+        "b7ea5e41acae2896ea5db2e5a3baeb308716b4a9"
+      ],
+      "current": [
+        "41e1297cf4432734a6d01e860ede53ab5edf18d2",
+        "a4bfe4f3f0cf7415a30ea2758c917b817d5c1f20"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/IsotropicMahlerBounds/LogAbsoluteWedges/OnlyIsotropic.lean": {
+      "previous": [
+        "8f2e2487e19f40dc606bb1d6b9ea37763b5d61eb",
+        "d126b306c2f7f5f7811e6c710ffcbc14fb1217ad"
+      ],
+      "current": [
+        "6bd484c6deb4435c44a9b4219afccdd421537d22",
+        "8514b447ec329ab8479933f5ed3a33929d794ebd"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/IwahoriFactorisation/MultiplicityOneBase/ArchimedeanBaseChangeFirst.lean": {
+      "previous": [
+        "8339c8a6a87deb433798ab743d310cc9fa1b386b",
+        "2a43cc63fb2e4e5d9c8e73a0bee1a9c2951ac4c7"
+      ],
+      "current": [
+        "65f987f81b13ab33ef700b8fe374725558196c85",
+        "527a2216a682a4bf6649ea19605f329e0ab49948"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/IwahoriFactorisation/TwistedConjugationNorms/ContrId.lean": {
+      "previous": [
+        "00bba88410a3e4c40b7664d7379b8e4e11b92cdb",
+        "cbb9406ff61a7888e17738a29e1e8935e8486395"
+      ],
+      "current": [
+        "72149457a6264000552f388b1dacbe2621973f0a",
+        "520ec294ba2fa3bda3fdc509cc5017eb306704c8"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/IwahoriFactorisation/TwistedConjugationNorms/HilbertNinetyNorms/TwistedOrbitalIntegralIndicatorInvIndex.lean": {
+      "previous": [
+        "b60b7f9a8c0d061270eef27e85e5ae9f641060e0",
+        "0a361fdda088bdd15b0074d2097b34a524f1581d"
+      ],
+      "current": [
+        "5b1ea75b414ade63d3fbd9794b26d18bc5c65d9a",
+        "e3019bb289234b790243d7d68138c519765804b5"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/QuotientVanishing/LocalQuotientIntegrals/ClassVanish.lean": {
+      "previous": [
+        "6400ed669a6129ab88c0782085f2f0922ef6e413",
+        "ff9223637d04bffa5edd19844ad0dce656d0ce30"
+      ],
+      "current": [
+        "f10618dc88c40f8284a9e8f851d8795cb5735b52",
+        "1466c3dfda02aa6a3d1ce9dfe8dc8e518aabd736"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/QuotientVanishing/LocalQuotientIntegrals/ClassVanishOfSteps.lean": {
+      "previous": [
+        "5fb019e35ab606db50a5800ac8851995c0285bcf",
+        "1d6d395b2258fa80f7788e285e2daaeb96dce735"
+      ],
+      "current": [
+        "71780a505234a32a4cfece1e7c0603eb592e575b",
+        "50a1a7d01f0dab6b2b18a4b8b7a1d70400bc300c"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/QuotientVanishing/LocalQuotientIntegrals/EllFormula2J.lean": {
+      "previous": [
+        "01d5dc7d1ff844034d1ffd99a9c422db3a9d3a7e",
+        "b9c7f63f481c666677cba2ec76207ccc7df4739a"
+      ],
+      "current": [
+        "f86aa60555357dca58e46012dbf887c3ad637aa1",
+        "863bebeaba2741ebaf68213183c0bd0b83fcb9d1"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/QuotientVanishing/LocalQuotientIntegrals/QuotVanishL.lean": {
+      "previous": [
+        "39634b5d4dfc744c6a57836b6d58660d1c8e72c1",
+        "81a6e4656da1bc53b845aee44aa98eff090febd8"
+      ],
+      "current": [
+        "789b28b51a8360506f9baf25bfecea73b339786a",
+        "5c6b1996457156d902f065520b6845a949163018"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/RealDescent/RealLeviDescent/InjectiveDecompositionActionHolds.lean": {
+      "previous": [
+        "96faf190b596df600360027f8416769c468c0ed5",
+        "9a91e055897e24222c0885cdf4c5c8447b19f7ba"
+      ],
+      "current": [
+        "bcf1b1b40d066fa33eb6b75d4721d4190ab7e23b",
+        "ee3a4d850a86b8d1164954f26c539f171b0bfa74"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/RealDescent/RealLeviDescent/MultForOfCapCls.lean": {
+      "previous": [
+        "8f9c680aafbc7e4c541085b8866d3fe87c6b57eb",
+        "e45840ea604abcb3848557215d13e01190cc13ec"
+      ],
+      "current": [
+        "edd5b41677164bdbf2f045361d7707eac53c0cdb",
+        "1048852a4a80067af475e74b27c9a10f9914b01d"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/SatakeExponents/BciOfAlt.lean": {
+      "previous": [
+        "49b95ecbaac8c9fb020388f7b59459de90487194",
+        "b8b897a9e72dd3f17be6b7d26389322c4e206d15"
+      ],
+      "current": [
+        "bd66229b75dc8bd0caf0f2005d05bf695064dafb",
+        "0348c12beab86db3826905ac144334ba6256f8b1"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/SatakeExponents/SatakeRigidity/FullThetaHolds.lean": {
+      "previous": [
+        "694e11c77cb1ffa63819c21377e24ff536be7526",
+        "ec655725082c350142b366c84bac4958314f0c06"
+      ],
+      "current": [
+        "1c3a0e5eac0bce4072efa5669fa90f79038c456b",
+        "5730178bfc8e1870ad91166e28a34ee974104030"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/SatakeExponents/SphericalEmbeddings/PseSat.lean": {
+      "previous": [
+        "ff2ddbcb2a68adf0193805319e89146b0af3b1b6",
+        "0c54f6d82a8919fdcdd9f21809ca8eb11344005b"
+      ],
+      "current": [
+        "bae6d34129c228b0dcf5efa297f813d21b9bd3f6",
+        "15481928460c4bf7f69fcb7511befdf17fa8e2d1"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/SatakeExponents/UniformizerValuations/UnitaryAdjointHolds.lean": {
+      "previous": [
+        "f5eb5db9a2082ebe6295547dfa700a4d1ef849c7",
+        "bc4e9e577843c1e13c1ae34063934da5cc0096be"
+      ],
+      "current": [
+        "802f0cd8ff74101b524853109f334df9e23d8a38",
+        "bd44d272a6dfb5b751cfb3c9edc87a2cfa444622"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/ThetaNormCommutation/LocalComparisonSplitting/GlobalCharacterOfFiniteInputs.lean": {
+      "previous": [
+        "56810a98ae6c759efe629004647cef890e3e5d27",
+        "21d866706175de549910a1c5d5f850b71eb5bb73"
+      ],
+      "current": [
+        "181dcbecd3f54511adb9bf27bac3cdfb70065595",
+        "899ca9d796eb595aa6b6419c9328fbcdf1747ff0"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/ConstantTermFiniteness/CuspidalConstantTerms/FiniteSlicesGlPart.lean": {
+      "previous": [
+        "7857a5edb47d3548abd53d3ed383d0f8cff92d5f",
+        "23dd98eb41808700d0738a4b0c7c7c7a153a19f0"
+      ],
+      "current": [
+        "45b5db8d7914607d1b4de5e6ec06a705b5fb3822",
+        "4ae1fdf176351d2ee55016f8981388a0a329352c"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/EisensteinSeries/SiegelEisensteinHalfPlane/IntegralUnitCoefficients/CoefND.lean": {
+      "previous": [
+        "d94b7259f6366684731a881a879bb22dcdb301fb",
+        "8af75bec1b1e17d5bfad18a89ea99d9193ac27ba"
+      ],
+      "current": [
+        "d23a31351a2cfb85228578831882db1d576ac74e",
+        "37f2ad92e33c5592afa1aea28d297448ac5e5078"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/EisensteinSeries/SiegelEisensteinHalfPlane/UnitTestFunctions/TestFun.lean": {
+      "previous": [
+        "a76dc3644469a18d0b511288b3ded764a120dfef",
+        "8782374a715215f062d58abf367ee9c91188285b"
+      ],
+      "current": [
+        "7294e1edf36f22de1c122d8780f3037fbd062f0f",
+        "f83a445bf918cba5d525570343b9a26bb985e2ea"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/GenericUnitaryGL/ComplementarySeries/HighestDerivativeProducts/HighestDerivProd.lean": {
+      "previous": [
+        "95702cefa365594b51f7ad7675f226dd044817a9",
+        "d1fff15657e036f11bc95da08ae0a7c60c4b0a82"
+      ],
+      "current": [
+        "50c600285b314ae7380dfffcda6e98c197735bed",
+        "c2c6208f9df91370024b1abcc24a3daefea5c216"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/GenericUnitaryGL/ComplementarySeries/SegmentJacquetSubquotients/RhoNuRhoReducibleC.lean": {
+      "previous": [
+        "2bea20d3d259ec562afda4c716e33f467b77df5b",
+        "8d3cfcfc8e3a0f38c7ea6dba9bc67ce0f832de37"
+      ],
+      "current": [
+        "218032b91848d50f8468cd44987d8bbae106293b",
+        "e9c96d9c917acfa5d8abf43ae8fb04ed559d005f"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/HolomorphicDiscreteSeries/HarishChandraDescent/CasimirCommutation/CommCasimirCasimirK.lean": {
+      "previous": [
+        "29e5407923a4a24c60c4c5a550ad92d02e1ae4e4",
+        "d5b3af3d7223639db2dbf44633eb7c637855fd55"
+      ],
+      "current": [
+        "a021b9b35b6b3f8b08747972b85df50f143f3575",
+        "323de63f4b202fde2e6e79769023af7924771bab"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/HolomorphicDiscreteSeries/HarishChandraDescent/FarClosed.lean": {
+      "previous": [
+        "dc8a7695a01359ebd6c297e37aeaaa398df79682",
+        "2679d416093497b80b67f23e98220658448b37b7"
+      ],
+      "current": [
+        "2c3a0e1d36d7446ec1a2fe33166fa3ff0299048b",
+        "328f858230c5d87700b4f9772945b80d47aad05d"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/HolomorphicDiscreteSeries/HarishChandraDescent/TraceSingleMoments/SecondMomentOfBounds.lean": {
+      "previous": [
+        "b81e246a6a0ee599fa7d3f7d2d425b8527442161",
+        "f32060587f52184dde0884e01187bd2cbbd782aa"
+      ],
+      "current": [
+        "8594ca3f01a01509b72654df82e95e7fff9dd826",
+        "9e80007406e0853486281d3894520762547cd5dc"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/RegularisedSiegelWeil/ThetaIdempotents/SphBound.lean": {
+      "previous": [
+        "b87017d35535bb59c62c8e86a362cca5af0f46e6",
+        "45ce3a86a7f0774b617ebe96bde563e8f8df6fd4"
+      ],
+      "current": [
+        "1401f572d86a7e3eda3852c13e4369954a2c58c6",
+        "26f4b2c5f50832e09ec8f481598bc96d13dc7a52"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/RegularisedSiegelWeil/ThetaIdempotents/ThetaCoefficients/ResCore.lean": {
+      "previous": [
+        "56a836ae811c2002694aae4424ec3d2973ca23ac",
+        "f1c09ead9d2a0d7660b6c990477e6168bd3d6462"
+      ],
+      "current": [
+        "a67a59327855201012c8164334b1ac9392cb72ca",
+        "84241f221f4015587ae1d00b98778d1462fa8ff5"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/ResidualSpectrum/SliceTensors/PIndMapB.lean": {
+      "previous": [
+        "808a381abbdaf536d72a4dd7cdb1bfb8c83069fe",
+        "b69a3cc21020d2eda52406e055c514a2e1947e86"
+      ],
+      "current": [
+        "1406e7478ee3ec8831b4793febe196a81f6fa841",
+        "66a58c026be772ae5cce3417c506b6bd78cb231a"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/ResidualSpectrum/SliceTensors/PProjA.lean": {
+      "previous": [
+        "b371e50dc3f3cd43e9219dcfc4f35b0d5e69d334",
+        "ab3ffcab0e319d16737bc3f2de9e6148cb3d53c4"
+      ],
+      "current": [
+        "d2c55715e3e3697ec90a154258a6d8d650e495db",
+        "6b2f4d00f12d1c17bc79e0a0b14a5a93deedbfd0"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeil/ArchimedeanSiegelWeil/PlaceIntegrals/ZeroBlockCoefficientRankIncrease.lean": {
+      "previous": [
+        "20f8b62e2c80c1712503aa960f47197462f1a7d3",
+        "b979488600955eb85e165a8f6ece77114f1534d1"
+      ],
+      "current": [
+        "f45054ac499f57481d89c3de9a0fedd4d846e3f4",
+        "48a1d8742812afb5ff9620a14d70eb0cbddd0dd7"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/AbsoluteConvergence/GenTop.lean": {
+      "previous": [
+        "1309258283466cfa6893783ffb2fb8cba7f20844",
+        "b2e8f6f869b77a4b44b3f7fc30fbcea3fd1f3650"
+      ],
+      "current": [
+        "cc00a8723df99248ac79bb2c82f704effda41002",
+        "36ca6aac012432c6392622272f46af30c5f887f5"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/AnalyticDeterminants/InfInv.lean": {
+      "previous": [
+        "1214df511f48bee3ef9a7bc51cbbc8c1713f0b67",
+        "45237e2e5c0ad2eee061701ffda4f9192dad7360"
+      ],
+      "current": [
+        "379590f168ee1d06d0c0adbcb6a572f5fe7b4c9c",
+        "66e846dc3d06095c5f7de4e5cb09dabb54b54bd8"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/AnalyticDeterminants/TopComp.lean": {
+      "previous": [
+        "0fa6d0783537015b2e709e45c7d8d56be05113a2",
+        "49a25a3ecf406299749828466ad5c37d4b05529e"
+      ],
+      "current": [
+        "9284324762bfa5fad4e34d96624fedf0096294b4",
+        "cc87f94051e4541aa8eb975e0c2b507d974af30c"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/CayleyCosetSums/HolLeadB.lean": {
+      "previous": [
+        "f472dec2868c3e96240239c20467fd72f79d2b15",
+        "7298b93daa508927c3d266174354de75182775bc"
+      ],
+      "current": [
+        "b74fd490e1e03408f93688118ede3f1141da1b82",
+        "5807ed9d9af7a4b1b55b7186773110a314bbec8d"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/CayleyCosetSums/InverseFirstBlockEqConjTranspose.lean": {
+      "previous": [
+        "12d455904e61a8867ce3427535a3b22edca1c04c",
+        "b595c9f68d379830f280cad6d41069d758d040a7"
+      ],
+      "current": [
+        "9d241b40491a003119c15c9f6c263808b8164029",
+        "ad04b33b5d1999de2d01bf90382ad29886e99d27"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/CayleyCosetSums/InverseSecondBlockEqNegConjTranspose.lean": {
+      "previous": [
+        "adcb3939a680a79c5e257b6c9c71ef7ee9a5a20d",
+        "6be1cb19a760254ab835aec8b61b606051b13160"
+      ],
+      "current": [
+        "aef39472906ef921d46da79799b86b830f782000",
+        "76c757f6c4b0960c9f9d2173ec6651f48d46b8b9"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/CayleyCosetSums/LocTau.lean": {
+      "previous": [
+        "918a2e1a9b30cf9c2f00b7a2d3deb09e7f11e860",
+        "b4d38686a41c8fe21001899c0a0a9a564b5d8b26"
+      ],
+      "current": [
+        "9ca0c658b3d1a06162b48217aa42acff2bda7fb4",
+        "26990c9933c096bbb35bf2791b93d44c92a769a3"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/GaussianPlaneIntegrals/NullIff.lean": {
+      "previous": [
+        "856fbafd28a51f56e21d96505c826455e184eb4d",
+        "48a32490a8b6fee1d9c1543b3e361f3af78ea978"
+      ],
+      "current": [
+        "4f46dabb163c3c0c369fcb9aca993ec0f1af4503",
+        "20c3b434d73eef3cc6bfd2c4f5318cb785706848"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/GlobalGaussLaws/CoordGamma.lean": {
+      "previous": [
+        "2c2d7d52e05016c17f4a84a1157886bbb81def6e",
+        "7ec578b5f393b8260ce835fbd9c027c5106854c6"
+      ],
+      "current": [
+        "9f9b1ae3236421ace58f29b56f9afa393f9b265e",
+        "53764516580158d638fc2cef71577f2298ee168b"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/GlobalGaussLaws/DRCosSubSin.lean": {
+      "previous": [
+        "e07218784d41869c94410b3fab6f7fec8a20d0d9",
+        "37ba0f095d10610c11d6113ffbec5d0950caadaa"
+      ],
+      "current": [
+        "38dccea13a9739b32c0a08cb7c9470872d7e3f53",
+        "7eeb075ae019f7d85d2ae3fea715e76ebe4962c9"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/GlobalGaussLaws/LamTop.lean": {
+      "previous": [
+        "f57dd6f3c4e40a409d2b88493d7555c3e9c939db",
+        "b7720d4e77e247028e864a37915f294f3d3b666c"
+      ],
+      "current": [
+        "687bd024e8090a86361d76ab7dce7c0f3ad69c7d",
+        "d628483f7b5611e24b8a3f8d173c1fc11c8a8a7d"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/GlobalGaussLaws/Top6.lean": {
+      "previous": [
+        "db76d0f268fe65acf8894f8136f2c30ead43335a",
+        "4ac4d931b98f03ca9cf24a3d79f94eba269b70c3"
+      ],
+      "current": [
+        "66841367ba7deaf83867e412eebb28e04257f04c",
+        "8c15591744537a055eb612349b17f81cadcb9e5c"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/GlobalGaussLaws/VanishTop.lean": {
+      "previous": [
+        "ada78c4d749284dc07fd990f9313719d3f9b01a0",
+        "01168a0684661f2518b46a1b5d0432e58cb01113"
+      ],
+      "current": [
+        "59727440454818642da8c45eb780c4af41905df9",
+        "26e5ea37743f18cab15fe7553f6025e52f69233b"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/MollifiedIntegrability/Imports.lean": {
+      "previous": [
+        "a311fdfb21a728dd492b87130f6f90f490937376",
+        "76735ef13f8ccf9d94d6c4ece7b9103b546d9315"
+      ],
+      "current": [
+        "b6e188adf68c97c96f1380adb1092cff7480401f",
+        "025de99a8b330be589f2c8595bc84a9c3f41ce21"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/PolynomialDerivatives/BfSmulRight.lean": {
+      "previous": [
+        "6c4a76d363c565ed9a3258a815be886c121a3ab4",
+        "198521dfbfc8725de3bb1dd19b7580629d366154"
+      ],
+      "current": [
+        "4759f9c747b7c3f696e7e4038abd78cb13be7c44",
+        "a889aab20cce937d8d214e4679bafaa491f208bc"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/PolynomialDerivatives/ComapDomainInlAdd.lean": {
+      "previous": [
+        "4221d45d07a181d85d33450fa4e85d53e5b26b96",
+        "a2f5904aaa92f0e9a63404391e1797ed624dfd7b"
+      ],
+      "current": [
+        "05add04e8367e77878199b9b9176b425d5f54fee",
+        "2013baa164688c2d0aa16225fde3a90281f9ba8b"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/PolynomialDerivatives/FirstFamilySymbolMulVariablePow.lean": {
+      "previous": [
+        "6414095748894f936d743570fd0dd6978bca89a3",
+        "a211454a8039ad68a9f22289b83ca6ab84aa8515"
+      ],
+      "current": [
+        "2c511f9ffbd7b662366c6183b9f358dbdc08bcb3",
+        "33e034cd2a3afd9e3417cb8174da746b08113ac0"
+      ]
+    },
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/PolynomialDerivatives/ProdMapPowSingle.lean": {
+      "previous": [
+        "92a83f6bd733377e2bacd28cf0d712f59e7a0a91",
+        "ae34d1b0a3a8e67362239fcad380d6e0b989d9cf"
+      ],
+      "current": [
+        "76451a79cf0edcc97d8e0931e526ec8b0043e10e",
+        "22b3e7809423bb661ee37d4568ada68128f67d2f"
+      ]
+    },
+    "src/Development/WeilBound/ThetaLifts/EigenvalueEndgame/OrthogonalDecomposition/ActsOfReads.lean": {
+      "previous": [
+        "9ed3bb016d0d2be7510cdfe16513fd248d8b5f35",
+        "d59cac1f70cc24e1b11bab56aea9661c418e13c5"
+      ],
+      "current": [
+        "804207cfbb03132e69d3777eb1d764dbe030fc10",
+        "f7c9c4821bcabdfa2a3362fd62381db26dac46a8"
+      ]
+    },
+    "src/Development/WeilBound/ThetaLifts/EigenvalueEndgame/OrthogonalDecomposition/SigThConstFin.lean": {
+      "previous": [
+        "8f97e6c337a913f591db35d14a87aa81c34bcca2",
+        "c5107c969431cf8aad3e29a849441fc36d7bedcc"
+      ],
+      "current": [
+        "6b08c56b4b54917aad822a612fe9661e2c10f37c",
+        "9035105582eab6ced98109e800fcf027cc0c7924"
+      ]
+    },
+    "src/Development/WeilBound/ThetaLifts/EigenvalueEndgame/UnipotentGroups/TendstoIndMul.lean": {
+      "previous": [
+        "fa96944e3b43b58a2b4428d433445cf1edf5a128",
+        "9c2abac8309ab9a662995edda1fd624f57265187"
+      ],
+      "current": [
+        "4cf40cce46eaa54c5a45053262c84d40d34d322e",
+        "07b6b03d5e48e80bfc44dfc1b8476bb23bb1eb5d"
+      ]
+    },
+    "src/Development/WeilBound/ThetaLifts/FrameEstimates/CoefSum.lean": {
+      "previous": [
+        "e018bc930ccbbe98883ce9a4918e4c56595bec77",
+        "6a5dd5f7bbc197fce899b4b4c915ba6cabfd5a4f"
+      ],
+      "current": [
+        "f8e6fe95c51d8b51d5e560ca2f2a8cabcd9c5acc",
+        "1ee81128f3f0f2600d6a4f37b86832000990ceb6"
+      ]
+    },
+    "src/Development/WeilBound/ThetaLifts/FrameEstimates/WeilConv.lean": {
+      "previous": [
+        "8a556bd8599cd37feeaef53fe763b6cb5f541a44",
+        "18a5bb737311c75b5c6b4fd745571c0e35aa8c76"
+      ],
+      "current": [
+        "e7dd4dd0c7366d292a64f795c84bf853775a9456",
+        "487e2df5539c76c3357fab5dd37ca482cb2441d8"
+      ]
+    },
+    "src/Development/WeilBound/ThetaLifts/LeviDeterminants/MixedModels/PlaneC.lean": {
+      "previous": [
+        "483ece8378685571b226047f4e4b4b1bbf14a29d",
+        "757abb580d690a95fe1d8559069ac7ee28a92e1f"
+      ],
+      "current": [
+        "100709542cf03700aeae53106c377de46e3ba928",
+        "43595fe2f3c89ae4641505c7c32186222efad22d"
+      ]
+    },
+    "src/Development/WeilBound/ThetaLifts/LocalTheory/ConeShifts/VacShiftOf.lean": {
+      "previous": [
+        "23eb4be831eaaeb36f0d030999e31d2168835cba",
+        "01c654e652d35ce392ce34c9631185ba94c013fe"
+      ],
+      "current": [
+        "9ecccd5a910788430f66645c48892de2c990060c",
+        "ba9a37a034bc24a62400b78c8ada73cd76b4be7b"
+      ]
+    },
+    "src/Development/WeilBound/ThetaLifts/LocalTheory/UnramifiedCohomology/FLocBOf.lean": {
+      "previous": [
+        "1f4ddd1719bdf4a91a458f630d3063c3b04e12ba",
+        "e25505087c9bf88096bedba3d3bfda1f62966227"
+      ],
+      "current": [
+        "702ae2cc76af1bd9495f44e06e3daf099a22bf64",
+        "358043765ad83128d61a575bd8e7852ede90e1e7"
+      ]
+    },
+    "src/Development/WeilBound/ThetaLifts/Reductions/TopPolarZero/PolZero.lean": {
+      "previous": [
+        "6bc5abdaf8999a267bc96aa7541b435d49ed4e09",
+        "5e31b43e68fb1e421d7e81f1ec2f8c6c7ef531b1"
+      ],
+      "current": [
+        "3a63dab60879dea1f281f3d34634f95b2c87c5d4",
+        "b79c98765149c9d343fca2c6c7129bd27289015b"
+      ]
+    },
+    "src/Development/WeilBound/ThetaLifts/Reductions/WeilPairs/LatRepBI.lean": {
+      "previous": [
+        "1992e31c5a0b45ec51fd1215b7392330dd29e707",
+        "e7398986cee41f95787e7e247fa2e15a83a40516"
+      ],
+      "current": [
+        "6fa09745b2f40f97daa96a29ec15788dc5a4da3b",
+        "01bf53fb8c8ed870dea5661341176440859d374f"
+      ]
+    },
+    "src/Development/WeilBound/ThetaLifts/Reductions/WeilPairs/ProjFacts.lean": {
+      "previous": [
+        "79aa1a18c05e5cf7d3b27c018a740d62a2a1d124",
+        "c44b74ea7f7902e37329f1acfee4b0eae61fe44b"
+      ],
+      "current": [
+        "98fd9c7ae605c29140a12e6e3197bf5f83d24030",
+        "e222baf42cbdad2c578d599331d773612dc2717e"
+      ]
+    },
+    "src/Development/WeilBound/ThetaLifts/SmallCones/FcCols.lean": {
+      "previous": [
+        "8d9ee8d6bdd68cf59383877c00a2ce9f5c367f0d",
+        "a5573238ffb637eb176bb5eaf41ec36a17a3691d"
+      ],
+      "current": [
+        "c0ebb0df448b4f6cdcfd7c121b5b7ed084981c03",
+        "1e37fd445cee1c53f28266ef0b291f22fb66e23d"
+      ]
+    },
+    "src/Development/WeilBound/ThetaLifts/SmallCones/KerUni.lean": {
+      "previous": [
+        "c52a4bba9107af43050f38395b3c3f946fb41383",
+        "9703ce5977f35f24c6f8ef6a01438d452264afba"
+      ],
+      "current": [
+        "f8ca36a0e7223b246c3cc41a8ee7d192c9c58caa",
+        "c2f02fe0c6840cf054544193c49e749c8d3f53d2"
+      ]
+    },
+    "src/Development/WeilBound/ThetaLifts/SmallCones/ThetaExp.lean": {
+      "previous": [
+        "0f662e807f7fc9e7471a3c25762fd9401436b5e6",
+        "f163d23106e76a29965c2cbc809eb45dd04c6279"
+      ],
+      "current": [
+        "2c6320f66b90b2104428bbc130d4bb4b206cca45",
+        "3c063592587629aa390d07b1e2fff923616bf847"
+      ]
+    },
+    "src/Development/WeilBound/ThetaLifts/SphericalLattices/SphericalClosure/CloseSph.lean": {
+      "previous": [
+        "27acedb018a321be2c3ddc26df0a9e60e8c95b05",
+        "34f77030d221c7218bf997c28817e2af33d13244"
+      ],
+      "current": [
+        "3bffe417c6b47217e38344ad630d0ba864a75eb0",
+        "786a89e733ad245369f164f3b468717c1f38cbc0"
+      ]
+    }
+  },
+  "dropped_paths": [
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/UnitaryDualGL/GenericUnitaryDual/GenericUnitaryDualGL.lean",
+    "src/Development/WeilBound/CoreStatements/EqualVolumeCompactOpens/SaOpen.lean",
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/BocksteinBaseChange/HodgeTateFromSandwich.lean",
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/PerfectoidPullbacks/FrobeniusWittActions/FrobeniusNormBounds/MapFrobW.lean",
+    "src/Development/WeilBound/CoreStatements/PublishedTheorems/FiniteGLInvariants/AffineLieInvariants/Imports.lean",
+    "src/Development/WeilBound/CoreStatements/PublishedTheorems/SmoothVectorEstimates/CuspidalMultiplicityOne.lean",
+    "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/ThetaNormCommutation/LocalComparisonSplitting/GlobalCharacterHolds.lean",
+    "src/Development/WeilBound/RepresentationTheoryGL/EisensteinResidues/AnisotropicGlobalForms/SecOfDm.lean",
+    "src/Development/WeilBound/RepresentationTheoryGL/FormalDegree/FormalDegreeHilbert/PositiveDefiniteConjugates/PhiMul.lean",
+    "src/Development/WeilBound/RepresentationTheoryGL/ResidualSpectrum/ExponentialNegativity/TopNeg.lean",
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/PolynomialDerivatives/InvOp.lean",
+    "src/Development/WeilBound/ThetaLifts/WeilDomination/DomWeilOf.lean"
+  ],
+  "new_paths": []
+}

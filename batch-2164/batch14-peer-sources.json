@@ -1,0 +1,70 @@
+{
+  "base": "27b55787485ac2a5b5b3ed2dffc697e0ae6a2f59",
+  "merged_batch": 2164,
+  "observed_state": {
+    "headRefOid": "f6be536360c20109380ca3dcaf9ad653131b8e6e",
+    "mergeCommit": {
+      "oid": "a18a350c3e5aad997766cff2670b292313e46574"
+    },
+    "mergedAt": "2026-11-25T05:32:50Z",
+    "state": "MERGED",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/2164"
+  },
+  "peer_head": "a18a350c3e5aad997766cff2670b292313e46574",
+  "heads": {
+    "879": "54cc6203a2ebbc260c325d54968ba328c0445d70",
+    "977": "3924557838221f35ec31576ded2a06d7e11dbbac"
+  },
+  "unique_shared_sources": 1264,
+  "by_proposal": {
+    "879": {
+      "shared": 1053,
+      "all": {
+        "reconstructed": 987,
+        "deleted_by_peer": 11,
+        "already_in_community": 55
+      },
+      "textual_conflicts": {
+        "deleted_by_peer": 11,
+        "already_in_community": 55,
+        "reconstructed": 9
+      },
+      "requires_review": []
+    },
+    "977": {
+      "shared": 471,
+      "all": {
+        "reconstructed": 464,
+        "deleted_by_peer": 5,
+        "upstream_retired_archive": 2
+      },
+      "textual_conflicts": {
+        "reconstructed": 129,
+        "deleted_by_peer": 5,
+        "upstream_retired_archive": 2
+      },
+      "requires_review": []
+    }
+  },
+  "shared_tooling": {
+    "879": [],
+    "977": []
+  },
+  "exact_source_preview": {
+    "879": {
+      "unresolved_modules_excluded_from_estimate": 0,
+      "retained_owners": 38514,
+      "net_nonblank_lean_lines": 1003407,
+      "net_lean_code_commands": 1003407
+    },
+    "977": {
+      "unresolved_modules_excluded_from_estimate": 0,
+      "retained_owners": 11438,
+      "net_nonblank_lean_lines": 379273,
+      "net_lean_code_commands": 250033,
+      "net_code_less_added_python": 249585
+    }
+  },
+  "status": "Source reconstruction against the actual main tree after merged PR 2164. Native and stock build checks are separate.",
+  "rows_sha256": "81b97047531ce4985ce25c5f83952cdaecdbd6d400d8e0b7655fef62a038c357"
+}

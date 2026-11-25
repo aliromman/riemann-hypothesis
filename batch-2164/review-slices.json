@@ -1,0 +1,100 @@
+{
+  "parent": "a18a350c3e5aad997766cff2670b292313e46574",
+  "canonical_pr_head": "ef04b1ad44251c9dae9c1bc3bdfcda7649d34508",
+  "final_tree": "511915aaedf09432be9e537cda59e81f5a9bde12",
+  "review_branch": "review/pr-879-batch-2164-by-directory",
+  "tip": "63c3170297d97db99c5a1c7414c624b43b00a9d5",
+  "independent_cherry_picks_verified_against_parent": true,
+  "groups": [
+    {
+      "key": "weil-bound",
+      "scope": "WeilBound",
+      "files": 2846,
+      "imports_removed": 75138,
+      "imports_added": 17,
+      "commit": "0dcfc72d4bb68df93f2e1e18eb9d09d78e86f53f",
+      "isolated_tree": "cab94bbbea89cd95561fd49e9eaecfdf825f56af"
+    },
+    {
+      "key": "spectrum",
+      "scope": "AutomorphicSpectrum, DiscreteGroups, EtaleCohomology and ResolutionOfSingularities",
+      "files": 4117,
+      "imports_removed": 111023,
+      "imports_added": 36,
+      "commit": "a745d076b3709f1ac1f2508d7fc45a74356ee4ea",
+      "isolated_tree": "e89b5ca297178f2d069c4312fa43d78921b1fa1d"
+    },
+    {
+      "key": "varieties",
+      "scope": "AutomorphicArithmetic/AutomorphicVarieties",
+      "files": 3481,
+      "imports_removed": 91240,
+      "imports_added": 35,
+      "commit": "5f7c51d0977c67f014815380c31396fc13d847c6",
+      "isolated_tree": "146266bc95e27dcac9e2d8affe7be99ca6b39ed0"
+    },
+    {
+      "key": "arithmetic",
+      "scope": "Other AutomorphicArithmetic files",
+      "files": 3072,
+      "imports_removed": 78118,
+      "imports_added": 31,
+      "commit": "d70f6060beb7103728b71564c6a8805d85a68201",
+      "isolated_tree": "34dda88922228f352f3051ee5fed4fb4ccad904c"
+    },
+    {
+      "key": "abelian",
+      "scope": "Abelian varieties, moduli and degeneration",
+      "files": 4888,
+      "imports_removed": 126327,
+      "imports_added": 75,
+      "commit": "1a2e6c367182368689f567f618539a00033c13ab",
+      "isolated_tree": "21ab903c72952d217e134230b6dd14471a97a894"
+    },
+    {
+      "key": "divisors-a-f",
+      "scope": "AbelianVarietyTheory/Proofs/DivisorProofs, A through F",
+      "files": 3146,
+      "imports_removed": 81094,
+      "imports_added": 22,
+      "commit": "24ab5f11fa819430e0584dec963aeecf4ffd7fde",
+      "isolated_tree": "120984fdb94c8dd54daa841d2662cafc81e141c7"
+    },
+    {
+      "key": "divisors-g-z",
+      "scope": "AbelianVarietyTheory/Proofs/DivisorProofs, G through Z",
+      "files": 3824,
+      "imports_removed": 98031,
+      "imports_added": 17,
+      "commit": "0aafca4be0cd3879d7845a8d01ab79c8438add2e",
+      "isolated_tree": "aa23c0fc4ee606afe3b718c76f5e8665b274bf59"
+    },
+    {
+      "key": "inertia-iwasawa",
+      "scope": "InertiaEigenvalues and IwasawaDecomposition",
+      "files": 4015,
+      "imports_removed": 103773,
+      "imports_added": 44,
+      "commit": "e447d3df5d6e2cf5830b6113590bdf56c7a488fe",
+      "isolated_tree": "a33e122eb64580041e19b355dbd84d6dc9af45c9"
+    },
+    {
+      "key": "operators-theta",
+      "scope": "Operators, Satake parameters and theta",
+      "files": 4440,
+      "imports_removed": 115442,
+      "imports_added": 60,
+      "commit": "593ca2f98299738951b84247d5f30a45c9d9b611",
+      "isolated_tree": "55f312b7355e65d89b931bd80ea54eb243abd212"
+    },
+    {
+      "key": "lattices",
+      "scope": "Other AbelianVarietyTheory proofs, including lattices, flag measures and foundations",
+      "files": 4685,
+      "imports_removed": 123599,
+      "imports_added": 41,
+      "commit": "63c3170297d97db99c5a1c7414c624b43b00a9d5",
+      "isolated_tree": "79e598b53a037b1a2b6630032cf9f184b276e8b0"
+    }
+  ]
+}
