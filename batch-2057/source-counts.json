@@ -1,0 +1,18 @@
+{
+  "source": {
+    "head": "3924557838221f35ec31576ded2a06d7e11dbbac",
+    "parent": "27b55787485ac2a5b5b3ed2dffc697e0ae6a2f59",
+    "src": "f99671e1a6687bee6b8f08766cc7dc23818836b7"
+  },
+  "lean_files": 59582,
+  "modules_removed": 0,
+  "edited_modules": 11445,
+  "parent_nonblank_lean": 13893609,
+  "proof_body_lines_added": 0,
+  "proof_body_lines_removed": 0,
+  "candidate_nonblank_lean": 13512412,
+  "nonblank_lean_removed": 381197,
+  "net_code_lines_removed": 250874,
+  "parent_physical_lean": 15590933,
+  "candidate_physical_lean": 15198636
+}
