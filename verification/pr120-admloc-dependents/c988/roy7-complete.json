@@ -1,0 +1,118 @@
+{
+  "stock": "c9883164b0b3d762cee21f889d03d59a53b3ba3b",
+  "candidate": "e05737b0d310930177bc746e7cf64f12d7731438",
+  "modules": 1587,
+  "terminal_targets": 8,
+  "totals": {
+    "public": 21887,
+    "rawTypes": 20784,
+    "definitions": 3259,
+    "rawDefinitions": 2947,
+    "theorems": 18204,
+    "rawProofs": 16761,
+    "axiomRecords": 21887
+  },
+  "runs": [
+    {
+      "gist_revision": "84d61140ee7235dce6fa95681fa0e1b03ab2c363",
+      "modules": 1000,
+      "build_jobs": {
+        "stock": 43913,
+        "candidate": 43913
+      },
+      "totals": {
+        "public": 12825,
+        "rawTypes": 12181,
+        "definitions": 2327,
+        "rawDefinitions": 2102,
+        "theorems": 10281,
+        "rawProofs": 9459,
+        "axiomRecords": 12825
+      },
+      "kernel_comparison_modules": 186,
+      "fields": 872,
+      "direct_fields": 869,
+      "proof_helpers": 3,
+      "hint_changes": [
+        [
+          "Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrobeniusMatrixFrameAtPrimitiveRootFactor",
+          "GlobalTheory.LevelCompare.twist"
+        ],
+        [
+          "Development.AbelianVarietyTheory.Proofs.FoundationProofs.NormSubMulAddLeOfUltrametricReplace",
+          "GlobalTheory.KA.UnivNorm.cobSp"
+        ],
+        [
+          "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CrystallineSummandAndDualFromInverseCharacterTwi",
+          "GlobalTheory.snocSplit"
+        ],
+        [
+          "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LocalCountDualLiftingProof",
+          "GlobalTheory.BlockSum.blockAct"
+        ],
+        [
+          "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LocalCountDualLiftingProof",
+          "GlobalTheory.BlockSum.blockSub"
+        ],
+        [
+          "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LocalCountDualLiftingProof",
+          "GlobalTheory.Pass.LocDual.OneX.Combine.appL"
+        ],
+        [
+          "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LocalCountDualLiftingProof",
+          "GlobalTheory.Pass.LocDual.OneX.Combine.resL\u2081"
+        ],
+        [
+          "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LocalCountDualLiftingProof",
+          "GlobalTheory.Pass.LocDual.OneX.Combine.resL\u2082"
+        ],
+        [
+          "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LocalCountDualLiftingProof",
+          "GlobalTheory.Pass.LocDual.OneX.vecS"
+        ],
+        [
+          "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WachLatticeExpansionsStdBelowLevel",
+          "GlobalTheory.NL.LatLow.tw"
+        ],
+        [
+          "Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.PhiStepOf",
+          "UpperTheory.Ru.crystallineComparison.JQ.blk"
+        ],
+        [
+          "Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.PhiStepOf",
+          "UpperTheory.Ru.crystallineComparison.JQ.low"
+        ]
+      ]
+    },
+    {
+      "gist_revision": "7c9efe437e47a110ff7039f446135a75a2509f3f",
+      "modules": 587,
+      "build_jobs": {
+        "stock": 139467,
+        "candidate": 139467
+      },
+      "totals": {
+        "public": 9062,
+        "rawTypes": 8603,
+        "definitions": 932,
+        "rawDefinitions": 845,
+        "theorems": 7923,
+        "rawProofs": 7302,
+        "axiomRecords": 9062
+      },
+      "kernel_comparison_modules": 122,
+      "fields": 551,
+      "direct_fields": 547,
+      "proof_helpers": 4,
+      "hint_changes": [
+        [
+          "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ModelStOfFramesStatement",
+          "GlobalTheory.ExpCover.transOp"
+        ]
+      ]
+    }
+  ],
+  "checked_fields": 1423,
+  "direct_fields": 1416,
+  "expanded_fields": 7
+}

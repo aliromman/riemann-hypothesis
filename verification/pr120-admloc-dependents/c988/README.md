@@ -30,3 +30,13 @@ python3 "$tools/run_dependents.py" --plan "$tools/c988/dependents.json" \
 ```
 
 The separate Lean 4.36 experiment uses the complete `CoordWD` member from the failed M4 build at `376bacf238f6f3a7a4f120aeb01c89d124ea7a66`. Its original graph has 1,639 project sources. Importing the provider adds two sources and reproduces the scalar-action timeout on the tensor product. Lev Khoroshansky's local erasure clears that diagnostic. Scoping only the two shortcuts at their source also clears it with the emitted proof unchanged. Both repaired modules pass kernel replay. [Lean 4.36 control and source hashes](coordwd-436.json) · [Lev's repair](https://github.com/rohanarun/riemann-hypothesis/commit/277ddc9ce64950f25f7742b0b730749fb90267c5)
+
+## Roy7’s complete 1,587-module run
+
+Roy7 compiled both revisions on a donated host. The first selection has 1,000 modules. The second has 587, including `Main`. Their union covers all 1,587 affected modules and all eight terminal targets. The selections have no common module. The public records contain 21,887 declarations and 21,887 matching axiom sets. The two kernels accepted 1,416 changed fields directly and the other seven after expansion of generated proof helpers. The strict audit returned exit 1. Thirteen definitions across seven modules have a compiler unfolding height of 9 on stock and 8 on the candidate. The stored diagnostic fields agree in every other respect. [First receipt](https://gist.github.com/roy7/db4def455fe93b5b7d58c87e86635b26/84d61140ee7235dce6fa95681fa0e1b03ab2c363) · [Second receipt](https://gist.github.com/roy7/bd5c8c21e7bbfa1db274ca07b234ebc7/7c9efe437e47a110ff7039f446135a75a2509f3f)
+
+Clone the two gists into `first` and `second`. Run the command below from this directory. It reads each artifact from its pinned Git revision, checks both build logs and compares the per-module results with the dependency plan. Without `--remaining-gist`, it prints the original 587-module selection. The first host stopped the solution export. Roy7 scheduled the full Comparator on a larger host. [Donor’s report](https://github.com/leanprover-community/riemann-hypothesis/pull/911#issuecomment-7144623036) · [Larger host](https://github.com/leanprover-community/riemann-hypothesis/issues/599#issuecomment-7148937434)
+
+```sh
+python3 verify_roy7_receipt.py first dependents.json --remaining-gist second
+```
