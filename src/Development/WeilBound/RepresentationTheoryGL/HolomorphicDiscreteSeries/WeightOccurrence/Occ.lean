@@ -1248,7 +1248,6 @@ end PositivityTheory.RgHe.Dec.DL
 
 namespace PositivityTheory.RgHe.Dec
 
-open Finset
 
 theorem decomposition_le_holds : DecLe := by
   intro m ε lam H _ _ π ⟨a, ha⟩ hle hl hπ hg

@@ -741,7 +741,6 @@ open scoped ComplexConjugate
 
 namespace UpperTheory.ConvolutionTheory.T
 
-open scoped ComplexConjugate
 
 theorem tyEx_of (hLev : SplitLev) (hSt : SplitStable) (hMa : SplitMatch) (hIn : InertData) (hOff : OffStable)
     (hTyp : TypedEx) (hEig : EigBasic) : TyEx := by

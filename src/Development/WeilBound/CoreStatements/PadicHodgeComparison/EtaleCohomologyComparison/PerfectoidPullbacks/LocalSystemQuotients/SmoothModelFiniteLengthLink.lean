@@ -113,25 +113,6 @@ theorem sq_self_subsingleton (a : IdF A) (T : C) : Subsingleton ((sq a a).obj T)
 
 variable {a b c : IdF A}
 
-theorem sq_inj (hba : ∀ T, b.S T ≤ a.S T) (T : C) :
-    Function.Injective ((sqLe (a := b) (b := c) (a' := a) (b' := c) hba fun _ => le_rfl).τ T) := by
-  intro x y h
-  obtain ⟨x', hx, rfl⟩ := sqM_rep b c T x
-  obtain ⟨y', hy, rfl⟩ := sqM_rep b c T y
-  have h' := congrArg (fun z : sqM a c T => z.1) h
-  exact Subtype.ext h'
-
-theorem sq_exact (hba : ∀ T, b.S T ≤ a.S T) (hcb : ∀ T, c.S T ≤ b.S T) (T : C) :
-    Function.Exact ((sqLe (a := b) (b := c) (a' := a) (b' := c) hba fun _ => le_rfl).τ T)
-      ((sqLe (a := a) (b := c) (a' := a) (b' := b) (fun _ => le_rfl) hcb).τ T) := by
-  apply GlobalTheory.CompanionTheory.KFin.sq_exact
-
-theorem sq_surj (hcb : ∀ T, c.S T ≤ b.S T) (T : C) :
-    Function.Surjective ((sqLe (a := a) (b := c) (a' := a) (b' := b) (fun _ => le_rfl) hcb).τ T) := by
-  intro x
-  obtain ⟨x', hx, rfl⟩ := sqM_rep a b T x
-  exact ⟨sqMk a c x' hx, rfl⟩
-
 theorem sq_les (hba : ∀ T, b.S T ≤ a.S T) (hcb : ∀ T, c.S T ≤ b.S T) (n : ℕ) :
     Function.Exact ((sqLe (a := b) (b := c) (a' := a) (b' := c) hba fun _ => le_rfl).pull n)
       ((sqLe (a := a) (b := c) (a' := a) (b' := b) (fun _ => le_rfl) hcb).pull n) := by

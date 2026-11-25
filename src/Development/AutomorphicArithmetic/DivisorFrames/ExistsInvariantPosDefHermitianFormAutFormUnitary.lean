@@ -67,7 +67,6 @@ end GlobalTheory.MultPetersson
 
 namespace GlobalTheory.MultPetersson
 
-open MeasureTheory
 
 end GlobalTheory.MultPetersson
 end -- clump:auto

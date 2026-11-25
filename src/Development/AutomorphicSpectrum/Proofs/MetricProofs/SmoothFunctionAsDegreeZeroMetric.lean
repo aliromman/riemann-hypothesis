@@ -39,7 +39,6 @@ noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.PB
 
-open GroundTheory.Heights₂.Heights.LowerBoundFree
 open scoped Manifold
 
 namespace SmoothExt

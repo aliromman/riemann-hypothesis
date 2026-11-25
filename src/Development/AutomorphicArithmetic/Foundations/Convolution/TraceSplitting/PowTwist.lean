@@ -210,7 +210,6 @@ end Lift
 section Local
 
 open scoped GroundTheory.Global.AdeleBaseChange GroundTheory.Global.SemiLocal
-open GroundTheory.Global
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
 
@@ -279,7 +278,6 @@ end Local
 section Conj
 
 open scoped NumberField.AdeleRing
-open Formalism.L2.Host
 
 private theorem norm_infEquiv (j : K ≃+* K) (u : InfinitePlace K)
     (y : (u.comap j.toRingHom).Completion) : ‖CT.infEquiv j u y‖ = ‖y‖ := by

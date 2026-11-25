@@ -645,7 +645,6 @@ private theorem root_eq {N : ℕ} (hN : A.valuation (N : Ω) = 1) {x y : Ω} (hx
 
 end NT
 
-open NumberField IsDedekindDomain
 
 section Fr
 

@@ -220,7 +220,6 @@ end Pure
 
 section Tensor
 
-open scoped TensorProduct
 
 end Tensor
 

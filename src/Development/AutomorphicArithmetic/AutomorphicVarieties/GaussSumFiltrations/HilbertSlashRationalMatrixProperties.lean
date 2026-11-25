@@ -158,6 +158,4 @@ theorem rat_slash : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (
 
 end GlobalTheory.HilbertThetaSeries.RatSlash
 
-open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspRep UpperTheory.V UpperTheory.V.Af UpperTheory.V.Sd GlobalTheory.HilbertThetaSeries
-open scoped Matrix
 

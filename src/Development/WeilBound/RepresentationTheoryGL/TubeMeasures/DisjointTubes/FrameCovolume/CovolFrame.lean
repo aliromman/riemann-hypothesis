@@ -516,7 +516,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory
 
-open MeasureTheory
 open scoped Pointwise
 
 theorem packing_set_covolume_le :
