@@ -5,7 +5,6 @@ public import Mathlib.Algebra.Prime.Defs
 public import Mathlib.Algebra.Ring.Defs
 public import Mathlib.Algebra.BigOperators.Associated
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.HkDefs
-import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
