@@ -1,0 +1,23 @@
+{
+  "pr": "977",
+  "branch": "codex/simplify-clump-scopes",
+  "head": "72edf8ddcbf8a2ff593300c708d6420711ae3ba8",
+  "base": "ef451fc356cbc66861df031531aaafd2843797ac",
+  "old": "734178695efaf86734e2eca8503fad4062a062a1",
+  "src": "1fa68d4a5de7c337a52456488e50067e3c3377c1",
+  "tree": "19390715762d500ae21cb7dd7084593f5061a941",
+  "published_at": "2026-11-25T09:31:34.050583+00:00",
+  "raw_upstream_fetch_before_sync": false,
+  "raw_fetch_error": "fatal: remote error: upload-pack: not our ref 72edf8ddcbf8a2ff593300c708d6420711ae3ba8",
+  "source_reference": "refs/heads/ci/batch-2491/pr-977-published",
+  "merge_base_at_readback": "a85077714ca7b298f69e48798497519ed5326a89",
+  "merge_tree_at_readback": "6c8c77f469d649db7e2c549bcaddf1e95fadb898",
+  "mergeable": true,
+  "github_merge": "4e0be1545701ac8a2bfa0d1386f85b4e02df516b",
+  "draft": true,
+  "rest_pr_base_at_readback": "ef451fc356cbc66861df031531aaafd2843797ac",
+  "main_changes_since_source_parent": [
+    "AGENTS.md"
+  ],
+  "validated": "2026-11-25T09:36:23.405695+00:00"
+}

@@ -1,0 +1,74 @@
+{
+  "base": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
+  "merged_batch": 2491,
+  "observed_state": {
+    "headRefOid": "4104e35eefad89ac76324cf2f83072cf4c3a1f14",
+    "mergeCommit": {
+      "oid": "ef451fc356cbc66861df031531aaafd2843797ac"
+    },
+    "mergedAt": "2026-11-25T09:07:16Z",
+    "state": "MERGED",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/2491"
+  },
+  "peer_head": "ef451fc356cbc66861df031531aaafd2843797ac",
+  "heads": {
+    "879": "8073aca8a95c7ec91dc448cd2238b171caabd9f3",
+    "977": "734178695efaf86734e2eca8503fad4062a062a1"
+  },
+  "unique_shared_sources": 6304,
+  "by_proposal": {
+    "879": {
+      "shared": 6071,
+      "all": {
+        "reconstructed": 2269,
+        "deleted_by_peer": 35,
+        "already_in_community": 3765,
+        "withdrawn": 2
+      },
+      "textual_conflicts": {
+        "reconstructed": 108,
+        "deleted_by_peer": 35,
+        "already_in_community": 3630,
+        "withdrawn": 2
+      },
+      "requires_review": []
+    },
+    "977": {
+      "shared": 3067,
+      "all": {
+        "reconstructed": 2962,
+        "upstream_retired_archive": 93,
+        "deleted_by_peer": 10,
+        "withdrawn": 2
+      },
+      "textual_conflicts": {
+        "upstream_retired_archive": 93,
+        "reconstructed": 1230,
+        "deleted_by_peer": 10,
+        "withdrawn": 2
+      },
+      "requires_review": []
+    }
+  },
+  "shared_tooling": {
+    "879": [],
+    "977": []
+  },
+  "exact_source_preview": {
+    "879": {
+      "unresolved_modules_excluded_from_estimate": 0,
+      "retained_owners": 33037,
+      "net_nonblank_lean_lines": 855456,
+      "net_lean_code_commands": 855456
+    },
+    "977": {
+      "unresolved_modules_excluded_from_estimate": 0,
+      "retained_owners": 11388,
+      "net_nonblank_lean_lines": 353602,
+      "net_lean_code_commands": 232391,
+      "net_code_less_added_python": 231944
+    }
+  },
+  "status": "Source reconstruction against the actual main tree after merged PR 2491. Native and stock build checks are separate.",
+  "rows_sha256": "13ea2a20a65b2c2d49e22fb866076776964a2f1b9d36a709a06467e4296ec940"
+}
