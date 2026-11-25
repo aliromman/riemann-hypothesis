@@ -788,10 +788,6 @@ section -- clump:auto
 open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.SplitFlip
 open scoped Pointwise
 
--- Mathlib's `Matrix.instMeasurableSpace` is not reducibly defeq to the project's
--- `matrixMeasurableSpace`, which `borel_GL`/`haarVol` are stated with; prefer the latter.
-attribute [local instance 2000] GlobalTheory.SplitWeil.matrixMeasurableSpace
-
 theorem UpperTheory.haarVol_self_eq_one_of_openSubgroup_le_KO :
     ∀ {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] [MeasurableSpace k] [BorelSpace k] {n : Type} [Fintype n] [DecidableEq n] (J : Subgroup (GL n k)), IsOpen (J : Set (GL n k)) → J ≤ KO k n → haarVol (J.map invT) (J : Set (GL n k)) = 1 := by
   intro k _ _ _ _ _ _ n _ _ J hJ hJK
@@ -952,7 +948,6 @@ section -- clump:auto
 @[expose] public section
 
 open GlobalTheory.SplitFlip GlobalTheory.SplitWeil
-attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 noncomputable section
 

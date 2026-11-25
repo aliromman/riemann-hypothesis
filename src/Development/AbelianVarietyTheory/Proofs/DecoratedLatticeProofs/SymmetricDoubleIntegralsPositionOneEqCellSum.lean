@@ -64,8 +64,6 @@ noncomputable section
 namespace GlobalTheory.PosOne
 open scoped ENNReal
 
-attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace
-
 section Scale
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] [MeasurableSpace k]
   [BorelSpace k]

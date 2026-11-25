@@ -776,9 +776,6 @@ open NumberField IsDedekindDomain MeasureTheory Filter Topology Formalism.MainNo
 open GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.ThK.Dbl GlobalTheory.Cont PositivityTheory.Rg.Sw
 namespace PositivityTheory.SiegelWeilFormula.KWhit
 open PositivityTheory.SiegelWeilFormula
--- The clump also imports `GJMatrixCoord`, whose matrix `MeasurableSpace` instance would otherwise
--- shadow the one (`matrixMeasurableSpace`) used in the statements this member proves.
-attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace
 theorem linRedC_k :_root_.PositivityTheory.SiegelWeilFormula.KWhit.LinRedC_k := by
   intro hT hTC hLB hU hS c F E _ _ _ _ _ σ d hE k cs Φs hK x hW nb lam 𝓖 hcd ε w hw T hND
   have hTT : _root_.PositivityTheory.SiegelWeilFormula.TTheta_k := hT.2.2.2.1
@@ -990,8 +987,6 @@ def ratE_k (hne : η ≠ 0)
   left_inv S := Subtype.ext ((_root_.PositivityTheory.SiegelWeilFormula.MeasD.hEq_k hOf hne hof herm).apply_symm_apply S.1)
   right_inv γ := Subtype.ext ((_root_.PositivityTheory.SiegelWeilFormula.MeasD.hEq_k hOf hne hof herm).symm_apply_apply γ.1)
 end Rat
--- See the note in `linRedC_k`: prefer the `matrixMeasurableSpace` matrix measurable space here.
-attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace in
 theorem meas_hOf_k{d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ} {R : _root_.PositivityTheory.SiegelWeilFormula.RD_k d} {x : d.G} {t u : GL (Fin d.n) (AE F E)} {T : nF σ d.Y d.b} {η : E}
     {T₀ : Matrix (Fin d.n) (Fin d.n) E} {hOf : nA σ d.Y d.b → HeckeCharacterZeroLocus.SiegelWeilU.HermR (AF F) σ d.n}
     {θ : InfinitePlace F → (HeckeCharacterZeroLocus.SiegelWeilU.Ainf F ⊗[F] E →+* ℂ)} {fr : InfinitePlace F → GL (Fin d.m) ℂ}

@@ -1413,7 +1413,6 @@ namespace GlobalTheory
 
 theorem QTw.QExt.m_inv_toReal_eq_relIndex : ∀ {D : D7} {c : Comm D} {v : VCom c} {B : GlobalTheory.Fam.Base c} {PP : Formalism.L2.DIV.Pl D.host.E} (G : GlobalTheory.QTw.QGeo v B PP) (χ : ℕ → (AE D)ˣ →* Circle) (E : GlobalTheory.QTw.QExt G χ) (j : ℕ) (H : Subgroup (GL (XIx (Fin D.R.k) (Fin D.R.t) j) G.k)), H ≤ KO G.k _ → MeasurableSet (H : Set (GL (XIx (Fin D.R.k) (Fin D.R.t) j) G.k)) → H.relIndex (KO G.k _) ≠ 0 → ((((E.m j H).toReal)⁻¹ : ℝ) : ℂ) = (H.relIndex (KO G.k _) : ℂ) := by
   intro D c v B PP G χ E j H hHK hH hn
-  letI : MeasurableSpace (Matrix (XIx (Fin D.R.k) (Fin D.R.t) j) (XIx (Fin D.R.k) (Fin D.R.t) j) G.k) := Formalism.DoubleCosetMeasures.instMeasMat
   obtain ⟨_, _⟩ := Model.secondCountable_and_t2_local_field (k := G.k)
   haveI : BorelSpace (GL (XIx (Fin D.R.k) (Fin D.R.t) j) G.k) := GlobalTheory.SplitFlip.borel_GL
   haveI : SecondCountableTopology (GL (XIx (Fin D.R.k) (Fin D.R.t) j) G.k) := GlobalTheory.SplitFlip.secondCountable_GL

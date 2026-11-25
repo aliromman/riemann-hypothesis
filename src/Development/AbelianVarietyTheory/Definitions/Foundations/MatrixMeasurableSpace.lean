@@ -93,9 +93,6 @@ def om {a b : Type*} [Fintype a] [DecidableEq a] [Fintype b] [DecidableEq b] (μ
     ((nabs k (Matrix.GeneralLinearGroup.det h) ^ (-(Fintype.card a : ℝ) / 2) : ℝ) : ℂ) *
     Φ ((h⁻¹ : GL b k).val * x * g.val)
 
-@[reducible] instance matrixMeasurableSpace {m n α : Type*} [MeasurableSpace α] : MeasurableSpace (Matrix m n α) :=
-  Matrix.instMeasurableSpace
-
 variable [MeasurableSpace k] [BorelSpace k]
 
 def IsUnitVol (ν : Measure k) : Prop := ν.IsAddHaarMeasure ∧ ν (𝒪[k] : Set k) = 1

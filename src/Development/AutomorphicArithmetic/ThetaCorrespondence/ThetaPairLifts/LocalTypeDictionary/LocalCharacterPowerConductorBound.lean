@@ -862,7 +862,6 @@ private theorem exists_res_approx_of_entries_integral {A : Type} {ϖ : kˣ} (hϖ
   have h2 := (Model.val_le_iff_mem hϖ e _).mp h1
   simpa [liftRes] using h2
 
-attribute [local instance 10000] GlobalTheory.SplitWeil.matrixMeasurableSpace in
 theorem sz_zeta {A : Type} [Fintype A] [DecidableEq A] {J : Subgroup (GL A k)} (hJo : IsOpen (J : Set (GL A k)))
     (hJK : J ≤ KO k A) (ν : kˣ →* ℂˣ) {ϖ : kˣ} {e : ℕ} (hϖ : IsUnif ϖ) (hJ : glLatCong (ϖ ^ e) (SplitFlip.stdLat k A) ≤ J)
     (hν : CondLE ϖ e ν) (hram : ¬ IsUnram ν) (hνU : ∀ u, Un ι τ (ν u : ℂ)) (habs : ∀ u : kˣ, apow u (1 / 2) ∈ Set.range ι)

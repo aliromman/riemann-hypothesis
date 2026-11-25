@@ -304,10 +304,9 @@ theorem detPow_add (g : GL (Fin n) F) (a b : ℂ) : detPow g (a + b) = detPow g 
 
 theorem borelSpace_GL_units (m : ℕ) : BorelSpace (GL (Fin m) F) := by
   refine ⟨?_⟩
-  have hM : (GJMatrix.measurableSpace_matrix : MeasurableSpace (Matrix (Fin m) (Fin m) F)) =
-      _root_.borel (Matrix (Fin m) (Fin m) F) := BorelSpace.measurable_eq
   show MeasurableSpace.comap Units.val _ = _
-  rw [hM, ← borel_comap, ← (Measures.isOpenEmbedding_val F m).isEmbedding.eq_induced]
+  rw [BorelSpace.measurable_eq (α := Matrix (Fin m) (Fin m) F), ← borel_comap,
+    ← (Measures.isOpenEmbedding_val F m).isEmbedding.eq_induced]
 
 theorem exists_leviFE (hσ : IsAdmissible σ) [σ.IsIrreducible] (hc : IsCuspidal σ)
     (κ : levi F n β →* ℝ≥0) (hκ : Continuous κ) (μM : Measure (levi F n β)) [μM.IsHaarMeasure]
