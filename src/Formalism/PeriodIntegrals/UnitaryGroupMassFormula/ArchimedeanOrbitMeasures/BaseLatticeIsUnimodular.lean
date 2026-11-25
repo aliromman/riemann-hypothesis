@@ -27,7 +27,6 @@ end HcS.HermitianLatticesTheory
 
 namespace HcS.HermitianLatticesTheory
 
-open NumberField
 
 end HcS.HermitianLatticesTheory
 end -- clump:auto

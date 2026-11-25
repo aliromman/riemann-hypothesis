@@ -596,7 +596,6 @@ end Formalism.MainNotions.RamifiedCoefficientChains.S9.AdB
 
 noncomputable section
 
-open Classical
 
 namespace Formalism.MainNotions.RamifiedCoefficientChains.S9.AdL
 
@@ -726,7 +725,6 @@ end Formalism.MainNotions.RamifiedCoefficientChains.S9.AdL
 
 noncomputable section
 
-open Classical
 
 namespace Formalism.MainNotions.RamifiedCoefficientChains.S9.AdM
 

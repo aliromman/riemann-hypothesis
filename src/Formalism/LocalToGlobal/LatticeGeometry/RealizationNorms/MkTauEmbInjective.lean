@@ -24,7 +24,6 @@ variable [_root_.NumberField.IsTotallyComplex K]
 
 end Formalism.L2.Geo.Rec.DualLatticeEmbeddings
 
-open NumberField NumberField.InfinitePlace Module Matrix
 
 noncomputable section
 
@@ -41,7 +40,6 @@ variable [StarRing K]
 
 end Formalism.L2.Geo.Rec.DualLatticeEmbeddings
 
-open NumberField NumberField.InfinitePlace Module Matrix
 
 noncomputable section
 
@@ -112,7 +110,6 @@ variable {D}
 
 end Formalism.L2.Geo.Rec.StarEmbeddingNorm
 
-open NumberField NumberField.InfinitePlace Module Matrix Formalism.BasicNotions
 open scoped ComplexOrder
 
 noncomputable section
@@ -125,8 +122,6 @@ variable {D : D7} {n : ℕ}
 
 end Formalism.L2.Geo.Rec.StarEmbeddingNorm
 
-open NumberField NumberField.InfinitePlace Module Matrix Formalism.BasicNotions
-open scoped ComplexOrder
 
 noncomputable section
 
