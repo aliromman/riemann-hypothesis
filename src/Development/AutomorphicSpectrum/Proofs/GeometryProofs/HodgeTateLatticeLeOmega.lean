@@ -6,7 +6,6 @@ public import Mathlib.AlgebraicGeometry.Morphisms.Smooth
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GenMapFromSpecStalk
 import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.ReduceModChar
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
 
 @[expose] public section

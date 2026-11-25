@@ -3,7 +3,6 @@ module
 public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.IsCompl
 public import Mathlib.Data.Nat.Prime.Defs
 import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.ReduceModChar
 public import Mathlib.Algebra.CharP.Lemmas
 
 @[expose] public section

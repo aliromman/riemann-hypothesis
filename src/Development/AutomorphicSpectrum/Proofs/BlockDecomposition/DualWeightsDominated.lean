@@ -14,10 +14,7 @@ public import Mathlib.Algebra.DirectSum.LinearMap
 import Mathlib.Algebra.Order.Monoid.Prod
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Sheaves.Presheaf
 import Mathlib.Tactic.Linter.HaveILetI

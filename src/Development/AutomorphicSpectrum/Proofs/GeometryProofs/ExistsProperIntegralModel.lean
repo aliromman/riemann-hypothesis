@@ -6,11 +6,8 @@ public import Mathlib.AlgebraicGeometry.ProjectiveSpectrum.Basic
 import Mathlib.AlgebraicGeometry.ProjectiveSpectrum.Proper
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 
 @[expose] public section
 

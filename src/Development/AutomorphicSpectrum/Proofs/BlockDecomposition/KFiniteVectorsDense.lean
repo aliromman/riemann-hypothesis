@@ -6,8 +6,6 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilRepresen
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.CompactSpaceMaximalCompactUnitaryInfinite
 import Formalism.LocalToGlobal.Columns.RecLevelTop
 import Formalism.LocalToGlobal.GlobalTheory.GL1.CompactFixesLattice.ExistsDenOfIsCompactAdele
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Algebra.Star.Unitary
 import Std.Tactic.BVDecide.Normalize.Prop

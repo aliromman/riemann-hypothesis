@@ -7,7 +7,6 @@ public import Mathlib.RingTheory.Flat.TorsionFree
 public import Mathlib.RingTheory.Henselian
 public import Mathlib.RingTheory.RegularLocalRing.Defs
 public import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.NormNum.LegendreSymbol
 public import Mathlib.FieldTheory.RatFunc.Defs
 

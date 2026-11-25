@@ -4,7 +4,6 @@ public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.CoordsA
 public import Mathlib.Basic.Complex.Basic
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.NormNum.LegendreSymbol
 import Mathlib.Tactic.TypeStar
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.CompRightEqZero

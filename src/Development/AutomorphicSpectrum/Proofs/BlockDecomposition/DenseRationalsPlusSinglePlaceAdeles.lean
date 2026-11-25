@@ -14,13 +14,11 @@ public import Mathlib.NumberTheory.NumberField.AdeleRing
 import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes
 import Mathlib.Algebra.Quaternion
 import Mathlib.NumberTheory.NumberField.ClassNumber
-import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
 import GroundTheory.GlobalFields.LocalFieldAtPlace
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.ReduceModChar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermitianPlaneStrongApprox, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ExistsSupported, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WeakApproximationIntegral, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DenseRationalsPlusSinglePlaceAdeles

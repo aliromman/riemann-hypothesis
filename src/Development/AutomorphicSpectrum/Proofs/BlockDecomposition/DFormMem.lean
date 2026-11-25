@@ -1,9 +1,7 @@
 module
 
 public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.DpZeroRight
-import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 
 @[expose] public section
