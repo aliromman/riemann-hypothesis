@@ -7,10 +7,8 @@ public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsCocha
 import Mathlib.AlgebraicGeometry.Modules.Sheaf
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.ReduceModChar
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LieModel
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
-import Mathlib.Tactic.Polynomial.Basic
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.AmpleLineBundles.SquareZeroDeformationAdditivity, Development.WeilBound.CoreStatements.AmpleLineBundles.KillsOverOfSquareZeroIdeal, Development.AutomorphicSpectrum.Proofs.GeometryProofs.KillsOverSquareZeroLift

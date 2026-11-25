@@ -10,10 +10,7 @@ public import Mathlib.Analysis.PSeries
 public import Mathlib.Geometry.Manifold.PartitionOfUnity
 import Mathlib.Order.CompletePartialOrder
 import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 public import Mathlib.Topology.MetricSpace.ProperSpace.Lemmas
 import Mathlib.Topology.UniformSpace.Uniformizable
 public import Mathlib.Analysis.Calculus.BumpFunction.Basic

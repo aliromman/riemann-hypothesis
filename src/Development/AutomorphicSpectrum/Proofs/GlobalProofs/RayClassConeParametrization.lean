@@ -4,9 +4,7 @@ public import Development.AutomorphicSpectrum.Proofs.GlobalProofs.AbelContinuati
 import Mathlib.Algebra.Order.Star.Rat
 public import Mathlib.LinearAlgebra.FreeModule.IdealQuotient
 import Mathlib.NumberTheory.NumberField.ClassNumber
-import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.SiegelKlingenDeligneRibet
 
 @[expose] public section

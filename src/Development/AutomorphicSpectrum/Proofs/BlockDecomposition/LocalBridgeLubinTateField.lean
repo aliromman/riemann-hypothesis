@@ -5,9 +5,6 @@ public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership
 public import GroundTheory.LocalFields.MaximalUnramified
 public import GroundTheory.LocalFields.UnramifiedHensel
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.TripleAtt
 import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.ExistsUniqueHcharOfFiniteOrder

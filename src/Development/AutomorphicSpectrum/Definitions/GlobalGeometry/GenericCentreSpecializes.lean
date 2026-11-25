@@ -5,8 +5,6 @@ public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsGener
 public import Mathlib.RingTheory.AlgebraicIndependent.Basic
 public import Mathlib.RingTheory.Valuation.ValuationSubring
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ProjectiveLinePlaceTrivialOnConstants
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.ReduceModChar
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ZarhinBundleKernelFirstCoordEquations
 import Mathlib.RingTheory.GradedAlgebra.HomogeneousLocalization
 

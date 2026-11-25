@@ -2,9 +2,6 @@ module
 
 public import Development.WeilBound.RepresentationTheoryGL.EisensteinSeries.SiegelEisensteinHalfPlane.UnitTestFunctions.LiftUnit
 import Mathlib.Analysis.Calculus.BumpFunction.FiniteDimension
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.UniformSpace.Uniformizable
 public import Mathlib.Analysis.Calculus.BumpFunction.Basic
 
