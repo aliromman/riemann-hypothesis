@@ -4,7 +4,7 @@ public import Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyEigA
 public import Formalism.LocalToGlobal.CharacterGerms.RowTiePGmExLem
 public import Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyTeichDef
 public import Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyDef
-public import Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyJointDef
+public import Mathlib.FieldTheory.IsAlgClosed.Basic
 public import Mathlib.LinearAlgebra.Eigenspace.Basic
 public import Mathlib.LinearAlgebra.Eigenspace.Pi
 public import Mathlib.Data.Nat.Choose.Dvd
@@ -19,7 +19,29 @@ import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyEigB, Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyEigC, Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyEigD, Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyJoint, Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyTeich2, Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyEig2
+-- Members: Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyJointDef, Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyEigB, Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyEigC, Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyEigD, Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyJoint, Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyTeich2, Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyEig2
+
+-- ===== clump member: Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyJointDef =====
+-- clump-header: {"m": "Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyJointDef", "h": "module\n\npublic import Mathlib.FieldTheory.IsAlgClosed.Basic\n\n"}
+section -- clump:auto
+@[expose] public section
+
+namespace Formalism.L2.FormalSeriesBounds
+
+namespace RowTiePKey
+
+def JointEigSt : Prop :=
+  ∀ (C : Type) [Field C] [CharZero C], IsAlgClosed C → ∀ (n q : ℕ), 2 ≤ q →
+    ∀ (T : Set (Matrix (Fin n) (Fin n) C)), (∀ t ∈ T, t ^ q = t) → (∀ s ∈ T, ∀ t ∈ T, s * t = t * s) →
+    ∀ v : Fin n → C, ∃ (m : ℕ) (w : Fin m → Fin n → C), v = ∑ j, w j ∧
+      ∀ j, ∀ t ∈ T, ∃ c : C, Matrix.mulVec t (w j) = c • w j
+
+end RowTiePKey
+
+end Formalism.L2.FormalSeriesBounds
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyJointDef =====
 
 -- ===== clump member: Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyEigB =====
 -- clump-header: {"m": "Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyEigB", "h": "module\n\npublic import Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyEigA\npublic import Formalism.LocalToGlobal.CharacterGerms.RowTiePGmExLem\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Formalism.LocalToGlobal.CharacterGerms.RowTiePProjFB\n\n"}

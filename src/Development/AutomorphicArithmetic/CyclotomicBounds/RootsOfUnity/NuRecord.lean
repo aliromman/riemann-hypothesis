@@ -6,7 +6,8 @@ public import Mathlib.RingTheory.Henselian
 public import Mathlib.RingTheory.RegularLocalRing.Defs
 public import Mathlib.RingTheory.SimpleRing.Principal
 public import Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.CyclotomicTotient.NuInf
-public import Development.AutomorphicArithmetic.CyclotomicBounds.RootsOfUnity.NuLe
+public import Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.CyclotomicTotient.NuSumApprox
+public import Development.AutomorphicArithmetic.CyclotomicBounds.RootsOfUnity.HostApprox
 public import Development.AutomorphicArithmetic.CyclotomicBounds.RootsOfUnity.NuQDUnit
 public import Development.AutomorphicArithmetic.PrimeDiscriminants.ExistsPrimitiveRootTorsionOrder
 public import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.InertiaGaloisSymmetry.CycBasic
@@ -15,7 +16,40 @@ public import Formalism.LocalRingCardinality.DataHost
 import Mathlib.Tactic.Linter.HaveILetI
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicArithmetic.CyclotomicBounds.RootsOfUnity.SplitNotDvd, Development.AutomorphicArithmetic.CyclotomicBounds.RootsOfUnity.SumFactorizationMulLogLe, Development.AutomorphicArithmetic.CyclotomicBounds.RootsOfUnity.WDvdQS, Development.AutomorphicArithmetic.CyclotomicBounds.RootsOfUnity.NuRecord
+-- Members: Development.AutomorphicArithmetic.CyclotomicBounds.RootsOfUnity.NuLe, Development.AutomorphicArithmetic.CyclotomicBounds.RootsOfUnity.SplitNotDvd, Development.AutomorphicArithmetic.CyclotomicBounds.RootsOfUnity.SumFactorizationMulLogLe, Development.AutomorphicArithmetic.CyclotomicBounds.RootsOfUnity.WDvdQS, Development.AutomorphicArithmetic.CyclotomicBounds.RootsOfUnity.NuRecord
+
+-- ===== clump member: Development.AutomorphicArithmetic.CyclotomicBounds.RootsOfUnity.NuLe =====
+-- clump-header: {"m": "Development.AutomorphicArithmetic.CyclotomicBounds.RootsOfUnity.NuLe", "h": "module\n\npublic import Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.CyclotomicTotient.NuInf\npublic import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.ConjEMemHostFIff\npublic import Mathlib.RingTheory.Henselian\npublic import Mathlib.RingTheory.RegularLocalRing.Defs\npublic import Mathlib.RingTheory.SimpleRing.Principal\npublic import Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.CyclotomicTotient.NuSumApprox\npublic import Development.AutomorphicArithmetic.CyclotomicBounds.RootsOfUnity.HostApprox\npublic import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.HostFacts\nimport Mathlib.Tactic.Linter.HaveILetI\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open NumberField Formalism.HC KStar.Tree
+
+theorem UpperTheory.Mu.nuLe :
+    ∀ (φ : Frame) (H : HostRaw φ) (l : ℕ) [Fact l.Prime] (Ω : Type) [Field Ω] [Algebra H.E Ω] [IsAlgClosure H.E Ω] (n : ℕ), Odd n → l ≠ H.q → l ≠ H.d → nuOf l (cyc l H.E Ω) n ≤ H.QS.factorization l + (if l ∣ H.QS then n.factorization l else 0) := by
+  intro φ H l _ Ω _ _ _ n hn hq hd
+  have hQS0 : H.QS ≠ 0 := H.QS_pos.ne'
+  obtain ⟨u, hu1, hun⟩ := exists_unit_not_dvd l H.QS n hQS0 H.two_dvd_QS hn
+  apply nuOf_le_of_approx l (cyc l H.E Ω) n _ u _ hun
+  have hN : H.condN = H.QS * H.q * H.d := rfl
+  have hfac : H.condN.factorization l = H.QS.factorization l := by
+    have hq0 : H.q ≠ 0 := H.q_prime.ne_zero
+    have hd0 : H.d ≠ 0 := H.d_prime.ne_zero
+    rw [hN, Nat.factorization_mul (mul_ne_zero hQS0 hq0) hd0, Nat.factorization_mul hQS0 hq0]
+    simp only [Finsupp.add_apply]
+    rw [H.q_prime.factorization, H.d_prime.factorization]
+    simp [Ne.symm hq, Ne.symm hd]
+  have h2 : 2 ≤ H.condN := by
+    have := Nat.le_of_dvd (Nat.pos_of_ne_zero H.condN_ne_zero) H.two_dvd_condN
+    exact this
+  have : Fact (1 < H.condN) := ⟨by omega⟩
+  intro k
+  apply UpperTheory.Mu.hostApprox φ H l Ω 1 (map_one _) u _ k
+  rw [hfac]
+  simpa [ZMod.val_one] using hu1
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicArithmetic.CyclotomicBounds.RootsOfUnity.NuLe =====
 
 -- ===== clump member: Development.AutomorphicArithmetic.CyclotomicBounds.RootsOfUnity.SplitNotDvd =====
 -- clump-header: {"m": "Development.AutomorphicArithmetic.CyclotomicBounds.RootsOfUnity.SplitNotDvd", "h": "module\n\npublic import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.ConjEMemHostFIff\npublic import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.HostFacts\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Henselian\nimport Mathlib.RingTheory.Ideal.Int\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.RegularLocalRing.Defs\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

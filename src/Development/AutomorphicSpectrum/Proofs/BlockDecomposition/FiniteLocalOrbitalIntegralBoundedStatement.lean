@@ -3,15 +3,14 @@ module
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermOf
 public import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.ModerateGrowthSchwartz
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermInf
-public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RatTuple
+public import CompanionTheory.SpectralGeometry.CountingDefinitions.AdelicEulerProducts.CountData
+public import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DeltaEqLatticeIndex
 public import Mathlib.MeasureTheory.Group.Defs
-public import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes
 public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.Analysis.InnerProductSpace.Basic
 public import Mathlib.MeasureTheory.Integral.Bochner.Basic
 public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.FiniteAdeleTopology
-public import CompanionTheory.SpectralGeometry.CountingDefinitions.AdelicEulerProducts.CountData
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsUnitHermOfDet
 public import Formalism.UnipotentAdelicQuotients.SWXSDefs
 public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.TensorLocallyCompactRing
@@ -97,7 +96,64 @@ import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.TensTo
 import Mathlib.Algebra.Order.Star.Real
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DeltaConjInvariant, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DeltaPosIndex, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DisjointTranslatesVolumeBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaussSumFiniteAverageBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaussSumQuadraticCharacterBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeLevelOpenCompact, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeLevelsNeighbourhoodBasis, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PairingBiadditive, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PairingOnRationalTupleFormula, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PhaseCocycleBimultiplicative, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PhaseContinuousUnitary, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RationalCharacterKernelScaling, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ExistsNatMulMem, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RationalTupleInLatticeLevel, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TraceDualDenominatorBounded, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteLocalOrbitalIntegralBounded, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteLocalOrbitalIntegralBoundedStatement
+-- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RatTuple, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DeltaConjInvariant, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DeltaPosIndex, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DisjointTranslatesVolumeBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaussSumFiniteAverageBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaussSumQuadraticCharacterBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeLevelOpenCompact, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeLevelsNeighbourhoodBasis, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PairingBiadditive, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PairingOnRationalTupleFormula, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PhaseCocycleBimultiplicative, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PhaseContinuousUnitary, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RationalCharacterKernelScaling, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ExistsNatMulMem, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RationalTupleInLatticeLevel, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TraceDualDenominatorBounded, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteLocalOrbitalIntegralBounded, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteLocalOrbitalIntegralBoundedStatement
+
+-- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RatTuple =====
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RatTuple", "h": "module\n\npublic import CompanionTheory.SpectralGeometry.CountingDefinitions.AdelicEulerProducts.CountData\npublic import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+namespace GlobalTheory.CompanionTheory.SiegelND.Integ.Weyl
+
+open NumberField Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.CompanionTheory.SW.Core
+open scoped Matrix TensorProduct
+
+variable {F E : Type} [Field F] [NumberField F] [Field E] [Algebra F E]
+
+def InNOh {d : ℕ} (b : Module.Basis (Fin d) F E) (N : ℕ) (x : Af F ⊗[F] E) : Prop :=
+  ∀ k, ∃ y ∈ Oh F, (Algebra.TensorProduct.basis (Af F) b).repr x k = (N : Af F) * y
+
+def latN {d : ℕ} (b : Module.Basis (Fin d) F E) (n M N : ℕ) :
+    AddSubgroup (Fin n → Fin M → Af F ⊗[F] E) where
+  carrier := {X | ∀ a i, InNOh b N (X a i)}
+  zero_mem' := fun a i k => ⟨0, fun v => zero_mem _, by simp⟩
+  add_mem' := by
+    intro X Y hX hY a i k
+    obtain ⟨x, hx, ex⟩ := hX a i k
+    obtain ⟨y, hy, ey⟩ := hY a i k
+    refine ⟨x + y, fun v => add_mem (hx v) (hy v), ?_⟩
+    simp only [Pi.add_apply, map_add (f := _), Finsupp.add_apply, ex, ey, mul_add]
+  neg_mem' := by
+    intro X hX a i k
+    obtain ⟨x, hx, ex⟩ := hX a i k
+    refine ⟨-x, fun v => neg_mem (hx v), ?_⟩
+    simp only [Pi.neg_apply, map_neg, Finsupp.neg_apply, ex, mul_neg]
+
+def gram2 (σ : E →ₐ[F] E) {M n : ℕ} (J : Matrix (Fin M) (Fin M) E)
+    (X Y : Fin n → Fin M → Af F ⊗[F] E) : Matrix (Fin n) (Fin n) (Af F ⊗[F] E) :=
+  fun a c => hR (Af F) σ J (X a) (Y c)
+
+def phaseB (σ : E →ₐ[F] E) {M n : ℕ} (J : Matrix (Fin M) (Fin M) E) (ψf : Af F → ℂ)
+    (b : HermR (Af F) σ n) (X : Fin n → Fin M → Af F ⊗[F] E) : ℂ :=
+  ψf (algebraMap F (Af F) (1 / 2) * Algebra.trace (Af F) (Af F ⊗[F] E)
+    (Matrix.trace ((b : Matrix (Fin n) (Fin n) (Af F ⊗[F] E)) * gramR (Af F) σ J X)))
+
+def pairB (σ : E →ₐ[F] E) {M n : ℕ} (J : Matrix (Fin M) (Fin M) E) (ψf : Af F → ℂ)
+    (b : HermR (Af F) σ n) (X Y : Fin n → Fin M → Af F ⊗[F] E) : ℂ :=
+  ψf (Algebra.trace (Af F) (Af F ⊗[F] E)
+    (Matrix.trace ((b : Matrix (Fin n) (Fin n) (Af F ⊗[F] E)) * gram2 σ J X Y)))
+
+def ratTuple [NumberField E] {M n : ℕ} (J : Matrix (Fin M) (Fin M) E) (s : ℕ) (ρ : Fin M → Fin n → 𝓞 E) :
+    Fin n → Fin M → Af F ⊗[F] E :=
+  fun a j => inclR (Af F) ((s : E) * (J⁻¹ *ᵥ fun i => algebraMap (𝓞 E) E (ρ i a)) j)
+
+end GlobalTheory.CompanionTheory.SiegelND.Integ.Weyl
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RatTuple =====
 
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DeltaConjInvariant =====
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DeltaConjInvariant", "h": "module\n\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermOf\nimport Formalism.LocalRingCardinality.DataHost\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Henselian\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.RegularLocalRing.Defs\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\npublic import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.ModerateGrowthSchwartz\nimport Development.AbelianVarietyTheory.Definitions.Foundations.AestronglyMeasurableQuotMeasureIffLift\nimport Development.AbelianVarietyTheory.Definitions.Foundations.EventuallyEqOfIsPreconnected\nimport Development.AbelianVarietyTheory.Definitions.Foundations.IsIwasawaOfIsCompact\nimport Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.CovolOneIntegralAdd\nimport Development.AbelianVarietyTheory.PublishedTheorems.SiegelWeil₂.SiegelWeilUnitarySchrodinger\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermInf\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RatTuple\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ThetaPartD\nimport Development.WeilBound.CoreStatements.TemperedRepresentationTheory.WeilSiegelTheta.BigCellDefs\nimport Development.WeilBound.CoreStatements.TemperedRepresentationTheory.WeilSiegelTheta.ThetaOrbits\nimport Formalism.LocalRingCardinality.DataTheta\nimport Formalism.LocalToGlobal.BesselHermitianTheta.NoncompactGapAtLeastRange\nimport Formalism.LocalToGlobal.IndefiniteReal.LocalNewformFunction\nimport Formalism.LocalToGlobal.ProjectiveLattices.ErealAddIInf\n\n"}

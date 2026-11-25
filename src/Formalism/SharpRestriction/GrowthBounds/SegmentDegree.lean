@@ -8,7 +8,7 @@ public import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.FourHundredS
 public import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.FrameZeroStrictMono
 public import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.StrictMonoIntExists
 public import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.RestLamOfRests
-public import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.FiniteRestrictSupport
+public import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.GoodPathWeight
 public import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.SelIsComplRestrictSupport
 public import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.LamMZero
 public import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.AllowedLettersOfLateRows
@@ -23,7 +23,6 @@ public import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.LamImgApply
 public import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.NonemptyDvrSettingOfStandard
 public import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.Coarse
 public import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.RestCountOf
-public import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.GoodPathWeight
 public import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.GoodPathWeightAlt
 import Mathlib.Algebra.Order.Star.Real
 import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.PsiCutSupported
@@ -35,7 +34,78 @@ import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.SumPosOfPer
 import Mathlib.Algebra.Order.Star.Int
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.ThetaLogCoordinates.ResidueClassEstimates.StatementN, Formalism.ThetaLogCoordinates.ResidueClassEstimates.VandermondeRankEstimates.AdmissibleSmallRatio, Formalism.SharpRestriction.GrowthBounds.SegmentDegree.BetaRatioBound, Formalism.SharpRestriction.GrowthBounds.SegmentDegree.LamSatRestrict, Formalism.SharpRestriction.GrowthBounds.SegmentDegree.RestLamOf, Formalism.SharpRestriction.GrowthBounds.SegmentDegree.DiscPowerMonomialDegreeAtW, Formalism.SharpRestriction.GrowthBounds.SegmentDegree.M0LeBwOfIsW, Formalism.SharpRestriction.GrowthBounds.SegmentDegree.BfamAtWLetterEq, Formalism.SharpRestriction.GrowthBounds.SegmentDegree
+-- Members: Formalism.SharpRestriction.GrowthBounds.SegmentDegree.FiniteRestrictSupport, Formalism.ThetaLogCoordinates.ResidueClassEstimates.StatementN, Formalism.ThetaLogCoordinates.ResidueClassEstimates.VandermondeRankEstimates.AdmissibleSmallRatio, Formalism.SharpRestriction.GrowthBounds.SegmentDegree.BetaRatioBound, Formalism.SharpRestriction.GrowthBounds.SegmentDegree.LamSatRestrict, Formalism.SharpRestriction.GrowthBounds.SegmentDegree.RestLamOf, Formalism.SharpRestriction.GrowthBounds.SegmentDegree.DiscPowerMonomialDegreeAtW, Formalism.SharpRestriction.GrowthBounds.SegmentDegree.M0LeBwOfIsW, Formalism.SharpRestriction.GrowthBounds.SegmentDegree.BfamAtWLetterEq, Formalism.SharpRestriction.GrowthBounds.SegmentDegree
+
+-- ===== clump member: Formalism.SharpRestriction.GrowthBounds.SegmentDegree.FiniteRestrictSupport =====
+-- clump-header: {"m": "Formalism.SharpRestriction.GrowthBounds.SegmentDegree.FiniteRestrictSupport", "h": "module\n\npublic import Formalism.SharpRestriction.GrowthBounds.SegmentDegree.GoodPathWeight\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+open MvPolynomial
+
+namespace Formalism.MainNotions.SelectionLemmas.Pf
+
+open Formalism.MainNotions.G Formalism.MainNotions.SelectionLemmas
+
+theorem finite_restrictSupport' (R : Type) [CommRing R] (σ : Type) (s : Set (σ →₀ ℕ)) (hs : s.Finite) :
+    (restrictSupport R s : Submodule R (MvPolynomial σ R)).FG := by
+  have heq : (restrictSupport R s : Submodule R (MvPolynomial σ R)) =
+      Submodule.span R ((fun m => (monomial m (1 : R) : MvPolynomial σ R)) '' s) := by
+    apply le_antisymm
+    · intro P hP
+      rw [MvPolynomial.mem_restrictSupport_iff] at hP
+      rw [P.as_sum]
+      refine Submodule.sum_mem _ fun m hm => ?_
+      have : (monomial m (AddMonoidAlgebra.coeff P m) : MvPolynomial σ R) = AddMonoidAlgebra.coeff P m • monomial m (1 : R) := by
+        rw [smul_monomial, smul_eq_mul, mul_one]
+      rw [this]
+      exact Submodule.smul_mem _ _ (Submodule.subset_span ⟨m, hP (by exact_mod_cast hm), rfl⟩)
+    · rw [Submodule.span_le]
+      rintro _ ⟨m, hm, rfl⟩
+      rw [SetLike.mem_coe, MvPolynomial.mem_restrictSupport_iff]
+      intro m' hm'
+      have := MvPolynomial.support_monomial_subset (by exact_mod_cast hm')
+      rw [Finset.mem_singleton] at this
+      rw [this]; exact hm
+  rw [heq]
+  exact Submodule.fg_span (hs.image _)
+
+theorem segDegSet_finite {r : ℕ} (K : ℕ) (b : ℤ → ℕ) (L : Finset ℤ) (hb : ∀ x, x ∉ L → b x = 0) :
+    (Dat.segDegSet (r := r) K b).Finite := by
+  classical
+  let B : ℤ × Fin (r + K) →₀ ℕ := Finsupp.onFinset (L ×ˢ Finset.univ) (fun v => b v.1) (by
+    intro v hv
+    by_contra h
+    apply hv
+    apply hb
+    intro hL
+    exact h (Finset.mem_product.mpr ⟨hL, Finset.mem_univ _⟩))
+  refine (Set.finite_Iic B).subset ?_
+  intro m hm v
+  have h := hm v.1
+  have : m (v.1, v.2) ≤ ∑ c : Fin (r + K), m (v.1, c) :=
+    Finset.single_le_sum (f := fun c => m (v.1, c)) (fun _ _ => Nat.zero_le _) (Finset.mem_univ v.2)
+  rw [h] at this
+  simpa [B] using this
+
+theorem restFin : RestFin := by
+  intro p n' r K _ _ _ X O _ _ _ j b hb
+  have hfg := finite_restrictSupport' O (ℤ × Fin (r + K)) _ (segDegSet_finite (r := r) K b (X.F.letters j) hb)
+  have hN : IsNoetherian O (restrictSupport O (Dat.segDegSet (r := r) K b) : Submodule O (SegRing O r K)) :=
+    isNoetherian_of_fg_of_noetherian _ hfg
+  have hle : X.Mj p K O j b ≤ restrictSupport O (Dat.segDegSet (r := r) K b) := by
+    intro P hP
+    exact hP.1.2
+  have : IsNoetherian O (X.Mj p K O j b) := isNoetherian_of_le hle
+  infer_instance
+
+end Formalism.MainNotions.SelectionLemmas.Pf
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.SharpRestriction.GrowthBounds.SegmentDegree.FiniteRestrictSupport =====
 
 -- ===== clump member: Formalism.ThetaLogCoordinates.ResidueClassEstimates.StatementN =====
 -- clump-header: {"m": "Formalism.ThetaLogCoordinates.ResidueClassEstimates.StatementN", "h": "module\n\npublic import Mathlib.Analysis.SpecialFunctions.Log.Basic\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

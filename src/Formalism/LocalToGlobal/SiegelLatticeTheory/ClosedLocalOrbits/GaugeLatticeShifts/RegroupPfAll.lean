@@ -1,6 +1,5 @@
 module
 
-public import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfColCover
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPf
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfOrbitAlg
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.ChiTrivOut
@@ -22,7 +21,87 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarP
 import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.InHHLatOfLattice
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfNSA, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfCol, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfSlabAbs, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfWellDef, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfFinal, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfOrbitAlgOut, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfStabNFinal, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfFrameCong, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfModGOfAt, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfRatIso, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfTermCarAll, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfAll
+-- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfColCover, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfNSA, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfCol, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfSlabAbs, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfWellDef, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfFinal, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfOrbitAlgOut, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfStabNFinal, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfFrameCong, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfModGOfAt, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfRatIso, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfTermCarAll, Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfAll
+
+-- ===== clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfColCover =====
+-- clump-header: {"m": "Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfColCover", "h": "module\n\npublic import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPf\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+open scoped Classical ComplexConjugate ENNReal NNReal
+open MeasureTheory
+
+namespace Formalism.L2.SG.Pf.RegroupPf
+
+open Formalism.L2.SG.FoldBound Formalism.L2.SG.PoincareSeriesSquareIntegrable NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.TermOp
+
+section ColCoverPf
+
+open Formalism.L2.SG.PoincareInHH.PoincareSetting Formalism.L2.SG.PoincareInHH.Cut Formalism.L2.SG.TermOp.KExpCut Formalism.L2.SG.Full
+open Matrix
+
+def NStrongApproxC : Prop :=
+  ∀ (D : D7) (X : Formalism.L2.SG.HidaSetting.HidaSetting D) (u : D.what₂.Word), X.LevelSubgroupCharacter → X.LevelSubgroupNormalized →
+    ∀ n ∈ X.NfinU u, ∀ c : X.B.I.Gf, ∃ ν ∈ Formalism.MainNotions.LeviCoordinates.rr_GF X.B.I, ν.1 ∈ X.NinfU u ∧ ν.2 ∈ X.NfinU u ∧
+      c⁻¹ * ((ν.2)⁻¹ * n) * c ∈ X.K2
+
+theorem hfin_le_sfinU {D : D7} (X : Formalism.L2.SG.HidaSetting.HidaSetting D) (u : D.what₂.Word) (x : X.B.I.Gf)
+    (hx : x ∈ Hfin X u) : x ∈ SfinU X u := by
+  refine ⟨fun a => ?_, ?_⟩
+  · have h1 : X.B.I.fmat x *ᵥ Formalism.L2.SG.HidaSetting.incl X.B.I (X.eR a) =
+        Formalism.L2.SG.HidaSetting.incl X.B.I (X.eR a) := hx (X.eR a) (Or.inl (Or.inl ⟨a, rfl⟩))
+    rw [Matrix.sub_mulVec, Matrix.one_mulVec, h1, sub_self]
+    exact Submodule.zero_mem _
+  · have h1 : X.B.I.fmat x *ᵥ Formalism.L2.SG.HidaSetting.incl X.B.I (X.zR u) =
+        Formalism.L2.SG.HidaSetting.incl X.B.I (X.zR u) := hx (X.zR u) (Or.inr rfl)
+    rw [Matrix.sub_mulVec, Matrix.one_mulVec, h1, sub_self]
+    exact Submodule.zero_mem _
+
+theorem colCoverC_of (hSA : NStrongApproxC) : ColCoverC := by
+  intro D X Y u u' hH ρ δ hδ hdec
+  obtain ⟨n, h, k, hn, hk, hy⟩ := hdec
+  obtain ⟨ρ', ⟨γ0, κ, hh⟩, -⟩ := Y.colReps u' h
+  have hK := Y.hK
+  have hγ := Subgroup.mem_inf.mp γ0.2
+  have hγp := Subgroup.mem_prod.mp hγ.2
+  have hh' : (h : X.B.I.Gf) = (γ0 : X.B.I.GA).2 * ((Y.cs u').h ρ' : X.B.I.Gf) *
+      ((κ : Hfin X u') : X.B.I.Gf) := by
+    rw [hh]
+    rfl
+  have hκ : (X.xu u')⁻¹ * ((κ : Hfin X u') : X.B.I.Gf) * X.xu u' ∈ X.K2 := κ.2
+  obtain ⟨ν, hν, hν1, hν2, hνk⟩ := hSA D X u' hK hH.1 n hn
+    ((γ0 : X.B.I.GA).2 * ((Y.cs u').h ρ' : X.B.I.Gf) * X.xu u')
+  have hd2 := eq_mul_inv_of_mul_eq hy
+  refine ⟨ρ', δ⁻¹ * ν * (γ0 : X.B.I.GA), ⟨?_, ?_⟩, ?_⟩
+  · exact mul_mem (mul_mem (inv_mem hδ) hν) hγ.1
+  · show (((Y.cs u).h ρ : X.B.I.Gf) * X.xu u)⁻¹ * (δ⁻¹ * ν * (γ0 : X.B.I.GA)).2 *
+        (((Y.cs u').h ρ' : X.B.I.Gf) * X.xu u') ∈ X.K2
+    have hT : (((Y.cs u).h ρ : X.B.I.Gf) * X.xu u)⁻¹ * (δ⁻¹ * ν * (γ0 : X.B.I.GA)).2 *
+        (((Y.cs u').h ρ' : X.B.I.Gf) * X.xu u') =
+        k⁻¹ * ((X.xu u')⁻¹ * ((κ : Hfin X u') : X.B.I.Gf) * X.xu u')⁻¹ *
+          (((γ0 : X.B.I.GA).2 * ((Y.cs u').h ρ' : X.B.I.Gf) * X.xu u')⁻¹ * (ν.2⁻¹ * n) *
+            ((γ0 : X.B.I.GA).2 * ((Y.cs u').h ρ' : X.B.I.Gf) * X.xu u'))⁻¹ := by
+      simp only [Prod.snd_mul, Prod.snd_inv]
+      rw [hd2, hh']
+      simp only [aC]
+      group
+    rw [hT]
+    exact hK.2.1 _ (hK.2.1 _ (hK.2.2.1 _ hk) _ (hK.2.2.1 _ hκ)) _ (hK.2.2.1 _ hνk)
+  · have hcancel : δ * (δ⁻¹ * ν * (γ0 : X.B.I.GA)) = ν * (γ0 : X.B.I.GA) := by group
+    rw [hcancel]
+    refine Subgroup.mem_inf.mpr ⟨mul_mem hν hγ.1, mul_mem ?_ ?_⟩
+    · exact Subgroup.subset_closure ⟨fun v => (hν1 v).1, ⟨hν2.1, hν2.2.1⟩⟩
+    · exact Subgroup.subset_closure ⟨hinf_le_sinf X u' _ hγp.1, hfin_le_sfinU X u' _ hγp.2⟩
+
+end ColCoverPf
+
+end Formalism.L2.SG.Pf.RegroupPf
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfColCover =====
 
 -- ===== clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfNSA =====
 -- clump-header: {"m": "Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfNSA", "h": "module\n\npublic import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.RegroupPfColCover\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\n\n"}

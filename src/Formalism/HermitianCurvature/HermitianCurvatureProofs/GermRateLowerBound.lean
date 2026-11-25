@@ -1,6 +1,6 @@
 module
 
-public import Formalism.HermitianCurvature.HermitianCurvatureProofs.SliceIntCut
+public import Formalism.HermitianCurvature.StatementD
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.YGSlice
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.FormModel
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.AdditiveCharacterPsi
@@ -33,7 +33,39 @@ import Formalism.HermitianCurvature.HermitianCurvatureProofs.SliceAppend
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.PosCoreQ
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.HermitianCurvature.HermitianCurvatureProofs.SliceAtApply, Formalism.HermitianCurvature.HermitianCurvatureProofs.IntegrableBlockIntegrand, Formalism.HermitianCurvature.HermitianCurvatureProofs.SliceOrbitalBlock, Formalism.HermitianCurvature.HermitianCurvatureProofs.SliceGermPoints, Formalism.HermitianCurvature.HermitianCurvatureProofs.SliceIntegralCutoff, Formalism.HermitianCurvature.HermitianCurvatureProofs.GermRateLowerBound
+-- Members: Formalism.HermitianCurvature.HermitianCurvatureProofs.SliceIntCut, Formalism.HermitianCurvature.HermitianCurvatureProofs.SliceAtApply, Formalism.HermitianCurvature.HermitianCurvatureProofs.IntegrableBlockIntegrand, Formalism.HermitianCurvature.HermitianCurvatureProofs.SliceOrbitalBlock, Formalism.HermitianCurvature.HermitianCurvatureProofs.SliceGermPoints, Formalism.HermitianCurvature.HermitianCurvatureProofs.SliceIntegralCutoff, Formalism.HermitianCurvature.HermitianCurvatureProofs.GermRateLowerBound
+
+-- ===== clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.SliceIntCut =====
+-- clump-header: {"m": "Formalism.HermitianCurvature.HermitianCurvatureProofs.SliceIntCut", "h": "module\n\npublic import Formalism.HermitianCurvature.StatementD\n\n"}
+section -- clump:auto
+@[expose] public section
+
+namespace Formalism.FourierDecayAlt.P.FormNormSumIdentities
+
+open Formalism.FourierDecayAlt MeasureTheory
+
+noncomputable section
+
+def SliceIntCut : Prop :=
+  ∀ (Wp Wq : Type) [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [NormedAddCommGroup Wq]
+    [InnerProductSpace ℂ Wq] [FiniteDimensional ℂ Wp] [FiniteDimensional ℂ Wq] (P0 : M.Par)
+    (T : D.LevTower P0.k P0.r Wp Wq) (w : List C.Letter) (f : B.Mat P0.k P0.r → (Wq →L[ℂ] Wp)) (χ : ℝ → ℝ)
+    (ε : ℝ) (i : ℕ) (hi : i ≤ P0.r),
+    1 ≤ i → 2 ≤ P0.k → B.CkOn ⊤ (B.GV P0.k P0.r) f → (∃ R : ℝ, ∀ g ∈ B.GV P0.k P0.r, f g ≠ 0 → B.gN g ≤ R) →
+    C6.IsCut0 χ → 0 < ε → ∀ (p : C.LPt) (hp : D.IsLocPt p i), ∀ (e : Wd.Ix (Fin w.length)),
+    ∀ γ ∈ B.GV P0.k (P0.r - D.ptSize p),
+    Integrable (fun ξ : U.Xi P0.k (D.ptSize p) 0 (P0.r - D.ptSize p) (D.ptPerm p) =>
+        U.psiStar P0.k (P0.r - D.ptSize p) (D.ptPerm p) (D.castV (by have := hp.2; omega) T.base.z) (D.castV (by have := hp.2; omega) T.base.z') ξ •
+          D.castF (by have := hp.2; omega) (D.uwG P0.k P0.r T.base.z T.base.z' (D.cutF T.base χ f ε) i hi w e)
+            (U.gaXi P0.k (P0.r - D.ptSize p) (D.ptPerm p) (D.ptDiag p) ξ (fun a => a.elim0) γ))
+      (U.muXi P0.k (D.ptSize p) 0 (P0.r - D.ptSize p) (D.ptPerm p))
+
+end
+
+end Formalism.FourierDecayAlt.P.FormNormSumIdentities
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.SliceIntCut =====
 
 -- ===== clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.SliceAtApply =====
 -- clump-header: {"m": "Formalism.HermitianCurvature.HermitianCurvatureProofs.SliceAtApply", "h": "module\n\npublic import Formalism.HermitianCurvature.HermitianCurvatureProofs.SliceIntCut\npublic import Formalism.HermitianCurvature.HermitianCurvatureProofs.YGSlice\npublic import Formalism.HermitianCurvature.HermitianCurvatureProofs.FormModel\npublic import Formalism.HermitianCurvature.HermitianCurvatureProofs.AdditiveCharacterPsi\npublic import Formalism.HermitianCurvature.HermitianCurvatureProofs.BetaCongrRight\npublic import Formalism.HermitianCurvature.HermitianCurvatureProofs.CompactlySupportedBanachModel\nimport Formalism.HermitianCurvature.HermitianCurvatureProofs.ComponentFamilySettingOfSetting\npublic import Formalism.HermitianCurvature.HermitianCurvatureProofs.DerivativeBoundInBanachSpace\npublic import Formalism.HermitianCurvature.HermitianCurvatureProofs.JfBetaAdjCOfLemmaBNorm\npublic import Formalism.HermitianCurvature.HermitianCurvatureProofs.OpApplyZeroNear\nimport Formalism.HermitianCurvature.HermitianCurvatureProofs.PhiBoundPartsOfRadicalParametrisation\nimport Formalism.HermitianCurvature.HermitianCurvatureProofs.SeminormCompletion\nimport Formalism.HermitianCurvature.HermitianCurvatureProofs.SlicesFiniteRegularityBuilt\nimport Formalism.HermitianCurvature.HermitianCurvatureProofs.SymmetricScalarBlockMatrixMul\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Real\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\npublic import Mathlib.MeasureTheory.SpecificCodomains.Pi\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.Order.CompletePartialOrder\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}

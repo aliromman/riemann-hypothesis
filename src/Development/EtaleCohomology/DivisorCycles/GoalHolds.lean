@@ -9,12 +9,13 @@ public import Mathlib.LinearAlgebra.Matrix.Charpoly.Eigs
 public import Mathlib.RingTheory.SimpleRing.Principal
 public import Mathlib.Algebra.Algebra.Spectrum.Basic
 public import Development.EtaleCohomology.DivisorCycles.ChainPf
-public import Development.EtaleCohomology.DivisorCycles.SepPolyProof
+public import Development.EtaleCohomology.DivisorCycles.OpenCoset
+public import Mathlib.LinearAlgebra.Matrix.Charpoly.Univ
+public import Mathlib.RingTheory.Polynomial.Resultant.Basic
 public import Mathlib.Algebra.MvPolynomial.PDeriv
 public import Mathlib.Topology.Algebra.Group.Defs
 public import Mathlib.RingTheory.Spectrum.Prime.Topology
 public import Mathlib.Topology.Algebra.ConstMulAction
-public import Development.EtaleCohomology.DivisorCycles.OpenCoset
 public import Development.EtaleCohomology.DivisorCycles.MatUnitsOf
 public import Development.EtaleCohomology.DivisorCycles.SemisPf
 public import Development.EtaleCohomology.DivisorCycles.SpecPtPf
@@ -27,7 +28,48 @@ import Mathlib.Tactic.Linter.HaveILetI
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.NormalizedMatrixSpan, Development.EtaleCohomology.DivisorCycles.BigCorner2, Development.EtaleCohomology.DivisorCycles.EntriesCont, Development.EtaleCohomology.DivisorCycles.FinDegAll, Development.EtaleCohomology.DivisorCycles.DenseAlg2, Development.EtaleCohomology.DivisorCycles.FinDenseAlg, Development.EtaleCohomology.DivisorCycles.FinDensePf, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CosetOfCover, Development.EtaleCohomology.DivisorCycles.OpenCosetPf, Development.EtaleCohomology.DivisorCycles.FinFinDense, Development.EtaleCohomology.DivisorCycles.FinEmbedPf, Development.EtaleCohomology.DivisorCycles.FinPolyPf, Development.EtaleCohomology.DivisorCycles.FinSubOf, Development.EtaleCohomology.DivisorCycles.MinCongr, Development.EtaleCohomology.DivisorCycles.FinRep, Development.EtaleCohomology.DivisorCycles.SpecLiePf, Development.EtaleCohomology.DivisorCycles.FinSpecLie, Development.EtaleCohomology.DivisorCycles.DivPlus, Development.EtaleCohomology.DivisorCycles.Imports, Development.EtaleCohomology.DivisorCycles.GoalHolds
+-- Members: Development.EtaleCohomology.DivisorCycles.SepPolyProof, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.NormalizedMatrixSpan, Development.EtaleCohomology.DivisorCycles.BigCorner2, Development.EtaleCohomology.DivisorCycles.EntriesCont, Development.EtaleCohomology.DivisorCycles.FinDegAll, Development.EtaleCohomology.DivisorCycles.DenseAlg2, Development.EtaleCohomology.DivisorCycles.FinDenseAlg, Development.EtaleCohomology.DivisorCycles.FinDensePf, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CosetOfCover, Development.EtaleCohomology.DivisorCycles.OpenCosetPf, Development.EtaleCohomology.DivisorCycles.FinFinDense, Development.EtaleCohomology.DivisorCycles.FinEmbedPf, Development.EtaleCohomology.DivisorCycles.FinPolyPf, Development.EtaleCohomology.DivisorCycles.FinSubOf, Development.EtaleCohomology.DivisorCycles.MinCongr, Development.EtaleCohomology.DivisorCycles.FinRep, Development.EtaleCohomology.DivisorCycles.SpecLiePf, Development.EtaleCohomology.DivisorCycles.FinSpecLie, Development.EtaleCohomology.DivisorCycles.DivPlus, Development.EtaleCohomology.DivisorCycles.Imports, Development.EtaleCohomology.DivisorCycles.GoalHolds
+
+-- ===== clump member: Development.EtaleCohomology.DivisorCycles.SepPolyProof =====
+-- clump-header: {"m": "Development.EtaleCohomology.DivisorCycles.SepPolyProof", "h": "module\n\npublic import Development.EtaleCohomology.DivisorCycles.OpenCoset\npublic import Mathlib.LinearAlgebra.Matrix.Charpoly.Univ\npublic import Mathlib.RingTheory.Polynomial.Resultant.Basic\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open Matrix Polynomial
+namespace LateralTheory.DivDb.SepPolyProof
+
+noncomputable def disc (C : Type) [Field C] (n : ℕ) : MvPolynomial (Fin n × Fin n) C :=
+  resultant (charpoly.univ C (Fin n)) (derivative (charpoly.univ C (Fin n))) n (n - 1)
+
+theorem univ_map_ev {C : Type} [Field C] {n : ℕ} (x : Mat C n) :
+    (charpoly.univ C (Fin n)).map (MvPolynomial.eval (fun p : Fin n × Fin n => x p.1 p.2)) = x.charpoly := by
+  have h := charpoly.univ_map_eval₂Hom (Fin n) (RingHom.id C) (fun p : Fin n × Fin n => x p.1 p.2)
+  have hx : (Matrix.of (fun p : Fin n × Fin n => x p.1 p.2).curry) = x := by ext i j; rfl
+  rw [hx] at h
+  exact h
+
+theorem ev_disc {C : Type} [Field C] [CharZero C] {n : ℕ} (x : Mat C n) :
+    ev x (disc C n) = resultant x.charpoly (derivative x.charpoly) := by
+  unfold ev disc
+  rw [← resultant_map_map, ← derivative_map, univ_map_ev]
+  have h1 : x.charpoly.natDegree = n := by simpa using charpoly_natDegree_eq_dim x
+  rw [natDegree_derivative, h1]
+
+end LateralTheory.DivDb.SepPolyProof
+
+namespace LateralTheory.DivDb
+open LateralTheory.DivDb.SepPolyProof in
+theorem SepPoly_of : SepPoly := by
+  intro C _ _ n
+  refine ⟨disc C n, fun x => ?_⟩
+  rw [ev_disc, Ne, resultant_eq_zero_iff]
+  have h0 : x.charpoly ≠ 0 := (charpoly_monic x).ne_zero
+  simp only [ne_eq, h0, not_false_eq_true, true_or, true_and, not_not]
+  rfl
+end LateralTheory.DivDb
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.EtaleCohomology.DivisorCycles.SepPolyProof =====
 
 -- ===== clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.NormalizedMatrixSpan =====
 -- clump-header: {"m": "Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.NormalizedMatrixSpan", "h": "module\n\npublic import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

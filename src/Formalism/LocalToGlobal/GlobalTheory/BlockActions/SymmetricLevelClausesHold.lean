@@ -10,10 +10,10 @@ public import Formalism.LocalToGlobal.GlobalTheory.BlockActions.NormBoundOfClass
 public import Formalism.LocalToGlobal.GlobalTheory.BlockActions.NormOneOfPow
 public import Formalism.LocalToGlobal.KernelLattices.InterlaceAll
 public import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.InterlaceDifferenceShiftInvariant
-public import Formalism.LocalToGlobal.GlobalTheory.BlockActions.IsUnitALMap
+public import Formalism.LocalToGlobal.HermitianForms.TiedBr
+public import Formalism.LocalToGlobal.GlobalTheory.BlockActions.ArchimedeanSignatureMatchingOfTrivialBranchingSymm
 public import Formalism.LocalToGlobal.HilbertRowConditions.RowPin
 public import Formalism.LocalToGlobal.GlobalTheory.BlockActions.MapMemCSpanOfRat
-public import Formalism.LocalToGlobal.GlobalTheory.BlockActions.ArchimedeanSignatureMatchingOfTrivialBranchingSymm
 public import Formalism.LocalToGlobal.GlobalTheory.BlockActions.BrOneGFull
 public import Formalism.LocalToGlobal.GlobalTheory.BlockActions.RestrictionSymmetric
 public import Formalism.LocalToGlobal.GlobalTheory.BlockActions.NormBoundOfClassesFrames
@@ -30,7 +30,70 @@ import Formalism.LocalToGlobal.Columns.CoefficientsModP.FkPderivBlockEmbNe
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.GlintPrincRelIndexNeZero
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.LocalToGlobal.GlobalTheory.BlockActions.StabFunGen, Formalism.LocalToGlobal.GlobalTheory.BlockActions.FormsExtendHolds, Formalism.LocalToGlobal.GlobalTheory.BlockActions.BlockActEqBlkRow, Formalism.LocalToGlobal.GlobalTheory.BlockActions.MapBrTenL, Formalism.LocalToGlobal.GlobalTheory.BlockActions.IsUnitBZMap, Formalism.LocalToGlobal.GlobalTheory.BlockActions.NfAllBrTenLe, Formalism.LocalToGlobal.GlobalTheory.BlockActions.BlkFockLe, Formalism.LocalToGlobal.GlobalTheory.BlockActions.NormalFormAgree, Formalism.LocalToGlobal.GlobalTheory.BlockActions.NormBoundOfTorsionCharacter, Formalism.LocalToGlobal.GlobalTheory.BlockActions.NormBoundOfInjectiveStable, Formalism.LocalToGlobal.GlobalTheory.BlockActions.NormBoundHolds, Formalism.LocalToGlobal.GlobalTheory.BlockActions.SymmetricLevelClausesHold
+-- Members: Formalism.LocalToGlobal.GlobalTheory.BlockActions.IsUnitALMap, Formalism.LocalToGlobal.GlobalTheory.BlockActions.StabFunGen, Formalism.LocalToGlobal.GlobalTheory.BlockActions.FormsExtendHolds, Formalism.LocalToGlobal.GlobalTheory.BlockActions.BlockActEqBlkRow, Formalism.LocalToGlobal.GlobalTheory.BlockActions.MapBrTenL, Formalism.LocalToGlobal.GlobalTheory.BlockActions.IsUnitBZMap, Formalism.LocalToGlobal.GlobalTheory.BlockActions.NfAllBrTenLe, Formalism.LocalToGlobal.GlobalTheory.BlockActions.BlkFockLe, Formalism.LocalToGlobal.GlobalTheory.BlockActions.NormalFormAgree, Formalism.LocalToGlobal.GlobalTheory.BlockActions.NormBoundOfTorsionCharacter, Formalism.LocalToGlobal.GlobalTheory.BlockActions.NormBoundOfInjectiveStable, Formalism.LocalToGlobal.GlobalTheory.BlockActions.NormBoundHolds, Formalism.LocalToGlobal.GlobalTheory.BlockActions.SymmetricLevelClausesHold
+
+-- ===== clump member: Formalism.LocalToGlobal.GlobalTheory.BlockActions.IsUnitALMap =====
+-- clump-header: {"m": "Formalism.LocalToGlobal.GlobalTheory.BlockActions.IsUnitALMap", "h": "module\n\npublic import Formalism.LocalToGlobal.GlobalTheory.BlockActions.NormOneOfPow\npublic import Formalism.LocalToGlobal.HermitianForms.TiedBr\npublic import Formalism.LocalToGlobal.HermitianForms.TiedSym\npublic import Formalism.LocalToGlobal.GlobalTheory.BlockActions.ArchimedeanSignatureMatchingOfTrivialBranchingSymm\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+namespace Formalism.L2.GlobalTheoryTheory.Br
+
+open MvPolynomial Formalism.BasicNotions Formalism.MainNotions.product_first_zeroth_parts Formalism.L2.Forms Matrix NumberField
+
+def ChiTors : Prop :=
+  ∀ (D : D7) (u : D.what₂.Word) (Ch : ℕ → Type) (chOf : ∀ i, (D.mem u).C.cls i → Ch i) (Tf : FormsTiedSym D u Ch chOf)
+    (c : (D.fm u).clsP), ∃ k : ℕ, 0 < k ∧
+      ((((Tf.cls D.R.m le_rfl (Or.inr rfl)).lev.chi (Tf.tilAd.ka c) : ℂˣ) : ℂ)) ^ k = 1
+
+variable {D : D7} {u : D.what₂.Word} {Ch : ℕ → Type} {chOf : ∀ i, (D.mem u).C.cls i → Ch i}
+
+def tauLE (D : D7) (τ : D.what₂.Tau) : D.host.E →+* D.what₂.LL :=
+  D.embE.comp (D.host.sigmaOf (D.eTau τ : D.R.GG) : D.host.E →+* D.host.E)
+
+def AL (Tf : FormsTiedSym D u Ch chOf) (c : (D.fm u).clsP) (τ : D.what₂.Tau) :
+    Matrix (Fin (D.R.N D.R.m)) (Fin (D.R.N D.R.m)) D.what₂.LL :=
+  (((((Tf.til.ga c).1)⁻¹ : GL (Fin (D.R.N D.R.m)) D.host.E) : Matrix _ _ D.host.E) * bZ u Tf.til.z0).map (tauLE D τ)
+
+def PL (Tf : FormsTiedSym D u Ch chOf) (c : (D.fm u).clsP)
+    (F : MvPolynomial (D.what₂.Tau × Fin (D.R.N D.R.m) × Fin (D.R.N D.R.m)) D.what₂.LL) :
+    MvPolynomial (D.what₂.Tau × Fin (D.R.N D.R.m) × Fin (D.R.N D.R.m)) D.what₂.LL :=
+  C (∏ τ, (AL Tf c τ).det ^ shiftOf (lamT u D.R.m) τ) * rowSubK (AL Tf c) F
+
+theorem AL_map (Tf : FormsTiedSym D u Ch chOf) (c : (D.fm u).clsP) (j : D.what₂.LL →+* ℂ) (τ : D.what₂.Tau) :
+    (AL Tf c τ).map j = (((((Tf.til.ga c).1)⁻¹ : GL (Fin (D.R.N D.R.m)) D.host.E) : Matrix _ _ D.host.E) *
+      bZ u Tf.til.z0).map (embS D j τ) := by
+  unfold AL
+  rw [Matrix.map_map]
+  rfl
+
+theorem map_PL (Tf : FormsTiedSym D u Ch chOf) (c : (D.fm u).clsP) (j : D.what₂.LL →+* ℂ)
+    (F : MvPolynomial (D.what₂.Tau × Fin (D.R.N D.R.m) × Fin (D.R.N D.R.m)) D.what₂.LL) :
+    map j (PL Tf c F) = (∏ τ, ((AL Tf c τ).map j).det ^ shiftOf (lamT u D.R.m) τ) •
+      blkRow (fun τ => (AL Tf c τ).map j) (map j F) := by
+  unfold PL
+  rw [map_mul, map_C, map_rowSubK, rowSubK_eq_subP, subP_eq_blkRow, MvPolynomial.smul_eq_C_mul, map_prod]
+  congr 2
+  refine Finset.prod_congr rfl fun τ _ => ?_
+  rw [map_zpow₀, RingHom.map_det]
+  rfl
+
+theorem isUnit_AL_map (Tf : FormsTiedSym D u Ch chOf) (c : (D.fm u).clsP) (j : D.what₂.LL →+* ℂ) (τ : D.what₂.Tau) :
+    IsUnit ((AL Tf c τ).map j).det := by
+  rw [AL_map, Matrix.map_mul, Matrix.det_mul]
+  refine IsUnit.mul ?_ ?_
+  · exact isUnit_det_atInf (embS D j) (((Tf.til.ga c).1)⁻¹ : GL (Fin (D.R.N D.R.m)) D.host.E) τ
+  · have := (bZ_isUnitS Tf).map (embS D j τ)
+    rw [RingHom.map_det] at this
+    exact this
+
+end Formalism.L2.GlobalTheoryTheory.Br
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.LocalToGlobal.GlobalTheory.BlockActions.IsUnitALMap =====
 
 -- ===== clump member: Formalism.LocalToGlobal.GlobalTheory.BlockActions.StabFunGen =====
 -- clump-header: {"m": "Formalism.LocalToGlobal.GlobalTheory.BlockActions.StabFunGen", "h": "module\n\npublic import Formalism.LocalToGlobal.HermitianForms.TiedSym\npublic import Formalism.LocalToGlobal.GlobalTheory.BlockActions.CTExtUnitary\npublic import Formalism.LocalToGlobal.GlobalTheory.BlockActions.DefNOfFact\npublic import Formalism.LocalToGlobal.GlobalTheory.BlockActions.FormsOfLatticeExtension\nimport Formalism.LocalToGlobal.GlobalTheory.BlockActions.HformSmulRightB\nimport Formalism.LocalToGlobal.GlobalTheory.BlockActions.LengthInverseBound\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Etale.Weakly\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.TotallySplit\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\n\n"}

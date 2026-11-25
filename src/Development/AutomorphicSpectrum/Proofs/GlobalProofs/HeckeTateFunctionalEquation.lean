@@ -1,6 +1,7 @@
 module
 
-public import Development.AutomorphicSpectrum.Proofs.GlobalProofs.ContinuousIdeleCircle
+public import Formalism.LocalToGlobal.UnitaryNorms.IsUnitaryNormOf
+public import GroundTheory.GlobalFields.TateThesis.HeckeChar
 public import GroundTheory.GlobalFields.TateThesis.EulerFactorsArch
 public import Development.AbelianVarietyTheory.Definitions.Divisors.IsFinSetSplitPlacesCoprimeConductor
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsCMTypeOfEmbeddingsCardEqFinrank
@@ -33,7 +34,61 @@ import GroundTheory.GlobalFields.CompletionAtPlace.Integers
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Levelaf
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicSpectrum.Proofs.GlobalProofs.CmHeckeCharacterInfinityType, Development.AutomorphicSpectrum.Proofs.GlobalProofs.CmHeckeCharacterNotNormPower, Development.AutomorphicSpectrum.Proofs.GlobalProofs.FiniteEpsilonFactorDependenceOnS, Development.AutomorphicSpectrum.Proofs.GlobalProofs.HaarIntegralIntegersFiniteSum, Development.AutomorphicSpectrum.Proofs.GlobalProofs.HeckeCharacterConductorExponent, Development.AutomorphicSpectrum.Proofs.GlobalProofs.HeckeGaussSumLocalTerm, Development.AutomorphicSpectrum.Proofs.GlobalProofs.HeckeLFunctionEulerProduct, Development.AutomorphicSpectrum.Proofs.GlobalProofs.LocalAdditiveCharacterEqAdelic, Development.AutomorphicSpectrum.Proofs.GlobalProofs.HeckeTateFunctionalEquation
+-- Members: Development.AutomorphicSpectrum.Proofs.GlobalProofs.ContinuousIdeleCircle, Development.AutomorphicSpectrum.Proofs.GlobalProofs.CmHeckeCharacterInfinityType, Development.AutomorphicSpectrum.Proofs.GlobalProofs.CmHeckeCharacterNotNormPower, Development.AutomorphicSpectrum.Proofs.GlobalProofs.FiniteEpsilonFactorDependenceOnS, Development.AutomorphicSpectrum.Proofs.GlobalProofs.HaarIntegralIntegersFiniteSum, Development.AutomorphicSpectrum.Proofs.GlobalProofs.HeckeCharacterConductorExponent, Development.AutomorphicSpectrum.Proofs.GlobalProofs.HeckeGaussSumLocalTerm, Development.AutomorphicSpectrum.Proofs.GlobalProofs.HeckeLFunctionEulerProduct, Development.AutomorphicSpectrum.Proofs.GlobalProofs.LocalAdditiveCharacterEqAdelic, Development.AutomorphicSpectrum.Proofs.GlobalProofs.HeckeTateFunctionalEquation
+
+-- ===== clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.ContinuousIdeleCircle =====
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.GlobalProofs.ContinuousIdeleCircle", "h": "module\n\npublic import Formalism.LocalToGlobal.UnitaryNorms.IsUnitaryNormOf\npublic import GroundTheory.GlobalFields.TateThesis.HeckeChar\nimport Mathlib.Tactic.Linter.Style\nimport Development.AbelianVarietyTheory.BlockTheory.DivisorBase.CompletedLStripBounds\nimport Development.AbelianVarietyTheory.Definitions.Divisors.EntireEqOfHalfPlane\nimport Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.HeckeTateFunctionalEquationCM\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+open NumberField IsDedekindDomain GlobalTheory.CMVal GlobalTheory.IndefiniteRowSideFullHecke.CompletedLStripBounds GlobalTheory.HeckeEps
+
+namespace GlobalTheory.CompanionTheory.HeckeBridge
+
+variable {E : Type} [Field E] [NumberField E]
+
+def ideleCircle (χ : HChar E) (hu : IsUnitary χ) : GroundTheory.Global.IdeleGroup E →* Circle where
+  toFun x := ⟨((χ.1 x : ℂˣ) : ℂ), by simp [Submonoid.unitSphere, hu x]⟩
+  map_one' := by ext; simp
+  map_mul' x y := by
+    ext
+    simp only [map_mul, Units.val_mul]
+    rfl
+
+theorem continuous_ideleCircle (χ : HChar E) (hu : IsUnitary χ) : Continuous (ideleCircle χ hu) :=
+  Continuous.subtype_mk (Units.continuous_val.comp χ.2.1) _
+
+def toHecke (χ : HChar E) (hu : IsUnitary χ) : GroundTheory.Global.HeckeCharacter E where
+  toMonoidHom := QuotientGroup.lift (GroundTheory.Global.IdeleGroup.diagonal E).range (ideleCircle χ hu) (by
+    rintro _ ⟨k, rfl⟩
+    rw [MonoidHom.mem_ker]
+    ext
+    have := χ.2.2 k
+    show ((χ.1 (Neutral.B1.diagUnits E k) : ℂˣ) : ℂ) = 1
+    rw [this]; rfl)
+  continuous_toFun := (QuotientGroup.isQuotientMap_mk (GroundTheory.Global.IdeleGroup.diagonal E).range).continuous_iff.2
+    (continuous_ideleCircle χ hu)
+
+theorem coe_toIdele (χ : HChar E) (hu : IsUnitary χ) (x : GroundTheory.Global.IdeleGroup E) :
+    (((toHecke χ hu).toIdele x : Circle) : ℂ) = ((χ.1 x : ℂˣ) : ℂ) := rfl
+
+theorem coe_localComponent (χ : HChar E) (hu : IsUnitary χ) (v : HeightOneSpectrum (𝓞 E)) (x : (v.adicCompletion E)ˣ) :
+    (((toHecke χ hu).localComponent v x : Circle) : ℂ) = ((χ.loc v x : ℂˣ) : ℂ) := rfl
+
+theorem toHecke_inv (χ : HChar E) (hu : IsUnitary χ) (hu' : IsUnitary χ⁻¹) : toHecke χ⁻¹ hu' = (toHecke χ hu)⁻¹ := by
+  ext c
+  obtain ⟨x, rfl⟩ := QuotientGroup.mk_surjective c
+  show (((toHecke χ⁻¹ hu').toIdele x : Circle) : ℂ) = ((((toHecke χ hu).toIdele x)⁻¹ : Circle) : ℂ)
+  rw [coe_toIdele, Circle.coe_inv, coe_toIdele]
+  exact Units.val_inv_eq_inv_val (χ.1 x)
+
+end GlobalTheory.CompanionTheory.HeckeBridge
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.ContinuousIdeleCircle =====
 
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.CmHeckeCharacterInfinityType =====
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.GlobalProofs.CmHeckeCharacterInfinityType", "h": "module\n\npublic import Development.AutomorphicSpectrum.Proofs.GlobalProofs.ContinuousIdeleCircle\npublic import GroundTheory.GlobalFields.TateThesis.EulerFactorsArch\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.IsFinSetSplitPlacesCoprimeConductor\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsCMTypeOfEmbeddingsCardEqFinrank\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContinuousInfIdele\nimport GroundTheory.GlobalFields.TateThesis.ArchCharsUnitary\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Henselian\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.RegularLocalRing.Defs\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AbelianVarietyTheory.BlockTheory.DivisorBase.CompletedLStripBounds\nimport Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.HeckeTateFunctionalEquationCM\nimport GroundTheory.AutomorphicForms.GL2.FiniteIdeleDecomp\npublic import GroundTheory.AutomorphicForms.GL2.GodementSectionFactor\nimport GroundTheory.LocalFields.FilteredSurj\n\n"}

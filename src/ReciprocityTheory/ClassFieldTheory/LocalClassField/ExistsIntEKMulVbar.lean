@@ -3,9 +3,55 @@ module
 public import ReciprocityTheory.GroupCohomology.InfRes
 public import ReciprocityTheory.ClassFieldTheory.LocalClassField.KbarRepContAction
 public import ReciprocityTheory.ClassFieldTheory.LocalClassField.UnrDefs
-public import ReciprocityTheory.ClassFieldTheory.LocalClassField.QZDefs
+public import ReciprocityTheory.NeutralLocalFields.Duality
+public import ReciprocityTheory.GroupCohomology.ContinuousContractNth
 public import Mathlib.Analysis.SpecialFunctions.Log.Base
 
+-- This file was produced by scripts/clump.py from the modules listed below.
+-- Members: ReciprocityTheory.ClassFieldTheory.LocalClassField.QZDefs, ReciprocityTheory.ClassFieldTheory.LocalClassField.ExistsIntEKMulVbar
+
+-- ===== clump member: ReciprocityTheory.ClassFieldTheory.LocalClassField.QZDefs =====
+-- clump-header: {"m": "ReciprocityTheory.ClassFieldTheory.LocalClassField.QZDefs", "h": "module\n\npublic import ReciprocityTheory.NeutralLocalFields.Duality\npublic import ReciprocityTheory.GroupCohomology.ContinuousContractNth\n\n"}
+section -- clump:auto
+@[expose] public section
+
+namespace ReciprocityTheory.DiscreteGroups.LocalClassField
+
+open _root_.Neutral.B1 ReciprocityTheory.Coh ReciprocityTheory.Gal Function
+
+noncomputable section
+
+def trivRep (G : Type) [Group G] [TopologicalSpace G] (A : Type) [AddCommGroup A] : TRep ℤ G :=
+  letI : TopologicalSpace A := ⊥
+  haveI : DiscreteTopology A := ⟨rfl⟩
+  { V := A
+    rho := 1
+    cont := continuous_snd }
+
+scoped instance (G : Type) [Group G] [TopologicalSpace G] (A : Type) [AddCommGroup A] :
+    DiscreteTopology (trivRep G A).V := ⟨rfl⟩
+
+def trivMap (G : Type) [Group G] [TopologicalSpace G] [IsTopologicalGroup G] {A B : Type} [AddCommGroup A]
+    [AddCommGroup B] (f : A →+ B) : Pair (trivRep G A) (trivRep G B) :=
+  Pair.ofMap (M := trivRep G A) (M' := trivRep G B) f.toIntLinearMap continuous_of_discreteTopology
+    fun _ _ => rfl
+
+def charGrp (G : Type) [Group G] [TopologicalSpace G] : AddSubgroup (Additive G →+ QZ) where
+  carrier := {χ | IsLocallyConstant fun g : G => χ (Additive.ofMul g)}
+  zero_mem' := IsLocallyConstant.const 0
+  add_mem' := fun ha hb => IsLocallyConstant.add ha hb
+  neg_mem' := fun ha => IsLocallyConstant.neg ha
+
+end
+
+end ReciprocityTheory.DiscreteGroups.LocalClassField
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: ReciprocityTheory.ClassFieldTheory.LocalClassField.QZDefs =====
+
+-- ===== clump member: ReciprocityTheory.ClassFieldTheory.LocalClassField.ExistsIntEKMulVbar =====
+-- clump-header: {"m": "ReciprocityTheory.ClassFieldTheory.LocalClassField.ExistsIntEKMulVbar", "h": "module\n\npublic import ReciprocityTheory.GroupCohomology.InfRes\npublic import ReciprocityTheory.ClassFieldTheory.LocalClassField.KbarRepContAction\npublic import ReciprocityTheory.ClassFieldTheory.LocalClassField.UnrDefs\npublic import ReciprocityTheory.ClassFieldTheory.LocalClassField.QZDefs\npublic import Mathlib.Analysis.SpecialFunctions.Log.Base\n\n"}
+section -- clump:auto
 @[expose] public section
 
 namespace ReciprocityTheory.DiscreteGroups.LocalClassField
@@ -322,3 +368,6 @@ def invUr : (urT p K).H 2 →+ QZ := if h : ∃ f, IsInv p K f then h.choose els
 end
 
 end ReciprocityTheory.DiscreteGroups.LocalClassField
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: ReciprocityTheory.ClassFieldTheory.LocalClassField.ExistsIntEKMulVbar =====

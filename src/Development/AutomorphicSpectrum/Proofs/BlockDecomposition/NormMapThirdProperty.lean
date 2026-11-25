@@ -2,9 +2,13 @@ module
 
 public import Development.WeilBound.RepresentationTheoryGL.TwistedFactors.IntegralUnitBaseChange.Development
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsUnitOneAddJacobsonTensor
-public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalFiniteAlgebraJacobsonRadical
-public import Mathlib.RingTheory.AdicCompletion.Basic
+public import Mathlib.RingTheory.Jacobson.Ideal
 public import Mathlib.RingTheory.LocalRing.MaximalIdeal.Defs
+public import Mathlib.RingTheory.Artinian.Defs
+public import Mathlib.RingTheory.Artinian.Module
+public import Mathlib.RingTheory.Artinian.Ring
+public import Mathlib.RingTheory.Ideal.GoingUp
+public import Mathlib.RingTheory.AdicCompletion.Basic
 public import Mathlib.RingTheory.Noetherian.Defs
 public import Mathlib.RingTheory.AdicCompletion.AsTensorProduct
 public import Mathlib.LinearAlgebra.TensorProduct.Associator
@@ -12,11 +16,75 @@ public import Mathlib.LinearAlgebra.FreeModule.Basic
 public import Mathlib.RingTheory.Ideal.Maps
 public import Mathlib.RingTheory.TensorProduct.Basic
 public import Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra
-public import Mathlib.RingTheory.Jacobson.Ideal
 import Mathlib.Tactic.Linter.HaveILetI
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CyclicAlgebraHilbertNinety, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteModuleAdicComplete, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NormMapCongruence, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TensorIdealMapInjective, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NormMapThirdProperty
+-- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalFiniteAlgebraJacobsonRadical, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CyclicAlgebraHilbertNinety, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteModuleAdicComplete, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NormMapCongruence, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TensorIdealMapInjective, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NormMapThirdProperty
+
+-- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalFiniteAlgebraJacobsonRadical =====
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalFiniteAlgebraJacobsonRadical", "h": "module\n\npublic import Mathlib.RingTheory.Jacobson.Ideal\npublic import Mathlib.RingTheory.LocalRing.MaximalIdeal.Defs\nimport Mathlib.Tactic.Linter.HaveILetI\npublic import Mathlib.RingTheory.Artinian.Defs\npublic import Mathlib.RingTheory.Artinian.Module\npublic import Mathlib.RingTheory.Artinian.Ring\npublic import Mathlib.RingTheory.Ideal.GoingUp\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open scoped TensorProduct
+
+namespace GlobalTheory.CompanionTheory.LocalFinite
+
+theorem map_maximalIdeal_le_jacobson_and_pow_le :
+    ∀ (O R : Type) [CommRing O] [IsLocalRing O] [CommRing R] [Algebra O R] [Module.Finite O R],
+      Ideal.map (algebraMap O R) (IsLocalRing.maximalIdeal O) ≤ (⊥ : Ideal R).jacobson ∧
+        ∃ N : ℕ, (⊥ : Ideal R).jacobson ^ N ≤
+          Ideal.map (algebraMap O R) (IsLocalRing.maximalIdeal O) := by
+  intro O R _ _ _ _ _
+  haveI : Algebra.IsIntegral O R := Algebra.IsIntegral.of_finite O R
+  set m := IsLocalRing.maximalIdeal O with hm
+  set I : Ideal R := Ideal.map (algebraMap O R) m with hI
+  refine ⟨?_, ?_⟩
+  · refine le_sInf ?_
+    rintro M ⟨-, hM⟩
+    refine Ideal.map_le_iff_le_comap.mpr ?_
+    haveI : (Ideal.comap (algebraMap O R) M).IsMaximal :=
+      Ideal.isMaximal_under_of_isIntegral_of_isMaximal (R := O) M
+    exact (IsLocalRing.eq_maximalIdeal this).ge
+  · have hle : m ≤ Ideal.comap (algebraMap O R) I := Ideal.le_comap_map
+    let f : (O ⧸ m) →+* (R ⧸ I) := Ideal.quotientMap I (algebraMap O R) hle
+    letI : Field (O ⧸ m) := Ideal.Quotient.field m
+    letI : Algebra (O ⧸ m) (R ⧸ I) := f.toAlgebra
+    have hcomp : (f.comp (Ideal.Quotient.mk m)).Finite := by
+      have h1 : (algebraMap O R).Finite := RingHom.finite_algebraMap.mpr inferInstance
+      have h2 : (Ideal.Quotient.mk I).Finite :=
+        RingHom.Finite.of_surjective _ Ideal.Quotient.mk_surjective
+      have h3 : f.comp (Ideal.Quotient.mk m) = (Ideal.Quotient.mk I).comp (algebraMap O R) := by
+        ext x; simp [f]
+      rw [h3]
+      exact h2.comp h1
+    have hf : f.Finite := RingHom.Finite.of_comp_finite hcomp
+    haveI : Module.Finite (O ⧸ m) (R ⧸ I) := hf
+    haveI : IsArtinianRing (R ⧸ I) := IsArtinianRing.of_finite (O ⧸ m) (R ⧸ I)
+    obtain ⟨N, hN⟩ := IsArtinianRing.isNilpotent_jacobson_bot (R := R ⧸ I)
+    refine ⟨N, ?_⟩
+    have hmap : Ideal.map (Ideal.Quotient.mk I) (⊥ : Ideal R).jacobson ≤
+        (⊥ : Ideal (R ⧸ I)).jacobson := by
+      refine le_sInf ?_
+      rintro P ⟨-, hP⟩
+      refine Ideal.map_le_iff_le_comap.mpr ?_
+      haveI : (Ideal.comap (Ideal.Quotient.mk I) P).IsMaximal :=
+        Ideal.comap_isMaximal_of_surjective _ Ideal.Quotient.mk_surjective
+      exact sInf_le ⟨bot_le, this⟩
+    have hz : Ideal.map (Ideal.Quotient.mk I) ((⊥ : Ideal R).jacobson ^ N) = ⊥ := by
+      rw [Ideal.map_pow]
+      exact le_bot_iff.mp ((Ideal.pow_right_mono hmap N).trans hN.le)
+    intro x hx
+    have : Ideal.Quotient.mk I x = 0 := by
+      have := Ideal.mem_map_of_mem (Ideal.Quotient.mk I) hx
+      rw [hz] at this
+      simpa using this
+    exact Ideal.Quotient.eq_zero_iff_mem.mp this
+
+end GlobalTheory.CompanionTheory.LocalFinite
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalFiniteAlgebraJacobsonRadical =====
 
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CyclicAlgebraHilbertNinety =====
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CyclicAlgebraHilbertNinety", "h": "module\n\npublic import Development.WeilBound.RepresentationTheoryGL.TwistedFactors.IntegralUnitBaseChange.Development\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsUnitOneAddJacobsonTensor\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalFiniteAlgebraJacobsonRadical\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\n\n"}

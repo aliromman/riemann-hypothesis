@@ -1,9 +1,8 @@
 module
 
-public import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.DigAbs
+public import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.PickDefs
 public import Formalism.SharpRestriction.GrowthBounds.GLWeightTheory
 public import Formalism.SharpRestriction.GrowthBounds.ProjectionOfIsotypicDecomposition
-public import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.PickDefs
 public import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.DecompositionOfThreeParts
 public import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.PickLem
 public import Formalism.SharpRestriction.GrowthBounds.TwistedSubstitution.MemLin
@@ -19,7 +18,35 @@ import Formalism.SharpRestriction.GrowthBounds.RootWeights.DerivativeValuationBo
 import Formalism.SharpRestriction.GrowthBounds.FlipOneThree
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.BinomCombFOnFinset, Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.PickVal, Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.PickCore, Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.SizeStepAlt, Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.FactorLeProductSeven, Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.VBBMonomialOne, Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.GramExponentArithmetic
+-- Members: Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.DigAbs, Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.BinomCombFOnFinset, Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.PickVal, Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.PickCore, Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.SizeStepAlt, Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.FactorLeProductSeven, Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.VBBMonomialOne, Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.GramExponentArithmetic
+
+-- ===== clump member: Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.DigAbs =====
+-- clump-header: {"m": "Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.DigAbs", "h": "module\n\npublic import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.PickDefs\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+open MvPolynomial Finset Classical
+
+namespace Formalism.MainNotions.Proposition5Numerics
+
+open Formalism.MainNotions.G Formalism.MainNotions.PlaneGramData
+
+def DigAbs (p : ℕ) (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] : Prop :=
+  ∀ (σ : Type) [Fintype σ] (g rho : σ → ℕ), (∀ v, rho v < p ^ g v) →
+    (∀ be : σ →₀ ℕ, (∏ v, gamR (p ^ g v) (rho v) (be v)) ≠ 0 ∧
+      padicValRat p (∏ v, gamR (p ^ g v) (rho v) (be v)) = 0) ∧
+    ∀ (inv : Bool) (c : ℕ), ∃ lam : (σ →₀ ℕ) →₀ O, (∀ m ∈ lam.support, (m.sum fun _ e => e) ≤ 4 * c) ∧
+      ∀ be : σ →₀ ℕ,
+        geQ (vK p ((if inv then (((∏ v, gamR (p ^ g v) (rho v) (be v) : ℚ) : KK O))⁻¹
+            else ((∏ v, gamR (p ^ g v) (rho v) (be v) : ℚ) : KK O)) - binomCombF (K := KK O) lam be)) (c : ℝ)
+
+end Formalism.MainNotions.Proposition5Numerics
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.DigAbs =====
 
 -- ===== clump member: Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.BinomCombFOnFinset =====
 -- clump-header: {"m": "Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.BinomCombFOnFinset", "h": "module\n\npublic import Formalism.SharpRestriction.GrowthBounds.DiagonalSupport.DigAbs\npublic import Formalism.SharpRestriction.GrowthBounds.GLWeightTheory\npublic import Formalism.SharpRestriction.GrowthBounds.ProjectionOfIsotypicDecomposition\nimport Formalism.SharpRestriction.GrowthBounds.RootWeights.ValuationNonnegIffIntegral\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Ring.IsFormallyReal\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Bool\n\n"}

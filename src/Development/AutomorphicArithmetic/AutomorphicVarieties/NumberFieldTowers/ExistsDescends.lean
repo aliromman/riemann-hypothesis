@@ -6,7 +6,6 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibra
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.CokLenLeOfRangeLe
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.KummerTheory.Mk0IdMapCongr
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.XTwApplyApply
-public import Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.DualKer
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.KummerTheory.ExistsGen
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.GalEmbFam
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.GalEmbTop
@@ -45,7 +44,52 @@ import Mathlib.Tactic.Linter.Style
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.QzSep, Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.LenDual, Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.CokerDual, Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.ExistsGen, Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.GenGal, Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.IdealNormClassCongr, Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.KummerTheory.VanishCyc, Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.KummerTheory.ExtCocycle, Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.KummerTheory.ResInfOnto, Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.DinfTransport, Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.Imports, Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.DinfTors, Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.ShaDGen, Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.ExistsDescends
+-- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.DualKer, Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.QzSep, Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.LenDual, Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.CokerDual, Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.ExistsGen, Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.GenGal, Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.IdealNormClassCongr, Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.KummerTheory.VanishCyc, Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.KummerTheory.ExtCocycle, Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.KummerTheory.ResInfOnto, Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.DinfTransport, Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.Imports, Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.DinfTors, Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.ShaDGen, Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.ExistsDescends
+
+-- ===== clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.DualKer =====
+-- clump-header: {"m": "Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.DualKer", "h": "module\n\npublic import Formalism.GaloisCohomology.Statement\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.QzInj\nimport Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.CokLenLeOfRangeLe\nimport Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.GaloisCohomologyLength.LevelInertiaLeLevelDec\nimport Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.KummerTheory.Mk0IdMapCongr\nimport Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.RestrictionMemInvariantH1\nimport Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.XTwApplyApply\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.GaloisCohomology UpperTheory.V UpperTheory.V.LDataCardLeFinrank UpperTheory.V.Base UpperTheory.V.Kum UpperTheory.V.Tower
+
+theorem UpperTheory.V.Tower.dualKer :
+    ∀ (l : ℕ) [Fact l.Prime] (M : Type) [AddCommGroup M] [Module ℤ_[l] M] (M' : Type) [AddCommGroup M'] [Module ℤ_[l] M'] (T : M →ₗ[ℤ_[l]] M'),
+        LinearMap.range (LinearMap.lcomp ℤ_[l] (QZ l) T) = LinearMap.ker (LinearMap.lcomp ℤ_[l] (QZ l) (LinearMap.ker T).subtype) ∧
+        ∀ p : Submodule ℤ_[l] M, Function.Surjective (LinearMap.lcomp ℤ_[l] (QZ l) p.subtype) := by
+  intro l _ M _ _ M' _ _ T
+  have hI := PropA.qzInj l
+  refine ⟨?_, fun p g => ?_⟩
+  · ext f
+    rw [LinearMap.mem_range, LinearMap.mem_ker]
+    constructor
+    · rintro ⟨g, rfl⟩
+      ext ⟨x, hx⟩
+      simp only [LinearMap.lcomp_apply, Submodule.subtype_apply,
+        LinearMap.zero_apply]
+      rw [LinearMap.mem_ker.mp hx, map_zero]
+    · intro hf
+      have hle : LinearMap.ker T ≤ LinearMap.ker f := by
+        intro x hx
+        have := LinearMap.congr_fun hf ⟨x, hx⟩
+        simpa using this
+      let g0 : LinearMap.range T →ₗ[ℤ_[l]] QZ l :=
+        ((LinearMap.ker T).liftQ f hle).comp (LinearMap.quotKerEquivRange T).symm.toLinearMap
+      obtain ⟨h, hh⟩ := hI.out (LinearMap.range T).subtype Subtype.val_injective g0
+      refine ⟨h, ?_⟩
+      ext x
+      simp only [LinearMap.lcomp_apply]
+      have := hh ⟨T x, LinearMap.mem_range_self T x⟩
+      simp only [Submodule.subtype_apply] at this
+      rw [this]
+      simp [g0, LinearMap.quotKerEquivRange_symm_apply_image]
+  · obtain ⟨h, hh⟩ := hI.out p.subtype Subtype.val_injective g
+    refine ⟨h, ?_⟩
+    ext x
+    simpa using hh x
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.DualKer =====
 
 -- ===== clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.QzSep =====
 -- clump-header: {"m": "Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.QzSep", "h": "module\n\npublic import Formalism.GaloisCohomology.Statement\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.QzInj\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.KummerTheory.ZmodToQZ\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.CokLenLeOfRangeLe\nimport Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.GaloisCohomologyLength.LevelInertiaLeLevelDec\nimport Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.KummerTheory.Mk0IdMapCongr\nimport Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.RestrictionMemInvariantH1\nimport Development.AutomorphicArithmetic.AutomorphicVarieties.NumberFieldTowers.XTwApplyApply\n\n"}

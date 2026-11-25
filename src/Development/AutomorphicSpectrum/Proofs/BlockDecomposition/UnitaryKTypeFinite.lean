@@ -11,19 +11,19 @@ public import CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.Admiss
 public import CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.SmallPI
 public import CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.Transfer
 public import Mathlib.Analysis.CStarAlgebra.Matrix
-public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BlkConjTranspose
+public import Mathlib.Analysis.CStarAlgebra.Classes
+public import Mathlib.CategoryTheory.Category.Basic
+public import Mathlib.Topology.Instances.Matrix
 public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsAdmOnOfFiniteDimensional
 public import Mathlib.Analysis.Normed.Module.Connected
 public import Mathlib.Basic.Complex.Basic
 public import Mathlib.LinearAlgebra.Matrix.IsDiag
 public import Mathlib.LinearAlgebra.UnitaryGroup
 public import Mathlib.Data.Fin.Tuple.Sort
-public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.Analysis.InnerProductSpace.Basic
 public import Mathlib.LinearAlgebra.Matrix.Block
 public import Mathlib.GroupTheory.CosetCover
 public import Mathlib.Analysis.Normed.Algebra.Exponential
-public import Mathlib.Topology.Instances.Matrix
 public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 public import Mathlib.Algebra.Polynomial.Eval.Defs
 public import Mathlib.LinearAlgebra.Lagrange
@@ -47,7 +47,140 @@ import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.Is
 import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.IsCompactOperatorOfIsHilbertSchmidt
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteDimensionalIsoPartOfSimple, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AdmissibleOfLinearReductive, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AdmissibleUnitaryIrreducibleRep, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteSetOfDetLineEqZero, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AntitoneDiagonalConjugate, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CartanDecompositionLieAlgebra, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CartanLocalToGlobal, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CentralizerRegularCommutes, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsMaximalAbelianHermitian, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsRegularElementAbelian, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExpBlockTriangular, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LieAlgebraFunctionCalculus, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalExpProductDecomposition, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IwasawaOfLinearReductive, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitaryKTypeFinite
+-- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BlkConjTranspose, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteDimensionalIsoPartOfSimple, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AdmissibleOfLinearReductive, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AdmissibleUnitaryIrreducibleRep, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteSetOfDetLineEqZero, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AntitoneDiagonalConjugate, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CartanDecompositionLieAlgebra, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CartanLocalToGlobal, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CentralizerRegularCommutes, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsMaximalAbelianHermitian, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsRegularElementAbelian, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExpBlockTriangular, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LieAlgebraFunctionCalculus, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalExpProductDecomposition, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IwasawaOfLinearReductive, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitaryKTypeFinite
+
+-- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BlkConjTranspose =====
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BlkConjTranspose", "h": "module\n\npublic import Mathlib.Analysis.CStarAlgebra.Classes\npublic import Mathlib.CategoryTheory.Category.Basic\npublic import Mathlib.Topology.Instances.Matrix\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open Matrix
+
+noncomputable section
+
+namespace GlobalTheory.CompanionTheory.AdmGL
+
+variable {ι : Type} [Fintype ι] [DecidableEq ι] {a n : ℕ}
+
+def atPlace (M : Matrix (Fin a) (Fin a) (ι → ℂ)) (w : ι) : Matrix (Fin a) (Fin a) ℂ :=
+  M.map fun x => x w
+
+def blk (e : Fin a × ι ≃ Fin n) (M : Matrix (Fin a) (Fin a) (ι → ℂ)) : Matrix (Fin n) (Fin n) ℂ :=
+  Matrix.reindex e e (blockDiagonal (atPlace M))
+
+def unblk (e : Fin a × ι ≃ Fin n) (g : Matrix (Fin n) (Fin n) ℂ) : Matrix (Fin a) (Fin a) (ι → ℂ) :=
+  Matrix.of fun p q w => g (e (p, w)) (e (q, w))
+
+def blkG (e : Fin a × ι ≃ Fin n) : Set (Matrix (Fin n) (Fin n) ℂ) :=
+  blk e '' {M | IsUnit M}
+
+theorem blk_apply (e : Fin a × ι ≃ Fin n) (M : Matrix (Fin a) (Fin a) (ι → ℂ)) (i j : Fin n) :
+    blk e M i j = if (e.symm i).2 = (e.symm j).2 then M (e.symm i).1 (e.symm j).1 (e.symm i).2 else 0 := by
+  rw [GlobalTheory.CompanionTheory.AdmGL.blk, Matrix.reindex_apply, Matrix.submatrix_apply, Matrix.blockDiagonal_apply,
+    GlobalTheory.CompanionTheory.AdmGL.atPlace, Matrix.map_apply]
+
+@[simp] theorem unblk_blk (e : Fin a × ι ≃ Fin n) (M : Matrix (Fin a) (Fin a) (ι → ℂ)) :
+    unblk e (blk e M) = M := by
+  ext p q w
+  simp [unblk, blk_apply]
+
+theorem blk_injective (e : Fin a × ι ≃ Fin n) : Function.Injective (blk e) := by
+  intro M N h
+  rw [← GlobalTheory.CompanionTheory.AdmGL.unblk_blk e M, h, GlobalTheory.CompanionTheory.AdmGL.unblk_blk]
+
+@[simp] theorem blk_one (e : Fin a × ι ≃ Fin n) : blk e 1 = 1 := by
+  ext i j
+  rw [GlobalTheory.CompanionTheory.AdmGL.blk_apply]
+  by_cases h : i = j
+  · subst h
+    simp
+  · have h' : e.symm i ≠ e.symm j := fun h'' => h (e.symm.injective h'')
+    rw [Matrix.one_apply_ne h]
+    by_cases h2 : (e.symm i).2 = (e.symm j).2
+    · have h1 : (e.symm i).1 ≠ (e.symm j).1 := fun h1 => h' (Prod.ext h1 h2)
+      rw [ite_eq_left h2, Matrix.one_apply_ne h1, Pi.zero_apply]
+    · rw [ite_eq_right h2]
+
+theorem atPlace_mul (M N : Matrix (Fin a) (Fin a) (ι → ℂ)) (w : ι) :
+    atPlace (M * N) w = atPlace M w * atPlace N w := by
+  ext p q
+  simp [atPlace, Matrix.mul_apply, Finset.sum_apply]
+
+@[simp] theorem blk_mul (e : Fin a × ι ≃ Fin n) (M N : Matrix (Fin a) (Fin a) (ι → ℂ)) :
+    blk e (M * N) = blk e M * blk e N := by
+  have h : GlobalTheory.CompanionTheory.AdmGL.atPlace (M * N) = fun w => GlobalTheory.CompanionTheory.AdmGL.atPlace M w * GlobalTheory.CompanionTheory.AdmGL.atPlace N w :=
+    funext (GlobalTheory.CompanionTheory.AdmGL.atPlace_mul M N)
+  simp only [GlobalTheory.CompanionTheory.AdmGL.blk, Matrix.reindex_apply]
+  rw [h, Matrix.blockDiagonal_mul]
+  exact (Matrix.submatrix_mul_equiv _ _ _ e.symm _).symm
+
+@[simp] theorem blk_add (e : Fin a × ι ≃ Fin n) (M N : Matrix (Fin a) (Fin a) (ι → ℂ)) :
+    blk e (M + N) = blk e M + blk e N := by
+  ext i j
+  rw [Matrix.add_apply, GlobalTheory.CompanionTheory.AdmGL.blk_apply, GlobalTheory.CompanionTheory.AdmGL.blk_apply,
+    GlobalTheory.CompanionTheory.AdmGL.blk_apply]
+  split_ifs <;> simp
+
+@[simp] theorem blk_smul (e : Fin a × ι ≃ Fin n) (c : ℂ) (M : Matrix (Fin a) (Fin a) (ι → ℂ)) :
+    blk e (c • M) = c • blk e M := by
+  ext i j
+  rw [Matrix.smul_apply, GlobalTheory.CompanionTheory.AdmGL.blk_apply, GlobalTheory.CompanionTheory.AdmGL.blk_apply]
+  split_ifs <;> simp
+
+@[simp] theorem blk_conjTranspose (e : Fin a × ι ≃ Fin n) (M : Matrix (Fin a) (Fin a) (ι → ℂ)) :
+    blk e Mᴴ = (blk e M)ᴴ := by
+  ext i j
+  rw [Matrix.conjTranspose_apply, GlobalTheory.CompanionTheory.AdmGL.blk_apply, GlobalTheory.CompanionTheory.AdmGL.blk_apply]
+  by_cases h : (e.symm i).2 = (e.symm j).2
+  · rw [ite_eq_left h, ite_eq_left h.symm, Matrix.conjTranspose_apply, Pi.star_apply, h]
+  · rw [ite_eq_right h, ite_eq_right (Ne.symm h), star_zero]
+
+theorem continuous_blk (e : Fin a × ι ≃ Fin n) : Continuous (blk e) := by
+  apply continuous_matrix
+  intro i j
+  simp only [GlobalTheory.CompanionTheory.AdmGL.blk_apply]
+  by_cases h : (e.symm i).2 = (e.symm j).2
+  · simp only [ite_eq_left h]
+    exact (continuous_apply _).comp (continuous_id.matrix_elem _ _)
+  · simp only [ite_eq_right h]
+    exact continuous_const
+
+theorem continuous_unblk (e : Fin a × ι ≃ Fin n) : Continuous (unblk e) := by
+  apply continuous_matrix
+  intro p q
+  apply continuous_pi
+  intro w
+  simp only [GlobalTheory.CompanionTheory.AdmGL.unblk, Matrix.of_apply]
+  exact continuous_id.matrix_elem _ _
+
+theorem det_apply_place (M : Matrix (Fin a) (Fin a) (ι → ℂ)) (w : ι) : M.det w = (atPlace M w).det :=
+  RingHom.map_det (Pi.evalRingHom (fun _ : ι => ℂ) w) M
+
+theorem det_blk (e : Fin a × ι ≃ Fin n) (M : Matrix (Fin a) (Fin a) (ι → ℂ)) :
+    (blk e M).det = ∏ w, (atPlace M w).det := by
+  rw [blk, Matrix.det_reindex_self, Matrix.det_blockDiagonal]
+
+theorem isUnit_blk_iff (e : Fin a × ι ≃ Fin n) (M : Matrix (Fin a) (Fin a) (ι → ℂ)) :
+    IsUnit (blk e M) ↔ IsUnit M := by
+  rw [Matrix.isUnit_iff_isUnit_det, Matrix.isUnit_iff_isUnit_det, GlobalTheory.CompanionTheory.AdmGL.det_blk, Pi.isUnit_iff]
+  simp [isUnit_iff_ne_zero, GlobalTheory.CompanionTheory.AdmGL.det_apply_place, Finset.prod_ne_zero_iff]
+
+theorem mem_blkG_iff (e : Fin a × ι ≃ Fin n) {g : Matrix (Fin n) (Fin n) ℂ} :
+    g ∈ blkG e ↔ IsUnit g ∧ blk e (unblk e g) = g := by
+  constructor
+  · rintro ⟨M, hM, rfl⟩
+    exact ⟨(GlobalTheory.CompanionTheory.AdmGL.isUnit_blk_iff e M).2 hM, by rw [GlobalTheory.CompanionTheory.AdmGL.unblk_blk]⟩
+  · rintro ⟨hg, hg'⟩
+    refine ⟨GlobalTheory.CompanionTheory.AdmGL.unblk e g, ?_, hg'⟩
+    rw [← hg'] at hg
+    exact (GlobalTheory.CompanionTheory.AdmGL.isUnit_blk_iff e _).1 hg
+
+end GlobalTheory.CompanionTheory.AdmGL
+
+end
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BlkConjTranspose =====
 
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteDimensionalIsoPartOfSimple =====
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteDimensionalIsoPartOfSimple", "h": "module\n\npublic import Mathlib.Analysis.InnerProductSpace.Projection.Basic\npublic import Mathlib.Order.CompletePartialOrder\npublic import Mathlib.RepresentationTheory.Basic\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.CStarAlgebra.Module.Constructions\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

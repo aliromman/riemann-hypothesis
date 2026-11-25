@@ -1,11 +1,94 @@
 module
 
-public import Development.EtaleCohomology.EtaleSheaves.LeafSpecGenClosed
+public import Development.EtaleCohomology.EtaleSheaves.LeafGlueIsProperPf
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.EtaleCohomology.EtaleSheaves.SpecSubalgebraPullbackLiftIsClosedImmersion, Development.EtaleCohomology.EtaleSheaves.GluedCurveChartOverlapIsPullback
+-- Members: Development.EtaleCohomology.EtaleSheaves.LeafSpecGenClosed, Development.EtaleCohomology.EtaleSheaves.SpecSubalgebraPullbackLiftIsClosedImmersion, Development.EtaleCohomology.EtaleSheaves.GluedCurveChartOverlapIsPullback
+
+-- ===== clump member: Development.EtaleCohomology.EtaleSheaves.LeafSpecGenClosed =====
+-- clump-header: {"m": "Development.EtaleCohomology.EtaleSheaves.LeafSpecGenClosed", "h": "module\n\npublic import Development.EtaleCohomology.EtaleSheaves.LeafGlueIsProperPf\nimport Mathlib.Tactic.Linter.HaveILetI\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+open CategoryTheory Limits AlgebraicGeometry Opposite LateralTheory.E.E4 LateralTheory.E.LeafGlueProperPf
+
+namespace LateralTheory.E.GluedCurveChartOverlaps
+
+theorem sep_of_cover {X S : Scheme.{0}} (f : X ⟶ S) (U : X.OpenCover)
+    (H : ∀ i j, IsClosedImmersion (pullback.map (U.f i) (U.f j) (U.f i ≫ f) (U.f j ≫ f) (𝟙 _) (𝟙 _) f
+      (by simp) (by simp))) : IsSeparated f := by
+  constructor
+  apply IsZariskiLocalAtTarget.of_openCover (Scheme.Pullback.openCoverOfLeftRight U U f f)
+  rintro ⟨i, j⟩
+  have e : (pullbackDiagonalMapIdIso (U.f i) (U.f j) f).inv ≫
+      (Scheme.Pullback.openCoverOfLeftRight U U f f).pullbackHom (pullback.diagonal f) (i, j) =
+      pullback.map (U.f i) (U.f j) (U.f i ≫ f) (U.f j ≫ f) (𝟙 _) (𝟙 _) f (by simp) (by simp) := by
+    apply pullback.hom_ext <;> simp only [Scheme.Cover.pullbackHom, limit.lift_π,
+      PullbackCone.mk_π_app, Category.comp_id]
+    · exact (Category.assoc ..).trans (pullbackDiagonalMapIdIso_inv_snd_fst (U.f i) (U.f j) f)
+    · exact (Category.assoc ..).trans (pullbackDiagonalMapIdIso_inv_snd_snd (U.f i) (U.f j) f)
+  refine (MorphismProperty.cancel_left_of_respectsIso @IsClosedImmersion
+    (pullbackDiagonalMapIdIso (U.f i) (U.f j) f).inv _).1 ?_
+  rw [e]; exact H i j
+
+theorem closed_of_pb {X S W P Q : Scheme.{0}} (f : X ⟶ S) (ia : P ⟶ X) (ib : Q ⟶ X) (pa : W ⟶ P)
+    (pb : W ⟶ Q) (hp : IsPullback pa pb ia ib) (ga : P ⟶ S) (gb : Q ⟶ S) (hga : ia ≫ f = ga)
+    (hgb : ib ≫ f = gb) (w : pa ≫ ga = pb ≫ gb)
+    (hc : IsClosedImmersion (pullback.lift pa pb w)) :
+    IsClosedImmersion (pullback.map ia ib (ia ≫ f) (ib ≫ f) (𝟙 _) (𝟙 _) f (by simp) (by simp)) := by
+  subst hga hgb
+  have e : pullback.map ia ib (ia ≫ f) (ib ≫ f) (𝟙 _) (𝟙 _) f (by simp) (by simp) =
+      hp.isoPullback.inv ≫ pullback.lift pa pb w := by
+    apply pullback.hom_ext
+    · rw [pullback.lift_fst, Category.comp_id, Category.assoc, pullback.lift_fst, IsPullback.isoPullback_inv_fst]
+    · rw [pullback.lift_snd, Category.comp_id, Category.assoc, pullback.lift_snd, IsPullback.isoPullback_inv_snd]
+  rw [e]; infer_instance
+
+def LeafGluePullback : Prop := ∀ (Ω L : Type) [Field Ω] [Field L] [Algebra Ω L] (A B : Subalgebra Ω L) (u : L)
+  (h : GH Ω L A B u) (G : Glued Ω L A B (Dr Ω A u) (le_Dr_A A u) (le_Dr_B A B u h.2.2.2.2.2.2.2.2.2.2.2.1)),
+  IsPullback (Spec.map (CommRingCat.ofHom (Subalgebra.inclusion (le_Dr_A A u)).toRingHom))
+    (Spec.map (CommRingCat.ofHom (Subalgebra.inclusion (le_Dr_B A B u h.2.2.2.2.2.2.2.2.2.2.2.1)).toRingHom))
+    G.iA G.iB
+
+theorem spec_w {Ω L : Type} [Field Ω] [Field L] [Algebra Ω L] (A B D : Subalgebra Ω L) (hA : A ≤ D) (hB : B ≤ D) :
+    Spec.map (CommRingCat.ofHom (Subalgebra.inclusion hA).toRingHom) ≫
+      Spec.map (CommRingCat.ofHom (algebraMap Ω A)) =
+    Spec.map (CommRingCat.ofHom (Subalgebra.inclusion hB).toRingHom) ≫
+      Spec.map (CommRingCat.ofHom (algebraMap Ω B)) := by
+  rw [← Spec.map_comp, ← Spec.map_comp]; congr 1
+
+def LeafSpecGenClosed : Prop := ∀ (Ω L : Type) [Field Ω] [Field L] [Algebra Ω L] (A B D : Subalgebra Ω L)
+  (hA : A ≤ D) (hB : B ≤ D), D ≤ Algebra.adjoin Ω ((A : Set L) ∪ B) →
+  IsClosedImmersion (pullback.lift _ _ (spec_w A B D hA hB))
+
+theorem dr_le {Ω L : Type} [Field Ω] [Field L] [Algebra Ω L] (A B : Subalgebra Ω L) (u : L) (hu : u⁻¹ ∈ B) :
+    Dr Ω A u ≤ Algebra.adjoin Ω ((A : Set L) ∪ B) :=
+  Algebra.adjoin_mono (Set.union_subset_union_right _ (Set.singleton_subset_iff.mpr hu))
+
+theorem LeafGlueSep_of (hP : LeafGluePullback) (hC : LeafSpecGenClosed) :
+    LateralTheory.E.LeafGlueIsProperPf.LeafGlueSep := by
+  intro Ω L _ _ _ A B u h G
+  haveI := G.hiA; haveI := G.hiB
+  have hD := dr_le A B u h.2.2.1
+  apply sep_of_cover G.c0 (LateralTheory.E.LeafGlueIsProperPf.cov G)
+  intro i j
+  cases i <;> cases j
+  · exact closed_of_pb G.c0 G.iB G.iB (𝟙 _) (𝟙 _) (IsKernelPair.id_of_mono G.iB) _ _ G.hcB G.hcB (by simp)
+      (by exact (inferInstance : IsClosedImmersion (pullback.diagonal (Spec.map (CommRingCat.ofHom (algebraMap Ω B))))))
+  · exact closed_of_pb G.c0 G.iB G.iA _ _ (hP Ω L A B u h G).flip _ _ G.hcB G.hcA _
+      (hC Ω L B A _ _ _ (by rw [Set.union_comm]; exact hD))
+  · exact closed_of_pb G.c0 G.iA G.iB _ _ (hP Ω L A B u h G) _ _ G.hcA G.hcB _ (hC Ω L A B _ _ _ hD)
+  · exact closed_of_pb G.c0 G.iA G.iA (𝟙 _) (𝟙 _) (IsKernelPair.id_of_mono G.iA) _ _ G.hcA G.hcA (by simp)
+      (by exact (inferInstance : IsClosedImmersion (pullback.diagonal (Spec.map (CommRingCat.ofHom (algebraMap Ω A))))))
+
+end LateralTheory.E.GluedCurveChartOverlaps
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.EtaleCohomology.EtaleSheaves.LeafSpecGenClosed =====
 
 -- ===== clump member: Development.EtaleCohomology.EtaleSheaves.SpecSubalgebraPullbackLiftIsClosedImmersion =====
 -- clump-header: {"m": "Development.EtaleCohomology.EtaleSheaves.SpecSubalgebraPullbackLiftIsClosedImmersion", "h": "module\n\npublic import Development.EtaleCohomology.EtaleSheaves.LeafSpecGenClosed\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\n\n"}

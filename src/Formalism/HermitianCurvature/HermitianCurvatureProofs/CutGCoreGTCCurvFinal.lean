@@ -1,14 +1,44 @@
 module
 
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCCurvCut
-public import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCCurvPolyCut
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCTheta
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.NormalFormOrderZeroOfParts
 import Mathlib.Tactic.Linter.Style
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCCurvBlock, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCCurvPoly, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCCurvRTT, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCCurvScal, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCCurvTop, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCCurvFinal
+-- Members: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCCurvPolyCut, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCCurvBlock, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCCurvPoly, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCCurvRTT, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCCurvScal, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCCurvTop, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCCurvFinal
+
+-- ===== clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCCurvPolyCut =====
+-- clump-header: {"m": "Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCCurvPolyCut", "h": "module\n\npublic import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCCurvCut\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt
+
+namespace Formalism.FourierDecayAlt.P.CutMP.Gauge.GC
+
+noncomputable section
+
+def sumU (P : M.Par) : ℂ := ∑ i ∈ Finset.Icc 1 P.k, ((P.u i : ℂ) + (P.u' i : ℂ))
+
+def GTCCurvScal : Prop :=
+  ∀ (P : M.Par), 2 ≤ P.k → ∀ ρ : M.Ty P,
+    (∃ c : ℕ → ℂ, ∀ u : ℂ, M.wC P ρ u = u ^ (P.k + 1) * (-(P.TT : ℂ)) +
+        u ^ P.k * ((P.TT : ℂ) * ((absTy P ρ : ℂ) - 1 - sumU P)) + ∑ i ∈ Finset.range P.k, u ^ i * c i) ∧
+    (∃ c : ℕ → ℂ, ∀ u : ℂ, M.xC P ρ u = u ^ (P.k - 1) + (absTy P ρ : ℂ) * u ^ (P.k - 2) +
+        ∑ i ∈ Finset.range (P.k - 2), u ^ i * c i) ∧
+    (∀ ex : Finset ℕ, (∃ l ∈ ex, l ∈ Finset.Icc 1 (P.k - 1)) →
+      ∃ c : ℕ → ℂ, ∀ u : ℂ, M.xEx P ex ρ u = ∑ i ∈ Finset.range (P.k - 1), u ^ i * c i)
+
+def GTCCurvPolyOfScal : Prop := GTCCurvScal → GTCCurvPoly
+
+end
+
+end Formalism.FourierDecayAlt.P.CutMP.Gauge.GC
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCCurvPolyCut =====
 
 -- ===== clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCCurvBlock =====
 -- clump-header: {"m": "Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCCurvBlock", "h": "module\n\npublic import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGTCCurvCut\nimport Formalism.HermitianCurvature.HermitianCurvatureProofs.NormalFormOrderZeroOfParts\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.PiTensorProduct\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}

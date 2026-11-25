@@ -1,6 +1,6 @@
 module
 
-public import GroundTheory.ProfiniteCohomology.LocalEulerCharacteristic.GroupStructureDefs
+public import Mathlib.GroupTheory.OrderOfElement
 public import GroundTheory.LocalFields.Ramification
 public import Mathlib.FieldTheory.Galois.Basic
 public import GroundTheory.LocalFields.RamificationStructure
@@ -25,7 +25,38 @@ import GroundTheory.ProfiniteCohomology.PoincareDuality
 import Mathlib.Algebra.Order.Star.Rat
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: GroundTheory.ProfiniteCohomology.LocalEulerCharacteristic.GroupStructure, GroundTheory.ProfiniteCohomology.LocalEulerCharacteristic.MainGalois, GroundTheory.ProfiniteCohomology.LocalEulerCharacteristic.MainSimple, GroundTheory.ProfiniteCohomology.LocalEulerCharacteristic.EulerCharGaloisOfCardEq
+-- Members: GroundTheory.ProfiniteCohomology.LocalEulerCharacteristic.GroupStructureDefs, GroundTheory.ProfiniteCohomology.LocalEulerCharacteristic.GroupStructure, GroundTheory.ProfiniteCohomology.LocalEulerCharacteristic.MainGalois, GroundTheory.ProfiniteCohomology.LocalEulerCharacteristic.MainSimple, GroundTheory.ProfiniteCohomology.LocalEulerCharacteristic.EulerCharGaloisOfCardEq
+
+-- ===== clump member: GroundTheory.ProfiniteCohomology.LocalEulerCharacteristic.GroupStructureDefs =====
+-- clump-header: {"m": "GroundTheory.ProfiniteCohomology.LocalEulerCharacteristic.GroupStructureDefs", "h": "module\n\npublic import Mathlib.GroupTheory.OrderOfElement\nimport Mathlib.Tactic.TypeStar\n\n"}
+section -- clump:auto
+@[expose] public section
+
+set_option maxSynthPendingDepth 1
+
+namespace GroundTheory.ProfCoh
+
+def coprimePart (p : ℕ) (Q : Type*) [Group Q] : Subgroup Q :=
+  Subgroup.closure {x : Q | (orderOf x).Coprime p}
+
+def primaryPart (p : ℕ) (Q : Type*) [Group Q] : Subgroup Q :=
+  Subgroup.closure {x : Q | ∃ n : ℕ, orderOf x = p ^ n}
+
+variable {G : Type*} [Group G]
+
+def coprimeQuotientPreimage (N : Subgroup G) [N.Normal] (p : ℕ) : Subgroup G :=
+  (coprimePart p (G ⧸ N)).comap (QuotientGroup.mk' N)
+
+def primaryQuotientPreimage (N : Subgroup G) [N.Normal] (p : ℕ) : Subgroup G :=
+  (primaryPart p (G ⧸ N)).comap (QuotientGroup.mk' N)
+
+def coprimeRelPreimage (N₀ N₁ : Subgroup G) [N₁.Normal] (p : ℕ) : Subgroup G :=
+  (coprimeQuotientPreimage (N₁.subgroupOf N₀) p).map N₀.subtype
+
+end GroundTheory.ProfCoh
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: GroundTheory.ProfiniteCohomology.LocalEulerCharacteristic.GroupStructureDefs =====
 
 -- ===== clump member: GroundTheory.ProfiniteCohomology.LocalEulerCharacteristic.GroupStructure =====
 -- clump-header: {"m": "GroundTheory.ProfiniteCohomology.LocalEulerCharacteristic.GroupStructure", "h": "module\n\npublic import GroundTheory.ProfiniteCohomology.LocalEulerCharacteristic.GroupStructureDefs\npublic import GroundTheory.LocalFields.Ramification\npublic import Mathlib.FieldTheory.Galois.Basic\npublic import GroundTheory.LocalFields.RamificationStructure\npublic import GroundTheory.LocalFields.UnramifiedRootsOfUnity\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Sheaves.Init\n\n"}

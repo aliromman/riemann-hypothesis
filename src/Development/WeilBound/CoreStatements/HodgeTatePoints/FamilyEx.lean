@@ -5,7 +5,8 @@ public import Mathlib.Data.Matrix.ColumnRowPartitioned
 public import Development.WeilBound.CoreStatements.HodgeTatePoints.MapFirstPower
 public import Mathlib.LinearAlgebra.LinearIndependent.BaseChange
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ToFirst
-public import Development.WeilBound.CoreStatements.HodgeTatePoints.CdAffine
+public import Development.WeilBound.CoreStatements.HodgeTatePoints.CdChart
+public import Development.WeilBound.CoreStatements.HodgeTatePoints.CdFrame
 public import Development.WeilBound.CoreStatements.HodgeTatePoints.ActGeneratorZero
 public import Development.WeilBound.CoreStatements.HodgeTatePoints.IsPullbackWhisker
 public import Development.WeilBound.CoreStatements.HodgeTatePoints.CocpMain
@@ -20,7 +21,31 @@ import Development.WeilBound.CoreStatements.HodgeTatePoints.CdUniv
 import Mathlib.Tactic.Linter.Style
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.WeilBound.CoreStatements.HodgeTatePoints.CcInjAlg, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsFormalGermOpenAffine, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsFormalGermOpenAffineStatement, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FormalGermsIsomorphic, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FormalGermsIsomorphicStatement, Development.AutomorphicSpectrum.Proofs.GeometryProofs.GeometricToTangentPowerFree, Development.AutomorphicSpectrum.Proofs.GeometryProofs.GeometricToTangentPowerFreeStatement, Development.AutomorphicSpectrum.Proofs.GeometryProofs.TangentPowerFreeConjInjective, Development.AutomorphicSpectrum.Proofs.GeometryProofs.TangentPowerFreeConjInjectiveStatement, Development.WeilBound.CoreStatements.HodgeTatePoints.IsMapOfCancel, Development.WeilBound.CoreStatements.HodgeTatePoints.FamilyEx
+-- Members: Development.WeilBound.CoreStatements.HodgeTatePoints.CdAffine, Development.WeilBound.CoreStatements.HodgeTatePoints.CcInjAlg, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsFormalGermOpenAffine, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsFormalGermOpenAffineStatement, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FormalGermsIsomorphic, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FormalGermsIsomorphicStatement, Development.AutomorphicSpectrum.Proofs.GeometryProofs.GeometricToTangentPowerFree, Development.AutomorphicSpectrum.Proofs.GeometryProofs.GeometricToTangentPowerFreeStatement, Development.AutomorphicSpectrum.Proofs.GeometryProofs.TangentPowerFreeConjInjective, Development.AutomorphicSpectrum.Proofs.GeometryProofs.TangentPowerFreeConjInjectiveStatement, Development.WeilBound.CoreStatements.HodgeTatePoints.IsMapOfCancel, Development.WeilBound.CoreStatements.HodgeTatePoints.FamilyEx
+
+-- ===== clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.CdAffine =====
+-- clump-header: {"m": "Development.WeilBound.CoreStatements.HodgeTatePoints.CdAffine", "h": "module\n\npublic import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ToFirst\npublic import Development.WeilBound.CoreStatements.HodgeTatePoints.CdChart\npublic import Development.WeilBound.CoreStatements.HodgeTatePoints.CdFrame\nimport Formalism.SharpRestriction.Divisibility.GeneratorPowers.FBIdAd\nimport Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.GermComp1ZeroPointLeft\nimport Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.IsSplitGaussChars\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+namespace PositivityTheory.HtPt.Cd
+open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj Formalism.MainNotions.ModuliIntegralCharts.H1 GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj
+open scoped CategoryTheory.Obj
+
+theorem germ_affine : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) [StarRing (𝓞 E)], (∀ a : 𝓞 E, star a = H.bar a) → ∀ (X0 : Scheme.{0}) (t : SAB H X0), PowFns t → ∀ z : X0, ∃ (A : Type) (_ : CommRing A) (j : Sp A ⟶ X0) (d : ℕ), IsOpenImmersion j ∧ z ∈ Set.range j ∧ Nonempty (GermAt t j d) := by
+  intro E _ _ _ H _ hs X0 t hp z
+  obtain ⟨S, _, x0, d, G, A, tg, x, c, hj, hz, hc, ht, hb, hU⟩ := chart_affine E H X0 t z
+  obtain ⟨e, ph1, ph2, sy, ad, hfr, htr, hfa, had⟩ := frame_affine E H X0 t S x0 d G A tg _ x c hc hU
+  obtain ⟨hax, hr⟩ := FBIdAd.fbId E H X0 t hp hs S x0 _ G A _ tg _ x e ph1 ph2 sy ad hc hfr hfa had
+  exact ⟨S, _, x0, d, hj, hz, ⟨⟨mkFB G A ph1 ph2 sy ad hax hr, x, e, tg, hc, ht, hb, hfr, htr, hfa⟩⟩⟩
+
+end PositivityTheory.HtPt.Cd
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.CdAffine =====
 
 -- ===== clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.CcInjAlg =====
 -- clump-header: {"m": "Development.WeilBound.CoreStatements.HodgeTatePoints.CcInjAlg", "h": "module\n\npublic import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.GermComp1ZeroPointLeft\npublic import Mathlib.Data.Matrix.ColumnRowPartitioned\npublic import Development.WeilBound.CoreStatements.HodgeTatePoints.MapFirstPower\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\npublic import Mathlib.LinearAlgebra.LinearIndependent.BaseChange\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

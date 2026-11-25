@@ -4,7 +4,7 @@ public import Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSur
 public import Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.SumCoordBasisDual
 public import Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.TowerRallisLemma
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsPrimitiveCl
-public import Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.CupK
+public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.TotPairing
 public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HarishChandraFormulaStatement
 import GroundTheory.PAdicHodge.NormalizedTraceTower
 import Mathlib.Tactic.Linter.Style
@@ -13,7 +13,61 @@ import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomology
 import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.DpZeroRight
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.StepA, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.MkDat, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.SurjOfCore, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.CastTRfl, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.GenPb, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.T2a, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.RhsF, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.Tgt, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.OntoOf3Pf
+-- Members: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.CupK, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.StepA, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.MkDat, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.SurjOfCore, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.CastTRfl, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.GenPb, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.T2a, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.RhsF, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.Tgt, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.OntoOf3Pf
+
+-- ===== clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.CupK =====
+-- clump-header: {"m": "Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.CupK", "h": "module\n\npublic import Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.ProperGenMap\npublic import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.TotPairing\npublic import Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.SumCoordBasisDual\n\n"}
+section -- clump:auto
+@[expose] public section
+
+set_option backward.isDefEq.respectTransparency false
+
+noncomputable section
+
+open CategoryTheory Limits AlgebraicGeometry GlobalTheory.LogCris
+
+namespace CrystallineSemistableComparison.Onto
+
+open Pb HT
+
+variable {l : ℕ} [Fact l.Prime] {K : IntermediateField ℚ_[l] (PadicAlgCl l)}
+
+theorem cupK (P : HTPre l K) {M : Model l K} (hM : M.Sm) {D : ℕ} (S : Sq M D) {i j : ℕ} (X : M.T i) (Y : M.T j)
+    (Z : S.P.T (i + j)) (hZ : S.P.CupT (Model.pullT S.p₁ S.h₁ i X) (Model.pullT S.p₂ S.h₂ j Y) Z)
+    {m m' : ℕ → ℕ} (b : ∀ a, Module.Basis (Fin (m a)) K (Hdg M.q a i)) (b' : ∀ a, Module.Basis (Fin (m' a)) K (Hdg M.q a j))
+    (A : ℕ) (Θ : Module.Dual K (Hdg S.P.q A (i + j))) :
+    P.h S.P A (i + j) (S.P.toV _ Z) Θ = ∑ p : (Finset.HasAntidiagonal.antidiagonal A : Finset (ℕ × ℕ)), ∑ s, ∑ s',
+      P.h M p.1.1 i (M.toV _ X) ((b p.1.1).coord s) * P.h M p.1.2 j (M.toV _ Y) ((b' p.1.2).coord s') *
+        kC K (Θ (cupH S.P.q (Finset.HasAntidiagonal.mem_antidiagonal.1 p.2) rfl (S.pl₁ p.1.1 i (b p.1.1 s))
+          (S.pl₂ p.1.2 j (b' p.1.2 s')))) := by
+  classical
+  have hfin : ∀ a n, FiniteDimensional K (Hdg S.P.q a n) := fun a n => (P.fin S.P S.smP a n).1
+  rw [P.cup S.P S.smP (Model.pullT S.p₁ S.h₁ i X) (Model.pullT S.p₂ S.h₂ j Y) Z hZ
+    (fun a => Module.finBasis K (Hdg S.P.q a i)) (fun a => Module.finBasis K (Hdg S.P.q a j)) A Θ]
+  refine Finset.sum_congr rfl fun p _ => ?_
+  obtain ⟨bl, hbl'⟩ : ∃ bl : Hdg S.P.q p.1.1 i →ₗ[K] Hdg S.P.q p.1.2 j →ₗ[K] Hdg S.P.q A (i + j),
+      ∀ x y, bl x y = cupH S.P.q (Finset.HasAntidiagonal.mem_antidiagonal.1 p.2) rfl x y :=
+    CrystallineSemistableComparison.P.cup_bilin (grOk (smFun _ S.P.q) (Finset.HasAntidiagonal.mem_antidiagonal.1 p.2)).pair (rfl : i + j = i + j)
+  have n₁ : ∀ F, P.h S.P p.1.1 i (S.P.toV i (Model.pullT S.p₁ S.h₁ i X)) F = P.h M p.1.1 i (M.toV i X) (F ∘ₗ S.pl₁ p.1.1 i) := by
+    intro F
+    rw [← pullV_toV S.p₁ S.h₁ i X, P.nat S.P M S.p₁ S.h₁ S.smP hM]
+  have n₂ : ∀ F, P.h S.P p.1.2 j (S.P.toV j (Model.pullT S.p₂ S.h₂ j Y)) F = P.h M p.1.2 j (M.toV j Y) (F ∘ₗ S.pl₂ p.1.2 j) := by
+    intro F
+    rw [← pullV_toV S.p₂ S.h₂ j Y, P.nat S.P M S.p₂ S.h₂ S.smP hM]
+  have key := gen2 (kC K) (P.h S.P p.1.1 i (S.P.toV i (Model.pullT S.p₁ S.h₁ i X))) (P.h M p.1.1 i (M.toV i X))
+    (P.h S.P p.1.2 j (S.P.toV j (Model.pullT S.p₂ S.h₂ j Y))) (P.h M p.1.2 j (M.toV j Y))
+    (fun k φ => P.lin' _ _ _ k _ φ) (fun k φ => P.lin' _ _ _ k _ φ) (fun k φ => P.lin' _ _ _ k _ φ) (fun k φ => P.lin' _ _ _ k _ φ)
+    (S.pl₁ p.1.1 i) (S.pl₂ p.1.2 j) n₁ n₂ (bl.compr₂ Θ)
+    (Module.finBasis K (Hdg S.P.q p.1.1 i)) (Module.finBasis K (Hdg S.P.q p.1.2 j)) (b p.1.1) (b' p.1.2)
+  simp only [LinearMap.compr₂_apply, hbl'] at key
+  exact key
+
+end CrystallineSemistableComparison.Onto
+
+end
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.CupK =====
 
 -- ===== clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.StepA =====
 -- clump-header: {"m": "Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.StepA", "h": "module\n\npublic import Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.ProperGenMap\npublic import Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.SumCoordBasisDual\nimport Mathlib.Algebra.Module.StablyFree.Basic\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.RegularLocalRing.Defs\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}

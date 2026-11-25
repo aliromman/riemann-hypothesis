@@ -12,7 +12,6 @@ public import Mathlib.LinearAlgebra.FreeModule.Finite.CardQuotient
 public import Mathlib.LinearAlgebra.LinearIndependent.Lemmas
 public import Mathlib.LinearAlgebra.Span.Defs
 public import Mathlib.Combinatorics.Quiver.ReflQuiver
-public import Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.L1MapDomainLeAndL1FaceDSingleLe
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.QuotientsEquivOfKerEq
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.Transport
 public import Mathlib.Algebra.Exact.Basic
@@ -25,7 +24,57 @@ import Mathlib.Tactic.Linter.HaveILetI
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.FullEnum, Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.DetNatAbsLeProdL1Norms, Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.IndexLe, Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.MaxIndep, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.TorsSatMult, Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.TorsSat, Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.CokerTors, Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.Imports, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.TorsStep, Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.TorsStep, Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.LogLeExp
+-- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.L1MapDomainLeAndL1FaceDSingleLe, Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.FullEnum, Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.DetNatAbsLeProdL1Norms, Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.IndexLe, Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.MaxIndep, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.TorsSatMult, Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.TorsSat, Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.CokerTors, Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.Imports, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.TorsStep, Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.TorsStep, Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.LogLeExp
+
+-- ===== clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.L1MapDomainLeAndL1FaceDSingleLe =====
+-- clump-header: {"m": "Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.L1MapDomainLeAndL1FaceDSingleLe", "h": "module\n\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.FaceDSingle\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open CategoryTheory UpperTheory.V.KH
+
+private theorem l1_eq_sum {X : Type} (f : X →₀ ℤ) (s : Finset X) (h : f.support ⊆ s) :
+    l1 f = ∑ x ∈ s, (f x).natAbs := by
+  unfold l1
+  exact Finsupp.sum_of_support_subset f h _ (fun _ _ => by simp)
+
+private theorem l1_add_le {X : Type} (f g : X →₀ ℤ) : l1 (f + g) ≤ l1 f + l1 g := by
+  classical
+  have hs : (f + g).support ⊆ f.support ∪ g.support := Finsupp.support_add
+  rw [l1_eq_sum (f + g) _ hs, l1_eq_sum f (f.support ∪ g.support) Finset.subset_union_left,
+    l1_eq_sum g (f.support ∪ g.support) Finset.subset_union_right, ← Finset.sum_add_distrib]
+  exact Finset.sum_le_sum fun x _ => by
+    simpa using Int.natAbs_add_le (f x) (g x)
+
+private theorem l1_single {X : Type} (x : X) (c : ℤ) : l1 (Finsupp.single x c) = c.natAbs := by
+  unfold l1
+  exact Finsupp.sum_single_index (by simp)
+
+private theorem l1_sum_le {X ι : Type} (s : Finset ι) (F : ι → X →₀ ℤ) :
+    l1 (∑ i ∈ s, F i) ≤ ∑ i ∈ s, l1 (F i) := by
+  classical
+  induction s using Finset.induction_on with
+  | empty => simp [l1]
+  | insert a s ha ih =>
+    rw [Finset.sum_insert ha, Finset.sum_insert ha]
+    exact (l1_add_le _ _).trans (Nat.add_le_add_left ih _)
+
+theorem UpperTheory.V.KH.l1_mapDomain_le_and_l1_faceD_single_le :
+    (∀ (X Y : Type) (φ : X → Y) (f : X →₀ ℤ), l1 (Finsupp.mapDomain φ f) ≤ l1 f) ∧
+    (∀ (Y X : Type) (k : ℕ) (face : Fin k → Y → X) (y : Y),
+      l1 (faceD face (Finsupp.single y 1)) ≤ k) := by
+  refine ⟨fun X Y φ f => ?_, fun Y X k face y => ?_⟩
+  · have h : Finsupp.mapDomain φ f = ∑ x ∈ f.support, Finsupp.single (φ x) (f x) := rfl
+    rw [h]
+    refine (l1_sum_le _ _).trans (le_of_eq ?_)
+    simp only [l1_single]
+    rfl
+  · rw [faceD_single]
+    refine (l1_sum_le _ _).trans (le_of_eq ?_)
+    simp [Finsupp.smul_single, l1_single, Int.natAbs_pow]
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.L1MapDomainLeAndL1FaceDSingleLe =====
 
 -- ===== clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.FullEnum =====
 -- clump-header: {"m": "Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.FullEnum", "h": "module\n\npublic import Mathlib.LinearAlgebra.LinearIndependent.Defs\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.RegularLocalRing.Defs\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.FaceDSingle\npublic import Mathlib.LinearAlgebra.Dimension.Constructions\npublic import Mathlib.LinearAlgebra.Dimension.Finite\n\n"}

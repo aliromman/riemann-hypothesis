@@ -1,7 +1,7 @@
 module
 
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.LocalIndicesColumnRowLevelsExact
-public import Formalism.SharpRestriction.AdmissibleParameterJoins.SfromGLe
+public import Formalism.SharpRestriction.CuspSpanNormBounds.LocalBesselAndTopKernel
 public import Formalism.SharpRestriction.GlobalSchurBounds.StandardLattice
 public import Formalism.SharpRestriction.AdmissibleParameterJoins.SfromGLp
 public import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Card
@@ -9,7 +9,29 @@ public import Formalism.SharpRestriction.AdmissibleParameterJoins.SfromGLt
 import Mathlib.Algebra.Ring.IsFormallyReal
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.SharpRestriction.AdmissibleParameterJoins.SfromGLq, Formalism.SharpRestriction.AdmissibleParameterJoins.SfromGLu
+-- Members: Formalism.SharpRestriction.AdmissibleParameterJoins.SfromGLe, Formalism.SharpRestriction.AdmissibleParameterJoins.SfromGLq, Formalism.SharpRestriction.AdmissibleParameterJoins.SfromGLu
+
+-- ===== clump member: Formalism.SharpRestriction.AdmissibleParameterJoins.SfromGLe =====
+-- clump-header: {"m": "Formalism.SharpRestriction.AdmissibleParameterJoins.SfromGLe", "h": "module\n\npublic import Formalism.SharpRestriction.CuspSpanNormBounds.LocalBesselAndTopKernel\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+namespace Formalism.MainNotions.J
+
+open NumberField Formalism.HermitianLatticesTheory Formalism.BasicNotions
+
+def IdxColTie (D : D7) : Prop := StandardLattice.idxPi D (D.host.g 0) (D.host.g 1) = S.gaG D
+
+def IdxRowTie (D : D7) : Prop := StandardLattice.idxSig D (D.host.g 0) (D.host.g 1) = LocalBesselAndTopKernel.idxRows D
+
+end Formalism.MainNotions.J
+
+end
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.SharpRestriction.AdmissibleParameterJoins.SfromGLe =====
 
 -- ===== clump member: Formalism.SharpRestriction.AdmissibleParameterJoins.SfromGLq =====
 -- clump-header: {"m": "Formalism.SharpRestriction.AdmissibleParameterJoins.SfromGLq", "h": "module\n\npublic import Formalism.SharpRestriction.AdmissibleParameterJoins.SfromGLe\npublic import Formalism.SharpRestriction.GlobalSchurBounds.StandardLattice\npublic import Formalism.SharpRestriction.AdmissibleParameterJoins.SfromGLp\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Ring.IsFormallyReal\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\npublic import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Card\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}

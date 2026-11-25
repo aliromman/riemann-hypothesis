@@ -22,7 +22,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomo
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoLocCard
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoScal
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.Places
-public import Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoLine
+public import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.AdjointDiagonalRepPreservesWeightPiece
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.IsHostFrame
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CharacterLevelBounds.ClsFacts
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoCobIndex
@@ -37,7 +37,38 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.So
 import Mathlib.Tactic.Linter.HaveILetI
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.CobDown, Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoCobPlace, Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoCobLim, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.LocallyConstantMaps, Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoContLev, Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoLocKill, Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoLocTors, Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoCocL, Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoLineNeg, Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoLineZero, Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoVanEOf, Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoHostVanE
+-- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoLine, Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.CobDown, Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoCobPlace, Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoCobLim, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.LocallyConstantMaps, Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoContLev, Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoLocKill, Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoLocTors, Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoCocL, Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoLineNeg, Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoLineZero, Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoVanEOf, Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoHostVanE
+
+-- ===== clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoLine =====
+-- clump-header: {"m": "Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoLine", "h": "module\n\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoDefs\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.AdjointDiagonalRepPreservesWeightPiece\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+open IsLocalRing UpperTheory.V.UnitaryThreeInertia
+
+namespace UpperTheory.V.X
+
+variable {O : Type} [CommRing O] [IsLocalRing O] {G Γ : Type} [Group G] [Group Γ] {ι : Type} (F : Frame O G Γ ι)
+
+def etaO : Γ →* Oˣ := (Units.map (Int.castRingHom O).toMonoidHom).comp F.η
+
+def lineChar (j : ℤ) (s : ℕ) : Γ →* Oˣ := F.Ψ ^ j * etaO F ^ s
+
+def LineVan [TopologicalSpace Γ] (j : ℤ) (θ : Γ →* Oˣ) : Prop :=
+  ∀ z : Γ → O, Coc θ z → Alg.AdicCont (maximalIdeal O) z →
+    (∀ v ∉ F.Tb, ∀ s ∈ F.Nv v, z (F.loc v s) = 0) →
+    (j = 0 → ∀ v ∈ F.Tb, ∀ s ∈ F.Iv v, z (F.loc v s) = 0) →
+    (j < 0 → ∃ y : O, ∀ g : F.D F.vl, F.ηv F.vl g = 1 → z (F.loc _ g) = (θ (F.loc _ g) : O) * y - y) →
+    CobOn θ z ⊤
+
+end UpperTheory.V.X
+
+end
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoLine =====
 
 -- ===== clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.CobDown =====
 -- clump-header: {"m": "Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.CobDown", "h": "module\n\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoDefs\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.FiniteResidue\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.GeneratorCountTuples.LemmaK\npublic import Formalism.GaloisCohomology.LocalTateDualityK\npublic import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.ExistsPrimitiveRootPow\npublic import Mathlib.RingTheory.AdicCompletion.Noetherian\npublic import Mathlib.RingTheory.Coalgebra.IsFrobenius\npublic import Mathlib.RingTheory.HopfAlgebra.Basic\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.FdAdjoinRange\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoAdicCont\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\n\n"}

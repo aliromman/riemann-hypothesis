@@ -15,7 +15,6 @@ public import Mathlib.GroupTheory.Coset.Defs
 public import Development.AbelianVarietyTheory.Definitions.Divisors.IsUnifAt
 public import Mathlib.Algebra.Group.Subgroup.Map
 public import Mathlib.Order.Filter.Cofinite
-public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteRestrictedProductQuotient
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FinsumOutOfLe
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelFamInf
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelIndexNeZeroOfIsOpen
@@ -38,7 +37,54 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteRestricti
 import GroundTheory.GlobalFields.LocalFieldAtPlace
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteTestFunctionProduct, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteTestFunctionProductStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictedProductEmbeddings, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteSumFiberDecomposition, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictedProductHeckeSum, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictedProductIntegral, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FactorLevelSubgroupsExist, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RelIndexNeZeroOfOpen
+-- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteRestrictedProductQuotient, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteTestFunctionProduct, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteTestFunctionProductStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictedProductEmbeddings, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteSumFiberDecomposition, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictedProductHeckeSum, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictedProductIntegral, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FactorLevelSubgroupsExist, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RelIndexNeZeroOfOpen
+
+-- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteRestrictedProductQuotient =====
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteRestrictedProductQuotient", "h": "module\n\npublic import Mathlib.Algebra.Group.Subgroup.Map\npublic import Mathlib.GroupTheory.Coset.Defs\npublic import Mathlib.Order.Filter.Cofinite\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.Linter.Style\nimport Development.AbelianVarietyTheory.Definitions.Divisors.SimpleTwistedTraceFormulaStable\nimport Development.AbelianVarietyTheory.Definitions.Foundations.SmoothPartStable\nimport Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.BaseChangeDefiniteUnitary\nimport Development.AutomorphicArithmetic.IntegralCasts.IsOpenStabOfMemNhds\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ImportsBisExtra\nimport Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.EigenvalueSeparation.LeftInv\nimport Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.HeckeFubiniCompatibility.EntZero\nimport Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.InfinitesimalCharacterLimits.AllLeaves\nimport Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.FiniteDiscreteFamilies.PeakCone\nimport Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.FrameReading.FmTools\nimport Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.FrameReading.JoinType\nimport Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.ReadSplit\nimport Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.IsTransl\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open NumberField IsDedekindDomain Matrix MeasureTheory Filter
+open GlobalTheory.CuspRep GlobalTheory.PRep GlobalTheory.UnitaryBC GlobalTheory.BCT GlobalTheory.LFun PositivityTheory.Rg.BcB.E PositivityTheory.Rg.BcB.SpectralAccumulation PositivityTheory.Rg.BcB.G8 PositivityTheory.Rg.BcB.CG
+open PositivityTheory.Rg.BcB.F PositivityTheory.Rg.BcB.F.RS PositivityTheory.Rg.BcB.F.Tail PositivityTheory.Rg.BcB.F.FA
+open scoped Classical
+open GlobalTheory.CompanionTheory.FinActS
+
+namespace GlobalTheory.CompanionTheory.FinActS
+
+theorem finite_cosets_of_components_mem
+    {ι Γ : Type} [Group Γ] {Hl : ι → Type} [∀ i, Group (Hl i)] (p : ∀ i, Γ →* Hl i)
+    (V : ∀ i, Subgroup (Hl i)) (Q : ∀ i, Set (Hl i))
+    (hQ : ∀ i, ∀ x ∈ Q i, ∀ u ∈ V i, x * u ∈ Q i)
+    (hQf : ∀ i, {q : Hl i ⧸ V i | q.out ∈ Q i}.Finite)
+    (hQV : ∀ᶠ i in cofinite, Q i ⊆ V i) :
+    {q : Γ ⧸ (⨅ i, (V i).comap (p i)) | ∀ i, p i q.out ∈ Q i}.Finite := by
+  have hT : {i | ¬ Q i ⊆ V i}.Finite := Filter.eventually_cofinite.mp hQV
+  haveI : Finite {i | ¬ Q i ⊆ V i} := hT.to_subtype
+  let f : Γ ⧸ (⨅ i, (V i).comap (p i)) → ∀ i : {i | ¬ Q i ⊆ V i}, Hl i.1 ⧸ V i.1 :=
+    fun q i => ((p i.1 q.out : Hl i.1) : Hl i.1 ⧸ V i.1)
+  have hfin : (Set.univ.pi fun i : {i | ¬ Q i ⊆ V i} =>
+      {c : Hl i.1 ⧸ V i.1 | c.out ∈ Q i.1}).Finite :=
+    Set.Finite.pi fun i => hQf i.1
+  refine Set.Finite.of_injOn (f := f) ?_ ?_ hfin
+  · intro q hq i _
+    obtain ⟨h, hh⟩ := QuotientGroup.mk_out_eq_mul (V i.1) (p i.1 q.out)
+    show (((p i.1 q.out : Hl i.1) : Hl i.1 ⧸ V i.1)).out ∈ Q i.1
+    rw [hh]
+    exact hQ i.1 _ (hq i.1) _ h.2
+  · intro q hq q' hq' hfq
+    rw [← QuotientGroup.out_eq' q, ← QuotientGroup.out_eq' q']
+    refine QuotientGroup.eq.mpr ?_
+    refine Subgroup.mem_iInf.mpr fun i => ?_
+    rw [Subgroup.mem_comap, map_mul, map_inv]
+    by_cases hi : Q i ⊆ V i
+    · exact (V i).mul_mem ((V i).inv_mem (hi (hq i))) (hi (hq' i))
+    · exact QuotientGroup.eq.mp (congrFun hfq ⟨i, hi⟩)
+
+end GlobalTheory.CompanionTheory.FinActS
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteRestrictedProductQuotient =====
 
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteTestFunctionProduct =====
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteTestFunctionProduct", "h": "module\n\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ImportsBisExtra\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousPairProjection\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.TypeStar\npublic import Development.AbelianVarietyTheory.Definitions.Foundations.ExistsFinsetOfEventually\nimport Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.FrameReading.FmTools\nimport Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.FrameReading.JoinType\nimport Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.ReadSplit\n\n"}

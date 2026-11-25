@@ -14,7 +14,6 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsThet
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PtYAndItYOfPair
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.GridFiniteDatumVectorThetaFockVacuumStatement
 public import Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.AttExp
-public import Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.RatReal
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HeckeCharacterInfinityExponentGroupLaws
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ColumnArrowKernelRealEqDetCharMulFockKernel
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockJetGaussianEntireOriginGridFrames
@@ -23,7 +22,48 @@ import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.InfClass
 import Mathlib.Tactic.Linter.Style
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.RealRow, Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.MoveRow, Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.RealTop, Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.MoveTop, Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.ImportsBis
+-- Members: Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.RatReal, Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.RealRow, Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.MoveRow, Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.RealTop, Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.MoveTop, Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.ImportsBis
+
+-- ===== clump member: Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.RatReal =====
+-- clump-header: {"m": "Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.RatReal", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.JetKapIff\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.InfOfMulFinOf\nimport Mathlib.Tactic.Linter.Style\nimport Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContinuousOnAtTau\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.DIV
+open IsDedekindDomain NumberField Matrix GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.RowTest GlobalTheory.RowClaim GlobalTheory.TestLat GlobalTheory.SumSize
+open Formalism.DivisionValues (vw lw)
+
+theorem UpperTheory.WildA.ratReal :
+    ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : GlobalTheory.ChiGrid.Consts} {G : GlobalTheory.ChiGrid.GridData L sc} (W : G.Weil) (fr : ∀ X : Node, GL (Fin (G.V X).rank) D.host.E) (X : Node) (r : FinPt G X)
+      (U : Matrix.unitaryGroup (Fin (G.V X).rank) D.host.E), GlobalTheory.RatMoveJets.RatCoord _ (fr X) r U →
+      ∃ γ ∈ GQ (G.V X), ∃ k ∈ GinfC (G.V X), (∀ x : FinPt G X, ((r * x : FinPt G X) : GA D (G.V X)) = γ * ((x : GA D (G.V X)) * k)) ∧
+        GlobalTheory.DefStep.realAct W.θ fr X k⁻¹ = rhoVr (tauE D) (wt G X) (Unitary.toUnits U) := by
+  intro D T L sc G W fr X r U h
+  obtain ⟨γ, hγ, hf, hm⟩ := h
+  have hk : γ⁻¹ * (r : GA D (G.V X)) ∈ GinfC (G.V X) := by
+    show finHom (G.V X) (γ⁻¹ * (r : GA D (G.V X))) = 1
+    rw [map_mul, map_inv, hf, inv_mul_cancel]
+  refine ⟨γ, hγ, γ⁻¹ * (r : GA D (G.V X)), hk, fun x => ?_, ?_⟩
+  · have hc := _root_.GlobalTheory.PointAtPlaceHom.comm_of_mem (G.V X) hk x.2
+    rw [← hc, ← mul_assoc, ← mul_assoc, mul_inv_cancel, one_mul]
+    rfl
+  · have hrat : Bridge.IsRatMat (G.V X) ⟨γ, hγ⟩ (fr X * Unitary.toUnits U * (fr X)⁻¹) := Units.ext hm
+    have hin : GlobalTheory.DefStep.realIn W.θ fr X γ = embGL (tauE D) (Unitary.toUnits U) := by
+      funext τ
+      have h1 := GlobalTheory.CoefModel.realGL_rat W.θ_is (G.V X) ⟨γ, hγ⟩ _ hrat τ
+      have h2 : GlobalTheory.DefStep.realIn W.θ fr X γ τ = (GlobalTheory.DefStep.frGL fr X τ)⁻¹ *
+          GlobalTheory.CoefModel.realGL W.θ (G.V X) γ τ * GlobalTheory.DefStep.frGL fr X τ := by
+        simp [GlobalTheory.DefStep.realIn]
+      rw [h2, h1, map_mul, map_mul, map_inv, GlobalTheory.DefStep.frGL]
+      show _ = Formalism.UG.bc (tauE D τ) (Unitary.toUnits U)
+      group
+    rw [_root_.mul_inv_rev, inv_inv, map_mul,
+      GlobalTheory.DefStep.realAct_fin W.θ fr X (inv_mem r.2), one_mul, GlobalTheory.DefStep.realAct, MonoidHom.comp_apply,
+      MonoidHom.comp_apply, hin]
+    rfl
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.RatReal =====
 
 -- ===== clump member: Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.RealRow =====
 -- clump-header: {"m": "Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.RealRow", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.KerFockMovedReal\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.InfOfMulFinOf\npublic import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsRealFnNeZero\npublic import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MvZOneEqMapUnivSubst\npublic import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.PsiTContinuous\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.HighestWeightBelow\npublic import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ThetaStepDistributionEquivariantRational\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.CompactPairRealAverageFockEqJetOperator\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\npublic import Development.AbelianVarietyTheory.Definitions.LatticeFrames.EvalAtOneExtremalMul\npublic import Development.AbelianVarietyTheory.Definitions.LatticeFrames.StabOrd\nimport Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.InfClassAt\n\n"}

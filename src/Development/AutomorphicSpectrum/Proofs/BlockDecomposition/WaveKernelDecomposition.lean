@@ -13,7 +13,6 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConjGelf
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GelfandOperatorAdjointStatement
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitaryMemGLs
 public import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
-public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveCptBoundedTime
 public import Mathlib.Analysis.Calculus.Deriv.Prod
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveTimeAverageIsWave
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ActEqSumOfKernel
@@ -29,7 +28,64 @@ import Std.Tactic.BVDecide.Normalize.Bool
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EventuallyEqOfAgreeGLs
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralDoubleSum, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GelfandOperatorPairingAdjoint, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WavePairingTimeSymmetry, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelDecomposition
+-- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveCptBoundedTime, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralDoubleSum, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GelfandOperatorPairingAdjoint, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WavePairingTimeSymmetry, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelDecomposition
+
+-- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveCptBoundedTime =====
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveCptBoundedTime", "h": "module\n\npublic import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ArchimedeanGelfandKernels.WaveSt\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsMultOfFintype\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+open MeasureTheory Matrix Finset
+open scoped ContDiff ComplexConjugate InnerProductSpace
+
+open PositivityTheory.RgTw (Mat G)
+open PositivityTheory.RgBcC
+open GlobalTheory.CompanionTheory.WaveMult
+
+open scoped Matrix.Norms.Elementwise
+
+namespace GlobalTheory.CompanionTheory.WaveMult
+
+theorem lg_le_lg_mul_add (hL : LgFacts) {n : ℕ} {x y : Mat n} (hx : x ∈ GLs n) (hy : y ∈ GLs n) :
+    lg x ≤ lg (x * y) + lg y := by
+  have hdx : x.det ≠ 0 := hx
+  have hdy : y.det ≠ 0 := hy
+  have hxy : x * y ∈ GLs n := by
+    change (x * y).det ≠ 0
+    rw [Matrix.det_mul]
+    exact mul_ne_zero hdx hdy
+  have hu : IsUnit y.det := isUnit_iff_ne_zero.mpr hdy
+  have h1 := (hL n).1 (x * y) hxy y⁻¹ (inv_mem_GLs hy)
+  have h2 := (hL n).2.1 y hy
+  rw [Matrix.mul_nonsing_inv_cancel_right _ _ hu, h2] at h1
+  exact h1
+
+theorem wave_cpt_bounded_time : LgFacts → WaveSpeed → ∀ (n : ℕ) (E : KMod n) (u : ℝ → Mat n → E.V),
+    IsWave E u → Cpt (u 0) → ∀ T : ℝ, ∃ R : ℝ, ∀ t, |t| ≤ T → ∀ y ∈ GLs n, R < lg y → u t y = 0 := by
+  intro hL hS n E u hu hc T
+  obtain ⟨c, hc'⟩ := hS n
+  obtain ⟨R₀, hR₀⟩ := hc
+  refine ⟨R₀ + |c| * (1 + |T|), fun t ht x hx hlg => hc' E u hu t x hx fun y hy hly => ?_⟩
+  have hxy : x * y ∈ GLs n := by
+    change (x * y).det ≠ 0
+    rw [Matrix.det_mul]
+    exact mul_ne_zero hx hy
+  refine hR₀ (x * y) hxy ?_
+  have h1 := lg_le_lg_mul_add hL hx hy
+  have h2 : |t| ≤ |T| := ht.trans (le_abs_self T)
+  have h3 : c * (1 + |t|) ≤ |c| * (1 + |T|) :=
+    calc c * (1 + |t|) ≤ |c| * (1 + |t|) :=
+          mul_le_mul_of_nonneg_right (le_abs_self c) (by positivity)
+      _ ≤ |c| * (1 + |T|) := mul_le_mul_of_nonneg_left (by linarith) (abs_nonneg c)
+  linarith
+
+end GlobalTheory.CompanionTheory.WaveMult
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveCptBoundedTime =====
 
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralDoubleSum =====
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralDoubleSum", "h": "module\n\npublic import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ArchimedeanGelfandKernels.WaveSt\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Rr\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\npublic import Mathlib.Analysis.InnerProductSpace.Calculus\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Algebra.Group.Units\nimport Mathlib.Topology.Sheaves.Init\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DifferentiableAtOfSmooth\n\n"}

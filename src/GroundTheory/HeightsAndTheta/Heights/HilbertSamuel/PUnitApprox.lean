@@ -1,11 +1,39 @@
 module
 
-public import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsUnitApprox
+public import Mathlib.NumberTheory.NumberField.InfinitePlace.Embeddings
 public import Mathlib.NumberTheory.NumberField.Units.DirichletTheorem
 public import Mathlib.Algebra.Module.ZLattice.Basic
 public import Mathlib.NumberTheory.NumberField.InfinitePlace.Basic
 public import Mathlib.NumberTheory.NumberField.Units.Basic
 
+-- This file was produced by scripts/clump.py from the modules listed below.
+-- Members: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsUnitApprox, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PUnitApprox
+
+-- ===== clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsUnitApprox =====
+-- clump-header: {"m": "GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsUnitApprox", "h": "module\n\npublic import Mathlib.NumberTheory.NumberField.InfinitePlace.Embeddings\n\n"}
+section -- clump:auto
+@[expose] public section
+
+set_option maxSynthPendingDepth 1
+
+namespace GroundTheory.Heights₂.Heights.HilbertSamuel
+
+open NumberField
+
+def UnitApprox.Statement : Prop :=
+  ∀ (F : Type) [Field F] [NumberField F] (u : (F →+* ℂ) → ℝ),
+    (∀ sg, u (ComplexEmbedding.conjugate sg) = u sg) → ∑ sg, u sg = 0 →
+    ∃ C : ℝ, ∀ n : ℕ, ∃ ε : (𝓞 F)ˣ, ∀ sg : F →+* ℂ,
+      |Real.log ‖sg ((ε : 𝓞 F) : F)‖ - n * u sg| ≤ C
+
+end GroundTheory.Heights₂.Heights.HilbertSamuel
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsUnitApprox =====
+
+-- ===== clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PUnitApprox =====
+-- clump-header: {"m": "GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PUnitApprox", "h": "module\n\npublic import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsUnitApprox\npublic import Mathlib.NumberTheory.NumberField.Units.DirichletTheorem\npublic import Mathlib.Algebra.Module.ZLattice.Basic\npublic import Mathlib.NumberTheory.NumberField.InfinitePlace.Basic\npublic import Mathlib.NumberTheory.NumberField.Units.Basic\n\n"}
+section -- clump:auto
 @[expose] public section
 
 set_option maxSynthPendingDepth 1
@@ -92,3 +120,6 @@ theorem UnitApprox.proof : UnitApprox.Statement := by
   exact h4.trans (he _)
 
 end GroundTheory.Heights₂.Heights.HilbertSamuel
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PUnitApprox =====

@@ -5,7 +5,7 @@ public import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.Statements
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.KleimanNefness.ModelSt
 public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsSideLast
 public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsTailTer
-public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsTailAlt
+public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.IsFieldSubalgebraSelf
 public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsSideSide
 public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsTailFurther
 public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsSideRest
@@ -18,7 +18,31 @@ import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.IsMultiProjPrimeMId
 import Mathlib.Tactic.TypeStar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsTailBis, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PSegreFibresNef, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.SegreInclWeightedHomogeneousComponent, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.SegreLiftMapMap, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.IsMultiProjPrimeSegreLift
+-- Members: GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsTailAlt, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsTailBis, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PSegreFibresNef, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.SegreInclWeightedHomogeneousComponent, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.SegreLiftMapMap, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.IsMultiProjPrimeSegreLift
+
+-- ===== clump member: GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsTailAlt =====
+-- clump-header: {"m": "GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsTailAlt", "h": "module\n\npublic import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.SegreLiftVal\npublic import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.IsFieldSubalgebraSelf\n\n"}
+section -- clump:auto
+@[expose] public section
+
+set_option maxSynthPendingDepth 1
+
+namespace GroundTheory.Heights₂.Heights.Kleiman.SectionsOverLocalization
+
+open MvPolynomial
+open GroundTheory.Heights₂.Heights.NumbersDVR (MRing IsMultiProjPrime intNum)
+open GroundTheory.Heights₂.Heights.FieldNumbers (relDim)
+open ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.KH (mIdealOver)
+
+def SegreLiftIntNum.Statement : Prop :=
+  ∀ (F : Type) [Field F] (K : Type) [Fintype K] [DecidableEq K] (ι : K → Type)
+    [∀ k, Fintype (ι k)] (W : Ideal (MRing ι F)), IsMultiProjPrime W → ∀ β : K → ℤ,
+      intNum F (segreLift ι F W) ![IndefiniteRowSideFullHecke.Kleiman2.pullDeg β] = intNum F W ![β]
+
+end GroundTheory.Heights₂.Heights.Kleiman.SectionsOverLocalization
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsTailAlt =====
 
 -- ===== clump member: GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsTailBis =====
 -- clump-header: {"m": "GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsTailBis", "h": "module\n\npublic import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.SegreLiftVal\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\npublic import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.Statements\nimport ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.KleimanNefness.AlgDefs\npublic import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.KleimanNefness.ModelSt\n\n"}

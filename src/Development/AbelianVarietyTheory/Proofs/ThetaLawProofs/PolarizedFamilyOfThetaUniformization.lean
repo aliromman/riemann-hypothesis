@@ -21,7 +21,9 @@ public import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.ExistsT
 public import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsSiegPreOfPolAV
 public import Development.AbelianVarietyTheory.Proofs.ModuliProofs.SiegelStructurePullback
 public import Development.AbelianVarietyTheory.Proofs.ModuliProofs.TheoremOfCubePolAbelianScheme
-public import Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsPerLev
+public import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsSiegelForm
+public import Development.AbelianVarietyTheory.Proofs.ModuliProofs.UnimodularSymplecticCoordinatesAndLatticeRank
+public import Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsHolUnifReparam
 public import Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.SqOfCalculus
 public import Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.StalkOfAppLEEq
 public import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.WeilIsAlternatingSkewNatural
@@ -54,7 +56,61 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRin
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.PrecompleteBases.PsbLb
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsThetaKeyDatumKnownValueRat, Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsNumberFieldPointSiegelFamilyKnownValue, Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.GeomIntegralOfEtaleFaithfullyFlatCover, Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.PolarizedFamilyOfThetaUniformization
+-- Members: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsPerLev, Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsThetaKeyDatumKnownValueRat, Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsNumberFieldPointSiegelFamilyKnownValue, Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.GeomIntegralOfEtaleFaithfullyFlatCover, Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.PolarizedFamilyOfThetaUniformization
+
+-- ===== clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsPerLev =====
+-- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsPerLev", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.KeyFormula.GeomIntSelf\npublic import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.ThetaUnifAV\npublic import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsSiegelForm\npublic import Development.AbelianVarietyTheory.Proofs.ModuliProofs.UnimodularSymplecticCoordinatesAndLatticeRank\npublic import Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsHolUnifReparam\nimport Development.AbelianVarietyTheory.Definitions.AbelianSchemeLaws.FirstCohomologyVanishesSpecOfIsLocalRing\nimport Development.AbelianVarietyTheory.Definitions.ModuliSpaces.GoodClass\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
+open scoped CategoryTheory.Obj TensorProduct
+open GlobalTheory.KeyPow GlobalTheory.KeyFam GlobalTheory.ZM GlobalTheory.AbLaw
+
+namespace GlobalTheory.KeyFam
+
+theorem exists_perLev : ThetaUnifAV → ∀ (P : Out.PolAV (Sp ℂ)) (g k : ℕ), P.g = g → ∃ (τ : Matrix (Fin g) (Fin g) ℂ) (lev : (Fin g ⊕ Fin g → ℤ) → (𝟙_ (Over (Sp ℂ)) ⟶ P.A)), PerLev P τ k lev := by
+  rintro hU P g k rfl
+  obtain ⟨rig, hrig⟩ := P.rigid
+  obtain ⟨u, Hm, χ, Ef, hAH, -, -, -, -, -, hE, hb, hW⟩ := hU P rig hrig
+  let Q : u.Λ →+ (Fin P.g → ℂ) := u.Λ.subtype.toAddMonoidHom
+  have hrange : Set.range Q = (u.Λ : Set (Fin P.g → ℂ)) := Subtype.range_coe
+  have hQ : Function.Injective Q ∧ DiscreteTopology Q.range ∧ Submodule.span ℝ (Set.range Q) = ⊤ ∧
+      Hm.IsHermitian ∧ (∀ z : Fin P.g → ℂ, z ≠ 0 → 0 < (hermForm Hm z z).re) ∧
+      ∀ x y, (hermForm Hm (Q x) (Q y)).im = Ef x y := by
+    refine ⟨Subtype.val_injective, ?_, hrange ▸ u.full, hAH.1, hAH.2.1, fun x y => (hE x y).symm⟩
+    have h := u.discrete
+    change DiscreteTopology (Set.range Q)
+    rw [hrange]
+    exact h
+  obtain ⟨h1, h2, h3, h4⟩ := unimodular_symplectic_coordinates_and_lattice_rank.2 _ Ef _ Q Hm hQ
+  obtain ⟨bas, hbas⟩ := unimodular_symplectic_coordinates_and_lattice_rank.1 _ Ef _ hb h4 h3
+  obtain ⟨h, τ, hh, -, -, hs, hp, -, hper⟩ := SiegelPeriod.exists_siegel_form _ Ef _ bas Q Hm hbas hQ
+  let ψ : (Fin P.g → ℂ) ≃ₗ[ℂ] (Fin P.g → ℂ) := LinearEquiv.ofBijective h.mulVecLin
+    ⟨Matrix.mulVec_injective_iff_isUnit.2 hh, Matrix.mulVec_surjective_iff_isUnit.2 hh⟩
+  have hψ : ∀ a, ψ.symm (per τ a) = (bas a : Fin P.g → ℂ) := fun a => by
+    rw [LinearEquiv.symm_apply_eq]
+    exact (hper a).symm
+  obtain ⟨u', hex, hΛ, -⟩ := exists_holUnif_reparam P.A P.L P.g u ψ.symm (fun _ => 1)
+    (differentiable_const _) (fun _ => one_ne_zero) rfl
+  refine ⟨τ, fun a => u'.ex ((k : ℂ)⁻¹ • per τ a), rfl, hs, hp, u', fun z => ?_, fun n a b c hn hc => ?_,
+    fun _ => rfl⟩
+  · rw [hΛ]
+    constructor
+    · intro hz
+      refine ⟨bas.symm ⟨_, hz⟩, ψ.symm.injective ?_⟩
+      rw [hψ, LinearEquiv.apply_symm_apply]
+    · rintro ⟨a, rfl⟩
+      rw [hψ]
+      exact (bas a).2
+  · rw [hex, hex, map_smul, map_smul, hψ, hψ]
+    exact hW n (bas a) (bas b) c hn (by rw [hbas]; exact hc)
+
+end GlobalTheory.KeyFam
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsPerLev =====
 
 -- ===== clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsThetaKeyDatumKnownValueRat =====
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsThetaKeyDatumKnownValueRat", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.KeyFormula.GeomIntSelf\npublic import Mathlib.AlgebraicGeometry.EllipticCurve.Weierstrass\npublic import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.ThetaUnifAV\npublic import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.GlobalSectionsRankAlgClosed\npublic import Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.DualNumberRingHomExt\npublic import Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsEllipticKeyDataValueEqDiscriminant\npublic import Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsIsGrpPullbackPow\npublic import Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsIsKeyPow\npublic import Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsKeyPBRing\npublic import Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.LatticeBlocks\npublic import Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.MemNonzeroLocusConstMul\npublic import Development.AbelianVarietyTheory.Definitions.KeyFormula.SameObj\npublic import Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.NormalFormsEqOfKeyDataIsoComplex\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Development.AbelianVarietyTheory.Definitions.AbelianSchemeLaws.FirstCohomologyVanishesSpecOfIsLocalRing\nimport Development.AbelianVarietyTheory.Definitions.ModuliSpaces.GoodClass\n\n"}

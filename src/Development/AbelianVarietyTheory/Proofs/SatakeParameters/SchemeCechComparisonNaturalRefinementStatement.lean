@@ -1,16 +1,112 @@
 module
 
-public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.CechAbPullApp
+public import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.SortSign
+public import Development.AbelianVarietyTheory.Definitions.QuasicoherentCohomology.IsIsoCechComplexMapPresheafCubeRes
+public import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.PushComparisonBijectiveOfIsClosedEmbedding
 public import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.CechModulesFunctorShortExactOfAcyclic
 public import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.HigherDirectImagesVanishOfIsAffineHom
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.FlatHermRootLineDegree
 public import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.CechModulesFunctorShortExactOfIsAffineOpen
-public import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.SortSign
 import Mathlib.Tactic.Linter.Style
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.CoeEqAlgebraMapZeroEquiv
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AbelianVarietyTheory.Proofs.SatakeParameters.CechComparisonDegreeZeroAlternatingPullback, Development.AbelianVarietyTheory.Proofs.SatakeParameters.ModuleCubePullHomTermCommCechDifferential, Development.AbelianVarietyTheory.Proofs.SatakeParameters.SchemeCechComparisonNaturalRefinement, Development.AbelianVarietyTheory.Proofs.SatakeParameters.SchemeCechComparisonNaturalRefinementStatement
+-- Members: Development.AbelianVarietyTheory.Proofs.SatakeParameters.CechAbPullApp, Development.AbelianVarietyTheory.Proofs.SatakeParameters.CechComparisonDegreeZeroAlternatingPullback, Development.AbelianVarietyTheory.Proofs.SatakeParameters.ModuleCubePullHomTermCommCechDifferential, Development.AbelianVarietyTheory.Proofs.SatakeParameters.SchemeCechComparisonNaturalRefinement, Development.AbelianVarietyTheory.Proofs.SatakeParameters.SchemeCechComparisonNaturalRefinementStatement
+
+-- ===== clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.CechAbPullApp =====
+-- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.SatakeParameters.CechAbPullApp", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.SortSign\npublic import Development.AbelianVarietyTheory.Definitions.QuasicoherentCohomology.IsIsoCechComplexMapPresheafCubeRes\npublic import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.PushComparisonBijectiveOfIsClosedEmbedding\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open CategoryTheory AlgebraicGeometry Limits TopologicalSpace Opposite
+
+universe v v' u u'
+
+noncomputable section
+
+namespace GlobalTheory
+
+structure Cube.PullHom {ι κ : Type} [LinearOrder ι] {R : Type u} [Ring R] {S : Type u'} [Ring S]
+    (σ : R →+* S) (τ : κ → ι) (A : Cube.{v} ι R) (B : Cube.{v'} κ S) where
+
+  app : ∀ s : Finset κ, A.obj (s.image τ) →ₛₗ[σ] B.obj s
+
+  app_res : ∀ {s t : Finset κ} (h : s ⊆ t) (x : A.obj (s.image τ)),
+    app t (Cube.res A (Finset.image_subset_image h) x) = Cube.res B h (app s x)
+
+namespace Cube.PullHom
+
+variable {ι κ : Type} [LinearOrder ι] [LinearOrder κ] {R : Type u} [Ring R] {S : Type u'} [Ring S]
+  {σ : R →+* S} {τ : κ → ι} {A : Cube.{v} ι R} {B : Cube.{v'} κ S} (ψ : Cube.PullHom σ τ A B)
+
+theorem card_image {p : ℕ} (t : {s : Finset κ // s.card = p}) (h : Set.InjOn τ (t.1 : Set κ)) :
+    (t.1.image τ).card = p := by
+  rw [Finset.card_image_of_injOn h, t.2]
+
+
+open Classical in
+def term (p : ℕ) : Cube.Term A p →ₛₗ[σ] Cube.Term B p where
+  toFun x t := if h : Set.InjOn τ (t.1 : Set κ) then
+      PD.sortSign τ t.1 • ψ.app t.1 (x ⟨t.1.image τ, card_image t h⟩) else 0
+  map_add' x y := by
+    funext t
+    by_cases h : Set.InjOn τ (t.1 : Set κ)
+    · simp only [dite_eq_left h, Pi.add_apply, map_add (f := _), smul_add]
+    · simp only [dite_eq_right h, Pi.add_apply, add_zero]
+  map_smul' r x := by
+    funext t
+    by_cases h : Set.InjOn τ (t.1 : Set κ)
+    · simp only [dite_eq_left h, Pi.smul_apply, map_smulₛₗ, smul_comm (PD.sortSign τ t.1) (σ r)]
+    · simp only [dite_eq_right h, Pi.smul_apply, smul_zero]
+
+theorem term_apply_of_injOn {p : ℕ} (x : Cube.Term A p) (t : {s : Finset κ // s.card = p})
+    (h : Set.InjOn τ (t.1 : Set κ)) :
+    ψ.term p x t = PD.sortSign τ t.1 • ψ.app t.1 (x ⟨t.1.image τ, card_image t h⟩) := by
+  unfold term
+  simp only [LinearMap.coe_mk, AddHom.coe_mk]
+  rw [dite_eq_left h]
+
+theorem term_apply_of_not_injOn {p : ℕ} (x : Cube.Term A p) (t : {s : Finset κ // s.card = p})
+    (h : ¬ Set.InjOn τ (t.1 : Set κ)) : ψ.term p x t = 0 := by
+  unfold term
+  simp only [LinearMap.coe_mk, AddHom.coe_mk]
+  rw [dite_eq_right h]
+
+end Cube.PullHom
+
+section Sheaf
+
+open SheafPull
+
+variable {T T' : TopCat.{u}} (f : T' ⟶ T) {ι κ : Type} [LinearOrder ι] [LinearOrder κ] {V : Opens T}
+  {U : ι → Opens T} {V' : Opens T'} {U' : κ → Opens T'} (τ : κ → ι)
+  (hτ : ∀ s : Finset κ, cechOpen V' U' s ≤ (Opens.map f).obj (cechOpen V U (s.image τ)))
+  {F : AbSheaf T} {G : AbSheaf T'}
+
+def cechAbPull (φ : F ⟶ (push f).obj G) :
+    Cube.PullHom (RingHom.id ℤ) τ (cechAbCube F.obj V U) (cechAbCube G.obj V' U') where
+  app s := (G.obj.map (homOfLE (hτ s)).op).hom.toIntLinearMap ∘ₗ
+    (φ.hom.app (op (cechOpen V U (s.image τ)))).hom.toIntLinearMap
+  app_res {s t} h x := by
+    have e : φ.hom.app (op (cechOpen V U (t.image τ)))
+        (F.obj.map (homOfLE (cechOpen_anti V U (Finset.image_subset_image (f := τ) h))).op x) =
+        G.obj.map ((Opens.map f).map
+          (homOfLE (cechOpen_anti V U (Finset.image_subset_image (f := τ) h)))).op
+          (φ.hom.app (op (cechOpen V U (s.image τ))) x) :=
+      ConcreteCategory.congr_hom (φ.hom.naturality _) x
+    refine (congrArg (G.obj.map (homOfLE (hτ t)).op) e).trans ?_
+    refine (ConcreteCategory.congr_hom (G.obj.map_comp _ _) _).symm.trans
+      (Eq.trans ?_ (ConcreteCategory.congr_hom (G.obj.map_comp (homOfLE (hτ s)).op
+        (homOfLE (cechOpen_anti V' U' h)).op) _))
+    rfl
+
+end Sheaf
+
+end GlobalTheory
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.CechAbPullApp =====
 
 -- ===== clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.CechComparisonDegreeZeroAlternatingPullback =====
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.SatakeParameters.CechComparisonDegreeZeroAlternatingPullback", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.SatakeParameters.CechAbPullApp\npublic import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.CechModulesFunctorShortExactOfAcyclic\npublic import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.HigherDirectImagesVanishOfIsAffineHom\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}

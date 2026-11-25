@@ -1,6 +1,6 @@
 module
 
-public import GroundTheory.AutomorphicForms.HarishChandraRegularity.ContDiffCompCoordEquiv
+public import GroundTheory.AutomorphicForms.GKModules.RightRegular
 public import Mathlib.Analysis.Calculus.Deriv.Prod
 public import GroundTheory.AutomorphicForms.DixmierMalliavinHaarCoord
 public import Mathlib.Analysis.Normed.Lp.MeasurableSpace
@@ -28,7 +28,41 @@ import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Topology.Separation.CompletelyRegular
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: GroundTheory.AutomorphicForms.HarishChandraRegularity.ExpChart, GroundTheory.AutomorphicForms.HarishChandraRegularity.ExpHaar, GroundTheory.AutomorphicForms.HarishChandraRegularity.TupleOp, GroundTheory.AutomorphicForms.HarishChandraRegularity
+-- Members: GroundTheory.AutomorphicForms.HarishChandraRegularity.ContDiffCompCoordEquiv, GroundTheory.AutomorphicForms.HarishChandraRegularity.ExpChart, GroundTheory.AutomorphicForms.HarishChandraRegularity.ExpHaar, GroundTheory.AutomorphicForms.HarishChandraRegularity.TupleOp, GroundTheory.AutomorphicForms.HarishChandraRegularity
+
+-- ===== clump member: GroundTheory.AutomorphicForms.HarishChandraRegularity.ContDiffCompCoordEquiv =====
+-- clump-header: {"m": "GroundTheory.AutomorphicForms.HarishChandraRegularity.ContDiffCompCoordEquiv", "h": "module\n\npublic import GroundTheory.AutomorphicForms.GKModules.RightRegular\nimport Mathlib.Tactic.TypeStar\n\n"}
+section -- clump:auto
+@[expose] public section
+
+namespace GroundTheory.Automorphic
+
+open scoped ContDiff
+
+set_option linter.unusedSectionVars false
+
+variable {𝔸 : Type*} [NormedRing 𝔸] [NormedAlgebra ℝ 𝔸] [CompleteSpace 𝔸] [FiniteDimensional ℝ 𝔸]
+  {G : Subgroup 𝔸ˣ} {𝔤 : Submodule ℝ 𝔸}
+
+noncomputable def coordEquiv {d : ℕ} (b : Module.Basis (Fin d) ℝ 𝔤) :
+    EuclideanSpace ℝ (Fin d) ≃L[ℝ] 𝔤 :=
+  (EuclideanSpace.equiv (Fin d) ℝ).trans b.equivFun.symm.toContinuousLinearEquiv
+
+namespace IsExpLieAlgebra
+
+variable (h : IsExpLieAlgebra G 𝔤)
+
+theorem contDiff_comp_coordEquiv {F : Type*} [NormedAddCommGroup F] [NormedSpace ℂ F]
+    {f : G → F} (hf : h.IsSmoothFun f) (g : G) {d : ℕ} (b : Module.Basis (Fin d) ℝ 𝔤) :
+    ContDiff ℝ ∞ (fun x : EuclideanSpace ℝ (Fin d) => f (g * h.expG (coordEquiv b x))) :=
+  ((h.isSmoothFun_iff).1 hf g).comp (coordEquiv b).contDiff
+
+end IsExpLieAlgebra
+
+end GroundTheory.Automorphic
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: GroundTheory.AutomorphicForms.HarishChandraRegularity.ContDiffCompCoordEquiv =====
 
 -- ===== clump member: GroundTheory.AutomorphicForms.HarishChandraRegularity.ExpChart =====
 -- clump-header: {"m": "GroundTheory.AutomorphicForms.HarishChandraRegularity.ExpChart", "h": "module\n\npublic import GroundTheory.AutomorphicForms.HarishChandraRegularity.ContDiffCompCoordEquiv\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\npublic import Mathlib.Analysis.Calculus.Deriv.Prod\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Sheaves.Init\n\n"}

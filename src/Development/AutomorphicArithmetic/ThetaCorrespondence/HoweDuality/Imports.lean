@@ -13,7 +13,6 @@ public import Mathlib.LinearAlgebra.PiTensorProduct.Basic
 public import Mathlib.LinearAlgebra.TensorProduct.Map
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.HoweDuality.FactorApply
 public import Mathlib.Algebra.Algebra.Subalgebra.Lattice
-public import Development.AutomorphicArithmetic.ThetaCorrespondence.HoweDuality.PartStable
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
 import Mathlib.Algebra.Order.Interval.Basic
@@ -62,7 +61,63 @@ import Mathlib.Tactic.Linter.Style
 import Mathlib.Topology.Sheaves.Presheaf
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsFinsetGeneratingOperatorStableBounded, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsMaximalOperatorStableOfFinsetGenerating, Development.AbelianVarietyTheory.Proofs.TwistedOperators.PiTensorMaximalStableContainsFactorKernel, Development.AbelianVarietyTheory.Proofs.TwistedOperators.SimpleOverStableSubmodulePiTensor, Development.AbelianVarietyTheory.Proofs.TwistedOperators.TensorMaximalStableContainsLeftKernel, Development.AbelianVarietyTheory.Proofs.TwistedOperators.TensorEqTopOrLeKerFiniteLengthModules, Development.AutomorphicArithmetic.ThetaCorrespondence.HoweDuality.Nak, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.RadFinAdjoinStable, Development.AutomorphicArithmetic.ThetaCorrespondence.HoweDuality.RadFin, Development.AutomorphicArithmetic.ThetaCorrespondence.HoweDuality.SlotBasic, Development.AutomorphicArithmetic.ThetaCorrespondence.HoweDuality.NakAll, Development.AutomorphicArithmetic.ThetaCorrespondence.HoweDuality.Imports
+-- Members: Development.AutomorphicArithmetic.ThetaCorrespondence.HoweDuality.PartStable, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsFinsetGeneratingOperatorStableBounded, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsMaximalOperatorStableOfFinsetGenerating, Development.AbelianVarietyTheory.Proofs.TwistedOperators.PiTensorMaximalStableContainsFactorKernel, Development.AbelianVarietyTheory.Proofs.TwistedOperators.SimpleOverStableSubmodulePiTensor, Development.AbelianVarietyTheory.Proofs.TwistedOperators.TensorMaximalStableContainsLeftKernel, Development.AbelianVarietyTheory.Proofs.TwistedOperators.TensorEqTopOrLeKerFiniteLengthModules, Development.AutomorphicArithmetic.ThetaCorrespondence.HoweDuality.Nak, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.RadFinAdjoinStable, Development.AutomorphicArithmetic.ThetaCorrespondence.HoweDuality.RadFin, Development.AutomorphicArithmetic.ThetaCorrespondence.HoweDuality.SlotBasic, Development.AutomorphicArithmetic.ThetaCorrespondence.HoweDuality.NakAll, Development.AutomorphicArithmetic.ThetaCorrespondence.HoweDuality.Imports
+
+-- ===== clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.HoweDuality.PartStable =====
+-- clump-header: {"m": "Development.AutomorphicArithmetic.ThetaCorrespondence.HoweDuality.PartStable", "h": "module\n\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.HoweDuality.FactorApply\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open scoped TensorProduct
+open UpperTheory.Lit.HoweDuality
+
+theorem UpperTheory.Lit.HoweDuality.partStable :
+    ∀ {ι : Type} [Fintype ι] [DecidableEq ι] {M₀ : Type} [AddCommGroup M₀] [Module ℂ M₀]
+      {M : ι → Type} [∀ i, AddCommGroup (M i)] [∀ i, Module ℂ (M i)]
+      (i : ι) (K : Submodule ℂ (M i)),
+      (∀ g : Module.End ℂ M₀, ∀ t ∈ part (M₀ := M₀) i K,
+        TensorProduct.map g LinearMap.id t ∈ part (M₀ := M₀) i K) ∧
+      (∀ g : Module.End ℂ (M i), (∀ x ∈ K, g x ∈ K) → ∀ t ∈ part (M₀ := M₀) i K,
+        factorOp i g t ∈ part (M₀ := M₀) i K) ∧
+      ∀ l, l ≠ i → ∀ g : Module.End ℂ (M l), ∀ t ∈ part (M₀ := M₀) i K,
+        factorOp l g t ∈ part (M₀ := M₀) i K := by
+  intro ι _ _ M₀ _ _ M _ _ i K
+  have mem : ∀ (r : M₀ × ∀ j, M j), ∀ x ∈ K,
+      intersection_update_fsHerm_neg_one i r x ∈ part (M₀ := M₀) i K := fun r x hx =>
+    (le_iSup (fun r : M₀ × ∀ j, M j => K.map (intersection_update_fsHerm_neg_one i r)) r) (Submodule.mem_map_of_mem hx)
+  have key : ∀ Φ : Module.End ℂ (M₀ ⊗[ℂ] (⨂[ℂ] j, M j)),
+      (∀ (r : M₀ × ∀ j, M j), ∀ x ∈ K,
+        Φ (intersection_update_fsHerm_neg_one i r x) ∈ part (M₀ := M₀) i K) →
+      ∀ t ∈ part (M₀ := M₀) i K, Φ t ∈ part (M₀ := M₀) i K := by
+    intro Φ h t ht
+    have : part (M₀ := M₀) i K ≤ (part (M₀ := M₀) i K).comap Φ :=
+      iSup_le fun r => Submodule.map_le_iff_le_comap.2 fun x hx => h r x hx
+    exact this ht
+  refine ⟨fun g => key _ fun r x hx => ?_, fun g hg => key _ fun r x hx => ?_,
+    fun l hl g => key _ fun r x hx => ?_⟩
+  · have := mem (g r.1, r.2) x hx
+    simpa [position_apply] using this
+  · have := mem r (g x) (hg x hx)
+    rw [position_apply] at this
+    rw [position_apply, factorOp, TensorProduct.map_tmul, PiTensorProduct.map_tprod]
+    convert this using 3
+    funext j
+    by_cases hj : j = i
+    · subst hj; simp
+    · simp [Function.update_of_ne hj]
+  · have := mem (r.1, Function.update r.2 l (g (r.2 l))) x hx
+    rw [position_apply] at this
+    rw [position_apply, factorOp, TensorProduct.map_tmul, PiTensorProduct.map_tprod]
+    convert this using 3
+    funext j
+    by_cases hj : j = i
+    · subst hj; simp [Function.update_of_ne hl.symm]
+    · by_cases hj' : j = l
+      · subst hj'; simp [Function.update_of_ne hj]
+      · simp [Function.update_of_ne hj, Function.update_of_ne hj']
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.HoweDuality.PartStable =====
 
 -- ===== clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsFinsetGeneratingOperatorStableBounded =====
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsFinsetGeneratingOperatorStableBounded", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.SimpleOver\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.Order.CompletePartialOrder\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}

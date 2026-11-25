@@ -10,7 +10,7 @@ public import GroundTheory.GlobalFields.NormResidueSymbol.CyclotomicCompositum
 public import GroundTheory.GlobalFields.IdeleClassGroup.Invariants
 public import GroundTheory.GlobalFields.GlobalReciprocity.InfKerDegreeLeOfLeSupZhatField
 public import GroundTheory.GlobalFields.NormResidueSymbol.Cyclotomic
-public import GroundTheory.GlobalFields.GlobalReciprocity.NormSquare
+public import GroundTheory.GlobalFields.NormResidueSymbol.Functorial
 public import GroundTheory.PowerSubgroups.CountableNeighbourhoods.PowInvariant
 public import GroundTheory.GlobalFields.GlobalReciprocity.LocalSurjective
 public import GroundTheory.GlobalFields.NormResidueSymbol.RangeIdeleNormLeKerIdeleSymbol
@@ -27,11 +27,120 @@ import GroundTheory.GlobalFields.Adele.IdeleBasis
 import GroundTheory.GlobalFields.IdeleGroups.LocalNormsEverywhere
 import GroundTheory.GlobalFields.NormResidueSymbol.AbstractUnique
 import GroundTheory.GlobalFields.IdeleGroups.IdeleNorms.InfiniteAdeleRingMapInfiniteAdeleRingMap
-import GroundTheory.GlobalFields.NormResidueSymbol.Functorial
 import GroundTheory.GlobalFields.NormResidueSymbol.Surjective
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: GroundTheory.GlobalFields.GlobalReciprocity.PrimesAbove, GroundTheory.GlobalFields.CyclotomicCharacters.ClosedSubgroups, GroundTheory.GlobalFields.GlobalReciprocity.DegreeLift, GroundTheory.GlobalFields.GlobalReciprocity.Layers, GroundTheory.GlobalFields.GlobalReciprocity.FinitePlaces, GroundTheory.GlobalFields.GlobalReciprocity.RealPlacesQuadratic, GroundTheory.GlobalFields.GlobalReciprocity.RealPlaces, GroundTheory.GlobalFields.GlobalReciprocity.RangeDiagonalLeKerIdeleSymbol, GroundTheory.GlobalFields.GlobalReciprocity.General
+-- Members: GroundTheory.GlobalFields.GlobalReciprocity.NormSquare, GroundTheory.GlobalFields.GlobalReciprocity.PrimesAbove, GroundTheory.GlobalFields.CyclotomicCharacters.ClosedSubgroups, GroundTheory.GlobalFields.GlobalReciprocity.DegreeLift, GroundTheory.GlobalFields.GlobalReciprocity.Layers, GroundTheory.GlobalFields.GlobalReciprocity.FinitePlaces, GroundTheory.GlobalFields.GlobalReciprocity.RealPlacesQuadratic, GroundTheory.GlobalFields.GlobalReciprocity.RealPlaces, GroundTheory.GlobalFields.GlobalReciprocity.RangeDiagonalLeKerIdeleSymbol, GroundTheory.GlobalFields.GlobalReciprocity.General
+
+-- ===== clump member: GroundTheory.GlobalFields.GlobalReciprocity.NormSquare =====
+-- clump-header: {"m": "GroundTheory.GlobalFields.GlobalReciprocity.NormSquare", "h": "module\n\npublic import GroundTheory.GlobalFields.GlobalReciprocity.InfKerDegreeLeOfLeSupZhatField\npublic import GroundTheory.GlobalFields.NormResidueSymbol.Functorial\npublic import GroundTheory.GlobalFields.NormResidueSymbol.Cyclotomic\n\n"}
+section -- clump:auto
+@[expose] public section
+
+namespace GroundTheory.Global
+
+open NumberField IntermediateField GroundTheory.LocalField.Abstract
+open scoped GroundTheory.LocalField.Abstract
+
+noncomputable section
+
+local notation "ℚ̄" => AlgebraicClosure ℚ
+
+namespace IdeleClassLimit
+
+open FiniteSubfield
+
+section Kernel
+
+variable (K L : FiniteSubfield) [hKL : Fact (K ≤ L)]
+  [(L.1.fixingSubgroup.subgroupOf K.1.fixingSubgroup).Normal]
+
+
+omit [(L.1.fixingSubgroup.subgroupOf K.1.fixingSubgroup).Normal] in
+theorem normClass_ideleClassNorm (c : IdeleClassGroup L.1) :
+    normClass K L (FiniteSubfield.ideleClassNorm hKL.out c) = 1 := by
+  change (QuotientGroup.mk (fixedEquiv K (FiniteSubfield.ideleClassNorm hKL.out c)) :
+    tateZero IdeleClassLimit (K.openSubgroup : Subgroup (ℚ̄ ≃ₐ[ℚ] ℚ̄)) L.openSubgroup) = 1
+  rw [QuotientGroup.eq_one_iff, ← norm_fixedEquiv hKL.out c]
+  exact ⟨_, rfl⟩
+
+theorem abstractSymbol_ideleClassNorm_eq_one (c : IdeleClassGroup L.1) :
+    abstractSymbol K L (FiniteSubfield.ideleClassNorm hKL.out c) = 1 := by
+  rw [abstractSymbol_apply, normClass_ideleClassNorm, map_one, map_one]
+
+theorem exists_abstractSymbol_eq (c : IdeleClassGroup K.1) :
+    ∃ g : K.1.fixingSubgroup, abstractSymbol K L c = Group.Abelianization.of (restrictHom g) := by
+  obtain ⟨σ, hσ⟩ := QuotientGroup.mk_surjective (abstractSymbol K L c)
+  obtain ⟨g, rfl⟩ := restrictHom_surjective (F := K) (E := L) σ
+  exact ⟨g, hσ.symm⟩
+
+end Kernel
+
+section Square
+
+variable {K L K' L' : FiniteSubfield} [hKL : Fact (K ≤ L)]
+  [(L.1.fixingSubgroup.subgroupOf K.1.fixingSubgroup).Normal] [hKL' : Fact (K' ≤ L')]
+  [(L'.1.fixingSubgroup.subgroupOf K'.1.fixingSubgroup).Normal]
+
+
+omit [(L.1.fixingSubgroup.subgroupOf K.1.fixingSubgroup).Normal]
+  [(L'.1.fixingSubgroup.subgroupOf K'.1.fixingSubgroup).Normal] in
+theorem normTateZero_normClass (hK : K ≤ K') (hL : L ≤ L') (c : IdeleClassGroup K'.1) :
+    normTateZero (openSubgroup_le hK) (openSubgroup_le hL) (openSubgroup_le hKL'.out)
+        (openSubgroup_le hKL.out) (normClass K' L' c) =
+      normClass K L (FiniteSubfield.ideleClassNorm hK c) := by
+  change normTateZero (openSubgroup_le hK) (openSubgroup_le hL) (openSubgroup_le hKL'.out)
+      (openSubgroup_le hKL.out) (QuotientGroup.mk (fixedEquiv K' c)) =
+    QuotientGroup.mk (fixedEquiv K (FiniteSubfield.ideleClassNorm hK c))
+  rw [normTateZero_mk]
+  exact congrArg _ (norm_fixedEquiv hK c)
+
+theorem abstractSymbol_ideleClassNorm (hK : K ≤ K') (hL : L ≤ L') (c : IdeleClassGroup K'.1)
+    (g : K'.1.fixingSubgroup) (hg : abstractSymbol K' L' c = Group.Abelianization.of (restrictHom g)) :
+    abstractSymbol K L (FiniteSubfield.ideleClassNorm hK c) =
+      Group.Abelianization.of (restrictHom (⟨g, IntermediateField.fixingSubgroup_le
+        (show K.1 ≤ K'.1 from hK) g.2⟩ : K.1.fixingSubgroup)) := by
+  set D := classFieldTheory.toClassFieldData
+  have e : (reciprocityEquiv K' L').symm (normClass K' L' c) =
+      Group.Abelianization.of (QuotientGroup.mk (s := (L'.openSubgroup : Subgroup (ℚ̄ ≃ₐ[ℚ] ℚ̄)).subgroupOf
+        K'.openSubgroup) g) := by
+    apply (quotientGaloisEquiv K' L').abelianizationCongr.injective
+    rw [Group.abelianizationCongr_of, quotientGaloisEquiv_mk]
+    exact hg
+  rw [abstractSymbol_apply, ← normTateZero_normClass hK hL c]
+  have h2 := D.reciprocityAbEquiv_symm_normTateZero classFieldTheory.classFieldAxiom
+    (openSubgroup_le hKL.out) (openSubgroup_le hKL'.out) (openSubgroup_le hK) (openSubgroup_le hL)
+    (normClass K' L' c)
+  rw [h2, e, Group.Abelianization.map_of, Group.Abelianization.map_of, galRestrict_mk]
+  rfl
+
+instance isScalarTower_of_fact {F E M : FiniteSubfield} [Fact (F ≤ E)] [Fact (E ≤ M)] [Fact (F ≤ M)] :
+    IsScalarTower F.1 E.1 M.1 :=
+  IsScalarTower.of_algebraMap_eq fun _ ↦ rfl
+
+theorem abstractSymbol_ideleClassNorm_eq_map [hK : Fact (K ≤ K')] [Fact (L ≤ L')] [Fact (K ≤ L')]
+    (c : IdeleClassGroup K'.1) :
+    abstractSymbol K L (FiniteSubfield.ideleClassNorm hK.out c) =
+      Group.Abelianization.map ((AlgEquiv.restrictNormalHom (F := K.1) (K₁ := L'.1) L.1).comp
+        (restrictScalarsHom (L' := L'.1) K.1)) (abstractSymbol K' L' c) := by
+  obtain ⟨g, hg⟩ := exists_abstractSymbol_eq K' L' c
+  rw [abstractSymbol_ideleClassNorm hK.out (Fact.out : L ≤ L') c g hg, hg, Group.Abelianization.map_of]
+  congr 1
+  refine AlgEquiv.ext fun x ↦ Subtype.ext ?_
+  have h := congrArg (fun z : L'.1 ↦ (z : ℚ̄))
+    (AlgEquiv.restrictNormal_commutes ((restrictHom g : L'.1 ≃ₐ[K'.1] L'.1).restrictScalars K.1) L.1 x)
+  exact h.symm
+
+end Square
+
+end IdeleClassLimit
+
+end
+
+end GroundTheory.Global
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: GroundTheory.GlobalFields.GlobalReciprocity.NormSquare =====
 
 -- ===== clump member: GroundTheory.GlobalFields.GlobalReciprocity.PrimesAbove =====
 -- clump-header: {"m": "GroundTheory.GlobalFields.GlobalReciprocity.PrimesAbove", "h": "module\n\npublic import GroundTheory.GlobalFields.IdeleClassGroup.InvariantsGalois\npublic import GroundTheory.GlobalFields.CyclotomicCharacters.DegreeDecomposition\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\npublic import Mathlib.RingTheory.Ideal.NatInt\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

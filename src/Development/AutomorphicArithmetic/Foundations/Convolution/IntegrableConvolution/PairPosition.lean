@@ -10,7 +10,6 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.Integrab
 public import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.KernelTransforms.LactSpec
 public import Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.TensSmoothAlt
 public import Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.JUnique
-public import Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.LactLaws
 public import Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.ThickFrames
 public import Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.ArchBasic
 public import Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.LactCv
@@ -18,7 +17,21 @@ import Mathlib.Tactic.Linter.HaveILetI
 import Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.PositionOf
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.MatchInf, Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.CvPowers, Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.LactGen, Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.LactTens, Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.WordTens, Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.PairPosition
+-- Members: Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.LactLaws, Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.MatchInf, Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.CvPowers, Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.LactGen, Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.LactTens, Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.WordTens, Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.PairPosition
+
+-- ===== clump member: Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.LactLaws =====
+-- clump-header: {"m": "Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.LactLaws", "h": "module\n\npublic import Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.TensSmooth\npublic import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.KernelTransforms.LactSpec\n\n"}
+section -- clump:auto
+@[expose] public section
+
+theorem UpperTheory.ConvolutionTheory.L1.lactLaws :
+    UpperTheory.ConvolutionTheory.L1.LactLaws := by
+  intro K _ _ n β hβ
+  obtain ⟨_, _, hs, h1, hm, hc, _, _⟩ := UpperTheory.ConvolutionTheory.Tf.lactSpec K n β hβ
+  exact ⟨fun u => (hs u).1, h1, fun u v => (hm u v).1, fun u v => (hm u v).2, fun c u => (hc c u).1⟩
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.LactLaws =====
 
 -- ===== clump member: Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.MatchInf =====
 -- clump-header: {"m": "Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.MatchInf", "h": "module\n\npublic import Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.ClosedProperAlt\npublic import Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.GlueBasic\npublic import Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.MatchSplit\npublic import Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.PushTens\npublic import Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.RegOkPi\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

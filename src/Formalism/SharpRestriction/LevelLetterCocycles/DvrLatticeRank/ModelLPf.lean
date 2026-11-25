@@ -6,7 +6,6 @@ public import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.U3up
 public import Formalism.SharpRestriction.LevelLetterCocycles.DownSlotProposition
 public import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.FramePfPt
 public import Mathlib.RingTheory.PowerSeries.Inverse
-public import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelLPfG
 public import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelLPfF
 public import Formalism.SharpRestriction.LevelLetterCocycles.ModelKStep
 public import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelLPfH
@@ -27,7 +26,91 @@ import Formalism.SharpRestriction.LevelLetterCocycles.FrobeniusPowUniformizerFac
 public import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.LevelValueSmul
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelLPfC, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelLPfD, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelLPfI, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelLPfJ, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelLPfK, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelLPfA, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelLPfL, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelLPf
+-- Members: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelLPfG, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelLPfC, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelLPfD, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelLPfI, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelLPfJ, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelLPfK, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelLPfA, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelLPfL, Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelLPf
+
+-- ===== clump member: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelLPfG =====
+-- clump-header: {"m": "Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelLPfG", "h": "module\n\npublic import Formalism.SharpRestriction.LevelLetterCocycles.DownSlotProposition\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+namespace Formalism.MainNotions.N.Ln34.MLG
+
+open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc TensorProduct
+
+variable {LL V' : Type} [Field LL] [AddCommGroup V'] [Module LL V']
+
+def Bdd (F : ℤ → V') (m₀ : ℤ) : Prop := ∀ i < m₀, F i = 0
+
+theorem serMul_eq_sum (P : PowerSeries LL) {F : ℤ → V'} {m₀ : ℤ} (hF : Bdd F m₀) (i : ℤ) (M : ℕ)
+    (hM : (i - m₀).toNat + 1 ≤ M) :
+    serMul P F i = ∑ k ∈ Finset.range M, PowerSeries.coeff k P • F (i - k) := by
+  unfold serMul
+  apply finsum_eq_sum_of_support_subset
+  intro k hk
+  rw [Function.mem_support] at hk
+  rw [Finset.mem_coe, Finset.mem_range]
+  by_contra hkM
+  apply hk
+  rw [hF (i - k) (by omega), smul_zero]
+
+theorem serMul_bdd (P : PowerSeries LL) {F : ℤ → V'} {m₀ : ℤ} (hF : Bdd F m₀) : Bdd (serMul P F) m₀ := by
+  intro i hi
+  unfold serMul
+  apply finsum_eq_zero_of_forall_eq_zero
+  intro k
+  rw [hF (i - k) (by omega), smul_zero]
+
+theorem serMul_serMul (P Q : PowerSeries LL) {F : ℤ → V'} {m₀ : ℤ} (hF : Bdd F m₀) (i : ℤ) :
+    serMul P (serMul Q F) i = serMul (P * Q) F i := by
+  set N := (i - m₀).toNat + 1 with hN
+  rw [serMul_eq_sum P (serMul_bdd Q hF) i N le_rfl, serMul_eq_sum (P * Q) hF i N le_rfl]
+  have hL : ∀ k ∈ Finset.range N, PowerSeries.coeff k P • serMul Q F (i - k) =
+      ∑ j ∈ Finset.range (N - k), (PowerSeries.coeff k P * PowerSeries.coeff j Q) • F (i - (k + j : ℕ)) := by
+    intro k hk
+    rw [Finset.mem_range] at hk
+    rw [serMul_eq_sum Q hF (i - k) (N - k) (by omega), Finset.smul_sum]
+    refine Finset.sum_congr rfl (fun j _ => ?_)
+    rw [mul_smul]
+    congr 2
+    push_cast
+    ring_nf
+  rw [Finset.sum_congr rfl hL]
+  have hR : ∀ s ∈ Finset.range N, PowerSeries.coeff s (P * Q) • F (i - s) =
+      ∑ k ∈ Finset.Ico 0 (s + 1), (PowerSeries.coeff k P * PowerSeries.coeff (s - k) Q) • F (i - s) := by
+    intro s _
+    rw [PowerSeries.coeff_mul, Finset.Nat.sum_antidiagonal_eq_sum_range_succ_mk, Finset.sum_smul,
+      Finset.range_eq_Ico]
+  rw [Finset.sum_congr rfl hR, Finset.range_eq_Ico, ← Finset.sum_Ico_Ico_comm]
+  refine Finset.sum_congr rfl (fun k hk => ?_)
+  rw [Finset.mem_Ico] at hk
+  rw [Finset.sum_Ico_eq_sum_range]
+  refine Finset.sum_congr rfl (fun j _ => ?_)
+  rw [Nat.add_sub_cancel_left]
+
+theorem serMul_X_pow (h : ℕ) (F : ℤ → V') (i : ℤ) :
+    serMul (PowerSeries.X ^ h : PowerSeries LL) F i = F (i - h) := by
+  unfold serMul
+  rw [finsum_eq_single _ h (fun k hk => by rw [PowerSeries.coeff_X_pow, ite_eq_right hk, zero_smul])]
+  rw [PowerSeries.coeff_X_pow, ite_eq_left rfl, one_smul]
+
+theorem serMul_rescale (u : LL) (hu : u ≠ 0) (P : PowerSeries LL) (F : ℤ → V') (i : ℤ) :
+    u ^ i • serMul P F i = serMul (PowerSeries.rescale u P) (fun j => u ^ j • F j) i := by
+  unfold serMul
+  rw [smul_finsum]
+  refine finsum_congr (fun k => ?_)
+  rw [PowerSeries.coeff_rescale, smul_smul, smul_smul]
+  congr 1
+  rw [show u ^ i = u ^ (k : ℤ) * u ^ (i - k) by rw [← zpow_add₀ hu]; ring_nf, zpow_natCast]
+  ring
+
+end Formalism.MainNotions.N.Ln34.MLG
+
+end
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelLPfG =====
 
 -- ===== clump member: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelLPfC =====
 -- clump-header: {"m": "Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelLPfC", "h": "module\n\npublic import Formalism.SharpRestriction.LevelLetterCocycles.DeltaInvariantLattices\npublic import Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.U3upPfFilCAnti\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

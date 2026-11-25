@@ -1,17 +1,45 @@
 module
 
-public import Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverF
+public import Formalism.LocalToGlobal.NormalizedHeckeFactors.HeckeStdTwOfStd
+public import Formalism.SharpRestriction.LevelLetterCocycles.LocsCoverTw
+public import Formalism.SharpRestriction.ParConsts
+public import Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverThm
 public import Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverAct
 public import Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverStd
 public import Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverStdB
 public import CompanionTheory.AutomorphicTheory.HeckeStandardModules.HeckeStdStatement
 public import Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverSplit
-public import Formalism.LocalToGlobal.NormalizedHeckeFactors.HeckeStdTwOfStd
 public import Formalism.SharpRestriction.GlobalTheoremInputs
 public import CompanionTheory.AutomorphicTheory.HeckeStandardModules.InvMemRl
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverFP, Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverStdL, Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverMain, Formalism.LocalToGlobal.NormalizedHeckeFactors.HostConj, Formalism.LocalToGlobal.NormalizedHeckeFactors.EtaClosed
+-- Members: Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverF, Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverFP, Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverStdL, Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverMain, Formalism.LocalToGlobal.NormalizedHeckeFactors.HostConj, Formalism.LocalToGlobal.NormalizedHeckeFactors.EtaClosed
+
+-- ===== clump member: Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverF =====
+-- clump-header: {"m": "Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverF", "h": "module\n\npublic import Formalism.LocalToGlobal.NormalizedHeckeFactors.HeckeStdTwOfStd\npublic import Formalism.SharpRestriction.LevelLetterCocycles.LocsCoverTw\npublic import Formalism.SharpRestriction.ParConsts\npublic import Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverThm\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open Formalism.BasicNotions
+
+namespace Formalism.L2
+
+def LocsCoverTwF {eps : ℝ} (Fm : Formalism.MainNotions.FamP eps) : Prop :=
+  ∃ x0 : ℝ, ∀ x ≥ x0, ∀ i : Fm.Ix x, Formalism.MainNotions.N.LocsCoverTw (Fm.D x i)
+
+theorem locsCoverTwF_of {eps : ℝ} (Fm : Formalism.MainNotions.FamP eps)
+    (h : ∃ x0 : ℝ, ∀ x ≥ x0, ∀ i : Fm.Ix x,
+      ∃ (M : MtFam (Fm.D x i)) (T : NormalizedLocalCompatibility (Fm.D x i) M), HeckeStdTw T.B) :
+    LocsCoverTwF Fm := by
+  obtain ⟨x0, hx0⟩ := h
+  refine ⟨x0, fun x hx i => ?_⟩
+  obtain ⟨M, T, hT⟩ := hx0 x hx i
+  exact locsCoverTw_of_tie T hT
+
+end Formalism.L2
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverF =====
 
 -- ===== clump member: Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverFP =====
 -- clump-header: {"m": "Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverFP", "h": "module\n\npublic import Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverF\npublic import Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverAct\npublic import Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverStd\npublic import Formalism.LocalToGlobal.NormalizedHeckeFactors.CoverStdB\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

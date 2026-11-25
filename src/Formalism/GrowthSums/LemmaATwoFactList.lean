@@ -1,12 +1,62 @@
 module
 
-public import Formalism.GrowthSums.StatementB
+public import Formalism.SubspaceCounting.GoodOrbitIntervalTileCondition
 public import Mathlib.Algebra.Order.BigOperators.Group.Finset
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.NumberTheory.Height.NumberField
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.GrowthSums.FactorialBaseGrowth.NextEvenTopHolds, Formalism.GrowthSums.FactorialBaseGrowth.Segment, Formalism.GrowthSums.LemmaATwoFactList
+-- Members: Formalism.GrowthSums.StatementB, Formalism.GrowthSums.FactorialBaseGrowth.NextEvenTopHolds, Formalism.GrowthSums.FactorialBaseGrowth.Segment, Formalism.GrowthSums.LemmaATwoFactList
+
+-- ===== clump member: Formalism.GrowthSums.StatementB =====
+-- clump-header: {"m": "Formalism.GrowthSums.StatementB", "h": "module\n\npublic import Formalism.SubspaceCounting.GoodOrbitIntervalTileCondition\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+open scoped BigOperators
+open Finset
+
+namespace Formalism.GrowthSums
+
+open Formalism.G0
+
+def SegmentBound : Prop :=
+  ∀ (n : ℕ) (T : Finset ℕ) (L₂ K r u M₀ G' N₁ : ℕ) (hr : 1 ≤ r), 1 ≤ u →
+    (M₀ + 1) * ((6 * r + 1) * u) ≤ n → (M₀ + 5) * ((6 * r + 1) * u) ≤ G' →
+    T ⊆ range n → GoodOrbitIntervalTileCondition n T L₂ K r u M₀ G' N₁ →
+    ∀ (s s' : ℕ) (f f' : Fin (3 * r) → ℕ),
+      s < n / ((6 * r + 1) * u) → s' < n / ((6 * r + 1) * u) →
+      Marked T r u s → Marked T r u s' →
+      (∀ j, 0 < j →
+        j < (if s < s' then s' - s else s' + n / ((6 * r + 1) * u) - s) →
+        ¬ Marked T r u ((s + j) % (n / ((6 * r + 1) * u)))) →
+      StrictMono f → T ∩ Ico (s * ((6 * r + 1) * u)) ((s + 1) * ((6 * r + 1) * u)) = univ.image f →
+      StrictMono f' → T ∩ Ico (s' * ((6 * r + 1) * u)) ((s' + 1) * ((6 * r + 1) * u)) = univ.image f' →
+      let a := f ⟨r, by omega⟩
+      let b := f' ⟨2 * r - 1, by omega⟩
+      let D := if s < s' then b - a else b + n - a
+      D < G' ∧ (a + D) % n = b ∧
+        (T ∩ (range (D + 1)).image (fun j => (a + j) % n)).card ≤ N₁
+
+def NextEvenTop : Prop :=
+  ∀ (n : ℕ) (T : Finset ℕ) (L₂ K r u M₀ G' N₁ : ℕ), 1 ≤ r → 1 ≤ u →
+    (M₀ + 1) * ((6 * r + 1) * u) ≤ n → (M₀ + 5) * ((6 * r + 1) * u) ≤ G' →
+    T ⊆ range n → GoodOrbitIntervalTileCondition n T L₂ K r u M₀ G' N₁ →
+    ∀ i < n, ∃ D ∈ Icc 1 G', (i + D) % n ∈ T ∧ Even ((i + D) % n)
+
+def TopCount : Prop :=
+  ∀ (n : ℕ) (T : Finset ℕ) (L₂ K r u M₀ G' N₁ : ℕ), 1 ≤ r → 1 ≤ u →
+    (M₀ + 1) * ((6 * r + 1) * u) ≤ n → (M₀ + 5) * ((6 * r + 1) * u) ≤ G' →
+    T ⊆ range n → GoodOrbitIntervalTileCondition n T L₂ K r u M₀ G' N₁ →
+    n ≤ T.card * G' ∧ T.card * G' ≤ N₁ * (n + G')
+
+end Formalism.GrowthSums
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.GrowthSums.StatementB =====
 
 -- ===== clump member: Formalism.GrowthSums.FactorialBaseGrowth.NextEvenTopHolds =====
 -- clump-header: {"m": "Formalism.GrowthSums.FactorialBaseGrowth.NextEvenTopHolds", "h": "module\n\npublic import Formalism.GrowthSums.StatementB\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Int\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\npublic import Mathlib.Algebra.Order.BigOperators.Group.Finset\n\n"}

@@ -1,7 +1,6 @@
 module
 
 public import Development.EtaleCohomology.KummerTheory.InjSlice
-public import Development.EtaleCohomology.KummerTheory.SHInsepPf
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.FiniteMaximalSpectrumOfFiniteOfIsLocalRing
 public import Development.EtaleCohomology.KummerTheory.PlaceStepPf
 public import Development.EtaleCohomology.KummerTheory.SecSHPf
@@ -16,7 +15,38 @@ import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.Tactic.Linter.HaveILetI
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.EtaleCohomology.KummerTheory.InsepPf, Development.EtaleCohomology.KummerTheory.SHInsepHensPf, Development.EtaleCohomology.KummerTheory.SHInsepLocPf, Development.EtaleCohomology.KummerTheory.SHInsepResPf, Development.EtaleCohomology.KummerTheory.SHInvPf, Development.EtaleCohomology.KummerTheory.FinSHInv
+-- Members: Development.EtaleCohomology.KummerTheory.SHInsepPf, Development.EtaleCohomology.KummerTheory.InsepPf, Development.EtaleCohomology.KummerTheory.SHInsepHensPf, Development.EtaleCohomology.KummerTheory.SHInsepLocPf, Development.EtaleCohomology.KummerTheory.SHInsepResPf, Development.EtaleCohomology.KummerTheory.SHInvPf, Development.EtaleCohomology.KummerTheory.FinSHInv
+
+-- ===== clump member: Development.EtaleCohomology.KummerTheory.SHInsepPf =====
+-- clump-header: {"m": "Development.EtaleCohomology.KummerTheory.SHInsepPf", "h": "module\n\npublic import Development.EtaleCohomology.KummerTheory.InjSlice\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+open scoped TensorProduct
+open GlobalTheory.EtC
+
+namespace LateralTheory.KummerTheory
+
+def SHInsepLoc : Prop := ∀ (κ K A : Type) [Field κ] [Field K] [Algebra κ K] [IsPurelyInseparable κ K] [CommRing A]
+  [Algebra κ A], SH A → IsLocalRing (A ⊗[κ] K)
+
+def SHInsepHens : Prop := ∀ (κ K A : Type) [Field κ] [Field K] [Algebra κ K] [IsPurelyInseparable κ K] [CommRing A]
+  [Algebra κ A], SH A → ∀ [IsLocalRing (A ⊗[κ] K)], HenselianLocalRing (A ⊗[κ] K)
+
+def SHInsepRes : Prop := ∀ (κ K A : Type) [Field κ] [Field K] [Algebra κ K] [IsPurelyInseparable κ K] [CommRing A]
+  [Algebra κ A], SH A → ∀ [IsLocalRing (A ⊗[κ] K)], IsSepClosed (IsLocalRing.ResidueField (A ⊗[κ] K))
+
+theorem SHInsep_of (hL : SHInsepLoc) (hH : SHInsepHens) (hR : SHInsepRes) : SHInsep := by
+  intro κ K A _ _ _ _ _ _ hA
+  have := hL κ K A hA
+  exact ⟨hH κ K A hA, hR κ K A hA⟩
+
+end LateralTheory.KummerTheory
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.EtaleCohomology.KummerTheory.SHInsepPf =====
 
 -- ===== clump member: Development.EtaleCohomology.KummerTheory.InsepPf =====
 -- clump-header: {"m": "Development.EtaleCohomology.KummerTheory.InsepPf", "h": "module\n\npublic import Development.EtaleCohomology.KummerTheory.InjSlice\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.AlgebraicGeometry.Modules.Sheaf\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.TypeStar\n\n"}

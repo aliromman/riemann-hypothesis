@@ -13,7 +13,6 @@ public import Formalism.SharpRestriction.GrowthBounds.HermitianTensor.TieDefs
 public import Formalism.SharpRestriction.GrowthBounds.HermitianTensor.NuOfWtPQCast
 public import Formalism.SharpRestriction.GrowthBounds.ColumnSpanDensity.DeltaPsiH
 public import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LDrowLemmas
-public import Formalism.SharpRestriction.GrowthBounds.HermitianTensor.QaNuNextAdd
 public import Formalism.GradedWeylDivisibility.StatementD
 public import Mathlib.RingTheory.DiscreteValuationRing.Basic
 public import Formalism.SharpRestriction.GrowthBounds.HermitianTensor.ShapeCovering.CovDet
@@ -34,7 +33,85 @@ import Formalism.SharpRestriction.GrowthBounds.LatticeSystems
 import Formalism.SharpRestriction.GrowthBounds.HermitianTensor.ShapeCovering.CovWeyl
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.SharpRestriction.GrowthBounds.HermitianTensor.BlockSubstitutionBlockEmb, Formalism.SharpRestriction.GrowthBounds.HermitianTensor.ContractionOfPairingLemmas, Formalism.SharpRestriction.GrowthBounds.HermitianTensor.DetFactsP, Formalism.SharpRestriction.GrowthBounds.HermitianTensor.InitialMinorLiftFirstEntry, Formalism.SharpRestriction.GrowthBounds.HermitianTensor.SubYDPsiMonomial, Formalism.SharpRestriction.GrowthBounds.HermitianTensor.DPsiMonomialIwh, Formalism.SharpRestriction.GrowthBounds.HermitianTensor.TopLinePOf, Formalism.SharpRestriction.GrowthBounds.HermitianTensor.TaIntOfRename, Formalism.SharpRestriction.GrowthBounds.HermitianTensor.TwoLetterLatticeGaussInverse, Formalism.SharpRestriction.GrowthBounds.HermitianTensor.ModelIdentificationHolds
+-- Members: Formalism.SharpRestriction.GrowthBounds.HermitianTensor.QaNuNextAdd, Formalism.SharpRestriction.GrowthBounds.HermitianTensor.BlockSubstitutionBlockEmb, Formalism.SharpRestriction.GrowthBounds.HermitianTensor.ContractionOfPairingLemmas, Formalism.SharpRestriction.GrowthBounds.HermitianTensor.DetFactsP, Formalism.SharpRestriction.GrowthBounds.HermitianTensor.InitialMinorLiftFirstEntry, Formalism.SharpRestriction.GrowthBounds.HermitianTensor.SubYDPsiMonomial, Formalism.SharpRestriction.GrowthBounds.HermitianTensor.DPsiMonomialIwh, Formalism.SharpRestriction.GrowthBounds.HermitianTensor.TopLinePOf, Formalism.SharpRestriction.GrowthBounds.HermitianTensor.TaIntOfRename, Formalism.SharpRestriction.GrowthBounds.HermitianTensor.TwoLetterLatticeGaussInverse, Formalism.SharpRestriction.GrowthBounds.HermitianTensor.ModelIdentificationHolds
+
+-- ===== clump member: Formalism.SharpRestriction.GrowthBounds.HermitianTensor.QaNuNextAdd =====
+-- clump-header: {"m": "Formalism.SharpRestriction.GrowthBounds.HermitianTensor.QaNuNextAdd", "h": "module\n\npublic import Formalism.SharpRestriction.GrowthBounds.HermitianTensor.CoeffSumMonomialLinear\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+namespace Formalism.MainNotions.flipOneThree.Pf
+
+open Formalism.MainNotions.G Formalism.MainNotions.flipOneThree Formalism.GradedWeylDivisibility MvPolynomial
+
+theorem intCapP : IntCapP := by
+  intro O K _ _ _ hinj k ν F hF hco
+  obtain ⟨G, hG⟩ : F ∈ Set.range (map (algebraMap O K) : MvPolynomial (Fin k × Fin k) O →+* _) := by
+    rw [MvPolynomial.mem_range_map_iff_coeffs_subset]
+    intro c hc
+    obtain ⟨u, hu, rfl⟩ := MvPolynomial.mem_coeffs_iff.mp hc
+    exact hco u
+  subst hG
+  have hcomm : ∀ (l j : Fin k) (p : MvPolynomial (Fin k × Fin k) O),
+      map (algebraMap O K) (colAddGen O l j p) = colAddGen K l j (map (algebraMap O K) p) := by
+    intro l j p
+    induction p using MvPolynomial.induction_on
+    next a => simp [colAddGen]
+    next p q hp hq => simp only [map_add (f := _), hp, hq]
+    next p x hp =>
+      simp only [map_mul, hp, map_X]
+      congr 1
+      simp only [colAddGen, aeval_X]
+      split_ifs <;> simp
+  refine Submodule.mem_map.mpr ⟨G, ?_, ?_⟩
+  · simp only [dualWeyl, Submodule.mem_inf, Submodule.mem_iInf, LinearMap.mem_ker, LinearMap.sub_apply,
+      sub_eq_zero, AlgHom.toLinearMap_apply, mem_weightedHomogeneousSubmodule] at hF ⊢
+    obtain ⟨h1, h2⟩ := hF
+    refine ⟨?_, ?_⟩
+    · intro d hd
+      exact h1 (by rw [coeff_map]; exact fun h0 => hd ((map_eq_zero_iff _ hinj).mp h0))
+    · intro l j hlj
+      apply MvPolynomial.map_injective _ hinj
+      rw [hcomm, map_rename, h2 l j hlj]
+  · first
+      | rfl
+
+theorem qa_nuNext_add {n : ℕ} (ν ν' : Fin n → ℕ) (s : Fin n) : nuNext (ν + ν') s = nuNext ν s + nuNext ν' s := by
+  unfold nuNext
+  split_ifs <;> simp
+
+theorem qa_nuNext_le {n : ℕ} (ν : Fin n → ℕ) (h : Antitone ν) (s : Fin n) : nuNext ν s ≤ ν s := by
+  unfold nuNext
+  split_ifs with hs
+  · exact h (Fin.le_def.2 (Nat.le_succ _))
+  · exact Nat.zero_le _
+
+theorem hwMulP : HwMulP := by
+  intro A _ k ν ν' hν hν'
+  refine ⟨?_, ?_⟩
+  · simp only [hw, ← Finset.prod_mul_distrib, ← pow_add]
+    refine Finset.prod_congr rfl (fun s _ => ?_)
+    congr 1
+    rw [qa_nuNext_add, Pi.add_apply]
+    have h1 := qa_nuNext_le ν hν s
+    have h2 := qa_nuNext_le ν' hν' s
+    omega
+  · have key : ∀ (m : ℕ) (h1 : m ≤ k) (h2 : m ≤ k), eval (idPoint A k k) (lpMinor A m h1 h2) = 1 := by
+      intro m h1 h2
+      rw [lpMinor, RingHom.map_det]
+      convert (Matrix.det_one : (1 : Matrix (Fin m) (Fin m) A).det = 1)
+      ext p q
+      simp [idPoint, Matrix.one_apply, Fin.ext_iff]
+    simp only [hw, map_prod, map_pow, key, one_pow, Finset.prod_const_one]
+
+end Formalism.MainNotions.flipOneThree.Pf
+
+end
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.SharpRestriction.GrowthBounds.HermitianTensor.QaNuNextAdd =====
 
 -- ===== clump member: Formalism.SharpRestriction.GrowthBounds.HermitianTensor.BlockSubstitutionBlockEmb =====
 -- clump-header: {"m": "Formalism.SharpRestriction.GrowthBounds.HermitianTensor.BlockSubstitutionBlockEmb", "h": "module\n\npublic import Formalism.SharpRestriction.GrowthBounds.HermitianTensor.CoeffSumMonomialLinear\npublic import Formalism.SharpRestriction.GrowthBounds.HermitianTensor.QaWeightRowInd\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}

@@ -3,10 +3,13 @@ module
 import Formalism.SharpRestriction.LevelLetterCocycles.UniversalGeneralOfRestriction
 public import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ExistsPhiBridge
 public import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.GammaPi0EqPi0MulUnit
-public import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ArcLengthFourCostBound
+public import Formalism.SharpRestriction.LevelLetterCocycles.AdmBoundsBOfAdm
+public import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.TsumThree
+public import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.DivAddLogbLeEightMulErrorScale
+public import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.LogbNn
+public import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.SaturationFractionModule
 public import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.RingDataOfCaseAOfP9
 public import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ArcGamLiftCore
-public import Formalism.SharpRestriction.LevelLetterCocycles.AdmBoundsBOfAdm
 public import Formalism.SharpRestriction.LevelLetterCocycles.ArcCoordinatesOfMembership
 public import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.AcoordSumVecMul
 public import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.LemGBInImgIff
@@ -17,10 +20,141 @@ public import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongr
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Std.Tactic.BVDecide.Normalize.Prop
-import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.LogbNn
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ExistsFractionInFrame, Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ExistsHorizontalLiftOfLenThreeOfUp, Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.LiftsAtThinLetterTypeBis
+-- Members: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ArcLengthFourCostBound, Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ExistsFractionInFrame, Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ExistsHorizontalLiftOfLenThreeOfUp, Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.LiftsAtThinLetterTypeBis
+
+-- ===== clump member: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ArcLengthFourCostBound =====
+-- clump-header: {"m": "Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ArcLengthFourCostBound", "h": "module\n\npublic import Formalism.SharpRestriction.LevelLetterCocycles.AdmBoundsBOfAdm\npublic import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.TsumThree\npublic import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.DivAddLogbLeEightMulErrorScale\npublic import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.GammaPi0EqPi0MulUnit\npublic import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.LogbNn\npublic import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.SaturationFractionModule\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+namespace Formalism.MainNotions.N.FrobeniusPowerSeries
+
+open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.ArcLiftingSetup Formalism.MainNotions.N.Ln17
+
+variable {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : Type} [Field Qp] [Field K₀] [Field K]
+    [Algebra Qp K₀] [Algebra Qp K] [Algebra K₀ K] [IsScalarTower Qp K₀ K]
+    {B BdR : Type} [CommRing B] [CommRing BdR] [Algebra Qp B] [Algebra K₀ B] [IsScalarTower Qp K₀ B]
+    [Algebra Qp BdR] [Algebra K₀ BdR] [Algebra K BdR] [IsScalarTower Qp K BdR]
+    [IsScalarTower K₀ K BdR] [IsScalarTower Qp K₀ BdR]
+    {LL O : Type} [Field LL] [Algebra Qp LL] [TopologicalSpace LL] [CommRing O] [Algebra O LL]
+    {v : AddValuation LL (WithTop ℚ)} {n : ℕ}
+    {PD : PeriodData G Qp K₀ K B BdR}
+
+variable [FiniteDimensional Qp LL]
+
+theorem arc_length_four_cost_bound (l : ℕ) (hl : 11 ≤ l) (b wm w S η : ℕ) (hb : 1 ≤ b) (B : ℝ) (s si rr σ : ℕ)
+    (hs : (s : ℝ) ≤ max 1 ((w : ℝ) - B / l + 16 / 5 * Sg l (b + η + S) wm S η) + 1)
+    (hsi : (w : ℝ) - B / l - η / (l : ℝ) ^ 2 - 1 ≤ si)
+    (hrr : (rr : ℝ) ≤ 3 * Sg l (b + η + S) wm S η) (hσ : (σ : ℝ) ≤ 3 * Sg l (b + η + S) wm S η) :
+    ((rr + 3 * σ + 1 + (s - si) : ℕ) : ℝ) ≤ 18 * Sg l (b + η + S) wm S η + 1 := by
+  have h4 := max_sub_le_errorScale l hl b wm w S η hb B ((s : ℝ) - 1) (si : ℝ)
+    (max_le (Nat.cast_nonneg _) hsi) (by linarith)
+  obtain ⟨-, -, -, -, -, -, h1⟩ := CaseA.sg_ge l (b + η + S) wm S η hl (by omega)
+  have hsub : ((s - si : ℕ) : ℝ) ≤ max 0 ((s : ℝ) - 1 - si) + 1 := by
+    rcases le_total si s with h | h
+    · rw [Nat.cast_sub h]
+      have := le_max_right (0:ℝ) ((s : ℝ) - 1 - si)
+      linarith
+    · rw [Nat.sub_eq_zero_of_le h]
+      have := le_max_left (0:ℝ) ((s : ℝ) - 1 - si)
+      simp only [Nat.cast_zero]
+      linarith
+  push_cast
+  linarith
+
+theorem sigma_eq_of_thick_letter {n : ℕ} (l b w S η : ℕ) (size : ZMod n → ℕ) (hT : ∃ i, Formalism.MainNotions.TruncatedSeriesCountingBounds.Thick b η size i) :
+    Formalism.MainNotions.N.Ln17.Sg l b w S η size = Sg l (b + η + S) w S η := by
+  unfold Formalism.MainNotions.N.Ln17.Sg Sg Formalism.MainNotions.TruncatedSeriesCountingBounds.hB
+  rw [ite_eq_left hT]
+
+namespace ArcLengthFourSecond
+
+section EEh
+variable {W : LocWach PD LL O v n}
+
+theorem lE_eq (k : ℕ) : lE W k = algebraMap (LetA O n) W.EE (lA W ^ k) := by
+  simp [lE, lA, map_pow, map_natCast]
+
+theorem letE_mem (c : ZMod n) : (letE c : LetA O n) ∈ W.AΔ := fun δ _ => GS.γA_letE W δ c
+
+theorem lA_mem : lA W ∈ W.AΔ := by
+  exact natCast_mem _ _
+
+theorem inFr_sub {a : ZMod n} {num den : LetA O n} {f g : W.EE} (hf : InFr W a num den f) (hg : InFr W a num den g) :
+    InFr W a num den (f - g) := by
+  obtain ⟨u, hu, hf⟩ := hf
+  obtain ⟨u', hu', hg⟩ := hg
+  refine ⟨u - u', sub_mem hu hu', ?_⟩
+  rw [mul_sub, hf, hg, ← map_sub, mul_sub]
+
+theorem inFr_lE {a : ZMod n} {num den : LetA O n} {f : W.EE} (k : ℕ) (hf : InFr W a num den f) :
+    InFr W a num den (lE W k * f) := by
+  obtain ⟨u, hu, hf⟩ := hf
+  refine ⟨lA W ^ k * u, mul_mem (pow_mem lA_mem k) hu, ?_⟩
+  rw [lE_eq, mul_left_comm, hf, ← map_mul]
+  congr 1
+  ring
+
+theorem inFr_num_left {a : ZMod n} {n₁ n₂ den : LetA O n} {f : W.EE} (hf : InFr W a (n₁ * n₂) den f) (h₂ : n₂ ∈ W.AΔ) :
+    InFr W a n₁ den f := by
+  obtain ⟨u, hu, hf⟩ := hf
+  refine ⟨n₂ * u, mul_mem h₂ hu, ?_⟩
+  rw [hf]
+  congr 1
+  ring
+
+theorem inFr_num_right {a : ZMod n} {n₁ n₂ den : LetA O n} {f : W.EE} (hf : InFr W a (n₁ * n₂) den f) (h₁ : n₁ ∈ W.AΔ) :
+    InFr W a n₂ den f := by
+  obtain ⟨u, hu, hf⟩ := hf
+  refine ⟨n₁ * u, mul_mem h₁ hu, ?_⟩
+  rw [hf]
+  congr 1
+  ring
+
+theorem inFr_den_mul {a : ZMod n} {num d : LetA O n} (d' : LetA O n) {f : W.EE} (hf : InFr W a num d f) (hd' : d' ∈ W.AΔ) :
+    InFr W a num (d' * d) f := by
+  obtain ⟨u, hu, hf⟩ := hf
+  refine ⟨d' * u, mul_mem hd' hu, ?_⟩
+  rw [map_mul, mul_assoc, hf, ← map_mul]
+  congr 1
+  ring
+
+end EEh
+
+end ArcLengthFourSecond
+
+theorem ArcLengthFourSecond.inFr_sat [IsDomain O] [IsDiscreteValuationRing O] (W : LocWach PD LL O v n) (hcase : Formalism.MainNotions.LiftingTheory.CaseA W)
+    (hP9 : Formalism.MainNotions.DeltaInvariantLattices.P9W W) (hinj : Function.Injective (algebraMap O LL)) {c : ZMod n} {num den : LetA O n}
+    (hnum : num ∈ PiPs W) {g : W.EE} (h1 : InFr W c 1 den g) (hK : ∃ K : ℕ, InFr W c num den (lE W K * g)) :
+    InFr W c num den g := by
+  obtain ⟨u₀, hu₀, e₀⟩ := h1
+  obtain ⟨K, u₁, hu₁, e₁⟩ := hK
+  have key : lA W ^ K * (1 * (letE c * u₀)) = num * (letE c * u₁) := by
+    apply W.EE_inj
+    calc algebraMap (LetA O n) W.EE (lA W ^ K * (1 * (letE c * u₀)))
+        = lE W K * algebraMap (LetA O n) W.EE (letE c * 1 * u₀) := by
+          rw [ArcLengthFourSecond.lE_eq, ← map_mul]; congr 1; ring
+      _ = algebraMap (LetA O n) W.EE den * (lE W K * g) := by rw [← e₀]; ring
+      _ = _ := by rw [e₁]; congr 1; ring
+  obtain ⟨y, hy, hxy⟩ := saturation_fraction_ring W hcase hP9 hinj num 1 1 hnum (one_mem _) (one_mem _) (letE c * u₀)
+    (by rw [one_mul]; exact W.AΔ.mul_mem (ArcLengthFourSecond.letE_mem c) hu₀)
+    ⟨K, letE c * u₁, W.AΔ.mul_mem (ArcLengthFourSecond.letE_mem c) hu₁, key⟩
+  refine ⟨letE c * y, W.AΔ.mul_mem (ArcLengthFourSecond.letE_mem c) hy, ?_⟩
+  rw [e₀]
+  congr 1
+  have hidem : (letE c : LetA O n) * letE c = letE c := by
+    unfold letE; rw [← Pi.single_mul, one_mul]
+  linear_combination (letE c : LetA O n) ^ 2 * hxy - (((letE c : LetA O n) + 1) * u₀) * hidem
+
+end Formalism.MainNotions.N.FrobeniusPowerSeries
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ArcLengthFourCostBound =====
 
 -- ===== clump member: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ExistsFractionInFrame =====
 -- clump-header: {"m": "Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ExistsFractionInFrame", "h": "module\n\npublic import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ExistsPhiBridge\npublic import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.GammaPi0EqPi0MulUnit\npublic import Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ArcLengthFourCostBound\nimport Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.RingDataOfCaseAOfP9\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

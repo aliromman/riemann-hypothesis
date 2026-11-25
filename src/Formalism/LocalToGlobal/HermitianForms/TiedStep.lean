@@ -1,8 +1,60 @@
 module
 
-public import Formalism.LocalToGlobal.HermitianForms.DetShiftShW
+public import Formalism.LocalToGlobal.HermitianForms.IsLocBasis
 public import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
 
+-- This file was produced by scripts/clump.py from the modules listed below.
+-- Members: Formalism.LocalToGlobal.HermitianForms.DetShiftShW, Formalism.LocalToGlobal.HermitianForms.TiedStep
+
+-- ===== clump member: Formalism.LocalToGlobal.HermitianForms.DetShiftShW =====
+-- clump-header: {"m": "Formalism.LocalToGlobal.HermitianForms.DetShiftShW", "h": "module\n\npublic import Formalism.LocalToGlobal.HermitianForms.IsLocBasis\n\n"}
+section -- clump:auto
+@[expose] public section
+
+namespace Formalism.L2.Forms
+
+open Formalism.BasicNotions
+
+variable {N : ℕ}
+
+def shW (l : DomWeight N) (c : ℤ) : DomWeight N where
+  w := fun i => l.w i - c
+  anti := fun i j h => by
+    have := l.anti h
+    show l.w j - c ≤ l.w i - c
+    omega
+
+theorem shW_zero (l : DomWeight N) : shW l 0 = l := by
+  cases l
+  simp only [shW, sub_zero]
+
+theorem detShift_shW (l : DomWeight N) (c : ℤ) (hN : 0 < N) : (shW l c).detShift = l.detShift - c := by
+  simp [DomWeight.detShift, hN, shW]
+
+theorem natW_shW (l : DomWeight N) (c : ℤ) : (shW l c).natW = l.natW := by
+  funext i
+  have hN : 0 < N := lt_of_le_of_lt (Nat.zero_le _) i.2
+  simp only [DomWeight.natW, detShift_shW l c hN]
+  congr 1
+  simp only [shW]
+  ring
+
+theorem delSq_shW (R : Type) [CommRing R] (l : DomWeight N) (c : ℤ) : delSq R N (shW l c) = delSq R N l := by
+  unfold delSq
+  rw [natW_shW]
+
+theorem CSpan_shW {ι : Type} [Fintype ι] (lam : ι → DomWeight N) (c : ι → ℤ) :
+    CSpan (fun τ => shW (lam τ) (c τ)) = CSpan lam := by
+  simp only [CSpan, delSq_shW]
+
+end Formalism.L2.Forms
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.LocalToGlobal.HermitianForms.DetShiftShW =====
+
+-- ===== clump member: Formalism.LocalToGlobal.HermitianForms.TiedStep =====
+-- clump-header: {"m": "Formalism.LocalToGlobal.HermitianForms.TiedStep", "h": "module\n\npublic import Formalism.LocalToGlobal.HermitianForms.DetShiftShW\npublic import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow\n\n"}
+section -- clump:auto
 @[expose] public section
 
 noncomputable section
@@ -133,3 +185,7 @@ structure ValTied (u : D.what₂.Word) (eV : (D.mem u).A.vT ≃ PlT D u) (i : �
     (D.fm u).dilT i v a c (fun z => g (K.y ((D.fm u).dil i v a c)) (eY z)) = fun z => g (K.y c * δ) (eY z)
 
 end Formalism.L2.Forms
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.LocalToGlobal.HermitianForms.TiedStep =====

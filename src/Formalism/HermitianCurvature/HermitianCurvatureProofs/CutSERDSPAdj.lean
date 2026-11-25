@@ -6,7 +6,6 @@ public import Mathlib.Analysis.SpecialFunctions.Log.Deriv
 public import Formalism.HermitianCurvature.StatementNF
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.IntMulOfCpt
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.TendstoIntUv
-public import Formalism.HermitianCurvature.HermitianCurvatureProofs.ExistsFderivChiBound
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.NormDiagonalEntryDilationGeneratorLeOne
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.PairAtTAdjCpt
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.SumPairAtStarMul
@@ -21,7 +20,38 @@ import Mathlib.Algebra.Order.Archimedean.Real.Hom
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.RegularisedPairingViaPhase
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.HermitianCurvature.HermitianCurvatureProofs.ZeroNotMemTsupportPsiL, Formalism.HermitianCurvature.HermitianCurvatureProofs.NormCDZPsiCLe, Formalism.HermitianCurvature.HermitianCurvatureProofs.HsRealSmulRight, Formalism.HermitianCurvature.HermitianCurvatureProofs.CsliceContDiffAt, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSERDSPAdj
+-- Members: Formalism.HermitianCurvature.HermitianCurvatureProofs.ExistsFderivChiBound, Formalism.HermitianCurvature.HermitianCurvatureProofs.ZeroNotMemTsupportPsiL, Formalism.HermitianCurvature.HermitianCurvatureProofs.NormCDZPsiCLe, Formalism.HermitianCurvature.HermitianCurvatureProofs.HsRealSmulRight, Formalism.HermitianCurvature.HermitianCurvatureProofs.CsliceContDiffAt, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSERDSPAdj
+
+-- ===== clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.ExistsFderivChiBound =====
+-- clump-header: {"m": "Formalism.HermitianCurvature.HermitianCurvatureProofs.ExistsFderivChiBound", "h": "module\n\npublic import Formalism.HermitianCurvature.StatementNF\nimport Formalism.HermitianCurvature.HermitianCurvatureProofs.SumPairAtStarMul\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open Matrix MeasureTheory Filter Topology
+open scoped ComplexConjugate InnerProductSpace ContDiff
+
+noncomputable section
+
+namespace Formalism.FourierDecayAlt.P5.HerB
+
+open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt.Q Formalism.FourierDecayAlt.Wd Formalism.FourierDecayAlt.P5 Formalism.FourierDecayAlt.P5.HerA
+
+section Bump
+
+theorem dZ_contDiff {f : ℂ → ℂ} (hf : ContDiff ℝ ∞ f) : ContDiff ℝ ∞ (NF.dZ f) := by
+  have hd : ContDiff ℝ ∞ (fderiv ℝ f) := (contDiff_infty_iff_fderiv.1 hf).2
+  have h1 : ContDiff ℝ ∞ (fun w => fderiv ℝ f w 1) := hd.clm_apply contDiff_const
+  have hI : ContDiff ℝ ∞ (fun w => fderiv ℝ f w Complex.I) := hd.clm_apply contDiff_const
+  show ContDiff ℝ ∞ (fun w => (1 / 2 : ℂ) * (fderiv ℝ f w 1 - Complex.I * fderiv ℝ f w Complex.I))
+  exact contDiff_const.mul (h1.sub (contDiff_const.mul hI))
+
+end Bump
+
+end Formalism.FourierDecayAlt.P5.HerB
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.ExistsFderivChiBound =====
 
 -- ===== clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.ZeroNotMemTsupportPsiL =====
 -- clump-header: {"m": "Formalism.HermitianCurvature.HermitianCurvatureProofs.ZeroNotMemTsupportPsiL", "h": "module\n\npublic import Mathlib.Analysis.CStarAlgebra.Classes\npublic import Mathlib.Analysis.Calculus.BumpFunction.FiniteDimension\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.LocallyConvex.AbsConvexOpen\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\npublic import Mathlib.Analysis.SpecialFunctions.Log.Deriv\n\n"}

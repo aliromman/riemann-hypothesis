@@ -46,7 +46,8 @@ public import GroundTheory.HeightsAndTheta.Heights.Intersections.IsMultiHomogTwo
 public import GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsFurtherLast
 public import GroundTheory.HeightsAndTheta.Heights.Intersections.StFnDegAdjoin
 public import GroundTheory.HeightsAndTheta.Heights.Intersections.PChartRankAdjoin
-public import GroundTheory.HeightsAndTheta.Heights.Intersections.StIntClosureLocFinite
+public import Mathlib.Algebra.Field.Subfield.Basic
+public import Mathlib.RingTheory.IntegralClosure.IsIntegral.Defs
 public import GroundTheory.HeightsAndTheta.Heights.Intersections.StRelAlgClosureFinite
 public import GroundTheory.HeightsAndTheta.Heights.IntegralModels.Assembly
 public import GroundTheory.HeightsAndTheta.Heights.Intersections.StLocRingFrac
@@ -166,7 +167,33 @@ import GroundTheory.HeightsAndTheta.Heights.Intersections.PHorizNotMem
 import GroundTheory.HeightsAndTheta.Heights.Intersections.TableDegreeThreeBase
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsBis, GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsBisFurther, GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsBisLast, GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsBisMore, GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsBisSide, GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsBisTail, GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsFurther, GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsMore, GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsRest, GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsTer, GroundTheory.HeightsAndTheta.Heights.Intersections.LogNormDivSameOrbit, GroundTheory.HeightsAndTheta.Heights.Intersections.PFnDegAdjoin, GroundTheory.HeightsAndTheta.Heights.Intersections.PIntClosureLocFinite, GroundTheory.HeightsAndTheta.Heights.Intersections.PLocRingDimOne, GroundTheory.HeightsAndTheta.Heights.Intersections.PLocRingInj, GroundTheory.HeightsAndTheta.Heights.Intersections.PLocRingIntClosure, GroundTheory.HeightsAndTheta.Heights.Intersections.PPtsMonoSemiPos, GroundTheory.HeightsAndTheta.Heights.Intersections.PRankFracDegree, GroundTheory.HeightsAndTheta.Heights.Intersections.PSemilocChartRatio, GroundTheory.HeightsAndTheta.Heights.Intersections.PSemilocFinite, GroundTheory.HeightsAndTheta.Heights.Intersections.PSemilocIntegral, GroundTheory.HeightsAndTheta.Heights.Intersections.PSemilocLength, GroundTheory.HeightsAndTheta.Heights.Intersections.PSemilocRank, GroundTheory.HeightsAndTheta.Heights.Intersections.ProofOfNoethPow, GroundTheory.HeightsAndTheta.Heights.Intersections.Assembly
+-- Members: GroundTheory.HeightsAndTheta.Heights.Intersections.StIntClosureLocFinite, GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsBis, GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsBisFurther, GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsBisLast, GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsBisMore, GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsBisSide, GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsBisTail, GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsFurther, GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsMore, GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsRest, GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsTer, GroundTheory.HeightsAndTheta.Heights.Intersections.LogNormDivSameOrbit, GroundTheory.HeightsAndTheta.Heights.Intersections.PFnDegAdjoin, GroundTheory.HeightsAndTheta.Heights.Intersections.PIntClosureLocFinite, GroundTheory.HeightsAndTheta.Heights.Intersections.PLocRingDimOne, GroundTheory.HeightsAndTheta.Heights.Intersections.PLocRingInj, GroundTheory.HeightsAndTheta.Heights.Intersections.PLocRingIntClosure, GroundTheory.HeightsAndTheta.Heights.Intersections.PPtsMonoSemiPos, GroundTheory.HeightsAndTheta.Heights.Intersections.PRankFracDegree, GroundTheory.HeightsAndTheta.Heights.Intersections.PSemilocChartRatio, GroundTheory.HeightsAndTheta.Heights.Intersections.PSemilocFinite, GroundTheory.HeightsAndTheta.Heights.Intersections.PSemilocIntegral, GroundTheory.HeightsAndTheta.Heights.Intersections.PSemilocLength, GroundTheory.HeightsAndTheta.Heights.Intersections.PSemilocRank, GroundTheory.HeightsAndTheta.Heights.Intersections.ProofOfNoethPow, GroundTheory.HeightsAndTheta.Heights.Intersections.Assembly
+
+-- ===== clump member: GroundTheory.HeightsAndTheta.Heights.Intersections.StIntClosureLocFinite =====
+-- clump-header: {"m": "GroundTheory.HeightsAndTheta.Heights.Intersections.StIntClosureLocFinite", "h": "module\n\npublic import Mathlib.Algebra.Field.Subfield.Basic\npublic import Mathlib.RingTheory.IntegralClosure.IsIntegral.Defs\n\n"}
+section -- clump:auto
+@[expose] public section
+
+set_option maxSynthPendingDepth 1
+
+noncomputable section
+
+namespace GroundTheory.Heights₂.Heights.Inter
+
+def IntClosureLocFinite.Statement : Prop :=
+  ∀ (F L : Type) [Field F] [Field L] (φ : F →+* L) (S : Finset L), Subfield.closure (S : Set L) = ⊤ →
+    ∀ (A : Subring F) (T : Finset F), Subring.closure (T : Set F) ≤ A →
+    (∀ z ∈ A, ∃ b ∈ Subring.closure (T : Set F), ∃ c ∈ Subring.closure (T : Set F),
+      c ≠ 0 ∧ c⁻¹ ∈ A ∧ z * c = b) →
+    letI := (φ.comp A.subtype).toAlgebra
+    letI : Module A L := Algebra.toModule
+    ∃ t : Finset L, ∀ x : L, IsIntegral A x → x ∈ Submodule.span A (t : Set L)
+
+end GroundTheory.Heights₂.Heights.Inter
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: GroundTheory.HeightsAndTheta.Heights.Intersections.StIntClosureLocFinite =====
 
 -- ===== clump member: GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsBis =====
 -- clump-header: {"m": "GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsBis", "h": "module\n\npublic import GroundTheory.HeightsAndTheta.Heights.Intersections.IdDeg\npublic import GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsTerBis\npublic import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsLocRingDimOne\npublic import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsSemilocFinite\npublic import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsSemilocRank\npublic import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsSemilocLength\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\npublic import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.KrullDimQuotientEqOneIffEqBot\npublic import Mathlib.RingTheory.OrderOfVanishing.Basic\n\n"}

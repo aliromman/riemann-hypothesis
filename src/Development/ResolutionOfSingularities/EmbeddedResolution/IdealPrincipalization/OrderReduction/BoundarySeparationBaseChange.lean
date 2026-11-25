@@ -3,19 +3,381 @@ module
 public import Development.ResolutionOfSingularities.EmbeddedResolution.IteratedBlowups.BlowupSequenceRelations
 public import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedBlowupSequence.Append
 public import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedOrderReduction.ConcatComparisonMap
-public import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.LowerDimReductionSmoothPullback
+public import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.TunedMarkedBlowupSeq
+public import Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.PullbackBlowupSequenceComposition
+public import Development.ResolutionOfSingularities.EmbeddedResolution.StrongResolution.SequenceIsomorphism
 public import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.MaxContactGeometryHypotheses
 public import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.BoundarySeparation
 public import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.IndependenceOfHypersurface
 import Development.ResolutionOfSingularities.EmbeddedResolution.DerivativeIdeal.DerivativeIdealSheafSmoothPullback
 import Development.ResolutionOfSingularities.EmbeddedResolution.DerivativeIdeal.OrderPullback
 import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.MaxContactHypersurfaceTransform
-import Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.PullbackBlowupSequenceComposition
-import Development.ResolutionOfSingularities.EmbeddedResolution.StrongResolution.SequenceIsomorphism
 import Mathlib.Tactic.Linter.Style
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedOrderReduction.AppendIsomorphism, Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.BoundarySeparationBaseChange
+-- Members: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.LowerDimReductionSmoothPullback, Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedOrderReduction.AppendIsomorphism, Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.BoundarySeparationBaseChange
+
+-- ===== clump member: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.LowerDimReductionSmoothPullback =====
+-- clump-header: {"m": "Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.LowerDimReductionSmoothPullback", "h": "module\n\npublic import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedOrderReduction.ConcatComparisonMap\npublic import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.TunedMarkedBlowupSeq\nimport Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.MarkedBlowupSequenceBoundary\nimport Development.ResolutionOfSingularities.EmbeddedResolution.MaximalContactHypersurfaces.TunedSheafBasic\npublic import Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.PullbackBlowupSequenceComposition\npublic import Development.ResolutionOfSingularities.EmbeddedResolution.StrongResolution.SequenceIsomorphism\n\n"}
+section -- clump:auto
+@[expose] public section
+
+universe u
+
+open CategoryTheory AlgebraicGeometry
+
+noncomputable section
+
+namespace FunctorialResolution.EmbeddedResolution
+
+namespace StrictPullbackBlowupSeq
+
+theorem smooth_map {X' X : Scheme.{u}} {g : X' ⟶ X} [AlgebraicGeometry.Smooth g]
+    {t : SequenceOfBlowups X'} {s : SequenceOfBlowups X} (D : StrictPullbackBlowupSeq g t s)
+    (i : ℕ) (hi : i ≤ t.length) : AlgebraicGeometry.Smooth (D.comp i hi) := by
+  have hsq : IsPullback (D.comp i hi) (t.projectionToBase i) (s.projectionToBase i) g :=
+    isPullback_projectionToBase_of_isPullback_blowupMorphism g t s t.length D.comp D.comp_zero
+      D.pullback i hi
+  have hbc : MorphismProperty.IsStableUnderBaseChange
+      (@AlgebraicGeometry.Smooth : MorphismProperty Scheme.{u}) := inferInstance
+  exact hbc.of_isPullback hsq.flip ‹AlgebraicGeometry.Smooth g›
+
+end StrictPullbackBlowupSeq
+
+namespace MarkedBlowupSequenceData
+
+variable {k : Type u} [Field k] {X : Scheme.{u}} {p : X ⟶ Spec (CommRingCat.of k)}
+  {I : X.IdealSheafData} {m : ℕ} {E : List X.IdealSheafData}
+
+end MarkedBlowupSequenceData
+
+theorem IsStrictPullbackBlowupSeq.of_eq {X' X : Scheme.{u}} {φ : X' ⟶ X} {B₁ B₂ : SequenceOfBlowups X'}
+    {C₁ C₂ : SequenceOfBlowups X} (h₁ : B₁ = B₂) (h₂ : C₁ = C₂)
+    (hh : IsStrictPullbackBlowupSeq φ B₁ C₁) : IsStrictPullbackBlowupSeq φ B₂ C₂ := by
+  subst h₁
+  subst h₂
+  exact hh
+
+namespace LowerDimReductionPullback
+
+@[reducible] noncomputable def pullbackTriple (S : MarkedIdealWithBoundary.{u}) {Y : Scheme.{u}}
+    (g : Y ⟶ S.scheme) : MarkedIdealWithBoundary.{u} :=
+  S.pullbackAlong Y (g ≫ S.structMap) g
+
+variable (S : MarkedIdealWithBoundary.{u}) {Y : Scheme.{u}} (g : Y ⟶ S.scheme)
+  (s : MarkedBlowupSequenceData S.structMap S.ideal S.mult S.boundary)
+  (t : MarkedBlowupSequenceData (pullbackTriple S g).structMap (pullbackTriple S g).ideal (pullbackTriple S g).mult
+      (pullbackTriple S g).boundary)
+  (D : StrictPullbackBlowupSeq g t.toMarkedSequenceOfBlowups.toSequenceOfBlowups s.toMarkedSequenceOfBlowups.toSequenceOfBlowups)
+
+noncomputable def pullbackMapAtLength : t.obj t.length ⟶ s.obj s.length :=
+  D.lastMap
+
+theorem pullbackMapAtLength_eq_lastMap : pullbackMapAtLength S g s t D = D.lastMap := rfl
+
+@[reducible] noncomputable def comapBoundaryPullback (L : List (s.obj s.length).IdealSheafData) :
+    List (t.obj t.length).IdealSheafData :=
+  L.map (fun A => A.comap (pullbackMapAtLength S g s t D))
+
+private theorem eqToHom_comp_projectionToBase {X : Scheme.{u}} (s : SequenceOfBlowups X) {a b : ℕ}
+    (h : a = b) :
+    eqToHom (congrArg (fun n => s.schemeAt n) h) ≫ s.projectionToBase b = s.projectionToBase a := by
+  subst h
+  simp
+
+private theorem lastMap_comp_projectionToBase {X' X : Scheme.{u}} {g : X' ⟶ X}
+    {t : SequenceOfBlowups X'} {s : SequenceOfBlowups X} (D : StrictPullbackBlowupSeq g t s) :
+    D.lastMap ≫ s.projectionToBase s.length = t.projectionToBase t.length ≫ g := by
+  have key := isPullback_projectionToBase_of_isPullback_blowupMorphism g t s t.length D.comp D.comp_zero
+    D.pullback t.length le_rfl
+  rw [StrictPullbackBlowupSeq.lastMap_eq, Category.assoc, eqToHom_comp_projectionToBase s D.length_eq]
+  exact key.w
+
+theorem pullbackMapAtLength_comp_eq_comp_structureMorphism :
+    pullbackMapAtLength S g s t D ≫ (s.proj s.length ≫ S.structMap) =
+      t.proj t.length ≫ (g ≫ S.structMap) := by
+  have h2 : pullbackMapAtLength S g s t D ≫ s.proj s.length = t.proj t.length ≫ g := by
+    rw [MarkedBlowupSequenceData.projectionToBase_eq_toSequenceOfBlowups s s.length,
+      MarkedBlowupSequenceData.projectionToBase_eq_toSequenceOfBlowups t t.length]
+    exact lastMap_comp_projectionToBase D
+  have h3 : (pullbackMapAtLength S g s t D ≫ s.proj s.length) ≫ S.structMap
+      = (t.proj t.length ≫ g) ≫ S.structMap :=
+    congrArg (fun φ : t.obj t.length ⟶ S.scheme => φ ≫ S.structMap) h2
+  exact (Category.assoc _ _ _).symm.trans (h3.trans (Category.assoc _ _ _))
+
+theorem pullbackMapAtLength_comp_eq_pullbackTriple_structureMorphism :
+    pullbackMapAtLength S g s t D ≫ (s.proj s.length ≫ S.structMap) =
+      t.proj t.length ≫ (pullbackTriple S g).structMap := by
+  have h : g ≫ S.structMap = (pullbackTriple S g).structMap :=
+    (MarkedIdealWithBoundary.pullbackAlong_structureMorphism S Y (g ≫ S.structMap) g).symm
+  refine (pullbackMapAtLength_comp_eq_comp_structureMorphism S g s t D).trans ?_
+  exact congrArg (fun f => t.proj t.length ≫ f) h
+
+private theorem comap_eq_comap_comp_eqToHom
+    (F : ℕ → Scheme.{u}) (J : ∀ n : ℕ, (F n).IdealSheafData) {a b : ℕ} (hab : a = b)
+    {Z : Scheme.{u}} (f : Z ⟶ F a) :
+    (J a).comap f = (J b).comap (f ≫ eqToHom (congrArg F hab)) := by
+  subst hab
+  simp
+
+theorem ideal_eq_comap_pullbackMapAtLength :
+    t.ideal t.length = (s.ideal s.length).comap (pullbackMapAtLength S g s t D) := by
+  have hL : t.length = s.length := D.length_eq
+  have key := MarkedBlowupSequenceData.ideal_eq_comap_controlledTransform (I := S.ideal) (m := S.mult) (E := S.boundary)
+    (d := s.toBlowupSequenceData) t D s.isMarked.divisible t.length le_rfl
+  refine key.trans ?_
+  rw [s.controlledTransform_eq_ideal t.length hL.le]
+  exact comap_eq_comap_comp_eqToHom s.obj s.ideal hL _
+
+private theorem boundary_eq_map_comap_strictPullbackComparisonMap {K : Type u} [Field K] {XX' XX : Scheme.{u}}
+    {qq : XX' ⟶ Spec (CommRingCat.of K)} {gg : XX' ⟶ XX} [AlgebraicGeometry.Flat gg]
+    {II : XX.IdealSheafData} {mm : ℕ} {EE : List XX.IdealSheafData} {dd : BlowupSequenceData XX}
+    (tt : MarkedBlowupSequenceData qq (II.comap gg) mm (EE.map fun A => A.comap gg))
+    (DD : StrictPullbackBlowupSeq gg tt.toMarkedSequenceOfBlowups.toSequenceOfBlowups dd.toSequenceOfBlowups)
+    (hNd : ∀ i ≤ dd.length, AlgebraicGeometry.IsLocallyNoetherian (dd.obj i))
+    (hNt : ∀ i ≤ tt.length, AlgebraicGeometry.IsLocallyNoetherian (tt.obj i))
+    (i j : ℕ) (hi : i ≤ tt.length) (hij : i = j) :
+    tt.boundary i =
+      (dd.boundaryFrom EE j).map
+        (fun A => A.comap (tt.strictPullbackComparisonMap DD i hi ≫ eqToHom (congrArg (fun n => dd.obj n) hij))) := by
+  subst hij
+  simp only [eqToHom_refl, Category.comp_id]
+  exact tt.boundary_eq_comap_strictPullbackComparisonMap DD hNd hNt i hi
+
+theorem boundary_eq_map_comap_pullbackMapAtLength [AlgebraicGeometry.Flat g]
+    (hNs : ∀ i ≤ s.length, AlgebraicGeometry.IsLocallyNoetherian (s.obj i))
+    (hNt : ∀ i ≤ t.length, AlgebraicGeometry.IsLocallyNoetherian (t.obj i)) :
+    t.boundary t.length =
+      (s.boundary s.length).map (fun A => A.comap (pullbackMapAtLength S g s t D)) := by
+  have hlen : t.length = s.length := D.length_eq
+  have key := boundary_eq_map_comap_strictPullbackComparisonMap (dd := s.toBlowupSequenceData) (II := S.ideal) (mm := S.mult)
+    (EE := S.boundary) (gg := g) t D hNs hNt t.length s.length le_rfl hlen
+  rw [_root_.FunctorialResolution.EmbeddedResolution.MarkedBlowupSequenceData.toBlowupSequenceData_boundary_eq_boundary_of_le s s.length le_rfl] at key
+  exact key
+
+private theorem smooth_comp_eqToHom {X Y Y' : Scheme.{u}} (f : X ⟶ Y) (h : Y = Y')
+    (hf : AlgebraicGeometry.Smooth f) : AlgebraicGeometry.Smooth (f ≫ eqToHom h) := by
+  subst h
+  simp only [eqToHom_refl, Category.comp_id]
+  exact hf
+
+private theorem smooth_lastMap {X' X : Scheme.{u}} {g : X' ⟶ X}
+    [AlgebraicGeometry.Smooth g] {t : SequenceOfBlowups X'} {s : SequenceOfBlowups X}
+    (D : StrictPullbackBlowupSeq g t s) : AlgebraicGeometry.Smooth D.lastMap := by
+  rw [StrictPullbackBlowupSeq.lastMap_eq]
+  exact smooth_comp_eqToHom _ _ (StrictPullbackBlowupSeq.smooth_map D t.length le_rfl)
+
+theorem smooth_pullbackMapAtLength [AlgebraicGeometry.Smooth g] :
+    AlgebraicGeometry.Smooth (pullbackMapAtLength S g s t D) := by
+  rw [pullbackMapAtLength_eq_lastMap]
+  exact smooth_lastMap D
+
+private theorem surjective_comp_eqToHom {X Y Z : Scheme.{u}} (f : X ⟶ Y)
+    (hf : AlgebraicGeometry.Surjective f) (h : Y = Z) :
+    AlgebraicGeometry.Surjective (f ≫ eqToHom h) := by
+  subst h
+  rw [eqToHom_refl, Category.comp_id]
+  exact hf
+
+private theorem surjective_lastMap {X' X : Scheme.{u}} {g : X' ⟶ X}
+    [AlgebraicGeometry.Surjective g] {t : SequenceOfBlowups X'} {s : SequenceOfBlowups X}
+    (D : StrictPullbackBlowupSeq g t s) : AlgebraicGeometry.Surjective D.lastMap := by
+  rw [StrictPullbackBlowupSeq.lastMap_eq]
+  exact surjective_comp_eqToHom _
+    (surjective_of_isPullback_blowupMorphism g t s t.length D.comp D.comp_zero D.pullback
+      t.length le_rfl) _
+
+theorem surjective_pullbackMapAtLength [AlgebraicGeometry.Surjective g] :
+    AlgebraicGeometry.Surjective (pullbackMapAtLength S g s t D) := by
+  rw [pullbackMapAtLength_eq_lastMap]
+  exact surjective_lastMap D
+
+private theorem balancedTunedSheaf_congr (k : Type u) [CommRing k] [IsNoetherianRing k]
+    {X : Scheme.{u}} {p q : X ⟶ Spec (CommRingCat.of k)} (hpq : p = q)
+    (hp : AlgebraicGeometry.LocallyOfFiniteType p)
+    (hq : AlgebraicGeometry.LocallyOfFiniteType q)
+    {I J : X.IdealSheafData} (hIJ : I = J) {m n : ℕ} (hmn : m = n) :
+    @balancedTunedSheaf k _ _ X p hp I m = @balancedTunedSheaf k _ _ X q hq J n := by
+  subst hpq
+  subst hIJ
+  subst hmn
+  rfl
+
+theorem tunedIdealAtLength_comap_pullbackMapAtLength [AlgebraicGeometry.Smooth g]
+    (hftS : AlgebraicGeometry.LocallyOfFiniteType (s.proj s.length ≫ S.structMap))
+    (hftT : AlgebraicGeometry.LocallyOfFiniteType (t.proj t.length ≫ (pullbackTriple S g).structMap))
+    (extra : List (s.obj s.length).IdealSheafData) (keep : ℕ)
+    (hVc : (MaxContactCoverData.derivedTriple S s hftS extra keep).IsAdmissible) :
+    (tunedIdealAtLength S s hftS).comap (pullbackMapAtLength S g s t D) = tunedIdealAtLength (pullbackTriple S g) t hftT := by
+  have hmor : pullbackMapAtLength S g s t D ≫ (s.proj s.length ≫ S.structMap)
+      = t.proj t.length ≫ (pullbackTriple S g).structMap := pullbackMapAtLength_comp_eq_pullbackTriple_structureMorphism S g s t D
+  have hid : t.ideal t.length = (s.ideal s.length).comap (pullbackMapAtLength S g s t D) :=
+    ideal_eq_comap_pullbackMapAtLength S g s t D
+  have hsm : AlgebraicGeometry.Smooth (s.proj s.length ≫ S.structMap) := by
+    have h0 := hVc.smooth
+    rwa [_root_.FunctorialResolution.EmbeddedResolution.MaxContactCoverData.derivedTriple_structureMorphism S s hftS extra keep] at h0
+  have := hftS
+  have := hftT
+  have := smooth_pullbackMapAtLength S g s t D
+  have : AlgebraicGeometry.LocallyOfFiniteType
+      (pullbackMapAtLength S g s t D ≫ (s.proj s.length ≫ S.structMap)) := by
+    rw [hmor]
+    exact hftT
+  rw [tunedIdealAtLength_eq_balancedTunedSheaf, tunedIdealAtLength_eq_balancedTunedSheaf,
+    ← balancedTunedSheaf_comap S.base (s.proj s.length ≫ S.structMap) (pullbackMapAtLength S g s t D)
+      (s.ideal s.length) S.mult]
+  exact balancedTunedSheaf_congr S.base hmor _ _ hid.symm
+    (MarkedIdealWithBoundary.pullbackAlong_mult S Y (g ≫ S.structMap) g).symm
+
+theorem pullbackAlong_derivedTriple_eq [AlgebraicGeometry.Smooth g]
+    (hftS : AlgebraicGeometry.LocallyOfFiniteType (s.proj s.length ≫ S.structMap))
+    (hftT : AlgebraicGeometry.LocallyOfFiniteType (t.proj t.length ≫ (pullbackTriple S g).structMap))
+    (extra : List (s.obj s.length).IdealSheafData) (keep : ℕ)
+    (hVc : (MaxContactCoverData.derivedTriple S s hftS extra keep).IsAdmissible) :
+    ((MaxContactCoverData.derivedTriple S s hftS extra keep).pullbackAlong (t.obj t.length)
+          (pullbackMapAtLength S g s t D ≫ (MaxContactCoverData.derivedTriple S s hftS extra keep).structMap)
+          (pullbackMapAtLength S g s t D)).withBoundary
+        (@List.append (t.obj t.length).IdealSheafData (comapBoundaryPullback S g s t D extra)
+          ((t.boundary t.length).drop keep)) =
+      MaxContactCoverData.derivedTriple (pullbackTriple S g) t hftT (comapBoundaryPullback S g s t D extra) keep := by
+  have hstruct : pullbackMapAtLength S g s t D ≫ (s.proj s.length ≫ S.structMap)
+      = t.proj t.length ≫ (pullbackTriple S g).structMap := pullbackMapAtLength_comp_eq_pullbackTriple_structureMorphism S g s t D
+  have hideal : (tunedIdealAtLength S s hftS).comap (pullbackMapAtLength S g s t D) = tunedIdealAtLength (pullbackTriple S g) t hftT :=
+    tunedIdealAtLength_comap_pullbackMapAtLength S g s t D hftS hftT extra keep hVc
+  simp only [MaxContactCoverData.derivedTriple, MarkedIdealWithBoundary.pullbackAlong, MarkedIdealWithBoundary.withBoundary]
+  congr 1
+
+theorem nonempty_strictPullback_appendLowerDimReduction [AlgebraicGeometry.Smooth g] [AlgebraicGeometry.Flat g]
+    [AlgebraicGeometry.Surjective g]
+    (hstar : MaxContactCoverProperties.{u}) (hinv : ComapIsoInvariance.{u}) (T : MarkedIdealWithBoundary.{u})
+    (P : ℕ → Prop) (A : ℕ → PrincipalizationAssignment.{u}) (B : PrincipalizationAssignment.{u}) (j : ℕ)
+    (hspec : IsBoundaryDivisorReduction P j (A j) B)
+    (rc : (S' : MarkedIdealWithBoundary.{u}) → S'.krullDimSucc ≤ T.krullDimSucc → ℕ → S'.SequenceOfBlowups)
+    (hrc : ∀ (S' : MarkedIdealWithBoundary.{u}) (h : S'.krullDimSucc ≤ T.krullDimSucc) (i : ℕ), rc S' h i = A i S')
+    (extra : List (s.obj s.length).IdealSheafData) (keep : ℕ)
+    (hftS : AlgebraicGeometry.LocallyOfFiniteType (s.proj s.length ≫ S.structMap))
+    (hftT : AlgebraicGeometry.LocallyOfFiniteType (t.proj t.length ≫ (pullbackTriple S g).structMap))
+    (hV : S.IsAdmissible) (hm : 1 ≤ S.mult)
+    (hO : ∀ x : ↥S.scheme, orderAt S.ideal x ≤ (S.mult : ℕ∞))
+    (hNs : ∀ i ≤ s.length, AlgebraicGeometry.IsLocallyNoetherian (s.obj i))
+    (hV' : (pullbackTriple S g).IsAdmissible)
+    (hO' : ∀ x : ↥(pullbackTriple S g).scheme,
+      orderAt (pullbackTriple S g).ideal x ≤ (((pullbackTriple S g).mult : ℕ) : ℕ∞))
+    (hNt : ∀ i ≤ t.length, AlgebraicGeometry.IsLocallyNoetherian (t.obj i))
+    (hdim : (MaxContactCoverData.derivedTriple S s hftS extra keep).krullDimSucc ≤ T.krullDimSucc)
+    (hP : P (MaxContactCoverData.derivedTriple S s hftS extra keep).krullDimSucc)
+    (hVc : (MaxContactCoverData.derivedTriple S s hftS extra keep).IsAdmissible)
+    (hj : j < (extra ++ (s.boundary s.length).drop keep).length)
+    (hsep : ∀ Dv ∈ (s.boundary s.length).take keep,
+      orderAtLeastLocus (s.ideal s.length) S.mult ∩ (Dv.support : Set ↥(s.obj s.length)) = ∅)
+    (hdim' : (MaxContactCoverData.derivedTriple (pullbackTriple S g) t hftT
+      (extra.map fun E : (s.obj s.length).IdealSheafData => E.comap D.lastMap) keep).krullDimSucc ≤ T.krullDimSucc)
+    (hP' : P (MaxContactCoverData.derivedTriple (pullbackTriple S g) t hftT
+      (extra.map fun E : (s.obj s.length).IdealSheafData => E.comap D.lastMap) keep).krullDimSucc)
+    (hVc' : (MaxContactCoverData.derivedTriple (pullbackTriple S g) t hftT
+      (extra.map fun E : (s.obj s.length).IdealSheafData => E.comap D.lastMap) keep).IsAdmissible)
+    (hj' : j < (@List.append (t.obj t.length).IdealSheafData
+      (extra.map fun E : (s.obj s.length).IdealSheafData => E.comap D.lastMap)
+      ((t.boundary t.length).drop keep)).length)
+    (hsep' : ∀ Dv ∈ (t.boundary t.length).take keep,
+      orderAtLeastLocus (t.ideal t.length) (pullbackTriple S g).mult ∩
+        (Dv.support : Set ↥(t.obj t.length)) = ∅) :
+    Nonempty (StrictPullbackBlowupSeq g
+      (MaxContactReduction.appendLowerDimReduction hinv T rc (pullbackTriple S g) t
+        (extra.map fun E : (s.obj s.length).IdealSheafData => E.comap D.lastMap)
+        keep j).toMarkedSequenceOfBlowups.toSequenceOfBlowups
+      (MaxContactReduction.appendLowerDimReduction hinv T rc S s extra keep j).toMarkedSequenceOfBlowups.toSequenceOfBlowups) := by
+  have hsm : AlgebraicGeometry.Smooth (pullbackMapAtLength S g s t D) := smooth_pullbackMapAtLength S g s t D
+  have hsu : AlgebraicGeometry.Surjective (pullbackMapAtLength S g s t D) := surjective_pullbackMapAtLength S g s t D
+  have hmult : (pullbackTriple S g).mult = S.mult :=
+    MarkedIdealWithBoundary.pullbackAlong_mult S Y (g ≫ S.structMap) g
+  have hm' : 1 ≤ (pullbackTriple S g).mult := le_of_le_of_eq hm hmult.symm
+  have hb1 : (MaxContactCoverData.derivedTriple S s hftS extra keep).boundary
+      = extra ++ (s.boundary s.length).drop keep := rfl
+  have hbd : ((MaxContactCoverData.derivedTriple S s hftS extra keep).pullbackAlong (t.obj t.length)
+        (pullbackMapAtLength S g s t D ≫ (MaxContactCoverData.derivedTriple S s hftS extra keep).structMap)
+        (pullbackMapAtLength S g s t D)).boundary
+      = comapBoundaryPullback S g s t D extra ++ (t.boundary t.length).drop keep := by
+    refine (MarkedIdealWithBoundary.pullbackAlong_boundary
+        (MaxContactCoverData.derivedTriple S s hftS extra keep)
+        (t.obj t.length)
+        (pullbackMapAtLength S g s t D ≫ (MaxContactCoverData.derivedTriple S s hftS extra keep).structMap)
+        (pullbackMapAtLength S g s t D)).trans ?_
+    have hbmap := boundary_eq_map_comap_pullbackMapAtLength S g s t D hNs hNt
+    change List.map (fun Dv => Dv.comap (pullbackMapAtLength S g s t D))
+      (extra ++ (s.boundary s.length).drop keep) = _
+    rw [List.map_append, List.map_drop, ← hbmap]
+  have hbe : MarkedIdealWithBoundary.SameNontrivialBoundary
+      ((MaxContactCoverData.derivedTriple S s hftS extra keep).pullbackAlong (t.obj t.length)
+        (pullbackMapAtLength S g s t D ≫ (MaxContactCoverData.derivedTriple S s hftS extra keep).structMap)
+        (pullbackMapAtLength S g s t D)).boundary
+      (comapBoundaryPullback S g s t D extra ++ (t.boundary t.length).drop keep) :=
+    hbd ▸ MarkedIdealWithBoundary.SameNontrivialBoundary.refl _
+  have htake : List.take (j + 1) (comapBoundaryPullback S g s t D extra ++ (t.boundary t.length).drop keep)
+      = List.take (j + 1)
+          (((MaxContactCoverData.derivedTriple S s hftS extra keep).pullbackAlong (t.obj t.length)
+            (pullbackMapAtLength S g s t D ≫ (MaxContactCoverData.derivedTriple S s hftS extra keep).structMap)
+            (pullbackMapAtLength S g s t D)).boundary) :=
+    congrArg (fun l => List.take (j + 1) l) hbd.symm
+  have hkey : ((MaxContactCoverData.derivedTriple S s hftS extra keep).pullbackAlong (t.obj t.length)
+        (pullbackMapAtLength S g s t D ≫ (MaxContactCoverData.derivedTriple S s hftS extra keep).structMap)
+        (pullbackMapAtLength S g s t D)).withBoundary
+        (comapBoundaryPullback S g s t D extra ++ (t.boundary t.length).drop keep)
+      = MaxContactCoverData.derivedTriple (pullbackTriple S g) t hftT
+          (extra.map fun E : (s.obj s.length).IdealSheafData => E.comap D.lastMap) keep :=
+    pullbackAlong_derivedTriple_eq S g s t D hftS hftT extra keep hVc
+  have hO1 : (MaxContactCoverData.derivedTriple S s hftS extra keep).IsOrderBoundedByMult :=
+    isOrderBoundedByMult_derivedTriple hstar S hV hm hO s hftS extra keep hVc
+  have hD1 := isBalanced_derivedTriple hstar S hV hm hO s hftS extra keep hVc
+  have hjb1 : j < (MaxContactCoverData.derivedTriple S s hftS extra keep).boundary.length := by
+    rw [hb1]
+    exact hj
+  have hO2' := isOrderBoundedByMult_derivedTriple hstar (pullbackTriple S g) hV' hm' hO' t hftT
+      (extra.map fun E : (s.obj s.length).IdealSheafData => E.comap D.lastMap) keep hVc'
+  have hD2' := isBalanced_derivedTriple hstar (pullbackTriple S g) hV' hm' hO' t hftT
+      (extra.map fun E : (s.obj s.length).IdealSheafData => E.comap D.lastMap) keep hVc'
+  have hfacts : ∀ T' : MarkedIdealWithBoundary.{u},
+      T' = MaxContactCoverData.derivedTriple (pullbackTriple S g) t hftT
+        (extra.map fun E : (s.obj s.length).IdealSheafData => E.comap D.lastMap) keep →
+      T'.IsAdmissible ∧ P T'.krullDimSucc ∧ T'.IsOrderBoundedByMult ∧ j < T'.boundary.length ∧
+        ∀ hft : AlgebraicGeometry.LocallyOfFiniteType T'.structMap, T'.IsBalanced hft := by
+    rintro T' rfl
+    exact ⟨hVc', hP', hO2', hj', fun _ => hD2'⟩
+  obtain ⟨hV2, hP2, hO2, hjb2, hD2⟩ := hfacts _ hkey
+  have h0 := @hspec.smooth_pullback_strict
+      (MaxContactCoverData.derivedTriple S s hftS extra keep)
+      hVc hP hO1 hD1 hjb1 (t.obj t.length)
+      (pullbackMapAtLength S g s t D ≫
+        (MaxContactCoverData.derivedTriple S s hftS extra keep).structMap)
+      (pullbackMapAtLength S g s t D) hsm hsu rfl
+      (comapBoundaryPullback S g s t D extra ++ (t.boundary t.length).drop keep) hbe htake
+      hV2 hP2 hO2 (hD2 hV2.locallyOfFiniteType) hjb2
+  have hspb : IsStrictPullbackBlowupSeq (pullbackMapAtLength S g s t D)
+      (A j (MaxContactCoverData.derivedTriple (pullbackTriple S g) t hftT
+        (extra.map fun E : (s.obj s.length).IdealSheafData => E.comap D.lastMap) keep)).toSequenceOfBlowups
+      (A j (MaxContactCoverData.derivedTriple S s hftS extra keep)).toSequenceOfBlowups :=
+    IsStrictPullbackBlowupSeq.of_eq (eq_of_heq ((A j).toSequenceOfBlowups_heq_of_eq hkey)) rfl h0
+  obtain ⟨hmkS, hSeq, -⟩ := appendLowerDimReduction_eq_append hstar hinv T P A B j hspec rc hrc S hV hm hO s
+    extra keep hftS hdim hP hVc hj hsep
+  obtain ⟨hmkT, hTeq, -⟩ := appendLowerDimReduction_eq_append hstar hinv T P A B j hspec rc hrc (pullbackTriple S g)
+    hV' hm' hO' t (extra.map fun E : (s.obj s.length).IdealSheafData => E.comap D.lastMap) keep
+    hftT hdim' hP' hVc' hj' hsep'
+  rw [hSeq, hTeq]
+  refine ⟨(MarkedBlowupSequenceData.isStrictPullbackBlowupSeq_append g s _ t _ hinv D ?_).toStrictPullbackBlowupSeq⟩
+  exact (IsStrictPullbackBlowupSeq.of_eq
+    (BlowupSequenceData.toMarkedBlowupSequenceData_toSequenceOfBlowups _ _ _ _ _ hmkT).symm
+    (BlowupSequenceData.toMarkedBlowupSequenceData_toSequenceOfBlowups _ _ _ _ _ hmkS).symm
+    ((hspb.of_isomorphic_pullback (BlowupSequenceData.ofSequenceOfBlowups_toSequenceOfBlowups_isomorphic _).symm).of_isomorphic_base
+      (BlowupSequenceData.ofSequenceOfBlowups_toSequenceOfBlowups_isomorphic _).symm)).toStrictPullbackBlowupSeq
+
+end LowerDimReductionPullback
+
+end FunctorialResolution.EmbeddedResolution
+
+end
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.LowerDimReductionSmoothPullback =====
 
 -- ===== clump member: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedOrderReduction.AppendIsomorphism =====
 -- clump-header: {"m": "Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedOrderReduction.AppendIsomorphism", "h": "module\n\npublic import Development.ResolutionOfSingularities.EmbeddedResolution.IteratedBlowups.BlowupSequenceRelations\npublic import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedBlowupSequence.Append\npublic import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedOrderReduction.ConcatComparisonMap\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}

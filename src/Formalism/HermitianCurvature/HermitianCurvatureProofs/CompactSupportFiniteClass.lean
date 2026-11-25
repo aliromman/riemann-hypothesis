@@ -1,6 +1,6 @@
 module
 
-public import Formalism.HermitianCurvature.HermitianCurvatureProofs.ThetaConjOfParts
+public import Formalism.HermitianCurvature.StatementJF
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.DilationUnipotentWeylMeasure
 public import Mathlib.FieldTheory.Perfect
 public import Mathlib.LinearAlgebra.FreeModule.PID
@@ -12,6 +12,42 @@ public import Formalism.HermitianCurvature.HermitianCurvatureProofs.RegularisedP
 import Mathlib.Algebra.Order.Archimedean.Real.Hom
 import Mathlib.Tactic.Linter.Style
 
+-- This file was produced by scripts/clump.py from the modules listed below.
+-- Members: Formalism.HermitianCurvature.HermitianCurvatureProofs.ThetaConjOfParts, Formalism.HermitianCurvature.HermitianCurvatureProofs.CompactSupportFiniteClass
+
+-- ===== clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.ThetaConjOfParts =====
+-- clump-header: {"m": "Formalism.HermitianCurvature.HermitianCurvatureProofs.ThetaConjOfParts", "h": "module\n\npublic import Formalism.HermitianCurvature.StatementJF\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open Matrix MeasureTheory Filter Topology
+open scoped ContDiff
+
+noncomputable section
+
+namespace Formalism.FourierDecayAlt.P.JFxG
+
+open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt.B Formalism.FourierDecayAlt.JF
+
+def CptInCC : Prop :=
+  ∀ (k r : ℕ) (E : Type) [NormedAddCommGroup E] [NormedSpace ℂ E] (F : B.Mat k r → E) (C : Set (B.Mat k r)),
+    B.CkOn ⊤ (B.GV k r) F → IsCompact C → (∀ g, g ∉ C → F g = 0) → ∀ (A : ℝ) (m : ℕ), B.InCC A m F
+
+theorem thr_big (k r m : ℕ) :
+    TransportedAlt k r (9 * ((r : ℝ) + 1) * ((((2 * r + k + 1 : ℕ) : ℝ)) ^ 2 + 1) + 6 * (r : ℝ) * (m : ℝ)) m := by
+  unfold TransportedAlt
+  rw [lt_div_iff₀ (by positivity)]
+  nlinarith [Nat.cast_nonneg (α := ℝ) r, sq_nonneg (((2 * r + k + 1 : ℕ) : ℝ))]
+
+end Formalism.FourierDecayAlt.P.JFxG
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.ThetaConjOfParts =====
+
+-- ===== clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CompactSupportFiniteClass =====
+-- clump-header: {"m": "Formalism.HermitianCurvature.HermitianCurvatureProofs.CompactSupportFiniteClass", "h": "module\n\npublic import Formalism.HermitianCurvature.HermitianCurvatureProofs.ThetaConjOfParts\npublic import Formalism.HermitianCurvature.HermitianCurvatureProofs.DilationUnipotentWeylMeasure\npublic import Mathlib.FieldTheory.Perfect\npublic import Mathlib.LinearAlgebra.FreeModule.PID\npublic import Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra\npublic import Mathlib.RingTheory.Flat.TorsionFree\npublic import Mathlib.RingTheory.SimpleRing.Principal\npublic import Formalism.HermitianCurvature.HermitianCurvatureProofs.NormDiagonalEntryDilationGeneratorLeOne\npublic import Formalism.HermitianCurvature.HermitianCurvatureProofs.RegularisedPairingViaPhase\nimport Mathlib.Algebra.Order.Archimedean.Real.Hom\nimport Mathlib.Tactic.Linter.Style\n\n"}
+section -- clump:auto
 @[expose] public section
 
 open Matrix MeasureTheory Filter Topology
@@ -225,3 +261,7 @@ theorem compact_support_finite_class : Formalism.FourierDecayAlt.P.JFxG.CptInCC 
     positivity
 
 end Formalism.FourierDecayAlt.P
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CompactSupportFiniteClass =====

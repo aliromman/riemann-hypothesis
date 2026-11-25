@@ -9,7 +9,9 @@ public import Mathlib.RingTheory.FinitePresentation
 public import Mathlib.Tactic.Linter.Style
 public import Mathlib.CategoryTheory.Limits.Preserves.Over
 public import Development.EtaleCohomology.EtaleSheaves.CompPf
-public import Development.EtaleCohomology.EtaleSheaves.IECompPf
+public import Development.EtaleCohomology.EtaleSheaves.EtaleBaseChangeFractionFieldIndEtaleOverPolynomi
+public import Mathlib.Order.CompletePartialOrder
+public import Mathlib.Algebra.Category.Ring.FinitePresentation
 public import Development.EtaleCohomology.EtaleSheaves.SHExistsPf
 public import Development.EtaleCohomology.EtaleSheaves.EtStagePf
 public import Development.EtaleCohomology.EtaleSheaves.EtaleSpreading.FPProof
@@ -19,11 +21,52 @@ import Mathlib.CategoryTheory.WithTerminal.Cone
 import Mathlib.CategoryTheory.WithTerminal.Lemmas
 import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
 import Mathlib.RingTheory.TotallySplit
-import Mathlib.Algebra.Category.Ring.FinitePresentation
 import Mathlib.CategoryTheory.Comma.LocallySmall
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.EtaleCohomology.EtaleSheaves.FPColimPf, Development.EtaleCohomology.EtaleSheaves.UnderFAOf, Development.EtaleCohomology.EtaleSheaves.ArchimedeanComparison
+-- Members: Development.EtaleCohomology.EtaleSheaves.IECompPf, Development.EtaleCohomology.EtaleSheaves.FPColimPf, Development.EtaleCohomology.EtaleSheaves.UnderFAOf, Development.EtaleCohomology.EtaleSheaves.ArchimedeanComparison
+
+-- ===== clump member: Development.EtaleCohomology.EtaleSheaves.IECompPf =====
+-- clump-header: {"m": "Development.EtaleCohomology.EtaleSheaves.IECompPf", "h": "module\n\npublic import Development.EtaleCohomology.EtaleSheaves.EtaleBaseChangeFractionFieldIndEtaleOverPolynomi\npublic import Mathlib.Order.CompletePartialOrder\npublic import Mathlib.Algebra.Category.Ring.FinitePresentation\nimport Mathlib.Tactic.Linter.Style\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+open CategoryTheory Limits
+
+namespace LateralTheory.E.IECompPf
+open LateralTheory.E.t_E3Cut
+
+def UnderFA : Prop := ∀ X : CommRingCat.{0}, IsFinitelyAccessibleCategory.{0} (Under X)
+
+def EtSpreads : Prop := MorphismProperty.PreIndSpreads.{0} Et
+
+theorem et_comp : Et.IsStableUnderComposition where
+  comp_mem f g hf hg := by
+    show (f ≫ g).hom.Etale
+    rw [CommRingCat.hom_comp]
+    exact RingHom.Etale.stableUnderComposition _ _ hf hg
+
+theorem et_cobase : Et.IsStableUnderCobaseChange :=
+  (RingHom.isStableUnderCobaseChange_toMorphismProperty_iff).2 RingHom.Etale.isStableUnderBaseChange
+
+theorem et_fp : Et ≤ MorphismProperty.isFinitelyPresentable.{0} CommRingCat.{0} := fun _ _ f hf =>
+  CommRingCat.isFinitelyPresentable_hom f (RingHom.Etale.iff_flat_and_formallyUnramified.1 hf).2.2
+
+theorem IEComp_of (h1 : UnderFA) (h2 : EtSpreads) : IEComp := by
+  intro A B C f g hf hg
+  have : ∀ X : CommRingCat.{0}, IsFinitelyAccessibleCategory.{0} (Under X) := h1
+  have : MorphismProperty.PreIndSpreads.{0} Et := h2
+  have := et_comp
+  have := et_cobase
+  have := MorphismProperty.IsStableUnderComposition.ind_of_preIndSpreads (P := Et) et_fp
+  exact this.comp_mem f g hf hg
+
+end LateralTheory.E.IECompPf
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.EtaleCohomology.EtaleSheaves.IECompPf =====
 
 -- ===== clump member: Development.EtaleCohomology.EtaleSheaves.FPColimPf =====
 -- clump-header: {"m": "Development.EtaleCohomology.EtaleSheaves.FPColimPf", "h": "module\n\nimport Mathlib\npublic import Mathlib.Algebra.Category.Ring.Basic\npublic import Mathlib.Algebra.MvPolynomial.Variables\npublic import Mathlib.CategoryTheory.Limits.Types.Filtered\npublic import Mathlib.CategoryTheory.ObjectProperty.ColimitsOfShape\npublic import Mathlib.Combinatorics.Quiver.ReflQuiver\npublic import Mathlib.RingTheory.FinitePresentation\npublic import Mathlib.Tactic.Linter.Style\nimport Mathlib.Algebra.Category.Ring.FilteredColimits\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.CategoryTheory.Limits.Filtered\npublic import Mathlib.CategoryTheory.Limits.Preserves.Over\nimport Mathlib.CategoryTheory.WithTerminal.Cone\nimport Mathlib.CategoryTheory.WithTerminal.Lemmas\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Finiteness.ModuleFinitePresentation\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.TotallySplit\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\npublic import Development.EtaleCohomology.EtaleSheaves.CompPf\n\n"}

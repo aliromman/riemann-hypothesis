@@ -1,6 +1,7 @@
 module
 
-public import Formalism.ThetaLogCoordinates.SandwichModelDomains.SpreadSquare
+public import Formalism.ThetaLogCoordinates.SandwichModelDomains.StatementW
+public import Formalism.ThetaLogCoordinates.TraceIsometryWeights.SchurTraceProofs.WeightCompApply
 public import Formalism.GradedWeylDivisibility.DualWeylDominanceOf
 public import Formalism.GradedWeylDivisibility.FinalC
 public import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LDlatLemmas
@@ -26,7 +27,84 @@ import Formalism.ThetaLogCoordinates.TraceIsometryWeights.SchurTraceProofs.ZpClo
 import Mathlib.Tactic.Linter.HaveILetI
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.ThetaLogCoordinates.SandwichModelDomains.SandwichModelProofs.Ascent, Formalism.ThetaLogCoordinates.SandwichModelDomains.SandwichModelProofs.Assemble, Formalism.ThetaLogCoordinates.SandwichModelDomains.SandwichModelProofs.Descent, Formalism.ThetaLogCoordinates.SandwichModelDomains.SandwichModelProofs.GlFirstLineDividedPowers, Formalism.ThetaLogCoordinates.SandwichModelDomains.SandwichModelProofs.Spread, Formalism.ThetaLogCoordinates.SandwichModelDomains.SandwichModelProofs.SwappedHighestWeightNeZero, Formalism.ThetaLogCoordinates.SandwichModelDomains.FinalW
+-- Members: Formalism.ThetaLogCoordinates.SandwichModelDomains.SpreadSquare, Formalism.ThetaLogCoordinates.SandwichModelDomains.SandwichModelProofs.Ascent, Formalism.ThetaLogCoordinates.SandwichModelDomains.SandwichModelProofs.Assemble, Formalism.ThetaLogCoordinates.SandwichModelDomains.SandwichModelProofs.Descent, Formalism.ThetaLogCoordinates.SandwichModelDomains.SandwichModelProofs.GlFirstLineDividedPowers, Formalism.ThetaLogCoordinates.SandwichModelDomains.SandwichModelProofs.Spread, Formalism.ThetaLogCoordinates.SandwichModelDomains.SandwichModelProofs.SwappedHighestWeightNeZero, Formalism.ThetaLogCoordinates.SandwichModelDomains.FinalW
+
+-- ===== clump member: Formalism.ThetaLogCoordinates.SandwichModelDomains.SpreadSquare =====
+-- clump-header: {"m": "Formalism.ThetaLogCoordinates.SandwichModelDomains.SpreadSquare", "h": "module\n\npublic import Formalism.ThetaLogCoordinates.SandwichModelDomains.StatementW\npublic import Formalism.ThetaLogCoordinates.TraceIsometryWeights.SchurTraceProofs.WeightCompApply\nimport Formalism.ThetaLogCoordinates.TraceIsometryWeights.DivStable\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open MvPolynomial
+
+noncomputable section
+
+namespace Formalism.InvariantFactorPaths.INST
+
+open Formalism.GradedWeylDivisibility Formalism.GM.M Formalism.GM.DimensionMonotonicity Formalism.InvariantFactorPaths.PW
+
+def Spread (R : Type) [CommRing R] (r n : ℕ) (ν : Fin n → ℕ) (l : ℕ) : Prop :=
+  ∀ f ∈ dualWeyl R r n ν, ∀ g ∈ dualWeyl R r n ν, ∀ m ∈ f.support, ∀ m' ∈ g.support, ∀ a : Fin r,
+    rowDeg m a ≤ rowDeg m' a + l
+
+def SpreadTop : Prop :=
+  ∀ (R : Type) [CommRing R] [IsDomain R] (r n : ℕ) (ν : Fin n → ℕ) (l : ℕ), (∀ t, ν t ≤ l) → Spread R r n ν l
+
+def SpreadSquare : Prop :=
+  ∀ (R : Type) [CommRing R] [IsDomain R] (n : ℕ) (ν : Fin n → ℕ) (l : ℕ), (∀ s t, ν s ≤ ν t + l) → Spread R n n ν l
+
+def vecL {n : ℕ} (ν : Fin n → ℕ) : Letters n := ⟨fun _ => true, ν⟩
+
+def swp (R : Type) [CommRing R] (r n : ℕ) :
+    MvPolynomial (Fin r × Fin n) R ≃ₐ[R] MvPolynomial (Fin n × Fin r) R :=
+  renameEquiv R (Equiv.prodComm (Fin r) (Fin n))
+
+def GR (p : ℕ) [Fact p.Prime] (r : ℕ) {n : ℕ} (ν : Fin n → ℕ) :
+    GlW ℚ_[p] (MvPolynomial (Fin n × Fin r) ℚ_[p]) r :=
+  GAe p (vecL ν) n (OrderIso.refl (Fin r)).toOrderEmbedding
+
+def RowGlOne : Prop :=
+  ∀ (p : ℕ) [Fact p.Prime] (r n : ℕ) (ν : Fin n → ℕ) (a b : Fin r) (f : MvPolynomial (Fin r × Fin n) ℚ_[p]),
+    swp ℚ_[p] r n (rowDiv ℚ_[p] a b 1 f) = (GR p r ν).E a b (swp ℚ_[p] r n f)
+
+def RowGlDiv : Prop :=
+  ∀ (p : ℕ) [Fact p.Prime] (r n : ℕ) (ν : Fin n → ℕ) (a b : Fin r), a ≠ b →
+    ∀ (k : ℕ) (f : MvPolynomial (Fin r × Fin n) ℚ_[p]),
+      swp ℚ_[p] r n (rowDiv ℚ_[p] a b k f) =
+        ((k.factorial : ℚ_[p]))⁻¹ • (((GR p r ν).E a b) ^ k) (swp ℚ_[p] r n f)
+
+def SwpWt : Prop :=
+  ∀ (p : ℕ) [Fact p.Prime] (r n : ℕ) (ν : Fin n → ℕ) (μ : Fin r → ℤ) (f : MvPolynomial (Fin r × Fin n) ℚ_[p]),
+    (GR p r ν).IsWt μ (swp ℚ_[p] r n f) ↔ ∀ m ∈ f.support, ∀ a, (rowDeg m a : ℤ) = μ a
+
+def SwpPol : Prop :=
+  ∀ (p : ℕ) [Fact p.Prime] (r n : ℕ) (ν : Fin n → ℕ) (f : MvPolynomial (Fin r × Fin n) ℚ_[p]),
+    IsWeightedHomogeneous (colW r n) f ν → swp ℚ_[p] r n f ∈ Pol p r (vecL ν)
+
+def SwpInt : Prop :=
+  ∀ (p : ℕ) [Fact p.Prime] (r n : ℕ) (f : MvPolynomial (Fin r × Fin n) ℚ_[p]),
+    swp ℚ_[p] r n f ∈ IntPol p (Fin n × Fin r) ↔
+      ∃ f0 : MvPolynomial (Fin r × Fin n) ℤ_[p], map (algebraMap ℤ_[p] ℚ_[p]) f0 = f
+
+def CoreQp : Prop :=
+  ∀ (p : ℕ) [Fact p.Prime] (r n : ℕ) (hn : n ≤ r) (ν : Fin n → ℕ), Antitone ν → ∀ l : ℕ, Spread ℚ_[p] r n ν l →
+    ∀ x ∈ dualWeyl ℤ_[p] r n ν, ((p : ℤ_[p]) ^ sExp p r l) • x ∈ weyl ℤ_[p] r n hn ν
+
+def DescentZ : Prop :=
+  ∀ (p : ℕ) [Fact p.Prime] (r n : ℕ) (hn : n ≤ r) (ν : Fin n → ℕ), Antitone ν → ∀ e : ℕ,
+    (∀ x ∈ dualWeyl ℤ_[p] r n ν, ((p : ℤ_[p]) ^ e) • x ∈ weyl ℤ_[p] r n hn ν) →
+    ∀ f ∈ dualWeyl ℤ r n ν, ∃ c : ℤ, ¬ (p : ℤ) ∣ c ∧ (c * (p : ℤ) ^ e) • f ∈ weyl ℤ r n hn ν
+
+def AscentDomain : Prop :=
+  ∀ (p : ℕ) (r n : ℕ) (hn : n ≤ r) (ν : Fin n → ℕ) (e : ℕ),
+    (∀ f ∈ dualWeyl ℤ r n ν, ∃ c : ℤ, ¬ (p : ℤ) ∣ c ∧ (c * (p : ℤ) ^ e) • f ∈ weyl ℤ r n hn ν) →
+    ∀ (O : Type) [CommRing O] [IsDomain O], PrimeToPUnits p O →
+      ∀ x ∈ dualWeyl O r n ν, ((p : O) ^ e) • x ∈ weyl O r n hn ν
+
+end Formalism.InvariantFactorPaths.INST
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.ThetaLogCoordinates.SandwichModelDomains.SpreadSquare =====
 
 -- ===== clump member: Formalism.ThetaLogCoordinates.SandwichModelDomains.SandwichModelProofs.Ascent =====
 -- clump-header: {"m": "Formalism.ThetaLogCoordinates.SandwichModelDomains.SandwichModelProofs.Ascent", "h": "module\n\npublic import Formalism.ThetaLogCoordinates.SandwichModelDomains.SpreadSquare\npublic import Formalism.GradedWeylDivisibility.DualWeylDominanceOf\npublic import Formalism.GradedWeylDivisibility.FinalC\npublic import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LDlatLemmas\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Topology.Sheaves.Init\n\n"}

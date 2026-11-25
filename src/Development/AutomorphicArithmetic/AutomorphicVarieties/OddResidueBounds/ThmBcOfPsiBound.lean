@@ -13,7 +13,8 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueB
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.BernoulliNumbers.BNzany
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.NormO
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.ActFacts
-public import Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.ChiFacts
+public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.BernoulliNumbers.Parity
+public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.BernoulliNumbers.Primmem
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.ExistsO
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.ActConj
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.PrimeSetBoundDataOfPrimitiveChar
@@ -63,7 +64,6 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibra
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.BernoulliNumbers.Charbij
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.BernoulliNumbers.BNzC
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.BernoulliNumbers.Primmap
-public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.BernoulliNumbers.Primmem
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.ActEx
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.KillPow
 import Mathlib.Tactic.Linter.HaveILetI
@@ -78,12 +78,42 @@ import ReciprocityTheory.GaloisValuations.GlobalA
 import Mathlib.RingTheory.Ideal.Int
 import Mathlib.Analysis.Real.Pi.Bounds
 import Mathlib.NumberTheory.MulChar.Duality
-import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.BernoulliNumbers.Parity
 import GroundTheory.GlobalFields.CyclotomicCharacters.ProfinitePadic
 import Mathlib.GroupTheory.FiniteAbelian.Duality
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.ShaDecompSign, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.PsiReal, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.AtPrime, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.DegExistsLift, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.LogDisc, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.LogH, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.SelCard, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CocycleCoboundaryFiniteIndex, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.CobOne, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.TorsRep, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.UnrInj, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.UnrSel, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.Imports, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.LenPow, Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.BernoulliNumbers.BUltraUnit, Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.BernoulliNumbers.Denupper, Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.BernoulliNumbers.Ratprod, Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.BernoulliNumbers.Prodint, Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.BernoulliNumbers.Sumval, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.ProdVal, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.ThmBcOfPsiBound
+-- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.ChiFacts, Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.ShaDecompSign, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.PsiReal, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.AtPrime, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.DegExistsLift, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.LogDisc, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.LogH, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.SelCard, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CocycleCoboundaryFiniteIndex, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.CobOne, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.TorsRep, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.UnrInj, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.UnrSel, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.Imports, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.LenPow, Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.BernoulliNumbers.BUltraUnit, Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.BernoulliNumbers.Denupper, Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.BernoulliNumbers.Ratprod, Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.BernoulliNumbers.Prodint, Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.BernoulliNumbers.Sumval, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.ProdVal, Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.ThmBcOfPsiBound
+
+-- ===== clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.ChiFacts =====
+-- clump-header: {"m": "Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.ChiFacts", "h": "module\n\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.ZeroMemUnrHom\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.BernoulliNumbers.Parity\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.BernoulliNumbers.Primmem\nimport Development.AutomorphicArithmetic.AutomorphicVarieties.StickelbergerCharacterEval.MemZpowersIff\nimport Development.AutomorphicArithmetic.AutomorphicVarieties.StickelbergerElements.CoefMapSingle\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.GaloisCohomology UpperTheory.V UpperTheory.V.LDataCardLeFinrank UpperTheory.V.Base UpperTheory.V.Kum UpperTheory.V.Bern UpperTheory.V.B4 UpperTheory.V.B5 UpperTheory.V.Odd
+
+theorem UpperTheory.V.Odd.chiFacts :
+    ∀ (E : Type) [Field E] [NumberField E] (N : ℕ) [NeZero N] (ρ : (ZMod N)ˣ →* (E ≃ₐ[ℚ] E)), Function.Surjective ρ → ∀ (l : ℕ) [Fact l.Prime] (O : Subalgebra ℤ_[l] (PadicAlgCl l)), Function.Injective (fun ψ : (E ≃ₐ[ℚ] E) →* Oˣ => chiOf ρ ψ) ∧ ∀ (ψ : (E ≃ₐ[ℚ] E) →* Oˣ) (k : ℕ), (chiOf ρ ψ (-1) = (-1) ^ k → chiOf ρ ψ ∈ charSet (PadicAlgCl l) (parE ρ k)) ∧ ∃ a : O, (a : PadicAlgCl l) = alN k (chiOf ρ ψ) := by
+  intro E _ _ N _ ρ hρ l _ O
+  refine ⟨fun ψ ψ' h => ?_, fun ψ k => ⟨fun hk => ?_, ?_⟩⟩
+  · refine MonoidHom.ext fun g => ?_
+    obtain ⟨b, rfl⟩ := hρ g
+    have hb := congrArg (fun χ : DirichletCharacter (PadicAlgCl l) N => χ (b : ZMod N)) h
+    simp only [chiOf_unit] at hb
+    exact Units.ext (Subtype.ext hb)
+  · simp only [charSet, parE, Set.mem_setOf_eq, Set.mem_inter_iff]
+    refine ⟨?_, (b_parity k _).1.2 hk⟩
+    intro b hb
+    rw [MonoidHom.mem_ker] at hb ⊢
+    apply Units.ext
+    rw [MulChar.coe_toUnitHom, chiOf_unit, hb]
+    simp
+  · have h := (b_primmem k (chiOf ρ ψ)).2.1 O.toSubring (fun u => by
+      rw [chiOf_unit]
+      exact (ψ (ρ u) : O).2)
+    exact ⟨⟨_, h⟩, rfl⟩
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.ChiFacts =====
 
 -- ===== clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.ShaDecompSign =====
 -- clump-header: {"m": "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.ShaDecompSign", "h": "module\n\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.ConjStableShaFam\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.PartsConj\npublic import Mathlib.FieldTheory.Galois.Abelian\npublic import Mathlib.LinearAlgebra.Eigenspace.Basic\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.DvrFacts\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.GalQuot\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.LenEigSign\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.QoBase\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.ShaLenEq\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}

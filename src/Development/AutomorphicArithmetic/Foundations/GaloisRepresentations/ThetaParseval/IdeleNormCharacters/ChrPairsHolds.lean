@@ -4,10 +4,11 @@ public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership
 public import Formalism.SatakeDualWeyl.StatementE
 public import Development.AbelianVarietyTheory.Definitions.Foundations.IsSatVecUOfIsSphericalU
 public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.BaseChangeDefiniteUnitary
-public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.AbsFactsAlt
+public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.ContinuousAdeleNorm
+public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilTensorModels
+public import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.ExistsUniqueHcharOfFiniteOrder
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.SplitLineSubtraction.TwoUpOKOf
 public import Development.AbelianVarietyTheory.Definitions.Divisors.SimpleTwistedTraceFormulaStable
-public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.ContinuousAdeleNorm
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeCharCMEtaLocalEqNegOnePowValInert
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CmExtensionIdeleConjIdeleMapMaxRealSubfieldStatement
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CmExtensionIdeleConjMemFiniteUnitIdelesStatement
@@ -33,7 +34,98 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsCmAdel
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.DiscreteGroups.PiInvariants.CompactSupportTwists.TwistSatHolds, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.AbsFacts, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.ChrExPf, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.ChrPairsPf, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeCharCMEtaLocalEqNegOnePowValInertStatement, Development.AutomorphicArithmetic.Foundations.Convolution.HermitianDescent.OffUnitsLeUnitIdl, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.ConjDivNorm, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.ExpInj, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.ReadEx, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsOpenEmbeddingVal, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.ReadExp, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.ReadLoc, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.ReadRes, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.TypProd, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.TypVal, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.ChrPairsHolds
+-- Members: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.AbsFactsAlt, Development.DiscreteGroups.PiInvariants.CompactSupportTwists.TwistSatHolds, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.AbsFacts, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.ChrExPf, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.ChrPairsPf, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeCharCMEtaLocalEqNegOnePowValInertStatement, Development.AutomorphicArithmetic.Foundations.Convolution.HermitianDescent.OffUnitsLeUnitIdl, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.ConjDivNorm, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.ExpInj, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.ReadEx, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsOpenEmbeddingVal, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.ReadExp, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.ReadLoc, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.ReadRes, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.TypProd, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.TypVal, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.ChrPairsHolds
+
+-- ===== clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.AbsFactsAlt =====
+-- clump-header: {"m": "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.AbsFactsAlt", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.SubsingletonRankZero\npublic import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.ContinuousAdeleNorm\npublic import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilTensorModels\npublic import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.ExistsUniqueHcharOfFiniteOrder\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Host Formalism.ConjugateSelfDual Neutral.B1 ReciprocityTheory.Gal
+open GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.HeckeGal GlobalTheory.CuspRep
+
+namespace UpperTheory.Gal.TP.Chr
+
+variable {E : Type} [Field E] [NumberField E] [IsCMField E]
+
+def pl (φ : E →+* ℂ) : InfinitePlace (maximalRealSubfield E) := (InfinitePlace.mk φ).comap (algebraMap (maximalRealSubfield E) E)
+
+
+open Classical in
+def typ (emb : ∀ w : InfinitePlace (maximalRealSubfield E), EmbOver E w) (a b : InfinitePlace (maximalRealSubfield E) → ℤ) (φ : E →+* ℂ) : ℤ :=
+  if φ = (emb (pl φ)).1 then a (pl φ) else b (pl φ)
+
+def InfExp (emb : ∀ w : InfinitePlace (maximalRealSubfield E), EmbOver E w) (μ : HChar E) (m : InfinitePlace (maximalRealSubfield E) → ℤ) : Prop :=
+  ∀ k : Eˣ, ((μ.inf k : ℂˣ) : ℂ) = ∏ w, ((emb w).1 (k : E) / ‖(emb w).1 (k : E)‖) ^ m w
+
+def Reads (μ : HChar E) (χ : Chr (maximalRealSubfield E) E) : Prop :=
+  ∀ z : (AE (maximalRealSubfield E) E)ˣ, (χ z : ℂ) =
+    ((μ.1 (Units.map (GlobalTheory.UnitaryHeckeBaseChange.adeleEquiv (GlobalTheory.GalOfCusp.isCMExt_real E)).toRingHom.toMonoidHom z) : ℂˣ) : ℂ)
+
+def ChrEx : Prop :=
+  ∀ (E : Type) [Field E] [NumberField E] [IsCMField E],
+    (∀ w : HeightOneSpectrum (𝓞 E), Algebra.IsUnramifiedAt (𝓞 (maximalRealSubfield E)) w.asIdeal) →
+    ∀ (emb : ∀ w : InfinitePlace (maximalRealSubfield E), EmbOver E w) (w₀ : HeightOneSpectrum (𝓞 E)) (m : InfinitePlace (maximalRealSubfield E) → ℤ), (∀ w, Odd (m w)) →
+    ∃ (χ : Chr (maximalRealSubfield E) E) (ψ : ℕ → ℤ → HChar E), UnrAt χ w₀ ∧
+      (∀ k : ℕ, IsHecke (maximalRealSubfield E) E (χ ^ k) ∧ HasExp emb (χ ^ k) (fun w => k * m w) ∧
+        ∀ j : ℕ, j % 2 = k % 2 → ResEtaPow (Units.map (algebraMap (maximalRealSubfield E) (AF (maximalRealSubfield E))).toMonoidHom).range (χ ^ k) j) ∧
+      (∀ k s w, ((ψ k s).UnrAt w ↔ UnrAt (χ ^ k) w) ∧
+        (((ψ k s).val w : ℂˣ) : ℂ) = ((val χ w : ℂˣ) : ℂ) ^ k * ((normV w : ℕ) : ℂ) ^ (-(s : ℂ) / 2)) ∧
+      (∀ (k : ℕ) (s : ℤ), Even (k + s) → IsAlgPos (ψ k s) (typ emb (fun w => (s + k * m w) / 2) fun w => (s - k * m w) / 2)) ∧
+      ∀ k k' s s', ψ k s = ψ k' s' → k = k'
+
+def MuEmb : Prop :=
+  ∀ (E : Type) [Field E] [NumberField E] [IsCMField E],
+    (∀ w : HeightOneSpectrum (𝓞 E), Algebra.IsUnramifiedAt (𝓞 (maximalRealSubfield E)) w.asIdeal) →
+    ∀ (emb : ∀ w : InfinitePlace (maximalRealSubfield E), EmbOver E w) (w₀ : HeightOneSpectrum (𝓞 E)) (m : InfinitePlace (maximalRealSubfield E) → ℤ), (∀ w, Odd (m w)) →
+    ∃ μ : HChar E, μ.IsUnitary ∧ (∀ x, μ.1 (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryHeckeCharacterIdele.ideleMap (maximalRealSubfield E) E x) = (GlobalTheory.GalOfCusp.quadChar E).1 x) ∧
+      InfExp emb μ m ∧ μ.UnrAt w₀
+
+def ReadEx : Prop :=
+  ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (μ : HChar E), μ.IsUnitary →
+    ∃ χ : Chr (maximalRealSubfield E) E, Reads μ χ ∧ IsHecke (maximalRealSubfield E) E χ
+
+def ReadLoc : Prop :=
+  ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (μ : HChar E) (χ : Chr (maximalRealSubfield E) E), Reads μ χ → ∀ w, locChar χ w = μ.loc w
+
+def ReadRes : Prop :=
+  ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (μ : HChar E) (χ : Chr (maximalRealSubfield E) E), Reads μ χ →
+    (∀ x, μ.1 (GlobalTheory.IndefiniteRowSideFullHecke.UnitaryHeckeCharacterIdele.ideleMap (maximalRealSubfield E) E x) = (GlobalTheory.GalOfCusp.quadChar E).1 x) →
+    ResEtaPow (Units.map (algebraMap (maximalRealSubfield E) (AF (maximalRealSubfield E))).toMonoidHom).range χ 1
+
+def ReadExp : Prop :=
+  ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (emb : ∀ w : InfinitePlace (maximalRealSubfield E), EmbOver E w) (μ : HChar E)
+    (χ : Chr (maximalRealSubfield E) E) (m : InfinitePlace (maximalRealSubfield E) → ℤ), Reads μ χ → InfExp emb μ m → HasExp emb χ m
+
+def AbsFacts : Prop :=
+  ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (emb : ∀ w : InfinitePlace (maximalRealSubfield E), EmbOver E w) (z : ℂ),
+    (∀ w, (Model.absC E z).UnrAt w ∧ (((Model.absC E z).val w : ℂˣ) : ℂ) = ((normV w : ℕ) : ℂ) ^ (-z)) ∧
+    ∀ k : Eˣ, (((Model.absC E z).inf k : ℂˣ) : ℂ) = ∏ w, ((‖(emb w).1 (k : E)‖ : ℝ) : ℂ) ^ (2 * z)
+
+def TypProd : Prop :=
+  ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (emb : ∀ w : InfinitePlace (maximalRealSubfield E), EmbOver E w)
+    (a b : InfinitePlace (maximalRealSubfield E) → ℤ) (x : E),
+    ∏ φ : E →+* ℂ, φ x ^ typ emb a b φ = ∏ w, (emb w).1 x ^ a w * (starRingEnd ℂ ((emb w).1 x)) ^ b w
+
+def TypVal : Prop :=
+  ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (emb : ∀ w : InfinitePlace (maximalRealSubfield E), EmbOver E w)
+    (a b : InfinitePlace (maximalRealSubfield E) → ℤ) (w : InfinitePlace (maximalRealSubfield E)),
+    typ emb a b (emb w).1 = a w ∧ typ emb a b (ComplexEmbedding.conjugate (emb w).1) = b w
+
+def ExpInj : Prop :=
+  ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (emb : ∀ w : InfinitePlace (maximalRealSubfield E), EmbOver E w)
+    (m m' : InfinitePlace (maximalRealSubfield E) → ℤ) (s s' : ℤ),
+    (∀ k : Eˣ, ∏ w, ((emb w).1 (k : E) / ‖(emb w).1 (k : E)‖) ^ m w * ((‖(emb w).1 (k : E)‖ : ℝ) : ℂ) ^ s =
+      ∏ w, ((emb w).1 (k : E) / ‖(emb w).1 (k : E)‖) ^ m' w * ((‖(emb w).1 (k : E)‖ : ℝ) : ℂ) ^ s') → m = m'
+
+end UpperTheory.Gal.TP.Chr
+
+end
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.AbsFactsAlt =====
 
 -- ===== clump member: Development.DiscreteGroups.PiInvariants.CompactSupportTwists.TwistSatHolds =====
 -- clump-header: {"m": "Development.DiscreteGroups.PiInvariants.CompactSupportTwists.TwistSatHolds", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.SubsingletonRankZero\npublic import Formalism.SatakeDualWeyl.StatementE\npublic import Development.AbelianVarietyTheory.Definitions.Foundations.IsSatVecUOfIsSphericalU\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.BaseChangeDefiniteUnitary\n\n"}

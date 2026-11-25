@@ -2,7 +2,6 @@ module
 
 public import Development.EtaleCohomology.DivisorCycles.CycleCount
 public import Development.EtaleCohomology.DivisorCycles.OpenCoset
-public import Development.EtaleCohomology.DivisorCycles.CycleCountPf
 public import Mathlib.LinearAlgebra.Eigenspace.Charpoly
 public import Mathlib.LinearAlgebra.Eigenspace.Triangularizable
 public import Mathlib.LinearAlgebra.Charpoly.ToMatrix
@@ -26,7 +25,37 @@ import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.RingTheory.Etale.Weakly
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.EtaleCohomology.DivisorCycles.AlgStruct2, Development.EtaleCohomology.DivisorCycles.CoeMulInv, Development.EtaleCohomology.DivisorCycles.CycSpecQzkPf, Development.EtaleCohomology.DivisorCycles.DiagScalar2, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.AevalEig, Development.EtaleCohomology.DivisorCycles.FixScalOf, Development.EtaleCohomology.DivisorCycles.GradePf, Development.EtaleCohomology.DivisorCycles.ProjPf, Development.EtaleCohomology.DivisorCycles.StructPf, Development.EtaleCohomology.DivisorCycles.TanLiePf, Development.EtaleCohomology.DivisorCycles.FinStruct
+-- Members: Development.EtaleCohomology.DivisorCycles.CycleCountPf, Development.EtaleCohomology.DivisorCycles.AlgStruct2, Development.EtaleCohomology.DivisorCycles.CoeMulInv, Development.EtaleCohomology.DivisorCycles.CycSpecQzkPf, Development.EtaleCohomology.DivisorCycles.DiagScalar2, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.AevalEig, Development.EtaleCohomology.DivisorCycles.FixScalOf, Development.EtaleCohomology.DivisorCycles.GradePf, Development.EtaleCohomology.DivisorCycles.ProjPf, Development.EtaleCohomology.DivisorCycles.StructPf, Development.EtaleCohomology.DivisorCycles.TanLiePf, Development.EtaleCohomology.DivisorCycles.FinStruct
+
+-- ===== clump member: Development.EtaleCohomology.DivisorCycles.CycleCountPf =====
+-- clump-header: {"m": "Development.EtaleCohomology.DivisorCycles.CycleCountPf", "h": "module\n\npublic import Development.EtaleCohomology.DivisorCycles.CycleCount\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open Matrix PositivityTheory.AutomorphicGaloisHodgeTate.Div
+namespace LateralTheory.DivDb.CycleCountPf
+open LateralTheory.DivDb
+
+def CycSpec : Prop := ∀ (C : Type) [Field C] [IsAlgClosed C] [CharZero C] (N n : ℕ) (p : Fin n → Mat C N)
+  (y : Mat C N) (π : Equiv.Perm (Fin n)), Sys p → IsUnit y → (∀ j, y * p j = p (π j) * y) → Disj y π p →
+  ∃ l : Fin n → C, Function.Injective l ∧ ∀ j, y.charpoly.IsRoot (l j) ∧
+    ∃ v : Fin N → C, v ≠ 0 ∧ y *ᵥ v = l j • v ∧ ∀ k, ¬ π.SameCycle j k → p k *ᵥ v = 0
+
+def FixScal : Prop := ∀ (C : Type) [Field C] [IsAlgClosed C] [CharZero C] (N n : ℕ) (p : Fin n → Mat C N)
+  (y : Mat C N) (π : Equiv.Perm (Fin n)) (l : Fin n → C), Sys p → (∀ j, y * p j = p (π j) * y) → Deg n y →
+  Disj y π p → Function.Injective l →
+  (∀ j, ∃ v : Fin N → C, v ≠ 0 ∧ y *ᵥ v = l j • v ∧ ∀ k, ¬ π.SameCycle j k → p k *ᵥ v = 0) →
+  ∀ i, π i = i → ∃ c : C, y * p i = c • p i
+
+theorem CycleCount_of (h1 : CycSpec) (h2 : FixScal) : CycleCount := by
+  intro C _ _ _ N n p y π hp hy hyp hdeg hd
+  obtain ⟨l, hl, hr⟩ := h1 C N n p y π hp hy hyp hd
+  exact ⟨⟨l, hl, fun j => (hr j).1⟩, h2 C N n p y π l hp hyp hdeg hd hl (fun j => (hr j).2)⟩
+
+end LateralTheory.DivDb.CycleCountPf
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.EtaleCohomology.DivisorCycles.CycleCountPf =====
 
 -- ===== clump member: Development.EtaleCohomology.DivisorCycles.AlgStruct2 =====
 -- clump-header: {"m": "Development.EtaleCohomology.DivisorCycles.AlgStruct2", "h": "module\n\npublic import Development.EtaleCohomology.DivisorCycles.CycleCount\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\n\n"}

@@ -1,6 +1,7 @@
 module
 
-public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsFurtherAlt
+public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.AlgebraMapMemChartRingLine
+public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.IsFieldSubalgebraSelf
 public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsBisExtra
 public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsTerTer
 public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsMoreLast
@@ -17,7 +18,36 @@ public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ZpowMemSubri
 import Mathlib.RingTheory.RegularLocalRing.Defs
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsMore, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PTwistVanishAll, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.LineBundleTwistVanish
+-- Members: GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsFurtherAlt, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsMore, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PTwistVanishAll, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.LineBundleTwistVanish
+
+-- ===== clump member: GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsFurtherAlt =====
+-- clump-header: {"m": "GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsFurtherAlt", "h": "module\n\npublic import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.AlgebraMapMemChartRingLine\npublic import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.IsFieldSubalgebraSelf\n\n"}
+section -- clump:auto
+@[expose] public section
+
+set_option maxSynthPendingDepth 1
+
+namespace GroundTheory.Heights₂.Heights.Kleiman.SectionsOverLocalization
+
+open ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.KH (secOver mIdealOver cechHc quotPart)
+
+def ModelCechTwist.Statement : Prop :=
+  ∀ (F : Type) [Field F] (K : Type) [Fintype K] [LinearOrder K] (ι : K → Type) [∀ k, Fintype (ι k)]
+    [∀ k, LinearOrder (ι k)] (Ω : Type) [Field Ω] [Algebra F Ω] (y : (Σ k, ι k) → Ω) (k₀ : K) (N : ℕ)
+    (e : ι k₀ ≃ Fin (N + 1)),
+    IndefiniteRowSideFullHecke.Kleiman2.IsModelWithBase F y k₀ → ∀ (β : K → ℤ)
+      (Q : Kleiman.LineBundle F (IndefiniteRowSideFullHecke.Kleiman2.blockVec y k₀ ∘ e.symm)),
+      (∀ c : ℤ, (Q.twist (Kleiman.twistSys F (IndefiniteRowSideFullHecke.Kleiman2.blockVec y k₀ ∘ e.symm) c)).secs =
+          secOver F y (β + c • IndefiniteRowSideFullHecke.Kleiman2.baseDeg k₀)) →
+      ∀ (p b : ℕ) (m c : ℤ) (i : ℕ),
+        Nonempty ((((Kleiman.twistMul Q.toSubSystem p m).pow b).twist
+            (Kleiman.twistSys F (IndefiniteRowSideFullHecke.Kleiman2.blockVec y k₀ ∘ e.symm) c)).H i ≃ₗ[F]
+          cechHc ι (quotPart F (mIdealOver F y)) (b • IndefiniteRowSideFullHecke.Kleiman2.stepL k₀ β p m + c • IndefiniteRowSideFullHecke.Kleiman2.baseDeg k₀) i)
+
+end GroundTheory.Heights₂.Heights.Kleiman.SectionsOverLocalization
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsFurtherAlt =====
 
 -- ===== clump member: GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsMore =====
 -- clump-header: {"m": "GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsMore", "h": "module\n\npublic import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsFurtherAlt\npublic import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsBisExtra\npublic import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsTerTer\npublic import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ImportsMoreLast\npublic import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PBundlePair\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\n\n"}

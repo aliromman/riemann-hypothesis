@@ -6,7 +6,6 @@ public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCoh
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CosievePairingFamilyCompat
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PairingRestrictCompat
 public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.CapOComp
-public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictSelfPullCEq
 public import Mathlib.LinearAlgebra.TensorProduct.Defs
 public import Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.FirstChernCoboundary
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KuennethOfRestrictBijective
@@ -17,7 +16,26 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PairingIsoOfCom
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KuennethIsoProperSmooth, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KuennethSwap, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KuennethSwapStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KuennethMayerVietorisRight, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KuennethMayerVietorisLeft, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.TensorSubRight, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KuennethProductLocalCoords, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KuennethProductLocalGlobal, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KuennethProductProperSmooth, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SlantOf
+-- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictSelfPullCEq, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KuennethIsoProperSmooth, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KuennethSwap, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KuennethSwapStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KuennethMayerVietorisRight, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KuennethMayerVietorisLeft, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.TensorSubRight, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KuennethProductLocalCoords, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KuennethProductLocalGlobal, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KuennethProductProperSmooth, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SlantOf
+
+-- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictSelfPullCEq =====
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictSelfPullCEq", "h": "module\n\npublic import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.CapOComp\nimport Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsDPMorphismBot\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HodgeXD\nimport Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.IsDlogFirstChernClass\nimport Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.FormLaws\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open CategoryTheory AlgebraicGeometry TensorProduct DirectSum GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.Onto CrystallineSemistableComparison.Pb CrystallineSemistableComparison.HT GlobalTheory.CompanionTheory.KunGlue
+
+namespace GlobalTheory.CompanionTheory.KunGlue
+
+theorem resU_self_pullC : ∀ {R : Type} [CommRing R] {C : Type 1} [Category.{0} C] (F : C ⥤ ModuleCat.{0} R) (U : ObjectProperty C) (k : U ≤ U) (n : ℕ) (x : CH.Cn (U.ι ⋙ F) n), (resU F k).pullC n x = x := by
+  intro R _ C _ F U k n x
+  funext s
+  rfl
+
+end GlobalTheory.CompanionTheory.KunGlue
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictSelfPullCEq =====
 
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KuennethIsoProperSmooth =====
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KuennethIsoProperSmooth", "h": "module\n\npublic import Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.FormUniq\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HodgeXD\nimport Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.MapHComp\npublic import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.MemBoundariesZeroIff\nimport Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.TotPairing\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.TypeStar\n\n"}

@@ -17,10 +17,9 @@ public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
 public import Mathlib.MeasureTheory.Integral.DominatedConvergence
 public import Mathlib.MeasureTheory.Function.LpSpace.DomAct.Basic
 public import Mathlib.Topology.Algebra.Constructions.DomMulAct
-public import Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.ConvAssoc
+public import Mathlib.MeasureTheory.Integral.Prod
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.ConvEig
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.BandCc
-public import Mathlib.MeasureTheory.Integral.Prod
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.DecaysZero
 public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.HermitianFormUnitaryOneOne
 public import Formalism.RealPlaceAnalysis.RealPlaceTaylor.ComplexificationHolds
@@ -56,7 +55,49 @@ import Mathlib.RingTheory.PiTensorProduct
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.IsotropicFlagUnipotentRadicalClosedSubgroupKeeps
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.EigBand, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.Fourier, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.BandKill, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.EqZeroOfTest, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.ExistsCompactTail, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.Transl, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.OpLeHalf, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.KillsOfIdem, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.Unfold, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.Abstract, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.Weight, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.ContinuousAverage, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.ConvCoef, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.FlagNW, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.Imports, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.InvMemFlagN, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.IntegralCoefEqZero
+-- Members: Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.ConvAssoc, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.EigBand, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.Fourier, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.BandKill, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.EqZeroOfTest, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.ExistsCompactTail, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.Transl, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.OpLeHalf, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.KillsOfIdem, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.Unfold, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.Abstract, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.Weight, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.ContinuousAverage, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.ConvCoef, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.FlagNW, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.Imports, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.InvMemFlagN, Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.IntegralCoefEqZero
+
+-- ===== clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.ConvAssoc =====
+-- clump-header: {"m": "Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.ConvAssoc", "h": "module\n\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.IsBand\nimport Mathlib.Tactic.Linter.Style\npublic import Mathlib.MeasureTheory.Group.Integral\npublic import Mathlib.MeasureTheory.Integral.Prod\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open MeasureTheory Filter UpperTheory.Lit.Cusp
+open scoped Topology
+
+theorem UpperTheory.Lit.Cusp.conv_assoc :
+    ∀ (G : Type) [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [LocallyCompactSpace G] [T2Space G]
+      [SecondCountableTopology G] [MeasurableSpace G] [BorelSpace G] (μ : Measure G) [μ.IsHaarMeasure] (e f h : G → ℂ) (C : ℝ),
+      Continuous e → Integrable e μ → Continuous f → Integrable f μ → Continuous h → (∀ g, ‖h g‖ ≤ C) →
+      (∀ x, conv μ e f x = f x) → ∀ x, conv μ f h x = conv μ e (conv μ f h) x := by
+  intro G _ _ _ _ _ _ _ _ μ _ e f h C _ hei _ hfi hh hC hef x
+  have h1 : Integrable (fun z : G × G => e z.1 * f z.2) (μ.prod μ) := hei.mul_prod hfi
+  have h2 : Integrable (fun z : G × G => e z.1 * f (z.1⁻¹ * z.2)) (μ.prod μ) :=
+    (measurePreserving_prod_inv_mul μ μ).integrable_comp_of_integrable h1
+  have h3 : Integrable (fun z : G × G => e z.1 * f (z.1⁻¹ * z.2) * h (z.2⁻¹ * x)) (μ.prod μ) := by
+    refine h2.mul_bdd (c := C) ?_ (Eventually.of_forall fun z => hC _)
+    exact (hh.comp (continuous_snd.inv.mul continuous_const)).aestronglyMeasurable
+  have h4 : ∀ g : G, conv μ f h (g⁻¹ * x) = ∫ y, f (g⁻¹ * y) * h (y⁻¹ * x) ∂μ := by
+    intro g
+    rw [← integral_mul_left_eq_self (fun y => f (g⁻¹ * y) * h (y⁻¹ * x)) g]
+    simp only [conv, inv_mul_cancel_left, mul_inv_rev, mul_assoc]
+  calc conv μ f h x = ∫ y, ∫ g, e g * f (g⁻¹ * y) * h (y⁻¹ * x) ∂μ ∂μ := by
+        unfold conv
+        refine integral_congr_ae (Eventually.of_forall fun y => ?_)
+        beta_reduce
+        rw [integral_mul_const, ← hef y]
+        rfl
+    _ = ∫ g, ∫ y, e g * f (g⁻¹ * y) * h (y⁻¹ * x) ∂μ ∂μ :=
+        (integral_integral_swap (f := fun g y => e g * f (g⁻¹ * y) * h (y⁻¹ * x)) h3).symm
+    _ = conv μ e (conv μ f h) x := by
+        show _ = ∫ g, e g * conv μ f h (g⁻¹ * x) ∂μ
+        refine integral_congr_ae (Eventually.of_forall fun g => ?_)
+        beta_reduce
+        rw [h4, ← integral_const_mul]
+        simp only [mul_assoc]
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.ConvAssoc =====
 
 -- ===== clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.EigBand =====
 -- clump-header: {"m": "Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.EigBand", "h": "module\n\npublic import Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.IsBand\npublic import Mathlib.MeasureTheory.Measure.Haar.OfBasis\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Real\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Compactness.Paracompact\nimport Mathlib.Topology.Sheaves.Init\nimport Mathlib.Topology.UniformSpace.Uniformizable\npublic import Mathlib.MeasureTheory.Function.LocallyIntegrable\npublic import Mathlib.MeasureTheory.Group.Integral\npublic import Mathlib.MeasureTheory.Integral.Bochner.Set\npublic import Mathlib.MeasureTheory.Measure.Lebesgue.Basic\n\n"}

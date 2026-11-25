@@ -1,6 +1,6 @@
 module
 
-public import Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.ColNumDef
+public import Formalism.SharpRestriction.GrowthBounds.CoarseMultiplicity.CoarseMultiplicityAtIdentity
 public import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.CoarseDegreeAlternative
 public import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.FirstCoefficientFacts
 public import Formalism.SharpRestriction.GrowthBounds.CoarseMultiplicity.PolyUpperBoundDelta
@@ -29,7 +29,39 @@ import Formalism.SharpRestriction.GrowthBounds.CoarseMultiplicity.Lemma44Identit
 import Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.KGShift
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.ColXNum, Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.ColXPH, Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.ColXSum, Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.IoDChain, Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.MonomialSumEqProd, Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.ColTop
+-- Members: Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.ColNumDef, Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.ColXNum, Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.ColXPH, Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.ColXSum, Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.IoDChain, Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.MonomialSumEqProd, Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.ColTop
+
+-- ===== clump member: Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.ColNumDef =====
+-- clump-header: {"m": "Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.ColNumDef", "h": "module\n\npublic import Formalism.SharpRestriction.GrowthBounds.CoarseMultiplicity.CoarseMultiplicityAtIdentity\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+namespace Formalism.MainNotions.ColumnSystems.Pf
+
+open Formalism.MainNotions.G
+
+def ColumnNumericsAt (C0 CYb Cde Ck CD Cb CE1 CE2 Cc : ℝ) : Prop :=
+  ∀ (X : Loc), D1num X → HIext C0 CYb Cde Ck CD Cb X → CBound Cc X →
+    ∀ mm : ℝ, (mm = 0 ∨ mm = 12 * (X.c : ℝ)) →
+    ∀ n : ℕ, 1 ≤ n → n ≤ X.c →
+    ∀ (j : Fin (numSeg X.TT)) (b : SegBlock (segS X.TT j) X.m),
+      BLk C0 Cde CE1 CE2 X (((X.c - n : ℕ) : ℝ) * ka1 X) j b →
+      (∑ l : Fin (segS X.TT j), (if (l : ℕ) < (X.seg C0 CE1 CE2 j).sigma then (b.sg l : ℤ) else 0)) ≤
+          ⌊(((X.seg C0 CE1 CE2 j).A0 X.p : ℤ) : ℝ) - (mm + (n : ℝ) * ka1 X)⌋ ∧
+      ∀ i : Fin (segS X.TT j), (i : ℕ) < (X.seg C0 CE1 CE2 j).sigma →
+        (∑ l : Fin (segS X.TT j), (if (l : ℕ) ≤ (i : ℕ) then (b.w l : ℤ) else 0)) +
+          (∑ l : Fin (segS X.TT j), (if (l : ℕ) < (X.seg C0 CE1 CE2 j).sigma then (b.sg l : ℤ) else 0)) ≤
+          ⌊(((X.seg C0 CE1 CE2 j).A0 X.p : ℤ) : ℝ) - (mm + (n : ℝ) * ka1 X)⌋
+
+def ColumnNumericsBeyond : Prop := TransportedAlt fun C0 CYb Cde Ck CD Cb CE1 CE2 _ Cc => ColumnNumericsAt C0 CYb Cde Ck CD Cb CE1 CE2 Cc
+
+end Formalism.MainNotions.ColumnSystems.Pf
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.ColNumDef =====
 
 -- ===== clump member: Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.ColXNum =====
 -- clump-header: {"m": "Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.ColXNum", "h": "module\n\npublic import Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.ColNumDef\npublic import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.CoarseDegreeAlternative\npublic import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.FirstCoefficientFacts\nimport Formalism.SharpRestriction.GrowthBounds.BinomialRatio.SegmentStatementHolds\nimport Formalism.SharpRestriction.GrowthBounds.BinomialRatio.ThresholdLowerBounds\npublic import Formalism.SharpRestriction.GrowthBounds.CoarseMultiplicity.PolyUpperBoundDelta\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Monotonicity.Lemmas\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Presheaf\n\n"}

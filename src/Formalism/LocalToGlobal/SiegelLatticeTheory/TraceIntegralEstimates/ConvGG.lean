@@ -1,18 +1,101 @@
 module
 
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.WuDecayAll
-public import Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.ConvGGlob
+public import Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.ConvGGG
+public import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.HidaSetting
+public import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.LintegralFinProd
+public import Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.SchurTensInst
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.EnergyCut
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedVolumeStatements.SettingExistsOfGap
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.WFLStepsLocHNProps
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.HaarSubSWire
-import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.LintegralFinProd
 import Formalism.SharpRestriction.CuspSpanNormBounds.UnimodularSchurMeasures.RightRegularIsometricMultiplicative
-import Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.SchurTensInst
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MeasureDecomposition.InstLeftInvMuInf
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.ConvGOne, Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.ConvGG
+-- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.ConvGGlob, Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.ConvGOne, Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.ConvGG
+
+-- ===== clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.ConvGGlob =====
+-- clump-header: {"m": "Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.ConvGGlob", "h": "module\n\npublic import Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.ConvGGG\npublic import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.HidaSetting\npublic import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.LintegralFinProd\npublic import Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.SchurTensInst\nimport Formalism.SharpRestriction.CuspSpanNormBounds.UnimodularSchurMeasures.RightRegularIsometricMultiplicative\nimport Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.IUnfold\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S
+open scoped InnerProductSpace ENNReal
+
+namespace Formalism.L2.S.Pv.ConvG
+
+open Formalism.L2.SG.HidaSetting Formalism.L2.SG.RealObj Formalism.L2.SG.Pf.EnergyAbs
+
+section Glob
+
+variable {D : D7} (X : Formalism.L2.SG.HidaSetting.HidaSetting D)
+
+@[irreducible] def phiV (u u' : D.what₂.Word) (γ : X.B.I.Ginf) (v : InfinitePlace X.B.I.F) (a b : Formalism.REAL.UJ (X.B.I.ε v)) :
+    ℝ≥0∞ :=
+  ‖⟪X.B.σ v (uMat a) (X.B.w v), X.B.σ v (uMat (γ v)) (X.B.σ v (uMat b) (X.B.w v))⟫_ℂ‖ₑ *
+    ‖X.Wloc u v a‖ₑ * ‖X.Wloc u' v b‖ₑ
+
+private theorem nnnorm_tensU_eq_prod (u : D.what₂.Word) (a : ∀ v, X.Vloc u v) :
+    ‖X.tensU u a‖₊ = ∏ v, ‖a v‖₊ := by
+  have h := X.tensU_inner u a a
+  simp only [inner_self_eq_norm_sq_to_K] at h
+  have h2 : ‖X.tensU u a‖ ^ 2 = (∏ v, ‖a v‖) ^ 2 := by
+    rw [← Finset.prod_pow]
+    exact_mod_cast h
+  have h3 := (pow_left_inj₀ (norm_nonneg _) (Finset.prod_nonneg fun v _ => norm_nonneg (a v))
+    two_ne_zero).1 h2
+  ext
+  push_cast
+  exact h3
+
+theorem phiGG_eq (u u' : D.what₂.Word) (γ x y : X.B.I.Ginf) :
+    PhiGG X.B.σs (X.B.tens X.B.w) (X.Wu u) (X.Wu u') γ x y = ∏ v, phiV X u u' γ v (x v) (y v) := by
+  obtain ⟨hin, hσ, -⟩ := X.B.tens_spec
+  unfold PhiGG phiV
+  simp only [hσ, hin, X.Wu_tens, enorm_eq_nnnorm, nnnorm_prod, nnnorm_tensU_eq_prod, ENNReal.ofNNReal_finsetProd,
+    ← Finset.prod_mul_distrib]
+
+theorem measurable_phiV (u u' : D.what₂.Word) (γ : X.B.I.Ginf) (v : InfinitePlace X.B.I.F) :
+    Measurable (fun p : Formalism.REAL.UJ (X.B.I.ε v) × Formalism.REAL.UJ (X.B.I.ε v) => phiV X u u' γ v p.1 p.2) := by
+  have hc : ∀ h : X.B.H v, Continuous (fun g : Formalism.REAL.UJ (X.B.I.ε v) => X.B.σ v (uMat g) h) :=
+    (Formalism.L2.S.Pv.SchurTens.unitRep_of_URepOn (X.ds v).2.2.1).2.2.2
+  have h1 : Measurable (fun p : Formalism.REAL.UJ (X.B.I.ε v) × Formalism.REAL.UJ (X.B.I.ε v) =>
+      ‖⟪X.B.σ v (uMat p.1) (X.B.w v), X.B.σ v (uMat (γ v)) (X.B.σ v (uMat p.2) (X.B.w v))⟫_ℂ‖ₑ) :=
+    (((hc _).comp continuous_fst).inner
+      ((X.B.σ v (uMat (γ v))).continuous.comp ((hc _).comp continuous_snd))).enorm.measurable
+  have h2 : Measurable (fun p : Formalism.REAL.UJ (X.B.I.ε v) × Formalism.REAL.UJ (X.B.I.ε v) => ‖X.Wloc u v p.1‖ₑ) :=
+    ((X.Wloc_cont u v).comp continuous_fst).enorm.measurable
+  have h3 : Measurable (fun p : Formalism.REAL.UJ (X.B.I.ε v) × Formalism.REAL.UJ (X.B.I.ε v) => ‖X.Wloc u' v p.2‖ₑ) :=
+    ((X.Wloc_cont u' v).comp continuous_snd).enorm.measurable
+  unfold phiV
+  exact (h1.mul h2).mul h3
+
+theorem lint_GG_prod (u u' : D.what₂.Word) (γ : X.B.I.Ginf) :
+    ∫⁻ x, ∫⁻ y, PhiGG X.B.σs (X.B.tens X.B.w) (X.Wu u) (X.Wu u') γ x y
+        ∂(Formalism.L2.SG.ProjRows.muInf X.B.I) ∂(Formalism.L2.SG.ProjRows.muInf X.B.I) =
+      ∏ v, ∫⁻ a, ∫⁻ b, phiV X u u' γ v a b ∂(Formalism.REAL.muG (X.B.I.ε v)) ∂(Formalism.REAL.muG (X.B.I.ε v)) := by
+  have hm := measurable_phiV X u u' γ
+  have h1 : ∀ x : X.B.I.Ginf, ∫⁻ y, PhiGG X.B.σs (X.B.tens X.B.w) (X.Wu u) (X.Wu u') γ x y
+      ∂(Formalism.L2.SG.ProjRows.muInf X.B.I) =
+        ∏ v, ∫⁻ b, phiV X u u' γ v (x v) b ∂(Formalism.REAL.muG (X.B.I.ε v)) := by
+    intro x
+    simp_rw [phiGG_eq X u u' γ x]
+    exact Formalism.L2.SG.RealObj.InfCut.ProductExactness.PiM.lintegral_pi_prod (fun v => Formalism.REAL.muG (X.B.I.ε v))
+      (fun v b => phiV X u u' γ v (x v) b) (fun v => (hm v).comp measurable_prodMk_left)
+  simp_rw [h1]
+  exact Formalism.L2.SG.RealObj.InfCut.ProductExactness.PiM.lintegral_pi_prod (fun v => Formalism.REAL.muG (X.B.I.ε v))
+    (fun v a => ∫⁻ b, phiV X u u' γ v a b ∂(Formalism.REAL.muG (X.B.I.ε v))) (fun v => (hm v).lintegral_prod_right')
+
+end Glob
+
+end Formalism.L2.S.Pv.ConvG
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.ConvGGlob =====
 
 -- ===== clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.ConvGOne =====
 -- clump-header: {"m": "Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.ConvGOne", "h": "module\n\npublic import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.WuDecayAll\nimport Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.LintegralFinProd\npublic import Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.ConvGGlob\nimport Formalism.SharpRestriction.CuspSpanNormBounds.UnimodularSchurMeasures.RightRegularIsometricMultiplicative\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

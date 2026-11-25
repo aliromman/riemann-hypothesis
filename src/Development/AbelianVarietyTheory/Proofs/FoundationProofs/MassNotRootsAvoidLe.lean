@@ -1,9 +1,12 @@
 module
 
-public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.SumLeProdOfTwoLeNat
 public import Mathlib.Basic.Real.Basic
 public import Mathlib.Data.Nat.PadicValNat
 public import Mathlib.Data.Nat.PrimeFin
+public import Mathlib.Algebra.BigOperators.Finsupp.Basic
+public import Mathlib.Algebra.Order.BigOperators.GroupWithZero.Finset
+public import Mathlib.Data.Nat.Factorization.Defs
+public import Mathlib.NumberTheory.Padics.PadicVal.Basic
 public import Mathlib.NumberTheory.Multiplicity
 public import Development.AbelianVarietyTheory.Definitions.Foundations.SamePartIffOfNeZero
 public import Mathlib.Algebra.BigOperators.Group.Finset.Piecewise
@@ -68,7 +71,115 @@ import Mathlib.Tactic.Linter.HaveILetI
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AbelianVarietyTheory.Proofs.FoundationProofs.SumPrimePowerPartPowSubOneLe, Development.AbelianVarietyTheory.Proofs.FoundationProofs.MassNotRootsAvoidLe
+-- Members: Development.AbelianVarietyTheory.Proofs.FoundationProofs.SumLeProdOfTwoLeNat, Development.AbelianVarietyTheory.Proofs.FoundationProofs.SumPrimePowerPartPowSubOneLe, Development.AbelianVarietyTheory.Proofs.FoundationProofs.MassNotRootsAvoidLe
+
+-- ===== clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.SumLeProdOfTwoLeNat =====
+-- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.FoundationProofs.SumLeProdOfTwoLeNat", "h": "module\n\npublic import Mathlib.Basic.Real.Basic\npublic import Mathlib.Data.Nat.PadicValNat\npublic import Mathlib.Data.Nat.PrimeFin\nimport Mathlib.Algebra.Order.Star.Int\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.TypeStar\nimport Std.Tactic.BVDecide.Normalize.Prop\nimport Development.AbelianVarietyTheory.Definitions.Foundations.SamePartIffOfNeZero\npublic import Mathlib.Algebra.BigOperators.Finsupp.Basic\npublic import Mathlib.Algebra.Order.BigOperators.GroupWithZero.Finset\npublic import Mathlib.Data.Nat.Factorization.Defs\npublic import Mathlib.NumberTheory.Padics.PadicVal.Basic\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open Polynomial Classical GlobalTheory.BadShare
+
+namespace GlobalTheory.BadShare
+
+theorem sum_le_prod_of_two_le_nat {ι : Type*} (s : Finset ι) (f : ι → ℕ)
+    (h : ∀ i ∈ s, 2 ≤ f i) : ∑ i ∈ s, f i ≤ ∏ i ∈ s, f i := by
+  rcases s.eq_empty_or_nonempty with rfl | hs
+  · simp
+  have key : ∑ i ∈ s, f i ≤ ∏ i ∈ s, f i ∧ 2 ≤ ∏ i ∈ s, f i := by
+    induction hs using Finset.Nonempty.cons_induction with
+    | singleton a => simpa using h a (by simp)
+    | cons a s ha hs ih =>
+      rw [Finset.sum_cons, Finset.prod_cons]
+      obtain ⟨h1, h2⟩ := ih (fun i hi => h i (Finset.mem_cons_of_mem hi))
+      have h3 := h a (Finset.mem_cons_self _ _)
+      constructor
+      · have := Nat.add_le_mul h3 h2
+        omega
+      · nlinarith
+  exact key.1
+
+private theorem arith_four (a b c R m : ℕ) (ha : 16 ≤ a) (hb : m ≤ b) (hc : m ≤ c)
+    (hbc : 16 * m ≤ b * c) (hR : 1 ≤ R) : 4 * m * (a + b + c + R) ≤ a * b * c * R := by
+  have h1 : 16 * m * a ≤ b * c * a := Nat.mul_le_mul_right _ hbc
+  have h2 : 16 * m * b ≤ a * c * b := Nat.mul_le_mul_right _ (Nat.mul_le_mul ha hc)
+  have h3 : 16 * m * c ≤ a * b * c := Nat.mul_le_mul_right _ (Nat.mul_le_mul ha hb)
+  have h4 : 16 * m * R ≤ a * b * c * R := by
+    apply Nat.mul_le_mul_right
+    calc 16 * m ≤ b * c := hbc
+      _ ≤ a * (b * c) := Nat.le_mul_of_pos_left _ (by omega)
+      _ = a * b * c := by ring
+  have h5 : a * b * c ≤ a * b * c * R := Nat.le_mul_of_pos_right _ hR
+  nlinarith
+
+theorem sum_primePowerParts_le :
+    ∀ n q d : ℕ, 0 < n → q.Prime → d.Prime → q ≠ 2 → d ≠ 2 → q ≠ d → 16 ≤ max q d →
+      16 * q * d ∣ n → (∑ l ∈ n.primeFactors, ((l ^ padicValNat l n : ℕ) : ℝ)) ≤
+        (n : ℝ) / (4 * ((min q d : ℕ) : ℝ)) := by
+  intro n q d hn hq hd hq2 hd2 hqd hmax hdvd
+  set f : ℕ → ℕ := fun l => l ^ padicValNat l n with hf
+  have hpow : ∀ p k : ℕ, p.Prime → p ^ k ∣ n → p ^ k ≤ f p := by
+    intro p k hp hk
+    haveI := Fact.mk hp
+    exact Nat.pow_le_pow_right hp.pos (((by simpa only [_root_.Nat.padicValNat_def] using @_root_.multiplicity_dvd_iff_le : ∀ {p : _root_.Nat} [hp : _root_.Fact (_root_.Nat.Prime p)] {a n : _root_.Nat} (ha : a ≠ 0), p ^ n ∣ a ↔ n ≤ _root_.padicValNat p a) hn.ne').1 hk)
+  have hge : ∀ p ∈ n.primeFactors, p ≤ f p := by
+    intro p hp
+    have := hpow p 1 (Nat.prime_of_mem_primeFactors hp)
+      (by simpa using Nat.dvd_of_mem_primeFactors hp)
+    simpa using this
+  have h16 : 2 ^ 4 ∣ n := Dvd.dvd.trans ⟨q * d, by ring⟩ hdvd
+  have hqn : q ∣ n := Dvd.dvd.trans ⟨16 * d, by ring⟩ hdvd
+  have hdn : d ∣ n := Dvd.dvd.trans ⟨16 * q, by ring⟩ hdvd
+  have m2 : 2 ∈ n.primeFactors :=
+    Nat.mem_primeFactors.2 ⟨Nat.prime_two, Dvd.dvd.trans ⟨8, by norm_num⟩ h16, hn.ne'⟩
+  have mq : q ∈ n.primeFactors := Nat.mem_primeFactors.2 ⟨hq, hqn, hn.ne'⟩
+  have md : d ∈ n.primeFactors := Nat.mem_primeFactors.2 ⟨hd, hdn, hn.ne'⟩
+  have ha : 16 ≤ f 2 := by simpa using hpow 2 4 Nat.prime_two h16
+  have hb := hge q mq
+  have hc := hge d md
+  have hsub : ({2, q, d} : Finset ℕ) ⊆ n.primeFactors := by
+    intro x hx
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hx
+    rcases hx with rfl | rfl | rfl <;> assumption
+  have hn2 : (2 : ℕ) ∉ ({q, d} : Finset ℕ) := by
+    simp only [Finset.mem_insert, Finset.mem_singleton]; omega
+  have hprod : ∏ l ∈ n.primeFactors, f l = n := by
+    conv_rhs => rw [← Nat.prod_factorization_pow_eq_self hn.ne']
+    rw [Finsupp.prod, Nat.support_factorization]
+    refine Finset.prod_congr rfl fun p hp => ?_
+    rw [Nat.factorization_def _ (Nat.prime_of_mem_primeFactors hp)]
+    simp [f, Nat.padicValNat_def]
+  set s := n.primeFactors \ {2, q, d} with hs
+  have hs2 : ∀ i ∈ s, 2 ≤ f i := fun i hi =>
+    (Nat.prime_of_mem_primeFactors (Finset.mem_sdiff.1 hi).1).two_le.trans
+      (hge i (Finset.mem_sdiff.1 hi).1)
+  have hSP := sum_le_prod_of_two_le_nat s f hs2
+  have hR : 1 ≤ ∏ i ∈ s, f i :=
+    Finset.prod_pos (f := f) fun i hi => lt_of_lt_of_le (by norm_num) (hs2 i hi)
+  have e1 : n = f 2 * f q * f d * ∏ i ∈ s, f i := by
+    rw [← hprod, ← Finset.prod_sdiff hsub, Finset.prod_insert hn2, Finset.prod_pair hqd]
+    ring
+  have e2 : ∑ l ∈ n.primeFactors, f l = f 2 + f q + f d + ∑ i ∈ s, f i := by
+    rw [← Finset.sum_sdiff hsub, Finset.sum_insert hn2, Finset.sum_pair hqd]
+    ring
+  have hbc : 16 * min q d ≤ f q * f d := by
+    calc 16 * min q d ≤ max q d * min q d := Nat.mul_le_mul_right _ hmax
+      _ = q * d := max_mul_min q d
+      _ ≤ f q * f d := Nat.mul_le_mul hb hc
+  have key := arith_four (f 2) (f q) (f d) (∏ i ∈ s, f i) (min q d) ha
+    ((min_le_left _ _).trans hb) ((min_le_right _ _).trans hc) hbc hR
+  rw [← e1] at key
+  have key2 : (∑ l ∈ n.primeFactors, f l) * (4 * min q d) ≤ n := by
+    rw [e2, mul_comm]
+    exact (Nat.mul_le_mul_left _ (by omega)).trans key
+  have hm : 0 < min q d := lt_min hq.pos hd.pos
+  rw [le_div_iff₀ (by positivity), ← Nat.cast_sum]
+  exact_mod_cast key2
+
+end GlobalTheory.BadShare
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.SumLeProdOfTwoLeNat =====
 
 -- ===== clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.SumPrimePowerPartPowSubOneLe =====
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.FoundationProofs.SumPrimePowerPartPowSubOneLe", "h": "module\n\nimport Development.AbelianVarietyTheory.Proofs.FoundationProofs.SumLeProdOfTwoLeNat\npublic import Mathlib.Basic.Real.Basic\npublic import Mathlib.Data.Nat.PadicValNat\npublic import Mathlib.Data.Nat.PrimeFin\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Int\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\npublic import Mathlib.NumberTheory.Multiplicity\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AbelianVarietyTheory.Definitions.Foundations.SamePartIffOfNeZero\npublic import Mathlib.Algebra.BigOperators.Group.Finset.Piecewise\npublic import Mathlib.Algebra.BigOperators.GroupWithZero.Finset\npublic import Mathlib.Algebra.BigOperators.Ring.Finset\npublic import Mathlib.Algebra.Ring.GeomSum\npublic import Mathlib.Data.Nat.Cast.Field\npublic import Mathlib.Data.Nat.GCD.BigOperators\n\n"}

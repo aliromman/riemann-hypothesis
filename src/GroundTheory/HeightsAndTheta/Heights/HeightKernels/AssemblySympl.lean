@@ -1,6 +1,6 @@
 module
 
-public import GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsSympl
+public import GroundTheory.HeightsAndTheta.Heights.KernelsMatrix
 public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 public import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
 public import Mathlib.Algebra.Module.ZLattice.Basic
@@ -13,7 +13,174 @@ import Mathlib.Tactic.Linter.Style
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplBoxVolume, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplCons, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplDetBound, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplDetSchur, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplExtMem, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplExtVecMul, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplFirstRow, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplGcd, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplGramMem, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplMinBound, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplMinExists, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplMinkowskiBox, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplOmegaMem, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplOrbit, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplQuadDiag, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplReduceConj, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplReduceMem, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplReducePosDef, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplReduceStep, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplShortPrim, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplStep, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplTop, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplTwoRow, GroundTheory.HeightsAndTheta.Heights.HeightKernels.AssemblySympl
+-- Members: GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsSympl, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplBoxVolume, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplCons, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplDetBound, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplDetSchur, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplExtMem, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplExtVecMul, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplFirstRow, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplGcd, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplGramMem, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplMinBound, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplMinExists, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplMinkowskiBox, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplOmegaMem, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplOrbit, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplQuadDiag, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplReduceConj, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplReduceMem, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplReducePosDef, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplReduceStep, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplShortPrim, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplStep, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplTop, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplTwoRow, GroundTheory.HeightsAndTheta.Heights.HeightKernels.AssemblySympl
+
+-- ===== clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsSympl =====
+-- clump-header: {"m": "GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsSympl", "h": "module\n\npublic import GroundTheory.HeightsAndTheta.Heights.KernelsMatrix\n\n"}
+section -- clump:auto
+@[expose] public section
+
+set_option maxSynthPendingDepth 1
+
+namespace GroundTheory.Heights₂.Heights
+
+open Matrix
+
+noncomputable section
+
+def symplOmega {R : Type*} [CommRing R] {l : Type*} [Fintype l] [DecidableEq l]
+    (u v : l ⊕ l → R) : R :=
+  u ⬝ᵥ (J l R *ᵥ v)
+
+def symplCons {R : Type*} {n : ℕ} (p q : R) (w : Fin n ⊕ Fin n → R) :
+    Fin (n + 1) ⊕ Fin (n + 1) → R :=
+  Sum.elim (vecCons p fun j => w (Sum.inl j)) (vecCons q fun j => w (Sum.inr j))
+
+def symplTail {R : Type*} {n : ℕ} (u : Fin (n + 1) ⊕ Fin (n + 1) → R) : Fin n ⊕ Fin n → R :=
+  fun x => u (Sum.map Fin.succ Fin.succ x)
+
+def symplExt {R : Type*} [Zero R] {n : ℕ} (α β γ δ : R) (Q : Matrix (Fin n ⊕ Fin n) (Fin n ⊕ Fin n) R) :
+    Matrix (Fin (n + 1) ⊕ Fin (n + 1)) (Fin (n + 1) ⊕ Fin (n + 1)) R :=
+  Matrix.of (Sum.elim (vecCons (symplCons α β 0) fun i => symplCons 0 0 (Q (Sum.inl i)))
+    (vecCons (symplCons γ δ 0) fun i => symplCons 0 0 (Q (Sum.inr i))))
+
+def symplReduce {n : ℕ} (H : Matrix (Fin (n + 1) ⊕ Fin (n + 1)) (Fin (n + 1) ⊕ Fin (n + 1)) ℝ) :
+    Matrix (Fin n ⊕ Fin n) (Fin n ⊕ Fin n) ℝ :=
+  fun a b => H (Sum.map Fin.succ Fin.succ a) (Sum.map Fin.succ Fin.succ b) -
+    H (Sum.map Fin.succ Fin.succ a) (Sum.inl 0) * H (Sum.inl 0) (Sum.map Fin.succ Fin.succ b) /
+      H (Sum.inl 0) (Sum.inl 0)
+
+def symplGram {l : Type*} [Fintype l] (P : Matrix l l ℤ) (G : Matrix l l ℝ) : Matrix l l ℝ :=
+  P.map (Int.cast : ℤ → ℝ) * G * (P.map (Int.cast : ℤ → ℝ))ᵀ
+
+def SymplOmegaMem.Statement : Prop :=
+  ∀ (R : Type) [CommRing R] (l : Type) [Fintype l] [DecidableEq l]
+    (M : Matrix (l ⊕ l) (l ⊕ l) R),
+    M ∈ symplecticGroup l R ↔ ∀ x y, symplOmega (M x) (M y) = J l R x y
+
+def SymplCons.Statement : Prop :=
+  ∀ (R : Type) [CommRing R] (n : ℕ),
+    (∀ u : Fin (n + 1) ⊕ Fin (n + 1) → R,
+      symplCons (u (Sum.inl 0)) (u (Sum.inr 0)) (symplTail u) = u) ∧
+    ∀ (p q p' q' : R) (w w' : Fin n ⊕ Fin n → R),
+      symplOmega (symplCons p q w) (symplCons p' q' w') = q * p' - p * q' + symplOmega w w'
+
+def SymplExtMem.Statement : Prop :=
+  ∀ (R : Type) [CommRing R] (n : ℕ) (α β γ δ : R) (Q : Matrix (Fin n ⊕ Fin n) (Fin n ⊕ Fin n) R),
+    α * δ - β * γ = 1 → Q ∈ symplecticGroup (Fin n) R →
+    symplExt α β γ δ Q ∈ symplecticGroup (Fin (n + 1)) R
+
+def SymplExtVecMul.Statement : Prop :=
+  ∀ (R : Type) [CommRing R] (n : ℕ) (α β γ δ p q : R)
+    (Q : Matrix (Fin n ⊕ Fin n) (Fin n ⊕ Fin n) R) (w : Fin n ⊕ Fin n → R),
+    symplCons p q w ᵥ* symplExt α β γ δ Q = symplCons (p * α + q * γ) (p * β + q * δ) (w ᵥ* Q)
+
+def SymplTwoRow.Statement : Prop :=
+  ∀ (n : ℕ) (c d x y : ℤ), x * c + y * d = 1 →
+    ∃ P ∈ symplecticGroup (Fin (n + 1 + 1)) ℤ, P (Sum.inl 0) = symplCons c 0 (symplCons d 0 0)
+
+def SymplGcd.Statement : Prop :=
+  ∀ a b : ℤ, ∃ c a' b' x y : ℤ, a = c * a' ∧ b = c * b' ∧ x * a' + y * b' = 1
+
+def SymplOrbit.Statement : Prop :=
+  ∀ (n : ℕ) (v : Fin (n + 1) ⊕ Fin (n + 1) → ℤ),
+    ∃ P ∈ symplecticGroup (Fin (n + 1)) ℤ, ∃ m : ℤ, v = m • P (Sum.inl 0)
+
+def SymplQuadDiag.Statement : Prop :=
+  ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (G : Matrix ι ι ℝ), G.PosDef →
+    ∃ (O : Matrix ι ι ℝ) (lam : ι → ℝ), (∀ i, 0 < lam i) ∧ |O.det| = 1 ∧ ∏ i, lam i = G.det ∧
+      ∀ x : ι → ℝ, qf G x = ∑ i, lam i * (O *ᵥ x) i ^ 2
+
+def SymplBoxVolume.Statement : Prop :=
+  ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (A : Matrix ι ι ℝ) (a : ι → ℝ), A.det ≠ 0 →
+    (∀ i, 0 < a i) →
+    MeasureTheory.volume {x : ι → ℝ | ∀ i, |(A *ᵥ x) i| < a i} =
+      ENNReal.ofReal ((∏ i, 2 * a i) / |A.det|)
+
+def SymplMinkowskiBox.Statement : Prop :=
+  ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (A : Matrix ι ι ℝ) (a : ι → ℝ), |A.det| = 1 →
+    (∀ i, 0 < a i) → 1 < ∏ i, a i →
+    ∃ v : ι → ℤ, v ≠ 0 ∧ ∀ i, |(A *ᵥ intVec v) i| < a i
+
+def SymplMinExists.Statement : Prop :=
+  ∀ (ι : Type) [Fintype ι] [DecidableEq ι] [Nonempty ι] (G : Matrix ι ι ℝ), G.PosDef →
+    ∃ m : ℝ, IsLeast {t | ∃ v : ι → ℤ, v ≠ 0 ∧ t = qf G (intVec v)} m
+
+def SymplMinBound.Statement : Prop :=
+  ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (G : Matrix ι ι ℝ), G.PosDef → G.det = 1 →
+    ∀ m : ℝ, IsLeast {t | ∃ v : ι → ℤ, v ≠ 0 ∧ t = qf G (intVec v)} m → m ≤ Fintype.card ι
+
+def SymplShortPrim.Statement : Prop :=
+  ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (G : Matrix ι ι ℝ), G.PosDef →
+    ∀ (v w : ι → ℤ) (m : ℤ), v = m • w → v ≠ 0 →
+    (∀ u : ι → ℤ, u ≠ 0 → qf G (intVec v) ≤ qf G (intVec u)) → m = 1 ∨ m = -1
+
+def SymplGramMem.Statement : Prop :=
+  ∀ (n : ℕ) (P : Matrix (Fin n ⊕ Fin n) (Fin n ⊕ Fin n) ℤ)
+    (G : Matrix (Fin n ⊕ Fin n) (Fin n ⊕ Fin n) ℝ),
+    P ∈ symplecticGroup (Fin n) ℤ → G ∈ symplecticGroup (Fin n) ℝ → G.PosDef →
+    symplGram P G ∈ symplecticGroup (Fin n) ℝ ∧ (symplGram P G).PosDef ∧
+      (∀ Q : Matrix (Fin n ⊕ Fin n) (Fin n ⊕ Fin n) ℤ,
+        symplGram (Q * P) G = symplGram Q (symplGram P G)) ∧
+      ∀ x, symplGram P G x x = qf G (intVec (P x))
+
+def SymplFirstRow.Statement : Prop :=
+  ∀ (n : ℕ) (G : Matrix (Fin (n + 1) ⊕ Fin (n + 1)) (Fin (n + 1) ⊕ Fin (n + 1)) ℝ),
+    G ∈ symplecticGroup (Fin (n + 1)) ℝ → G.PosDef →
+    ∃ ρsq : ℝ, IsLeast {t | ∃ v : Fin (n + 1) ⊕ Fin (n + 1) → ℤ, v ≠ 0 ∧ t = qf G (intVec v)} ρsq ∧
+      0 < ρsq ∧ ρsq ≤ 2 * ((n : ℝ) + 1) ∧
+      ∃ P ∈ symplecticGroup (Fin (n + 1)) ℤ, symplGram P G (Sum.inl 0) (Sum.inl 0) = ρsq
+
+def SymplReduceMem.Statement : Prop :=
+  ∀ (n : ℕ) (H : Matrix (Fin (n + 1) ⊕ Fin (n + 1)) (Fin (n + 1) ⊕ Fin (n + 1)) ℝ),
+    H ∈ symplecticGroup (Fin (n + 1)) ℝ → H (Sum.inl 0) (Sum.inl 0) ≠ 0 →
+    symplReduce H ∈ symplecticGroup (Fin n) ℝ
+
+def SymplReducePosDef.Statement : Prop :=
+  ∀ (n : ℕ) (H : Matrix (Fin (n + 1) ⊕ Fin (n + 1)) (Fin (n + 1) ⊕ Fin (n + 1)) ℝ),
+    H.PosDef → (symplReduce H).PosDef
+
+def SymplReduceConj.Statement : Prop :=
+  ∀ (n : ℕ) (H : Matrix (Fin (n + 1) ⊕ Fin (n + 1)) (Fin (n + 1) ⊕ Fin (n + 1)) ℝ)
+    (Q : Matrix (Fin n ⊕ Fin n) (Fin n ⊕ Fin n) ℝ),
+    (symplExt 1 0 0 1 Q * H * (symplExt 1 0 0 1 Q)ᵀ) (Sum.inl 0) (Sum.inl 0) =
+        H (Sum.inl 0) (Sum.inl 0) ∧
+      symplReduce (symplExt 1 0 0 1 Q * H * (symplExt 1 0 0 1 Q)ᵀ) = Q * symplReduce H * Qᵀ
+
+def SymplDetSchur.Statement : Prop :=
+  ∀ (n : ℕ) (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ), A 0 0 ≠ 0 →
+    A.det = A 0 0 * (Matrix.of fun i j : Fin n => A i.succ j.succ - A i.succ 0 * A 0 j.succ / A 0 0).det
+
+def SymplReduceStep.Statement : Prop :=
+  ∀ (n : ℕ) (H : Matrix (Fin (n + 1) ⊕ Fin (n + 1)) (Fin (n + 1) ⊕ Fin (n + 1)) ℝ)
+    (Q : Matrix (Fin n ⊕ Fin n) (Fin n ⊕ Fin n) ℤ),
+    H (Sum.inl 0) (Sum.inl 0) ≠ 0 → Q ∈ symplecticGroup (Fin n) ℤ →
+    ∃ Q' ∈ symplecticGroup (Fin (n + 1)) ℤ,
+      symplGram Q' H (Sum.inl 0) (Sum.inl 0) = H (Sum.inl 0) (Sum.inl 0) ∧
+      (symplGram Q' H).toBlocks₁₁.det =
+        H (Sum.inl 0) (Sum.inl 0) * (symplGram Q (symplReduce H)).toBlocks₁₁.det
+
+def SymplStep.Statement : Prop :=
+  ∀ (n : ℕ) (B : ℝ) (G : Matrix (Fin (n + 1) ⊕ Fin (n + 1)) (Fin (n + 1) ⊕ Fin (n + 1)) ℝ),
+    G ∈ symplecticGroup (Fin (n + 1)) ℝ → G.PosDef →
+    (∀ H : Matrix (Fin n ⊕ Fin n) (Fin n ⊕ Fin n) ℝ, H ∈ symplecticGroup (Fin n) ℝ → H.PosDef →
+      ∃ P ∈ symplecticGroup (Fin n) ℤ, (symplGram P H).toBlocks₁₁.det ≤ B) →
+    ∃ ρsq : ℝ, IsLeast {t | ∃ v : Fin (n + 1) ⊕ Fin (n + 1) → ℤ, v ≠ 0 ∧ t = qf G (intVec v)} ρsq ∧
+      0 < ρsq ∧ ρsq ≤ 2 * ((n : ℝ) + 1) ∧
+      ∃ P ∈ symplecticGroup (Fin (n + 1)) ℤ, symplGram P G (Sum.inl 0) (Sum.inl 0) = ρsq ∧
+        (symplGram P G).toBlocks₁₁.det ≤ ρsq * B
+
+def SymplDetBound.Statement : Prop :=
+  ∀ (n : ℕ) (G : Matrix (Fin n ⊕ Fin n) (Fin n ⊕ Fin n) ℝ),
+    G ∈ symplecticGroup (Fin n) ℝ → G.PosDef →
+    ∃ P ∈ symplecticGroup (Fin n) ℤ, (symplGram P G).toBlocks₁₁.det ≤ (2 * (n : ℝ)) ^ n
+
+end
+
+end GroundTheory.Heights₂.Heights
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsSympl =====
 
 -- ===== clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplBoxVolume =====
 -- clump-header: {"m": "GroundTheory.HeightsAndTheta.Heights.HeightKernels.PSymplBoxVolume", "h": "module\n\npublic import GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsSympl\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\npublic import Mathlib.MeasureTheory.Measure.Lebesgue.Basic\npublic import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar\n\n"}

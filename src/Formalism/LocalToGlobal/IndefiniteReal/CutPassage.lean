@@ -1,13 +1,39 @@
 module
 
-public import Formalism.LocalToGlobal.IndefiniteReal.HeckeTupleStatement
+public import Formalism.LocalToGlobal.IndefiniteForms.IndefSide
 public import Formalism.LocalToGlobal.IndefiniteReal.CutTuples2
 public import Formalism.LocalToGlobal.IndefiniteReal.CxLemmas
 public import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.ValBasic
 import Mathlib.Tactic.Linter.Style
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.LocalToGlobal.IndefiniteReal.NonGenericAndKTwoTheorems, Formalism.LocalToGlobal.IndefiniteReal.CutPassage
+-- Members: Formalism.LocalToGlobal.IndefiniteReal.HeckeTupleStatement, Formalism.LocalToGlobal.IndefiniteReal.NonGenericAndKTwoTheorems, Formalism.LocalToGlobal.IndefiniteReal.CutPassage
+
+-- ===== clump member: Formalism.LocalToGlobal.IndefiniteReal.HeckeTupleStatement =====
+-- clump-header: {"m": "Formalism.LocalToGlobal.IndefiniteReal.HeckeTupleStatement", "h": "module\n\npublic import Formalism.LocalToGlobal.IndefiniteForms.IndefSide\n\n"}
+section -- clump:auto
+@[expose] public section
+
+namespace Formalism.IndefR.HeckeTupleConditions
+
+open NumberField IsDedekindDomain
+open Formalism.DivisionValues Formalism.L2.Indef
+
+noncomputable def Atup {K : Type} [Field K] [NumberField K] [StarRing K] {Bs : DefBase K} {Df : DefSide Bs}
+    (S : IndefData Df) (j : Bs.J) (t : Bs.Tup) (w : HeightOneSpectrum (𝓞 K)) : ℝ :=
+  (S.Iw j t w : ℝ) + (S.Iw j t (conjPl w) : ℝ) + (jw (Df.HT j t) w (Df.Tl j t) : ℝ)
+
+def UntwistedOfSupportAtTwistedPlaces : Prop :=
+  ∀ (K : Type) [Field K] [NumberField K] [StarRing K] (Bs : DefBase K) (Df : DefSide Bs)
+    (S : IndefData Df) (N : IndefNum Bs),
+    (∀ w : HeightOneSpectrum (𝓞 K), (∃ j, Atup S j Bs.μ0 w ≠ 0 ∨ N.F0 w j ≠ 0) → S.μ w ≠ Bs.μ0) →
+    (∀ w, w ∈ S.Tw ↔ S.μ w ≠ Bs.μ0) →
+    S.Untwisted N
+
+end Formalism.IndefR.HeckeTupleConditions
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.LocalToGlobal.IndefiniteReal.HeckeTupleStatement =====
 
 -- ===== clump member: Formalism.LocalToGlobal.IndefiniteReal.NonGenericAndKTwoTheorems =====
 -- clump-header: {"m": "Formalism.LocalToGlobal.IndefiniteReal.NonGenericAndKTwoTheorems", "h": "module\n\npublic import Formalism.LocalToGlobal.IndefiniteReal.HeckeTupleStatement\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

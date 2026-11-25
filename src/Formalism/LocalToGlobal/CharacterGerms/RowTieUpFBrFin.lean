@@ -11,7 +11,8 @@ public import Mathlib.LinearAlgebra.Dimension.Finite
 public import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
 public import Mathlib.FieldTheory.Finite.Basic
 public import Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrS
-public import Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrR
+public import Formalism.LocalToGlobal.CharacterGerms.HostTraceIdentity
+public import Formalism.LocalToGlobal.CharacterGerms.PlugUP
 public import Mathlib.RingTheory.AdicCompletion.RingHom
 public import Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrSf
 public import Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrI
@@ -22,7 +23,46 @@ import Mathlib.Tactic.Linter.Style
 import Formalism.LocalToGlobal.CharacterGerms.RowTieTop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.LocalToGlobal.CharacterGerms.NatCastMulTmul, Formalism.LocalToGlobal.CharacterGerms.CompleteOfBasis, Formalism.LocalToGlobal.CharacterGerms.DetNeZeroOfChars, Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrPlP, Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrEF, Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrPlB, Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrRP, Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrSfI, Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrFin
+-- Members: Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrR, Formalism.LocalToGlobal.CharacterGerms.NatCastMulTmul, Formalism.LocalToGlobal.CharacterGerms.CompleteOfBasis, Formalism.LocalToGlobal.CharacterGerms.DetNeZeroOfChars, Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrPlP, Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrEF, Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrPlB, Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrRP, Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrSfI, Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrFin
+
+-- ===== clump member: Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrR =====
+-- clump-header: {"m": "Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrR", "h": "module\n\npublic import Formalism.LocalToGlobal.CharacterGerms.HostTraceIdentity\npublic import Formalism.LocalToGlobal.CharacterGerms.PlugUP\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+open Classical
+
+namespace Formalism.L2.FormalSeriesBounds
+
+namespace UpFBr
+
+open ValuationFitting
+
+structure RingPk {C : Type} [Field C] (V : VF C) where
+  vm : Valuation C NNReal
+  tie : ValTie V vm
+  int : vm.Integers V.RR
+  pos : 0 < (vm (V.l : C) : ℝ)
+  lt : (vm (V.l : C) : ℝ) < 1
+  nonunit : ¬ IsUnit ((V.l : ℕ) : V.RR)
+  cpl : IsAdicComplete (Ideal.span {((V.l : ℕ) : V.RR)}) V.RR
+  loc : IsLocalRing V.RR
+  alg : Algebra ℤ_[V.l] V.RR
+  mm : ∀ x : V.RR, V.MM (x : C) → x ∈ IsLocalRing.maximalIdeal V.RR
+
+def RingPkSt : Prop :=
+  ∀ (C : Type) [Field C] [CharZero C] (V : VF C),
+    (∀ s : ℕ → C, (∀ n : ℕ, V.Ge n (s (n + 1) - s n)) → ∃ x, ∀ n : ℕ, V.Ge n (x - s n)) → Nonempty (RingPk V)
+
+end UpFBr
+
+end Formalism.L2.FormalSeriesBounds
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrR =====
 
 -- ===== clump member: Formalism.LocalToGlobal.CharacterGerms.NatCastMulTmul =====
 -- clump-header: {"m": "Formalism.LocalToGlobal.CharacterGerms.NatCastMulTmul", "h": "module\n\npublic import Formalism.LocalToGlobal.CharacterGerms.RowTieUpFBrPl\npublic import Mathlib.RingTheory.LocalRing.ResidueField.Defs\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\npublic import Mathlib.NumberTheory.Padics.RingHoms\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\npublic import Mathlib.RingTheory.LocalRing.ResidueField.Basic\n\n"}

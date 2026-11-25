@@ -1,6 +1,6 @@
 module
 
-public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.MemOrth
+public import Formalism.SharpRestriction.CuspSpanNormBounds.IsPrimitiveSub
 public import Formalism.HermitianLattices.HermitianLatticesProofs.AutFinite
 public import Lemmata.GeneralBFactThirdRest.Imports
 public import Mathlib.NumberTheory.NumberField.Basic
@@ -11,7 +11,96 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLattic
 import Formalism.SharpRestriction.CuspSpanNormBounds.LatticeGluingRadicals
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.HQTracePos, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.MapEqOfIff, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.MinkFix, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.ModLatticeAbsoluteValue
+-- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.MemOrth, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.HQTracePos, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.MapEqOfIff, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.MinkFix, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.ModLatticeAbsoluteValue
+
+-- ===== clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.MemOrth =====
+-- clump-header: {"m": "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.MemOrth", "h": "module\n\npublic import Formalism.SharpRestriction.CuspSpanNormBounds.IsPrimitiveSub\nimport Formalism.SharpRestriction.CuspSpanNormBounds.LatticeGluingRadicals\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+open scoped Classical
+
+open NumberField Module Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat
+
+namespace PI.UnitaryGroupMassFormula.BetaModX
+
+section Q
+
+variable {E : Type} [Field E] [NumberField E] [StarRing E] {S : HSpace E} {r : ℕ} {T' : E}
+
+theorem mem_orth' {U : Submodule E S.V} {v : S.V} : v ∈ orth S U ↔ ∀ x ∈ U, S.hT x v = 0 := by
+  simp only [orth, Submodule.mem_iInf, LinearMap.mem_ker]
+
+theorem herm' (x y : S.V) : S.hT y x = star (S.hT x y) := by
+  rw [← S.herm.eq x y, starRingEnd_apply]
+
+theorem hXz (F' : LFlag S r T') : ∀ x ∈ Xsp F', S.hT x F'.fl.z = 0 := by
+  apply _root_.Formalism.MainNotions.LatticeGluingRadicals.flag_span_orth_normal_left <;> assumption
+
+theorem hzX (F' : LFlag S r T') : ∀ x ∈ Xsp F', S.hT F'.fl.z x = 0 := by
+  intro x hx
+  rw [herm', hXz F' x hx, star_zero]
+
+abbrev Uo (F' : LFlag S r T') : Submodule E S.V := orth S (Xsp F')
+
+abbrev Pk (F' : LFlag S r T') : Submodule E (Uo F') := (Xsp F').comap (Uo F').subtype
+
+abbrev Qt (F' : LFlag S r T') : Type := (Uo F') ⧸ (Pk F')
+
+def hV (F' : LFlag S r T') (c : E) : S.V →ₗ⋆[E] S.V →ₗ[E] E :=
+  LinearMap.mk₂'ₛₗ (starRingEnd E) (RingHom.id E)
+    (fun a b => S.hT a b + c * (S.hT a F'.fl.z * S.hT F'.fl.z b))
+    (fun a a' b => by simp only [map_add (f := _), LinearMap.add_apply]; ring)
+    (fun t a b => by simp only [LinearMap.map_smulₛₗ, LinearMap.smul_apply, smul_eq_mul]; ring)
+    (fun a b b' => by simp only [map_add (f := _)]; ring)
+    (fun t a b => by simp only [map_smul, smul_eq_mul, RingHom.id_apply]; ring)
+
+theorem hV_apply (F' : LFlag S r T') (c : E) (a b : S.V) :
+    hV F' c a b = S.hT a b + c * (S.hT a F'.fl.z * S.hT F'.fl.z b) := rfl
+
+def hU (F' : LFlag S r T') (c : E) : Uo F' →ₗ⋆[E] Uo F' →ₗ[E] E :=
+  LinearMap.mk₂'ₛₗ (starRingEnd E) (RingHom.id E) (fun a b => hV F' c (a : S.V) (b : S.V))
+    (fun a a' b => by simp)
+    (fun t a b => by simp)
+    (fun a b b' => by simp)
+    (fun t a b => by simp)
+
+theorem hU_apply (F' : LFlag S r T') (c : E) (a b : Uo F') : hU F' c a b = hV F' c a b := rfl
+
+theorem hU_left (F' : LFlag S r T') (c : E) (a b : Uo F') (ha : (a : S.V) ∈ Xsp F') : hU F' c a b = 0 := by
+  rw [hU_apply, hV_apply, (mem_orth'.mp b.2) a ha, hXz F' a ha]
+  ring
+
+theorem hU_right (F' : LFlag S r T') (c : E) (a b : Uo F') (hb : (b : S.V) ∈ Xsp F') : hU F' c a b = 0 := by
+  rw [hU_apply, hV_apply, herm' (b : S.V) (a : S.V), (mem_orth'.mp a.2) b hb, hzX F' b hb]
+  simp
+
+def hQ1 (F' : LFlag S r T') (c : E) : Qt F' →ₗ[E] Uo F' →ₗ⋆[E] E :=
+  (Pk F').liftQ (hU F' c).flip (by
+    intro b hb
+    rw [LinearMap.mem_ker]
+    ext a
+    exact hU_right F' c a b hb)
+
+def hQ (F' : LFlag S r T') (c : E) : Qt F' →ₗ⋆[E] Qt F' →ₗ[E] E :=
+  (Pk F').liftQ (hQ1 F' c).flip (by
+    intro a ha
+    rw [LinearMap.mem_ker]
+    ext b
+    exact hU_left F' c a b ha)
+
+theorem hQ_mk (F' : LFlag S r T') (c : E) (a b : Uo F') :
+    hQ F' c (Submodule.Quotient.mk a) (Submodule.Quotient.mk b) = hV F' c a b := rfl
+
+end Q
+
+end PI.UnitaryGroupMassFormula.BetaModX
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.MemOrth =====
 
 -- ===== clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.HQTracePos =====
 -- clump-header: {"m": "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.HQTracePos", "h": "module\n\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaModuloX.MemOrth\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

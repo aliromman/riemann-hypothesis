@@ -4,7 +4,7 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionCon
 public import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.SemiChar
 public import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.EllipticOnePole
 public import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.MulStableIntegral
-public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.AddLaw
+public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.Basic.Complex.Basic
 public import Mathlib.FieldTheory.IntermediateField.Basic
 public import Mathlib.RingTheory.Algebraic.Defs
@@ -69,7 +69,127 @@ import Mathlib.Tactic.ENatToNat
 import Mathlib.Algebra.AffineMonoid.UniqueSums
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.AddDbl, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.MulDefs, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.IncAdjInclusion, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.StAddRight, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.WpOnto, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.TorsValsFinite
+-- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.AddLaw, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.AddDbl, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.MulDefs, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.IncAdjInclusion, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.StAddRight, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.WpOnto, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.TorsValsFinite
+
+-- ===== clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.AddLaw =====
+-- clump-header: {"m": "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.AddLaw", "h": "module\n\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.WpBridge\npublic import Mathlib.Analysis.CStarAlgebra.Classes\npublic import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.EllipticOnePole\npublic import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.MulStableIntegral\nimport Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.SigmaLogDeriv2\nimport Mathlib.Tactic.Lemma\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+namespace PI.GalTorsConj.W
+
+open Formalism.L2.Th1.F
+open Filter Topology
+
+namespace OriginCoordinatesAdd
+
+alias hasDerivAt_wp := _root_.Formalism.L2.Th1.F.PDeriv.hasDerivAt_P
+
+lemma ev_notMem (L : PeriodPair) {f : ℂ → ℂ} {z : ℂ} (hf : ContinuousAt f z)
+    (h : f z ∉ L.lattice) : ∀ᶠ z' in 𝓝 z, f z' ∉ L.lattice :=
+  hf.preimage_mem_nhds (L.isClosed_lattice.isOpen_compl.mem_nhds h)
+
+def lam (L : PeriodPair) (w z : ℂ) : ℂ :=
+  (L.derivWeierstrassP z - L.derivWeierstrassP w) / (L.weierstrassP z - L.weierstrassP w)
+
+lemma hasDerivAt_lam (L : PeriodPair) {z w : ℂ} (hz : z ∉ L.lattice)
+    (hne : L.weierstrassP z - L.weierstrassP w ≠ 0) :
+    HasDerivAt (lam L w)
+      (((6 * L.weierstrassP z ^ 2 - L.g₂ / 2) * (L.weierstrassP z - L.weierstrassP w)
+        - (L.derivWeierstrassP z - L.derivWeierstrassP w) * L.derivWeierstrassP z)
+        / (L.weierstrassP z - L.weierstrassP w) ^ 2) z := by
+  have h1 : HasDerivAt (fun z' => L.derivWeierstrassP z' - L.derivWeierstrassP w)
+      (6 * L.weierstrassP z ^ 2 - L.g₂ / 2) z := (pSecond L z hz).sub_const _
+  have h2 : HasDerivAt (fun z' => L.weierstrassP z' - L.weierstrassP w)
+      (L.derivWeierstrassP z) z := (hasDerivAt_wp L hz).sub_const _
+  exact h1.div h2 hne
+
+lemma wp_ne (L : PeriodPair) {z w : ℂ} (hz : z ∉ L.lattice) (hw : w ∉ L.lattice)
+    (hm : z - w ∉ L.lattice) (hp : z + w ∉ L.lattice) :
+    L.weierstrassP z - L.weierstrassP w ≠ 0 := by
+  intro h
+  rcases (pInjective L z w hz hw).1 (sub_eq_zero.1 h) with h' | h'
+  · exact hm h'
+  · exact hp h'
+
+lemma ev_adm (L : PeriodPair) {z w : ℂ} (hz : z ∉ L.lattice) (hm : z - w ∉ L.lattice)
+    (hp : z + w ∉ L.lattice) :
+    ∀ᶠ z' in 𝓝 z, z' ∉ L.lattice ∧ z' - w ∉ L.lattice ∧ z' + w ∉ L.lattice := by
+  have h1 := ev_notMem L (f := fun z' => z') continuousAt_id hz
+  have h2 := ev_notMem L (f := fun z' => z' - w) (continuousAt_id.sub continuousAt_const) hm
+  have h3 := ev_notMem L (f := fun z' => z' + w) (continuousAt_id.add continuousAt_const) hp
+  filter_upwards [h1, h2, h3] with z' a b c using ⟨a, b, c⟩
+
+lemma stepA (L : PeriodPair) {z w : ℂ} (hz : z ∉ L.lattice) (hw : w ∉ L.lattice)
+    (hm : z - w ∉ L.lattice) (hp : z + w ∉ L.lattice) :
+    L.weierstrassP (z + w) = L.weierstrassP z -
+      ((6 * L.weierstrassP z ^ 2 - L.g₂ / 2) * (L.weierstrassP z - L.weierstrassP w)
+        - (L.derivWeierstrassP z - L.derivWeierstrassP w) * L.derivWeierstrassP z)
+        / (L.weierstrassP z - L.weierstrassP w) ^ 2 / 2 := by
+  have hne := wp_ne L hz hw hm hp
+  have hF : HasDerivAt (fun z' => wZeta L (z' + w)) (-(L.weierstrassP (z + w))) z :=
+    HasDerivAt.comp_add_const z w (zetaHasDeriv L (z + w) hp)
+  have hG := ((zetaHasDeriv L z hz).add_const (wZeta L w)).add ((hasDerivAt_lam L hz hne).div_const 2)
+  have hEq : (fun z' => wZeta L (z' + w)) =ᶠ[𝓝 z]
+      (fun z' => wZeta L z' + wZeta L w + lam L w z' / 2) := by
+    filter_upwards [ev_adm L hz hm hp] with z' ⟨h1, h2, h3⟩
+    rw [zetaAdd L z' w h1 hw h3 h2, ← div_div]
+    unfold lam
+    ring
+  have hD := hF.unique (hG.congr_of_eventuallyEq hEq)
+  linear_combination -hD
+
+lemma chord_alg (x y x₂ y₂ g g' : ℂ) (hd : x - x₂ ≠ 0)
+    (hy : y ^ 2 = 4 * x ^ 3 - g * x - g') (hy₂ : y₂ ^ 2 = 4 * x₂ ^ 3 - g * x₂ - g') :
+    x - ((6 * x ^ 2 - g / 2) * (x - x₂) - (y - y₂) * y) / (x - x₂) ^ 2 / 2
+      = addX x y x₂ y₂ := by
+  unfold addX
+  field_simp
+  linear_combination 4 * hy - 4 * hy₂
+
+lemma stepB (L : PeriodPair) {z w : ℂ} (hz : z ∉ L.lattice) (hw : w ∉ L.lattice)
+    (hm : z - w ∉ L.lattice) (hp : z + w ∉ L.lattice) :
+    L.weierstrassP (z + w) = addX (L.weierstrassP z) (L.derivWeierstrassP z)
+        (L.weierstrassP w) (L.derivWeierstrassP w) := by
+  rw [stepA L hz hw hm hp]
+  exact chord_alg _ _ _ _ L.g₂ L.g₃ (wp_ne L hz hw hm hp) (L.derivWeierstrassP_sq z hz)
+    (L.derivWeierstrassP_sq w hw)
+
+end OriginCoordinatesAdd
+
+
+open OriginCoordinatesAdd in
+theorem addLaw : AddLaw := by
+  intro L z w hz hw hm hp
+  have hB := OriginCoordinatesAdd.stepB L hz hw hm hp
+  refine ⟨hB, ?_⟩
+  have hA := OriginCoordinatesAdd.stepA L hz hw hm hp
+  have hne := OriginCoordinatesAdd.wp_ne L hz hw hm hp
+  have hF : HasDerivAt (fun z' => L.weierstrassP (z' + w)) (L.derivWeierstrassP (z + w)) z :=
+    HasDerivAt.comp_add_const z w (OriginCoordinatesAdd.hasDerivAt_wp L hp)
+  have hG := ((((OriginCoordinatesAdd.hasDerivAt_lam L hz hne).pow 2).div_const 4).sub
+    (OriginCoordinatesAdd.hasDerivAt_wp L hz)).sub_const (L.weierstrassP w)
+  have hEq : (fun z' => L.weierstrassP (z' + w)) =ᶠ[𝓝 z]
+      (fun z' => OriginCoordinatesAdd.lam L w z' ^ 2 / 4 - L.weierstrassP z' - L.weierstrassP w) := by
+    filter_upwards [OriginCoordinatesAdd.ev_adm L hz hm hp] with z' ⟨h1, h2, h3⟩
+    rw [OriginCoordinatesAdd.stepB L h1 hw h2 h3]
+    rfl
+  have hD := hF.unique (hG.congr_of_eventuallyEq hEq)
+  rw [hD]
+  unfold addY
+  rw [← hB, hA]
+  unfold OriginCoordinatesAdd.lam
+  norm_num
+  ring
+
+end PI.GalTorsConj.W
+
+end
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.AddLaw =====
 
 -- ===== clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.AddDbl =====
 -- clump-header: {"m": "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.AddDbl", "h": "module\n\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.WpBridge\npublic import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.SemiChar\npublic import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.EllipticOnePole\npublic import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.MulStableIntegral\nimport Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.SigmaLogDeriv2\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.AddLaw\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Lemma\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\n\n"}

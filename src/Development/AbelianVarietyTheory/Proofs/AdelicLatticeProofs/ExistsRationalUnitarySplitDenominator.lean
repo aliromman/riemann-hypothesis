@@ -4,7 +4,7 @@ public import Development.AbelianVarietyTheory.Definitions.AdelicHermitianForms.
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsNatSmulMem
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.NormOneApproximationAtLevelPrimes
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.UnitaryQuasiReflectionLaws
-public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsNsmulMem
+public import Mathlib.NumberTheory.NumberField.Basic
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.UnitaryMatrixEqProdQuasiReflections
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.IdempotentAdelesAndSmallAdelicMatrices
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.UnitaryGroupWeakApproximationAtPrimes
@@ -19,7 +19,89 @@ import Mathlib.Algebra.Order.Star.Int
 import Mathlib.NumberTheory.NumberField.ClassNumber
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsNormOneReflectionCorrectionAtLevel, Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsUnitaryCorrectionCongruentOneAtLevel, Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsRationalUnitarySplitDenominator
+-- Members: Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsNsmulMem, Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsNormOneReflectionCorrectionAtLevel, Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsUnitaryCorrectionCongruentOneAtLevel, Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsRationalUnitarySplitDenominator
+
+-- ===== clump member: Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsNsmulMem =====
+-- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsNsmulMem", "h": "module\n\npublic import Mathlib.NumberTheory.NumberField.Basic\nimport Mathlib.RingTheory.SimpleRing.Principal\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open NumberField
+
+namespace GlobalTheory.IntegralMultipleOfVectors
+
+theorem exists_nat_mul_integral {E : Type} [Field E] [NumberField E] (a : E) :
+    ∃ (e : ℕ) (b : RingOfIntegers E), 0 < e ∧ (e : E) * a = algebraMap (RingOfIntegers E) E b := by
+  have h : IsAlgebraic ℤ a :=
+    (IsFractionRing.isAlgebraic_iff ℤ ℚ E).mpr (Algebra.IsAlgebraic.isAlgebraic a)
+  obtain ⟨y, hy, hi⟩ := h.exists_integral_multiple
+  have hi' : IsIntegral ℤ ((y.natAbs : E) * a) := by
+    rcases Int.natAbs_eq y with h1 | h1
+    · have : (y.natAbs : E) * a = y • a := by
+        conv_rhs => rw [h1]
+        simp
+      rw [this]; exact hi
+    · have : (y.natAbs : E) * a = -(y • a) := by
+        conv_rhs => rw [h1]
+        simp
+      rw [this]; exact hi.neg
+  exact ⟨y.natAbs, ⟨_, hi'⟩, Int.natAbs_pos.mpr hy, rfl⟩
+
+theorem exists_nsmul_mem {E : Type} [Field E] {n : ℕ} [NumberField E]
+    (L : Submodule (RingOfIntegers E) (Fin n → E))
+    (hL : Submodule.span E (L : Set (Fin n → E)) = ⊤) (w : Fin n → E) :
+    ∃ d : ℕ, 0 < d ∧ d • w ∈ L := by
+  have hw : w ∈ Submodule.span E (L : Set (Fin n → E)) := hL ▸ Submodule.mem_top
+  induction hw using Submodule.span_induction with
+  | mem x hx => exact ⟨1, one_pos, by simpa using hx⟩
+  | zero => exact ⟨1, one_pos, by simp⟩
+  | add x y _ _ hx hy =>
+    obtain ⟨d, hd, hx⟩ := hx
+    obtain ⟨e, he, hy⟩ := hy
+    refine ⟨d * e, Nat.mul_pos hd he, ?_⟩
+    rw [smul_add]
+    refine L.add_mem ?_ ?_
+    · rw [mul_comm, mul_smul]; exact nsmul_mem hx e
+    · rw [mul_smul]; exact nsmul_mem hy d
+  | smul a x _ hx =>
+    obtain ⟨d, hd, hx⟩ := hx
+    obtain ⟨e, b, he, hb⟩ := exists_nat_mul_integral a
+    refine ⟨e * d, Nat.mul_pos he hd, ?_⟩
+    have : (e * d) • a • x = b • d • x := by
+      rw [← algebraMap_smul E b, ← hb]
+      ext i
+      simp
+      ring
+    rw [this]
+    exact L.smul_mem b hx
+
+theorem exists_nsmul_mulVec_mem {E : Type} [Field E] {n : ℕ} [NumberField E]
+    (L : Submodule (RingOfIntegers E) (Fin n → E)) (hfg : L.FG)
+    (hL : Submodule.span E (L : Set (Fin n → E)) = ⊤) (M : Matrix (Fin n) (Fin n) E) :
+    ∃ d : ℕ, 0 < d ∧ ∀ v ∈ L, d • M.mulVec v ∈ L := by
+  classical
+  obtain ⟨s, hs⟩ := hfg
+  choose f hf hmem using fun v => exists_nsmul_mem L hL (M.mulVec v)
+  refine ⟨∏ v ∈ s, f v, Finset.prod_pos fun v _ => hf v, fun v hv => ?_⟩
+  have hv' : v ∈ Submodule.span (RingOfIntegers E) (s : Set (Fin n → E)) := by
+    rw [hs]; exact hv
+  clear hv
+  induction hv' using Submodule.span_induction with
+  | mem x hx =>
+    rw [← Finset.prod_erase_mul s f (Finset.mem_coe.mp hx), mul_smul]
+    exact nsmul_mem (hmem x) _
+  | zero => simp
+  | add x y _ _ hx hy =>
+    rw [Matrix.mulVec_add, smul_add]
+    exact L.add_mem hx hy
+  | smul a x _ hx =>
+    rw [← algebraMap_smul E a, Matrix.mulVec_smul, algebraMap_smul, smul_comm]
+    exact L.smul_mem a hx
+
+end GlobalTheory.IntegralMultipleOfVectors
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsNsmulMem =====
 
 -- ===== clump member: Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsNormOneReflectionCorrectionAtLevel =====
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsNormOneReflectionCorrectionAtLevel", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.AdelicHermitianForms.IsHermForm\npublic import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsNatSmulMem\npublic import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.NormOneApproximationAtLevelPrimes\npublic import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.UnitaryQuasiReflectionLaws\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.PiTensorProduct\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

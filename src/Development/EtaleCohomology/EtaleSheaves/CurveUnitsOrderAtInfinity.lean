@@ -7,11 +7,39 @@ public import Mathlib.RingTheory.DedekindDomain.Ideal.Lemmas
 public import Mathlib.FieldTheory.PurelyInseparable.Basic
 public import Mathlib.RingTheory.DedekindDomain.AdicValuation.Valuation
 public import Mathlib.RingTheory.DedekindDomain.IntegralClosure
-public import Development.EtaleCohomology.EtaleSheaves.LeafUnitsPfC
+public import Mathlib.RingTheory.NoetherNormalization
 import Mathlib.Algebra.GroupWithZero.Submonoid.CancelMulZero
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.EtaleCohomology.EtaleSheaves.LeafUnitsPfE, Development.EtaleCohomology.EtaleSheaves.LeafUnitsPfF, Development.EtaleCohomology.EtaleSheaves.LeafFinInfPf, Development.EtaleCohomology.EtaleSheaves.LeafFinValPf, Development.EtaleCohomology.EtaleSheaves.LeafUnitsPfD, Development.EtaleCohomology.EtaleSheaves.CurveUnitsOrderAtInfinity
+-- Members: Development.EtaleCohomology.EtaleSheaves.LeafUnitsPfC, Development.EtaleCohomology.EtaleSheaves.LeafUnitsPfE, Development.EtaleCohomology.EtaleSheaves.LeafUnitsPfF, Development.EtaleCohomology.EtaleSheaves.LeafFinInfPf, Development.EtaleCohomology.EtaleSheaves.LeafFinValPf, Development.EtaleCohomology.EtaleSheaves.LeafUnitsPfD, Development.EtaleCohomology.EtaleSheaves.CurveUnitsOrderAtInfinity
+
+-- ===== clump member: Development.EtaleCohomology.EtaleSheaves.LeafUnitsPfC =====
+-- clump-header: {"m": "Development.EtaleCohomology.EtaleSheaves.LeafUnitsPfC", "h": "module\n\npublic import Development.EtaleCohomology.EtaleSheaves.LeafUnitsPfB\npublic import Mathlib.RingTheory.NoetherNormalization\n\n"}
+section -- clump:auto
+@[expose] public section
+
+namespace LateralTheory.E.E4
+
+def LeafNoetherDim : Prop := ∀ (k B : Type) [Field k] [IsAlgClosed k] [CommRing B] [IsDedekindDomain B]
+  [Algebra k B] [Algebra.FiniteType k B], ¬ IsField B → ∀ (s : ℕ) (g : MvPolynomial (Fin s) k →ₐ[k] B),
+  Function.Injective g → g.Finite → s = 1
+
+theorem LeafNoetherCurve_of (hD : LeafNoetherDim) : LeafNoetherCurve := by
+  intro k B _ _ _ _ _ _ hB
+  obtain ⟨s, g, hg, hf⟩ := exists_finite_inj_algHom_of_fg k B
+  obtain rfl := hD k B hB s g hg hf
+  let e : MvPolynomial (Fin 1) k ≃ₐ[k] Polynomial k :=
+    (MvPolynomial.finSuccEquiv k 0).trans (Polynomial.mapAlgEquiv (MvPolynomial.isEmptyAlgEquiv k (Fin 0)))
+  refine ⟨g.comp e.symm.toAlgHom, hg.comp e.symm.injective, ?_⟩
+  exact RingHom.Finite.comp hf (RingHom.Finite.of_surjective _ e.symm.surjective)
+
+theorem LeafUnitsFG_of_dim (hD : LeafNoetherDim) (hV : LeafOrdAtInfinity) : LeafUnitsFG :=
+  LeafUnitsFG_of_leaves (LeafNoetherCurve_of hD) hV
+
+end LateralTheory.E.E4
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.EtaleCohomology.EtaleSheaves.LeafUnitsPfC =====
 
 -- ===== clump member: Development.EtaleCohomology.EtaleSheaves.LeafUnitsPfE =====
 -- clump-header: {"m": "Development.EtaleCohomology.EtaleSheaves.LeafUnitsPfE", "h": "module\n\npublic import Development.EtaleCohomology.EtaleSheaves.LeafUnitsPfB\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}

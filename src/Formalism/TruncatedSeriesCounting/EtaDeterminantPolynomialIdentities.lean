@@ -1,6 +1,6 @@
 module
 
-public import Formalism.TruncatedSeriesCounting.StatementX
+public import Formalism.TruncatedSeriesCounting.RamifiedValuationInequality
 public import Mathlib.RingTheory.Ideal.BigOperators
 public import Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.ColAssembly
 public import Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.ColChain
@@ -18,7 +18,64 @@ import Mathlib.Algebra.Order.Star.Real
 import Mathlib.Algebra.Order.Star.Int
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.ArcExp, Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.QNumericalIdentity, Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.SaturationCriterion, Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.TruncSig, Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.TruncationRemainderBound, Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.UnitCoefficientPowerMod, Formalism.TruncatedSeriesCounting.EtaDeterminantPolynomialIdentities
+-- Members: Formalism.TruncatedSeriesCounting.StatementX, Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.ArcExp, Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.QNumericalIdentity, Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.SaturationCriterion, Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.TruncSig, Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.TruncationRemainderBound, Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.UnitCoefficientPowerMod, Formalism.TruncatedSeriesCounting.EtaDeterminantPolynomialIdentities
+
+-- ===== clump member: Formalism.TruncatedSeriesCounting.StatementX =====
+-- clump-header: {"m": "Formalism.TruncatedSeriesCounting.StatementX", "h": "module\n\npublic import Formalism.TruncatedSeriesCounting.RamifiedValuationInequality\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+namespace Formalism.TruncatedSeriesCounting.X
+
+open PowerSeries
+
+def QaNum : Prop :=
+  ∀ (ℓ : ℕ), 3 ≤ ℓ → ∀ (H' H : ℕ) (eW : ℝ), H' ≤ H →
+    eW ≤ (H' : ℝ) * ℓ / ((ℓ : ℝ) - 1) ^ 2 + 3 + Real.logb ℓ ((H' : ℝ) + 1) →
+    (((H' / (ℓ - 1) + 1 : ℕ)) : ℝ) + eW - 1 ≤ Formalism.TruncatedSeriesCounting.RamifiedCoefficientChains.aR ℓ H
+
+def TruncSig : Prop :=
+  ∀ (ℓ : ℕ), 3 ≤ ℓ → ∀ (y X M η : ℕ),
+    (y : ℝ) * ℓ / ((ℓ : ℝ) - 1) - max 0 ((ℓ : ℝ) * y - X) ≤ ((X : ℝ) + 1) / ((ℓ : ℝ) - 1) + 1 ∧
+    (y : ℝ) * ℓ / ((ℓ : ℝ) - 1) - max 0 ((ℓ : ℝ) * y - η - M) ≤
+      ((M : ℝ) + η) / ((ℓ : ℝ) - 1) + 1 ∧
+    (y : ℝ) * ℓ / ((ℓ : ℝ) - 1) - max 0 (((ℓ : ℝ) - 1) * y - (X : ℝ) / ℓ) ≤
+      (X : ℝ) / ((ℓ : ℝ) - 1) ^ 2 + 1
+
+def TruncRem1 : Prop :=
+  ∀ (R : Type) [CommRing R] (ℓ : ℕ), 1 ≤ ℓ → ∀ (π₀ : R) (y K c : ℕ),
+    (c : ℤ) ≤ (ℓ : ℤ) * y - K →
+    (π₀ * (π₀ + (ℓ : R)) ^ (ℓ - 1)) ^ y ∈
+      Ideal.span {(ℓ : R) ^ c, π₀ * (π₀ + (ℓ : R)) ^ K}
+
+def ArcExp : Prop :=
+  ∀ (r σ κ G : ℝ) (j' ell : ℕ), 0 ≤ r → 0 ≤ σ → 0 ≤ κ → 0 ≤ G → j' ≤ ell →
+    r + 4 * σ + κ + max (r + κ) (2 * σ + 2 * j' * G + 1) ≤
+      2 * r + 6 * σ + 2 * κ + 2 * G * ell + 1
+
+def SatA : Prop :=
+  ∀ (A : Type) [CommRing A] [IsDomain A] (ℓ f f' : A), f' ≠ 0 →
+    (∀ a : A, ℓ * a ∈ Ideal.span {f} → a ∈ Ideal.span {f}) →
+    (∀ a : A, ℓ * a ∈ Ideal.span {f'} → a ∈ Ideal.span {f'}) →
+    ∀ (x : FractionRing A) (k : ℕ),
+      (∃ b : A, algebraMap A (FractionRing A) b = algebraMap A (FractionRing A) f' * x) →
+      (∃ a : A, algebraMap A (FractionRing A) (f * a) = algebraMap A (FractionRing A) ℓ ^ k * x) →
+      ∃ a : A, x = algebraMap A (FractionRing A) (f * a)
+
+def UnitCoefficientPowerMod : Prop :=
+  ∀ (O : Type) [CommRing O] (ℓ : ℕ) (ε u : PowerSeries O) (y : ℕ),
+    (PowerSeries.coeff (ℓ * y) ((Formalism.WindowSums.p1 ℓ ε u) ^ y) - (PowerSeries.constantCoeff u) ^ y ∈
+      Ideal.span {(ℓ : O)}) ∧
+    (IsLocalRing O → ¬ IsUnit (ℓ : O) → IsUnit u →
+      IsUnit (PowerSeries.coeff (ℓ * y) ((Formalism.WindowSums.p1 ℓ ε u) ^ y)))
+
+end Formalism.TruncatedSeriesCounting.X
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.TruncatedSeriesCounting.StatementX =====
 
 -- ===== clump member: Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.ArcExp =====
 -- clump-header: {"m": "Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.ArcExp", "h": "module\n\npublic import Formalism.TruncatedSeriesCounting.StatementX\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

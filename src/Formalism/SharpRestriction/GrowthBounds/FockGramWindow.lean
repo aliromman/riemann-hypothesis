@@ -6,7 +6,8 @@ public import Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.BejjSmu
 public import Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.BlockValuationZpOfLatticeInclusion
 public import Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.CoarseCLower
 public import Formalism.SharpRestriction.GrowthBounds.FockGramWindow.FirstCoefficientLeDiv
-public import Formalism.SharpRestriction.GrowthBounds.FockGramWindow.GramWindow2
+public import Formalism.MahlerMeasure.GoodCount
+public import Formalism.MahlerMeasure.StatementD
 public import Formalism.MahlerMeasure.CoarseLevelSlackInequalities
 public import Formalism.MahlerMeasure.FinalD
 public import Formalism.MahlerMeasure.MahlerMeasureProofs.MeanGam
@@ -18,7 +19,6 @@ public import Formalism.ThetaLogCoordinates.BihomogeneousPairs.LetterChainEmbedd
 public import Formalism.ThetaLogCoordinates.BihomogeneousPairs.LetterChainEmbeddings.SmulMemOfNorm
 public import Formalism.PolynomialDimension.DigitSumValuationBound
 public import Mathlib.Algebra.Polynomial.BigOperators
-public import Formalism.MahlerMeasure.StatementD
 public import Formalism.SharpRestriction.GrowthBounds.FockGramWindow.PhiPair
 public import Formalism.MahlerMeasure.TieVars
 public import Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.DegFactNeZero
@@ -41,7 +41,42 @@ import Formalism.MahlerMeasure.MahlerMeasureProofs.GamInt
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.FockKSmulRight, Formalism.SharpRestriction.GrowthBounds.FockGramWindow.RestWinOfLvl, Formalism.SharpRestriction.GrowthBounds.FockGramWindow.InitialPointNumericBound, Formalism.SharpRestriction.GrowthBounds.FockGramWindow.GramWindow2Proved, Formalism.SharpRestriction.GrowthBounds.FockGramWindow.LettersAtUPos, Formalism.PolynomialDimension.MultinomialDepth.SegmentBoundThreeHolds, Formalism.PolynomialDimension.ChangeLatticeGoodRank, Formalism.SharpRestriction.GrowthBounds.FockGramWindow.BinMatNatDegreeLe, Formalism.SharpRestriction.GrowthBounds.FockGramWindow.NeglogPowMul, Formalism.SharpRestriction.GrowthBounds.FockGramWindow.NormFockLe, Formalism.SharpRestriction.GrowthBounds.FockGramWindow.WinLvl, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.DiagonalRank.DetOneSubPNe, Formalism.PeriodIntegrals.LatMin, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MinimalLatticeNorm.NormTwoEqOne, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.LatMin, Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.OrthSplitOfMin, Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.ClosedOfOrthogonalSplitting, Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.ClosedOfSplittingMatrix, Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.ClosedOfMinimalVector, Formalism.SharpRestriction.GrowthBounds.FockGramWindow
+-- Members: Formalism.SharpRestriction.GrowthBounds.FockGramWindow.GramWindow2, Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.FockKSmulRight, Formalism.SharpRestriction.GrowthBounds.FockGramWindow.RestWinOfLvl, Formalism.SharpRestriction.GrowthBounds.FockGramWindow.InitialPointNumericBound, Formalism.SharpRestriction.GrowthBounds.FockGramWindow.GramWindow2Proved, Formalism.SharpRestriction.GrowthBounds.FockGramWindow.LettersAtUPos, Formalism.PolynomialDimension.MultinomialDepth.SegmentBoundThreeHolds, Formalism.PolynomialDimension.ChangeLatticeGoodRank, Formalism.SharpRestriction.GrowthBounds.FockGramWindow.BinMatNatDegreeLe, Formalism.SharpRestriction.GrowthBounds.FockGramWindow.NeglogPowMul, Formalism.SharpRestriction.GrowthBounds.FockGramWindow.NormFockLe, Formalism.SharpRestriction.GrowthBounds.FockGramWindow.WinLvl, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.DiagonalRank.DetOneSubPNe, Formalism.PeriodIntegrals.LatMin, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MinimalLatticeNorm.NormTwoEqOne, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.LatMin, Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.OrthSplitOfMin, Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.ClosedOfOrthogonalSplitting, Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.ClosedOfSplittingMatrix, Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.ClosedOfMinimalVector, Formalism.SharpRestriction.GrowthBounds.FockGramWindow
+
+-- ===== clump member: Formalism.SharpRestriction.GrowthBounds.FockGramWindow.GramWindow2 =====
+-- clump-header: {"m": "Formalism.SharpRestriction.GrowthBounds.FockGramWindow.GramWindow2", "h": "module\n\npublic import Formalism.MahlerMeasure.GoodCount\npublic import Formalism.MahlerMeasure.StatementD\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+namespace Formalism.MainNotions.G.GramWindowAlt
+
+open MvPolynomial Finset
+
+def GramWindow2 : Prop :=
+  ∀ (p : ℕ) [Fact p.Prime] (σ : Type) (n del h Y0 : ℕ) (k : ℤ) (La0 : ℝ) (t0 : ℕ)
+    (Ψ : ℕ → MvPolynomial σ ℚ_[p] → MvPolynomial σ ℚ_[p] → ℚ_[p]) (e : Fin n → MvPolynomial σ ℚ_[p])
+    (s : ℕ → ℚ_[p]) (c : Fin n → Fin n → ℕ → ℚ_[p]),
+    LinearIndependent ℤ_[p] e →
+    (∀ j (a : ℚ_[p]) u v, Ψ j (a • u) v = a * Ψ j u v) → (∀ j u u' v, Ψ j (u + u') v = Ψ j u v + Ψ j u' v) →
+    (∀ j (a : ℚ_[p]) u v, Ψ j u (a • v) = a * Ψ j u v) → (∀ j u v v', Ψ j u (v + v') = Ψ j u v + Ψ j u v') →
+    0 < Y0 → Y0 ≤ p ^ h → del + 1 ≤ p ^ h → 0 ≤ k → (∀ a b i, ‖c a b i‖ ≤ 1) →
+    (Formalism.GM.binMatK ℚ_[p] del c).det ≠ 0 →
+    -Real.logb p ‖(Formalism.GM.binMatK ℚ_[p] del c).det.leadingCoeff‖ +
+        ((Formalism.GM.binMatK ℚ_[p] del c).det.natDegree : ℝ) / ((p : ℝ) - 1) ≤ (n : ℝ) * La0 →
+    (∀ j ∈ Finset.range Y0, s j ≠ 0 ∧ ‖s j‖ ≤ 1 ∧ ∀ a b,
+      s j * Ψ j (e a) (e b) =
+        ((Formalism.GM.binMatK ℚ_[p] del c).map (Polynomial.eval (((t0 + j : ℕ) : ℚ_[p])))) a b) →
+    (∑ j ∈ Finset.range Y0, (Formalism.GM.M.bad p (Ψ j) (Submodule.span ℤ_[p] (Set.range e)) k : ℝ)) ≤
+      (Y0 : ℝ) * ((n : ℝ) * ((del : ℝ) / Y0 + (La0 + (del : ℝ) * h / Y0) / ((k : ℝ) + 1)))
+
+end Formalism.MainNotions.G.GramWindowAlt
+
+end
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.SharpRestriction.GrowthBounds.FockGramWindow.GramWindow2 =====
 
 -- ===== clump member: Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.FockKSmulRight =====
 -- clump-header: {"m": "Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.FockKSmulRight", "h": "module\n\npublic import Formalism.SharpRestriction.GrowthBounds.FlipOneThree\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Formalism.SharpRestriction.GrowthBounds.CountingStatementReduction\n\n"}

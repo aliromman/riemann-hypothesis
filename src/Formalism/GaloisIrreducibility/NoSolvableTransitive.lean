@@ -1,7 +1,6 @@
 module
 
 public import Formalism.GaloisIrreducibility.Statement
-public import Formalism.GaloisIrreducibility.NoSolvableOf
 public import Mathlib.RingTheory.SimpleRing.Principal
 public import Mathlib.GroupTheory.GroupAction.MultipleTransitivity
 public import Mathlib.Data.Nat.Prime.Factorial
@@ -16,7 +15,26 @@ import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.Linter.HaveILetI
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.GaloisIrreducibility.GaloisIrreducibilityProofs.AltNotSolvable, Formalism.GaloisIrreducibility.GaloisIrreducibilityProofs.IrredOf, Formalism.GaloisIrreducibility.GaloisIrreducibilityProofs.JordanPrime, Formalism.GaloisIrreducibility.GaloisIrreducibilityProofs.LemmaAOf, Formalism.GaloisIrreducibility.GaloisIrreducibilityProofs.NoSolvableOf, Formalism.GaloisIrreducibility.GaloisIrreducibilityProofs.OrbitSubSum, Formalism.GaloisIrreducibility.GaloisIrreducibilityProofs.PermSubSumInv, Formalism.GaloisIrreducibility.GaloisIrreducibilityProofs.PrimitiveOfPCycle, Formalism.GaloisIrreducibility.NoSolvableTransitive
+-- Members: Formalism.GaloisIrreducibility.NoSolvableOf, Formalism.GaloisIrreducibility.GaloisIrreducibilityProofs.AltNotSolvable, Formalism.GaloisIrreducibility.GaloisIrreducibilityProofs.IrredOf, Formalism.GaloisIrreducibility.GaloisIrreducibilityProofs.JordanPrime, Formalism.GaloisIrreducibility.GaloisIrreducibilityProofs.LemmaAOf, Formalism.GaloisIrreducibility.GaloisIrreducibilityProofs.NoSolvableOf, Formalism.GaloisIrreducibility.GaloisIrreducibilityProofs.OrbitSubSum, Formalism.GaloisIrreducibility.GaloisIrreducibilityProofs.PermSubSumInv, Formalism.GaloisIrreducibility.GaloisIrreducibilityProofs.PrimitiveOfPCycle, Formalism.GaloisIrreducibility.NoSolvableTransitive
+
+-- ===== clump member: Formalism.GaloisIrreducibility.NoSolvableOf =====
+-- clump-header: {"m": "Formalism.GaloisIrreducibility.NoSolvableOf", "h": "module\n\npublic import Formalism.GaloisIrreducibility.Statement\n\n"}
+section -- clump:auto
+@[expose] public section
+
+namespace Formalism.GaloisIrreducibility
+
+def LemmaAOf : Prop := OrbitSubSum → RestrictRoots → LemmaA
+
+def IrredOf : Prop := LemmaA → Irred
+
+def NoSolvableOf : Prop :=
+  PowerPCycle → PrimitiveOfPCycle → JordanPrime → AltNotSolvable → NoSolvableTransitive
+
+end Formalism.GaloisIrreducibility
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.GaloisIrreducibility.NoSolvableOf =====
 
 -- ===== clump member: Formalism.GaloisIrreducibility.GaloisIrreducibilityProofs.AltNotSolvable =====
 -- clump-header: {"m": "Formalism.GaloisIrreducibility.GaloisIrreducibilityProofs.AltNotSolvable", "h": "module\n\npublic import Formalism.GaloisIrreducibility.Statement\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.GroupTheory.SpecificGroups.ZGroup\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

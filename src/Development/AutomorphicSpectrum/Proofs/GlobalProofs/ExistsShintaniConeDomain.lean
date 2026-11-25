@@ -2,7 +2,6 @@ module
 
 public import Mathlib.NumberTheory.NumberField.InfinitePlace.TotallyRealComplex
 public import Development.AutomorphicSpectrum.Proofs.GlobalProofs.AbelContinuation
-public import Development.AutomorphicSpectrum.Proofs.GlobalProofs.CongSubgroup
 public import Mathlib.NumberTheory.NumberField.Units.DirichletTheorem
 public import Mathlib.Algebra.BigOperators.Group.Finset.Defs
 public import Mathlib.Basic.Real.Basic
@@ -23,7 +22,86 @@ import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.SiegelKlingenDeligneRibet
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicSpectrum.Proofs.GlobalProofs.CardRealEmbeddingsEqFinrank, Development.AutomorphicSpectrum.Proofs.GlobalProofs.NearIdentityMatrixPositiveSolution, Development.AutomorphicSpectrum.Proofs.GlobalProofs.TotallyRealFieldDenseEmbeddings, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ExistsTotallyPositiveBasisPositiveCoords, Development.AutomorphicSpectrum.Proofs.GlobalProofs.FiniteUnitsBoundedEmbeddingRatio, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ExistsUnitPowerInCongruence, Development.AutomorphicSpectrum.Proofs.GlobalProofs.UnitLogLatticeBoundedTranslate, Development.AutomorphicSpectrum.Proofs.GlobalProofs.PlaceApply, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ShintaniConeDecomposition, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ComboNotMemSpan, Development.AutomorphicSpectrum.Proofs.GlobalProofs.SimplicialConeTilesSign, Development.AutomorphicSpectrum.Proofs.GlobalProofs.SimplicialConeTiling, Development.AutomorphicSpectrum.Proofs.GlobalProofs.TotallyPositiveBasisRatioBound, Development.AutomorphicSpectrum.Proofs.GlobalProofs.UniqueReducedOrbitRepresentative, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ExistsShintaniConeDomain
+-- Members: Development.AutomorphicSpectrum.Proofs.GlobalProofs.CongSubgroup, Development.AutomorphicSpectrum.Proofs.GlobalProofs.CardRealEmbeddingsEqFinrank, Development.AutomorphicSpectrum.Proofs.GlobalProofs.NearIdentityMatrixPositiveSolution, Development.AutomorphicSpectrum.Proofs.GlobalProofs.TotallyRealFieldDenseEmbeddings, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ExistsTotallyPositiveBasisPositiveCoords, Development.AutomorphicSpectrum.Proofs.GlobalProofs.FiniteUnitsBoundedEmbeddingRatio, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ExistsUnitPowerInCongruence, Development.AutomorphicSpectrum.Proofs.GlobalProofs.UnitLogLatticeBoundedTranslate, Development.AutomorphicSpectrum.Proofs.GlobalProofs.PlaceApply, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ShintaniConeDecomposition, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ComboNotMemSpan, Development.AutomorphicSpectrum.Proofs.GlobalProofs.SimplicialConeTilesSign, Development.AutomorphicSpectrum.Proofs.GlobalProofs.SimplicialConeTiling, Development.AutomorphicSpectrum.Proofs.GlobalProofs.TotallyPositiveBasisRatioBound, Development.AutomorphicSpectrum.Proofs.GlobalProofs.UniqueReducedOrbitRepresentative, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ExistsShintaniConeDomain
+
+-- ===== clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.CongSubgroup =====
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.GlobalProofs.CongSubgroup", "h": "module\n\npublic import Development.AutomorphicSpectrum.Proofs.GlobalProofs.AbelContinuation\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+open NumberField
+
+namespace GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Cones
+
+variable {V : Type} [AddCommGroup V] [Module ℚ V]
+
+def coneOn (s : Finset V) : Set V :=
+  {x | ∃ t : V → ℚ, (∀ i ∈ s, 0 < t i) ∧ x = ∑ i ∈ s, t i • i}
+
+def SignConst (l : V →ₗ[ℚ] ℚ) (C : Set V) : Prop :=
+  (∀ x ∈ C, l x = 0) ∨ (∀ x ∈ C, 0 < l x) ∨ (∀ x ∈ C, l x < 0)
+
+inductive Tile (P : Set V) (Q : Set V → Prop) : Set V → Prop
+  | empty : Tile P Q ∅
+  | cone (s : Finset V) (hli : LinearIndepOn ℚ id (s : Set V)) (hP : (s : Set V) ⊆ P) (hQ : Q (coneOn s)) :
+      Tile P Q (coneOn s)
+  | union {A B : Set V} (hA : Tile P Q A) (hB : Tile P Q B) (hAB : Disjoint A B) : Tile P Q (A ∪ B)
+
+def posCone (F : Type) [Field F] [NumberField F] : ConvexCone ℚ F where
+  carrier := {x | TotPos F x}
+  smul_mem' := by
+    intro c hc x hx σ
+    have h : σ (c • x) = (c : ℝ) * σ x := by
+      rw [Rat.smul_def, map_mul, map_ratCast]
+    rw [h]
+    exact mul_pos (by exact_mod_cast hc) (hx σ)
+  add_mem' := by
+    intro x hx y hy σ
+    rw [map_add (f := _)]
+    exact add_pos (hx σ) (hy σ)
+
+def congSubgroup {F : Type} [Field F] [NumberField F] (𝔣 : Ideal (𝓞 F)) : Subgroup (𝓞 F)ˣ where
+  carrier := congUnits 𝔣
+  mul_mem' := by
+    intro a b ha hb
+    refine ⟨?_, fun σ => ?_⟩
+    · have h : ((a * b : (𝓞 F)ˣ) : 𝓞 F) - 1 = (a : 𝓞 F) * ((b : 𝓞 F) - 1) + ((a : 𝓞 F) - 1) := by
+        rw [Units.val_mul]; ring
+      rw [h]
+      exact 𝔣.add_mem (𝔣.mul_mem_left _ hb.1) ha.1
+    · have h : (((a * b : (𝓞 F)ˣ) : 𝓞 F) : F) = ((a : 𝓞 F) : F) * ((b : 𝓞 F) : F) := by
+        rw [Units.val_mul]; simp
+      rw [h, map_mul]
+      exact mul_pos (ha.2 σ) (hb.2 σ)
+  one_mem' := by
+    refine ⟨by simp, fun σ => ?_⟩
+    simp
+  inv_mem' := by
+    intro a ha
+    refine ⟨?_, fun σ => ?_⟩
+    · have h : ((a⁻¹ : (𝓞 F)ˣ) : 𝓞 F) - 1 = -(((a⁻¹ : (𝓞 F)ˣ) : 𝓞 F) * ((a : 𝓞 F) - 1)) := by
+        have : ((a⁻¹ : (𝓞 F)ˣ) : 𝓞 F) * (a : 𝓞 F) = 1 := by simp
+        linear_combination this
+      rw [h]
+      exact 𝔣.neg_mem (𝔣.mul_mem_left _ ha.1)
+    · have h1 : (((a⁻¹ : (𝓞 F)ˣ) : 𝓞 F) : F) * ((a : 𝓞 F) : F) = 1 := by
+        have : ((a⁻¹ : (𝓞 F)ˣ) : 𝓞 F) * (a : 𝓞 F) = 1 := by simp
+        exact_mod_cast congrArg (fun z : 𝓞 F => (z : F)) this
+      have h2 := congrArg σ h1
+      rw [map_mul, map_one] at h2
+      have h3 := ha.2 σ
+      by_contra hn
+      have : σ (((a⁻¹ : (𝓞 F)ˣ) : 𝓞 F) : F) * σ ((a : 𝓞 F) : F) ≤ 0 :=
+        mul_nonpos_of_nonpos_of_nonneg (not_lt.mp hn) h3.le
+      linarith
+
+end GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Cones
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.CongSubgroup =====
 
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.CardRealEmbeddingsEqFinrank =====
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.GlobalProofs.CardRealEmbeddingsEqFinrank", "h": "module\n\npublic import Mathlib.NumberTheory.NumberField.InfinitePlace.TotallyRealComplex\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AutomorphicSpectrum.Proofs.GlobalProofs.AbelContinuation\nimport Development.AutomorphicSpectrum.Proofs.GlobalProofs.CongSubgroup\nimport Mathlib.NumberTheory.NumberField.Units.Basic\nimport Mathlib.NumberTheory.NumberField.Units.DirichletTheorem\n\n"}

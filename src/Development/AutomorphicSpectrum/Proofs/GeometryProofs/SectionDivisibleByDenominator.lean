@@ -8,7 +8,6 @@ public import Mathlib.RingTheory.RegularLocalRing.Defs
 public import Mathlib.RingTheory.SimpleRing.Principal
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsThetaMeanSquareNorm
-public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.TopLeOfClosedPoint
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.AbelianSchemeQuotients.IsAbelianScheme
 public import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.IsIntegralOfSmoothFieldOfConnectedSpace
@@ -37,7 +36,79 @@ import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.LocallyQuasiFini
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.SABBaseChangeSt
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.FiniteSubfieldSpecial, Development.AutomorphicSpectrum.Proofs.GeometryProofs.AlgebraicPointOverNumberField, Development.AutomorphicSpectrum.Proofs.GeometryProofs.GroupSchemeIntegralNoetherian, Development.AutomorphicSpectrum.Proofs.GeometryProofs.LineBundleSectionDivisible, Development.AutomorphicSpectrum.Proofs.GeometryProofs.PrimeIdealExtensionLocalDomain, Development.AutomorphicSpectrum.Proofs.GeometryProofs.TorsionPointLineBundleUnit, Development.AutomorphicSpectrum.Proofs.GeometryProofs.TorsionPointValuationRingLift, Development.AutomorphicSpectrum.Proofs.GeometryProofs.SectionDivisibleByDenominator
+-- Members: Development.AutomorphicSpectrum.Proofs.GeometryProofs.TopLeOfClosedPoint, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.FiniteSubfieldSpecial, Development.AutomorphicSpectrum.Proofs.GeometryProofs.AlgebraicPointOverNumberField, Development.AutomorphicSpectrum.Proofs.GeometryProofs.GroupSchemeIntegralNoetherian, Development.AutomorphicSpectrum.Proofs.GeometryProofs.LineBundleSectionDivisible, Development.AutomorphicSpectrum.Proofs.GeometryProofs.PrimeIdealExtensionLocalDomain, Development.AutomorphicSpectrum.Proofs.GeometryProofs.TorsionPointLineBundleUnit, Development.AutomorphicSpectrum.Proofs.GeometryProofs.TorsionPointValuationRingLift, Development.AutomorphicSpectrum.Proofs.GeometryProofs.SectionDivisibleByDenominator
+
+-- ===== clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.TopLeOfClosedPoint =====
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.GeometryProofs.TopLeOfClosedPoint", "h": "module\n\npublic import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens\nimport Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsThetaMeanSquareNorm\nimport Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LieModel\nimport GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.DenseLift\nimport ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField MeasureTheory
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi
+open GroundTheory.Heights₂.Heights TensorProduct
+open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Sl
+
+noncomputable section
+namespace GlobalTheory.CompanionTheory.Ar.Sl.Reg
+
+def sc {R : Type} [CommRing R] {X : Scheme.{0}} (f : X ⟶ Sp R) (U : X.Opens) : R →+* Γ(X, U) :=
+  (f.appLE ⊤ U (fun _ _ => trivial)).hom.comp (Scheme.ΓSpecIso (CommRingCat.of R)).inv.hom
+
+def valR {O : Type} [CommRing O] {X : Scheme.{0}} (a : Sp O ⟶ X) (U : X.Opens) (h : ⊤ ≤ a ⁻¹ᵁ U) : Γ(X, U) →+* O :=
+  (Scheme.ΓSpecIso (CommRingCat.of O)).hom.hom.comp (a.appLE U ⊤ h).hom
+
+theorem top_le_of_closedPoint {O : Type} [CommRing O] [IsLocalRing O] (V : (Sp O).Opens)
+    (h : IsLocalRing.closedPoint O ∈ V) : ⊤ ≤ V := by
+  intro x _
+  have hs : (x : Sp O) ⤳ IsLocalRing.closedPoint O :=
+    (PrimeSpectrum.le_iff_specializes _ _).mp (IsLocalRing.le_maximalIdeal (x : PrimeSpectrum O).2.ne_top)
+  exact hs.mem_open V.2 h
+
+theorem valR_isUnit_iff {O : Type} [CommRing O] [IsLocalRing O] {X : Scheme.{0}} (a : Sp O ⟶ X) (U : X.Opens)
+    (h : ⊤ ≤ a ⁻¹ᵁ U) (b : Γ(X, U)) :
+    IsUnit (valR a U h b) ↔ a (IsLocalRing.closedPoint O) ∈ X.basicOpen b := by
+  have e : (a.appLE U ⊤ h).hom b = (Scheme.ΓSpecIso (CommRingCat.of O)).inv.hom (valR a U h b) := by
+    simp [valR]
+  have e2 := Scheme.basicOpen_appLE a ⊤ U h b
+  rw [e, basicOpen_eq_of_affine] at e2
+  have : a (IsLocalRing.closedPoint O) ∈ X.basicOpen b ↔ IsLocalRing.closedPoint O ∈ a ⁻¹ᵁ X.basicOpen b := Iff.rfl
+  rw [this]
+  have e3 : (IsLocalRing.closedPoint O ∈ a ⁻¹ᵁ X.basicOpen b) ↔ (IsLocalRing.closedPoint O ∈ (PrimeSpectrum.basicOpen (valR a U h b))) := by
+    rw [e2]; exact ⟨fun h => ⟨trivial, h⟩, fun h => h.2⟩
+  rw [e3]
+  change _ ↔ (valR a U h b) ∉ IsLocalRing.maximalIdeal O
+  simp [IsLocalRing.mem_maximalIdeal]
+
+theorem valR_res {O : Type} [CommRing O] {X : Scheme.{0}} (a : Sp O ⟶ X) {U V : X.Opens} (hVU : V ≤ U)
+    (h : ⊤ ≤ a ⁻¹ᵁ V) (h' : ⊤ ≤ a ⁻¹ᵁ U) (f : Γ(X, U)) :
+    valR a V h ((X.presheaf.map (homOfLE hVU).op).hom f) = valR a U h' f := by
+  simp only [valR, RingHom.comp_apply]
+  congr 1
+  rw [← CommRingCat.comp_apply, Scheme.Hom.map_appLE]
+
+theorem valR_sc {O R : Type} [CommRing O] [CommRing R] {X : Scheme.{0}} (a : Sp O ⟶ X) (π : X ⟶ Sp R) (ρ : R →+* O)
+    (hρ : a ≫ π = spMap ρ) (U : X.Opens) (h : ⊤ ≤ a ⁻¹ᵁ U) (r : R) : valR a U h (sc π U r) = ρ r := by
+  have key : ∀ (g : Sp O ⟶ Sp R) (_ : g = spMap ρ) (e : ⊤ ≤ g ⁻¹ᵁ ⊤),
+      (Scheme.ΓSpecIso (CommRingCat.of O)).hom.hom ((g.appLE ⊤ ⊤ e).hom ((Scheme.ΓSpecIso (CommRingCat.of R)).inv.hom r)) = ρ r := by
+    rintro _ rfl e
+    have e1 : (spMap ρ).appLE ⊤ ⊤ e = (spMap ρ).appTop := Scheme.Hom.appLE_eq_app (f := spMap ρ) (U := ⊤)
+    have e2 := Scheme.ΓSpecIso_inv_naturality (CommRingCat.ofHom ρ)
+    rw [e1]
+    have e3 : ((spMap ρ).appTop).hom ((Scheme.ΓSpecIso (CommRingCat.of R)).inv.hom r) = (Scheme.ΓSpecIso (CommRingCat.of O)).inv.hom (ρ r) :=
+      (congrArg (fun q => q.hom r) e2).symm
+    rw [e3]
+    simp
+  have e1 := Scheme.Hom.appLE_comp_appLE a π ⊤ U ⊤ (fun _ _ => trivial) h
+  rw [← key (a ≫ π) hρ (by simpa using fun _ _ => trivial)]
+  simp only [valR, sc, RingHom.comp_apply]
+  congr 1
+  rw [← CommRingCat.comp_apply, e1]
+
+end GlobalTheory.CompanionTheory.Ar.Sl.Reg
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.TopLeOfClosedPoint =====
 
 -- ===== clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.FiniteSubfieldSpecial =====
 -- clump-header: {"m": "Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.FiniteSubfieldSpecial", "h": "module\n\npublic import Mathlib.AlgebraicGeometry.Morphisms.FiniteType\npublic import Mathlib.Combinatorics.Quiver.ReflQuiver\npublic import Mathlib.NumberTheory.NumberField.Basic\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.AlgebraicGeometry.Modules.Sheaf\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Henselian\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.RegularLocalRing.Defs\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Lemma\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}

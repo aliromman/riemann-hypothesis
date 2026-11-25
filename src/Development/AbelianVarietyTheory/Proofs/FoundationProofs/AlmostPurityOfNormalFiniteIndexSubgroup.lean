@@ -7,7 +7,6 @@ public import Development.AbelianVarietyTheory.Definitions.Foundations.CosetTrac
 public import Mathlib.Algebra.CharP.Lemmas
 public import Mathlib.RingTheory.Valuation.Integers
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.CosetRepresentativeTraceFixedProperties
-public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsPthPowerScaleThinShell
 public import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
 public import Mathlib.Algebra.Field.ZMod
 public import Mathlib.GroupTheory.PGroup
@@ -24,7 +23,104 @@ import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ValuationFrobeniusSumSubLeNatCastPrime, Development.AbelianVarietyTheory.Proofs.FoundationProofs.PowMulApproxPowOfAlmostEtaleSeparatingFamily, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ApproxPthRootFixedSubfieldOfAlmostEtale, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsSurjHomZmodOfIsPGroup, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsLagrangeResolventOfPGroupFaithful, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsNormalSubgroupNotMovesUniformBound, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ValuationAddPowSubLe, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsImprovedApproxKummerGenerator, Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerGeneratorApproxCriticalRadius, Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerAutomorphismMovesIntegersAlmostUnit, Development.AbelianVarietyTheory.Proofs.FoundationProofs.MovesIntegersAlmostUnitDistanceFixedSubfield, Development.AbelianVarietyTheory.Proofs.FoundationProofs.NatCastEqOneOfCoprime, Development.AbelianVarietyTheory.Proofs.FoundationProofs.MovesIntegersAlmostUnitOfCoprimeOrder, Development.AbelianVarietyTheory.Proofs.FoundationProofs.AlmostPurityMovesIntegersOfNeOne, Development.AbelianVarietyTheory.Proofs.FoundationProofs.AlmostPurityOfNormalFiniteIndexSubgroup
+-- Members: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsPthPowerScaleThinShell, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ValuationFrobeniusSumSubLeNatCastPrime, Development.AbelianVarietyTheory.Proofs.FoundationProofs.PowMulApproxPowOfAlmostEtaleSeparatingFamily, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ApproxPthRootFixedSubfieldOfAlmostEtale, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsSurjHomZmodOfIsPGroup, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsLagrangeResolventOfPGroupFaithful, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsNormalSubgroupNotMovesUniformBound, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ValuationAddPowSubLe, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsImprovedApproxKummerGenerator, Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerGeneratorApproxCriticalRadius, Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerAutomorphismMovesIntegersAlmostUnit, Development.AbelianVarietyTheory.Proofs.FoundationProofs.MovesIntegersAlmostUnitDistanceFixedSubfield, Development.AbelianVarietyTheory.Proofs.FoundationProofs.NatCastEqOneOfCoprime, Development.AbelianVarietyTheory.Proofs.FoundationProofs.MovesIntegersAlmostUnitOfCoprimeOrder, Development.AbelianVarietyTheory.Proofs.FoundationProofs.AlmostPurityMovesIntegersOfNeOne, Development.AbelianVarietyTheory.Proofs.FoundationProofs.AlmostPurityOfNormalFiniteIndexSubgroup
+
+-- ===== clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsPthPowerScaleThinShell =====
+-- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsPthPowerScaleThinShell", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.Foundations.CosetTrace\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open GlobalTheory.AlmostEt
+open scoped NNReal
+
+namespace GlobalTheory.AlmostEt
+
+variable {L : Type} [Field L]
+
+theorem approxRoot_exists_val_pow {p : ℕ} {v : Valuation L ℝ≥0} {F : Subfield L}
+    (hA : ApproxRoot p v F) {u : L} (hu : u ∈ F) (hu0 : u ≠ 0) :
+    ∃ w ∈ F, v w ^ p = v u := by
+  obtain ⟨θ, hθ, h⟩ := hA
+  obtain ⟨w, hw, hle⟩ := h u hu
+  have hvu : 0 < v u := pos_iff_ne_zero.mpr ((Valuation.ne_zero_iff v).mpr hu0)
+  have hlt : v (w ^ p - u) < v u := by
+    rw [Valuation.map_sub_swap]
+    exact lt_of_le_of_lt hle (mul_lt_of_lt_one_left hvu hθ)
+  refine ⟨w, hw, ?_⟩
+  rw [← map_pow]
+  exact Valuation.map_eq_of_sub_lt v hlt
+
+theorem approxRoot_exists_root_of_p {p : ℕ} (hp : p.Prime) {v : Valuation L ℝ≥0} {F : Subfield L}
+    (hA : ApproxRoot p v F) (hp0 : 0 < v (p : L)) :
+    ∀ k : ℕ, ∃ π ∈ F, v π ^ (p ^ k) = v (p : L) := by
+  intro k
+  induction k with
+  | zero => exact ⟨(p : L), natCast_mem F p, by simp⟩
+  | succ k ih =>
+    obtain ⟨π, hπ, hv⟩ := ih
+    have hπ0 : π ≠ 0 := by
+      rintro rfl
+      rw [map_zero, zero_pow (pow_ne_zero _ hp.ne_zero)] at hv
+      exact hp0.ne hv
+    obtain ⟨w, hw, hw'⟩ := approxRoot_exists_val_pow hA hπ hπ0
+    refine ⟨w, hw, ?_⟩
+    rw [pow_succ', pow_mul, hw', hv]
+
+theorem exists_scale_shell (L : Type) [Field L] (v : Valuation L ℝ≥0) (p : ℕ) (hp : p.Prime)
+    (F : Subfield L) (hA : ApproxRoot p v F) (hp0 : 0 < v (p : L)) (hp1 : v (p : L) < 1)
+    (r : ℝ≥0) (hr : r < 1) (x : L) (hx : x ≠ 0) :
+    ∃ d ∈ F, d ≠ 0 ∧ r < v (x * d ^ p) ∧ v (x * d ^ p) ≤ 1 := by
+  obtain ⟨n, hn⟩ := exists_pow_lt_of_lt_one (pow_pos hp0 p) hr
+  obtain ⟨π, hπ, hv⟩ := approxRoot_exists_root_of_p hp hA hp0 n
+  set s := v π with hs
+  set t := s ^ p with ht
+  have hrt : r < t := by
+    by_contra! h
+    have h1 : t ^ (p ^ n) ≤ r ^ (p ^ n) := pow_le_pow_left₀ (by positivity) h _
+    have h2 : r ^ (p ^ n) ≤ r ^ n :=
+      pow_le_pow_of_le_one (by positivity) hr.le (Nat.lt_pow_self hp.one_lt).le
+    have h3 : t ^ (p ^ n) = v (p : L) ^ p := by rw [ht, ← pow_mul, mul_comm, pow_mul, hv]
+    exact absurd (lt_of_le_of_lt (h3 ▸ h1.trans h2) hn) (lt_irrefl _)
+  have hs1 : s < 1 := by
+    by_contra! h
+    have := one_le_pow₀ (n := p ^ n) h
+    rw [hv] at this
+    exact absurd hp1 (not_lt.mpr this)
+  have ht1 : t < 1 := pow_lt_one₀ (by positivity) hs1 hp.ne_zero
+  have ht0 : 0 < t := lt_of_le_of_lt (by positivity) hrt
+  have hπ0 : π ≠ 0 := by
+    rintro rfl
+    have h0 : s = 0 := by rw [hs, map_zero]
+    rw [ht, h0, zero_pow hp.ne_zero] at ht0
+    exact lt_irrefl _ ht0
+  have hvx : 0 < v x := pos_iff_ne_zero.mpr ((Valuation.ne_zero_iff v).mpr hx)
+  obtain ⟨m, hm1, hm2⟩ := exists_mem_Ioc_zpow hvx ((one_lt_inv₀ ht0).mpr ht1)
+  refine ⟨π ^ (m + 1), zpow_mem hπ _, zpow_ne_zero _ hπ0, ?_⟩
+  have hval : v (x * (π ^ (m + 1)) ^ p) = v x * t ^ (m + 1) := by
+    rw [map_mul, map_pow, map_zpow₀, ← hs, ht, ← zpow_natCast, ← zpow_natCast, ← zpow_mul,
+      ← zpow_mul, mul_comm (m + 1)]
+  rw [hval]
+  have htne : t ≠ 0 := ht0.ne'
+  constructor
+  · have e : t⁻¹ ^ m * t ^ (m + 1) = t := by
+      rw [inv_zpow, zpow_add_one₀ htne, ← mul_assoc, inv_mul_cancel₀ (zpow_ne_zero _ htne), one_mul]
+    calc r < t := hrt
+      _ = t⁻¹ ^ m * t ^ (m + 1) := e.symm
+      _ < v x * t ^ (m + 1) := mul_lt_mul_of_pos_right hm1 (zpow_pos ht0 _)
+  · have e : t⁻¹ ^ (m + 1) * t ^ (m + 1) = 1 := by
+      rw [inv_zpow, inv_mul_cancel₀ (zpow_ne_zero _ htne)]
+    calc v x * t ^ (m + 1) ≤ t⁻¹ ^ (m + 1) * t ^ (m + 1) := mul_le_mul_of_nonneg_right hm2 (by positivity)
+      _ = 1 := e
+
+theorem klc_scale : ∀ (L : Type) [Field L] (v : Valuation L ℝ≥0) (p : ℕ), p.Prime → ∀ F : Subfield L,
+    ApproxRoot p v F → 0 < v (p : L) → v (p : L) < 1 → ∀ r : ℝ≥0, r < 1 → ∀ x : L, x ≠ 0 →
+    ∃ d ∈ F, d ≠ 0 ∧ r < v (x * d ^ p) ∧ v (x * d ^ p) ≤ 1 :=
+  fun L _ v p hp F hA hp0 hp1 r hr x hx => exists_scale_shell L v p hp F hA hp0 hp1 r hr x hx
+
+end GlobalTheory.AlmostEt
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsPthPowerScaleThinShell =====
 
 -- ===== clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ValuationFrobeniusSumSubLeNatCastPrime =====
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.FoundationProofs.ValuationFrobeniusSumSubLeNatCastPrime", "h": "module\n\npublic import Mathlib.Basic.NNReal.Defs\npublic import Mathlib.Data.Nat.Prime.Defs\npublic import Mathlib.RingTheory.Valuation.Basic\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AbelianVarietyTheory.Definitions.Foundations.CosetTrace\npublic import Mathlib.Algebra.CharP.Lemmas\npublic import Mathlib.RingTheory.Valuation.Integers\n\n"}

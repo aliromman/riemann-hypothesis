@@ -2,7 +2,8 @@ module
 
 public import GroundTheory.ArithmeticGeometry.AbelianVarieties.IsogenyPoints
 public import GroundTheory.ArithmeticGeometry.AbelianVarieties.DivisorsPic
-public import GroundTheory.ArithmeticGeometry.AbelianVarieties.DivisorsPullback
+public import GroundTheory.ArithmeticGeometry.AbelianVarieties.DivisorsOrd
+public import GroundTheory.ArithmeticGeometry.AbelianVarieties.FunctionFieldPoint
 public import GroundTheory.ArithmeticGeometry.AbelianVarieties.IsogenySeparable
 public import GroundTheory.ArithmeticGeometry.AbelianVarieties.DualIsogenyExists
 import GroundTheory.ArithmeticGeometry.AbelianVarieties.DivisorsValuation
@@ -10,7 +11,42 @@ import GroundTheory.ArithmeticGeometry.AbelianVarieties.KernelCard
 import GroundTheory.ArithmeticGeometry.AbelianVarieties.WeilTranslate
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: GroundTheory.ArithmeticGeometry.AbelianVarieties.IsogenyValuation, GroundTheory.ArithmeticGeometry.AbelianVarieties.WeilPairing, GroundTheory.ArithmeticGeometry.AbelianVarieties.IsogenyRamification
+-- Members: GroundTheory.ArithmeticGeometry.AbelianVarieties.DivisorsPullback, GroundTheory.ArithmeticGeometry.AbelianVarieties.IsogenyValuation, GroundTheory.ArithmeticGeometry.AbelianVarieties.WeilPairing, GroundTheory.ArithmeticGeometry.AbelianVarieties.IsogenyRamification
+
+-- ===== clump member: GroundTheory.ArithmeticGeometry.AbelianVarieties.DivisorsPullback =====
+-- clump-header: {"m": "GroundTheory.ArithmeticGeometry.AbelianVarieties.DivisorsPullback", "h": "module\n\npublic import GroundTheory.ArithmeticGeometry.AbelianVarieties.DivisorsOrd\npublic import GroundTheory.ArithmeticGeometry.AbelianVarieties.FunctionFieldPoint\n\n"}
+section -- clump:auto
+@[expose] public section
+
+namespace GroundTheory.Arith.Abelian
+
+open Polynomial WeierstrassCurve WeierstrassCurve.Affine IsDedekindDomain WithZero
+
+universe u
+
+variable {F : Type u} [Field F] [DecidableEq F] (W : WeierstrassCurve F) [W.IsElliptic]
+
+
+
+variable [IsAlgClosed F]
+
+
+omit [DecidableEq F] [W.IsElliptic] [IsAlgClosed F] in
+theorem aeval_genX (p : F[X]) :
+    aeval (genX W) p = algebraMap F[X] W.toAffine.FunctionField p := by
+  simp only [genX_eq, aeval_algebraMap_apply, aeval_X_left, AlgHom.id_apply]
+
+omit [DecidableEq F] [IsAlgClosed F] [W.IsElliptic] in
+theorem valuationInfty_algebraMap_const_eq_one {c : F} (hc : c ≠ 0) :
+    valuationInfty W (algebraMap F W.toAffine.FunctionField c) = 1 := by
+  rw [valuationInfty_eq_exp W ((map_ne_zero_iff _ (algebraMap F _).injective).mpr hc),
+    ordInfty_algebraMap_const W hc, neg_zero, exp_zero]
+
+
+end GroundTheory.Arith.Abelian
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: GroundTheory.ArithmeticGeometry.AbelianVarieties.DivisorsPullback =====
 
 -- ===== clump member: GroundTheory.ArithmeticGeometry.AbelianVarieties.IsogenyValuation =====
 -- clump-header: {"m": "GroundTheory.ArithmeticGeometry.AbelianVarieties.IsogenyValuation", "h": "module\n\npublic import GroundTheory.ArithmeticGeometry.AbelianVarieties.IsogenyPoints\npublic import GroundTheory.ArithmeticGeometry.AbelianVarieties.DivisorsPic\npublic import GroundTheory.ArithmeticGeometry.AbelianVarieties.DivisorsPullback\nimport GroundTheory.ArithmeticGeometry.AbelianVarieties.DivisorsValuation\nimport GroundTheory.ArithmeticGeometry.AbelianVarieties.KernelCard\nimport GroundTheory.ArithmeticGeometry.AbelianVarieties.WeilTranslate\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Int\nimport Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Degree\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Sheaves.Init\n\n"}

@@ -1,7 +1,8 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.JointCmpEmbeddingY
-public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ColSpanMapMulVecLin
+public import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.LocSpBot
+public import Formalism.LocalToGlobal.PairingIndexBounds.OrthogonalChartLevels.BasesAt
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.GidxFacts
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsOrthCoToLEOfCTMulSelf
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsUnitNatCastOfCoprimeLocal
@@ -26,7 +27,6 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsUnitDet
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.SiteBaseDatumIntegralOffBadPrimesStatement
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.SiteFiniteDataLevelPosBadPrimeFactorsStatement
 import Formalism.LocalToGlobal.GlobalTheory.GL3.PIopIso
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.LocSpBot
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.MemMoveLevUloc
 import Formalism.LocalToGlobal.GroupLattices.PendingLemmas.WittFractionToCpAlgebraMap
 import Formalism.LocalToGlobal.InertKernelTheory.SecondKernelEntrywiseLastLevel
@@ -38,7 +38,29 @@ import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.PeriodLatticeFi
 import Formalism.LocalToGlobal.InertKernelTheory.StatementInt
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AbelianVarietyTheory.Proofs.SatakeParameters.FrameLocalLatticeSpanKernelLatticeSucc, Development.AbelianVarietyTheory.Proofs.SatakeParameters.FrameLocalLatticeSpanKernelLatticeZero, Development.AbelianVarietyTheory.Proofs.SatakeParameters.TranslateEntireAlgebraic, Development.AbelianVarietyTheory.Proofs.SatakeParameters.KerThEntireAlgCoef, Development.AbelianVarietyTheory.Proofs.SatakeParameters.LatticeTuplePairScalarMemAlgebraicClosure, Development.AbelianVarietyTheory.Proofs.SatakeParameters.DatLocHomRe, Development.AbelianVarietyTheory.Proofs.SatakeParameters.MovedPairDatumEqAdelicDatum, Development.AbelianVarietyTheory.Proofs.SatakeParameters.MovedPairDatumEqAdelicDatumStatement, Development.AbelianVarietyTheory.Proofs.SatakeParameters.MovedPairDatumDependsOnlyOnLevel, Development.AbelianVarietyTheory.Proofs.SatakeParameters.KernelSiteLatticeTuplePairsAdmissible
+-- Members: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ColSpanMapMulVecLin, Development.AbelianVarietyTheory.Proofs.SatakeParameters.FrameLocalLatticeSpanKernelLatticeSucc, Development.AbelianVarietyTheory.Proofs.SatakeParameters.FrameLocalLatticeSpanKernelLatticeZero, Development.AbelianVarietyTheory.Proofs.SatakeParameters.TranslateEntireAlgebraic, Development.AbelianVarietyTheory.Proofs.SatakeParameters.KerThEntireAlgCoef, Development.AbelianVarietyTheory.Proofs.SatakeParameters.LatticeTuplePairScalarMemAlgebraicClosure, Development.AbelianVarietyTheory.Proofs.SatakeParameters.DatLocHomRe, Development.AbelianVarietyTheory.Proofs.SatakeParameters.MovedPairDatumEqAdelicDatum, Development.AbelianVarietyTheory.Proofs.SatakeParameters.MovedPairDatumEqAdelicDatumStatement, Development.AbelianVarietyTheory.Proofs.SatakeParameters.MovedPairDatumDependsOnlyOnLevel, Development.AbelianVarietyTheory.Proofs.SatakeParameters.KernelSiteLatticeTuplePairsAdmissible
+
+-- ===== clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ColSpanMapMulVecLin =====
+-- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.SatakeParameters.ColSpanMapMulVecLin", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.LocSpBot\npublic import Formalism.LocalToGlobal.PairingIndexBounds.OrthogonalChartLevels.BasesAt\nimport Development.AbelianVarietyTheory.Definitions.GaloisGeometry.MemMoveLevUloc\nimport Formalism.SharpRestriction.GrowthBounds.ChartedClasses.ToLEInvApply\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open Formalism.BasicNotions NumberField IsDedekindDomain Formalism.MainNotions.G Formalism.MainNotions.FormalGroupSystem Formalism.L2.G.Pend Formalism.MainNotions Formalism.L2.Ker Formalism.L2.PairingIndexBounds.F Formalism.L2.KerInert Formalism.UG Formalism.MainNotions.G.KAat Formalism.MainNotions.G.CmpJ Formalism.L2.G Formalism.L2.G.Cmp Formalism.L2.Forms Formalism.L2.KerInert.SecondKernelInstances GlobalTheory.TwU GlobalTheory.TwV
+open scoped TensorProduct Matrix
+
+namespace GlobalTheory.TwV
+
+theorem locSp_reindex : ∀ {E : Type} [Field E] [NumberField E] (σ : E →+* E) (W K : Type) [CommRing W] [Field K] [Algebra W K] (ρ : E →+* K) {n N : ℕ} (h : n = N) (J : Matrix (Fin N) (Fin N) E) (B : GL (Fin N) E) (g : GL (Fin n) K) (Λ : Submodule (𝓞 E) (Fin N → E)) (Λ' : Submodule (𝓞 E) (Fin n → E)), HEq Λ' Λ → locSp W ρ Λ = colSpan W ((LinearMap.toMatrix' (stdCo σ J).toLinearMap * B.1).map ρ * (castGL h K g : Matrix (Fin N) (Fin N) K)) → locSp W ρ Λ' = (colSpan W (g : Matrix (Fin n) (Fin n) K)).map (((((LinearMap.toMatrix' (stdCo σ (J.reindex (finCongr h.symm) (finCongr h.symm))).toLinearMap * (Formalism.L2.PairingIndexBounds.F.reGL (finCongr h.symm) B).1).map ρ).submatrix (finCongr (rfl : n = n)) (finCongr (rfl : n = n))).mulVecLin).restrictScalars W) := by
+  intro E _ _ σ W K _ _ _ ρ n N h J B g Λ Λ' hΛ hs
+  subst h
+  obtain rfl := eq_of_heq hΛ
+  rw [_root_.Formalism.MainNotions.G.LatticeSystems.je_colSpan_mul, hs]
+  rfl
+
+end GlobalTheory.TwV
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ColSpanMapMulVecLin =====
 
 -- ===== clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.FrameLocalLatticeSpanKernelLatticeSucc =====
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.SatakeParameters.FrameLocalLatticeSpanKernelLatticeSucc", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.JointCmpEmbeddingY\npublic import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ColSpanMapMulVecLin\npublic import Development.AbelianVarietyTheory.Proofs.SatakeParameters.GidxFacts\npublic import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsOrthCoToLEOfCTMulSelf\npublic import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsUnitNatCastOfCoprimeLocal\npublic import Development.AbelianVarietyTheory.Proofs.SatakeParameters.KernelLatticeFirstFactorLatticeTuplePointStatement\npublic import Development.AbelianVarietyTheory.Proofs.SatakeParameters.LatticeTupleAdelicPointStepSuccStatement\npublic import Development.AbelianVarietyTheory.Proofs.SatakeParameters.LatticeTupleBasesSpanAtPlacesStatement\npublic import Development.AbelianVarietyTheory.Proofs.SatakeParameters.LatticeTupleChartSuccEqComponentChartStatement\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

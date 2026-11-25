@@ -1,6 +1,8 @@
 module
 
-public import Formalism.HermitianCurvature.HermitianCurvatureProofs.CoreLF
+public import Formalism.HermitianCurvature.HermitianCurvatureProofs.Imports
+public import Formalism.HermitianCurvature.HermitianCurvatureProofs.MulVecBvecApply
+public import Formalism.HermitianCurvature.StatementJF
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.LevelZeroPointOver
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.SlicesFiniteRegularityBuilt
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.CornerBZero
@@ -17,7 +19,46 @@ import Formalism.HermitianCurvature.HermitianCurvatureProofs.StrictUpperNeg
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.SymmetricScalarBlockMatrixMul
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.HermitianCurvature.HermitianCurvatureProofs.LeftFubiniOfCore, Formalism.HermitianCurvature.HermitianCurvatureProofs.LeftFubiniNormalizedTower
+-- Members: Formalism.HermitianCurvature.HermitianCurvatureProofs.CoreLF, Formalism.HermitianCurvature.HermitianCurvatureProofs.LeftFubiniOfCore, Formalism.HermitianCurvature.HermitianCurvatureProofs.LeftFubiniNormalizedTower
+
+-- ===== clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CoreLF =====
+-- clump-header: {"m": "Formalism.HermitianCurvature.HermitianCurvatureProofs.CoreLF", "h": "module\n\npublic import Formalism.HermitianCurvature.HermitianCurvatureProofs.Imports\npublic import Formalism.HermitianCurvature.HermitianCurvatureProofs.MulVecBvecApply\npublic import Formalism.HermitianCurvature.StatementJF\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open Matrix MeasureTheory
+
+noncomputable section
+
+namespace Formalism.FourierDecayAlt.P.LeftFubiniLemmas
+
+open Formalism.FourierDecayAlt Formalism.REAL Formalism.QuantumDeterminants
+
+def CoreLF : Prop :=
+  ∀ (k p m n : ℕ) (e : p + m = n), 1 ≤ p → ∀ (σ : Equiv.Perm (Fin p)) (d : Fin p → ℂ), (∀ i, d i ≠ 0) →
+    ∀ (Wp Wq : Type) [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [NormedAddCommGroup Wq]
+    [InnerProductSpace ℂ Wq] [FiniteDimensional ℂ Wp] [FiniteDimensional ℂ Wq]
+    (Bj : B.RealPlaceData k m Wp Wq) (B0 : B.RealPlaceData k n Wp Wq),
+    D.castV e (liftVec k p m Bj.z) = B0.z → D.castV e (liftVec k p m Bj.z') = B0.z' →
+    (∀ y : B.Mat k m, Bj.π' y = B0.π' (D.castM e (ιLev k p m y))) →
+    Bj.μW' Set.univ = 1 → B0.μW' = Bj.μW'.map (Formalism.FourierDecayAlt.P.PBM.levMt p m e) →
+    Bj.μN = D.muN k m → B0.μN = D.muN k n →
+    ∃ (X : Type) (_ : MeasurableSpace X) (μ : Measure X)
+      (ℓ : X → ((Wq →L[ℂ] Wp) →L[ℂ] (Wq →L[ℂ] Wp))) (sx : X → B.Mat k n),
+      (∀ x, sx x ∈ Sset k n B0.z) ∧
+      ∀ g ∈ JF.Om k m Bj.z Bj.z', ∀ H : B.Mat k n → (Wq →L[ℂ] Wp),
+        ContinuousOn H {x | x ∈ B.GV k n ∧ Dmin k n B0.z B0.z' x ⟨p, by omega⟩ ≠ 0} →
+        (∃ R : ℝ, ∀ x ∈ B.GV k n, H x ≠ 0 → B.gN x ≤ R) →
+        Integrable (fun x => ℓ x (PBG.Kr B0 H (sx x * D.castM e (U.mMap k p m (U.hMat σ d) g)))) μ ∧
+        B.JF Bj (U.PhiFun (s := 0) k m σ d (D.castV e.symm B0.z) (D.castV e.symm B0.z') (D.castF e H)
+            (fun a => a.elim0)) g =
+          ∫ x, ℓ x (PBG.Kr B0 H (sx x * D.castM e (U.mMap k p m (U.hMat σ d) g))) ∂μ
+
+end Formalism.FourierDecayAlt.P.LeftFubiniLemmas
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CoreLF =====
 
 -- ===== clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.LeftFubiniOfCore =====
 -- clump-header: {"m": "Formalism.HermitianCurvature.HermitianCurvatureProofs.LeftFubiniOfCore", "h": "module\n\npublic import Formalism.HermitianCurvature.HermitianCurvatureProofs.CoreLF\npublic import Formalism.HermitianCurvature.HermitianCurvatureProofs.LevelZeroPointOver\npublic import Formalism.HermitianCurvature.HermitianCurvatureProofs.SlicesFiniteRegularityBuilt\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

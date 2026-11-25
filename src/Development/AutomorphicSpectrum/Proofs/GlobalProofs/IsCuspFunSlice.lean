@@ -2,7 +2,6 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.Foundations.ConstTermOnMulLeftOfNormalizer
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.MeasurePreservingConj
-public import Development.AutomorphicSpectrum.Proofs.GlobalProofs.CTFrameMatMulGram
 public import Development.AutomorphicSpectrum.Proofs.GlobalProofs.FiniteDimensionalOfSlices
 public import Development.AutomorphicSpectrum.Proofs.GlobalProofs.ContinuousConjBlockEmbedding
 public import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.IsSmoothModerateOfIsAutFunSm
@@ -33,7 +32,75 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.StandardParabolicUn
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompactness.T2SpaceTensorProductFiniteExtension
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.QuotientMeasureProductGroups, Development.AutomorphicSpectrum.Proofs.GlobalProofs.HermitianFormChangeOfBasisLie, Development.AutomorphicSpectrum.Proofs.GlobalProofs.IsotropicFrameRankLeWittIndex, Development.AutomorphicSpectrum.Proofs.GlobalProofs.IsotropicFrameWittBound, Development.AutomorphicSpectrum.Proofs.GlobalProofs.LeviInfUnipotentLeHermitianPart, Development.AutomorphicSpectrum.Proofs.GlobalProofs.RestrictedAutomorphicInvariance, Development.AutomorphicSpectrum.Proofs.GlobalProofs.RestrictedConstantTermCompatible, Development.AutomorphicSpectrum.Proofs.GlobalProofs.RestrictedCuspConstantTermVanish, Development.AutomorphicSpectrum.Proofs.GlobalProofs.IsCuspFunSlice
+-- Members: Development.AutomorphicSpectrum.Proofs.GlobalProofs.CTFrameMatMulGram, Development.AbelianVarietyTheory.Proofs.DivisorProofs.QuotientMeasureProductGroups, Development.AutomorphicSpectrum.Proofs.GlobalProofs.HermitianFormChangeOfBasisLie, Development.AutomorphicSpectrum.Proofs.GlobalProofs.IsotropicFrameRankLeWittIndex, Development.AutomorphicSpectrum.Proofs.GlobalProofs.IsotropicFrameWittBound, Development.AutomorphicSpectrum.Proofs.GlobalProofs.LeviInfUnipotentLeHermitianPart, Development.AutomorphicSpectrum.Proofs.GlobalProofs.RestrictedAutomorphicInvariance, Development.AutomorphicSpectrum.Proofs.GlobalProofs.RestrictedConstantTermCompatible, Development.AutomorphicSpectrum.Proofs.GlobalProofs.RestrictedCuspConstantTermVanish, Development.AutomorphicSpectrum.Proofs.GlobalProofs.IsCuspFunSlice
+
+-- ===== clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.CTFrameMatMulGram =====
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.GlobalProofs.CTFrameMatMulGram", "h": "module\n\npublic import Development.AutomorphicSpectrum.Proofs.GlobalProofs.FiniteDimensionalOfSlices\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Matrix
+open scoped TensorProduct ContDiff
+open GlobalTheory.Published GlobalTheory.Published.AutFin GlobalTheory.StdPar GlobalTheory.ThK.SmoothLev GlobalTheory.CompanionTheory.Hypotheses₂.ConstFin GlobalTheory.CompanionTheory.Hypotheses₂.LeviPart
+open GlobalTheory.UAut GlobalTheory.AdelicU GlobalTheory.SiegelSet
+
+noncomputable section
+namespace GlobalTheory.CompanionTheory.Hypotheses₂.LeviPart.UCore.Slice
+
+def IsSliceFrame {D : D7} (V V' : HSp D) (ι : V'.V →ₗ[D.host.E] V.V) {m m' : ℕ}
+    (X Y : Matrix (Fin V.rank) (Fin m) D.host.E) (T : Finset (Fin m)) (e : Fin m' → Fin m)
+    (X' Y' : Matrix (Fin V'.rank) (Fin m') D.host.E) : Prop :=
+  StrictMono e ∧ (∀ i, i ∉ upTo T ↔ i ∈ Set.range e) ∧
+    frameMat V V' ι * X' = X.submatrix id e ∧ frameMat V V' ι * Y' = Y.submatrix id e
+
+variable {D : D7} {V V' : HSp D} {ι : V'.V →ₗ[D.host.E] V.V}
+
+abbrev prM (V V' : HSp D) (ι : V'.V →ₗ[D.host.E] V.V) : Matrix (Fin V'.rank) (Fin V.rank) D.host.E :=
+  GlobalTheory.IndefiniteRowSideFullHecke.AdelicUnitaryGroups.projMat D.sp.cm V' V ι
+
+theorem repr_symm (V : HSp D) (a : Fin V.rank → D.host.E) (i : Fin V.rank) :
+    V.frame.repr (V.frame.equivFun.symm a) i = a i := by
+  rw [← Module.Basis.equivFun_apply, LinearEquiv.apply_symm_apply]
+
+theorem hT_frame (V : HSp D) (a b : Fin V.rank → D.host.E) :
+    V.hT (V.frame.equivFun.symm a) (V.frame.equivFun.symm b) = ∑ i, ∑ j, star (a i) * V.gram i j * b j := by
+  rw [GlobalTheory.IndefiniteRowSideFullHecke.AdelicUnitaryGroups.hT_coord]
+  simp only [repr_symm]
+
+theorem prM_mul_frameMat (hι : HSpace.IsIsomEmb V' V ι) : prM V V' ι * frameMat V V' ι = 1 :=
+  GlobalTheory.IndefiniteRowSideFullHecke.AdelicUnitaryGroups.projMat_embMat D.sp.cm V' V ι hι
+
+theorem cT_frameMat_mul_gram :
+    Formalism.UG.cT (D.sp.cm.sig : D.host.E →+* D.host.E) (frameMat V V' ι) * V.gram = V'.gram * prM V V' ι :=
+  GlobalTheory.IndefiniteRowSideFullHecke.AdelicUnitaryGroups.gram_projMat D.sp.cm V' V ι
+
+theorem mat_eq (hι : HSpace.IsIsomEmb V' V ι) {s : GA D V' →* GA D V} (hs : ∀ h, EmbRel V V' ι (s h) h) (b : GA D V') :
+    (matHom V (s b)).1 = 1 + HMul.hMul (HMul.hMul (adMat D.host.F (frameMat V V' ι)) ((matHom V' b).1 - 1)) (adMat D.host.F (prM V V' ι)) := by
+  rw [(GlobalTheory.AutFunCompare.embRel_iff V V' ι hι (s b) b).1 (hs b)]
+  rfl
+
+theorem prM_mulVec_eq_zero {x : Fin V.rank → D.host.E}
+    (h : ∀ v' : V'.V, V.hT (V.frame.equivFun.symm x) (ι v') = 0) : prM V V' ι *ᵥ x = 0 := by
+  have hJ : IsUnit V'.gram.det := GlobalTheory.IndefiniteRowSideFullHecke.AdelicUnitaryGroups.gram_det_isUnit V'
+  have h1 : (Formalism.UG.cT (D.sp.cm.sig : D.host.E →+* D.host.E) (frameMat V V' ι) * V.gram) *ᵥ x = 0 := by
+    funext j
+    have h2 : V.hT (ι (V'.frame j)) (V.frame.equivFun.symm x) = 0 :=
+      (V.herm.eq (V.frame.equivFun.symm x) (ι (V'.frame j))).symm.trans (by rw [h]; simp)
+    rw [GlobalTheory.IndefiniteRowSideFullHecke.AdelicUnitaryGroups.hT_coord] at h2
+    simp only [repr_symm] at h2
+    simp only [Pi.zero_apply, Matrix.mulVec, dotProduct, Matrix.mul_apply, Finset.sum_mul]
+    rw [Finset.sum_comm]
+    refine Eq.trans (Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun l _ => ?_) h2
+    simp only [Formalism.UG.cT, frameMat, LinearMap.toMatrix_apply, Matrix.transpose_apply, Matrix.map_apply]
+    rfl
+  rw [cT_frameMat_mul_gram, ← Matrix.mulVec_mulVec] at h1
+  exact Matrix.mulVec_injective_of_isUnit ((Matrix.isUnit_iff_isUnit_det _).2 hJ) (h1.trans (Matrix.mulVec_zero _).symm)
+
+end GlobalTheory.CompanionTheory.Hypotheses₂.LeviPart.UCore.Slice
+end
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.CTFrameMatMulGram =====
 
 -- ===== clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.QuotientMeasureProductGroups =====
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.QuotientMeasureProductGroups", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.Foundations.ConstTermOnMulLeftOfNormalizer\npublic import Development.AbelianVarietyTheory.Proofs.FoundationProofs.MeasurePreservingConj\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Dynamics.Ergodic.Action.Regular\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\n\n"}

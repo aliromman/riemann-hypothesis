@@ -6,7 +6,7 @@ public import Mathlib.MeasureTheory.Function.L1Space.Integrable
 public import Mathlib.MeasureTheory.Measure.Haar.OfBasis
 public import Mathlib.MeasureTheory.Group.Integral
 public import Mathlib.MeasureTheory.Integral.ExpDecay
-public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExponentialFourierIntegralBound
+public import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
 public import Mathlib.Analysis.Calculus.ParametricIntegral
 public import Mathlib.Analysis.Fourier.FourierTransform
 public import Mathlib.Analysis.Fourier.Inversion
@@ -28,7 +28,74 @@ import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
 import Mathlib.Tactic.Linter.HaveILetI
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExponentialDecayByMidpoints, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaussianTubeTransformBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaussianTubeTransformContinuous, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.FInt, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InverseTransformContinuous, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InverseTransformHolomorphicLines, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InverseTransformLocallyBounded, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FourierInversionProd, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InverseTransformRecoversFunction, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TubeTransformHorizontalInvariance, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TubeTransformVerticalInvariance, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TubeTransformIndependentOfBase, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TubeChainHolds
+-- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExponentialFourierIntegralBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExponentialDecayByMidpoints, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaussianTubeTransformBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaussianTubeTransformContinuous, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.FInt, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InverseTransformContinuous, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InverseTransformHolomorphicLines, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InverseTransformLocallyBounded, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FourierInversionProd, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InverseTransformRecoversFunction, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TubeTransformHorizontalInvariance, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TubeTransformVerticalInvariance, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TubeTransformIndependentOfBase, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TubeChainHolds
+
+-- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExponentialFourierIntegralBound =====
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExponentialFourierIntegralBound", "h": "module\n\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaussTubeOfTubeGood\npublic import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+open MeasureTheory Filter Topology PositivityTheory.RgEis GlobalTheory.CompanionTheory.TubeFourier
+
+namespace GlobalTheory.CompanionTheory.TubeFourier
+
+theorem integral_exp_neg_mul_abs {ε : ℝ} (hε : 0 < ε) :
+    ∫ u : ℝ, Real.exp (-ε * |u|) = 2 / ε := by
+  have h := integral_comp_abs (f := fun x => Real.exp (-ε * x))
+  rw [h, integral_exp_mul_Ioi (by linarith) 0, mul_zero, Real.exp_zero]
+  field_simp
+
+theorem integrable_exp_neg_mul_abs {ε : ℝ} (hε : 0 < ε) :
+    Integrable fun u : ℝ => Real.exp (-ε * |u|) := by
+  refine Integrable.of_integral_ne_zero ?_
+  rw [integral_exp_neg_mul_abs hε]
+  positivity
+
+theorem integrable_and_norm_integral_le (X : Type) [NormedAddCommGroup X] [NormedSpace ℂ X]
+    (φ : ℝ × ℝ → X) (l : ℂ × ℂ) (ε M : ℝ) (hε : 0 < ε) (hφ : Continuous φ)
+    (hb : ∀ t : ℝ × ℝ, ‖φ t‖ ≤ M * Real.exp (-rdot (l.1.re, l.2.re) t) *
+      Real.exp (-ε * (|t.1| + |t.2|))) :
+    Integrable (fun t : ℝ × ℝ => Complex.exp (dot l t) • φ t) ∧
+      ‖∫ t : ℝ × ℝ, Complex.exp (dot l t) • φ t‖ ≤ M * (2 / ε) ^ 2 := by
+  have hg1 := integrable_exp_neg_mul_abs hε
+  have hgi : Integrable (fun t : ℝ × ℝ => M * (Real.exp (-ε * |t.1|) * Real.exp (-ε * |t.2|))) :=
+    (hg1.mul_prod hg1).const_mul M
+  have hbound : ∀ t : ℝ × ℝ, ‖Complex.exp (dot l t) • φ t‖ ≤
+      M * (Real.exp (-ε * |t.1|) * Real.exp (-ε * |t.2|)) := by
+    intro t
+    rw [norm_smul, Complex.norm_exp]
+    have hre : (dot l t).re = rdot (l.1.re, l.2.re) t := by simp [dot, rdot]
+    rw [hre]
+    have h1 : Real.exp (rdot (l.1.re, l.2.re) t) * Real.exp (-rdot (l.1.re, l.2.re) t) = 1 := by
+      rw [← Real.exp_add, add_neg_cancel, Real.exp_zero]
+    have h2 : Real.exp (-ε * (|t.1| + |t.2|)) = Real.exp (-ε * |t.1|) * Real.exp (-ε * |t.2|) := by
+      rw [← Real.exp_add]; ring_nf
+    calc Real.exp (rdot (l.1.re, l.2.re) t) * ‖φ t‖
+        ≤ Real.exp (rdot (l.1.re, l.2.re) t) * (M * Real.exp (-rdot (l.1.re, l.2.re) t) *
+          Real.exp (-ε * (|t.1| + |t.2|))) := mul_le_mul_of_nonneg_left (hb t) (Real.exp_pos _).le
+      _ = M * (Real.exp (-ε * |t.1|) * Real.exp (-ε * |t.2|)) := by
+        rw [h2]
+        linear_combination (M * (Real.exp (-ε * |t.1|) * Real.exp (-ε * |t.2|))) * h1
+  have hc : Continuous (fun t : ℝ × ℝ => Complex.exp (dot l t) • φ t) := by
+    have hd : Continuous (fun t : ℝ × ℝ => dot l t) := by simp only [dot]; fun_prop
+    exact (Complex.continuous_exp.comp hd).smul hφ
+  refine ⟨hgi.mono' hc.aestronglyMeasurable (Filter.Eventually.of_forall hbound), ?_⟩
+  calc ‖∫ t : ℝ × ℝ, Complex.exp (dot l t) • φ t‖
+      ≤ ∫ t : ℝ × ℝ, M * (Real.exp (-ε * |t.1|) * Real.exp (-ε * |t.2|)) :=
+        norm_integral_le_of_norm_le hgi (Filter.Eventually.of_forall hbound)
+    _ = M * (2 / ε) ^ 2 := by
+        rw [integral_const_mul, Measure.volume_eq_prod,
+          integral_prod_mul (fun u : ℝ => Real.exp (-ε * |u|)) (fun u : ℝ => Real.exp (-ε * |u|)),
+          integral_exp_neg_mul_abs hε]
+        ring
+
+end GlobalTheory.CompanionTheory.TubeFourier
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExponentialFourierIntegralBound =====
 
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExponentialDecayByMidpoints =====
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExponentialDecayByMidpoints", "h": "module\n\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaussTubeOfTubeGood\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

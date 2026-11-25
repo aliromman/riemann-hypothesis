@@ -6,7 +6,6 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.GradedCoef
 public import Formalism.PeriodIntegrals.LengthPoleInLift
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.AssembleAlt
-public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.FiltOk
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.LeOrdASmulOsK
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.Vanish
 public import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.FinitePtsOfCurve
@@ -25,7 +24,40 @@ import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HasseJacobsonPowers.Sfr
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BallQuotientLength.LengthBallQuotientEqSumMulFdeg, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.BallQuot, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.AALeAAp, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.Assemble, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.ColDeriv, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.UnitCols, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.Closed, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.LiftMul, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.PiBallFrom, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.PiLenHolds, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.Taylor, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.StepsOf, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.PoleLengthBound
+-- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.FiltOk, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BallQuotientLength.LengthBallQuotientEqSumMulFdeg, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.BallQuot, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.AALeAAp, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.Assemble, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.ColDeriv, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.UnitCols, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.Closed, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.LiftMul, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.PiBallFrom, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.PiLenHolds, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.Taylor, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.StepsOf, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.PoleLengthBound
+
+-- ===== clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.FiltOk =====
+-- clump-header: {"m": "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.FiltOk", "h": "module\n\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.GradedCoef\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+open Formalism.MainNotions Formalism.MainNotions.WeightAlgebra Formalism.BasicNotions NumberField IsDedekindDomain Module Formalism.MainNotions.Gaps.EtaleWeightGaps Finset.HasAntidiagonal
+
+namespace PI.PoleLengthCount
+
+variable {D : D7} {B : WeightFamilies.Prov D} {P : ModuliIntegralCharts.Prov D} {j : ℕ} {X : PJ D B P j} {ka wL wF : WeightFamilies.Wt D j}
+
+theorem image_filtration_decreasing (G : GlobalFamilyData X ka wL wF) (la : HeightOneSpectrum (𝓞 B.KO)) (T : ℕ) : FiltOk G la T := by
+  refine ⟨?_, ?_, ?_⟩
+  · intro a b hab
+    unfold Fk
+    exact Submodule.span_mono (Set.image_mono (Submodule.smul_mono_left (Ideal.pow_le_pow_right hab)))
+  · unfold Fk
+    rw [pow_zero, Ideal.one_eq_top, Submodule.top_smul, Submodule.top_coe, Set.image_univ,
+      (toWK_surjective X la G.w wF _).range_eq, Submodule.span_univ]
+  · unfold Fk
+    rw [eq_bot_iff, Submodule.span_le]
+    rintro _ ⟨x, hx, rfl⟩
+    rw [SetLike.mem_coe, Submodule.mem_bot]
+    exact (toWK_eq_zero_iff X la G.w wF _ x).2 hx
+
+end PI.PoleLengthCount
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PoleLengthBound.FiltOk =====
 
 -- ===== clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BallQuotientLength.LengthBallQuotientEqSumMulFdeg =====
 -- clump-header: {"m": "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BallQuotientLength.LengthBallQuotientEqSumMulFdeg", "h": "module\n\npublic import Formalism.PeriodIntegrals.BallQuotLen\npublic import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.RamificationRankSum.Points\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Int\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.Order.CompletePartialOrder\nimport Mathlib.RingTheory.Coalgebra.IsFrobenius\nimport Mathlib.RingTheory.Henselian\nimport Mathlib.RingTheory.HopfAlgebra.Basic\nimport Mathlib.RingTheory.PiTensorProduct\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.RegularLocalRing.Defs\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Sheaves.Presheaf\n\n"}

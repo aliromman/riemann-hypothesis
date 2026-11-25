@@ -1,6 +1,6 @@
 module
 
-public import ReciprocityTheory.L2DbarEstimates.HormanderEstimate.ClosedSt
+public import ReciprocityTheory.L2DbarEstimates.IsLocalHomeomorph
 public import ReciprocityTheory.L2DbarEstimates.Localization.UnweightBackStatement
 public import ReciprocityTheory.L2DbarEstimates.ChartDerivatives.ChartSymmEventuallyEq
 public import ReciprocityTheory.L2DbarEstimates.ChartDerivatives.MeasurableSetImageOfIsLocalHomeomorph
@@ -14,7 +14,39 @@ import Mathlib.Tactic.TypeStar
 import Mathlib.Tactic.Lemma
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: ReciprocityTheory.L2DbarEstimates.HormanderEstimate.ClosedCoreOfRegM, ReciprocityTheory.L2DbarEstimates.HormanderEstimate.ClosedEval, ReciprocityTheory.L2DbarEstimates.HormanderEstimate.Closed
+-- Members: ReciprocityTheory.L2DbarEstimates.HormanderEstimate.ClosedSt, ReciprocityTheory.L2DbarEstimates.HormanderEstimate.ClosedCoreOfRegM, ReciprocityTheory.L2DbarEstimates.HormanderEstimate.ClosedEval, ReciprocityTheory.L2DbarEstimates.HormanderEstimate.Closed
+
+-- ===== clump member: ReciprocityTheory.L2DbarEstimates.HormanderEstimate.ClosedSt =====
+-- clump-header: {"m": "ReciprocityTheory.L2DbarEstimates.HormanderEstimate.ClosedSt", "h": "module\n\npublic import ReciprocityTheory.L2DbarEstimates.IsLocalHomeomorph\nimport Mathlib.Tactic.TypeStar\n\n"}
+section -- clump:auto
+@[expose] public section
+
+namespace ReciprocityTheory.L2DbarEstimates.F
+
+open MeasureTheory Filter Topology Set
+open scoped ENNReal
+
+noncomputable section
+
+def ClosedCoreStatement (n : ℕ) (M : Type*) [TopologicalSpace M] [T2Space M]
+    [SecondCountableTopology M] [MeasurableSpace M] [BorelSpace M] : Prop :=
+  ∀ (z : M → V n), IsLocalHomeomorph z → ∀ (ψ : M → ℝ), Continuous ψ →
+    ∀ (F : ℕ → M → ℂ) (f : M → ℂ), (∀ k, Holo n z (F k)) → AEStronglyMeasurable f (vol n z) →
+    Tendsto (fun k => wint n z (fun x => F k x - f x) ψ) atTop (𝓝 0) →
+    ∃ G : M → ℂ, Holo n z G ∧ f =ᵐ[vol n z] G
+
+def EvalPtStatement (n : ℕ) (M : Type*) [TopologicalSpace M] [T2Space M]
+    [SecondCountableTopology M] [MeasurableSpace M] [BorelSpace M] : Prop :=
+  ∀ (z : M → V n), IsLocalHomeomorph z → ∀ (ψ : M → ℝ), Continuous ψ → ∀ x0 : M,
+    ∃ C : ℝ, 0 ≤ C ∧ ∀ F : M → ℂ, Holo n z F →
+      ENNReal.ofReal (‖F x0‖ ^ 2) ≤ ENNReal.ofReal C * wint n z F ψ
+
+end
+
+end ReciprocityTheory.L2DbarEstimates.F
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: ReciprocityTheory.L2DbarEstimates.HormanderEstimate.ClosedSt =====
 
 -- ===== clump member: ReciprocityTheory.L2DbarEstimates.HormanderEstimate.ClosedCoreOfRegM =====
 -- clump-header: {"m": "ReciprocityTheory.L2DbarEstimates.HormanderEstimate.ClosedCoreOfRegM", "h": "module\n\npublic import ReciprocityTheory.L2DbarEstimates.HormanderEstimate.ClosedSt\npublic import ReciprocityTheory.L2DbarEstimates.Localization.UnweightBackStatement\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Sheaves.Init\npublic import ReciprocityTheory.L2DbarEstimates.ChartDerivatives.ChartSymmEventuallyEq\npublic import ReciprocityTheory.L2DbarEstimates.ChartDerivatives.MeasurableSetImageOfIsLocalHomeomorph\npublic import ReciprocityTheory.L2DbarEstimates.ChartDerivatives.TsupportDbSubset\npublic import ReciprocityTheory.L2DbarEstimates.HormanderEstimate.ExistsLintegralCompactLe\npublic import Mathlib.MeasureTheory.Function.LocallyIntegrable\n\n"}

@@ -18,13 +18,12 @@ public import Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.NormTwelveCubedEqOneOfFiveLePrime
 public import Formalism.GaussJetBounds.StatementN
 public import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.IsDiscriminantTwelfthRootOfIdealLattice
-public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.LatticeJetsIntegralIffIntegralFrames
+public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.DerivationCoordinateChange
 public import Formalism.LocalToGlobal.KernelLattices.KerStd
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.NormalisedThetaFamilyNormalisedAllPlaces
 public import Formalism.LocalToGlobal.InertKernelTheory.StatementIota
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.PadicSeriesLinearCoordsEqFlatTaylor
 public import Formalism.SharpRestriction.GlobalSchurBounds.GL3Columns
-public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.DerivationCoordinateChange
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsRBasisOfLocBasis
 public import Formalism.LocalToGlobal.KernelLattices.ThDistC
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IntegralEigenCombination
@@ -98,7 +97,76 @@ import Formalism.PeriodIntegrals.OrbJetBase
 import Formalism.LocalToGlobal.Columns.ChainTwOk
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AbelianVarietyTheory.Proofs.SatakeParameters.JacobiOfClass, Development.AbelianVarietyTheory.Proofs.SatakeParameters.GoodModelTwoScaleOne, Development.AbelianVarietyTheory.Proofs.SatakeParameters.NormLeOneOfDisc, Development.AbelianVarietyTheory.Proofs.SatakeParameters.IntegralJetsNormalisedThetaTranslatesAwayDisc, Development.AbelianVarietyTheory.Proofs.SatakeParameters.IntegralJetsNormalisedThetaCombinationsAwayD, Development.AbelianVarietyTheory.Proofs.SatakeParameters.MatrixUnitIntegralCombEmbeddedHoms, Development.AbelianVarietyTheory.Proofs.SatakeParameters.IntegralJetsRealPlaceLocalBases, Development.AbelianVarietyTheory.Proofs.SatakeParameters.KvalGeZeroOfIntegralJets, Development.AbelianVarietyTheory.Proofs.SatakeParameters.KernelDatumEntriesIntegralAwayFromD, Development.AbelianVarietyTheory.Proofs.SatakeParameters.KernelDatumPeriodLatticeIdealFgOfHeckeCharacters, Development.AbelianVarietyTheory.Proofs.SatakeParameters.KernelEntriesHypOfHeckeCharacterConditions, Development.AbelianVarietyTheory.Proofs.SatakeParameters.KernelEntriesHypOfColumnSideProperties, Development.AbelianVarietyTheory.Proofs.SatakeParameters.PadicNormDetLatticeBasisEqDetIdealNorm, Development.AbelianVarietyTheory.Proofs.SatakeParameters.KernelBasisDeterminantAbsAtPlace, Development.AbelianVarietyTheory.Proofs.SatakeParameters.NrmIdNonneg, Development.AbelianVarietyTheory.Proofs.SatakeParameters.KernelEntryUnramifiedUnit, Development.AbelianVarietyTheory.Proofs.SatakeParameters.KernelPairScalarsIsUnitTrueColumns, Development.AbelianVarietyTheory.Proofs.SatakeParameters.AtOfTrueColumns, Development.AbelianVarietyTheory.Proofs.SatakeParameters.StepRepEqOneAtTypePrimes, Development.AbelianVarietyTheory.Proofs.SatakeParameters.KernelDatumConditionsAtStandardKernelComparison
+-- Members: Development.AbelianVarietyTheory.Proofs.SatakeParameters.LatticeJetsIntegralIffIntegralFrames, Development.AbelianVarietyTheory.Proofs.SatakeParameters.JacobiOfClass, Development.AbelianVarietyTheory.Proofs.SatakeParameters.GoodModelTwoScaleOne, Development.AbelianVarietyTheory.Proofs.SatakeParameters.NormLeOneOfDisc, Development.AbelianVarietyTheory.Proofs.SatakeParameters.IntegralJetsNormalisedThetaTranslatesAwayDisc, Development.AbelianVarietyTheory.Proofs.SatakeParameters.IntegralJetsNormalisedThetaCombinationsAwayD, Development.AbelianVarietyTheory.Proofs.SatakeParameters.MatrixUnitIntegralCombEmbeddedHoms, Development.AbelianVarietyTheory.Proofs.SatakeParameters.IntegralJetsRealPlaceLocalBases, Development.AbelianVarietyTheory.Proofs.SatakeParameters.KvalGeZeroOfIntegralJets, Development.AbelianVarietyTheory.Proofs.SatakeParameters.KernelDatumEntriesIntegralAwayFromD, Development.AbelianVarietyTheory.Proofs.SatakeParameters.KernelDatumPeriodLatticeIdealFgOfHeckeCharacters, Development.AbelianVarietyTheory.Proofs.SatakeParameters.KernelEntriesHypOfHeckeCharacterConditions, Development.AbelianVarietyTheory.Proofs.SatakeParameters.KernelEntriesHypOfColumnSideProperties, Development.AbelianVarietyTheory.Proofs.SatakeParameters.PadicNormDetLatticeBasisEqDetIdealNorm, Development.AbelianVarietyTheory.Proofs.SatakeParameters.KernelBasisDeterminantAbsAtPlace, Development.AbelianVarietyTheory.Proofs.SatakeParameters.NrmIdNonneg, Development.AbelianVarietyTheory.Proofs.SatakeParameters.KernelEntryUnramifiedUnit, Development.AbelianVarietyTheory.Proofs.SatakeParameters.KernelPairScalarsIsUnitTrueColumns, Development.AbelianVarietyTheory.Proofs.SatakeParameters.AtOfTrueColumns, Development.AbelianVarietyTheory.Proofs.SatakeParameters.StepRepEqOneAtTypePrimes, Development.AbelianVarietyTheory.Proofs.SatakeParameters.KernelDatumConditionsAtStandardKernelComparison
+
+-- ===== clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.LatticeJetsIntegralIffIntegralFrames =====
+-- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.SatakeParameters.LatticeJetsIntegralIffIntegralFrames", "h": "module\n\npublic import Formalism.GaussJetBounds.StatementN\npublic import Development.AbelianVarietyTheory.Proofs.SatakeParameters.DerivationCoordinateChange\nimport Mathlib.Tactic.Linter.Style\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.G Formalism.MainNotions.TaylorLogMetric Classical
+open Formalism.DworkPowerSeriesWeights (JetsIntegral)
+
+noncomputable section
+
+namespace GlobalTheory.Proof.latticeJetsIntegral_iff_integralFrames
+
+open MvPowerSeries GlobalTheory.Proof.DirectionalDerivative
+
+section Formal
+
+variable {p : ℕ} [Fact p.Prime] {σ κ : Type}
+
+theorem jetsIntegral_iff (G : MvPowerSeries κ ℂ_[p]) :
+    JetsIntegral G ↔ GlobalTheory.IndefiniteRowSideFullHecke.PolynomialIntegralityJets.JetsIntegral G := by
+  unfold JetsIntegral GlobalTheory.IndefiniteRowSideFullHecke.PolynomialIntegralityJets.JetsIntegral GlobalTheory.IndefiniteRowSideFullHecke.PolynomialIntegralityJets.jetAt Formalism.DworkPowerSeriesWeights.mfact
+  simp [Finsupp.prod, Nat.cast_prod]
+
+theorem jetAt_linAt_list [Fintype σ] [Fintype κ] (c : σ → κ → ℂ_[p]) (l : List κ) (G : MvPowerSeries σ ℂ_[p]) :
+    GlobalTheory.IndefiniteRowSideFullHecke.PolynomialIntegralityJets.jetAt (linAt c G) (l.map fun x => Finsupp.single x 1).sum =
+      constantCoeff (l.foldl (fun H x => dirDer (fun k => c k x) H) G) := by
+  induction l generalizing G with
+  | nil => simp [jetAt_zero, constantCoeff_linAt]
+  | cons x l ih =>
+    rw [List.map_cons, List.sum_cons, add_comm, jetAt_add_single, pderiv_linAt, ih, List.foldl_cons]
+
+end Formal
+
+theorem jetsInt_frames : ∀ (D : D7) (N N' : ℕ) (p : ℕ) [Fact p.Prime] (lm : TaylorLogMetric.Qbar →+* ℂ_[p]), ∀ (Yl : Submodule (𝓞 D.host.E) (Matrix (Fin N') (Fin N) D.host.E)) (F : MvPowerSeries (D.what₂.Tau × Fin N' × Fin N) ℂ_[p]), (JetsInt D lm Yl F ↔ ∀ (n : ℕ) (y : Fin n → Matrix (Fin N') (Fin N) D.host.E), (∀ j, y j ∈ Yl) → JetsIntegral (atLin (fun k j => tauEmb D lm k.1 (y j k.2.1 k.2.2)) (fun j => MvPowerSeries.X j) F)) ∧ (JetsInt D lm Yl F → ∀ (ν : Type) [Fintype ν] (M : D.what₂.Tau × Fin N' × Fin N → ν → ℂ_[p]), (∀ x, ∃ (n : ℕ) (r : Fin n → ℂ_[p]) (y : Fin n → Matrix (Fin N') (Fin N) D.host.E), (∀ j, ‖r j‖ ≤ 1) ∧ (∀ j, y j ∈ Yl) ∧ ∀ k, M k x = ∑ j, r j * tauEmb D lm k.1 (y j k.2.1 k.2.2)) → JetsIntegral (atLin M (fun j => MvPowerSeries.X j) F)) := by
+  intro D N N' p _ lm Yl F
+  refine ⟨⟨fun hF n y hy => ?_, fun h n y hy => ?_⟩, fun hF ν _ M hM => ?_⟩
+  · change JetsIntegral (linAt (fun k j => vecY D lm (y j) k) F)
+    rw [jetsIntegral_iff]
+    exact jetsIntegral_linAt _ (JetsInt D lm Yl) (fun G hG => jetsInt_const D lm Yl hG)
+      (fun x G hG => keeps_vecY D lm Yl (hy x) G hG) F hF
+  · have hJ := (jetsIntegral_iff _).1 (h n y hy)
+    change GlobalTheory.IndefiniteRowSideFullHecke.PolynomialIntegralityJets.JetsIntegral (linAt (fun k j => vecY D lm (y j) k) F) at hJ
+    have := hJ (((List.finRange n).reverse.map fun x => Finsupp.single x 1).sum)
+    rw [jetAt_linAt_list, List.foldl_reverse] at this
+    show ‖constantCoeff ((List.ofFn y).foldr (fun y' G => der D lm y' G) F)‖ ≤ 1
+    rw [List.ofFn_eq_map, List.foldr_map]
+    have hfun : (fun x G => der D lm (y x) G) = fun x G => dirDer (fun k => vecY D lm (y x) k) G := by
+      funext x G
+      exact der_eq D lm (y x) G
+    rw [hfun]
+    exact this
+  · change JetsIntegral (linAt M F)
+    rw [jetsIntegral_iff]
+    refine jetsIntegral_linAt _ (JetsInt D lm Yl) (fun G hG => jetsInt_const D lm Yl hG) (fun x => ?_) F hF
+    obtain ⟨n, r, y, hr, hy, hMx⟩ := hM x
+    have e : (fun k => M k x) = ∑ j, r j • vecY D lm (y j) := by
+      funext k
+      rw [hMx k, Finset.sum_apply]
+      rfl
+    rw [e]
+    exact Finset.sum_induction _ (Keeps D lm Yl) (fun _ _ ha hb => keeps_add D lm Yl ha hb) (keeps_zero D lm Yl)
+      fun j _ => keeps_smul D lm Yl (hr j) (keeps_vecY D lm Yl (hy j))
+
+end GlobalTheory.Proof.latticeJetsIntegral_iff_integralFrames
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.LatticeJetsIntegralIffIntegralFrames =====
 
 -- ===== clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.JacobiOfClass =====
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.SatakeParameters.JacobiOfClass", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ExistsConstantCoeffOne\npublic import Formalism.LocalToGlobal.InertKernelTheory.DefsRepDict\npublic import Formalism.LocalToGlobal.InertKernelTheory.GenusOneModelExistsLattice\npublic import Formalism.LocalToGlobal.InertKernelTheory.StatementInt\npublic import Formalism.LocalRingCardinality.HostCls\npublic import Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.GlobalOrthonormalBasisFour\npublic import Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.IntWAPlaces\npublic import Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.JetsOrth\npublic import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.BiextensionRelation\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

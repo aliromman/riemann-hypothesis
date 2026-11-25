@@ -9,16 +9,68 @@ public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
 public import Mathlib.RingTheory.PowerSeries.Basic
 public import Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.KerEqOfSpan
 public import Mathlib.LinearAlgebra.Dimension.OrzechProperty
-public import Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.LevBMemFil
-public import Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.PfLvBasis
 public import Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.EvaluationExpansionAtRoot
+public import Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.PfLvBasis
 import Formalism.DistinguishedUnitIdeals.ExistsConstOfInvariantMod
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.RingTheory.PowerSeries.NoZeroDivisors
 import Formalism.DistinguishedUnitIdeals.Statement
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.CombineProd, Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.PowerSeriesCancelBounded, Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.DetectPt, Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.GradedClassDecomposition, Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.HfracOf, Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.XPowDvdOfComponents, Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.PfMem
+-- Members: Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.LevBMemFil, Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.CombineProd, Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.PowerSeriesCancelBounded, Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.DetectPt, Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.GradedClassDecomposition, Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.HfracOf, Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.XPowDvdOfComponents, Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.PfMem
+
+-- ===== clump member: Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.LevBMemFil =====
+-- clump-header: {"m": "Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.LevBMemFil", "h": "module\n\npublic import Formalism.SharpRestriction.LevelLetterCocycles.MapEvalPsPi\npublic import Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.EvaluationExpansionAtRoot\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+namespace Formalism.MainNotions.N.Ln03.K8
+
+open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.MainNotions.WachCoordinates Formalism.MainNotions.WachCoordinates.Br Formalism.ExponentWindows Formalism.ExponentWindows.G TensorProduct
+
+variable {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : Type} [Field Qp] [Field K₀] [Field K]
+    [Algebra Qp K₀] [Algebra Qp K] [Algebra K₀ K] [IsScalarTower Qp K₀ K]
+    {B BdR : Type} [CommRing B] [CommRing BdR] [Algebra Qp B] [Algebra K₀ B] [IsScalarTower Qp K₀ B]
+    [Algebra Qp BdR] [Algebra K₀ BdR] [Algebra K BdR] [IsScalarTower Qp K BdR]
+    [IsScalarTower K₀ K BdR] [IsScalarTower Qp K₀ BdR]
+    {PD : PeriodData G Qp K₀ K B BdR} {LL : Type} [Field LL] [Algebra Qp LL]
+    {O : Type} [CommRing O] [Algebra O LL] [TopologicalSpace LL]
+    {v : AddValuation LL (WithTop ℚ)} {n : ℕ} [NeZero n] {W : LocWach PD LL O v n}
+    {Lb : LevB W} {hR : Ring9 W} {uZ : ℤ_[PD.p]ˣ} {ιZ : ℤ_[PD.p] →+* O}
+    {T : LocLat G Qp LL O} {C : Coord W (baseIdOf hR) T} {c : ZMod n}
+
+theorem levB_mem_fil (hP4 : LevelMapHodgeFiltration W) (hcrys : IsCrys PD T.ρ)
+    (hLb : ∀ (i : ZMod n) (ζ : LL) (x : ↥(W.N T)) (k : ℤ),
+      W.levN T i ζ x k = ιV PD (LL := LL) (V := T.V) (Lb.levB T i ζ x k))
+    (s : ℕ) (ζ : Rs LL PD.p s) (x : ↥(W.N T)) (k : ℤ) :
+    (⟨Lb.levB T c ζ x k, Lb.mem T c ζ x k⟩ : Dc W T c) ∈ FilD W T c s (-k) := by
+  have hprim : IsPrimitiveRoot (ζ : LL) (PD.p ^ (s + 1)) :=
+    (mem_primitiveRoots (pow_pos PD.hp.pos _)).1 ζ.2
+  show ιV PD (LL := LL) (V := T.V) (Lb.levB T c ζ x k) ∈ FilLev W T c s (-k)
+  rw [← hLb]
+  exact (hP4 T hcrys c s ζ hprim).1 x k
+
+
+open Classical in
+theorem expN_mem_xi (hP4 : LevelMapHodgeFiltration W) (hcrys : IsCrys PD T.ρ)
+    (hLb : ∀ (i : ZMod n) (ζ : LL) (x : ↥(W.N T)) (k : ℤ),
+      W.levN T i ζ x k = ιV PD (LL := LL) (V := T.V) (Lb.levB T i ζ x k))
+    (s : ℕ) (x : ↥(W.N T)) :
+    expN Lb s T c x ∈ Xi (KsW W s) (fun i => FilD W T c s (-i)) := by
+  rw [xi_iff]
+  intro ζ k
+  have e1 : cf (expN Lb s T c x) k = coefN Lb s T c x k := rfl
+  rw [e1, coefN, evaluation_expansion_at_root]
+  exact levB_mem_fil hP4 hcrys hLb s ζ x k
+
+end Formalism.MainNotions.N.Ln03.K8
+
+end
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.LevBMemFil =====
 
 -- ===== clump member: Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.CombineProd =====
 -- clump-header: {"m": "Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.CombineProd", "h": "module\n\npublic import Formalism.SharpRestriction.LevelLetterCocycles.RingConditionOfDeltaInvariants\npublic import Formalism.SharpRestriction.LevelLetterCocycles.CyclotomicPowerSeries.PsCoprimeDvdSub\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\nimport Formalism.DistinguishedUnitIdeals.ExistsConstOfInvariantMod\npublic import Formalism.SharpRestriction.LevelLetterCocycles.MapEvalPsPi\n\n"}

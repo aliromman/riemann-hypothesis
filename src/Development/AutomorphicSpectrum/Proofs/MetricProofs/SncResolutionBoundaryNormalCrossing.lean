@@ -8,10 +8,11 @@ public import Mathlib.RingTheory.Nullstellensatz
 public import Development.AutomorphicSpectrum.Proofs.MetricProofs.ChPrime
 public import Development.AutomorphicSpectrum.Proofs.MetricProofs.AffineChartIdealPrimeAndSaturated
 public import ReciprocityTheory.AnalyticForms.RegularLocalRings.MemConePtsIffChartIdeal
-public import Development.AutomorphicSpectrum.Proofs.MetricProofs.MinimalPrimesOfMultihomogSup
+public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MultihomogeneousIdeals.CycDim
+public import Mathlib.RingTheory.GradedAlgebra.Homogeneous.Ideal
+public import Mathlib.RingTheory.MvPolynomial.WeightedHomogeneous
 public import Development.AutomorphicSpectrum.Proofs.MetricProofs.PrimesBelowParams
 public import Development.AutomorphicSpectrum.Proofs.MetricProofs.SncResolutionCompactEmbedded
-public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MultihomogeneousIdeals.CycDim
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsSncModel
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterPC
 public import Development.AutomorphicSpectrum.Proofs.MetricProofs.SncChartParametersAtConePoint
@@ -25,7 +26,42 @@ import Std.Tactic.BVDecide.Normalize.Prop
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterMinor
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicSpectrum.Proofs.MetricProofs.RegularSystemOfParametersLocalRing, Development.AutomorphicSpectrum.Proofs.MetricProofs.SncChartMultihomogOrderAtPoint, Development.AutomorphicSpectrum.Proofs.MetricProofs.SncChartRegularAtConePointStatement, Development.AutomorphicSpectrum.Proofs.MetricProofs.SncChartRegularWithBoundaryChoice, Development.AutomorphicSpectrum.Proofs.MetricProofs.SncChartRegularWithBoundaryChoiceStatement, Development.AutomorphicSpectrum.Proofs.MetricProofs.SymbolicPowerFromAffineChart, Development.AutomorphicSpectrum.Proofs.MetricProofs.SymbolicPowerInAffineChart, Development.AutomorphicSpectrum.Proofs.MetricProofs.SncResolutionBoundaryNormalCrossing
+-- Members: Development.AutomorphicSpectrum.Proofs.MetricProofs.MinimalPrimesOfMultihomogSup, Development.AutomorphicSpectrum.Proofs.MetricProofs.RegularSystemOfParametersLocalRing, Development.AutomorphicSpectrum.Proofs.MetricProofs.SncChartMultihomogOrderAtPoint, Development.AutomorphicSpectrum.Proofs.MetricProofs.SncChartRegularAtConePointStatement, Development.AutomorphicSpectrum.Proofs.MetricProofs.SncChartRegularWithBoundaryChoice, Development.AutomorphicSpectrum.Proofs.MetricProofs.SncChartRegularWithBoundaryChoiceStatement, Development.AutomorphicSpectrum.Proofs.MetricProofs.SymbolicPowerFromAffineChart, Development.AutomorphicSpectrum.Proofs.MetricProofs.SymbolicPowerInAffineChart, Development.AutomorphicSpectrum.Proofs.MetricProofs.SncResolutionBoundaryNormalCrossing
+
+-- ===== clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.MinimalPrimesOfMultihomogSup =====
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.MetricProofs.MinimalPrimesOfMultihomogSup", "h": "module\n\npublic import ReciprocityTheory.AnalyticForms.RegularLocalRings.MemConePtsIffChartIdeal\npublic import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MultihomogeneousIdeals.CycDim\npublic import Mathlib.RingTheory.GradedAlgebra.Homogeneous.Ideal\npublic import Mathlib.RingTheory.MvPolynomial.WeightedHomogeneous\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+namespace GlobalTheory.CompanionTheory.Ar.Cmp.MinHom
+
+open MvPolynomial ReciprocityTheory.AnForm.R
+
+attribute [local instance] MvPolynomial.weightedGradedAlgebra
+
+theorem isMultiHomogIdeal_of_mem_minimalPrimes_sup :
+    ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι k)]
+      (P D : Ideal (MvPolynomial (Σ k, ι k) ℂ)),
+      IsMultiHomogIdeal P → IsMultiHomogIdeal D →
+        ∀ Q ∈ (P ⊔ D).minimalPrimes, IsMultiHomogIdeal Q := by
+  intro K _ ι _ P D hP hD Q hQ
+  classical
+  have toGeo : ∀ I : Ideal (MvPolynomial (Σ k, ι k) ℂ), IsMultiHomogIdeal I →
+      ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomogIdeal (R := ℂ) (ι := ι) I := fun I h => h
+  have hQ' : ReciprocityTheory.ChartRestriction.G.Geo.IsMultiHomogIdeal (R := ℂ) (ι := ι) Q :=
+    ReciprocityTheory.ChartRestriction.G.AI.I1.cyc_isMultiHomogIdeal_of_isHomogeneous fun k =>
+      ReciprocityTheory.ChartRestriction.G.AI.I1.cyc_isHomogeneous_of_mem_minimalPrimes _
+        ((ReciprocityTheory.ChartRestriction.G.AI.I1.cyc_isHomogeneous_of_isMultiHomogIdeal (toGeo P hP) k).sup
+          (ReciprocityTheory.ChartRestriction.G.AI.I1.cyc_isHomogeneous_of_isMultiHomogIdeal (toGeo D hD) k)) hQ
+  exact hQ'
+
+end GlobalTheory.CompanionTheory.Ar.Cmp.MinHom
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.MinimalPrimesOfMultihomogSup =====
 
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.RegularSystemOfParametersLocalRing =====
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.MetricProofs.RegularSystemOfParametersLocalRing", "h": "module\n\nimport Development.AutomorphicSpectrum.Proofs.MetricProofs.UnitTimesParameterMonomial\npublic import ReciprocityTheory.AnalyticForms.RegularLocalRings.JacChart\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.CStarAlgebra.Classes\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Tactic.TypeStar\npublic import ReciprocityTheory.AnalyticForms.RegularLocalRings.ExistsMulMemOfAlgebraMapLocRingEqZero\nimport ReciprocityTheory.AnalyticForms.RegularLocalRings.Monomial\nimport ReciprocityTheory.AnalyticForms.RegularLocalRings.RegDom\n\n"}

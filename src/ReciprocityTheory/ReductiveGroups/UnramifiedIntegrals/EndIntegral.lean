@@ -8,7 +8,9 @@ public import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.B
 public import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.TwoTorsionU
 public import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.TranslateProduct
 public import Formalism.LocalToGlobal.TorsionIntegrality.SecondCoefficientNorms.CurveEndoAll
-public import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgAnWp
+public import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.EisensteinRecursion
+public import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.ChordEquation
+public import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.CubeThreeR
 public import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.LatModel
 public import Formalism.LocalToGlobal.TorsionIntegrality.CMGoodModels.Statement
 public import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.HasCMByStable
@@ -39,10 +41,37 @@ import Mathlib.RingTheory.SimpleRing.Principal
 import Formalism.LocalToGlobal.TorsionIntegrality.SecondCoefficientNorms.SecondCoeffConsistency
 import Formalism.LocalToGlobal.TorsionIntegrality.SecondCoefficientNorms.CurveSecondLogDerivative
 import Formalism.LocalToGlobal.TorsionIntegrality.SecondCoefficientNorms.FirstLevelFromUniversalLaw
-import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.CubeThreeR
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgAnTrans, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgAnEndo, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgAnLat, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgGauss, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgAnIso, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgPhInt, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgIsoU, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgTorInt, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.EndIntegral
+-- Members: ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgAnWp, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgAnTrans, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgAnEndo, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgAnLat, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgGauss, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgAnIso, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgPhInt, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgIsoU, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgTorInt, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.EndIntegral
+
+-- ===== clump member: ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgAnWp =====
+-- clump-header: {"m": "ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgAnWp", "h": "module\n\npublic import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.EndoZInstance\npublic import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.StatementK\npublic import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.EisensteinRecursion\npublic import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.ChordEquation\npublic import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.CubeThreeR\nimport Formalism.TorsionNormIteration.InvIntegralOfClass\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+namespace ReciprocityTheory.ChartRestriction.L1
+
+open PowerSeries Formalism.G Formalism.LT Formalism.L2.Th1.CM
+open Formalism.L2.Th1
+
+theorem shortW_map (l : ℕ) [Fact l.Prime] (g2 g3 : ℂ) (ι : ℂ ≃+* ℂ_[l]) :
+    A.shortW (ι g2) (ι g3) = (A.shortW g2 g3).map (ι : ℂ →+* ℂ_[l]) := by
+  ext <;> simp [A.shortW, WeierstrassCurve.map, map_ofNat]
+
+theorem wp_bridge (l : ℕ) [Fact l.Prime] (L : PeriodPair) (ι : ℂ ≃+* ℂ_[l]) :
+    A.wpReg (A.shortW (ι L.g₂) (ι L.g₃)) = PowerSeries.map (ι : ℂ →+* ℂ_[l]) (F.pSeries L) := by
+  have h1 := F.curveBridge (A.shortW L.g₂ L.g₃) L (A.shortInv ℂ _ _).2.1 (A.shortInv ℂ _ _).2.2.1
+  have h2 := (A.zMap ℂ ℂ_[l] (ι : ℂ →+* ℂ_[l]) (A.shortW L.g₂ L.g₃)).2.2.1
+  rw [← h1, h2, shortW_map]
+
+end ReciprocityTheory.ChartRestriction.L1
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgAnWp =====
 
 -- ===== clump member: ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgAnTrans =====
 -- clump-header: {"m": "ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.FgAnTrans", "h": "module\n\npublic import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.EndoZInstance\npublic import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.StatementK\npublic import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.IsogenyFormulaInstance\npublic import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.MulStableIntegral\npublic import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.BridgeTwoMore\nimport Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.FlowTwoTorsionWp\nimport Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.TwoTorsionU\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Sheaves.Init\nimport Formalism.TorsionNormIteration.InvIntegralOfClass\n\n"}

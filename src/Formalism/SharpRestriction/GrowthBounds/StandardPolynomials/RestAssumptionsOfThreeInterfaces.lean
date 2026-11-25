@@ -1,6 +1,7 @@
 module
 
-public import Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.ColGen
+public import Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.MultidegAdd
+public import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.CardEqChainSum
 public import Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.PreSys
 public import Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.PreDef
 import Formalism.SharpRestriction.GrowthBounds.CoarseMultiplicity.Lemma44IdentityOfRawTail
@@ -14,7 +15,46 @@ import Mathlib.Tactic.Linter.HaveILetI
 import Std.Tactic.BVDecide.Normalize.BitVec
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.LatticeLeSpanPsiImage, Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.MonomialSumEqProdTensor, Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.SumMulLe, Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.ZeroOfMultideg, Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.RestAssumptionsOfThreeInterfaces
+-- Members: Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.ColGen, Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.LatticeLeSpanPsiImage, Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.MonomialSumEqProdTensor, Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.SumMulLe, Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.ZeroOfMultideg, Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.RestAssumptionsOfThreeInterfaces
+
+-- ===== clump member: Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.ColGen =====
+-- clump-header: {"m": "Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.ColGen", "h": "module\n\npublic import Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.MultidegAdd\npublic import Formalism.SharpRestriction.GrowthBounds.BinomialRatio.CardEqChainSum\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+namespace Formalism.MainNotions.ColumnSystems.Pf
+
+open Formalism.MainNotions.G MvPolynomial
+
+def colGens (O : Type) [CommRing O] [IsDomain O] {N r : ℕ} [NeZero r] (D : BlockData N) :
+    Set (MvPolynomial (BVar N r D.T.t) (KK O)) :=
+  {x | ∃ (j : Fin D.T.t → ℕ) (jp : ℕ), D.LevelOK j jp ∧
+    ∃ y : Tx r (D.lettersAt j jp), y ∈ sAll (D.lettersAt j jp) D.T.J D.T.thr ∧
+    ∃ γ : Fin r → ℕ, ∑ c, γ c = D.B - jp ∧
+    x = (∏ i, D.Ehat O (r := r) i ^ j i) * D.Eplus O (r := r) ^ jp *
+      (∏ i, X (scalZ N r D.T.t (Fin.castSucc i)) ^ D.T.z i) * X (scalZ N r D.T.t (Fin.last D.T.t)) ^ D.zPlus *
+      rename (chainEmb N r D.T.t) (psiR (KK O) (D.lettersAt j jp) y) * ∏ c, X (xiVar N r D.T.t c) ^ γ c}
+
+def FacSysAt (C0 CYb Cde Ck CD Cb CE1 CE2 Cc : ℝ) : Prop :=
+  ∀ (X : Loc) [NeZero X.m] [Fact X.p.Prime] (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
+    [Algebra (WF X.p X.n') O] (S : UniformizedDVR X.p O), S.SqP → D1num X → HIext C0 CYb Cde Ck CD Cb X → CBound Cc X →
+    ∀ mm : ℝ, (mm = 0 ∨ mm = 12 * (X.c : ℝ)) →
+    ∀ n : ℕ, 1 ≤ n → n ≤ X.c →
+    ∀ β : GlobalTheory X, (∀ j, BLk C0 Cde CE1 CE2 X (((X.c - n : ℕ) : ℝ) * ka1 X) j (β j)) →
+    ∀ s : Syms O C0 CE1 CE2 X,
+      (∀ j, s j ∈ colGens O (r := X.m)
+        (blockData X.p (X.seg C0 CE1 CE2 j) (segATop X.TT X.aT j) (segAPlus X.TT X.aT j) (mm + (n : ℝ) * ka1 X) (β j))) →
+      Nonempty (FacSys C0 Cde CE1 CE2 X O S.w mm n (ordFam C0 CE1 CE2 X β) (symFam (KK O) X.p C0 CE1 CE2 X β s))
+
+def FacSysCondition : Prop := TransportedAlt fun C0 CYb Cde Ck CD Cb CE1 CE2 _ Cc => FacSysAt C0 CYb Cde Ck CD Cb CE1 CE2 Cc
+
+end Formalism.MainNotions.ColumnSystems.Pf
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.ColGen =====
 
 -- ===== clump member: Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.LatticeLeSpanPsiImage =====
 -- clump-header: {"m": "Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.LatticeLeSpanPsiImage", "h": "module\n\npublic import Formalism.SharpRestriction.GrowthBounds.StandardPolynomials.ColGen\nimport Formalism.SharpRestriction.GrowthBounds.CoarseMultiplicity.Lemma44IdentityOfRawTail\nimport Formalism.SharpRestriction.GrowthBounds.PolBridge\nimport Formalism.SharpRestriction.GrowthBounds.RootWeights.IntegralEnvelopingPreservesStable\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\nimport Formalism.SharpRestriction.GrowthBounds.RootWeights.IntegralPolyLinearMapClosed\n\n"}

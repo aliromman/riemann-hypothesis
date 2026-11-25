@@ -25,7 +25,6 @@ public import Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagAnalyticOr
 public import Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagCoverArithmeticSecond
 public import Development.AutomorphicSpectrum.Definitions.MetricPeriods.MetricsProjectionFormulaNef
 public import Development.AutomorphicSpectrum.Proofs.MetricProofs.RealisationBijectiveDegreeOne
-public import Development.AutomorphicSpectrum.Proofs.MetricProofs.TwoPointFibreChartSecond
 public import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FrameDefinitions.Metric
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterRes
 public import Development.AutomorphicSpectrum.Proofs.MetricProofs.ValueConstantOnOrbit
@@ -76,7 +75,38 @@ import Development.AutomorphicSpectrum.Proofs.MetricProofs.LogResolutionFunctori
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.GenericComplexPoint
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicSpectrum.Proofs.MetricProofs.TwoPointFibreChartFourth, Development.AutomorphicSpectrum.Proofs.MetricProofs.TwoPointFibreChartSeventh, Development.AutomorphicSpectrum.Proofs.MetricProofs.TwoPointFibreChartSixth, Development.AutomorphicSpectrum.Proofs.MetricProofs.SmoothMinorOfSmoothMatrix, Development.AutomorphicSpectrum.Proofs.MetricProofs.TwoPointFibreChartThird, Development.AutomorphicSpectrum.Proofs.MetricProofs.LogNormProductFormula, Development.AutomorphicSpectrum.Proofs.MetricProofs.LogSineFormula, Development.AutomorphicSpectrum.Proofs.MetricProofs.TwoPointFibreTwistedResolution, Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagAdjacentRowsLogResolution, Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagAdjacentChartTenth, Development.AutomorphicSpectrum.Proofs.MetricProofs.LUTwistRefactorization, Development.AutomorphicSpectrum.Proofs.MetricProofs.TwistedFrameValueFormula, Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagAdjacentChartFifth, Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagAdjacentRowsResolution, Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagAnalyticDimensionCount, Development.AutomorphicSpectrum.Proofs.MetricProofs.TwoMapPullbackEnergy, Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagAdjacentSwapSquareSystem
+-- Members: Development.AutomorphicSpectrum.Proofs.MetricProofs.TwoPointFibreChartSecond, Development.AutomorphicSpectrum.Proofs.MetricProofs.TwoPointFibreChartFourth, Development.AutomorphicSpectrum.Proofs.MetricProofs.TwoPointFibreChartSeventh, Development.AutomorphicSpectrum.Proofs.MetricProofs.TwoPointFibreChartSixth, Development.AutomorphicSpectrum.Proofs.MetricProofs.SmoothMinorOfSmoothMatrix, Development.AutomorphicSpectrum.Proofs.MetricProofs.TwoPointFibreChartThird, Development.AutomorphicSpectrum.Proofs.MetricProofs.LogNormProductFormula, Development.AutomorphicSpectrum.Proofs.MetricProofs.LogSineFormula, Development.AutomorphicSpectrum.Proofs.MetricProofs.TwoPointFibreTwistedResolution, Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagAdjacentRowsLogResolution, Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagAdjacentChartTenth, Development.AutomorphicSpectrum.Proofs.MetricProofs.LUTwistRefactorization, Development.AutomorphicSpectrum.Proofs.MetricProofs.TwistedFrameValueFormula, Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagAdjacentChartFifth, Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagAdjacentRowsResolution, Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagAnalyticDimensionCount, Development.AutomorphicSpectrum.Proofs.MetricProofs.TwoMapPullbackEnergy, Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagAdjacentSwapSquareSystem
+
+-- ===== clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.TwoPointFibreChartSecond =====
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.MetricProofs.TwoPointFibreChartSecond", "h": "module\n\npublic import Development.AutomorphicSpectrum.Proofs.MetricProofs.IsFibreChartIff\npublic import Development.AutomorphicSpectrum.Proofs.MetricProofs.MinorIJEqSubmatrix\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open MvPolynomial MeasureTheory Filter Topology Matrix ReciprocityTheory.AnForm ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.P ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.AI.I1 ReciprocityTheory.ChartRestriction.G.AI.I2 ReciprocityTheory.ChartRestriction.G.AI.I4 GlobalTheory.CompanionTheory.Ar.PB GroundTheory.Heights₂.Heights GroundTheory.Heights₂.Heights.LowerBoundFree
+open scoped ComplexOrder Classical
+open GlobalTheory.CompanionTheory.Ar.PB.WSq GlobalTheory.CompanionTheory.Ar.PB.WSq.Fib
+
+noncomputable section
+
+namespace GlobalTheory.CompanionTheory.Ar.PB.WSq.Fib
+
+theorem gramPlane_posDef : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι k)] (Φ : Type) [Field Φ] (y : (Σ k, ι k) → Φ) (Ψ : Type) [Fintype Ψ] [DecidableEq Ψ] (N j : ℕ) (M : FlagModel y Ψ N j) (n d : ℕ) (BM : BaseMetric M n) (FA : FlagAn BM d) (τ : Ψ) (a b ca cb : Fin N), (b : ℕ) = a + 1 → ((b : ℕ) < j ∨ j ≤ (a : ℕ)) → (ca : ℕ) = lastCol N j a → (cb : ℕ) = ca + 1 → ∀ (X : Type) (q : Fin 2 → X → FA.S.X) (Un : Set (Fin d → ℂ)) (Gn : (Fin d → ℂ) → Matrix (Fin 2) (Fin 2) ℂ) (ΦYn : (Fin (d + 1) → ℂ) → FA.S.X) (ΦWn : (Fin (d + 2) → ℂ) → X) (l : Fin BM.q) (H : Ψ → (Fin d → ℂ) → Matrix (Fin N) (Fin N) ℂ) (bp : (Fin d → ℂ) → BM.Rb.X), IsOpen Un → IsFibreData FA τ a ca cb q Un Gn ΦYn ΦWn l H bp → ∀ w ∈ Un, (Gn w).PosDef := by
+  intro K _ ι _ Φ _ y Ψ _ _ N j M n d BM FA τ a b ca cb hb hab hca hcb X q Un Gn ΦYn ΦWn l H bp _ hF w hw
+  unfold IsFibreData at hF
+  obtain ⟨-, -, -, h4, h5, -, -⟩ := hF
+  obtain ⟨hbp, hH⟩ := h4 w hw
+  obtain ⟨hGbd, hGpd⟩ := BM.G_pos l τ (bp w) hbp
+  obtain ⟨G₂, hG₂, hG₂eq, -⟩ := GlobalTheory.CompanionTheory.Ar.PB.norm_three_steps N j a b ca cb (BM.G l τ (bp w)) (H τ w)
+    M.j_le hb hab hca hcb hGbd hGpd (hH τ).1 (hH τ).2
+  have hEq : Gn w = G₂ := Matrix.ext fun r s => by rw [h5 w hw r s, hG₂eq r s]
+  rw [hEq]
+  exact hG₂
+
+end GlobalTheory.CompanionTheory.Ar.PB.WSq.Fib
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.TwoPointFibreChartSecond =====
 
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.TwoPointFibreChartFourth =====
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.MetricProofs.TwoPointFibreChartFourth", "h": "module\n\npublic import Development.AutomorphicSpectrum.Proofs.MetricProofs.IsFibreChartIff\npublic import Development.AutomorphicSpectrum.Definitions.MetricPeriods.IsPeriodOn\npublic import Development.AutomorphicSpectrum.Proofs.MetricProofs.BaseChartFlagAnalyticMap\npublic import Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagGapHolomorphicPullbackFirst\npublic import Mathlib.Analysis.Analytic.Basic\npublic import Mathlib.Analysis.CStarAlgebra.Classes\npublic import Mathlib.Analysis.SpecialFunctions.Log.Basic\npublic import Development.AutomorphicSpectrum.Proofs.MetricProofs.LogNormNonvanishingAnalyticHarmonic\npublic import Development.AutomorphicSpectrum.Definitions.MetricPeriods.GenericBlockMatrixIsBlockDiag\npublic import Development.AutomorphicSpectrum.Proofs.MetricProofs.RegularFunctionAnalyticOnChart\npublic import Development.AutomorphicSpectrum.Proofs.MetricProofs.UnipotentValueNeZero\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

@@ -23,7 +23,9 @@ public import Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.IntegralJoi
 public import Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.LiftSubstitutionCoeffDivisible
 public import Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.AdmFourteen
 public import Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.AdmissibleExternalProduct
-public import Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.AdmissiblePolynomialBasisProv
+public import Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.ExtendByZeroRestrictOfVanish
+public import Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.IndexOffRange
+public import Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.KcolEqPathWord
 public import Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.AdmissibleWordBasis
 public import Formalism.SharpRestriction.GrowthBounds.GLWeightTheory
 public import Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.BrCore
@@ -35,7 +37,24 @@ import Mathlib.Tactic.Linter.Style
 import Formalism.SharpRestriction.GrowthBounds.ProjectionOfIsotypicDecomposition
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.ToralGalois, Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.AdmissibleLowerSetSpan, Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.ContragredientLatticeFGOfIrreducible, Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.DividedPowerReverseDividedPowerEqSelf, Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.HighestWeightSpaceEqSpanHighestWeightVector, Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.LatticeGeneratedLowestWeight, Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.CanonicalTranslateJetIdentity, Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths, Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.SplittingThirdPartHolds, Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities
+-- Members: Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.AdmissiblePolynomialBasisProv, Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.ToralGalois, Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.AdmissibleLowerSetSpan, Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.ContragredientLatticeFGOfIrreducible, Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.DividedPowerReverseDividedPowerEqSelf, Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.HighestWeightSpaceEqSpanHighestWeightVector, Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.LatticeGeneratedLowestWeight, Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths.CanonicalTranslateJetIdentity, Formalism.SharpRestriction.GrowthBounds.FrobeniusPaths, Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.SplittingThirdPartHolds, Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities
+
+-- ===== clump member: Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.AdmissiblePolynomialBasisProv =====
+-- clump-header: {"m": "Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.AdmissiblePolynomialBasisProv", "h": "module\n\npublic import Formalism.SharpRestriction.GrowthBounds.StatementOfDegreeAndBound\npublic import Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.ExtendByZeroRestrictOfVanish\npublic import Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.IndexOffRange\npublic import Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.KcolEqPathWord\nimport Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.PeBnOfLt\n\n"}
+section -- clump:auto
+@[expose] public section
+
+namespace Formalism.MainNotions.G.ColumnFamilies
+
+theorem admissible_standardPath_basis (D : Formalism.BasicNotions.D7) : Formalism.MainNotions.CovariantDegrees.PathBasisOverRing D :=
+  word_basis_of_path_restrictions D restPathTo restPathFrom restStd restPsi restPol
+
+theorem admissible_polynomial_basis (D : Formalism.BasicNotions.D7) : Formalism.MainNotions.CovariantDegrees.PathColumnBasis D := Formalism.MainNotions.CovariantDegrees.path_basis_of_field_basis D (admissible_standardPath_basis D)
+
+end Formalism.MainNotions.G.ColumnFamilies
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.AdmissiblePolynomialBasisProv =====
 
 -- ===== clump member: Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.ToralGalois =====
 -- clump-header: {"m": "Formalism.SharpRestriction.GrowthBounds.BinomialPolynomialIdentities.ToralGalois", "h": "module\n\npublic import Formalism.SharpRestriction.GrowthBounds.StatementOfDegreeAndBound\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Sheaves.Init\n\n"}

@@ -2,7 +2,6 @@ module
 
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.NewtonInterpolation
 import Mathlib.LinearAlgebra.Matrix.Polynomial
-
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.CokLenLeOfRangeLe
 public import Mathlib.NumberTheory.Padics.PadicIntegers
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.LteNorm
@@ -11,7 +10,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveVal
 public import Mathlib.Algebra.CharP.Lemmas
 public import Mathlib.Algebra.Polynomial.AlgebraMap
 public import Mathlib.RingTheory.Nakayama
-public import Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.CokLen
+public import Mathlib.LinearAlgebra.Quotient.Pi
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.LenComp
 public import Mathlib.RingTheory.Length
 public import Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.SelmerDuality.LengthDet
@@ -32,7 +31,54 @@ import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.Linter.HaveILetI
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.DetBound, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.Imports, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.ImportsBis, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.ImportsTer, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.ImportsMore, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.PowIn, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.NilLen, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.UnipPow, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.Growth, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.ImportsAlt, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.ImportsFurther, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.ExistsCentresLevel, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.DualDiv, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.TorsFin, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.DualUnip, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.XUnip, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.ABoundOfDescends
+-- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.CokLen, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.DetBound, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.Imports, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.ImportsBis, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.ImportsTer, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.ImportsMore, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.PowIn, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.NilLen, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.UnipPow, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.Growth, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.ImportsAlt, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.ImportsFurther, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.ExistsCentresLevel, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.DualDiv, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.TorsFin, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.DualUnip, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.XUnip, Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.ABoundOfDescends
+
+-- ===== clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.CokLen =====
+-- clump-header: {"m": "Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.CokLen", "h": "module\n\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.CokLenLeOfRangeLe\npublic import Mathlib.LinearAlgebra.Quotient.Pi\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open UpperTheory.V UpperTheory.V.PropA
+
+theorem UpperTheory.V.PropA.cokL :
+    ∀ (l : ℕ) [Fact l.Prime] (X : Type) [AddCommGroup X] [Module ℤ_[l] X] (R : ℕ), GenBy l R X → cokLen ((l : ℤ_[l]) • (1 : Module.End ℤ_[l] X)) ≤ R := by
+  intro l _ X _ _ R hgen
+  obtain ⟨π, hπ⟩ := hgen
+  classical
+  let I : Submodule ℤ_[l] ℤ_[l] := IsLocalRing.maximalIdeal ℤ_[l]
+  have hsimple : IsSimpleModule ℤ_[l] (ℤ_[l] ⧸ I) :=
+    isSimpleModule_iff_isCoatom.2 (Ideal.isMaximal_def.1 (IsLocalRing.maximalIdeal.isMaximal ℤ_[l]))
+  let P : Submodule ℤ_[l] (Fin R → ℤ_[l]) := Submodule.pi Set.univ (fun _ => I)
+  let q : Submodule ℤ_[l] X := LinearMap.range ((l : ℤ_[l]) • (1 : Module.End ℤ_[l] X))
+  have hle : P ≤ q.comap π := by
+    intro v hv
+    rw [Submodule.mem_pi] at hv
+    have hex : ∀ i, ∃ w : ℤ_[l], v i = (l : ℤ_[l]) * w := by
+      intro i
+      have hi := hv i (Set.mem_univ i)
+      change v i ∈ IsLocalRing.maximalIdeal ℤ_[l] at hi
+      rw [PadicInt.maximalIdeal_eq_span_p, Ideal.mem_span_singleton'] at hi
+      obtain ⟨a, ha⟩ := hi
+      exact ⟨a, by rw [← ha, mul_comm]⟩
+    choose w hw using hex
+    have hv' : v = (l : ℤ_[l]) • w := funext fun i => by simp [hw i]
+    rw [Submodule.mem_comap, LinearMap.mem_range]
+    refine ⟨π w, ?_⟩
+    rw [LinearMap.smul_apply, Module.End.one_apply, hv', map_smul]
+  have hφ : Function.Surjective (P.mapQ q π hle) := by
+    intro z
+    refine Submodule.Quotient.induction_on _ z ?_
+    intro x
+    obtain ⟨v, rfl⟩ := hπ x
+    exact ⟨Submodule.Quotient.mk v, Submodule.mapQ_apply _ _ _ _⟩
+  have h1 := Module.length_le_of_surjective (P.mapQ q π hle) hφ
+  have h2 : Module.length ℤ_[l] ((Fin R → ℤ_[l]) ⧸ P) = R := by
+    rw [(Submodule.quotientPi (fun _ : Fin R => I)).length_eq, Module.length_pi_of_fintype]
+    simp [Module.length_eq_one]
+  exact h1.trans h2.le
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.CokLen =====
 
 -- ===== clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.DetBound =====
 -- clump-header: {"m": "Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.DetBound", "h": "module\n\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.NewtonInterpolation\nimport Mathlib.LinearAlgebra.Matrix.Polynomial\nimport Mathlib.NumberTheory.Padics.ProperSpace\n\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.CokLenLeOfRangeLe\npublic import Mathlib.LinearAlgebra.Matrix.Determinant.Basic\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.AdditiveValuationNorms.NormVal\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

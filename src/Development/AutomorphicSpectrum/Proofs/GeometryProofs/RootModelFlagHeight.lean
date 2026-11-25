@@ -21,7 +21,7 @@ public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.EigLat
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieLatticeEvalFractionField
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsSubFibreSubFib
 public import Development.AutomorphicSpectrum.Definitions.MetricPeriods.IsOrthFull
-public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsUnitNatCastStalk
+public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.CoordsAt
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsLieModelBaseChange
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ArchBetween
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.UniformisationConclusion
@@ -31,7 +31,6 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.SemiabelianTori
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.FlagLineDegreeFormula
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeCptLieMetricBound
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LineHeightInvariantScaling
-public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.CoordsAt
 public import Development.AutomorphicSpectrum.Definitions.MetricPeriods.HasMultiplier
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.NumberFieldPointIntegralModel
 public import Development.WeilBound.CoreStatements.PlurisubharmonicCones.EmbEquivSymmApply
@@ -41,7 +40,37 @@ import Mathlib.Tactic.Linter.Style
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsOrthogonalLieMetric, Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieMetricHermitianBundle, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsFlagBasisAtStalk, Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelFrameSpansGeneric, Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelProjectiveGenericFibre, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ValAtEigen, Development.AutomorphicSpectrum.Proofs.GeometryProofs.OrthogonalMetricHermitianBundle, Development.AutomorphicSpectrum.Proofs.GeometryProofs.OrthogonalMetricFlagDegree, Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootModelFlagHeight
+-- Members: Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsUnitNatCastStalk, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsOrthogonalLieMetric, Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieMetricHermitianBundle, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsFlagBasisAtStalk, Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelFrameSpansGeneric, Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelProjectiveGenericFibre, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ValAtEigen, Development.AutomorphicSpectrum.Proofs.GeometryProofs.OrthogonalMetricHermitianBundle, Development.AutomorphicSpectrum.Proofs.GeometryProofs.OrthogonalMetricFlagDegree, Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootModelFlagHeight
+
+-- ===== clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsUnitNatCastStalk =====
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsUnitNatCastStalk", "h": "module\n\npublic import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.CoordsAt\npublic import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens\nimport Mathlib.Tactic.Linter.HaveILetI\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+namespace GlobalTheory.CompanionTheory.Ar.FlagFib
+
+open AlgebraicGeometry CategoryTheory ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar
+
+theorem isUnit_natCast_stalk (X : Scheme.{0}) (L : Type) [Field L] [CharZero L] (z : Sp L ⟶ X) (n : ℕ) (hn : n ≠ 0) :
+    IsUnit ((n : X.presheaf.stalk (centre z))) := by
+  set x := IsLocalRing.closedPoint L
+  have hL : IsUnit (n : L) := (Nat.cast_ne_zero.mpr hn).isUnit
+  let φ : L →+* (Sp L).presheaf.stalk x :=
+    ((Scheme.ΓSpecIso (CommRingCat.of L)).inv ≫ (Sp L).presheaf.germ ⊤ x trivial).hom
+  have h2 : IsUnit (n : (Sp L).presheaf.stalk x) := by
+    simpa using hL.map φ
+  have h3 : IsUnit ((z.stalkMap x).hom (n : X.presheaf.stalk (z x))) := by
+    simpa using h2
+  haveI : IsLocalHom (z.stalkMap x).hom := z.prop x
+  exact (isUnit_map_iff (z.stalkMap x).hom _).mp h3
+
+end GlobalTheory.CompanionTheory.Ar.FlagFib
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsUnitNatCastStalk =====
 
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsOrthogonalLieMetric =====
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsOrthogonalLieMetric", "h": "module\n\npublic import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.SlopeBoundSt\npublic import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsHodgeLine\npublic import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsLieMetric\npublic import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelExistsUniqueAct\nimport Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsLieModel\nimport Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelFunctorialMap\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.RegularLocalRing.Defs\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Development.AutomorphicSpectrum.Proofs.GeometryProofs.HolomorphicDiscOverNumberFieldRing\n\n"}

@@ -11,7 +11,6 @@ public import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ExistsTeichm
 public import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.NormNatCastClOfNotDvd
 public import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorBasic
 public import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorHensel
-public import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorSub
 public import Formalism.LocalToGlobal.TorsionIntegrality.CMGoodModels.CM4
 public import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.NonsingularJetNorms.ExistsFinitePartOneIdeleSplitCongruenceQuotient
 public import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.NonsingularJetNorms.ScaledTorsionPointNonsingular
@@ -23,7 +22,140 @@ import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorRes
 import Mathlib.Tactic.TypeStar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorClose, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorChord, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorContr, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorLift, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorTwo, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorMain, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorStatus
+-- Members: ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorSub, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorClose, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorChord, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorContr, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorLift, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorTwo, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorMain, ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorStatus
+
+-- ===== clump member: ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorSub =====
+-- clump-header: {"m": "ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorSub", "h": "module\n\npublic import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorDefs\npublic import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.IsTransSys\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+open scoped Classical
+
+namespace ReciprocityTheory.ChartRestriction.L1
+
+open Formalism.L2.Th1.CM Formalism.ELL WeierstrassCurve
+open Formalism.L2.Th1.E (px py IntCurve)
+open Formalism.L2.Th1.A (shortW)
+
+variable {C : Type} [Field C] (K : Subfield C) (W : WeierstrassCurve C)
+
+theorem inSub_zero : InSub K (0 : W.toAffine.Point) := trivial
+
+theorem negY_mem_sub (hW : CoeffSub K W) {x y : C} (hx : x ∈ K) (hy : y ∈ K) :
+    W.toAffine.negY x y ∈ K := by
+  obtain ⟨h1, h2, h3, h4, h6⟩ := hW
+  simp only [WeierstrassCurve.Affine.negY]
+  repeat (first
+    | assumption
+    | exact K.zero_mem
+    | exact K.one_mem
+    | apply K.div_mem
+    | apply K.sub_mem
+    | apply K.add_mem
+    | apply K.mul_mem
+    | apply K.pow_mem
+    | apply K.neg_mem)
+
+theorem slope_mem_sub (hW : CoeffSub K W) {x₁ x₂ y₁ y₂ : C} (hx₁ : x₁ ∈ K) (hx₂ : x₂ ∈ K)
+    (hy₁ : y₁ ∈ K) (hy₂ : y₂ ∈ K) : W.toAffine.slope x₁ x₂ y₁ y₂ ∈ K := by
+  have n1 := negY_mem_sub K W hW hx₁ hy₁
+  have n2 := negY_mem_sub K W hW hx₂ hy₂
+  obtain ⟨h1, h2, h3, h4, h6⟩ := hW
+  have c2 : (2 : C) ∈ K := by
+    have h0 := natCast_mem K 2
+    simpa using h0
+  have c3 : (3 : C) ∈ K := by
+    have h0 := natCast_mem K 3
+    simpa using h0
+  unfold WeierstrassCurve.Affine.slope
+  split_ifs
+  · exact K.zero_mem
+  · repeat (first
+    | assumption
+    | apply K.div_mem
+    | apply K.sub_mem
+    | apply K.add_mem
+    | apply K.mul_mem
+    | apply K.pow_mem
+    | apply K.neg_mem)
+  · repeat (first
+    | assumption
+    | apply K.div_mem
+    | apply K.sub_mem
+    | apply K.neg_mem)
+
+theorem addX_mem_sub (hW : CoeffSub K W) {x₁ x₂ s : C} (hx₁ : x₁ ∈ K) (hx₂ : x₂ ∈ K)
+    (hs : s ∈ K) : W.toAffine.addX x₁ x₂ s ∈ K := by
+  obtain ⟨h1, h2, h3, h4, h6⟩ := hW
+  simp only [WeierstrassCurve.Affine.addX]
+  repeat (first
+    | assumption
+    | exact K.zero_mem
+    | exact K.one_mem
+    | apply K.div_mem
+    | apply K.sub_mem
+    | apply K.add_mem
+    | apply K.mul_mem
+    | apply K.pow_mem
+    | apply K.neg_mem)
+
+theorem addY_mem_sub (hW : CoeffSub K W) {x₁ x₂ y₁ s : C} (hx₁ : x₁ ∈ K) (hx₂ : x₂ ∈ K)
+    (hy₁ : y₁ ∈ K) (hs : s ∈ K) : W.toAffine.addY x₁ x₂ y₁ s ∈ K := by
+  have hX := addX_mem_sub K W hW hx₁ hx₂ hs
+  have hN : W.toAffine.negAddY x₁ x₂ y₁ s ∈ K := by
+    simp only [WeierstrassCurve.Affine.negAddY]
+    repeat (first
+    | assumption
+    | apply K.sub_mem
+    | apply K.add_mem
+    | apply K.mul_mem
+    | apply K.neg_mem)
+  simp only [WeierstrassCurve.Affine.addY]
+  exact negY_mem_sub K W hW hX hN
+
+theorem inSub_neg (hW : CoeffSub K W) (P : W.toAffine.Point) (hP : InSub K P) : InSub K (-P) := by
+  cases P with
+  | zero => trivial
+  | some x y h =>
+    rw [WeierstrassCurve.Affine.Point.neg_some]
+    exact ⟨hP.1, negY_mem_sub K W hW hP.1 hP.2⟩
+
+theorem inSub_add (hW : CoeffSub K W) (P Q : W.toAffine.Point) (hP : InSub K P) (hQ : InSub K Q) :
+    InSub K (P + Q) := by
+  cases P with
+  | zero =>
+    change InSub K ((0 : W.toAffine.Point) + _)
+    rwa [zero_add]
+  | some x₁ y₁ h₁ =>
+    cases Q with
+    | zero =>
+      change InSub K (_ + (0 : W.toAffine.Point))
+      rwa [add_zero]
+    | some x₂ y₂ h₂ =>
+      by_cases hxy : x₁ = x₂ ∧ y₁ = W.toAffine.negY x₂ y₂
+      · rw [WeierstrassCurve.Affine.Point.add_of_Y_eq hxy.1 hxy.2]
+        trivial
+      · rw [WeierstrassCurve.Affine.Point.add_some hxy]
+        have hs := slope_mem_sub K W hW hP.1 hQ.1 hP.2 hQ.2
+        exact ⟨addX_mem_sub K W hW hP.1 hQ.1 hs, addY_mem_sub K W hW hP.1 hQ.1 hP.2 hs⟩
+
+theorem inSub_nsmul (hW : CoeffSub K W) (n : ℕ) (P : W.toAffine.Point) (hP : InSub K P) :
+    InSub K (n • P) := by
+  induction n with
+  | zero => rw [zero_smul]; exact inSub_zero K W
+  | succ n ih => rw [succ_nsmul]; exact inSub_add K W hW _ _ ih hP
+
+theorem inSub_px (P : W.toAffine.Point) (hP : InSub K P) : px W P ∈ K ∧ py W P ∈ K := by
+  cases P with
+  | zero => exact ⟨K.zero_mem, K.zero_mem⟩
+  | some x y h => exact hP
+
+end ReciprocityTheory.ChartRestriction.L1
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorSub =====
 
 -- ===== clump member: ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorClose =====
 -- clump-header: {"m": "ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.TorClose", "h": "module\n\npublic import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.IsTransSys\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Real\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Formalism.LocalToGlobal.TorsionIntegrality.CMGoodModels.Statement\npublic import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.StatementK\n\n"}

@@ -14,7 +14,6 @@ public import Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquati
 public import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.WeightThresholdDefs
 public import Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.SqLMat
 public import Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.GMConjTranspose
-public import Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.SqLInput
 public import Formalism.LocalToGlobal.KernelLattices.ColumnData.BaseLinkOfNonzeroDelta
 public import Formalism.LocalToGlobal.PairingIndexBounds.SplitPairEquations.SplitPairGen
 public import Formalism.LocalToGlobal.KernelLattices.ColumnData.StdOKP
@@ -28,7 +27,35 @@ import Mathlib.Tactic.Linter.HaveILetI
 import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExistsGenerators
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.RightMoveTrianglesOfUnit, Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.MuConc, Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.MuFinal, Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.SqFinal, Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.SqLComm, Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.SqLLaw, Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.SqLMain, Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.SqLTop, Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.SplitPairOfGen
+-- Members: Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.SqLInput, Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.RightMoveTrianglesOfUnit, Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.MuConc, Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.MuFinal, Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.SqFinal, Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.SqLComm, Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.SqLLaw, Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.SqLMain, Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.SqLTop, Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.SplitPairOfGen
+
+-- ===== clump member: Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.SqLInput =====
+-- clump-header: {"m": "Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.SqLInput", "h": "module\n\npublic import Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.Reduction\nimport Formalism.LocalToGlobal.PairingIndexBounds.SplitPairEquations.IntegralSquareRoots.HenselQuad\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+open NumberField Formalism.BasicNotions Classical Matrix
+
+namespace Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.SquareSplitPairs
+
+open Formalism.L2.PairingIndexBounds.Eq Formalism.L2.PairingIndexBounds
+
+open Formalism.MainNotions Formalism.L2.Ker.Cd.PairingIndexBounds.Eq Formalism.L2.PairingIndexBounds.Eq
+
+def SplitPair (D : Car) : Prop :=
+  ∀ (N' : ℕ) (L' L'' : Submodule (𝓞 D.host.E) (Fin N' → D.host.E)), Even N' → SD D L' → SD D L'' →
+    ∀ n : 𝓞 D.host.E, n ≠ 0 → ∃ e : Matrix (Fin N') (Fin N') D.host.E,
+      (∀ y ∈ L', e *ᵥ y ∈ L') ∧ (∀ y ∈ L'', e *ᵥ y ∈ L'') ∧
+      ∀ M ∈ ({e * e - e, (letI := D.host.cmStar; eᴴ) * e,
+          (letI := D.host.cmStar; (1 - e)ᴴ) * (1 - e)} : Set (Matrix (Fin N') (Fin N') D.host.E)),
+        ∀ y, (y ∈ L' ∨ y ∈ L'') → ∃ m, m ∈ L' ∧ m ∈ L'' ∧ M *ᵥ y = (n : D.host.E) • m
+
+end Formalism.L2.Ker.Cd.PairingIndexBounds.Eq.SquareSplitPairs
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.SqLInput =====
 
 -- ===== clump member: Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.RightMoveTrianglesOfUnit =====
 -- clump-header: {"m": "Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.RightMoveTrianglesOfUnit", "h": "module\n\npublic import Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.Reduction\npublic import Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.GaussDegenerate\npublic import Formalism.LocalToGlobal.KernelLattices.ColumnData.ColumnDataEquations.NormOneUnitIdealAlt\npublic import Formalism.LocalToGlobal.KernelLattices.ColumnData.IsAdmissibleFlagPairOfUnitriangularLeftAutomorph\npublic import Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters.SelfDualCovolume\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Formalism.LocalToGlobal.PairingIndexBounds.SplitPairEquations.IntegralSquareRoots.HenselQuad\n\n"}

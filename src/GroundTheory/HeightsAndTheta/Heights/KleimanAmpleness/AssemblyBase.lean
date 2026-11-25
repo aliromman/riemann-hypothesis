@@ -12,7 +12,6 @@ public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.SectionCount
 public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.SectionCountDropHilbWSt
 public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.StatementsSerrePoly
 public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.StatementsStepThreeAway
-public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.StatementsStepThreeOnW
 public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.StatementsStepThreeOnWLift
 public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.StatementsStepThreeOnWGen
 public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.StatementsTwistSplit
@@ -44,7 +43,37 @@ import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PTwistFinite
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PTwistSections
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PCechTop, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PCohomRetract, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PDegLocExact, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PGradedPres, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PGradedULift, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PSectionCount, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PSectionCountDrop, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PSerreFinite, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PSerrePoly, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PSerrePolyLaurentCohom, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PSerreTail, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PSerreVanish, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PStepThree, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PStepThreeOnW, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PTwistVanish, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.AssemblyBase
+-- Members: GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.StatementsStepThreeOnW, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PCechTop, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PCohomRetract, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PDegLocExact, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PGradedPres, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PGradedULift, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PSectionCount, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PSectionCountDrop, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PSerreFinite, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PSerrePoly, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PSerrePolyLaurentCohom, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PSerreTail, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PSerreVanish, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PStepThree, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PStepThreeOnW, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PTwistVanish, GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.AssemblyBase
+
+-- ===== clump member: GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.StatementsStepThreeOnW =====
+-- clump-header: {"m": "GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.StatementsStepThreeOnW", "h": "module\n\npublic import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.GenericPointSectionHypotheses\n\n"}
+section -- clump:auto
+@[expose] public section
+
+set_option maxSynthPendingDepth 1
+
+namespace GroundTheory.Heights₂.Heights.Kleiman
+
+open MvPolynomial
+
+noncomputable section
+
+universe u w
+
+def StepThree.OnW.Statement : Prop :=
+  ∀ (k : Type u) [Field k] (Ω : Type w) [Field Ω] [Algebra k Ω] (N : ℕ) (x : Fin (N + 1) → Ω)
+    (T : StepData k x), (∀ e ≤ T.d, VeryAmpleNefPlusAmple.InDim.{u, w} k e) →
+    ∀ pp ∈ T.J.minimalPrimes, ∃ c₀ : ℤ, ∀ (b : ℕ) (c : ℤ), 1 ≤ b → c₀ ≤ c → ∀ I : Chart x,
+      ((T.L.pow b).twist (twistSys k x c)).sub I ≤
+        Submodule.span (chartRing k x I) (((T.L.pow b).twist (twistSys k x c)).secs : Set Ω) ⊔
+          (((T.L.pow b).twist (twistSys k x c)).twist (idealSys x pp)).sub I
+
+end
+
+end GroundTheory.Heights₂.Heights.Kleiman
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.StatementsStepThreeOnW =====
 
 -- ===== clump member: GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PCechTop =====
 -- clump-header: {"m": "GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PCechTop", "h": "module\n\npublic import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.Statements\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

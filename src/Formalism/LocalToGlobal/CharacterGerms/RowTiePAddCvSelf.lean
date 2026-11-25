@@ -1,6 +1,6 @@
 module
 
-public import Formalism.LocalToGlobal.CharacterGerms.RowTieCartTop
+public import Formalism.LocalToGlobal.CharacterGerms.RowTieFB
 public import Formalism.LocalToGlobal.CharacterGerms.RowTiePGerm
 public import Formalism.LocalToGlobal.CharacterGerms.RowTiePCartSelfSt
 public import Formalism.LocalToGlobal.CharacterGerms.RowTieCartAdd
@@ -9,7 +9,23 @@ import Formalism.LocalToGlobal.CharacterGerms.RowTieCartFB
 import Formalism.LocalToGlobal.CharacterGerms.RowTiePAxesSelfSt
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.LocalToGlobal.CharacterGerms.RowTieGermI, Formalism.LocalToGlobal.CharacterGerms.RowTiePAddCvSelf
+-- Members: Formalism.LocalToGlobal.CharacterGerms.RowTieCartTop, Formalism.LocalToGlobal.CharacterGerms.RowTieGermI, Formalism.LocalToGlobal.CharacterGerms.RowTiePAddCvSelf
+
+-- ===== clump member: Formalism.LocalToGlobal.CharacterGerms.RowTieCartTop =====
+-- clump-header: {"m": "Formalism.LocalToGlobal.CharacterGerms.RowTieCartTop", "h": "module\n\npublic import Formalism.LocalToGlobal.CharacterGerms.RowTieFB\n\n"}
+section -- clump:auto
+@[expose] public section
+
+namespace Formalism.L2.FormalSeriesBounds
+
+def GermIAllSt : Prop :=
+  ∀ (C : Type) [Field C] [CharZero C] (V : VF C) (O : Type) [CommRing O] [StarRing O] (dd : ℕ)
+    (Y : FBChart C V O dd), GermISt Y
+
+end Formalism.L2.FormalSeriesBounds
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.LocalToGlobal.CharacterGerms.RowTieCartTop =====
 
 -- ===== clump member: Formalism.LocalToGlobal.CharacterGerms.RowTieGermI =====
 -- clump-header: {"m": "Formalism.LocalToGlobal.CharacterGerms.RowTieGermI", "h": "module\n\npublic import Formalism.LocalToGlobal.CharacterGerms.RowTieCartTop\npublic import Formalism.LocalToGlobal.CharacterGerms.RowTiePGerm\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

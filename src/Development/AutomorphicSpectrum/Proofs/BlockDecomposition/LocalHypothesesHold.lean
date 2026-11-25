@@ -14,7 +14,6 @@ public import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PairInvolutionContinuous
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PairLocalAuxiliaryStatement
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RationalElementIntegralAlmostAll
-public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SectionMeetsAbovePlace
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SplitPlaceLocalElement
 public import Development.AbelianVarietyTheory.Definitions.Divisors.SimpleTwistedTraceFormulaStable
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.StabilizerIndexNeZero
@@ -27,6 +26,44 @@ import GroundTheory.GlobalFields.LocalFieldAtPlace
 import Mathlib.Tactic.Linter.Style
 import Std.Tactic.BVDecide.Normalize.Prop
 
+-- This file was produced by scripts/clump.py from the modules listed below.
+-- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SectionMeetsAbovePlace, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalHypothesesHold
+
+-- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SectionMeetsAbovePlace =====
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SectionMeetsAbovePlace", "h": "module\n\npublic import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.LocalComparisonSplitting.EulerFactorLevels.LocCompareSplit\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemTwCentSwTw\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open NumberField IsDedekindDomain Matrix Polynomial Filter
+open GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host GlobalTheory.BCT
+open PositivityTheory.Rg.BcB.G8 PositivityTheory.Rg.BcB.G8.Fin GlobalTheory.CompanionTheory.LocalHypotheses
+open scoped Classical
+
+namespace GlobalTheory.CompanionTheory.LocHypAbove
+
+theorem exists_above_mem_section : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (S : Set (Pl E)),
+    IsSection S → ∀ v : PlF E, ∃ w : Above v, w.1 ∈ S := by
+  intro E _ _ _ S hS v
+  have hinj : Function.Injective (algebraMap (𝓞 (maximalRealSubfield E)) (𝓞 E)) :=
+    FaithfulSMul.algebraMap_injective _ _
+  obtain ⟨Q, -, hQ, hQv⟩ := Ideal.exists_ideal_over_prime_of_isIntegral v.asIdeal (⊥ : Ideal (𝓞 E))
+    (by rw [(show Ideal.under _ ⊥ = ⊥ from Ideal.comap_bot_of_injective _ hinj)]; exact bot_le)
+  have hQ0 : Q ≠ ⊥ := by
+    rintro rfl
+    rw [(show Ideal.under (𝓞 (maximalRealSubfield E)) (⊥ : Ideal (𝓞 E)) = ⊥ from
+      Ideal.comap_bot_of_injective _ hinj)] at hQv
+    exact v.ne_bot hQv.symm
+  obtain ⟨u, ⟨hu, huw⟩, -⟩ := hS (⟨Q, hQ, hQ0⟩ : Pl E)
+  exact ⟨⟨u, huw.trans (HeightOneSpectrum.ext hQv)⟩, hu⟩
+
+end GlobalTheory.CompanionTheory.LocHypAbove
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SectionMeetsAbovePlace =====
+
+-- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalHypothesesHold =====
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalHypothesesHold", "h": "module\n\npublic import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.LocalComparisonSplitting.EulerFactorLevels.LocCompareSplit\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemTwCentSwTw\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EventuallyOfSectionPlaces\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteTwistedDoubleCosets\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalConditionsOfEquiv\npublic import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.LocalComparisonSplitting.EulerFactorLevels.EulerFinOf\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalGoodReduction\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalSupportFacts\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NonsplitPlacePairEquiv\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NormCharpolySeparableOfElliptic\npublic import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.IsTransl\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PairInvolutionContinuous\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PairLocalAuxiliaryStatement\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RationalElementIntegralAlmostAll\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SectionMeetsAbovePlace\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SplitPlaceLocalElement\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.SimpleTwistedTraceFormulaStable\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.StabilizerIndexNeZero\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SwapTwistCompactPartInProd\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SwapTwistCompactPartLe\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitAlmostEverywhereFacts\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitConditionsOfEquiv\nimport Development.AbelianVarietyTheory.Definitions.Divisors.T2SpaceGeneralLinearGroup\nimport GroundTheory.GlobalFields.LocalFieldAtPlace\nimport Mathlib.Tactic.Linter.Style\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}
+section -- clump:auto
 @[expose] public section
 
 noncomputable section
@@ -243,3 +280,6 @@ theorem locHyp : PositivityTheory.Rg.BcB.G8.Fin.LocHyp := by
 end GlobalTheory.CompanionTheory.LocHypProof
 
 end
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalHypothesesHold =====

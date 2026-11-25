@@ -14,7 +14,6 @@ public import Development.AutomorphicSpectrum.Proofs.GlobalProofs.CoefS
 public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.FiniteAdeleHaarPiRestrictedProduct
 public import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes
 public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.ArchimedeanSelfdualMeasurePi
-public import Development.AutomorphicSpectrum.Proofs.GlobalProofs.LocalAnnihilatorSelfDualVolume
 public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.Analysis.Calculus.BumpFunction.FiniteDimension
 public import Mathlib.Analysis.Calculus.BumpFunction.Normed
@@ -41,7 +40,83 @@ import GroundTheory.LocalFields.LocalFourierHaar
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicSpectrum.Proofs.GlobalProofs.AdelicAnnihilatorBoxProduct, Development.AutomorphicSpectrum.Proofs.GlobalProofs.AdelicCharacterTrivialAlmostEverywhere, Development.AutomorphicSpectrum.Proofs.GlobalProofs.AdelicIntegrableProductIndicator, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ArchimedeanFourierApproximateIdentity, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ExistsRealApproximateIdentity, Development.AutomorphicSpectrum.Proofs.GlobalProofs.FiniteAdeleBoxMeasureProduct, Development.AutomorphicSpectrum.Proofs.GlobalProofs.GaloisUnramifiedOutsideDescendsFinite, Development.AutomorphicSpectrum.Proofs.GlobalProofs.MemAnnihilatorSmallBallEventually, Development.AutomorphicSpectrum.Proofs.GlobalProofs.NormalisedFourierBumpLimit, Development.AutomorphicSpectrum.Proofs.GlobalProofs.NumberFieldApproximateIdentity, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ArchimedeanHaarScalingNorm
+-- Members: Development.AutomorphicSpectrum.Proofs.GlobalProofs.LocalAnnihilatorSelfDualVolume, Development.AutomorphicSpectrum.Proofs.GlobalProofs.AdelicAnnihilatorBoxProduct, Development.AutomorphicSpectrum.Proofs.GlobalProofs.AdelicCharacterTrivialAlmostEverywhere, Development.AutomorphicSpectrum.Proofs.GlobalProofs.AdelicIntegrableProductIndicator, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ArchimedeanFourierApproximateIdentity, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ExistsRealApproximateIdentity, Development.AutomorphicSpectrum.Proofs.GlobalProofs.FiniteAdeleBoxMeasureProduct, Development.AutomorphicSpectrum.Proofs.GlobalProofs.GaloisUnramifiedOutsideDescendsFinite, Development.AutomorphicSpectrum.Proofs.GlobalProofs.MemAnnihilatorSmallBallEventually, Development.AutomorphicSpectrum.Proofs.GlobalProofs.NormalisedFourierBumpLimit, Development.AutomorphicSpectrum.Proofs.GlobalProofs.NumberFieldApproximateIdentity, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ArchimedeanHaarScalingNorm
+
+-- ===== clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.LocalAnnihilatorSelfDualVolume =====
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.GlobalProofs.LocalAnnihilatorSelfDualVolume", "h": "module\n\npublic import Development.AutomorphicSpectrum.Proofs.GlobalProofs.IntegralIndicatorCharOfTrivial\npublic import Development.AutomorphicSpectrum.Proofs.GlobalProofs.CharEqOneOfNear\nimport Development.AbelianVarietyTheory.PublishedTheorems.GlobalTheta.IsSchwartzBruhatOfProd\nimport Development.AutomorphicSpectrum.Proofs.GlobalProofs.IsCovolOne\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open NumberField IsDedekindDomain MeasureTheory Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.Published.SiegelOneVector GlobalTheory.CompanionTheory.Hypotheses₂.OneV GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Coef.Test
+open scoped TensorProduct ENNReal NNReal
+
+noncomputable section
+
+namespace GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Coef.Test
+
+theorem psiF_eq_one_of_int_of_vanish : ∀ (F : Type) [Field F] [NumberField F] (ψ : AddChar (AF F) ℂ),
+    IsCharAF F ψ → ∃ T : Finset (HeightOneSpectrum (𝓞 F)), ∀ c : Af F,
+      (∀ v, c v ∈ v.adicCompletionIntegers F) → (∀ v ∈ T, c v = 0) → psiF ψ c = 1 := by
+  intro F _ _ ψ hψ
+  classical
+  have hcont : Continuous (psiF ψ) := by
+    have h : Continuous (fun y : Af F => ψ ((0 : InfiniteAdeleRing F), y)) :=
+      hψ.1.comp (continuous_const.prodMk continuous_id)
+    exact h
+  have hW : psiF ψ ⁻¹' Metric.ball (1 : ℂ) (1 / 2) ∈ nhds (0 : Af F) := by
+    refine hcont.continuousAt.preimage_mem_nhds ?_
+    rw [psiF_zero]
+    exact Metric.ball_mem_nhds _ (by norm_num)
+  let R := fun v : HeightOneSpectrum (𝓞 F) => v.adicCompletion F
+  let A := fun v : HeightOneSpectrum (𝓞 F) => (v.adicCompletionIntegers F : Set (v.adicCompletion F))
+  have hc : Continuous (RestrictedProduct.structureMap R A Filter.cofinite) :=
+    RestrictedProduct.isEmbedding_structureMap.continuous
+  have hp : (RestrictedProduct.structureMap R A Filter.cofinite) ⁻¹' (psiF ψ ⁻¹' Metric.ball (1 : ℂ) (1 / 2)) ∈
+      nhds (fun v => (0 : A v)) :=
+    hc.continuousAt.preimage_mem_nhds hW
+  rw [nhds_pi, Filter.mem_pi] at hp
+  obtain ⟨I, hI, t, ht, hsub⟩ := hp
+  refine ⟨hI.toFinset, fun c hint hT => ?_⟩
+  let H : AddSubgroup (Af F) :=
+    { carrier := {y | (∀ v, y v ∈ v.adicCompletionIntegers F) ∧ ∀ v ∈ hI.toFinset, y v = 0}
+      add_mem' := by
+        intro a b ha hb
+        refine ⟨fun v => ?_, fun v hv => ?_⟩
+        · change a v + b v ∈ v.adicCompletionIntegers F
+          exact add_mem (ha.1 v) (hb.1 v)
+        · change a v + b v = 0
+          rw [ha.2 v hv, hb.2 v hv, add_zero]
+      zero_mem' := ⟨fun v => zero_mem _, fun v _ => rfl⟩
+      neg_mem' := by
+        intro a ha
+        refine ⟨fun v => ?_, fun v hv => ?_⟩
+        · change -(a v) ∈ v.adicCompletionIntegers F
+          exact neg_mem (ha.1 v)
+        · change -(a v) = 0
+          rw [ha.2 v hv, neg_zero] }
+  have hs : ∀ y ∈ H, ‖psiF ψ y - 1‖ < 1 / 2 := by
+    intro y hy
+    have hmem : (fun v => (⟨y v, hy.1 v⟩ : A v)) ∈
+        (RestrictedProduct.structureMap R A Filter.cofinite) ⁻¹' (psiF ψ ⁻¹' Metric.ball (1 : ℂ) (1 / 2)) := by
+      refine hsub fun v hv => ?_
+      have h0 : (⟨y v, hy.1 v⟩ : A v) = (0 : A v) :=
+        Subtype.ext (hy.2 v (by simpa using hv))
+      rw [h0]
+      exact mem_of_mem_nhds (ht v)
+    have he : RestrictedProduct.structureMap R A Filter.cofinite (fun v => (⟨y v, hy.1 v⟩ : A v)) = y :=
+      by ext v; rfl
+    have h2 : psiF ψ y ∈ Metric.ball (1 : ℂ) (1 / 2) := by
+      rw [← he]
+      exact hmem
+    rw [Metric.mem_ball, dist_eq_norm] at h2
+    exact h2
+  exact char_eq_one_of_near H (psiF ψ) (psiF_zero ψ) (psiF_add ψ) hs (x := c) ⟨hint, hT⟩
+
+end GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Coef.Test
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.LocalAnnihilatorSelfDualVolume =====
 
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.AdelicAnnihilatorBoxProduct =====
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.GlobalProofs.AdelicAnnihilatorBoxProduct", "h": "module\n\npublic import CompanionTheory.SpectralGeometry.CountingDefinitions.AdelicEulerProducts.IsEulerProd\npublic import Development.AutomorphicSpectrum.Proofs.GlobalProofs.IntegralIndicatorCharOfTrivial\nimport Aesop.Main\nimport CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.CompletionIsLocalRing\nimport CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.NonarchimedeanSelfdualMeasurePi\nimport CompanionTheory.SpectralGeometry.LocalGlobalProofs.HermitianCharacters.SelfDualLatticeFiltrationCharacter\npublic import Development.AutomorphicSpectrum.Proofs.GlobalProofs.CharEqOneOfNear\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AbelianVarietyTheory.PublishedTheorems.GlobalTheta.IsSchwartzBruhatOfProd\nimport Development.AutomorphicSpectrum.Proofs.GlobalProofs.IsCovolOne\n\n"}

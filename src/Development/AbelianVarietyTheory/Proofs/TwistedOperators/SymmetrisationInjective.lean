@@ -2,7 +2,6 @@ module
 
 public import Mathlib.Algebra.Lie.OfAssociative
 public import Mathlib.RingTheory.MvPolynomial.IrreducibleQuadratic
-public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.SymbolCongr
 public import Formalism.SharpRestriction.Divisibility.SchurIrreducible
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.TypeStar
@@ -11,7 +10,30 @@ import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.Tactic.Linter.Style
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.DegreeSingleAdd, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ProdPLinIsHomogeneous, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ProdXEqMonomial, Development.AbelianVarietyTheory.Proofs.TwistedOperators.SymmetrisationEquivariant, Development.AbelianVarietyTheory.Proofs.TwistedOperators.UgMemSpanListProd, Development.AbelianVarietyTheory.Proofs.TwistedOperators.SymmetrisationInjective
+-- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SymbolCongr, Development.AbelianVarietyTheory.Proofs.TwistedOperators.DegreeSingleAdd, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ProdPLinIsHomogeneous, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ProdXEqMonomial, Development.AbelianVarietyTheory.Proofs.TwistedOperators.SymmetrisationEquivariant, Development.AbelianVarietyTheory.Proofs.TwistedOperators.UgMemSpanListProd, Development.AbelianVarietyTheory.Proofs.TwistedOperators.SymmetrisationInjective
+
+-- ===== clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SymbolCongr =====
+-- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.TwistedOperators.SymbolCongr", "h": "module\n\npublic import Formalism.SharpRestriction.Divisibility.SchurIrreducible\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open Formalism.BasicNotions.TH Formalism.MainNotions.SchurIrreducible
+
+noncomputable section
+
+namespace GlobalTheory.InducedPBW
+
+def SymbolCongr {p q : ℕ} {V : Type} [AddCommGroup V] [Module ℂ V]
+    (act : Mat p q →ₗ[ℂ] Module.End ℂ V) : Prop :=
+  ∀ (l : List (Mat p q)) (v : V),
+    (indRel act).mkQ (TensorProduct.tmul ℂ (l.map (ugι p q)).prod v) -
+      (indRel act).mkQ (TensorProduct.tmul ℂ (symU p q (l.map pLin).prod) v) ∈ indFlt act l.length
+
+end GlobalTheory.InducedPBW
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SymbolCongr =====
 
 -- ===== clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.DegreeSingleAdd =====
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.TwistedOperators.DegreeSingleAdd", "h": "module\n\npublic import Mathlib.Algebra.Lie.OfAssociative\npublic import Mathlib.RingTheory.MvPolynomial.IrreducibleQuadratic\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Lemma\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}

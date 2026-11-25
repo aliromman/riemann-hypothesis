@@ -1,6 +1,8 @@
 module
 
-public import Development.AutomorphicSpectrum.Proofs.MetricProofs.EvalW
+public import Mathlib.Algebra.MvPolynomial.Rename
+public import Mathlib.Analysis.Complex.Norm
+public import Mathlib.LinearAlgebra.Matrix.Defs
 public import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.LintegralImageEqLintegralNormSqDetMul
 public import ReciprocityTheory.AnalyticForms.PotentialTheory.HessCIsHermitian
 public import GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsFibreLocal
@@ -37,7 +39,43 @@ import GroundTheory.HeightsAndTheta.Heights.Intersections.PFibreLocal
 import Aesop.Main
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicSpectrum.Proofs.MetricProofs.ComplexHessianBlockCombination, Development.AutomorphicSpectrum.Proofs.MetricProofs.ComplexHessianTwoPointCombination, Development.AutomorphicSpectrum.Proofs.MetricProofs.MixedDiscriminantLinearFunctional, Development.AutomorphicSpectrum.Proofs.MetricProofs.MixedDiscriminantOneRowExpansion, Development.AutomorphicSpectrum.Proofs.MetricProofs.MixedDiscriminantTwoRowExpansion, Development.AutomorphicSpectrum.Proofs.MetricProofs.RowProductFirstDerivative, Development.AutomorphicSpectrum.Proofs.MetricProofs.SphereMomentPower, Development.AutomorphicSpectrum.Proofs.MetricProofs.SpherePairLogSineMoment, Development.AutomorphicSpectrum.Proofs.MetricProofs.WordCoefficientSecondDerivative, Development.WeilBound.CoreStatements.PluriharmonicCharts.SecondDerivativeOfEventuallyEq, Development.WeilBound.CoreStatements.PluriharmonicCharts.XFibHess, Development.AutomorphicSpectrum.Proofs.MetricProofs.XiPotentialHessianDecomposition, Development.AutomorphicSpectrum.Proofs.MetricProofs.LogSineMongeAmpereNormalized
+-- Members: Development.AutomorphicSpectrum.Proofs.MetricProofs.EvalW, Development.AutomorphicSpectrum.Proofs.MetricProofs.ComplexHessianBlockCombination, Development.AutomorphicSpectrum.Proofs.MetricProofs.ComplexHessianTwoPointCombination, Development.AutomorphicSpectrum.Proofs.MetricProofs.MixedDiscriminantLinearFunctional, Development.AutomorphicSpectrum.Proofs.MetricProofs.MixedDiscriminantOneRowExpansion, Development.AutomorphicSpectrum.Proofs.MetricProofs.MixedDiscriminantTwoRowExpansion, Development.AutomorphicSpectrum.Proofs.MetricProofs.RowProductFirstDerivative, Development.AutomorphicSpectrum.Proofs.MetricProofs.SphereMomentPower, Development.AutomorphicSpectrum.Proofs.MetricProofs.SpherePairLogSineMoment, Development.AutomorphicSpectrum.Proofs.MetricProofs.WordCoefficientSecondDerivative, Development.WeilBound.CoreStatements.PluriharmonicCharts.SecondDerivativeOfEventuallyEq, Development.WeilBound.CoreStatements.PluriharmonicCharts.XFibHess, Development.AutomorphicSpectrum.Proofs.MetricProofs.XiPotentialHessianDecomposition, Development.AutomorphicSpectrum.Proofs.MetricProofs.LogSineMongeAmpereNormalized
+
+-- ===== clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.EvalW =====
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.MetricProofs.EvalW", "h": "module\n\npublic import Mathlib.Algebra.MvPolynomial.Rename\npublic import Mathlib.Analysis.Complex.Norm\npublic import Mathlib.LinearAlgebra.Matrix.Defs\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open MvPolynomial
+
+namespace GlobalTheory.CompanionTheory.Ar.PB.FibN
+
+noncomputable section
+
+def nS (a : ℂ) (i : Fin 3) : ℝ := (![2 * a.re, 2 * a.im, 1 - ‖a‖ ^ 2] : Fin 3 → ℝ) i / (1 + ‖a‖ ^ 2)
+
+def wS (a : ℂ) : ℝ := ((1 + ‖a‖ ^ 2) ^ 2)⁻¹
+
+def blk {d : ℕ} (e : ℂ) (B : Matrix (Fin d) (Fin d) ℂ) : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ :=
+  Matrix.of fun p q : Fin (d + 1) =>
+    Fin.cases (Fin.cases e (fun _ => 0) q) (fun p' => Fin.cases 0 (fun q' => B p' q') q) p
+
+def lin3 (n : Fin 3 → ℝ) : MvPolynomial (Fin 3) ℝ := ∑ i, X i * C (n i)
+
+def lin4 (n : Fin 3 → ℝ) : MvPolynomial (Option (Fin 3)) ℝ := rename some (lin3 n)
+
+def rowW (u : Fin 2 → ℝ) (v : ℝ) : MvPolynomial (Option (Fin 2)) ℝ :=
+  C (u 0) * X (some 0) + C (u 1) * X (some 1) + C v * X none
+
+def evalW (n₀ n₁ : Fin 3 → ℝ) : MvPolynomial (Option (Fin 2)) ℝ →ₐ[ℝ] MvPolynomial (Option (Fin 3)) ℝ :=
+  aeval fun j => Option.elim j (X none) ![lin4 n₀, lin4 n₁]
+
+end
+
+end GlobalTheory.CompanionTheory.Ar.PB.FibN
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.EvalW =====
 
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.ComplexHessianBlockCombination =====
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.MetricProofs.ComplexHessianBlockCombination", "h": "module\n\npublic import Development.AutomorphicSpectrum.Proofs.MetricProofs.EvalW\npublic import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.LintegralImageEqLintegralNormSqDetMul\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\npublic import ReciprocityTheory.AnalyticForms.PotentialTheory.HessCIsHermitian\nimport GroundTheory.HeightsAndTheta.Heights.Antisymmetric.Statements\nimport GroundTheory.HeightsAndTheta.Heights.Intersections.StatementsFibreLocal\nimport ReciprocityTheory.AnalyticForms.LeviForms.IsRegFamilyInhabitStatement\nimport ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.CompRightEqZero\n\n"}

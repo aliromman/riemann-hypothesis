@@ -1,6 +1,6 @@
 module
 
-public import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSHSFG
+public import Formalism.HermitianCurvature.HermitianCurvatureProofs.PointStep
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.RegularisedPairingViaPhase
 public import Mathlib.Geometry.Manifold.PartitionOfUnity
 public import Mathlib.Geometry.Manifold.ChartedSpace
@@ -33,7 +33,69 @@ import Formalism.HermitianCurvature.HermitianCurvatureProofs.SumDualVectorEqZeta
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.CompactlySupportedBanachModel
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSHSFGCkExt, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSH_SFG_PtGV, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSHSFGAsm, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSHSFGGfStep, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSHSFGParamSmooth, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSHSFGRadProper, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSH_SFG_PtSmooth, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSHSliceFamGood
+-- Members: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSHSFG, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSHSFGCkExt, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSH_SFG_PtGV, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSHSFGAsm, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSHSFGGfStep, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSHSFGParamSmooth, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSHSFGRadProper, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSH_SFG_PtSmooth, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSHSliceFamGood
+
+-- ===== clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSHSFG =====
+-- clump-header: {"m": "Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSHSFG", "h": "module\n\npublic import Formalism.HermitianCurvature.HermitianCurvatureProofs.PointStep\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open MeasureTheory
+open scoped ComplexConjugate ContDiff
+
+noncomputable section
+
+namespace Formalism.FourierDecayAlt.P.CutSH.SFG
+
+open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.Q Formalism.FourierDecayAlt.P5 Formalism.FourierDecayAlt.P.PBH
+
+attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
+
+def pt {k ρ m : ℕ} (e : ρ + 1 = m) (t : ℂ) (γ : B.Mat k ρ) (xx : U.RC k 1 ρ × U.RC k 1 ρ) : B.Mat k m :=
+  (rn1 e xx.1)⁻¹ * mc e t γ * rn1 e xx.2
+
+def GfStep : Prop :=
+  ∀ (k ρ m : ℕ) (e : ρ + 1 = m) (z z' : Fin (2 * ρ + k + 1) → ℂ), inWb k ρ z → inWb k ρ z' →
+    ∀ (t : ℂ), t ≠ 0 → ∀ (γ : B.Mat k ρ)
+    (xx : U.RC k 1 ρ × U.RC k 1 ρ),
+    Gf k m (D.castV e (D.castV (Nat.add_comm 1 ρ) (liftVec k 1 ρ z)))
+        (D.castV e (D.castV (Nat.add_comm 1 ρ) (liftVec k 1 ρ z'))) (pt e t γ xx) =
+      ‖t‖ ^ 2 * Gf k ρ z z' γ
+
+def RadProper : Prop :=
+  ∀ (k ρ m : ℕ) (e : ρ + 1 = m) (δ R : ℝ), 0 < δ →
+    ∃ (Kx : Set (U.RC k 1 ρ × U.RC k 1 ρ)) (C : Set (B.Mat k ρ)), IsCompact Kx ∧ IsCompact C ∧
+      ∀ (t : ℂ) (γ : B.Mat k ρ) (xx : U.RC k 1 ρ × U.RC k 1 ρ), δ ≤ ‖t‖ → B.gN (pt e t γ xx) ≤ R →
+        xx ∈ Kx ∧ γ ∈ C
+
+def ParamSmooth : Prop :=
+  ∀ (Pm X W : Type) [NormedAddCommGroup Pm] [NormedSpace ℝ Pm] [NormedAddCommGroup X] [NormedSpace ℝ X]
+    [FiniteDimensional ℝ X] [MeasurableSpace X] [BorelSpace X] [NormedAddCommGroup W] [NormedSpace ℝ W]
+    (μ : Measure X) [IsFiniteMeasureOnCompacts μ] (h : Pm → X → W) (s : Set Pm) (K : Set X),
+    IsOpen s → IsCompact K → (∀ p ∈ s, ∀ x, x ∉ K → h p x = 0) →
+    ContDiffOn ℝ ∞ (fun q : Pm × X => h q.1 q.2) (s ×ˢ Set.univ) →
+    ContDiffOn ℝ ∞ (fun p => ∫ x, h p x ∂μ) s
+
+def PtSmooth : Prop :=
+  ∀ (k ρ m : ℕ) (e : ρ + 1 = m),
+    ContDiffOn ℝ ∞ (fun q : (ℂ × B.Mat k ρ) × (U.RC k 1 ρ × U.RC k 1 ρ) => pt e q.1.1 q.1.2 q.2)
+      ({p : ℂ × B.Mat k ρ | p.1 ≠ 0} ×ˢ Set.univ) ∧
+    ∀ z : Fin (2 * m + k + 1) → ℂ, ContDiff ℝ ∞ (fun x : U.RC k 1 ρ => psi k m z cStd (rn1 e x))
+
+def PtGV : Prop :=
+  ∀ (k ρ m : ℕ) (e : ρ + 1 = m) (t : ℂ), t ≠ 0 → ∀ γ ∈ B.GV k ρ, ∀ xx : U.RC k 1 ρ × U.RC k 1 ρ,
+    pt e t γ xx ∈ B.GV k m
+
+def CkExt : Prop :=
+  ∀ (k r : ℕ) (E : Type) [NormedAddCommGroup E] [NormedSpace ℂ E] (F : B.Mat k r → E),
+    B.CkOn (⊤ : ℕ∞) (B.GV k r) F → HasCompactSupport F →
+    ∃ Ft : B.Mat k r → E, ContDiff ℝ ∞ Ft ∧ HasCompactSupport Ft ∧ ∀ g ∈ B.GV k r, Ft g = F g
+
+end Formalism.FourierDecayAlt.P.CutSH.SFG
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSHSFG =====
 
 -- ===== clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSHSFGCkExt =====
 -- clump-header: {"m": "Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSHSFGCkExt", "h": "module\n\npublic import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutSHSFG\npublic import Formalism.HermitianCurvature.HermitianCurvatureProofs.RegularisedPairingViaPhase\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\npublic import Mathlib.Geometry.Manifold.PartitionOfUnity\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Mathlib.Topology.UniformSpace.Matrix\nimport Mathlib.Topology.UniformSpace.Uniformizable\npublic import Mathlib.Geometry.Manifold.ChartedSpace\npublic import Mathlib.Geometry.Manifold.IsManifold.Basic\n\n"}

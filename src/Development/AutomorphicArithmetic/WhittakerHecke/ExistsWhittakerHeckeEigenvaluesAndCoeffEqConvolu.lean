@@ -2,7 +2,8 @@ module
 
 public import Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.CharacterNorms.FacDefs
 public import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.UnramifiedSplitting.SplitAt
-public import Development.AutomorphicArithmetic.WhittakerHecke.HeightOneSpectrumRatCorrespondPrimes
+public import Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.Entire
+public import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.NewformCoefficients.Places
 public import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.GaussianProducts.ExistsRowSec
 public import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.UnramifiedSplitting.SgLaws
 public import Mathlib.Basic.Complex.Basic
@@ -35,7 +36,50 @@ import GroundTheory.GlobalFields.SemilocalAlgebras.LocalDegree
 import Mathlib.Tactic.Linter.HaveILetI
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicArithmetic.WhittakerHecke.EqConvolutionSquareIndicatorOfEulerFactors, Development.AutomorphicArithmetic.WhittakerHecke.ExistsMultiplicativeOfPrimePowerValues, Development.AutomorphicArithmetic.WhittakerHecke.ExistsGoodCharacterOfInertCMDatum, Development.AutomorphicArithmetic.WhittakerHecke.PowerSeriesCompleteHomogeneousTwoMulEqOne, Development.AutomorphicArithmetic.WhittakerHecke.ExistsWhittakerHeckeEigenvaluesAtInertPlace, Development.AutomorphicArithmetic.WhittakerHecke.IdeleOfNatMulAndPrimePow, Development.AutomorphicArithmetic.WhittakerHecke.InertOrSplitOfGoodDeltaRat, Development.AutomorphicArithmetic.WhittakerHecke.KAtDiagIdeleOfNatMulRotationOfNotDvd, Development.AutomorphicArithmetic.WhittakerHecke.ExistsWhittakerHeckeEigenvaluesAndCoeffEqConvolu
+-- Members: Development.AutomorphicArithmetic.WhittakerHecke.HeightOneSpectrumRatCorrespondPrimes, Development.AutomorphicArithmetic.WhittakerHecke.EqConvolutionSquareIndicatorOfEulerFactors, Development.AutomorphicArithmetic.WhittakerHecke.ExistsMultiplicativeOfPrimePowerValues, Development.AutomorphicArithmetic.WhittakerHecke.ExistsGoodCharacterOfInertCMDatum, Development.AutomorphicArithmetic.WhittakerHecke.PowerSeriesCompleteHomogeneousTwoMulEqOne, Development.AutomorphicArithmetic.WhittakerHecke.ExistsWhittakerHeckeEigenvaluesAtInertPlace, Development.AutomorphicArithmetic.WhittakerHecke.IdeleOfNatMulAndPrimePow, Development.AutomorphicArithmetic.WhittakerHecke.InertOrSplitOfGoodDeltaRat, Development.AutomorphicArithmetic.WhittakerHecke.KAtDiagIdeleOfNatMulRotationOfNotDvd, Development.AutomorphicArithmetic.WhittakerHecke.ExistsWhittakerHeckeEigenvaluesAndCoeffEqConvolu
+
+-- ===== clump member: Development.AutomorphicArithmetic.WhittakerHecke.HeightOneSpectrumRatCorrespondPrimes =====
+-- clump-header: {"m": "Development.AutomorphicArithmetic.WhittakerHecke.HeightOneSpectrumRatCorrespondPrimes", "h": "module\n\npublic import Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.Entire\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.NewformCoefficients.Places\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
+open Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspRep GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.Published GroundTheory.Global GroundTheory.Automorphic.GJMatrix
+open UpperTheory.ConvolutionTheory.R2 UpperTheory.ConvolutionTheory.RankTwoDescent
+open scoped Classical
+open UpperTheory.ConvolutionTheory.R2.G (FS2 Rw nE row)
+open UpperTheory.V.Af.Smo (EigAt)
+open scoped ComplexOrder
+
+private theorem cast_dvd {a b : ℕ} : (a : 𝓞 ℚ) ∣ (b : 𝓞 ℚ) ↔ a ∣ b := by
+  refine ⟨fun h => ?_, fun h => Nat.cast_dvd_cast h⟩
+  have h1 := map_dvd Rat.ringOfIntegersEquiv h
+  rw [map_natCast, map_natCast] at h1
+  exact Int.natCast_dvd_natCast.1 h1
+
+private theorem mem_iff_dvd (N : ℕ) (v : HeightOneSpectrum (𝓞 ℚ)) :
+    (N : 𝓞 ℚ) ∈ v.asIdeal ↔ normV v ∣ N := by
+  rw [← cast_dvd, ← Ideal.mem_span_singleton, ← (UpperTheory.V.Af.Nf.places v).2.1]
+
+theorem UpperTheory.heightOneSpectrum_rat_correspond_primes :
+    (∀ v : H.P ℚ, (normV v).Prime) ∧ (∀ p : ℕ, p.Prime → ∃ v : H.P ℚ, normV v = p) ∧ (∀ v v' : H.P ℚ, normV v = normV v' → v = v') ∧
+          (∀ (N : ℕ) (v : H.P ℚ), Bad N v ↔ normV v ∣ N) := by
+  refine ⟨fun v => (UpperTheory.V.Af.Nf.places v).1, fun p hp => ?_, fun v v' h => ?_, fun N v => mem_iff_dvd N v⟩
+  · have hnt : Ideal.span {(p : 𝓞 ℚ)} ≠ ⊤ := by
+      rw [Ne, Ideal.span_singleton_eq_top, isUnit_iff_dvd_one, ← Nat.cast_one, cast_dvd, Nat.dvd_one]
+      exact hp.ne_one
+    obtain ⟨M, hM, hle⟩ := Ideal.exists_le_maximal _ hnt
+    have hpM : (p : 𝓞 ℚ) ∈ M := hle (Ideal.mem_span_singleton_self _)
+    have hM0 : M ≠ ⊥ := by
+      rintro rfl
+      exact hp.ne_zero (Nat.cast_eq_zero.1 (Ideal.mem_bot.1 hpM))
+    let w : HeightOneSpectrum (𝓞 ℚ) := ⟨M, hM.isPrime, hM0⟩
+    exact ⟨w, (Nat.prime_dvd_prime_iff_eq (UpperTheory.V.Af.Nf.places w).1 hp).1 ((mem_iff_dvd p w).1 hpM)⟩
+  · apply HeightOneSpectrum.ext
+    rw [(UpperTheory.V.Af.Nf.places v).2.1, (UpperTheory.V.Af.Nf.places v').2.1, h]
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicArithmetic.WhittakerHecke.HeightOneSpectrumRatCorrespondPrimes =====
 
 -- ===== clump member: Development.AutomorphicArithmetic.WhittakerHecke.EqConvolutionSquareIndicatorOfEulerFactors =====
 -- clump-header: {"m": "Development.AutomorphicArithmetic.WhittakerHecke.EqConvolutionSquareIndicatorOfEulerFactors", "h": "module\n\npublic import Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.CharacterNorms.FacDefs\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\n\n"}

@@ -1,7 +1,7 @@
 module
 
 public import Formalism.IncomingBounds.IncomingBound
-public import Development.AutomorphicArithmetic.OrbitLabellings.ExistsMaxFlowAttainedAndIsOptDual
+public import Formalism.IncomingBounds.FlowDegreeBounds.MaxFlowValueAttained
 public import Formalism.IncomingBounds.FlowDegreeBounds.LemmaFd
 public import Formalism.SharpRestriction.Divisibility.ProductZerothFirstParts
 public import Formalism.GaussJetBounds.Statement
@@ -18,7 +18,29 @@ import Formalism.IncomingBounds.FlowDegreeBounds.ProdRangeEqFactorialMulProdIco
 import Mathlib.Tactic.Linter.Style
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicArithmetic.OrbitLabellings.SumDemandFilterTwoDivLeOfIsOptDual, Development.AutomorphicArithmetic.OrbitLabellings.ExistsNonnegDualFnumSubLeOfDemandNearMul, Development.AutomorphicArithmetic.OrbitLabellings.KvalGeOfNormMfactMulCoeffLe, Development.AutomorphicArithmetic.OrbitLabellings.BeSConstantCoeffEqZeroAndWtGe, Development.AutomorphicArithmetic.OrbitLabellings.NormMfactMulCoeffLeOfB0S, Development.AutomorphicArithmetic.OrbitLabellings.KvalGeThetaOfShape
+-- Members: Development.AutomorphicArithmetic.OrbitLabellings.ExistsMaxFlowAttainedAndIsOptDual, Development.AutomorphicArithmetic.OrbitLabellings.SumDemandFilterTwoDivLeOfIsOptDual, Development.AutomorphicArithmetic.OrbitLabellings.ExistsNonnegDualFnumSubLeOfDemandNearMul, Development.AutomorphicArithmetic.OrbitLabellings.KvalGeOfNormMfactMulCoeffLe, Development.AutomorphicArithmetic.OrbitLabellings.BeSConstantCoeffEqZeroAndWtGe, Development.AutomorphicArithmetic.OrbitLabellings.NormMfactMulCoeffLeOfB0S, Development.AutomorphicArithmetic.OrbitLabellings.KvalGeThetaOfShape
+
+-- ===== clump member: Development.AutomorphicArithmetic.OrbitLabellings.ExistsMaxFlowAttainedAndIsOptDual =====
+-- clump-header: {"m": "Development.AutomorphicArithmetic.OrbitLabellings.ExistsMaxFlowAttainedAndIsOptDual", "h": "module\n\npublic import Formalism.IncomingBounds.IncomingBound\npublic import Formalism.IncomingBounds.FlowDegreeBounds.MaxFlowValueAttained\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open scoped BigOperators
+open Formalism.IncomingBounds
+
+theorem UpperTheory.exists_maxFlow_attained_and_isOptDual :
+    ∀ (l d : ℕ) [NeZero d], 3 ≤ l → ∀ D : ZMod d → ℝ, 0 ≤ D →
+    (∃ x, IsFlow l d D x ∧ flowVal d x = maxFlow l d D) ∧ ∃ sig, IsOptDual l d D sig := by
+  intro l d _ hl D hD
+  have hl1 : 1 ≤ l := by omega
+  obtain ⟨x, hx, hmax⟩ := FlowLoadBounds.exists_opt_flow hl1 D hD
+  obtain ⟨σ, hσ, hsum⟩ := FlowLoadBounds.strong hl1 D hD
+  refine ⟨⟨x, hx, (FlowLoadBounds.maxFlow_eq hx hmax).symm⟩, σ, hσ, ?_⟩
+  rw [Fnum, ← hsum, Finset.mul_sum, ← Finset.sum_sub_distrib]
+  exact Finset.sum_congr rfl fun s _ => by ring
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicArithmetic.OrbitLabellings.ExistsMaxFlowAttainedAndIsOptDual =====
 
 -- ===== clump member: Development.AutomorphicArithmetic.OrbitLabellings.SumDemandFilterTwoDivLeOfIsOptDual =====
 -- clump-header: {"m": "Development.AutomorphicArithmetic.OrbitLabellings.SumDemandFilterTwoDivLeOfIsOptDual", "h": "module\n\npublic import Formalism.IncomingBounds.IncomingBound\npublic import Development.AutomorphicArithmetic.OrbitLabellings.ExistsMaxFlowAttainedAndIsOptDual\npublic import Formalism.IncomingBounds.FlowDegreeBounds.LemmaFd\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Real\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

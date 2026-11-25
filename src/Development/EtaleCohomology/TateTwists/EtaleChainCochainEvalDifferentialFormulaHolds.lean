@@ -1,8 +1,33 @@
 module
 
-public import Development.EtaleCohomology.TateTwists.EtaleCochainEvaluationCoboundaryFormula
+public import Development.AbelianVarietyTheory.Definitions.Divisors.SecClass
 import Mathlib.Tactic.Linter.Style
 
+-- This file was produced by scripts/clump.py from the modules listed below.
+-- Members: Development.EtaleCohomology.TateTwists.EtaleCochainEvaluationCoboundaryFormula, Development.EtaleCohomology.TateTwists.EtaleChainCochainEvalDifferentialFormulaHolds
+
+-- ===== clump member: Development.EtaleCohomology.TateTwists.EtaleCochainEvaluationCoboundaryFormula =====
+-- clump-header: {"m": "Development.EtaleCohomology.TateTwists.EtaleCochainEvaluationCoboundaryFormula", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.SecClass\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex GlobalTheory.EtC
+
+def LateralTheory.EtaleFoundations.EtaleCochainEvaluationCoboundaryFormula : Prop :=
+  ∀ (R : Type) [CommRing R] {E : Spc} {I : Cx R} {n m : ℤ} (hm : n + 1 = m)
+    (α : Cochain ((chains R).obj E) I n) (U : Scheme.{0}),
+    (∀ x : Sx E 0 U, ev (δ n m α) 0 m (by simp) U x = Sec.map (I.d n m) (ev α 0 n (by simp) U x)) ∧
+    ∀ (p : ℕ) (s t : ℤ) (hs : -((p + 1 : ℕ) : ℤ) + n = s) (ht : -((p + 1 : ℕ) : ℤ) + m = t)
+      (x : Sx E (p + 1) U),
+      ev (δ n m α) (p + 1) t ht U x = Sec.map (I.d s t) (ev α (p + 1) s hs U x) +
+        m.negOnePow • ∑ i : Fin (p + 2), (-1 : ℤ) ^ (i : ℕ) • ev α p t (by omega) U (x.face i)
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.EtaleCohomology.TateTwists.EtaleCochainEvaluationCoboundaryFormula =====
+
+-- ===== clump member: Development.EtaleCohomology.TateTwists.EtaleChainCochainEvalDifferentialFormulaHolds =====
+-- clump-header: {"m": "Development.EtaleCohomology.TateTwists.EtaleChainCochainEvalDifferentialFormulaHolds", "h": "module\n\npublic import Development.EtaleCohomology.TateTwists.EtaleCochainEvaluationCoboundaryFormula\nimport Mathlib.Tactic.Linter.Style\n\n"}
+section -- clump:auto
 @[expose] public section
 
 open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex GlobalTheory.EtC
@@ -76,3 +101,6 @@ theorem LateralTheory.EtaleFoundations.etale_chain_cochain_eval_differential_for
   intro R _ E I n m hm α U
   exact ⟨fun x => LateralTheory.EtaleFoundations.EvDeltaPf.part0 hm α U x,
     fun p s t hs ht x => LateralTheory.EtaleFoundations.EvDeltaPf.partS hm α U p s t hs ht x⟩
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.EtaleCohomology.TateTwists.EtaleChainCochainEvalDifferentialFormulaHolds =====

@@ -1,8 +1,7 @@
 module
 
-
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SquareIntegrability.HfRsmulRight
-public import Formalism.LocalToGlobal.ProjectiveLattices.CrudeBase
+public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CocycleRightZeroThd
 public import Formalism.LocalToGlobal.ProjectiveLattices.PlaceBelow
 public import Formalism.LocalToGlobal.ProjectiveLattices.CrudeMin
 public import Formalism.LocalToGlobal.ProjectiveLattices.CrudeVal
@@ -10,8 +9,38 @@ import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.PowerSeriesExpIntegralCanonGaugeAdditiveSecond
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.Linter.HaveILetI
+
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.LocalToGlobal.ProjectiveLattices.CrudeDiv, Formalism.LocalToGlobal.ProjectiveLattices.CrudeOrd, Formalism.LocalToGlobal.ProjectiveLattices.ConjNeSelfOfCM
+-- Members: Formalism.LocalToGlobal.ProjectiveLattices.CrudeBase, Formalism.LocalToGlobal.ProjectiveLattices.CrudeDiv, Formalism.LocalToGlobal.ProjectiveLattices.CrudeOrd, Formalism.LocalToGlobal.ProjectiveLattices.ConjNeSelfOfCM
+
+-- ===== clump member: Formalism.LocalToGlobal.ProjectiveLattices.CrudeBase =====
+-- clump-header: {"m": "Formalism.LocalToGlobal.ProjectiveLattices.CrudeBase", "h": "module\n\npublic import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CocycleRightZeroThd\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+namespace Formalism.L2.Pj.Crude
+
+open MvPowerSeries ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
+
+variable {R : Type} [CommRing R] {d n : ℕ}
+
+def Lin (b : Fin n) (v : Fin d → R) (f : PS R n d) : PS R n d :=
+  ∑ j : Fin d, C (v j) * pderiv (b, j) f
+
+def LinMon {ι : Type} [Fintype ι] (cp : ι → Fin n) (u : ι → Fin d → R) (m : ι →₀ ℕ) (f : PS R n d) :
+    PS R n d :=
+  (Finset.univ : Finset ι).toList.foldr (fun l g => (Lin (cp l) (u l))^[m l] g) f
+
+def OrdGe (N : ℕ) (f : PS R n d) : Prop :=
+  ∀ m : Fin n × Fin d →₀ ℕ, m.degree < N → coeff m f = 0
+
+end Formalism.L2.Pj.Crude
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.LocalToGlobal.ProjectiveLattices.CrudeBase =====
 
 -- ===== clump member: Formalism.LocalToGlobal.ProjectiveLattices.CrudeDiv =====
 -- clump-header: {"m": "Formalism.LocalToGlobal.ProjectiveLattices.CrudeDiv", "h": "module\n\npublic import Formalism.LocalToGlobal.ProjectiveLattices.CrudeBase\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.MvPolynomial.IrreducibleQuadratic\nimport Mathlib.RingTheory.PiTensorProduct\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}

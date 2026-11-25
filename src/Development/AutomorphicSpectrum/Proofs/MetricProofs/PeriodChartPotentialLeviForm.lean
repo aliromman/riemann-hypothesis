@@ -10,7 +10,6 @@ public import Development.AutomorphicSpectrum.Proofs.MetricProofs.IsOpenFlagDoma
 public import ReciprocityTheory.AnalyticForms.LeviForms.IsRegFamilyInhabitStatement
 public import Development.WeilBound.CoreStatements.PluriharmonicCharts.XPerCell
 public import Development.AutomorphicSpectrum.Definitions.MetricPeriods.IsTwiceDifferentiableAt
-public import Development.AutomorphicSpectrum.Proofs.MetricProofs.LogDetComparableGramBound
 public import Mathlib.Analysis.SpecialFunctions.Complex.Analytic
 import GroundTheory.HeightsAndTheta.Heights.Antisymmetric.Statements
 import Mathlib.Tactic.Linter.Style
@@ -18,7 +17,98 @@ import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AutomorphicSpectrum.Definitions.MetricPeriods.PairRelationOfScaledRatio
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagPotentialLeviFormCell, Development.AutomorphicSpectrum.Proofs.MetricProofs.GramLogUnitaryTriangularInvariance, Development.AutomorphicSpectrum.Proofs.MetricProofs.LocalBruhatCellAnalyticCoordinates, Development.AutomorphicSpectrum.Proofs.MetricProofs.PeriodChartPotentialLeviForm
+-- Members: Development.AutomorphicSpectrum.Proofs.MetricProofs.LogDetComparableGramBound, Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagPotentialLeviFormCell, Development.AutomorphicSpectrum.Proofs.MetricProofs.GramLogUnitaryTriangularInvariance, Development.AutomorphicSpectrum.Proofs.MetricProofs.LocalBruhatCellAnalyticCoordinates, Development.AutomorphicSpectrum.Proofs.MetricProofs.PeriodChartPotentialLeviForm
+
+-- ===== clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.LogDetComparableGramBound =====
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.MetricProofs.LogDetComparableGramBound", "h": "module\n\npublic import Development.AutomorphicSpectrum.Definitions.MetricPeriods.InFlagDomainOne\npublic import Mathlib.LinearAlgebra.Matrix.Block\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+namespace GlobalTheory.CompanionTheory.Ar.PB
+
+open Matrix
+open scoped ComplexOrder
+
+theorem gramOf_mul {N : ℕ} (hd : Fin N → ℝ) (u g : Matrix (Fin N) (Fin N) ℂ) :
+    gramOf hd (u * g) = gᴴ * gramOf hd u * g := by
+  simp only [GlobalTheory.CompanionTheory.Ar.PB.gramOf, Matrix.conjTranspose_mul, Matrix.mul_assoc]
+
+theorem head_conj_mul {N : ℕ} {P : Type*} [Fintype P] (v : P → Fin N)
+    (hv : Function.Injective v) (hdown : ∀ (i : Fin N) (c : P), (∀ a, i ≠ v a) → v c < i)
+    (G b : Matrix (Fin N) (Fin N) ℂ) (hb : b.BlockTriangular id) :
+    (bᴴ * G * b).submatrix v v = (b.submatrix v v)ᴴ * G.submatrix v v * b.submatrix v v := by
+  ext p q
+  simp only [Matrix.submatrix_apply, Matrix.mul_apply, Matrix.conjTranspose_apply]
+  refine (Fintype.sum_of_injective v hv _ _ (fun j hj => ?_) fun a => ?_).symm
+  · rw [hb (hdown j q fun a h => hj ⟨a, h.symm⟩), mul_zero]
+  · congr 1
+    refine Fintype.sum_of_injective v hv _ _ (fun i hi => ?_) fun _ => rfl
+    rw [hb (hdown i p fun a h => hi ⟨a, h.symm⟩), star_zero, zero_mul]
+
+theorem gramLog_inv (N : ℕ) (hd : Fin N → ℝ) (k : ℕ) (g u b : Matrix (Fin N) (Fin N) ℂ) :
+    (gramOf hd u = diagonal (fun i => ((hd i : ℝ) : ℂ)) → gramLog hd k (u * g) = gramLog hd k g) ∧
+    (b.BlockTriangular id → IsUnit b.det → (gramHead hd k g).det ≠ 0 →
+      gramLog hd k (g * b) = gramLog hd k g +
+        ∑ a : Fin N, if (a : ℕ) < k then Real.log ‖b a a‖ else 0) := by
+  constructor
+  · intro h
+    simp only [GlobalTheory.CompanionTheory.Ar.PB.gramLog, GlobalTheory.CompanionTheory.Ar.PB.gramHead]
+    rw [GlobalTheory.CompanionTheory.Ar.PB.gramOf_mul, h, GlobalTheory.CompanionTheory.Ar.PB.gramOf]
+  · intro hb hdet hM
+    have hdown : ∀ (i : Fin N) (c : {a : Fin N // (a : ℕ) < k}),
+        (∀ a : {a : Fin N // (a : ℕ) < k}, i ≠ a.val) → c.val < i := by
+      intro i c hi
+      have hik : ¬ (i : ℕ) < k := fun h => hi ⟨i, h⟩ rfl
+      rw [Fin.lt_def]
+      exact lt_of_lt_of_le c.2 (not_lt.mp hik)
+    have hbk : (b.submatrix (Subtype.val : {a : Fin N // (a : ℕ) < k} → Fin N)
+        Subtype.val).IsUpperTriangular :=
+      fun i j hij => hb (Subtype.coe_lt_coe.mpr hij)
+    have hdiag : ∀ i, b i i ≠ 0 := by
+      intro i hi
+      have h0 : b.det = 0 := by
+        rw [Matrix.det_of_upperTriangular hb]
+        exact Finset.prod_eq_zero (Finset.mem_univ i) hi
+      rw [h0] at hdet
+      exact not_isUnit_zero hdet
+    have hdetk : (b.submatrix (Subtype.val : {a : Fin N // (a : ℕ) < k} → Fin N)
+        Subtype.val).det = ∏ a : {a : Fin N // (a : ℕ) < k}, b a a :=
+      Matrix.det_of_upperTriangular hbk
+    have hminor : GlobalTheory.CompanionTheory.Ar.PB.gramHead hd k (g * b) =
+        (b.submatrix (Subtype.val : {a : Fin N // (a : ℕ) < k} → Fin N) Subtype.val)ᴴ *
+          GlobalTheory.CompanionTheory.Ar.PB.gramHead hd k g *
+            b.submatrix (Subtype.val : {a : Fin N // (a : ℕ) < k} → Fin N) Subtype.val := by
+      simp only [GlobalTheory.CompanionTheory.Ar.PB.gramHead]
+      rw [GlobalTheory.CompanionTheory.Ar.PB.gramOf_mul]
+      exact GlobalTheory.CompanionTheory.Ar.PB.head_conj_mul Subtype.val
+        Subtype.val_injective hdown _ b hb
+    have hB0 : ∏ a : {a : Fin N // (a : ℕ) < k}, b a a ≠ 0 :=
+      Finset.prod_ne_zero_iff.mpr (fun a _ => hdiag a)
+    have hnorm : ‖(GlobalTheory.CompanionTheory.Ar.PB.gramHead hd k (g * b)).det‖ =
+        ‖∏ a : {a : Fin N // (a : ℕ) < k}, b a a‖ ^ 2 *
+          ‖(GlobalTheory.CompanionTheory.Ar.PB.gramHead hd k g).det‖ := by
+      rw [hminor, Matrix.det_mul, Matrix.det_mul, Matrix.det_conjTranspose, hdetk, norm_mul,
+        norm_mul, norm_star]
+      ring
+    have hsum : (∑ a : Fin N, if (a : ℕ) < k then Real.log ‖b a a‖ else 0) =
+        ∑ a : {a : Fin N // (a : ℕ) < k}, Real.log ‖b a a‖ := by
+      rw [← Finset.sum_filter]
+      exact Finset.sum_subtype _ (fun a => by simp) _
+    simp only [GlobalTheory.CompanionTheory.Ar.PB.gramLog]
+    rw [hnorm, Real.log_mul (pow_ne_zero _ (norm_ne_zero_iff.mpr hB0)) (norm_ne_zero_iff.mpr hM),
+      Real.log_pow, norm_prod, Real.log_prod (s := Finset.univ)
+        (f := fun a : {a : Fin N // (a : ℕ) < k} => ‖b a a‖) (fun a _ => norm_ne_zero_iff.mpr (hdiag a)),
+      hsum]
+    push_cast
+    ring
+
+end GlobalTheory.CompanionTheory.Ar.PB
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.LogDetComparableGramBound =====
 
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagPotentialLeviFormCell =====
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagPotentialLeviFormCell", "h": "module\n\npublic import ReciprocityTheory.AnalyticForms.LeviForms.HomDens\npublic import Development.AutomorphicSpectrum.Definitions.MetricPeriods.InFlagDomainOne\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\npublic import ReciprocityTheory.AnalyticForms.PotentialTheory.PshShiftA\nimport GroundTheory.HeightsAndTheta.Heights.Antisymmetric.Statements\n\n"}

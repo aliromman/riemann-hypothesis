@@ -1,7 +1,6 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.Divisors.PullHlComp
-public import Development.EtaleCohomology.EtaleSheaves.LeafKumSpecPf
 public import Development.EtaleCohomology.EtaleSheaves.LeafKumSpecPfEv
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
 public import Development.EtaleCohomology.EtaleSheaves.LeafCompPf
@@ -9,7 +8,32 @@ public import Development.EtaleCohomology.TateTwists.EtaleChainCochainEvalDiffer
 import Mathlib.Tactic.Linter.Style
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.EtaleCohomology.EtaleSheaves.LSchClsPfYon, Development.EtaleCohomology.WeilConjectures.GluePf, Development.EtaleCohomology.WeilConjectures.GlueOfSig, Development.EtaleCohomology.EtaleSheaves.LeafCoprodPf
+-- Members: Development.EtaleCohomology.EtaleSheaves.LeafKumSpecPf, Development.EtaleCohomology.EtaleSheaves.LSchClsPfYon, Development.EtaleCohomology.WeilConjectures.GluePf, Development.EtaleCohomology.WeilConjectures.GlueOfSig, Development.EtaleCohomology.EtaleSheaves.LeafCoprodPf
+
+-- ===== clump member: Development.EtaleCohomology.EtaleSheaves.LeafKumSpecPf =====
+-- clump-header: {"m": "Development.EtaleCohomology.EtaleSheaves.LeafKumSpecPf", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.PullHlComp\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex GlobalTheory.EtC
+
+namespace LateralTheory.E.LeafKumSpecPf
+
+section Basic
+variable {R : Type} [CommRing R]
+
+theorem sec_res_map {F G : Shv R} (φ : F ⟶ G) {V U : Scheme.{0}} (g : V ⟶ U) (x : Sec F U) :
+    Sec.res g (Sec.map φ x) = Sec.map φ (Sec.res g x) :=
+  (ConcreteCategory.congr_hom (φ.hom.naturality g.op) x).symm
+
+end Basic
+
+end LateralTheory.E.LeafKumSpecPf
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.EtaleCohomology.EtaleSheaves.LeafKumSpecPf =====
 
 -- ===== clump member: Development.EtaleCohomology.EtaleSheaves.LSchClsPfYon =====
 -- clump-header: {"m": "Development.EtaleCohomology.EtaleSheaves.LSchClsPfYon", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.PullHlComp\npublic import Development.EtaleCohomology.EtaleSheaves.LeafKumSpecPf\npublic import Development.EtaleCohomology.EtaleSheaves.LeafKumSpecPfEv\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}

@@ -2,7 +2,6 @@ module
 
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SubsingletonOfGiso
 public import Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.LeibnizOrders.ProdGPn
-public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PhiPreservesIsomorphism
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EGPgTrueEqLastIff
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MultiProductSingleFactorEquiv
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsEquivProdIrrTw
@@ -17,7 +16,71 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Derivati
 import Mathlib.Tactic.Linter.Style
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirabolicExtensionExact, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PhiProductLeftRankZero, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PsiPreservesIsomorphism, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictionProductRankZeroLeft, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictionProductRankZeroRight, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistProductDistributes, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistTwistAdd, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsFiltration, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PhiProductRankZeroTrivial, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LeibnizOrderOfExactSequences
+-- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PhiPreservesIsomorphism, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirabolicExtensionExact, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PhiProductLeftRankZero, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PsiPreservesIsomorphism, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictionProductRankZeroLeft, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictionProductRankZeroRight, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistProductDistributes, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistTwistAdd, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsFiltration, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PhiProductRankZeroTrivial, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LeibnizOrderOfExactSequences
+
+-- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PhiPreservesIsomorphism =====
+-- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PhiPreservesIsomorphism", "h": "module\n\npublic import Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.LeibnizOrders.ProdGPn\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SubsingletonOfGiso\nimport Mathlib.Tactic.Linter.Style\n\n"}
+section -- clump:auto
+@[expose] public section
+
+noncomputable section
+
+open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.LeibOrd
+open scoped TensorProduct
+
+namespace GlobalTheory.CompanionTheory.LeibOrd
+
+section twEquiv
+variable {G M V W : Type} [Group G] [Group M] [AddCommGroup V] [Module ℂ V] [AddCommGroup W] [Module ℂ W]
+
+theorem nonempty_twAct_equiv {ρ : Representation ℂ G V} {σ : Representation ℂ G W} (e : ρ.Equiv σ)
+    (N : Subgroup G) (θ : N →* ℂˣ) (s : M →* G)
+    (hs : ∀ (m : M) (n : N), ∃ h : s m * (n : G) * (s m)⁻¹ ∈ N, θ ⟨_, h⟩ = θ n) :
+    Nonempty ((twAct ρ N θ s hs).Equiv (twAct σ N θ s hs)) := by
+  have he : ∀ v, e.toLinearEquiv v = e v := fun v => rfl
+  have hl : ∀ v, e.toIntertwiningMap.toLinearMap v = e v := fun v => rfl
+  have hmap : (GlobalTheory.PRep.twKer ρ N θ).map (e.toLinearEquiv : V →ₗ[ℂ] W) = GlobalTheory.PRep.twKer σ N θ := by
+    unfold GlobalTheory.PRep.twKer
+    rw [Submodule.map_span]
+    congr 1
+    ext w
+    constructor
+    · rintro ⟨x, ⟨n, v, rfl⟩, rfl⟩
+      refine ⟨n, e v, ?_⟩
+      simp only [map_sub, map_smul, hl, eint]
+    · rintro ⟨n, w', rfl⟩
+      refine ⟨ρ n (e.toLinearEquiv.symm w') - ((θ n : ℂˣ) : ℂ) • e.toLinearEquiv.symm w', ⟨n, _, rfl⟩, ?_⟩
+      have hw : e (e.toLinearEquiv.symm w') = w' := e.toLinearEquiv.apply_symm_apply w'
+      simp only [map_sub, map_smul, hl, eint, hw]
+  refine ⟨Representation.Equiv.mk (Submodule.Quotient.equiv _ _ e.toLinearEquiv hmap) fun m => ?_⟩
+  apply Submodule.linearMap_qext
+  ext v
+  exact congrArg (Submodule.Quotient.mk (p := GlobalTheory.PRep.twKer σ N θ)) (eint e (s m) v)
+
+theorem nonempty_twist_equiv {ρ : Representation ℂ G V} {σ : Representation ℂ G W} (e : ρ.Equiv σ) (χ : G →* ℂˣ) :
+    Nonempty ((twist ρ χ).Equiv (twist σ χ)) := by
+  have he : ∀ v, e.toLinearEquiv v = e v := fun v => rfl
+  refine ⟨Representation.Equiv.mk e.toLinearEquiv fun g => LinearMap.ext fun v => ?_⟩
+  show e.toLinearEquiv (((χ g : ℂˣ) : ℂ) • ρ g v) = ((χ g : ℂˣ) : ℂ) • σ g (e.toLinearEquiv v)
+  rw [map_smul, he, he, eint]
+
+end twEquiv
+
+theorem miso_phiN (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
+    (ψ : AddChar k Circle) (n : ℕ) (A B : MRep k (n + 1)) (h : MIso A B) : MIso (phiN ψ A) (phiN ψ B) := by
+  have h1 : MIso (GlobalTheory.BZMir.MRep.phiM k ψ A) (GlobalTheory.BZMir.MRep.phiM k ψ B) := by
+    obtain ⟨e⟩ := h
+    unfold GlobalTheory.BZMir.MRep.phiM GlobalTheory.BZMir.phiMinus
+    exact nonempty_twAct_equiv e _ _ _ (levi_stab ψ n)
+  obtain ⟨e'⟩ := h1
+  exact nonempty_twist_equiv e' _
+
+end GlobalTheory.CompanionTheory.LeibOrd
+
+end
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PhiPreservesIsomorphism =====
 
 -- ===== clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirabolicExtensionExact =====
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirabolicExtensionExact", "h": "module\n\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SubsingletonOfGiso\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

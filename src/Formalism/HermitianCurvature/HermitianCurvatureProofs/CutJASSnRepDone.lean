@@ -5,11 +5,10 @@ public import Formalism.FormalDegreeBessel.StatementG
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJABddSSn
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJASSnRepDatumUnit
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.ParametersUPrimeForULower
-public import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCDatumTransitCut
+public import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCModConstCut
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJASSnRepThtFacts
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCDtrSIo
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.NFRadRedS
-public import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCModConstCut
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJASSnRepThConst
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreKLExistsOf
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreKLIsoAlg
@@ -50,7 +49,50 @@ import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutGCoreGenTransfer
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.NFRadRedF
 
 -- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCDatumTransitFam, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCDatumTransitPt, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCDtrSGen, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCDatumTransitExists, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCDtrSStab, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCDatumTransit, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCLineNonzero, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCModConst, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LineScalingNorm.UpRelationSourceUnique, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LineScalingNorm.CrossSectionAtPoint, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LineScalingNorm.LineMove, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.SRaiseSNorm, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJASSnRepDone
+-- Members: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCDatumTransitCut, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCDatumTransitFam, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCDatumTransitPt, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCDtrSGen, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCDatumTransitExists, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCDtrSStab, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCDatumTransit, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCLineNonzero, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCModConst, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LineScalingNorm.UpRelationSourceUnique, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LineScalingNorm.CrossSectionAtPoint, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LineScalingNorm.LineMove, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.SRaiseSNorm, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJASSnRepDone
+
+-- ===== clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCDatumTransitCut =====
+-- clump-header: {"m": "Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCDatumTransitCut", "h": "module\n\npublic import Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCModConstCut\n\n"}
+section -- clump:auto
+@[expose] public section
+
+open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt NumberField
+open scoped ComplexConjugate Matrix
+
+namespace Formalism.FourierDecayAlt.P.CutMP.JA.SSn.Rep.Core.TC.MC
+
+noncomputable section
+
+def DTExists : Prop :=
+  ∀ (k r : ℕ) (z z' : Fin (2 * r + k + 1) → ℂ) (μsec : ℂ → Matrix (Fin (k + 1)) (Fin (k + 1)) ℂ),
+    2 ≤ k → inWb k r z → inWb k r z' → 0 < Tz k r z → 0 < Tz k r z' → IsSection k r z z' μsec →
+    ∀ ζ₁ ζ₂ : ℂ, Tz k r z * Tz k r z' < Complex.normSq ζ₁ → Tz k r z * Tz k r z' < Complex.normSq ζ₂ →
+    ∃ h ∈ UWset k r z, ∃ h' ∈ UWset k r z',
+      h *ᵥ SSn.nu0 k r z z' μsec ζ₁ = SSn.nu0 k r z z' μsec ζ₂ ∧
+      h' *ᵥ SSn.nu0' k r z z' μsec ζ₁ = SSn.nu0' k r z z' μsec ζ₂ ∧
+      h * SSn.io0 k r z z' μsec ζ₁ * h'⁻¹ = SSn.io0 k r z z' μsec ζ₂
+
+def DTStab : Prop :=
+  ∀ (k r : ℕ) (z z' : Fin (2 * r + k + 1) → ℂ) (μsec : ℂ → Matrix (Fin (k + 1)) (Fin (k + 1)) ℂ),
+    2 ≤ k → inWb k r z → inWb k r z' → 0 < Tz k r z → 0 < Tz k r z' → IsSection k r z z' μsec →
+    ∀ ζ₁ ζ₂ : ℂ, Tz k r z * Tz k r z' < Complex.normSq ζ₁ → Tz k r z * Tz k r z' < Complex.normSq ζ₂ →
+    ∀ h ∈ UWset k r z, ∀ h' ∈ UWset k r z',
+      h *ᵥ SSn.nu0 k r z z' μsec ζ₁ = SSn.nu0 k r z z' μsec ζ₂ →
+      h' *ᵥ SSn.nu0' k r z z' μsec ζ₁ = SSn.nu0' k r z z' μsec ζ₂ →
+      h * SSn.io0 k r z z' μsec ζ₁ * h'⁻¹ = SSn.io0 k r z z' μsec ζ₂ →
+      ∀ p ∈ NF.Stab k r z z' μsec ζ₂, (h⁻¹ * p.1 * h, h'⁻¹ * p.2 * h') ∈ NF.Stab k r z z' μsec ζ₁
+
+theorem datumTransit_of_cut (hE : DTExists) (hS : DTStab) : DatumTransit := by
+  intro k r z z' μsec hk hz hz' hT hT' hsec ζ₁ ζ₂ h₁ h₂
+  obtain ⟨h, hh, h', hh', e1, e2, e3⟩ := hE k r z z' μsec hk hz hz' hT hT' hsec ζ₁ ζ₂ h₁ h₂
+  exact ⟨h, hh, h', hh', e1, e2, e3, hS k r z z' μsec hk hz hz' hT hT' hsec ζ₁ ζ₂ h₁ h₂ h hh h' hh' e1 e2 e3⟩
+
+end
+
+end Formalism.FourierDecayAlt.P.CutMP.JA.SSn.Rep.Core.TC.MC
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCDatumTransitCut =====
 
 -- ===== clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCDatumTransitFam =====
 -- clump-header: {"m": "Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJATCDatumTransitFam", "h": "module\n\npublic import Formalism.FormalDegreeBessel.StatementG\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Formalism.HermitianCurvature.StatementI\n\n"}
