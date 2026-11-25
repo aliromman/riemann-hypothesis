@@ -8,8 +8,6 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.TateH2Iff
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FiniteQuotientPow
 import Mathlib.NumberTheory.Padics.LocalField
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Connected.Separation
 import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 import Std.Tactic.BVDecide.Normalize.Prop

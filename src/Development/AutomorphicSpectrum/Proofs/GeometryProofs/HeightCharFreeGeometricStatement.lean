@@ -47,11 +47,8 @@ import Mathlib.RingTheory.Coalgebra.CoassocSimps
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.TotallySplit
-import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.AlgebraicGeometry.Morphisms.LocalFlatDescent
 import Mathlib.CategoryTheory.Limits.Shapes.Connected
 import Development.AutomorphicSpectrum.Definitions.AdelicLattices.FactPrimes

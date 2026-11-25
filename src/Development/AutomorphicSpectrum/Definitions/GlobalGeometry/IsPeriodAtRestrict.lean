@@ -2,7 +2,6 @@ module
 
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsHodgeLine
 public import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FrameDefinitions.IsFrameOverLine
-import Mathlib.Tactic.ENatToNat
 import Mathlib.NumberTheory.Zsqrtd.GaussianInt
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterSt
 

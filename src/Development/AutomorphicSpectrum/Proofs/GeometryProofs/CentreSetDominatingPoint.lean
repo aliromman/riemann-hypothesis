@@ -10,7 +10,6 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.RegAtLocalOr
 import Mathlib.Tactic.NormNum.LegendreSymbol
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
 
 -- This file was produced by scripts/clump.py from the modules listed below.

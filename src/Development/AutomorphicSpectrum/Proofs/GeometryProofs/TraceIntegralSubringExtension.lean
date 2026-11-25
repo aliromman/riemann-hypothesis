@@ -17,12 +17,9 @@ public import Mathlib.FieldTheory.PrimitiveElement
 import Mathlib.Analysis.CStarAlgebra.Classes
 import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.RingTheory.Henselian
-import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
 
 -- This file was produced by scripts/clump.py from the modules listed below.

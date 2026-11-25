@@ -29,9 +29,6 @@ public import Development.AutomorphicSpectrum.Proofs.MetricProofs.ExistsGroupDic
 public import Mathlib.NumberTheory.NumberField.Discriminant.Defs
 public import Development.AutomorphicSpectrum.Proofs.MetricProofs.FirstMinimumAndCuspWeightBounds
 import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Development.AutomorphicSpectrum.Definitions.MetricPeriods.ExistsIntSmulIsAdicIntegralInTensorBasis
 import Development.AutomorphicSpectrum.Definitions.MetricPeriods.PairRelationOfScaledRatio
 import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.PUnipotentModulusMatrix

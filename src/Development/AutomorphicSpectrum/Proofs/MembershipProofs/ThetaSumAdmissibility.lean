@@ -7,10 +7,7 @@ public import GroundTheory.GlobalFields.TateThesis.AdelePoissonUniform
 import Mathlib.Algebra.Module.ZLattice.Summable
 import Mathlib.Analysis.Calculus.BumpFunction.FiniteDimension
 import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 public import GroundTheory.GlobalFields.Adele.Compact
 public import GroundTheory.GlobalFields.Adele.Discrete
 public import Mathlib.Analysis.Calculus.BumpFunction.Basic
