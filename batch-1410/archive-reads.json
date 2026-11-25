@@ -1,0 +1,28 @@
+{
+  "head": "13345ac952b571c8f08a856fcedab838bfef0af8",
+  "previous": "70f5e2c0737a9289949627d834612ed30d25432f",
+  "src": "1963e10e232f5316fbf9fb44f1651d59bc6cf9e4",
+  "project_lean_files_read": 59823,
+  "compact_clumps": 11534,
+  "paired_clumps": 804,
+  "unchanged_members": 72877,
+  "selected_clumps": 11534,
+  "selected_members": 68094,
+  "ordinary_sources": 47484,
+  "unchanged_unextractable_on_community_parent": [
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/DefectTorsionSecondCohomologyKernel.lean",
+      "error": [
+        "JSONDecodeError",
+        "Expecting value: line 1 column 1 (char 0)"
+      ],
+      "raw_source_sha256": "fb523a7fd8ee684a8f1eaa141c82e8b978580cf8a5b3bd2db7a8ba4347b94bc8"
+    }
+  ],
+  "per_archive_rows_sha256": "1b39cfd2a0ff8517a31d7b026abe1c8f7aa0980a90b53e9ed01bb395dffc9ef7",
+  "gzip_sha256": "2e5438b93e578e1f59341e2e63a25b2d5a584067f6adafa81dd63742e41b6043",
+  "planner_records_checked": 59823,
+  "planner_fields_sha256": "a4694d627e24130efb1170af7486341edf259b991cea4cc904a905ecee44353e",
+  "all_recoverable_archive_renders_checked": 12338,
+  "complete_rendered_stream_sha256": "cf1e7bc3cc3e09d37873b820e1f413bde1da239ab5a97c50c84d473209c430ff"
+}

@@ -1,0 +1,26 @@
+{
+  "blockers": {
+    "loaded-inputs": 1764,
+    "owner": 3908,
+    "parent-source": 1558
+  },
+  "current_head": "13345ac952b571c8f08a856fcedab838bfef0af8",
+  "current_parent": "82c577caf1b8a66c76212d78a399234f55813d28",
+  "fresh": 7230,
+  "fresh_sha256": "669ecaf83ab60af2896eff3b524fb4ac4a77fc638853f127c75ff2a317393e02",
+  "graph": "539eb07c2560e07ec9409cd8ddb26925be680a3b4b49f36e04302508d5138cba",
+  "old_head": "28e9eedf5e13abbe174794bb69fa8363296cf2ad",
+  "old_parent": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+  "owners": {
+    "archive": 4304
+  },
+  "policy": "whole-owner",
+  "pr": 977,
+  "reusable": 4304,
+  "reusable_sha256": "eed8329ce26cb034cf73b984a6af769bcbd6f76ed4774efea76b67f1854febc5",
+  "roots": 11534,
+  "direct_scheduled_head": "13345ac952b571c8f08a856fcedab838bfef0af8",
+  "continuing_direct_pairs": 1558,
+  "superseded_direct_inputs": [],
+  "current_native_residual": 5672
+}
