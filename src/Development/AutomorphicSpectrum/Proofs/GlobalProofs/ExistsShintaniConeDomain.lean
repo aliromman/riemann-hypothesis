@@ -17,27 +17,10 @@ public import Mathlib.LinearAlgebra.LinearIndependent.Lemmas
 public import Mathlib.Basic.Finite.Defs
 public import Mathlib.Data.Set.Finite.Basic
 public import Mathlib.Data.Set.Finite.Lemmas
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.NumberTheory.NumberField.Units.Basic
-import Mathlib.Algebra.Order.Star.Real
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Algebra.Ring.IsFormallyReal
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.Algebra.Order.Star.Rat
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.SiegelKlingenDeligneRibet
-import Mathlib.NumberTheory.NumberField.InfiniteAdeleRing
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GlobalProofs.CardRealEmbeddingsEqFinrank, Development.AutomorphicSpectrum.Proofs.GlobalProofs.NearIdentityMatrixPositiveSolution, Development.AutomorphicSpectrum.Proofs.GlobalProofs.TotallyRealFieldDenseEmbeddings, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ExistsTotallyPositiveBasisPositiveCoords, Development.AutomorphicSpectrum.Proofs.GlobalProofs.FiniteUnitsBoundedEmbeddingRatio, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ExistsUnitPowerInCongruence, Development.AutomorphicSpectrum.Proofs.GlobalProofs.UnitLogLatticeBoundedTranslate, Development.AutomorphicSpectrum.Proofs.GlobalProofs.PlaceApply, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ShintaniConeDecomposition, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ComboNotMemSpan, Development.AutomorphicSpectrum.Proofs.GlobalProofs.SimplicialConeTilesSign, Development.AutomorphicSpectrum.Proofs.GlobalProofs.SimplicialConeTiling, Development.AutomorphicSpectrum.Proofs.GlobalProofs.TotallyPositiveBasisRatioBound, Development.AutomorphicSpectrum.Proofs.GlobalProofs.UniqueReducedOrbitRepresentative, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ExistsShintaniConeDomain

@@ -1,21 +1,6 @@
 module
 
 public import Development.EtaleCohomology.EtaleSheaves.ChartSurjCut
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
-import Mathlib.Order.CompletePartialOrder
-import Mathlib.Tactic.Lemma
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 public import Mathlib.RingTheory.Polynomial.Cyclotomic.Roots
 
 @[expose] public section

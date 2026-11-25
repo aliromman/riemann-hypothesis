@@ -7,7 +7,6 @@ public import Mathlib.LinearAlgebra.Eigenspace.Charpoly
 public import Mathlib.LinearAlgebra.Eigenspace.Triangularizable
 public import Mathlib.LinearAlgebra.Charpoly.ToMatrix
 public import Mathlib.LinearAlgebra.Eigenspace.Basic
-import Mathlib.RingTheory.Flat.TorsionFree
 public import Mathlib.RingTheory.RootsOfUnity.EnoughRootsOfUnity
 public import Mathlib.Algebra.Polynomial.AlgebraMap
 public import Mathlib.Data.Matrix.Basic
@@ -21,31 +20,10 @@ public import Development.EtaleCohomology.DivisorCycles.ExpVanPf
 public import Development.EtaleCohomology.DivisorCycles.SemisPf
 public import Development.EtaleCohomology.DivisorCycles.TangentDegree
 public import Development.EtaleCohomology.DivisorCycles.TangentFieldExtension
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Linter.Style
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.HopfAlgebra.Basic
-import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.RingTheory.TotallySplit
 import Mathlib.RingTheory.Etale.Weakly
-import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
-import Mathlib.RingTheory.PiTensorProduct
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.EtaleCohomology.DivisorCycles.AlgStruct2, Development.EtaleCohomology.DivisorCycles.CoeMulInv, Development.EtaleCohomology.DivisorCycles.CycSpecQzkPf, Development.EtaleCohomology.DivisorCycles.DiagScalar2, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.AevalEig, Development.EtaleCohomology.DivisorCycles.FixScalOf, Development.EtaleCohomology.DivisorCycles.GradePf, Development.EtaleCohomology.DivisorCycles.ProjPf, Development.EtaleCohomology.DivisorCycles.StructPf, Development.EtaleCohomology.DivisorCycles.TanLiePf, Development.EtaleCohomology.DivisorCycles.FinStruct

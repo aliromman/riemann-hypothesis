@@ -11,18 +11,6 @@ import Development.ResolutionOfSingularities.Foundations.Blowup.BlowupOpenCover
 import Development.ResolutionOfSingularities.Foundations.Schemes.SchemeCoproduct
 import Development.ResolutionOfSingularities.Foundations.Schemes.SchemeMorphismProperties
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -142,22 +130,6 @@ private theorem image_mem_irreducibleComponents_of_isOpenEmbedding {A B : Type u
     exact ⟨a, hT.2 hpre hTle hy, rfl⟩
   exact ⟨hTirr.image f hf.continuous.continuousOn, hmax⟩
 
-private def coprodSwapAssocHom (A F G : Scheme.{u}) : (A ⨿ (F ⨿ G)) ⟶ ((A ⨿ G) ⨿ F) :=
-  coprod.desc (coprod.inl ≫ coprod.inl) (coprod.desc coprod.inr (coprod.inr ≫ coprod.inl))
-
-private def coprodSwapAssocInv (A F G : Scheme.{u}) : ((A ⨿ G) ⨿ F) ⟶ (A ⨿ (F ⨿ G)) :=
-  coprod.desc (coprod.desc coprod.inl (coprod.inr ≫ coprod.inr)) (coprod.inl ≫ coprod.inr)
-
-private theorem isIso_coprodSwapAssocHom (A F G : Scheme.{u}) :
-    CategoryTheory.IsIso (coprodSwapAssocHom A F G) := by
-  refine ⟨⟨coprodSwapAssocInv A F G, ?_, ?_⟩⟩
-  · refine coprod.hom_ext ?_ (coprod.hom_ext ?_ ?_) <;>
-      simp only [coprodSwapAssocHom, coprodSwapAssocInv, Category.assoc, coprod.inl_desc,
-        coprod.inr_desc, coprod.inl_desc_assoc, coprod.inr_desc_assoc, Category.comp_id]
-  · refine coprod.hom_ext (coprod.hom_ext ?_ ?_) ?_ <;>
-      simp only [coprodSwapAssocHom, coprodSwapAssocInv, Category.assoc, coprod.inl_desc,
-        coprod.inr_desc, coprod.inl_desc_assoc, coprod.inr_desc_assoc, Category.comp_id]
-
 private theorem isBlowupAlongIdealSheaf_coprodDesc_coprod {A B F G : Scheme.{u}} (a : A ⟶ B) (g : G ⟶ B)
     (K : B.IdealSheafData) (J : (B ⨿ F).IdealSheafData)
     (hinl : J.comap (coprod.inl : B ⟶ B ⨿ F) = K)
@@ -171,15 +143,14 @@ private theorem isBlowupAlongIdealSheaf_coprodDesc_coprod {A B F G : Scheme.{u}}
       exact h
     · rw [hinr]
       exact Blowup.isBlowupAlongIdealSheaf_id_top _
-  have := isIso_coprodSwapAssocHom A F G
-  have hfac : coprodSwapAssocHom A F G ≫ coprod.map (coprod.desc a g) (𝟙 F)
+  let e : A ⨿ (F ⨿ G) ≅ (A ⨿ G) ⨿ F :=
+    coprod.mapIso (Iso.refl A) (coprod.braiding F G) ≪≫ (coprod.associator A G F).symm
+  have hfac : e.hom ≫ coprod.map (coprod.desc a g) (𝟙 F)
       = coprod.desc (a ≫ (coprod.inl : B ⟶ B ⨿ F))
         (coprod.desc (coprod.inr : F ⟶ B ⨿ F) (g ≫ (coprod.inl : B ⟶ B ⨿ F))) := by
     refine coprod.hom_ext ?_ (coprod.hom_ext ?_ ?_) <;>
-      simp only [coprodSwapAssocHom, Category.assoc, coprod.inl_desc, coprod.inr_desc,
-        coprod.inl_desc_assoc, coprod.inr_desc_assoc, coprod.inl_map, coprod.inr_map,
-        Category.id_comp]
-  exact isBlowupAlongIdealSheaf_of_isIso_comp _ _ (coprodSwapAssocHom A F G) hfac _ hmap
+      simp [e]
+  exact isBlowupAlongIdealSheaf_of_isIso_comp _ _ e.hom hfac _ hmap
 
 namespace AffineSpacePrincipalizationData
 

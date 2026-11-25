@@ -102,8 +102,6 @@ import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.Thir
 section -- clump:auto
 @[expose] public section
 
-alias GlobalTheory.T.theta_eigen_compatibility_second_alt :=
-  GlobalTheory.EigInert.eigen_at_inert_alt
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.EigenAtInertStatement =====
@@ -1641,7 +1639,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-alias GlobalTheory.T.good_place_split_condition_alt := GlobalTheory.ValInert.val_inert_alt
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ValInertStatement =====

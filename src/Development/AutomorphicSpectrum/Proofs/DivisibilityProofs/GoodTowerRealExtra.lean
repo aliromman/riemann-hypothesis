@@ -56,30 +56,12 @@ public import Development.WeilBound.CoreStatements.FlagImmersions.ValAtOfExtends
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.NumberField
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GenPtSpecializesOfSpecializes
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.FiniteTypeOverIntegersModel
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.OneArc
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.AlgebraicNumbersPadicPlacesFacts
-import Mathlib.Tactic.NormNum.Parity
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.Algebra.Ring.IsFormallyReal
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LieModel
-import Mathlib.Data.Num.Basic
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsPullWedge
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LevelSectionsExactKernelLocusOpen
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.CmTypeLatticeComparison
@@ -89,9 +71,7 @@ import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GermStalkClosedPoin
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsExcisionNbhdAway
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.WedgeLatticeGenerator
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.SabPull
-import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.HolomorphicFamilies.UnLocal
-import Mathlib.Algebra.Azumaya.Basic
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.FlagImmersions.CptEx, Development.WeilBound.CoreStatements.FlagImmersions.ExistsLiftGenFibre, Development.WeilBound.CoreStatements.FlagImmersions.HostRd, Development.AutomorphicSpectrum.Proofs.AdelicProofs.NormEqOneOfValuationEqOne, Development.WeilBound.CoreStatements.SesquilinearFractions.SqrtDiscriminantBoundsCmField, Development.AutomorphicSpectrum.Proofs.AdelicProofs.SqrtDiscriminantBoundsCmField, Development.WeilBound.CoreStatements.FlagImmersions.LogIdealNonpos, Development.WeilBound.CoreStatements.FlagImmersions.MemGenFibre, Development.WeilBound.CoreStatements.FlagImmersions.RangeSubIff, Development.WeilBound.CoreStatements.FlagImmersions.GlobalModelTowerFinalCondition, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.GoodTowerRealExtra

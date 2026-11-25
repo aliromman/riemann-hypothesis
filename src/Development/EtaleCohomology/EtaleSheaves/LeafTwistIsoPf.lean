@@ -7,26 +7,9 @@ public import Mathlib.RingTheory.Polynomial.Cyclotomic.Roots
 public import Development.EtaleCohomology.TateTwists.EtaleLocallyExistsPrimitiveRootOfUnityOfInvertib
 public import Development.EtaleCohomology.EtaleSheaves.LocalSlices.LocSliceOf
 public import Development.EtaleCohomology.EtaleSheaves.LeafTwistPf
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
-import Mathlib.Order.CompletePartialOrder
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
 import Aesop.Main
 import Mathlib.Algebra.Category.ModuleCat.AB
-import Mathlib.Tactic.Lemma
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.EtaleCohomology.EtaleSheaves.ClassSecPf, Development.EtaleCohomology.EtaleSheaves.LeafTwInjPf, Development.EtaleCohomology.EtaleSheaves.LeafTwSurjPf, Development.EtaleCohomology.EtaleSheaves.LocSecPfC, Development.EtaleCohomology.EtaleSheaves.PullMonoPf, Development.EtaleCohomology.EtaleSheaves.LeafTwistIsoPf

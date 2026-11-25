@@ -28,29 +28,13 @@ public import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.LogInteg
 public import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.UniformizerDivisorCycleNumber
 public import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PNumericalSegre
 public import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.PowerSumsVanishAtPlaces
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.BundleObjects
 import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.VerticalNumberZeroOfHorizontal
-import Mathlib.Order.CompletePartialOrder
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ModelDescentIntegralClosure
 import Mathlib.Tactic.Linter.Style
 import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.CompactGapsGE
-import Mathlib.Topology.Sheaves.Presheaf
-import Mathlib.RingTheory.PiTensorProduct
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.IsSemipositiveOn
-import Mathlib.Algebra.Order.Star.Int
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.DegreeEqCardToMultiset, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.FinitePlacesModelFamily, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.FlagM3PadicGlobal, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.IsometricFamilyIntersectionEq, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.LocalPairPowerSumValue, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.LocPairValLinear, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.LocalPairValueLinear, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.FibreComponentDivisorProperties, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.VerticalPairPowerSumVanish, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.PowerSumTermDiscreteValuation, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.LogIntegralEqGenericIntersection, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.RootModelGeometricGenericNumber, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.ExistsMixedDifferenceExpansion, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.PowerSumMixedExpansion, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.RootPowerSumMixedExpansion, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.PowerSumHeightChangeModel

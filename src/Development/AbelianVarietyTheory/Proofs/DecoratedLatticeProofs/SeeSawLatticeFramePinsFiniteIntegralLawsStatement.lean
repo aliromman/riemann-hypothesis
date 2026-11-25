@@ -834,7 +834,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-alias GlobalTheory.T.threeOrbits_gluedCore_atPlace := GlobalTheory.FinPl.orbitGlued
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ThreeOrbitsGluedCoreAtPlaceStatement =====

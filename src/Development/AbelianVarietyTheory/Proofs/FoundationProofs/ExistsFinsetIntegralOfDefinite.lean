@@ -21,7 +21,14 @@ import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FrameChangeCommB
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FrameChangeExistsUniqueOfSamePoint
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FramedPointReducedFromTestRing
 import Formalism.LocalToGlobal.ProjectiveLattices.IntAllProofFree
-public import Formalism.LocalToGlobal.ProjectiveLattices.LocFrLoc
+public import Development.AbelianVarietyTheory.Definitions.Divisors.IsLocalRingTrivSqZeroExt
+public import Formalism.LocalToGlobal.ProjectiveLattices.GenSpecV
+public import Formalism.LocalToGlobal.ProjectiveLattices.GenFrPfV
+public import Formalism.LocalToGlobal.ProjectiveLattices.GenFrPfB
+public import Formalism.LocalToGlobal.ProjectiveLattices.GenSpecLocFrM
+public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.BCRing
+public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.LieBridgeB
+public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.LieBridgeC
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
@@ -182,7 +189,7 @@ theorem spreads (hq : Dw.q = 0) (hp : 1 ≤ Dw.p) (hg : ∀ p : ℕ, p.Prime →
       nab₂ := fun _ _ _ _ => 0, cδ := 0, φδ := 0 }
   letI : Algebra d.c₂.F R := ‹Algebra c.F R›
   letI : Algebra c₁.F R := ((algebraMap c.F R).comp d.eF.toRingEquiv.toRingHom).toAlgebra
-  obtain ⟨y₁, hy₁⟩ := exists_frPt_local (Xo := Xo₁) (c := c₁) (L := R) GlobalTheory.abelianSchemeLaws_all.2.secTwist
+  obtain ⟨y₁, hy₁⟩ := GlobalTheory.FlagTan.exists_frPt (Xo := Xo₁) (c := c₁) (S := R)
     (y.x ≫ r) (by
       rw [Category.assoc, hrs, ← Category.assoc, y.x_over, sOf, sOf, Formalism.L2.PjFree.spMap_comp']
       refine congrArg spMap (RingHom.ext fun a => ?_)

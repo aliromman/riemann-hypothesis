@@ -17,33 +17,10 @@ public import Development.EtaleCohomology.DivisorCycles.MatUnitsOf
 public import Development.EtaleCohomology.DivisorCycles.SpecPtPf
 public import Development.EtaleCohomology.DivisorCycles.TangentDegree
 public import Development.EtaleCohomology.DivisorCycles.TangentFieldExtension
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.Etale.Weakly
-import Mathlib.RingTheory.HopfAlgebra.Basic
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.RingTheory.TotallySplit
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.Lemma
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.EtaleCohomology.DivisorCycles.ConjugateIdempotents, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.PowEig, Development.EtaleCohomology.DivisorCycles.CycleCount2, Development.EtaleCohomology.DivisorCycles.GenSpecProof, Development.EtaleCohomology.DivisorCycles.SumMulSum, Development.EtaleCohomology.DivisorCycles.TangentIndexDvd, Development.EtaleCohomology.DivisorCycles.TorusPtPf, Development.EtaleCohomology.DivisorCycles.UnipotentPartTrivial, Development.EtaleCohomology.DivisorCycles.UnitFactorizationTheorem, Development.EtaleCohomology.DivisorCycles.ZclMulPf, Development.EtaleCohomology.DivisorCycles.FinKey

@@ -18,18 +18,6 @@ public import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PGen
 public import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.ContractRelevant
 public import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.BundleObjects
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PHomLocRingLocal
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.LiftFormNotMemBlowUpOf
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.OfSteps
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PComponentDim
@@ -48,10 +36,6 @@ import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PFiniteAlgebraLength
 import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PPFDegree
 import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PSemilocalFiniteRank
 import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.StatementsExamples
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.Order.CompletePartialOrder
-import Mathlib.RingTheory.KrullDimension.Field
-import Mathlib.RingTheory.Valuation.LocalSubring
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.KrullDimQuotientEqOneIffEqBot
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MixedFieldContraction.GenericFibreKerTarget
 import Std.Tactic.BVDecide.Normalize.Prop

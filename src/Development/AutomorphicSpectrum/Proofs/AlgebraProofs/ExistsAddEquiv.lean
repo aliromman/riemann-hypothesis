@@ -8,18 +8,6 @@ public import Development.AutomorphicSpectrum.Statements.AlgebraStatements.Polar
 public import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PolarisedAugmentationTheorem
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -68,8 +56,6 @@ variable {C : Type} [Field C] {R : Type} [CommRing R] [Algebra R C]
 abbrev trL (R C : Type) [Field C] [CommRing R] [Algebra R C] {X N : Type} [AddCommGroup X]
     [AddCommGroup N] (e : N ≃+ X) : (X → C) ≃ₗ[R] (N → C) :=
   LinearEquiv.funCongrLeft R C e.toEquiv
-
-theorem trL_apply (f : X → C) : trL R C e f = f ∘ e := rfl
 
 include e in
 theorem comp_symm (f : N → C) : (f ∘ e.symm) ∘ e = f := by

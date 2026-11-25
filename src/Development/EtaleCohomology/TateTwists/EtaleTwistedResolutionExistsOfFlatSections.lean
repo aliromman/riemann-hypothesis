@@ -3,18 +3,6 @@ module
 public import Development.EtaleCohomology.TateTwists.EtaleKInjectiveExtensionAlongQuasiIsoFromSingle
 public import Mathlib.CategoryTheory.Adjunction.Evaluation
 import Mathlib.Algebra.Category.ModuleCat.AB
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.EtaleCohomology.TateTwists.EtaleInjectiveSheafSectionsInjectiveHolds, Development.EtaleCohomology.TateTwists.ZmodInjectiveModuleFlatHolds, Development.EtaleCohomology.TateTwists.EtaleTwistedResolutionExistsOfFlatSections

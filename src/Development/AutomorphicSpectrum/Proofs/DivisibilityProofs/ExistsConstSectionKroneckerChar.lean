@@ -53,31 +53,10 @@ import Development.AutomorphicSpectrum.Proofs.GeometryProofs.FrameBorelChangeVec
 import Formalism.LocalToGlobal.ProjectiveLattices.CompSplitPfD
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Lemma
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.RingTheory.Henselian
-import Mathlib.Algebra.Order.Star.Int
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsLineGenOn
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.HolomorphicFamilies.SupAtUnit
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ExistsGenOfIsVBOne
 import Development.AutomorphicArithmetic.FrobeniusLocalisation.LocStab
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Topology.Connected.Separation
-import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
-import Mathlib.Tactic.TypeStar
-import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.FlatOnModelExistsRulSections, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CapelliComplements.KappaIntegralBound, Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsEigFrameOfFrPt, Development.AutomorphicSpectrum.Proofs.GeometryProofs.NormLeOneIffLogValuation, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.LineFunctionPlaceValuation, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.LineFnReadsLocalHeightSum, Development.AbelianVarietyTheory.Definitions.Foundations.NotFlatExistsOfIsEmpty, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.UnfSectionNormBoundAtHeight, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PadicEmbeddingsConjugateOfUnits, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FiniteNormLocalBound, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.FrameRatioConstantRational, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.LineFunctionModelRatio, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FrameFunctionTwoModelsRelay, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FrameFunctionFiniteNorm, Development.AutomorphicSpectrum.Proofs.GeometryProofs.GeometricComponentAlgClosed, Development.WeilBound.CoreStatements.ComplexPeriods.ComplexPointPeriods.PeriodPos, Development.WeilBound.CoreStatements.ComplexPeriods.ComplexPointPeriods.PeriodIn, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FamilyUniformizationTypeRelay, Development.AutomorphicSpectrum.Proofs.GeometryProofs.KroneckerCharacterFrameBound, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.ExistsConstSectionKroneckerChar

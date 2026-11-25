@@ -23,28 +23,11 @@ public import Mathlib.RingTheory.Flat.TorsionFree
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LiftPOfBounds
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PdPBotPos
 import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.MapHComp
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Order.Interval.Finset.Box
-import Mathlib.Tactic.TypeStar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsLocalFrameOfCoords
 import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.MemBoundariesZeroIff
-import Mathlib.Algebra.Module.StablyFree.Basic
-import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.FaceMapCompSuccAboveCastSucc
-import Mathlib.RingTheory.Coalgebra.CoassocSimps
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.QuotientFiltrationBijectiveOfCover, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmoothPullBasisFiltration, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BasisBOfBcOn, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.StableFamilyProperties, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CapOAffine, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GradedSplittingOverLatticeBase, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsFgPullSqC, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TensTransportSymm, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.SplittingFieldLattices.SplitField

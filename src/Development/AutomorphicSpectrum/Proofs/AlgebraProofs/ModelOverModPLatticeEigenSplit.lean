@@ -31,31 +31,14 @@ public import Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahle
 public import Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.XPullPreserve
 public import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PScalarQuotient
 public import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.LatticeFamiliesGlueToBundle
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.Objects
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.DvrBundleStatementA
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.Algebra.Order.Star.Int
 import Mathlib.Tactic.Linter.Style
-import Mathlib.RingTheory.SimpleRing.Principal
 import Std.Tactic.BVDecide.Normalize.Prop
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterGoodD
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.ClassListMapDomainPerm
 import Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.XBundleOfFamily
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.OfSteps
-import Mathlib.Tactic.TypeStar
-import Mathlib.RingTheory.Henselian
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ChartBundleExtensionComparison, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ChartBundleExtensionIntersection, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.HodgeLieBundleIntersection, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.InjectiveModPLatticeCharacterBound, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.DualLatticeCoordinateGenerator, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.XCkFlagSum, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.SameGenericBundleFrames, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ModelOverModPLatticeCharacter, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ModelOverModPLatticeCharacterStatement, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.XRootnumDual, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.DualBundleIntersection, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ModelOverModPLatticePermuted, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ModelOverModPLatticeEigenSplit

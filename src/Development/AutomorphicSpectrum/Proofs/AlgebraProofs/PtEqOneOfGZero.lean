@@ -37,18 +37,6 @@ public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsNilp
 public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsPowerSeriesReadingGroupHomNilpotentCharts
 public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.HopfPointMem
 public import ReciprocityTheory.DualLattices.IsLocalOfIntegers
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.PrecompleteBases.PsbLb
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.IsTight
 import ReciprocityTheory.DualLattices.FormalChartAtZero
@@ -56,14 +44,10 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PlaceDivisors.StChartF
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsTateMatricesLink
-import Mathlib.RingTheory.RegularLocalRing.Defs
 import ReciprocityTheory.DualLattices.ExistsPrimitiveRoot
-import Mathlib.Topology.Sheaves.Presheaf
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsMonHomOfMul
 import Development.AbelianVarietyTheory.Definitions.ModuliSpaces.NotGoodClassZeroSucc
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.RingTheory.SimpleRing.Principal
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.HodgeTatePoints.TorsrepEx, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.AbelianSchemeTorsionRepresentation, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.AbelianSchemeTorsionRepresentationStatement, Development.WeilBound.CoreStatements.HodgeTatePoints.IsLocalHomOfFinite, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.DualTowerHodgeTateDatum, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.DualTowerHodgeTateDatumStatement, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.FormalGroupChartFamily, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.FormalGroupChartFamilyStatement, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.HodgeTateDatumReduceScalars, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.HodgeTateDatumReduceScalarsStatement, Development.WeilBound.CoreStatements.HodgeTatePoints.RiOact, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PolarisedVarietyIntegerAction, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PolarisedVarietyIntegerActionStatement, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.TrivialPolarizedAbelianPointEqOne, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.TrivialPolarizedAbelianPointEqOneStatement, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PtEqOneOfGZero

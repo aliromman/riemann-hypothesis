@@ -19,28 +19,11 @@ public import Mathlib.RingTheory.DedekindDomain.Ideal.Basic
 public import Mathlib.RingTheory.DedekindDomain.Ideal.Lemmas
 public import Mathlib.RingTheory.Nakayama
 public import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ValuationLatticeMatrixReduction
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ExistsGenOfIsVBOne
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.QuotientEigenDifference
-import Mathlib.Algebra.Module.StablyFree.Basic
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Algebra.AffineMonoid.Basic
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.CmTypePolynomialVanishingCriterion, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ConjugateEmbeddingsValuationRankBound, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.DualModuleConjugateEigenAction, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.HodgeLatticeDualEigenDecomposition, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.LocalRingModTEmbedsStrictHenselian, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.LatticeSpanIntersectionBasis, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.ExistsMonogenicSeparating, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.StatementUnavailableOne, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.SumEigenProjectionsEqSelf, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.CmTypeValuationEmbedding

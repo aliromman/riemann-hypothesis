@@ -16,38 +16,12 @@ public import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PEvalSpecFir
 public import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PMahlerIntegrand
 public import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PSpecFirstHomog
 public import GroundTheory.HeightsAndTheta.Heights.LocalFiniteness.TargetsProjRegularDens
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Algebra.Ring.IsFormallyReal
-import Mathlib.RingTheory.SimpleRing.Principal
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.MvPolynomial.IrreducibleQuadratic
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
-import Mathlib.MeasureTheory.Measure.RegularityCompacts
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.HopfAlgebra.Basic
-import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.TypeStar
-import Mathlib.Topology.UniformSpace.Uniformizable
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PConeFsLogIntegrable
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.Assembly
 import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.ChowDegree
-import Mathlib.Algebra.MvPolynomial.Nilpotent
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.MahlerMeasureOfProduct, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.AePolynomialNonvanishingRows, Development.WeilBound.CoreStatements.CommonZeroEvaluation.EvalEqZeroOfCommonZero, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ChowFormSpecializationProportional, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.XXgzChowMahlerFibrefactor, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ChowFormFibreSpecialization, Development.WeilBound.CoreStatements.CommonZeroEvaluation.GaussianSphereMeanIntegral, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.SphereMeanNormalizedGroups, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.MahlerMinusConeIntegralIndep, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.MahlerSectionStatementHolds

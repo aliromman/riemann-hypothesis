@@ -4,18 +4,6 @@ public import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.OfNatT
 public import Mathlib.Algebra.Category.CommAlgCat.Basic
 public import Mathlib.Tactic.Continuity
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.FaceFaceApply
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 

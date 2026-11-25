@@ -18,21 +18,8 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PullUnit
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RedTrans
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CrystallineCocycleClosed
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsUniqueChernClassNilpotentBase
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Order.Interval.Finset.Box
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoefficientReductionFirstChernClassTateTwist, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsFirstChernThickeningMuBOfIsFirstChernDeRham, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PullRetype, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PullSqLePullToSq, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RedObjPdPow, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RedKillsToSome, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RedMCup, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RedMorCupOne, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.DividedPowerReduction.CoefficientReductionFirstChernClassTateTwist

@@ -3,18 +3,6 @@ module
 public import Development.AbelianVarietyTheory.Definitions.Divisors.PullHlComp
 public import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsStrictlySemistable
 public import GroundTheory.PAdicHodge.PerfectoidField
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -41,14 +29,10 @@ def smFun {K : Type} [CommRing K] (X : Scheme.{0}) (q : X ⟶ Spec (CommRingCat.
   In _ _ _ := True
   in_map _ _ _ := trivial
   f _ i := i.elim
-  f_map i := i.elim
   g _ _ i := i.elim
   g_map i := i.elim
-  f_eq i := i.elim
   g_self i := i.elim
   g_comp i := i.elim
-  prod_f {_ _ y} _ := by simp
-  prod_g _ _ := by simp
 
 def smMor {K : Type} [CommRing K] {X Y : Scheme.{0}} {p : X ⟶ Spec (CommRingCat.of K)} {q : Y ⟶ Spec (CommRingCat.of K)}
     (u : X ⟶ Y) (hu : u ≫ q = p) : Mor (smFun Y q) (smFun X p) (RingHom.id K) where

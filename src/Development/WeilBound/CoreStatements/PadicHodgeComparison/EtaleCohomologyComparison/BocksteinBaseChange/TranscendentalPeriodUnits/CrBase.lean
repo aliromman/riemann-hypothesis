@@ -5,20 +5,6 @@ public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCoh
 public import Development.WeilBound.CoreStatements.AutomorphicKernels.DeRhamPotentiallySemistable.DeRhamTwists.ContinuousCyclotomicCharacter
 public import GroundTheory.PAdicHodge.BCrisEigenMaps
 public import GroundTheory.PAdicHodge.BCrisNewton
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
 
 @[expose] public section
 
@@ -39,10 +25,6 @@ private theorem eq_mul_of_mul_eq {M : Type*} [CommMonoid M] {x T L W Ti Li : M} 
     ← mul_pow, hT, one_pow, mul_one, mul_assoc, ← mul_pow, hL, one_pow, mul_one]
 
 variable {F : Type*} [Field F]
-
-theorem eq_mul_inv_pow {x T L W : F} {n m : ℕ} (hT : T ≠ 0) (hL : L ≠ 0) (h : x * (T ^ n * L ^ m) = W) :
-    x = W * T⁻¹ ^ n * L⁻¹ ^ m :=
-  eq_mul_of_mul_eq (mul_inv_cancel₀ hT) (mul_inv_cancel₀ hL) h
 
 end Abstract
 

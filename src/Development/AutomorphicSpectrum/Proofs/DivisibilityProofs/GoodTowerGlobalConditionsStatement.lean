@@ -57,18 +57,6 @@ public import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.RootOrig
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsIsometricHermLine
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeCptBirationalArithVar
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import GroundTheory.HeightsAndTheta.Heights.Intersections.IsSmoothHermFubiniStudyO1
 import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.CompactGapsGE
@@ -76,13 +64,11 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MixedFieldContraction.GenericFibreKerTarget
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MultihomogeneousIdeals.IsFieldIntersection
-import Mathlib.FieldTheory.Galois.IsGaloisGroup
 import Mathlib.Tactic.Linter.HaveILetI
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.IsSemipositiveOn
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ImaginaryRootConj
 import Std.Tactic.BVDecide.Normalize.Bool
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PSymmetricSpanHsymm
-import Mathlib.RingTheory.PiTensorProduct
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsSmoothHermTrivLine
 import GroundTheory.HeightsAndTheta.Heights.Intersections.PBlockRatioAlg
 import Development.WeilBound.CoreStatements.HomogeneousNonvanishing.JNormal

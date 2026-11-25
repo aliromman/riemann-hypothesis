@@ -27,32 +27,14 @@ public import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.IsT
 public import Development.WeilBound.CoreStatements.HodgeTatePoints.EqOfPowMul
 public import Development.AutomorphicSpectrum.Statements.AlgebraStatements.OrdinaryCurveStatement
 public import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.HopfOrderRetractRestriction
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Lemma
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.TeichmullerCharacterOrderGenerates
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Development.WeilBound.CoreStatements.HodgeTatePoints.RbFund
 import Development.WeilBound.CoreStatements.HodgeTatePoints.ProdIccFin
 import Development.WeilBound.CoreStatements.HodgeTatePoints.Invres
 import Development.WeilBound.CoreStatements.HodgeTatePoints.RangeSubtypeEq
-import Mathlib.NumberTheory.MulChar.Basic
-import Mathlib.RingTheory.Valuation.Integers
 import ReciprocityTheory.DualLattices.PowMemCarrier
 import ReciprocityTheory.DualLattices.ProdDvdOfIso
 
