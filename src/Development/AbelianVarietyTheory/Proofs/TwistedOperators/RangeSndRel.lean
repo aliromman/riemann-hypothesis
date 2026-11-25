@@ -25,7 +25,7 @@ open scoped TensorProduct
 
 namespace GlobalTheory.FlipRun
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw
+attribute [local instance] Formalism.BasicNotions.Host.cmStar borelKw borelSpaceKw
 
 variable {D : D7} {T : Type}
 
@@ -121,7 +121,7 @@ end GlobalTheory.FlipRun
 
 namespace GlobalTheory.FlipRun
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw
+attribute [local instance] Formalism.BasicNotions.Host.cmStar borelKw borelSpaceKw
 
 open GlobalTheory.ChiGrid GlobalTheory.FunObj
 

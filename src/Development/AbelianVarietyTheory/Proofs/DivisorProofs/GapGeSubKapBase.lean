@@ -20,8 +20,6 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.NormNegCmConstantEq
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Limits NumberField

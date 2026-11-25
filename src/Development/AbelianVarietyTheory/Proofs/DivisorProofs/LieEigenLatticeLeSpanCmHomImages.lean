@@ -85,8 +85,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.GeometryOfNumbersTheory GlobalTheory GlobalTheory.CM GlobalTheory.CM.IntCoord
 open scoped CategoryTheory.Obj
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.FlatCM.HomIndep
@@ -943,8 +941,6 @@ section -- clump:auto
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.GeometryOfNumbersTheory GlobalTheory GlobalTheory.CM
 open scoped CategoryTheory.Obj
-
-set_option autoImplicit false
 
 namespace GlobalTheory.FlatCM.HomLat.LieSpan
 

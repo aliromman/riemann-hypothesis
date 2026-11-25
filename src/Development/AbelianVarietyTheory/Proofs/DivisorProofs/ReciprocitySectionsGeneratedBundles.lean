@@ -91,8 +91,6 @@ import Mathlib.Algebra.Order.Star.Real
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Set Filter Topology
@@ -251,8 +249,6 @@ open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.R
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.CxPts GlobalTheory.Points GlobalTheory.CechPic GlobalTheory.ChartGlue GlobalTheory.Mix
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.WeightShift
@@ -341,8 +337,6 @@ section -- clump:auto
 open CategoryTheory AlgebraicGeometry TopologicalSpace Filter Topology MeasureTheory MvPolynomial
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.Cartier GlobalTheory.CxPts GlobalTheory.Points
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -573,8 +567,6 @@ open CategoryTheory AlgebraicGeometry TopologicalSpace Filter Topology MeasureTh
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.Cartier GlobalTheory.CxPts GlobalTheory.Points
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.LocExt
@@ -601,8 +593,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.R
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.CxPts GlobalTheory.Points GlobalTheory.CechPic GlobalTheory.ChartGlue GlobalTheory.Mix
-
-set_option autoImplicit false
 
 namespace GlobalTheory.ClosedExt
 
@@ -682,8 +672,6 @@ open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.R
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.CxPts GlobalTheory.Points GlobalTheory.CechPic GlobalTheory.ChartGlue GlobalTheory.Mix
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.Weight
@@ -737,8 +725,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.R
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.CxPts GlobalTheory.Points GlobalTheory.CechPic GlobalTheory.ChartGlue GlobalTheory.Mix
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -838,8 +824,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.R
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.CxPts GlobalTheory.Points GlobalTheory.CechPic GlobalTheory.ChartGlue GlobalTheory.Mix
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -953,8 +937,6 @@ end -- clump:auto
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.MixedChernFormSignedPartMeasureNegEqZeroSemiPosi", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.DensConst\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Matrix.Hermitian\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\npublic import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.MdiscSt\npublic import ReciprocityTheory.L2DbarEstimates.ChartDerivatives.CommFderivApply\npublic import ReciprocityTheory.L2DbarEstimates.ChartDerivatives.DifferentiableAtChart\npublic import ReciprocityTheory.AnalyticForms.MaIntEmpty\nimport ReciprocityTheory.AnalyticForms.PotentialTheory.IsPotentialOfFun\n\n"}
 section -- clump:auto
 @[expose] public section
-
-set_option autoImplicit false
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Set Filter Topology MeasureTheory
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -1124,8 +1106,6 @@ open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.R
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.CxPts GlobalTheory.Points GlobalTheory.CechPic GlobalTheory.ChartGlue GlobalTheory.Mix
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.Mix.RegLog
@@ -1270,7 +1250,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.R
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.CxPts GlobalTheory.Points GlobalTheory.CechPic GlobalTheory.ChartGlue GlobalTheory.Mix
-set_option autoImplicit false
 
 noncomputable section
 
@@ -1371,7 +1350,6 @@ open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.R
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.CxPts GlobalTheory.Points GlobalTheory.CechPic GlobalTheory.ChartGlue GlobalTheory.Mix
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.CycPair
 
@@ -1512,8 +1490,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Set Filter Topology MeasureTheory
@@ -1574,8 +1550,6 @@ open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.R
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.CxPts GlobalTheory.Points GlobalTheory.CechPic GlobalTheory.ChartGlue GlobalTheory.Mix
 
-set_option autoImplicit false
-
 namespace GlobalTheory.Mix.CycAdd
 
 theorem isProjOver_clos {k : Type} [CommRing k] {X : Scheme.{0}} {p : X ⟶ Sp k} (hp : IsProjOver p) (z : X) :
@@ -1631,8 +1605,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.R
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.CxPts GlobalTheory.Points GlobalTheory.CechPic GlobalTheory.ChartGlue GlobalTheory.Mix
-
-set_option autoImplicit false
 
 namespace GlobalTheory.RecSec
 

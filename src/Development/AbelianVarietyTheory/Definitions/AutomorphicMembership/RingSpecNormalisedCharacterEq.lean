@@ -62,7 +62,6 @@ structure AUSide (D : D7) where
       galPol D.naut (D.naut.lpTw (D.nbc.locAU j (cls j h1 h2 π) w) ((1 - (D.R.nV : ℝ)) / 2))
 
 section
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 def IsLocS {L : Type} [Field L] [NumberField L] [IsCMField L] {n : ℕ} {W : Type} [AddCommGroup W] [Module ℂ W]
     (S : Submodule ℂ (GAf L n → W)) (s : SplitPlace L) (σ : GlobalTheory.SmGL.IrrRep (GL (Fin n) (s.w.adicCompletion L))) : Prop :=

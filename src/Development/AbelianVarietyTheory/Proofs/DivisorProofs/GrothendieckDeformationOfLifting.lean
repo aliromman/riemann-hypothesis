@@ -17,8 +17,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
-set_option autoImplicit false
-
 namespace GlobalTheory.Published
 
 theorem grothendieckDeformation_of_lifting (P : AbelianDeRham) (L : AbelianLifting) :

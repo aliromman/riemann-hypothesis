@@ -19,8 +19,6 @@ import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.UniformLevelMult
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.GeoActCompare.TameConj

@@ -545,7 +545,8 @@ theorem muMax_le_mon {V κ : Type} [AddCommGroup V] [Module K V] [Module (𝓞 K
     · rw [monH_norm, Finset.sum_eq_single m (fun b _ hb => by simp [Pi.single_apply, hb]) (by simp)]
       simpa using hc m
   have hmain := Formalism.BranchingDeterminantCap.OrthogonalSumAlt.main (Pi.basisFun K (MonI lam)) (fun _ : InfinitePlace K => (monD lam)⁻¹) hX'
-    (fun m => 𝓞 K ∙ (Pi.single m (1 : K) : MonI lam → K)) (fun m => Submodule.fg_span_singleton _) horth
+    (fun m => 𝓞 K ∙ (Pi.single m (1 : K) : MonI lam → K)) (fun m => Submodule.fg_span_singleton _)
+    (fun s t h => Formalism.BranchingDeterminantCap.OrthogonalSumAlt.orth_inner _ _ (horth s t h))
     Finset.univ
   rw [← hL0] at hmain
   have hL0ne : L0 ≠ ⊥ := by

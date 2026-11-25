@@ -61,8 +61,6 @@ section -- clump:auto
 
 open CategoryTheory AlgebraicGeometry Module ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.HodgeCoh
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.HodgeFin
@@ -249,8 +247,6 @@ section -- clump:auto
 @[expose] public section
 
 open GlobalTheory GlobalTheory.PD
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -980,7 +976,6 @@ section -- clump:auto
 
 open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.HodgeCoh GlobalTheory.CechDR GlobalTheory.PD GlobalTheory.WH GlobalTheory.W1 KaehlerDifferential
 open scoped TensorProduct
-set_option autoImplicit false
 
 namespace UpperTheory.EvaluationRestriction
 

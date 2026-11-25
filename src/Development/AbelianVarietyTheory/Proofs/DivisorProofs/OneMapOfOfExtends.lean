@@ -25,7 +25,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 200000
 
 noncomputable section

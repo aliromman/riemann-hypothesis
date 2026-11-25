@@ -165,11 +165,6 @@ private theorem normEDS_two_three_two_nat (n : ℕ) : normEDS (2 : ℤ) 3 2 n = 
       show (m : ℤ) + 2 + 1 = m + 3 by ring, e1, e2, e3, e4] at h
     rw [h]; ring
 
-private theorem normEDS_two_three_two (n : ℤ) : normEDS (2 : ℤ) 3 2 n = n := by
-  rcases Int.eq_nat_or_neg n with ⟨k, rfl | rfl⟩
-  · exact normEDS_two_three_two_nat k
-  · rw [normEDS_neg, normEDS_two_three_two_nat]
-
 private noncomputable def uw (n : ℤ) : MvPolynomial (Fin 3) ℤ :=
   normEDS (X 0) (X 1) (X 2) n
 

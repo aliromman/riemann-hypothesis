@@ -19,7 +19,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 open CrystallineSemistableComparison.Onto GlobalTheory.CompanionTheory.SurjectionOntoH4
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.CompanionTheory.SurjectionOntoH4.Away
 

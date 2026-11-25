@@ -734,8 +734,6 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.Mum

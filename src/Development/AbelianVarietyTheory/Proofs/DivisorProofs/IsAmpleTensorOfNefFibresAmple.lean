@@ -48,8 +48,6 @@ import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.RelAmpleOf
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open MvPolynomial GlobalTheory.Published
@@ -82,7 +80,6 @@ open CategoryTheory AlgebraicGeometry TopologicalSpace Filter Topology
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.VolBr GlobalTheory.HSNef
 
-set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.AmpleFibre
@@ -158,7 +155,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.VolBr GlobalTheory.HSNef
 open Limits
 
-set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.AmpleNefFibZ

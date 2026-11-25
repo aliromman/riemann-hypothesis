@@ -28,8 +28,6 @@ import Mathlib.Tactic.Linter.Style
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open MvPolynomial GlobalTheory GlobalTheory.FlagBundle GlobalTheory.HermFrame GlobalTheory.GoodMetric
@@ -132,7 +130,6 @@ open AlgebraicGeometry MvPolynomial GlobalTheory GlobalTheory.Cartier GlobalTheo
 open ReciprocityTheory.L2DbarEstimates (V)
 open MeasureTheory Filter Topology
 open scoped ENNReal Matrix
-set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.GoodMetric.ChernLin

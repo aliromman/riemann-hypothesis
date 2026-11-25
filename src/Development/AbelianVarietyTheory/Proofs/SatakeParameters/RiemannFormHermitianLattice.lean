@@ -25,8 +25,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 open KaehlerDifferential GlobalTheory.PD GlobalTheory.CechDR GlobalTheory.HodgeCoh
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.PD

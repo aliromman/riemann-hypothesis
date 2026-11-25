@@ -261,8 +261,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.AbLaw GlobalTheory.UU GlobalTheory.LN GlobalTheory.Raynaud IsLocalRing
 open scoped CategoryTheory.Obj
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.LieCoordFibre
@@ -992,7 +990,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.AbLaw GlobalTheory.UU GlobalTheory.LN GlobalTheory.Raynaud IsLocalRing
 open scoped CategoryTheory.Obj
 
-set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.TorLie

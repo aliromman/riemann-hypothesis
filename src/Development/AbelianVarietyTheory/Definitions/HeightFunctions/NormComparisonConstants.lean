@@ -23,8 +23,6 @@ import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.Q
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.FinalJoin2

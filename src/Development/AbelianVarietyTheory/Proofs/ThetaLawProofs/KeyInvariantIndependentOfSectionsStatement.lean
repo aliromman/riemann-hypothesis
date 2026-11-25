@@ -911,8 +911,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 section
 
 open Polynomial TensorProduct

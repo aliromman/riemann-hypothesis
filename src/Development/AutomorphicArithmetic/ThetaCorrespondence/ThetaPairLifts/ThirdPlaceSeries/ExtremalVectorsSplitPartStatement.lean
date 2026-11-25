@@ -43,8 +43,6 @@ open NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Indef.Tree Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx Formalism.IndefR.FWT
 open GlobalTheory.BigTop GlobalTheory.BigOn
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.BigOn
@@ -148,7 +146,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.OnCmp GlobalTheory.BigOn GlobalTheory.RealIndexBound
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Datum Level Moduli Coeff)
 open GlobalTheory.OntoChain
-set_option autoImplicit false
 noncomputable section
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
@@ -223,7 +220,6 @@ section
 open NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Indef.Tree Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx Formalism.IndefR.FWT
 open GlobalTheory.BigTop GlobalTheory.BigOn
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.BigOn
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

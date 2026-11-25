@@ -830,8 +830,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.TypedPartSplitPrimes (IsIntHom IsOr
 open GlobalTheory.IndefiniteRowSideFullHecke.BigBlockCharacters (HasChars)
 open GlobalTheory.IndefiniteRowSideFullHecke.FactorDepthInertBounds (boundAll boundInert boundFine)
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.RefSum.InertOsc
@@ -1033,8 +1031,6 @@ end -- clump:auto
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.DepthOscillationLeAtSmallOddInertPrime", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.ESmall\npublic import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.FactorDepthInertBounds\npublic import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.TypedPartSplitPrimes\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.EightDvdNCol\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FactorDepthBetweenZeroAndBound\npublic import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.BigBlockCharacters\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FactorDepthBoundedOddInertPrimeCmType\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ProductDepthSumRoundingOscillation\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}
 section -- clump:auto
 @[expose] public section
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -1322,8 +1318,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.TypedPartSplitPrimes (IsIntHom IsOr
 open GlobalTheory.IndefiniteRowSideFullHecke.BigBlockCharacters (HasChars)
 open GlobalTheory.IndefiniteRowSideFullHecke.FactorDepthInertBounds (boundAll boundInert boundFine)
 
-set_option autoImplicit false
-
 noncomputable section
 
 open GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification (IsBig sumSmallSpread not_isBig_iff)
@@ -1423,8 +1417,6 @@ open NumberField IsDedekindDomain Formalism.L2.Pj ReciprocityTheory.PGsh Recipro
 open GlobalTheory.IndefiniteRowSideFullHecke.TypedPartSplitPrimes (IsIntHom IsOrbit FrobOnType embX primeBelow SplitInK InertInK)
 open GlobalTheory.IndefiniteRowSideFullHecke.BigBlockCharacters (HasChars)
 open GlobalTheory.IndefiniteRowSideFullHecke.FactorDepthInertBounds (boundAll boundInert boundFine)
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -1526,8 +1518,6 @@ open NumberField IsDedekindDomain Formalism.L2.Pj ReciprocityTheory.PGsh Recipro
 open GlobalTheory.IndefiniteRowSideFullHecke.TypedPartSplitPrimes (IsIntHom IsOrbit FrobOnType embX primeBelow SplitInK InertInK)
 open GlobalTheory.IndefiniteRowSideFullHecke.BigBlockCharacters (HasChars)
 open GlobalTheory.IndefiniteRowSideFullHecke.FactorDepthInertBounds (boundAll boundInert boundFine)
-
-set_option autoImplicit false
 
 noncomputable section
 

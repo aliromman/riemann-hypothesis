@@ -764,8 +764,6 @@ section -- clump:auto
 
 open AlgebraicGeometry CategoryTheory CategoryTheory.Limits
 
-set_option autoImplicit false
-
 namespace GlobalTheory.PushoutSquare
 
 theorem isPullback_of_forall_isPushout_app :
@@ -855,8 +853,6 @@ section -- clump:auto
 
 open AlgebraicGeometry CategoryTheory CategoryTheory.Limits
 
-set_option autoImplicit false
-
 namespace GlobalTheory.FerrandFlat
 
 theorem flat_of_appLE {Y : Scheme.{0}} {P : CommRingCat.{0}} (y : Y ⟶ Spec P) (h : ∀ V : Y.Opens, IsAffineOpen V → (y.appLE ⊤ V (fun _ _ => trivial)).hom.Flat) : Flat y :=
@@ -884,7 +880,6 @@ section -- clump:auto
 
 open AlgebraicGeometry CategoryTheory CategoryTheory.Limits
 
-set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.PinchDeg
@@ -976,8 +971,6 @@ section -- clump:auto
 
 open AlgebraicGeometry CategoryTheory CategoryTheory.Limits
 
-set_option autoImplicit false
-
 namespace GlobalTheory.NilThicken
 
 theorem ker_inl_le_map_ker_of_isPushout {A B C D : CommRingCat.{0}} {a : A ⟶ B} {c : A ⟶ C}
@@ -1058,8 +1051,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory.ZM GlobalTheory.SiegLev GlobalTheory.SiegelTor
 open scoped CategoryTheory.Obj
-
-set_option autoImplicit false
 
 namespace GlobalTheory.FerrandGlue
 
@@ -1348,7 +1339,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.ZM GlobalTheory.SiegLev GlobalTheory.SiegelTor
 open scoped CategoryTheory.Obj
 
-set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.SpecFibreProduct
@@ -1613,8 +1603,6 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.CechPic GlobalTheory.PrincipalIntegral
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.ArtinPrinc
@@ -1710,8 +1698,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory.ZM GlobalTheory.SiegLev GlobalTheory.SiegelTor
 open scoped CategoryTheory.Obj
-
-set_option autoImplicit false
 
 noncomputable section
 

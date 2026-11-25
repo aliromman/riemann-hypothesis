@@ -18,8 +18,6 @@ import Mathlib.Topology.Sheaves.Presheaf
 
 @[expose] public section
 
-set_option autoImplicit false
-
 open CategoryTheory AlgebraicGeometry
 
 namespace GlobalTheory.DimCodim

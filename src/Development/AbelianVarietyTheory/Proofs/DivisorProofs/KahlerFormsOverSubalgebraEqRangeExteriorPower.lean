@@ -27,8 +27,6 @@ public import Mathlib.RingTheory.Flat.TorsionFree
 
 open GlobalTheory.PD GlobalTheory.CechDR KaehlerDifferential
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.PD

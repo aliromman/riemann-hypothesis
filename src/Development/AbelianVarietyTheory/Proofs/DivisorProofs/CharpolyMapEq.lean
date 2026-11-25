@@ -143,8 +143,6 @@ section -- clump:auto
 
 open CategoryTheory TensorProduct Coalgebra Bialgebra GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Dieu
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.Dieu
@@ -311,8 +309,6 @@ section -- clump:auto
 
 open CategoryTheory TensorProduct Coalgebra Bialgebra GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Dieu
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.Dieu.ColengthHtOne
@@ -431,8 +427,6 @@ section -- clump:auto
 @[expose] public section
 
 open CategoryTheory TensorProduct Coalgebra Bialgebra GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Dieu
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -691,8 +685,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 open scoped CategoryTheory.MonObj
 attribute [local instance] CategoryTheory.Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.Dieu
@@ -788,8 +780,6 @@ open scoped CategoryTheory.Obj CategoryTheory.MonObj TensorProduct
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.HTLat GlobalTheory.Published.AbVarRed GlobalTheory.CechPic GlobalTheory.AV GlobalTheory.AV.AbVar
 attribute [local instance] Over.cartesianMonoidalCategory
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -894,8 +884,6 @@ attribute [local instance] CategoryTheory.Over.cartesianMonoidalCategory
 
 open Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open scoped CategoryTheory.Obj CategoryTheory.MonObj
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -1571,8 +1559,6 @@ attribute [local instance] CategoryTheory.Over.cartesianMonoidalCategory
 
 open Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open scoped CategoryTheory.Obj CategoryTheory.MonObj
-
-set_option autoImplicit false
 
 noncomputable section
 

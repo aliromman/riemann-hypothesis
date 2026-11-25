@@ -19,7 +19,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 
 section
-set_option autoImplicit false
 noncomputable section
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links
 open Formalism.L2.Host (CharFrame HChar TupTied)

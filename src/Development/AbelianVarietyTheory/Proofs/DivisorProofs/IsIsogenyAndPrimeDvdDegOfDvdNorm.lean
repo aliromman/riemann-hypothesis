@@ -138,8 +138,6 @@ section -- clump:auto
 
 open CategoryTheory GlobalTheory.AV GlobalTheory.AV.AbVar NumberField Polynomial
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.AV.AbVar.DegNorm

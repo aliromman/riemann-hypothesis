@@ -21,8 +21,6 @@ public import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExi
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open NumberField IsDedekindDomain

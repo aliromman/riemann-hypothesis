@@ -26,8 +26,6 @@ attribute [local instance] GlobalTheory.TypeRec.factG
 
 namespace GlobalTheory.TypeRec.TwistInert
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
 open Filter Topology ValuativeRel GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.LocGL
 
 section Val

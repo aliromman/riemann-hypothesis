@@ -20,8 +20,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Katz
 
-set_option autoImplicit false
-
 namespace GlobalTheory.CobLead
 
 open CategoryTheory TensorProduct MvPowerSeries in

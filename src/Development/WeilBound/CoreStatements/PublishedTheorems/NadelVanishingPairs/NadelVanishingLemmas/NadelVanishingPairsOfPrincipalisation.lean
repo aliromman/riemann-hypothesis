@@ -54,8 +54,6 @@ section -- clump:auto
 
 open CategoryTheory AlgebraicGeometry GlobalTheory.Cartier GlobalTheory.Cartier.CartierDiv
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.Cartier.SecPowLoc
@@ -85,8 +83,6 @@ open CategoryTheory Limits AlgebraicGeometry TopologicalSpace Filter
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
 open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.CechPic GlobalTheory.QCoh GlobalTheory.Discrepancy GlobalTheory.LogPair
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -382,8 +378,6 @@ open CategoryTheory Limits AlgebraicGeometry TopologicalSpace Filter
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
 open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.CechPic GlobalTheory.QCoh GlobalTheory.Discrepancy GlobalTheory.LogPair
-
-set_option autoImplicit false
 
 namespace GlobalTheory.Discrepancy
 

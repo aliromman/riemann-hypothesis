@@ -94,8 +94,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 namespace GlobalTheory.CharDepth
 
 open IsLocalRing Formalism.L2.Pj

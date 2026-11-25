@@ -21,8 +21,6 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.Exi
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CategoryTheory TensorProduct

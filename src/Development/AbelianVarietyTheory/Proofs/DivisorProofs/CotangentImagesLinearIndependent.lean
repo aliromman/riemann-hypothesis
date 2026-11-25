@@ -48,8 +48,6 @@ open GlobalTheory.TopForm
 
 open scoped TensorProduct
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.AdaptedFrame

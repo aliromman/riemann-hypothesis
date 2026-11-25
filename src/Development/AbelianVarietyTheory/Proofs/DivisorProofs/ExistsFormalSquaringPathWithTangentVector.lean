@@ -452,8 +452,6 @@ open GlobalTheory GlobalTheory.VB GlobalTheory.LieVB GlobalTheory.QCoh GlobalThe
 open GlobalTheory.Twist (resM)
 open scoped CategoryTheory.Obj RatFunc
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.Nef

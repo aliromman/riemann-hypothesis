@@ -26,8 +26,6 @@ import Development.AbelianVarietyTheory.Definitions.KeyFormula.KaRuleK
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj MeasureTheory

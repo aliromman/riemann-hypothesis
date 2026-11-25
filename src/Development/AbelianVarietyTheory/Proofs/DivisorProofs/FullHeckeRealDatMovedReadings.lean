@@ -22,8 +22,6 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.DIV.Cons
 open Formalism.IndefR.FWT GlobalTheory.BigTop GlobalTheory.OntoChain GlobalTheory.RealIndexBound GlobalTheory.OnTies GlobalTheory.SeriesTie GlobalTheory.BigOn GlobalTheory.BigOn.Exp
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.UnframePt

@@ -30,8 +30,6 @@ import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.IsAdditive
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj TensorProduct

@@ -98,8 +98,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open NumberField MvPolynomial GlobalTheory GlobalTheory.ChowHt GlobalTheory.Adelic GlobalTheory.CompHt
@@ -307,8 +305,6 @@ open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 
 open AlgebraicGeometry Filter GlobalTheory.CompHt
 open scoped ENNReal
-
-set_option autoImplicit false
 
 namespace GlobalTheory.ImageDegree
 

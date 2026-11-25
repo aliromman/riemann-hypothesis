@@ -22,8 +22,6 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolum
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open NumberField Module ReciprocityTheory.ChartRestriction.G.FD GlobalTheory.IndefiniteRowSideFullHecke.FrameWeightGapBounds

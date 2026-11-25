@@ -22,8 +22,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
-set_option autoImplicit false
-
 open NumberField IsDedekindDomain GlobalTheory.FieldSize Polynomial
 open scoped IntermediateField nonZeroDivisors
 

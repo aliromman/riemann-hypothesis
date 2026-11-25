@@ -28,8 +28,6 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LevelLi
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open NumberField IsDedekindDomain

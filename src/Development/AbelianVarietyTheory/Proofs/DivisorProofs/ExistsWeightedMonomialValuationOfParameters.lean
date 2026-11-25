@@ -466,8 +466,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.Discrepancy GlobalTheory.FieldPair
 open scoped TensorProduct
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory
@@ -628,7 +626,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.Discrepancy GlobalTheory.FieldPair
 open scoped TensorProduct
 
-set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.MonoVal

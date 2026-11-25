@@ -36,8 +36,6 @@ import Development.AbelianVarietyTheory.Definitions.KeyFormula.KaRuleK
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.KeyPow

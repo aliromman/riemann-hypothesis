@@ -440,7 +440,6 @@ theorem count_stairIdeal_at_S0 (hq : OffQ D) {μ₀ : T} (hL : L.Is μ₀) (G : 
   ring
 
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField in
 theorem exists_splitPoint_at_S0 (P : Places L) {v : GlobalTheory.FinPl.Pl D} (hv : v ∈ P.S0) :
     ∃ (k : Type) (_ : Field k) (_ : ValuativeRel k) (_ : TopologicalSpace k) (_ : IsNonarchimedeanLocalField k)
       (p : SplitPt D k), p.v = v ∧ Formalism.L2.NTheta.IsIdemAt p.e (P.w v) := by

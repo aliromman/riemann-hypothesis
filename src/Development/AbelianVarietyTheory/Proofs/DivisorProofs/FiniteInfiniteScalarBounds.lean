@@ -277,7 +277,7 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Form
 open IsDedekindDomain NumberField GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.SumSize GlobalTheory.RowClaim GlobalTheory.RowTest
 open Formalism.DivisionValues (vw lw)
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField GlobalTheory.FunObj.borelKw
+attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.FunObj.borelKw
   GlobalTheory.FunObj.borelSpaceKw
 
 section Scalar
@@ -313,7 +313,7 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Form
 open IsDedekindDomain NumberField GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.SumSize GlobalTheory.RowClaim GlobalTheory.RowTest
 open Formalism.DivisionValues (vw lw)
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField GlobalTheory.FunObj.borelKw
+attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.FunObj.borelKw
   GlobalTheory.FunObj.borelSpaceKw
 
 section Core

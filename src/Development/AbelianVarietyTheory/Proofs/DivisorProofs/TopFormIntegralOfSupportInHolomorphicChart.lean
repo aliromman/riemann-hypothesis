@@ -29,8 +29,6 @@ open MeasureTheory Filter Topology GlobalTheory GlobalTheory.Cartier GlobalTheor
 open ReciprocityTheory.L2DbarEstimates (V)
 open scoped ContDiff Matrix
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.GoodTop
@@ -73,8 +71,6 @@ section -- clump:auto
 open MeasureTheory Filter Topology GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.CxPts GlobalTheory.ChartGlue GlobalTheory.FlagBundle GlobalTheory.HermFrame GlobalTheory.GoodMetric GlobalTheory.GoodTop
 open ReciprocityTheory.L2DbarEstimates (V)
 open scoped ContDiff Matrix
-
-set_option autoImplicit false
 
 noncomputable section
 

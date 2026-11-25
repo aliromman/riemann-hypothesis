@@ -30,8 +30,6 @@ open NumberField MvPolynomial GlobalTheory GlobalTheory.ChowHt GlobalTheory.Adel
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.Adelic.ConeDim

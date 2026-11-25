@@ -21,8 +21,6 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomolo
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace PositivityTheory.HtPt.Weilfun

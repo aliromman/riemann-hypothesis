@@ -297,15 +297,6 @@ theorem map_zsmul_append {A : List (K → ℤ) → ℤ} (hp : PermInv A) (hA : H
       hp _ _ (List.perm_middle (a := u) (l₁ := l) (l₂ := r)), List.length_cons, List.cons_append]
     ring
 
-theorem length_classList (cls : σ → K → ℤ) {H : MvPolynomial σ ℤ} {n : ℕ}
-    (hH : H.IsHomogeneous n) {μ : σ →₀ ℕ} (hμ : μ ∈ H.support) :
-    (classList cls μ).length = n := by
-  have h1 := hH (mem_support_iff.mp hμ)
-  rw [← h1]
-  simp only [classList, Multiset.length_toList, Multiset.card_map, Finsupp.card_toMultiset,
-    Finsupp.weight_apply]
-  simp [Finsupp.sum]
-
 theorem polyVal_zsmul {A : List (K → ℤ) → ℤ} (hp : PermInv A) (hA : HeadAdd A) (m : ℤ)
     (cls : σ → K → ℤ) {H : MvPolynomial σ ℤ} {n : ℕ} (hH : H.IsHomogeneous n) :
     polyVal A (fun s => m • cls s) H = m ^ n * polyVal A cls H := by
@@ -317,7 +308,7 @@ theorem polyVal_zsmul {A : List (K → ℤ) → ℤ} (hp : PermInv A) (hA : Head
     rw [List.append_nil, ← Multiset.coe_eq_coe, ← Multiset.map_coe, Multiset.coe_toList,
       Multiset.coe_toList, Multiset.map_map]
     rfl
-  rw [hp _ _ hperm, map_zsmul_append hp hA, length_classList cls hH hμ, List.append_nil]
+  rw [hp _ _ hperm, map_zsmul_append hp hA, GroundTheory.Heights₂.Heights.NumbersDVR.classList_length_of_mem_support cls hH hμ, List.append_nil]
   ring
 
 end Lists
@@ -453,7 +444,7 @@ theorem main : ∀ (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing
   rw [h1 k hk1 hk2 q L Q hQ, h2 k hk1 hk2 q L Q hQ, Finset.mul_sum]
   refine Finset.sum_congr rfl fun μ hμ => ?_
   rw [pairNum_scale hϖ hW' hD m hr hk1
-    (by rw [length_classList L hQ hμ]; omega)]
+    (by rw [GroundTheory.Heights₂.Heights.NumbersDVR.classList_length_of_mem_support L hQ hμ]; omega)]
   ring
 
 end GlobalTheory.CompanionTheory.Ar.CkLinePow

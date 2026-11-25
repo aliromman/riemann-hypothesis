@@ -26,7 +26,6 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.Automorphic
 
 @[expose] public section
 
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 
 noncomputable section
 

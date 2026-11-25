@@ -49,8 +49,6 @@ open ReciprocityTheory.ChartRestriction.G.Out (RingAct)
 open scoped NumberField
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.IwLevel.FiberCard
@@ -75,8 +73,6 @@ open AlgebraicGeometry CategoryTheory CategoryTheory.Limits MonoidalCategory Car
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped NumberField CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
-
-set_option autoImplicit false
 
 noncomputable section
 

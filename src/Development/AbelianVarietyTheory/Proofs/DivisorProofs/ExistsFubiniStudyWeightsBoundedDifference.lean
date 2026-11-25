@@ -33,8 +33,6 @@ open CategoryTheory AlgebraicGeometry TopologicalSpace Filter Topology MeasureTh
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.VolBr GlobalTheory.HSAmp
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.HSAmp.CanSmooth
@@ -210,8 +208,6 @@ section -- clump:auto
 open CategoryTheory AlgebraicGeometry TopologicalSpace Filter Topology MeasureTheory
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.VolBr GlobalTheory.HSAmp
-
-set_option autoImplicit false
 
 noncomputable section
 

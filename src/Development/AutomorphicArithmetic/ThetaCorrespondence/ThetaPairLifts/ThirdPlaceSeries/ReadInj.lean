@@ -22,7 +22,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 section
 open GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.BigOn.Exp
 open Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links
-set_option autoImplicit false
 noncomputable section
 
 

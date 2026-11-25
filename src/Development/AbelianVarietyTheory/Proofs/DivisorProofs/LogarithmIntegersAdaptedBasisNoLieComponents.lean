@@ -32,8 +32,6 @@ section -- clump:auto
 
 open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv GlobalTheory.Katz GlobalTheory.QLog GlobalTheory.PDivGroup
 
-set_option autoImplicit false
-
 namespace GlobalTheory.QLog
 
 theorem defect_sum {O E : Type} [CommRing O] [CommRing E] [Algebra O E] {d : ℕ}
@@ -84,8 +82,6 @@ section -- clump:auto
 @[expose] public section
 
 open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv GlobalTheory.Katz GlobalTheory.QLog GlobalTheory.PDivGroup
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -236,8 +232,6 @@ section -- clump:auto
 @[expose] public section
 
 open MvPowerSeries GlobalTheory GlobalTheory.Katz GlobalTheory.QLog GlobalTheory.PDivGroup GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.EpsilonPairingZeta GlobalTheory.PDivLat
-
-set_option autoImplicit false
 
 noncomputable section
 

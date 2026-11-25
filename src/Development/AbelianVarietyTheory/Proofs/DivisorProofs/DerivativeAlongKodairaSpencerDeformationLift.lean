@@ -26,8 +26,6 @@ import Mathlib.RingTheory.PiTensorProduct
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 
 noncomputable section
 
@@ -218,8 +216,6 @@ open GlobalTheory.AllWt (exOf)
 open scoped Classical
 
 open GlobalTheory.Frames
-
-set_option autoImplicit false
 
 
 noncomputable section

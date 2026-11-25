@@ -602,8 +602,6 @@ open scoped Classical MatrixGroups nonZeroDivisors
 open GlobalTheory.LatVal (Sz)
 open GlobalTheory.LatJet (EisExp IsEis FR)
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.HilbFam.TwistSize

@@ -26,7 +26,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 @[expose] public section
 
 open NumberField IsDedekindDomain
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 noncomputable section
 

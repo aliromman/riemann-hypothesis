@@ -30,8 +30,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CategoryTheory TensorProduct Coalgebra Bialgebra GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Dieu
@@ -125,8 +123,6 @@ section -- clump:auto
 @[expose] public section
 
 open CategoryTheory TensorProduct Coalgebra Bialgebra GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Dieu
-
-set_option autoImplicit false
 
 noncomputable section
 

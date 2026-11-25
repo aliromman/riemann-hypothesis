@@ -875,7 +875,6 @@ section -- clump:auto
 
 open AlgebraicGeometry CategoryTheory CategoryTheory.Limits
 
-set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.PinchBasis
@@ -998,7 +997,6 @@ section -- clump:auto
 
 open AlgebraicGeometry CategoryTheory CategoryTheory.Limits
 
-set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.ThickPush

@@ -53,8 +53,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Limits MonoidalCategory CartesianMonoidalCategory MonObj
@@ -194,8 +192,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.VB GlobalTheory.LieVB GlobalTheory.QCoh GlobalTheory.CechPic GlobalTheory.NeronCurve GlobalTheory.Nef
 open GlobalTheory.Twist (resM)
 open scoped CategoryTheory.Obj RatFunc
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -552,8 +548,6 @@ section -- clump:auto
 open scoped IntermediateField Polynomial RatFunc
 open GlobalTheory.Nef
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.Nef.Kron
@@ -744,8 +738,6 @@ section -- clump:auto
 open scoped IntermediateField Polynomial RatFunc
 open GlobalTheory.Nef
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.RatCrit
@@ -897,8 +889,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.VB GlobalTheory.LieVB GlobalTheory.QCoh GlobalTheory.CechPic GlobalTheory.NeronCurve GlobalTheory.Nef
 open GlobalTheory.Twist (resM)
 open scoped CategoryTheory.Obj RatFunc
-
-set_option autoImplicit false
 
 namespace GlobalTheory.Nef
 
@@ -1223,8 +1213,6 @@ open GlobalTheory GlobalTheory.VB GlobalTheory.LieVB GlobalTheory.QCoh GlobalThe
 open GlobalTheory.Twist (resM)
 open scoped CategoryTheory.Obj RatFunc
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.Nef
@@ -1506,8 +1494,6 @@ open GlobalTheory.Twist (resM)
 open scoped CategoryTheory.Obj RatFunc
 open ReciprocityTheory.ChartRestriction.G.Semi.Rosenlicht
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.Nef
@@ -1586,8 +1572,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.VB GlobalTheory.LieVB GlobalTheory.QCoh GlobalTheory.CechPic GlobalTheory.NeronCurve GlobalTheory.Nef
 open GlobalTheory.Twist (resM)
 open scoped CategoryTheory.Obj RatFunc
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -1728,8 +1712,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.VB GlobalTheory.LieVB GlobalTheory.QCoh GlobalTheory.CechPic GlobalTheory.NeronCurve GlobalTheory.Nef
 open GlobalTheory.Twist (resM)
 open scoped CategoryTheory.Obj RatFunc
-
-set_option autoImplicit false
 
 namespace GlobalTheory.Nef
 

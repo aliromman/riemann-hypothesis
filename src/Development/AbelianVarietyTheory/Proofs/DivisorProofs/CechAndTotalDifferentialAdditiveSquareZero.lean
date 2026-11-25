@@ -17,8 +17,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
-set_option autoImplicit false
-
 namespace GlobalTheory.DI
 
 variable {ι : Type} [LinearOrder ι] {E : Type} [AddCommGroup E]

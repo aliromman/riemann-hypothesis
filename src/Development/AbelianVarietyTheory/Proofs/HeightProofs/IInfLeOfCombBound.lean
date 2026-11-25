@@ -21,8 +21,6 @@ import Formalism.SharpRestriction.Divisibility.AbelianOpenPart.AbelianAt
 
 @[expose] public section
 
-set_option autoImplicit false
-
 
 
 noncomputable section

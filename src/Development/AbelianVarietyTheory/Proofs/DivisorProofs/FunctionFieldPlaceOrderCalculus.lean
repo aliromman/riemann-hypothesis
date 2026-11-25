@@ -19,8 +19,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open scoped IntermediateField Polynomial RatFunc
 open GlobalTheory.Nef
 
-set_option autoImplicit false
-
 namespace GlobalTheory.Nef.OrdCalc
 
 variable {k F : Type} [Field k] [Field F] [Algebra k F]

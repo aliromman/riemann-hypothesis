@@ -30,8 +30,6 @@ import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.GeometricallyRed
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry TopologicalSpace Filter Asymptotics

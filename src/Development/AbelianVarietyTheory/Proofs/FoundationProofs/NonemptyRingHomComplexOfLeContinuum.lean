@@ -21,8 +21,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
-set_option autoImplicit false
-
 open Formalism.BasicNotions NumberField
 
 namespace GlobalTheory.WittFracComplex

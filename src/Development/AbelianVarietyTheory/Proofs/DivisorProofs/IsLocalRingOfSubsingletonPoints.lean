@@ -394,8 +394,6 @@ section -- clump:auto
 
 open CategoryTheory Opposite Matrix GlobalTheory GlobalTheory.PDivGroup GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.EpsilonPairingZeta GlobalTheory.PDivLat
 
-set_option autoImplicit false
-
 noncomputable section
 
 open TensorProduct Coalgebra Bialgebra WithConv
@@ -821,8 +819,6 @@ section -- clump:auto
 
 open CategoryTheory Opposite Matrix GlobalTheory GlobalTheory.PDivGroup GlobalTheory.Sandwich GlobalTheory.IndefiniteRowSideFullHecke.EpsilonPairingZeta GlobalTheory.PDivLat
 open TensorProduct Coalgebra Bialgebra GlobalTheory.PDiv
-
-set_option autoImplicit false
 
 noncomputable section
 

@@ -49,7 +49,6 @@ section -- clump:auto
 @[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.Pb GlobalTheory.CompanionTheory.ConeLocal
 open GlobalTheory.CatH (face toLast)
 
@@ -499,7 +498,6 @@ section -- clump:auto
 @[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.Pb GlobalTheory.CompanionTheory.ConeLocal
 open GlobalTheory.CatH (face toLast)
 open GlobalTheory.CompanionTheory.CupRep GlobalTheory.CompanionTheory.CocProd
@@ -741,7 +739,6 @@ section -- clump:auto
 @[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.Pb GlobalTheory.CompanionTheory.ConeLocal
 open GlobalTheory.CatH (face toLast)
 
@@ -1074,7 +1071,6 @@ section -- clump:auto
 @[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 
 noncomputable section
@@ -1180,7 +1176,6 @@ section -- clump:auto
 @[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris ReciprocityTheory.ChartRestriction.G.Geo.Tor CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 
 noncomputable section
@@ -1425,7 +1420,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section

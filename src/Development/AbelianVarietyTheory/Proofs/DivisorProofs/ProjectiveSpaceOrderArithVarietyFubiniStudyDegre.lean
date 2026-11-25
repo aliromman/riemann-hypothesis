@@ -33,8 +33,6 @@ open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier Glo
 open ReciprocityTheory.AnForm.M
 open GlobalTheory.Points GlobalTheory.CechPic GlobalTheory.ProjVar
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.PSpaceDeg

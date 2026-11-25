@@ -23,7 +23,6 @@ public import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries
 
 @[expose] public section
 
-set_option autoImplicit false
 noncomputable section
 open NumberField IsDedekindDomain
 open scoped TensorProduct

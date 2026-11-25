@@ -20,8 +20,6 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.RedSurjective
 
 @[expose] public section
 
-set_option autoImplicit false
-
 open CategoryTheory TensorProduct Coalgebra Bialgebra GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Dieu
 
 namespace GlobalTheory.Dieu

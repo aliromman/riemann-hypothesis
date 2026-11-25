@@ -35,8 +35,6 @@ import Development.AbelianVarietyTheory.Definitions.ModuliSpaces.GoodClass
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj

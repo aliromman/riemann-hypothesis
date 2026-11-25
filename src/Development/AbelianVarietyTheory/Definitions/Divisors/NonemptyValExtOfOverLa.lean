@@ -32,8 +32,6 @@ import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.FactorDepth

@@ -320,7 +320,7 @@ theorem smooth_rdWord_functional : ∀ (k r : ℕ) {H : Type} [NormedAddCommGrou
       have e : (fun t : ℝ => rdWord w (fun g : Mat k r => Λ (σ g v)) (x * NormedSpace.exp ((t : ℂ) • X))) =
           (⇑((Λ.comp (σ x)).restrictScalars ℝ) ∘ fun t : ℝ => σ (NormedSpace.exp ((t : ℂ) • X)) (dsigW σ w v)) := by
         funext t
-        have ht := Formalism.MainNotions.LowestKTypeMultiplicity.exp_mem_UH hX t
+        have ht := PI.WUN.exp_mem_UH hX t
         rw [ih hw _ (GlobalTheory.SgInfDD.gg_mul hx ht)]
         simp only [Function.comp, ContinuousLinearMap.coe_restrictScalars', ContinuousLinearMap.comp_apply]
         rw [hσ.1.2 x hx _ ht]

@@ -4,7 +4,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsHalf
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.CharacterTrivialAtInertPrimes
 public import Formalism.LocalToGlobal.JointCharacters.LocEMulLocE
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsHeckeCharacterOfUnitaryTensorIdeles
-public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIdeleAt
+public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIdeleAt
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.NoRatInert
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsUnramifiedHeckeCharHalfExponentRestrictQua
 import Development.AbelianVarietyTheory.Counterexamples.HeightSurvey.StarPurelyImaginaryEqNeg
@@ -291,9 +291,9 @@ theorem eta_inf {η : (AE D)ˣ →* Circle} (hη : ∀ τ, HasInfExp D η τ (1 
     ((η x : Circle) : ℂ) = ∏ τ, θ τ (infPart D (x : AE D)) / (‖θ τ (infPart D (x : AE D))‖ : ℂ) := by
   classical
   have hw0 : ∀ τ, θ τ (infPart D (x : AE D)) ≠ 0 := fun τ => (x.isUnit.map ((θ τ).comp (infPart D))).ne_zero
-  choose z hz1 hz2 using fun τ => GlobalTheory.VacuumCharacter.exists_idele_at hθ τ _ (hw0 τ)
+  choose z hz1 hz2 using fun τ => GlobalTheory.OneMapRef.RealMove.exists_idele_at hθ τ _ (hw0 τ)
   have e : x = ∏ τ, z τ := by
-    refine Units.ext (GlobalTheory.VacuumCharacter.adele_ext hθ ?_ fun τ => ?_)
+    refine Units.ext (GlobalTheory.OneMapRef.RealMove.adele_ext hθ ?_ fun τ => ?_)
     · rw [Units.coe_prod, map_prod, hx]; exact (Finset.prod_eq_one fun τ _ => hz1 τ).symm
     · rw [Units.coe_prod, map_prod, map_prod]
       simp [hz2]

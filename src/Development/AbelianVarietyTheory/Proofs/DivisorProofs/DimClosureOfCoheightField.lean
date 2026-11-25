@@ -27,8 +27,6 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.SemiposAtOfPositive
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.VdmRec.CutSec

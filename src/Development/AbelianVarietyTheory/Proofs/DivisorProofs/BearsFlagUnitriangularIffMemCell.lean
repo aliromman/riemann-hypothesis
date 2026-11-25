@@ -26,8 +26,6 @@ import Mathlib.Tactic.Linter.Style
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 open Matrix
 open GlobalTheory.FlagFibre (Low)
 
@@ -106,8 +104,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 open CategoryTheory AlgebraicGeometry MvPolynomial MeasureTheory Filter Topology
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open ReciprocityTheory.L2DbarEstimates (V)
@@ -172,8 +168,6 @@ open ReciprocityTheory.L2DbarEstimates (V)
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.CxPts GlobalTheory.FlagBundle GlobalTheory.HermFrame GlobalTheory.GoodMetric GlobalTheory.CxForm GlobalTheory.LineForm GlobalTheory.ChernCalc GlobalTheory.FlagCell2
 open GlobalTheory.FlagFibre (Low)
 open scoped Matrix ContDiff ComplexOrder ENNReal Classical
-
-set_option autoImplicit false
 
 namespace GlobalTheory.FlagCell2
 

@@ -21,8 +21,6 @@ open Set Matrix MeasureTheory Filter Topology
 open GlobalTheory.HermFrame
 open scoped ComplexOrder ContDiff ComplexConjugate
 
-set_option autoImplicit false
-
 noncomputable section
 
 open ReciprocityTheory.L2DbarEstimates (V)

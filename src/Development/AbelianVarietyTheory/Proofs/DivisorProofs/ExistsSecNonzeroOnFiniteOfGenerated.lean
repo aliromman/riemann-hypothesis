@@ -57,8 +57,6 @@ open GlobalTheory.FlagTan (dimFlag)
 open GlobalTheory.HSApp
 open GlobalTheory.Discrepancy GlobalTheory.Cartier GlobalTheory.QCoh
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.ZeroDimSystem
@@ -130,8 +128,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open ReciprocityTheory.AnForm.M
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.CxPts GlobalTheory.Points GlobalTheory.CechPic GlobalTheory.ProjVar
-
-set_option autoImplicit false
 
 noncomputable section
 

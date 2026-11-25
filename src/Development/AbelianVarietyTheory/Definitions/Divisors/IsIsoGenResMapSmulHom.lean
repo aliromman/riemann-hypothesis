@@ -29,8 +29,6 @@ import Mathlib.AlgebraicGeometry.Morphisms.WeaklyEtale
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Opposite Limits
@@ -216,7 +214,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
 noncomputable section

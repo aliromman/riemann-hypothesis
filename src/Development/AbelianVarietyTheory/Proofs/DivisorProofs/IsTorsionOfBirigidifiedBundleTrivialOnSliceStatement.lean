@@ -304,8 +304,6 @@ open GlobalTheory.ZM GlobalTheory.SiegelTor
 open scoped CategoryTheory.Obj
 open GlobalTheory.SiegelDescent ReciprocityTheory.ChartRestriction.G.Pdiv.PullbackComparison
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory

@@ -1137,7 +1137,7 @@ theorem nineAdd_core (Kf : FiniteSubfield)
     · exact Or.inr h
   have hMt : ∀ m : d.A, (l ^ r) • m = 0 := by
     intro m
-    rw [← d.eM.apply_symm_apply m, ← map_nsmul, nsmul_eq_zero_of_zmod, map_zero]
+    rw [← d.eM.apply_symm_apply m, ← map_nsmul, ZModModule.char_nsmul_eq_zero, map_zero]
   have F9 :=
     poitouTate_nineTerm_gs (K := Kf) (S : Set (HeightOneSpectrum (𝓞 Kf.1))) d.ιs hSN hK d.A hMt
   have hM0 := tate_duality_degree_zero_middle Kf S ζ Av μ ρ d hρ

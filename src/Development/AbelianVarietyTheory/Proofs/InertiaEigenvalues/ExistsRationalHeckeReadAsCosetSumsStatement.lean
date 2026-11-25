@@ -33,8 +33,6 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Form
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.HeckeReadRational

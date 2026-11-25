@@ -60,8 +60,6 @@ open ReciprocityTheory.ChartRestriction.G.DVR.FlatBC (algX)
 open GlobalTheory.LogPole
 open scoped Classical
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.LogPole
@@ -104,8 +102,6 @@ open ReciprocityTheory.ChartRestriction.G.PullbackSections (tv)
 open ReciprocityTheory.ChartRestriction.G.DVR.FlatBC (algX)
 open GlobalTheory.LogPole
 open scoped Classical
-
-set_option autoImplicit false
 
 noncomputable section
 

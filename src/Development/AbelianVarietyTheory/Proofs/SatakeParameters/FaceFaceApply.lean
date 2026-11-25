@@ -19,8 +19,6 @@ public import Mathlib.Algebra.Category.ModuleCat.Basic
 
 @[expose] public section
 
-set_option autoImplicit false
-
 open CategoryTheory
 
 universe v u

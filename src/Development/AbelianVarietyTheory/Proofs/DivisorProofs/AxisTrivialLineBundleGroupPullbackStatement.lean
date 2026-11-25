@@ -34,8 +34,6 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GrpPullbackId
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace
@@ -76,8 +74,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj TensorProduct
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.PolRoot
-
-set_option autoImplicit false
 
 noncomputable section
 

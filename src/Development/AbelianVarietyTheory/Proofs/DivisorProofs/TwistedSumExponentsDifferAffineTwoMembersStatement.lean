@@ -1164,8 +1164,6 @@ open GlobalTheory.UT ReciprocityTheory.ChartRestriction.G.DVR
 open GlobalTheory.Poinc.Sep
 open GlobalTheory.UT.CoefBasic
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.GenFrameScale

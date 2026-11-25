@@ -28,7 +28,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 @[expose] public section
 
 open NumberField IsDedekindDomain GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.DefiniteBC GlobalTheory.BcSpeh
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace GlobalTheory.BcSpehProof
 

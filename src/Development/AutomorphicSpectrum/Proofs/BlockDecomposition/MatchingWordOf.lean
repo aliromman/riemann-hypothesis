@@ -35,7 +35,6 @@ open GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions 
 open PositivityTheory.Rg.BcB.F.U (lpow lone)
 open PositivityTheory.Rg.BcB.F.MLM (wordL wordU)
 open scoped Classical
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace GlobalTheory.CompanionTheory.MatchWord
 

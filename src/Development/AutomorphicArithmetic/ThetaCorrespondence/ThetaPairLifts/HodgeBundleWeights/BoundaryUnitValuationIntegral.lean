@@ -44,8 +44,6 @@ section -- clump:auto
 open NumberField IsDedekindDomain Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AllWt GlobalTheory.BdryUnit
 open AlgebraicGeometry CategoryTheory Limits
 
-set_option autoImplicit false
-
 noncomputable section
 
 open MonObj MonoidalCategory CartesianMonoidalCategory
@@ -200,8 +198,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open NumberField IsDedekindDomain Module Formalism.BasicNotions Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD GlobalTheory.AllWt GlobalTheory.FlatLine GlobalTheory.CompHt GlobalTheory.FlatCore GlobalTheory.BdryUnit
@@ -271,7 +267,6 @@ section -- clump:auto
 @[expose] public section
 
 section
-set_option autoImplicit false
 noncomputable section
 open NumberField IsDedekindDomain Module Formalism.BasicNotions Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD GlobalTheory.AllWt GlobalTheory.FlatLine GlobalTheory.CompHt GlobalTheory.FlatCore GlobalTheory.BdryUnit
 open AlgebraicGeometry CategoryTheory Limits

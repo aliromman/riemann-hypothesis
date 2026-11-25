@@ -178,8 +178,6 @@ section -- clump:auto
 open CategoryTheory AlgebraicGeometry
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.FieldPair
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory
@@ -245,8 +243,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open ReciprocityTheory.ChartRestriction.G.DVR.FlatBC (algX)
 open GlobalTheory GlobalTheory.CechPic GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.QCoh GlobalTheory.Discrepancy GlobalTheory.PairStep GlobalTheory.FieldPair
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -386,8 +382,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open ReciprocityTheory.ChartRestriction.G.DVR.FlatBC (algX)
 open GlobalTheory GlobalTheory.CechPic GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.QCoh GlobalTheory.Discrepancy GlobalTheory.PairStep
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -691,8 +685,6 @@ open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open ReciprocityTheory.ChartRestriction.G.DVR.FlatBC (algX)
 open GlobalTheory GlobalTheory.CechPic GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.QCoh GlobalTheory.Discrepancy GlobalTheory.PairStep GlobalTheory.FieldPair
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.ClosureRR
@@ -823,8 +815,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open ReciprocityTheory.ChartRestriction.G.DVR.FlatBC (algX)
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.QCoh GlobalTheory.Discrepancy GlobalTheory.PairStep GlobalTheory.FieldPair
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.PairStep
@@ -914,8 +904,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open ReciprocityTheory.ChartRestriction.G.DVR.FlatBC (algX)
 open GlobalTheory GlobalTheory.CechPic GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.QCoh GlobalTheory.Discrepancy GlobalTheory.PairStep GlobalTheory.FieldPair
-
-set_option autoImplicit false
 
 noncomputable section
 

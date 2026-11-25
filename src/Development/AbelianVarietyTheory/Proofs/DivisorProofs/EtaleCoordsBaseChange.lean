@@ -19,8 +19,6 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.PointHeight
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace NumberField Set MeasureTheory

@@ -101,7 +101,6 @@ open GroundTheory.Global.SemiLocal
 open scoped Classical
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 
 namespace UpperTheory.Gal.GamX
 
@@ -224,7 +223,6 @@ open GroundTheory.Global.SemiLocal
 open scoped Classical
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 open UpperTheory.Gal.GamX
 
 section Loc
@@ -283,7 +281,6 @@ open GroundTheory.Global.SemiLocal
 open scoped Classical
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 
 namespace UpperTheory.Gal.GamX
 
@@ -420,7 +417,6 @@ open GroundTheory.Global.SemiLocal
 open scoped Classical
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 
 namespace UpperTheory.Gal.GamX
 
@@ -471,7 +467,6 @@ open GroundTheory.Global.SemiLocal
 open scoped Classical
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 
 namespace UpperTheory.Gal.GamX
 
@@ -538,7 +533,6 @@ open GroundTheory.Global.SemiLocal
 open scoped Classical
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 open UpperTheory.Gal.GamX
 
 private theorem lp_zero' : UpperTheory.Gal.GamX.lp (0 : Multiset ℂˣ) = 1 := by
@@ -600,7 +594,6 @@ open GroundTheory.Global.SemiLocal
 open scoped Classical
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 open UpperTheory.Gal.GamX
 
 theorem UpperTheory.Gal.GamX.nmEq :
@@ -622,7 +615,6 @@ open GroundTheory.Global.SemiLocal
 open scoped Classical
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 open UpperTheory.Gal.GamX
 
 private theorem loc_one_of' {L : Type} [Field L] [NumberField L] (ψ : HChar L) (w : HeightOneSpectrum (𝓞 L))
@@ -731,7 +723,6 @@ open GroundTheory.Global.SemiLocal
 open scoped Classical
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 open UpperTheory.Gal.GamX
 
 private theorem chs_single {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
@@ -773,7 +764,6 @@ open GroundTheory.Global.SemiLocal
 open scoped Classical
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 open UpperTheory.Gal.GamX
 
 theorem UpperTheory.Gal.GamX.splitSuppOf :
@@ -827,7 +817,6 @@ open GroundTheory.Global.SemiLocal
 open scoped Classical
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 open UpperTheory.Gal.GamX
 
 
@@ -943,7 +932,6 @@ open GroundTheory.Global.SemiLocal
 open scoped Classical
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 open UpperTheory.Gal.GamX
 
 theorem UpperTheory.Gal.GamX.upThruOf :
@@ -970,7 +958,6 @@ open GroundTheory.Global.SemiLocal
 open scoped Classical
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 open UpperTheory.Gal.GamX
 
 private theorem map_eq_of_injOn {α β : Type*} (S : Set α) (g : α → β) (hg : Set.InjOn g S)

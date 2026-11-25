@@ -18,8 +18,6 @@ public import Development.AbelianVarietyTheory.Definitions.Jets.EmbShortThLeThet
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.LevelLiftConditions

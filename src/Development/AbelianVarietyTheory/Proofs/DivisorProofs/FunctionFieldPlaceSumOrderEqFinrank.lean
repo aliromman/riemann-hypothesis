@@ -23,8 +23,6 @@ public import GroundTheory.FunctionField.PlaceAbove
 
 @[expose] public section
 
-set_option autoImplicit false
-
 open scoped IntermediateField Polynomial RatFunc
 open GlobalTheory.Nef
 

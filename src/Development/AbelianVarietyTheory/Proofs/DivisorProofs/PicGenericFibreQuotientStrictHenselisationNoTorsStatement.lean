@@ -250,7 +250,6 @@ section -- clump:auto
 
 open scoped TensorProduct
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.KummerAlg
 
@@ -498,7 +497,6 @@ section -- clump:auto
 
 open scoped TensorProduct
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.KummerTorsor
 
@@ -836,7 +834,6 @@ section -- clump:auto
 
 open scoped TensorProduct
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.KummerStep
 

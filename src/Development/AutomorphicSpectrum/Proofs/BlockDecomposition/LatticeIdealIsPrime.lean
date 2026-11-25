@@ -17,8 +17,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
-set_option autoImplicit false
-
 open DividedPowers CrystallineSemistableComparison.Pb
 
 namespace GlobalTheory.CompanionTheory.LatPrime

@@ -20,8 +20,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.C
 
 @[expose] public section
 
-set_option autoImplicit false
-
 open CategoryTheory AlgebraicGeometry KaehlerDifferential ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.CechDR
 
 namespace GlobalTheory

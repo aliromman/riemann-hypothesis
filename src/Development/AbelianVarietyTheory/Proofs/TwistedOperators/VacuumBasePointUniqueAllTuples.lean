@@ -27,7 +27,6 @@ noncomputable section
 
 namespace GlobalTheory.RowBaseUniq
 open GlobalTheory.RootEx GlobalTheory.RowRep
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem smul_eq_of_adj {R : Type} [CommRing R] {n : Type} [Fintype n] [DecidableEq n] {c : R} {A A' X X' G H : Matrix n n R}
     (h : A * (G * X) = G) (h' : A' * (G * X') = G) (hH : G * H = 1) (e : c • A = c • A') : c • X = c • X' := by

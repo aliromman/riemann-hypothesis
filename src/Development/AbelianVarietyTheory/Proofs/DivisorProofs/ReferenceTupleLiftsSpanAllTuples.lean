@@ -46,7 +46,6 @@ import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsLatticeEmb
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 200000
 
 noncomputable section

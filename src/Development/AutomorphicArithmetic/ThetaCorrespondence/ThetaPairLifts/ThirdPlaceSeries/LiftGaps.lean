@@ -31,7 +31,6 @@ open GlobalTheory GlobalTheory.CechPic GlobalTheory.Vanishing GlobalTheory.HermT
 open GlobalTheory.FlagMod (FlagCover)
 open GlobalTheory.FlagTan (dimFlag)
 open GlobalTheory.HSApp
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.LiftGaps
 section Pt

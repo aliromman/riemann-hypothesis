@@ -51,8 +51,6 @@ section -- clump:auto
 
 open GlobalTheory GlobalTheory.PD GlobalTheory.CechDR KaehlerDifferential
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.PD.ResEv
@@ -212,8 +210,6 @@ section -- clump:auto
 
 open GlobalTheory GlobalTheory.PD GlobalTheory.CechDR KaehlerDifferential
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.PD.TraceOrigin
@@ -302,8 +298,6 @@ section -- clump:auto
 open GlobalTheory GlobalTheory.PD GlobalTheory.CechDR KaehlerDifferential
 open scoped TensorProduct
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.PD.FibTrace
@@ -363,8 +357,6 @@ section -- clump:auto
 @[expose] public section
 
 open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.CechDR GlobalTheory.PD KaehlerDifferential
-
-set_option autoImplicit false
 
 noncomputable section
 

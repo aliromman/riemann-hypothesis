@@ -198,8 +198,6 @@ section -- clump:auto
 open AlgebraicGeometry CategoryTheory Limits NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.LogKS Formalism.L2.Pj
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.OrdCechDep
@@ -835,8 +833,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open MonoidalCategory CartesianMonoidalCategory MonObj
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
-
 namespace GlobalTheory.InfTranslPts
 
 theorem factor_fst {S K : Type} [CommRing S] [Field K] (w : Sp K ⟶ Sp (DualNumber S)) :
@@ -910,7 +906,6 @@ open AlgebraicGeometry CategoryTheory Limits NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.LogKS Formalism.L2.Pj
 open MonoidalCategory CartesianMonoidalCategory MonObj
 attribute [local instance] Over.cartesianMonoidalCategory
-set_option autoImplicit false
 
 noncomputable section
 
@@ -1056,8 +1051,6 @@ section -- clump:auto
 open AlgebraicGeometry CategoryTheory Limits NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.LogKS Formalism.L2.Pj
 
-set_option autoImplicit false
-
 namespace GlobalTheory.ChartCob
 
 theorem resG_appLE {Y Z : Scheme.{0}} (f : Y ⟶ Z) {O : Z.Opens} {V V' : Y.Opens} (h : V ≤ f ⁻¹ᵁ O) (h' : V' ≤ V)
@@ -1162,7 +1155,6 @@ open AlgebraicGeometry CategoryTheory Limits NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.LogKS Formalism.L2.Pj
 open MonoidalCategory CartesianMonoidalCategory
 attribute [local instance] Over.cartesianMonoidalCategory
-set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.FibreIndep

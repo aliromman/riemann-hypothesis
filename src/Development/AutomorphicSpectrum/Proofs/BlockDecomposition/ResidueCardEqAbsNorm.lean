@@ -20,7 +20,6 @@ import Development.AutomorphicArithmetic.IntegralCasts.IsOpenStabOfMemNhds
 @[expose] public section
 
 open NumberField IsDedekindDomain GlobalTheory.CuspRep GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil ValuativeRel
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace GlobalTheory.CompanionTheory.ResCardAbsNorm
 

@@ -35,8 +35,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.Uppe
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.CoverSec

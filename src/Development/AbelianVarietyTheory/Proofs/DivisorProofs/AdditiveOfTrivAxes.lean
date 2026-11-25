@@ -31,8 +31,6 @@ open GlobalTheory.AbDual GlobalTheory.CechPic GlobalTheory.AbLaw
 
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
-
 noncomputable section
 
 attribute [local instance] Over.cartesianMonoidalCategory

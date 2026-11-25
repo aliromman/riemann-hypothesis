@@ -75,8 +75,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory.UPel.Sm GlobalTheory.Cris GlobalTheory.DeRham
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.HTGlueIso
@@ -913,8 +911,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory.UPel.Sm GlobalTheory.Cris GlobalTheory.DeRham
 
-set_option autoImplicit false
-
 noncomputable section
 
 attribute [local instance] Over.cartesianMonoidalCategory
@@ -970,8 +966,6 @@ section -- clump:auto
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory.UPel.Sm GlobalTheory.Cris GlobalTheory.DeRham
-
-set_option autoImplicit false
 
 namespace GlobalTheory.HTLiftLie
 
@@ -1032,7 +1026,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.UPel.Sm GlobalTheory.Cris GlobalTheory.DeRham
 
 attribute [local instance] Over.cartesianMonoidalCategory
-set_option autoImplicit false
 noncomputable section
 open IsLocalRing GlobalTheory.AbDual
 

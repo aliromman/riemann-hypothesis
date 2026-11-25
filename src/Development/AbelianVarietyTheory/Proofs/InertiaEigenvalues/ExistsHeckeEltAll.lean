@@ -23,8 +23,6 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Numb
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.HkSupComm

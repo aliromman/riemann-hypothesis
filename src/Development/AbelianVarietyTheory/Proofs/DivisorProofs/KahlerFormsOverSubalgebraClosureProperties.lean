@@ -18,8 +18,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 open GlobalTheory.PD GlobalTheory.CechDR KaehlerDifferential
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.PD

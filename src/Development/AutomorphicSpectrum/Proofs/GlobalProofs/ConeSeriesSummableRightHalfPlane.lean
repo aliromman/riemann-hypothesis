@@ -19,8 +19,6 @@ import Development.AutomorphicSpectrum.Proofs.GlobalProofs.PartialSum
 
 @[expose] public section
 
-set_option autoImplicit false
-
 open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel

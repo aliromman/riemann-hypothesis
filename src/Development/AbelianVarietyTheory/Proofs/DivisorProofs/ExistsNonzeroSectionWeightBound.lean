@@ -74,8 +74,6 @@ import Formalism.LocalToGlobal.ProjectiveLattices.HeightF1OfData
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.ThetaSteep

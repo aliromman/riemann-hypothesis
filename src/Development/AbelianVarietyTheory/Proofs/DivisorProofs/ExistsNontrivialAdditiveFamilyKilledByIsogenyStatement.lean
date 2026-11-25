@@ -369,8 +369,6 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CharKer
 
-set_option autoImplicit false
-
 namespace GlobalTheory.CharKer
 
 theorem gm_of_isPullGen {X Y Z : Scheme.{0}} {p : X ⟶ Y} {M : LB Y} {e : ∀ k, Γ(X, p ⁻¹ᵁ M.U k)ˣ}
@@ -456,8 +454,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CharKer
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -596,8 +592,6 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CharKer
 
-set_option autoImplicit false
-
 namespace GlobalTheory.CharKer.PmapTwo
 
 variable {S : Scheme.{0}}
@@ -678,8 +672,6 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CharKer
 
-set_option autoImplicit false
-
 namespace GlobalTheory.CharKer
 
 theorem isAdditive_of_isEquivGen : ∀ (K : Type) [Field K] [IsAlgClosed K] (A A' N T : Over (Sp K)) [GrpObj A] [GrpObj A'] [GrpObj N] (i : N ⟶ A) (q : A ⟶ A') (χ : Γ((N ⊗ T).left, ⊤)ˣ) (M : LB (A' ⊗ T).left) (e : ∀ k, Γ((A ⊗ T).left, (pmap q T).left ⁻¹ᵁ M.U k)ˣ), IsAbelianScheme A → IsAbelianScheme A' → IsMonHom i → IsMonHom q → IsFinite q.left → Flat q.left → Surjective q.left → IsPullback i (toUnit N) q η[A'] → IsCharacter χ → M.IsLB → IsEquivGen i q χ M e → IsAdditive M := by
@@ -723,8 +715,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CharKer
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -1063,7 +1053,6 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CharKer
 
-set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.CharKer
@@ -1209,8 +1198,6 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CharKer
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.CharKer
@@ -1267,7 +1254,6 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CharKer
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.CharKer
 
@@ -1389,8 +1375,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CharKer
-
-set_option autoImplicit false
 
 noncomputable section
 

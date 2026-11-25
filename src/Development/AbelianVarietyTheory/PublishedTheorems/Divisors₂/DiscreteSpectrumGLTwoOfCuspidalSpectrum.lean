@@ -159,8 +159,6 @@ variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchim
 
 end Local
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
 end GlobalTheory.DiscChar
 
 namespace GlobalTheory.Published

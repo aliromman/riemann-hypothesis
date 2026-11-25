@@ -654,8 +654,6 @@ open Formalism.MainNotions.IntegralHeckeForms (TwOK ClsQ)
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-set_option autoImplicit false
-
 
 
 noncomputable section
@@ -1170,7 +1168,6 @@ open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj Fo
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 400000
 set_option maxHeartbeats 1000000
 

@@ -54,8 +54,6 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.LBDescent
 
-set_option autoImplicit false
-
 namespace GlobalTheory.LBDescent
 
 private theorem alg {G : Type*} [CommGroup G] (a P b G₁ G₃ : G) :
@@ -210,8 +208,6 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.LBDescent
 
-set_option autoImplicit false
-
 namespace GlobalTheory.LBDescent
 
 private theorem ratio_eq {G : Type} [CommGroup G] (A B C D g : G) (h1 : A = g * B) (h2 : C = g * D) :
@@ -346,7 +342,6 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.LBDescent
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.LBDescent
 
@@ -521,7 +516,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.LBDescent
 open TensorProduct
 
-set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.LBDescent
@@ -1050,8 +1044,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.LBDescent
 open TensorProduct
 
-set_option autoImplicit false
-
 namespace GlobalTheory.LBDescent
 
 theorem coboundary_locally_of_cocycle : ∀ {X Y : Scheme.{0}} (f : X ⟶ Y) [IsFinite f] [Flat f] [Surjective f] [IsLocallyNoetherian Y]
@@ -1127,7 +1119,6 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.LBDescent
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.LBDescent
 
@@ -1213,8 +1204,6 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory Car
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AbLaw GlobalTheory.CechPic GlobalTheory.AbDual GlobalTheory.DualCon
 open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
-
-set_option autoImplicit false
 
 namespace GlobalTheory.LBDescent
 

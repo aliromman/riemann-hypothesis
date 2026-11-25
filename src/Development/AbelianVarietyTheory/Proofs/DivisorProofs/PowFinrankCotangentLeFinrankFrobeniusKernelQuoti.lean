@@ -27,8 +27,6 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.ToSpanSingletonCons
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup Coalgebra Bialgebra TensorProduct

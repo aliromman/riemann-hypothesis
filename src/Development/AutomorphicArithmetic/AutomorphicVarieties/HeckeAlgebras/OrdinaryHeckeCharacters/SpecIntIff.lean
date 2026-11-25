@@ -25,7 +25,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Polynomial ValuativeRel IsLocalRing GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.LocLanglands GlobalTheory.LocGL GlobalTheory.GalOfCusp GlobalTheory.SmGL GlobalTheory.SplitWeil UpperTheory.V UpperTheory.V.Hi
 open UpperTheory.V.HV (Coef)
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 private alias spec_intIff := _root_.GlobalTheory.isIntegral_padicInt_iff_norm_le_one
 

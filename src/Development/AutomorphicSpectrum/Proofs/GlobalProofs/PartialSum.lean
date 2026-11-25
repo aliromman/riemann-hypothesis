@@ -19,8 +19,6 @@ import Formalism.SharpRestriction.GlobalSchurBounds.ShortIntervalPrimes
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani

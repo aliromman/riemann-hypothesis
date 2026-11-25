@@ -29,7 +29,6 @@ import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TwistingCharac
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 noncomputable section
 open NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.DIV.Cons Formalism.L2.Pj Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Indef.Tree Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx
@@ -140,7 +139,6 @@ section -- clump:auto
 
 
 section
-set_option autoImplicit false
 noncomputable section
 open NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.DIV.Cons Formalism.L2.Pj Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Indef.Tree Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx

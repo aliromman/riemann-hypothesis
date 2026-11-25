@@ -33,8 +33,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.ZM GlobalTheory.SiegLev GlobalTheory.SiegelTor GlobalTheory.SiegLevCalc
 open scoped CategoryTheory.Obj
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.SiegLevCover

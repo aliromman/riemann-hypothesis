@@ -51,8 +51,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 open Matrix Finset
 open scoped InnerProductSpace
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace Formalism.L2.SG.Pf.admitted

@@ -31,7 +31,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open NumberField IsDedekindDomain Matrix Polynomial GlobalTheory.BCT GlobalTheory.UnitaryBC Formalism.UG GlobalTheory.PRep
 open PositivityTheory.Rg.BcB.F.Eig
 open scoped Classical
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 noncomputable section
 

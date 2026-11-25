@@ -56,7 +56,6 @@ open GlobalTheory.SeeConjRead
 open GlobalTheory.SeeConjGroup Formalism.L2.SG.HidaSetting
 open scoped Matrix
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.SeeConjGroup
 open Classical

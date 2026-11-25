@@ -25,8 +25,6 @@ import ReciprocityTheory.NeutralLocalFields.Reciprocity
 
 @[expose] public section
 
-set_option autoImplicit false
-
 namespace GlobalTheory.ExpFrame.Tests
 
 end GlobalTheory.ExpFrame.Tests

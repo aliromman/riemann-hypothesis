@@ -21,7 +21,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 open scoped TensorProduct
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.KummerAlg
 

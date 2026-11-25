@@ -20,8 +20,6 @@ import GroundTheory.FunctionField.PlaceDefs
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open scoped IntermediateField Polynomial

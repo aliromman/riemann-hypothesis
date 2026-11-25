@@ -35,7 +35,6 @@ section -- clump:auto
 set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry TensorProduct GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 
-set_option autoImplicit false
 set_option linter.unusedVariables false
 
 noncomputable section
@@ -164,8 +163,6 @@ section -- clump:auto
 set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry TensorProduct GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.CompanionTheory.LocBC
@@ -271,7 +268,6 @@ section -- clump:auto
 set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry TensorProduct GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 
-set_option autoImplicit false
 set_option linter.unusedVariables false
 
 noncomputable section

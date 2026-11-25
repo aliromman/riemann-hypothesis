@@ -27,8 +27,6 @@ public import Mathlib.RingTheory.Trace.Basic
 
 @[expose] public section
 
-set_option autoImplicit false
-
 open TensorProduct
 
 noncomputable section

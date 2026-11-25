@@ -23,8 +23,6 @@ import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.JEvExi
 
 @[expose] public section
 
-set_option autoImplicit false
-
 
 noncomputable section
 

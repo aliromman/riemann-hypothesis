@@ -26,7 +26,6 @@ import Mathlib.Tactic.TypeStar
 open CrystallineSemistableComparison.Pb.Kap
 
 set_option backward.isDefEq.respectTransparency false
-set_option autoImplicit false
 
 namespace GlobalTheory.CompanionTheory.KapRhoHom
 

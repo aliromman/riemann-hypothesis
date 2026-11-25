@@ -32,8 +32,6 @@ import Mathlib.Algebra.Azumaya.Basic
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 section SlopeTestRemainingChoices

@@ -254,13 +254,6 @@ theorem exists_section {R σ : Type} [CommRing R] [IsReduced R] {I : Ideal (MvPo
   obtain ⟨y, ⟨hy, hc⟩, -⟩ := hP.2.2 R (RingHom.id R) p hu hF
   exact ⟨Over.homMk y (hy.trans (spMap_id R)), hc⟩
 
-theorem pt_unique {R σ : Type} [CommRing R] {I : Ideal (MvPolynomial σ R)} {Z : Scheme.{0}} {s : Z ⟶ Sp R}
-    {M : LB Z} {th : σ → M.Sec} (hP : ProjRep I s M th) {T : Type} [CommRing T] {β : R →+* T} {y y' : Sp T ⟶ Z}
-    {w : σ → T} (hy : y ≫ s = spMap β) (hy' : y' ≫ s = spMap β) (hc : SecCoord M th y w) (hc' : SecCoord M th y' w) :
-    y = y' := by
-  obtain ⟨h1, h2⟩ := hP.2.1 T β y w hy hc
-  exact (hP.2.2 T β w h1 h2).unique ⟨hy, hc⟩ ⟨hy', hc'⟩
-
 theorem span_theta (l1 : Out.Laws) (l2 : Out.Laws2) {o : Type} [CommRing o] {g N' : ℕ} {J : Type} {b : TBase o (N' ^ 2)}
     {K : Type} [Field K] {s : Sp K ⟶ Sp o} (t : TObj g (N' ^ 2) J b s) (n : ℕ) (v : Ix g (N' ^ 2) → K)
     (h2 : 2 ≤ n) (hn : n ∣ N') (hth : t.HasTh (𝟙 _) v) : Ideal.span (Set.range v) = ⊤ := by
@@ -357,7 +350,7 @@ theorem exists_scheme_sections_fibres : Out.Laws → Out.Laws2 → ∀ (g : ℕ)
   choose sc hsc using hsc
   refine ⟨Z, _, M, th, sc, p, ⟨hZ, hsm.1, hsm.2, hsc⟩, fun K _ _ x t' _ hth => ?_⟩
   obtain ⟨φ, h1, h2, h3, h4⟩ := key K x t' hth
-  refine ⟨φ, h1, h2, h3, fun h => pt_unique hZ (h4 h).1 ?_ (h4 h).2
+  refine ⟨φ, h1, h2, h3, fun h => GlobalTheory.ZM.FamOf.pt_unique hZ (h4 h).1 ?_ (h4 h).2
     ((Coord.secCoord_bc_scale_unique _ M _ th R _ _ hZ.1 (hsc h)).1 K x)⟩
   rw [Category.assoc, Over.w]
   exact Category.comp_id _

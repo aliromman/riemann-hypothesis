@@ -26,7 +26,6 @@ open IsDedekindDomain NumberField MeasureTheory Matrix
 open Classical
 open scoped TensorProduct ComplexConjugate GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model HasExp SplitsFully Chars)
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 namespace Tw
 open _root_.GlobalTheory
 theorem exists_int_add_conj_eq_one_of_base_good_k : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}

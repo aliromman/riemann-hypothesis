@@ -20,7 +20,6 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.CupPair
 
 open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.CechDR GlobalTheory.PD
 
-set_option autoImplicit false
 noncomputable section
 attribute [local instance] MvPolynomial.gradedAlgebra
 

@@ -21,7 +21,6 @@ import Development.AutomorphicArithmetic.IntegralCasts.IsOpenStabOfMemNhds
 
 noncomputable section
 open NumberField IsDedekindDomain GlobalTheory.CuspRep ValuativeRel
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace GlobalTheory.CohomologicalConjSelfDualTempered.UnrModel
 

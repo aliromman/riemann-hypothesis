@@ -22,7 +22,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
-set_option autoImplicit false
 open IsLocalRing
 
 namespace GlobalTheory.PlaceInt

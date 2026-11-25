@@ -47,7 +47,6 @@ open ReciprocityTheory.ChartRestriction.G.DVR.FlatBC (algX)
 open GlobalTheory.LogPole
 open scoped Classical
 
-set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.LogKSDiv.PairEntry
@@ -265,8 +264,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Limits NumberField
@@ -345,7 +342,6 @@ open ReciprocityTheory.ChartRestriction.G.DVR.FlatBC (algX)
 open GlobalTheory.LogPole
 open scoped Classical
 
-set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.LogPole

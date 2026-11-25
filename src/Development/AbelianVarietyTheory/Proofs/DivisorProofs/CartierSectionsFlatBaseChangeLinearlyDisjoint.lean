@@ -50,8 +50,6 @@ import Mathlib.AlgebraicGeometry.QuasiAffine
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing
@@ -434,7 +432,6 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.Desc
 open TensorProduct
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.SecFlatBC
 

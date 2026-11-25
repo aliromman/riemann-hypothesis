@@ -62,15 +62,11 @@ end Field
 variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
 variable {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E]
 
-theorem locE_nontrivial (L : LocE F E) : Nontrivial E := by
-  have := L.free
-  exact Module.nontrivial_of_finrank_pos (R := F) (by rw [L.rank]; norm_num)
-
 theorem locE_exists_pure [CharZero F] (L : LocE F E) :
     ∃ (d : E) (D : F), D ≠ 0 ∧ D ∈ 𝒪[F] ∧ L.cj d = -d ∧ d * d = algebraMap F E D := by
   have := L.free
   have := L.reduced
-  have hnt := locE_nontrivial L
+  have hnt := Formalism.MainNotions.LocalModelPeriodLattices.nontrivial_E L
   obtain ⟨x, hx⟩ : ∃ x : E, ∀ a : F, algebraMap F E a ≠ x := by
     by_contra! h
     have e := LinearEquiv.ofBijective (Algebra.linearMap F E) ⟨(algebraMap F E).injective, fun y => h y⟩
@@ -107,7 +103,7 @@ theorem locE_exists_coords [CharZero F] (L : LocE F E) :
       (∀ p : F × F, ψ p ∈ L.O → 2 * p.1 ∈ 𝒪[F] ∧ 2 * D * p.2 ∈ 𝒪[F]) := by
   obtain ⟨d, D, hD0, hDO, hcj, hdd⟩ := locE_exists_pure L
   have := L.free
-  have hnt := locE_nontrivial L
+  have hnt := Formalism.MainNotions.LocalModelPeriodLattices.nontrivial_E L
   have hfin : FiniteDimensional F E := Module.finite_of_finrank_pos (by rw [L.rank]; norm_num)
   let φ : (F × F) →ₗ[F] E := (LinearMap.fst F F F).smulRight (1 : E) + (LinearMap.snd F F F).smulRight d
   have hφ : ∀ p : F × F, φ p = algebraMap F E p.1 + algebraMap F E p.2 * d := by

@@ -30,8 +30,6 @@ public import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.ExistsCh
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField

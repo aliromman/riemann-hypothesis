@@ -27,8 +27,6 @@ public import Mathlib.RingTheory.Flat.TorsionFree
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open scoped TensorProduct NNReal NumberField Pointwise

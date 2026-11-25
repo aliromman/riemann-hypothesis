@@ -22,7 +22,6 @@ import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsAlgebraMap
 
 @[expose] public section
 
-set_option autoImplicit false
 noncomputable section
 open NumberField IsDedekindDomain
 open scoped TensorProduct

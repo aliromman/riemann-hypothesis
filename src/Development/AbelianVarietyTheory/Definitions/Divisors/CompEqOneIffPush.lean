@@ -23,8 +23,6 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsDefini
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry

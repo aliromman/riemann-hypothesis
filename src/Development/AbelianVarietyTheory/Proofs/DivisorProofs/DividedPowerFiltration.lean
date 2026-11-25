@@ -20,8 +20,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
 
-set_option autoImplicit false
-
 open DividedPowers GlobalTheory.Cris
 
 namespace GlobalTheory.Cris.ExpBij

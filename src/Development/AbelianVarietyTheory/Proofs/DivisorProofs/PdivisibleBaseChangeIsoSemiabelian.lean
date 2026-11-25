@@ -29,8 +29,6 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RestrictsTo
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj TensorProduct

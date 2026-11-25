@@ -22,7 +22,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 open scoped Classical
 
 noncomputable section

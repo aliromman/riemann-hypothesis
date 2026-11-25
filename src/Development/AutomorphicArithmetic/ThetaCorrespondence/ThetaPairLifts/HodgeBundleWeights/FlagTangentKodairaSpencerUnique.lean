@@ -19,7 +19,6 @@ import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 @[expose] public section
 
 section
-set_option autoImplicit false
 
 noncomputable section
 open AlgebraicGeometry CategoryTheory Limits NumberField TensorProduct

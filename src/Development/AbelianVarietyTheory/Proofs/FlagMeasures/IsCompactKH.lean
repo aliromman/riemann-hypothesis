@@ -21,6 +21,7 @@ import Mathlib.Tactic.NormNum.RealSqrt
 @[expose] public section
 
 open MeasureTheory Matrix Filter Topology
+open scoped Formalism.DoubleCosetMeasures
 
 noncomputable section
 

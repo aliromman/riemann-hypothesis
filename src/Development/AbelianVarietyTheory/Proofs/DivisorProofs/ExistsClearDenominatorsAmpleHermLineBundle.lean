@@ -36,7 +36,6 @@ open CategoryTheory AlgebraicGeometry TopologicalSpace Filter Topology
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.VolBr GlobalTheory.HSNef
 
-set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.HSNef.DenOne
@@ -139,8 +138,6 @@ open CategoryTheory AlgebraicGeometry TopologicalSpace Filter Topology
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.VolBr GlobalTheory.HSNef
 
-set_option autoImplicit false
-
 namespace GlobalTheory.HSNef
 
 theorem exists_pos_nonzero_mem_H : ∀ (k : Type) [CommRing k] (X : Scheme.{0}) [IsIntegral X] (p : X ⟶ Sp k) (D : ℕ),
@@ -188,8 +185,6 @@ section -- clump:auto
 open CategoryTheory AlgebraicGeometry TopologicalSpace Filter Topology
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.VolBr GlobalTheory.HSNef
-
-set_option autoImplicit false
 
 namespace GlobalTheory.HSNef.Den
 

@@ -36,7 +36,6 @@ open Formalism.L2.Host (embLL0)
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-set_option autoImplicit false
 set_option maxHeartbeats 1600000
 
 noncomputable section

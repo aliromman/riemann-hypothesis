@@ -482,7 +482,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.MarkVal
@@ -837,8 +836,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.ConjTwist GlobalTheory.GalTw ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open Classical
 
-set_option autoImplicit false
-
 
 
 noncomputable section
@@ -955,8 +952,6 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.ConjTwist GlobalTheory.GalTw ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open Classical
-
-set_option autoImplicit false
 
 noncomputable section
 

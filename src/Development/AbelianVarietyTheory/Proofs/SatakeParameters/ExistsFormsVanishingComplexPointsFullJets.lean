@@ -37,8 +37,6 @@ section -- clump:auto
 
 open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.CechDR GlobalTheory.PD
 
-set_option autoImplicit false
-
 noncomputable section
 
 attribute [local instance] MvPolynomial.gradedAlgebra
@@ -236,8 +234,6 @@ section -- clump:auto
 
 open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.CechDR GlobalTheory.PD
 
-set_option autoImplicit false
-
 noncomputable section
 
 open TopologicalSpace
@@ -352,8 +348,6 @@ section -- clump:auto
 @[expose] public section
 
 open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.CechDR GlobalTheory.PD
-
-set_option autoImplicit false
 
 noncomputable section
 

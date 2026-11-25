@@ -51,7 +51,6 @@ section -- clump:auto
 @[expose] public section
 
 open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.SplitFlip GlobalTheory.KSplit Classical
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 
 noncomputable section
 namespace GlobalTheory.GJTransfer
@@ -116,7 +115,7 @@ theorem integrable_volGL_of_lintegral {k : Type} [Field k] [ValuativeRel k] [Top
     _ = ∫⁻ X, I X ∂(((volM μ (Fin n) (Fin n)).comap fun g : GL (Fin n) k => g.val).map
           fun g : GL (Fin n) k => g.val) := (hE.lintegral_map I).symm
     _ = ∫⁻ X, I X ∂((volM μ (Fin n) (Fin n)).restrict (Set.range fun g : GL (Fin n) k => g.val)) := by
-        erw [hE.map_comap]; rfl
+        erw [hE.map_comap]
     _ ≤ ∫⁻ X, I X ∂(volM μ (Fin n) (Fin n)) := lintegral_mono' Measure.restrict_le_self le_rfl
     _ < ⊤ := hI
 
@@ -598,7 +597,6 @@ section -- clump:auto
 
 open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.SplitFlip GlobalTheory.KSplit Classical
 
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 
 noncomputable section
 namespace GlobalTheory.GJTransfer
@@ -630,7 +628,6 @@ open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.Split
 noncomputable section
 namespace GlobalTheory.GJIntegrable
 
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
 
@@ -754,7 +751,6 @@ open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.Split
 noncomputable section
 namespace GlobalTheory.GJForm
 
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
   [MeasurableSpace k] [BorelSpace k]
@@ -858,7 +854,6 @@ section -- clump:auto
 
 open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.SplitFlip GlobalTheory.KSplit
 
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 
 noncomputable section
 namespace GlobalTheory.ShellSumEqv
@@ -1215,7 +1210,6 @@ section -- clump:auto
 open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.SplitFlip
 open scoped Pointwise
 
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instMeasMat
 
 section SlopeTestRemainingChoices
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]

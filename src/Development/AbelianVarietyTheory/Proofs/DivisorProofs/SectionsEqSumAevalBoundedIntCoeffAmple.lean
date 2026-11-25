@@ -521,8 +521,6 @@ section -- clump:auto
 
 open Filter Topology MvPolynomial GlobalTheory.HSAmp
 
-set_option autoImplicit false
-
 namespace GlobalTheory.HSAmp.TraceHom
 
 theorem trace_homog : ∀ (K : Type) [Field K] [CharZero K] (D : ℕ) (x : Fin (D + 1) → K), (∀ j, x j ≠ 0) →
@@ -584,8 +582,6 @@ section -- clump:auto
 @[expose] public section
 
 open Filter Topology MvPolynomial GlobalTheory.HSAmp
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -738,7 +734,6 @@ open CategoryTheory AlgebraicGeometry TopologicalSpace Filter Topology MeasureTh
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.VolBr GlobalTheory.HSAmp
 
-set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory.HSRep

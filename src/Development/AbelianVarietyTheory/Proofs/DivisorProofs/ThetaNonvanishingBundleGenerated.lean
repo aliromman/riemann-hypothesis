@@ -36,8 +36,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.DefiningCoordinates (defCoord polyd
 open scoped nonZeroDivisors
 attribute [local instance] Over.cartesianMonoidalCategory
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.HolUnifSec

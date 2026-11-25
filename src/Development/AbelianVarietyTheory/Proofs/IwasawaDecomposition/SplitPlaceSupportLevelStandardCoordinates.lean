@@ -173,13 +173,6 @@ end GlobalTheory.Mem.R3.LiftBrg.SplitLoc
 
 namespace GlobalTheory.Mem.R3.LiftBrg.SplitLoc
 
-theorem conj_eq_one_iff {G : Type} [Group G] (a u : G) : a * u * a⁻¹ = 1 ↔ u = 1 := by
-  constructor
-  · intro h
-    have : u = a⁻¹ * (a * u * a⁻¹) * a := by group
-    rw [this, h]; group
-  · rintro rfl; group
-
 theorem conj_mem_iff {G : Type} [Group G] (H : Subgroup G) {a : G} (ha : a ∈ H) (u : G) : a * u * a⁻¹ ∈ H ↔ u ∈ H := by
   constructor
   · intro h

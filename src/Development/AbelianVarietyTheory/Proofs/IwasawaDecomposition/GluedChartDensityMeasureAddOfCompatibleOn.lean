@@ -22,8 +22,6 @@ open MeasureTheory GlobalTheory.ChartGlue
 open ReciprocityTheory.L2DbarEstimates (V)
 open scoped ENNReal
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.ChartGlue

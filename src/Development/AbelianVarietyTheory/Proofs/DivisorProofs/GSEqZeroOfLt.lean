@@ -125,8 +125,6 @@ section Place
 
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun
 
-attribute [local instance] GlobalTheory.LocalData.complRel
-
 theorem val_le_one_iff {F : Type} [Field F] [NumberField F] (v : Pl F) (x : Fv F v) :
     valuation (Fv F v) x ≤ 1 ↔ x ∈ v.adicCompletionIntegers F := by
   rw [HeightOneSpectrum.mem_adicCompletionIntegers]

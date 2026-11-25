@@ -26,8 +26,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
-set_option autoImplicit false
-
 open NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
 open AlgebraicGeometry CategoryTheory Limits
 open ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.KS GlobalTheory.KS.GlueDer GlobalTheory.LogKS

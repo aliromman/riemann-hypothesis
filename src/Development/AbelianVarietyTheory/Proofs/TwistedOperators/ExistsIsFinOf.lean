@@ -25,7 +25,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 noncomputable section
 namespace GlobalTheory.RowRep
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 variable {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc}
 

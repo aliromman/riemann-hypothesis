@@ -102,7 +102,7 @@ theorem exists_nat_mul_mem_of_mem_nhds {F : Type} [Field F] [NumberField F] {t :
   have e : ((m.natAbs : ℕ) : Fv F v) =
       algebraMap F (v.adicCompletion F) (algebraMap (𝓞 F) F (r * c)) := by
     rw [← hc]; simp
-  rw [map_mul, map_natCast, e, Valuation.map_mul, PI.UnipApproxD.IntegersDenseFiniteAdeles.val_R, map_mul]
+  rw [map_mul, map_natCast, e, Valuation.map_mul, ReciprocityTheory.ChartRestriction.G.Lib.AdeleIntA.val_R, map_mul]
   calc v.intValuation r * v.intValuation c * Valued.v (evalV F v b)
       ≤ v.intValuation r * 1 * 1 :=
         mul_le_mul' (mul_le_mul' le_rfl (v.intValuation_le_one c))

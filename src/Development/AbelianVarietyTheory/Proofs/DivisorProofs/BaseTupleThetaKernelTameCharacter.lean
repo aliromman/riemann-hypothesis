@@ -28,8 +28,6 @@ open scoped TensorProduct Matrix
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.OnCmp GlobalTheory.BigOn GlobalTheory.RealIndexBound
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.OnBaseKer

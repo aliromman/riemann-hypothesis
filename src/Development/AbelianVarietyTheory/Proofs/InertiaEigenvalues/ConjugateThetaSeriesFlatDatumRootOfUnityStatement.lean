@@ -1824,8 +1824,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.ConjTwist GlobalTheory.GalTw ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open Classical
 
-set_option autoImplicit false
-
 namespace GlobalTheory.ConjTwist.FlatSeries
 
 theorem scale {X B : Type} (J : B → X → ℂ) (τ : ℂ ≃+* ℂ) (ζ η C C' : ℂ) (Φ Φ' : X → ℂ)

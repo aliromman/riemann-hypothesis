@@ -31,8 +31,6 @@ open GlobalTheory.TwInputs GlobalTheory.TwInputs.Move
 open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.CoefLatIso

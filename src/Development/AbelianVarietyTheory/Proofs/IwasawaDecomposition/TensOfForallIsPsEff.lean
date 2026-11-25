@@ -83,7 +83,6 @@ section -- clump:auto
 open CategoryTheory Limits AlgebraicGeometry TopologicalSpace Filter
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.QCoh GlobalTheory.CechPic GlobalTheory.Twist
-set_option autoImplicit false
 noncomputable section
 open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 
@@ -154,7 +153,6 @@ open CategoryTheory Limits AlgebraicGeometry TopologicalSpace Filter
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.QCoh GlobalTheory.CechPic GlobalTheory.Twist
 
-set_option autoImplicit false
 noncomputable section
 
 namespace GlobalTheory
@@ -211,7 +209,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry TopologicalSpace Filter
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -282,7 +279,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry TopologicalSpace Filter
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -366,7 +362,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry TopologicalSpace Filter
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor

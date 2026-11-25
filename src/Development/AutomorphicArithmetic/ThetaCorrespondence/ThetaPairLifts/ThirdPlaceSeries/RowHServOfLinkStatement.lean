@@ -512,7 +512,7 @@ open Formalism.L2.G.Pend (k0ToC wToC LTIso beLT epOf BeRat)
 open Formalism.InvariantFactorPaths.G7 (cob lgF IsLawOfLog at1)
 open Formalism.L2.Th1.CM (MaximalUnramifiedExtension)
 open Formalism.L2.KerInert.BeCob (eLT vLT psiLT)
-open GlobalTheory.CurveDictionary (map_cob lgF_eq_logF cc_lgF')
+open Formalism.L2.KerInert.BeCob (map_cob lgF_eq_logF cc_lgF')
 
 theorem cobExact : Formalism.L2.KerInert.BeCob.CobExact := by
   apply _root_.Formalism.L2.KerInert.BeCob.coboundary_exact
@@ -538,7 +538,7 @@ open Formalism.L2.G.Pend (k0ToC wToC LTIso epOf)
 open Formalism.InvariantFactorPaths.G7 (lgF)
 open Formalism.DworkPowerSeriesWeights (Integral)
 open Formalism.L2.KerInert.BeCob (eLT vLT ThetaTie ShortIso)
-open GlobalTheory.CurveDictionary (cc_lgF' lgF_eq_logF)
+open Formalism.L2.KerInert.BeCob (cc_lgF' lgF_eq_logF)
 
 section IntPS
 

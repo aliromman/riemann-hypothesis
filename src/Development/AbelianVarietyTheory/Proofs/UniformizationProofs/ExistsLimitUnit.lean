@@ -29,7 +29,6 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU GlobalTheory.FormalValue
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory.NormGen
 

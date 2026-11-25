@@ -19,8 +19,6 @@ public import Mathlib.Data.Nat.Choose.Cast
 
 open MvPolynomial
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.DPEval2

@@ -25,7 +25,6 @@ open NumberField IsDedekindDomain Formalism.L2.Host Formalism.ConjugateSelfDual 
 open scoped Classical
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL
 
 namespace UpperTheory.V.Z.Gam
 

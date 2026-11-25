@@ -23,8 +23,6 @@ public import Mathlib.Algebra.MvPolynomial.Funext
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField

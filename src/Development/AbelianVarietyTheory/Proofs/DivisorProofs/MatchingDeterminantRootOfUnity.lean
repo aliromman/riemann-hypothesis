@@ -30,8 +30,6 @@ open GlobalTheory.Dict (castFr)
 open scoped TensorProduct Matrix
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-set_option autoImplicit false
-
 namespace GlobalTheory.GeoLevel
 
 theorem det_mul_cc_det_of_isMatch {E : Type} [Field E] [NumberField E] [IsCMField E] {r : ℕ} (X : Data E r)

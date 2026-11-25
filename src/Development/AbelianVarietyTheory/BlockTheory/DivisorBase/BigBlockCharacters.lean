@@ -18,8 +18,6 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.NonemptyValExtOfOve
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.BigBlockCharacters

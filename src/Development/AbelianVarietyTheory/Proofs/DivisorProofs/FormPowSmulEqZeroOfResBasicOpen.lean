@@ -21,8 +21,6 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.OneFormEqZeroOfVani
 
 open CategoryTheory AlgebraicGeometry KaehlerDifferential ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.CechDR Opposite
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.CechDR

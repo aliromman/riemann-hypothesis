@@ -45,7 +45,6 @@ open GlobalTheory.HSApp
 open GlobalTheory.Cartier GlobalTheory.Discrepancy GlobalTheory.QCoh
 open GlobalTheory.Twist GlobalTheory.SerreCriterion
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory
 namespace IsolatedSecZero

@@ -177,8 +177,6 @@ section -- clump:auto
 open CategoryTheory Limits AlgebraicGeometry IsLocalRing TensorProduct
 open GlobalTheory GlobalTheory.QCoh GlobalTheory.Vert GlobalTheory.PerfdLat GlobalTheory.Published
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.BplusDescent
@@ -291,8 +289,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.ZM GlobalTheory.ZH GlobalTheory.UMin GlobalTheory.UPoinc GlobalTheory.Ex.OneGen
 open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
-
-set_option autoImplicit false
 
 noncomputable section
 

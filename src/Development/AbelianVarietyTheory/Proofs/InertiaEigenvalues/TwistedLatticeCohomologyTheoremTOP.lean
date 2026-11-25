@@ -1512,8 +1512,8 @@ theorem twistedLatticeCohomology_theoremTOP : ∀ (D : D7) (HW : HWOf D.loc) (F 
     tableLineDegreeTwo.Stmt D HW F Cm := by
   intro D HW F Cm hA l _ K LL hK lam hlam
   have htied : Nonempty (LocTied l (D.loc l) (D.locA l)) := ⟨D.locT l⟩
-  have h18 := hA.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.1
-  have h19 := hA.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.1
+  have h18 := hA.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.1
+  have h19 := hA.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.1
   have hreal : ∀ S : TopSit (D.loc l), S.Real := fun S =>
     GlobalTheory.BasePairs.real_of_presented (D.locA l) (HW l) (F l) S
       (GlobalTheory.RedFun.realD (D.locA l) (HW l) (F l) S)

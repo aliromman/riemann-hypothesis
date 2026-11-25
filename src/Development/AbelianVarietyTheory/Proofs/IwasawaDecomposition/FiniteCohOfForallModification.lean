@@ -26,7 +26,6 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.LineBundleGl
 
 @[expose] public section
 
-set_option autoImplicit false
 noncomputable section
 open CategoryTheory Limits AlgebraicGeometry TopologicalSpace Filter
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor

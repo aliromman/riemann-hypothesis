@@ -24,8 +24,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 open scoped IntermediateField Polynomial RatFunc
 open GlobalTheory.Nef
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.Nef.PlaceResiduePowerBound

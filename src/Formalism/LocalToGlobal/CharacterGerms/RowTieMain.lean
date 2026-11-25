@@ -42,8 +42,6 @@ import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.NuLocCLeNuPlEBase
 
 @[expose] public section
 
-set_option autoImplicit false
-
 namespace Formalism.L2.FormalSeriesBounds
 
 open NumberField

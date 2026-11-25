@@ -55,15 +55,11 @@ theorem pureGen_sub_fock_k {d : _root_.PositivityTheory.SiegelWeilFormula.SD_k �
 theorem fock_le_span_k {d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ} (R : _root_.PositivityTheory.SiegelWeilFormula.RD_k d) : R.fock ≤ Submodule.span ℂ (_root_.PositivityTheory.SiegelWeilFormula.KWhit.pureGen_k R) := by
   refine Submodule.span_le.2 ?_
   rintro _ ⟨P, g, hg, rfl⟩
-  have := Dense.mem_span_pf hg
-  clear hg
-  have key : _root_.PositivityTheory.SiegelWeilFormula.KWhit.genL_k R P g ∈ Submodule.span ℂ (_root_.PositivityTheory.SiegelWeilFormula.KWhit.pureGen_k R) := by
-    induction this using Submodule.span_induction with
-    | mem x hx => obtain ⟨φ, hφ, rfl⟩ := hx; exact Submodule.subset_span ⟨P, φ, hφ, rfl⟩
-    | zero => rw [map_zero]; exact zero_mem _
-    | add x y _ _ hx hy => rw [map_add]; exact add_mem hx hy
-    | smul a x _ hx => rw [map_smul]; exact Submodule.smul_mem _ _ hx
-  exact key
+  refine (Submodule.span_le.2 ?_ : _ ≤ (Submodule.span ℂ
+    (_root_.PositivityTheory.SiegelWeilFormula.KWhit.pureGen_k R)).comap
+      (_root_.PositivityTheory.SiegelWeilFormula.KWhit.genL_k R P)) (Dense.mem_span_pf hg)
+  rintro _ ⟨φ, hφ, rfl⟩
+  exact Submodule.subset_span ⟨P, φ, hφ, rfl⟩
 theorem isPureT_of_k {d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ} (R : _root_.PositivityTheory.SiegelWeilFormula.RD_k d) (P : InfinitePlace F → PX d.m d.n)
     (φ : ∀ u : HeightOneSpectrum (𝓞 F), (Fin d.m × Fin d.n × Fin 2 → Fv F u) → ℂ) (hφ : Dense.Good φ) (Φ : d.Fn)
     (h : d.T Φ = _root_.PositivityTheory.SiegelWeilFormula.KWhit.genF_k R P (Dense.pf φ)) : _root_.PositivityTheory.SiegelWeilFormula.KWhit.IsPureT_k R Φ := by
