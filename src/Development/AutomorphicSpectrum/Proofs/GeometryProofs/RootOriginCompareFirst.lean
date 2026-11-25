@@ -29,9 +29,6 @@ import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeCptInteriorGen
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeHermitianFormExists
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeInnerProductPullbackUnique
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.StalkSpecializesBijective
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeComponentBaseChangeCompat, Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeComponentLatticeMapCompat, Development.AutomorphicSpectrum.Proofs.GeometryProofs.SubringCoordsComplexValue, Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginCompareFirst

@@ -12,7 +12,6 @@ import Mathlib.AlgebraicGeometry.Modules.Sheaf
 import Mathlib.Tactic.Linter.Style
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.ReduceModChar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.QuadraticCharacterPrescribedPlaces, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsPointLocalizationPrime, Development.WeilBound.CoreStatements.HomogeneousNonvanishing.LatticesAgreeOfHeightOne, Development.AutomorphicSpectrum.Proofs.GeometryProofs.LatticeEqOfCodimOneEq

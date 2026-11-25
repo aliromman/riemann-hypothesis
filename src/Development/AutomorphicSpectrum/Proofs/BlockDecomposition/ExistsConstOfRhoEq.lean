@@ -5,7 +5,6 @@ public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCoh
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsRingHomPowPrimePow
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PfFacts
 import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.ReduceModChar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EqCOfToLaurentEqInvert, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsConstOfRhoEq
