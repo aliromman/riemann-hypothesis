@@ -1,0 +1,61 @@
+{
+  "base": "756a70250dcba9162b99d4ea35c186558434c17e",
+  "head": "da7ab2bd48e5ae859fbf9ca72594962e1246b98f",
+  "modules": 58947,
+  "changed": 3417,
+  "parent": {
+    "nonblank": 12094063,
+    "lines": 13710054,
+    "bytes": 920532030
+  },
+  "candidate": {
+    "nonblank": 12009854,
+    "lines": 13625845,
+    "bytes": 916366315
+  },
+  "clumps": 655,
+  "clump_members": 2127,
+  "removed": 84236,
+  "added": 27,
+  "minimum": 1,
+  "maximum": 32,
+  "removed_by_import": {
+    "Mathlib.Algebra.Order.Floor.Extended": 3360,
+    "Mathlib.Algebra.Order.Floor.Semifield": 3360,
+    "Mathlib.Algebra.Order.Interval.Basic": 3360,
+    "Mathlib.Analysis.Complex.UpperHalfPlane.Basic": 2969,
+    "Mathlib.Analysis.Normed.Algebra.GelfandRadius": 1705,
+    "Mathlib.Analysis.SpecialFunctions.Bernstein": 1398,
+    "Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp": 3360,
+    "Mathlib.Combinatorics.Enumerative.DyckWord": 3360,
+    "Mathlib.Combinatorics.SimpleGraph.Triangle.Removal": 3360,
+    "Mathlib.Data.NNRat.Floor": 3360,
+    "Mathlib.Data.Nat.Choose.Multinomial": 1393,
+    "Mathlib.Geometry.Euclidean.Volume.Basic": 3360,
+    "Mathlib.NumberTheory.Chebyshev": 3360,
+    "Mathlib.NumberTheory.Height.NumberField": 3271,
+    "Mathlib.NumberTheory.Height.Projectivization": 3360,
+    "Mathlib.NumberTheory.LucasLehmer": 3360,
+    "Mathlib.NumberTheory.SelbergSieve": 3360,
+    "Mathlib.RingTheory.Radical.NatInt": 3360,
+    "Mathlib.RingTheory.WittVector.IsPoly": 534,
+    "Mathlib.Tactic.Echelon.Zsqrtd": 3360,
+    "Mathlib.Tactic.Inclusion.Extension.Core.Core": 3360,
+    "Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit": 3360,
+    "Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp": 3360,
+    "Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses": 3360,
+    "Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic": 3360,
+    "Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses": 3360,
+    "Mathlib.Tactic.Polynomial.Basic": 804,
+    "Mathlib.Tactic.ReduceModChar": 1163,
+    "Mathlib.Analysis.SpecialFunctions.Gamma.Basic": 768,
+    "Mathlib.Topology.Sheaves.Init": 1696,
+    "Mathlib.Tactic.Basify": 748,
+    "Mathlib.Tactic.ENatToNat": 587
+  },
+  "added_by_import": {
+    "Mathlib.RingTheory.Flat.TorsionFree": 20,
+    "Mathlib.Analysis.Complex.Polynomial.Basic": 6,
+    "Mathlib.Algebra.Order.Ring.Star": 1
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "source_main": "ce1560fba43e59629abdf3c27a279218fad9f77a",
+  "current_head": "a2cad6d6f3d7499fa4fef7e3bcc4155b99d31a70",
+  "pending_batch": "209a3c78ff535325314b366349bb470cd7f183e0",
+  "direct_source_measurement": true,
+  "scope": "Final batch-23 merge. The later batch edits do not intersect the import-pruning proposal.",
+  "totals": {
+    "currently_edited": 8210,
+    "our_removals_already_in_batch": 118040,
+    "edits_keeping_upstream_work": 3417,
+    "remaining_net_import_lines": 84209,
+    "all_our_removals_already_in_batch": 4541,
+    "path_deleted_by_batch": 2
+  },
+  "groups": [
+    {
+      "group": "weil-bound",
+      "currently_edited": 63,
+      "our_removals_already_in_batch": 0,
+      "edits_keeping_upstream_work": 61,
+      "remaining_net_import_lines": 1636
+    },
+    {
+      "group": "spectrum",
+      "currently_edited": 163,
+      "our_removals_already_in_batch": 47,
+      "edits_keeping_upstream_work": 153,
+      "remaining_net_import_lines": 2633,
+      "all_our_removals_already_in_batch": 2
+    },
+    {
+      "group": "varieties",
+      "currently_edited": 799,
+      "our_removals_already_in_batch": 5245,
+      "edits_keeping_upstream_work": 549,
+      "remaining_net_import_lines": 13334,
+      "all_our_removals_already_in_batch": 213,
+      "path_deleted_by_batch": 1
+    },
+    {
+      "group": "arithmetic",
+      "currently_edited": 60,
+      "our_removals_already_in_batch": 0,
+      "edits_keeping_upstream_work": 56,
+      "remaining_net_import_lines": 1403
+    },
+    {
+      "group": "abelian",
+      "currently_edited": 2160,
+      "our_removals_already_in_batch": 33611,
+      "edits_keeping_upstream_work": 802,
+      "remaining_net_import_lines": 20483,
+      "path_deleted_by_batch": 1,
+      "all_our_removals_already_in_batch": 1267
+    },
+    {
+      "group": "divisors-a-f",
+      "currently_edited": 610,
+      "our_removals_already_in_batch": 4986,
+      "edits_keeping_upstream_work": 376,
+      "remaining_net_import_lines": 9507,
+      "all_our_removals_already_in_batch": 198
+    },
+    {
+      "group": "divisors-g-z",
+      "currently_edited": 886,
+      "our_removals_already_in_batch": 14920,
+      "all_our_removals_already_in_batch": 593,
+      "edits_keeping_upstream_work": 281,
+      "remaining_net_import_lines": 7050
+    },
+    {
+      "group": "inertia-iwasawa",
+      "currently_edited": 219,
+      "our_removals_already_in_batch": 0,
+      "edits_keeping_upstream_work": 212,
+      "remaining_net_import_lines": 5113
+    },
+    {
+      "group": "operators-theta",
+      "currently_edited": 1225,
+      "our_removals_already_in_batch": 17699,
+      "all_our_removals_already_in_batch": 672,
+      "edits_keeping_upstream_work": 529,
+      "remaining_net_import_lines": 13107
+    },
+    {
+      "group": "lattices",
+      "currently_edited": 2025,
+      "our_removals_already_in_batch": 41532,
+      "edits_keeping_upstream_work": 398,
+      "remaining_net_import_lines": 9943,
+      "all_our_removals_already_in_batch": 1596
+    }
+  ],
+  "checked_at": "2026-11-25T21:03:39.213083+00:00",
+  "community": "756a70250dcba9162b99d4ea35c186558434c17e",
+  "source_head": "da7ab2bd48e5ae859fbf9ca72594962e1246b98f"
+}

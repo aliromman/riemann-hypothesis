@@ -1,0 +1,28 @@
+{
+  "base": "756a70250dcba9162b99d4ea35c186558434c17e",
+  "heads": {
+    "879": "da7ab2bd48e5ae859fbf9ca72594962e1246b98f",
+    "977": "11eaccf3b76338b88b78ddf299f341ba1d1ecea2"
+  },
+  "joint_tree": "e074b353a3b5e36f391bce626db5176d0bc4f4e3",
+  "shared_sources": 652,
+  "lean_files": 58947,
+  "nonblank": {
+    "base": 12094063,
+    "joint": 11699849
+  },
+  "saved": 394214,
+  "dependencies": {
+    "879": {
+      "edited": 3417,
+      "direct_outside": 10265,
+      "transitive_outside": 27068
+    },
+    "977": {
+      "edited": 11289,
+      "direct_outside": 10002,
+      "transitive_outside": 30924
+    }
+  },
+  "dependency_method": "Project imports parsed by the pinned Lean --deps-json on all modules, including multiline headers. Compared project imports and flags on all differing Lean files in both branches."
+}
