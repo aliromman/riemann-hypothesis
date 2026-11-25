@@ -52,27 +52,6 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Hecke
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.InfOfLamLdefEqParamV
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PlacesUnder
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.StandardLatticesDiagonal
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -87,33 +66,23 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.StableIffCarrierEq
 import Development.AbelianVarietyTheory.Definitions.Foundations.RayPrimes
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalToGlobal.Divisibility.CoefModLemmas
 import Mathlib.Tactic.Linter.Style
 import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExistsGenerators
 import Formalism.LocalToGlobal.UnitaryNorms.CharUniq
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
 import Development.AbelianVarietyTheory.Definitions.Foundations.ValuedAlgebraMapEqOne
 import Formalism.LocalToGlobal.BesselHermitianTheta.NoncompactGapAtLeastRange
 import Formalism.LocalToGlobal.Columns.CoefficientsModP.WeTransposeWordTransposeWord
 import Formalism.LocalToGlobal.IndefiniteReal.IndefiniteWeightData
 import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GapAtLeast
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Data.Nat.Choose.Multinomial
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.PredMemGamRanks
-import Mathlib.Tactic.ENatToNat
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FrameEquivApply
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MemRationalGLOfUnitaryGroupGramUnitGram
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.StdFrameLevelSubgroupBoundedOpenHyperspecialStatement
 import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
 import Formalism.LocalToGlobal.Columns.RowFormsSel
-import Mathlib.Tactic.Polynomial.Basic
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SideIn, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SwapCastEqSwapAE, Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.IsWtOfParUnique, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CoefficientSpaceDefiniteFormIrreducibleAlgebraic, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CoefficientSpaceDefiniteFormIrreducibleAlgebraicStatement, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.EqPlMapOfConj, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIntOfFinite, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsLevOfAll, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsUnitFrame, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MemGlintOfEntries, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SplitPlaceResidueMapUnitCharacter, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SplitPlaceResidueMapUnitCharacterStatement, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.StdFrameLevelCharacterAtTypePlaceEq, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TypePlaceLevelPlacesDistinctUnderlyingStatement, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LevelUnipotentGenericCharTypePlace, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsSplitTwistPlaceOverProductCharacterRamifieStatement, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ReductionCompletionBlockTriLowerBlockDet, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TypeAndTwistPlacesOverOtherThanSplit, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RamifiedLevelEqParahoricWithTupleCharacter, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SpanRangeEquiv
