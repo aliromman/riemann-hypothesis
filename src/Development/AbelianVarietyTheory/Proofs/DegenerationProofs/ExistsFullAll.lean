@@ -62,13 +62,13 @@ import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsLevelOfFull, Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsLevelOfFullStatement, Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsLimitPointTateIsoSequenceStatement, Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsTateIsoMove, Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsTateIsoMoveStatement, Development.AbelianVarietyTheory.Proofs.DegenerationProofs.IsThetaPtDownStatement, Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsFullAll
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsLevelOfFull
-
-set_option autoImplicit false
+-- clump: shared namespace opens
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField
 open scoped CategoryTheory.Obj BigOperators
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsLevelOfFull
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory GlobalTheory.Ex
 
@@ -171,12 +171,6 @@ theorem exists_level_of_full : Laws → ∀ (E : Type) [Field E] [NumberField E]
 
 end GlobalTheory
 end -- clump:auto
-
--- clump: shared namespace opens
-
-open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField
-open scoped CategoryTheory.Obj BigOperators
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsLevelOfFullStatement
 attribute [local instance] Over.cartesianMonoidalCategory

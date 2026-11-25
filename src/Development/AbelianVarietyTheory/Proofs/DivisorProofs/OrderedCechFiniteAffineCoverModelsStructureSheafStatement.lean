@@ -75,7 +75,6 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry KaehlerDifferential 
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.AbCoh
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AlternatingToOrderedCechDegreeTwoMemCocyclesTwo
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CechPoset
 
 namespace GlobalTheory.CechPoset
@@ -199,7 +198,6 @@ end GlobalTheory.CechPoset
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AlternatingToOrderedCechDegreeTwoMemCocyclesTwoStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CechPoset
 
 
@@ -228,7 +226,6 @@ end GlobalTheory.CechPoset
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.BaseChangeTrivialBundleCechBijectiveOfAffineStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CechPoset
 
 
@@ -319,7 +316,6 @@ end GlobalTheory.CechPoset
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.BaseChangeTrivialBundleCechOneTmulStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CechPoset
 
 
@@ -456,12 +452,10 @@ theorem restrict_pull2_pullHO2 {R' R'' : Type} [CommRing R'] [CommRing R''] {X' 
 end GlobalTheory.CechPoset
 end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CechH2PullbackRefinementCompatStatement
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry KaehlerDifferential MonoidalCategory CartesianMonoidalCategory MonObj TensorProduct
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.AbCoh
-
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CechH2PullbackRefinementCompatStatement
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CechPoset
 
@@ -470,9 +464,13 @@ theorem _root_.GlobalTheory.T.cech_h2_pullback_refinement_compat : ∀ {R' R'' :
   first | exact @GlobalTheory.CechPoset.restrict_pull2_pullHO2
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCechCocycleCohomologousPosetOneCocycle
-attribute [local instance] Over.cartesianMonoidalCategory
+section -- clump: shared namespace opens
+
+open CategoryTheory CategoryTheory.Limits AlgebraicGeometry KaehlerDifferential MonoidalCategory CartesianMonoidalCategory MonObj TensorProduct
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.AbCoh
 open GlobalTheory.CechPoset
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCechCocycleCohomologousPosetOneCocycle
 
 namespace GlobalTheory.CechPoset.CechPosetH1Surjective
 
@@ -629,8 +627,6 @@ theorem GlobalTheory.CechPoset.exists_cech_cocycle_cohomologous : ∀ {κ : Type
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCechCocycleCohomologousPosetOneCocycleStatement
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CechPoset
 
 
 theorem _root_.GlobalTheory.T.exists_cech_cocycle_cohomologous_posetOneCocycle : ∀ {κ : Type} [LinearOrder κ] {R : Type} [CommRing R] (F : (NE κ)ᵒᵖ ⥤ CommAlgCat.{0} R) (f : Z1 F), ∃ z : CC F 1, δ F 1 z = 0 ∧ ∃ g : C0 F, f.1 - e1 F z = d0 F g := by
@@ -638,8 +634,6 @@ theorem _root_.GlobalTheory.T.exists_cech_cocycle_cohomologous_posetOneCocycle :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCechPrimitiveOfImageCoboundary
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CechPoset
 
 namespace GlobalTheory.CechHOneInj
 
@@ -752,8 +746,6 @@ end GlobalTheory.CechHOneInj
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCechPrimitiveOfImageCoboundaryStatement
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CechPoset
 
 
 theorem _root_.GlobalTheory.T.exists_cech_primitive_of_image_coboundary : ∀ {κ : Type} [LinearOrder κ] {R : Type} [CommRing R] (F : (NE κ)ᵒᵖ ⥤ CommAlgCat.{0} R) (z : CC F 1), δ F 1 z = 0 → ∀ g : C0 F, e1 F z = d0 F g → ∃ c : CC F 0, δ F 0 c = z := by
@@ -761,8 +753,6 @@ theorem _root_.GlobalTheory.T.exists_cech_primitive_of_image_coboundary : ∀ {�
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.OrderedCechDegreeZeroCocyclesCorrespond
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CechPoset
 
 namespace GlobalTheory.CechPoset
 
@@ -815,8 +805,6 @@ end GlobalTheory.CechPoset
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.OrderedCechDegreeZeroCocyclesCorrespondStatement
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CechPoset
 
 
 theorem _root_.GlobalTheory.T.orderedCechDegreeZero_cocycles_correspond : ∀ {κ : Type} [LinearOrder κ] {R : Type} [CommRing R] (F : (NE κ)ᵒᵖ ⥤ CommAlgCat.{0} R), (∀ c : CC F 0, δ F 0 c = 0 → e0 F c = 0 → c = 0) ∧ ∀ g : C0 F, d0 F g = 0 → ∃ c : CC F 0, δ F 0 c = 0 ∧ e0 F c = g := by
@@ -824,8 +812,6 @@ theorem _root_.GlobalTheory.T.orderedCechDegreeZero_cocycles_correspond : ∀ {�
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.OrderedCechDifferentialZeroConstOne
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CechPoset
 
 namespace GlobalTheory.CechPoset
 
@@ -844,6 +830,13 @@ theorem δ_zero_one : ∀ {κ : Type} [LinearOrder κ] {R : Type} [CommRing R] (
 end GlobalTheory.CechPoset
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
+-- clump: shared namespace opens
+
+open CategoryTheory CategoryTheory.Limits AlgebraicGeometry KaehlerDifferential MonoidalCategory CartesianMonoidalCategory MonObj TensorProduct
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.AbCoh
+
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.OrderedCechDifferentialZeroConstOneStatement
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CechPoset
@@ -852,7 +845,6 @@ open GlobalTheory.CechPoset
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.OrderedCechToCatCochainsOneCoboundaryComm
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CechPoset
 
 namespace GlobalTheory.CechPosetDegreeOne
@@ -954,7 +946,6 @@ end GlobalTheory.CechPosetDegreeOne
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.OrderedCechToCatCochainsOneCoboundaryCommStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CechPoset
 
 
@@ -963,7 +954,6 @@ theorem _root_.GlobalTheory.T.orderedCech_cochainsOne_coboundary_comm : ∀ {κ 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.OrderedCechToCatCochainsZeroCoboundaryComm
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CechPoset
 
 
@@ -1027,7 +1017,6 @@ end GlobalTheory.CechPoset
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.OrderedCechToCatCochainsZeroCoboundaryCommStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CechPoset
 
 

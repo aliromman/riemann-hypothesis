@@ -68,7 +68,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.FrameSqEqOfSymmetricThetaElementStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UT
 
 end -- clump:auto
@@ -450,7 +449,6 @@ end GlobalTheory.UT.PhiOrder
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.SymmetricFramePhiPowOrderEqIdStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UT
 end -- clump:auto
 

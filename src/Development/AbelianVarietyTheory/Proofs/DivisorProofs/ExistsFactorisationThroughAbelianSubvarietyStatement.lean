@@ -126,7 +126,6 @@ end GlobalTheory.AV.AbVar
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGeometricallyIntegralImageOfHomStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 
@@ -213,7 +212,6 @@ end GlobalTheory.AV.AbVar
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSubgroupSchemeOfGeometricallyIntegralImageStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 

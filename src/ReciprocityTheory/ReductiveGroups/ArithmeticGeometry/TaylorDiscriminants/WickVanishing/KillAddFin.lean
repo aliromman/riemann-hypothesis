@@ -12,8 +12,6 @@ import Mathlib.RingTheory.PiTensorProduct
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.KillAddQ
 
-set_option autoImplicit false
-
 
 open MvPowerSeries ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
@@ -96,8 +94,6 @@ end ReciprocityTheory.ChartRestriction.G.TB
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.ETGMulQ
-
-set_option autoImplicit false
 
 
 namespace ReciprocityTheory.ChartRestriction.G.TB.G2.Gen
@@ -192,8 +188,6 @@ end -- clump:auto
 section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.FoldrIterateDerivationEq
 @[expose] public noncomputable section
 
-set_option autoImplicit false
-
 
 open MvPowerSeries ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
@@ -266,8 +260,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.FoldrIterateEqTG
-
-set_option autoImplicit false
 
 
 namespace ReciprocityTheory.ChartRestriction.G.TB.G2.Gen
@@ -353,8 +345,6 @@ end ReciprocityTheory.ChartRestriction.G.TB.G2.Gen
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.KillAdd
-
-set_option autoImplicit false
 
 
 open MvPowerSeries ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ

@@ -12,8 +12,6 @@ import Mathlib.RingTheory.SimpleRing.Principal
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.ArakelovInstances.DetOfBlockDiag
 
-set_option autoImplicit false
-
 
 namespace ReciprocityTheory.ChartRestriction.G.AR.Inst.KapPf
 
@@ -224,8 +222,6 @@ end ReciprocityTheory.ChartRestriction.G.AR.Inst.KapPf
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.ArakelovInstances.HasFDerivAtNmat
-
-set_option autoImplicit false
 
 
 namespace ReciprocityTheory.ChartRestriction.G.AR.Inst.KapPf

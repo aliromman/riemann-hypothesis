@@ -23,8 +23,6 @@ namespace Formalism.L2.SG.RhoPf
 
 open Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.PoincareInHH.PoincareSetting Formalism.L2.SG.Pf Formalism.L2.SG.Pf.LatDict
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section W3
 
 variable {D : D7} (X : HidaSetting D) (u : D.what₂.Word)
@@ -169,8 +167,6 @@ namespace Formalism.L2.SG.RhoPf
 
 open Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.PoincareInHH.PoincareSetting Formalism.L2.SG.Pf
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section Stab
 
 variable {D : D7} (X : HidaSetting D) (u : D.what₂.Word)
@@ -269,8 +265,6 @@ end -- clump:auto
 namespace Formalism.L2.SG.RhoPf
 
 open Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.PoincareInHH.PoincareSetting Formalism.L2.SG.Pf
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section Final
 

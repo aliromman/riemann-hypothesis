@@ -13,8 +13,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PlaceDivisors.StChar
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PlaceDivisors.ChartPointCongruence.InChartSt
 
-set_option autoImplicit false
-
 
 open CategoryTheory Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing
 open MvPowerSeries
@@ -39,8 +37,6 @@ end ReciprocityTheory.ChartRestriction.G.Pdiv.ChPt
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PlaceDivisors.ChartPointCongruence.EqOfMod
-
-set_option autoImplicit false
 
 
 open IsLocalRing MvPowerSeries

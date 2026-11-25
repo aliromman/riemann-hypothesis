@@ -212,7 +212,6 @@ end GlobalTheory.UT.FrameVal
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.SumVRootOfConvolutionPow
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UT
 
 namespace GlobalTheory.UT

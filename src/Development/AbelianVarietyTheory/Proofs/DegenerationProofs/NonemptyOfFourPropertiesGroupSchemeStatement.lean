@@ -1040,7 +1040,6 @@ end GlobalTheory.ZH.PowSec
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsSectionsPowLineBundleFromLocalBasisStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 

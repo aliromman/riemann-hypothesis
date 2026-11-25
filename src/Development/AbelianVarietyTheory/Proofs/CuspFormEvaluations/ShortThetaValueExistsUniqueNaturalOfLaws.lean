@@ -63,7 +63,6 @@ theorem _root_.GlobalTheory.T.shortThetaSum_eq_of_witnesses_common_algebra : Law
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ShortThetaValueExistsUniqueNaturalOfLaws
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ShortValue
 

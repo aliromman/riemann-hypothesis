@@ -52,7 +52,6 @@ import Mathlib.AlgebraicGeometry.Modules.Sheaf
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CrystallineH2SmallCoverBijectiveStatement
 
 open CategoryTheory AlgebraicGeometry DividedPowers ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.DeRham
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 

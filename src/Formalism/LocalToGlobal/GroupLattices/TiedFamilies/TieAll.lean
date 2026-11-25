@@ -27,8 +27,6 @@ namespace Formalism.L2.G
 open Formalism.L2.G.Cmp Formalism.BasicNotions Formalism.MainNotions.G Formalism.L2.Forms Formalism.UG NumberField IsDedekindDomain Matrix
 open scoped TensorProduct
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7} {X : Formalism.L2.Herm.Herm0 D}
   {T : ∀ u : D.what₂.Word, Forms0 D u} {Gt : GatTies D} {I : CmpIn D X}
 
@@ -93,8 +91,6 @@ namespace Formalism.L2.G
 open Formalism.L2.G.Cmp Formalism.BasicNotions Formalism.MainNotions.G Formalism.L2.Forms Formalism.UG NumberField IsDedekindDomain Matrix
 open scoped TensorProduct
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7}
 
 theorem htupW_le_htup (Gt : GatTies D) (u : D.what₂.Word) (w : D.what₂.places.Pl)
@@ -152,7 +148,7 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.G Number
 
 namespace Formalism.L2.G
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar Formalism.BasicNotions.factResChar
+attribute [local instance] Formalism.BasicNotions.factResChar
 
 variable (D : D7) (sc : Scale) (Ce : ℝ)
   (Lc : ∀ u, ColLevel D.R D.host.F D.host.E D.sp D.host.g (D.mem u).C (D.mem u).A (D.clsLat u))

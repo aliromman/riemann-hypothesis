@@ -372,8 +372,6 @@ end -- clump:auto
 
 namespace GroundTheory.Automorphic.HarishChandra
 
-attribute [local instance 100] LieRing.ofAssociativeRing
-
 open MvPolynomial
 
 variable {n : ℕ}
@@ -448,8 +446,6 @@ end -- clump:auto
 @[expose] public section -- clump member: GroundTheory.AutomorphicForms.HarishChandraCentre.LeadingTerm
 
 namespace GroundTheory.Automorphic.HarishChandra
-
-attribute [local instance 100] LieRing.ofAssociativeRing
 
 open MvPolynomial
 
@@ -922,8 +918,6 @@ end -- clump:auto
 @[expose] public section -- clump member: GroundTheory.AutomorphicForms.HarishChandraCentre
 
 namespace GroundTheory.Automorphic.HarishChandra
-
-attribute [local instance 100] LieRing.ofAssociativeRing
 
 open MvPolynomial
 

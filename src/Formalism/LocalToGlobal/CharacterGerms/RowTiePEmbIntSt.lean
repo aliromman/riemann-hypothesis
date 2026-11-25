@@ -7,8 +7,6 @@ public import Formalism.LocalToGlobal.CharacterGerms.HostTraceIdentity
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTieCuts
 
-set_option autoImplicit false
-
 
 open scoped BigOperators
 open Classical
@@ -29,8 +27,6 @@ end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTiePEmbIntSt
-
-set_option autoImplicit false
 
 
 namespace Formalism.L2.FormalSeriesBounds

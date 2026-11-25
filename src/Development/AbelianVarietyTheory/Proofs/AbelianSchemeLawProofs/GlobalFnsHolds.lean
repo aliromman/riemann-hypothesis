@@ -125,7 +125,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.GlobalFnsHolds
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 

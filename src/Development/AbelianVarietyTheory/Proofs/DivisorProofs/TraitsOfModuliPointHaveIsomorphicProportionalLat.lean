@@ -102,7 +102,6 @@ end GlobalTheory.UPoinc.TraitUniq
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LinearUniformisationsCharacterIsoAssociatedCoord
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.PelUnifUniqCoord
 
@@ -124,8 +123,6 @@ end GlobalTheory.PelUnifUniqCoord
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TraitsOfModuliPointHaveIsomorphicProportionalLat
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UPoinc.TraitUniq
 

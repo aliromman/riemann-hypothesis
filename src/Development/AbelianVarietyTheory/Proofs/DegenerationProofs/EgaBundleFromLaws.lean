@@ -287,7 +287,6 @@ theorem _root_.GlobalTheory.T.relAmple_of_ample_on_closed_subscheme_localBase : 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.IsSmoothAtOfSmoothModIdealPowersStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.isSmoothAt_of_smooth_mod_ideal_powers : ∀ (R : Type) [CommRing R] [IsLocalRing R] [IsNoetherianRing R] (I : Ideal R), I ≠ ⊤ → ∀ (C : Type) [CommRing C] [Algebra R C] [Algebra.FiniteType R C], (∀ e : ℕ, Algebra.Smooth (R ⧸ I ^ (e + 1)) (TensorProduct R (R ⧸ I ^ (e + 1)) C)) → ∀ (q : Ideal C) [q.IsPrime], q.comap (algebraMap R C) = IsLocalRing.maximalIdeal R → Algebra.IsSmoothAt R q := by
   first | exact @GlobalTheory.SmoothAdic.isSmoothAt_of_smooth_quotient_pow
@@ -943,7 +942,6 @@ theorem _root_.GlobalTheory.T.existsUnique_hom_of_thickenings' : Laws → Laws2 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.EgaBundleFromLaws
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.LN
 
 theorem GlobalTheory.LN.ega_of_laws : Laws → Laws2 → Ega := fun h₁ h₂ =>

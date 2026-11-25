@@ -55,7 +55,6 @@ open ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestrictio
 open scoped Matrix CategoryTheory.Obj Topology
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsRealIndependentBasisLatticeFamily
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ShFam.Hor.LogCh
 

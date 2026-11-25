@@ -166,7 +166,6 @@ theorem _root_.GlobalTheory.T.classicalPoint_norm_psi_coordinate_exp_neg_quadrat
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DvrFractionLiftPadicAlgClosureNormLeOneIff
-attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 theorem GlobalTheory.Poinc.norm_lift_le_one_iff_mem_range : ∀ (p : ℕ) [Fact p.Prime] (V : Type) [CommRing V] [IsDomain V] [IsDiscreteValuationRing V] (i : V →+* OO p), IsLocalHom i → ∀ (hi : Function.Injective ((OO p).subtype.comp i)) (x : FractionRing V), ‖IsFractionRing.lift (K := FractionRing V) hi x‖ ≤ 1 ↔ x ∈ Set.range (algebraMap V (FractionRing V)) := by
@@ -203,7 +202,6 @@ theorem GlobalTheory.Poinc.norm_lift_le_one_iff_mem_range : ∀ (p : ℕ) [Fact 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DvrFractionLiftPadicAlgClosureNormLeOneIffStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 end -- clump:auto
@@ -990,7 +988,6 @@ end GlobalTheory.Poinc.ToricLabel
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsToricTorsionLabelClosedPointStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 end -- clump:auto
@@ -1061,7 +1058,6 @@ end GlobalTheory.Poinc.UTestLabel
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorsionLabelEqWeilPairingToricTorsionPointStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 end -- clump:auto

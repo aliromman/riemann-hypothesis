@@ -26,8 +26,6 @@ open scoped LinearAlgebra.Projectivization
 
 universe u
 
-attribute [local instance] MvPolynomial.gradedAlgebra
-
 
 structure ProjScheme (A : Type u) [CommRing A] (N : ℕ) where
 
@@ -61,8 +59,6 @@ namespace GroundTheory.Heights₂.Heights
 open AlgebraicGeometry CategoryTheory Opposite TopologicalSpace NumberField GroundTheory.Arith.SchemeCoh
   MeasureTheory MvPolynomial TensorProduct
 open scoped LinearAlgebra.Projectivization
-
-attribute [local instance] MvPolynomial.gradedAlgebra
 
 noncomputable section
 

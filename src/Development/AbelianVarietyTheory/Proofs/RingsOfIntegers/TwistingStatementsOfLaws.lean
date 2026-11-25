@@ -62,7 +62,6 @@ theorem _root_.GlobalTheory.T.valuation_thetaRatio_eq_bilinear : TWM.VRatioGtSta
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.TwistingStatementsOfLaws
-attribute [local instance] Over.cartesianMonoidalCategory
 open scoped CategoryTheory.Obj
 
 namespace GlobalTheory

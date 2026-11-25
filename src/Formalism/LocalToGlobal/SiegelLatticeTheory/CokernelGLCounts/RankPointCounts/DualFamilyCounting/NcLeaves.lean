@@ -112,8 +112,6 @@ open Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat 
   Formalism.L2.SG.LocVol Formalism.L2.SG.MassDataConc Formalism.L2.SG.TypedSets Formalism.L2.SG.Sub Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes MeasureTheory NumberField
   Formalism.L2.SG.Pf.HasProdFiniteSupport Formalism.L2.SG.Pf.NcVal
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section Loc
 
 variable {D : D7} (X : HidaSetting D)
@@ -549,8 +547,6 @@ open Classical
 
 
 namespace PI.UnitaryGroupMassFormula.CntFormula.RowsMassW
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem tn_ne_zero (D : D7) (u : D.what₂.Word) : (Tn u : D.host.E) ≠ 0 := by
   unfold Tn
@@ -1140,8 +1136,6 @@ theorem exists_one {K : Type} [Field K] [NumberField K] [StarRing K]
   rw [FractionalIdeal.mem_one_iff]
   exact ⟨o', by change (o' : K) = c; rw [ho', ho, star_star]⟩
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 theorem row_unit_condition : RowZUnit := by
   intro D u F0 Λ hrow
   obtain ⟨_, hMU, hzM, hprim⟩ := row_lattice_mass_holds D u F0 Λ hrow
@@ -1163,8 +1157,6 @@ open Classical
 
 
 namespace PI.UnitaryGroupMassFormula.CntFormula.RowsMassW
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem trace_one_unramified : TraceOne := fun D =>
   Formalism.MainNotions.BridgeLemma.l_theta D.host.E D.sp.cm.cmUnram
@@ -1278,8 +1270,6 @@ namespace PI.UnitaryGroupMassFormula.CntFormula.RowsMassW
 
 open Formalism.HermitianLattices.Ext.L3
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section Pos
 
 end Pos
@@ -1334,8 +1324,6 @@ namespace PI.UnitaryGroupMassFormula.CntFormula.RowsMassW
 
 open Formalism.HermitianLattices.Ext.L3
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable [Fact Formalism.HermitianLattices.Ext.L3.HermRepUnram] in
 theorem row_lattice_mass : RowsMass := by
   intro D u u' _ F0 what₂ hrows
@@ -1389,8 +1377,6 @@ namespace Formalism.L2.SG.Pf.NcLeaves
 
 open Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.HidaSetting Formalism.L2.SG.AdBridge Formalism.L2.SG.LocVol Formalism.L2.SG.MassDataConc
   Formalism.L2.SG.TypedSets Formalism.L2.SG.Sub Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes MeasureTheory
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7} (X : HidaSetting D) (hb : AdBridgeIso X.B.I) (hK : X.LevelSubgroupCharacter) (FdN FdN' : Set X.B.I.Ginf)
   (u u' : D.what₂.Word) (X0 : Fin (2 * D.R.rS + 2) → Fin X.B.I.n → X.B.I.E)

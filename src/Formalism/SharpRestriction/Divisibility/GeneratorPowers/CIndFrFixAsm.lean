@@ -15,8 +15,6 @@ import Formalism.SharpRestriction.Divisibility.GeneratorPowers.ThetaSwapFirstTwo
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.BalOf
 
-set_option autoImplicit false
-
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrExp2b
 
@@ -85,8 +83,6 @@ end Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrExp2b
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.LogLowOrderOne
-
-set_option autoImplicit false
 
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrExp2a
@@ -413,8 +409,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.IsUnitCoeffZero
 
-set_option autoImplicit false
-
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrExp3
 
@@ -667,8 +661,6 @@ end Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrExp3
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.CIndFrFixAsm
-
-set_option autoImplicit false
 
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1

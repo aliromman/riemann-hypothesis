@@ -311,8 +311,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ArchimedeanExistenceEverywhere
 
-set_option autoImplicit false
-
 
 namespace GlobalTheory.FlatCore
 
@@ -345,8 +343,6 @@ end GlobalTheory.FlatCore
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CuspSectionAnnihilator
-
-set_option autoImplicit false
 
 
 open NumberField IsDedekindDomain Module Formalism.BasicNotions Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD GlobalTheory.AllWt
@@ -426,8 +422,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFlatWeightInvertiblePair
 @[expose] public section
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -1169,7 +1163,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 @[expose] public section
 
 section
-set_option autoImplicit false
 namespace GlobalTheory.FlatAnyLevel
 end GlobalTheory.FlatAnyLevel
 section Cover

@@ -363,7 +363,6 @@ open Classical
 open ReciprocityTheory.ChartRestriction.G.Out
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ClosedImmersionGenericUnitLocusStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 

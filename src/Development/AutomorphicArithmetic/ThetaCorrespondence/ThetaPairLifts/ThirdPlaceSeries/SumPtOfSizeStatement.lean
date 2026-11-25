@@ -326,8 +326,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.FactorDepthInertBounds (boundAll bo
 open GlobalTheory.IndefiniteRowSideFullHecke.SplitQuadraticRamification (IsBig IsSpread IsSmall sumSmallSpread)
 open GlobalTheory.AllWt
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.RefSum.ThetaExp
@@ -1009,9 +1007,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SumPointOfWeightNumerical
 
-set_option autoImplicit false
-
-
 
 open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AllWt GlobalTheory.FactorDepth GlobalTheory.CovTop GlobalTheory.BigTop
@@ -1111,7 +1106,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 
 
 section
-set_option autoImplicit false
 
 noncomputable section
 open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj
@@ -1139,9 +1133,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeightPointOfSize
-
-set_option autoImplicit false
-
 
 
 open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AllWt GlobalTheory.FactorDepth GlobalTheory.CovTop GlobalTheory.BigTop GlobalTheory.MeanTop
@@ -1324,7 +1315,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 
 
 section
-set_option autoImplicit false
 
 noncomputable section
 open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AllWt GlobalTheory.FactorDepth GlobalTheory.CovTop GlobalTheory.BigTop GlobalTheory.MeanTop

@@ -21,8 +21,6 @@ namespace Formalism.MainNotions.KTwoCosetCount
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.Cnt
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section G
 
 def ccOf (CH Cl : ℝ) : ℝ := 17 + 4 / Cl + 4 * |CH|
@@ -154,8 +152,6 @@ end -- clump:auto
 namespace Formalism.MainNotions.KTwoCosetCount
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.Cnt
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section A
 
@@ -305,8 +301,6 @@ open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.MainNoti
   Formalism.L2.SG.Full Formalism.MainNotions.KTwoCosetCount Formalism.MainNotions.MinorIntegralityTorus
 
 namespace Formalism.L2.SG.KappaOffDiagonal
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section Gen
 

@@ -60,7 +60,6 @@ open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZM
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqOfProdZpowSymmetricFormBasisEq
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.TInj
 
 namespace GlobalTheory.SymMono
@@ -75,7 +74,6 @@ end GlobalTheory.SymMono
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqOfProdZpowSymmetricFormBasisEqStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.TInj
 
 end -- clump:auto

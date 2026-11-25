@@ -62,7 +62,6 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.Poinc GlobalTheory.Poinc.Eq8 Formalism.L2.Pj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EighthPowerUniversalObjectAtModelStalkStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 
@@ -142,7 +141,6 @@ end GlobalTheory.Poinc.Eq8.FieldPt
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SemiAbelianFieldPointEqEighthPowerUniversalPullbStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 

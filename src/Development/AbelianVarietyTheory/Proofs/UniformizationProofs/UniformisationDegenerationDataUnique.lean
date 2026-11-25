@@ -199,12 +199,10 @@ theorem _root_.GlobalTheory.T.unifPre_c_and_coord_correspond_alt : GlobalFnsSt â
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.UniformisationPolarisedAbelianSchemesIsoStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.UniformisationTrivialisationsCorrespondStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 end -- clump:auto
 
 end -- clump: shared namespace opens

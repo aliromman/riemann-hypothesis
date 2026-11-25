@@ -13,13 +13,13 @@ import Mathlib.RingTheory.RegularLocalRing.Defs
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.CharacterGerms.IteratePderivTripleMultiplication, Formalism.LocalToGlobal.CharacterGerms.FunEqCoreHolds
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.IteratePderivTripleMultiplication
-
-set_option autoImplicit false
+-- clump: shared namespace opens
 
 
 open scoped BigOperators
 open Classical
+
+@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.IteratePderivTripleMultiplication
 
 namespace Formalism.L2.FormalSeriesBounds.FunEq
 
@@ -554,12 +554,6 @@ end Formalism.L2.FormalSeriesBounds.FunEq
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.FunEqCoreHolds
-
-set_option autoImplicit false
-
-
-open scoped BigOperators
-open Classical
 
 namespace Formalism.L2.FormalSeriesBounds.FunEq
 

@@ -550,7 +550,6 @@ theorem _root_.GlobalTheory.T.thetaModel_torsion_rational_over_fractionField : â
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.TorsionFramePowEqIntegralGeneratorStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 

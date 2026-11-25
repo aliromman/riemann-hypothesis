@@ -15,8 +15,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.Arak
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.ArakelovInstances.LeviVReLine
 
-set_option autoImplicit false
-
 
 namespace ReciprocityTheory.ChartRestriction.G.AR.Inst.CurvPf
 
@@ -97,8 +95,6 @@ end ReciprocityTheory.ChartRestriction.G.AR.Inst.CurvPf
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.ArakelovInstances.LeviLogfk
-
-set_option autoImplicit false
 
 
 namespace ReciprocityTheory.ChartRestriction.G.AR.Inst.CurvPf
@@ -190,8 +186,6 @@ end ReciprocityTheory.ChartRestriction.G.AR.Inst.CurvPf
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.ArakelovInstances.TelePoint
-
-set_option autoImplicit false
 
 
 namespace ReciprocityTheory.ChartRestriction.G.AR.Inst.CurvPf

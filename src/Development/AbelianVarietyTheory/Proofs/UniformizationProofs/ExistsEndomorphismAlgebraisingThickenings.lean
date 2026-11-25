@@ -201,7 +201,6 @@ end GlobalTheory.TwistPair
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsH1VanishesGeneratedPullbackPowTensorDualStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 
@@ -339,7 +338,6 @@ end GlobalTheory.SecTower
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsCompatibleGeneratingSectionsAllThickeningsStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 

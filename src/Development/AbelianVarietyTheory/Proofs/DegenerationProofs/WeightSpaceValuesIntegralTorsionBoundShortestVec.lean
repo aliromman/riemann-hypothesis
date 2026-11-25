@@ -117,7 +117,6 @@ end GlobalTheory.UT
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsEquivYEqZero
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UT GlobalTheory.ZH
 
 namespace GlobalTheory.ZH

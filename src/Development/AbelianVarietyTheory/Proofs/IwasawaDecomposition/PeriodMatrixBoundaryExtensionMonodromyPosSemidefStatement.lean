@@ -1347,7 +1347,6 @@ open GlobalTheory.ShFam.Hor GlobalTheory.CxPts
 open MonoidalCategory CartesianMonoidalCategory MonObj GlobalTheory.ShFam.Hor.LogCh
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PeriodMatrixBoundaryExtensionMonodromyPosSemidef
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.ShFam.Hor.LogCh.PerExt

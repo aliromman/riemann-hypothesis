@@ -14,8 +14,6 @@ public import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasWeil
 open MeasureTheory Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR.Heis Formalism.IndefR.InjectiveDecompositionAction
   IsDedekindDomain NumberField
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 namespace Formalism.IndefR.flipTwoThree
 
 def DeterminantInUnitaryOne : Prop :=
@@ -50,8 +48,6 @@ end -- clump:auto
 
 open MeasureTheory Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR.Heis Formalism.IndefR.InjectiveDecompositionAction
   IsDedekindDomain NumberField Formalism.IndefR.DeterminantProjection Matrix
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace Formalism.IndefR.flipTwoThree
 

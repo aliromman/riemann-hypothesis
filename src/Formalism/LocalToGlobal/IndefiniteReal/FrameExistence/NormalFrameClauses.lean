@@ -17,8 +17,6 @@ open Formalism.IndefR.Mi IsDedekindDomain NumberField
 
 namespace Formalism.IndefR.Seed.Frm
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7}
 
 
@@ -41,8 +39,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.IndefiniteReal.FrameExistence.NormalFrameClauses
 
 namespace Formalism.IndefR.Seed.Frm
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7}
 

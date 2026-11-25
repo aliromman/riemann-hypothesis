@@ -13,8 +13,6 @@ import Mathlib.RingTheory.PiTensorProduct
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.PhiCMinA
 
-set_option autoImplicit false
-
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.PhiCMin
 
@@ -180,8 +178,6 @@ end Formalism.MainNotions.ModuliIntegralCharts.H1.PhiCMin
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.PhiCMinB
-
-set_option autoImplicit false
 
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.PhiCMin

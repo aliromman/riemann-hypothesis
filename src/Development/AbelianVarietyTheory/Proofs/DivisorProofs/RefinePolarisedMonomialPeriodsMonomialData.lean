@@ -102,7 +102,6 @@ open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZM
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DegenerationDataOfMonomialEvenBimultiplicative
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DegFromMonomial
 
@@ -250,7 +249,6 @@ theorem _root_.GlobalTheory.T.exists_monomial_trivialisation_sqrt_refinedPolaris
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFiniteCompleteNormalExtSqrtFamily
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.SqRoots
 
@@ -325,7 +323,6 @@ theorem _root_.GlobalTheory.T.exists_finite_completeNormal_ext_sqrt_family : âˆ€
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSqrtLatticeHomFiniteExtensionComplete
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.RootHom
 
@@ -585,12 +582,10 @@ end GlobalTheory.HalfRatio
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFractionConstantPeriodRatioPolarisedStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsMumfordBundleIsoValueOneOriginPolarisedStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 
@@ -665,7 +660,6 @@ theorem _root_.GlobalTheory.T.exists_symmetric_data_compare_polarised_up_to_func
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSymmetricPolarisationFiniteExtensionStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 
@@ -829,7 +823,6 @@ theorem _root_.GlobalTheory.T.refinesPolarisedData_rescale_coboundary : âˆ€ (R :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RescaleDegDataTrivialisationsPsiEvenOfSqrt
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.PolDeg
 
@@ -864,7 +857,6 @@ theorem _root_.GlobalTheory.T.rescaleDegDataTrivialisations_psiEven_of_sqrt : âˆ
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SymmetricTwoCocycleFreeAbelianIsCoboundary
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.CoboundaryRoots
 
@@ -951,7 +943,6 @@ theorem _root_.GlobalTheory.T.symmetric_twoCocycle_free_abelian_isCoboundary : â
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MumfordBundleIsoNormalisedRespectsLawsStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 

@@ -301,7 +301,6 @@ end GlobalTheory.GenRestrict
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGenericPointsUniformisationsWeilPairingGalStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open MonObj
 open Classical
 

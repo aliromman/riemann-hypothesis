@@ -139,7 +139,6 @@ attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 open GlobalTheory.PlaceRead
-open GlobalTheory.HeightCounting.Up (PrN)
 
 
 

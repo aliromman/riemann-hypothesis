@@ -46,8 +46,6 @@ namespace Formalism.L2.SG.Pf.NcReal.JX.NOf.Ex
 
 open Formalism.L2.SG.HidaSetting Formalism.MainNotions.S Formalism.L2.SG.Pf.NcReal.JX.NOf
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7} (X : HidaSetting D) (X0 : Matrix (Fin D.R.rS) (Fin D.R.rS) D.host.E) (xs : Fin D.R.rS → (VS D).V)
   (M : Matrix (Fin D.R.rS) (Fin D.R.rS) D.host.E)
 
@@ -98,8 +96,6 @@ open scoped BigOperators
 namespace Formalism.L2.SG.Pf.NcReal.JX.NOf.Ex
 
 open Formalism.L2.SG.HidaSetting Formalism.MainNotions.S Formalism.L2.SG.Pf.NcReal.JX.NOf
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7} (X : HidaSetting D)
 
@@ -248,8 +244,6 @@ open scoped Classical
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Matrix
 
 namespace Formalism.L2.SG.Pf.NcReal.JX.NOf
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace LatB
 
@@ -456,8 +450,6 @@ open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNo
 
 namespace Formalism.L2.SG.Pf.NcReal.JX.NOf
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 namespace LatF
 
 open Alg
@@ -587,8 +579,6 @@ open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.
 
 namespace Formalism.L2.SG.Pf.NcReal.JX.NOf
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 namespace Onto
 
 theorem mem_closure_image {A B : Type*} [AddCommGroup A] [AddCommGroup B] (f : A →+ B) (H : AddSubgroup A)
@@ -625,8 +615,6 @@ open NumberField Formalism.BasicNotions Matrix
 namespace Formalism.L2.SG.Pf.NcReal.JX.NOf
 
 open Formalism.L2.SG.HidaSetting Formalism.L2.SG.RealObj Formalism.MainNotions.S Formalism.L2.SG.Pf.NcReal.JX
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace Onto
 
@@ -809,8 +797,6 @@ namespace Formalism.L2.SG.Pf.NcReal.JX.NOf
 
 open Formalism.L2.SG.HidaSetting Formalism.L2.SG.RealObj Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.Pf.NcReal.JX Formalism.L2.SG.TermOp
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section Pl
 
 variable {D : D7} (X : HidaSetting D)
@@ -959,8 +945,6 @@ namespace Formalism.L2.SG.Pf.NcReal.JX.NOf
 
 open Formalism.L2.SG.HidaSetting Formalism.L2.SG.RealObj Formalism.MainNotions.S Formalism.L2.SG.Pf.NcReal.JX
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7} (X : HidaSetting D) (u : D.what₂.Word)
 
 theorem mem_cl_row (b : Fin D.R.rS) (x : InfinitePlace X.B.I.F → Fin (D.R.k + 1) → ℂ) :
@@ -1048,8 +1032,6 @@ namespace Formalism.L2.SG.Pf.NcReal.JX.NOf
 
 open Formalism.L2.SG.HidaSetting Formalism.L2.SG.RealObj Formalism.MainNotions.S Formalism.L2.SG.Pf.NcReal.JX
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7} (X : HidaSetting D) (u : D.what₂.Word)
 
 theorem star_eq_conj' (t : D.host.E) : star t = D.host.conj t := by
@@ -1135,8 +1117,6 @@ end -- clump:auto
 namespace Formalism.L2.SG.Pf.NcReal.JX.NOf
 
 open Formalism.L2.SG.HidaSetting Formalism.L2.SG.RealObj Formalism.MainNotions.S Formalism.L2.SG.Pf.NcReal.JX
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7}
 

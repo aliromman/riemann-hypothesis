@@ -275,8 +275,6 @@ open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNo
 
 namespace Formalism.L2.SG.Pf.CountAt
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7} (M : ∀ p : PlF D, Loc.Model (D.s.atP p).Fp (D.s.atP p).Ep) (p : PlF D)
 
 section Retr
@@ -410,8 +408,6 @@ open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNo
 
 namespace Formalism.L2.SG.Pf.CountAt
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7} (M : ∀ p : PlF D, Loc.Model (D.s.atP p).Fp (D.s.atP p).Ep) {p : PlF D}
   (a : Loc.Pt (D.s.atP p).Ep (D.R.rS + 1)) (πa : UP p →* UP p)
   (hker : ∀ x : UP p, πa x = 1 ↔ ((x : GG p).1 : GLp p).val ∈ Va p a) (g : UP p)
@@ -459,8 +455,6 @@ open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNo
 
 namespace Formalism.L2.SG.Pf.CountAt
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7} (M : ∀ p : PlF D, Loc.Model (D.s.atP p).Fp (D.s.atP p).Ep) (δ : ∀ p : PlF D, (D.s.atP p).Fp)
   (u u' : D.what₂.Word) (w : Point D.host.E (D.R.rS + 1)) {p : PlF D}
 
@@ -488,8 +482,6 @@ end -- clump:auto
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.Pf.ProdE Formalism.L2.SG.Pf.ProdEP2Cut
 
 namespace Formalism.L2.SG.Pf.CountAt
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7} (M : ∀ p : PlF D, Loc.Model (D.s.atP p).Fp (D.s.atP p).Ep) (δ : ∀ p : PlF D, (D.s.atP p).Fp)
   (u u' : D.what₂.Word) (w : Point D.host.E (D.R.rS + 1)) (p : PlF D)
@@ -560,8 +552,6 @@ open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNo
   Formalism.L2.SG.Pf.StabShape
 
 namespace Formalism.L2.SG.Pf.CountAt
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7} (M : ∀ p : PlF D, Loc.Model (D.s.atP p).Fp (D.s.atP p).Ep) (δ : ∀ p : PlF D, (D.s.atP p).Fp)
   (u u' : D.what₂.Word) (w : Point D.host.E (D.R.rS + 1)) {p : PlF D}
@@ -696,8 +686,6 @@ open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNo
 
 namespace Formalism.L2.SG.Pf.CountAt
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7} (M : ∀ p : PlF D, Loc.Model (D.s.atP p).Fp (D.s.atP p).Ep) (δ : ∀ p : PlF D, (D.s.atP p).Fp)
   (u u' : D.what₂.Word) (w : Point D.host.E (D.R.rS + 1)) {p : PlF D}
 
@@ -784,8 +772,6 @@ namespace Formalism.L2.SG.Pf.CountBase
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.TermLoc Formalism.L2.SG.Pf.AtPt
 open Classical ValuativeRel
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7} {M : ∀ p : PlF D, Loc.Model (D.s.atP p).Fp (D.s.atP p).Ep} {δ : ∀ p : PlF D, (D.s.atP p).Fp}
 
 theorem zhatOM_sg (X : Matrix (Fin (D.R.rS + 1)) (Fin (D.R.rS + 1)) D.host.E) :
@@ -844,8 +830,6 @@ open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNo
   Formalism.L2.SG.Pf.AtPt Formalism.L2.SG.TermLoc
 
 namespace Formalism.L2.SG.Pf.CountAt
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section Corner
 
@@ -1058,8 +1042,6 @@ open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNo
 
 namespace Formalism.L2.SG.Pf.CountAt
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7} (M : ∀ p : PlF D, Loc.Model (D.s.atP p).Fp (D.s.atP p).Ep) (δ : ∀ p : PlF D, (D.s.atP p).Fp)
   (u u' : D.what₂.Word) (F0 : FlagG (VS D) D.R.rS (Formalism.L2.SG.CntLocal.Tn u))
   (what₂ : Finset (Submodule (𝓞 D.host.E) (VS D).V))
@@ -1097,8 +1079,6 @@ open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNo
   Formalism.L2.SG.Pf.StabShape
 
 namespace Formalism.L2.SG.Pf.CountAt
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7} (M : ∀ p : PlF D, Loc.Model (D.s.atP p).Fp (D.s.atP p).Ep) (δ : ∀ p : PlF D, (D.s.atP p).Fp)
   (u u' : D.what₂.Word) (F0 : FlagG (VS D) D.R.rS (Formalism.L2.SG.CntLocal.Tn u))

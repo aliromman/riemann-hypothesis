@@ -561,7 +561,6 @@ open GlobalTheory.ShFam.Hor GlobalTheory.CxPts
 open MonoidalCategory CartesianMonoidalCategory MonObj GlobalTheory.ShFam.Hor.LogCh
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsRationalSymplecticBasisAdaptedCoisotropic
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.SymplecticNormalForm
 

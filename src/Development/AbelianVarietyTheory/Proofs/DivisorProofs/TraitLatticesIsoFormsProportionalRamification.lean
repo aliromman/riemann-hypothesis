@@ -531,7 +531,6 @@ theorem GlobalTheory.SqCompare.c_two_comp : ∀ (R : Type) [CommRing R] [IsDomai
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DegenerationCharMapEqOnEvenCharactersStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 end -- clump:auto

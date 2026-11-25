@@ -72,7 +72,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.HTLat GlobalTheory.Published.AbVarRed GlobalTheory.CechPic GlobalTheory.AV GlobalTheory.AV.AbVar
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLiftOfEtaleSurjective
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 
@@ -230,7 +229,6 @@ open GlobalTheory.GalV (HTower Splits)
 open UpperTheory.Gal.crystallineComparison.Mod (Std TjD TjE KSOKE)
 open UpperTheory.Gal.Int.Geo
 open scoped TensorProduct
-attribute [local instance] Ideal.Quotient.field
 
 private theorem pow_pr {X Y : Scheme.{0}} {A : Over X} {B : Over Y} (f : X ⟶ Y) (φ : A.left ⟶ B.left)
     (u : φ ≫ B.hom = A.hom ≫ f) (k : ℕ) (i : Fin k) :

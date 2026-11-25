@@ -193,7 +193,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LinCombPowSectionFlattenStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 end -- clump:auto
@@ -303,7 +302,6 @@ end GlobalTheory.SectionLimitSq
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsUniqueSectionCompatibleSquareThickeningStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 end -- clump:auto
@@ -598,7 +596,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIsoPolarisedOfCompatibleThickeningsSquareStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 end -- clump:auto
@@ -731,7 +728,6 @@ end GlobalTheory.RigSq
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsRescaleRigidifiedSquareIsoStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 end -- clump:auto
@@ -938,7 +934,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SquareComparisonTorusInvariantStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 end -- clump:auto
@@ -1060,7 +1055,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SquareIsoCarriesSquareCubicalStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 end -- clump:auto
@@ -1177,7 +1171,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SquareIsoRespectsSymmetryPointwiseStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 end -- clump:auto
@@ -1268,7 +1261,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PolarizationSquaresAgreeAtEachThickeningStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 end -- clump:auto
@@ -1400,7 +1392,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PolarisedAbelianPartIsoOfBundleSquareIsoStatement
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 

@@ -25,8 +25,6 @@ namespace Formalism.L2.SG.Pf.ScalarFramePf
 open NumberField IsDedekindDomain Module Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.TermLoc
 open PI.ScalarPairDr.W (mem_orth hT_swap orth_orth fvec_castSucc fvec_last mem_orth_Xplus hT_smul_left)
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section ScalOm
 
 variable {D : D7} (Λ : Submodule (𝓞 D.host.E) (VS D).V) {T T' : D.host.E}
@@ -213,8 +211,6 @@ namespace Formalism.L2.SG.Pf.ScalarFramePf
 open NumberField IsDedekindDomain Module Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.TermLoc
 open PI.ScalarPairDr.W (mem_orth hT_swap orth_orth finrank_orth fvec_castSucc fvec_last mem_orth_span
   mem_ThPairs)
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section GF
 

@@ -60,10 +60,9 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZM GlobalTheory.SiegelTor GlobalTheory.TorRef GlobalTheory.PolDeg
 open scoped CategoryTheory.Obj
 open ReciprocityTheory.AnForm.R GlobalTheory.ZH GlobalTheory.Poinc GlobalTheory.Poinc.Sep
+open GlobalTheory.UT ReciprocityTheory.ChartRestriction.G.DVR
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIntegralClosureFiniteGaloisStableThetaRing
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.UT ReciprocityTheory.ChartRestriction.G.DVR
 
 namespace GlobalTheory.Poinc.NormalClosureRing
 
@@ -152,8 +151,6 @@ end GlobalTheory.Poinc.NormalClosureRing
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIntegralClosureFiniteGaloisStableThetaRingStatement
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.UT ReciprocityTheory.ChartRestriction.G.DVR
 
 
 

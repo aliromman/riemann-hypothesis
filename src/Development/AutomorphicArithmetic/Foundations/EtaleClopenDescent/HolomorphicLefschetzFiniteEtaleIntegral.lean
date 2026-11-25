@@ -99,7 +99,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 
 open CategoryTheory AlgebraicGeometry KaehlerDifferential GlobalTheory GlobalTheory.PD GlobalTheory.CechDR GlobalTheory.HodgeCoh ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
-set_option autoImplicit false
 namespace GlobalTheory.HodgeCoh
 
 section Alg
@@ -412,8 +411,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.GermComapEqAlgebraMapGermOfFiniteEtale
 
-set_option autoImplicit false
-
 open CategoryTheory AlgebraicGeometry GlobalTheory.HodgeCoh GlobalTheory.CechDR ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
 namespace UpperTheory.Cb
@@ -576,8 +573,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.GenericGermInjectivity.GermInjRangePre
 
 open CategoryTheory AlgebraicGeometry KaehlerDifferential GlobalTheory GlobalTheory.PD GlobalTheory.CechDR GlobalTheory.HodgeCoh ReciprocityTheory.ChartRestriction.G.Geo.Tor
-
-set_option autoImplicit false
 
 
 namespace UpperTheory.GenericCoverClass
@@ -808,8 +803,6 @@ theorem UpperTheory.complexPoint_eval_pullback_section :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCorrespondenceComplexPointsStatement
-
-set_option autoImplicit false
 
 namespace UpperTheory.FixIff
 

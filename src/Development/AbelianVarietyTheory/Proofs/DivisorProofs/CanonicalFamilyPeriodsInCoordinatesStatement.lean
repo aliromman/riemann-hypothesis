@@ -54,7 +54,6 @@ open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.UC
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CanonicalFamilyPeriodsInCoordinates
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.UCanon.PerCoord

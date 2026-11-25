@@ -232,8 +232,6 @@ open MeasureTheory NumberField Matrix Formalism.BasicNotions Formalism.MainNotio
 
 namespace Formalism.L2.SG.Pf.IdBlocks2.Conj
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section Rat
 
 variable {D : D7} (X : HidaSetting D)
@@ -435,8 +433,6 @@ open MeasureTheory NumberField Matrix Formalism.BasicNotions Formalism.MainNotio
   Formalism.L2.SG.PoincareInHH.PoincareSetting
 
 namespace Formalism.L2.SG.Pf.IdBlocks2.Lift
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 open PI.SchurPlaces.Geo
 
@@ -663,8 +659,6 @@ end Formalism.L2.SG.Pf.IdBlocks2.Lift
 
 namespace Formalism.L2.SG.Pf
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 open Formalism.BasicNotions Formalism.L2.SG.HidaSetting Formalism.L2.SG.TermOp Formalism.L2.SG.TermOp.IdBlocks Formalism.L2.SG.Full
 
 theorem idOffConjC_holds : IdOffConjC :=
@@ -716,8 +710,6 @@ open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Fo
 open Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.SpectralTiesReal
 
 namespace Formalism.L2.SG.PoincareAmplitudeLowerBounds
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 open Formalism.L2.SG.DataInst Formalism.L2.SG.CntLocal Formalism.L2.SG.RowsConc Formalism.L2.SG.RealObj
 

@@ -430,7 +430,6 @@ end GlobalTheory.InertiaUnram
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.InertiaFixedFieldMaximalIdealDvdUniformizer
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.FixInertUnram
 

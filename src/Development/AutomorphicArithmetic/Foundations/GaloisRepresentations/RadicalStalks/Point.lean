@@ -136,7 +136,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped NumberField CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteGroupSchemeStalkLengthConstant
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.FiniteGroupSchemeLength
 
@@ -1562,7 +1561,6 @@ open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp spMap IsGrpPullback)
 open ReciprocityTheory.ChartRestriction.G.Semi (IsAbelianScheme LB mulN)
 open GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup
 open GlobalTheory.DeRham (spOver)
-attribute [local instance] Over.cartesianMonoidalCategory
 
 noncomputable section
 
@@ -1633,8 +1631,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.DeRham GlobalTheory.AbDual GlobalTheory.Cris GlobalTheory.CurveRootGeometry GlobalTheory.ConjSeq
 open scoped CategoryTheory.Obj
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 namespace GlobalTheory.FrobAdjoint
 
 section Dual
@@ -1650,14 +1646,6 @@ section Down
 
 variable {R R' : Type} [CommRing R] [CommRing R'] {A : Over (Sp R)} [GrpObj A] {A' : Over (Sp R')} [GrpObj A']
   {σ : R →+* R'} {φ : A'.left ⟶ A.left}
-
-def down (m : GrpMor (dp0 R) (𝟙 _) A (dp0 R') (𝟙 _) A' σ (spMap σ) φ) {Y : Over (Sp R')} (x : Y ⟶ A') :
-    Over.mk (Y.hom ≫ spMap σ) ⟶ A :=
-  Over.homMk (x.left ≫ φ) (by simp [m.w])
-
-theorem down_mul (m : GrpMor (dp0 R) (𝟙 _) A (dp0 R') (𝟙 _) A' σ (spMap σ) φ) {Y : Over (Sp R')} (x y : Y ⟶ A') :
-    down m (x * y) = down m x * down m y :=
-  Over.OverMorphism.ext (m.mul Y x y (down m x) (down m y) rfl rfl).symm
 
 end Down
 

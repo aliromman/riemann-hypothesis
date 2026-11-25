@@ -130,7 +130,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.FibreSectionLinearCombExistsUniqueThetaActionStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.TestFibre
 
 

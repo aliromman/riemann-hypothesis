@@ -31,8 +31,6 @@ open Formalism.L2.SG.Pf Formalism.L2.SG.Pf.Vanish2 Formalism.L2.SG.Pf.Level Form
 
 namespace Formalism.L2.SG.Pf.RelChar
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section abelian₂
 
 variable {D : D7} (X : HidaSetting D)
@@ -275,8 +273,6 @@ open Matrix NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism
 open Formalism.L2.SG.Pf Formalism.L2.SG.Pf.Level Formalism.L2.SG.TermOp Formalism.L2.SG.TermOp.Vanish Formalism.L2.SG.NonRelPf
 
 namespace Formalism.L2.SG.Pf.RelChar
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section Gen
 

@@ -875,7 +875,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeightPositivityPrincipalisation
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 400000
 
 
@@ -1578,7 +1577,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.ExistsCentreCuspGenericValueNeZero
 
 section
-set_option autoImplicit false
 
 noncomputable section
 namespace GlobalTheory.CentreCusp

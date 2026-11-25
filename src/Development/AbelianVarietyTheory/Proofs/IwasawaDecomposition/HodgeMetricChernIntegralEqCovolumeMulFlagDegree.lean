@@ -153,8 +153,6 @@ open Classical
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.ProjVar GlobalTheory.CxPts GlobalTheory.ChartGlue GlobalTheory.FlagBundle GlobalTheory.HermFrame
 open MeasureTheory Formalism.DegreeFormula GlobalTheory.TrueCx
 
-set_option autoImplicit false
-
 namespace GlobalTheory.BaseDim
 
 theorem two_card_psi (E : Type) [Field E] [NumberField E] [IsCMField E] {r : ℕ} (D : ReciprocityTheory.ChartRestriction.G.FD.Data E r) :
@@ -313,8 +311,6 @@ theorem GlobalTheory.UnifDens.chernTop_unif_chart : ∀ (E : Type) [Field E] [Nu
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ChernTopPartHodgeMetricUniformisationImage
-
-set_option autoImplicit false
 
 namespace GlobalTheory.UnifDens
 

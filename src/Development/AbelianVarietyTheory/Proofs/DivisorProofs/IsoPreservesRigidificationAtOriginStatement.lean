@@ -119,7 +119,6 @@ theorem GlobalTheory.normW_origin : ∀ (V : Type) [CommRing V] [IsDomain V] (G 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsoPreservesRigidificationAtOriginStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 

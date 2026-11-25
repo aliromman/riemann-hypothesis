@@ -101,7 +101,6 @@ end GlobalTheory.TanAdd
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TranslateDualNumberPointInverseConstantTangentStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 

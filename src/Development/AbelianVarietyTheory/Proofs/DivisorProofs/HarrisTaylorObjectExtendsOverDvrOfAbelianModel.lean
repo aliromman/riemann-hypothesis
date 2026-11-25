@@ -673,7 +673,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FlatOfFiniteRetractOfFiniteFlatStatement
 open GlobalTheory.AbDual GlobalTheory.CechPic GlobalTheory.DualCon
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 

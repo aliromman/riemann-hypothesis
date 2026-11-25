@@ -60,7 +60,6 @@ theorem _root_.GlobalTheory.T.uniformisation_baseChange : PolBaseChangeSt → Gl
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.UniformisationLawsOfBaseChangeLaws
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 

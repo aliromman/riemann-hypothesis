@@ -225,7 +225,6 @@ end GlobalTheory.LamPairing
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilPairingMumfordLambdaSquareStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 
@@ -382,7 +381,6 @@ end GlobalTheory.Poinc.Eq8.Labels
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorsionLabelsEighthPowerProjectionsStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 

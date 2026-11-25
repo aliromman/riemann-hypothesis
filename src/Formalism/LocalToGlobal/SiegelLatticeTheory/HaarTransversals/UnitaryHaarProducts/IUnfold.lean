@@ -33,8 +33,6 @@ import Mathlib.Topology.Separation.CompletelyRegular
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.TauReduction.BlockGramReduction.MinkowskiSubmoduleShortVector
 
-set_option autoImplicit false
-
 
 open NumberField Matrix Module MeasureTheory
 open scoped ComplexOrder Classical
@@ -318,8 +316,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.TauReduction.BlockGramReduction.KsetInvMem
 
-set_option autoImplicit false
-
 
 open NumberField Matrix
 
@@ -344,8 +340,6 @@ end Formalism.L2.SG.Pf.Tau
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.TauReduction.BlockGramReduction.LatticeVectorsBoundedBelow
-
-set_option autoImplicit false
 
 
 open NumberField Matrix
@@ -472,8 +466,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.TauReduction.BlockGramReduction.T7
 
-set_option autoImplicit false
-
 
 open Filter Topology
 
@@ -515,8 +507,6 @@ end Formalism.L2.SG.Pf.Tau
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.TauReduction.BlockGramReduction.ThirdEstimateOfFirstTwo
-
-set_option autoImplicit false
 
 
 open NumberField Matrix
@@ -578,8 +568,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.TauReduction.ReductionTauOf
 
-set_option autoImplicit false
-
 
 open NumberField Matrix Filter Topology
 
@@ -611,8 +599,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.TauReduction.BlockGramReduction.ReductionTheoryOfLattice
 
-set_option autoImplicit false
-
 namespace Formalism.L2.SG.Pf.Tau
 
 theorem reduction_theory_of_lattice (h0 : LatticeCommensurable) (h8 : MinkowskiSubmodule) : ReductionTau :=
@@ -625,8 +611,6 @@ end Formalism.L2.SG.Pf.Tau
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.TauReduction.BlockGramReduction.T8m
-
-set_option autoImplicit false
 
 
 open MeasureTheory Metric
@@ -692,8 +676,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.TauReduction.BlockGramReduction.ReductionTau
 
-set_option autoImplicit false
-
 namespace Formalism.L2.SG.Pf.Tau
 
 theorem reductionTau : ReductionTau :=
@@ -703,8 +685,6 @@ end Formalism.L2.SG.Pf.Tau
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.ReductionTau
-
-set_option autoImplicit false
 
 namespace Formalism.L2.SG.Pf
 

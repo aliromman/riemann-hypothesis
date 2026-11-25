@@ -121,7 +121,6 @@ open scoped CategoryTheory.Obj BigOperators
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.CubNFrame
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory GlobalTheory.Ex GlobalTheory.Ex.Arch
 namespace GlobalTheory.Ex.Arch.Wp
 
@@ -372,7 +371,6 @@ end GlobalTheory.Ex.Arch.FibPrim
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsLogFrame
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory GlobalTheory.Ex GlobalTheory.Ex.Arch
 
 namespace GlobalTheory.Ex.Arch
@@ -662,7 +660,6 @@ end GlobalTheory.Ex.Arch
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.IsPtNsmul
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory GlobalTheory.Ex GlobalTheory.Ex.Arch
 
 namespace GlobalTheory.Ex.Arch
@@ -772,7 +769,6 @@ end GlobalTheory.Ex.Arch
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ObjStOfTripleReframe
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory GlobalTheory.Ex GlobalTheory.Ex.Arch
 namespace GlobalTheory.Ex.Arch
 
@@ -837,7 +833,6 @@ end GlobalTheory.Ex.Arch
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.PeriodConstantPartEqZeroInjective
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory GlobalTheory.Ex GlobalTheory.Ex.Arch
 
 namespace GlobalTheory.Ex.Arch
@@ -924,7 +919,6 @@ end GlobalTheory.Ex.Arch
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.Reframe
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory GlobalTheory.Ex GlobalTheory.Ex.Arch
 
 namespace GlobalTheory.Ex.Arch

@@ -48,8 +48,6 @@ namespace Formalism.MainNotions.S.Pv.HH
 
 open Finset NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.Cnt
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable (D : D7)
 
 def Gbd (b C β : ℝ) (Z : GramM D) : ℝ := (2 * β ^ 2 * (b ^ (C * (D.R.m : ℝ) ^ 2)) ^ 2) ^ D.R.f * sizeZ D b C Z ^ 2
@@ -104,8 +102,6 @@ namespace Formalism.MainNotions.GramProductBounds
 open NumberField Module IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.Cnt Formalism.MainNotions.LatticeGluingRadicals
   Formalism.MainNotions.BridgeLemma₂
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 theorem NE_pow (D : D7) : NE (E := D.host.E) (gS D) ^ (D.R.rS + 1) = (gS D : ℝ) ^ (D.R.m * D.R.f) := by
   unfold NE
   rw [j_finrank D, ← pow_mul]
@@ -127,8 +123,6 @@ open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.MainNoti
   Formalism.L2.SG.TermTieOf Formalism.L2.SG.LoopTieOf Formalism.L2.SG.LoopsFinal Formalism.L2.SG.NGCut.LeadingMinorIntegrality
 
 namespace Formalism.L2.SG.LoopsTies
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section Entry
 
@@ -614,8 +608,6 @@ section Conc
 open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.PackageTie2 Formalism.L2.SG.TermTieOf
   Formalism.L2.SG.LoopsFinal Formalism.L2.SG.LoopsTies Formalism.L2.SG.NGCut.LeadingMinorIntegrality
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7}
 
 def pseudoLat {ι : Type} (u : ι → (hS D).V) (I : ι → FractionalIdeal (nonZeroDivisors (𝓞 D.host.E)) D.host.E) :
@@ -744,8 +736,6 @@ section Final
 
 open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.PackageTie2
   Formalism.L2.SG.TermTieOf Formalism.L2.SG.LoopsFinal Formalism.L2.SG.LoopsTies Formalism.L2.SG.NGCut.LeadingMinorIntegrality
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7}
 
@@ -1261,8 +1251,6 @@ section Inst
 
 open Formalism.MainNotions.S Formalism.L2.SG.DetUU
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 theorem genIdxPseudo_holds : GenIdxPseudo := by
   intro D ι _ _ u I hu hI hs hH
   let σ := Fintype.equivFin ι
@@ -1301,8 +1289,6 @@ open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions Form
   Formalism.L2.SG.ThmSOwn
 
 namespace Formalism.L2.SG.LoopsTies
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section BM
 

@@ -68,8 +68,6 @@ end Gen
 
 open Formalism.L2.Herm
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 end Formalism.L2.GlobalTheoryTheory.TraceIntegrality
 
 end -- clump:auto

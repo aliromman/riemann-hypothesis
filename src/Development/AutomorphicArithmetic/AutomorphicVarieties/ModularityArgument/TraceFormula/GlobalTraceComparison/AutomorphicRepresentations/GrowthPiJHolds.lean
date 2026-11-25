@@ -99,8 +99,6 @@ open scoped Classical ENNReal
 
 namespace UpperTheory.V.Z.Tf.GlobalTraceComparison.Pi
 
-attribute [local instance] borelH
-
 theorem gFac_pf : FinFac → DropP → GFac := by
   intro hF hD E _ _ _ n ι _ s
   obtain ⟨p, hp⟩ := hF E n ι s
@@ -128,8 +126,6 @@ open UpperTheory.V.Z.Tf.GlobalTraceComparison.Pi DiscreteGroups.T1.G
 namespace UpperTheory.V.Z.Tf.GlobalTraceComparison.Pi
 
 open NumberField PositivityTheory.Rg.BcB.E MeasureTheory
-
-attribute [local instance] PositivityTheory.Rg.BcB.E.borelH
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {n : ℕ}
 
@@ -195,8 +191,6 @@ open DiscreteGroups.T1.G
 open scoped Classical ENNReal
 
 namespace UpperTheory.V.Z.Tf.GlobalTraceComparison.Pi
-
-attribute [local instance] borelH
 
 private theorem pow_mul_exp_neg_le (N : ℕ) {r : ℝ} (hr : 0 ≤ r) :
     (1 + r) ^ N * Real.exp (-r) ≤ N.factorial * Real.exp 1 := by
@@ -368,8 +362,6 @@ open NumberField IsDedekindDomain Matrix MeasureTheory
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.E PositivityTheory.Rg.BcB.F PositivityTheory.Rg.BcB.Desc PositivityTheory.Rg.BcB.E1
 open UpperTheory.V.Z.Tf.GlobalTraceComparison.Pi DiscreteGroups.T1.G
 
-attribute [local instance] PositivityTheory.Rg.BcB.E.borelH
-
 private def evAt {E : Type} [Field E] [NumberField E] [IsCMField E] {n : ℕ} (π : CuspSub E n) (x : H E n 0) :
     π.V →ₗ[ℂ] ℂ where
   toFun ψ := ψ.1.1 x.1
@@ -529,8 +521,6 @@ end -- clump:auto
 open NumberField IsDedekindDomain Matrix MeasureTheory
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.E PositivityTheory.Rg.BcB.F PositivityTheory.Rg.BcB.Desc PositivityTheory.Rg.BcB.E1
 open scoped ENNReal
-
-attribute [local instance] PositivityTheory.Rg.BcB.E.borelH
 
 namespace UpperTheory.V.Z.Tf.GlobalTraceComparison.Pi
 
@@ -876,8 +866,6 @@ end -- clump:auto
 open NumberField IsDedekindDomain Matrix MeasureTheory
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.E PositivityTheory.Rg.BcB.F PositivityTheory.Rg.BcB.Desc PositivityTheory.Rg.BcB.E1
 
-attribute [local instance] PositivityTheory.Rg.BcB.E.borelH
-
 private theorem kerH_left {E : Type} [Field E] [NumberField E] [IsCMField E] {n : ℕ}
     (φ : H E n 0 → ℂ) (γ : ratH E n 0) (x y : H E n 0) :
     kerH φ ((γ : H E n 0) * x) y = kerH φ x y := by
@@ -918,8 +906,6 @@ end -- clump: shared namespace opens
 open NumberField IsDedekindDomain Matrix MeasureTheory
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.E PositivityTheory.Rg.BcB.F PositivityTheory.Rg.BcB.Desc PositivityTheory.Rg.BcB.E1
 open UpperTheory.V.Z.Tf.GlobalTraceComparison.Pi DiscreteGroups.T1.G
-
-attribute [local instance] PositivityTheory.Rg.BcB.E.borelH
 
 private theorem ac_zero (E : Type) [Field E] [NumberField E] [IsCMField E] (n : ℕ) : ac E n 0 = 1 := by
   unfold ac
@@ -991,8 +977,6 @@ open PositivityTheory.Rg.Rs
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.E PositivityTheory.Rg.BcB.F PositivityTheory.Rg.BcB.Desc PositivityTheory.Rg.BcB.E1
 
 namespace UpperTheory.V.Z.Tf.GlobalTraceComparison.Pi
-
-attribute [local instance] borelH
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {n : ℕ}
 
@@ -1376,8 +1360,6 @@ open UpperTheory.V.Z.Tf.GlobalTraceComparison.Pi DiscreteGroups.T1.G
 open MeasureTheory PositivityTheory.Rg.BcB.E PositivityTheory.Rg.BcB.Desc PositivityTheory.Rg.BcB.E1 GlobalTheory.CuspRep GlobalTheory.UnitaryBC
 open scoped Classical
 
-attribute [local instance] PositivityTheory.Rg.BcB.E.borelH
-
 theorem UpperTheory.V.Z.Tf.GlobalTraceComparison.Pi.uncutOf_pf :
     Basic → GFac → HalfTerm → RangeW → TrFin → DiscreteGroups.T1.G.UncutHalf := by
   intro hB hF hH hR hT E _ _ _ n hn D π hπ ι _ Φ₁ Φ₂ T₁ T₂ M k₁ k₂ a1 a2 hfin b1 b2 hv U Uπ Φ t c1 c2 hpi ht
@@ -1532,8 +1514,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.AutomorphicRepresentations.SuppPf
 open MeasureTheory GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.E PositivityTheory.Rg.BcB.F PositivityTheory.Rg.BcB.Desc PositivityTheory.Rg.BcB.E1
-
-attribute [local instance] PositivityTheory.Rg.BcB.E.borelH
 
 theorem UpperTheory.V.Z.Tf.GlobalTraceComparison.Pi.supp_pf :
     Basic → Zero → KInv → PSupp → Ker → Supp := by

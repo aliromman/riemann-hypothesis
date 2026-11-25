@@ -11,8 +11,6 @@ public import Mathlib.RingTheory.MvPowerSeries.Rename
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.CIndEncPf
 
-set_option autoImplicit false
-
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1
 
@@ -40,8 +38,6 @@ end Formalism.MainNotions.ModuliIntegralCharts.H1
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.ConstantCoeffPolyAdd
-
-set_option autoImplicit false
 
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1

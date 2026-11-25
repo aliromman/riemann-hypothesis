@@ -64,7 +64,6 @@ theorem _root_.GlobalTheory.T.abelianVariety_finiteHom_kernel_killed_by_nat : âˆ
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsQuasiInverseIsogeny
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.AV.AbVar
 

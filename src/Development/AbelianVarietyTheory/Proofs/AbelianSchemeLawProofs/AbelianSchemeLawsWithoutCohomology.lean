@@ -64,7 +64,6 @@ theorem _root_.GlobalTheory.T.existsUnique_generator_extend_discreteValuationRin
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.AbelianSchemeLawsWithoutCohomology
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 

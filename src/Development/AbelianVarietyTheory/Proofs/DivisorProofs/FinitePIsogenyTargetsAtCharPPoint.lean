@@ -311,7 +311,6 @@ open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCate
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open ReciprocityTheory.ChartRestriction.G.Out (RingAct)
 open scoped CategoryTheory.Obj NumberField
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.IwLevel
 
 namespace GlobalTheory.LocalTangent
@@ -701,7 +700,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalRingFiniteIdealsOfMaximalIdealPrincipalNilp
 open ReciprocityTheory.ChartRestriction.G.Out (RingAct)
 open scoped CategoryTheory.Obj NumberField
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.IwLevel
 
 namespace GlobalTheory

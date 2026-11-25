@@ -82,7 +82,6 @@ open GlobalTheory.TInj
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwoTraitUniformisationsMatchingDataStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.TInj
 
 end -- clump:auto
@@ -94,7 +93,6 @@ open GlobalTheory.TInj
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UniformisationPullbackDvrTorsionPoints
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.TInj
 
 end -- clump:auto

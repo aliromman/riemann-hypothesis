@@ -543,10 +543,6 @@ namespace RootsP
 
 variable {C : Type} [Field C] {V : VF C}
 
-private lemma ge0_zero_lemma_2 : V.Ge 0 (0 : C) := by
-  simp only [VF.Ge, AddValuation.map_zero]
-  exact le_top
-
 private lemma ge0_add_lemma_4 {x y : C} (hx : V.Ge 0 x) (hy : V.Ge 0 y) : V.Ge 0 (x + y) := by
   simp only [VF.Ge] at hx hy ⊢
   exact le_trans (le_min hx hy) (V.v.map_add x y)
@@ -1219,8 +1215,6 @@ end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.RescaleInV
-
-set_option autoImplicit false
 
 open scoped BigOperators
 open Classical

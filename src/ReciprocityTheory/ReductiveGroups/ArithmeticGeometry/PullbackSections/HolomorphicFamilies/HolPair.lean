@@ -12,8 +12,6 @@ import Mathlib.RingTheory.RegularLocalRing.Defs
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.HolomorphicFamilies.HolPairB
 
-set_option autoImplicit false
-
 
 namespace ReciprocityTheory.ChartRestriction.G.PullbackSections
 
@@ -106,8 +104,6 @@ end ReciprocityTheory.ChartRestriction.G.PullbackSections
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.HolomorphicFamilies.HolPair
-
-set_option autoImplicit false
 
 
 namespace ReciprocityTheory.ChartRestriction.G.PullbackSections

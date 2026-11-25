@@ -925,7 +925,6 @@ end GlobalTheory.UU.Transl
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.TorsionTranslationActsOnExpansionsStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
 
 end -- clump:auto

@@ -734,7 +734,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.CubNDescentTelescope
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 
@@ -972,7 +971,6 @@ end GlobalTheory.UU
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.TranslationUnitMul
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 

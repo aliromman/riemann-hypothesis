@@ -11,8 +11,6 @@ public import Formalism.LocalToGlobal.ProjectiveLattices.TieInst
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.ProjectiveLattices.TotalDegreePderivLt
 
-set_option autoImplicit false
-
 
 namespace Formalism.L2.Pj.GenericSectionMinimum
 
@@ -457,8 +455,6 @@ end Formalism.L2.Pj.GenericSectionMinimum
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.ProjectiveLattices.GenericSectionMinimumIntegral
-
-set_option autoImplicit false
 
 
 namespace Formalism.L2.Pj.GenericSectionMinimum

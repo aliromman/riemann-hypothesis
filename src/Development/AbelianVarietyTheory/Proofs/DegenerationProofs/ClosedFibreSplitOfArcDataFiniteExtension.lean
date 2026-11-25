@@ -230,7 +230,6 @@ end GlobalTheory.LN
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ArcDatumMatchLengthSymmPreimagesStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.LN
 
 end -- clump:auto

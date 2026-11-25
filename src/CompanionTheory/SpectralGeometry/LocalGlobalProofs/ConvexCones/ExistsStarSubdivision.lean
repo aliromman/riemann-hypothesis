@@ -83,11 +83,11 @@ theorem isStarOf_of_clauses : ∀ (O : Type) [CommRing O] [IsDedekindDomain O] [
 end GlobalTheory.CompanionTheory.Ar.Fan.StarOfClauses
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.StarDepthTwistedGalois
-
-set_option autoImplicit false
+-- clump: shared namespace opens
 
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.PolCell GlobalTheory.CompanionTheory.Ar.Fan
+
+@[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.StarDepthTwistedGalois
 
 namespace GlobalTheory.CompanionTheory.Ar.Fan.StarDepthTwist
 
@@ -171,10 +171,6 @@ theorem isTwG_starDepth : ∀ (O : Type) [CommRing O] [IsDedekindDomain O] [Char
 
 end GlobalTheory.CompanionTheory.Ar.Fan.StarDepthTwist
 end -- clump:auto
-
--- clump: shared namespace opens
-
-open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan GlobalTheory.PolCell GlobalTheory.CompanionTheory.Ar.Fan
 
 @[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.IsStarOfFiniteCover
 

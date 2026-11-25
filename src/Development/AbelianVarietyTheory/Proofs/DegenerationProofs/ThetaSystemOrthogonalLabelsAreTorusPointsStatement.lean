@@ -72,7 +72,6 @@ end GlobalTheory.TestFibre
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ThetaSystemOrthogonalLabelsAreTorusPointsStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.TestFibre
 
 

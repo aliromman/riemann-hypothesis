@@ -157,7 +157,6 @@ namespace GlobalTheory.HeightOneCompletion
 open IsLocalRing
 
 
-set_option autoImplicit false in
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry in
 open NumberField IsDedekindDomain in
 open scoped CategoryTheory.Obj CategoryTheory.MonObj TensorProduct NNReal in
@@ -198,7 +197,6 @@ end GlobalTheory.HeightOneCompletion
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PropertyOfCodimOneLocalUnits
-attribute [local instance] Over.cartesianMonoidalCategory
 attribute [local instance] algPadicInt algPadicField towerPadic factPadic GlobalTheory.PadicComplexHost.isAdicComplete
 open GlobalTheory.FlatModel
 

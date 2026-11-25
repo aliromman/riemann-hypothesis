@@ -19,14 +19,10 @@ import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.CoordOfHas
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ChartPullbacks.BaseChangeKernels.UnitNorm
 
-set_option autoImplicit false
-
 
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj
   AlgebraicGeometry
 open scoped CategoryTheory.Obj
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace ReciprocityTheory.ChartRestriction.G.Out.GtBCPf
 
@@ -336,8 +332,6 @@ end ReciprocityTheory.ChartRestriction.G.Out.GtBCPf
 end -- clump:auto
 
 @[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ChartPullbacks.BaseChangeKernels.AffineSt
-
-set_option autoImplicit false
 
 namespace ReciprocityTheory.ChartRestriction.G.Out.GtBCPf
 

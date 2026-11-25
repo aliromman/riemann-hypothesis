@@ -59,7 +59,6 @@ theorem algebraMap_acrisZero_algebraMap (w : AInf K p) :
   rfl
 
 
-set_option maxHeartbeats 4000000 in
 theorem false_of_dominant (hp0 : ‖(p : K)‖ ≤ ρ) (hρ1 : ρ < 1) {a b : ACris K p} {Na Nb : ℕ}
     {Fa Fb : ℝ}
     (hsa : ∀ N ≥ Na, ∀ c : ACrisZero K p,
@@ -240,7 +239,6 @@ open _root_.WittVector Laurent Polynomial WittTilt
 variable {p : ℕ} [hp : Fact p.Prime]
 
 
-set_option maxHeartbeats 4000000 in
 theorem exists_norm_eq_zpow_of_iota_eq {y : PadicAlgCl p} (hy : y ≠ 0) {a b : ACris ℂ_[p] p}
     (hb : b ≠ 0) (h : iota ℂ_[p] p a = algClToBdR p y * iota ℂ_[p] p b) :
     ∃ D : ℤ, ‖y‖ = ‖(p : PadicAlgCl p)‖ ^ D := by

@@ -159,8 +159,6 @@ end Gen
 
 section Brg
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7} {V : HSp D}
 
 theorem hermitianSpaceBaseLattice_eq_frameLattice : L0c D V = ((Formalism.IndefR.Eqv.UI.Lv D V : Submodule _ _) : Set (Fin V.rank → D.host.E)) := by
@@ -193,8 +191,6 @@ end -- clump:auto
 open MeasureTheory NumberField Matrix Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.S Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta
 
 namespace Formalism.L2.S.S7.ZsCovInf
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section Grp
 
@@ -362,8 +358,6 @@ open MeasureTheory NumberField Formalism.BasicNotions Formalism.BasicNotions.TH 
 
 namespace Formalism.L2.S.S7.ZsCovMeas
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7} {V : HSp D} (fr : Formalism.IndefR.Eqv.UI.Frames D V)
 
 def cdProd : ENNReal := ∏ v, (D.s.cdScale V.rank (fr.ε v) : ENNReal)
@@ -468,8 +462,6 @@ namespace Formalism.L2.SG.Pf.DstarVolPf
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.SG.HidaSetting Formalism.L2.SG.AdBridge
   Formalism.L2.Theta
 open scoped ENNReal
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable (D : D7)
 

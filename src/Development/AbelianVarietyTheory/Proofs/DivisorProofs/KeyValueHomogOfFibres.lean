@@ -193,7 +193,6 @@ end GlobalTheory.KeyEven
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KeyDatumScaleSectionsByConstantStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 end -- clump:auto

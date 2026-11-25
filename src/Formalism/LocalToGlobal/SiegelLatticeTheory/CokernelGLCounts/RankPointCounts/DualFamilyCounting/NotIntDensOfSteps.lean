@@ -16,8 +16,6 @@ open Classical ValuativeRel
 
 namespace Formalism.L2.SG.Pf.Cnt
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section Local
 
 variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
@@ -85,8 +83,6 @@ end -- clump:auto
 
 
 namespace Formalism.L2.SG.Pf.Cnt.DualityBasisChange
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section Herm
 

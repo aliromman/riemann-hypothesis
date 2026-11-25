@@ -20,8 +20,6 @@ namespace Formalism.L2.Fam.ThC
 
 open Formalism.L2.Theta
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section Tri
 
 variable {R : Type} [CommRing R] {ρ : ℕ}
@@ -71,8 +69,6 @@ end -- clump:auto
 namespace Formalism.L2.Fam.ThC
 
 open Formalism.L2.Theta
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section Gen
 

@@ -1447,8 +1447,6 @@ theorem sSep : SSep := by
     rw [hev]
     exact hφz
 
-theorem sSep_of : SChain → SSep := fun _ => sSep
-
 end PositivityTheory.KB
 end -- clump:auto
 

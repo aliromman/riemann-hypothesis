@@ -103,7 +103,6 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.Poinc Formalism.L2.Pj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsMonomialPeriodsSymmetricExponentForm
-attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 open ReciprocityTheory.ChartRestriction.G.DVR
 
@@ -165,7 +164,6 @@ theorem _root_.GlobalTheory.T.exists_monomialPeriods_symmetric_exponentForm : âˆ
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCompleteDVRFiniteMapOfFiniteAlgebra
-attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 namespace GlobalTheory.CdvrFiniteAlgebra

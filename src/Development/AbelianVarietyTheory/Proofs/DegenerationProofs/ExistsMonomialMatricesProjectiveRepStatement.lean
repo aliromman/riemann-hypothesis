@@ -55,7 +55,6 @@ open Classical
 open ReciprocityTheory.ChartRestriction.G.Out
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsMonomialMatricesProjectiveRep
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.ThetaReal
 
 namespace GlobalTheory.ThetaReal

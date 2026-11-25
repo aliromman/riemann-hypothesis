@@ -52,10 +52,9 @@ import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
+open GlobalTheory.ZH GlobalTheory.Poinc GlobalTheory.UPoinc.USum
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeClassSumsOfTermsPrescribedNorms
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.ZH GlobalTheory.Poinc GlobalTheory.UPoinc.USum
 
 open Filter Topology
 
@@ -304,8 +303,6 @@ end GlobalTheory.UPoinc.USum
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeClassSumsOfTermsPrescribedNormsStatement
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.ZH GlobalTheory.Poinc GlobalTheory.UPoinc.USum
 
 
 

@@ -116,7 +116,6 @@ end GlobalTheory.AbQuotientLocal
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAbelianQuotientAffineCoverStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 
@@ -164,7 +163,6 @@ end GlobalTheory.QuotGlue
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGluedQuotientMapOfLocalQuotientsStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 

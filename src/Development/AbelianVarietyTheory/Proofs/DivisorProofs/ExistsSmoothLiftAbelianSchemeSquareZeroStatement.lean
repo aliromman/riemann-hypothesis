@@ -261,7 +261,6 @@ end GlobalTheory.Obs
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDefectCoboundaryOfObstructionClassZero
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ObsCob
 
@@ -457,7 +456,6 @@ end GlobalTheory.Obs
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIdempotentLiftFormallySmoothSquareZero
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.Obs
@@ -592,7 +590,6 @@ open scoped TensorProduct
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.LiftSys GlobalTheory.Obs
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSmoothLiftOfRetractSquareZero
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.Obs
 
@@ -646,7 +643,6 @@ end GlobalTheory.Obs
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothPresentationRelationsCombinationNormal
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.SmoothRel
 
@@ -715,7 +711,6 @@ end GlobalTheory.SmoothRel
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsStandardSmoothRetractOfSmooth
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.SmoothRetract
@@ -930,7 +925,6 @@ end GlobalTheory.SmoothRetract
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothAlgebraLiftsOverSquareZeroThickening
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 
@@ -944,7 +938,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NonemptySmoothLiftPresystemSquareZero
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.Obs

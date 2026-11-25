@@ -108,7 +108,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDominantOpenNatCastIsUnitNonZeroDivisorStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 

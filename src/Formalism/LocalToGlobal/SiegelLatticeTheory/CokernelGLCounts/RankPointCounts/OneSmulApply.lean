@@ -23,8 +23,6 @@ open NumberField IsDedekindDomain ValuativeRel Formalism.BasicNotions Formalism.
 
 namespace Formalism.L2.SG.Pf.PCountEx
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section Assembly
 
 variable {D : Formalism.BasicNotions.D7} (M : ∀ p : PlF D, Loc.Model (D.s.atP p).Fp (D.s.atP p).Ep)
@@ -129,8 +127,6 @@ open NumberField IsDedekindDomain ValuativeRel Formalism.BasicNotions Formalism.
   Formalism.L2.SG.Pf.AtPt Formalism.L2.SG.TermLoc Formalism.L2.SG.Pf.PCount
 
 namespace Formalism.L2.SG.Pf.PCountEx
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section MatAlg
 

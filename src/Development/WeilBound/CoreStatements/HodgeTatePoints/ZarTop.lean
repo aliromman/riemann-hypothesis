@@ -204,9 +204,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.ZeroSectionBase (IsPrincipalPol sqT
 
 attribute [local instance] Over.cartesianMonoidalCategory
 
-namespace PositivityTheory.PrwZar
-
-end PositivityTheory.PrwZar
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.RelAmpleOfLbPow
@@ -273,9 +270,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.ZeroSectionBase (IsPrincipalPol sqT
 
 attribute [local instance] Over.cartesianMonoidalCategory
 
-namespace PositivityTheory.PrwZar
-
-end PositivityTheory.PrwZar
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AbelianHeightsDuality.ZarhinTrick.CeLiftSqToBase

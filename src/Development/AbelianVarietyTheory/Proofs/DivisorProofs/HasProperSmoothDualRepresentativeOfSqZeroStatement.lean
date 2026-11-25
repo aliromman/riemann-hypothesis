@@ -489,7 +489,6 @@ end GlobalTheory.LBLift
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCocycleCorrectionSquareZeroIdeal
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.LBLift

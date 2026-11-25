@@ -21,9 +21,6 @@ open ValuativeRel NumberField Formalism.BasicNotions Formalism.MainNotions.S For
 
 namespace Formalism.L2.SG.Pf.StabIntSh
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-
 variable (D) in
 def QLocG : Prop :=
   ∀ (δ : ∀ p : PlF D, (D.s.atP p).Fp) (M : ∀ p : PlF D, Loc.Model (D.s.atP p).Fp (D.s.atP p).Ep),
@@ -261,8 +258,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.StabIntPfQ
 
 namespace Formalism.L2.SG.Pf.StabIntSh
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7}
 

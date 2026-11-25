@@ -77,7 +77,6 @@ end GlobalTheory.TInj
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MumfordBundleIsoAdditiveCubicalStructureStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.TInj
 
 

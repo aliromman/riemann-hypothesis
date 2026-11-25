@@ -129,7 +129,6 @@ theorem UpperTheory.capOp_commute_rightTranslation :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.CenterUActionCommuteRightTranslation
-attribute [local instance 100] LieRing.ofAssociativeRing
 
 theorem UpperTheory.centerU_action_commute_rightTranslation :
     ∀ (K : Type) [Field K] [NumberField K] (n : ℕ), ∀ z ∈ (isExpLieAlgebra K n).centerU, ∀ g, Commute (uAction z) (rt (K := K) (n := n) g) := by
@@ -153,7 +152,6 @@ theorem UpperTheory.centerU_action_commute_rightTranslation :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.ExistsAutomorphicSaturationSubmodule
-attribute [local instance 100] LieRing.ofAssociativeRing
 
 private theorem grp1 {G : Type*} [Group G] (g a b u : G) (h : a * u = u * a) :
     g * u * (a * b) = g * (a * b) * (b⁻¹ * u * b) := by

@@ -38,8 +38,6 @@ import ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.Weight
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.InfinitesimalDecay.DecBoundJOfSigLam
 
-set_option autoImplicit false
-
 
 namespace ReciprocityTheory.ChartRestriction.DS.DecInf
 
@@ -95,8 +93,6 @@ end ReciprocityTheory.ChartRestriction.DS.DecInf
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.InfinitesimalDecay.DSWSigLamCoe
-
-set_option autoImplicit false
 
 
 namespace ReciprocityTheory.ChartRestriction.DS.DecInf
@@ -183,8 +179,6 @@ end ReciprocityTheory.ChartRestriction.DS.DecInf
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.InfinitesimalDecay.FinAlgSepKG
-
-set_option autoImplicit false
 
 
 open MeasureTheory Set
@@ -303,8 +297,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.InfinitesimalDecay.KernelCondition
 
-set_option autoImplicit false
-
 
 namespace ReciprocityTheory.ChartRestriction.DS.DecInf
 
@@ -358,8 +350,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.InfinitesimalDecay.ExistsNearSmooth
 
-set_option autoImplicit false
-
 
 namespace ReciprocityTheory.ChartRestriction.DS.DecInf
 
@@ -383,8 +373,6 @@ end ReciprocityTheory.ChartRestriction.DS.DecInf
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.InfinitesimalDecay.DecBoundJSigLam
-
-set_option autoImplicit false
 
 
 namespace ReciprocityTheory.ChartRestriction.DS.DecInf
@@ -551,8 +539,6 @@ end ReciprocityTheory.ChartRestriction.DS.DecInf
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.InfinitesimalDecay.Bridge
-
-set_option autoImplicit false
 
 
 open Matrix
@@ -722,8 +708,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.InfinitesimalDecay.DecSmOfDecBoundJ
 
-set_option autoImplicit false
-
 
 namespace ReciprocityTheory.ChartRestriction.DS.DecInf
 
@@ -794,8 +778,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.InfinitesimalDecay.HsPowMulLe
 
-set_option autoImplicit false
-
 
 open Finset
 
@@ -835,8 +817,6 @@ end ReciprocityTheory.ChartRestriction.DS.DecInf
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.InfinitesimalDecay.DecBoundOfCompact
-
-set_option autoImplicit false
 
 
 namespace ReciprocityTheory.ChartRestriction.DS.DecInf

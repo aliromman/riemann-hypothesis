@@ -105,8 +105,6 @@ end Loc
 
 section D7
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 theorem lattice_sub_orthogonal_holds : XLamSub := by
   intro D u u' F0 Λ hΛ y x hx
   obtain ⟨-, ⟨-, -, -, hlc⟩, -⟩ := hΛ
@@ -295,8 +293,6 @@ end Gen
 
 section D7
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 theorem betaIndep_of (D : D7) (u u' : D.what₂.Word) (h : PI.ScalPairs.BetaL D u u') :
     PI.ScalPairs.BetaFree D u u' := by
   intro hg F0 Λ hR x y hx hy β₁ β₂ h1 h2
@@ -311,15 +307,11 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.ExplicitFormulaCounts.BetaIndep
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 theorem scalPairs_betaFree (D : Formalism.BasicNotions.D7) (u u' : D.what₂.Word) : PI.ScalPairs.BetaFree D u u' :=
   PI.UnitaryGroupMassFormula.BetaIndep.betaIndep_of D u u' (beta_mod_iota_surjective D u u')
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.OrbitalBoundsConclusion.DCRelEquiv
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem term_eq_iff_relation (D : Formalism.BasicNotions.D7) (u u' : D.what₂.Word) : Formalism.L2.SG.TermDef.TermEqIff D u u' := by
   intro F0 Λ _

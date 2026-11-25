@@ -62,7 +62,6 @@ theorem _root_.GlobalTheory.T.exists_iso_of_compatible_abelianThickenings : SecB
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.UniformisationPolarisationsAgreeAtLevelStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.UniformisationPolarisedAbelianSchemesIso

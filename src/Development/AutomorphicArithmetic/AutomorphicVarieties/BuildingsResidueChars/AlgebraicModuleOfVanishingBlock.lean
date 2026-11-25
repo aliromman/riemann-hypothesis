@@ -414,7 +414,6 @@ open NumberField NumberField.mixedEmbedding Matrix MeasureTheory GroundTheory.Au
 open scoped TensorProduct
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.AlgModQuantumDetLeviBlocksOfParabolic
-attribute [local instance 100] LieRing.ofAssociativeRing
 
 namespace UpperTheory.V.QuantumDetLeviBlocks
 
@@ -493,7 +492,6 @@ theorem UpperTheory.algMod_quantumDet_leviBlocks_of_parabolic :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.ArchExpSingleUnipotentEmbedding
-attribute [local instance 100] LieRing.ofAssociativeRing
 
 open GroundTheory.Automorphic.CuspidalSpectrum in
 private theorem archExp_single (K : Type) [Field K] [NumberField K] (r s : ℕ) (i : Fin r) (j : Fin s)
@@ -571,7 +569,6 @@ theorem UpperTheory.archExp_single_unipotent_embedding :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.UActionMemUnipotentInvariant
-attribute [local instance 100] LieRing.ofAssociativeRing
 
 theorem UpperTheory.uAction_mem_unipotentInvariant :
     ∀ (K : Type) [Field K] [NumberField K] (n r : ℕ) (u : UEnv K n), ∀ ψ ∈ NInv K n r, uAction u ψ ∈ NInv K n r := by
@@ -583,7 +580,6 @@ theorem UpperTheory.uAction_mem_unipotentInvariant :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.AlgebraicModuleOfVanishingBlock
-attribute [local instance 100] LieRing.ofAssociativeRing
 
 private def carry {M : Type} [AddCommGroup M] [Module ℂ M] (W Z : Submodule ℂ M) : Submodule ℂ (Module.End ℂ M) where
   carrier := {T | ∀ x ∈ W, T x ∈ Z}

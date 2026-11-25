@@ -15,8 +15,6 @@ import Mathlib.Topology.Algebra.Group.Units
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.TauReduction.BlockGramReduction.SumNormMulVecSqLe
 
-set_option autoImplicit false
-
 
 open NumberField Matrix
 
@@ -72,8 +70,6 @@ end Formalism.L2.SG.Pf.Tau
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.TauReduction.BlockGramReduction.FreeQuotientRank
-
-set_option autoImplicit false
 
 
 open NumberField Matrix Filter Topology

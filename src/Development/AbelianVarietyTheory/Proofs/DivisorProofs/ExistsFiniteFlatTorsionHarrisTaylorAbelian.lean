@@ -395,19 +395,16 @@ end GlobalTheory.HTTorsCount
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HarrisTaylorCardKilledByIdealEqAbsNormPowStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsogenyDegreeOfPointCount
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KilledByIdealFiniteEtale
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 end -- clump:auto
@@ -449,12 +446,10 @@ end GlobalTheory.IwLevel.PrimeToP
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsIsogenyDegreeKilledByPrimeToPHarrisTaylorStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsIsogenyOfDegreeIntActionHarrisTaylorStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 
@@ -551,7 +546,6 @@ end GlobalTheory.IwLevel.CoprimeTors
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsIsogenyOfDegreeTorsionCoprimeIdealsProductStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 

@@ -459,7 +459,6 @@ theorem _root_.GlobalTheory.T.exists_degenerationValues_over_subfield : GlobalFn
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsTorsionPairDescentAlgClosedSubfield
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory
 
 namespace GlobalTheory.QkDescent

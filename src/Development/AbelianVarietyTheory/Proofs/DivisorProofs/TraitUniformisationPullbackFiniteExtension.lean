@@ -61,7 +61,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsPullDegSquareFourthSide
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 

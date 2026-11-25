@@ -24,8 +24,6 @@ import Formalism.SharpRestriction.Divisibility.GeneratorPowers.PsiCover
 
 @[expose] public section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.CIndAll
 
-set_option autoImplicit false
-
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1
 
 open ReciprocityTheory.ChartRestriction.G.Out NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -52,8 +50,6 @@ end Formalism.MainNotions.ModuliIntegralCharts.H1
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.CIndTop
-
-set_option autoImplicit false
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1
 

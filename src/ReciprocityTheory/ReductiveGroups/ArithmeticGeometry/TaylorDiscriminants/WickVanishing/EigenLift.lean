@@ -30,8 +30,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.EigenLift
 
-set_option autoImplicit false
-
 
 namespace ReciprocityTheory.ChartRestriction.G.TB
 

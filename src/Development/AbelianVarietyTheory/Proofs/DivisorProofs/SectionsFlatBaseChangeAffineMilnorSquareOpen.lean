@@ -204,7 +204,6 @@ end GlobalTheory.MilFlat
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CommRingCatIsPullbackFlatBaseChangeSurjectiveStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 

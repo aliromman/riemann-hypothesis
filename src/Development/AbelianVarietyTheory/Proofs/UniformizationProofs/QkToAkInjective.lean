@@ -360,7 +360,6 @@ theorem _root_.GlobalTheory.T.torsionPair_eq_of_thetaOperator_rel : GlobalFnsSt 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.QkToAkInjective
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.TorsionMapInj
 

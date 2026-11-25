@@ -529,7 +529,6 @@ theorem GlobalTheory.TInj.tautPt_zero_iota : ∀ {o W : Type} [CommRing o] [Comm
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PeriodPartMemTautologicalPointTorsion
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.TInj
 
 namespace GlobalTheory.TInj

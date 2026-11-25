@@ -320,8 +320,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.InfinitesimalDecay.ProjectionSquareIntegrable
 
-set_option autoImplicit false
-
 
 open Finset MeasureTheory
 
@@ -431,8 +429,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.InfinitesimalDecay.PsiForPosGelfand
 
-set_option autoImplicit false
-
 
 namespace ReciprocityTheory.ChartRestriction.DS.DecInf
 
@@ -513,8 +509,6 @@ end -- clump:auto
 
 section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.FmFormBAddLeft
 @[expose] public noncomputable section
-
-set_option autoImplicit false
 
 
 open Finset Matrix
@@ -625,12 +619,12 @@ end ReciprocityTheory.ChartRestriction.DS
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.FormCc
-
-set_option autoImplicit false
+-- clump: shared namespace opens
 
 
 open Finset MeasureTheory
+
+@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.FormCc
 
 namespace ReciprocityTheory.ChartRestriction.DS
 
@@ -800,11 +794,6 @@ end ReciprocityTheory.ChartRestriction.DS
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.InfinitesimalDecay.SquareIntegrableGeneratedVectors
-
-set_option autoImplicit false
-
-
-open Finset MeasureTheory
 
 namespace ReciprocityTheory.ChartRestriction.DS.DecInf
 
@@ -1067,11 +1056,6 @@ end ReciprocityTheory.ChartRestriction.DS.DecInf
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.InfinitesimalDecay.PmInduction
-
-set_option autoImplicit false
-
-
-open Finset MeasureTheory
 
 namespace ReciprocityTheory.ChartRestriction.DS.DecInf
 

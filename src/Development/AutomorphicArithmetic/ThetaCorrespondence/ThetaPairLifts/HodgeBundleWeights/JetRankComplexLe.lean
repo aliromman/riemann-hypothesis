@@ -141,8 +141,6 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FlagSpaceComponentS
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsIntegralBaseChangeRationalFunctionFieldFiniteV
 
-set_option autoImplicit false
-
 open CategoryTheory AlgebraicGeometry TopologicalSpace
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped TensorProduct
@@ -753,8 +751,6 @@ open GlobalTheory.FlagTan (dimFlag)
 open Filter
 open scoped ENNReal
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.NefCuspGrowth
@@ -878,8 +874,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RankComponentWeightInvariance
 @[expose] public noncomputable section
-
-set_option autoImplicit false
 
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace
@@ -1403,7 +1397,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.JetRankComplexLe
 
 section
-set_option autoImplicit false
 noncomputable section
 open CategoryTheory AlgebraicGeometry TopologicalSpace
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor

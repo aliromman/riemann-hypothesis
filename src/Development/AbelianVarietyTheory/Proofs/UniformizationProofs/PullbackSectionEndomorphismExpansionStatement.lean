@@ -256,7 +256,6 @@ end GlobalTheory.PullInt
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.PullbackSectionEndomorphismExpansionStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UT
 
 

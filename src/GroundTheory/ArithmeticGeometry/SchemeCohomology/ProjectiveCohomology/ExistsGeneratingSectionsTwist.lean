@@ -24,8 +24,6 @@ open AlgebraicGeometry CategoryTheory Opposite TopologicalSpace Limits MonoidalC
 
 universe w' u
 
-attribute [local instance] MvPolynomial.gradedAlgebra
-
 noncomputable section
 
 namespace ProjSpace
@@ -142,8 +140,6 @@ open AlgebraicGeometry CategoryTheory Opposite TopologicalSpace Limits MonoidalC
   MvPolynomial
 
 universe w' u
-
-attribute [local instance] MvPolynomial.gradedAlgebra
 
 noncomputable section
 

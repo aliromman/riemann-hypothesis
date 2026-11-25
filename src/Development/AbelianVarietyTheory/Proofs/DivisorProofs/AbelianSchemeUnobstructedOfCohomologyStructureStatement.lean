@@ -884,7 +884,6 @@ theorem _root_.GlobalTheory.T.exists_open_preimage_eq_baseChange_sqZero_augmenta
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NaturalBijectiveCoefficientsPull1Bijective
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.Obs.BC

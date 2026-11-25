@@ -41,8 +41,6 @@ namespace Formalism.IndefR.Fin.PDA
 
 open Formalism.IndefR.Fin Formalism.IndefR.Datum
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7}
 
 theorem xi_AA_AAbar : FractionalIdeal.spanSingleton (nonZeroDivisors (𝓞 D.host.E)) D.host.xi0 * D.host.AA *
@@ -221,8 +219,6 @@ namespace Formalism.IndefR.Fin.PDA
 
 open Formalism.IndefR.Fin Formalism.IndefR.Datum
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7}
 
 theorem globalDual (S T : HSp D) {ΛS : Submodule (𝓞 D.host.E) (Fin S.rank → D.host.E)}
@@ -245,8 +241,6 @@ open scoped TensorProduct
 
 
 namespace Formalism.IndefR.Fin
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 open Formalism.IndefR.Datum
 
@@ -351,8 +345,6 @@ open scoped TensorProduct
 
 
 namespace Formalism.IndefR.Fin
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 open Formalism.IndefR.Datum
 
@@ -486,8 +478,6 @@ open scoped TensorProduct
 
 namespace Formalism.IndefR.Fin.PDB
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7}
 
 section Vi
@@ -611,8 +601,6 @@ end -- clump:auto
 set_option synthInstance.maxHeartbeats 160000
 
 namespace Formalism.IndefR.Fin.PDB
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7}
 
@@ -810,8 +798,6 @@ open scoped TensorProduct ComplexOrder
 
 namespace Formalism.IndefR.Fin
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 def PlaceLatDualIi (D : D7) : Prop :=
   ∀ (ψ : AddChar (AF D.host.F) ℂ), IsStdChar D ψ (-1) → ∀ (S T : HSp D)
     (ΛS : Submodule (𝓞 D.host.E) (Fin S.rank → D.host.E)) (ΛT : Submodule (𝓞 D.host.E) (Fin T.rank → D.host.E)),
@@ -844,8 +830,6 @@ open scoped TensorProduct
 namespace Formalism.IndefR.Fin.PDA
 
 open Formalism.IndefR.Fin
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7}
 
@@ -967,8 +951,6 @@ open scoped TensorProduct
 
 namespace Formalism.IndefR.Fin
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 open Formalism.IndefR.Datum
 
 theorem placeLatDual_of {D : D7} (hL : LatSelfDual D) : PlaceLatDual D := by
@@ -989,8 +971,6 @@ end -- clump:auto
 
 
 namespace Formalism.IndefR.Fin
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 open Formalism.IndefR.Datum
 

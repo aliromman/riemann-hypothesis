@@ -22,8 +22,6 @@ open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Fo
 
 namespace Formalism.L2.SG.Pf.BridgeRA
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7} (X : Formalism.L2.SG.HidaSetting.HidaSetting D)
 
 theorem bezoutMo {v : VA X.B.I} (hv : v ∈ X.B.I.Lf) {N : ℕ} (hN : Nat.Coprime N X.B.g)
@@ -218,8 +216,6 @@ end Formalism.L2.SG.Pf.BridgeRA
 namespace Formalism.L2.SG.Pf
 
 open Formalism.L2.SG.Pf.BridgeRA
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem iotaBridgeRAC_holds : IotaBridgeRAC := by
   intro D X Y u Λ hΛ β b hb hK hN hRT j

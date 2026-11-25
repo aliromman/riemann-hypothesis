@@ -1324,10 +1324,9 @@ section -- clump: shared namespace opens
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
+open GlobalTheory.LN
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.SemiAbelianHomExtensionOfLaws
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.LN
 
 namespace GlobalTheory.LN
 
@@ -1347,8 +1346,6 @@ end GlobalTheory.LN
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.SemiAbelianHomExtensionOfLawsStatement
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.LN
 
 theorem _root_.GlobalTheory.T.semiAbelianHomExtension_of_laws : Laws → Laws2 → HomExtSt := by
   first | exact @GlobalTheory.LN.homExt_of_laws

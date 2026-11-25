@@ -24,8 +24,6 @@ import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.FramedPointBa
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.ProjectiveLattices.PtOfSPfBC
 
-set_option autoImplicit false
-
 
 namespace Formalism.L2.Pj
 
@@ -105,9 +103,6 @@ end Formalism.L2.Pj
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.ProjectiveLattices.PtOfSPf
-
-set_option autoImplicit false
-
 
 
 namespace Formalism.L2.Pj

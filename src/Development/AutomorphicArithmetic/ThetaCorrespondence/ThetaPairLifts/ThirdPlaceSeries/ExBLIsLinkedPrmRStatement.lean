@@ -1180,8 +1180,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.SelectedLowerMapThirdStageStatement
 
-alias GlobalTheory.T.selected_lower_map_holds_alt :=
-  GlobalTheory.Mem.R3.SelRowPin.selected_lower_map_third_stage_alt
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SelectedSideRealizationHolds
@@ -1267,8 +1265,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.SelectedSideRealizationStatement
 
-alias _root_.GlobalTheory.T.selected_side_realization_holds_alt :=
-  GlobalTheory.Mem.R3.SelSideW.selected_side_realization_alt
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.BwitExists
@@ -1539,8 +1535,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ZeUPrmRNEbStatement
 
-alias GlobalTheory.T.zeta_uniform_of_extension' :=
-  GlobalTheory.Mem.Top.Bl.ze_u_prm_of_extension_with_law
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ExBLIsLinkedPrmR

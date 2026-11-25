@@ -125,7 +125,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.ValueAtUnitSectionGenericFibreStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open scoped CategoryTheory.Obj
 end -- clump:auto
 

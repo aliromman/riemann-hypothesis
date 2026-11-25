@@ -60,7 +60,6 @@ theorem _root_.GlobalTheory.T.isRawChart_baseChange_jetPoints : ∀ (E : Type) [
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.RawChartFormalBiextensionBaseChange
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.RawChartBaseChange
 

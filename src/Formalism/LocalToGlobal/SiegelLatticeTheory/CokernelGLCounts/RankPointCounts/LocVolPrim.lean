@@ -187,8 +187,6 @@ end Iso
 
 section Data
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7} (X : HidaSetting D)
 
 def iotaF : X.B.I.F ≃+* D.host.F :=
@@ -265,8 +263,6 @@ theorem aainv_corr (a : Fin D.R.rS) :
 end Data
 
 section Crd
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7} (X : HidaSetting D)
 
@@ -412,8 +408,6 @@ theorem split_crd (w : D.what₂.Word) :
 end Crd
 
 section Hyp
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7} (X : HidaSetting D)
 

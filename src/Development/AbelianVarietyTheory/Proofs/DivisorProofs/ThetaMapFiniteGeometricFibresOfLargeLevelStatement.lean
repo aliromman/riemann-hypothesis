@@ -155,7 +155,6 @@ end GlobalTheory.UMin.FinAct
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteIntegerRingActionsPrincipallyPolarisedStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 

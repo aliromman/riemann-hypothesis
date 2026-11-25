@@ -15,8 +15,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.D
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.ArakelovInstances.CoefNonneg
 
-set_option autoImplicit false
-
 
 namespace ReciprocityTheory.ChartRestriction.G.AR.Inst.CurvPf
 
@@ -139,8 +137,6 @@ end ReciprocityTheory.ChartRestriction.G.AR.Inst.CurvPf
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.ArakelovInstances.CurvatureStatementHolds
-
-set_option autoImplicit false
 
 
 namespace ReciprocityTheory.ChartRestriction.G.AR.Inst.CurvPf

@@ -14,8 +14,6 @@ import Mathlib.Tactic.TypeStar
 
 @[expose] public section -- clump member: Formalism.UnipotentAdelicQuotients.GordanCones
 
-set_option autoImplicit false
-
 namespace GordanCones
 
 def toQ {n : ℕ} (v : Fin n → ℤ) : Fin n → ℚ := fun i => (v i : ℚ)
@@ -24,8 +22,6 @@ end GordanCones
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GordanIntegerMultiple.ExistsIntMultiple
-
-set_option autoImplicit false
 
 namespace GordanGenProof
 

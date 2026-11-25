@@ -445,7 +445,6 @@ end GlobalTheory.UU.BoxSec
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.AdditionFactorThroughCubicalEvenIso
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 
@@ -468,7 +467,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.CubCoordMulMulInv
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 

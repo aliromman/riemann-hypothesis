@@ -23,8 +23,6 @@ import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.CmApproximatio
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.ProjectiveLattices.ArchimedeanQuadraticData.DiscrMulIntegral
 
-set_option autoImplicit false
-
 
 namespace Formalism.L2.Pj.FundamentalDomainD5
 
@@ -71,8 +69,6 @@ end Formalism.L2.Pj.FundamentalDomainD5
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.ProjectiveLattices.ArchimedeanQuadraticData.DotSelfEqSqNorm
-
-set_option autoImplicit false
 
 
 namespace Formalism.L2.Pj.FundamentalDomainD5
@@ -139,8 +135,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.ProjectiveLattices.ArchimedeanQuadraticData.ExistsBasisIn
 
-set_option autoImplicit false
-
 
 namespace Formalism.L2.Pj.FundamentalDomainD5
 
@@ -159,8 +153,6 @@ end Formalism.L2.Pj.FundamentalDomainD5
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.ProjectiveLattices.ArchimedeanQuadraticData.LatticeZbasis
-
-set_option autoImplicit false
 
 
 namespace Formalism.L2.Pj.FundamentalDomainD5
@@ -232,8 +224,6 @@ end Formalism.L2.Pj.FundamentalDomainD5
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.ProjectiveLattices.ArchimedeanQuadraticData.ThetaDotSelf
-
-set_option autoImplicit false
 
 
 namespace Formalism.L2.Pj.FundamentalDomainD5
@@ -351,8 +341,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.ProjectiveLattices.ArchimedeanQuadraticData.FundamentalDomainD5
 
-set_option autoImplicit false
-
 
 namespace Formalism.L2.Pj.FundamentalDomainD5
 
@@ -365,8 +353,6 @@ end Formalism.L2.Pj.FundamentalDomainD5
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.ProjectiveLattices.ArchimedeanQuadraticData.D6P4Statement
-
-set_option autoImplicit false
 
 namespace Formalism.L2.Pj.FundamentalDomainD5
 

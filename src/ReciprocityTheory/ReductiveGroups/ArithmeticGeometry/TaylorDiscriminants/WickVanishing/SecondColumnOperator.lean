@@ -10,8 +10,6 @@ import Mathlib.RingTheory.PiTensorProduct
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.SecondColumnDegree
 
-set_option autoImplicit false
-
 
 open MvPolynomial
 
@@ -223,8 +221,6 @@ end ReciprocityTheory.ChartRestriction.G.TB.WickVanishing.SecondColumnDegree
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.SecondColumnOperator
-
-set_option autoImplicit false
 
 
 open MvPolynomial Finset

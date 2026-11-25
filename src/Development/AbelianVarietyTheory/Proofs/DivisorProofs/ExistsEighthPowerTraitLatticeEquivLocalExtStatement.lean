@@ -70,7 +70,6 @@ open GlobalTheory.Poinc GlobalTheory.Poinc.Eq8 Formalism.L2.Pj
 open scoped TensorProduct
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CharactersEighthPowerElementaryMatricesStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 end -- clump:auto
@@ -168,7 +167,6 @@ theorem GlobalTheory.Poinc.EighthPow.main : ∀ (R : Type) [CommRing R] [IsDomai
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EighthPowerUniformisedMonomialPeriodsLatticeIsoStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 end -- clump:auto

@@ -23,8 +23,6 @@ namespace Formalism.L2.SG.Pf.ScalarFramePf
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.TermLoc ValuativeRel
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section Generic
 
 variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
@@ -50,8 +48,6 @@ end -- clump:auto
 namespace Formalism.L2.SG.Pf.ScalarFramePf
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.TermLoc ValuativeRel
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section Concrete
 

@@ -13,8 +13,6 @@ public import Formalism.SharpRestriction.Divisibility.GeneratorPowers.CIndExp
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpUniqGlue
 
-set_option autoImplicit false
-
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.ExpUniqGlue
 
@@ -255,8 +253,6 @@ end Formalism.MainNotions.ModuliIntegralCharts.H1.ExpUniqGlue
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpUniqChart
-
-set_option autoImplicit false
 
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.ExpUniqChart

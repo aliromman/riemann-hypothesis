@@ -719,7 +719,6 @@ end GlobalTheory.UGZero
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ComapMapEq
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory GlobalTheory.USep
 
 namespace GlobalTheory.USepTrait
