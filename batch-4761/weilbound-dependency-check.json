@@ -1,0 +1,7 @@
+{
+  "patch": "47d94f33773e8b861f9ca3e21edcb30cb570e8ae",
+  "parent": "756a70250dcba9162b99d4ea35c186558434c17e",
+  "project_ancestor_cone": 4252,
+  "affected_modules": 73,
+  "method": "Pinned Lean --deps-json on all project headers. The affected set agrees with the stock quick-check closure."
+}
