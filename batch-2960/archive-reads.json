@@ -1,0 +1,63 @@
+{
+  "head": "69f4437821d0fe038a0f099e9b4581a9ba648c0c",
+  "previous": "70f5e2c0737a9289949627d834612ed30d25432f",
+  "src": "b6c2f98f7aa8e864d204ad5fe9d5d447ed5c6608",
+  "project_lean_files_read": 59360,
+  "compact_clumps": 11368,
+  "paired_clumps": 702,
+  "unchanged_members": 65889,
+  "selected_clumps": 11368,
+  "selected_members": 61747,
+  "ordinary_sources": 47285,
+  "unchanged_unextractable_on_community_parent": [
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/DefectTorsionSecondCohomologyKernel.lean",
+      "error": [
+        "JSONDecodeError",
+        "Expecting value: line 1 column 1 (char 0)"
+      ],
+      "raw_source_sha256": "e533601377ec610b0e9723031b3d9fb701a0d2f5ad44d0b36a5848eaaea14932"
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/SmoothGrpSchemeDescendsToFgSubring.lean",
+      "error": [
+        "JSONDecodeError",
+        "Expecting value: line 1 column 1 (char 0)"
+      ],
+      "raw_source_sha256": "c1d6907be08cfe47553ed936fd040c82daaeec5dc58fac105e5b729faa8e6836"
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/RigSp4.lean",
+      "error": [
+        "JSONDecodeError",
+        "Unterminated string starting at: line 1 column 136 (char 135)"
+      ],
+      "raw_source_sha256": "da0f60392fe50f6a7c0fedb15935d59a0b7930d71b26b1afe16191384d69aaec"
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/Foundations/Convolution/TraceSplitting/FdFixed.lean",
+      "error": [
+        "JSONDecodeError",
+        "Unterminated string starting at: line 1 column 96 (char 95)"
+      ],
+      "raw_source_sha256": "bdbbec819a27fc215d6cdf140771a09a2acb8ccb669c747b4fe2f16d0ae2b53a"
+    },
+    {
+      "path": "src/Formalism/LocalToGlobal/KernelLattices/ColumnData/ColumnDataEquations/SecondConstantHolds.lean",
+      "error": [
+        "JSONDecodeError",
+        "Unterminated string starting at: line 1 column 105 (char 104)"
+      ],
+      "raw_source_sha256": "9afbadc1a8786f4ff8c114799f7e519fbd75c40a5737e3db1b4559c0ba9c252a"
+    }
+  ],
+  "per_archive_rows_sha256": "fdf303402be87ac05927dee636a9ea70a72332c81effe400c1f016c482b6d5f2",
+  "gzip_sha256": "af260e13e3fad4a88480c1c24045aa09d48174548f8ea7b03542f5129085ef31",
+  "universal_newline_source_count": 20,
+  "reference_reader_sha256": "639d7d477836f5815e18154ae63377e006c9f297518310943adc14a683b4d94c",
+  "reference_reader_upstream_fix": "#542",
+  "planner_records_checked": 59360,
+  "planner_fields_sha256": "e6652a27528eb537a1d34e537c706b50ab7ac179781116c2ce5f5264054fc8d4",
+  "all_recoverable_archive_renders_checked": 12070,
+  "complete_rendered_stream_sha256": "847b3c0ff0276c2b711d759cc7755e3b0636093b1a7fcf738cf407ca092b7202"
+}

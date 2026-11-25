@@ -1,0 +1,11 @@
+{
+  "base": "8e5cefeeaffe7e4c12153385b7bb33fb7223c41a",
+  "import_head": "66cee35856ff43a444fcbaf9d3a57329a8ac623b",
+  "clump_head": "69f4437821d0fe038a0f099e9b4581a9ba648c0c",
+  "merged_tree": "13969b57e2922cc4e0a9ab7eec1e6be20ee84fe0",
+  "common_edited_lean_files": 6066,
+  "distinct_edited_lean_files": 31737,
+  "lean_files": 59360,
+  "overlap_tuple_sha256": "7dea44c69b1f6bf4e5ef01a68a983c1286774b1b6cfc2d7618c9eae7c355d887",
+  "method": "For each shared path, the joined #879 import header and #977 body hash to the blob in the Git merge tree. Every other Lean blob matches its single contributing branch or the common parent. No combined build is claimed."
+}
