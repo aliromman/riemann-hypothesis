@@ -272,7 +272,6 @@ theorem GlobalTheory.ArchLineAct.intertwine_pair_left : ∀ (F E : Type) [Field 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ContinuousArchimedeanWeilOperatorLinePairX
-open GlobalTheory.WeilM
 
 namespace GlobalTheory.ArchLineContPairLeft
 
@@ -1035,7 +1034,6 @@ open scoped Classical
 
 namespace GlobalTheory.HoweGlobalPair.Transfer
 
-open Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 open GlobalTheory.HoweGlobal.Transfer (ext ext_of_mem ext_of_not_mem ext_update ext_vac)
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E} {n d : ℕ}
@@ -1202,7 +1200,6 @@ end -- clump:auto
 
 namespace GlobalTheory.HoweGlobalPair.FinPlaceSmall
 
-open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}
 

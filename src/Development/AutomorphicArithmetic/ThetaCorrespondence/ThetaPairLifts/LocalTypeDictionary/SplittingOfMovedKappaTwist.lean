@@ -145,8 +145,6 @@ open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLattice
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 
 noncomputable section
 
@@ -438,8 +436,6 @@ open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLattice
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 
 noncomputable section
 
@@ -1113,8 +1109,6 @@ open GlobalTheory.RowEx
 open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 noncomputable section
 namespace GlobalTheory.SplitMoveKappa
 theorem jetKappa_split_move : _root_.GlobalTheory.FunPr.ThetaLocalInputs → (∀ D, GlobalTheory.NormSum.Inp D) → ∀ {D : D7} {Γ : Type} [Group Γ] [Fintype Γ] {Pl0 T : Type}
@@ -1183,8 +1177,6 @@ open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLattice
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 
 noncomputable section
 namespace GlobalTheory.MovedKappaNorm
@@ -1468,8 +1460,6 @@ open GlobalTheory.RowEx
 open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 noncomputable section
 namespace GlobalTheory.MovedKappaNorm
 theorem norm_kappa_of_moved_place : _root_.GlobalTheory.FunPr.ThetaLocalInputs → (∀ D, GlobalTheory.NormSum.Inp D) → ∀ {D : D7} {Γ : Type} [Group Γ] [Fintype Γ] {Pl0 T : Type}
@@ -1546,8 +1536,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (Tri)
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RowEx
 open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 noncomputable section

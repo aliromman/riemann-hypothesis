@@ -85,7 +85,6 @@ import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.Annih
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.EtaleIdempotents.CorrespondenceNormBoundOfAffineOpens
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory Limits AlgebraicGeometry GroundTheory.PAdicHodge CrystallineSemistableComparison UpperTheory.Ru.crystallineComparison UpperTheory.Gal.crystallineComparison
 
 private lemma spec_chart {B : Type} [CommRing B] {X : Scheme.{0}} (w : Spec (CommRingCat.of B) ⟶ X) {V : X.Opens}
@@ -185,7 +184,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.EtaleIdempotents.ExistsFiniteSectionsDeterminingRingHomOfSmooth
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory Limits AlgebraicGeometry GroundTheory.PAdicHodge CrystallineSemistableComparison UpperTheory.Ru.crystallineComparison UpperTheory.Gal.crystallineComparison
 
 theorem UpperTheory.exists_finite_sections_determining_ringHom_of_smooth :
@@ -236,7 +234,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.EtaleIdempotents.ExistsOrthogonalIdempotentsLiftThroughSharp
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory Limits AlgebraicGeometry GroundTheory.PAdicHodge CrystallineSemistableComparison UpperTheory.Ru.crystallineComparison UpperTheory.Gal.crystallineComparison
 
 theorem UpperTheory.exists_orthogonalIdempotents_lift_through_sharp :
@@ -1460,8 +1457,6 @@ theorem UpperTheory.Gal.crystallineComparison.valPts_of :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.MapUSharp
-
-set_option backward.isDefEq.respectTransparency false
 
 
 open CategoryTheory Limits AlgebraicGeometry GroundTheory.PAdicHodge CrystallineSemistableComparison

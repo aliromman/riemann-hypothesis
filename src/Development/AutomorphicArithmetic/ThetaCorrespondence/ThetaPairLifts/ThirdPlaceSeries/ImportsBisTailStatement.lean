@@ -663,7 +663,6 @@ open scoped TensorProduct
 
 namespace GlobalTheory.LevCosetFin
 
-open ReciprocityTheory.Aut
 
 section Grp
 

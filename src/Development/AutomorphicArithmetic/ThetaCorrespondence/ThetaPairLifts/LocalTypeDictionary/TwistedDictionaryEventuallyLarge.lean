@@ -804,7 +804,6 @@ open GlobalTheory.RowEx
 
 namespace GlobalTheory.RowEx.FourierSelfDualModel
 
-open GlobalTheory.RowTest GlobalTheory.FunObj Formalism.IndefR.Datum
 
 theorem stdSelfDual {D : D7} {T : Type} {L : LevCh D T} {sc : GlobalTheory.ChiGrid.Consts} {G : GridData L sc} {U : Set T}
     (N : Std G U) {p : Pair T} (hp : DefPair D.R.m p) :
@@ -1210,8 +1209,6 @@ open GlobalTheory.RowEx
 open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 noncomputable section
 namespace GlobalTheory.MovedKappa
 theorem fock_jets_of_moved_vacuum : _root_.GlobalTheory.FunPr.ThetaLocalInputs → (∀ D, GlobalTheory.NormSum.Inp D) → ∀ {D : D7} {Γ : Type} [Group Γ] [Fintype Γ] {Pl0 T : Type}
@@ -1281,8 +1278,6 @@ open GlobalTheory.RowEx
 open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 
 theorem _root_.GlobalTheory.T.movedKappa_fock_jets_span : _root_.GlobalTheory.FunPr.ThetaLocalInputs → (∀ D, GlobalTheory.NormSum.Inp D) → ∀ {D : D7} {Γ : Type} [Group Γ] [Fintype Γ] {Pl0 T : Type}
     {A : FamIn D.what₂.LL Γ Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] {R : RealDat D A Ks}
@@ -1309,8 +1304,6 @@ open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLattice
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 
 namespace GlobalTheory.MovedKappaArith
 
@@ -1336,8 +1329,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (Tri)
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RowEx
 open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 namespace GlobalTheory.MovedKappaArith
@@ -1398,8 +1389,6 @@ open GlobalTheory.RowEx
 open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 
 theorem _root_.GlobalTheory.T.movedKappa_rational_of_arithmetic : _root_.GlobalTheory.FunPr.ThetaLocalInputs → (∀ D, GlobalTheory.NormSum.Inp D) → ∀ {D : D7} {Γ : Type} [Group Γ] [Fintype Γ] {Pl0 T : Type}
     {A : FamIn D.what₂.LL Γ Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] {R : RealDat D A Ks}
@@ -1426,8 +1415,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (Tri)
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RowEx
 open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 namespace GlobalTheory.MovedDict
@@ -1458,8 +1445,6 @@ open GlobalTheory.RowEx
 open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 
 theorem _root_.GlobalTheory.T.twisted_moved_vacuum_kappa : _root_.GlobalTheory.FunPr.ThetaLocalInputs → (∀ D, GlobalTheory.NormSum.Inp D) → ∀ {D : D7} {Γ : Type} [Group Γ] [Fintype Γ] {Pl0 T : Type}
     {A : FamIn D.what₂.LL Γ Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] {R : RealDat D A Ks}
@@ -1487,8 +1472,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (Tri)
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RowEx
 open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 namespace GlobalTheory.MovedDict

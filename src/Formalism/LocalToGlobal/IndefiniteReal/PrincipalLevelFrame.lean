@@ -272,8 +272,6 @@ end CoreProofs
 
 section Conc
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 local instance instCMHost (D : Formalism.BasicNotions.D7) : IsCMField D.host.E := D.host.isCMField_hostE
 
 variable {D : Formalism.BasicNotions.D7} (V : Formalism.BasicNotions.TH.HSp D) (n : ℕ)
@@ -310,8 +308,6 @@ def RowRepExists (P : RowPsi V n) (M : Mult.DSModel V Sp) (J : Set (GA D V)) (χ
 end Conc
 
 section ConcProofs
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 local instance instCMHost' (D : Formalism.BasicNotions.D7) : IsCMField D.host.E := D.host.isCMField_hostE
 

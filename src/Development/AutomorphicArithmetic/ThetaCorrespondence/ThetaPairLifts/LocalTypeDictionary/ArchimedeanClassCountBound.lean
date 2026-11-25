@@ -78,7 +78,6 @@ open IsDedekindDomain NumberField Matrix GlobalTheory.ChiGrid GlobalTheory.FunOb
 
 namespace GlobalTheory.ModulNorm
 
-open GlobalTheory.SumSize
 
 theorem absNorm_map_of_finrank_two {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
     (h2 : Module.finrank F E = 2) (I : Ideal (𝓞 F)) :

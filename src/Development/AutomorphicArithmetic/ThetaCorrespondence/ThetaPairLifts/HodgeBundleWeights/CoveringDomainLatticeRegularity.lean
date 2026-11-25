@@ -332,7 +332,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.LevelStructureAutomorphisms (LevelA
 open GlobalTheory.BadCount
 open scoped TensorProduct
 open ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.GeometryOfNumbersTheory TopologicalSpace Limits
-open GlobalTheory.HSApp
 open GlobalTheory.LamT (CMPt)
 
 open GlobalTheory.CechPic GlobalTheory.Vanishing GlobalTheory.HermTools GlobalTheory.Adelic
@@ -725,7 +724,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.LevelStructureAutomorphisms (LevelA
 open GlobalTheory.BadCount
 open scoped TensorProduct
 open ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.GeometryOfNumbersTheory TopologicalSpace Limits
-open GlobalTheory.HSApp
 open GlobalTheory.LamT (CMPt)
 
 namespace GlobalTheory.CovDetectDom
@@ -889,7 +887,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.LevelStructureAutomorphisms (LevelA
 open GlobalTheory.BadCount
 open scoped TensorProduct
 open ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.GeometryOfNumbersTheory TopologicalSpace Limits
-open GlobalTheory.HSApp
 open GlobalTheory.LamT (CMPt)
 
 
@@ -1684,7 +1681,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.LevelStructureAutomorphisms (LevelA
 open GlobalTheory.BadCount
 open scoped TensorProduct
 open ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.GeometryOfNumbersTheory TopologicalSpace Limits
-open GlobalTheory.HSApp
 open GlobalTheory.LamT (CMPt)
 set_option synthInstance.maxHeartbeats 400000
 noncomputable section
@@ -1736,7 +1732,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.LevelStructureAutomorphisms (LevelA
 open GlobalTheory.BadCount
 open scoped TensorProduct
 open ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.GeometryOfNumbersTheory TopologicalSpace Limits
-open GlobalTheory.HSApp
 set_option synthInstance.maxHeartbeats 400000
 open GlobalTheory.LamT (CMPt)
 noncomputable section

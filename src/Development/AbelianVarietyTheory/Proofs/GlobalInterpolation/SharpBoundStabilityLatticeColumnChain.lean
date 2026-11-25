@@ -1308,30 +1308,6 @@ theorem below_finite {b : (B.I.S i).β} (v : B.ch.A.vT) (d : (B.I.S i).D b) :
     {d₀ | Above (B.J.A i) b (B.pr v) d₀ d}.Finite :=
   Set.Finite.of_finite_image (below_image R 1 v d ▸ ((inc_finite_stable D u _ i M v).1 _).2) (below_injOn R 1 v d)
 
-include R in
-theorem val_ext {W : Type} [AddCommGroup W] [Module ℂ W] (f g : M.Val →ₗ[ℂ] W)
-    (h : ∀ (F : B.V i) (y : M.Val), y.1 = B.ev i F → f y = g y) : f = g := by
-  have hv : M.Val = Submodule.span ℂ (Set.range (B.ev i)) :=
-    R.val_eq.trans (span_evV B.emb 1 (B.lam i) D.what₂.embLL).symm
-  ext ⟨y, hy⟩
-  have key : ∀ y ∈ Submodule.span ℂ (Set.range (B.ev i)), ∀ hy : y ∈ M.Val, f ⟨y, hy⟩ = g ⟨y, hy⟩ := by
-    intro y hy
-    induction hy using Submodule.span_induction with
-    | mem x hx =>
-      obtain ⟨F, rfl⟩ := hx
-      exact fun hy => h F _ rfl
-    | zero => exact fun hy => (map_zero f).trans (map_zero g).symm
-    | add x y hx hy ihx ihy =>
-      intro hxy
-      have hx' : x ∈ M.Val := hv ▸ hx
-      have hy' : y ∈ M.Val := hv ▸ hy
-      exact (map_add f ⟨x, hx'⟩ ⟨y, hy'⟩).trans ((congrArg₂ (· + ·) (ihx hx') (ihy hy')).trans (map_add g _ _).symm)
-    | smul c x hx ih =>
-      intro hc
-      have hx' : x ∈ M.Val := hv ▸ hx
-      exact (map_smul f c ⟨x, hx'⟩).trans ((congrArg (c • ·) (ih hx')).trans (map_smul g c _).symm)
-  exact key y (hv ▸ hy) hy
-
 end Real
 
 theorem ukLaw_of_kerUK (D : D7) (u : D.what₂.Word) (B : Built.Dat D u) (i : ℕ) (sp : Split (B.J.A i) B.J.T)
@@ -1353,7 +1329,7 @@ theorem ukLaw_of_kerUK (D : D7) (u : D.what₂.Word) (B : Built.Dat D u) (i : �
 
   rw [← map_sum, ← map_sum, ← map_smul]
   congr 1
-  have := val_ext R (∑ d₁ ∈ f1.toFinset, K.k (R.pt b d) (R'.pt b' d₁))
+  have := GlobalTheory.LvT.Built.DilPass.ext_ev R (∑ d₁ ∈ f1.toFinset, K.k (R.pt b d) (R'.pt b' d₁))
     (((B.ch.A.T : ℂ) ^ ((D.R.t + 1) / 2)) • ∑ d₀ ∈ f0.toFinset, K.k (R.pt b d₀) (R'.pt b' d')) (fun F y hy => ?_)
   · simpa only [LinearMap.sum_apply, LinearMap.smul_apply] using LinearMap.congr_fun this y
   have h := hu b b' d d' (B.pr v) F

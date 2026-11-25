@@ -723,8 +723,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.SplitPointGeneric
 
-set_option backward.isDefEq.respectTransparency false
-
 
 open CategoryTheory Limits AlgebraicGeometry GroundTheory.PAdicHodge CrystallineSemistableComparison
 

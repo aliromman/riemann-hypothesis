@@ -69,7 +69,6 @@ end Scale
 
 section Integral
 
-open IsLocalRing
 
 variable {R : Type} [CommRing R] [IsDomain R] [IsLocalRing R] {I : Ideal R}
   {D : DegData R I} {A : PolAV (Spec (CommRingCat.of (FractionRing R)))}

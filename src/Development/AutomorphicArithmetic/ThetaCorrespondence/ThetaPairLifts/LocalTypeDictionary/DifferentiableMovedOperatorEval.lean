@@ -72,8 +72,6 @@ open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLattice
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 
 namespace GlobalTheory.MovedDict.Entire
 
@@ -108,8 +106,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (Tri)
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RowEx
 open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3
-open scoped TensorProduct
-open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 open scoped TensorProduct
 open GlobalTheory.MovedDict Formalism.L2.Ker GlobalTheory.SignedHC
 namespace GlobalTheory.MovedDict.Entire

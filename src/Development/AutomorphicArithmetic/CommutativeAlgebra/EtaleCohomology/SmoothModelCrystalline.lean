@@ -106,8 +106,6 @@ import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomology
 
 
 
-set_option backward.isDefEq.respectTransparency false
-
 
 open CategoryTheory Limits AlgebraicGeometry GroundTheory.PAdicHodge CrystallineSemistableComparison
 
@@ -136,8 +134,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.TeichmullerRootsUnity.EndExOf
 
-set_option backward.isDefEq.respectTransparency false
-
 
 
 
@@ -164,8 +160,6 @@ end CrystallineSemistableComparison.crystallineComparison
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.TeichmullerRootsUnity.RootsUnityPullback.MmPull
-
-set_option backward.isDefEq.respectTransparency false
 
 
 
@@ -241,8 +235,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.TeichmullerRootsUnity.RootsUnityPullback.TeichDvd
-
-set_option backward.isDefEq.respectTransparency false
 
 
 open CategoryTheory Limits AlgebraicGeometry TensorProduct GroundTheory.PAdicHodge
@@ -660,7 +652,6 @@ end -- clump:auto
 
 set_option synthInstance.maxHeartbeats 200000
 set_option maxHeartbeats 1000000
-set_option backward.isDefEq.respectTransparency false
 
 
 open CategoryTheory Limits AlgebraicGeometry GroundTheory.PAdicHodge CrystallineSemistableComparison TensorProduct
@@ -861,8 +852,6 @@ namespace UpperTheory.Ru.crystallineComparison.PBI
 variable {l : ℕ} [Fact l.Prime] {K : IntermediateField ℚ_[l] (PadicAlgCl l)}
 
 section
-
-set_option backward.isDefEq.respectTransparency false
 
 private theorem coe_sub_oc (a b : OC l) : ((a - b : OC l) : ℂ_[l]) = (a : ℂ_[l]) - (b : ℂ_[l]) := rfl
 
@@ -1238,8 +1227,6 @@ end -- clump:auto
 
 
 
-set_option backward.isDefEq.respectTransparency false
-
 open CategoryTheory AlgebraicGeometry CrystallineSemistableComparison UpperTheory.Ru.crystallineComparison
 
 private theorem UpperTheory.Ru.crystallineComparison.quasiCompact_of_proj {R : Type} [CommRing R] {X : Scheme.{0}}
@@ -1273,8 +1260,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.FinAllOf
 
 
-
-set_option backward.isDefEq.respectTransparency false
 
 open CrystallineSemistableComparison UpperTheory.Ru.crystallineComparison
 
