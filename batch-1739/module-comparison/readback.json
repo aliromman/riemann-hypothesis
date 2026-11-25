@@ -1,0 +1,33 @@
+{
+  "also_checked_by_current_ordinary_lake": {
+    "fresh_local_stock_lean_darwin_arm64": 7,
+    "same_source_owner_and_effective_compiler_inputs": 476
+  },
+  "declaration_instances": {
+    "fresh_local_stock_lean_darwin_arm64": 7039,
+    "native_lean_invoked_in_current_integrated_stock_lake_worktree": 545,
+    "same_source_owner_and_effective_compiler_inputs": 144692
+  },
+  "files": {
+    "native-local-observations.jsonl.gz": "225e7386dfb0f90666061ce25743fdbd11b4d36562528ac16a01fc23f2d1d7c9",
+    "native-modules.jsonl.gz": "bb15fde13a58e1f414f12efd6c2374d363254797727ae4ca697f253b7c959cdc",
+    "native-nonpassing.jsonl.gz": "ac73670af3abed54ac6fb4695131f4099be9fbe39d6076c5d0264a6bbdae9d83",
+    "native-ordinary-observations.jsonl.gz": "244e5a9b021dd66049f56bf3b6225ceefbbb8dbe0b315efff2bd58873e1c4463"
+  },
+  "nonpassing_local_observations": 0,
+  "normal_observation_actual_compiler_provenance": {
+    "current_checkout_native_lean_invocation": 462,
+    "lake_accepted_identical_sealed_previous_worktree_output": 28
+  },
+  "public_head": "c8612c024cfc12b0aa89ca2553f33ca5af8aa9ee",
+  "published_files": 38948,
+  "selected_without_strict_current_evidence": 30605,
+  "source_counts": {
+    "fresh_local_stock_lean_darwin_arm64": 293,
+    "native_lean_invoked_in_current_integrated_stock_lake_worktree": 7,
+    "same_source_owner_and_effective_compiler_inputs": 8043
+  },
+  "source_tree": "011c57888875663774b29e308351f450e5210fe4",
+  "strict_sources": 8343,
+  "summary_sha256": "eab66fa2e153d20e4cd68edc9c043c647295ee84d4543ac83a000082eb333e99"
+}
