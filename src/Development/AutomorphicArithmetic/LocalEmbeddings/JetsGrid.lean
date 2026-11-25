@@ -33,28 +33,6 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Exist
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsMeasDefOfIsTermVol
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaKernelGridRationalLeftInvariant
 public import Formalism.SharpRestriction.GlobalSchurBounds.GlobalRankLatticeProofs.UnitTraceSumBounds.StmtTransInvHolds
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -67,15 +45,11 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
-import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.IdemElt
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompactness.T2SpaceTensorProductFiniteExtension
 import Mathlib.Algebra.Order.Star.Int
@@ -85,7 +59,6 @@ import Development.AbelianVarietyTheory.Proofs.TwistedOperators.TendstoInfMulPro
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsGivenStageEqOne
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsMatchOver
 import Development.AbelianVarietyTheory.Statements.HeckeThetaIntegrals.FormulaAt
-import Mathlib.Tactic.Basify
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ColumnArrowKernelRealEqDetCharMulFockKernelStatement, Development.AbelianVarietyTheory.Proofs.TwistedOperators.CompactUnitaryAverageFockPolynomialJetFunctional, Development.AbelianVarietyTheory.Proofs.TwistedOperators.FockComponentTransportedPointsEqJetOperator, Development.AbelianVarietyTheory.Proofs.TwistedOperators.FockComponentTransportedPointsEqJetOperatorStatement, Development.AbelianVarietyTheory.Proofs.TwistedOperators.RealPointsTopNodeOntoUnitaryHaarUnique, Development.AbelianVarietyTheory.Proofs.TwistedOperators.RealPointsTopNodeOntoUnitaryHaarUniqueStatement, Development.AbelianVarietyTheory.Proofs.TwistedOperators.DenseOfPolynomialStdGaussianMemSchwartz, Development.AbelianVarietyTheory.Proofs.TwistedOperators.DenseOfPolynomialStdGaussianMemSchwartzStatement, Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsThetaFunOFockMovedVecTop, Development.AbelianVarietyTheory.Proofs.TwistedOperators.CompactPairRealAverageFockEqJetOperatorStatement, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsFockFrameChangeLastColumnDefinitePairStatement, Development.AbelianVarietyTheory.Proofs.TwistedOperators.LastColumnArrowRealAverageFunctional, Development.AbelianVarietyTheory.Proofs.TwistedOperators.LastColumnArrowRealAverageFunctionalStatement, Development.AbelianVarietyTheory.Proofs.TwistedOperators.RealActionOnVertexWeightContinuous, Development.AbelianVarietyTheory.Proofs.TwistedOperators.RealActionOnVertexWeightContinuousStatement, Development.AutomorphicArithmetic.LocalEmbeddings.JetsGrid

@@ -22,28 +22,6 @@ public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLif
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompactificationComponentIntegralSmoothProjectiv
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCartierDivisorDetLieEigenpartsToroidal
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.EquivariantLinearizationPullbackCompat
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -62,10 +40,6 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.CuspIso
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsoOverOfIsOpenImmersion
 import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.FramedPointsLiftToLevelCover
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Data.Nat.Choose.Multinomial
 import Mathlib.RingTheory.Henselian
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
@@ -75,8 +49,6 @@ import Formalism.LocalToGlobal.ProjectiveLattices.ErealAddIInf
 import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.CanonGenIsGen
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.Polynomial.Basic
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ImportsRestMore, Development.AbelianVarietyTheory.Proofs.DivisorProofs.EigenFrameTransportCartesianAutomorphism, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsStalkMapIdentityModMaximalOfFixedPoint, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LieDeterminantLinearisationEquivariantPullback, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.HodgeBundleWeights.HodgeLineBundleRationalLinearEquivClass
