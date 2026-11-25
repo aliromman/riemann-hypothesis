@@ -1,0 +1,39 @@
+{
+  "head": "5b2620ae67debb40f3785fde68574d581c3fe2c9",
+  "previous": "70f5e2c0737a9289949627d834612ed30d25432f",
+  "src": "d50950e8a05c0533b5a656ad5adbb133e9adc2ad",
+  "project_lean_files_read": 59364,
+  "compact_clumps": 11370,
+  "paired_clumps": 703,
+  "unchanged_members": 66060,
+  "selected_clumps": 11370,
+  "selected_members": 61910,
+  "ordinary_sources": 47289,
+  "unchanged_unextractable_on_community_parent": [
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/DefectTorsionSecondCohomologyKernel.lean",
+      "error": [
+        "JSONDecodeError",
+        "Expecting value: line 1 column 1 (char 0)"
+      ],
+      "raw_source_sha256": "e533601377ec610b0e9723031b3d9fb701a0d2f5ad44d0b36a5848eaaea14932"
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/SmoothGrpSchemeDescendsToFgSubring.lean",
+      "error": [
+        "JSONDecodeError",
+        "Expecting value: line 1 column 1 (char 0)"
+      ],
+      "raw_source_sha256": "c1d6907be08cfe47553ed936fd040c82daaeec5dc58fac105e5b729faa8e6836"
+    }
+  ],
+  "per_archive_rows_sha256": "045f7cb033354d84b3c9fcf109b5cd1d04f95c742810a9054068c4f4c3d12406",
+  "gzip_sha256": "2271a9ecb8930c51383e707fd2bce33a17bfdf2b336f9c023f0fde9186eeb1b7",
+  "universal_newline_source_count": 19,
+  "reference_reader_sha256": "639d7d477836f5815e18154ae63377e006c9f297518310943adc14a683b4d94c",
+  "reference_reader_upstream_fix": "#542",
+  "planner_records_checked": 59364,
+  "planner_fields_sha256": "78c515435ce0aaa3a10122e13cbb40084c3d8dca437ca9248134d7e0a75dd1c5",
+  "all_recoverable_archive_renders_checked": 12073,
+  "complete_rendered_stream_sha256": "8d5025df34ebdc60ca1af32fb9e99630c446deea468a078aa709ed2a2499cc25"
+}

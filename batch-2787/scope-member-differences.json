@@ -1,0 +1,17 @@
+{
+  "parent": "251c7b05dd869ceba1aa42c6001c00b4010f23f9",
+  "head": "5b2620ae67debb40f3785fde68574d581c3fe2c9",
+  "modules": 11370,
+  "members": 61910,
+  "member_changes": {
+    "outer section combined": 23738,
+    "explicit outer ends removed": 6726,
+    "adjacent blank lines removed": 2965,
+    "identical": 38172
+  },
+  "proof_body_lines_added": 0,
+  "proof_body_lines_removed": 0,
+  "evidence": "The complete recovered member outside the checked module-level section edits is byte-identical, including every declaration and tactic.",
+  "ordered_member_pairs_sha256": "68f27b0e8f5395acbcb0af97093d17d09f73e0006699a5688dfb623bf39d49d9",
+  "compressed_rows_sha256": "aeee8fa4f93a0fff4edabce531458df3cbe48634d182596f08e287727c5f5387"
+}

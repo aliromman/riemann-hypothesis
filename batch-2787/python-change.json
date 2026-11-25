@@ -1,0 +1,54 @@
+{
+  "refs": [
+    "251c7b05dd869ceba1aa42c6001c00b4010f23f9",
+    "5b2620ae67debb40f3785fde68574d581c3fe2c9"
+  ],
+  "files": {
+    "scripts/clump.py": {
+      "parent": {
+        "physical": 454,
+        "nonblank": 392,
+        "with_python_tokens": 370
+      },
+      "candidate": {
+        "physical": 724,
+        "nonblank": 636,
+        "with_python_tokens": 608
+      }
+    },
+    "scripts/tests/test_clump.py": {
+      "parent": {
+        "physical": 127,
+        "nonblank": 115,
+        "with_python_tokens": 113
+      },
+      "candidate": {
+        "physical": 126,
+        "nonblank": 114,
+        "with_python_tokens": 112
+      }
+    },
+    "scripts/tests/test_clump_scopes.py": {
+      "parent": {
+        "physical": 0,
+        "nonblank": 0,
+        "with_python_tokens": 0
+      },
+      "candidate": {
+        "physical": 178,
+        "nonblank": 155,
+        "with_python_tokens": 155
+      }
+    }
+  },
+  "net_added": {
+    "physical": 447,
+    "nonblank": 398,
+    "with_python_tokens": 392
+  },
+  "method": "Deduct the full physical line increase in the clump script and both test files.",
+  "identical_to_preceding_tool_sources": [
+    "ef451fc356cbc66861df031531aaafd2843797ac",
+    "72edf8ddcbf8a2ff593300c708d6420711ae3ba8"
+  ]
+}

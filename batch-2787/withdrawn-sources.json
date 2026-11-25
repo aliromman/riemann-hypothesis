@@ -1,0 +1,18 @@
+{
+  "879": {
+    "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/SmoothGrpSchemeDescendsToFgSubring.lean": {
+      "sha256": "c1d6907be08cfe47553ed936fd040c82daaeec5dc58fac105e5b729faa8e6836",
+      "reason": "An upstream clump member marker has no following JSON header. Keep the source byte for byte so both readers report the inherited failure."
+    }
+  },
+  "977": {
+    "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/SmoothGrpSchemeDescendsToFgSubring.lean": {
+      "sha256": "c1d6907be08cfe47553ed936fd040c82daaeec5dc58fac105e5b729faa8e6836",
+      "reason": "An upstream clump member marker has no following JSON header. Keep the source byte for byte so both readers report the inherited failure."
+    },
+    "src/GroundTheory/ArithmeticGeometry/SchemeCohomology/ProjectiveCohomology/PSpaceFinite.lean": {
+      "sha256": "1254f697ffbbce31145f4e2143c79baf88082994d2ef6899c7693ab3c231e842",
+      "reason": "The revised upstream archive uses CRLF. Keep the complete file byte for byte."
+    }
+  }
+}

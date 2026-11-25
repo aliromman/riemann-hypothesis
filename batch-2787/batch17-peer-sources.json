@@ -1,0 +1,73 @@
+{
+  "base": "ef451fc356cbc66861df031531aaafd2843797ac",
+  "merged_batch": 2787,
+  "observed_state": {
+    "headRefOid": "3c45d14ed10a1f5cec7b0a0b76fb90492a011de8",
+    "mergeCommit": {
+      "oid": "251c7b05dd869ceba1aa42c6001c00b4010f23f9"
+    },
+    "mergedAt": "2026-11-25T10:33:41Z",
+    "state": "MERGED",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/2787"
+  },
+  "peer_head": "251c7b05dd869ceba1aa42c6001c00b4010f23f9",
+  "heads": {
+    "879": "db11a315e4d96e853ad594f992370b6de767b9ba",
+    "977": "72edf8ddcbf8a2ff593300c708d6420711ae3ba8"
+  },
+  "unique_shared_sources": 5824,
+  "by_proposal": {
+    "879": {
+      "shared": 5133,
+      "all": {
+        "already_in_community": 3314,
+        "reconstructed": 1792,
+        "deleted_by_peer": 26,
+        "withdrawn": 1
+      },
+      "textual_conflicts": {
+        "already_in_community": 3139,
+        "deleted_by_peer": 26,
+        "reconstructed": 76
+      },
+      "requires_review": []
+    },
+    "977": {
+      "shared": 2638,
+      "all": {
+        "reconstructed": 2620,
+        "upstream_retired_archive": 8,
+        "withdrawn": 2,
+        "deleted_by_peer": 8
+      },
+      "textual_conflicts": {
+        "reconstructed": 1057,
+        "upstream_retired_archive": 8,
+        "withdrawn": 2,
+        "deleted_by_peer": 8
+      },
+      "requires_review": []
+    }
+  },
+  "shared_tooling": {
+    "879": [],
+    "977": []
+  },
+  "exact_source_preview": {
+    "879": {
+      "unresolved_modules_excluded_from_estimate": 0,
+      "retained_owners": 29696,
+      "net_nonblank_lean_lines": 766993,
+      "net_lean_code_commands": 766993
+    },
+    "977": {
+      "unresolved_modules_excluded_from_estimate": 0,
+      "retained_owners": 11370,
+      "net_nonblank_lean_lines": 346006,
+      "net_lean_code_commands": 227315,
+      "net_code_less_added_python": 226868
+    }
+  },
+  "status": "Source reconstruction against the actual main tree after merged PR 2787. Native and stock build checks are separate.",
+  "rows_sha256": "e65ea3fa16cdbfb55c4c01b928511faa23318ef5d8d229d46fb456c6e75c66d9"
+}
