@@ -1,0 +1,29 @@
+{
+  "pr": 879,
+  "head": "e44617765779eb58a6edab2c957ea3c4a9cd4337",
+  "source_tree": "6af81f1c5c2293469175c13cfd47bc25932da66c",
+  "parent": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+  "actual_sources": 38966,
+  "declaration_occurrences": 874546,
+  "distinct_names": 858637,
+  "raw_ordinary_output_checks": 116898,
+  "sqlite_parent_facets_compared": {
+    ".olean": 38966,
+    ".olean.server": 38966,
+    ".ir.sig": 38966,
+    ".ir": 38966,
+    ".olean.private": 38966
+  },
+  "authenticated_parent_facets_compared": {
+    ".olean": 38966,
+    ".olean.server": 38966,
+    ".olean.private": 38966,
+    ".ir.sig": 38966,
+    ".ir": 38966
+  },
+  "comparison_modes": {
+    "same_original_candidate_and_checked_compiler_inputs": 12929,
+    "fresh_against_current_official_parent": 26037
+  },
+  "warning_occurrences": 173068
+}

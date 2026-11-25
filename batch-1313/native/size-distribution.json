@@ -1,0 +1,60 @@
+{
+  "projected_digest": "b496ad73f5dd33fb150b4b61dd31af6b997d98c4450a0fee65ecbefa4ebc195d",
+  "size_table_sha256": "0f7c883c9001e110a0b9187956d7bf289e34ea960d3c9c468afef262af53e85f",
+  "projected_for_head": "e44617765779eb58a6edab2c957ea3c4a9cd4337",
+  "published_head": "e44617765779eb58a6edab2c957ea3c4a9cd4337",
+  "published_parent": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+  "published_source_tree": "6af81f1c5c2293469175c13cfd47bc25932da66c",
+  "source_pairs_sha256": "8b0e09b6172f3efa31f58ca3fc57c89376e80a86d04ce954d279fc34974e4026",
+  "scope": "all changed source files",
+  "total": {
+    "modules_smaller": 38966,
+    "modules_unchanged": 0,
+    "modules_larger": 0,
+    "total_bytes_saved": 379159512,
+    "total_bytes_added": 0,
+    "net_bytes_saved": 379159512,
+    "median_net_bytes_per_module": 9736.0,
+    "biggest_increase_bytes": 0,
+    "largest_increases": [],
+    "biggest_decrease_bytes": 11872
+  },
+  "facets": {
+    ".olean": {
+      "modules_smaller": 38966,
+      "modules_unchanged": 0,
+      "modules_larger": 0,
+      "total_bytes_saved": 187000936,
+      "total_bytes_added": 0,
+      "net_bytes_saved": 187000936,
+      "median_net_bytes_per_module": 4808.0,
+      "biggest_increase_bytes": 0,
+      "largest_increases": [],
+      "biggest_decrease_bytes": 5936
+    },
+    ".ir.sig": {
+      "modules_smaller": 0,
+      "modules_unchanged": 38966,
+      "modules_larger": 0,
+      "total_bytes_saved": 0,
+      "total_bytes_added": 0,
+      "net_bytes_saved": 0,
+      "median_net_bytes_per_module": 0.0,
+      "biggest_increase_bytes": 0,
+      "largest_increases": [],
+      "biggest_decrease_bytes": 0
+    },
+    ".ir": {
+      "modules_smaller": 38966,
+      "modules_unchanged": 0,
+      "modules_larger": 0,
+      "total_bytes_saved": 192158576,
+      "total_bytes_added": 0,
+      "net_bytes_saved": 192158576,
+      "median_net_bytes_per_module": 4928.0,
+      "biggest_increase_bytes": 0,
+      "largest_increases": [],
+      "biggest_decrease_bytes": 5936
+    }
+  }
+}

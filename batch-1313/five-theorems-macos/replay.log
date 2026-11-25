@@ -1,0 +1,10 @@
+negative control: while replaying declaration 'riemannHypothesis':
+(kernel) declaration type mismatch, 'riemannHypothesis' has type
+  True
+but it is expected to have type
+  RiemannHypothesis
+kernel accepted riemannHypothesis
+kernel accepted riemannZeta_eq_zero_re
+kernel accepted LFunction_ne_zero_of_half_lt_re
+kernel accepted LFunction_eq_zero_re
+kernel accepted LFunction_eq_zero_re_of_isPrimitive
