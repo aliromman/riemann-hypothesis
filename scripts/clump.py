@@ -566,7 +566,7 @@ def read_scope_members(lines):
 
 
 def clump_layout(lines):
-    """Find the archive banner and identify the layout below it."""
+    """Return the first line to scan and whether the archive uses compact scopes."""
     try:
         start = lines.index(CLUMP_MARK) + 1
     except ValueError:
@@ -577,7 +577,8 @@ def clump_layout(lines):
             break
         if member_start(line) or line in (SHARED_OPENS, "section " + SHARED_OPENS) or line.startswith(HEADER_TAG):
             return start, True
-    return start, False
+    # Paired members can occur before the banner in old archives.
+    return 0, False
 
 
 def unclump_text(text):

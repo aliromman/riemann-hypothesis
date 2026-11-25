@@ -51,6 +51,13 @@ end A"""
                           clump.SEAM_END + "Example.A =====", ""])
         self.assertEqual(clump.unclump_text(text), {"Example.A": header + body})
 
+        # Some old files contain complete members before the archive banner.
+        second = text.replace("Example.A", "Example.B").replace("theorem one", "theorem two")
+        joined = text + clump.CLUMP_MARK + "\n" + second
+        self.assertEqual(list(clump.unclump_text(joined).items()),
+                         [("Example.A", header + body), ("Example.B", header + body.replace("one", "two"))])
+        self.check_blame(joined, [("theorem one", "Example.A"), ("theorem two", "Example.B")])
+
     def make_group(self):
         common = "@[expose] public section\n\nopen Nat\nopen Bool\nopen List\n"
         sources = {
