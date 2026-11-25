@@ -1,0 +1,40 @@
+{
+  "base": "ce1560fba43e59629abdf3c27a279218fad9f77a",
+  "compiled_direct_imports_read_from": {
+    "879": 59079,
+    "977": 2
+  },
+  "current_edited_modules_in_closure": {
+    "879": 8209,
+    "977": 11295
+  },
+  "edited_modules_outside_main": {
+    "879": [
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSeparatingInertPassageCarriedByFormsStatement"
+    ],
+    "977": [
+      "Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.RankOneBaseWeightEqCmTheta",
+      "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.SiegelWeilStandard.SiegelWeilStd"
+    ]
+  },
+  "heads": {
+    "879": "a2cad6d6f3d7499fa4fef7e3bcc4155b99d31a70",
+    "977": "2bde80b40b7e487f5dbb37762298bd2444cb88d1"
+  },
+  "method": "Walk project imports from Main in compiled Lean IDE data. Check project edges against both current source trees.",
+  "project_manifest_modules": 59091,
+  "project_modules_in_main_import_closure": 59081,
+  "project_modules_outside_main": [
+    "CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.IsCongIdealTwoTorsion",
+    "Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.RankOneBaseWeightEqCmTheta",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSeparatingInertPassageCarriedByFormsStatement",
+    "Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry\u2082.CaraianiLocalGlobal",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.HodgeTateWeightsOfLocalGlobal",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.CuspidalDescent.SphericalTwists.JTwist",
+    "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.SiegelWeilActions.FirstChernHodgeTateFacts",
+    "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.SiegelWeilStandard.SiegelWeilStd",
+    "Development.WeilBound.CoreStatements.AutomorphicKernels.WeilSiegelFormula.WeilSiegelSchwartz.HermitianIntegrability.UntupTupOf",
+    "Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.SobDer"
+  ],
+  "sorted_names_sha256": "e7c834069279f25ba967eab6fb34e6837fcf2472e167004800fa207f0f73d716"
+}

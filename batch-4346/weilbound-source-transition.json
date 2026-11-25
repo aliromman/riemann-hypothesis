@@ -1,0 +1,544 @@
+{
+  "reviewer": "dga471",
+  "review_comments": [
+    "https://github.com/leanprover-community/riemann-hypothesis/pull/879#issuecomment-7149689049",
+    "https://github.com/leanprover-community/riemann-hypothesis/pull/879#issuecomment-7150958950",
+    "https://github.com/leanprover-community/riemann-hypothesis/pull/879#issuecomment-7151726569"
+  ],
+  "reviewed_commit": "994d457f6607d27553d756955fce43c47aa33ace",
+  "reviewed_parent": "fcb6eac7534875d32d68030967e2deae6d686151",
+  "old_files": 2858,
+  "named_windows_cases": [
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/PerfectoidPullbacks/FrobeniusFactorisation/NuPull.lean",
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/PerfectoidPullbacks/FrobeniusFactorisation/PhiAIter.lean",
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/ZariskiEtaleLifting/FirstChernCompatibleL.lean",
+    "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/ArchimedeanGelfandKernels/LeftEquivariantFunctions/ComplexMatrixCalculus/CxDataModel.lean",
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/GlobalGaussLaws/PlaceFacts.lean",
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/GlobalGaussLaws/WlocTop.lean"
+  ],
+  "reviewed_conflict": "src/Development/WeilBound/CoreStatements/SesquilinearFractions/PureTypeLatticesOrthogonal.lean",
+  "current_patch": "d6b8524f10931f0c5094e37bcbe06ca329df7192",
+  "current_parent": "ce1560fba43e59629abdf3c27a279218fad9f77a",
+  "current_pr_head": "a2cad6d6f3d7499fa4fef7e3bcc4155b99d31a70",
+  "new_files": 63,
+  "previous_files_outside_current_patch": 2795,
+  "source_pairs": {
+    "identical": 42,
+    "changed": 21
+  },
+  "current_upstream_blobs_outside_diff": {
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/PerfectoidPullbacks/FrobeniusFactorisation/NuPull.lean": "a5919e8fc3942a5f759e3c142a211b226faf602e",
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/PerfectoidPullbacks/FrobeniusFactorisation/PhiAIter.lean": "ca7750fb477a6c143e0f801cb16b1ddd911534a5",
+    "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/ZariskiEtaleLifting/FirstChernCompatibleL.lean": "87323ec032cedfe36391b33cc9f00e8dd47108b5",
+    "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/ArchimedeanGelfandKernels/LeftEquivariantFunctions/ComplexMatrixCalculus/CxDataModel.lean": "1571a208e240906b990c625685b77aca8b3e0cd3",
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/GlobalGaussLaws/PlaceFacts.lean": "cd06cbbdd3f9b9e0b4c88d820b63631725e6aab7",
+    "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/GlobalGaussLaws/WlocTop.lean": "4c6c57a28d9bbb19138c75a93b6742a00ecefbbc",
+    "src/Development/WeilBound/CoreStatements/SesquilinearFractions/PureTypeLatticesOrthogonal.lean": "0f788622db8217f9e0c542432985bd2702596e28"
+  },
+  "files": [
+    {
+      "path": "src/Development/WeilBound/CoreStatements/AbelianHeightsDuality/DividedPowerAlgebras/PreOfGens.lean",
+      "reviewed_parent": "362c937e7f6c8d5f568a80554b869c266654ae17",
+      "reviewed_patch": "70f7ecdb8b46e94ed75e961a38617ad829046bf2",
+      "current_parent": "362c937e7f6c8d5f568a80554b869c266654ae17",
+      "current_patch": "70f7ecdb8b46e94ed75e961a38617ad829046bf2",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/LagrangianDecomposition/NormAinApplyLe.lean",
+      "reviewed_parent": "93a65e5374c3c4c133289fdd726fcdf133e57e4d",
+      "reviewed_patch": "bb3bb8ff5171633fc6015ef26120b8a2bf787aa8",
+      "current_parent": "93a65e5374c3c4c133289fdd726fcdf133e57e4d",
+      "current_patch": "bb3bb8ff5171633fc6015ef26120b8a2bf787aa8",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/CompactAveragingSplitting/EigenvectorLifting/SplitFin.lean",
+      "reviewed_parent": "5a1210513ee1cc3032e00255065bfb72349793ec",
+      "reviewed_patch": "50b931c8002730847e8f70b8cb3cc4a33646fa0e",
+      "current_parent": "5a1210513ee1cc3032e00255065bfb72349793ec",
+      "current_patch": "50b931c8002730847e8f70b8cb3cc4a33646fa0e",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/CompactAveragingSplitting/EigenvectorLifting/VaceigenAlg.lean",
+      "reviewed_parent": "0123166741421ffa81f9e2b8cde8c4e2c65abab3",
+      "reviewed_patch": "faf82139bbf9beb4e7dcdbee14e860494a6639d9",
+      "current_parent": "0123166741421ffa81f9e2b8cde8c4e2c65abab3",
+      "current_patch": "faf82139bbf9beb4e7dcdbee14e860494a6639d9",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/EulerCharacteristicCounts/BkMain.lean",
+      "reviewed_parent": "fd0fcc92521b5962c272d1290d111308cb8ada00",
+      "reviewed_patch": "de4149a8bc929a74c430fa976da52ed5ab3a094c",
+      "current_parent": "65dc7550cec1d714131f745831323106af3d9627",
+      "current_patch": "7f914d48e58f46e944a3ab143f503cd7e29345d9",
+      "source_pair": "changed"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/FiniteTypeHarishChandra/FiniteDimensionalHcSpace.lean",
+      "reviewed_parent": "fd8c316aabaad70c3d08d26f1adb6b3e38f36108",
+      "reviewed_patch": "7b25b43137866b33b265b6812c058aab53aa95db",
+      "current_parent": "897135fd747756197072ece65c2c750886e751ff",
+      "current_patch": "bad65078ac62a892e348e156e9a58bb333c367ee",
+      "source_pair": "changed"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/FiniteTypeHarishChandra/SupportExistsAll.lean",
+      "reviewed_parent": "ba452edb85d1ff173f30fd543ea5249e1b91d938",
+      "reviewed_patch": "5362839f42b6bcf96e4d87dfa747413281604d36",
+      "current_parent": "f917f5f4dcc86d7a8d1cb4fd51cce7174ff89d55",
+      "current_patch": "61b037d4ade37127cd213c8e501a51a257b4a687",
+      "source_pair": "changed"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/GaussianSeminormBounds/RealSeminormFiltration/CoreCasB.lean",
+      "reviewed_parent": "4b32e18070e1428d32cc93d44aca7a729c9aa653",
+      "reviewed_patch": "fa622b5c99b46477b22286d8d23fb668845472c8",
+      "current_parent": "4b32e18070e1428d32cc93d44aca7a729c9aa653",
+      "current_patch": "fa622b5c99b46477b22286d8d23fb668845472c8",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/HodgeTatePoints/DvrOfHeightOne.lean",
+      "reviewed_parent": "69795683b4b276858240d960729ee0115dbf97ba",
+      "reviewed_patch": "62379ee17126ca50dd67b6ca8e1a11484d859959",
+      "current_parent": "69795683b4b276858240d960729ee0115dbf97ba",
+      "current_patch": "62379ee17126ca50dd67b6ca8e1a11484d859959",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/HodgeTatePoints/GenfibMap.lean",
+      "reviewed_parent": "00d6315a706a982aaa86862927c8bcf161f81105",
+      "reviewed_patch": "3f357cc3470a2e6f0b6d56ddfbee7e0d0b76955d",
+      "current_parent": "00d6315a706a982aaa86862927c8bcf161f81105",
+      "current_patch": "3f357cc3470a2e6f0b6d56ddfbee7e0d0b76955d",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/HodgeTatePoints/GermCompOneAssocOfConstantCoeffZero.lean",
+      "reviewed_parent": "7a481cf89a324afade35fd92bb938882c7767c1d",
+      "reviewed_patch": "25577fade7c04b0720ea79439651ad886da8b485",
+      "current_parent": "0bbd6bffaccf6816510aaceba82bbf2756d366b1",
+      "current_patch": "be417214434bc4c580808a0c6220063f36a9ac66",
+      "source_pair": "changed"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/HodgeTatePoints/HtatHopfChar.lean",
+      "reviewed_parent": "7ddfa56efc5572d1d295c4534a0912e7eaaa9e5a",
+      "reviewed_patch": "c2dbac31211934352ba5124918dbf9c31a8867aa",
+      "current_parent": "7ddfa56efc5572d1d295c4534a0912e7eaaa9e5a",
+      "current_patch": "c2dbac31211934352ba5124918dbf9c31a8867aa",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/HodgeTatePoints/HtatHopfTop.lean",
+      "reviewed_parent": "d67367b26e839f0bcc2eba9ff28bc8921f743820",
+      "reviewed_patch": "b71fdaa3f72b4d01c70b15e4c18907e879a5a615",
+      "current_parent": "d67367b26e839f0bcc2eba9ff28bc8921f743820",
+      "current_patch": "b71fdaa3f72b4d01c70b15e4c18907e879a5a615",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/HodgeTatePoints/HtatLieB.lean",
+      "reviewed_parent": "85b747632ed595d26dd4d8e87b7582447f633a16",
+      "reviewed_patch": "2cb7c5d78b43eeb22f6053cb125138e7bd3354bb",
+      "current_parent": "7aa9a6d5e0e448b4a296e638eb0c6f134f6dfb35",
+      "current_patch": "ce0d52bcab7178424eca9f39f74c7288506437e9",
+      "source_pair": "changed"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/HodgeTatePoints/Imports.lean",
+      "reviewed_parent": "d1053ffe5f2f013875ad5ce8525f67b2be8df660",
+      "reviewed_patch": "59b0b73a74098400a23d0eb718bfe205756f4c1b",
+      "current_parent": "ffc27537390b7beceeae8e419c1efbcf1da70a4b",
+      "current_patch": "8f6d4d9436730a60b9aca2c3b498fe29e8371c07",
+      "source_pair": "changed"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/HodgeTatePoints/InChartOfMemCtrSet.lean",
+      "reviewed_parent": "007bd035170f61e7f0c5fe8da401cd91748a2577",
+      "reviewed_patch": "f1a4c3b9305c9d432c78d6c86f0df662272cb293",
+      "current_parent": "007bd035170f61e7f0c5fe8da401cd91748a2577",
+      "current_patch": "f1a4c3b9305c9d432c78d6c86f0df662272cb293",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/HodgeTatePoints/MaBase.lean",
+      "reviewed_parent": "7eefe2acc58eb3ad9301a4812adb38c264e47f78",
+      "reviewed_patch": "0e88404cf098aafa25d123529a3bcb720493b925",
+      "current_parent": "7eefe2acc58eb3ad9301a4812adb38c264e47f78",
+      "current_patch": "0e88404cf098aafa25d123529a3bcb720493b925",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/HodgeTatePoints/MbLCentre.lean",
+      "reviewed_parent": "f8fc1df47c6e4e2f38ea1da8acd35f09881ff098",
+      "reviewed_patch": "c9ceb7821d050c13978662a4fe50e63c39ae7b7f",
+      "current_parent": "f8fc1df47c6e4e2f38ea1da8acd35f09881ff098",
+      "current_patch": "c9ceb7821d050c13978662a4fe50e63c39ae7b7f",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/HodgeTatePoints/MbLJoinExists.lean",
+      "reviewed_parent": "1eb0f21dc95c0a7d8a090c9d5c0bbafb6fac264e",
+      "reviewed_patch": "1ca225ece88a7a23b9e69e11879554ae6b68797d",
+      "current_parent": "1eb0f21dc95c0a7d8a090c9d5c0bbafb6fac264e",
+      "current_patch": "1ca225ece88a7a23b9e69e11879554ae6b68797d",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/HodgeTatePoints/MbLNormExists.lean",
+      "reviewed_parent": "1a6e8344592d1c1db88f4b5b2ecbecc1ed9b3b6d",
+      "reviewed_patch": "dce8b733db9ba112008f00ccb1d14bd3e07f9067",
+      "current_parent": "92535b73daea46a433c48abae79b1a785c383914",
+      "current_patch": "2bf6f15fd6ad5d0208d8a13a02b6288d5d20cd1c",
+      "source_pair": "changed"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/HodgeTatePoints/MbLPulllocCentre.lean",
+      "reviewed_parent": "602c7afef185cbaa31c54ec03f5bcbc963fe8a6e",
+      "reviewed_patch": "c2e360096401224f3db623c6f3c00a2f5406c66c",
+      "current_parent": "602c7afef185cbaa31c54ec03f5bcbc963fe8a6e",
+      "current_patch": "c2e360096401224f3db623c6f3c00a2f5406c66c",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/HodgeTatePoints/MhBase.lean",
+      "reviewed_parent": "2a51fcab34b52661a6a298e2e7d2e4a2750c1f2a",
+      "reviewed_patch": "c3d7ab94b202dd421ad43ee17054aea1c44984b2",
+      "current_parent": "2a51fcab34b52661a6a298e2e7d2e4a2750c1f2a",
+      "current_patch": "c3d7ab94b202dd421ad43ee17054aea1c44984b2",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/HodgeTatePoints/NearMemSpan.lean",
+      "reviewed_parent": "59460a34391914c7c6ec79f8d558f339d50ca713",
+      "reviewed_patch": "cd9a944e08ca23844098753f940c69ccbf0c00e1",
+      "current_parent": "59460a34391914c7c6ec79f8d558f339d50ca713",
+      "current_patch": "cd9a944e08ca23844098753f940c69ccbf0c00e1",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/HodgeTatePoints/RfTors.lean",
+      "reviewed_parent": "aa1700a94c3ff921cafa658fb72dc9aa3d68e113",
+      "reviewed_patch": "ceae41b3a47e68c85f89044af4f764e944316746",
+      "current_parent": "07740edb50ab35b8692bd1388148b9b6038db2e7",
+      "current_patch": "98ff5b5255d9f0b2421a5d16b300b402c70d5bd8",
+      "source_pair": "changed"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/HodgeTatePoints/TwhopfFin.lean",
+      "reviewed_parent": "38b37253d911d8877a53a1c65bde21f54695bf18",
+      "reviewed_patch": "4476f00e6ca1a8f9abbfca1c2017d71dd516e775",
+      "current_parent": "38b37253d911d8877a53a1c65bde21f54695bf18",
+      "current_patch": "4476f00e6ca1a8f9abbfca1c2017d71dd516e775",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/HodgeTatePoints/TwpairGeo.lean",
+      "reviewed_parent": "c69a24866ec33a125ba577ec6b4966dc4222898b",
+      "reviewed_patch": "cc4f1e14cf657bc06f1b59318cc1641d62d8c02f",
+      "current_parent": "c69a24866ec33a125ba577ec6b4966dc4222898b",
+      "current_patch": "cc4f1e14cf657bc06f1b59318cc1641d62d8c02f",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/HodgeTatePoints/Twpdiv.lean",
+      "reviewed_parent": "0b9c3c56f8a6d80d4860b6d2f5eb0fdfb36f2edd",
+      "reviewed_patch": "d365dd7e84c619a8f05b8db4b06ae41f4f644232",
+      "current_parent": "0b9c3c56f8a6d80d4860b6d2f5eb0fdfb36f2edd",
+      "current_patch": "d365dd7e84c619a8f05b8db4b06ae41f4f644232",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/HomogeneousNonvanishing/HtExists.lean",
+      "reviewed_parent": "c26c2be616c531cde48e2ca81a72d78412c629f6",
+      "reviewed_patch": "74152432cc22f4c2f59d09e72f52b3f6a47172a0",
+      "current_parent": "c26c2be616c531cde48e2ca81a72d78412c629f6",
+      "current_patch": "74152432cc22f4c2f59d09e72f52b3f6a47172a0",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/LocallyConstantCoinvariants/FullOfSoLoc.lean",
+      "reviewed_parent": "3b1dd460aa50ba6b3ee7f02036b9f19405287209",
+      "reviewed_patch": "e48726b22a71a0796830076c7d0b8dd04b80ebf3",
+      "current_parent": "3b1dd460aa50ba6b3ee7f02036b9f19405287209",
+      "current_patch": "e48726b22a71a0796830076c7d0b8dd04b80ebf3",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/LocallyConstantCoinvariants/TopOfMap.lean",
+      "reviewed_parent": "e4faa4c1660f4cd592bb5e49bffc8563199f3f2b",
+      "reviewed_patch": "38b7a8e4414afcecac358cbdf6d1c6ce749396a1",
+      "current_parent": "e4faa4c1660f4cd592bb5e49bffc8563199f3f2b",
+      "current_patch": "38b7a8e4414afcecac358cbdf6d1c6ce749396a1",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/BocksteinBaseChange/IsUnitWitt.lean",
+      "reviewed_parent": "50771592cc969e3c3881d37c7f182ec091e49a22",
+      "reviewed_patch": "3a9f884f0cd05c147c7db9ca241aa487b57fea13",
+      "current_parent": "790355f4c17ac27bcbd10f3fdbecc45a66eabe84",
+      "current_patch": "5baea86883e225f7daec527dba4a1471f752d272",
+      "source_pair": "changed"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/CstSmooth.lean",
+      "reviewed_parent": "90ab005eb784e5790b5bd3a94584b3a96de1fe03",
+      "reviewed_patch": "1d3cca4183d979153c763b15a17c99ad5b735795",
+      "current_parent": "6e73feef724a6cf5e2cd8890f4840e278e38e5d8",
+      "current_patch": "65ba394a29538a077e95628bf00f8d384166f83b",
+      "source_pair": "changed"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/PerfectoidPullbacks/FrobeniusWittActions/PhiTTmul.lean",
+      "reviewed_parent": "73173a2d20a79cbdc81f64009418feaaddc2cd89",
+      "reviewed_patch": "095ffdf471a0b0abb2b4236fa2b6ffb980476795",
+      "current_parent": "e9299240c343ef6d7bbab0d07fadb7a36a584500",
+      "current_patch": "f7905e0976771e8fe1f13f80497958063681add3",
+      "source_pair": "changed"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/EtaleCohomologyComparison/PerfectoidPullbacks/LocalisationLadders/TruncationHomExt.lean",
+      "reviewed_parent": "9a8423240b853e07174014062a35631589363e94",
+      "reviewed_patch": "5aee34fd4dcf1425d30d3b35a12c24d873bc5b30",
+      "current_parent": "9a8423240b853e07174014062a35631589363e94",
+      "current_patch": "5aee34fd4dcf1425d30d3b35a12c24d873bc5b30",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/PluriharmonicCharts/XPolyDelta.lean",
+      "reviewed_parent": "30b1784a26ccd5eeeb27673b9413acf35173993e",
+      "reviewed_patch": "9b93eafef16e2304c5937e75f56e1f17f428c7c2",
+      "current_parent": "30b1784a26ccd5eeeb27673b9413acf35173993e",
+      "current_patch": "9b93eafef16e2304c5937e75f56e1f17f428c7c2",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/PlurisubharmonicCones/SymmetricChartsCutoffFamily.lean",
+      "reviewed_parent": "f6994bbf6f8a6c3772c4c3f7f2cca22047ce1478",
+      "reviewed_patch": "4f99c4e146ceb597e90b6a00693ff3ab83efa5bd",
+      "current_parent": "f6994bbf6f8a6c3772c4c3f7f2cca22047ce1478",
+      "current_patch": "4f99c4e146ceb597e90b6a00693ff3ab83efa5bd",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/TorusUniformisation/ChowMahlerFamilies/MemOfFixedByAutomorphisms.lean",
+      "reviewed_parent": "c959754a15cc0db1c5018c366018ee06fdb1d8fb",
+      "reviewed_patch": "ed6123c9bc1a19fe6ee4927759e0ec5a4139098b",
+      "current_parent": "c959754a15cc0db1c5018c366018ee06fdb1d8fb",
+      "current_patch": "ed6123c9bc1a19fe6ee4927759e0ec5a4139098b",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CuspidalAdmissibility/OccLocSpan.lean",
+      "reviewed_parent": "f0330907583606fa4de6914a3bf8bf5fbf1b8468",
+      "reviewed_patch": "dc2c0d4cb7ee7167462afa1488a6a31a6a8b6c9d",
+      "current_parent": "f0330907583606fa4de6914a3bf8bf5fbf1b8468",
+      "current_patch": "dc2c0d4cb7ee7167462afa1488a6a31a6a8b6c9d",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/CuspidalAdmissibility/OccursIff.lean",
+      "reviewed_parent": "e317546b4163168092af390125f103a36e2e289e",
+      "reviewed_patch": "e87c2a21a2d6d4e246bef825f8326496377afc1c",
+      "current_parent": "e317546b4163168092af390125f103a36e2e289e",
+      "current_patch": "e87c2a21a2d6d4e246bef825f8326496377afc1c",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/HeckeVectors/SmoothVectors/SobolevApproximation/PCDense.lean",
+      "reviewed_parent": "c2e3e06b9555b4594c99467d22184ce4b4cb0031",
+      "reviewed_patch": "9fcdd300bf9e75549c3c991d59da6eca692e0f70",
+      "current_parent": "31577da0e2d8fb07616bcb4f0f7f16699f97ca2f",
+      "current_patch": "d15bbf0b8a6cdaba2cca0b9d074d499f7480d46f",
+      "source_pair": "changed"
+    },
+    {
+      "path": "src/Development/WeilBound/HeckeVectors/SmoothVectors/SobolevApproximation/SobApproxHolds.lean",
+      "reviewed_parent": "9155adf94538cedbba0cccd8b9577fb674671f0e",
+      "reviewed_patch": "b809d3650beda7000f7cd809732a9518052f195f",
+      "current_parent": "9155adf94538cedbba0cccd8b9577fb674671f0e",
+      "current_patch": "b809d3650beda7000f7cd809732a9518052f195f",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/KatoCoprimality/CoprimePowers/CoprimePowerSubOne/CoprimePowSubOne.lean",
+      "reviewed_parent": "1a1e2196831c3bc8a55d7ad0400560cfc8f3090c",
+      "reviewed_patch": "f2bbd19c060a39f1532d648f201ad770e7b06f87",
+      "current_parent": "1a1e2196831c3bc8a55d7ad0400560cfc8f3090c",
+      "current_patch": "f2bbd19c060a39f1532d648f201ad770e7b06f87",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/LevelCriteria/IsLevOneIff.lean",
+      "reviewed_parent": "d2084a26cb4b8e669fe3e17a2b637c2778d0fde6",
+      "reviewed_patch": "077ac88af74f057bc7c92d0fa98fb4006c9289d9",
+      "current_parent": "d2084a26cb4b8e669fe3e17a2b637c2778d0fde6",
+      "current_patch": "077ac88af74f057bc7c92d0fa98fb4006c9289d9",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/NonsplitUniqueness/Places.lean",
+      "reviewed_parent": "9278cc759853c9cc99c099c7d6a6938c9ee50c31",
+      "reviewed_patch": "dc7cf81de3545a5a6176cea1904fa3953b0b3d3a",
+      "current_parent": "9278cc759853c9cc99c099c7d6a6938c9ee50c31",
+      "current_patch": "dc7cf81de3545a5a6176cea1904fa3953b0b3d3a",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/ArchimedeanGelfandKernels/LeftEquivariantFunctions/ComplexMatrixCalculus/InstBorelUK.lean",
+      "reviewed_parent": "cde53cb779a55948f21be5411ed6c01388c3c296",
+      "reviewed_patch": "6e59e3ee61809e0fcb91566c6cef348b825dce47",
+      "current_parent": "cde53cb779a55948f21be5411ed6c01388c3c296",
+      "current_patch": "6e59e3ee61809e0fcb91566c6cef348b825dce47",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/InfinitesimalCharacterLimits/LieSumDecompositions/PTypes.lean",
+      "reviewed_parent": "ac76831499eba5c38dc1c9a1a43c87878115889c",
+      "reviewed_patch": "9a81ff72bf40b1a30cd03deb8f6655633fcc786f",
+      "current_parent": "ac76831499eba5c38dc1c9a1a43c87878115889c",
+      "current_patch": "9a81ff72bf40b1a30cd03deb8f6655633fcc786f",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/RepresentationTheoryGL/ArchimedeanBaseChange/ArchimedeanBaseChangeProof/SatakeExponents/SphericalEmbeddings/ValuationDetKO.lean",
+      "reviewed_parent": "6bbd4d87a35b1c5f15caeb0d19dfd918a69ddbe1",
+      "reviewed_patch": "4ab6e3a1db967d0a14238663af5855d5f171adc8",
+      "current_parent": "ab5c71fec4751609c88b2c5156e515d729071a89",
+      "current_patch": "4d1f09553149ed33eb50a2d4c3f7e371ce738ef9",
+      "source_pair": "changed"
+    },
+    {
+      "path": "src/Development/WeilBound/RepresentationTheoryGL/GenericUnitaryGL/ComplementarySeries/ComapTwKer.lean",
+      "reviewed_parent": "ae42ca85e82964bcbb46a0e22bc8a84829d76b75",
+      "reviewed_patch": "4a523a21882dfbbbee2e752580133b5b7e831df6",
+      "current_parent": "bf18f3e02effacdad1e2d05ed74b1d2c1abcedf8",
+      "current_patch": "394b427bb6ea132af8c705429aa6e2a872774940",
+      "source_pair": "changed"
+    },
+    {
+      "path": "src/Development/WeilBound/RepresentationTheoryGL/GenericUnitaryGL/ComplementarySeries/ConjProd.lean",
+      "reviewed_parent": "21ab3c04b60a8cf717d5a289d149d68464c0f6fc",
+      "reviewed_patch": "c5ec43dd45c4b17bf159b58db9064bb51c0e7873",
+      "current_parent": "1a36bb5aecb376a5bb6b50ccd0fb416c93d31ad4",
+      "current_patch": "236399f6ff0ba7569673d45c73fa82a2f72eb54c",
+      "source_pair": "changed"
+    },
+    {
+      "path": "src/Development/WeilBound/RepresentationTheoryGL/RegularisedSiegelWeil/SingularNullSets/LIkSch.lean",
+      "reviewed_parent": "3291489e671da414c1cc42892bd16dbe51695d59",
+      "reviewed_patch": "acd6e6d941337d6da8cc077d896ca0e4f2c5477c",
+      "current_parent": "baec042f2a7f117d0c7c30a48e07702d9723acfe",
+      "current_patch": "c79cad5356d06cb7955a75f27c5e232c31ec389f",
+      "source_pair": "changed"
+    },
+    {
+      "path": "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/AbsoluteConvergence/ContinuousEvX.lean",
+      "reviewed_parent": "8df5875494b4bc148429b004a02dc6b2e45f783f",
+      "reviewed_patch": "2fd8028fa90d1845ba8ac156ad7a9b4f73b899d3",
+      "current_parent": "8df5875494b4bc148429b004a02dc6b2e45f783f",
+      "current_patch": "2fd8028fa90d1845ba8ac156ad7a9b4f73b899d3",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/AnalyticDeterminants/AnalyticAtDet.lean",
+      "reviewed_parent": "6055565b88f8264bfa2bde8aaf86791ff0690e6c",
+      "reviewed_patch": "4caf595a5838d44f0b11a796c49a47fdc2ad3e2f",
+      "current_parent": "6055565b88f8264bfa2bde8aaf86791ff0690e6c",
+      "current_patch": "4caf595a5838d44f0b11a796c49a47fdc2ad3e2f",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/AnalyticDeterminants/FderivEqZeroOfVanish.lean",
+      "reviewed_parent": "57ea7b794912b45901fb735759d2d61b52fcb697",
+      "reviewed_patch": "23a5e1d037a48d9f40878862c380bf1385247dde",
+      "current_parent": "68d5bffe64bda51c2a1a077d9a1130e8e768e8e8",
+      "current_patch": "a7055d513b8543c95bb2d89c3a18e4f0ddc9213b",
+      "source_pair": "changed"
+    },
+    {
+      "path": "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/AnalyticDeterminants/InfInv.lean",
+      "reviewed_parent": "1214df511f48bee3ef9a7bc51cbbc8c1713f0b67",
+      "reviewed_patch": "45237e2e5c0ad2eee061701ffda4f9192dad7360",
+      "current_parent": "379590f168ee1d06d0c0adbcb6a572f5fe7b4c9c",
+      "current_patch": "66e846dc3d06095c5f7de4e5cb09dabb54b54bd8",
+      "source_pair": "changed"
+    },
+    {
+      "path": "src/Development/WeilBound/RepresentationTheoryGL/SiegelWeilProof/HolomorphicContinuation/CayleyCosetSums/InverseFirstBlockEqConjTranspose.lean",
+      "reviewed_parent": "12d455904e61a8867ce3427535a3b22edca1c04c",
+      "reviewed_patch": "b595c9f68d379830f280cad6d41069d758d040a7",
+      "current_parent": "9d241b40491a003119c15c9f6c263808b8164029",
+      "current_patch": "ad04b33b5d1999de2d01bf90382ad29886e99d27",
+      "source_pair": "changed"
+    },
+    {
+      "path": "src/Development/WeilBound/RepresentationTheoryGL/TubeMeasures/DisjointTubes/FrameCovolume/CovolFrame.lean",
+      "reviewed_parent": "fbdab997351175307da21b193cda3c0262dbc15f",
+      "reviewed_patch": "7653df4310eba6817c16e6654f816d141c4a2f73",
+      "current_parent": "05b2836cbf3070bf56fbad18a865938b147c9a59",
+      "current_patch": "4fdafb8cd283d81067f9577fad171b35768cfe62",
+      "source_pair": "changed"
+    },
+    {
+      "path": "src/Development/WeilBound/SimpleEigenvalues/SimpleEigenvalueExtension/SimEig.lean",
+      "reviewed_parent": "dff52eca61a289b405f1e050a842c7bd5abd0307",
+      "reviewed_patch": "52b4bbee14b0527f212717917e240d96b3e817f3",
+      "current_parent": "dff52eca61a289b405f1e050a842c7bd5abd0307",
+      "current_patch": "52b4bbee14b0527f212717917e240d96b3e817f3",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/ThetaLifts/AgreeOfLeaves.lean",
+      "reviewed_parent": "5f8163240c006b43efed890a4d987409aa31e586",
+      "reviewed_patch": "4ea9d0accf552631e641ed1d67fefea3ef818a54",
+      "current_parent": "5f8163240c006b43efed890a4d987409aa31e586",
+      "current_patch": "4ea9d0accf552631e641ed1d67fefea3ef818a54",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/ThetaLifts/CTKernel.lean",
+      "reviewed_parent": "0823fcb318b27560af582424b85b9bf4be881c32",
+      "reviewed_patch": "7c4e76748875dd56f7cd75e85bddac553b2d5411",
+      "current_parent": "0823fcb318b27560af582424b85b9bf4be881c32",
+      "current_patch": "7c4e76748875dd56f7cd75e85bddac553b2d5411",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/ThetaLifts/EigenvalueEndgame/SignatureSplitting/ClosedEmb.lean",
+      "reviewed_parent": "312f70839fc923aaabdf8e0264b9b52be30e1d73",
+      "reviewed_patch": "c1065c581c42e787eb62c94409f0203954ff1c38",
+      "current_parent": "312f70839fc923aaabdf8e0264b9b52be30e1d73",
+      "current_patch": "c1065c581c42e787eb62c94409f0203954ff1c38",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/ThetaLifts/LatticeBasics/PairsD.lean",
+      "reviewed_parent": "ebe5321b50e7bdbfa4069428142bec25f785ebe6",
+      "reviewed_patch": "b97693b69fe2a65ae053c58f4f3dbea0449924e0",
+      "current_parent": "ebe5321b50e7bdbfa4069428142bec25f785ebe6",
+      "current_patch": "b97693b69fe2a65ae053c58f4f3dbea0449924e0",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/ThetaLifts/SmallCones/ColsOfMul.lean",
+      "reviewed_parent": "dfdbd4287788b3b72b99d3d2fef09492cc278161",
+      "reviewed_patch": "314560fe2b7b5ad22d9f50b6d75cb122f4a47e65",
+      "current_parent": "dfdbd4287788b3b72b99d3d2fef09492cc278161",
+      "current_patch": "314560fe2b7b5ad22d9f50b6d75cb122f4a47e65",
+      "source_pair": "identical"
+    },
+    {
+      "path": "src/Development/WeilBound/ThetaLifts/TowerModels/PlaneComp.lean",
+      "reviewed_parent": "7b598f409daf5270b907081fdd7a9919660b2635",
+      "reviewed_patch": "47ba3ab3a24f1991f20d5614eac38dd8e5f7a691",
+      "current_parent": "ee2627ed94590c3ef14912331251bc65eb9edba9",
+      "current_patch": "7d46def94113cb8f820665824161ebcbd4fa96be",
+      "source_pair": "changed"
+    }
+  ]
+}
