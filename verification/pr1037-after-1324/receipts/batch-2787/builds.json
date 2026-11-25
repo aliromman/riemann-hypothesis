@@ -1,0 +1,173 @@
+{
+  "lean": "Lean (version 4.37.0-rc1, arm64-apple-darwin24.6.0, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)",
+  "results": {
+    "main": {
+      "revision": "251c7b05dd869ceba1aa42c6001c00b4010f23f9",
+      "previous": "ef451fc356cbc66861df031531aaafd2843797ac",
+      "targets": [
+        "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+        "Formalism.DoubleCosetMeasures.StatementZ",
+        "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord",
+        "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+        "GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi"
+      ],
+      "modules": 311,
+      "changed_sources": [
+        "src/Development/AbelianVarietyTheory/BlockTheory/HeightDefect/AdelicUnitaryGroups.lean",
+        "src/Formalism/LocalRingCardinality/DataKerP.lean",
+        "src/Formalism/SatakeDualWeyl/AdelicIwasawaHecke/Stdform.lean"
+      ],
+      "runs": [
+        {
+          "command": [
+            "lake",
+            "--no-cache",
+            "--rehash",
+            "build",
+            "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+            "Formalism.DoubleCosetMeasures.StatementZ",
+            "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord",
+            "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+            "GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi"
+          ],
+          "exit": 0,
+          "completion": [
+            "Build completed successfully (10473 jobs)."
+          ],
+          "log": "attempt-20261125T110223.807348Z/main-build.log",
+          "log_sha256": "6bed9c96ec8923e643655ed382e492847730391bcaafe852d16a3f42567f7d03",
+          "freshly_compiled": [
+            "Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Stdform",
+            "Formalism.LocalRingCardinality.DataKerP",
+            "Formalism.LocalRingCardinality.DataExtra",
+            "Formalism.SharpRestriction.ParConsts",
+            "Development.AbelianVarietyTheory.BlockTheory.HeightDefect.AdelicUnitaryGroups",
+            "Formalism.SharpRestriction.GlobalSchurBounds.StandardLattice",
+            "Development.AbelianVarietyTheory.Proofs.HeightProofs.MemAdelicLatticeIffLocalSelfDualCompletion",
+            "Formalism.LocalToGlobal.BesselHermitianTheta.IsAutFunDef",
+            "Formalism.LocalToGlobal.BesselHermitianTheta.DefsReal",
+            "Development.AbelianVarietyTheory.Counterexamples.HeightSurvey.EmbRelExistsUnique",
+            "Formalism.LocalToGlobal.BesselHermitianTheta.MinfDensity",
+            "Development.AbelianVarietyTheory.Proofs.HeightProofs.EqOrConjOfPlaceOf",
+            "Formalism.LocalToGlobal.BesselHermitianTheta.TiedSmooth",
+            "Formalism.LocalToGlobal.BesselHermitianTheta.TiedWeil",
+            "Development.AbelianVarietyTheory.Definitions.Foundations.EventuallyNormFinLeOne",
+            "Formalism.LocalToGlobal.HeckeThetaElements.IsHeckeElt",
+            "Formalism.LocalToGlobal.IndefiniteReal.LocalNewformFunction",
+            "Development.AbelianVarietyTheory.Definitions.Foundations.OfInfProjInfMulOfFinProjFin",
+            "Formalism.LocalToGlobal.IndefiniteReal.DatumVec",
+            "Development.AbelianVarietyTheory.Definitions.Foundations.HermitianSpaceBaseLatticeEqFrameLattice",
+            "Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.HalfLinearCocycle",
+            "Development.AbelianVarietyTheory.Proofs.TwistedOperators.RestrictedTensorBasePointNormSq",
+            "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero"
+          ]
+        },
+        {
+          "command": [
+            "lake",
+            "--no-cache",
+            "--rehash",
+            "build",
+            "--no-build",
+            "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+            "Formalism.DoubleCosetMeasures.StatementZ",
+            "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord",
+            "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+            "GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi"
+          ],
+          "exit": 0,
+          "completion": [
+            "All targets up-to-date (10473 jobs)."
+          ],
+          "log": "attempt-20261125T110223.807348Z/main-check.log",
+          "log_sha256": "5f244983c6cfb588949012c061d494104f2be71cfe2944a2c32d973509b405c3",
+          "freshly_compiled": []
+        }
+      ]
+    },
+    "candidate": {
+      "revision": "55bdb75c3f61fa939dad5687193658fe2095f98a",
+      "previous": "0e33c950c14ed48833fa38e401c9db04c4be5567",
+      "targets": [
+        "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+        "Formalism.DoubleCosetMeasures.StatementZ",
+        "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord",
+        "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+        "GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi"
+      ],
+      "modules": 311,
+      "changed_sources": [
+        "src/Development/AbelianVarietyTheory/BlockTheory/HeightDefect/AdelicUnitaryGroups.lean",
+        "src/Formalism/LocalRingCardinality/DataKerP.lean",
+        "src/Formalism/SatakeDualWeyl/AdelicIwasawaHecke/Stdform.lean"
+      ],
+      "runs": [
+        {
+          "command": [
+            "lake",
+            "--no-cache",
+            "--rehash",
+            "build",
+            "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+            "Formalism.DoubleCosetMeasures.StatementZ",
+            "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord",
+            "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+            "GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi"
+          ],
+          "exit": 0,
+          "completion": [
+            "Build completed successfully (10475 jobs)."
+          ],
+          "log": "attempt-20261125T110223.807348Z/candidate-build.log",
+          "log_sha256": "22696c1c9a3531f9b0dd476fd7eedff0a072cf9b40d52178cb6114546ec85edc",
+          "freshly_compiled": [
+            "Formalism.LocalRingCardinality.DataKerP",
+            "Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Stdform",
+            "Formalism.LocalRingCardinality.DataExtra",
+            "Formalism.SharpRestriction.ParConsts",
+            "Development.AbelianVarietyTheory.BlockTheory.HeightDefect.AdelicUnitaryGroups",
+            "Formalism.SharpRestriction.GlobalSchurBounds.StandardLattice",
+            "Development.AbelianVarietyTheory.Proofs.HeightProofs.MemAdelicLatticeIffLocalSelfDualCompletion",
+            "Formalism.LocalToGlobal.BesselHermitianTheta.IsAutFunDef",
+            "Formalism.LocalToGlobal.BesselHermitianTheta.DefsReal",
+            "Development.AbelianVarietyTheory.Counterexamples.HeightSurvey.EmbRelExistsUnique",
+            "Formalism.LocalToGlobal.BesselHermitianTheta.MinfDensity",
+            "Development.AbelianVarietyTheory.Proofs.HeightProofs.EqOrConjOfPlaceOf",
+            "Formalism.LocalToGlobal.BesselHermitianTheta.TiedSmooth",
+            "Formalism.LocalToGlobal.BesselHermitianTheta.TiedWeil",
+            "Development.AbelianVarietyTheory.Definitions.Foundations.EventuallyNormFinLeOne",
+            "Formalism.LocalToGlobal.HeckeThetaElements.IsHeckeElt",
+            "Formalism.LocalToGlobal.IndefiniteReal.LocalNewformFunction",
+            "Formalism.LocalToGlobal.IndefiniteReal.DatumVec",
+            "Development.AbelianVarietyTheory.Definitions.Foundations.OfInfProjInfMulOfFinProjFin",
+            "Development.AbelianVarietyTheory.Definitions.Foundations.HermitianSpaceBaseLatticeEqFrameLattice",
+            "Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.HalfLinearCocycle",
+            "Development.AbelianVarietyTheory.Proofs.TwistedOperators.RestrictedTensorBasePointNormSq",
+            "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero"
+          ]
+        },
+        {
+          "command": [
+            "lake",
+            "--no-cache",
+            "--rehash",
+            "build",
+            "--no-build",
+            "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+            "Formalism.DoubleCosetMeasures.StatementZ",
+            "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord",
+            "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+            "GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi"
+          ],
+          "exit": 0,
+          "completion": [
+            "All targets up-to-date (10475 jobs)."
+          ],
+          "log": "attempt-20261125T110223.807348Z/candidate-check.log",
+          "log_sha256": "e9b3438c6e8a703714ae9c153668795f4bf24aec9925d4d663e3343b30da6874",
+          "freshly_compiled": []
+        }
+      ]
+    }
+  }
+}

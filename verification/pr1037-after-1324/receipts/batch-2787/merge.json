@@ -1,0 +1,29 @@
+{
+  "base": "251c7b05dd869ceba1aa42c6001c00b4010f23f9",
+  "head": "ef7b2af7f6017c9e6875d4d8803907ac0cd8804b",
+  "previous_merge": "0e33c950c14ed48833fa38e401c9db04c4be5567",
+  "common_base": "ef451fc356cbc66861df031531aaafd2843797ac",
+  "clean": true,
+  "tree": "55bdb75c3f61fa939dad5687193658fe2095f98a",
+  "conflicts": [],
+  "paths_changed": 6702,
+  "lean_source_changes": {
+    "M": 6657,
+    "D": 43,
+    "A": 1
+  },
+  "upstream_changes_to_our_files": [],
+  "upstream_changes_to_protected_inputs": [],
+  "explicit_caller_changes": [
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/RegConstEqAwayUnitMulFactor.lean"
+  ],
+  "candidate_diff": [
+    "3\t2\tsrc/Development/AbelianVarietyTheory/Definitions/Foundations/MatrixMeasurableSpace.lean",
+    "3\t2\tsrc/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/ThetaParseval/ThetaKernels/IndepDomK.lean",
+    "3\t2\tsrc/Formalism/DoubleCosetMeasures/StatementZ.lean",
+    "3\t2\tsrc/GroundTheory/AutomorphicForms/GL2/GJMatrixCoord.lean"
+  ],
+  "candidate_src_tree": "780f7c48078696f835ca79176b925a3bd528f5e8",
+  "src_lean_before": 59406,
+  "src_lean_after": 59364
+}
