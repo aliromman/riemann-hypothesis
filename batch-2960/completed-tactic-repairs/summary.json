@@ -1,0 +1,40 @@
+{
+  "head": "66cee35856ff43a444fcbaf9d3a57329a8ac623b",
+  "parent": "8e5cefeeaffe7e4c12153385b7bb33fb7223c41a",
+  "src": "8f584850eff4750e24baecc26066e747af47163e",
+  "scope": "completed-tactic-repairs",
+  "counts": {
+    "stock_lake_built": 3,
+    "modules": 3,
+    "edited": 1,
+    "warnings": 34,
+    "declaration_occurrences_counted": 289,
+    "ordinary and official declarations compared directly": 3
+  },
+  "rows_sha256": "c4ea08a66155131295532574721477ac544622e55fcf5c35549f222c8e6dadb1",
+  "checker_sha256": "ceabcaf423d986f10712143cc07d268dc37fcefa697d845d309e3305bb39ef53",
+  "repair_owners": [
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.FiniteHomOfTopFG",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.HkDdSpec",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.SepChars",
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemPowSmulTopIff",
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShuffleWeightSquareLengthLt"
+  ],
+  "owners_and_direct_importers": [
+    "CompanionTheory.AutomorphicTheory.ProductFormulaTheory.GrothendieckRingPolynomial.GrothOfThree",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.FiniteHomOfTopFG",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.HkDdProps",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.HkDdSpec",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.HkDualExp",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.HkSandwich",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.SepChars",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.EigenbasisRankFour",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.AutomorphicDetection.CohLim",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.AutomorphicDetection.Imports",
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemPowSmulTopIff",
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OrderedFormsMutualShuffleEq",
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShuffleWeightSquareLengthLt",
+    "Development.WeilBound.CoreStatements.AutomorphicKernels.GrothendieckRingPolynomial.GrothendieckRingPolynomialOfSeg",
+    "Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.TensCompl"
+  ]
+}

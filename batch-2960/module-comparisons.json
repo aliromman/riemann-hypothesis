@@ -22,13 +22,29 @@
       "declaration_occurrences_counted": 19142,
       "ordinary and official declarations compared directly": 409,
       "stock_lake_replayed": 282
+    },
+    "completed-tactic-repairs": {
+      "stock_lake_built": 3,
+      "modules": 3,
+      "edited": 1,
+      "warnings": 34,
+      "declaration_occurrences_counted": 289,
+      "ordinary and official declarations compared directly": 3
+    },
+    "focus-completed-tactic-repairs": {
+      "stock_lake_built": 3,
+      "modules": 3,
+      "edited": 1,
+      "warnings": 34,
+      "declaration_occurrences_counted": 289,
+      "ordinary and official declarations compared directly": 3
     }
   },
   "distinct_union": {
-    "modules": 1021,
-    "edited_modules": 380,
-    "declaration_occurrences": 43984,
-    "warnings": 4988
+    "modules": 1024,
+    "edited_modules": 381,
+    "declaration_occurrences": 44273,
+    "warnings": 5022
   },
   "private_import_check": "pending at this checkpoint",
   "full_build": "pending at this checkpoint",

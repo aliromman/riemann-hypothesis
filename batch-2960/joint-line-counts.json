@@ -1,0 +1,12 @@
+{
+  "parent": "8e5cefeeaffe7e4c12153385b7bb33fb7223c41a",
+  "joint_tree": "13969b57e2922cc4e0a9ab7eec1e6be20ee84fe0",
+  "edited_lean_files": 31737,
+  "all_lean_files": 59360,
+  "parent_nonblank": 13079524,
+  "joint_nonblank": 12052954,
+  "net_nonblank_removed": 1026570,
+  "net_physical_lean_lines_removed": 1033572,
+  "net_code_lines_after_447_added_python_lines": 907739,
+  "scope": "A direct nonblank-line count of the unmerged combined Git diff. Each branch is verified separately."
+}
