@@ -1,0 +1,37 @@
+{
+  "published": {
+    "head": "8073aca8a95c7ec91dc448cd2238b171caabd9f3",
+    "parent": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
+    "src": "8d0111d85eebadaae23bb708fe185a48d617ac3f"
+  },
+  "source": "src/Development/ResolutionOfSingularities/EmbeddedResolution/StrictTransformCharts/BlowupFlatBaseChange.lean",
+  "narrow_provider": "Mathlib.RingTheory.Flat.TorsionFree",
+  "original_setup_sha256": "f398b881412e6a0068b3eac580389acb150fc6ee960bb6a06a472d43e70435a6",
+  "checks": {
+    "pruned": {
+      "source_sha256": "15f22f04cead65a70cb4008640c5d8828e3ea7883f37fa437a7c5777d0d0aefb",
+      "exit": 1,
+      "log_sha256": "a9f6715afa92240103dec333efd828a8875939fd5fd34b9adcd57606fb2b8909"
+    },
+    "parent": {
+      "source_sha256": "1bcea0a257e8f22764e79951bed2748d575a95225ca3b5a2b83522aa74c01ca3",
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "narrowed": {
+      "source_sha256": "134dcc92d8ae8f4abc9cf20e1eaabbe0ac8c5f434781be7a9c76d1f0f9387b19",
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "interface": {
+    "candidateNames": 4,
+    "different": 0,
+    "examples": [],
+    "kernelImage": true,
+    "parentNames": 4,
+    "proofChanges": 0,
+    "publicImage": true,
+    "publicImports": true
+  }
+}
