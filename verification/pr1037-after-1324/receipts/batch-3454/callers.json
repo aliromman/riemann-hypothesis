@@ -1,0 +1,52 @@
+{
+  "before/ScopedGL": {
+    "exit": 0,
+    "errors": [],
+    "info": [
+      "Formalism.DoubleCosetMeasures.instMeasGL 2",
+      "Formalism.DoubleCosetMeasures.instBorelGL 2"
+    ],
+    "source_sha256": "db62476e72e44c171a1d5167e276f6ac3bb13e4faed77533f177682eaca9c882"
+  },
+  "before/NamedMatrixEqualities": {
+    "exit": 1,
+    "errors": [
+      "Tactic `rfl` failed: The left-hand side\n  GlobalTheory.SplitWeil.matrixMeasurableSpace\nis not definitionally equal to the right-hand side\n  Matrix.instMeasurableSpace\n\nm : Type u\nn : Type v\nX : Type w\ninst\u271d : MeasurableSpace X\n\u22a2 GlobalTheory.SplitWeil.matrixMeasurableSpace = Matrix.instMeasurableSpace",
+      "Tactic `rfl` failed: The left-hand side\n  GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix\nis not definitionally equal to the right-hand side\n  Matrix.instMeasurableSpace\n\nm : Type u\nn : Type v\nX : Type w\ninst\u271d : MeasurableSpace X\n\u22a2 GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix = Matrix.instMeasurableSpace",
+      "Tactic `rfl` failed: The left-hand side\n  Formalism.DoubleCosetMeasures.instMeasMat\nis not definitionally equal to the right-hand side\n  Matrix.instMeasurableSpace\n\nm n F : Type\ninst\u271d : MeasurableSpace F\n\u22a2 Formalism.DoubleCosetMeasures.instMeasMat = Matrix.instMeasurableSpace"
+    ],
+    "info": [],
+    "source_sha256": "b267dedd1c469334f403b58cc14b8c348c1efea50392a787f2c80ea662874f55"
+  },
+  "before/Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero": {
+    "exit": 0,
+    "log_sha256": "9a98d697148aeeaef2919f8872b830c5c7af0d9fbc1496b756ecd865494859ce"
+  },
+  "before/GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi": {
+    "exit": 0,
+    "log_sha256": "d8bf94af55839571fca77a411244273071c87591f1f552628c4f03cb0c2abb16"
+  },
+  "after/ScopedGL": {
+    "exit": 0,
+    "errors": [],
+    "info": [
+      "Formalism.DoubleCosetMeasures.instMeasGL 2",
+      "Formalism.DoubleCosetMeasures.instBorelGL 2"
+    ],
+    "source_sha256": "db62476e72e44c171a1d5167e276f6ac3bb13e4faed77533f177682eaca9c882"
+  },
+  "after/NamedMatrixEqualities": {
+    "exit": 0,
+    "errors": [],
+    "info": [],
+    "source_sha256": "b267dedd1c469334f403b58cc14b8c348c1efea50392a787f2c80ea662874f55"
+  },
+  "after/Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero": {
+    "exit": 0,
+    "log_sha256": "9a98d697148aeeaef2919f8872b830c5c7af0d9fbc1496b756ecd865494859ce"
+  },
+  "after/GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi": {
+    "exit": 0,
+    "log_sha256": "d8bf94af55839571fca77a411244273071c87591f1f552628c4f03cb0c2abb16"
+  }
+}

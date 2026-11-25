@@ -1,0 +1,86 @@
+{
+  "main": {
+    "commit": "91b273530883b723ef4422436e0dc3557749325a",
+    "module": "GroundTheory.AutomorphicForms.GL2.GJFELevi",
+    "source_sha256": "2c0ed8d1e167b5d00af9d9760f28b99cef5923231236d086a344c2184b27bdab",
+    "name_use_line": 307,
+    "name_use": "have hM : (GJMatrix.measurableSpace_matrix : MeasurableSpace (Matrix (Fin m) (Fin m) F)) =",
+    "targets": [
+      "GroundTheory.AutomorphicForms.GL2.GJFELevi"
+    ],
+    "closure": 109,
+    "seeded": 101,
+    "fresh": [
+      "GroundTheory.AutomorphicForms.CompactModCentre",
+      "GroundTheory.AutomorphicForms.GL2.IsAddHaarMeasureMatrixMeasureFinSq",
+      "GroundTheory.AutomorphicForms.GL2.GJFELeviPeel",
+      "GroundTheory.AutomorphicForms.GL2.GJFEBlockConv",
+      "GroundTheory.AutomorphicForms.GL2.GJFELeviConv",
+      "GroundTheory.AutomorphicForms.GL2.GJFEBlock",
+      "GroundTheory.AutomorphicForms.GL2.GJFELeviMulti",
+      "GroundTheory.AutomorphicForms.GL2.GJFELevi"
+    ],
+    "removed_from_seed": 213,
+    "lake": [
+      [
+        "Build completed successfully (8686 jobs)."
+      ],
+      [
+        "All targets up-to-date (8686 jobs)."
+      ]
+    ],
+    "kernel_command": [
+      "lake",
+      "--no-cache",
+      "env",
+      "leanchecker",
+      "-v",
+      "GroundTheory.AutomorphicForms.GL2.GJFELevi"
+    ],
+    "kernel_exit": 0,
+    "kernel_log_sha256": "3b9852f63bc4489b29f53394d1f41874f92f65e3f8815a23fdbf4e6f2f58abc8",
+    "olean_sha256": "a646b15dc6c72cd9adbafd125943d5fca2ab0b8f8389deaea9ae08974ffc640b"
+  },
+  "candidate": {
+    "commit": "072861f0298383f29c96fdf23141dc4412530713",
+    "module": "GroundTheory.AutomorphicForms.GL2.GJFELevi",
+    "source_sha256": "2c0ed8d1e167b5d00af9d9760f28b99cef5923231236d086a344c2184b27bdab",
+    "name_use_line": 307,
+    "name_use": "have hM : (GJMatrix.measurableSpace_matrix : MeasurableSpace (Matrix (Fin m) (Fin m) F)) =",
+    "targets": [
+      "GroundTheory.AutomorphicForms.GL2.GJFELevi"
+    ],
+    "closure": 109,
+    "seeded": 101,
+    "fresh": [
+      "GroundTheory.AutomorphicForms.CompactModCentre",
+      "GroundTheory.AutomorphicForms.GL2.IsAddHaarMeasureMatrixMeasureFinSq",
+      "GroundTheory.AutomorphicForms.GL2.GJFELeviPeel",
+      "GroundTheory.AutomorphicForms.GL2.GJFEBlockConv",
+      "GroundTheory.AutomorphicForms.GL2.GJFELeviConv",
+      "GroundTheory.AutomorphicForms.GL2.GJFEBlock",
+      "GroundTheory.AutomorphicForms.GL2.GJFELeviMulti",
+      "GroundTheory.AutomorphicForms.GL2.GJFELevi"
+    ],
+    "removed_from_seed": 213,
+    "lake": [
+      [
+        "Build completed successfully (8688 jobs)."
+      ],
+      [
+        "All targets up-to-date (8688 jobs)."
+      ]
+    ],
+    "kernel_command": [
+      "lake",
+      "--no-cache",
+      "env",
+      "leanchecker",
+      "-v",
+      "GroundTheory.AutomorphicForms.GL2.GJFELevi"
+    ],
+    "kernel_exit": 0,
+    "kernel_log_sha256": "3b9852f63bc4489b29f53394d1f41874f92f65e3f8815a23fdbf4e6f2f58abc8",
+    "olean_sha256": "a646b15dc6c72cd9adbafd125943d5fca2ab0b8f8389deaea9ae08974ffc640b"
+  }
+}

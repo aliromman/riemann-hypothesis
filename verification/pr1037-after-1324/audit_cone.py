@@ -15,7 +15,7 @@ def source_path(module):
     return Path("src", *module.split(".")).with_suffix(".lean")
 
 
-def verified_closure(repo, revision, project, binary, targets):
+def verified_closure(repo, revision, project, binary, targets, *, materialize=False):
     tree = subprocess.check_output(["git", "-C", repo, "ls-tree", "-r", "-z", revision, "--",
                                     "src", "lean-toolchain", "lake-manifest.json", "lakefile.toml"])
     blobs = {}
@@ -25,7 +25,13 @@ def verified_closure(repo, revision, project, binary, targets):
             blobs[Path(os.fsdecode(name))] = metadata.split()[2]
 
     def check(path):
-        data = (project / path).read_bytes()
+        target = project / path
+        if materialize and not target.exists():
+            data = subprocess.check_output(["git", "-C", repo, "cat-file", "blob", blobs[path]])
+            target.parent.mkdir(parents=True, exist_ok=True)
+            with target.open("xb") as stream:
+                stream.write(data)
+        data = target.read_bytes()
         oid = hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest().encode()
         if oid != blobs[path]:
             raise ValueError(f"Source differs from {revision}: {path}")

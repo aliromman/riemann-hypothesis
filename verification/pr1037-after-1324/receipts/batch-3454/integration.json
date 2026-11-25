@@ -1,0 +1,65 @@
+{
+  "base": "91b273530883b723ef4422436e0dc3557749325a",
+  "base_tree": "505bc1dba7fd92df3b886fbc3b65eccedf9985cf",
+  "candidate_tree": "b7661647765848f6b0b0476f56ad3c537caea1fe",
+  "pr_head": "ef7b2af7f6017c9e6875d4d8803907ac0cd8804b",
+  "previous_comparison": "8e5cefeeaffe7e4c12153385b7bb33fb7223c41a",
+  "changed_lean_paths": 21335,
+  "changed_explicit_consumers": [
+    "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/LocalInvariantIntegralsSymmetricHaarSubgroupsStatement.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/RootExchangeUnipotentHaarIntegralPointsEqOneStatement.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/SymmetricDoubleIntegralsPositionOneEqCellSum.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsDoubledSchrodingerModelTransposedSiegelRulStatement.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/SumOKEx.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ValuationDetBlocks.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/ThetaFunctionsSpannedHeckeTwistedStandardFrameStatement.lean",
+    "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/SplitThetaGridIsAdmissibleFlipTensor.lean",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/BuildingsResidueChars/LocalZetaFunctionalUniqueness.lean",
+    "src/Development/AutomorphicArithmetic/LocalEmbeddings/ReBaseMain.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/FiniteDataBound.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/LocalCharacterPowerConductorBound.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/RegConstEqAwayUnitMulFactor.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AtChoice.lean",
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/VolLevelWtConstStatement.lean",
+    "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/FinSplitOfNarrow.lean",
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/SiegelWeilStandard/SiegelWeilStd.lean",
+    "src/Development/WeilBound/CoreStatements/CompactAveragingSplitting/EigenvectorLifting/ExistsUpperProjectionInverseTranspose.lean",
+    "src/Development/WeilBound/CoreStatements/TemperedRepresentationTheory/BernsteinNarrowness/BernsteinClosure/RamifiedMultiplicityOne.lean",
+    "src/Development/WeilBound/ThetaLifts/LocalTheory/StandardValuations/ExistsVol.lean",
+    "src/GroundTheory/AutomorphicForms/GL2/GJFELevi.lean"
+  ],
+  "patch_files": [
+    "src/Development/AbelianVarietyTheory/Definitions/Foundations/MatrixMeasurableSpace.lean",
+    "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/ThetaParseval/ThetaKernels/IndepDomK.lean",
+    "src/Formalism/DoubleCosetMeasures/StatementZ.lean",
+    "src/GroundTheory/AutomorphicForms/GL2/GJMatrixCoord.lean"
+  ],
+  "patch_files_changed_since_previous": [],
+  "protected_blobs": {
+    "src/Challenge.lean": "9677ace64b3a5e8b1a571d82d52ee13c53b08026",
+    "comparator.json": "e989bcf90ff0c487a7146319a026e661a5bad47c",
+    "export-targets.txt": "e2d4c02bac8a1411eae85af0376c1aad3b6b5294",
+    "comparator/FormalConjecturesChallenge.lean": "290a2c6270f8da3852c7051d7da0f30032a70421",
+    "comparator/formal-conjectures.json": "e3afddc98129d1d1183ff217d434165fd893a0fe",
+    "comparator/formal-conjectures-export-targets.txt": "80bbbf91461783bb8e7f0bb8061b792668d4140a",
+    "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+    "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d",
+    "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591"
+  },
+  "base_inventory": {
+    "lean_files": 59239,
+    "matching_files": 28,
+    "whole_word_lines": 66,
+    "all_matches": 69,
+    "consumers": 23
+  },
+  "candidate_inventory": {
+    "lean_files": 59239,
+    "matching_files": 28,
+    "whole_word_lines": 66,
+    "all_matches": 69,
+    "consumers": 23
+  },
+  "candidate_commit": "072861f0298383f29c96fdf23141dc4412530713",
+  "verified_ref": "refs/heads/codex/pr1037-batch3454-candidate"
+}

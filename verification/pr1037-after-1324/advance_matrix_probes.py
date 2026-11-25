@@ -7,6 +7,7 @@ import json
 import os
 from pathlib import Path
 import re
+import shutil
 import subprocess
 
 from audit_cone import source_path, verified_closure
@@ -17,12 +18,44 @@ def digest(path):
         return hashlib.file_digest(stream, "sha256").hexdigest()
 
 
+def seed_build(old, new, staging, previous, current):
+    def objects(directory):
+        lib = directory / "lib/lean"
+        return {p.relative_to(lib).with_suffix("").as_posix().replace("/", ".")
+                for p in lib.rglob("*.olean")}
+
+    if old.is_symlink() or new.is_symlink():
+        raise ValueError("Use private build directories.")
+    if new.is_dir():
+        if objects(new) - current:
+            raise ValueError("The new build contains modules outside its Git source closure.")
+        return
+    if not old.is_dir() or objects(old) != previous:
+        raise ValueError("The previous build lacks its complete set of project modules.")
+    staging.mkdir()
+    facets = {"olean", "olean.private", "olean.server", "ilean", "ir", "ir.sig", "c", "trace"}
+    for module in sorted(previous & current):
+        rel = Path(*module.split("."))
+        for sub in ("lib/lean", "ir"):
+            origin = old / sub / rel.parent
+            destination = staging / sub / rel.parent
+            for src in origin.glob(rel.name + ".*"):
+                if src.name[len(rel.name) + 1:].removesuffix(".hash") not in facets:
+                    continue
+                if src.is_symlink() or not src.is_file():
+                    raise ValueError("Unexpected build artifact: " + str(src))
+                destination.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(src, destination / src.name)
+    staging.rename(new)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ("repo", "prior", "out", "bin"):
         parser.add_argument("--" + name, required=True, type=Path)
     parser.add_argument("--base", required=True)
     parser.add_argument("--candidate", required=True)
+    parser.add_argument("--targets", type=Path, help="Read the new Lake targets from this file.")
     args = parser.parse_args()
     repo, prior, out, binary = [p.resolve() for p in (args.repo, args.prior, args.out, args.bin)]
     if prior == out:
@@ -53,17 +86,15 @@ def main():
             prior_log = prior / run.get("log", side + "-" + label + ".log")
             if run["exit"] or digest(prior_log) != run["log_sha256"]:
                 raise ValueError("The earlier build receipt or log is incomplete.")
-        roots = receipt["targets"]
-        members = verified_closure(repo, receipt["revision"], old, binary, roots)
-        inputs = sorted(source_path(n) for n in members)
-        if not project.exists():
-            temp = attempt / (side + "-sources")
-            temp.mkdir()
-            archive = subprocess.check_output(["git", "-C", repo, "archive", rev, "--", *config, *inputs])
-            subprocess.run(["tar", "-xf", "-", "-C", temp], input=archive, check=True)
-            temp.rename(project)
-        if verified_closure(repo, rev, project, binary, roots) != members:
-            raise ValueError("The new dependency set differs from the retained build.")
+        previous = verified_closure(repo, receipt["revision"], old, binary, receipt["targets"])
+        roots = args.targets.read_text().split() if args.targets else receipt["targets"]
+        if not roots or len(roots) != len(set(roots)):
+            raise ValueError("Specify each new Lake target once.")
+        project.mkdir(exist_ok=True)
+        members = verified_closure(repo, rev, project, binary, roots, materialize=True)
+        inputs = {source_path(n) for n in members}
+        if {p.relative_to(project) for p in (project / "src").rglob("*.lean")} != inputs:
+            raise ValueError("The new source directory contains files outside the verified closure.")
         if any((old / p).read_bytes() != (project / p).read_bytes() for p in config):
             raise ValueError("The compiler, packages or Lake configuration changed.")
         packages = (old / ".lake/packages").resolve(strict=True)
@@ -79,24 +110,16 @@ def main():
             link.symlink_to(packages, target_is_directory=True)
         if link.resolve(strict=True) != packages:
             raise ValueError("The destination uses different packages.")
-        old_build, new_build = (p / ".lake/build" for p in (old, project))
-        if old_build.is_symlink() or new_build.is_symlink():
-            raise ValueError("Use private build directories for " + side)
-        if old_build.is_dir() == new_build.is_dir():
-            raise ValueError("There must be one retained build for " + side)
-        lib = (old_build if old_build.is_dir() else new_build) / "lib/lean"
-        names = {p.relative_to(lib).with_suffix("").as_posix().replace("/", ".") for p in lib.rglob("*.olean")}
-        if names - members or (old_build.is_dir() and names != members):
-            raise ValueError("The retained module set differs from the verified closure.")
-        changes = [p.as_posix() for p in inputs if (old / p).read_bytes() != (project / p).read_bytes()]
+        seed_build(old / ".lake/build", project / ".lake/build", attempt / (side + "-seed"), previous, members)
+        changes = [p.as_posix() for p in sorted(source_path(n) for n in previous & members)
+                   if (old / p).read_bytes() != (project / p).read_bytes()]
         result = dict(revision=rev, previous=receipt["revision"], targets=roots, modules=len(members),
+                      added_modules=sorted(members - previous), removed_modules=sorted(previous - members),
                       changed_sources=changes, runs=[])
-        prepared.append((side, old, project, result))
+        prepared.append((side, project, result))
 
     results = {}
-    for side, old, project, result in prepared:
-        if (old / ".lake/build").is_dir():
-            (old / ".lake/build").rename(project / ".lake/build")
+    for side, project, result in prepared:
         target_receipt = attempt / (side + "-build.json")
         target_receipt.write_text(json.dumps(result, indent=2) + "\n")
         for label, options in (("build", []), ("check", ["--no-build"])):
