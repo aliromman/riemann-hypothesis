@@ -1,0 +1,105 @@
+{
+  "source": {
+    "head": "eadd28fe9075a0f5276123bd95c7f6d05307e740",
+    "parent": "251c7b05dd869ceba1aa42c6001c00b4010f23f9",
+    "src": "36c0e4d25619088d0dd1c8cc75b60e253a12be6b"
+  },
+  "path": "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/ShuffleWeightSquareLengthLt.lean",
+  "original_setup_sha256": "0c11b056c538ec146e26ab621053a4c3ab6d3781ffb18e553c3f35f56a26cb31",
+  "community_archive": [
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShuffleWeightSquareLengthLt",
+    "170b4ff9b3dfe5f7",
+    "8188bd08500b971f.ltar",
+    "4eac3b4c48738260e506251bb198ae1beb7acdc8c539489115353e90eb5451c6"
+  ],
+  "controls": {
+    "published": {
+      "source_sha256": "a77cce4ab14d141a77db435ddea824830f69aed4e316c0d473b60aae440f135d",
+      "returncode": 1,
+      "log_sha256": "690dc5b3a218b4f5ae694060e11ea72cc2b3c7ce1442cd2c2a2ca82cd3f1cb0f",
+      "error_count": 12
+    },
+    "community": {
+      "source_sha256": "f10f353344030e89d3df093dc9caae02d26f6bb054be86fce00dca23a9d780a0",
+      "returncode": 0,
+      "log_sha256": "22963d63790935748f740b62ea3d2eb32669966a9eb55ee2cbf190589d18f581",
+      "error_count": 0,
+      "comparison_exit": 0,
+      "comparison": {
+        "candidateNames": 83,
+        "different": 0,
+        "examples": [],
+        "kernelImage": true,
+        "parentNames": 83,
+        "proofChanges": 0,
+        "publicImage": true,
+        "publicImports": true
+      }
+    },
+    "ring_nf": {
+      "source_sha256": "701815856ad65813376fe2457303bc55b16b7977d97b05fa543de13ed952f301",
+      "returncode": 0,
+      "log_sha256": "16edc3d3e5464278a4970d349658ba8365457253ae93474e62297c4b360492bc",
+      "error_count": 0,
+      "comparison_exit": 2,
+      "comparison": {
+        "candidateNames": 83,
+        "different": 3,
+        "examples": [
+          "_private.Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShuffleWeightSquareLengthLt.0.GlobalTheory.CompanionTheory.MultiSeg.Rank.countP_le_add._proof_1_6",
+          "_private.Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShuffleWeightSquareLengthLt.0.GlobalTheory.CompanionTheory.MultiSeg.Rank.countP_le_add._proof_1_5",
+          "_private.Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShuffleWeightSquareLengthLt.0.GlobalTheory.CompanionTheory.MultiSeg.Rank.countP_le_add._proof_1_4"
+        ],
+        "kernelImage": false,
+        "parentNames": 83,
+        "proofChanges": 4,
+        "publicImage": true,
+        "publicImports": true
+      }
+    },
+    "ring": {
+      "source_sha256": "d1c7570f4c276b30b0898ebfdc599e013e0b7e3b51e7194f754265c0ebd9c33a",
+      "returncode": 0,
+      "log_sha256": "98f4104c8e0eebbfad0f521cc8b902e358ebb2fe6323b8231a0a3adadefc3b15",
+      "error_count": 0,
+      "comparison_exit": 2,
+      "comparison": {
+        "candidateNames": 83,
+        "different": 3,
+        "examples": [
+          "_private.Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShuffleWeightSquareLengthLt.0.GlobalTheory.CompanionTheory.MultiSeg.Rank.countP_le_add._proof_1_6",
+          "_private.Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShuffleWeightSquareLengthLt.0.GlobalTheory.CompanionTheory.MultiSeg.Rank.countP_le_add._proof_1_5",
+          "_private.Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShuffleWeightSquareLengthLt.0.GlobalTheory.CompanionTheory.MultiSeg.Rank.countP_le_add._proof_1_4"
+        ],
+        "kernelImage": false,
+        "parentNames": 83,
+        "proofChanges": 2,
+        "publicImage": true,
+        "publicImports": true
+      }
+    },
+    "reduce_mod_char": {
+      "source_sha256": "a81b829c6b8364753a9e7f76ee5e67bdb6c7ebdd44bcc4ab535f09ef01aa8b57",
+      "returncode": 0,
+      "log_sha256": "6665995c3b8b49188e361ff1c8e61ec00f4eef45a7268a504fe20f96f1c909d8",
+      "error_count": 0,
+      "comparison_exit": 0,
+      "comparison": {
+        "candidateNames": 83,
+        "different": 0,
+        "examples": [],
+        "kernelImage": true,
+        "parentNames": 83,
+        "proofChanges": 0,
+        "publicImage": true,
+        "publicImports": true
+      }
+    },
+    "enat_to_nat": {
+      "source_sha256": "cc26c5c1cfb42b04f8b97478f338f7520f60bda4ab27743fb27d09e65c36a323",
+      "returncode": 1,
+      "log_sha256": "1c61c53267dc126b2a3de43f72fb9791e0a53d134c9bc3b9bfc0bcec81baa71c",
+      "error_count": 12
+    }
+  }
+}

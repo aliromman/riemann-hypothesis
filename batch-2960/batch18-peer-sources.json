@@ -1,0 +1,69 @@
+{
+  "base": "251c7b05dd869ceba1aa42c6001c00b4010f23f9",
+  "merged_batch": 2960,
+  "observed_state": {
+    "headRefOid": "91a4067a1afacb65a6be4fbd38a133cbeb3e7b6e",
+    "mergeCommit": {
+      "oid": "8e5cefeeaffe7e4c12153385b7bb33fb7223c41a"
+    },
+    "mergedAt": "2026-11-25T11:57:33Z",
+    "state": "MERGED",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/2960"
+  },
+  "peer_head": "8e5cefeeaffe7e4c12153385b7bb33fb7223c41a",
+  "heads": {
+    "879": "eadd28fe9075a0f5276123bd95c7f6d05307e740",
+    "977": "5b2620ae67debb40f3785fde68574d581c3fe2c9"
+  },
+  "unique_shared_sources": 7014,
+  "by_proposal": {
+    "879": {
+      "shared": 6378,
+      "all": {
+        "reconstructed": 3120,
+        "already_in_community": 1901,
+        "withdrawn": 1355,
+        "deleted_by_peer": 2
+      },
+      "textual_conflicts": {
+        "already_in_community": 1808,
+        "withdrawn": 31,
+        "deleted_by_peer": 2
+      },
+      "requires_review": []
+    },
+    "977": {
+      "shared": 4019,
+      "all": {
+        "reconstructed": 4017,
+        "withdrawn": 2
+      },
+      "textual_conflicts": {
+        "reconstructed": 1453,
+        "withdrawn": 2
+      },
+      "requires_review": []
+    }
+  },
+  "shared_tooling": {
+    "879": [],
+    "977": []
+  },
+  "exact_source_preview": {
+    "879": {
+      "unresolved_modules_excluded_from_estimate": 0,
+      "retained_owners": 26438,
+      "net_nonblank_lean_lines": 679806,
+      "net_lean_code_commands": 679806
+    },
+    "977": {
+      "unresolved_modules_excluded_from_estimate": 0,
+      "retained_owners": 11368,
+      "net_nonblank_lean_lines": 346769,
+      "net_lean_code_commands": 228385,
+      "net_code_less_added_python": 227938
+    }
+  },
+  "status": "Source reconstruction against the actual main tree after merged PR 2960. Native and stock build checks are separate.",
+  "rows_sha256": "e6904fa82f012dc01235f56b194aea83a1f482bcf11c78500c239f4d3d8fbefd"
+}

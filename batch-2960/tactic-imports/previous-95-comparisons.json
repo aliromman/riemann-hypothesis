@@ -1,0 +1,2528 @@
+{
+  "revision": {
+    "head": "eadd28fe9075a0f5276123bd95c7f6d05307e740",
+    "parent": "251c7b05dd869ceba1aa42c6001c00b4010f23f9",
+    "src": "36c0e4d25619088d0dd1c8cc75b60e253a12be6b"
+  },
+  "rows": {
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShuffleWeightSquareLengthLt": {
+      "candidate": {
+        "compiler_exit": 1,
+        "source_sha256": "a77cce4ab14d141a77db435ddea824830f69aed4e316c0d473b60aae440f135d",
+        "archive_sha256": "4eac3b4c48738260e506251bb198ae1beb7acdc8c539489115353e90eb5451c6",
+        "archive_name": "8188bd08500b971f.ltar",
+        "errors": [
+          "unknown tactic",
+          "unsolved goals\ncase succ\nl : \u2115\nih : \u2211 d \u2208 Finset.range (l + 1), wd d = 2 * l + 1\n\u22a2 2 * l + 1 + 2 = 2 * (l + 1) + 1",
+          "unknown tactic",
+          "failed to synthesize instance of type class\n  MulZeroClass ?m.173\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command."
+        ],
+        "exact": false
+      },
+      "parent": {
+        "compiler_exit": 0,
+        "source_sha256": "f10f353344030e89d3df093dc9caae02d26f6bb054be86fce00dca23a9d780a0",
+        "archive_sha256": "4eac3b4c48738260e506251bb198ae1beb7acdc8c539489115353e90eb5451c6",
+        "archive_name": "8188bd08500b971f.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 83,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 83,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      },
+      "retain-reduce-mod-char": {
+        "compiler_exit": 0,
+        "source_sha256": "a81b829c6b8364753a9e7f76ee5e67bdb6c7ebdd44bcc4ab535f09ef01aa8b57",
+        "archive_sha256": "4eac3b4c48738260e506251bb198ae1beb7acdc8c539489115353e90eb5451c6",
+        "archive_name": "8188bd08500b971f.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 83,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 83,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.SepChars": {
+      "candidate": {
+        "compiler_exit": 1,
+        "source_sha256": "daa97db123a6eccf0b200f3418dd9b4efe2c0a8a2c4e9fc2eca8a18fade83da2",
+        "archive_sha256": "fc46ef5d28694ac75560c1a22de6f2bef22e0ae1dc738f55f666aea42f2df5b2",
+        "archive_name": "796ed50f31f765c7.ltar",
+        "errors": [
+          "unknown namespace `Polynomial`",
+          "Unknown identifier `ResidueField`\n\nNote: It is not possible to treat `ResidueField` as an implicitly bound variable here because the `autoImplicit` option is set to `false`.",
+          "Unknown identifier `ResidueField`\n\nNote: It is not possible to treat `ResidueField` as an implicitly bound variable here because the `autoImplicit` option is set to `false`.",
+          "Unknown identifier `residue`\n\nNote: It is not possible to treat `residue` as an implicitly bound variable here because the `autoImplicit` option is set to `false`."
+        ],
+        "exact": false
+      },
+      "parent": {
+        "compiler_exit": 0,
+        "source_sha256": "92461a5a216e40d164859680ca0509b6b822d54c0412be24b785856286851ebf",
+        "archive_sha256": "fc46ef5d28694ac75560c1a22de6f2bef22e0ae1dc738f55f666aea42f2df5b2",
+        "archive_name": "796ed50f31f765c7.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 1,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 1,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      },
+      "retain-reduce-mod-char": {
+        "compiler_exit": 0,
+        "source_sha256": "92461a5a216e40d164859680ca0509b6b822d54c0412be24b785856286851ebf",
+        "archive_sha256": "fc46ef5d28694ac75560c1a22de6f2bef22e0ae1dc738f55f666aea42f2df5b2",
+        "archive_name": "796ed50f31f765c7.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 1,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 1,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsUnitOneAddJacobsonTensor": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "ff282ea199fed6155eb27768f15cb2d43acdfe9ac524531ecd4d11abc234bc25",
+        "archive_sha256": "779d3eb95094c65ff71899f969ba211f0e616478815b8b4a584ac0fa9e347d11",
+        "archive_name": "43f137ec0c7891ea.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 1,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 1,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.FiniteHomOfTopFG": {
+      "candidate": {
+        "compiler_exit": 1,
+        "source_sha256": "0c0b97cb4660280be4b69405e7e297b7189189a7e54848dcd13751e538a9b30d",
+        "archive_sha256": "714196e63591cd8dbd132aae1d91fe10d414a5deb3411a232ec06bb14829ce12",
+        "archive_name": "411023a020f6b397.ltar",
+        "errors": [
+          "unknown namespace `TensorProduct`"
+        ],
+        "exact": false
+      },
+      "parent": {
+        "compiler_exit": 0,
+        "source_sha256": "cb609d49a9adf9537156255fc818ee5f03556e5654328fbb6dff649465522dca",
+        "archive_sha256": "714196e63591cd8dbd132aae1d91fe10d414a5deb3411a232ec06bb14829ce12",
+        "archive_name": "411023a020f6b397.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 7,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 7,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.HkDdSpec": {
+      "candidate": {
+        "compiler_exit": 1,
+        "source_sha256": "a45e333a7deb990569a71482f8e824a8998b5b57ce9b2601a7bca80113dd108e",
+        "archive_sha256": "3aed4e112d594768d915f94d4ff499a512bbd496a2cd73bc7d886b03f1de13df",
+        "archive_name": "2c0be672bc6c2799.ltar",
+        "errors": [
+          "unknown tactic",
+          "unsolved goals\nR : Type\ninst\u271d : CommRing R\nn : \u2115\ni j : Fin n\np q : MvPolynomial (Fin n) R\nhp : X j - X i \u2223 p - (rename (sb i j)) p\nhq : X j - X i \u2223 q - (rename (sb i j)) q\nthis : X j - X i \u2223 p - (rename (sb i j)) p + (q - (rename (sb i j)) q)\n\u22a2 p + q - ((renam",
+          "Alternative `mul_X` has not been provided"
+        ],
+        "exact": false
+      },
+      "parent": {
+        "compiler_exit": 0,
+        "source_sha256": "b3df8d4d6b852ef27d9c449c5693fc89cfba4cee7b54a7277bba31c76fe4a47b",
+        "archive_sha256": "3aed4e112d594768d915f94d4ff499a512bbd496a2cd73bc7d886b03f1de13df",
+        "archive_name": "2c0be672bc6c2799.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 12,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 12,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      },
+      "retain-reduce-mod-char": {
+        "compiler_exit": 0,
+        "source_sha256": "b3df8d4d6b852ef27d9c449c5693fc89cfba4cee7b54a7277bba31c76fe4a47b",
+        "archive_sha256": "3aed4e112d594768d915f94d4ff499a512bbd496a2cd73bc7d886b03f1de13df",
+        "archive_name": "2c0be672bc6c2799.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 12,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 12,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CharacterAnnihilatorIntegerLattice": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "7456a1d6b8d8d7e5cf08e8ab8867fe52fc6fd781351f147e897850ce567b907c",
+        "archive_sha256": "a0b0bee79f002846fc1f00baedb2586e165079132dbc1846cce9d6265dd5e779",
+        "archive_name": "a32f2b459a07dbe5.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 16,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 16,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsFiniteSupport": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "e8d2bea0270b5141e8089cb542e94bb824fe87f9841da7dae54d13796db72317",
+        "archive_sha256": "dc726d26160dbae1899847aba9ce4667a59ef4e161e2b978240bdbb05b0e2bf3",
+        "archive_name": "4e32bf7239525887.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 24,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 24,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsRingHomPowPrimePow": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "7ba542753d96e1a32f895689c02e59238c4ebfa2ab034983fb669468c62c80e6",
+        "archive_sha256": "8886aa77984eac6e766808d88b3b3dd3a91ec4ea9f916613ec594430bb9d726c",
+        "archive_name": "04988b8f0bdf0f87.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 1,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 1,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemLatticeSubIffSum": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "6c1a0d8ed68c268caa5640914cd5770f52ffe195ebecf0896101b34a0c352624",
+        "archive_sha256": "55ac18771a7a9b988c2927e9725a5088f52dfeed0331a3522e0c0f3c9afcb246",
+        "archive_name": "fcdcbc09343efbba.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 4,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 4,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemPowSmulTopIff": {
+      "candidate": {
+        "compiler_exit": 1,
+        "source_sha256": "90e40a28ae4dd13e39cb19f1046dfb80ad6ac3fcc36d8d8618ee8c05311e7475",
+        "archive_sha256": "1d9ce6b8bde47ac1bf6881e5373340e241bbab847be2e22777788659dcb979aa",
+        "archive_name": "f213f2db9b1f7085.ltar",
+        "errors": [
+          "unknown namespace `LaurentPolynomial`",
+          "unknown tactic",
+          "unsolved goals\nB \u03b9 : Type\ninst\u271d : CommRing B\nI : Ideal B\nc f : \u03b9 \u2192 B\na : \u03b9\ns : Finset \u03b9\nha : a \u2209 s\nih : (\u2200 j \u2208 s, IsIdempotentElem (f j)) \u2192 (\u2200 j \u2208 s, f j * c j \u2208 I) \u2192 \u2203 s_1 \u2208 I, \u220f j \u2208 s, (1 - f j) \u2223 \u220f j \u2208 s, (c j - s_1)\nhf : \u2200 j \u2208 insert a s, IsIdempotentElem ",
+          "unsolved goals\ncase insert\nB \u03b9 : Type\ninst\u271d : CommRing B\nI : Ideal B\nc f : \u03b9 \u2192 B\na : \u03b9\ns : Finset \u03b9\nha : a \u2209 s\nih : (\u2200 j \u2208 s, IsIdempotentElem (f j)) \u2192 (\u2200 j \u2208 s, f j * c j \u2208 I) \u2192 \u2203 s_1 \u2208 I, \u220f j \u2208 s, (1 - f j) \u2223 \u220f j \u2208 s, (c j - s_1)\nhf : \u2200 j \u2208 insert a s, IsIde"
+        ],
+        "exact": false
+      },
+      "parent": {
+        "compiler_exit": 0,
+        "source_sha256": "df9cdb145049a228847c4a8e7f666f8d1832692d5819faf839fee3f76d047266",
+        "archive_sha256": "1d9ce6b8bde47ac1bf6881e5373340e241bbab847be2e22777788659dcb979aa",
+        "archive_name": "f213f2db9b1f7085.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 13,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 13,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      },
+      "retain-reduce-mod-char": {
+        "compiler_exit": 1,
+        "source_sha256": "9490a1011b60de647f8161cd919d57e6ca4bdf0d04d2ddf9cac07156f7eabdff",
+        "archive_sha256": "1d9ce6b8bde47ac1bf6881e5373340e241bbab847be2e22777788659dcb979aa",
+        "archive_name": "f213f2db9b1f7085.ltar",
+        "errors": [
+          "unknown namespace `LaurentPolynomial`",
+          "unknown tactic",
+          "unsolved goals\nB \u03b9 : Type\ninst\u271d : CommRing B\nI : Ideal B\nc f : \u03b9 \u2192 B\na : \u03b9\ns : Finset \u03b9\nha : a \u2209 s\nih : (\u2200 j \u2208 s, IsIdempotentElem (f j)) \u2192 (\u2200 j \u2208 s, f j * c j \u2208 I) \u2192 \u2203 s_1 \u2208 I, \u220f j \u2208 s, (1 - f j) \u2223 \u220f j \u2208 s, (c j - s_1)\nhf : \u2200 j \u2208 insert a s, IsIdempotentElem ",
+          "unsolved goals\ncase insert\nB \u03b9 : Type\ninst\u271d : CommRing B\nI : Ideal B\nc f : \u03b9 \u2192 B\na : \u03b9\ns : Finset \u03b9\nha : a \u2209 s\nih : (\u2200 j \u2208 s, IsIdempotentElem (f j)) \u2192 (\u2200 j \u2208 s, f j * c j \u2208 I) \u2192 \u2203 s_1 \u2208 I, \u220f j \u2208 s, (1 - f j) \u2223 \u220f j \u2208 s, (c j - s_1)\nhf : \u2200 j \u2208 insert a s, IsIde"
+        ],
+        "exact": false
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PfFacts": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "dcae8b396a476fac2488568dd4293a80951634232dc1cecd34135938fc44851a",
+        "archive_sha256": "bd7e42c607d86d4d6e6eaf22cdd513d2fe244710d16ca07b215aa9e2e3716021",
+        "archive_name": "8d5d838334bdf897.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 2,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 2,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ProdLeftEqRTensor": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "efd74a7bb71233659aaa5b4ddae98c6e9d2caaa86b10b07ae9bb09286e838096",
+        "archive_sha256": "2a0877615a6e71e471b594330c07ae035ce4558956a0b97f98e7a864e0699973",
+        "archive_name": "1b8e5b53cbe540c0.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 7,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 7,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BlockDeterminantLaw": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "daa1eb6395dad8b9b1b16bbf981c187f421442bd4525e49ea509043753641f8f",
+        "archive_sha256": "8d23c14843a42fdc9e9f31b320803952650cf14eff8810e1523f83fc7f8153b2",
+        "archive_name": "19f84d29e912a9a4.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 20,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 20,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LeviDecompOfBlockDet": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "3c62a4f8436005b783959d35eb29784d1ed44a29e9f95058d2858ab0d3b78372",
+        "archive_sha256": "a0f7bc956b238dc38d22008c00c34338b98929e5c3d3c64c48d9b0a0cd12e6b7",
+        "archive_name": "bdb27283ea82cad2.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 80,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 80,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LeviQuotientOfBlockDet": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "84c12b17510fd0453aab1ebd5fa5b5fbd2af4038f61bc7f716504ea5276d6602",
+        "archive_sha256": "1ad8ab0e9d32d48d63caed0cf40b3657112ef76849d25dce36fc4bd2ba4a597f",
+        "archive_name": "ed5803aee2bc89a2.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 129,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 129,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsConstOfRhoEq": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "f4388e1a27ff3a35b04897e7a29a25588e2d592c2ab06ed7649ef7cdf30c9594",
+        "archive_sha256": "9cc12b68794d37d1af33db8840db744377f3729c9be79c3cad9852891ee91364",
+        "archive_name": "487db6255b59e7ed.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 11,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 11,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsDomMonoid": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "45fb8a595d25ffb348d2c18ae1680309af0ec0aadbc1de2d556e58c491309d1f",
+        "archive_sha256": "e7846e62e173c262e05bc18531b9626d5c14bb05582ea721547db1e017de589b",
+        "archive_name": "9a9df7897c11cbb6.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 8,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 8,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SeparableNormCommuting": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "893715fea6d8cecd895561bf5e1963833262819502ad380af2c0371a80350d5f",
+        "archive_sha256": "6cde2943a254b505590ae5c30f5c60122eff03890c289f0c7953c66ffb5fc046",
+        "archive_name": "ecdc87d084a8ab33.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 5,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 5,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DFormMem": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "9bf21904fcfa224559750aa0b9d75a1a782cd8394156653e472d05b760043102",
+        "archive_sha256": "9ca877a4f2ee68b2f28676e36f4d9d8c36a2f29ff27cfc132162bc8bc466f450",
+        "archive_name": "581b84dfad1ab8aa.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 33,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 33,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ParabolicStabilizerBlockUnit": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "b430da68048517fcaccbd0f783ddd1169f6242acb058770eae3b7c726777ee31",
+        "archive_sha256": "c36f4463da993e52b66a2f535f75fd00d7511e1aed652850345f323c868c7531",
+        "archive_name": "52b4d67c10d232e3.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 3,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 3,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NormThetaMul": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "fcbe121120a6599a4222be0a3299c821b5f6ab349b8f178fdda05758420315b8",
+        "archive_sha256": "1146c7b7be794e68103b6903b3113ff1c997033b8bce7aa29baa4e1b52eddf6b",
+        "archive_name": "1933560b9d1f36c0.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 17,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 17,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FormAlternating": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "fa61941651738f0eefaca0bb49477284152af60c6b90de6beb5d3acefdc01a01",
+        "archive_sha256": "7b29404446d95106d2ccee7aa970da741bd68ccac716c7016d425a4c39cddec8",
+        "archive_name": "7433f3d62baef672.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 146,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 146,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsLocallyConstantToZModPow": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "856b8dffd94f2c0a927615f5d2f40d394978914bbf5e2ebcc2b75cfc27c08294",
+        "archive_sha256": "3c32a2efbde4f8c6dc7d1ff9e4fd2c8764c20b040c04fd5eaeaacd16ec21cac5",
+        "archive_name": "eb57d684cb96c93b.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 8,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 8,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsOpenFixedOfSubgroup": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "4c3b6441767195fd0702b8a7086d56e337ff51cf7fb8b1f2200ed8c4a9180070",
+        "archive_sha256": "4d1ee764218dbb95149427281268d006fd7b4a336f981dd631dcf26d74e6dbe9",
+        "archive_name": "0e7775e127f155be.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 32,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 32,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.FoundationProofs.TateH2IffAllFiniteExtensions": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "83b2dda9852d19074991722733a3362f95f5970a35c8245eca46de9b3a18e571",
+        "archive_sha256": "2949f46b5037bb5b81035e2b2c234126f153206f3ae8e6de3fb1d5f865a54d4e",
+        "archive_name": "7851f166fd22603e.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 24,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 24,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.HolomorphicIrreducibility.DelSerre": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "e68b1705405161da6225077dd7bd5e2528eed9215f60b6df123e3248ee2cf62a",
+        "archive_sha256": "2baadd36bbfcb5767034343cf0aa892b07e719475b97665271e9f76afcfd17d1",
+        "archive_name": "cccc4d2d0fb8a571.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 12,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 12,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Equidistribution": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "5bc622df3bf00691024f5da49884dfc986e2225988338d99c2bc98d1459eec58",
+        "archive_sha256": "9dcd3ec1132ac7b68fc4d25107b4440b0ef96126b408b352b627e5859aeb5b6a",
+        "archive_name": "b87f3a0a31eff71f.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 152,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 152,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsNormTheta2TailLeOfLeOne": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "733f88f1feb1ac3a9040321df483516c86cb4fde8b57a879dd8f08d5ac87e7b9",
+        "archive_sha256": "6936a61e4ca5e4e2582016f39c83a1b001ca1f2f7f789b6fb76578e2aec0c438",
+        "archive_name": "e74dc0ee831216d4.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 9,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 9,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ProdFunHasCompactSupport": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "7b181bff7e82087be68c95757539fb5df7fee4af06c8d64a067c79609b50a741",
+        "archive_sha256": "c4ac5ed148797cc19ac3e819e1621dd46df1f11f1dd2e7a10db4df82bd362ecb",
+        "archive_name": "4fd6b1e32f55793e.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 24,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 24,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CompactOpenExhaustionStabilizes": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "14c01c5c84631e1820972a953fd2be58e8abc3e8dbab6be317f54556cfe2c39f",
+        "archive_sha256": "d1e96a8edd4f9f64ca6b3c21f41ee61e6dedd5dddc0b3883f8b39c53de4441c4",
+        "archive_name": "2f015d6f57d5d8bf.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 8,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 8,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HeckeOperatorExists": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "93a6d24c8a9d8ed94a1920daa0ac832a8d45443aa58a90920b927c7c26fcb689",
+        "archive_sha256": "824c7d328719462a47da7b042b0f725e46af942e13cb93462b10bf3b9a308573",
+        "archive_name": "58b31db4ba346098.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 25,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 25,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HeckeOperatorsCommuteOnFixed": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "7872e2b575659fbca7c04c93b7e71b2cae7b264f02905373726f64e9f0c2224f",
+        "archive_sha256": "e12c21384f1d620e2eac364ec266a8d9d75b7c876fbf479cfe1ab4292b0eadd7",
+        "archive_name": "a048baf2f6b86a00.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 33,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 33,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalBridgeLubinTateField": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "1c7c76221603d99329164c1f6d063c9c8188bb97bdebbbeb73325bf0c923b281",
+        "archive_sha256": "c2dcc443369d661f2f6ba0a694fa179476e10a3bba53ad37323e58dbac0a8a62",
+        "archive_name": "2c533233b60bdad9.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 10,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 10,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ResidueSequenceHolds": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "ba732907a3df2f54b05aab9e9dd656ea3f7cce7c7449e386aeb6bc27a51627c5",
+        "archive_sha256": "9a33246fb660cd8ba2779d179286968bdb641b392f9bbc5b96da70253f2d42df",
+        "archive_name": "e71cc3367b6529df.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 140,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 140,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DenseRationalsPlusSinglePlaceAdeles": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "8b38787962f362e4d29199402e1cf3f3def1c72ca6288c80026f9d13c21741cf",
+        "archive_sha256": "1f4efabfc095ba30d052bbcc47e79d5a48c2da8dcd8897367a3fc386cd658f7b",
+        "archive_name": "2d717389618dc282.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 21,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 21,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGrpObjIsAbelianSchemeSmoothLiftNilpotent": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "585b026f70a13e0194ff4903ee46b7726e77f7a5ec664678febd09f433c34237",
+        "archive_sha256": "37f599594630e6712521a0e4e13686df48a3eb004437ad21b0c8a32d91d4cf99",
+        "archive_name": "b5b5d8e4d6e06ed2.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 4,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 4,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.TangentVectorSectionValueEqExpansionSumStatement": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "3148240586f0b1216694a3e70e6c38a52a1cbd86bec6465c5dae78410f846e95",
+        "archive_sha256": "4810a4a0383e588ab0248520b480157d7067d03760def8b226aba0607f615e15",
+        "archive_name": "70c3714b299d34a4.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 74,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 74,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.PointInputAwayFromTypePrimesStatement": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "2859b530e5ad94ea0babc05af66113481de63050c009f0ee54397dafd16044ac",
+        "archive_sha256": "51aa15301f9fded929a02b6e42905263d18250fdc5b0b95d23c4769ee0e55957",
+        "archive_name": "91ab82050b83b8cc.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 2,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 2,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DualWeightsDominated": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "c8e357438d8dcb0d7015ddffba50cf3646835b78b3a1021d1e49f82334ae08d6",
+        "archive_sha256": "c9db5c0f16fd5e4f7f8ef3ebeea0b4c43df78acc41f90738c0cb0d9c09bf4a43",
+        "archive_name": "521b0ee38cf61650.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 118,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 118,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.RestPtOfPtFam": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "c13b7898be5b5f787d71d733e4a0552ac655f0313053b9c504549021a3460cfc",
+        "archive_sha256": "7f246e75f705af36398a611db342204d243309bd5e97c0e2211d18e11d7b3062",
+        "archive_name": "3bb212c158804a13.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 2,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 2,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsRightInvariantHaarLeviStatement": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "1eb2bbe4ad70a923835f9940d783a411544a853f26467e5ec6ac60ecb221ecdb",
+        "archive_sha256": "b06fa236a9a23fa73fd8b3a4e090f287395b1e035e1aec0e0a45fb77b89be168",
+        "archive_name": "9dad3415e41ef420.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 94,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 94,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.ValuationRingClearLastRowEntry": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "a989568f9812baf4164f46c50f7f322201d32021cbf97bcd4f3faa7038de6106",
+        "archive_sha256": "6083d7f67891e5424ef0ef997e384d48c98231980d8f9436070382593dbc4444",
+        "archive_name": "ecea863868fd4795.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 17,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 17,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsNonnegTestFunctionNearOne": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "8ac5b2c23c7dab7b3f36529d4fe64ffe781abd2e93b04ccd8596fa9cb71df93c",
+        "archive_sha256": "3c64b589783be2315dd5216229b3554c5a1bbb26c8e52df678388139255b95a2",
+        "archive_name": "aa4e082614b95175.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 12,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 12,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RealModelExists": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "69d44d6f534b7d376bdb32ac27ab1a561a34048ccef945152ffb097c2a7a28e7",
+        "archive_sha256": "7c0d5d94bfc4425ec6913b7868eb7285a46a9686c9a57704b065833e585f8c5f",
+        "archive_name": "bdcd64ddd5ee5df9.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 171,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 171,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HeckeOperatorJacquetEigenRight": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "e2ce44a407815c9daa2f3b1cb29bad9c6a74f17da8801c677f5d13fd93c738a2",
+        "archive_sha256": "d96213cd759948b13ecc8b7d2d0eb3336f1af94f1a9991da9a602c029c850783",
+        "archive_name": "ab646d9b888beb1e.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 59,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 59,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalVolumeRankOneIsotropic": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "0d88626c5222bfb0b285c73624ed2df4fe676004733a152f170e5b87fd7a383b",
+        "archive_sha256": "74ac86fd52ec898cee6764f3d82b27ae5d322a53678454c684c70550818d8091",
+        "archive_name": "b28f86b7a49ab058.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 72,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 72,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.IntegralityNearIdentity.TensEig": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "a604af26f8a2a9540821617fb6c7d78c78c3ceefd1efc8d03f9b2140e67731b5",
+        "archive_sha256": "60f525b644f635f6477ea371feb3849692548e771c5d8ecad2d54b24ffa7d07d",
+        "archive_name": "41570cba81333220.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 8,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 8,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SiegelWeilConvergentRangeStatement": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "2b3594b946614569ebeea5ce421767dbe6cec7f38d626b5aa3a9f9580449b5f5",
+        "archive_sha256": "280f15af0cb7f0be97d064bd9d4976e7a851381b0a3925225172931adf2072a9",
+        "archive_name": "ea67778eccdd59da.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 54,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 54,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.OmRatInvApply": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "8e2e44a754fa3123c9081ee66a04daf46ec49b6b043a1fee2dc26d9cf27356f5",
+        "archive_sha256": "a2460ea44564640a37da03db5d6d7f922645ccf3f140af2e2e8f96c462220c02",
+        "archive_name": "a29124fdf40e7e34.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 5,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 5,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RelIndexEqCard": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "d9efb946829befe28c1da0634768984da60c671f96bc28720c723986a24014d8",
+        "archive_sha256": "33a149fe48667815648928c858236d4e7302afdec78606388818deac310766e0",
+        "archive_name": "6f54f5797cd837fa.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 5,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 5,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.CharpolyFromTrace.UnlinkedOfType": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "100d7e12a3d77fb8f0e230f42bf8898e52b380cc72f3d82f1abd559f05227b70",
+        "archive_sha256": "431e17727801b7ff09d3398d42d8db737610114056b1a737c1bac77e37e8532b",
+        "archive_name": "c0dd27e0471ff7b9.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 5,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 5,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KFiniteVectorsDense": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "4abb36db7f8cf827d72c929117863963814b4381ca31c308fd6cee499188d603",
+        "archive_sha256": "1726bf31f9ae059ead457a6f3674459ab707c57ce338bbeaa31bebcaa0ae994d",
+        "archive_name": "c13e2377111e3551.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 12,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 12,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.CrystallineBaseChange.ExistsEigenform": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "26567216dba8c313c948e62b68201f80d252c8538b9083dfdc610c5e5159c338",
+        "archive_sha256": "6c329433781b0a1d5ae61e9d97d94e1b0a38cedb13500e29615d570050520895",
+        "archive_name": "985477be61ec299d.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 36,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 36,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LefschetzSigmaSums.HeckeTraceSemiHolds": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "38778c7f2111f836ddcf78f2caa752d9d2143a66e4158d96eb9c3480ee1b9b36",
+        "archive_sha256": "501ee9bdfd6e7ff145334f832211ef9e74b0fec68b78ad288cd2222fa60506d5",
+        "archive_name": "bba140bd06252d55.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 103,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 103,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.GoodReduction.ExistsSchemeModelDescentUnramified": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "0667462aa2aee57756fcde40399a2beb844ea6622803958098b1b1b16cc05831",
+        "archive_sha256": "a3dbc4210b4a8d40937712e8fbdf3ca546a396ac3becb7d43364f396a6b50218",
+        "archive_name": "05d1c3f9f4026e36.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 0,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 0,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLineBundleLiftSquareZeroOfMumfordBundleStatement": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "b5ec9bc644b167640bdd4a4eecf6e263471209e29f7394eb10581d05316b6ee4",
+        "archive_sha256": "7e96afd528dedbe7c3af638097b24e2a71046e14b5add4a6edf8eccb921aa553",
+        "archive_name": "b4e537c8cec2c2a6.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 138,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 138,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CharacterSideEquidistribution": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "70ffa258a2540469ff1a0f52d01df9b57f1f31c80c922d36118ffbe7c27a6c00",
+        "archive_sha256": "d66a17c9471116d7b1264fbc7895955d0b014fa578ad7d28e109b8887c56e890",
+        "archive_name": "f62159a38420b9cc.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 39,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 39,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ChartFlagBaseHolds": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "7ea5c263b0ed5f144e4eb332ca27eebafdf87452b5ca5054971195b37684f8e1",
+        "archive_sha256": "bc4e464302f4702a52efee9ebf49ef52e77dc77c92cf489ead045f5b41789e79",
+        "archive_name": "65299e7bdbc261ec.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 2,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 2,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.WeightCharacters.NeatLev": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "681bfff3124390eb159da9aaf54d860213e1cc4f277fb3daf0980634191e69c5",
+        "archive_sha256": "392fd7ddab4dda96fb3ef5d7fbb02ec6cc9aecbe9e41504a47aa4a5d3af5c4e0",
+        "archive_name": "fdc1d158abc209c9.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 14,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 14,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.IsTripleOfSideBStatement": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "52d2cbcda81cf77bf37260903ffb79252857ee57cff4b139f69fe59343c3c840",
+        "archive_sha256": "90360a868dd9befe2300058d7047234880e6f37aa3bbdf935e756eedc8241b9a",
+        "archive_name": "ff3d7b8b9fc86f2b.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 25,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 25,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeVacuumEqSmulIndicatorSplitPlaceStatement": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "a43d1f7f752d188f942127c14392879f5e370e6124d675cfd015756914483f82",
+        "archive_sha256": "1de0424b3de610be25f75ccf7840f901f200f7b3f640145c1eeed4a4deb07a48",
+        "archive_name": "ea754a93a9dc3d51.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 71,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 71,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PoissonHermMain": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "51a9e1e5c79bf54d019e63f891ed70aca1fce9f564f5c36122c832bcfe66d937",
+        "archive_sha256": "471bc5e8b3a570d1e50b5fa3dbeb4a1e778609ba82ab9796b4c9432349d5a488",
+        "archive_name": "664b03b35996998a.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 93,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 93,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SiegelWeilLagrangianTermsAbsTsumLeHeightPoly": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "72333787e23d26f2200f41ee67842eaa8abc23ad10d646007f4185056367ecf0",
+        "archive_sha256": "e1bf448603669d4037bf06fee2e3616f895ab1277b22bb52893c6d0a7480b108",
+        "archive_name": "35167111a51a494c.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 5,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 5,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InnerPosOfInnerNe": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "d10478dc95d130e1cb0e5ed2556a1d351a1de62c964be40dfafbd0d8fc262c55",
+        "archive_sha256": "7a0f501415889474454cf28397137e4f8b38e41af9428c08c93f294fbf91cfd5",
+        "archive_name": "89ffeb11b3033171.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 21,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 21,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsotropicSaturatedWeightFiltrationStatement": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "fc65f824c0645f6aac5612da5d8ea04dae97d15ed0d328844cab016965b22ea2",
+        "archive_sha256": "0ae963152c8bce08f1552da789dc1a9d75638c8f585d2cd43843426848ecb6cc",
+        "archive_name": "dda3d8d1b961323c.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 104,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 104,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.GrNormPosOfBasis": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "4739139f733193a169dd5e077a29dc05a6005fdb6ed1e99565f557738c256755",
+        "archive_sha256": "f414bca33c45cee047b52a15b55510f37dd68d77ceb179f42042b4714adf2bf3",
+        "archive_name": "42ee064149913143.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 13,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 13,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.MemRowJIffRTupStatement": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "5d2839573db850fc65d6087efa4f140c0be7d2a50e199e54c8eaf2f16c328c47",
+        "archive_sha256": "6335157434ce373ea2fe08488905b7c48af62cb74c58cbc33058621291e6b58c",
+        "archive_name": "cd6aad28728c7bdf.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 114,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 114,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.InducedModelDominantCurveRestriction": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "155f9c419c6c5e1b975b3883e84168d9d524f124bfebf3b7ac2eb724a8d15d01",
+        "archive_sha256": "711c91cc6e51e9087985465085a385a50c489a27860f934c8892847bf5493fb1",
+        "archive_name": "ca28f484c4dc5692.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 2,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 2,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ChernIntegralIndependentOfCoefficient": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "bc5e758cea1efa1c3627b1490376562cd3f2e6a9032414b1c0c12bc02a461a8c",
+        "archive_sha256": "1e47cd6e39d2a22dd349e372018283c1d3f48b453e0cb5c279f0ebee158b27bb",
+        "archive_name": "97928e04e122b520.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 3,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 3,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.NefIntersectionNumberNonnegSubscheme": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "9ff88d60e7b694a558785c09273e5a08b98d7894ccba8525c43ee0bf2612a485",
+        "archive_sha256": "100ae047b3c76f3e0fa7328e3f7bc5cddb791faf3002d155b751e4e6ffac9bcf",
+        "archive_name": "9af86cc97deaceb8.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 3,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 3,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsKodairaSpencerAbelianLocusChartRing": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "16d6b58e9df0fa5d19246da44d4bc2f2e5289a58583d6be15d3691c3f454402b",
+        "archive_sha256": "eedaf781e08286b8ae89172f1a11809ebc2be94e952b51b02983af9b55f19265",
+        "archive_name": "1aa761a2a7eae512.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 2,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 2,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ArithHeightProjectionFormulaEveryPoint": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "c68740abf8b8f12e79ab3d6865d1d9cdf76463f4dc0200ff3e6f3364f99fada3",
+        "archive_sha256": "f3ef6976342b52fd8201d63f53a0d36a3d47497599a0bee422c50ee8fc0c4b31",
+        "archive_name": "e1a40ca0371283f1.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 22,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 22,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLocalHeatOperatorsAbelianLocusStatement": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "5fc47c2cf0d7139b7aed7a5495666d80864d84dd97e65adf10e2a04b5ba7c864",
+        "archive_sha256": "1932da4fcd2f660d82b820d1b8edaab0800c9097c1aad6e2c30a42d5118d3d49",
+        "archive_name": "9d303e6dc44153ac.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 25,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 25,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ZedSizeStatement": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "b5ce12cf900af3a1137abdf845d3444addf046d4bcad16c64197277696fcb41b",
+        "archive_sha256": "0e344efebb021a996f202d1141f38c3b9ffe5f81c45611f2517c726553a00035",
+        "archive_name": "348a3ee0d39f7743.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 55,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 55,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ReadingStatement": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "b49037aec5ff4f4702b42f2e524d3f59e21b943d856c77e81f26303b0da53873",
+        "archive_sha256": "40e7f97bc0c4c77f38448c354ad5273c479df276693b373ad1d075ea587fed41",
+        "archive_name": "2893c1fefeae058f.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 23,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 23,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.LevelCoverComplexModelsComponentsIsometriesDegre": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "5c13c557786a815b47732b98841048077964e100faef5502befc76c2268c06e5",
+        "archive_sha256": "58b562d79f2826e3df4a5087d5848d8f57942b3856c04210fdceb69f6b772af4",
+        "archive_name": "af7eedb843768aad.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 86,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 86,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.KodairaSpencerRegularNearRigidBoundaryPointStatement": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "499bc38a88bd82f5c44f839a2df83c306b1a54649fdb29926bb535f0326b0847",
+        "archive_sha256": "16a02fee7431049a2be61b6917508f526c091bcb45477894bb3251822f490c50",
+        "archive_name": "491d226b9d97dbd0.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 36,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 36,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ExistsIsAtStatement": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "5bb0e021f647234a55e338f642d81b701f9806c58d80a4525d1d4f2615cfe80a",
+        "archive_sha256": "9c891f4f78d345b8d9d4a9bee1ee5ff4fb90dcf5172e4caa0b167563fdfd3773",
+        "archive_name": "8e6b8614382c0317.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 116,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 116,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.MemberSizesStatement": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "1dc1bc5957b4298b2989944009457be3549fe4879ae8214e85fce3e32cfb68df",
+        "archive_sha256": "b3a059bff953ea3c4fc40261d17676846c73158891dde60e0fe8a29b36129779",
+        "archive_name": "fceb65409fa366cb.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 30,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 30,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.CuspidalDescent.SphericalTwists.JTwist": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "75d79f08a1025b4463a3426dd8575aeff7d3d4ee608ea66a8d36b84a109756d7",
+        "archive_sha256": "f1c5dce20d8fc08c9a9163ed53a12485655d63fb7221f0ab2fa712d6f3f8f33d",
+        "archive_name": "8e363d5df99d4573.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 1,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 1,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.GeometryProofs.UniformNormAllTowerBoundStatement": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "575a2f1edd63575df7fedf5ae4093c503ced89e62cf66e80fa5ca09f64bc5680",
+        "archive_sha256": "e15eb7c5ca964bfb93598a4a2150402e7c90b6b90ae21ce53be96d603dc1dacf",
+        "archive_name": "641d53d52762ae2e.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 69,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 69,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.WeilDeligneUnramified.EGCore": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "bff040d2d6597a0b9f6651bc8cfb9277e172ed86dc3bfaf7b6f9160a58849da3",
+        "archive_sha256": "94ffba4819905dfb03fa2564e47b4ed5966c7fd1096a1fd31b4269c9c6e5a639",
+        "archive_name": "988318d4ecd8f664.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 13,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 13,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.PointsOfTiedLattices": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "c7e4cb2d31a9b16d89d9365a1f6e46e45064ec0548accd617a9421fdae447948",
+        "archive_sha256": "c21eed71eca7b7fdbb203d3de40751661f7b70e04f5394f9870a3f28e1ef8c96",
+        "archive_name": "5c80695fc7dba6f1.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 77,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 77,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.GaloisRepDescendsAtRealPlaces": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "cfd2d6fe0fa27a55faa7a36aff1cc95340312ef5a1bb636cbc5063e4c2630234",
+        "archive_sha256": "4b763044c7ea334f7650d1335d76ecec9e3a3cc504a1d1360993e29daaaa74e3",
+        "archive_name": "42547eaa102b1bbd.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 3,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 3,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.RefinedSumWeightOfSizeLe": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "9ef74f72c0405e788ed883f383c101f299acb57fa895a21b653372aa24f610f4",
+        "archive_sha256": "e39912a86fb51e515a30d93199f84e17fbd8d8e8afb154d8a1392f6d60be2e0b",
+        "archive_name": "b56f38ec17a62914.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 108,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 108,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.UnitaryThreeInputsOfLiterature": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "3842b3f435ccbe3aaae87beee6701e7d10b4dbbe8618dd54bfc56bc14c7ccb0c",
+        "archive_sha256": "47d689d8a15bdc34614c9ff31b47f34936cc034b8442f5af31de75eb6696fbfb",
+        "archive_name": "f44ab08a914f395c.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 80,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 80,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.HermitianPairingBilinearOnPair": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "3a50f34a91241240221f51ca131562ef2beb3fb207ec2ac3cff6b960978a38d1",
+        "archive_sha256": "b1b25c51b77f9e95e18dfa7631f3e7bbdb38a80e565c6bbad3f0dd107fad7fc6",
+        "archive_name": "990bc6637ae0262a.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 3,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 3,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ShareStatementOfKnownTheorems": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "63861a8472e33aea4f31b390929970bbd675071ec13d003aba0bb415fb8795d0",
+        "archive_sha256": "ba231817f8e6ed8e295fc059dd5f83d70ef1798311f53932e4d7f6a8d7b399a0",
+        "archive_name": "8c2588517062fa69.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 15,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 15,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.RankGrowthBoundSmallScale": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "1c5662a1c38875689b4a5300c084367a2d1b09f43a6ad72ed654ffa28d10bb39",
+        "archive_sha256": "a9d1637b0b0a98cac0d161a9a5617da06acd4492367e4c1ac2b752c16776cc3a",
+        "archive_name": "bb022938d98773db.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 26,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 26,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.DeepGoodReductionStatement": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "b4e51313472e785f5f879ba06835f7577595fc8640a08395dbad43d154417763",
+        "archive_sha256": "1b5911bff4335e8a96edff99bb466d9e692b6b046226a25a4c775ad7ce16e76b",
+        "archive_name": "ce3bd03d5167a0ff.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 14,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 14,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ExistsDegreeParametersBound": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "aab8495ffb02f25aa050aacefa840a4efccb4bc7db8e288576cca45d3c9c7abc",
+        "archive_sha256": "c03b1a200e7a683213ec05fe781a1481e6cd84217829e03663cf44b2cfe8f481",
+        "archive_name": "9175c90eba697369.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 93,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 93,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.HilbertSamuelLowerBoundOfComponents": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "f549e09d86adf02366df2f6a5e837b0054a12b3d2d2ac243ac2b09396d57b5c0",
+        "archive_sha256": "4f685191362c4989dde4a464304f320bf8fafc6a160a4c401aaab2625da80e08",
+        "archive_name": "73710f02150f1d40.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 38,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 38,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.TopCovolG": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "2027267ac00320bfe45bd51395e18d249f7c0ae6b1f242d106605be74f3d3c7f",
+        "archive_sha256": "8ab0157acbb90516c1acd78da02780c65c324c243131a7e524ad485969e9156c",
+        "archive_name": "4f6bfbc60152b12d.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 81,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 81,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ThetaLiftHypothesesOfNonvanishing": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "70dd2e8b834bfe3a7b5fd81a016adf060ed4f0562cc71972babcc8c64100d9ca",
+        "archive_sha256": "94abb384bfed16681599df45e969dd737ac8a494a1a8b1966ea832cd57102dc9",
+        "archive_name": "54a8b76ead72cf9a.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 262,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 262,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    },
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.SurjectiveAndLowWeightOfUnramifiedExponents": {
+      "candidate": {
+        "compiler_exit": 0,
+        "source_sha256": "e2248cc66da5ab980d8cc9cc1d2fb5591f6754bc1f585951c99f13921f63e70d",
+        "archive_sha256": "3f921604b7e3f8f817ce734412c93c84637a8f7ba168d9e351e6c252cd4785a3",
+        "archive_name": "a418b79d839ae384.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 46,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 46,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      }
+    }
+  },
+  "restored_inputs": 26758
+}

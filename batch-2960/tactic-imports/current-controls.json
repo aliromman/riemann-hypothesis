@@ -1,0 +1,415 @@
+{
+  "reproduced_revision": {
+    "head": "eadd28fe9075a0f5276123bd95c7f6d05307e740",
+    "parent": "251c7b05dd869ceba1aa42c6001c00b4010f23f9",
+    "src": "36c0e4d25619088d0dd1c8cc75b60e253a12be6b"
+  },
+  "verified_community_parent": "8e5cefeeaffe7e4c12153385b7bb33fb7223c41a",
+  "rows": {
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShuffleWeightSquareLengthLt": {
+      "candidate": {
+        "compiler_exit": 1,
+        "source_sha256": "a77cce4ab14d141a77db435ddea824830f69aed4e316c0d473b60aae440f135d",
+        "archive_sha256": "4eac3b4c48738260e506251bb198ae1beb7acdc8c539489115353e90eb5451c6",
+        "archive_name": "8188bd08500b971f.ltar",
+        "errors": [
+          "unknown tactic",
+          "unsolved goals\ncase succ\nl : \u2115\nih : \u2211 d \u2208 Finset.range (l + 1), wd d = 2 * l + 1\n\u22a2 2 * l + 1 + 2 = 2 * (l + 1) + 1",
+          "unknown tactic",
+          "failed to synthesize instance of type class\n  MulZeroClass ?m.173\n\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command."
+        ],
+        "exact": false
+      },
+      "parent": {
+        "compiler_exit": 0,
+        "source_sha256": "f10f353344030e89d3df093dc9caae02d26f6bb054be86fce00dca23a9d780a0",
+        "archive_sha256": "4eac3b4c48738260e506251bb198ae1beb7acdc8c539489115353e90eb5451c6",
+        "archive_name": "8188bd08500b971f.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 83,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 83,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      },
+      "retain-Mathlib.Tactic.ENatToNat": {
+        "compiler_exit": 1,
+        "source_sha256": "cc26c5c1cfb42b04f8b97478f338f7520f60bda4ab27743fb27d09e65c36a323",
+        "archive_sha256": "4eac3b4c48738260e506251bb198ae1beb7acdc8c539489115353e90eb5451c6",
+        "archive_name": "8188bd08500b971f.ltar",
+        "errors": [
+          "unknown tactic",
+          "unsolved goals\ncase succ\nl : \u2115\nih : \u2211 d \u2208 Finset.range (l + 1), wd d = 2 * l + 1\n\u22a2 2 * l + 1 + 2 = 2 * (l + 1) + 1",
+          "unknown tactic",
+          "unsolved goals\ncase succ\nl : \u2115\nih : \u2211 d \u2208 Finset.range l, (l - d) * wd d = l ^ 2\nh1 : \u2211 d \u2208 Finset.range (l + 1), (l + 1 - d) * wd d = \u2211 d \u2208 Finset.range (l + 1), ((l - d) * wd d + wd d)\n\u22a2 l ^ 2 + (2 * l + 1) = (l + 1) ^ 2"
+        ],
+        "exact": false
+      },
+      "retain-Mathlib.Tactic.ReduceModChar": {
+        "compiler_exit": 0,
+        "source_sha256": "a81b829c6b8364753a9e7f76ee5e67bdb6c7ebdd44bcc4ab535f09ef01aa8b57",
+        "archive_sha256": "4eac3b4c48738260e506251bb198ae1beb7acdc8c539489115353e90eb5451c6",
+        "archive_name": "8188bd08500b971f.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 83,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 83,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      },
+      "selection": {
+        "variant": "retain-Mathlib.Tactic.ReduceModChar",
+        "source_sha256": "a81b829c6b8364753a9e7f76ee5e67bdb6c7ebdd44bcc4ab535f09ef01aa8b57",
+        "preserved_imports": [
+          "import Mathlib.Tactic.ReduceModChar"
+        ],
+        "comparison": {
+          "candidateNames": 83,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 83,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matches_parent_warnings": true
+      }
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.SepChars": {
+      "candidate": {
+        "compiler_exit": 1,
+        "source_sha256": "daa97db123a6eccf0b200f3418dd9b4efe2c0a8a2c4e9fc2eca8a18fade83da2",
+        "archive_sha256": "fc46ef5d28694ac75560c1a22de6f2bef22e0ae1dc738f55f666aea42f2df5b2",
+        "archive_name": "796ed50f31f765c7.ltar",
+        "errors": [
+          "unknown namespace `Polynomial`",
+          "Unknown identifier `ResidueField`\n\nNote: It is not possible to treat `ResidueField` as an implicitly bound variable here because the `autoImplicit` option is set to `false`.",
+          "Unknown identifier `ResidueField`\n\nNote: It is not possible to treat `ResidueField` as an implicitly bound variable here because the `autoImplicit` option is set to `false`.",
+          "Unknown identifier `residue`\n\nNote: It is not possible to treat `residue` as an implicitly bound variable here because the `autoImplicit` option is set to `false`."
+        ],
+        "exact": false
+      },
+      "parent": {
+        "compiler_exit": 0,
+        "source_sha256": "92461a5a216e40d164859680ca0509b6b822d54c0412be24b785856286851ebf",
+        "archive_sha256": "fc46ef5d28694ac75560c1a22de6f2bef22e0ae1dc738f55f666aea42f2df5b2",
+        "archive_name": "796ed50f31f765c7.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 1,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 1,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      },
+      "retain-Mathlib.Tactic.ReduceModChar": {
+        "compiler_exit": 0,
+        "source_sha256": "92461a5a216e40d164859680ca0509b6b822d54c0412be24b785856286851ebf",
+        "archive_sha256": "fc46ef5d28694ac75560c1a22de6f2bef22e0ae1dc738f55f666aea42f2df5b2",
+        "archive_name": "796ed50f31f765c7.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 1,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 1,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      },
+      "selection": {
+        "variant": "retain-Mathlib.Tactic.ReduceModChar",
+        "source_sha256": "92461a5a216e40d164859680ca0509b6b822d54c0412be24b785856286851ebf",
+        "preserved_imports": [
+          "import Mathlib.Tactic.ReduceModChar"
+        ],
+        "comparison": {
+          "candidateNames": 1,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 1,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matches_parent_warnings": true
+      }
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.FiniteHomOfTopFG": {
+      "candidate": {
+        "compiler_exit": 1,
+        "source_sha256": "0c0b97cb4660280be4b69405e7e297b7189189a7e54848dcd13751e538a9b30d",
+        "archive_sha256": "714196e63591cd8dbd132aae1d91fe10d414a5deb3411a232ec06bb14829ce12",
+        "archive_name": "411023a020f6b397.ltar",
+        "errors": [
+          "unknown namespace `TensorProduct`"
+        ],
+        "exact": false
+      },
+      "parent": {
+        "compiler_exit": 0,
+        "source_sha256": "cb609d49a9adf9537156255fc818ee5f03556e5654328fbb6dff649465522dca",
+        "archive_sha256": "714196e63591cd8dbd132aae1d91fe10d414a5deb3411a232ec06bb14829ce12",
+        "archive_name": "411023a020f6b397.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 7,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 7,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      },
+      "retain-Mathlib.Tactic.Polynomial.Basic": {
+        "compiler_exit": 0,
+        "source_sha256": "cb609d49a9adf9537156255fc818ee5f03556e5654328fbb6dff649465522dca",
+        "archive_sha256": "714196e63591cd8dbd132aae1d91fe10d414a5deb3411a232ec06bb14829ce12",
+        "archive_name": "411023a020f6b397.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 7,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 7,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      },
+      "selection": {
+        "variant": "retain-Mathlib.Tactic.Polynomial.Basic",
+        "source_sha256": "cb609d49a9adf9537156255fc818ee5f03556e5654328fbb6dff649465522dca",
+        "preserved_imports": [
+          "import Mathlib.Tactic.Polynomial.Basic"
+        ],
+        "comparison": {
+          "candidateNames": 7,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 7,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matches_parent_warnings": true
+      }
+    },
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.HkDdSpec": {
+      "candidate": {
+        "compiler_exit": 1,
+        "source_sha256": "a45e333a7deb990569a71482f8e824a8998b5b57ce9b2601a7bca80113dd108e",
+        "archive_sha256": "3aed4e112d594768d915f94d4ff499a512bbd496a2cd73bc7d886b03f1de13df",
+        "archive_name": "2c0be672bc6c2799.ltar",
+        "errors": [
+          "unknown tactic",
+          "unsolved goals\nR : Type\ninst\u271d : CommRing R\nn : \u2115\ni j : Fin n\np q : MvPolynomial (Fin n) R\nhp : X j - X i \u2223 p - (rename (sb i j)) p\nhq : X j - X i \u2223 q - (rename (sb i j)) q\nthis : X j - X i \u2223 p - (rename (sb i j)) p + (q - (rename (sb i j)) q)\n\u22a2 p + q - ((renam",
+          "Alternative `mul_X` has not been provided"
+        ],
+        "exact": false
+      },
+      "parent": {
+        "compiler_exit": 0,
+        "source_sha256": "b3df8d4d6b852ef27d9c449c5693fc89cfba4cee7b54a7277bba31c76fe4a47b",
+        "archive_sha256": "3aed4e112d594768d915f94d4ff499a512bbd496a2cd73bc7d886b03f1de13df",
+        "archive_name": "2c0be672bc6c2799.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 12,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 12,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      },
+      "retain-Mathlib.Tactic.ReduceModChar": {
+        "compiler_exit": 0,
+        "source_sha256": "b3df8d4d6b852ef27d9c449c5693fc89cfba4cee7b54a7277bba31c76fe4a47b",
+        "archive_sha256": "3aed4e112d594768d915f94d4ff499a512bbd496a2cd73bc7d886b03f1de13df",
+        "archive_name": "2c0be672bc6c2799.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 12,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 12,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      },
+      "selection": {
+        "variant": "retain-Mathlib.Tactic.ReduceModChar",
+        "source_sha256": "b3df8d4d6b852ef27d9c449c5693fc89cfba4cee7b54a7277bba31c76fe4a47b",
+        "preserved_imports": [
+          "import Mathlib.Tactic.ReduceModChar"
+        ],
+        "comparison": {
+          "candidateNames": 12,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 12,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matches_parent_warnings": true
+      }
+    },
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemPowSmulTopIff": {
+      "candidate": {
+        "compiler_exit": 1,
+        "source_sha256": "90e40a28ae4dd13e39cb19f1046dfb80ad6ac3fcc36d8d8618ee8c05311e7475",
+        "archive_sha256": "1d9ce6b8bde47ac1bf6881e5373340e241bbab847be2e22777788659dcb979aa",
+        "archive_name": "f213f2db9b1f7085.ltar",
+        "errors": [
+          "unknown namespace `LaurentPolynomial`",
+          "unknown tactic",
+          "unsolved goals\nB \u03b9 : Type\ninst\u271d : CommRing B\nI : Ideal B\nc f : \u03b9 \u2192 B\na : \u03b9\ns : Finset \u03b9\nha : a \u2209 s\nih : (\u2200 j \u2208 s, IsIdempotentElem (f j)) \u2192 (\u2200 j \u2208 s, f j * c j \u2208 I) \u2192 \u2203 s_1 \u2208 I, \u220f j \u2208 s, (1 - f j) \u2223 \u220f j \u2208 s, (c j - s_1)\nhf : \u2200 j \u2208 insert a s, IsIdempotentElem ",
+          "unsolved goals\ncase insert\nB \u03b9 : Type\ninst\u271d : CommRing B\nI : Ideal B\nc f : \u03b9 \u2192 B\na : \u03b9\ns : Finset \u03b9\nha : a \u2209 s\nih : (\u2200 j \u2208 s, IsIdempotentElem (f j)) \u2192 (\u2200 j \u2208 s, f j * c j \u2208 I) \u2192 \u2203 s_1 \u2208 I, \u220f j \u2208 s, (1 - f j) \u2223 \u220f j \u2208 s, (c j - s_1)\nhf : \u2200 j \u2208 insert a s, IsIde"
+        ],
+        "exact": false
+      },
+      "parent": {
+        "compiler_exit": 0,
+        "source_sha256": "df9cdb145049a228847c4a8e7f666f8d1832692d5819faf839fee3f76d047266",
+        "archive_sha256": "1d9ce6b8bde47ac1bf6881e5373340e241bbab847be2e22777788659dcb979aa",
+        "archive_name": "f213f2db9b1f7085.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 13,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 13,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      },
+      "retain-Mathlib.RingTheory.WittVector.IsPoly": {
+        "compiler_exit": 0,
+        "source_sha256": "1daa6c317f612010a05aa2f1013cd3a81505ace915dc1be28b6e683b514a5f40",
+        "archive_sha256": "1d9ce6b8bde47ac1bf6881e5373340e241bbab847be2e22777788659dcb979aa",
+        "archive_name": "f213f2db9b1f7085.ltar",
+        "compare_exit": 0,
+        "comparison": {
+          "candidateNames": 13,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 13,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matching_warnings": true,
+        "warning_delta": {
+          "new": {},
+          "gone": {}
+        },
+        "exact": true
+      },
+      "selection": {
+        "variant": "retain-Mathlib.RingTheory.WittVector.IsPoly",
+        "source_sha256": "1daa6c317f612010a05aa2f1013cd3a81505ace915dc1be28b6e683b514a5f40",
+        "preserved_imports": [
+          "import Mathlib.RingTheory.WittVector.IsPoly"
+        ],
+        "comparison": {
+          "candidateNames": 13,
+          "different": 0,
+          "examples": [],
+          "kernelImage": true,
+          "parentNames": 13,
+          "proofChanges": 0,
+          "publicImage": true,
+          "publicImports": true
+        },
+        "matches_parent_warnings": true
+      }
+    }
+  },
+  "restored_inputs": 9
+}

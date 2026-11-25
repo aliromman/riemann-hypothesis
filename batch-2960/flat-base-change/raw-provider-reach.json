@@ -1,0 +1,275 @@
+{
+  "base": "ef451fc356cbc66861df031531aaafd2843797ac",
+  "head": "f0b78089154c6dbac00fdf077cff6068edc9c51f",
+  "stage": "raw",
+  "provider": "Mathlib.RingTheory.Flat.TorsionFree",
+  "all_explicit_uses": 53,
+  "rows": [
+    {
+      "path": "src/Development/AbelianVarietyTheory/Definitions/AbelianSchemeLaws/ExistsUniqueEqConstMulOriginSec.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Definitions/Divisors/ExistsTjCorrDiagModel.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Definitions/ShimuraVarieties/FlatImageOfOverFractionFieldOfValuationRing.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Definitions/ThetaMetrics/IsRegularFnIffOfIsAffineOpen.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DegenerationProofs/ExistsUniqueCombOfIndependentSpecialFibre.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/BaseChangeIntegralClosureEtaleHeightOneStatement.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsDvrOfDimOne.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsLiftAdicCompletion.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsOriginNormalisationUnitAtTraitsStatement.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsTripleChartUnitaryBoundaryPointRigidStatement.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/FreeOfEtalePunctured.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/GaussAtHeightOneVerticalPointStatement.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/HomotopyInvarianceEtale.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/IntegralClosureFiniteEtaleOriginKeyLemmaEssFinitStatement.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/IntegralClosureTorsorEtaleHeightOneAbhyankarStatement.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/LocIndEtaleIsDomainIsIntegrallyClosed.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/SemiAbelianDvrClosedFibreStalkUniformiser.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/SmoothAffineCurveTateTwistCohomologySubsingletonStatement.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/ExistsIsDiscreteValuationRingOfMaximalIdealEqSpa.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/IdealEqBotOfFlatQuotientOfMapMaximalIdeal.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/SpanFinrankMaximalIdealLeNcardOfLeSupSq.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/HomogeneousIdeals/IsStandardSmoothOfRelativeDimensionAwayJacobian.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/IntegralOfIntegralAtAlgebraicPointsSmooth.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/PrismaticFCrystalFrobeniusPullbackBasis.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/WachLatticeFreeOfCrystalline.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/IwasawaDecomposition/ExistsHolomorphicArcSmoothAlgebraNonvanishing.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/ExistsSmulSecNonzeroOnSpecialFibre.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/LineBundleIsoOfAmpleDeterminantFrames.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/ValuationRingExistsAssociatedOfSumEqZero.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/VeryDenseClosedPointObjectsOfMinimalPrimes.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/UniformizationProofs/LocalizationOfIsStandardSmooth.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/CommutativeAlgebra/EtaleCohomology/MapUSharp.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/KunnethLefschetz/EtaleCharts/FlatSectionExtension/GvChart.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/KunnethLefschetz/EtaleCharts/PolynomialChartSpans/BlowOfBl.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/MemSpanIffOfBijective.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/BtOrderEmbeddingOpenImmersion.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/ExistsGoodRootTower.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/ModelFibresPowerFreeStatement.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/SemiabelianLieLatticeAgree.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/EtaleCohomology/EtaleSheaves/DomOpenPf.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/ResolutionOfSingularities/EmbeddedResolution/EtaleCoordinates/CoordinateDivisorRadical.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/ResolutionOfSingularities/EmbeddedResolution/EtaleCoordinates/CoordinateDivisorSmoothness.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/ResolutionOfSingularities/EmbeddedResolution/EtaleCoordinates/StrictNormalCrossingsHypersurfaceRestriction.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/ResolutionOfSingularities/EmbeddedResolution/StrictTransformCharts/BlowupFlatBaseChange.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": false
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/HodgeTatePoints/HtatHens.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/HodgeTatePoints/HtatHopfFlat.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/PadicHodgeComparison/HodgeSurjectivity/EtaleChartBaseChange/ChartLaws.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/PublishedTheorems/NadelVanishingPairs/NadelVanishingLemmas/FrobeniusDecompositionAtlasModP.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/Formalism/HyperbolicPlaceProducts/SubgroupIndexCounts/CountO.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/GroundTheory/HeightsAndTheta/Heights/ComplexAnalyticSets/PCMRegularElement.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/ReciprocityTheory/ReductiveGroups/ArithmeticGeometry/BirationalGeometry/ToroidalCompactification/DivCalc.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/ReciprocityTheory/ReductiveGroups/ArithmeticGeometry/BirationalGeometry/ToroidalCompactification/GlobalFunctionsDvrGeneric.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    },
+    {
+      "path": "src/ReciprocityTheory/ReductiveGroups/ArithmeticGeometry/HeightTheory/RegAVpt.lean",
+      "upstream_reachable": true,
+      "candidate_reachable": true
+    }
+  ],
+  "unchecked_hidden_uses": "The screen covers the named lemma. Full stock builds check other elaboration dependencies."
+}

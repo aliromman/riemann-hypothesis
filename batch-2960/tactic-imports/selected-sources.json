@@ -1,0 +1,61 @@
+{
+  "head": "66cee35856ff43a444fcbaf9d3a57329a8ac623b",
+  "raw": "4279f9f890d81e0e986ae9695f4a442f2523ab72",
+  "base": "8e5cefeeaffe7e4c12153385b7bb33fb7223c41a",
+  "sources": [
+    {
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.FiniteHomOfTopFG",
+      "path": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/AlgebraTools/FiniteHomOfTopFG.lean",
+      "retained_import": "import Mathlib.Tactic.Polynomial.Basic",
+      "blob": "4145cac9da2ece4d754d5fac0abdb25ea9217ac4",
+      "source_sha256": "cb609d49a9adf9537156255fc818ee5f03556e5654328fbb6dff649465522dca",
+      "matches_entire_upstream_file": true,
+      "parent_declarations": 7
+    },
+    {
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.HkDdSpec",
+      "path": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/AlgebraTools/HkDdSpec.lean",
+      "retained_import": "import Mathlib.Tactic.ReduceModChar",
+      "blob": "d7d950dda9c803929784910e456188abda9458f2",
+      "source_sha256": "b3df8d4d6b852ef27d9c449c5693fc89cfba4cee7b54a7277bba31c76fe4a47b",
+      "matches_entire_upstream_file": true,
+      "parent_declarations": 12
+    },
+    {
+      "module": "Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTools.SepChars",
+      "path": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/AlgebraTools/SepChars.lean",
+      "retained_import": "import Mathlib.Tactic.ReduceModChar",
+      "blob": "df7e0b0b3d9b0235fbc9884c890ccb497921b5a6",
+      "source_sha256": "92461a5a216e40d164859680ca0509b6b822d54c0412be24b785856286851ebf",
+      "matches_entire_upstream_file": true,
+      "parent_declarations": 1
+    },
+    {
+      "module": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemPowSmulTopIff",
+      "path": "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/MemPowSmulTopIff.lean",
+      "retained_import": "import Mathlib.RingTheory.WittVector.IsPoly",
+      "blob": "5e30ef97614b10136576a2e0b4b527ceef729dfa",
+      "source_sha256": "1daa6c317f612010a05aa2f1013cd3a81505ace915dc1be28b6e683b514a5f40",
+      "matches_entire_upstream_file": false,
+      "parent_declarations": 13
+    },
+    {
+      "module": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShuffleWeightSquareLengthLt",
+      "path": "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/ShuffleWeightSquareLengthLt.lean",
+      "retained_import": "import Mathlib.Tactic.ReduceModChar",
+      "blob": "791eaa1a5f60a3bb300fd4df21f862b9621ff2c5",
+      "source_sha256": "a81b829c6b8364753a9e7f76ee5e67bdb6c7ebdd44bcc4ab535f09ef01aa8b57",
+      "matches_entire_upstream_file": false,
+      "parent_declarations": 83
+    }
+  ],
+  "parent_declarations": 116,
+  "scope": {
+    "source_revision": "eadd28fe9075a0f5276123bd95c7f6d05307e740",
+    "source_intersections": 95,
+    "compiled_and_compared": 95,
+    "matched_prior_community_parent": 90,
+    "reproduced_failures": 5,
+    "all_five_checked_against_current_parent": true
+  }
+}
