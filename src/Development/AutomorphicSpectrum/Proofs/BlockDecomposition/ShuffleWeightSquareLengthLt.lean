@@ -4,6 +4,7 @@ public import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.
 public import Mathlib.Algebra.BigOperators.Group.Finset.Defs
 public import Mathlib.Data.Finset.Sigma
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Std.Tactic.BVDecide.Normalize.BitVec
 import Std.Tactic.BVDecide.Normalize.Prop

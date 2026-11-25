@@ -4,6 +4,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.AlgebraTool
 public import Mathlib.Topology.LocallyConstant.Basic
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
 public import Mathlib.Topology.Algebra.Group.ClosedSubgroup
 
 @[expose] public section

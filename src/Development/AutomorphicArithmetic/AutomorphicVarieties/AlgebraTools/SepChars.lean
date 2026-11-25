@@ -2,6 +2,7 @@ module
 
 public import Mathlib.Algebra.MonoidAlgebra.Basic
 public import Mathlib.RingTheory.LocalRing.ResidueField.Defs
+import Mathlib.Tactic.ReduceModChar
 public import Mathlib.LinearAlgebra.Basis.VectorSpace
 public import Mathlib.RingTheory.LocalRing.ResidueField.Basic
 
