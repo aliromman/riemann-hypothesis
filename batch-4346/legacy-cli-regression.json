@@ -1,0 +1,50 @@
+{
+  "base": "ce1560fba43e59629abdf3c27a279218fad9f77a",
+  "head": "2bde80b40b7e487f5dbb37762298bd2444cb88d1",
+  "before": "6aac7027cc4a8578c3b36d347238532f02358653",
+  "fixture": "src/Development/AbelianVarietyTheory/Proofs/GenericRegularity/ExistsFlagCellChartOverModelChart.lean",
+  "source_blob": "cfba16c0df5fc7ede379d540194a3fd97aa30f2d",
+  "diagnostic_lines": {
+    "Development.AbelianVarietyTheory.Proofs.GenericRegularity.RankOfQuasiIdem": 176,
+    "Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsFractionField": 341,
+    "Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsFlagCellChartOverModelChart": 747
+  },
+  "baseline": {
+    "members": {
+      "src/Development/AbelianVarietyTheory/Proofs/GenericRegularity/ExistsFlagCellChartOverModelChart.lean": "e1705c7e99849ee14718ebe203e4c8296709b1f04c502e4a2f04cbcb6e1dfaa2",
+      "src/Development/AbelianVarietyTheory/Proofs/GenericRegularity/ExistsFractionField.lean": "15e783776566e4abbd3c156e24d1352fb83c6691a088ed4f78d56eb6501d8cd3",
+      "src/Development/AbelianVarietyTheory/Proofs/GenericRegularity/RankOfQuasiIdem.lean": "760fba392f5d84f288ab3b403dfbf5dce1103677dedf3d1615affe08f90cd3d6"
+    },
+    "diagnostics": [
+      "Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsFlagCellChartOverModelChart",
+      "Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsFractionField",
+      "Development.AbelianVarietyTheory.Proofs.GenericRegularity.RankOfQuasiIdem"
+    ]
+  },
+  "before_fix": {
+    "members": {
+      "src/Development/AbelianVarietyTheory/Proofs/GenericRegularity/ExistsFlagCellChartOverModelChart.lean": "e1705c7e99849ee14718ebe203e4c8296709b1f04c502e4a2f04cbcb6e1dfaa2",
+      "src/Development/AbelianVarietyTheory/Proofs/GenericRegularity/ExistsFractionField.lean": "15e783776566e4abbd3c156e24d1352fb83c6691a088ed4f78d56eb6501d8cd3"
+    },
+    "diagnostics": [
+      "Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsFlagCellChartOverModelChart",
+      "Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsFractionField"
+    ]
+  },
+  "after_fix": {
+    "members": {
+      "src/Development/AbelianVarietyTheory/Proofs/GenericRegularity/ExistsFlagCellChartOverModelChart.lean": "e1705c7e99849ee14718ebe203e4c8296709b1f04c502e4a2f04cbcb6e1dfaa2",
+      "src/Development/AbelianVarietyTheory/Proofs/GenericRegularity/ExistsFractionField.lean": "15e783776566e4abbd3c156e24d1352fb83c6691a088ed4f78d56eb6501d8cd3",
+      "src/Development/AbelianVarietyTheory/Proofs/GenericRegularity/RankOfQuasiIdem.lean": "760fba392f5d84f288ab3b403dfbf5dce1103677dedf3d1615affe08f90cd3d6"
+    },
+    "diagnostics": [
+      "Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsFlagCellChartOverModelChart",
+      "Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsFractionField",
+      "Development.AbelianVarietyTheory.Proofs.GenericRegularity.RankOfQuasiIdem"
+    ]
+  },
+  "commands": [
+    "python3 scripts/clump.py blame ROOT LOG",
+    "python3 scripts/clump.py unclump ROOT"
+  ]
+}
