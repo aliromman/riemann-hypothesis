@@ -17,12 +17,20 @@ The project source graph contains 59,763 compiled module targets and 367,146 pro
 
 ## Ordinary compiler results
 
-Stock Lake completed 2 groups with 333 distinct project modules on this revision. An independent read of each candidate and community compiler output compared 10,627 declaration occurrences, including private proof values, and 1,068 normalized warnings. Each group also passed a second Lake invocation with compilation disabled. The workload includes 31 edited modules. Some outputs came from valid compiler caches. [Per-module results](ordinary-progress/rows.jsonl.gz) · [Lake invocations](ordinary-progress/lake-invocations.json)
+Stock Lake completed 6 groups with 717 distinct project modules on this revision. An independent read of each candidate and community compiler output compared 22,031 declaration occurrences, including private proof values, and 2,069 normalized warnings. Each group also passed a second Lake invocation with compilation disabled. The workload includes 40 edited modules. Some outputs came from valid compiler caches. [Per-module results](ordinary-progress/rows.jsonl.gz) · [Lake invocations](ordinary-progress/lake-invocations.json)
 
-Generated C in this workload went from 7,108,993 to 7,108,993 bytes. Direct Mathlib initializer calls went from 10,376 to 10,376. The signed change in private compiler file size was +0 bytes. These figures cover the listed modules. Whole-project time remains unmeasured. [Measurements for all five compiler facets](ordinary-progress/summary.json)
+Generated C in this workload went from 18,906,873 to 18,906,873 bytes. Direct Mathlib initializer calls went from 38,822 to 38,822. The signed change in private compiler file size was +0 bytes. These figures cover the listed modules. Whole-project time remains unmeasured. [Measurements for all five compiler facets](ordinary-progress/summary.json)
 
 The edited modules own 526,512 declaration occurrences in the community build. The index gives their Lean names and kinds by module. [Declaration ownership](declaration-owners/manifest.json)
 
 ## Direct source compilation
 
 Lean compiled the revised `LeNuIffPowMemPrinc` source against authenticated compiler inputs for this revision. All 28 declarations, their proof terms and the compiler warnings matched the community version. [Source comparison](current-initial-native.json)
+
+## Five final claims
+
+The updated ClaimStrip and MainConclusion providers and Main were compiled from the published revision. Their fifteen compiler files match the community originals. Lean accepted the five final proof terms and rejected a replacement proof of `True`. All five axiom sets contain only `propext`, `Quot.sound` and `Classical.choice`. The two independent frozen statement exports also reproduce the community CI hashes. [Proof terms and negative control](projected-input-five-theorems/roots/replay.log) · [Axioms](projected-input-five-theorems/roots/axioms.log) · [Frozen statement exports](frozen-statements.json)
+
+This endpoint check used expected compiled public inputs for 58,897 project modules. Actual ordinary Lake output matched the expected public and IR files for the 621 modules available when the archive was sealed. A complete build must still establish the remaining inputs at this revision. The standard Linux Comparator with its independent checker remains outstanding. [Input coverage](projected-input-five-theorems/latest-native-evidence.json) · [Reproduce the endpoint comparison](projected-input-five-theorems/REVIEW-projected-Main.md) · [Root compiler files and logs](projected-input-five-theorems/projected-inputs-darwin-five-roots-88ac64dbb08e96f5bae2181b1c65cd84474fe5b5.zip)
+
+The archive records source-compilation evidence for 1,008 of 11,521 edited modules. The transfer audit checks both the Git source and the effective compiled inputs for each earlier result. A second kernel invocation opened Main from the sealed archive, authenticated the 58,897 loaded project images and reproduced the accepted and rejected proofs. [Source transfer audit](module-comparison/verified.json) · [Per-source results](module-comparison/reused-native-source-rows.jsonl.gz) · [Independent archive replay](projected-input-five-theorems/independent-archive-replay.json)

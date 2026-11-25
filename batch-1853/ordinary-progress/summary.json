@@ -2,41 +2,41 @@
   "base": "fcb6eac7534875d32d68030967e2deae6d686151",
   "head": "88ac64dbb08e96f5bae2181b1c65cd84474fe5b5",
   "tree": "a18243b2862162bb078ca1048f99315fd91e86ec",
-  "groups": 2,
-  "modules": 333,
-  "edited": 31,
-  "declaration_occurrences": 10627,
-  "normalized_warnings": 1068,
-  "with_identical_generated_C": 333,
+  "groups": 6,
+  "modules": 717,
+  "edited": 40,
+  "declaration_occurrences": 22031,
+  "normalized_warnings": 2069,
+  "with_identical_generated_C": 717,
   "generated_C_bytes": {
-    "parent": 7108993,
-    "candidate": 7108993
+    "parent": 18906873,
+    "candidate": 18906873
   },
   "direct_mathlib_initializer_calls": {
-    "parent": 10376,
-    "candidate": 10376
+    "parent": 38822,
+    "candidate": 38822
   },
   "all_selected_module_facets_in_bytes": {
     "parent": {
-      ".olean": 52819088,
-      ".olean.server": 1757864,
-      ".olean.private": 158822712,
-      ".ir.sig": 82584,
-      ".ir": 4002008
+      ".olean": 110590896,
+      ".olean.server": 3750272,
+      ".olean.private": 340011840,
+      ".ir.sig": 177816,
+      ".ir": 9655120
     },
     "candidate": {
-      ".olean": 52819088,
-      ".olean.server": 1758240,
-      ".olean.private": 158822712,
-      ".ir.sig": 82584,
-      ".ir": 4002008
+      ".olean": 110590896,
+      ".olean.server": 3750744,
+      ".olean.private": 340011840,
+      ".ir.sig": 177816,
+      ".ir": 9655120
     }
   },
-  "all_current_source_compiler_setups_in_completed_groups": 3,
-  "completed_stock_build_seconds_in_warm_own_workspace": 95.2435846249864,
+  "all_current_source_compiler_setups_in_completed_groups": 8,
+  "completed_stock_build_seconds_in_warm_own_workspace": 220.95290204198682,
   "paired_full_build_time": false,
   "expanded_all_projected_dependencies": false,
-  "rows_sha256": "eb989a128c5c74eeeac35e6fb2b97107a351de8510c2d2f008812fdc15ba5dd4",
+  "rows_sha256": "ce25b501a6e7566586071977c1fe59fa7751bf00ee9caf61598acc3ff72f43a3",
   "official_parent_source_tree": "e20380313d2e00c1aa48bec660810db7af7dd37e",
   "official_parent_manifest": "bf9d8189a208f3b7b104e1cd9eaa95c7972800283f37a942b9ae0bb7bb60cfd5"
 }
