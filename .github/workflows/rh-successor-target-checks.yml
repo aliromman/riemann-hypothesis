@@ -1,0 +1,49 @@
+name: Check RH successor proofs
+on:
+  push:
+    branches: [codex/rh-successor-target-checks]
+    paths: ['verification/successor-checks/**', '.github/workflows/rh-successor-target-checks.yml']
+permissions:
+  contents: read
+jobs:
+  proofs:
+    if: github.repository == 'aliromman/riemann-hypothesis' && github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        scope: [matrix, admloc, cleanup]
+    env:
+      LEAN_NUM_THREADS: '3'
+      LEAN_ABORT_ON_PANIC: '1'
+      RUST_MIN_STACK: '33554432'
+      MATHLIB_NO_CACHE_ON_UPDATE: '1'
+      MATHLIB_CACHE_GET_URL: https://cache.mathlib.org/mathlib4
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          path: harness
+          persist-credentials: false
+          sparse-checkout: verification/successor-checks
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: leanprover-community/riemann-hypothesis
+          ref: c40250a50104b7e02e7d74f658d00fa7b1f4827c
+          path: project
+          persist-credentials: false
+      - name: Install the requested Lean toolchain
+        working-directory: project
+        run: |
+          curl -fsSL --retry 3 https://raw.githubusercontent.com/leanprover/elan/3cc76985a1becb3c03cd65c1c5007e6f186ae474/elan-init.sh -o "$RUNNER_TEMP/elan-init.sh"
+          sh "$RUNNER_TEMP/elan-init.sh" -y --default-toolchain none
+          "$HOME/.elan/bin/elan" toolchain install "$(cat lean-toolchain)"
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Verify the parent and candidate
+        working-directory: project
+        env:
+          SCOPE: ${{ matrix.scope }}
+        run: |
+          export MATHLIB_CACHE_DIR="$RUNNER_TEMP/mathlib-cache"
+          python3 ../harness/verification/successor-checks/verify_targets.py ../harness/verification/successor-checks/plan.json "$SCOPE"
