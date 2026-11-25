@@ -1,0 +1,11 @@
+{
+  "source_parent": "ce1560fba43e59629abdf3c27a279218fad9f77a",
+  "heads": {
+    "879": "a2cad6d6f3d7499fa4fef7e3bcc4155b99d31a70",
+    "977": "2bde80b40b7e487f5dbb37762298bd2444cb88d1"
+  },
+  "sha256": "bb37c4bb518fe68a13f12aa3929dd62dfecb663f0c063ad8c338e39601f28a60",
+  "bytes": 363237517,
+  "verified_against": ".github/workflows/checks.yml",
+  "scope": "frozen challenge export for the five statements"
+}

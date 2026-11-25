@@ -1,0 +1,25 @@
+{
+  "pr": "977",
+  "previous_base": "98d36aafeeb30c1f40fdda96c3574faa34dfa413",
+  "previous_proposal": "2ca4b2ac12b18e36fb83d6c9bc5b1f63d3553dae",
+  "community": "ce1560fba43e59629abdf3c27a279218fad9f77a",
+  "head": "2bde80b40b7e487f5dbb37762298bd2444cb88d1",
+  "tree": "b26482031eb86e52bbe260a5e8888ce4cec8eb89",
+  "edited_paths": 11300,
+  "actions": {
+    "apply original edit": 10070,
+    "recovered current members": 1230,
+    "removed upstream": 14,
+    "community archive retained": 7
+  },
+  "reconciliation_commit": "6aac7027cc4a8578c3b36d347238532f02358653",
+  "reader_fix": {
+    "commit": "2bde80b40b7e487f5dbb37762298bd2444cb88d1",
+    "path": "src/Development/AbelianVarietyTheory/Proofs/GenericRegularity/ExistsFlagCellChartOverModelChart.lean",
+    "legacy_members": [
+      "Development.AbelianVarietyTheory.Proofs.GenericRegularity.RankOfQuasiIdem",
+      "Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsFractionField",
+      "Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsFlagCellChartOverModelChart"
+    ]
+  }
+}
