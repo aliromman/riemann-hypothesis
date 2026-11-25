@@ -1,0 +1,31 @@
+{
+  "head": "cbdcd7bd7478355ac7d52e391b7224cc3cefb142",
+  "parent": "98d36aafeeb30c1f40fdda96c3574faa34dfa413",
+  "mode": "current",
+  "modules": 652,
+  "edited_modules": 113,
+  "total_edited": 10487,
+  "declaration_occurrences": 31867,
+  "warnings": 2939,
+  "checker_source_sha256": "9987e5d85022c8f285864fe4e9344373a4051cec0ab8e5623bdc83930dfcb429",
+  "warning_comparison": "Full messages with source line and column removed, including multiplicity",
+  "negative_control": {
+    "returncode": 2,
+    "candidateNames": 5,
+    "different": 5,
+    "examples": [
+      "LFunction_ne_zero_of_half_lt_re",
+      "riemannZeta_eq_zero_re",
+      "LFunction_eq_zero_re",
+      "riemannHypothesis"
+    ],
+    "kernelImage": false,
+    "parentNames": 5,
+    "proofChanges": 0,
+    "publicImage": false,
+    "publicImports": false
+  },
+  "rows_sha256": "b33317eda19ec6368ac82c2df6389df5f6456e00909c6f875838e436521b49b3",
+  "stock_log": "full-1795631736158428000.log",
+  "reused_comparisons": 392
+}

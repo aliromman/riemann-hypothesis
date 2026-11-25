@@ -1,0 +1,17 @@
+{
+  "pr": "879",
+  "previous_base": "91b273530883b723ef4422436e0dc3557749325a",
+  "previous_proposal": "82b1032cfad04398c6ad77d2455e08dbe871e36c",
+  "community": "98d36aafeeb30c1f40fdda96c3574faa34dfa413",
+  "head": "cbdcd7bd7478355ac7d52e391b7224cc3cefb142",
+  "tree": "b9d30bf0198d506b8d4c0524acc5f4141f0f5ab2",
+  "edited_paths": 10487,
+  "actions": {
+    "community proof or body edit": 1123,
+    "apply original edit": 10080,
+    "community removed a different provider": 3565,
+    "reconciled header": 407,
+    "removed upstream": 57,
+    "community changed import providers or order": 13
+  }
+}
