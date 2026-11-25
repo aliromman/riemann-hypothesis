@@ -79,10 +79,6 @@ import Mathlib.Tactic.Polynomial.Basic
 
 namespace UpperTheory.Reformulated.B.Qh15
 
-theorem aux1 : ∀ {A : Type} [inst : CommRing A], SMulCommClass A A A := by
-  intro A _
-  infer_instance
-
 theorem aux2 : ∀ {G A : Type} [inst : Group G] [inst_1 : CommRing A] (κ : G →* Aˣ),
   (↑(κ 1) : A) • (LinearMap.id : A →ₗ[A] A) = 1 := by
   intro G A _ _ κ

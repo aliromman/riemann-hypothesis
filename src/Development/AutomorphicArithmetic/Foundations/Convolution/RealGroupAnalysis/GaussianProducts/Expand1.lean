@@ -315,14 +315,6 @@ private theorem mkE_eq (u t : A F) : D.mkE u t = u • BB 0 + t • BB 1 := by
   rw [basis0, basis1, Algebra.smul_def, Algebra.smul_def, AdeleBaseChange.algebraMap_adeleRing, mul_one]
   rfl
 
-private theorem co_mkE (u t : A F) : D.co (D.mkE u t) = ![u, t] := by
-  have h : D.mkE u t = ∑ j, (![u, t] : Fin 2 → A F) j • BB j := by
-    simp [Fin.sum_univ_two, mkE_eq]
-  funext i
-  rw [h]
-  change (BB).repr _ i = _
-  rw [Module.Basis.repr_sum_self]
-
 private theorem coordinate_embedNorm_zero (u t : A F) : D.co (D.mkE u t) 0 = u := by simp
 private theorem coordinate_embedNorm_one (u t : A F) : D.co (D.mkE u t) 1 = t := by simp
 
@@ -406,7 +398,6 @@ theorem UpperTheory.ConvolutionTheory.R2.G.nuPos :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.GaussianProducts.LamRight
-
 
 open scoped Pointwise in
 private theorem lint_add {F : Type} [Field F] [NumberField F] {h : A F → ℝ≥0∞}

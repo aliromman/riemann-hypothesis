@@ -322,7 +322,6 @@ theorem GlobalTheory.ArchLineAct.intertwine_pair : ∀ (F E : Type) [Field F] [N
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ContinuousArchimedeanWeilOperatorLinePairW
-open GlobalTheory.WeilM
 
 namespace GlobalTheory.ArchLineContPair
 

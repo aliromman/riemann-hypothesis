@@ -94,7 +94,6 @@ namespace GlobalTheory.TranslatedEvalInj
 
 section Count
 
-open Formalism.MainNotions.S
 
 theorem gfset_countable (I : AutInst) : I.GFset.Countable := by
   classical

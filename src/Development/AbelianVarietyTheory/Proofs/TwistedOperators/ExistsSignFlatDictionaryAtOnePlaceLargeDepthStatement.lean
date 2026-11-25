@@ -117,7 +117,6 @@ open GlobalTheory.FlatPlace GlobalTheory.LocMod GlobalTheory.SplitWeil
 
 namespace GlobalTheory.FlatPlace
 
-open GlobalTheory.LocMod (Place Frame)
 
 section Entries
 
@@ -355,7 +354,6 @@ open GlobalTheory.FlatPlace GlobalTheory.LocMod GlobalTheory.SplitWeil
 
 namespace GlobalTheory.FlatPlaceLoc
 
-open GlobalTheory.FlatPlace GlobalTheory.LocMod
 
 variable {D : D7}
 
@@ -410,7 +408,6 @@ end GlobalTheory.FlatPlaceLoc
 
 namespace GlobalTheory.FlatPlaceLoc
 
-open GlobalTheory.FlatPlace GlobalTheory.LocMod
 
 variable {D : D7}
 
@@ -714,10 +711,7 @@ open GlobalTheory.FlatPlace GlobalTheory.LocMod GlobalTheory.SplitWeil
 
 namespace GlobalTheory.FlatScal
 
-open GlobalTheory.LocMod (Place Frame IsOne)
-open GlobalTheory.SplitWeil (SB)
 open GlobalTheory.SplitFlip (Grid Edge oppositePath gdet)
-open GlobalTheory.FlatPlace
 
 section Local
 
