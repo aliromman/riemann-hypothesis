@@ -1,0 +1,146 @@
+{
+  "changes": {
+    "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/LocalInvariantIntegralsSymmetricHaarSubgroupsStatement.lean": {
+      "import_edits": 0,
+      "other_edits": [
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar"
+      ]
+    },
+    "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/RootExchangeUnipotentHaarIntegralPointsEqOneStatement.lean": {
+      "import_edits": 0,
+      "other_edits": [
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar"
+      ]
+    },
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsDoubledSchrodingerModelTransposedSiegelRulStatement.lean": {
+      "import_edits": 0,
+      "other_edits": [
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-",
+        "-",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-",
+        "-",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-"
+      ]
+    },
+    "src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/ThetaFunctionsSpannedHeckeTwistedStandardFrameStatement.lean": {
+      "import_edits": 0,
+      "other_edits": [
+        "-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField",
+        "-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField",
+        "-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar",
+        "-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField",
+        "-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField",
+        "-        by_contra hc",
+        "-        push_neg at hc",
+        "+        by_contra! hc",
+        "-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField",
+        "-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField",
+        "-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField",
+        "-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField"
+      ]
+    },
+    "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/SplitThetaGridIsAdmissibleFlipTensor.lean": {
+      "import_edits": 0,
+      "other_edits": [
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw",
+        "-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw"
+      ]
+    },
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/BuildingsResidueChars/LocalZetaFunctionalUniqueness.lean": {
+      "import_edits": 43,
+      "other_edits": [
+        "-    by_contra hc",
+        "-    push_neg at hc",
+        "+    by_contra! hc"
+      ]
+    },
+    "src/Development/WeilBound/CoreStatements/TemperedRepresentationTheory/BernsteinNarrowness/BernsteinClosure/RamifiedMultiplicityOne.lean": {
+      "import_edits": 0,
+      "other_edits": [
+        "-    by_contra hne",
+        "-    push_neg at hne",
+        "+    by_contra! hne",
+        "-  by_contra h",
+        "-  push_neg at h",
+        "+  by_contra! h"
+      ]
+    }
+  },
+  "same_named_lines": {
+    "src/Development/AbelianVarietyTheory/Definitions/Foundations/MatrixMeasurableSpace.lean": true,
+    "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/LocalInvariantIntegralsSymmetricHaarSubgroupsStatement.lean": true,
+    "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/ProdRFJCoe.lean": true,
+    "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/RootExchangeUnipotentHaarIntegralPointsEqOneStatement.lean": true,
+    "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/SymmetricDoubleIntegralsPositionOneEqCellSum.lean": true,
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsDoubledSchrodingerModelTransposedSiegelRulStatement.lean": true,
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/SumOKEx.lean": true,
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ValuationDetBlocks.lean": true,
+    "src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/ThetaFunctionsSpannedHeckeTwistedStandardFrameStatement.lean": true,
+    "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/SplitThetaGridIsAdmissibleFlipTensor.lean": true,
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/BuildingsResidueChars/LocalZetaFunctionalUniqueness.lean": true,
+    "src/Development/AutomorphicArithmetic/LocalEmbeddings/ReBaseMain.lean": true,
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/FiniteDataBound.lean": true,
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/LocalCharacterPowerConductorBound.lean": true,
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/RegConstEqAwayUnitMulFactor.lean": true,
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AtChoice.lean": true,
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/VolLevelWtConstStatement.lean": true,
+    "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/FinSplitOfNarrow.lean": true,
+    "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/SiegelWeilStandard/SiegelWeilStd.lean": true,
+    "src/Development/WeilBound/CoreStatements/CompactAveragingSplitting/EigenvectorLifting/ExistsUpperProjectionInverseTranspose.lean": true,
+    "src/Development/WeilBound/CoreStatements/TemperedRepresentationTheory/BernsteinNarrowness/BernsteinClosure/RamifiedMultiplicityOne.lean": true,
+    "src/Development/WeilBound/ThetaLifts/LocalTheory/StandardValuations/ExistsVol.lean": true,
+    "src/Formalism/DoubleCosetMeasures/StatementZ.lean": true,
+    "src/GroundTheory/AutomorphicForms/GL2/GJFEInducedLevi.lean": true,
+    "src/GroundTheory/AutomorphicForms/GL2/GJFELevi.lean": true,
+    "src/GroundTheory/AutomorphicForms/GL2/GJMatrixCoord.lean": true
+  }
+}

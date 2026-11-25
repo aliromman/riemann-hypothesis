@@ -1,0 +1,428 @@
+{
+  "revision": "8e5cefeeaffe7e4c12153385b7bb33fb7223c41a",
+  "tree": "4f9b44853656834a7b5d3b969d09c33c80b6ad5c",
+  "source_files": 59360,
+  "names": [
+    "instMeasMat",
+    "matrixMeasurableSpace",
+    "measurableSpace_matrix"
+  ],
+  "matching_files": 28,
+  "whole_word_lines": 66,
+  "lines": [
+    {
+      "path": "src/Development/AbelianVarietyTheory/Definitions/Foundations/MatrixMeasurableSpace.lean",
+      "line": 55,
+      "text": "instance matrixMeasurableSpace {m n α : Type*} [MeasurableSpace α] : MeasurableSpace (Matrix m n α) :=",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/LocalInvariantIntegralsSymmetricHaarSubgroupsStatement.lean",
+      "line": 99,
+      "text": "attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/LocalInvariantIntegralsSymmetricHaarSubgroupsStatement.lean",
+      "line": 152,
+      "text": "attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/LocalInvariantIntegralsSymmetricHaarSubgroupsStatement.lean",
+      "line": 173,
+      "text": "attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/LocalInvariantIntegralsSymmetricHaarSubgroupsStatement.lean",
+      "line": 270,
+      "text": "attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/LocalInvariantIntegralsSymmetricHaarSubgroupsStatement.lean",
+      "line": 291,
+      "text": "attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/LocalInvariantIntegralsSymmetricHaarSubgroupsStatement.lean",
+      "line": 475,
+      "text": "attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/LocalInvariantIntegralsSymmetricHaarSubgroupsStatement.lean",
+      "line": 496,
+      "text": "attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/LocalInvariantIntegralsSymmetricHaarSubgroupsStatement.lean",
+      "line": 601,
+      "text": "attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/LocalInvariantIntegralsSymmetricHaarSubgroupsStatement.lean",
+      "line": 622,
+      "text": "attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/LocalInvariantIntegralsSymmetricHaarSubgroupsStatement.lean",
+      "line": 711,
+      "text": "attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/LocalInvariantIntegralsSymmetricHaarSubgroupsStatement.lean",
+      "line": 732,
+      "text": "attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/LocalInvariantIntegralsSymmetricHaarSubgroupsStatement.lean",
+      "line": 800,
+      "text": "attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/LocalInvariantIntegralsSymmetricHaarSubgroupsStatement.lean",
+      "line": 821,
+      "text": "attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/LocalInvariantIntegralsSymmetricHaarSubgroupsStatement.lean",
+      "line": 962,
+      "text": "attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/LocalInvariantIntegralsSymmetricHaarSubgroupsStatement.lean",
+      "line": 983,
+      "text": "attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/ProdRFJCoe.lean",
+      "line": 69,
+      "text": "attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/RootExchangeUnipotentHaarIntegralPointsEqOneStatement.lean",
+      "line": 80,
+      "text": "attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/RootExchangeUnipotentHaarIntegralPointsEqOneStatement.lean",
+      "line": 148,
+      "text": "attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/SymmetricDoubleIntegralsPositionOneEqCellSum.lean",
+      "line": 66,
+      "text": "attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsDoubledSchrodingerModelTransposedSiegelRulStatement.lean",
+      "line": 699,
+      "text": "attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsDoubledSchrodingerModelTransposedSiegelRulStatement.lean",
+      "line": 849,
+      "text": "attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsDoubledSchrodingerModelTransposedSiegelRulStatement.lean",
+      "line": 867,
+      "text": "attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsDoubledSchrodingerModelTransposedSiegelRulStatement.lean",
+      "line": 934,
+      "text": "attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsDoubledSchrodingerModelTransposedSiegelRulStatement.lean",
+      "line": 952,
+      "text": "attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsDoubledSchrodingerModelTransposedSiegelRulStatement.lean",
+      "line": 1065,
+      "text": "attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsDoubledSchrodingerModelTransposedSiegelRulStatement.lean",
+      "line": 1082,
+      "text": "attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/SumOKEx.lean",
+      "line": 35,
+      "text": "attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ValuationDetBlocks.lean",
+      "line": 66,
+      "text": "attribute [local instance 2000] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ValuationDetBlocks.lean",
+      "line": 134,
+      "text": "attribute [local instance 2000] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/ThetaFunctionsSpannedHeckeTwistedStandardFrameStatement.lean",
+      "line": 166,
+      "text": "  letI : MeasurableSpace (Matrix (Fin n) (Fin r) k) := GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/SplitThetaGridIsAdmissibleFlipTensor.lean",
+      "line": 258,
+      "text": "attribute [local instance 10000] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/SplitThetaGridIsAdmissibleFlipTensor.lean",
+      "line": 401,
+      "text": "attribute [local instance 10000] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/SplitThetaGridIsAdmissibleFlipTensor.lean",
+      "line": 415,
+      "text": "attribute [local instance 10000] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/SplitThetaGridIsAdmissibleFlipTensor.lean",
+      "line": 576,
+      "text": "attribute [local instance 10000] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/SplitThetaGridIsAdmissibleFlipTensor.lean",
+      "line": 699,
+      "text": "attribute [local instance 10000] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/SplitThetaGridIsAdmissibleFlipTensor.lean",
+      "line": 746,
+      "text": "attribute [local instance 10000] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/SplitThetaGridIsAdmissibleFlipTensor.lean",
+      "line": 800,
+      "text": "attribute [local instance 10000] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/SplitThetaGridIsAdmissibleFlipTensor.lean",
+      "line": 818,
+      "text": "attribute [local instance 10000] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/SplitThetaGridIsAdmissibleFlipTensor.lean",
+      "line": 883,
+      "text": "attribute [local instance 10000] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/SplitThetaGridIsAdmissibleFlipTensor.lean",
+      "line": 970,
+      "text": "attribute [local instance 10000] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/SplitThetaGridIsAdmissibleFlipTensor.lean",
+      "line": 984,
+      "text": "attribute [local instance 10000] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/SplitThetaGridIsAdmissibleFlipTensor.lean",
+      "line": 1100,
+      "text": "attribute [local instance 10000] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/BuildingsResidueChars/LocalZetaFunctionalUniqueness.lean",
+      "line": 275,
+      "text": "        (MeasurableSpace.comap Units.val GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix) _))",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/LocalEmbeddings/ReBaseMain.lean",
+      "line": 151,
+      "text": "attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/LocalEmbeddings/ReBaseMain.lean",
+      "line": 358,
+      "text": "attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace in",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/FiniteDataBound.lean",
+      "line": 792,
+      "text": "-- `matrixMeasurableSpace`, which `borel_GL`/`haarVol` are stated with; prefer the latter.",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/FiniteDataBound.lean",
+      "line": 793,
+      "text": "attribute [local instance 2000] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/FiniteDataBound.lean",
+      "line": 955,
+      "text": "attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/LocalCharacterPowerConductorBound.lean",
+      "line": 864,
+      "text": "attribute [local instance 10000] GlobalTheory.SplitWeil.matrixMeasurableSpace in",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/RegConstEqAwayUnitMulFactor.lean",
+      "line": 371,
+      "text": "attribute [local instance high] GlobalTheory.SplitWeil.matrixMeasurableSpace in",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AtChoice.lean",
+      "line": 169,
+      "text": "-- The `KFinAvg` statements (`IsHaarKH`, `borelMat`) use `instMeasMat`; prefer it over",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AtChoice.lean",
+      "line": 170,
+      "text": "-- `SplitWeil.matrixMeasurableSpace` throughout this file.",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AtChoice.lean",
+      "line": 171,
+      "text": "attribute [local instance high] Formalism.DoubleCosetMeasures.instMeasMat",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/VolLevelWtConstStatement.lean",
+      "line": 1386,
+      "text": "  letI : MeasurableSpace (Matrix (XIx (Fin D.R.k) (Fin D.R.t) j) (XIx (Fin D.R.k) (Fin D.R.t) j) G.k) := Formalism.DoubleCosetMeasures.instMeasMat",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/FinSplitOfNarrow.lean",
+      "line": 75,
+      "text": "-- `matrixMeasurableSpace`, which `borel_GL`/`haarVol` are stated with; prefer the latter.",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/FinSplitOfNarrow.lean",
+      "line": 76,
+      "text": "attribute [local instance 2000] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/HaarChartIntegralComparison.lean",
+      "line": 177,
+      "text": "    GroundTheory.Automorphic.matrixMeasurableSpaceComplex",
+      "whole_word": false
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/SiegelWeilStandard/SiegelWeilStd.lean",
+      "line": 37,
+      "text": "-- used here (`CoefData`, `fc`, ...) are phrased with `instMeasMat`, so prefer it.",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/AutomorphicKernels/SiegelWeilFormula/SiegelWeilStandard/SiegelWeilStd.lean",
+      "line": 38,
+      "text": "attribute [local instance high] Formalism.DoubleCosetMeasures.instMeasMat",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/CompactAveragingSplitting/EigenvectorLifting/ExistsUpperProjectionInverseTranspose.lean",
+      "line": 72,
+      "text": "attribute [local instance 10000] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/WeilBound/CoreStatements/TemperedRepresentationTheory/BernsteinNarrowness/BernsteinClosure/RamifiedMultiplicityOne.lean",
+      "line": 819,
+      "text": "attribute [local instance 10000] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Development/WeilBound/ThetaLifts/LocalTheory/StandardValuations/ExistsVol.lean",
+      "line": 48,
+      "text": "attribute [local instance 10000] GlobalTheory.SplitWeil.matrixMeasurableSpace",
+      "whole_word": true
+    },
+    {
+      "path": "src/Formalism/DoubleCosetMeasures/StatementZ.lean",
+      "line": 14,
+      "text": "scoped instance instMeasMat {m n F : Type} [MeasurableSpace F] : MeasurableSpace (Matrix m n F) :=",
+      "whole_word": true
+    },
+    {
+      "path": "src/GroundTheory/AutomorphicForms/GL2/GJFEInducedLevi.lean",
+      "line": 117,
+      "text": "  have hM : (measurableSpace_matrix : MeasurableSpace (Matrix (Fin n) (Fin n) F)) =",
+      "whole_word": true
+    },
+    {
+      "path": "src/GroundTheory/AutomorphicForms/GL2/GJFELevi.lean",
+      "line": 307,
+      "text": "  have hM : (GJMatrix.measurableSpace_matrix : MeasurableSpace (Matrix (Fin m) (Fin m) F)) =",
+      "whole_word": true
+    },
+    {
+      "path": "src/GroundTheory/AutomorphicForms/GL2/GJMatrixCoord.lean",
+      "line": 16,
+      "text": "instance measurableSpace_matrix {m n X : Type*} [MeasurableSpace X] :",
+      "whole_word": true
+    },
+    {
+      "path": "src/GroundTheory/AutomorphicForms/RealGroupsHaar.lean",
+      "line": 227,
+      "text": "noncomputable scoped instance matrixMeasurableSpaceReal : MeasurableSpace (Matrix n n ℝ) := borel _",
+      "whole_word": false
+    },
+    {
+      "path": "src/GroundTheory/AutomorphicForms/RealGroupsHaar.lean",
+      "line": 301,
+      "text": "noncomputable scoped instance matrixMeasurableSpaceComplex : MeasurableSpace (Matrix n n ℂ) := borel _",
+      "whole_word": false
+    }
+  ]
+}

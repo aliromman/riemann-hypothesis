@@ -1,0 +1,35 @@
+{
+  "before": "251c7b05dd869ceba1aa42c6001c00b4010f23f9",
+  "base": "8e5cefeeaffe7e4c12153385b7bb33fb7223c41a",
+  "pr_head": "ef7b2af7f6017c9e6875d4d8803907ac0cd8804b",
+  "paths_changed": 8192,
+  "source_changes": {
+    "M": 8188,
+    "D": 4
+  },
+  "src_lean_before": 59364,
+  "src_lean_after": 59360,
+  "our_source_changes": {
+    "src/Development/AbelianVarietyTheory/Definitions/Foundations/MatrixMeasurableSpace.lean": "M"
+  },
+  "protected_changes": {},
+  "changed_explicit_callers": {
+    "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/LocalInvariantIntegralsSymmetricHaarSubgroupsStatement.lean": "M",
+    "src/Development/AbelianVarietyTheory/Proofs/DecoratedLatticeProofs/RootExchangeUnipotentHaarIntegralPointsEqOneStatement.lean": "M",
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsDoubledSchrodingerModelTransposedSiegelRulStatement.lean": "M",
+    "src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/ThetaFunctionsSpannedHeckeTwistedStandardFrameStatement.lean": "M",
+    "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/SplitThetaGridIsAdmissibleFlipTensor.lean": "M",
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/BuildingsResidueChars/LocalZetaFunctionalUniqueness.lean": "M",
+    "src/Development/WeilBound/CoreStatements/TemperedRepresentationTheory/BernsteinNarrowness/BernsteinClosure/RamifiedMultiplicityOne.lean": "M"
+  },
+  "changed_theta": {},
+  "merge_tree": "a03ec152b3a37f25023d24325531448bf08ab0ca",
+  "merge_commit": "ac7b31c0da50c61cf2d0408818076ac442742650",
+  "src_tree": "932abce4c82411bd1cbff61978ccd66095f9affc",
+  "candidate_diff": [
+    "3\t2\tsrc/Development/AbelianVarietyTheory/Definitions/Foundations/MatrixMeasurableSpace.lean",
+    "3\t2\tsrc/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/ThetaParseval/ThetaKernels/IndepDomK.lean",
+    "3\t2\tsrc/Formalism/DoubleCosetMeasures/StatementZ.lean",
+    "3\t2\tsrc/GroundTheory/AutomorphicForms/GL2/GJMatrixCoord.lean"
+  ]
+}

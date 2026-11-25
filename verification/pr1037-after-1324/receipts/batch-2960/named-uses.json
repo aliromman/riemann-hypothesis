@@ -1,0 +1,100 @@
+{
+  "base": {
+    "revision": "8e5cefeeaffe7e4c12153385b7bb33fb7223c41a",
+    "sources": 59360,
+    "literal_substrings": 69,
+    "whole_names": 66,
+    "kinds": {
+      "declaration": 3,
+      "attribute": 53,
+      "term": 5,
+      "comment": 5
+    },
+    "consumers": [
+      "Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LocalInvariantIntegralsSymmetricHaarSubgroupsStatement",
+      "Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ProdRFJCoe",
+      "Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.RootExchangeUnipotentHaarIntegralPointsEqOneStatement",
+      "Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SymmetricDoubleIntegralsPositionOneEqCellSum",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDoubledSchrodingerModelTransposedSiegelRulStatement",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.SumOKEx",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ValuationDetBlocks",
+      "Development.AbelianVarietyTheory.Proofs.SatakeParameters.ThetaFunctionsSpannedHeckeTwistedStandardFrameStatement",
+      "Development.AbelianVarietyTheory.Proofs.TwistedOperators.SplitThetaGridIsAdmissibleFlipTensor",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.LocalZetaFunctionalUniqueness",
+      "Development.AutomorphicArithmetic.LocalEmbeddings.ReBaseMain",
+      "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.FiniteDataBound",
+      "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.LocalCharacterPowerConductorBound",
+      "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.RegConstEqAwayUnitMulFactor",
+      "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.AtChoice",
+      "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.VolLevelWtConstStatement",
+      "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FinSplitOfNarrow",
+      "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.SiegelWeilStandard.SiegelWeilStd",
+      "Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.ExistsUpperProjectionInverseTranspose",
+      "Development.WeilBound.CoreStatements.TemperedRepresentationTheory.BernsteinNarrowness.BernsteinClosure.RamifiedMultiplicityOne",
+      "Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.ExistsVol",
+      "GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi",
+      "GroundTheory.AutomorphicForms.GL2.GJFELevi"
+    ],
+    "term_callers": [
+      "Development.AbelianVarietyTheory.Proofs.SatakeParameters.ThetaFunctionsSpannedHeckeTwistedStandardFrameStatement",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.LocalZetaFunctionalUniqueness",
+      "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.VolLevelWtConstStatement",
+      "GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi",
+      "GroundTheory.AutomorphicForms.GL2.GJFELevi"
+    ],
+    "other_names": [
+      "GroundTheory.Automorphic.matrixMeasurableSpaceComplex",
+      "noncomputable scoped instance matrixMeasurableSpaceReal : MeasurableSpace (Matrix n n \u211d) := borel _",
+      "noncomputable scoped instance matrixMeasurableSpaceComplex : MeasurableSpace (Matrix n n \u2102) := borel _"
+    ]
+  },
+  "candidate": {
+    "revision": "a03ec152b3a37f25023d24325531448bf08ab0ca",
+    "sources": 59360,
+    "literal_substrings": 69,
+    "whole_names": 66,
+    "kinds": {
+      "declaration": 3,
+      "attribute": 53,
+      "term": 5,
+      "comment": 5
+    },
+    "consumers": [
+      "Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LocalInvariantIntegralsSymmetricHaarSubgroupsStatement",
+      "Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ProdRFJCoe",
+      "Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.RootExchangeUnipotentHaarIntegralPointsEqOneStatement",
+      "Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SymmetricDoubleIntegralsPositionOneEqCellSum",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDoubledSchrodingerModelTransposedSiegelRulStatement",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.SumOKEx",
+      "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ValuationDetBlocks",
+      "Development.AbelianVarietyTheory.Proofs.SatakeParameters.ThetaFunctionsSpannedHeckeTwistedStandardFrameStatement",
+      "Development.AbelianVarietyTheory.Proofs.TwistedOperators.SplitThetaGridIsAdmissibleFlipTensor",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.LocalZetaFunctionalUniqueness",
+      "Development.AutomorphicArithmetic.LocalEmbeddings.ReBaseMain",
+      "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.FiniteDataBound",
+      "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.LocalCharacterPowerConductorBound",
+      "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.RegConstEqAwayUnitMulFactor",
+      "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.AtChoice",
+      "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.VolLevelWtConstStatement",
+      "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FinSplitOfNarrow",
+      "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.SiegelWeilStandard.SiegelWeilStd",
+      "Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.ExistsUpperProjectionInverseTranspose",
+      "Development.WeilBound.CoreStatements.TemperedRepresentationTheory.BernsteinNarrowness.BernsteinClosure.RamifiedMultiplicityOne",
+      "Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.ExistsVol",
+      "GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi",
+      "GroundTheory.AutomorphicForms.GL2.GJFELevi"
+    ],
+    "term_callers": [
+      "Development.AbelianVarietyTheory.Proofs.SatakeParameters.ThetaFunctionsSpannedHeckeTwistedStandardFrameStatement",
+      "Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.LocalZetaFunctionalUniqueness",
+      "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.VolLevelWtConstStatement",
+      "GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi",
+      "GroundTheory.AutomorphicForms.GL2.GJFELevi"
+    ],
+    "other_names": [
+      "GroundTheory.Automorphic.matrixMeasurableSpaceComplex",
+      "noncomputable scoped instance matrixMeasurableSpaceReal : MeasurableSpace (Matrix n n \u211d) := borel _",
+      "noncomputable scoped instance matrixMeasurableSpaceComplex : MeasurableSpace (Matrix n n \u2102) := borel _"
+    ]
+  }
+}

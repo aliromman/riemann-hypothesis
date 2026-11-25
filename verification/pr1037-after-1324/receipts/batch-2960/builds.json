@@ -1,0 +1,223 @@
+{
+  "lean": "Lean (version 4.37.0-rc1, arm64-apple-darwin24.6.0, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)",
+  "results": {
+    "main": {
+      "revision": "8e5cefeeaffe7e4c12153385b7bb33fb7223c41a",
+      "previous": "251c7b05dd869ceba1aa42c6001c00b4010f23f9",
+      "targets": [
+        "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+        "Formalism.DoubleCosetMeasures.StatementZ",
+        "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord",
+        "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+        "GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi"
+      ],
+      "modules": 311,
+      "changed_sources": [
+        "src/Development/AbelianVarietyTheory/Definitions/Foundations/EventuallyNormFinLeOne.lean",
+        "src/Development/AbelianVarietyTheory/Definitions/Foundations/MatrixMeasurableSpace.lean",
+        "src/Development/AbelianVarietyTheory/Definitions/Foundations/OfInfProjInfMulOfFinProjFin.lean",
+        "src/Development/AbelianVarietyTheory/Definitions/Foundations/SecondCountableAndT2LocalField.lean",
+        "src/Development/AbelianVarietyTheory/Definitions/Foundations/SimpleSum.lean",
+        "src/Formalism/SatakeDualWeyl/AdelicIwasawaHecke/Stabfin.lean",
+        "src/GroundTheory/AutomorphicForms/CuspidalAdmissible.lean",
+        "src/GroundTheory/AutomorphicForms/RealGroupsHaar.lean",
+        "src/GroundTheory/LocalFields/LocalZetaChar.lean",
+        "src/GroundTheory/LocalFields/LocalZetaShell.lean",
+        "src/GroundTheory/LocalFields/UnitsPowers.lean"
+      ],
+      "runs": [
+        {
+          "command": [
+            "lake",
+            "--no-cache",
+            "--rehash",
+            "build",
+            "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+            "Formalism.DoubleCosetMeasures.StatementZ",
+            "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord",
+            "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+            "GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi"
+          ],
+          "exit": 0,
+          "completion": [
+            "Build completed successfully (10471 jobs)."
+          ],
+          "log": "attempt-20261125T122517.159378Z/main-build.log",
+          "log_sha256": "68a949fd405625e4dbe2821a239fe7945f482f715c824b5588225ba077a663ef",
+          "freshly_compiled": [
+            "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+            "Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Stabfin",
+            "Development.AbelianVarietyTheory.Definitions.Foundations.EventuallyNormFinLeOne",
+            "Development.AbelianVarietyTheory.Definitions.Foundations.SecondCountableAndT2LocalField",
+            "Development.AbelianVarietyTheory.Definitions.Foundations.SimpleSum",
+            "Development.AbelianVarietyTheory.Proofs.FoundationProofs.PadicIsNonarchimedeanLocalField",
+            "Development.AbelianVarietyTheory.Definitions.Foundations.OfInfProjInfMulOfFinProjFin",
+            "Development.AbelianVarietyTheory.Proofs.TwistedOperators.LinearChangeOfVariablesLocalFieldMatrix",
+            "GroundTheory.LocalFields.UnitsPowers",
+            "Development.AbelianVarietyTheory.Definitions.Foundations.HermitianSpaceBaseLatticeEqFrameLattice",
+            "GroundTheory.LocalFields.LocalZetaShell",
+            "GroundTheory.LocalFields.LocalZetaChar",
+            "GroundTheory.AutomorphicForms.RealGroupsHaar",
+            "Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.HalfLinearCocycle",
+            "GroundTheory.AutomorphicForms.MeasuresGL",
+            "Development.AbelianVarietyTheory.Proofs.TwistedOperators.RestrictedTensorBasePointNormSq",
+            "GroundTheory.AutomorphicForms.MeasuresParabolic",
+            "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+            "GroundTheory.AutomorphicForms.InductionParabolic",
+            "GroundTheory.AutomorphicForms.AdmissibleInduction",
+            "GroundTheory.AutomorphicForms.GeometricLemmaFiltration",
+            "GroundTheory.AutomorphicForms.GeometricLemmaCellGroups",
+            "GroundTheory.AutomorphicForms.GL2.GJInducedCoeff",
+            "GroundTheory.AutomorphicForms.CuspidalAdmissible",
+            "GroundTheory.AutomorphicForms.GeometricLemmaModular",
+            "GroundTheory.AutomorphicForms.GL2.GJParabolicFubini",
+            "GroundTheory.AutomorphicForms.JacquetAdmissible",
+            "GroundTheory.AutomorphicForms.GL2.GJLeviZetaBlocks",
+            "GroundTheory.AutomorphicForms.SupercuspidalCoefficients",
+            "GroundTheory.AutomorphicForms.GeometricLemmaCharacters",
+            "GroundTheory.AutomorphicForms.GL2.GJLeviZeta",
+            "GroundTheory.AutomorphicForms.LeviStagesJacquet",
+            "GroundTheory.AutomorphicForms.GL2.GJInducedZeta",
+            "GroundTheory.AutomorphicForms.GL2.GJZetaCore",
+            "GroundTheory.AutomorphicForms.GL2.GJLocalZeta",
+            "GroundTheory.AutomorphicForms.GL2.GJFERat",
+            "GroundTheory.AutomorphicForms.GL2.GJFEDefs",
+            "GroundTheory.AutomorphicForms.GL2.GJFEInducedChar",
+            "GroundTheory.AutomorphicForms.GL2.GJFEInducedParabolic",
+            "GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi"
+          ]
+        },
+        {
+          "command": [
+            "lake",
+            "--no-cache",
+            "--rehash",
+            "build",
+            "--no-build",
+            "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+            "Formalism.DoubleCosetMeasures.StatementZ",
+            "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord",
+            "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+            "GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi"
+          ],
+          "exit": 0,
+          "completion": [
+            "All targets up-to-date (10471 jobs)."
+          ],
+          "log": "attempt-20261125T122517.159378Z/main-check.log",
+          "log_sha256": "86383586428a044e340501ba9f7f2b85c52f6d096b83363cc11941cbcf8b16b2",
+          "freshly_compiled": []
+        }
+      ]
+    },
+    "candidate": {
+      "revision": "a03ec152b3a37f25023d24325531448bf08ab0ca",
+      "previous": "55bdb75c3f61fa939dad5687193658fe2095f98a",
+      "targets": [
+        "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+        "Formalism.DoubleCosetMeasures.StatementZ",
+        "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord",
+        "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+        "GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi"
+      ],
+      "modules": 311,
+      "changed_sources": [
+        "src/Development/AbelianVarietyTheory/Definitions/Foundations/EventuallyNormFinLeOne.lean",
+        "src/Development/AbelianVarietyTheory/Definitions/Foundations/MatrixMeasurableSpace.lean",
+        "src/Development/AbelianVarietyTheory/Definitions/Foundations/OfInfProjInfMulOfFinProjFin.lean",
+        "src/Development/AbelianVarietyTheory/Definitions/Foundations/SecondCountableAndT2LocalField.lean",
+        "src/Development/AbelianVarietyTheory/Definitions/Foundations/SimpleSum.lean",
+        "src/Formalism/SatakeDualWeyl/AdelicIwasawaHecke/Stabfin.lean",
+        "src/GroundTheory/AutomorphicForms/CuspidalAdmissible.lean",
+        "src/GroundTheory/AutomorphicForms/RealGroupsHaar.lean",
+        "src/GroundTheory/LocalFields/LocalZetaChar.lean",
+        "src/GroundTheory/LocalFields/LocalZetaShell.lean",
+        "src/GroundTheory/LocalFields/UnitsPowers.lean"
+      ],
+      "runs": [
+        {
+          "command": [
+            "lake",
+            "--no-cache",
+            "--rehash",
+            "build",
+            "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+            "Formalism.DoubleCosetMeasures.StatementZ",
+            "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord",
+            "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+            "GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi"
+          ],
+          "exit": 0,
+          "completion": [
+            "Build completed successfully (10473 jobs)."
+          ],
+          "log": "attempt-20261125T122517.159378Z/candidate-build.log",
+          "log_sha256": "25b62b45eff131943f409019c3724effaf5cb5bf482d29420d23fe3cefbb23c5",
+          "freshly_compiled": [
+            "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+            "Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Stabfin",
+            "Development.AbelianVarietyTheory.Definitions.Foundations.EventuallyNormFinLeOne",
+            "Development.AbelianVarietyTheory.Definitions.Foundations.SecondCountableAndT2LocalField",
+            "Development.AbelianVarietyTheory.Definitions.Foundations.SimpleSum",
+            "Development.AbelianVarietyTheory.Proofs.FoundationProofs.PadicIsNonarchimedeanLocalField",
+            "Development.AbelianVarietyTheory.Definitions.Foundations.OfInfProjInfMulOfFinProjFin",
+            "Development.AbelianVarietyTheory.Proofs.TwistedOperators.LinearChangeOfVariablesLocalFieldMatrix",
+            "GroundTheory.LocalFields.UnitsPowers",
+            "Development.AbelianVarietyTheory.Definitions.Foundations.HermitianSpaceBaseLatticeEqFrameLattice",
+            "GroundTheory.LocalFields.LocalZetaShell",
+            "GroundTheory.LocalFields.LocalZetaChar",
+            "Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.HalfLinearCocycle",
+            "GroundTheory.AutomorphicForms.RealGroupsHaar",
+            "Development.AbelianVarietyTheory.Proofs.TwistedOperators.RestrictedTensorBasePointNormSq",
+            "GroundTheory.AutomorphicForms.MeasuresGL",
+            "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+            "GroundTheory.AutomorphicForms.MeasuresParabolic",
+            "GroundTheory.AutomorphicForms.InductionParabolic",
+            "GroundTheory.AutomorphicForms.AdmissibleInduction",
+            "GroundTheory.AutomorphicForms.GeometricLemmaFiltration",
+            "GroundTheory.AutomorphicForms.GL2.GJInducedCoeff",
+            "GroundTheory.AutomorphicForms.CuspidalAdmissible",
+            "GroundTheory.AutomorphicForms.GeometricLemmaCellGroups",
+            "GroundTheory.AutomorphicForms.GeometricLemmaModular",
+            "GroundTheory.AutomorphicForms.GL2.GJParabolicFubini",
+            "GroundTheory.AutomorphicForms.JacquetAdmissible",
+            "GroundTheory.AutomorphicForms.SupercuspidalCoefficients",
+            "GroundTheory.AutomorphicForms.GL2.GJLeviZetaBlocks",
+            "GroundTheory.AutomorphicForms.GeometricLemmaCharacters",
+            "GroundTheory.AutomorphicForms.GL2.GJLeviZeta",
+            "GroundTheory.AutomorphicForms.LeviStagesJacquet",
+            "GroundTheory.AutomorphicForms.GL2.GJInducedZeta",
+            "GroundTheory.AutomorphicForms.GL2.GJZetaCore",
+            "GroundTheory.AutomorphicForms.GL2.GJLocalZeta",
+            "GroundTheory.AutomorphicForms.GL2.GJFERat",
+            "GroundTheory.AutomorphicForms.GL2.GJFEDefs",
+            "GroundTheory.AutomorphicForms.GL2.GJFEInducedChar",
+            "GroundTheory.AutomorphicForms.GL2.GJFEInducedParabolic",
+            "GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi"
+          ]
+        },
+        {
+          "command": [
+            "lake",
+            "--no-cache",
+            "--rehash",
+            "build",
+            "--no-build",
+            "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+            "Formalism.DoubleCosetMeasures.StatementZ",
+            "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord",
+            "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+            "GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi"
+          ],
+          "exit": 0,
+          "completion": [
+            "All targets up-to-date (10473 jobs)."
+          ],
+          "log": "attempt-20261125T122517.159378Z/candidate-check.log",
+          "log_sha256": "991c427678336276cfe7ee7ceeb491375008d40062e86a43d1f7828b331e0506",
+          "freshly_compiled": []
+        }
+      ]
+    }
+  }
+}
