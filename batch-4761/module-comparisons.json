@@ -2,11 +2,11 @@
   "head": "da7ab2bd48e5ae859fbf9ca72594962e1246b98f",
   "parent": "756a70250dcba9162b99d4ea35c186558434c17e",
   "mode": "current",
-  "modules": 5938,
-  "edited_modules": 436,
+  "modules": 6536,
+  "edited_modules": 639,
   "total_edited": 3417,
-  "declaration_occurrences": 216958,
-  "warnings": 25230,
+  "declaration_occurrences": 226853,
+  "warnings": 26661,
   "checker_source_sha256": "9987e5d85022c8f285864fe4e9344373a4051cec0ab8e5623bdc83930dfcb429",
   "warning_comparison": "Full messages with source line and column removed, including multiplicity",
   "negative_control": {
@@ -25,7 +25,7 @@
     "publicImage": false,
     "publicImports": false
   },
-  "rows_sha256": "646e6daa993cf01b9275f0d063ea137bcceb3eacf870794c26db6a2189312e20",
+  "rows_sha256": "20e448b2a005c5a9309ca22b151d50c26d6aa72ed7d7e4eb24908cfe63e079a0",
   "stock_log": "full-1795642701387789000.log",
-  "reused_comparisons": 3085
+  "reused_comparisons": 3201
 }

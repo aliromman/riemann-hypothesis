@@ -1,0 +1,68 @@
+{
+  "checked": "2026-11-25T22:47:51.482217+00:00",
+  "community": "leanprover-community/riemann-hypothesis",
+  "previous_default": "main",
+  "current_pr_base": "alpoge",
+  "old_formalization": {
+    "commit": "756a70250dcba9162b99d4ea35c186558434c17e",
+    "tree": "5744eb34797ed52149916cf81104488e0628c001",
+    "source_tree": "9ef527296d055511d5d94d79c517405ddc44c880",
+    "lean": "leanprover/lean4:v4.37.0-rc1",
+    "mathlib": "31ce06eaadf4a200c0e1407c5f10953cf606b8f8",
+    "default_targets": [
+      "CompanionTheory",
+      "Development",
+      "Formalism",
+      "GroundTheory",
+      "GroundTheoryFields",
+      "Lemmata",
+      "PositivityTheory",
+      "ReciprocityTheory",
+      "Main"
+    ],
+    "lean_files_under_src": 58947
+  },
+  "current_default": {
+    "commit": "686902ae1da717a63faf52d2dc6a50e5722942cd",
+    "tree": "4f08feb5ff3ac8527fc20c67797c003657c05a55",
+    "source_tree": "55fe9c6cb2e5be421c5871e772b6d736ecb5d164",
+    "lean": "leanprover/lean4:v4.35.0",
+    "mathlib": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "default_targets": [
+      "Lib",
+      "New",
+      "Main"
+    ],
+    "lean_files_under_src": 803
+  },
+  "default_has_common_ancestor_with_pr_base": false,
+  "pull_requests": {
+    "879": {
+      "head": "da7ab2bd48e5ae859fbf9ca72594962e1246b98f",
+      "base_ref": "alpoge",
+      "base_oid": "756a70250dcba9162b99d4ea35c186558434c17e",
+      "current_merge_tree": "80fa48df4b558b7f8e6518db36af50d2baab6c3f",
+      "changed_paths": 3417,
+      "changed_paths_present_on_new_default": [],
+      "is_draft": true,
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/879"
+    },
+    "977": {
+      "head": "11eaccf3b76338b88b78ddf299f341ba1d1ecea2",
+      "base_ref": "alpoge",
+      "base_oid": "756a70250dcba9162b99d4ea35c186558434c17e",
+      "current_merge_tree": "4c141aab37ddecce241f86393d2f73edd58cc803",
+      "changed_paths": 11292,
+      "changed_paths_present_on_new_default": [],
+      "is_draft": true,
+      "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/977"
+    }
+  },
+  "pending_batch": {
+    "number": 5273,
+    "base_ref": "alpoge",
+    "base_oid": "756a70250dcba9162b99d4ea35c186558434c17e",
+    "state": "open"
+  },
+  "notice": "https://github.com/leanprover-community/riemann-hypothesis/blob/686902ae1da717a63faf52d2dc6a50e5722942cd/README.md"
+}
