@@ -4,12 +4,14 @@
   "src": "b6c2f98f7aa8e864d204ad5fe9d5d447ed5c6608",
   "scope": "completed",
   "counts": {
-    "modules": 32,
-    "edited": 32,
-    "warnings": 422,
-    "declaration_occurrences_counted": 1635,
-    "ordinary and official declarations compared directly": 32
+    "stock_lake_replayed": 1803,
+    "modules": 1938,
+    "edited": 355,
+    "warnings": 14521,
+    "declaration_occurrences_counted": 74972,
+    "ordinary and official declarations compared directly": 1938,
+    "stock_lake_built": 135
   },
-  "rows_sha256": "6dc42739df0bdd14e26891b07adf500c3020e5c510e6c051e934e6f332ec4142",
+  "rows_sha256": "c93259cf9dee2d7fa1b6d0aa67a360ad456a3c411b3ed0fbbea8f70e1e560ff3",
   "checker_sha256": "ceabcaf423d986f10712143cc07d268dc37fcefa697d845d309e3305bb39ef53"
 }
