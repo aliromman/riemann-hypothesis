@@ -8,7 +8,6 @@ public import Mathlib.LinearAlgebra.Matrix.Hermitian
 public import Development.AbelianVarietyTheory.Proofs.ToricGeometry.ReFormPosOfThetaNeZero
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.ReduceModChar
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LieModel
 import Mathlib.CategoryTheory.Monoidal.Cartesian.Basic
 import Mathlib.CategoryTheory.Monoidal.Category

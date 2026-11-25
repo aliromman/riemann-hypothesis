@@ -9,8 +9,6 @@ import Mathlib.Analysis.Convex.Contractible
 import Mathlib.Analysis.SpecialFunctions.Complex.Circle
 import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Homotopy.Lifting
 public import GroundTheory.GlobalFields.Adele.Approximation
 

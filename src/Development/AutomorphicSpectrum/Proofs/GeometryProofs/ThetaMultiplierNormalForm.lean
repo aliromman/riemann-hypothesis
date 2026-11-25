@@ -12,7 +12,6 @@ public import Development.AbelianVarietyTheory.Proofs.ToricGeometry.ExistsLocalF
 public import Development.AbelianVarietyTheory.Proofs.ToricGeometry.HolFamilyOfIsPullback
 public import Development.AbelianVarietyTheory.Proofs.ToricGeometry.SeriesApplyEqZeroOfFace
 public import Development.AbelianVarietyTheory.Proofs.ToricGeometry.TopLePreimageOfValAtNeZero
-import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.LegendreSymbol
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LieModel

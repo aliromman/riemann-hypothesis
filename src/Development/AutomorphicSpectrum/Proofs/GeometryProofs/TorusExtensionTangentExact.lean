@@ -9,7 +9,6 @@ import Mathlib.RingTheory.DualNumber
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.ReduceModChar
 
 @[expose] public section
 

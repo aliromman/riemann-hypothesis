@@ -4,10 +4,7 @@ public import Mathlib.Analysis.Complex.Circle
 public import Mathlib.NumberTheory.LocalField.Basic
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MatrixIntegralOfAddCharTraceDual
 import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 public import Mathlib.Topology.Instances.Matrix
 
 @[expose] public section
