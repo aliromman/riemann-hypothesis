@@ -1,0 +1,59 @@
+{
+  "authority": {
+    "base": "82c577caf1b8a66c76212d78a399234f55813d28",
+    "tree": "01237e23d953494c79cdec97baf46686f7a74285",
+    "manifest": "62be9e7203bad90a5315c03c95795e9afb7674eef09f21a360988e698724c97c",
+    "graph": "539eb07c2560e07ec9409cd8ddb26925be680a3b4b49f36e04302508d5138cba"
+  },
+  "tasks": {
+    "structural": {
+      "pr": 977,
+      "head": "13345ac952b571c8f08a856fcedab838bfef0af8",
+      "src": "1963e10e232f5316fbf9fb44f1651d59bc6cf9e4",
+      "upstream_clump_blob": "5e0f4b831daef5df11efb71135484f84c2ceb496",
+      "source_table_sha256": "e2c33cd342b14d3cb0d64c56322ff9c48a42979d1dbf5d90343779d34501bc43"
+    }
+  },
+  "groups": {
+    "scope-direct-1410-large-1": {
+      "task": "structural",
+      "count": 43,
+      "sha256": "39158989c0061439e3b2e7e3f1bc787d261bcae7fcead5095a7c35b571b3922a",
+      "workers": 1,
+      "timeout": 1500,
+      "old_cpu_wall_seconds": 1989.46
+    },
+    "scope-direct-1410-ordinary-1": {
+      "task": "structural",
+      "count": 379,
+      "sha256": "434d5499ba20560993766b2cd46e043b6663deeffde697e2aaee4faae1fbf44b",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 4070.54
+    },
+    "scope-direct-1410-ordinary-2": {
+      "task": "structural",
+      "count": 379,
+      "sha256": "d4977e0899f2dca2af2d98fc8d9040d87629865c29727c370abf6e58c3bcefac",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 4070.57
+    },
+    "scope-direct-1410-ordinary-3": {
+      "task": "structural",
+      "count": 379,
+      "sha256": "5bf4fa64cb40c8dadc89177dc6854861db80ad24f6020874033b6c419f2025e5",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 4070.59
+    },
+    "scope-direct-1410-ordinary-4": {
+      "task": "structural",
+      "count": 378,
+      "sha256": "6820d5f16812f31142ca680ae269599e63a52206a770117230b1ec5146c57004",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 4069.66
+    }
+  }
+}
