@@ -8,6 +8,30 @@ import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.SelfDualLatti
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.EqZeroOrEqOfPlaceIdem
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.SchrodingerIntertwinerSchwartzBruhatIsTheta
 import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasWeil
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -20,6 +44,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DatP
 
 @[expose] public section
@@ -136,8 +161,7 @@ theorem separate : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (
       refine hce.conj.infPart_half ((PlaceModel.isHalf_iff S T).1 ?_)
       rw [cA_cA]; exact hye
     rw [PlaceModel.symplO_skew, AddChar.map_neg_eq_inv, (hdual y hinf).1 hy u hu, inv_one]
-  by_contra hno
-  push_neg at hno
+  by_contra! hno
   have hrx : IsHalf (cA D e) (r • x) := half'.2 (by rw [smul_comm, half'.1 hx])
   have hmem := hce.mem_of_dual hdual (r • x) ((PlaceModel.isHalf_iff S T).1 hrx) (fun y hy => by
     obtain ⟨hy1, hy2⟩ := AddSubgroup.mem_inf.1 hy
@@ -244,8 +268,7 @@ theorem orth_of_disjoint : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : 
 
   have hdisjP : ∀ q, P Φ₁ q = 0 ∨ P Φ₂ q = 0 := by
     intro q
-    by_contra hne
-    push_neg at hne
+    by_contra! hne
     obtain ⟨t, ht⟩ := Function.ne_iff.1 hne.1
     obtain ⟨t', ht'⟩ := Function.ne_iff.1 hne.2
     obtain ⟨hq1, h1⟩ := hPne Φ₁ q t ht

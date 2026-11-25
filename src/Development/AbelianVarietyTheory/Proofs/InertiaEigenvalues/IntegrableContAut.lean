@@ -53,12 +53,36 @@ import Development.AbelianVarietyTheory.Proofs.TwistedOperators.DatumLevelHypers
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.LevelCharactersUnramifiedOffLevelPlaces
 import Formalism.HermitianLattices.HermitianLatticesProofs.DualBasic
 import Formalism.LocalToGlobal.GlobalTheory.GL5.FamilyMassVolumeIdentityOfClassDecomp
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -73,6 +97,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 
 @[expose] public section
 
@@ -264,8 +289,7 @@ theorem param_down (hH : GlobalTheory.Hk3.HoweUnram) {ψ : AddChar (AF D.host.F)
     (frameLat S) hH' hL.fg hspan (GlobalTheory.AdelicU.SelfDual.isSelfDualAt_frameLat D S v)
 
   obtain ⟨j0, hj0⟩ : ∃ j, b (f j) (x j) ≠ 0 := by
-    by_contra hc
-    push_neg at hc
+    by_contra! hc
     exact hz0 (Finset.sum_eq_zero fun j _ => hc j)
   have hx0 : x j0 ≠ 0 := fun e => hj0 (by rw [e, map_zero])
   have hf0 : (f j0 : WO S T → ℂ) ≠ 0 := fun e => hj0 (by rw [show f j0 = 0 from Subtype.ext e, map_zero, LinearMap.zero_apply])
@@ -545,8 +569,7 @@ theorem unrCorr_inert : GlobalTheory.Hk3.HoweUnram → ∀ (D : D7) (G : Type) [
     unrAt_of_unrPl hw (GlobalTheory.VacFixInert.unrPl_mul_inv' u1 hU.1)
 
   obtain ⟨v0, hv0⟩ : ∃ v0 : ∀ ρ, lowT (R.MW i (sg0 D A)) ρ, R.thF i t y (fun ρ => v0 ρ) ≠ 0 := by
-    by_contra hc
-    push_neg at hc
+    by_contra! hc
     exact hth (GlobalTheory.LowTypeDetermined.eq_zero_of_lowT D _ _ _ R.θ hC.models.inf (GlobalTheory.LowTypeRestriction.lowT_ne_bot _) _ _ _
       (hC.thP.thF_mem i t y) hc)
 

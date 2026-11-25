@@ -20,29 +20,11 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsOpe
 public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.ExistsCoprimePowOfMemIneKer
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.InertiaQuadraticRamification.DecPow
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.InertiaQuadraticRamification.InfinitelyManyRealQuadraticSteps
-import Mathlib.FieldTheory.Galois.Profinite
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.ExistsUniqueHcharOfFiniteOrder
 import Development.AutomorphicArithmetic.AutomorphicVarieties.PublishedTheorems.GelfandKazhdanReal
-import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Algebra.Order.Star.Int
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.Algebra.Ring.IsFormallyReal
-import Mathlib.RingTheory.PicardGroup
-import Mathlib.Algebra.Azumaya.Basic
 import ReciprocityTheory.GaloisValuations.GlobalA
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.InertiaQuadraticRamification.SplitIff
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.InertiaQuadraticRamification.ValuationLeOneOfInteger
@@ -543,8 +525,7 @@ theorem UpperTheory.Gal.UnramifiedFromSplittingCriterion.kumMove :
   obtain ⟨D, hDpos, hD⟩ := hNV Ω U hU q hq
   obtain ⟨e, D', hD'ℓ, hDe⟩ := Nat.exists_eq_pow_mul_and_not_dvd hDpos.ne' ℓ hℓ.one_lt.ne'
   refine ⟨b + e, fun k hk ζ y hζ hy => ?_⟩
-  by_contra hcon
-  push_neg at hcon
+  by_contra! hcon
   haveI : NeZero (ℓ ^ k) := ⟨pow_ne_zero _ hℓ.ne_zero⟩
   have hpow : ∀ τ : G ℚ Ω, ∃ a, τ ζ = ζ ^ a := by
     intro τ
@@ -658,8 +639,7 @@ theorem UpperTheory.Gal.UnramifiedFromSplittingCriterion.moveRoot :
     generalize ℓ ^ (b - 1) = N at h2 h4
     omega
   have hex : ∃ σ ∈ E.fixingSubgroup, σ ζ0 ≠ ζ0 := by
-    by_contra hcon
-    push_neg at hcon
+    by_contra! hcon
     apply hnot
     rw [← InfiniteGalois.fixedField_fixingSubgroup E, IntermediateField.mem_fixedField_iff]
     exact hcon
@@ -777,16 +757,13 @@ private theorem exists_algEquiv_map_eq_conj_of_exists_conj {F Ω : Type} [Field 
     (φ : Ω →+* ℂ) (hc : ∀ y : Ω, ∃ z : Ω, φ z = starRingEnd ℂ (φ y))
     (hF : ∀ a : F, starRingEnd ℂ (φ (algebraMap F Ω a)) = φ (algebraMap F Ω a)) :
     ∃ c : Ω ≃ₐ[F] Ω, ∀ x, φ (c x) = starRingEnd ℂ (φ x) := by
-  choose c0 hc0 using hc
-  have inj : Function.Injective φ := φ.injective
-  let cf : Ω →ₐ[F] Ω :=
-    { toFun := c0
-      map_one' := inj (by rw [hc0, map_one, map_one])
-      map_mul' := fun a b => inj (by rw [hc0, map_mul, map_mul, map_mul, hc0, hc0])
-      map_zero' := inj (by rw [hc0, map_zero, map_zero])
-      map_add' := fun a b => inj (by rw [hc0, map_add (f := _), map_add (f := _), map_add (f := _), hc0, hc0])
-      commutes' := fun a => inj (by rw [hc0, hF]) }
-  exact ⟨AlgEquiv.ofBijective cf (Algebra.IsAlgebraic.algHom_bijective cf), fun x => hc0 x⟩
+  let e : Ω ≃+* φ.range := RingEquiv.ofLeftInverse (Function.leftInverse_invFun φ.injective)
+  let conj : Ω →+* φ.range := ((starRingEnd ℂ).comp φ).codRestrict _ hc
+  let f := e.symm.toRingHom.comp conj
+  have hf (x : Ω) : φ (f x) = starRingEnd ℂ (φ x) :=
+    congrArg Subtype.val (e.apply_symm_apply (conj x))
+  let cf : Ω →ₐ[F] Ω := { f with commutes' := fun a => φ.injective ((hf _).trans (hF a)) }
+  exact ⟨AlgEquiv.ofBijective cf (Algebra.IsAlgebraic.algHom_bijective cf), hf⟩
 
 theorem exFld : ExFld := by
   intro E Ω _ _ _ _ _ _ H hH

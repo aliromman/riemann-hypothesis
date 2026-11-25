@@ -8,6 +8,32 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenera
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.IntegralityNearIdentity.IsIntegralOfNormLe
 public import Mathlib.GroupTheory.CosetCover
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.WeilGroupCharacters.ContinuousResP
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -20,10 +46,15 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective
 import Mathlib.RingTheory.AdicCompletion.Noetherian
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NonemptyEquivOfRangeEq
 import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.HasExponentZeroIff
 import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.BaseChangeDefiniteUnitary
@@ -172,8 +203,7 @@ private theorem eig_basis (A : Matrix (Fin 2) (Fin 2) k) (a b : k) (hab : a ≠ 
 
 private theorem exists_nonzero_lower_entry_of_irreducible {Γ : Type} [Group Γ] (r : Γ →* GL (Fin 2) k) (h : IsIrr r) :
     ∃ x, (r x : Matrix (Fin 2) (Fin 2) k) 1 0 ≠ 0 := by
-  by_contra hno
-  push_neg at hno
+  by_contra! hno
   obtain ⟨-, -, hmin⟩ := h
   let W : Submodule k (Fin 2 → k) := LinearMap.ker (LinearMap.proj (1 : Fin 2))
   have hW : ∀ v, v ∈ W ↔ v 1 = 0 := fun v => by simp [W]
@@ -191,8 +221,7 @@ private theorem exists_nonzero_lower_entry_of_irreducible {Γ : Type} [Group Γ]
 
 private theorem exists_nonzero_upper_entry_of_irreducible {Γ : Type} [Group Γ] (r : Γ →* GL (Fin 2) k) (h : IsIrr r) :
     ∃ x, (r x : Matrix (Fin 2) (Fin 2) k) 0 1 ≠ 0 := by
-  by_contra hno
-  push_neg at hno
+  by_contra! hno
   obtain ⟨-, -, hmin⟩ := h
   let W : Submodule k (Fin 2 → k) := LinearMap.ker (LinearMap.proj (0 : Fin 2))
   have hW : ∀ v, v ∈ W ↔ v 0 = 0 := fun v => by simp [W]
@@ -263,8 +292,7 @@ private theorem exists_full [TopologicalSpace H] [IsTopologicalGroup H] [Topolog
     (h10 : ∀ K : Subgroup H, IsOpen (K : Set H) → ∃ x ∈ K, (r x : Matrix (Fin 2) (Fin 2) k) 1 0 ≠ 0)
     (h01 : ∀ K : Subgroup H, IsOpen (K : Set H) → ∃ x ∈ K, (r x : Matrix (Fin 2) (Fin 2) k) 0 1 ≠ 0) :
     ∃ g, ∀ i j, (r g : Matrix (Fin 2) (Fin 2) k) i j ≠ 0 := by
-  by_contra hno
-  push_neg at hno
+  by_contra! hno
   obtain ⟨h0, hh0⟩ : ∃ h0 : H, ∀ x, (r x : Matrix (Fin 2) (Fin 2) k) 0 0 = 0 → h0⁻¹ * x ∈ stabilizerLowerTriangular r := by
     by_cases h : ∃ y, (r y : Matrix (Fin 2) (Fin 2) k) 0 0 = 0
     · obtain ⟨y, hy⟩ := h

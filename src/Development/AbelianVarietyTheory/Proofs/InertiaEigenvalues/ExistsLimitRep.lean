@@ -30,6 +30,32 @@ public import Mathlib.RingTheory.SimpleModule.IsAlgClosed
 public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
 public import Mathlib.Data.Fintype.Pigeonhole
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ContinuousOfContinuousTrace
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -42,6 +68,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Topology.Connected.Separation
 import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
@@ -49,6 +76,11 @@ import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Tactic.Linter.Style
 import Std.Tactic.BVDecide.Normalize.Prop
@@ -116,14 +148,11 @@ theorem extend_of_locallyCauchy : ∀ (l : ℕ) [Fact l.Prime] (Γ J : Type) [To
   have hLc : IsComplete (L : Set (PadicAlgCl l)) := by
     haveI : FiniteDimensional ℚ_[l] (Subalgebra.toSubmodule L.toSubalgebra) := hL
     exact Submodule.complete_of_finiteDimensional (Subalgebra.toSubmodule L.toSubalgebra)
-  have hnb : ∀ g : Γ, (comap x (𝓝 g)).NeBot := by
-    intro g
-    refine comap_neBot_iff.2 fun t ht => ?_
-    obtain ⟨_, hyt, j, rfl⟩ := mem_closure_iff_nhds.1 (hx g) t ht
-    exact ⟨j, hyt⟩
+  letI : TopologicalSpace J := TopologicalSpace.induced x inferInstance
+  have hx' : IsDenseInducing x := ⟨⟨rfl⟩, hx⟩
   have hex : ∀ g : Γ, ∃ t : PadicAlgCl l, Tendsto θ (comap x (𝓝 g)) (𝓝 t) := by
     intro g
-    haveI : (comap x (𝓝 g)).NeBot := hnb g
+    have := hx'.comap_nhds_neBot g
     have hcau : Cauchy (map θ (comap x (𝓝 g))) := by
       rw [Metric.cauchy_iff]
       refine ⟨inferInstance, fun ε hε => ?_⟩
@@ -136,34 +165,7 @@ theorem extend_of_locallyCauchy : ∀ (l : ℕ) [Fact l.Prime] (Γ J : Type) [To
       le_principal_iff.2 (mem_map.2 (univ_mem' fun j => hθL j))
     obtain ⟨t, -, ht⟩ := hLc _ hcau hle
     exact ⟨t, ht⟩
-  choose T hT using hex
-  refine ⟨T, ?_, ?_⟩
-  · refine continuous_iff_continuousAt.2 fun g => ?_
-    rw [ContinuousAt, Metric.tendsto_nhds]
-    intro ε hε
-    obtain ⟨V, hV, hVc⟩ := hC (ε / 2) (by positivity) g
-    filter_upwards [interior_mem_nhds.2 hV] with g' hg'
-    have hV' : V ∈ 𝓝 g' := mem_interior_iff_mem_nhds.1 hg'
-    haveI : (comap x (𝓝 g')).NeBot := hnb g'
-    haveI : (comap x (𝓝 g)).NeBot := hnb g
-    have hlim : Tendsto (fun p : J × J => dist (θ p.1) (θ p.2))
-        (comap x (𝓝 g') ×ˢ comap x (𝓝 g)) (𝓝 (dist (T g') (T g))) :=
-      ((hT g').comp tendsto_fst).dist ((hT g).comp tendsto_snd)
-    have hev : ∀ᶠ p : J × J in comap x (𝓝 g') ×ˢ comap x (𝓝 g), dist (θ p.1) (θ p.2) ≤ ε / 2 := by
-      filter_upwards [prod_mem_prod (preimage_mem_comap hV') (preimage_mem_comap hV)] with p hp
-      rw [dist_eq_norm]
-      exact hVc p.1 p.2 hp.1 hp.2
-    have := le_of_tendsto hlim hev
-    linarith
-  · intro j
-    haveI : (comap x (𝓝 (x j))).NeBot := hnb (x j)
-    refine tendsto_nhds_unique (hT (x j)) ?_
-    rw [Metric.tendsto_nhds]
-    intro ε hε
-    obtain ⟨V, hV, hVc⟩ := hC (ε / 2) (by positivity) (x j)
-    filter_upwards [preimage_mem_comap hV] with i hi
-    rw [dist_eq_norm]
-    exact lt_of_le_of_lt (hVc i j hi (mem_of_mem_nhds hV)) (by linarith)
+  exact ⟨hx'.extend θ, hx'.continuous_extend hex, hx'.extend_eq' hex⟩
 
 end GlobalTheory.Cong
 end -- clump:auto

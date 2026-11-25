@@ -39,7 +39,6 @@ open NumberField IsDedekindDomain ValuativeRel Formalism.ConjugateSelfDual Recip
 open GroundTheory.Global (HeckeCharacter localAdelicChar)
 open GroundTheory.Automorphic.GodementSection (localChar)
 open scoped Pointwise
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace GlobalTheory.DelGlob
 
@@ -68,7 +67,6 @@ open GlobalTheory.DelGlob
 open GroundTheory.Global (HeckeCharacter localAdelicChar)
 open GroundTheory.Automorphic.GodementSection (localChar)
 open scoped Pointwise
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 end -- clump:auto
 end -- clump:auto

@@ -38,8 +38,6 @@ open Formalism.BasicNotions Formalism.L2.DIV Formalism.IndefR.Links NumberField
 
 namespace GlobalTheory.GoodCharProd
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 theorem isIrrChar_of_abs {G K : Type} [Group G] [Fintype G] [Field K] [CharZero K] (σ : K →+* ℂ) {χ : G → K}
     (h : IsAbsIrrChar χ) : Formalism.L2.NT.IsIrrChar (fun g => σ (χ g)) := by
   classical
@@ -137,7 +135,6 @@ section -- clump:auto
 @[expose] public section
 
 open Formalism.BasicNotions Formalism.L2.DIV Formalism.IndefR.Links NumberField
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 end -- clump:auto
 end -- clump:auto

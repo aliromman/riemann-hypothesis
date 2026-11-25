@@ -159,7 +159,6 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.UPoinc Formalism.L2.Pj
 open GlobalTheory
 open Classical
-attribute [local instance] Over.cartesianMonoidalCategory
 
 noncomputable section
 

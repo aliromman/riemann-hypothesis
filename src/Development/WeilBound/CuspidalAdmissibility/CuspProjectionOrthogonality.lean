@@ -7,6 +7,30 @@ public import GroundTheory.AutomorphicForms.TensorProductTheorem.CuspidalRep
 public import Development.WeilBound.CuspidalAdmissibility.OccLocSpan
 public import GroundTheory.AutomorphicForms.L2LocalComponents
 import GroundTheory.AutomorphicForms.TensorProductTheorem.Smooth
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -20,6 +44,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -244,8 +269,7 @@ theorem occ_loccomp : ∀ (K : Type) [Field K] [NumberField K] (n : ℕ) (μ : M
   · rintro f ⟨a, x, hx, rfl⟩
     exact ⟨fun y => hmem _, fun g y => famF_equivariant μ P D w a x hx g y⟩
   · intro u hu hu0
-    by_contra hall
-    push_neg at hall
+    by_contra! hall
     have h0 : ∀ a x hx y, inner ℂ (famF μ P D w a x hx y) u = 0 :=
       fun a x hx y => hall _ ⟨a, x, hx, rfl⟩ y
     have hc := inner_clsL_eq_zero μ P D w u h0

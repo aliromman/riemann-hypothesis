@@ -8,8 +8,10 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.JoinCoordsCo
 import Mathlib.Tactic.NormNum.LegendreSymbol
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.ReduceModChar
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
 
@@ -49,8 +51,7 @@ theorem exists_unit_gen {B : Type} [Fintype B] (A : Subring Ω) [IsLocalRing A] 
     have h2 := mul_right_cancel₀ hf h1
     exact Subtype.ext (by simpa using h2)
   obtain ⟨l, hl⟩ : ∃ l, IsUnit (a l) := by
-    by_contra hn
-    push_neg at hn
+    by_contra! hn
     have h1 : (1 : A) ∈ IsLocalRing.maximalIdeal A := by
       rw [← hsum]
       exact Ideal.sum_mem _ fun i _ => Ideal.mul_mem_left _ _ ((IsLocalRing.mem_maximalIdeal _).2 (hn i))

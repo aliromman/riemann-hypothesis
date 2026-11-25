@@ -35,7 +35,6 @@ open MonoidalCategory CartesianMonoidalCategory MonObj Limits
 open scoped CategoryTheory.Obj
 open GlobalTheory.CechPic (Pic cls lam)
 open GlobalTheory.AbLaw GlobalTheory.CechPic GlobalTheory.PrimitiveOverField
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.PointTranslate
 

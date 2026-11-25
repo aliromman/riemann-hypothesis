@@ -4,24 +4,8 @@ public import Formalism.SharpRestriction.Divisibility.AbelianOpenPart.IsOpenPart
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.CmHostRootComplexEqPmSqrt
 public import Development.AbelianVarietyTheory.Definitions.Foundations.IsProbabilityMeasureMuPart
 public import Formalism.LocalToGlobal.LatticeGeometry.AmpleOnAbelianBase
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Std.Tactic.BVDecide.Normalize.BitVec
 import Std.Tactic.BVDecide.Normalize.Prop
 import Formalism.SharpRestriction.Divisibility.AbelianOpenPart.AbelianAt
-import Mathlib.Algebra.Azumaya.Basic
-import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 
 @[expose] public section
 
@@ -32,8 +16,6 @@ open ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.BasicNotions Formali
 open Formalism.MainNotions.DIV.Cons (intO)
 
 namespace GlobalTheory.ShFam.Pad
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 section Lattices
 

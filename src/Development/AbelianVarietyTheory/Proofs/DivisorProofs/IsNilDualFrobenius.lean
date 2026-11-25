@@ -15,6 +15,34 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MapInvariant
 public import Mathlib.NumberTheory.Wilson
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoeffSubstEqZeroOfDegreeLt
 public import Development.AbelianVarietyTheory.Definitions.Divisors.ToSpanSingletonConstGenInjective
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -29,7 +57,10 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.EpsilonPairingZeta
+import Mathlib.RingTheory.WittVector.IsPoly
 import Mathlib.Tactic.Lemma
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.Linter.HaveILetI
@@ -182,8 +213,7 @@ theorem coeff_integral_of_QL : ∀ (p : ℕ) [Fact p.Prime] (B O Q : Type) [Comm
   · refine ⟨0, ?_⟩
     rw [h0, coeff_zero_eq_constantCoeff_apply, hl.1, map_zero]
   obtain ⟨k, hk⟩ : ∃ k, α k ≠ 0 := by
-    by_contra h
-    push_neg at h
+    by_contra! h
     exact h0 (Finsupp.ext h)
   have hkle : α k ≤ p := (Finsupp.le_degree k α).trans hdeg
   have hklt : α k < p := by
@@ -411,8 +441,7 @@ theorem _root_.GlobalTheory.LawDer.Kernel.constantCoeff_iterate_invDer_mem : ∀
     · apply coeff_subst_X_comp_eq_zero_of_not_mem_range
       rintro ⟨e, he⟩
       obtain ⟨k, hk⟩ : ∃ k, β k ≠ 0 := by
-        by_contra h
-        push_neg at h
+        by_contra! h
         exact hβ (Finsupp.ext h)
       have h := congrArg (fun x => x (Sum.inl k)) he
       rw [Finsupp.mapDomain_notin_range _ _ (by simp)] at h
@@ -477,8 +506,7 @@ theorem constantCoeff_atZero (H : MvPowerSeries (Fin d ⊕ Fin d) R) :
   · simp
   · intro e he
     obtain ⟨s, hs⟩ : ∃ s, e s ≠ 0 := by
-      by_contra h
-      push_neg at h
+      by_contra! h
       exact he (Finsupp.ext h)
     have : constantCoeff (e.prod fun s n =>
         (Sum.elim (fun i => (X i : MvPowerSeries (Fin d) R)) (fun _ : Fin d => 0) s) ^ n) = 0 := by
@@ -613,8 +641,7 @@ theorem invDer_monomial (μ : Fin d → MvPowerSeries (Fin d ⊕ Fin d) R)
   | succ n ih =>
     intro α hα
     obtain ⟨i, hi⟩ : ∃ i, α i ≠ 0 := by
-      by_contra h
-      push_neg at h
+      by_contra! h
       have : α = 0 := Finsupp.ext h
       subst this
       simp at hα

@@ -138,8 +138,6 @@ open GlobalTheory.UPel.HT
 
 noncomputable section
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 namespace GlobalTheory.DiagWeil
 
 theorem diag_psum (A : Over (Sp ℂ)) [GrpObj A] [IsCommMonObj A] (I : Finset (Fin 2)) :
@@ -199,7 +197,6 @@ open scoped Matrix
 open GlobalTheory.UPel.HT
 
 section Helpers
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.AdjPullFrame
 

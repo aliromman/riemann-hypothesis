@@ -7,10 +7,28 @@ public import Mathlib.Combinatorics.Quiver.ReflQuiver
 public import Mathlib.RingTheory.AlgebraicIndependent.Basic
 public import Mathlib.RingTheory.Flat.TorsionFree
 public import Mathlib.RingTheory.QuasiFinite.Basic
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.AlgebraicGeometry.Modules.Sheaf
 import Mathlib.AlgebraicGeometry.Morphisms.Immersion
 import Mathlib.AlgebraicGeometry.Morphisms.SchemeTheoreticallyDominant
 import Mathlib.AlgebraicGeometry.Morphisms.WeaklyEtale
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.Order.CompletePartialOrder
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.Henselian
@@ -21,9 +39,20 @@ public import Mathlib.RingTheory.KrullDimension.Field
 public import Mathlib.RingTheory.KrullDimension.Polynomial
 public import Mathlib.RingTheory.NoetherNormalization
 import Mathlib.RingTheory.PicardGroup
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
 public import Mathlib.RingTheory.ZariskisMainTheorem
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -37,6 +66,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 public import Mathlib.AlgebraicGeometry.Morphisms.ClosedImmersion
 public import Mathlib.RingTheory.AlgebraicIndependent.TranscendenceBasis
@@ -188,8 +218,7 @@ theorem trdeg_quotient_eq_of_mem_minimalPrimes (k : Type u) [Field k] [Algebra O
       MvPolynomial.ker_map, hker, Ideal.map_span, Set.image_singleton, Ideal.mem_span_singleton]
   have hϖA : algebraMap O A ϖ ≠ 0 := by simpa using hϖ.ne_zero
   have hinj : Function.Injective φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
-    intro r hr
+    refine (injective_iff_map_eq_zero φ.toRingHom).mpr fun r (hr : φ r = 0) ↦ ?_
     by_contra hr0
     have hnu : ¬ IsUnit (MvPolynomial.C ϖ : (MvPolynomial (Fin s) O)) := fun h ↦ hqp.ne_top <|
       Ideal.eq_top_of_isUnit_mem _ ((hmem _).mpr dvd_rfl) (h.map φ)
@@ -315,24 +344,6 @@ open AlgebraicGeometry CategoryTheory Topology
 variable {O : Type u} [CommRing O] [IsDomain O]
   {Y : Scheme.{u}} [IsIntegral Y] (f : Y ⟶ Spec (.of O)) [LocallyOfFiniteType f] [Flat f]
 
-private theorem ringKrullDim_genericFibre_eq_of_domain (A : Type u) [CommRing A] [IsDomain A]
-    [Algebra O A] [Algebra.FiniteType O A] [FaithfulSMul O A]
-    (K : Type u) [Field K] [Algebra O K] [IsFractionRing O K]
-    {d : ℕ} (hd : Algebra.trdeg O A = d) : ringKrullDim (K ⊗[O] A) = d := by
-  letI : Algebra A (K ⊗[O] A) := Algebra.TensorProduct.rightAlgebra
-  have := IsLocalization.tensorRight (S := A) K (nonZeroDivisors O)
-  have hle : Algebra.algebraMapSubmonoid A (nonZeroDivisors O) ≤ nonZeroDivisors A :=
-    Submonoid.map_le_iff_le_comap.mpr fun x hx ↦ mem_nonZeroDivisors_of_ne_zero
-      (by simpa using nonZeroDivisors.ne_zero hx)
-  have : IsDomain (K ⊗[O] A) := IsLocalization.isDomain_of_le_nonZeroDivisors _ hle
-  have : FaithfulSMul A (K ⊗[O] A) :=
-    (faithfulSMul_iff_algebraMap_injective _ _).mpr (IsLocalization.injective _ hle)
-  have : Algebra.IsAlgebraic O K := IsLocalization.isAlgebraic _ (nonZeroDivisors O)
-  have : Algebra.IsAlgebraic A (K ⊗[O] A) :=
-    IsLocalization.isAlgebraic _ (Algebra.algebraMapSubmonoid A (nonZeroDivisors O))
-  refine ringKrullDim_eq_of_trdeg_eq K _ ?_
-  rw [← trdeg_eq_of_isAlgebraic_bot O K, trdeg_eq_of_isAlgebraic_top O A, hd]
-
 theorem exists_affine_chart_trdeg_eq (x : Y) :
     (
       letI := (Spec.preimage (Y.fromSpecStalk (genericPoint Y) ≫ f)).hom.toAlgebra
@@ -398,7 +409,7 @@ theorem topologicalKrullDim_preimage_genericPoint_eq {d : ℕ}
     refine ⟨Set.range j, j.isOpenEmbedding.isOpen_range, hx, ?_⟩
     letI : Algebra A (FractionRing O ⊗[O] A) := Algebra.TensorProduct.rightAlgebra
     have := IsLocalization.tensorRight (S := A) (FractionRing O) (nonZeroDivisors O)
-    rw [← ringKrullDim_genericFibre_eq_of_domain (A := A) (K := FractionRing O)
+    rw [← ringKrullDim_genericFibre_eq O (A := A) (FractionRing O)
         (hA.trans hd),
       ← PrimeSpectrum.topologicalKrullDim_eq_ringKrullDim]
     refine topologicalKrullDim_eq_of_isEmbedding (j.isOpenEmbedding.isEmbedding.comp

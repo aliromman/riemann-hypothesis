@@ -16,6 +16,29 @@ public import Mathlib.Topology.MetricSpace.Sequences
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FinStable
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PairFirstStep
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PairSecondStep
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -28,10 +51,17 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HasInfCharInfCharOfCommute
 import Mathlib.Algebra.Module.StablyFree.Basic
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
 import Mathlib.RingTheory.SimpleRing.Principal
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsDiscreteUOfIsDiscrete
 import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.BaseChangeDefiniteUnitary
@@ -48,6 +78,7 @@ import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.RingTheory.PicardGroup
+import Mathlib.Tactic.Polynomial.Basic
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CapacityEquivalence, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConvergenceComposition, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConvergenceInfimum, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConvergenceShift, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConvergenceStrip, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DiscreteInfimum, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FactorInduction, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FactorLimit, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HullGeneration, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MultisetEqOfProdAddEq, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FinitePlacesOver, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InfimumOfEquality, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LeafBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LimitLists, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LimitTrees, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PairEmbedding, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PairFiniteDimensional, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemProdSpanInf, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PairRestriction, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PairSlices, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ProdClose, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SingleGluing, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SliceType, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TopologicalInfimum, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.E45FinalGluing
@@ -1828,12 +1859,10 @@ theorem eFinalGlue_of (hCS : ConvStrip) (hCC : ConvComp) (hFS : FactorStep) (hLL
     hG'0 hG'm hG't (fun k h hh => hG'e k h _ (hGe _ h _ (heig _ h hh)))
     (fun h hh => (hlam h hh).comp ((tendsto_add_atTop_nat k₀).comp (hφ₁.comp hφ₂).tendsto_atTop))
   obtain ⟨i, hi⟩ : ∃ i, F i ≠ 0 := by
-    by_contra hcon
-    push_neg at hcon
+    by_contra! hcon
     exact hF0 (funext hcon)
   obtain ⟨x, hx⟩ : ∃ x, F i x ≠ 0 := by
-    by_contra hcon
-    push_neg at hcon
+    by_contra! hcon
     exact hi (funext hcon)
   have hsl := hPS E a b _ _ (F i) (hFm i)
   have hn₁ : sl₁ (F i) x.2 ≠ 0 := fun h => hx (by

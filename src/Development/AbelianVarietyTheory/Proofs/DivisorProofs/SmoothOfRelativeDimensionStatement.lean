@@ -244,7 +244,6 @@ open scoped TensorProduct
 open GlobalTheory.AbDual GlobalTheory.AbLaw GlobalTheory.CechPic
 
 noncomputable section
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.HTPerf
 
@@ -906,7 +905,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory.UPel.Sm GlobalTheory.Cris GlobalTheory.DeRham
 open scoped TensorProduct
-attribute [local instance] Over.cartesianMonoidalCategory
 noncomputable section
 open IsLocalRing GlobalTheory.AbDual GlobalTheory.Published.GrothendieckMessing
 

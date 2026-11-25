@@ -19,19 +19,9 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsPlace
 public import Formalism.SharpRestriction.LevelLetterCocycles.BlochKatoPhases
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ConjPlNeOfSplit
 import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExistsGenerators
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.UnivOfNotLinearIndependent
 import Formalism.LocalRingCardinality.DataTheta
 import Formalism.LocalToGlobal.BesselHermitianTheta.NoncompactGapAtLeastRange
@@ -366,8 +356,7 @@ theorem places_split : ∀ (D : D7) (i : D.ntw.Tw), ∀ P ∈ D.ntw.pD i, Formal
     simpa [pow_succ, AlgEquiv.mul_apply] using this
   have hσm : ∀ x, A.valuation (σ x) < 1 ↔ A.valuation x < 1 := valuation_apply_lt_one_iff hσ.1
   obtain ⟨z, hzL, hz0, hza⟩ : ∃ z ∈ L, z ≠ 0 ∧ ¬ A.valuation (σ z / z - 1) < 1 := by
-    by_contra hall
-    push_neg at hall
+    by_contra! hall
     have hfixσ := fixes_of_wild A σ.toRingEquiv hσm L.toSubfield hσL (fun y hy => h3L y hy) h3u
       (fun y hy hy0 => hall y hy hy0)
     have : σ ∈ K := by

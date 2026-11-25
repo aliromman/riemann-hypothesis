@@ -7,8 +7,10 @@ public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsCocha
 import Mathlib.AlgebraicGeometry.Modules.Sheaf
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.LegendreSymbol
+import Mathlib.Tactic.ReduceModChar
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LieModel
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
+import Mathlib.Tactic.Polynomial.Basic
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.AmpleLineBundles.SquareZeroDeformationAdditivity, Development.WeilBound.CoreStatements.AmpleLineBundles.KillsOverOfSquareZeroIdeal, Development.AutomorphicSpectrum.Proofs.GeometryProofs.KillsOverSquareZeroLift
@@ -369,15 +371,8 @@ theorem one_in {G : Over S} [GrpObj G] {W : G.left.Opens} (ho : ⊤ ≤ (1 : Ove
 private theorem val_eq_of_eq_spMap_comp {Z : Scheme} {A A' : Type} [CommRing A] [CommRing A'] (φ : A →+* A')
     (z : Sp A ⟶ Z) (z' : Sp A' ⟶ Z) (e : z' = spMap φ ≫ z) (V : Z.Opens) (hz : ⊤ ≤ z ⁻¹ᵁ V)
     (hz' : ⊤ ≤ z' ⁻¹ᵁ V) (s : Γ(Z, V)) : val z' V hz' s = φ (val z V hz s) := by
-  subst e
-  have h0 : (⊤ : (Sp A').Opens) ≤ spMap φ ⁻¹ᵁ ⊤ := by simp
-  have key : Scheme.Hom.appLE (spMap φ) ⊤ ⊤ h0 ≫ (Scheme.ΓSpecIso (CommRingCat.of A')).hom =
-      (Scheme.ΓSpecIso (CommRingCat.of A)).hom ≫ CommRingCat.ofHom φ := by
-    rw [← Scheme.ΓSpecIso_naturality]
-    rfl
-  simp only [val]
-  rw [← Scheme.Hom.appLE_comp_appLE (spMap φ) z V ⊤ ⊤ hz h0, Category.assoc, key]
-  rfl
+  intros
+  apply _root_.CoverDenseAlt.val_comp <;> assumption
 
 theorem val_one {G : Over S} [GrpObj G] {W : G.left.Opens} (ho : ⊤ ≤ (1 : Over.mk b ⟶ G).left ⁻¹ᵁ W)
     (g : B →+* A) (s : Γ(G.left, W)) :

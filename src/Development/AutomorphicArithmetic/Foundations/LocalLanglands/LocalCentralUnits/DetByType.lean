@@ -13,18 +13,6 @@ public import Development.WeilBound.RepresentationTheoryGL.GaloisPermutationReps
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ApplyMemTwKerOfNormalizer
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -106,8 +94,7 @@ private theorem equiv_of_typeMaps [Nontrivial W] {T : Representation ℂ (GL (Fi
   have hJU : ∀ w, J w ∈ U := fun w => Submodule.subset_span ⟨1, w, by rw [map_one]; rfl⟩
   obtain ⟨w0, hw0⟩ := exists_ne (0 : W)
   have hinr : ∀ v' : π'.V, ((0 : π.V), v') ∈ U → v' = 0 := by
-    by_contra hcon
-    push_neg at hcon
+    by_contra! hcon
     obtain ⟨v', hv'U, hv'0⟩ := hcon
     have hB : U.comap (LinearMap.inr ℂ π.V π'.V) = ⊤ := top_of_stable π' _ (by
         intro γ y hy
@@ -129,8 +116,7 @@ private theorem equiv_of_typeMaps [Nontrivial W] {T : Representation ℂ (GL (Fi
     rw [this, map_zero] at h2
     exact hw0 (hj'.1 (by rw [← h2, map_zero]))
   have hinl : ∀ v : π.V, (v, (0 : π'.V)) ∈ U → v = 0 := by
-    by_contra hcon
-    push_neg at hcon
+    by_contra! hcon
     obtain ⟨v, hvU, hv0⟩ := hcon
     have hB : U.comap (LinearMap.inl ℂ π.V π'.V) = ⊤ := top_of_stable π _ (by
         intro γ y hy

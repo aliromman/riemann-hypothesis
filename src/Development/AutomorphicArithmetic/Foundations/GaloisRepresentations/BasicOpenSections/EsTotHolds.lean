@@ -26,18 +26,6 @@ import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
 import Std.Tactic.BVDecide.Normalize.Prop
@@ -616,8 +604,7 @@ private theorem exists_idempotent_approx_at_maximal (V : Type) [CommRing V] [IsD
   · intro m' hm' he
     have hhm' : h ∉ m' := fun hh' => he (m'.mul_mem_left v hh')
     have hex : ∃ α ∈ s, f α ∈ m' := by
-      by_contra hne
-      push_neg at hne
+      by_contra! hne
       have hn := prod_notMem (hP := hm'.isPrime) m' s f hne
       rw [hprod] at hn
       exact hn m'.zero_mem

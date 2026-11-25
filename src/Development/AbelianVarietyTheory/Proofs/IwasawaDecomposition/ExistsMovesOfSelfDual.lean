@@ -18,6 +18,28 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ThetaVacu
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsTraceCompatibleTorusEmbeddingStandardTorus
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsMulMemOfMemSpan
 import Formalism.LocalToGlobal.ProjectiveLattices.PartitionExtendByZeroAntitone
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -31,6 +53,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.CmFiniteAdeleIntegralSeparatedComplete
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsIdeleGenerator
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IdealPeriodLatticeOfCurveDatum
@@ -45,9 +69,12 @@ import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ThetaTranslation
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.UnitaryHeckeCharacterValues
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.WeilOperatorVacuumExactConstantEvenRank
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.WeilRepresentationVacuumSignInertPlaces
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
 import Std.Tactic.BVDecide.Normalize.Prop
 
@@ -316,8 +343,7 @@ theorem idele_ideal_laws : ∀ (D : D7), (∀ (u v : (AE D)ˣ) (𝔞 𝔟 : IdE 
       rw [← hr]; exact r.isIntegral_coe
     have h1 : (1 : D.host.E) ∈ 𝔞 * 𝔟 := by rw [hab, Submodule.mem_one]; exact ⟨1, map_one _⟩
     obtain ⟨a₀, ha₀, b₀, hb₀, h0⟩ : ∃ a ∈ 𝔞, ∃ b ∈ 𝔟, a * b ≠ 0 := by
-      by_contra h
-      push_neg at h
+      by_contra! h
       exact one_ne_zero (Submodule.mul_induction_on (C := fun x => x = 0) h1 h fun x y hx hy => by rw [hx, hy, add_zero])
     have hb0 : b₀ ≠ 0 := right_ne_zero_of_mul h0
     let B : Ideal (𝓞 D.host.E) := Submodule.comap (LinearMap.toSpanSingleton (𝓞 D.host.E) D.host.E b₀⁻¹) 𝔞
@@ -583,8 +609,7 @@ theorem exists_coef_field : ∀ (D : D7) (cc : Ideal (𝓞 D.host.K)) (δ : ℂ)
   have hconj := fun ρ => GlobalTheory.ThetaConj.useConj_all D cc δ hC t0 ht N N' _ _ s0 s0' hev e0 he.2.2.2.1 Qbar ρ hD he.2.1
   set G := Iop D (tor0 D cc δ) (La0 D (tor0 D cc δ) N N') (La D (tor0 D cc δ) L L') e0 with hGdef
   obtain ⟨α₀, hα₀⟩ : ∃ α, TaylorLogMetric.taylor D G α ≠ 0 := by
-    by_contra h
-    push_neg at h
+    by_contra! h
     refine hne (funext fun z => ?_)
     have := GlobalTheory.EntireTaylor.hasSum_taylor_mono D N N' G hTh.1 z
     simp only [h, zero_mul] at this

@@ -5,25 +5,7 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BreuilK
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AinfDivisibilityBreuilKisinFacts
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BreuilKisinOEModPrimeLaurentField
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FrobeniusIntegralityWittTiltAinf
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicArithmetic.IntegralCasts.CrystallinePeriods.Kernel
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.HopfAlgebra.Basic
-import Mathlib.RingTheory.LocalProperties.Reduced
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.RingTheory.PowerSeries.Inverse
-import Mathlib.RingTheory.WittVector.DiscreteValuationRing
 import Mathlib.Tactic.Linter.HaveILetI
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -303,8 +285,7 @@ theorem exists_pow_mul (x : Cb l) : ∃ (c : ℕ) (o : OCb l),
   obtain ⟨a, b, hb, rfl⟩ := IsFractionRing.div_surjective (A := OCb l) x
   have hb0 : b ≠ 0 := nonZeroDivisors.ne_zero hb
   have : ∃ c, b ∣ bk.flat ^ c := by
-    by_contra h
-    push_neg at h
+    by_contra! h
     exact hb0 (AinfDiv.flat_haus bk b fun n => (ValuationRing.dvd_total _ _).resolve_right (h n))
   obtain ⟨c, q, hq⟩ := this
   refine ⟨c, q * a, ?_⟩

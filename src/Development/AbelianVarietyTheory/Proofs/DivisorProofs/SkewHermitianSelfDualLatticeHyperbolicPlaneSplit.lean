@@ -16,6 +16,28 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIntege
 public import Development.AbelianVarietyTheory.Definitions.Foundations.NonemptyAlgHomOfNotIsField
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsRescalePrimitiveInLatticeAtSplitPrimes
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSplitPlaceLocalLatticeBasisHyperbolicPlane
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -28,9 +50,16 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Proofs.HermitianTraceForms.ExistsOrthogonalBasisDotProductApplyEq
 import Mathlib.Tactic.Linter.HaveILetI
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import ReciprocityTheory.SemistableReduction.SemiDegZA
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Development.AbelianVarietyTheory.Definitions.Divisors.HilbertNinetyQuotientHomEqIff
 import Development.AbelianVarietyTheory.Definitions.Foundations.NormEulerPolySubOneLe
@@ -78,8 +107,7 @@ namespace GlobalTheory.PlaneSkew
 theorem exists_re_pos_of_congr_diagonal {n : ℕ} (H Q : Matrix (Fin n) (Fin n) ℂ) (δ : Fin n → ℂ)
     (hQ : Q.det ≠ 0) (hd : Qᵀ * H * Q.map star = Matrix.diagonal δ)
     (u : Fin n → ℂ) (hu : 0 < (u ⬝ᵥ H *ᵥ star u).re) : ∃ i, 0 < (δ i).re := by
-  by_contra hneg
-  push_neg at hneg
+  by_contra! hneg
   obtain ⟨v, rfl⟩ : ∃ v, Q *ᵥ v = u :=
     Matrix.mulVec_surjective_iff_isUnit.mpr
       ((Matrix.isUnit_iff_isUnit_det Q).mpr (isUnit_iff_ne_zero.mpr hQ)) u
@@ -159,8 +187,7 @@ theorem exists_isotropic_skew : ∀ (F E : Type) [Field F] [NumberField F] [Fiel
   have hcc : ∀ a, σ a = IsCMField.complexConj E a := fun a =>
     τ₀.injective (by rw [hconj, IsCMField.complexEmbedding_complexConj]; rfl)
   obtain ⟨x₀, hx₀⟩ : ∃ x, σ x ≠ x := by
-    by_contra hno
-    push_neg at hno
+    by_contra! hno
     apply IsCMField.complexConj_ne_one E
     ext x
     rw [← hcc, hno]
@@ -534,8 +561,7 @@ theorem form_skew [NumberField F] [NumberField E] {σ : E →ₐ[F] E} (h : IsCM
 theorem fg_no_line : ∀ (E : Type) [Field E] [NumberField E] (n : ℕ) (L : Submodule (𝓞 E) (Fin n → E)), L.FG →
     ∀ x : Fin n → E, x ≠ 0 → ∃ s : E, s • x ∉ L := by
   intro E _ _ n L hL x hx
-  by_contra h
-  push_neg at h
+  by_contra! h
   obtain ⟨i, hi⟩ : ∃ i, x i ≠ 0 := by
     by_contra h'
     push_neg at h'
@@ -668,8 +694,7 @@ theorem split_global : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Num
   have hφ : ∀ z, φ z = form σ J z x := fun _ => rfl
 
   have hnd : ∃ z ∈ L, φ z ≠ 0 := by
-    by_contra hcon
-    push_neg at hcon
+    by_contra! hcon
     obtain ⟨s, hs⟩ := fg_no_line E _ L hL.fg x hx
     apply hs
     rw [hSD]

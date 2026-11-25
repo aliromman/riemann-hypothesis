@@ -18,8 +18,35 @@ public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.LegendreAn
 public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ProdIccMulFactorial
 public import Formalism.FormalGroupLog.FormalGroupLogProofs.ChainRule
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.CalcExp
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Real
 import Mathlib.Algebra.Ring.IsFormallyReal
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -33,7 +60,12 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Sheaves.Presheaf
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Tactic.Basify
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.Tactic.Lemma
 import Std.Tactic.BVDecide.Normalize.Prop
@@ -444,8 +476,7 @@ theorem _root_.GlobalTheory.newtonBound_pos_and_newtonStep : _root_.Formalism.L2
     nlinarith [mul_lt_mul_of_pos_left key hpos]
   · unfold _root_.Formalism.L2.FormalSeriesBounds.P7
     intro C _ v S a hS ha0 hpos Y0
-    by_contra hcon
-    push_neg at hcon
+    by_contra! hcon
     have hadd : ∀ x y : C, 0 < v x → 0 < v y → 0 < v (x + y) := fun x y hx hy =>
       lt_of_lt_of_le (lt_min hx hy) (v.map_add x y)
     have hsub : ∀ x y : C, 0 < v x → 0 < v y → 0 < v (x - y) := fun x y hx hy => by
@@ -1685,8 +1716,7 @@ namespace GlobalTheory.OddBlock.BlockContent
 variable {C : Type} [Field C] (v : AddValuation C (WithTop ℝ))
 
 theorem val_coprime_le {l m : ℕ} (hv : v (l : C) = 1) (h : Nat.Coprime l m) : v (m : C) ≤ 0 := by
-  by_contra hm
-  push_neg at hm
+  by_contra! hm
   have hb : (1 : ℤ) = l * Nat.gcdA l m + m * Nat.gcdB l m := by
     have := Nat.gcd_eq_gcd_ab l m
     rw [h] at this

@@ -37,8 +37,6 @@ namespace GlobalTheory.ShFam.Cell
 
 open scoped CategoryTheory.MonObj
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 section Mat
 
 variable {R : Type} [CommRing R] {m : ℕ}

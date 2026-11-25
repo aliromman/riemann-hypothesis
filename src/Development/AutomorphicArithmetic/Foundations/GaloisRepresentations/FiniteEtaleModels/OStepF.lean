@@ -19,21 +19,8 @@ public import Development.AutomorphicArithmetic.CommutativeAlgebra.QuotientUniqu
 public import Development.AutomorphicArithmetic.CommutativeAlgebra.TraceEtaIdentity
 public import Development.AutomorphicArithmetic.CommutativeAlgebra.TracePullbackIdentity
 public import Development.AutomorphicArithmetic.CommutativeAlgebra.TraceUnitOfPullbackMultiplier
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsEtPlace
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompEqOneOfTransl
-import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.FiniteEtaleModels.IsEtIdealOfPlace
 
 -- This file was produced by scripts/clump.py from the modules listed below.

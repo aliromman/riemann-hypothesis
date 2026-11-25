@@ -19,6 +19,28 @@ public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentation
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.IdeleNormCharacters.ChrPairsHolds
 public import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.LimWU4OfLimWU3
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.CrystallineDescent.LimOddOfLimFinOdd
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -33,10 +55,15 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsWeilFormulas
 import Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts
 import Development.AbelianVarietyTheory.Definitions.Foundations.IsIwasawaOfIsCompact
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import GroundTheory.GlobalFields.IdeleGroups.LocalConditionIndex
+import Mathlib.Tactic.Polynomial.Basic
 import GroundTheory.GlobalFields.Artin.Places
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.Tactic.Lemma
@@ -160,8 +187,7 @@ theorem UpperTheory.Gal.TP.Skew.conjAut :
   let s : Gal(E/F) := AlgEquiv.ofBijective σ ⟨σ.toRingHom.injective, hsurj⟩
   have hs : ∀ x, s x = σ x := fun x => rfl
   have hne : ∃ x, σ x ≠ x := by
-    by_contra h
-    push_neg at h
+    by_contra! h
     apply IsTotallyComplex.complexEmbedding_not_isReal τ
     show star τ = τ
     ext x
@@ -176,8 +202,7 @@ theorem UpperTheory.Gal.TP.Skew.conjAut :
   · ext y
     simp [hs, hsq]
   · intro g
-    by_contra hg
-    push_neg at hg
+    by_contra! hg
     have hle : ({1, s, g} : Finset Gal(E/F)).card ≤ Fintype.card Gal(E/F) := Finset.card_le_univ _
     rw [Finset.card_insert_of_notMem (by simp [hs1.symm, hg.1.symm]),
       Finset.card_pair hg.2.symm, hcard] at hle
@@ -215,8 +240,7 @@ theorem UpperTheory.Gal.TP.Skew.ideleStep :
     rw [hw']
     exact hFr.isReal v
   obtain ⟨c, hc⟩ : ∃ c, infiniteLocalSymbol E v c ≠ 1 := by
-    by_contra h
-    push_neg at h
+    by_contra! h
     exact hram (MonoidHom.ext h)
   have hc' : infiniteLocalSymbol E v c = s := (hall _).resolve_left hc
   have key : ∀ a' : IdeleGroup F, ideleSymbol F E a' = 1 →
@@ -554,8 +578,7 @@ private theorem mem_iff {E : Type} [Field E] [NumberField E] (I : FractionalIdea
 
 private theorem attained {E : Type} [Field E] [NumberField E] (I : FractionalIdeal (𝓞 E)⁰ E) (hI : I ≠ 0)
     (w : HeightOneSpectrum (𝓞 E)) : ∃ x ∈ I, x ≠ 0 ∧ ordE w x = FractionalIdeal.count E w I := by
-  by_contra hcon
-  push_neg at hcon
+  by_contra! hcon
   have hP : ((w.asIdeal : Ideal (𝓞 E)) : FractionalIdeal (𝓞 E)⁰ E) ≠ 0 := by
     rw [Ne, FractionalIdeal.coeIdeal_eq_zero]
     exact w.ne_bot

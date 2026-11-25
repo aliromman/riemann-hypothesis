@@ -20,21 +20,6 @@ public import Development.AutomorphicArithmetic.Foundations.LocalLanglands.Local
 public import Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.ParOne
 public import Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.ParUniq
 import GroundTheory.AutomorphicForms.GLnLocal
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Algebra.Category.ModuleCat.Algebra
-import Mathlib.Combinatorics.Quiver.ReflQuiver
-import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.Tactic.Linter.HaveILetI
 import ReciprocityTheory.GaloisValuations.GlobalB
 import Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.TwTame
@@ -483,8 +468,7 @@ theorem parEx : ParEx := by
     have hNC := nameCentral g n hn D.K hrank τ θ hτ hθr hθN
     obtain ⟨ψ, hψ0, hψ⟩ := hτi
     obtain ⟨v, hv⟩ : ∃ v, ψ v ≠ 0 := by
-      by_contra hcon
-      push_neg at hcon
+      by_contra! hcon
       exact hψ0 (LinearMap.ext hcon)
     have hcent : ∀ t : ↥(Ine A), θ (∏ j ∈ Finset.range n, R t ^ g ^ j) = ω (a (ineIncl h t)) := by
       intro t

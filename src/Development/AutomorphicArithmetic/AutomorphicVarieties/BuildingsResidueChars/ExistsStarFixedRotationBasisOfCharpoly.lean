@@ -7,28 +7,7 @@ public import Mathlib.Algebra.QuadraticAlgebra.Basic
 public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
 public import Mathlib.LinearAlgebra.Dimension.Constructions
 public import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.Etale.Weakly
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.HopfAlgebra.Basic
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.RingTheory.TotallySplit
-import Mathlib.Tactic.Lemma
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GlobalUnitaryForms.LevelTwoFiniteIndex
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.LocalHermitianForms.EvenVal
 import Std.Tactic.BVDecide.Normalize.Prop
@@ -150,8 +129,7 @@ theorem UpperTheory.exists_fixed_rotation_basis_of_charpoly :
     simp only [Matrix.toLin'_apply, Matrix.mulVec_mulVec, hMF]
   let g : W →ₗ[K] W := (Matrix.toLin' M).restrict hW
   obtain ⟨v0, hv0⟩ : ∃ v : W, LinearIndependent K ![v, g v] := by
-    by_contra hno
-    push_neg at hno
+    by_contra! hno
     obtain ⟨a, ha⟩ := LinearMap.exists_eq_smul_id_of_forall_notLinearIndependent hno
     have hMFx : ∀ x : Fin 3 → K, M *ᵥ (F *ᵥ x) = a • (F *ᵥ x) := by
       intro x
@@ -168,8 +146,7 @@ theorem UpperTheory.exists_fixed_rotation_basis_of_charpoly :
       rw [hsplit, Matrix.trace_add, hME, hMFm, Matrix.trace_smul, htrE, htrF, smul_eq_mul]
       ring
     have hF0 : ∃ x : Fin 3 → K, F *ᵥ x ≠ 0 := by
-      by_contra hall
-      push_neg at hall
+      by_contra! hall
       have hF00 : F = 0 := by
         apply Matrix.toLin'.injective
         apply LinearMap.ext

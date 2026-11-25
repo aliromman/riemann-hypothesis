@@ -28,10 +28,38 @@ public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.IsIntegra
 public import Mathlib.RingTheory.AdicCompletion.Topology
 public import ReciprocityTheory.AdicCompleteness.IsAdicCompleteComapConstantCoeff
 public import ReciprocityTheory.CommutativeAlgebra.SaturatedChains.Integral
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -44,11 +72,15 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.Order.CompletePartialOrder
 import Mathlib.SetTheory.ZFC.PSet
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.HaveILetI
+import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.RingTheory.AdicCompletion.Noetherian
 import Mathlib.RingTheory.KrullDimension.NonZeroDivisors
 import Mathlib.Topology.Sheaves.Presheaf
@@ -583,8 +615,7 @@ private theorem exists_pow_dvd_of_mem_maximalIdeal_pow {S : Type} [CommRing S] [
       push_cast
       exact pow_ne_zero _ hπ0
     obtain ⟨M, hM⟩ : ∃ M, ((π ^ k : Λ) : S) ∉ maximalIdeal S ^ M := by
-      by_contra h
-      push_neg at h
+      by_contra! h
       exact hne (eq_zero_of_forall_mem_pow_of_isAdicComplete _ hc _ h)
     refine ⟨max N M, fun a ha => ?_⟩
     obtain ⟨u, rfl⟩ := hN a (Ideal.pow_le_pow_right (le_max_left _ _) ha)
@@ -614,8 +645,7 @@ theorem isDVR_of_closed_subring_principal :
     exact_mod_cast this
   have hirr : Irreducible π := by
     refine ⟨fun h => (hunit π).1 h hπm, fun ⦃a b⦄ hab => ?_⟩
-    by_contra hne
-    push_neg at hne
+    by_contra! hne
     obtain ⟨ha, hb⟩ := hne
     rw [hunit, not_not] at ha hb
     obtain ⟨x, rfl⟩ := hdiv a ha
@@ -627,8 +657,7 @@ theorem isDVR_of_closed_subring_principal :
   have hfac : ∀ {x : Λ}, x ≠ 0 → ∃ n : ℕ, Associated (π ^ n) x := by
     intro x hx
     have hex : ∃ n, ¬ π ^ n ∣ x := by
-      by_contra h
-      push_neg at h
+      by_contra! h
       exact hx (hsep x h)
     classical
     obtain ⟨k, hk, hk1⟩ : ∃ k, π ^ k ∣ x ∧ ¬ π ^ (k + 1) ∣ x := by

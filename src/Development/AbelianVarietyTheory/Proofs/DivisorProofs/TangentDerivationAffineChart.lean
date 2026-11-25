@@ -42,8 +42,6 @@ open scoped Classical
 
 noncomputable section
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 namespace GlobalTheory.KSPkg
 
 open GlobalTheory.DeRham GlobalTheory.Cris

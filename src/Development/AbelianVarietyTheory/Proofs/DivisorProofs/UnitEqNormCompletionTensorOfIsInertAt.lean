@@ -5,9 +5,33 @@ import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsUniqueI
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.IsAdicCompleteAndCardQuotientAdicCompletionInteg
 public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.IsFieldAdicCompletionTensorOfInert
 import Formalism.LocalToGlobal.Columns.StdLatUnimodular
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Int
 public import Mathlib.Algebra.Polynomial.Degree.IsMonicOfDegree
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
 import Mathlib.LinearAlgebra.FreeModule.IdealQuotient
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -21,6 +45,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -58,8 +85,7 @@ open IsDedekindDomain.HeightOneSpectrum Polynomial
 
 theorem exists_ne_of_isCMExt {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
     (σ : E →ₐ[F] E) (hσ : IsCMExt F E σ) : ∃ x : E, σ x ≠ x := by
-  by_contra h
-  push_neg at h
+  by_contra! h
   obtain ⟨τ⟩ : Nonempty (E →+* ℂ) := inferInstance
   have hreal : NumberField.ComplexEmbedding.IsReal τ := by
     rw [NumberField.ComplexEmbedding.isReal_iff]
@@ -182,8 +208,7 @@ theorem exists_approx_mod {F : Type} [Field F] [NumberField F] (v : HeightOneSpe
     simp only [map_sub, map_add (f := _), map_mul, map_pow, hr', ht']
     linear_combination h ^ 2 * hsρ' + (h * s * π b * ρ + h * π b ^ 2 * ρ ^ 2 - (π c * ρ ^ 2 - π u₀) * (1 + 2 * h)) * hh
   refine ⟨r, t, (hz _).1 hQ, ?_⟩
-  by_contra hboth
-  push_neg at hboth
+  by_contra! hboth
   have e1 := (hz _).2 hboth.1
   have e2 := (hz _).2 hboth.2
   simp only [map_sub, map_mul, map_ofNat] at e1 e2

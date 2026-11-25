@@ -15,18 +15,6 @@ public import Development.AutomorphicSpectrum.Proofs.GlobalProofs.ParabolicInduc
 import GroundTheory.LocalFields.PadicLogSeries
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -92,8 +80,7 @@ theorem one_le_jhMult_jac (e : (Σ a, m a) ≃ n) {ρ : Representation ℂ (Levi
     (hf : ∃ v, f v ≠ 0) : 1 ≤ jhMult ρ (jac e τ) := by
   obtain ⟨v, hv⟩ := hf
   obtain ⟨x, hx⟩ : ∃ x, (f v).1.1 x ≠ 0 := by
-    by_contra h
-    push_neg at h
+    by_contra! h
     exact hv (Subtype.ext (Subtype.ext (funext h)))
   let φ := GlobalTheory.SmGL.Model.evalOne e f
   have h1 : φ (Submodule.Quotient.mk (τ x v)) ≠ 0 := by
@@ -184,8 +171,7 @@ theorem one_le_jhMult_jac_atom (e : (Σ a, m a) ≃ n) {ρ : Representation ℂ 
     1 ≤ jhMult ρ (jac e T.toRepresentation) := by
   let ιT : T.toRepresentation.IntertwiningMap (parInd e ρ) := ⟨T.toSubmodule.subtype, fun _ => rfl⟩
   refine one_le_jhMult_jac e hρ ιT ?_
-  by_contra hc
-  push_neg at hc
+  by_contra! hc
   exact hT.1 (Subrepresentation.toSubmodule_injective (eq_bot_iff.2 fun v hv =>
     (Submodule.mem_bot ℂ).2 (hc ⟨v, hv⟩)))
 

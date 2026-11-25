@@ -3,7 +3,30 @@ module
 public import Development.AbelianVarietyTheory.Definitions.Divisors.ClassSums
 public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.ConvexCones.FinitePosDefFormSublevel
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeightedLatticeQuadraticSumGeDiagonal
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
 import Mathlib.Data.Pi.Interval
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -423,8 +446,7 @@ theorem orbitSums_of_classSums : ∀ (O : Type) [CommRing O] (bar : O → O) (q 
   refine ⟨hSfin.toFinset, fun μ hμ => (hSfin.mem_toFinset.1 hμ).1, fun μ hμ hμS => ?_, ?_⟩
   · rw [hSfin.mem_toFinset] at hμS
     obtain ⟨i, hi⟩ : ∃ i, (fun u => μ (i, u)) ∉ T := by
-      by_contra hcon
-      push_neg at hcon
+      by_contra! hcon
       exact hμS ⟨hμ, hcon⟩
     have h1 : R < ((qW W (Φ.β y) (fun u => μ (i, u)) : ℤ) : ℝ) := by
       by_contra hcon

@@ -28,8 +28,6 @@ namespace GlobalTheory.SmoothCyclic
 
 open Formalism.MainNotions.S Formalism.L2.Theta GlobalTheory.GardingVec GlobalTheory.LowTypeRestriction
 
-attribute [local instance] Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
-
 section Conj
 variable {n : ℕ}
 

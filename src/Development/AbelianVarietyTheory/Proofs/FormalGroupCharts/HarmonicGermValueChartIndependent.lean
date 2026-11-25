@@ -15,6 +15,31 @@ public import Formalism.SharpRestriction.Divisibility.GeneratorPowers.GaugeUniqP
 public import Formalism.SharpRestriction.Divisibility.GeneratorPowers.HarmInvPf
 public import Formalism.SharpRestriction.Divisibility.GeneratorPowers.KillAddVal
 public import Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpAct
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -54,8 +79,7 @@ theorem balanced_pairs (H : Host E) {l : Level H} (c : Coeff l) {S : Type} [Comm
     (hv : ∀ a : 𝓞 E, algebraMap c.F S (embK c τ a) * v = algebraMap c.F S (embK c τ' (H.bar a)) * v)
     (hne : τ ≠ ComplexEmbedding.conjugate τ') : v = 0 := by
   have : ∃ a : 𝓞 E, embK c τ a ≠ embK c τ' (H.bar a) := by
-    by_contra hcon
-    push_neg at hcon
+    by_contra! hcon
     apply hne
     apply IsLocalization.ringHom_ext (nonZeroDivisors (𝓞 E))
     ext a

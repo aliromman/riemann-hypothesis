@@ -43,7 +43,6 @@ section -- clump:auto
 noncomputable section
 open Matrix NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.LocWSOf
 namespace GlobalTheory.TypeAsm.FramePf
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem ka_div (D : D7) : D.host.ka / (2 * Real.pi) = (2 * D.host.v)⁻¹ := by
   have h0 : 0 < D.host.rdE := _root_.Formalism.MainNotions.S.rdE_pos D
@@ -99,8 +98,6 @@ open scoped Classical
 open Matrix NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.LocWSOf
 
 namespace GlobalTheory.TypeAsm.GramPf
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7} {X : HidaSetting D}
 
@@ -942,7 +939,6 @@ alias entry_eq := _root_.Formalism.L2.SG.Pf.WFL.mat_apply_bvec
 
 end GlobalTheory.TypeAsm.FramePf
 namespace GlobalTheory.TypeAsm
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open FramePf
 
 

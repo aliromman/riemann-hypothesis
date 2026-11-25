@@ -7,9 +7,31 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibra
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.CrystallineBaseChange.TwCard
 public import Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.ExplicitConstants.SplitCharY
 public import Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.HeckeCharacterChoice.ExistsSqEqNegOfDiscr
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.Algebra.Order.Star.Rat
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
 public import Mathlib.NumberTheory.LSeries.PrimesInAP
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -22,6 +44,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.BcDefs
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.BaseChangeUnits.CycCOfCyclic
@@ -61,8 +85,7 @@ private theorem fix_root {Ω : Type} [Field Ω] [Algebra ℚ Ω] (A : ValuationS
     rw [Valuation.map_mul]
     exact lt_of_le_of_lt (mul_le_of_le_one_right' hc1) hl
   have key : A.valuation u < 1 ∨ A.valuation (1 - u) < 1 := by
-    by_contra hne
-    push_neg at hne
+    by_contra! hne
     have h1 : 1 ≤ A.valuation (u * (1 - u)) := by
       rw [Valuation.map_mul]
       exact one_le_mul hne.1 hne.2
@@ -235,8 +258,7 @@ theorem thirdSplit (K K' Ω : Type) [Field K] [NumberField K] [IsCMField K] [Fie
       (tw (r.comp (resG ℚ K Ω)) ((δf i).comp (resG ℚ K Ω)))) ∪
       (Finset.univ.filter fun i => RepIso (r.comp (resG ℚ K' Ω))
       (tw (r.comp (resG ℚ K' Ω)) ((δf i).comp (resG ℚ K' Ω)))) := by
-    by_contra hall
-    push_neg at hall
+    by_contra! hall
     have h1 : (Finset.univ : Finset (Fin (4 * n ^ 2 + 1))) ⊆ _ := fun i _ => hall i
     have h2 := (Finset.card_le_card h1).trans ((Finset.card_union_le _ _).trans (add_le_add hbadK hbadK'))
     simp at h2

@@ -4,11 +4,37 @@ public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.
 public import Mathlib.Topology.LocallyConstant.Basic
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IwahoriProjSurjective
 import Mathlib.Algebra.Module.StablyFree.Basic
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+import Mathlib.NumberTheory.Chebyshev
 import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -23,6 +49,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -188,8 +215,7 @@ theorem exists_smooth_form_ne {π : Representation ℂ G V} (hπ : IsSmooth π)
   obtain ⟨K, ho, hc, hKs⟩ := hG _ ((hπ v).mem_nhds (by simp))
   have hvK : v ∈ fixed π K := mem_fix.2 fun h hh => hKs hh
   obtain ⟨m, hm⟩ : ∃ m : Module.Dual ℂ (fixed π K), m ⟨v, hvK⟩ ≠ 0 := by
-    by_contra hne
-    push_neg at hne
+    by_contra! hne
     exact hv (congrArg Subtype.val ((Module.forall_dual_apply_eq_zero_iff ℂ _).1 hne))
   obtain ⟨l, -, hl⟩ := exists_fixed_contra hπ ho hc m
   exact ⟨l, by rw [show v = ((⟨v, hvK⟩ : fixed π K) : V) from rfl, hl]; exact hm⟩
@@ -312,8 +338,7 @@ theorem contra_isIrreducible
     {π : Representation ℂ G V} (hπ : IsAdmissible π) (hirr : π.IsIrreducible) :
     (contra π).IsIrreducible := by
   obtain ⟨v, hv⟩ : ∃ v : V, v ≠ 0 := by
-    by_contra h
-    push_neg at h
+    by_contra! h
     apply (bot_ne_top : (⊥ : Subrepresentation π) ≠ ⊤)
     apply Subrepresentation.ext
     ext x

@@ -4,7 +4,6 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.ConvexNerve
 public import Mathlib.Analysis.Convex.Hull
 public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ConvexNerveComplexes.Sublevel
-import Mathlib.RingTheory.Flat.TorsionFree
 public import Mathlib.Topology.Algebra.Module.Spaces.ContinuousLinearMap
 public import Mathlib.Analysis.Normed.Operator.Bilinear
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ConvexNerveComplexes.Perturb
@@ -16,6 +15,32 @@ public import Mathlib.Analysis.Convex.Basic
 public import Mathlib.Analysis.Normed.Module.Basic
 public import Mathlib.Analysis.LocallyConvex.Separation
 public import Mathlib.Analysis.Convex.PathConnected
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -29,10 +54,16 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Algebra.Order.Star.Real
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Order.CompletePartialOrder
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
@@ -105,8 +136,7 @@ theorem UpperTheory.V.ConeExtensionAcyclic.cone_finite :
   rintro v ⟨z, hzs, hzv⟩
   refine ⟨?_, v.2⟩
   simp only [K, Set.mem_iUnion]
-  by_contra hno
-  push_neg at hno
+  by_contra! hno
   have hconv : Convex ℝ {f : E →L[ℝ] ℝ | 0 < f (v.1 - h0)} := by
     refine convex_halfSpace_gt ?_ 0
     exact ⟨fun f g => rfl, fun c f => rfl⟩
@@ -449,8 +479,7 @@ theorem UpperTheory.V.ConeExtensionAcyclic.nerve_sep :
   simp only [cands, Finset.mem_filter, Finset.mem_powerset] at hσ hmax
   obtain ⟨hσS, x0, hx0X, hx0σ⟩ := hσ
   have hex : ∃ i, (X ∩ A i).Nonempty ∧ x0 ∉ A i := by
-    by_contra hc
-    push_neg at hc
+    by_contra! hc
     exact hno ⟨x0, hx0X, hc⟩
   obtain ⟨i, hiX, hix0⟩ := hex
   have hiσ : i ∉ σ := fun h => hix0 (hx0σ i h)

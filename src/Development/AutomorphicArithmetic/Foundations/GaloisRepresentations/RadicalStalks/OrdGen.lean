@@ -31,32 +31,12 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HodgeFiltrat
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RadicalStalks.CohHomNatCastZero
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RadicalStalks.Point
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrobTwistBaseChangeHomApp
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
 import Development.AbelianVarietyTheory.Definitions.Divisors.Pullback1MemHodgeFiltration
-import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Algebra.Module.StablyFree.Basic
-import Mathlib.LinearAlgebra.Eigenspace.Pi
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.Tactic.Lemma
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsDeRhamSheaf
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
 import Mathlib.Tactic.Linter.HaveILetI
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsLocalRingTrivSqZeroExt
-import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RadicalStalks.DualZeroOfSpan, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RadicalStalks.Factor, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RadicalStalks.KsCore, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RadicalStalks.NotLeSpanImage, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RadicalStalks.NotMem, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RadicalStalks.OrdPull, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrobeniusPullbackDeRhamMapExists, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RadicalStalks.PullFrobIter, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RadicalStalks.RadicalStalk, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RadicalStalks.OrdGen
@@ -438,8 +418,7 @@ private lemma not_le_span_image {k P : Type*} [Field k] [AddCommGroup P] [Module
     ¬ G ≤ Submodule.span k (A '' G) := by
   intro hle
   obtain ⟨ℓ, hℓ⟩ : ∃ ℓ : Module.Dual k P, ℓ v ≠ 0 := by
-    by_contra h
-    push_neg at h
+    by_contra! h
     exact hv0 ((Module.forall_dual_apply_eq_zero_iff k v).1 h)
   let K : Submodule k P := G ⊓ LinearMap.ker ℓ
   have hKG : K < G := by
@@ -631,8 +610,7 @@ private lemma exists_not_mem {k C P : Type*} [Field k] [IsAlgClosed k] [CommRing
   have hvG : v ∈ G := by
     refine (Submodule.mem_iInf _).2 fun c => (Module.End.mem_maxGenEigenspace _ _ _).2 ⟨1, ?_⟩
     simp [hv]
-  by_contra hno
-  push_neg at hno
+  by_contra! hno
   have hS : Submodule.span k (Set.range A) ≤ Wd ⊔ H := by
     refine Submodule.span_le.2 ?_
     rintro _ ⟨z, rfl⟩

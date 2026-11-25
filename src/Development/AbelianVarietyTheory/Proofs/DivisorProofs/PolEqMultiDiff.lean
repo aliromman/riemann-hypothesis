@@ -4,6 +4,34 @@ public import Mathlib.Algebra.Algebra.Defs
 public import Mathlib.Algebra.BigOperators.Group.Finset.Defs
 public import Mathlib.Basic.Real.Basic
 public import Mathlib.Data.Fintype.Powerset
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -16,6 +44,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.Divisors.NefFibOfIsNef
 public import Mathlib.Algebra.BigOperators.Fin
@@ -45,12 +76,6 @@ theorem _root_.GlobalTheory.FibreProj.pol_sum {J : Type} (T : Finset J)
   unfold _root_.GlobalTheory.FibreProj.pol
   simp_rw [Finset.mul_sum]
   exact Finset.sum_comm
-
-open MvPolynomial in
-variable {ι : Type} [Fintype ι] in
-private theorem sum_pow_eq_sum_words_prod {R : Type} [CommRing R] (c : ι → R) (D : ℕ) :
-    (∑ i, c i) ^ D = ∑ f : Fin D → ι, ∏ k, c (f k) := by
-  rw [← Fin.prod_const, Fintype.prod_sum]
 
 open MvPolynomial in
 variable {ι : Type} [Fintype ι] in
@@ -135,7 +160,7 @@ private theorem sum_neg_one_pow_card_mul_sum_pow_eq_factorial_prod {R : Type} [C
       = ∑ S : Finset ι, ∑ f : Fin D → ι,
           (∏ k, w (f k)) * ((-1 : R) ^ S.card * (if ∀ k, f k ∈ S then 1 else 0)) := by
         refine Finset.sum_congr rfl fun S _ => ?_
-        rw [sum_pow_eq_sum_words_prod, Finset.mul_sum]
+        rw [Fintype.sum_pow, Finset.mul_sum]
         refine Finset.sum_congr rfl fun f _ => ?_
         rw [Finset.prod_ite_zero]
         simp only [Finset.mem_univ, true_implies]

@@ -54,6 +54,32 @@ public import Formalism.SharpRestriction.GlobalSchurBounds.MassRatioUnfoldedOfTh
 public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.RealPlaceMeasures
 public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.Unfolding
 public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.VolIndep
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -66,12 +92,17 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Algebra.AffineMonoid.Basic
 import Mathlib.Algebra.Order.Star.Real
 import Mathlib.RingTheory.Finiteness.Quotient
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Topology.Algebra.Group.Units
@@ -80,6 +111,7 @@ import Development.AbelianVarietyTheory.Definitions.Foundations.InFrameStabilize
 import Mathlib.Tactic.Linter.Style
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.Tactic.Polynomial.Basic
 import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GapAtLeast
 import Mathlib.Topology.UniformSpace.Uniformizable
 import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
@@ -979,8 +1011,7 @@ theorem le_of_lintegral_ball_eq {X : Type} [PseudoMetricSpace X] [ProperSpace X]
     (G H : X → ℝ≥0∞) (b : X) (hG : ContinuousAt G b) (hH : ContinuousAt H b)
     (h : ∀ r > 0, ∫⁻ x in Metric.ball b r, G x ∂ν = ∫⁻ x in Metric.ball b r, H x ∂ν) :
     H b ≤ G b := by
-  by_contra hlt
-  push_neg at hlt
+  by_contra! hlt
   obtain ⟨c, hc1, hc2⟩ := exists_between hlt
   obtain ⟨d, hd1, hd2⟩ := exists_between hc2
   have e : ∀ᶠ x in 𝓝 b, G x < c ∧ d < H x :=
@@ -1703,8 +1734,6 @@ theorem ratio_of_eq {V V' c p : ℝ} (hV : 0 < V) (hV' : 0 < V') (hc : 0 < c) (h
   rw [inv_pow] at h1
   field_simp at h1 ⊢
   linarith
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem hE_coords (D : D7) (W : HSpace D.host.E) (x y : W.V) :
     hE D.sp.cm.sig W.gram (fun i => W.frame.repr x i) (fun i => W.frame.repr y i) = W.hT x y := by

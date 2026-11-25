@@ -43,6 +43,31 @@ public import Mathlib.RingTheory.Trace.Defs
 public import GroundTheory.LocalFields.Different
 public import GroundTheory.LocalFields.DifferentGalois
 public import GroundTheory.LocalFields.KroneckerWeber
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -55,9 +80,16 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import GroundTheory.LocalFields.Interface
 import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.RingTheory.WittVector.IsPoly
 import Mathlib.Topology.Sheaves.Presheaf
 import Mathlib.Tactic.TypeStar
 import GroundTheory.LocalFields.ConductorTransport
@@ -263,8 +295,7 @@ theorem detects_restrictNormal_inf : ∀ (l : ℕ) [Fact l.Prime] (L : Type) [Fi
     intro h
     exact hσ₀B ⟨Subgroup.mem_map.mpr ⟨lift σ₀, h, hτ⟩, hσ₀.2⟩
   have hex : ∃ i, ¬ (l : ℤ) ^ r ∣ a i (lift σ₀) := by
-    by_contra hc
-    push_neg at hc
+    by_contra! hc
     exact hτN' (hN' _ hτN hc)
   obtain ⟨i, hi⟩ := hex
   obtain ⟨x', hx'⟩ := hx i
@@ -445,8 +476,7 @@ theorem card_le_jumpSum_wild_of_exponent :
     exact hpow σ
   have hM1 := _root_.GlobalTheory.PMon.Ram.upperRamificationGroup_one_eq_top_of_exponent F M p e hp he hordF hM0 hMexp
   obtain ⟨σ₀, hσ₀⟩ : ∃ σ₀, σ₀ ∉ B := by
-    by_contra h
-    push_neg at h
+    by_contra! h
     exact hB (eq_top_iff.mpr fun x _ => h x)
   have hmem : AlgEquiv.restrictNormalHom M σ₀ ∈ (upperRamificationGroup F L 1).map (AlgEquiv.restrictNormalHom M) := by
     rw [map_upperRamificationGroup M 1, hM1]; trivial
@@ -638,8 +668,7 @@ theorem jumpSum_support_subset {G : Type} [Group G] (R : ℕ → Subgroup G) (A 
   classical
   intro t ht
   simp only [Finset.coe_range, Set.mem_Iio]
-  by_contra h
-  push_neg at h
+  by_contra! h
   apply ht
   have h1 : R t = ⊥ := le_bot_iff.mp (hm ▸ hR h)
   simp [h1]
@@ -699,8 +728,7 @@ theorem exists_mem_upperRamificationGroup_jumpSum_not_mem :
   cases n with
   | zero =>
     obtain ⟨σ, hσ⟩ : ∃ σ, σ ∉ B := by
-      by_contra h
-      push_neg at h
+      by_contra! h
       exact hB (eq_top_iff.mpr fun σ _ => h σ)
     refine ⟨σ, ?_, hσ⟩
     rw [Nat.cast_zero, h0]
@@ -1411,8 +1439,7 @@ theorem jumpSum_kernel_le_six_mul :
     · exact h
 
   have hdM : differentExponent F M < (_root_.Ideal.ramificationIdx (_root_.IsLocalRing.maximalIdeal (_root_.Valuation.integer (_root_.ValuativeRel.valuation M))) (_root_.Valuation.integer (_root_.ValuativeRel.valuation F))) * (3 * e) := by
-    by_contra hle
-    push_neg at hle
+    by_contra! hle
     obtain ⟨w, hw, hwt⟩ := _root_.GlobalTheory.PMon.Ram.exists_mem_maximalIdeal_pow_eq_trace_of_le_differentExponent F M (3 * e) hle z
     exact _root_.GlobalTheory.PMon.Ram.sq_mul_not_mem_maxIdeal_pow F p e c hp he hordF hpc w hw (hwt.trans hz)
   have htow := differentExponent_tower F M L

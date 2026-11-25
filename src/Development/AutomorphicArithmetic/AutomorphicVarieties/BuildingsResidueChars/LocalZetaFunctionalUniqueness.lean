@@ -9,21 +9,8 @@ import GroundTheory.AutomorphicForms.SmoothRepContragredient
 import GroundTheory.AutomorphicForms.SmoothRepSchur
 public import GroundTheory.LocalFields.PadicExp
 import GroundTheory.LocalFields.UnramifiedHensel
-import Mathlib.Algebra.Module.StablyFree.Basic
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Algebra.Nonarchimedean.TotallyDisconnected
 import Mathlib.Topology.Separation.Connected
 
@@ -209,8 +196,7 @@ theorem UpperTheory.local_zeta_functional_uniqueness :
     fun h0 => hv (congrArg Subtype.val h0)
   obtain ⟨f, hf⟩ : ∃ f : Module.Dual ℂ (fixedVectors σ ((congruenceSubgroup F n (m0 + 1)).subgroupOf (levi F n β))),
       f ⟨v, hvK⟩ ≠ 0 := by
-    by_contra hc
-    push_neg at hc
+    by_contra! hc
     exact hv' ((Module.forall_dual_apply_eq_zero_iff ℂ _).1 hc)
   let E := fixedContragredientEquiv (ρ := σ) hadm.1 hKc hKo
   let x := E.symm f

@@ -30,8 +30,6 @@ open scoped CategoryTheory.Obj
 
 noncomputable section
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 namespace GlobalTheory.LevelChangePairing
 
 open GlobalTheory.CechPic

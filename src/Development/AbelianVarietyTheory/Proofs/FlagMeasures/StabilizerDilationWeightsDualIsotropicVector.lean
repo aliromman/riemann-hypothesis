@@ -8,6 +8,31 @@ public import Development.AbelianVarietyTheory.Proofs.JetHarmonics.MatGroupHaarU
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.IsotropicLeviEmbeddingHomomorphismProperties
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.IsotropicStabilizerRadicalStructure
 import Formalism.FormalDegreeBessel.FinalG
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -22,6 +47,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -269,8 +297,7 @@ theorem N_entry {n : Mat k r} (hn : n ∈ Nset k r) (i j : Fin (2 * r + k + 1)) 
   refine Rad.cases3 (P := fun j => pw k r i ≤ pw k r j → n i j = (1 : Mat k r) i j) ?_ ?_ ?_ j
   · intro b h
     have hi : b.val ≤ i.val := by
-      by_contra hc
-      push_neg at hc
+      by_contra! hc
       have hir : i.val < r := lt_trans hc b.isLt
       have hp : pw k r i = (r : ℤ) - i.val := by unfold pw; rw [if_pos hir]
       rw [hp, pw_e] at h
@@ -278,8 +305,7 @@ theorem N_entry {n : Mat k r} (hn : n ∈ Nset k r) (i j : Fin (2 * r + k + 1)) 
     rw [hn.2.1 b i hi, Matrix.one_apply]
   · intro m h
     have hi : r ≤ i.val := by
-      by_contra hc
-      push_neg at hc
+      by_contra! hc
       have hp : pw k r i = (r : ℤ) - i.val := by unfold pw; rw [if_pos hc]
       rw [hp, pw_w] at h
       omega

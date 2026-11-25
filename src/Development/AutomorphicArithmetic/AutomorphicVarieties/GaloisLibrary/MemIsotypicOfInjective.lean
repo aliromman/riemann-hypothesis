@@ -3,24 +3,9 @@ module
 public import Mathlib.Basic.Complex.Basic
 public import Mathlib.Order.CompletePartialOrder
 public import Mathlib.RepresentationTheory.Irreducible
-import Mathlib.RingTheory.Flat.TorsionFree
 public import Mathlib.RingTheory.SimpleModule.Isotypic
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
 
 @[expose] public section
 
@@ -211,8 +196,7 @@ theorem exists_proj {R G V : Type} {J : Type 1} [AddCommGroup V] [Module ℂ V] 
   obtain ⟨s, hs⟩ := Submodule.mem_iSup_iff_exists_finset.mp h0'
   obtain ⟨μ, hμ⟩ := (Submodule.mem_iSup_finset_iff_exists_sum _ _).mp hs
   obtain ⟨j1, -, hu⟩ : ∃ j1 ∈ s, ∑ i ∈ s.filter (fun i => χ i = χ j1), (μ i : V) ≠ 0 := by
-    by_contra hcon
-    push_neg at hcon
+    by_contra! hcon
     apply hne
     rw [← hμ, ← Finset.sum_fiberwise_of_maps_to (g := χ) (t := s.image χ)
       (fun i hi => Finset.mem_image_of_mem χ hi)]

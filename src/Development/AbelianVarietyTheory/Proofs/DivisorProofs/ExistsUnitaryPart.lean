@@ -385,7 +385,6 @@ end Adelic
 
 open NumberField IsDedekindDomain ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Pj Formalism.IndefR.Lev
 open GlobalTheory.IndefiniteRowSideFullHecke
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem gLat_one_eq {D : D7} (V : HSp D) :
     gLat V 1 = (latHat V : Set (Fin V.rank → Af D.host.F ⊗[D.host.F] D.host.E)) := by
@@ -429,8 +428,6 @@ open NumberField IsDedekindDomain ReciprocityTheory.ChartRestriction.G.Geo.Tor F
   Formalism.IndefR.Lev GlobalTheory.IndefiniteRowSideFullHecke
 open GlobalTheory.FormTies (levFull)
 open scoped TensorProduct Matrix
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section Rel
 
@@ -602,7 +599,6 @@ section -- clump:auto
 
 open NumberField IsDedekindDomain Matrix Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Mult
 open scoped TensorProduct
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.StabInduce
 
@@ -787,7 +783,6 @@ open GlobalTheory.Member (FinCong IotaOK)
 open GlobalTheory.LevelCusp (IsMatch)
 open GlobalTheory.Dict (castFr)
 open scoped TensorProduct Matrix
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.GeoLevel
 
@@ -839,8 +834,6 @@ open NumberField IsDedekindDomain Matrix Formalism.BasicNotions Formalism.MainNo
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Datum Level)
 open GlobalTheory.IndefiniteRowSideFullHecke.LevelLiftConditions (LevGrp idealHat IsLevLift)
 open scoped TensorProduct
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7}
 
@@ -1137,8 +1130,6 @@ open Formalism.IndefR.Lev (finE swapAE EAf)
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Datum Level)
 open GlobalTheory.LevSplit GlobalTheory.IdemSupport GlobalTheory.ParahoricLift GlobalTheory.GeoActCompare
 open scoped TensorProduct
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem exists_gen_pow {E : Type} [Field E] [NumberField E] {I : Ideal (𝓞 E)} (hI : I ≠ ⊥) :
     ∃ x ∈ I, x ≠ 0 ∧ ∀ Q : HeightOneSpectrum (𝓞 E), x ∈ Q.asIdeal → I ≤ Q.asIdeal := by

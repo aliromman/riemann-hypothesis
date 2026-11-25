@@ -26,32 +26,15 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsEx
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteLatticePointsSiegel
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UniformBoundConstantTerm
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UpdateLeUpdate
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicArithmetic.IntegralCasts.IsOpenStabOfMemNhds
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Tactic.TypeStar
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompactness.AdeleLC
 import GroundTheory.AutomorphicForms.ReductionMeasure
 import GroundTheory.GlobalFields.TateThesis.IdeleMeasure
-import Mathlib.Dynamics.Ergodic.Action.Regular
 import Std.Tactic.BVDecide.Normalize.Prop
 import GroundTheory.AutomorphicForms.AutomorphicFormSpaces.GKStable
 import GroundTheory.AutomorphicForms.CuspidalDiscreteness.ExistsLintegralConstantTermL2SqLe
 import GroundTheory.GlobalFields.Adele.Topology
-import Mathlib.CategoryTheory.Countable
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.LcscAdelicUnitaryGroup
-import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.Tactic.Linter.HaveILetI
 import GroundTheory.AutomorphicForms.AutomorphicFormSpaces
 import GroundTheory.AutomorphicForms.CuspidalDiscreteness.CuspFormsSiegel
@@ -61,7 +44,6 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContinuousOf
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsLeftInvariantOfIsAutForm
 import Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.ExponentialNegativity.NormalisedExistence.ExistsNormed
 import Formalism.LocalToGlobal.IndefiniteReal.PHeisFCA
-import Mathlib.Topology.Sheaves.Presheaf
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousArchimedeanSmoothing, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsOpenIntegralSubgroup, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KernelEigenfunctionBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KernelEigenfunctionBoundStatement, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.SchwartzBilinear.EnnrealRpowTwoEqSq, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KernelEigenfunctionEquicontinuous, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KilledByPolynomialSmoothing, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmoothingFundamentalDomainBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmoothingFundamentalDomainIntegral, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmoothingLipschitzBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UniformBoundOfArchimedeanLipschitz, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UniformBoundSiegelSet, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UniformBoundSmoothing, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UniformFamilySmoothing, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TypedSpaceApproximation

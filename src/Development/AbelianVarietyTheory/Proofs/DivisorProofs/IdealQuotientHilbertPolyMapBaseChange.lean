@@ -34,8 +34,6 @@ namespace GlobalTheory.HilbBaseChange
 
 open Module TensorProduct
 
-attribute [local instance] MvPolynomial.gradedAlgebra
-
 open MvPolynomial Filter in
 open scoped ENNReal in
 open Module TensorProduct in

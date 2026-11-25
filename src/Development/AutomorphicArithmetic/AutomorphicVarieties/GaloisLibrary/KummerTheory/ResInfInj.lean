@@ -8,18 +8,6 @@ import Mathlib.FieldTheory.Galois.Profinite
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Connected.Separation
 import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 public import Mathlib.RingTheory.Polynomial.Cyclotomic.Basic
@@ -91,8 +79,7 @@ theorem UpperTheory.V.Kum.resInfInj :
     funext h
     exact hcomp h
   have hINF : ∃ g : G F Ω, cycZ F Ω l g ^ e ≠ 1 := by
-    by_contra hcon
-    push_neg at hcon
+    by_contra! hcon
     haveI : CharZero Ω := charZero_of_injective_algebraMap (algebraMap F Ω).injective
     have hk : 0 < e.natAbs := Int.natAbs_pos.mpr he
     have hall : ∀ g : G F Ω, cycZ F Ω l g ^ e.natAbs = 1 := by

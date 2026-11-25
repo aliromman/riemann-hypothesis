@@ -13,27 +13,11 @@ public import Mathlib.Algebra.CharP.IntermediateField
 public import Mathlib.FieldTheory.Galois.Abelian
 public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
 import GroundTheory.GlobalFields.TateThesis.DegreeOneDensity
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.ClassFieldRamification.IsClassFieldHilbert
 import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.KummerTheory.Mk0IdMapCongr
 import GroundTheory.GlobalFields.SplittingFromInequality.Decomposition
 import Mathlib.NumberTheory.RamificationInertia.Galois
-import Mathlib.Order.CompletePartialOrder
-import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
 
 -- This file was produced by scripts/clump.py from the modules listed below.

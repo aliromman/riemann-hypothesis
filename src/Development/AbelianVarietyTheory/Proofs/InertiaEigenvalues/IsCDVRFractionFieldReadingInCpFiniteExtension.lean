@@ -4,7 +4,31 @@ public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NatC
 public import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.HeckeValueIntegrality
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FiniteAndIntegral
 public import Formalism.SharpRestriction.LevelLetterCocycles.GaloisEquivariantKeyFunction
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PicardGroup
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -19,6 +43,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -141,8 +167,7 @@ theorem isReading_ext : ∀ (p : ℕ) [Fact p.Prime] (F : Type) [Field F] [Numbe
   set ρ := ‖k (algebraMap T.V T.Fr π)‖ with hρ
   have hρ0 : 0 < ρ := norm_pos_iff.2 ((map_ne_zero k).2 hπ0)
   have hρ1 : ρ < 1 := by
-    by_contra hc
-    push_neg at hc
+    by_contra! hc
     have h1 : ‖k (algebraMap T.V T.Fr π)⁻¹‖ ≤ 1 := by
       rw [map_inv₀, norm_inv]
       exact inv_le_one_of_one_le₀ hc
@@ -193,8 +218,7 @@ theorem isReading_ext : ∀ (p : ℕ) [Fact p.Prime] (F : Type) [Field F] [Numbe
   rw [GlobalTheory.CompleteValExt.exists_algebraMap_eq_iff]
   constructor
   · intro h
-    by_contra hn
-    push_neg at hn
+    by_contra! hn
     have := one_lt_zpow_of_neg₀ hc0 hc1 hn
     linarith
   · intro h

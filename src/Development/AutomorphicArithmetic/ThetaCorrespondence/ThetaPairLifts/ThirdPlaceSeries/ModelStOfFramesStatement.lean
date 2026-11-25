@@ -22,6 +22,29 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CrystallineL
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.JKInvOfTriv
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LevelMapExists
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ModelStatementOfFrameGalois
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -36,6 +59,12 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Foundations.HTBasis
+import Mathlib.Topology.Sheaves.Init
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
 import Mathlib.LinearAlgebra.Eigenspace.Basic
 import Mathlib.Order.CompletePartialOrder
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
@@ -48,7 +77,9 @@ import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.RingTheory.WittVector.IsPoly
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.Lemma
 import Std.Tactic.BVDecide.Normalize.Prop
 import Formalism.LocalToGlobal.Divisibility.ProjLemmas
@@ -313,8 +344,7 @@ theorem norm_eigenvalue_le_one_of_integral_matrix (O K : Type) [CommRing O] [Nor
     (M : Matrix (Fin n) (Fin n) O) (μ : K) (c : Fin n → K) (hc : c ≠ 0)
     (hM : (M.map emb).mulVec c = μ • c) : ‖μ‖ ≤ 1 := by
   obtain ⟨j₀, hj₀⟩ : ∃ j, c j ≠ 0 := by
-    by_contra h
-    push_neg at h
+    by_contra! h
     exact hc (funext h)
   obtain ⟨k, -, hk⟩ := Finset.exists_max_image Finset.univ (fun j => ‖c j‖) ⟨j₀, Finset.mem_univ _⟩
   have hpos : 0 < ‖c k‖ :=
@@ -479,8 +509,7 @@ theorem maximal_ideal_eq_joint_eigen : ∀ (l : ℕ) [Fact l.Prime] (O : Type) [
     · intro a b hab
       rw [hJmem θ hθ, eval₂_mul, norm_mul] at hab
       rw [hJmem θ hθ, hJmem θ hθ]
-      by_contra hc
-      push_neg at hc
+      by_contra! hc
       have := mul_le_mul hc.1 hc.2 zero_le_one (norm_nonneg _)
       linarith
   by_cases hex : ∃ θ ∈ Θ, m ≤ J θ
@@ -609,8 +638,7 @@ private lemma coeffs_eq_zero_of_linearIndependent_of_injective {O K X : Type} [C
     intro α hα c hc
     have h0 : α 0 ≠ 0 := hα.ne_zero 0
     obtain ⟨x0, hx0⟩ : ∃ x0, α 0 x0 ≠ 0 := by
-      by_contra h
-      push_neg at h
+      by_contra! h
       exact h0 (funext h)
     have hea : emb (α 0 x0) ≠ 0 := fun h => hx0 (hemb (by rw [h, map_zero]))
     let β : Fin n → X → O := fun j x => α 0 x0 * α j.succ x - α j.succ x0 * α 0 x

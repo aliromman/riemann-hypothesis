@@ -76,7 +76,6 @@ section -- clump:auto
 
 open NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
 open AlgebraicGeometry CategoryTheory MonObj MonoidalCategory
-attribute [local instance] Over.cartesianMonoidalCategory
 open ReciprocityTheory.ChartRestriction.G.Semi
 
 namespace GlobalTheory.ConstDefCub
@@ -125,7 +124,6 @@ section -- clump:auto
 
 open NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
 open AlgebraicGeometry CategoryTheory MonObj MonoidalCategory
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ConstDeform
 
@@ -202,7 +200,6 @@ section -- clump:auto
 
 open NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
 open AlgebraicGeometry CategoryTheory MonObj MonoidalCategory
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ConstDeform
 

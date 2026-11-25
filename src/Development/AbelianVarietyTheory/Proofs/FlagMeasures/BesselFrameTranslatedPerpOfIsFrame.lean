@@ -51,8 +51,6 @@ namespace GlobalTheory.UnitaryRetraction
 
 variable {n : ℕ}
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 section Calculus
 
 variable {X : Type*} [NormedAddCommGroup X] [NormedSpace ℝ X] {s : Set X}

@@ -8,18 +8,6 @@ public import Mathlib.Algebra.Polynomial.Degree.Operations
 public import Mathlib.Analysis.Normed.Group.Ultra
 public import Mathlib.FieldTheory.IsAlgClosed.Basic
 public import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NewtonPolygonDominantIndexXSubCMul, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NewtonPolygonLastDominantIndexMulXSubC, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CardRootsClosedBallEqDominantIndex, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CardRootsClosedBallBoundsUltrametric
@@ -301,13 +289,11 @@ theorem card_roots_le_radius_bounds :
   obtain ⟨hA, hB⟩ := _root_.GlobalTheory.card_roots_closedBall_eq_dominantIndex K f ρ hρ hf
   set e := Multiset.card (f.roots.filter fun z => ‖z‖ ≤ ρ) with he
   refine ⟨fun H => ?_, fun H => ?_⟩
-  · by_contra hlt
-    push_neg at hlt
+  · by_contra! hlt
     have h1 := hB d hlt
     have h2 := H e
     linarith
-  · by_contra hlt
-    push_neg at hlt
+  · by_contra! hlt
     have h1 := H e hlt
     have h2 := hA d
     linarith

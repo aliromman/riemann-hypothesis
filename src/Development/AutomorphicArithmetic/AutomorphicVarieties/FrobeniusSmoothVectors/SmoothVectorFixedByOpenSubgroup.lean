@@ -1,20 +1,7 @@
 module
 
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.FrobeniusSmoothVectors.ContinuousCoboundaries2
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.UnitaryThreeReflectionRight
 
 @[expose] public section
@@ -71,8 +58,7 @@ theorem UpperTheory.smooth_vector_fixed_by_open_subgroup :
   · rw [hform]
     exact IsLocallyConstant.comp₂ hlc (hlc.comp_continuous (continuous_mul_const F.c))
       (fun a b => (a + b - x F.c) / 2)
-  · by_contra hall
-    push_neg at hall
+  · by_contra! hall
     have hzero : ∀ γ, x' γ = 0 := by
       intro γ
       rcases Int.units_eq_one_or (F.del γ) with hd | hd

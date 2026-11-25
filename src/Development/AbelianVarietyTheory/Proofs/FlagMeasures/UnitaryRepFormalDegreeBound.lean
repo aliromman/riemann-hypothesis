@@ -26,7 +26,34 @@ public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.Layer
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.FixedVectorDifferentiable
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HaarSubgroupBiInvariant
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.OneParameterConjugationBound
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -39,9 +66,14 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Algebra.Order.Archimedean.Real.Hom
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Analysis.Normed.Algebra.MatrixExponential
@@ -626,8 +658,7 @@ theorem linear_of_le (L : ℝ →+ ℝ) (A K : ℝ) (h : ∀ s, L s ≤ A + K * 
 
   have hup : ∀ s, L s ≤ K * |s| := by
     intro s
-    by_contra hlt
-    push_neg at hlt
+    by_contra! hlt
     have hpos : 0 < L s - K * |s| := by linarith
     obtain ⟨m, hm⟩ := exists_nat_gt (A / (L s - K * |s|))
     have hA : A < (m : ℝ) * (L s - K * |s|) := by rwa [div_lt_iff₀ hpos] at hm
@@ -773,8 +804,7 @@ theorem modulus (N : Subgroup G) (hN : IsClosed (N : Set G)) {ν : Measure G} (h
   choose T hT using fun s => exists_exp_smul N hN hν (hconj s)
 
   obtain ⟨r0, hr0⟩ : ∃ k : ℕ, ν {m | d m ≤ (k : ℝ)} ≠ 0 := by
-    by_contra hcon
-    push_neg at hcon
+    by_contra! hcon
     apply hν.1
     rw [← Measure.measure_univ_eq_zero]
     have hU : (Set.univ : Set G) = ⋃ k : ℕ, {m | d m ≤ (k : ℝ)} := by
@@ -826,8 +856,7 @@ theorem modulus (N : Subgroup G) (hN : IsClosed (N : Set G)) {ν : Measure G} (h
       · exact h
       · linarith
     have hC : 0 < C := by
-      by_contra hC
-      push_neg at hC
+      by_contra! hC
       nlinarith [Real.exp_pos (c * ((r0 : ℝ) + 2 * |s|))]
     have hlog := Real.log_le_log hpos hle'
     rw [Real.log_mul (Real.exp_pos _).ne' hm0.ne', Real.log_mul hC.ne' (Real.exp_pos _).ne', Real.log_exp,

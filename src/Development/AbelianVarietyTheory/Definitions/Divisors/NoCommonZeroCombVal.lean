@@ -1,22 +1,7 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.Divisors.DetJacMatCoordsEqTransitionJacobianDet
-import Mathlib.Algebra.Ring.IsFormallyReal
-import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
 
 @[expose] public section
 
@@ -573,8 +558,7 @@ theorem noCommonZero_combVal {b : α → B.Sec} (hb : ⨆ j, nonzeroLocus (b j) 
   rw [mem_ptsIn, Opens.mem_iSup] at hy
   obtain ⟨j, hj⟩ := hy
   have hj' : secVal p σ (b j) i y ≠ 0 := (secVal_ne_zero_iff (b j) hi).2 (mem_ptsIn.2 hj)
-  by_contra hcon
-  push_neg at hcon
+  by_contra! hcon
   have hv : Matrix.vecMul (fun l => secVal p σ (b l) i y) M = 0 := by
     funext a
     rw [Pi.zero_apply, ← hcon a]

@@ -35,7 +35,33 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityA
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.LitAut
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GeneratorCountTuples.LemmaK
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.LemmaKOfLitN
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
 import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -49,10 +75,16 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
+import Mathlib.Analysis.SpecialFunctions.Bernstein
 import Mathlib.RingTheory.TotallySplit
 import Mathlib.Tactic.Linter.Style
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.Tactic.Basify
 import Std.Tactic.BVDecide.Normalize.Prop
+import Mathlib.Tactic.ENatToNat
 import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.PermutationSigns.Weights
 import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.PermutationSigns.Transport
 import Mathlib.Algebra.Order.Star.Real
@@ -319,18 +351,9 @@ theorem rank_span_le {A : Type} [AddCommGroup A] [inst : Module ℤ A] (S : Set 
       _ ≤ Module.rank ℝ (ι → ℝ) := Submodule.rank_le _
       _ = Fintype.card ι := by simp
   have hmem : ∀ x ∈ Submodule.span ℤ S, (1 : ℝ) ⊗ₜ[ℤ] x ∈ LinearMap.range θ := by
-    intro x hx
-    induction hx using Submodule.span_induction with
-    | mem s hs =>
-      obtain ⟨z, hz⟩ := hS s hs
-      exact ⟨z, hz⟩
-    | zero => simp
-    | add x y _ _ hx hy =>
-      rw [TensorProduct.tmul_add]
-      exact add_mem hx hy
-    | smul n x _ hx =>
-      rw [TensorProduct.tmul_smul]
-      exact zsmul_mem hx n
+    show Submodule.span ℤ S ≤ ((LinearMap.range θ).restrictScalars ℤ).comap
+      (TensorProduct.mk ℤ ℝ A 1)
+    exact Submodule.span_le.2 hS
   apply rank_le
   intro s hs
   have hA : LinearIndependent ℤ (fun i : s => ((i : Submodule.span ℤ S) : A)) :=
@@ -486,19 +509,17 @@ theorem sBStarOdd_of : SBStarOdd := by
     obtain ⟨cc, a, ha, hdec⟩ := hτ N ω hωI
     have hazero : ∀ j ∈ Finset.Icc 2 (k + 1), ∀ y ∈ C,
         a j (lev l n k) (y : Chn (GL (Fin (lev l n k)) (𝓞 L)) (k + 1)) = 0 := by
-      intro j hj y hy
-      induction hy using Submodule.span_induction with
-      | mem x hx =>
-        obtain ⟨z0, hz0, hx⟩ := hx
-        rw [hx, PrimeModuloFree.wsys_zc (R := 𝓞 L) hC (ha j hj) hl hz0 k]
-        apply mul_eq_zero_of_left
-        rw [Finset.mem_Icc] at hj
-        apply Finset.prod_eq_zero (i := j - 2)
-        · rw [Finset.mem_range]; omega
-        · rw [Nat.sub_add_cancel hj.1, sub_self]
-      | zero => simp
-      | add x y _ _ hx hy => simp [hx, hy]
-      | smul r x _ hx => simp [hx]
+      intro j hj
+      show C ≤ LinearMap.ker ((a j (lev l n k)).comp (bd (GL (Fin (lev l n k)) (𝓞 L)) k).ker.subtype)
+      refine Submodule.span_le.2 ?_
+      rintro y ⟨z0, hz0, hy⟩
+      show a j (lev l n k) y.1 = 0
+      rw [hy, PrimeModuloFree.wsys_zc (R := 𝓞 L) hC (ha j hj) hl hz0 k]
+      apply mul_eq_zero_of_left
+      rw [Finset.mem_Icc] at hj
+      apply Finset.prod_eq_zero (i := j - 2)
+      · rw [Finset.mem_range]; omega
+      · rw [Nat.sub_add_cancel hj.1, sub_self]
     apply hcne
     rw [hω _ hz'c, hdec _ hz'c]
     have h1 : ∀ w, τ w N (cmap (stab (𝓞 L) (lev l n k) N hMN) (k + 1)
@@ -800,8 +821,7 @@ theorem conj_rot {q : ℕ} (σ : Equiv.Perm (Fin q)) (h : ncyc σ = 1) :
       rw [h1] at h01
       simp at h01
     obtain ⟨x, hx⟩ : ∃ x, σ x ≠ x := by
-      by_contra hc
-      push_neg at hc
+      by_contra! hc
       exact hne (Equiv.ext hc)
     have hall : ∀ y, σ y ≠ y := fun y hy => hx (((hsc x y).apply_eq_self_iff).mpr hy)
     have hcyc : σ.IsCycle := ⟨x, hx, fun y _ => hsc x y⟩

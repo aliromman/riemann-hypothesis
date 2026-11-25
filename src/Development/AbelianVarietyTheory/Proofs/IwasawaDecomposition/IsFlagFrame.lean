@@ -29,8 +29,6 @@ open MonObj
 
 namespace GlobalTheory.LineNorm
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 section Models
 
 variable {F : Type} [Field F] [NumberField F]

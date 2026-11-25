@@ -15,25 +15,10 @@ public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentation
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteDoubleCosetDefiniteHermitianFormLevelStatement
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.PolySupp
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.VanPairs
-import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.HeckeActMem
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.HeckeConvolutionMemHolds
 import GroundTheory.AutomorphicForms.GLnLocal
-import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CharpolyAlgHomEqMapMinpoly
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.NatDegreeMinpolyLeBaseChange
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsGDatumOneOneOne
@@ -732,8 +717,7 @@ universe u v
 theorem UpperTheory.Gal.CertificateRingHomMap.pTracePow_holds :
     UpperTheory.Gal.CertificateRingHomMap.TracePow.{u} := by
   intro F _ _ W _ _ _ q s hq hq0 hqs hinj j₀
-  by_contra hcon
-  push_neg at hcon
+  by_contra! hcon
   have hU : ∀ x ∈ LinearMap.range q, s x ∈ LinearMap.range q := by
     rintro _ ⟨y, rfl⟩
     refine ⟨s y, ?_⟩

@@ -18,6 +18,31 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DeRhamP
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MooreDeterminantCrisPlusNeZero
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnramifiedOfFrobeniusIterateFixedFilZero
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsIndependentFrobSolutionsCrisProof
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -31,10 +56,17 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Data.Nat.Choose.Multinomial
 import Mathlib.NumberTheory.Padics.LocalField
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Lemma
+import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Topology.Algebra.Nonarchimedean.Completion
 import Std.Tactic.BVDecide.Normalize.Prop
 import Formalism.LocalRingCardinality.AdicCompletionLocal.InstIsAdicCompleteOCSpanSingletonSetCast
@@ -1131,8 +1163,7 @@ theorem flAt_one : FLAt 1 := by
     have := congrFun hc' (e.symm k)
     simpa using this
   have hunit : ∃ k, lam k ∉ Fil P 1 := by
-    by_contra hne
-    push_neg at hne
+    by_contra! hne
     have := hind (Pi.single ⟨0, by omega⟩ 1) (Fil_sum fun j _ => by
       rw [Algebra.smul_def]; exact Fil_mul_left (q_mem_Fil P _) (hne j))
     simpa using congrFun this ⟨0, by omega⟩
@@ -1188,8 +1219,7 @@ theorem flAt_one : FLAt 1 := by
   let μ : Fin h → P.R.BdR := fun k => V y2 (e.symm k)
   have hμ0 : ∀ k, μ k ∈ Fil P 0 := fun k => hU'u.2 _ _
   have hμu : ∃ k, μ k ∉ Fil P 1 := by
-    by_contra hne
-    push_neg at hne
+    by_contra! hne
     have h1 : (V * Um) y2 y2 ∈ Fil P 1 := by
       rw [Matrix.mul_apply]
       exact Fil_sum fun j _ => Fil_mul_right (by simpa [μ] using hne (e j)) (hUm0 j y2)

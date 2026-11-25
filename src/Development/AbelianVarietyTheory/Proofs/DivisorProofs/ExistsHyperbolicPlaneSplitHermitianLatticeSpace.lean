@@ -19,9 +19,35 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCartan
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFractionalIdealLatticeLineCoefficients
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSplitPlaceBasisHyperbolicPlaneComplement
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasHermitianSignatureComplementHyperbolicPlane
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -36,10 +62,15 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Divisors.HilbertNinetyQuotientHomEqIff
 import Development.AbelianVarietyTheory.Definitions.Foundations.NormEulerPolySubOneLe
 import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes
 import Development.AbelianVarietyTheory.Proofs.HermitianTraceForms.ExistsOrthogonalBasisDotProductApplyEq
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.HopfAlgebra.Basic
@@ -81,8 +112,7 @@ theorem exists_scale_integral_not_le_maximal :
   have key : ∀ P : Ideal (𝓞 E), P ≠ ⊤ →
       ∃ s ∈ F⁻¹, ∃ a ∈ I, ∃ o : 𝓞 E, (o : E) = s * a ∧ o ∉ P := by
     intro P hP
-    by_contra h
-    push_neg at h
+    by_contra! h
     apply hP
     have hle : ((F * F⁻¹ : FractionalIdeal (nonZeroDivisors (𝓞 E)) E) : Submodule (𝓞 E) E) ≤
         Submodule.map (Algebra.linearMap (𝓞 E) E) P := by
@@ -99,8 +129,7 @@ theorem exists_scale_integral_not_le_maximal :
   choose! sf hsf af haf of hof hof' using key
   have hc : ∀ P' P : Ideal (𝓞 E), P'.IsMaximal → P.IsMaximal → P' ≠ P → ∃ c ∈ P', c ∉ P := by
     intro P' P hP' hP hne'
-    by_contra h
-    push_neg at h
+    by_contra! h
     exact hne' (hP'.eq_of_le hP.ne_top h)
   choose! c hc1 hc2 using hc
   obtain ⟨M0, hM0⟩ := Ideal.exists_maximal (𝓞 E)
@@ -467,8 +496,7 @@ theorem exists_isotropic : ∀ (F E : Type) [Field F] [NumberField F] [Field E] 
     have hne0 : τ (g 0) ≠ 0 := (map_ne_zero τ).2 (hz 0)
     by_cases hp : 0 < (τ (g 0)).re
     · obtain ⟨k, hk⟩ : ∃ k, ¬ 0 < (τ (g k)).re := by
-        by_contra hall
-        push_neg at hall
+        by_contra! hall
         have h' : (Finset.univ.filter fun k => 0 < (τ (g k)).re) = Finset.univ :=
           Finset.filter_true_of_mem fun k _ => hall k
         rw [h', Finset.card_univ, Fintype.card_fin] at hcount
@@ -482,8 +510,7 @@ theorem exists_isotropic : ∀ (F E : Type) [Field F] [NumberField F] [Field E] 
         · exact h
         · exact absurd (Complex.ext (by simpa using h) (by simpa using him)) hne0
       obtain ⟨k, hk⟩ : ∃ k, 0 < (τ (g k)).re := by
-        by_contra hall
-        push_neg at hall
+        by_contra! hall
         have h' : (Finset.univ.filter fun k => 0 < (τ (g k)).re) = ∅ :=
           Finset.filter_false_of_mem fun k _ => not_lt.2 (hall k)
         rw [h', Finset.card_empty] at hcount

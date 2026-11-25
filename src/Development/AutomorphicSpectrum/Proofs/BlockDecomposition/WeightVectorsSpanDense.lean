@@ -1,20 +1,7 @@
 module
 
 public import Development.WeilBound.RepresentationTheoryGL.DiscreteSeries.DiscreteSeriesCovers.DiscreteSeriesHilbert.StepFormulaF
-import Mathlib.Analysis.InnerProductSpace.JointEigenspace
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.AnalyticVectors.Unitary
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.BochnerInequality.IsKUnitaryOfIsInfUnitary
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.Bridge
@@ -52,8 +39,7 @@ theorem stepWtSpan : PositivityTheory.RgDs.Hilb.StepWtSpan := by
   have htop := LinearMap.IsSymmetric.iSup_iInf_eq_top_of_commute hTs hcomm
   let e' : (S.comap (smD ε (rreg ε)).subtype) →ₗ[ℂ] N :=
     e.comp (Submodule.comapSubtypeEquivOfLe hSD).toLinearMap
-  by_contra hno
-  push_neg at hno
+  by_contra! hno
   have hle : ∀ χ : Fin n → ℂ, (⨅ c, Module.End.eigenspace (T c) (χ c)) ≤ LinearMap.ker e' := by
     intro χ x hx
     by_cases hx0 : x = 0

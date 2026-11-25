@@ -1,6 +1,28 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.LevelChainSharpColumnValuationOwnChainIff
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -13,6 +35,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -149,7 +172,6 @@ structure Coord where
   co_range : LinearMap.range co = CSpan (X.fm.lam i)
   j : D.what₂.places.Pl → ∀ v, (M.Lc v).K →+* D.what₂.LL
   j_int : ∀ w, OverT X w → ∀ v x, j w v x ∈ Ow D w ↔ x ∈ (M.Lc v).O
-  Woff : D.what₂.places.Pl → M.Z → AddSubgroup M.Val
 
 variable {M} (Co : M.Coord)
 
@@ -175,11 +197,6 @@ structure Coord.Ok : Prop where
     ∀ y, Co.co (M.act g y) = D.what₂.embLL ζ • Co.mov w (fun v => M.loc v g) (Co.co y)
   S_on : ∀ w, OverT X w → ∀ φ ∈ X.fm.Fi i,
     (∃ x ∈ X.fm.S i w, X.fm.emb i x = φ) ↔ M.ValIn (Co.valB w ∅) φ
-  B_on : ∀ w, OverT X w → X.fm.seenP w = true → ∀ v, ∀ φ ∈ X.fm.Fi i,
-    (∃ x ∈ X.fm.Bw i w v, X.fm.emb i x = φ) ↔ M.ValIn (Co.valB w {v}) φ
-  off_act : ∀ w, ¬ OverT X w → ∀ (g : M.G) (p : M.Pt) y, M.act g y ∈ Co.Woff w (g • p).1 ↔ y ∈ Co.Woff w p.1
-  S_off : ∀ w, ¬ OverT X w → ∀ φ ∈ X.fm.Fi i,
-    (∃ x ∈ X.fm.S i w, X.fm.emb i x = φ) ↔ M.ValIn (fun p => (Co.Woff w p.1 : Set M.Val)) φ
 
 end PtModel
 

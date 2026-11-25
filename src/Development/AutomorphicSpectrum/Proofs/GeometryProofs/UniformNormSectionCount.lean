@@ -49,6 +49,28 @@ public import Development.AutomorphicSpectrum.Proofs.MetricProofs.RootOriginWeig
 public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.Analysis.Calculus.FDeriv.Defs
 public import Mathlib.RingTheory.Smooth.Basic
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -61,13 +83,19 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Formalism.SharpRestriction.Divisibility.WeightAlgebra
 import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.LevelsQDesc
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.FormOffSpecializationRing
 import Development.AutomorphicSpectrum.Statements.GeometryStatements.ExistsAlgPtOff
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.DefiniteFormStabilizerFiniteAwayFromP
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.Tactic.Basify
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.RingTheory.RegularLocalRing.Defs
@@ -75,9 +103,13 @@ import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.AlgebraicGeometry.Modules.Sheaf
 import Mathlib.RingTheory.Unramified.LocalStructure
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.RingTheory.PicardGroup
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.Tactic.Polynomial.Basic
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.BlockTheory.HeightDefect.FullTranscendenceDegree, Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsPosLowerBoundSections, Development.AutomorphicSpectrum.Proofs.GeometryProofs.CompLawsModelRootBound, Development.AutomorphicSpectrum.Proofs.GeometryProofs.CompLawsModelRootBoundStatement, Development.AutomorphicSpectrum.Proofs.GeometryProofs.HolomorphicDiscComponentGrowth, Development.AutomorphicSpectrum.Proofs.GeometryProofs.HolomorphicDiscComponentGrowthStatement, Development.AutomorphicSpectrum.Proofs.GeometryProofs.HolomorphicDiscOrbitBound, Development.AutomorphicSpectrum.Proofs.GeometryProofs.HolomorphicDiscOrbitBoundStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsEqAlgebraMapOfIntegralAtHeightOnePrimes, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ImportsBisAlt, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.ExistsHolomorphicDiscAvoidingPole, Development.AutomorphicSpectrum.Proofs.GeometryProofs.HolomorphicDiscRatioGrowth, Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginExistsForm, Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginExistsFormStatement, Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginWeightSection, Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginWeightSectionStatement, Development.AutomorphicSpectrum.Proofs.GeometryProofs.UniformNormSectionCount
@@ -427,8 +459,7 @@ theorem one_le_of_bounds {P Q C' r B : ℝ} (hQ : 0 < Q) (hP : 0 ≤ P) (h1 : Q 
   have hB : 0 < B := lt_of_lt_of_le (div_pos hPpos hQ) h2
   have h3 : P ≤ B * Q := (div_le_iff₀ hQ).1 h2
   have h4 : P ≤ B * (C' * r * P) := h3.trans (mul_le_mul_of_nonneg_left h1 hB.le)
-  by_contra hlt
-  push_neg at hlt
+  by_contra! hlt
   have h5 : B * C' * r * P < 1 * P := mul_lt_mul_of_pos_right hlt hPpos
   have e : B * (C' * r * P) = B * C' * r * P := by ring
   linarith
@@ -1047,8 +1078,7 @@ theorem UpperTheory.Reformulated.B.DYhc4.main :
   haveI : IsJacobsonRing A := isJacobsonRing_of_finiteType (A := K)
   have hj : p.jacobson = p := IsJacobsonRing.out' p hp.isRadical
   have hex : ∃ m : Ideal A, p ≤ m ∧ m.IsMaximal ∧ b ∉ m := by
-    by_contra h
-    push_neg at h
+    by_contra! h
     apply hb
     rw [← hj]
     refine Ideal.mem_sInf.2 ?_
@@ -1596,12 +1626,8 @@ theorem valAt_aeval (hz : genPt ξ ⤳ centre z) (hw : CoordsAt ξ y z w) (c : �
 theorem aeval_form_ratio {L : Type} [Field L] (v : (Σ k, J k) → L) (c : ∀ k, J k) (hv : ∀ k, v ⟨k, c k⟩ ≠ 0)
     {G : MRing J} {d : K → ℕ} (hG : IsMultiHomog G d) :
     aeval v G = aeval (fun p : Σ k, J k => v p / v ⟨p.1, c p.1⟩) G * ∏ k, v ⟨k, c k⟩ ^ d k := by
-  have h := GlobalTheory.CompanionTheory.Ar.Flat.UnitChart.aeval_scaled_homog (fun p : Σ k, J k => v p / v ⟨p.1, c p.1⟩)
-    (fun k => v ⟨k, c k⟩) hG
-  rw [← h]
-  congr 2
-  funext p
-  exact (div_mul_cancel₀ _ (hv p.1)).symm
+  intros
+  apply _root_.GlobalTheory.CompanionTheory.Ar.VsReg.Chart.aeval_eq_ratio <;> assumption
 
 theorem unitAt_of_valAt (hz : genPt ξ ⤳ centre z) {a : Ω} {r : ℂ} (ha : ValAt ξ z a r) (hr : r ≠ 0) :
     unitAt ξ ⟨centre z, hz⟩ a := by

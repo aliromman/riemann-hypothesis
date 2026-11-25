@@ -31,6 +31,28 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeilActio
 import Formalism.LocalRingCardinality.SpanPowerMembership.LocAtA
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.IdemSum
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.GlintPrincRelIndexNeZero
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -183,8 +205,7 @@ theorem exists_invForm (hψ : IsStdChar D ψ (-1)) (he : IsSplitIdem D e) {φ : 
   obtain ⟨ℓ, h1, h2⟩ := GlobalTheory.SplitHecke.exists_invariant_form' (Λ := lat0 S T) (ψ := ψ)
     (GlobalTheory.SplitScalar.isSplitIdem_conj he) (fun y hy hn => by
       rw [GlobalTheory.DualPairCheck.cA_cA]
-      by_contra hc
-      push_neg at hc
+      by_contra! hc
       exact hn (h3 y hy hc)) h0 (fun u hu hh => hφ.2 u hu (Or.inr hh))
     (fun u hu hh => hφ.2 u hu (Or.inl (by rwa [GlobalTheory.DualPairCheck.cA_cA] at hh)))
   exact ⟨ℓ, h2, h1⟩

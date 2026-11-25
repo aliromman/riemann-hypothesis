@@ -1,5 +1,6 @@
 module
 
+import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PCurveVertPointMultChart
 public import Mathlib.Analysis.Analytic.Order
 public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.Analysis.Complex.AbsMax
@@ -20,7 +21,36 @@ public import Mathlib.Analysis.SpecialFunctions.Log.NegMulLog
 public import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.GoodOrigin
 public import Formalism.LocalRingCardinality.DataHost
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ModelSmall
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.Order.CompletePartialOrder
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -34,8 +64,10 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Separation.CompletelyRegular
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
@@ -54,6 +86,7 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.Arak
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.LiftFactorization
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.Signature
 import Mathlib.RingTheory.Henselian
+import Mathlib.Tactic.Polynomial.Basic
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.MetricProofs.LojasiewiczInequalityAnalytic, Development.AutomorphicSpectrum.Proofs.MetricProofs.MetricQuotientOfMultihomogPair, Development.WeilBound.CoreStatements.RationalSupMetrics.AevalCoordProd, Development.WeilBound.CoreStatements.RationalSupMetrics.ValuationUniqueOnForms, Development.AutomorphicSpectrum.Proofs.MetricProofs.LocalMultihomogQuotientExists, Development.AutomorphicSpectrum.Proofs.MetricProofs.MemOpenOfForms, Development.AutomorphicSpectrum.Proofs.MetricProofs.RootOriginMultiplicityBound, Development.AutomorphicSpectrum.Proofs.MetricProofs.RootOriginWeightComparisonShift, Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginWeightFree, Development.AutomorphicSpectrum.Proofs.GeometryProofs.GoodOriginRootWeightBound, Development.AutomorphicSpectrum.Proofs.GeometryProofs.GoodOriginRootWeightBoundStatement, Development.WeilBound.CoreStatements.RationalSupMetrics.ExistsFormWithValuation, Development.AutomorphicSpectrum.Proofs.GeometryProofs.StrictWeightGrowthBound, Development.AutomorphicSpectrum.Proofs.GeometryProofs.StrictWeightGrowthBoundStatement
@@ -182,8 +215,7 @@ theorem lojasiewicz (e : ℕ) (f g : (Fin e → ℂ) → ℂ) (x : Fin e → ℂ
   obtain ⟨r₀, hr₀, han⟩ := Metric.eventually_nhds_iff_ball.1
     (hf.eventually_analyticAt.and hg.eventually_analyticAt)
   obtain ⟨y₁, hy₁, hgy₁⟩ : ∃ y₁ ∈ ball x r₀, g y₁ ≠ 0 := by
-    by_contra hcon
-    push_neg at hcon
+    by_contra! hcon
     exact hz (by filter_upwards [ball_mem_nhds x hr₀] with y hy using hcon y hy)
   set v := y₁ - x with hv
   have hvr : ‖v‖ < r₀ := by simpa [hv, dist_eq_norm] using hy₁
@@ -215,8 +247,7 @@ theorem lojasiewicz (e : ℕ) (f g : (Fin e → ℂ) → ℂ) (x : Fin e → ℂ
       obtain ⟨z, hz1, hz2⟩ := (hφ0.and h').exists
       exact hz1 hz2
     obtain ⟨d, hd⟩ := ENat.ne_top_iff_exists.1 hne
-    by_contra hcon
-    push_neg at hcon
+    by_contra! hcon
     have := (natCast_le_analyticOrderAt_iff_iteratedDeriv_eq_zero (n := d + 1) hφ00).2
       (fun j _ => hcon j)
     rw [← hd] at this
@@ -592,17 +623,8 @@ theorem map_aeval_int {σ R S : Type*} [CommRing R] [Algebra ℤ R] [CommRing S]
 theorem aeval_scale {R : Type*} [CommRing R] [Algebra ℤ R] (z : (Σ k, ι k) → R) (t : K → R)
     {g : MRing ι} {d : K → ℕ} (hg : IsMultiHomog g d) :
     aeval (fun p : Σ k, ι k => z p * t p.1) g = aeval z g * ∏ k, t k ^ d k := by
-  classical
-  rw [aeval_def, aeval_def, eval₂_eq', eval₂_eq', Finset.sum_mul]
-  refine Finset.sum_congr rfl fun m hm => ?_
-  rw [mul_assoc]
-  congr 1
-  simp_rw [mul_pow]
-  rw [Finset.prod_mul_distrib]
-  congr 1
-  rw [Fintype.prod_sigma]
-  refine Finset.prod_congr rfl fun k _ => ?_
-  rw [← hg m hm k, ← Finset.prod_pow_eq_pow_sum]
+  intros
+  apply _root_.GroundTheory.Heights₂.Heights.Targets.CurveVerticalPointMultiplicity.aeval_mul_of_homog <;> assumption
 
 variable {Ω : Type} [Field Ω]
 
@@ -1343,8 +1365,7 @@ theorem root_origin_weight_free : ∀ (E : Type) [Field E] [NumberField E] [IsCM
   obtain ⟨dg₁, dh₁, G₁, H₁, hG₁, hH₁, hd₁, hy₁, hy₁', hz₁⟩ := hrep z₀ hz₀
   obtain ⟨T, hT, hJT⟩ := Or.Re.R.homog
   obtain ⟨f, hfT, hfP⟩ : ∃ f ∈ T, f ∉ RM.P := by
-    by_contra hc
-    push_neg at hc
+    by_contra! hc
     exact Or.Re.R.nondeg (hJT ▸ Ideal.span_le.2 hc)
   obtain ⟨df, hf⟩ := hT f hfT
   have hfJ : f ∈ Or.Re.J := hJT ▸ Ideal.subset_span hfT

@@ -33,6 +33,27 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Greenberg
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.HeightCommutatorInvariance
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.TateDualCocycleCoboundaryOfVanishOnFixing
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.OrdinarySelmerDualVanishesOfStrict
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -47,17 +68,28 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.Topology.Connected.Separation
 import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.TrivialOnInertiaOfUnr
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.Newform
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
 import Mathlib.FieldTheory.Galois.Profinite
 import Mathlib.Topology.Algebra.ClopenNhdofOne
+import Mathlib.Topology.Sheaves.Init
+import Mathlib.Tactic.Basify
 import Mathlib.Tactic.TypeStar
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.LocalConditionsIndependentOfPlaceOver
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.RingTheory.WittVector.IsPoly
 import Mathlib.LinearAlgebra.Eigenspace.Triangularizable
+import Mathlib.Tactic.ENatToNat
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.CupProductUnramifiedClassesVanishes
 import Mathlib.RingTheory.Etale.Weakly
@@ -895,8 +927,7 @@ theorem tors_bound : ∀ (l : ℕ) [Fact l.Prime] (Ω : Type) [Field Ω] [Algebr
   obtain ⟨k, rfl⟩ := Nat.exists_eq_add_of_le hnm
   refine le_trans ?_ (le_max_right _ _)
   choose x hxO hx using hcob
-  by_contra hlt
-  push_neg at hlt
+  by_contra! hlt
   let f : Fin N → T := fun i => cls (fun j => ⟨x i j, hxO i j⟩)
   classical
   obtain ⟨t, ht⟩ := Fintype.exists_lt_card_fiber_of_mul_lt_card f (by rw [Fintype.card_fin]; exact hlt)
@@ -1215,8 +1246,7 @@ theorem dual_classes_unbounded : GlobalTheory.Mem.LiteralAutomorphy.LitCoh → �
       rw [← this, abs_lt]; constructor <;> omega
   obtain ⟨N', z, hNC, hzS, hzne⟩ := hC (t + k0) (by omega) (l ^ t) yF hsel hne
   have hex : ∃ i, ¬ Cob1 c (t + k0) (dual1 W) ⊤ (fun s => ((l : ℕ) : Qbar l) ^ m • z i s) := by
-    by_contra h
-    push_neg at h
+    by_contra! h
     have h1 := hB (t + k0) N' z hzS hzne h
     have h2 : C * N' ≤ C * B := Nat.mul_le_mul_left C h1
     omega
@@ -1301,8 +1331,7 @@ theorem exists_pair_ne [IsAlgClosed k] [CharZero k] {W : Γ →* GL (Fin 2) k} {
     (hz : ∀ s ∈ H, ∀ g ∈ N, z (s * g * s⁻¹) = (W s : Matrix (Fin 2) (Fin 2) k) *ᵥ z g)
     (hy0 : ∃ g ∈ N, y g ≠ 0) (hz0 : ∃ g ∈ N, z g ≠ 0) :
     ∃ g ∈ N, ∃ h ∈ N, y h 0 * z g 1 - y h 1 * z g 0 ≠ y g 0 * z h 1 - y g 1 * z h 0 := by
-  by_contra hcon
-  push_neg at hcon
+  by_contra! hcon
   let Sig : Submodule k ((Fin 2 → k) × (Fin 2 → k)) := Submodule.span k ((fun g => (y g, z g)) '' N)
   have hgen : ∀ g ∈ N, (y g, z g) ∈ Sig := fun g hg => Submodule.subset_span ⟨g, hg, rfl⟩
   have hinv : ∀ s ∈ H, ∀ σ ∈ Sig,
@@ -1754,15 +1783,13 @@ theorem main : GlobalTheory.Mem.LiteralAutomorphy.LitCoh → ∀ (l : ℕ) [Fact
         ⟨x2, hx2, fun s hs => cv_of_eq n (hx2e s hs)⟩⟩
 
   have hyN : ∃ g ∈ N0g W, y' g ≠ 0 := by
-    by_contra h
-    push_neg at h
+    by_contra! h
     apply hyG
     refine _root_.GlobalTheory.Ord2.GrOfKill.gr_of_vanish_on_trivial l Ω e S A W hN y hy fun g hg => ?_
     have := h g hg
     exact (smul_eq_zero.mp this).resolve_left ha1
   have hzN : ∃ g ∈ N0g W, z' g ≠ 0 := by
-    by_contra h
-    push_neg at h
+    by_contra! h
     apply hzB
     refine _root_.GlobalTheory.Ord2.h1dual_of_vanish_fix l Ω e S A W hN z hz fun g hg => ?_
     have := h g hg
