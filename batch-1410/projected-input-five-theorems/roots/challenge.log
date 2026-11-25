@@ -1,0 +1,9 @@
+claim riemannHypothesis
+claim riemannZeta_eq_zero_re
+claim LFunction_ne_zero_of_half_lt_re
+claim LFunction_eq_zero_re
+claim LFunction_eq_zero_re_of_isPrimitive
+definition RiemannZetaZerosOnLine  exact=true  alphaEquivalent=true
+definition DirichletLNonvanishingRightOfHalf  exact=false  alphaEquivalent=true
+definition DirichletLZerosOnLine  exact=false  alphaEquivalent=true
+definition PrimitiveDirichletLZerosOnLine  exact=false  alphaEquivalent=true

@@ -1,0 +1,66 @@
+{
+  "parent": "82c577caf1b8a66c76212d78a399234f55813d28",
+  "head": "13345ac952b571c8f08a856fcedab838bfef0af8",
+  "source": "1963e10e232f5316fbf9fb44f1651d59bc6cf9e4",
+  "roots": [
+    "CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.AdmissibleOfIwasawa",
+    "CompanionTheory.AutomorphicTheory.BesselWaveGrids.NqMovedExample",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.RegularPairLiftToPrimePowerField",
+    "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.KernelRowsColumnsSquareIntegrable",
+    "Formalism.IncomingBounds.FlowDegreeBounds.ProdRangeEqFactorialMulProdIco",
+    "Formalism.JumpKernelCokernel.LengthTheoremsWithEarlier",
+    "GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PFiniteModuloGeneralEquation",
+    "GroundTheory.HeightsAndTheta.Heights.HeightKernels.AssemblySympl",
+    "PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.AutomorphyFactorKernelAlgebraProof",
+    "PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.FinalTF",
+    "ReciprocityTheory.DualLattices.QExpansionMonoWCoeffZero",
+    "ReciprocityTheory.SemistableReduction.TorusL2CauchyInequality",
+    "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower",
+    "Formalism.FilteredPoleLength.LocalDescentLevels.FourTermSumBoundOfParameters",
+    "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuadraticLevelSetDensity",
+    "CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.FinalAll",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCoboundaryOfNormOneInSubalgebraStatement",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsConjOfIsConjGlFieldExtensionInclusion",
+    "Formalism.CoboundaryTransfers.GammaStableTransfers.Transfer",
+    "Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.LemmaGIdeal",
+    "GroundTheory.AutomorphicForms.DixmierMalliavinLine",
+    "GroundTheory.AutomorphicForms.DixmierMalliavin",
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.HHINDA",
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.KTFiniteDimensional",
+    "GroundTheory.LocalFields.FormalGroups.LubinTateGroup",
+    "Formalism.GradedWeylDivisibility.FinalC",
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.ValNorm"
+  ],
+  "project_modules": 237,
+  "edited_modules": 29,
+  "declarations_in_all_owners": 7498,
+  "warnings_in_all_owners": 823,
+  "edited_raw_compiler_bytes": {
+    "community": {
+      ".olean": 4670504,
+      ".olean.server": 322096,
+      ".olean.private": 41377776,
+      ".ir.sig": 7192,
+      ".ir": 336376
+    },
+    "candidate": {
+      ".olean": 4670504,
+      ".olean.server": 322456,
+      ".olean.private": 41377776,
+      ".ir.sig": 7192,
+      ".ir": 336376
+    }
+  },
+  "all_generated_c_bytes": {
+    "parent": 5621408,
+    "candidate": 5621408
+  },
+  "all_mathlib_initializer_calls": {
+    "parent": 10882,
+    "candidate": 10882
+  },
+  "signed_official_sizes": "1d4f03ccf2a5d739477b5b22eff809d203fbb32bd5797c1a74713dfd71c02084",
+  "stock_time_seconds_in_warm_workspace": 80.33060016599484,
+  "fresh_compiler_setup_files": 20,
+  "paired_full_timing": false
+}

@@ -1,0 +1,698 @@
+[
+  {
+    "name": "CompanionTheory.AutomorphicTheory.BesselWaveGrids.NqMovedExample",
+    "community_bytes": {
+      ".olean": 144368,
+      ".olean.server": 10000,
+      ".olean.private": 2101440,
+      ".ir.sig": 248,
+      ".ir": 6328
+    },
+    "candidate_bytes": {
+      ".olean": 144368,
+      ".olean.server": 10000,
+      ".olean.private": 2101440,
+      ".ir.sig": 248,
+      ".ir": 6328
+    },
+    "candidate_sha256": {
+      ".olean": "10f00b82ff597953a79cd2b7a3facf20ea45487dba12015574afb2646069de10",
+      ".olean.server": "0b4b6966d4cc8ab134c0c7de3fa13173b7eef5ba591dc4a78888603201926457",
+      ".olean.private": "ec285f5fbe232e885d02408227843d724042c57771c7db94696698f7ef98de9d",
+      ".ir.sig": "72e60cd6de2c51d25776a2150628963f792aa2b079c6d32f761231cac45125f3",
+      ".ir": "56526907676acf5606e1af3a10200365a1003ab0bad17043660dd57c09f21cf9"
+    }
+  },
+  {
+    "name": "CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AdmissibleSmoothVectors.AdmissibleOfIwasawa",
+    "community_bytes": {
+      ".olean": 6968,
+      ".olean.server": 1072,
+      ".olean.private": 7272,
+      ".ir.sig": 248,
+      ".ir": 2864
+    },
+    "candidate_bytes": {
+      ".olean": 6968,
+      ".olean.server": 1072,
+      ".olean.private": 7272,
+      ".ir.sig": 248,
+      ".ir": 2864
+    },
+    "candidate_sha256": {
+      ".olean": "f63f5fedf4a4ec01175d5b9972a79684d5cf68ecd4a830b2ea8eead26c9c8340",
+      ".olean.server": "cbdc2f5c8985630aec2d792e19a5ac5bf8a9ff95ee7b9e65934127c95fd66679",
+      ".olean.private": "c829d3b00455c1196b5b218894b991750446497503666757b585a2244e092071",
+      ".ir.sig": "4979b89fe1c20182b31bc46a181dccb5dd611428aa36c298f86beeb63b979e0f",
+      ".ir": "4e137466160ada5467a47b9581e2f11415fd5baa116e1269fe53dabb95319917"
+    }
+  },
+  {
+    "name": "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.ArchimedeanGaussianFourier",
+    "community_bytes": {
+      ".olean": 116832,
+      ".olean.server": 7448,
+      ".olean.private": 988632,
+      ".ir.sig": 248,
+      ".ir": 3864
+    },
+    "candidate_bytes": {
+      ".olean": 116832,
+      ".olean.server": 7472,
+      ".olean.private": 988632,
+      ".ir.sig": 248,
+      ".ir": 3864
+    },
+    "candidate_sha256": {
+      ".olean": "5b5ab8fec5386b85091f64109c7492c0c86c4f94c415f2356de689e22a4c4dab",
+      ".olean.server": "17b348997741615f24f1b3d0c1d7722e3c8d0ad9a03f2ca23b752c638c19903f",
+      ".olean.private": "cdd6f4c157756a3da400803105f11efb1413e070d47e5b546a99c2f0107cba9d",
+      ".ir.sig": "90b7c37bb5f34106e527c868b5771ffb4a1617f8b3087ec0f3400bd3f6ffaf2b",
+      ".ir": "7ea47e05bacdd36ef26405344b86086e720b2665eb117dc56d12b94b49335598"
+    }
+  },
+  {
+    "name": "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuadraticLevelSetDensity",
+    "community_bytes": {
+      ".olean": 157336,
+      ".olean.server": 15240,
+      ".olean.private": 1063768,
+      ".ir.sig": 248,
+      ".ir": 4680
+    },
+    "candidate_bytes": {
+      ".olean": 157336,
+      ".olean.server": 15256,
+      ".olean.private": 1063768,
+      ".ir.sig": 248,
+      ".ir": 4680
+    },
+    "candidate_sha256": {
+      ".olean": "bb29ec7dcd7876ce6c47605f094451ec77f5204d7df949c0e7fc41cd7a7f40de",
+      ".olean.server": "e2d1011673fbfc7df34793469b12be35a60bac81570a977c7cb181f3d8b8399d",
+      ".olean.private": "43a749fbf05f8f05842f096991744d5fee8218d86459921cfe1e5746f0c0113e",
+      ".ir.sig": "368f8aa60ffe2274802f1889f126724896be759b53cfe1d2d42bee939bf6377e",
+      ".ir": "802610590835a89ea4e4b46cf615d6bc9baabc649bb436a83eabd54a02f6ace4"
+    }
+  },
+  {
+    "name": "CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientMeasureTower",
+    "community_bytes": {
+      ".olean": 105304,
+      ".olean.server": 5088,
+      ".olean.private": 381120,
+      ".ir.sig": 248,
+      ".ir": 2952
+    },
+    "candidate_bytes": {
+      ".olean": 105304,
+      ".olean.server": 5104,
+      ".olean.private": 381120,
+      ".ir.sig": 248,
+      ".ir": 2952
+    },
+    "candidate_sha256": {
+      ".olean": "96a5d72629b022770051b566b45a9cbf37a970ec7fd0735ebff483b57970d82e",
+      ".olean.server": "0e5db6909092bacc3b9d6f6472bfb79293dbed05e6a7df4a5d9521ebced88ac2",
+      ".olean.private": "5e7bfa0b93968347461d97be5297a1138561c204eb42f977be7a610c5f7a8a11",
+      ".ir.sig": "a784d850fbcbb7d0d3f08088cd6273500c550a8af4521e978591e29f966fc5c7",
+      ".ir": "6d7ad11816f2c76cd03390f3c2df0e6624ee93ec741ac7d7dc0602aefdd9c6a4"
+    }
+  },
+  {
+    "name": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCoboundaryOfNormOneInSubalgebraStatement",
+    "community_bytes": {
+      ".olean": 367608,
+      ".olean.server": 7640,
+      ".olean.private": 1160368,
+      ".ir.sig": 248,
+      ".ir": 21168
+    },
+    "candidate_bytes": {
+      ".olean": 367608,
+      ".olean.server": 7664,
+      ".olean.private": 1160368,
+      ".ir.sig": 248,
+      ".ir": 21168
+    },
+    "candidate_sha256": {
+      ".olean": "4d38421be02724309605fad4d3f9b7d3b370493a9a3bc307f4c3ceca7371514e",
+      ".olean.server": "b717fb52c08d0272461b00fb3626710237156632a951ba1ee7f8ea0f5a47159d",
+      ".olean.private": "31e23d3072e9c04d998dc753431006f7570410874066bb596cf040777fe782e2",
+      ".ir.sig": "cbbe0c3697eb0a7abbdebc416f60ae54cdc2985ff4665c6b3f4cf9a73a505ecc",
+      ".ir": "8633a0fdfe7fba28434217527f7f8d039100b55e68bd27db8558986e1154feff"
+    }
+  },
+  {
+    "name": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.NonemptyLinearEquivOfPiFinPowFiniteStatement",
+    "community_bytes": {
+      ".olean": 72232,
+      ".olean.server": 5184,
+      ".olean.private": 225368,
+      ".ir.sig": 248,
+      ".ir": 15912
+    },
+    "candidate_bytes": {
+      ".olean": 72232,
+      ".olean.server": 5200,
+      ".olean.private": 225368,
+      ".ir.sig": 248,
+      ".ir": 15912
+    },
+    "candidate_sha256": {
+      ".olean": "5284895beda8e9e20f443053fdf51e8e38bb3b27b387c0d76445c431a3955793",
+      ".olean.server": "035a4e7aada5b4782982c91cdaed8520ea35bf9ec0ed291981ff9d7f8f7cbae9",
+      ".olean.private": "e5799d513874cb0461f351e97a32c79a53a474972725c8bacb5d99bf5f673431",
+      ".ir.sig": "0a045a9d1ebe54e59f8da074201db30a7d620cb3ef5443138d3473360017c195",
+      ".ir": "1eb9db2b78669f2c22ce1b40e939f214bf3884346f71ba2ea34e827cf6a2d27f"
+    }
+  },
+  {
+    "name": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.RegularPairLiftToPrimePowerField",
+    "community_bytes": {
+      ".olean": 24312,
+      ".olean.server": 1312,
+      ".olean.private": 156616,
+      ".ir.sig": 248,
+      ".ir": 9144
+    },
+    "candidate_bytes": {
+      ".olean": 24312,
+      ".olean.server": 1312,
+      ".olean.private": 156616,
+      ".ir.sig": 248,
+      ".ir": 9144
+    },
+    "candidate_sha256": {
+      ".olean": "49b22d857fb1c9969dcd7d91fd874d5155f32cb111206eb98d463165c0205eb4",
+      ".olean.server": "176483d4acdfcf53709b2d8ed71f2af6fcc37db935acc3e25c69d2434da4d214",
+      ".olean.private": "beb72e9d0bc36569424aed0eac8599c34ac1bda011514b02ac3b5a222e483102",
+      ".ir.sig": "0d0b7830c50309ff438e780bbaecea860b21e281adf8aebc127f056ca17ba56b",
+      ".ir": "c61c50b43039282745619d466ae692375883bb81093aacdb663ad204aac1c7e6"
+    }
+  },
+  {
+    "name": "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.KernelRowsColumnsSquareIntegrable",
+    "community_bytes": {
+      ".olean": 194576,
+      ".olean.server": 27536,
+      ".olean.private": 2814256,
+      ".ir.sig": 248,
+      ".ir": 12296
+    },
+    "candidate_bytes": {
+      ".olean": 194576,
+      ".olean.server": 27552,
+      ".olean.private": 2814256,
+      ".ir.sig": 248,
+      ".ir": 12296
+    },
+    "candidate_sha256": {
+      ".olean": "e32ea2cdaa69ec832446a2f24034110a359cfc55c228631084483d3906537a4b",
+      ".olean.server": "b0efcd20dafe66c35e1c4f87684e4d1298510f466a46001c3ca46717a096696d",
+      ".olean.private": "77f1cf85513eb503e1a8fc1ac91c5e6cec31b71d35369e3c6580cea5cff17042",
+      ".ir.sig": "3c50c37d3a3e8443a6a9de004bdd89192a0a441362fbe8600ed9a11d5deda967",
+      ".ir": "9e8d77fadc366a045f74efe931e2e0c6b227c3c89cf774b9b473c20e9296b545"
+    }
+  },
+  {
+    "name": "Formalism.CoboundaryTransfers.GammaStableTransfers.Transfer",
+    "community_bytes": {
+      ".olean": 839656,
+      ".olean.server": 6064,
+      ".olean.private": 231656,
+      ".ir.sig": 248,
+      ".ir": 28832
+    },
+    "candidate_bytes": {
+      ".olean": 839656,
+      ".olean.server": 6064,
+      ".olean.private": 231656,
+      ".ir.sig": 248,
+      ".ir": 28832
+    },
+    "candidate_sha256": {
+      ".olean": "abb827c7d845f87ec99dfdacee2256219236f08c1380db98f79de9a1162123f8",
+      ".olean.server": "27f9ad5adcbf8999f3e254ed0d6372f419fadf1e426ca9176479698f4df6ccf6",
+      ".olean.private": "6f264a4c575246e7012fedad5e69b1abfacacc4cfa6e5ece72032d41bc591c65",
+      ".ir.sig": "7393fa0961e1947f44cae978a3168c0cb007ccedb937ea06ca0aad8a8b1d30a0",
+      ".ir": "ab8ca75befa5212236d07dcda2596c65dbecd650779cd4f611bba25df7067765"
+    }
+  },
+  {
+    "name": "Formalism.FilteredPoleLength.LocalDescentLevels.FourTermSumBoundOfParameters",
+    "community_bytes": {
+      ".olean": 33152,
+      ".olean.server": 1312,
+      ".olean.private": 822080,
+      ".ir.sig": 248,
+      ".ir": 8360
+    },
+    "candidate_bytes": {
+      ".olean": 33152,
+      ".olean.server": 1312,
+      ".olean.private": 822080,
+      ".ir.sig": 248,
+      ".ir": 8360
+    },
+    "candidate_sha256": {
+      ".olean": "af5945c3a7311f30a7eca3a1561f88c6368463557a209b28a8631ba5f5fb0a86",
+      ".olean.server": "aa3997dc5e4ebc3b9c2d1d161e7ba83b18f4d063646656488e8c8b7d95bfcad7",
+      ".olean.private": "cf3275db32e44ae7011911c1b3da6d88bf816c6de89ad0549b0b686f914e8a77",
+      ".ir.sig": "38db0e48b096903f10dd459e078ad743cd4eccdd13a6b1ba4570ae899b603a57",
+      ".ir": "c0677dfda312527219e8fe061629c7c84ceca591cddd106615b0f96cd25cfe76"
+    }
+  },
+  {
+    "name": "Formalism.GradedWeylDivisibility.DualWeylDominanceOf",
+    "community_bytes": {
+      ".olean": 94784,
+      ".olean.server": 15720,
+      ".olean.private": 1079072,
+      ".ir.sig": 248,
+      ".ir": 15888
+    },
+    "candidate_bytes": {
+      ".olean": 94784,
+      ".olean.server": 15744,
+      ".olean.private": 1079072,
+      ".ir.sig": 248,
+      ".ir": 15888
+    },
+    "candidate_sha256": {
+      ".olean": "08edff3ef4758a8186dcad242991a09e06499ad68ab11d2f7c963520144da219",
+      ".olean.server": "03d4fcc6b4c4fee9ea29a09dc7bf166426c18830ac0615b1514b3d820e8c6c54",
+      ".olean.private": "28b3b120ee15c4d4d1a2f11deb22dbf282a7fe71e4eaeb1741225f9f90ac8fd1",
+      ".ir.sig": "4bd4222655d600b26668c3fe44b70480aacfccd624b90f8aa4343f6f520573d4",
+      ".ir": "6760c1e5d1b16114aacceca15504dff017e323508e339a59dbd77763ec56d329"
+    }
+  },
+  {
+    "name": "Formalism.GradedWeylDivisibility.FinalC",
+    "community_bytes": {
+      ".olean": 158080,
+      ".olean.server": 25600,
+      ".olean.private": 3368112,
+      ".ir.sig": 248,
+      ".ir": 14240
+    },
+    "candidate_bytes": {
+      ".olean": 158080,
+      ".olean.server": 25616,
+      ".olean.private": 3368112,
+      ".ir.sig": 248,
+      ".ir": 14240
+    },
+    "candidate_sha256": {
+      ".olean": "f72333526d73bf7e0627574bf28758b977ee2c0134066aa6bd64781d70bcf071",
+      ".olean.server": "1e9ace6f816c5071a75d740ff357e98938dbc0018f5abcff7c90e3a3c223e537",
+      ".olean.private": "e8214a89ae7fe54839d17b6e222973e137d465c47bd4deb4c31d241c7084664f",
+      ".ir.sig": "b19c1b75e7ef02a4865f22596c5e9c3b95b599fcce158e4ebafee0da9942545f",
+      ".ir": "15723df702f148b626f86984fc527e99433bdbb8aa7c5156df01848be2c954f9"
+    }
+  },
+  {
+    "name": "Formalism.IncomingBounds.FlowDegreeBounds.ProdRangeEqFactorialMulProdIco",
+    "community_bytes": {
+      ".olean": 17224,
+      ".olean.server": 1984,
+      ".olean.private": 203704,
+      ".ir.sig": 248,
+      ".ir": 8808
+    },
+    "candidate_bytes": {
+      ".olean": 17224,
+      ".olean.server": 2000,
+      ".olean.private": 203704,
+      ".ir.sig": 248,
+      ".ir": 8808
+    },
+    "candidate_sha256": {
+      ".olean": "3e42be4c23e173f926210de22c0c0905c067278c041d5161de5f1c9a940b962f",
+      ".olean.server": "a497c78e965b9140d4e19a7baa4db162b8404b7cf8ce9ddb971f02c2d60f0a8c",
+      ".olean.private": "8c076142f001953413385e481be011efdce11f89c7fae49263d113084b9e1b34",
+      ".ir.sig": "c2fb8217c31b6784aee046617b63dd0619345dab6f5d35008284c3b9f279dff8",
+      ".ir": "b7ee83584215beb9540c8fb49672f51a4f382ea0ea0239d791253ea71bf78bc7"
+    }
+  },
+  {
+    "name": "Formalism.LagrangeIdealLifts.LiftLagrangeIdealInt",
+    "community_bytes": {
+      ".olean": 318144,
+      ".olean.server": 14968,
+      ".olean.private": 3850544,
+      ".ir.sig": 248,
+      ".ir": 14624
+    },
+    "candidate_bytes": {
+      ".olean": 318144,
+      ".olean.server": 14968,
+      ".olean.private": 3850544,
+      ".ir.sig": 248,
+      ".ir": 14624
+    },
+    "candidate_sha256": {
+      ".olean": "36a9096637b6f1802c7659a7248a406e862173da1a087487d35b8d0c9c9a4924",
+      ".olean.server": "921810ba04bd9f5b7428af80b15b54c6db0dedcadde5734f282599a10726beb3",
+      ".olean.private": "13f5f8187bd8baf48e0f611d20e3743d195b0cb7150588060a00ed6b83737be0",
+      ".ir.sig": "d2df1f3373c1c3cb4a776b77eb4a0794b3f022df7272800acf1ca8910d952288",
+      ".ir": "9a98bdf605086ec132eec2d6c49a6bd78179ca110f78f1b8b0c0f9b1245bc051"
+    }
+  },
+  {
+    "name": "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeilQuotientMeasure.Bruhat",
+    "community_bytes": {
+      ".olean": 32584,
+      ".olean.server": 3344,
+      ".olean.private": 186400,
+      ".ir.sig": 248,
+      ".ir": 8928
+    },
+    "candidate_bytes": {
+      ".olean": 32584,
+      ".olean.server": 3368,
+      ".olean.private": 186400,
+      ".ir.sig": 248,
+      ".ir": 8928
+    },
+    "candidate_sha256": {
+      ".olean": "2993474fc82d0e48bb30780d2100cb35e5aa7d97a5cb979a7e7f264c0798db0d",
+      ".olean.server": "a0b8b9168040c3e70d0fc31d0ef431b18bc4379405476415d7c98536c567a54d",
+      ".olean.private": "ddd45722bbce675747c0af5ee551d56bb54418af465889b98197d9fb745df1da",
+      ".ir.sig": "5911d24a61dc865811654bb530cfcbdd4a278d94b58dc6be32198a6f37d0f774",
+      ".ir": "df94ca25c11e220b9538f702e7fa4134fe31252c9b12e04ffed60215da1a575f"
+    }
+  },
+  {
+    "name": "Formalism.TruncatedSeriesCounting.TruncatedSeriesProofs.RamifiedValuationInequality",
+    "community_bytes": {
+      ".olean": 11072,
+      ".olean.server": 840,
+      ".olean.private": 737920,
+      ".ir.sig": 248,
+      ".ir": 8904
+    },
+    "candidate_bytes": {
+      ".olean": 11072,
+      ".olean.server": 840,
+      ".olean.private": 737920,
+      ".ir.sig": 248,
+      ".ir": 8904
+    },
+    "candidate_sha256": {
+      ".olean": "6facd862047824f58c4f169bad6dbd22202b7b6fd0aa65d43beb83c507c987b2",
+      ".olean.server": "f52ee2a7c197db2e7f07d433a0e0f9a3da7a1091501687a2fa78d780032b537d",
+      ".olean.private": "89be08450f0397cd693b7040de177b9f4233aa80931b31bf0d905c680b9172f3",
+      ".ir.sig": "1acb61baf37372aa17ca884ea051f6712c908ae9c868c6cb1dda0324a6b20607",
+      ".ir": "662c7f5005840c6fca4342aa031cbc0736727a725a4fe202624708dc70838285"
+    }
+  },
+  {
+    "name": "GroundTheory.AutomorphicForms.DixmierMalliavinLine",
+    "community_bytes": {
+      ".olean": 135848,
+      ".olean.server": 12720,
+      ".olean.private": 1649384,
+      ".ir.sig": 248,
+      ".ir": 10072
+    },
+    "candidate_bytes": {
+      ".olean": 135848,
+      ".olean.server": 12720,
+      ".olean.private": 1649384,
+      ".ir.sig": 248,
+      ".ir": 10072
+    },
+    "candidate_sha256": {
+      ".olean": "fe9636b7f6d2075cbce48521a87521e66889937f96da84a552b4427fea56811c",
+      ".olean.server": "6d74d13c2d778f409df255fdd91eaa6739fd61fcc3460490642df63f75cff596",
+      ".olean.private": "f4b167cc2ecde30bd09581941972e443deb633ec4932a610f12a50836500b194",
+      ".ir.sig": "0489fa01c68b3f04668b8358aa3d096449706457a4faeb999cf6d1954df70c97",
+      ".ir": "694f330c9ab8b5e1dc718c6102135fec355d21d8d7ca1614eba14121198f8b66"
+    }
+  },
+  {
+    "name": "GroundTheory.AutomorphicForms.DixmierMalliavinLineStage",
+    "community_bytes": {
+      ".olean": 205576,
+      ".olean.server": 19040,
+      ".olean.private": 1711640,
+      ".ir.sig": 248,
+      ".ir": 33424
+    },
+    "candidate_bytes": {
+      ".olean": 205576,
+      ".olean.server": 19040,
+      ".olean.private": 1711640,
+      ".ir.sig": 248,
+      ".ir": 33424
+    },
+    "candidate_sha256": {
+      ".olean": "41079ac277058d7fd6c87402bfef6ce8f6cc78a518013d750d9866025fa178a3",
+      ".olean.server": "ac2a5ab4645297ae069212b75614250a1d383a6880080e41fbd3b4bd6756fbbd",
+      ".olean.private": "b5acdc30f7536304cff62ea2671d5233daa24667c4f650be88ee8b679f278c58",
+      ".ir.sig": "80e584b2f0807963bc15b103da6f6760afc3bf173069314dfa25c865644f48ca",
+      ".ir": "f57823c4405a6a4d70651b97da6b47ce36d383cf783aa012da6b12f6067b23ad"
+    }
+  },
+  {
+    "name": "GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PFiniteModuloGeneralEquation",
+    "community_bytes": {
+      ".olean": 141256,
+      ".olean.server": 2776,
+      ".olean.private": 870360,
+      ".ir.sig": 248,
+      ".ir": 9080
+    },
+    "candidate_bytes": {
+      ".olean": 141256,
+      ".olean.server": 2776,
+      ".olean.private": 870360,
+      ".ir.sig": 248,
+      ".ir": 9080
+    },
+    "candidate_sha256": {
+      ".olean": "c1153a1a26e2a9f9e3fc337ecd16eabc8e606bc4220e67065356187fdf2c3b28",
+      ".olean.server": "239df788aeba8cba5e914cf036a9ca52f44ea96632a4c9a89c8cfcf8da82e75c",
+      ".olean.private": "aa248f1bddda50ea0bf0f7ee1fc133db1ef44961f478ae9ac405f9821003fc9c",
+      ".ir.sig": "760202920d4aac3b5ceb501f788566f31736515ec989dd5f08513165aecd5010",
+      ".ir": "09a88b9598514a7c7eed486c6b3ccc1d9ff568be7ac9bf67847db1553273a3ed"
+    }
+  },
+  {
+    "name": "GroundTheory.HeightsAndTheta.Heights.HeightKernels.AssemblySympl",
+    "community_bytes": {
+      ".olean": 205400,
+      ".olean.server": 25048,
+      ".olean.private": 3088672,
+      ".ir.sig": 248,
+      ".ir": 26584
+    },
+    "candidate_bytes": {
+      ".olean": 205400,
+      ".olean.server": 25064,
+      ".olean.private": 3088672,
+      ".ir.sig": 248,
+      ".ir": 26584
+    },
+    "candidate_sha256": {
+      ".olean": "6d3b0c19d917f6c28e984735548e9b7c2c2e9379303b4eb5dcb79dc141ff31ff",
+      ".olean.server": "7a6c657ca1b59483039005a429fd89a60a325707b70565351c9cb57635026b29",
+      ".olean.private": "6840fdd21e96a718b6ee53ff55f48884414df9cff71a8054230bef650f977581",
+      ".ir.sig": "11c93b16bdb2d2211aee4b20b5a2850e711f5e156797f537eadd89ba778f05b6",
+      ".ir": "8c01973203b24e28f9ea48c9b94bf07b7b43ea91371bb431503b1fe2cfaf5385"
+    }
+  },
+  {
+    "name": "GroundTheory.LocalFields.FormalGroups.LubinTateGroup",
+    "community_bytes": {
+      ".olean": 372168,
+      ".olean.server": 24512,
+      ".olean.private": 1661072,
+      ".ir.sig": 248,
+      ".ir": 4264
+    },
+    "candidate_bytes": {
+      ".olean": 372168,
+      ".olean.server": 24536,
+      ".olean.private": 1661072,
+      ".ir.sig": 248,
+      ".ir": 4264
+    },
+    "candidate_sha256": {
+      ".olean": "5b2452d1a56ffb57eaba980c6487f5e874f59531902cdfb11af1505adbad7c35",
+      ".olean.server": "594167346b1f5faaae906dcb6d3e4ecbd583e9229741f61cb6d9b00149c5f048",
+      ".olean.private": "aa0f2ebbb86b2efa807cac05c4c509be273c9f4da7215edb7eddd80a1799128d",
+      ".ir.sig": "5f3ff75b9b257e87d8250e557960e7a4818399368a4e1516ef5587b4dc07ca1b",
+      ".ir": "59485fe5e6fa26e2a8033398231244ee9309ca40b0715faad2172b5d970de7c3"
+    }
+  },
+  {
+    "name": "PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.AutomorphyFactorKernelAlgebraProof",
+    "community_bytes": {
+      ".olean": 50976,
+      ".olean.server": 6936,
+      ".olean.private": 757928,
+      ".ir.sig": 248,
+      ".ir": 3128
+    },
+    "candidate_bytes": {
+      ".olean": 50976,
+      ".olean.server": 6952,
+      ".olean.private": 757928,
+      ".ir.sig": 248,
+      ".ir": 3128
+    },
+    "candidate_sha256": {
+      ".olean": "974c04446e240d9e93e6a133343f724c5f686b54492be76eb85ac951e27f64b1",
+      ".olean.server": "4ae81dfee9343bbe3dc26322249b080c42b3642b2b1c3a313cd6180ee9e9eaa9",
+      ".olean.private": "9c580761cdec597d0458142d7e542ef2cd301f610f79c418e64188fb84ec6b9e",
+      ".ir.sig": "18e1c7c3273d29f70981a8b0dceaa85f977994410bde7369c1c955805b414644",
+      ".ir": "bea646f26c601f182479d54c06fe9cce0e5b2eacb31ba184cba1c24ee4869d8d"
+    }
+  },
+  {
+    "name": "PositivityTheory.AutomorphicForms.PublishedInputs.JacquetLanglands.TorusKernels.FinalTF",
+    "community_bytes": {
+      ".olean": 338576,
+      ".olean.server": 35760,
+      ".olean.private": 4553928,
+      ".ir.sig": 248,
+      ".ir": 18328
+    },
+    "candidate_bytes": {
+      ".olean": 338576,
+      ".olean.server": 35776,
+      ".olean.private": 4553928,
+      ".ir.sig": 248,
+      ".ir": 18328
+    },
+    "candidate_sha256": {
+      ".olean": "327ec1bc34935396cf70cb0395be310913cecb41c305c9edf6797d82db82f4bb",
+      ".olean.server": "78b784e32b7263b5df3642c8fd3f9bc8ebeba414571fa9aecb2afa5ee8986eb6",
+      ".olean.private": "801d43c28f910b50fb6bf0a6642e75ab39479fa5bcc0b9d1259945cc6cf9ef10",
+      ".ir.sig": "6a996fae32f6bc9966584655d988062c26ed1e61fefdc02cadbfdcbf42aa5e55",
+      ".ir": "173ee8e1fe91c07a6558b4185899d2d5bee33e3b36227fd10f107000879d3883"
+    }
+  },
+  {
+    "name": "ReciprocityTheory.DualLattices.QExpansionMonoWCoeffZero",
+    "community_bytes": {
+      ".olean": 55816,
+      ".olean.server": 4144,
+      ".olean.private": 736464,
+      ".ir.sig": 248,
+      ".ir": 13536
+    },
+    "candidate_bytes": {
+      ".olean": 55816,
+      ".olean.server": 4144,
+      ".olean.private": 736464,
+      ".ir.sig": 248,
+      ".ir": 13536
+    },
+    "candidate_sha256": {
+      ".olean": "17fea0b31a865416b9d471b39b2e503d412316351a93fccc9197791f2c1079cd",
+      ".olean.server": "3342ca2b60b7abd2ac21d67efe48c88f9a8079eb0d30ff2f8a89ff0724173925",
+      ".olean.private": "7c4d1b543ee91e94d07b15a23f00ba9703e6edf2474a5473acf82bd1851968b4",
+      ".ir.sig": "c27938db73442928c35fb4cc82a3add8cda33e03714dacabb6ef2618bbcd3c94",
+      ".ir": "0f80ec0b644a311ed4d5b545b58ada199466b854e1e2a1a86238fe828590c5ee"
+    }
+  },
+  {
+    "name": "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.ValNorm",
+    "community_bytes": {
+      ".olean": 97664,
+      ".olean.server": 5416,
+      ".olean.private": 1189520,
+      ".ir.sig": 248,
+      ".ir": 2952
+    },
+    "candidate_bytes": {
+      ".olean": 97664,
+      ".olean.server": 5440,
+      ".olean.private": 1189520,
+      ".ir.sig": 248,
+      ".ir": 2952
+    },
+    "candidate_sha256": {
+      ".olean": "a7878a605704adc7dbdfe907da7d502ea7a1126401a78a99f5e6d1c1a4373583",
+      ".olean.server": "58af71b6a77465dfc697ba68c611dcd6126e3d92c65bd0de643f94eb212a960a",
+      ".olean.private": "27b3aecf74b43e1bdc95e88b00f74df41cdbeb22e63710e7893b5ceb3a444341",
+      ".ir.sig": "c9cbf8ec3fda26265fdbc82836c5866b730ea6eb2525cfa47a82538ca456e1b3",
+      ".ir": "4194e02e161a7922f9f950469fb17c9032f4e2652ff28f385505f533508b7a8b"
+    }
+  },
+  {
+    "name": "ReciprocityTheory.SemistableReduction.AlgAll",
+    "community_bytes": {
+      ".olean": 86408,
+      ".olean.server": 8208,
+      ".olean.private": 1473528,
+      ".ir.sig": 248,
+      ".ir": 3200
+    },
+    "candidate_bytes": {
+      ".olean": 86408,
+      ".olean.server": 8232,
+      ".olean.private": 1473528,
+      ".ir.sig": 248,
+      ".ir": 3200
+    },
+    "candidate_sha256": {
+      ".olean": "7efdf4a1e016824abefe3feaecd2dd6b6c178fd1c555583a08a9e51125a0909a",
+      ".olean.server": "f3b6d7b6b525daed20517d8a69822d15653d4d8900c05a932cbc34e62593ed14",
+      ".olean.private": "abebed009432ed24b2b10f8c696f5d3dac74ed1ec23d24f302439b0f952241f1",
+      ".ir.sig": "e191fdeb12de2919b12e57932d8093c7187f1bc7c897c03ead85551b34568276",
+      ".ir": "3a00e60901c73eec8dfb0df5439b0cce1a0f0655c357a0fb2dace5aa8d6a0170"
+    }
+  },
+  {
+    "name": "ReciprocityTheory.SemistableReduction.SJCoreD",
+    "community_bytes": {
+      ".olean": 62952,
+      ".olean.server": 4344,
+      ".olean.private": 1028816,
+      ".ir.sig": 248,
+      ".ir": 3280
+    },
+    "candidate_bytes": {
+      ".olean": 62952,
+      ".olean.server": 4368,
+      ".olean.private": 1028816,
+      ".ir.sig": 248,
+      ".ir": 3280
+    },
+    "candidate_sha256": {
+      ".olean": "392ea481163c62e33090532f328a945b5bea6ef7521cbc817377c41ab0e72194",
+      ".olean.server": "06de5111cd0ba24d8595588baee59ee139db6dd3058c1f19c792041af03ef6cc",
+      ".olean.private": "bff7bc38590c3d0dae5e2a36efd1622e96e1ca97df23c1a8b3f42dc7af3fbe67",
+      ".ir.sig": "be0a3f0e8c374297da33f7fe17b09b7483fe9b27e7f0491b4f93460add43bdcd",
+      ".ir": "2089268209cfe597c4c8b1b3a18162b828f31e558dc6ad06f024e261e2b62831"
+    }
+  },
+  {
+    "name": "ReciprocityTheory.SemistableReduction.TorusL2CauchyInequality",
+    "community_bytes": {
+      ".olean": 223632,
+      ".olean.server": 22840,
+      ".olean.private": 3278136,
+      ".ir.sig": 248,
+      ".ir": 20736
+    },
+    "candidate_bytes": {
+      ".olean": 223632,
+      ".olean.server": 22864,
+      ".olean.private": 3278136,
+      ".ir.sig": 248,
+      ".ir": 20736
+    },
+    "candidate_sha256": {
+      ".olean": "032f6c3139e3ac06e155780953853eab9427c754c6ffd81addd67d049b728bb1",
+      ".olean.server": "761caaa17c0b97ec00ef33856fd9ca59cca44ee79a3d68f5ddfa183ffe9f7cc8",
+      ".olean.private": "ff5da4acc385604132a7f8aca8901123c1d7fa116eb4f663e8ccf1fdfc364412",
+      ".ir.sig": "bbaff5c04ff5e686c2dd73563856a2b9d6c5091817f83a7d28dd532cc6f35f0d",
+      ".ir": "14f135ec17d97b0e1d5e49e241749bbd4e3f951d926527e757a8788ca884e7d6"
+    }
+  }
+]
