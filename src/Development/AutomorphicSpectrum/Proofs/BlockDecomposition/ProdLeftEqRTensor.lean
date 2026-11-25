@@ -7,7 +7,6 @@ public import Mathlib.LinearAlgebra.DFinsupp
 public import Mathlib.LinearAlgebra.TensorProduct.Prod
 public import Mathlib.RingTheory.TensorProduct.Maps
 import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 
 -- This file was produced by scripts/clump.py from the modules listed below.

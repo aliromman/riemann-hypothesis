@@ -4,8 +4,6 @@ public import Mathlib.RingTheory.Jacobson.Ideal
 public import Mathlib.RingTheory.TensorProduct.Basic
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 public import Mathlib.RingTheory.Ideal.GoingUp
 
 @[expose] public section

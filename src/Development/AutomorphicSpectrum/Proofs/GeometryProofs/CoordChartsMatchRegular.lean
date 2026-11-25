@@ -8,7 +8,6 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.RegAtIsLocal
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.ReduceModChar
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsSncPatchRat
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
 

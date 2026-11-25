@@ -5,9 +5,6 @@ import Mathlib.Algebra.Order.Star.Real
 import Mathlib.Analysis.CStarAlgebra.Classes
 import Mathlib.Analysis.Calculus.BumpFunction.FiniteDimension
 public import Mathlib.Analysis.Calculus.SmoothSeries
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import GroundTheory.AutomorphicForms.GL2.GodementSection
 import GroundTheory.AutomorphicForms.GL2.SummableNormIffAndTsumEqCoset2
