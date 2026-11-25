@@ -127,6 +127,8 @@ def run():
     job = plan["jobs"][sys.argv[2]]
     root = Path.cwd()
     parent, candidate = plan["base"], job["candidate"]
+    if (root / ".lake/build").exists():
+        raise ValueError("Use a fresh checkout for this comparison. It replaces project compiler outputs.")
     if git("rev-parse", "HEAD") != parent:
         raise ValueError("The checkout does not match the comparison parent.")
     subprocess.run(["git", "fetch", "--no-tags", "--depth=1",
