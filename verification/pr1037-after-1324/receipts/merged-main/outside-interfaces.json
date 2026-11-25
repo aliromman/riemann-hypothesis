@@ -1,0 +1,19 @@
+{
+  "parent": "b2f365a68500e2bde98cd60a2324263fc62fba10",
+  "candidate": "5ab7e11d01ee36fa4f32e8be00a4d2529eec5f1b",
+  "modules": 3145,
+  "counts": {
+    "public": 77969,
+    "axiomRecords": 77969,
+    "rawTypes": 77969,
+    "theorems": 44400,
+    "rawProofs": 44400,
+    "definitions": 30162,
+    "rawDefinitions": 30161
+  },
+  "checker_sha256": "dc5a9ca2d3f658f303afaffddf767b971eda4a97ca917089d2435f9f9bd54755",
+  "uncompressed_sha256": "e5ab06273006bc971324134dca40f820947e4c722b2eaf7b59db1db3d6be3495",
+  "changed_definitions": [
+    "GlobalTheory.SplitWeil.matrixMeasurableSpace"
+  ]
+}

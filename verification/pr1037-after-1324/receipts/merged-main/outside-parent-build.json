@@ -1,0 +1,20 @@
+{
+  "revision": "b2f365a68500e2bde98cd60a2324263fc62fba10",
+  "targets": [
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalMatrixMomentSurjectiveConjStatement",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalMomentMatrixTransformStatement",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.SymplecticFormUnitaryInvariantStatement",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaPairLocalSchwartzActionStatement",
+    "Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology\u2082.PstAndWdAtOfIsRegAlg",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.ExistsOrdinaryCharactersHeckeAlgebra",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.HeckeDeterminantReductionEqResidual",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.HeckeDeterminantSatisfiesDeformationRelations",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.LevelUR2OrdPt",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.ShortLatticeUnitarize.CompactBoxLattices.CentChar",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.TheoremsMuLinked.GaloisRepresentationTypes.CoreOf",
+    "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.NzOfTypeData"
+  ],
+  "source_count": 3145,
+  "lake_exit": 0,
+  "matching_cones": {}
+}

@@ -1,0 +1,9 @@
+{
+  "distinct_project_modules": 3340,
+  "shared_modules": 870,
+  "exact_head": "5ab7e11d01ee36fa4f32e8be00a4d2529eec5f1b",
+  "exact_merge": "5446ee0fd9a7c0a2301ccd1a3b476b482896df14",
+  "parent": "b2f365a68500e2bde98cd60a2324263fc62fba10",
+  "equals_union_of_two_independent_scans": true,
+  "uncompressed_sha256": "217514e7cf8a6d788b1e4c43a6efb46528b56fe30870fa9387398d02bddc93cb"
+}

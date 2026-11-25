@@ -1,0 +1,21 @@
+{
+  "parent": "b2f365a68500e2bde98cd60a2324263fc62fba10",
+  "candidate": "5446ee0fd9a7c0a2301ccd1a3b476b482896df14",
+  "modules": 3340,
+  "counts": {
+    "public": 85211,
+    "axiomRecords": 85211,
+    "rawTypes": 85211,
+    "theorems": 47458,
+    "rawProofs": 47458,
+    "definitions": 34073,
+    "rawDefinitions": 34070
+  },
+  "checker_sha256": "dc5a9ca2d3f658f303afaffddf767b971eda4a97ca917089d2435f9f9bd54755",
+  "uncompressed_sha256": "217514e7cf8a6d788b1e4c43a6efb46528b56fe30870fa9387398d02bddc93cb",
+  "changed_definitions": [
+    "Formalism.DoubleCosetMeasures.instMeasMat",
+    "GlobalTheory.SplitWeil.matrixMeasurableSpace",
+    "GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix"
+  ]
+}

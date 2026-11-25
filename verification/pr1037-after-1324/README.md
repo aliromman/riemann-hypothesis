@@ -33,7 +33,7 @@ The parent and #1037 both passed 24 Lake targets with 1,065 project modules in t
 
 On the controlled integration pair, the public interface check covered all 1,065 modules. All 35,764 declaration types and axiom records matched. All 16,470 theorem proofs matched after the comparison removed compiler macro-scope numbers from binder names. Of 17,637 definition bodies, only the three providers changed. Both kernels accepted all three old and new values. The audit also checks recursor rules and permits only `propext`, `Quot.sound`, and `Classical.choice` in the recorded axiom sets.
 
-The fork follow-up removes those three measurable-space declarations, `GJMatrix.borelSpace_matrix`, and 60 caller attribute commands. The 28-file change also migrates the explicit uses. A Git search and a separate scan of all 59,869 Lean source blobs found zero remaining mentions of the four names. Its 24-target build passed. Each tested matrix import cone then selected Mathlib’s own Borel witness.
+The fork follow-up at `eb1a7892994c` removes those three measurable-space declarations, `GJMatrix.borelSpace_matrix`, and 60 caller attribute commands. The 28-file change also migrates the explicit uses. A Git search and a separate scan of all 59,869 Lean source blobs found zero remaining mentions of the four names. Its 33-target build passed. Its 6,781-module import closure includes 17 of the 28 changed files. This includes the complete `ThetaFunctionsSpannedHeckeTwistedStandardFrameStatement` and `VolLevelWtConstStatement` proofs, which lost explicit local witnesses. Each tested matrix import cone selected Mathlib’s Borel witness.
 
 The M4 operator reported the doubling regression. Kristof Gazso and meltingice identified the reverse case. Daniel Ang supplied the scoping fix. [M4 report](https://github.com/leanprover-community/riemann-hypothesis/pull/120#issuecomment-7128951255) · [Reverse case](https://github.com/rohanarun/riemann-hypothesis/pull/325) · [#1324](https://github.com/leanprover-community/riemann-hypothesis/pull/1324) · [#1037](https://github.com/leanprover-community/riemann-hypothesis/pull/1037)
 
@@ -42,6 +42,10 @@ The M4 operator reported the doubling regression. Kristof Gazso and meltingice i
 The three changed files have the same old and new Git blobs on the integration pair and on merged main. The updated branch has 59,823 Lean sources under `src/`. The main and candidate builds passed the 24 targets in `targets.txt`. The source graph contains 14,413 modules that use at least one of the three providers, directly or through imports. The import closure of `Main` contains 14,400 of them. The 12 targets in `outside-targets.txt` cover the other 13, with 3,145 distinct source modules in their import closure.
 
 On `b2f365a68500` and `5ab7e11d01ee`, the archived doubling body passed in both import orders and with the original header widened. The live proof changed from two errors to zero in both orders with the scope open and closed. Eight candidate kernel replays and six provider conversions passed. All 35,759 public types and axiom records in the 1,065-module comparison agreed. All 16,465 theorem proof terms agreed under the same audit. Only the three provider definitions changed body. The GitHub merge and the tested branch have the same complete tree, `550b6b254bff48daa7e5515d38db0535d1d9c6c7`. The merge pin remains available on the fork. [Pinned merge](https://github.com/aliromman/riemann-hypothesis/tree/codex/pr1037-merge-5446ee0f).
+
+The 36 targets in `combined-targets.txt` passed on the community main parent and the exact GitHub merge. Their union contains 3,340 project modules. The audit found the same 85,211 public types and recorded axiom sets in both builds. All 47,458 theorem proofs agreed. Of 34,073 definition bodies, 34,070 agreed under the structural comparison. Lean accepted each of the three changed provider bodies in both environments. The 12 additional targets accounted for all 13 affected modules outside `Main`. These counts include each module once.
+
+Both Git revisions also passed `lake build Challenge` and `lake env leanexport Challenge` with the upstream export list. The two five-statement challenge exports had 363,237,517 bytes and SHA-256 `bb37c4bb518fe68a13f12aa3929dd62dfecb663f0c063ad8c338e39601f28a60`. The solution export and the final Comparator verdict still require a full run on the merge. [Runner request](https://github.com/leanprover-community/riemann-hypothesis/pull/1037#issuecomment-7129886079).
 
 ## Reproduce
 
@@ -70,6 +74,12 @@ python3 "$EVIDENCE/check_named_gl.py" --before "$BEFORE" --after "$AFTER" --bin 
 python3 "$EVIDENCE/../pr120-ql-scope/git_lean_headers.py" --repo "$AFTER" --lean "$BIN/lean" --out "$OUT/headers.jsonl" "$CANDIDATE"
 python3 "$EVIDENCE/matrix_build_targets.py" "$OUT/headers.jsonl" > "$OUT/build-targets.json"
 (cd "$AFTER" && "$BIN/lake" build Main $(cat "$EVIDENCE/outside-targets.txt"))
+```
+
+To repeat the 36-target measurement, build the names in `combined-targets.txt` in each checkout. Use that file for `--targets` in the interface command. To check the two challenge exports, run the following command with the locked Mathlib dependencies installed.
+
+```sh
+python3 "$EVIDENCE/verify_challenge_export.py" --repo "$AFTER" --bin "$BIN" --packages "$AFTER/.lake/packages" --base "$PARENT" --merge "$CANDIDATE" --output "$OUT/challenge"
 ```
 
 The JSON receipts record the revision, probe source hashes, diagnostics, and kernel checks. A full `Main` build and upstream Comparator on the five final statements are still required on the proposed merge commit. [Upstream verification instructions](https://github.com/leanprover-community/riemann-hypothesis/blob/9282d3a102c4aff0e6026746db2a8990f5d9cddd/README.md#checking-the-proof-yourself)
