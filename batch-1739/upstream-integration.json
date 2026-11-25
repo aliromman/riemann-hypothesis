@@ -1,0 +1,69 @@
+{
+  "base": "82c577caf1b8a66c76212d78a399234f55813d28",
+  "merged_batch": 1739,
+  "observed_state": {
+    "headRefOid": "48b7c2ac19a6ab8574e5c0d99ffbd99f7cd77702",
+    "mergeCommit": {
+      "oid": "4a5b4a2d2a5177a2b6cb876425f0cb4cb6b85061"
+    },
+    "mergedAt": "2026-11-25T01:15:19Z",
+    "state": "MERGED"
+  },
+  "peer_head": "4a5b4a2d2a5177a2b6cb876425f0cb4cb6b85061",
+  "heads": {
+    "879": "299eff8a308272be2b9167be917156f1929359a2",
+    "977": "13345ac952b571c8f08a856fcedab838bfef0af8"
+  },
+  "unique_shared_sources": 5793,
+  "by_proposal": {
+    "879": {
+      "shared": 5094,
+      "all": {
+        "reconstructed": 5086,
+        "deleted_by_peer": 7,
+        "already_in_community": 1
+      },
+      "textual_conflicts": {
+        "deleted_by_peer": 7,
+        "reconstructed": 3,
+        "already_in_community": 1
+      },
+      "requires_review": []
+    },
+    "977": {
+      "shared": 1005,
+      "all": {
+        "reconstructed": 1001,
+        "upstream_retired_archive": 2,
+        "deleted_by_peer": 2
+      },
+      "textual_conflicts": {
+        "reconstructed": 50,
+        "upstream_retired_archive": 2,
+        "deleted_by_peer": 2
+      },
+      "requires_review": []
+    }
+  },
+  "shared_tooling": {
+    "879": [],
+    "977": []
+  },
+  "exact_source_preview": {
+    "879": {
+      "unresolved_modules_excluded_from_estimate": 0,
+      "retained_owners": 38948,
+      "net_nonblank_lean_lines": 1014026,
+      "net_lean_code_commands": 1014026
+    },
+    "977": {
+      "unresolved_modules_excluded_from_estimate": 0,
+      "retained_owners": 11530,
+      "net_nonblank_lean_lines": 382836,
+      "net_lean_code_commands": 252020,
+      "net_code_less_added_python": 251572
+    }
+  },
+  "status": "Source reconstruction against the actual main tree after merged PR 1739. Native and stock build checks are separate.",
+  "rows_sha256": "5e2b4c88f49c272abd54635ae50fd254b637ea822dc4b9e7447bb5d78f24ab42"
+}

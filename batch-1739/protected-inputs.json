@@ -1,0 +1,33 @@
+{
+  "base": "4a5b4a2d2a5177a2b6cb876425f0cb4cb6b85061",
+  "head": "9b5b3c860537e95becc28e23c767b6a7c4053aa6",
+  "src": "2c3978c7ef0f549d18b0b003ed9182c8ec5e7cb9",
+  "lean": "leanprover/lean4:v4.37.0-rc1",
+  "mathlib": "31ce06eaadf4a200c0e1407c5f10953cf606b8f8",
+  "git_objects": {
+    "src/Challenge.lean": "9677ace64b3a5e8b1a571d82d52ee13c53b08026",
+    "src/Statements.lean": "23b01f745b80075e377c415abae96ece3570d0b0",
+    "src/Main.lean": "67c65badc15f80a1db65df1c84dc7a4928fc410f",
+    "src/Development/AutomorphicArithmetic/CharacterBoxes/ClaimStrip.lean": "fcd2fad437422195d9d6695f4bf7723ec125d6bf",
+    "src/Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean": "06c2154a1813ba89d1e48f940fb0a9a93dc9f681",
+    "comparator": "a14c3e84eee63917486fb7369cc8a4cfbb8c35d4",
+    "comparator.json": "e989bcf90ff0c487a7146319a026e661a5bad47c",
+    "export-targets.txt": "e2d4c02bac8a1411eae85af0376c1aad3b6b5294",
+    "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+    "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d",
+    "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+    ".github/workflows": "ae3e0648b9410f4a728859046edd2248f9dd2123"
+  },
+  "theorems": [
+    "riemannHypothesis",
+    "riemannZeta_eq_zero_re",
+    "LFunction_ne_zero_of_half_lt_re",
+    "LFunction_eq_zero_re",
+    "LFunction_eq_zero_re_of_isPrimitive"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ]
+}

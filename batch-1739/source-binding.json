@@ -1,0 +1,13 @@
+{
+  "base": "4a5b4a2d2a5177a2b6cb876425f0cb4cb6b85061",
+  "head": "9b5b3c860537e95becc28e23c767b6a7c4053aa6",
+  "src": "2c3978c7ef0f549d18b0b003ed9182c8ec5e7cb9",
+  "modules": 11530,
+  "new_source_pairs": 1001,
+  "source_table": "85b867526cb4bb6133dc2075ef10a58ed38d8a84bf828f729fa6d05098fdc498",
+  "scores": [
+    382836,
+    252020
+  ],
+  "source_pairs_sha256": "2edda922b1962b2919c594ace66cf579e9a5b1b92b023049837fd2e3d932d59e"
+}
