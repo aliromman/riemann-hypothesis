@@ -22,15 +22,22 @@
       "declaration_occurrences_counted": 49410,
       "ordinary and official declarations compared directly": 1201,
       "stock_lake_built": 78
+    },
+    "import-all": {
+      "modules": 10587,
+      "edited": 1267,
+      "warnings": 34073,
+      "declaration_occurrences_counted": 299797,
+      "ordinary and official declarations compared directly": 10587
     }
   },
   "distinct_union": {
-    "modules": 2363,
-    "edited_modules": 468,
-    "declaration_occurrences": 90000,
-    "warnings": 16597
+    "modules": 11370,
+    "edited_modules": 1443,
+    "declaration_occurrences": 326590,
+    "warnings": 41395
   },
-  "private_import_check": "pending at this checkpoint",
+  "private_import_check": "passed",
   "full_build": "pending at this checkpoint",
   "whole_project_module_comparison": "pending at this checkpoint",
   "five_theorem_kernel_replay_on_full_build": "pending at this checkpoint",
