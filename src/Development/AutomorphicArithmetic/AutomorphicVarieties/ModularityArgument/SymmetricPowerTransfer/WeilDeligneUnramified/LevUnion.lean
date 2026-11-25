@@ -25,6 +25,30 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityA
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GeneralizedEigenspaces.CharacterShapes.FiniteOrbits.SplitLoc
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GeneralizedEigenspaces.CharacterShapes.UnifLtOne
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GeneralizedEigenspaces.GlobalRationalGL.IntegralConjugation.BridgeEx
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -37,12 +61,20 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.SignatureIntegrality.LevelTorusLeTorus
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.SignatureIntegrality.SignatureTorusFixedPoints.BdMul
 import Mathlib.RingTheory.Valuation.Integral
 import Mathlib.Tactic.Linter.Style
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GeneralizedEigenspaces.CharacterShapes.FiniteOrbits.UfDg
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
 import Mathlib.Order.CompletePartialOrder
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Topology.Sheaves.Init
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GlobalUnitaryForms.ScalarTuples.BaseSub
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GlobalUnitaryForms.ScalarTuples.ClassRep
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GlobalUnitaryForms.ScalarTuples.ProdChar
@@ -812,22 +844,22 @@ private theorem trim {F : Type} [Field F] [NumberField F] {Δ : F} (D : Dat Δ) 
     intro v hv h
     apply hv
     show (if P v then 1 else y.1 v) ∈ KD ((cv v) Δ) (Ov v)
-    rw [if_pos h]
+    rw [ite_eq_left h]
     exact one_mem _
   · show ∀ᶠ v in Filter.cofinite, (if P v then y.1 v else 1) ∈ KD ((cv v) Δ) (Ov v)
     refine Filter.Eventually.of_forall fun v => ?_
     by_cases h : P v
-    · rw [if_pos h]
+    · rw [ite_eq_left h]
       exact h.1
-    · rw [if_neg h]
+    · rw [ite_eq_right h]
       exact one_mem _
   · simp only [Dat.U2, RPG.box, Subgroup.mem_iInf, Subgroup.mem_comap]
     intro v
     show (if P v then y.1 v else 1) ∈ D.J2v v
     by_cases h : P v
-    · rw [if_pos h, Dat.J2v, if_neg h.2]
+    · rw [ite_eq_left h, Dat.J2v, ite_eq_right h.2]
       exact h.1
-    · rw [if_neg h]
+    · rw [ite_eq_right h]
       exact one_mem _
   · refine Subtype.ext (funext fun v => ?_)
     show (if P v then 1 else y.1 v) * (if P v then y.1 v else 1) = y.1 v
@@ -841,7 +873,7 @@ private theorem trim {F : Type} [Field F] [NumberField F] {Δ : F} (D : Dat Δ) 
     intro v hv h
     apply hv
     show (if P v then 1 else y.1 v) = 1
-    rw [if_pos h]
+    rw [ite_eq_left h]
 
 theorem UpperTheory.V.Z.Sym.So.repsEx :
     UpperTheory.V.Z.Sym.So.RepsEx := by
@@ -853,13 +885,13 @@ theorem UpperTheory.V.Z.Sym.So.repsEx :
   · intro y' hy'
     obtain ⟨y, hy, rfl⟩ := Finset.mem_image.mp hy'
     obtain ⟨w, -, -, ht, hfin⟩ := (trim A.dat y (hY y hy)).choose_spec
-    simp only [f, dif_pos (hY y hy)]
+    simp only [f, dite_eq_left (hY y hy)]
     exact ⟨ht, hfin⟩
   · intro g
     obtain ⟨γ, s, hs, y, hy, u, hu, rfl⟩ := hdec g
     obtain ⟨w, hw, hty, -, -⟩ := (trim A.dat y (hY y hy)).choose_spec
     refine ⟨γ, s, hs, f y, Finset.mem_image_of_mem f hy, w * u, mul_mem hw hu, ?_⟩
-    simp only [f, dif_pos (hY y hy)]
+    simp only [f, dite_eq_left (hY y hy)]
     conv_lhs => rw [← hty]
     simp only [mul_assoc]
 
@@ -1029,7 +1061,7 @@ private theorem exSec {W P : Type} {X : P → Type} (f : W → P) (S : Set W) (i
     obtain rfl := inj hw' hw he
     rfl
   have hex : ∃ w', ∃ hw' : w' ∈ S, f w' = f w := ⟨w, hw, rfl⟩
-  simp only [dif_pos hex]
+  simp only [dite_eq_left hex]
   exact key _ _ _
 
 variable {L : Type} [Field L] [NumberField L] [IsCMField L]
@@ -1372,7 +1404,7 @@ theorem UpperTheory.V.Z.Sym.W.specOutS : UpperTheory.V.Z.Sym.W.SpecOutS := by
   have hPS : Places ((S₀ ∪ S₁ : Finset (Plc L)) : Set (Plc L)) := by rwa [Finset.coe_union]
   generalize S₀ ∪ S₁ = S at hS hPS
   have hV : ∃ V : ∀ w : Plc L, Lev (Kw w), (∀ w ∈ S₀, V w = deep c w) ∧ ∀ w ∈ S₁, V w = iw w :=
-    ⟨fun w => if w ∈ S₁ then iw w else deep c w, fun w hw => if_neg (Finset.disjoint_left.1 hd hw), fun w hw => if_pos hw⟩
+    ⟨fun w => if w ∈ S₁ then iw w else deep c w, fun w hw => ite_eq_right (Finset.disjoint_left.1 hd hw), fun w hw => ite_eq_left hw⟩
   refine hV.elim fun V v => ?_
   have hF := fitEx L B hB T S V hPS fun w hw => (hT w hw).imp fun w' h => ⟨(hS w').2 (.inl h.1), h.2⟩
   refine hF.1.elim fun A hA => (hF.2 a).elim fun b hb => ?_

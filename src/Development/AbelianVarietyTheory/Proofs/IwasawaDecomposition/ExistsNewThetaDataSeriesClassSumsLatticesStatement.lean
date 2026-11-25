@@ -49,6 +49,28 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsR
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LinearIndependentRowsMap
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NotDvdDiscrIffRamificationIdx
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsSelfDualCoordLatticeOfSelfDualFrame
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -61,6 +83,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Algebra.Order.Star.Rat
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.UnivOfNotLinearIndependent
@@ -74,6 +98,7 @@ import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsUnramifiedEtaT
 import Mathlib.Tactic.Linter.Style
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.IsTopologicalRingAE
 import Mathlib.FieldTheory.Galois.Profinite
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsCmAdeleUnitCharacterReadingHeckeChar
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.NStageTrivialCharacterCoeffEqAlt
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NoFormsOff
@@ -81,6 +106,7 @@ import Formalism.LocalToGlobal.IndefiniteReal.DoubleCosetOperators.GoodPartLeTyp
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.InertialOrderFifteenCharAuxiliaryPrimeSpec
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsOpenKerOfInfConn
 import Development.AutomorphicArithmetic.PrimeDiscriminants.RamDiscr
+import Mathlib.Tactic.Basify
 import Mathlib.Topology.Connected.Separation
 import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
@@ -89,6 +115,7 @@ import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsGlob
 import Mathlib.RingTheory.PiTensorProduct
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FinPartMulIncAMem
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UpperLeftBlockEqOneIffOfMemBlockTri
+import Mathlib.Tactic.ENatToNat
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -1110,7 +1137,7 @@ def Onto (ρ : Setup D.ntw) (rdV : RdV D ρ) : Prop :=
 
 theorem latI_eq (rdV : RdV D ρ) {i} (j : Fin D.R.m) {b k Q ψ} (h : TwOK i k Q ψ) :
     latI rdV i ((j : ℕ) + 1) b k Q ψ = (Via.lat (ρ.mt i j b k Q ψ)).comap (rdVLin rdV i j b k Q ψ) :=
-  dif_pos ⟨j.2, h⟩
+  dite_eq_left ⟨j.2, h⟩
 
 theorem mem_latI (rdV : RdV D ρ) {i} (j : Fin D.R.m) {b k Q ψ} (h : TwOK i k Q ψ) (f) :
     f ∈ latI rdV i ((j : ℕ) + 1) b k Q ψ ↔ rdV i j b k Q ψ f ∈ ρ.mt i j b k Q ψ := by
@@ -1177,9 +1204,9 @@ theorem exists_tie_withSeries : ∀ (D : D7) (ρ : Setup D.ntw) (hρ : ρ.Good) 
         thU_eq := fun Q M d hQ x hx => by
           have h : InRange D.ntw i Q ∧ ∀ a, ρ.xi i j b D.nexp Q M d.2.h d.2.P a ∈ Set.range (rd i j b) :=
             ⟨hQ, fun a => ⟨x a, hx a⟩⟩
-          refine (dif_pos h).trans (congrArg (grpSum D.nexp (ρ.ch i) Q M) (funext fun a => (hF i j b).injective ?_))
+          refine (dite_eq_left h).trans (congrArg (grpSum D.nexp (ρ.ch i) Q M) (funext fun a => (hF i j b).injective ?_))
           exact (h.2 a).choose_spec.trans (hx a).symm
-        thU_off := fun _ _ _ h => dif_neg h
+        thU_off := fun _ _ _ h => dite_eq_right h
         rdV_inj := fun k Q ψ h => (hV i j b k Q ψ h).1
         mtLat_iff := fun k Q ψ h F => by
           refine ⟨fun hF' => ?_, fun ⟨f, hf, e'⟩ => ?_⟩
@@ -1187,7 +1214,7 @@ theorem exists_tie_withSeries : ∀ (D : D7) (ρ : Setup D.ntw) (hρ : ρ.Good) 
             exact ⟨f, (mem_latI rdV j h f).2 hF', rfl⟩
           · exact e' ▸ (mem_latI rdV j h f).1 hf
         thP_eq := fun k Q ψ _ f hf => by
-          have e : thPI hρ rd hF rdV i ((j : ℕ) + 1) b k Q ψ = (exists_thPI hρ rd hF rdV i j b k Q ψ).choose := dif_pos j.2
+          have e : thPI hρ rd hF rdV i ((j : ℕ) + 1) b k Q ψ = (exists_thPI hρ rd hF rdV i j b k Q ψ).choose := dite_eq_left j.2
           exact (congrArg (fun φ => rdK (rd i j b) hρ k (φ f)) e).trans
             ((exists_thPI hρ rd hF rdV i j b k Q ψ).choose_spec f hf) }, fun _ _ _ => rfl⟩
 
@@ -1356,7 +1383,7 @@ theorem exists_art_gal (hA : GlobalTheory.Published.GlobalArtinReciprocity) (cf 
       have h1 : ρ.ι (ρ.κ (D.ntw.emb0 i x)) = (((cf.delAt (D.ntw.l i)).val v : ℂˣ) : ℂ) := by
         rw [← D.ntw.restX_coefficientEmbedding_conj i x⁻¹ x hstar]
         have := ρ.read x⁻¹
-        simp only [GlobalTheory.Triple.embSide, Bool.false_eq_true, if_false] at this
+        simp only [GlobalTheory.Triple.embSide, Bool.false_eq_true, ite_false] at this
         rw [this]
         show D.what₂.embLL ((x⁻¹ : D.LL0) : D.what₂.LL) = _
         rw [IntermediateField.coe_inv, map_inv₀, hx', inv_inv]
@@ -1367,7 +1394,7 @@ theorem exists_art_gal (hA : GlobalTheory.Published.GlobalArtinReciprocity) (cf 
       rw [hd, ← h1, ρ.ι.symm_apply_apply]
     · have h1 : ρ.ι (ρ.κ (D.ntw.emb0 i x)) = (((cf.delAt (D.ntw.l i)).val v : ℂˣ) : ℂ)⁻¹ := by
         have := ρ.read x
-        simp only [GlobalTheory.Triple.embSide, if_true] at this
+        simp only [GlobalTheory.Triple.embSide, ite_true] at this
         rw [this]
         exact hx'
       show ρ.κ (algebraMap _ _ ((D.ntw.delta i σ : (D.ntw.O0 i)ˣ) : D.ntw.O0 i)) = _

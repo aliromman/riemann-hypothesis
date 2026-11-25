@@ -3,6 +3,28 @@ module
 public import Development.AbelianVarietyTheory.Definitions.LatticeFrames.RealSizeNonneg
 public import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.InfFam
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.AdelicMatrixSchwartzMajorantMeasurableRationalShStatement
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -17,6 +39,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsThetaFam
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.WittSmallGroupEmbeddingMemPointwiseStabilizerIso
 
@@ -187,7 +211,7 @@ theorem maj_integrable : ∀ (D : D7) (θ : InfFam D), IsInfFam θ → ∀ (m n 
           simp only [compAt, Matrix.map_apply, Matrix.sub_apply, map_sub]
         rw [e, compAt_shift hθ]
         by_cases hP : P i j
-        · rw [if_pos hP]
+        · rw [ite_eq_left hP]
           refine le_trans ?_ (le_add_of_nonneg_left (norm_nonneg _))
           refine le_trans (Complex.norm_le_abs_re_add_abs_im _) ?_
           set c := compAt θ τ x i j
@@ -203,7 +227,7 @@ theorem maj_integrable : ∀ (D : D7) (θ : InfFam D), IsInfFam θ → ∀ (m n 
           rw [abs_of_nonneg (by linarith : (0 : ℝ) ≤ c.re - ⌊c.re⌋),
             abs_of_nonneg (by linarith : (0 : ℝ) ≤ c.im - ⌊c.im⌋)]
           linarith
-        · rw [if_neg hP, sub_zero]
+        · rw [ite_eq_right hP, sub_zero]
           have : compAt θ τ x i j = compAt θ τ a i j := by
             simp only [compAt, Matrix.map_apply, hx i j hP]
           rw [this]; linarith
@@ -237,13 +261,13 @@ theorem maj_integrable : ∀ (D : D7) (θ : InfFam D), IsInfFam θ → ∀ (m n 
       have hmem : InBox K x ∧ realSize θ x ≤ ((⌊realSize θ x⌋₊ + 1 : ℕ) : ℝ) :=
         ⟨hb, by push_cast; exact (Nat.lt_floor_add_one _).le⟩
       simp only [Set.indicator, Set.mem_setOf_eq]
-      rw [if_pos hmem]
-      unfold maj; rw [if_pos hb]
+      rw [ite_eq_left hmem]
+      unfold maj; rw [ite_eq_left hb]
       apply ENNReal.ofReal_le_ofReal
       apply inv_anti₀ (by positivity)
       apply pow_le_pow_left₀ (by positivity)
       linarith [Nat.floor_le hx0]
-    · unfold maj; rw [if_neg hb, ENNReal.ofReal_zero]; exact bot_le
+    · unfold maj; rw [ite_eq_right hb, ENNReal.ofReal_zero]; exact bot_le
   refine ⟨(hmeas _).aestronglyMeasurable, ?_⟩
   unfold HasFiniteIntegral
   have henorm : ∀ x, ‖maj θ K (2 * d + 2) x‖ₑ = ENNReal.ofReal (maj θ K (2 * d + 2) x) := fun x => by

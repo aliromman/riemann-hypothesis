@@ -9,20 +9,7 @@ public import Formalism.WeaklyAdmissibleFiltrations.Statement
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PeriodDataComparison
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsBasisOfSubmodule
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsCrysOfSplitStatement
-import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -643,8 +630,8 @@ theorem exists_matrixHom {l : ℕ} [Fact l.Prime] {G : Type} [Group G] {L V : Ty
     change e.repr (ρ 1 (e j)) i = _
     rw [map_one, Module.End.one_apply, e.repr_self, Finsupp.single_apply, Matrix.one_apply]
     by_cases h : i = j
-    · rw [if_pos h, if_pos h.symm, PadicInt.coe_one]
-    · rw [if_neg h, if_neg (Ne.symm h), PadicInt.coe_zero]
+    · rw [ite_eq_left h, ite_eq_left h.symm, PadicInt.coe_one]
+    · rw [ite_eq_right h, ite_eq_right (Ne.symm h), PadicInt.coe_zero]
   · ext i j
     rw [Matrix.mul_apply, PadicInt.coe_sum]
     simp only [PadicInt.coe_mul]

@@ -36,17 +36,6 @@ import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ActLevIffLevelAc
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ActLevFullLevelGroupFramedPoints
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsLatticeEmbeddingLiftDatumHermitianSpace
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.CuspIso
 import Development.AbelianVarietyTheory.Definitions.Divisors.GenRatios
 import Development.AbelianVarietyTheory.Definitions.Divisors.Multiplier
@@ -352,15 +341,6 @@ theorem log_card_le (p : PtAt ex Csz) (i : Fin D.R.m) (Y : Cov p i) (hY : GoodCo
   nlinarith [mul_nonneg h3 (by linarith : (0 : ℝ) ≤ L.sc.L), mul_nonneg (mul_nonneg h3 (by linarith : (0 : ℝ) ≤ L.sc.L)) (by linarith : (0 : ℝ) ≤ L.sc.L - 10)]
 
 end Point
-
-section Main
-
-open CategoryTheory AlgebraicGeometry NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Theta
-open GlobalTheory GlobalTheory.CompHS GlobalTheory.CovTop GlobalTheory.BigTop GlobalTheory.HSApp GlobalTheory.DegVal GlobalTheory.DegCmp
-open GlobalTheory.LevDesc (TypeFrame grpHR latN)
-
-end Main
 
 end GlobalTheory.CovTop.TypeLattice
 end -- clump:auto

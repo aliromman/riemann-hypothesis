@@ -6,7 +6,32 @@ public import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ConstFamC
 public import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.MemThetaShiftZero
 public import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.SecValFeTranslate
 public import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ToUnitCompLeft
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.AdicCompletion.Completeness
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -103,7 +128,7 @@ theorem exists_vals_fsum : Out.Laws → Out.Laws2 → ∀ (E : Type) [Field E] [
       rw [map_add (f := _), map_add (f := _), map_nsmul, map_nsmul, Λ.ε.apply_symm_apply, W.e.apply_symm_apply])
     have e₂ : famVal (Ξ.g v) (f x) (jf x) = 0 := by
       rw [e₁]
-      exact (dif_pos (hc x).1).trans ((congrArg _ (map_zero _)).trans (map_zero _))
+      exact (dite_eq_left (hc x).1).trans ((congrArg _ (map_zero _)).trans (map_zero _))
     show _ * (_ * _) = _
     rw [e₂, zero_mul, mul_zero]
   beta_reduce

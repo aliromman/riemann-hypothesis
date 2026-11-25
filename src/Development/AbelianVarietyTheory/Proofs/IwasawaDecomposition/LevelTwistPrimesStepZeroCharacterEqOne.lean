@@ -6,6 +6,30 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ProdAbsNormD
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TrueColumnSpacesStandardInFrameCoords
 import Formalism.LocalToGlobal.Columns.AdelicLemmas
 import Formalism.LocalToGlobal.Columns.BaseLemmas
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -19,6 +43,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -133,7 +159,7 @@ theorem redM_mat {gp : Fin 2 → ℕ} (G : GLoc F E σ gp) (i : Fin 2) (h : (gp 
   rw [mat_one]
   ext a b
   obtain ⟨hh, e⟩ := hres _ _ (hA a b)
-  exact (dif_pos hh).trans e
+  exact (dite_eq_left hh).trans e
 
 end Generic
 
@@ -299,7 +325,7 @@ theorem lev_iff (hI : I.Ok) {u : B.Word} {Lb : Unit → Submodule (𝓞 B.host.E
 theorem colLev_zero (w : (B.primes X).vGs) : colLev I.Ch 0 w =
     ⟨HX (𝓞 B.host.E ⧸ w.1.asIdeal) (B.R.N 0) B.R.k B.R.t 0,
       lamX (I.Ch.psi0 w) (extChi fun s => I.Ch.chi s w) (B.R.N 0) B.R.k B.R.m B.R.t 0⟩ :=
-  if_pos (by have := B.R.two_le_m; omega)
+  ite_eq_left (by have := B.R.two_le_m; omega)
 
 theorem mem_colLev_zero {w : (B.primes X).vGs} {g : GL (Fin (B.R.N 0)) (𝓞 B.host.E ⧸ w.1.asIdeal)} :
     g ∈ (colLev I.Ch 0 w).H ↔ g ∈ uniUT (B.R.N 0) (𝓞 B.host.E ⧸ w.1.asIdeal) B.R.k [] := by
@@ -401,8 +427,8 @@ theorem inJ_iff {κ L : Type} [Field κ] [Field L] (ρ : κ →+* L) (hn : B.R.N
     (A : GL (Fin (B.R.N 0)) κ) :
     InJ B.R.k B.R.t (B.R.N 0) false (A.1.map ρ) ↔ A ∈ uniUT (B.R.N 0) κ B.R.k [] := by
   have hlt : ∀ x : Fin (B.R.N 0), (x : ℕ) < B.R.k := fun x => hn ▸ x.2
-  have hb : ∀ x : Fin (B.R.N 0), Formalism.L2.Forms.blkOf B.R.k B.R.t x = x := fun x => if_pos (hlt x)
-  have hf : ∀ x : Fin (B.R.N 0), fine B.R.k [] x = x := fun x => if_pos (hlt x)
+  have hb : ∀ x : Fin (B.R.N 0), Formalism.L2.Forms.blkOf B.R.k B.R.t x = x := fun x => ite_eq_left (hlt x)
+  have hf : ∀ x : Fin (B.R.N 0), fine B.R.k [] x = x := fun x => ite_eq_left (hlt x)
   simp only [InJ, hb, Matrix.map_apply]
   constructor
   · rintro ⟨h1, h2, -, -⟩
@@ -451,9 +477,9 @@ theorem prod_places (Φ : (B.primes X).vGs → ℂ)
     · refine Finset.prod_congr rfl fun w hw => ?_
       obtain ⟨w', hw', e, e'⟩ := hf i _ (g_mem_under hw)
       obtain rfl : w' = w := vGs_inj (X := X) (mem_vGs.2 ⟨i, hw⟩) (mem_vGs.2 ⟨i, hw'⟩) e
-      rw [finprod_eq_dif, dif_pos (g_mem_under hw), e']
+      rw [finprod_eq_dif, dite_eq_left (g_mem_under hw), e']
       simp only [Ψ]
-      rw [dif_pos (mem_vGs.2 ⟨i, hw⟩)]
+      rw [dite_eq_left (mem_vGs.2 ⟨i, hw⟩)]
     · intro v hv
       rw [Function.mem_mulSupport, finprod_eq_dif] at hv
       split_ifs at hv with h
@@ -469,7 +495,7 @@ theorem prod_places (Φ : (B.primes X).vGs → ℂ)
   rw [e, ← Finset.prod_coe_sort (B.primes X).vGs Ψ]
   refine Finset.prod_congr rfl fun w _ => ?_
   simp only [Ψ]
-  rw [dif_pos w.2]
+  rw [dite_eq_left w.2]
 
 theorem norm_additiveCharacter_typePrime_eq_one (w : (B.primes X).vGs) (a : 𝓞 B.host.E ⧸ w.1.asIdeal) : ‖B.embLL (I.Ch.psi0 w a)‖ = 1 := by
   obtain ⟨i, hi⟩ := mem_vGs.1 w.2

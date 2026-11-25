@@ -7,11 +7,34 @@ import Formalism.HermitianLattices.HermitianLatticesProofs.DualBasic
 import Formalism.HermitianLattices.HermitianLatticesProofs.UnimodularSpan
 import Formalism.LocalToGlobal.Columns.AdelicLemmas
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsGlob
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -24,6 +47,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.RingTheory.PicardGroup
 
 @[expose] public section
@@ -60,13 +85,13 @@ theorem isPtOf_iff_decoRaw : ∀ (F E : Type) [Field F] [NumberField F] [Field E
     · have hx' : x ∈ Formalism.UG.CS.globLat g (stdLat E n) := hN ▸ hx
       refine HasRes.unique (h.f P x hx (lastIdx n) (by simp [lastIdx]; have := NeZero.pos n; omega)) ?_
       simp only [decoRaw]
-      rw [if_pos (le_locP _ _ hx')]
+      rw [ite_eq_left (le_locP _ _ hx')]
       exact PtExist.hasRes_redA _ ((mem_globLat g x).1 hx' _)
     · have hx' : x ∈ Formalism.UG.CS.globLat g (stdLat E n) := hN ▸ hx
       funext i
       refine HasRes.unique (h.be w x hx i) ?_
       simp only [decoRaw]
-      rw [if_pos (le_locP _ _ hx')]
+      rw [ite_eq_left (le_locP _ _ hx')]
       exact PtExist.hasRes_redA _ ((mem_globLat g x).1 hx' i)
   · rintro ⟨hg, hd⟩
     have hN : p.deco.1.N = Formalism.UG.CS.globLat g (stdLat E n) := by rw [hd]; rfl
@@ -75,12 +100,12 @@ theorem isPtOf_iff_decoRaw : ∀ (F E : Type) [Field F] [NumberField F] [Field E
     · rw [hN] at hx
       rw [hd]
       simp only [decoRaw]
-      rw [if_pos (le_locP _ _ hx), hlast i hi]
+      rw [ite_eq_left (le_locP _ _ hx), hlast i hi]
       exact PtExist.hasRes_redA _ ((mem_globLat g x).1 hx i)
     · rw [hN] at hx
       rw [hd]
       simp only [decoRaw]
-      rw [if_pos (le_locP _ _ hx)]
+      rw [ite_eq_left (le_locP _ _ hx)]
       exact PtExist.hasRes_redA _ ((mem_globLat g x).1 hx i)
 
 end GlobalTheory.Mem.Col2.PtDeco

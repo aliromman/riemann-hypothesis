@@ -11,6 +11,30 @@ public import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdmissibleRepHasTraceFiniteAdelicPureTensorFunct
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.InfinitePartActDiscreteSeriesHomFactorwiseStatement
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsDualFamilyOfIsLattice
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -24,6 +48,13 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
 import Mathlib.Tactic.TypeStar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.Foundations.InnerEqZeroOfNotUEquiv
@@ -171,7 +202,7 @@ theorem aestronglyMeasurable_pi_of_forall {α : Type*} {m0 : MeasurableSpace α}
       AEStronglyMeasurable (fun x (i : ι) => if i ∈ s then f i x else 0) ν := by
     intro s
     induction s using Finset.induction_on with
-    | empty => simp only [Finset.notMem_empty, if_false]; exact aestronglyMeasurable_const
+    | empty => simp only [Finset.notMem_empty, ite_false]; exact aestronglyMeasurable_const
     | insert a s ha ih =>
       have hc : Continuous (fun p : E a × (∀ i, E i) => Function.update p.2 a p.1) :=
         continuous_snd.update a continuous_fst
@@ -196,10 +227,10 @@ theorem integrable_vecOn (μ : ∀ i, Measure (X i)) [∀ i, SigmaFinite (μ i)]
   have hmeas : AEStronglyMeasurable (fun x => vecOn g s m x) (Measure.pi fun i : s => μ i) := by
     refine aestronglyMeasurable_pi_of_forall (f := fun i x => vecOn g s m x i) fun i => ?_
     by_cases hi : i ∈ s
-    · simp only [vecOn, dif_pos hi]
+    · simp only [vecOn, dite_eq_left hi]
       exact (hg i).1.comp_quasiMeasurePreserving
         (Measure.quasiMeasurePreserving_eval (fun j : s => μ j) ⟨i, hi⟩)
-    · simp only [vecOn, dif_neg hi]; exact aestronglyMeasurable_const
+    · simp only [vecOn, dite_eq_right hi]; exact aestronglyMeasurable_const
   have hdom : Integrable (fun x : ∀ j : s, X j => ‖Φ‖ * ((∏ j : s, ‖g j (x j)‖) * ∏ i ∈ sᶜ, ‖m i‖))
       (Measure.pi fun i : s => μ i) :=
     ((Integrable.fintype_prod_dep (f := fun (j : s) (y : X j) => ‖g j y‖)
@@ -245,15 +276,15 @@ theorem integral_vecOn (μ : ∀ i, Measure (X i)) [∀ i, SigmaFinite (μ i)]
       by_cases hia : i = a
       · subst hia
         have h1 : i ∈ ({i} : Finset ι) ∪ s := by simp
-        simp only [vecOn, dif_pos h1, dif_neg ha, Function.update_self, he]
+        simp only [vecOn, dite_eq_left h1, dite_eq_right ha, Function.update_self, he]
         rw [Equiv.piFinsetUnion_left X hd (Finset.mem_singleton_self i)]
         rfl
       · by_cases his : i ∈ s
         · have h1 : i ∈ ({a} : Finset ι) ∪ s := by simp [his]
-          simp only [vecOn, dif_pos h1, dif_pos his, he]
+          simp only [vecOn, dite_eq_left h1, dite_eq_left his, he]
           rw [Equiv.piFinsetUnion_right X hd his]
         · have h1 : i ∉ ({a} : Finset ι) ∪ s := by simp [his, hia]
-          simp only [vecOn, dif_neg h1, dif_neg his, Function.update_of_ne hia]
+          simp only [vecOn, dite_eq_right h1, dite_eq_right his, Function.update_of_ne hia]
     have hint : Integrable (fun p => Φ (vecOn g ({a} ∪ s) m (MeasurableEquiv.piFinsetUnion X hd p)))
         ((Measure.pi fun i : ({a} : Finset ι) => μ i).prod (Measure.pi fun i : s => μ i)) :=
       (hmp.integrable_comp_emb (MeasurableEquiv.measurableEmbedding _)).2
@@ -301,7 +332,7 @@ theorem integral_multilinear_pi : ∀ (ι : Type) [Fintype ι] [DecidableEq ι] 
         (fun i => g i (MeasurableEquiv.piCongrLeft X e z i)) = vecOn g Finset.univ 0 z := by
       intro z; funext i
       have h := Equiv.piCongrLeft_apply_apply X e z ⟨i, Finset.mem_univ i⟩
-      simp only [vecOn, dif_pos (Finset.mem_univ i)]
+      simp only [vecOn, dite_eq_left (Finset.mem_univ i)]
       rw [MeasurableEquiv.coe_piCongrLeft]
       exact congrArg (g i) h
     refine ((integral_congr_ae (ae_of_all _ fun z => congrArg Φ (hpt z))).trans

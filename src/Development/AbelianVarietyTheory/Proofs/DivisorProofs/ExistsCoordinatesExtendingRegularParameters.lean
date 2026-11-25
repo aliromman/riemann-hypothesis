@@ -6,18 +6,6 @@ public import ReciprocityTheory.AnalyticForms.RegularLocalRings.FinalTheorems
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CotangentImagesLinearIndependent
 public import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsAlgHomOfComp
 public import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsUniqueIsTanFrameOfIsEmpty
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.CommGroupMulMulEqMulInvMulMulMul
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsoOverOfIsOpenImmersion
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsBaseFrame
@@ -59,8 +47,6 @@ theorem span_one_tmul_eq_top {R M : Type} [CommRing R] [IsLocalRing R] [AddCommG
     rw [h2]
     exact N.smul_mem a h1
   | add x y hx hy => exact add_mem hx hy
-
-alias main := _root_.GlobalTheory.TensorUnitSpanTop.span_one_tmul_eq_top
 
 end GlobalTheory.TensorUnitSpanTop
 end -- clump:auto

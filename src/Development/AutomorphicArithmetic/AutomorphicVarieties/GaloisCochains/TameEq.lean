@@ -12,18 +12,6 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomo
 import Mathlib.FieldTheory.Galois.Profinite
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Algebra.ClopenNhdofOne
 import Mathlib.Topology.Compactness.Paracompact
 import Mathlib.Topology.Connected.Separation
@@ -61,7 +49,7 @@ private theorem tameEq_cochain {k Γ M : Type} [CommRing k] [Group Γ] [Topologi
   let f' : Γ → M := fun g => if h : ∃ j : J, j.1⁻¹ * g ∈ U then f h.choose else 0
   have hf' : ∀ (g : Γ) (j : J), j.1⁻¹ * g ∈ U → f' g = f j := fun g j hj => by
     have h : ∃ j : J, j.1⁻¹ * g ∈ U := ⟨j, hj⟩
-    have e : f' g = f h.choose := dif_pos h
+    have e : f' g = f h.choose := dite_eq_left h
     have h2 : (j⁻¹ * h.choose).1 ∈ U := by
       have := mul_mem hj (inv_mem h.choose_spec)
       simpa [mul_assoc] using this

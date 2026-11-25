@@ -4,9 +4,31 @@ public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.RowsM
 public import Formalism.SharpRestriction.CuspSpanNormBounds.LatticeGluingRadicals
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.UnitaryHostFieldArithmeticConditionsProof
 import Mathlib.Algebra.Module.StablyFree.Basic
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -20,6 +42,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -97,7 +122,7 @@ def idNF (F : Formalism.MainNotions.S.FlagG S r (n : E)) (hT : ((n : ℕ) : E) �
     rw [GlobalTheory.TypeAsm.fv_cast, hfe]
     by_cases h : a = b
     · subst h; simp
-    · rw [if_neg (Ne.symm h), if_neg h]
+    · rw [ite_eq_right (Ne.symm h), ite_eq_right h]
   ist_e' a b ha := absurd ha (Nat.not_lt_zero _)
   normalForm_dual_orthogonal_last b _ := by
     change S.hT (f b) (F.fvec (Fin.last r)) = 0
@@ -169,7 +194,7 @@ theorem idNF_spec (F : Formalism.MainNotions.S.FlagG S r (n : E)) (hT : ((n : �
         rw [map_smul, hfe, smul_eq_mul]
         by_cases h : c = a
         · subst h; simpa using hx
-        · rw [if_neg h, mul_zero]; exact Submodule.zero_mem _
+        · rw [ite_eq_right h, mul_zero]; exact Submodule.zero_mem _
       · intro x hx
         show S.hT (f c) x ∈ (aaF 𝔡 c : Submodule (𝓞 E) E)
         rw [hLf x hx c]; exact Submodule.zero_mem _
@@ -182,7 +207,7 @@ theorem idNF_spec (F : Formalism.MainNotions.S.FlagG S r (n : E)) (hT : ((n : �
     intro a
     refine right_zero ?_
     rintro _ ⟨i, hi, rfl⟩
-    rw [hfe, if_neg]
+    rw [hfe, ite_eq_right]
     rintro rfl; exact lt_irrefl _ (show a.val < a.val from hi)
   have hXcoord : ∀ x ∈ F.X, x = ∑ c, S.hT (f c) x • F.e c := by
     intro x hx
@@ -205,7 +230,7 @@ theorem idNF_spec (F : Formalism.MainNotions.S.FlagG S r (n : E)) (hT : ((n : �
       constructor
       · intro ht
         obtain ⟨y, hy, x, hx, hxy⟩ := Submodule.mem_sup.1 ht
-        have h1 : S.hT (f a) (t • F.e a) = t := by rw [map_smul, hfe, if_pos rfl, smul_eq_mul, mul_one]
+        have h1 : S.hT (f a) (t • F.e a) = t := by rw [map_smul, hfe, ite_eq_left rfl, smul_eq_mul, mul_one]
         rw [← hxy, map_add (f := _), hXa0 a x hx, add_zero] at h1
         rw [← h1]; exact hval a y hy
       · intro ht
@@ -388,7 +413,7 @@ theorem fe_of {E : Type} [Field E] [NumberField E] [StarRing E] {S : HSpace E} {
   rw [← S.herm.eq, hef b a]
   by_cases h : a = b
   · subst h; simp
-  · rw [if_neg (Ne.symm h), if_neg h, map_zero]
+  · rw [ite_eq_right (Ne.symm h), ite_eq_right h, map_zero]
 
 theorem idNFC_holds : GlobalTheory.TypeAsm.IdNFC := by
   intro D large₂ X Y u hStd Λ hΛ

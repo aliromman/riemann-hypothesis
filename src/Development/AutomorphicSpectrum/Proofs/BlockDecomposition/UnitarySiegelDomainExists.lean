@@ -22,6 +22,28 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitaryA
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MinimalParabolicRationalCompact
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ReductionTheoryHeightBound
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WittFrameReduceRank
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -35,15 +57,24 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.WeilBound.ThetaLifts.Reductions.SiegelAbs
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
 import Development.AbelianVarietyTheory.Definitions.Foundations.EventuallyNormFinLeOne
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.IsSmoothModerateOfIsAutFunSm
 import Development.WeilBound.ThetaLifts.Reductions.SiegelHaar
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.TypeStar
 import Development.WeilBound.ThetaLifts.FrameEstimates.LeHeightOfIsTorusElt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Polynomial.Basic
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompactness.T2SpaceTensorProductFiniteExtension
 import Std.Tactic.BVDecide.Normalize.Prop
 
@@ -564,7 +595,7 @@ theorem finprod_le_prod_of_le {α : Type*} {f b : α → ℝ} (S : Finset α) (h
   · set c : α → ℝ := fun a => if a ∈ S then b a else 1 with hc
     have hcs : Function.mulSupport c ⊆ (S : Set α) := fun a ha => by
       by_contra h
-      exact ha (by simp only [hc]; exact if_neg fun h' => h (Finset.mem_coe.2 h'))
+      exact ha (by simp only [hc]; exact ite_eq_right fun h' => h (Finset.mem_coe.2 h'))
     have hcf : (Function.mulSupport c).Finite := S.finite_toSet.subset hcs
     have hle : ∏ᶠ a, f a ≤ ∏ᶠ a, c a :=
       finprod_le_finprod_of_nonneg hf hcf h0 fun a => by
@@ -575,7 +606,7 @@ theorem finprod_le_prod_of_le {α : Type*} {f b : α → ℝ} (S : Finset α) (h
     rw [finprod_eq_prod_of_mulSupport_subset c hcs] at hle
     refine hle.trans (le_of_eq (Finset.prod_congr rfl fun a ha => ?_))
     simp only [hc]
-    rw [if_pos ha]
+    rw [ite_eq_left ha]
   · rw [finprod_of_infinite_mulSupport hf]
     exact hone
 
@@ -755,7 +786,7 @@ theorem adelicNorm_rId [IsTotallyReal F] {N : ℕ} (c : ℝ) (y : Fin N → AF F
     GroundTheory.Automorphic.Reduction.adelicNorm (rId F c • y) =
       Real.exp (Module.finrank ℚ F * c) * GroundTheory.Automorphic.Reduction.adelicNorm y := by
   have hm : ∀ w : InfinitePlace F, w.mult = 1 := fun w => by
-    rw [InfinitePlace.mult, if_pos (IsTotallyReal.isReal w)]
+    rw [InfinitePlace.mult, ite_eq_left (IsTotallyReal.isReal w)]
   have hw : ∀ w : InfinitePlace F, ‖(rId F c).1 w‖ = Real.exp c := fun w => norm_evInf_rId w c
   have hv : ∀ v, GroundTheory.Automorphic.Reduction.finComp v (rId F c • y) = GroundTheory.Automorphic.Reduction.finComp v y := fun v => by
     rw [GroundTheory.Automorphic.Reduction.finComp_smul, rId_snd]

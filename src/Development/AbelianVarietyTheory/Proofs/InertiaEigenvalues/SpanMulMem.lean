@@ -2,18 +2,6 @@ module
 
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.LocVol
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -50,7 +38,5 @@ theorem span_mul_mem {a b : TensorProduct F (Formalism.MainNotions.GlobalTheoryT
   | zero => simp
   | add x z _ _ h1 h2 => rw [add_mul]; exact Submodule.add_mem _ h1 h2
   | smul c x _ h => rw [smul_mul_assoc]; exact Submodule.smul_mem _ c h
-
-alias main := _root_.GlobalTheory.SpanMulInertiaEigenvalues.span_mul_mem
 
 end GlobalTheory.SpanMulInertiaEigenvalues

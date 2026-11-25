@@ -1,18 +1,6 @@
 module
 
 public import Development.AutomorphicArithmetic.Foundations.UnitarySphericalFixing.SatakeParameters.ClassMapD
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -32,10 +20,6 @@ def LocalCompatibility (D : D7) (rc : Corr D) : Prop :=
     ∀ P : D.naut.AV i, ∃ π : QRep (D.host.g k) D.R.nV, IrrSm π ∧
       D.naut.locV i P (D.naut.plGw k v) = rc k v D.R.nV π ∧
       ActsThrough π D.R.r D.R.t χ (D.naut.typeV i P) fun a => D.ntypes.onMt (D.nd.mu i) (D.nd.j i) (atPlace D k v a)
-namespace Loc
-section Det
-end Det
-end Loc
 end GlobalTheory.SerSys
 end
 end

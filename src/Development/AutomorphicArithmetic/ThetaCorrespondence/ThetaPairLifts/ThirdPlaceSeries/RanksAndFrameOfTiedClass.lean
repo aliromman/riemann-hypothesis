@@ -24,22 +24,6 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ClassNumb
 public import Formalism.SharpRestriction.GlobalSchurBounds.TheoremThreeFamilyOfFormalDegreeInput
 public import Formalism.SharpRestriction.SmoothDesignExistence.DGamSmooth
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Algebra.AffineMonoid.Basic
-import Mathlib.NumberTheory.RamificationInertia.Basic
-import Mathlib.Tactic.Lemma
-import Mathlib.Tactic.TypeStar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FlagMeasures.TFrameOfRanksRowThree, Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExactRanksOfRecord, Development.AbelianVarietyTheory.Proofs.FlagMeasures.NcardPrimesOverOfNorm, Development.AbelianVarietyTheory.Proofs.FlagMeasures.RankConditionOfColumnsEqualSymmetricLevel, Development.AbelianVarietyTheory.Proofs.FlagMeasures.VolumeEqMassOfReal, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ExactRanksAlongTiedFamily, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.RanksAndFrameOfTiedClass

@@ -3,8 +3,32 @@ module
 public import Development.AbelianVarietyTheory.Definitions.LatticeFrames.EntryAgree
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.CompletionChainLatticeEntriesAgree
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ResiduesOfCompletionAtPrimeWithUniformizer
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -18,7 +42,10 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -212,7 +239,7 @@ theorem phi_steps (hA : AtTwist (R := R) sel mu cst σ₀ P ι s W) (j c : ℕ) 
   have hm := hA.steps
   have hPhi : PhiAt Ch mu cst.sharp j P.1 x = LocE.PhiQ (qOf P.1) (resChar (mu : Chr X.F X.E X.K) P.1) R.k R.r
       (cOf R j) (R.N j) (cOf R (j + 1)) (R.N (j + 1)) x := by
-    unfold PhiAt; rw [if_neg hA.nmem]
+    unfold PhiAt; rw [ite_eq_right hA.nmem]
   have hT : (W.T s R).Phi j c h (toLoc ι e e' x) = parPhi W.δ
       ((plainFrame (stdOrd (Fin R.k) (Fin R.t) (l := s + 1) (j + 1) c (by omega))).coords
         (plainFrame (stdOrd (Fin R.k) (Fin R.t) (l := s + 1) j (c + 1) (by omega))) (toLoc ι e e' x)) := rfl
@@ -252,7 +279,7 @@ theorem phi_top (hA : AtTwist (R := R) sel mu cst σ₀ P ι s W)
   have hm := hA.steps
   have hPhi : PhiTop Ch mu cst.sharp s P.1 x = LocE.PhiQ (qOf P.1) (resChar (mu : Chr X.F X.E X.K) P.1) R.k R.r
       (cOf R (s + 1)) (R.N (s + 1)) 0 (R.N R.m - 1) x := by
-    unfold PhiTop; rw [if_neg hA.nmem]
+    unfold PhiTop; rw [ite_eq_right hA.nmem]
   have hT : (W.T s R).PhiTop (toLoc ι e e' x) = parPhi W.δ
       ((LatFrame.refl k (Ix (Fin R.k ⊕ Fin (s + 1)) (Fin R.t) (s + 2))).coords
         (plainFrame (stdOrd (Fin R.k) (Fin R.t) (l := s + 1) (s + 1) 0 rfl)) (toLoc ι e e' x)) := rfl

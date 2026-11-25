@@ -10,7 +10,34 @@ public import Mathlib.Analysis.Complex.Trigonometric
 public import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 public import Mathlib.LinearAlgebra.Dual.Lemmas
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsKHwMap
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -23,8 +50,13 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
 import Std.Tactic.BVDecide.Normalize.BitVec
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ParamsEx
@@ -188,7 +220,7 @@ theorem gder_single_X (p : D.what₂.Tau → ℕ) (τ : D.what₂.Tau) (c : Fin 
   rw [gder_X]
   by_cases hσ : σ = τ
   · subst hσ
-    simp only [if_true]
+    simp only [ite_true]
     by_cases hd : d = c
     · subst hd
       by_cases hi : (i : ℕ) < p σ <;> simp [ex, hi, Matrix.single_apply]
@@ -385,7 +417,7 @@ theorem sop_eq (w : GlobalTheory.ExportSeries.Weight D n) (τ : D.what₂.Tau) (
       · intro i _ hij
         by_cases hi : (i : ℕ) < w.p σ <;> simp [T, hi, hij]
       · simp
-    · rw [if_neg hσ, neg_zero]
+    · rw [ite_eq_right hσ, neg_zero]
       refine Finset.sum_eq_zero fun i _ => ?_
       by_cases hi : (i : ℕ) < w.p τ <;> simp [T, hi, Ne.symm hσ]
   have hA : GlobalTheory.LowestKType.sop (m := m) w τ a b = ∑ i : Fin m,
@@ -413,7 +445,7 @@ theorem sop_eq (w : GlobalTheory.ExportSeries.Weight D n) (τ : D.what₂.Tau) (
   · simp [T, hi, GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.raiO, GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.lowO, GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.sgn]
     by_cases hab : a = b
     · subst hab
-      simp only [if_true, Pi.single_eq_same, mul_one, LinearMap.smul_apply, Module.End.one_apply]
+      simp only [ite_true, Pi.single_eq_same, mul_one, LinearMap.smul_apply, Module.End.one_apply]
       module
     · simp [hab]
 
@@ -462,24 +494,24 @@ theorem subst_comp_gder (p : D.what₂.Tau → ℕ) (τ : D.what₂.Tau) (g : Gl
     by_cases hσ : σ = τ
     · subst hσ
       rw [gder_X, hS]
-      simp only [if_true]
+      simp only [ite_true]
       by_cases hi : (i : ℕ) < p σ
-      · rw [if_pos hi, if_pos hi, map_neg, linS, lin, ← hgi]
+      · rw [ite_eq_left hi, ite_eq_left hi, map_neg, linS, lin, ← hgi]
         have h1 : ∀ d, GlobalTheory.ExportSeries.fockSubst (m := m) p g (X (σ, i, d)) = ∑ b, C (gi d b) * X (σ, i, b) := by
-          intro d; rw [hS, if_pos hi, hgi]
+          intro d; rw [hS, ite_eq_left hi, hgi]
         have h2 : ∀ b, gder (m := m) p σ Z' (X (σ, i, b)) = -∑ e, C (Z' b e) * X (σ, i, e) := by
-          intro b; rw [gder_X]; simp only [if_true]; rw [if_pos hi]
+          intro b; rw [gder_X]; simp only [ite_true]; rw [ite_eq_left hi]
         have key : ∀ b, ∑ d, Z c d * gi d b = ∑ d, gi c d * Z' d b := fun b => congrFun (congrFun e1 c) b
         have d1 := dsum (Z c) gi (fun b => X (σ, i, b))
         have d2 := dsum (gi c) Z' (fun b => X (σ, i, b))
         simp only [h1, h2, mul_neg, Finset.sum_neg_distrib] at d1 d2 ⊢
         rw [d1, d2]
         simp only [key]
-      · rw [if_neg hi, if_neg hi, linS, lin, ← hg0]
+      · rw [ite_eq_right hi, ite_eq_right hi, linS, lin, ← hg0]
         have h1 : ∀ d, GlobalTheory.ExportSeries.fockSubst (m := m) p g (X (σ, i, d)) = ∑ b, C (g0 b d) * X (σ, i, b) := by
-          intro d; rw [hS, if_neg hi, hg0]
+          intro d; rw [hS, ite_eq_right hi, hg0]
         have h2 : ∀ b, gder (m := m) p σ Z' (X (σ, i, b)) = ∑ e, C (Z' e b) * X (σ, i, e) := by
-          intro b; rw [gder_X]; simp only [if_true]; rw [if_neg hi]
+          intro b; rw [gder_X]; simp only [ite_true]; rw [ite_eq_right hi]
         have key : ∀ e, ∑ d, Z d c * g0 e d = ∑ b, g0 b c * Z' e b := by
           intro e
           have := congrFun (congrFun e2 e) c
@@ -492,8 +524,8 @@ theorem subst_comp_gder (p : D.what₂.Tau → ℕ) (τ : D.what₂.Tau) (g : Gl
         rw [d1, d2]
         simp only [key]
     · have h0 : ∀ b, gder (m := m) p τ Z' (X (σ, i, b)) = 0 := by
-        intro b; rw [gder_X]; exact if_neg hσ
-      rw [gder_X, if_neg hσ, map_zero, hS]
+        intro b; rw [gder_X]; exact ite_eq_right hσ
+      rw [gder_X, ite_eq_right hσ, map_zero, hS]
       split_ifs <;> simp only [lin, h0, mul_zero, Finset.sum_const_zero]
   refine LinearMap.ext fun P => ?_
   change GlobalTheory.ExportSeries.fockSubst (m := m) p g (gder p τ Z P) = gder p τ Z' (GlobalTheory.ExportSeries.fockSubst (m := m) p g P)

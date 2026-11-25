@@ -2,17 +2,6 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.StrictHenselianAcyclic
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LowSetFinite
 
@@ -55,10 +44,10 @@ theorem supSum_map {κ : Type} [CommRing κ] {n : ℕ} (e : κ →+* ZMod n) {r 
   refine Finset.sum_congr rfl fun b _ => ?_
   by_cases h : (b : ℕ) = a + 1
   · have h' : supEdge a b := h
-    rw [if_pos h, if_pos h']
+    rw [ite_eq_left h, ite_eq_left h']
     rfl
   · have h' : ¬ supEdge a b := h
-    rw [if_neg h, if_neg h', map_zero]
+    rw [ite_eq_right h, ite_eq_right h', map_zero]
 
 def thOf (ζ : Fin 2 → ↥D.LL0) (hp : ∀ k, ζ k ^ D.host.g k = 1) (k : Fin 2) :
     Multiplicative (ZMod (D.host.g k)) →* (↥D.LL0)ˣ :=
@@ -109,9 +98,5 @@ theorem roots_g (x : St P) (k : Fin 2) : ∃ ζ : ↥(Dof x).LL0,
   field_simp
 
 end State
-
-section Gen
-
-end Gen
 
 end GlobalTheory.HeightCounting.ThetaSt

@@ -5,21 +5,7 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.Quotien
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.QuotientAverageProdFubini
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ContinuousQuotientAveragePeriodicFamily
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.QuotientAverageTranslateInvariant
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicArithmetic.IntegralCasts.IsOpenStabOfMemNhds
-import Mathlib.CategoryTheory.Countable
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PosMApplyNeZero, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.QuotientAverageAdelicRationalPointsComm, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.QuotientAverageSumIndexFubini, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.QuotientAverageUnipotentBlockColumnTransformEqZe, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.QuotientAverageUnipotentBlockColumnTransformEqZeStatement
@@ -83,7 +69,7 @@ theorem posM_eq_of_support {ι : Type} [Fintype ι] {p : ι → Fin a × Fin a} 
     rw [Finset.sum_eq_single t]
     · simp [ht]
     · intro t' _ ht'
-      rw [if_neg]
+      rw [ite_eq_right]
       rintro ⟨e1, e2⟩
       exact ht' (hp (by rw [ht]; exact Prod.ext e1 e2))
     · simp
@@ -92,7 +78,7 @@ theorem posM_eq_of_support {ι : Type} [Fintype ι] {p : ι → Fin a × Fin a} 
       exact h (hM i k h1)
     rw [h0]
     refine Finset.sum_eq_zero fun t _ => ?_
-    rw [if_neg]
+    rw [ite_eq_right]
     rintro ⟨e1, e2⟩
     exact h ⟨t, Prod.ext e1 e2⟩
 
@@ -421,7 +407,7 @@ theorem dot_col {r m : ℕ} (hr : r ≤ m) (z : HiIx a r (m + 1) → Ad E) (y : 
     simp only [Function.comp, e, Sum.elim_inl]
   · have : (eLast a (m + 1) t : E) = 0 := by
       simp only [eLast]
-      rw [if_neg]
+      rw [ite_eq_right]
       omega
     simp [this]
 

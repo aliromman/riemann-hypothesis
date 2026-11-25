@@ -25,35 +25,12 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomolog
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FontaineBoundsCrystallineDeRhamAll
 public import Formalism.SharpRestriction.LevelLetterCocycles.JsetEmb
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.Tactic.Linter.Style
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
 import Formalism.SharpRestriction.LevelLetterCocycles.LocCoh
-import Mathlib.RingTheory.PiTensorProduct
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GoodCoefficientRingPadicIntegersFinExt
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ContinuousOrbitPadicComplex
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsTateOperatorLevelComplement
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NormPrimitiveRootPrimePowSubOnePadicComplex
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.NumberTheory.Padics.LocalField
-import Mathlib.Topology.Algebra.Nonarchimedean.Completion
-import Mathlib.Tactic.Monotonicity.Lemmas
-import Mathlib.Topology.Sheaves.Presheaf
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsPowSmulMemOL, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsSubBasis, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsIntegralFactorOfIdempotentSubfield, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NormCoeAutLeOneIff, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TmulMemFilV, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsTauComponentFrameOfLattice, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PrimePowSmulMemOfTwistedInvariantModLattice, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InvariantsVanishAtPrimeOfAdmissible, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TorsionExponentKillsInvariantsNoJumpZero
@@ -1559,8 +1536,8 @@ theorem two_add_sum_jumps_le_intervalExponent (S : LocalSituation.Sit) (Y : LocL
     · intro u _
       by_cases hj : IsJumpV S.PD Y.ρ τ u
       · have hu0 : u ≠ 0 := by rintro rfl; exact h0 hj
-        simp only [if_pos hj, if_pos (mem_Jset_of_isJumpV S Y τ u hj), if_pos hu0, le_refl]
-      · simp only [if_neg hj]
+        simp only [ite_eq_left hj, ite_eq_left (mem_Jset_of_isJumpV S Y τ u hj), ite_eq_left hu0, le_refl]
+      · simp only [ite_eq_right hj]
         exact Nat.zero_le _
   omega
 

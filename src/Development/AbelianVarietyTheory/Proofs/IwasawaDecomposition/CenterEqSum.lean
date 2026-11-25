@@ -5,19 +5,7 @@ public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsCo
 public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.UnipotentLatticeMembership
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.SubsetTwistExceptionalPlaces
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ExistsXdAllIff
-import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.RowsRestWordColumnUnitBaseTupleAlt
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.StrictHenselianAcyclic
@@ -83,8 +71,8 @@ theorem avgK_coeff {K : Type} [Field K] {G H : Type} [Group G] [Fintype G] [Grou
   classical
   rw [Finsupp.single_apply, Finsupp.single_apply]
   by_cases hy : h * g * h⁻¹ = y
-  · rw [if_pos hy, if_pos (congrArg e hy), map_one]
-  · rw [if_neg hy, if_neg (fun h' => hy (e.injective h')), map_zero]
+  · rw [ite_eq_left hy, ite_eq_left (congrArg e hy), map_one]
+  · rw [ite_eq_right hy, ite_eq_right (fun h' => hy (e.injective h')), map_zero]
 
 theorem lin_center {G W : Type} [Group G] [Fintype G] [AddCommGroup W] [Module ℂ W]
     (Φ : ↥(Subalgebra.center ℂ (MonoidAlgebra ℂ G)) →ₗ[ℂ] W) (v : G → W)

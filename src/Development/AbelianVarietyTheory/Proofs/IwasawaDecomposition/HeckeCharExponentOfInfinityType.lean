@@ -1,6 +1,31 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ContinuousConjFin
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -13,6 +38,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.HCFFromRecipA
 
 @[expose] public section
@@ -88,10 +115,10 @@ theorem coord_atEmb' (σ τ : E →+* ℂ) (z : ℂ) : coord σ (atEmb τ z) =
     (if σ = τ then z else 0) + (if σ = ComplexEmbedding.conjugate τ then starRingEnd ℂ z else 0) := by
   by_cases h1 : σ = τ
   · subst h1
-    rw [if_pos rfl, if_neg (conj_ne σ).symm, add_zero, coord_atEmb]
+    rw [ite_eq_left rfl, ite_eq_right (conj_ne σ).symm, add_zero, coord_atEmb]
   by_cases h2 : σ = ComplexEmbedding.conjugate τ
   · subst h2
-    rw [if_neg h1, if_pos rfl, zero_add]
+    rw [ite_eq_right h1, ite_eq_left rfl, zero_add]
     have := atEmb_conj τ (starRingEnd ℂ z)
     rw [Complex.conj_conj] at this
     rw [← this, coord_atEmb]
@@ -99,11 +126,11 @@ theorem coord_atEmb' (σ τ : E →+* ℂ) (z : ℂ) : coord σ (atEmb τ z) =
       rcases InfinitePlace.mk_eq_iff.1 h with h | h
       · exact h1 h
       · exact h2 (by rw [← h]; ext; simp)
-    rw [if_neg h1, if_neg h2, add_zero]
+    rw [ite_eq_right h1, ite_eq_right h2, add_zero]
     unfold coord atEmb
     by_cases h3 : (InfinitePlace.mk σ).embedding = σ
-    · rw [if_pos h3]; simp [h]
-    · rw [if_neg h3]; simp [h]
+    · rw [ite_eq_left h3]; simp [h]
+    · rw [ite_eq_right h3]; simp [h]
 
 theorem chiInf_eq (χ : HChar E) {I : Type} [Fintype I] (φ : I → E →+* ℂ) (f : I → ℂ → ℂ)
     (hf : ∀ i z, z ≠ 0 → ContinuousAt (f i) z)

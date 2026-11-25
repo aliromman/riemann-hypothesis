@@ -7,22 +7,11 @@ import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.InvertibleSpanSingleton
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsAdicCompleteOfPowLe
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MemBallOfGaugeLt
 import Mathlib.FieldTheory.Galois.Profinite
+import Mathlib.Tactic.ReduceModChar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GaloisTransitiveOnRootsOfPrime, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GaloisTransitiveOnPrimePowerRootSystems
@@ -58,14 +47,14 @@ theorem galois_transitive_on_roots_of_prime (l : ℕ) [Fact l.Prime] (K : FinExt
       exact hπ.not_isUnit (Ideal.span_singleton_eq_top.1 ((Ideal.eq_top_iff_one _).2 h))
     · intro m hm
       rw [Polynomial.degree_X_pow_sub_C hn π, Nat.cast_lt] at hm
-      rw [Polynomial.coeff_sub, Polynomial.coeff_X_pow, Polynomial.coeff_C, if_neg hm.ne]
+      rw [Polynomial.coeff_sub, Polynomial.coeff_X_pow, Polynomial.coeff_C, ite_eq_right hm.ne]
       split_ifs
       · exact Ideal.sub_mem _ (Ideal.zero_mem _) (Ideal.mem_span_singleton_self π)
       · simp
     · rw [Polynomial.degree_X_pow_sub_C hn π]
       exact_mod_cast hn
-    · rw [Polynomial.coeff_sub, Polynomial.coeff_X_pow, Polynomial.coeff_C, if_neg hn0.symm,
-        if_pos rfl, zero_sub, Ideal.span_singleton_pow, Ideal.neg_mem_iff, Ideal.mem_span_singleton]
+    · rw [Polynomial.coeff_sub, Polynomial.coeff_X_pow, Polynomial.coeff_C, ite_eq_right hn0.symm,
+        ite_eq_left rfl, zero_sub, Ideal.span_singleton_pow, Ideal.neg_mem_iff, Ideal.mem_span_singleton]
       rintro ⟨c, hc⟩
       apply hπ.not_isUnit
       have h1 : π * 1 = π * (π * c) := by

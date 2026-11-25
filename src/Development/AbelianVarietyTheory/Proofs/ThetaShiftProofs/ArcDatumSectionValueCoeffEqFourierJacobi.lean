@@ -23,6 +23,31 @@ public import Mathlib.NumberTheory.NumberField.Discriminant.Defs
 public import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.LaurentCoeffSectionValueArcEqFourierJacobi
 public import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.NonemptyUnifWitnessDataOfIsUnf
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.BoundedSectionAlgebra
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -35,6 +60,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.MajorantFamilyNorms
 import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsNeZeroIff
 import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsUniqueConstantTangentVectorsAlongArc
@@ -47,6 +73,7 @@ import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.RelabelEmbedding
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.PicardGroup
 import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.Tactic.Polynomial.Basic
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.RigidSys
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -370,9 +397,9 @@ theorem ajAt_eq_fj_of_overBase : Out.Laws → Out.Laws2 → Out.UnifBaseChangeSt
     eTwoPi (((Ha.T + 1 : ℝ) : ℂ) * Complex.I),
     fun x => if hx : InvBl x then κ x hx else 1, Complex.exp_ne_zero _, hiso, fun x hx => ?_, fun x hx => ?_,
     fun F h hb x hx => ?_⟩
-  · simpa only [dif_pos hx] using hκ x hx
-  · simpa only [dif_pos hx] using (fr x hx).2
-  · simpa only [dif_pos hx] using hF x hx F h hb
+  · simpa only [dite_eq_left hx] using hκ x hx
+  · simpa only [dite_eq_left hx] using (fr x hx).2
+  · simpa only [dite_eq_left hx] using hF x hx F h hb
 
 theorem ajAt_eq_fj : Out.Laws → Out.Laws2 → Out.UnifBaseChangeSt → Out.Laws5 → ToroidalArchimedeanCondition → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (K₁ : Type) [Field K₁] [Algebra c.F K₁] (d : ArcDatum Xo c K₁) (ι : K₁ →+* ℂ) (r : ℕ) (U : Unf Xo c (ι.comp (algebraMap c.F K₁)) r) (ξ : Module.Dual ℤ d.a.D₀.X) (ν₀ : E) (a' : (E →+* ℂ) × ℕ → ℕ) (n : ℕ), GlobalTheory.Reg.EvLaws Xo c → GoodEmb c (ι.comp (algebraMap c.F K₁)) → IsUnf U → d.OverBase → (∀ τ k, GtTanR (d.e τ k)) → PushInvertible d.Y.t.G d.Y.t.PP.L → Module.finrank (𝓞 E) d.a.D₀.X = 1 → ξ ≠ 0 → BetaAt ξ l.M' d.a.be ν₀ d.jj → Dom a' n → (∀ k, TransvIn (U.X k) l.M' (laU U a' n k)) → ∃ (k : U.Comp) (ξ' : Fin r → E) (fr : (ArcLt Dw → ℂ) → Frame (U.X k).Ψ r) (u₁ : ℂ) (κ : (ArcLt Dw → ℂ) → ℂ), u₁ ≠ 0 ∧ (U.X k).IsIso ξ' ∧ (∀ x, InvBl x → κ x ≠ 0) ∧ (∀ x, InvBl x → fr x ∈ (U.X k).dom) ∧ ∀ F ∈ sec Xo c a' n, (U.X k).IsBddSec (laU U a' n k) (rdU U F k) → ∀ x, InvBl x → ajAt d ι F x * u₁ ^ d.jj = κ x * (U.X k).fj (laU U a' n k) ξ' (fun τ => (τ.1 ν₀).re) (rdU U F k) (fr x) :=
   fun h1 h2 hU h5 hN E _ _ _ H Dw l Xo c K₁ _ _ d ι r U ξ ν₀ a' n hev hgood hunf hover _ =>

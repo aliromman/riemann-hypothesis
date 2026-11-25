@@ -49,6 +49,27 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.TraceSpl
 public import Development.AutomorphicArithmetic.Foundations.Convolution.TraceSplitting.LiftStep
 import all Development.AutomorphicArithmetic.Foundations.Convolution.TraceSplitting.LiftStep
 public import Development.WeilBound.RepresentationTheoryGL.TwistedFactors.IntegralUnitBaseChange.BcflUnit
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -67,13 +88,23 @@ import Development.AutomorphicArithmetic.Foundations.Convolution.NormCharacterPo
 import Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.BrData
 import Mathlib.RingTheory.AdicCompletion.Noetherian
 import Mathlib.RingTheory.Ideal.Norm.RelNorm
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Topology.Sheaves.Init
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
 import Development.AutomorphicArithmetic.Foundations.Convolution.CentreSplitting.ExCusp
 import Development.AutomorphicArithmetic.Foundations.Convolution.CentreSplitting.SInfIff
 import Development.AutomorphicArithmetic.Foundations.Convolution.CentreSplitting.SSatIff
 import Development.AutomorphicArithmetic.Foundations.Convolution.TraceSplitting.Places
 import PositivityTheory.AutomorphicForms.PublishedInputs.CyclicBaseChange.PSConjSpaceR
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SatakeParametersOfTwist
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.BaseChangeUnits.CycCOfCyclic
 import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.TheoremZeroOfReducedInputs
 import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.KvCont
@@ -387,7 +418,7 @@ private theorem exAt {E : Type} [Field E] [NumberField E] [_root_.NumberField.Is
   choose m hm using fun τ => ((Dp.parEx E n hn μ V hV).1 τ).exists
   refine ⟨m, fun w => if hw : ∃ B, SSat μ V w B then hw.choose else 0, hm, fun w hw => ?_⟩
   have hx := h w hw
-  simp only [dif_pos hx]
+  simp only [dite_eq_left hx]
   exact hx.choose_spec
 
 end SlopeTestRemainingChoices
@@ -861,12 +892,12 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.famTr :
     have k₂m : StronglyMeasurable k₂ := StronglyMeasurable.ite om m1 m2
     have k₂b : ∀ y, ‖k₂ y‖ ≤ max (‖P‖ * (C₄ * (C₃ * (C₅ * Real.exp (N₅ * T)) ^ c) ^ N₄)) B₂ := fun y => by
       by_cases hy : Om T (Quotient.out y : G1 K (2 + 2))
-      · simp only [k₂, if_pos hy]
+      · simp only [k₂, ite_eq_left hy]
         refine le_trans ?_ (le_max_left _ _)
         refine (P.le_opNorm _).trans (mul_le_mul_of_nonneg_left ((b₄ _).trans (mul_le_mul_of_nonneg_left
           (pow_le_pow_left₀ (q0 _).le ((hθ _).trans (mul_le_mul_of_nonneg_left
           (pow_le_pow_left₀ (q0 _).le ((hb T _ hT).1 hy) _) hC₃)) _) hC₄)) (norm_nonneg _))
-      · simp only [k₂, if_neg hy]
+      · simp only [k₂, ite_eq_right hy]
         exact (hB₂ _).trans (le_max_right _ _)
     have bae : ∀ φ, (ContinuousLinearMap.adjoint (P ∘L Rop μ g ∘L θ.U ∘L Λ) φ : RightCosetSpace (Gam K (2 + 2)) → ℂ)
         =ᵐ[quotientMeasure (Gam K (2 + 2)) μ] fun y => ⟪k₂ y, φ⟫_ℂ := fun φ => by
@@ -884,9 +915,9 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.famTr :
         exact hx h
       filter_upwards [t1, t2, t3, t4, t5 (ContinuousLinearMap.adjoint θ.U (Rop μ s (P φ)))] with y u1 u2 u3 u4 u5
       by_cases hy : Om T (Quotient.out y : G1 K (2 + 2))
-      · simp only [k₂, if_pos hy]
+      · simp only [k₂, ite_eq_left hy]
         rw [e2, u5 hy, u3, u4, kvout, hsa]
-      · simp only [k₂, if_neg hy]
+      · simp only [k₂, ite_eq_right hy]
         rw [e3, ContinuousLinearMap.comp_apply, u1, u2, lout]
     refine ⟨isTraceClass_comp kHS (hBHS.comp_left M), fun y => ⟪k T (Quotient.out y), M (k₂ y)⟫_ℂ, ?_, ?_, fun y hy => ?_, fun y hy => ?_⟩
     · refine Integrable.of_bound (km.inner (M.continuous.comp_stronglyMeasurable k₂m)).aestronglyMeasurable
@@ -895,8 +926,8 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.famTr :
         (mul_le_mul_of_nonneg_left (k₂b y) (norm_nonneg _))) (norm_nonneg _) ((norm_nonneg _).trans (hB₁ 1)))
     · exact traceKer _ _ M _ _ k₂ (MemLp.of_bound km.aestronglyMeasurable _ (Filter.Eventually.of_forall fun y => hB₁ _))
         (MemLp.of_bound k₂m.aestronglyMeasurable _ (Filter.Eventually.of_forall k₂b)) kHS hBHS kae bae
-    · simp only [k₂, if_pos hy, kO T _ hy]
-    · simp only [k₂, if_neg hy]
+    · simp only [k₂, ite_eq_left hy, kO T _ hy]
+    · simp only [k₂, ite_eq_right hy]
       have z0 := q0 (Quotient.out y)
       have z1 := kb T _ hT hy
       have z2 : ‖l T (θ.e (Quotient.out y))‖ ≤ C₂ * (C₃ * qht (Quotient.out y : G1 K (2 + 2)) ^ c) ^ N₂ :=

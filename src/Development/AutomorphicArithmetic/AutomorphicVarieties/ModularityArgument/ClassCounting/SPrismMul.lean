@@ -4,6 +4,32 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityA
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ClassCounting.ToInhPartialProd
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ClassCounting.LemmaKOfSteps
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GeneratorCountTuples.LeftMulChainChainHomotopic
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -16,6 +42,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.ReduceModChar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.GeneratorCountTuples.ConeHomotopyBoundaryFormula, Development.AutomorphicArithmetic.AutomorphicVarieties.GeneratorCountTuples.TupleChainBoundaryFormula, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ClassCounting.SPrismMul
@@ -94,29 +123,13 @@ private theorem ext_cone {m : ℕ} {B : Type} [AddCommGroup B] [Module A B] (f g
   refine Finsupp.lhom_ext fun x b => ?_
   rw [← Finsupp.smul_single_one, map_smul, map_smul, single_eq_cone, h]
 
-private theorem hbd_cone_zero (a : G) (y : Ch A G 0) : hbd A G 0 (cone A a 0 y) = y := by
-  induction y using Finsupp.induction_linear with
-  | zero => simp
-  | add y1 y2 h1 h2 => rw [map_add (f := _), map_add (f := _), h1, h2]
-  | single x b =>
-    rw [← Finsupp.smul_single_one, map_smul, map_smul]
-    congr 1
-    simp [cone, hbd.eq_1, Finsupp.mapDomain_single, Finsupp.linearCombination_single]
+private theorem hbd_cone_zero (a : G) (y : Ch A G 0) : hbd A G 0 (cone A a 0 y) = y :=
+  (hbd_eq A G 0 _).trans (UpperTheory.V.ZK.hbd_cone_zero A a y)
 
 private theorem hbd_cone (a : G) (m : ℕ) (y : Ch A G (m + 1)) :
     hbd A G (m + 1) (cone A a (m + 1) y) = y - cone A a m (hbd A G m y) := by
-  have e2 : hbd A G (m + 1) = Finsupp.linearCombination A fun x =>
-      (Finsupp.single (Fin.tail x) 1 : Ch A G (m + 1)) - cone A (x 0) m (hbd A G m (Finsupp.single (Fin.tail x) 1)) :=
-    hbd.eq_2 A G m
-  induction y using Finsupp.induction_linear with
-  | zero => simp
-  | add y1 y2 h1 h2 => simp only [map_add (f := _), h1, h2] <;> abel
-  | single x b =>
-    rw [← Finsupp.smul_single_one]
-    simp only [map_smul, ← smul_sub]
-    congr 1
-    rw [e2]
-    simp [cone, Finsupp.mapDomain_single, Finsupp.linearCombination_single]
+  rw [hbd_eq, hbd_eq]
+  exact UpperTheory.V.ZK.hbd_cone A a m y
 
 private theorem hp_cone (k a : G) (m : ℕ) (y : Ch A G m) :
     hp A k (m + 1) (cone A a m y) = cone A a (m + 1) (rmul A k (m + 1) (cone A a m y) - hp A k m y) := by

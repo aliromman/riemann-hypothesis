@@ -13,6 +13,28 @@ import Formalism.LocalToGlobal.Columns.AdelicLemmas
 public import Formalism.LocalToGlobal.Columns.BtExistsSmulLeOfFg
 import Formalism.LocalToGlobal.Columns.RecLevelLocK
 public import Formalism.LocalToGlobal.Columns.RecLevelLocP
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -217,8 +239,8 @@ theorem f_eq_rho (h : BasePi ST π) (hP : P ∈ ST) (hov : IsOver v P) {SG Q : F
   have e4 : algebraMap E (P.adicCompletion E) (star (π : E)) * adAt F P (Col2.pullV y z (lastIdx n)) =
       ∑ j, algebraMap E (P.adicCompletion E) (algebraMap (𝓞 E) E (if j = lastIdx n then cO E π else 0)) *
         adAt F P (Col2.pullV y z j) := by
-    rw [Finset.sum_eq_single (lastIdx n) (fun j _ hj => by rw [if_neg hj, map_zero, map_zero, zero_mul])
-      (fun hh => absurd (Finset.mem_univ _) hh), if_pos rfl]
+    rw [Finset.sum_eq_single (lastIdx n) (fun j _ hj => by rw [ite_eq_right hj, map_zero, map_zero, zero_mul])
+      (fun hh => absurd (Finset.mem_univ _) hh), ite_eq_left rfl]
     rfl
   show Valued.v (adAt F P _ - _) < 1
 

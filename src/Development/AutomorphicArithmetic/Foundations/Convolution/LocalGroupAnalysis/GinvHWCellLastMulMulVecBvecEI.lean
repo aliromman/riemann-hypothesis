@@ -16,9 +16,36 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.Hermitia
 public import Development.AbelianVarietyTheory.PublishedTheorems.AdelicLattices₂.AlgebraMapNormOfBasisOneSqrt
 public import Development.WeilBound.RepresentationTheoryGL.TwistedFactors.SelmerRankBounds.EllipticityFromProductFormula
 public import Development.AutomorphicArithmetic.Foundations.Convolution.HermitianDescent.IsHerm
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
@@ -33,13 +60,18 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsRingHomAdicCompletionUnder
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.HasseNormPrincipleOfIsCyclic
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.IsNormFromBaseChangeBaseChangeProperties
 import Mathlib.Algebra.Module.StablyFree.Basic
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Polynomial.Basic
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.RingTheory.Artinian.Instances
 
@@ -60,13 +92,7 @@ private lemma comp_eq {F E K A : Type} [Field F] [Field E] [Algebra F E] [Field 
         (Algebra.TensorProduct.includeRight : E →ₐ[F] K ⊗[F] E).toRingHom).comp (algebraMap F E) =
       (algebraMap K A).comp (algebraMap F K) := by
   ext c
-  have h : (1 : K) ⊗ₜ[F] (algebraMap F E c) = algebraMap K (K ⊗[F] E) (algebraMap F K c) := by
-    rw [Algebra.algebraMap_eq_smul_one c, TensorProduct.tmul_smul, Algebra.TensorProduct.algebraMap_apply,
-      Algebra.algebraMap_eq_smul_one c]
-    simp [TensorProduct.smul_tmul']
-  simp only [RingHom.comp_apply, AlgHom.toRingHom_eq_coe, RingHom.coe_coe,
-    Algebra.TensorProduct.includeRight_apply]
-  rw [h, AlgHom.commutes]
+  simpa using f.commutes (algebraMap F K c)
 
 private lemma splitting {F E K A : Type} [Field F] [Field E] [Algebra F E] [Field K] [Algebra F K]
     [Field A] [Algebra K A] (p : F[X]) [IsSplittingField F E p] (f : K ⊗[F] E →ₐ[K] A)
@@ -389,13 +415,7 @@ private lemma fin {σ : R ≃ₐ[k] R} {q : ℕ} (h : IsGal σ q) : Module.Finit
   exact expand h.pos hs b
 
 private lemma norm_pi {q : ℕ} (f : Fin q → R) : Algebra.norm R f = ∏ j, f j := by
-  rw [Algebra.norm_eq_matrix_det (Pi.basisFun R (Fin q)), ← Matrix.det_diagonal]
-  congr 1
-  ext i j
-  rw [Algebra.leftMulMatrix_eq_repr_mul]
-  by_cases hij : i = j
-  · simp [hij]
-  · simp [hij]
+  simp [norm_pi' R R (Fin q) f]
 
 end SlopeTestRemainingChoices
 
@@ -434,14 +454,9 @@ private theorem aeval_map_sg {k R : Type} [CommRing k] [CommRing R] [Algebra k R
   have hγ : ((up R γ).val).map s = (up R γ).val := by
     ext i j
     simp [up]
-  induction p using Polynomial.induction_on with
-  | C r =>
-    ext i j
-    simp [Matrix.algebraMap_matrix_apply, apply_ite s]
-  | add p q hp hq => rw [map_add (f := _), Polynomial.map_add (f := _), map_add (f := _), ← hp, ← hq, Matrix.map_add _ (map_add s)]
-  | monomial m r h =>
-    rw [pow_succ, ← mul_assoc, map_mul, Matrix.map_mul, h, Polynomial.map_mul (p := C r * X ^ m), map_mul]
-    simp [hγ]
+  have h := map_aeval_eq_aeval_map (ψ := (s : R →+* R).mapMatrix) (φ := (s : R →+* R))
+    (by ext; simp [Matrix.algebraMap_matrix_apply, apply_ite s]) p (up R γ).val
+  rwa [RingHom.mapMatrix_apply, RingHom.mapMatrix_apply, RingHom.coe_coe, hγ] at h
 
 private theorem nm_aeval {k R : Type} [CommRing k] [CommRing R] [Algebra k R] {n : ℕ} (σ : R ≃ₐ[k] R)
     (γ : GL (Fin n) k) (p : R[X]) (a : GL (Fin n) R) (ha : a.val = aeval (up R γ).val p) (q : ℕ) :
@@ -482,11 +497,8 @@ private theorem core {k R A T : Type} [Field k] [CommRing R] [Algebra k R] [Comm
   have heq : ∀ p p', χ p = χ p' ↔ aeval (up R γ).val p = aeval (up R γ).val p' := by
     intro p p'
     rw [← sub_eq_zero, ← map_sub, hker, ← hk, map_sub, sub_eq_zero]
-  have hjp : ∀ (i : ℕ) r, (τ ^ i) (j r) = j ((σ ^ i) r) := by
-    intro i
-    induction i with
-    | zero => simp
-    | succ i ih => intro r; rw [pow_succ, pow_succ, AlgEquiv.mul_apply, AlgEquiv.mul_apply, hj, ih]
+  have hjp : ∀ (i : ℕ) r, (τ ^ i) (j r) = j ((σ ^ i) r) := fun i r => by
+    simpa using (Function.Semiconj.iterate_right (f := j) (fun r => (hj r).symm) i r).symm
   have hχp : ∀ (i : ℕ) p, (τ ^ i) (χ p) = χ (p.map ((σ ^ i : R ≃ₐ[k] R) : R →+* R)) := by
     intro i p
     have : ((τ ^ i : T ≃ₐ[A] T) : T →+* T).comp χ = χ.comp (mapRingHom ((σ ^ i : R ≃ₐ[k] R) : R →+* R)) := by

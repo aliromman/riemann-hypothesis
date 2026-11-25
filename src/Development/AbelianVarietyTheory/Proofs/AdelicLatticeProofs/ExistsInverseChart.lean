@@ -5,7 +5,30 @@ public import Formalism.LocalToGlobal.IndefiniteReal.LocalNewformFunction
 public import Development.AbelianVarietyTheory.Proofs.HeightProofs.CmTypeRestrictRealSubfieldInfinitePlaceBijective
 public import Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsIsArchimedeanAdeleChartOfRealChart
 public import Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsRealChartInfiniteAdelesCmType
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -19,6 +42,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -47,10 +72,10 @@ def ray {ι : Type} (τ : ι) (c : ℂ) : ℝ →+ (ι → ℂ) where
 theorem continuous_ray {ι : Type} (τ : ι) (c : ℂ) : Continuous (ray τ c) := by
   refine continuous_pi fun τ' => ?_
   by_cases h : τ' = τ
-  · have : (fun t : ℝ => ray τ c t τ') = fun t : ℝ => (t : ℂ) * c := funext fun t => if_pos h
+  · have : (fun t : ℝ => ray τ c t τ') = fun t : ℝ => (t : ℂ) * c := funext fun t => ite_eq_left h
     rw [this]
     exact Complex.continuous_ofReal.mul continuous_const
-  · have : (fun t : ℝ => ray τ c t τ') = fun _ : ℝ => (0 : ℂ) := funext fun t => if_neg h
+  · have : (fun t : ℝ => ray τ c t τ') = fun _ : ℝ => (0 : ℂ) := funext fun t => ite_eq_right h
     rw [this]
     exact continuous_const
 
@@ -74,10 +99,10 @@ theorem lineAt_exists (D : D7) : LineAtExists D := by
   · funext i j
     refine (hσ.comp (ray τ (z i j) t) τ').trans ?_
     by_cases h : τ' = τ
-    · rw [if_pos h]
-      exact if_pos h
-    · rw [if_neg h]
-      exact if_neg h
+    · rw [ite_eq_left h]
+      exact ite_eq_left h
+    · rw [ite_eq_right h]
+      exact ite_eq_right h
 
 theorem lineAt_unique (D : D7) : LineAtUnique D := by
   intro θ hθ m n τ z L L' hL hL'

@@ -4,6 +4,35 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityA
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.TraceFormulaEigenvalues.TraceFibreCardinality.OrbReps
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.TraceFormulaEigenvalues.IsGenEig
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.Wcount
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -18,7 +47,10 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Tactic.Lemma
+import Mathlib.Tactic.Polynomial.Basic
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -322,10 +354,10 @@ private lemma glue {I G : Type} [Group G] {Gv : I → Type} [∀ v, Group (Gv v)
     intro v hv
     by_contra hvS
     rw [Finset.mem_coe] at hvS
-    exact hv (by simp only [dif_neg hvS]; exact (K v).one_mem))
+    exact hv (by simp only [dite_eq_right hvS]; exact (K v).one_mem))
   refine ⟨g, fun v => ?_, fun v hv => ?_⟩
-  · rw [hg, dif_pos v.2]
-  · rw [hg, dif_neg hv]
+  · rw [hg, dite_eq_left v.2]
+  · rw [hg, dite_eq_right hv]
 
 private lemma mem_box {I G : Type} [Group G] {Gv : I → Type} [∀ v, Group (Gv v)] {K : ∀ v, Subgroup (Gv v)} (P : RPG G Gv K)
     (U : ∀ v, Subgroup (Gv v)) (g : G) : g ∈ P.box U ↔ ∀ v, P.p v g ∈ U v := by
@@ -428,7 +460,7 @@ theorem orbProd : OrbProd := by
       by_contra hvn
       simp only [Set.mem_union, Set.mem_setOf_eq, Finset.mem_coe, not_or, not_not] at hvn
       apply hv
-      simp only [tv, dif_neg hvn.2, if_pos hvn.1]
+      simp only [tv, dite_eq_right hvn.2, ite_eq_left hvn.1]
       exact (C₀ v).one_mem)
     refine ⟨t, c, Fintype.mem_piFinset.2 hc, (ι t * x c)⁻¹ * y, ?_, by group⟩
     rw [mem_box]
@@ -437,13 +469,13 @@ theorem orbProd : OrbProd := by
     by_cases hv : v ∈ S
     · have e1 : P.p v (x c) = c ⟨v, hv⟩ := hx1 c ⟨v, hv⟩
       have e2 : P.p v y = ιv v (tS ⟨v, hv⟩) * c ⟨v, hv⟩ * uS ⟨v, hv⟩ := heS ⟨v, hv⟩
-      simp only [tv, dif_pos hv, e1, e2]
+      simp only [tv, dite_eq_left hv, e1, e2]
       simpa [mul_assoc] using huS ⟨v, hv⟩
     · rw [hx2 c v hv]
       by_cases hK : P.p v y ∈ K v
-      · simp only [tv, dif_neg hv, if_pos hK, map_one, mul_one, inv_one, one_mul]
+      · simp only [tv, dite_eq_right hv, ite_eq_left hK, map_one, mul_one, inv_one, one_mul]
         exact (hout v hv).1 hK
-      · simp only [tv, dif_neg hv, if_neg hK, mul_one]
+      · simp only [tv, dite_eq_right hv, ite_eq_right hK, mul_one]
         obtain ⟨uv, huv, euv⟩ := (hB v hv).choose_spec
         have e3 : (ιv v (hB v hv).choose)⁻¹ * P.p v y = uv := by
           rw [inv_mul_eq_iff_eq_mul]

@@ -6,6 +6,31 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HostC
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsIdempotentIsUnitOneAddOrSubAdele
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FiniteAdeleStrongApproximationModNat
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.Hilbert90AdeleRingTensorQuadratic
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -19,7 +44,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.HCFFromRecipA
 
@@ -236,14 +263,14 @@ theorem exists_locF_approx (a : Ideles L) (T₀ : Set (HeightOneSpectrum (𝓞 L
     intro P hP
     obtain ⟨h, h'⟩ := div_sub_one_lt _ (h1 P hP)
     have hk0 : k ≠ 0 := fun h0 => h (by rw [h0, map_zero, map_zero])
-    rw [map_div, compAt_prod_locF, if_pos hP, hu hk0]
+    rw [map_div, compAt_prod_locF, ite_eq_left hP, hu hk0]
     exact h'
   have h3 : ∀ P, Valued.v (compAt P (a / ∏ v ∈ S, locF F v u)) = 1 := by
     intro P
     by_cases hP : P.under (𝓞 F) ∈ S
     · have := Valuation.map_one_add_of_lt _ (h2 P hP)
       rwa [add_sub_cancel] at this
-    · rw [map_div, compAt_prod_locF, if_neg hP, div_one]
+    · rw [map_div, compAt_prod_locF, ite_eq_right hP, div_one]
       by_contra h
       exact hP (hS P (Or.inr h))
   exact ⟨S, u, a / ∏ v ∈ S, locF F v u, (div_mul_cancel _ _).symm, h3,

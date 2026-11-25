@@ -35,6 +35,34 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsWeilRe
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsThetaFunNeZero
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.HasInfExpOfOrder
 public import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasChr
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -47,6 +75,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.FrameBasisMatrixOrthogonalProperties
 import Development.AbelianVarietyTheory.Definitions.Foundations.RootOfUnityEightQMemCoeffGaloisSubfield
@@ -56,12 +85,14 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.UnderEqIffCo
 import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.HostFacts
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.ReduceModChar
 import Formalism.LocalToGlobal.GlobalTheory.IsResidueClassZero
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.EvalVAlgebraMapMem
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.LcscAdelicUnitaryGroup
 import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
 import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.RingTheory.PicardGroup
+import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.TypeStar
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.IsCuspFunIffConstTerm
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsCmAdeleUnitCharacterReadingHeckeChar
@@ -114,13 +145,13 @@ private theorem Jpq_equiv_apply_eq_ite_sign {n p q : ℕ} (d : Fin n → ℝ) (e
   unfold Formalism.UG.Jpq
   by_cases hij : i = j
   · subst hij
-    rw [if_pos rfl]
+    rw [ite_eq_left rfl]
     have hi := he i
     revert hi
     generalize e i = x
     rcases x with a | a <;> intro hi <;> simp_all
   · have hne : e i ≠ e j := fun h => hij (e.injective h)
-    rw [if_neg hij]
+    rw [ite_eq_right hij]
     revert hne
     generalize e i = x
     generalize e j = y
@@ -138,11 +169,11 @@ private theorem conjTranspose_mul_diagonal_mul_inv_sqrt_eq_Jpq {n p q : ℕ} (d 
   · rw [Matrix.mul_diagonal, Matrix.conjTranspose_apply, hC, hC]
     simp only [↓reduceIte]
     by_cases hab : e.symm a = e.symm b
-    · rw [if_pos hab.symm, if_pos hab, hab]
+    · rw [ite_eq_left hab.symm, ite_eq_left hab, hab]
       exact star_inv_sqrt_abs_mul_mul_inv_sqrt_abs_eq_sign _ (hd _)
-    · rw [if_neg (Ne.symm hab), if_neg hab, star_zero, zero_mul, zero_mul]
+    · rw [ite_eq_right (Ne.symm hab), ite_eq_right hab, star_zero, zero_mul, zero_mul]
   · intro i _ hi
-    rw [hC i b, if_neg hi, mul_zero]
+    rw [hC i b, ite_eq_right hi, mul_zero]
   · intro h
     exact absurd (Finset.mem_univ _) h
 
@@ -161,13 +192,13 @@ private theorem conjTranspose_mul_Jpq_mul_sqrt_eq_diagonal {n p q : ℕ} (d : Fi
       · subst hij
         simp only [↓reduceIte]
         exact star_sqrt_abs_mul_sign_mul_sqrt_abs_eq _ (hd _)
-      · rw [if_neg hij, if_neg hij, mul_zero, zero_mul]
+      · rw [ite_eq_right hij, ite_eq_right hij, mul_zero, zero_mul]
     · intro b _ hb
-      rw [Matrix.conjTranspose_apply, hB, if_neg hb, star_zero, zero_mul]
+      rw [Matrix.conjTranspose_apply, hB, ite_eq_right hb, star_zero, zero_mul]
     · intro h
       exact absurd (Finset.mem_univ _) h
   · intro a _ ha
-    rw [hB a j, if_neg ha, mul_zero]
+    rw [hB a j, ite_eq_right ha, mul_zero]
   · intro h
     exact absurd (Finset.mem_univ _) h
 
@@ -699,14 +730,6 @@ def RealisedExE (D : D7) : Prop := ∀ θ : InfF D, IsInfFam θ → ∀ ψ, IsSt
   ∀ Wf : WeilFun D ψ, Wf.EqRank → ∀ (Tw : Tow D) (Rc : RecFun D θ ψ),
     ∃ (X : ThetaX D) (T : ThetaTied D X) (W : WeilTied D X T) (B : BesselTied D X T W) (h : W.ψ = ψ),
       RealisesE (θ := θ) B (h ▸ Wf) Tw (h ▸ Rc)
-
-section Lift
-
-variable {θ : InfF D} {X : ThetaX D} {T : ThetaTied D X} {W : WeilTied D X T} {B : BesselTied D X T W}
-  {Wf : WeilFun D W.ψ} {Tw : Tow D} {Rc : RecFun D θ W.ψ}
-
-
-end Lift
 
 namespace RealisesE
 

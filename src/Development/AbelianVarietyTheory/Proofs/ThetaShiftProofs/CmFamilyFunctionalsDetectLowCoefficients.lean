@@ -13,6 +13,28 @@ public import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ModelsAtO
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.FactPrincipalDatum
 import Formalism.LocalToGlobal.ProjectiveLattices.FreeBridge
 import Formalism.LocalToGlobal.ProjectiveLattices.HostInt
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -24,6 +46,7 @@ import Mathlib.Tactic.NormNum.NatSqrt
 import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 
 @[expose] public section
 
@@ -79,12 +102,12 @@ theorem absA_wtA_eq {D : D7} (T : Core D) (j : ℕ) (hD : IsDatW D j (T.Q.Dw j))
   have ht := hH.2.2.2 t
   refine congrArg₂ (· + ·) ?_ ?_
   · rw [Finset.sum_eq_single (DV.tauEmb D t)]
-    · simp only [if_true]
+    · simp only [ite_true]
       exact sum_extendByZero_fin_eq_sum _ (by rw [← hD.1]; simp [Datum.mult, ht])
     · intro b _ hb; simp [hb]
     · simp
   · rw [Finset.sum_eq_single (conjEmb (DV.tauEmb D t))]
-    · simp only [if_true]
+    · simp only [ite_true]
       exact sum_extendByZero_fin_eq_sum _ (by rw [← hD.2.1]; simp [Datum.mult, conjugateEmbedding_not_in_cmType _ _ ht])
     · intro b _ hb; simp [hb]
     · simp

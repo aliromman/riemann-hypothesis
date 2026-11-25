@@ -8,7 +8,30 @@ public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership
 public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.AdelicLatticeCompletionLocalGlobal
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsPointOfLastCoordinateDilationOnePrime
 public import Formalism.LocalToGlobal.Columns.RecLevelCls
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -21,7 +44,11 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
+import Mathlib.Data.Nat.Choose.Multinomial
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SetStab
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -65,7 +92,7 @@ theorem exp_neg_one_le (h : BasePi ST π) {w : Pl E} (hw : w ∈ ST) : WithZero.
   have haw : a ∉ w.asIdeal := by
     intro haw
     have h1 := ha w hw
-    rw [if_pos rfl] at h1
+    rw [ite_eq_left rfl] at h1
     exact w.isPrime.ne_top ((Ideal.eq_top_iff_one _).2 (by simpa using Ideal.sub_mem _ haw h1))
   have hbw : b ∈ w.asIdeal := (w.intValuation_lt_one_iff_mem b).1 (by rw [hb, ← WithZero.exp_zero, WithZero.exp_lt_exp]; norm_num)
   have hab : ∀ P ∈ ST, a * b ∈ P.asIdeal := by
@@ -73,7 +100,7 @@ theorem exp_neg_one_le (h : BasePi ST π) {w : Pl E} (hw : w ∈ ST) : WithZero.
     by_cases hPw : P = w
     · subst hPw; exact Ideal.mul_mem_left _ _ hbw
     · have h1 := ha P hP
-      rw [if_neg hPw, sub_zero] at h1
+      rw [ite_eq_right hPw, sub_zero] at h1
       exact Ideal.mul_mem_right _ _ h1
   obtain ⟨c, hc⟩ := (h.dvd _).1 hab
   have hv : w.intValuation (a * b) = WithZero.exp (-1) := by
@@ -381,10 +408,10 @@ theorem basePt_facts : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [Num
       ((k : Matrix (Fin n) (Fin n) (AfE F E)).map (adAt F P)) ?_ (fun i j => hvI P _ (hK i j)) (fun j' hj' => ?_) ?_ j hj
     · rw [← Matrix.map_mul, Units.inv_mul, Matrix.map_one _ (map_zero _) (map_one _)]
     · have := hr j'
-      rw [if_neg hj'] at this
+      rw [ite_eq_right hj'] at this
       exact DilPt.hasRes_lt_one this
     · have h5 := hr (lastIdx n)
-      rw [if_pos rfl] at h5
+      rw [ite_eq_left rfl] at h5
       have := P.isPrime
       exact val_eq_one_of_hasRes h5 (Units.ne_zero _)
   have hloc : ∀ v : HeightOneSpectrum (𝓞 F),
@@ -397,7 +424,7 @@ theorem basePt_facts : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [Num
     rw [← map_inv]
     refine ⟨fun i j => Formalism.UG.P.afsplit_prV_int v _ (hInv i j), fun j hj => _root_.GlobalTheory.Mem.Col2.prV_eq_pi_mul hB v _ (hInv _ j) (fun P hP => ?_)⟩
     have := hrow ⟨P, hP⟩ (lastIdx n) j hl
-    rw [if_neg hj] at this
+    rw [ite_eq_right hj] at this
     exact DilPt.hasRes_lt_one this
   refine ⟨hU, fun v => ⟨bc_prV_mem_UPts hc v hU, (hloc v).1⟩, fun x => ?_,
     fun v _ => map_conj_levStab hc n ST v _ (bc_prV_mem_UPts hc v hU) (hloc v).1 (hloc v).2.1 (hloc v).2.2⟩

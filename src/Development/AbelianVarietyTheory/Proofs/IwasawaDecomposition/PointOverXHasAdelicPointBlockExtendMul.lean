@@ -10,6 +10,29 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsPtO
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PrimeNotMemOfMemQE
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TrueColumnSpacesStandardInFrameCoordsStatement
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TrueColumnsPeriodMapDatumOkAndOverLevelPrime
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -202,15 +225,15 @@ theorem pt_tilF_gen : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → P
           rw [map_mul, hkP, Matrix.one_apply_ne hl, mul_zero]
         · simp
       · intro l _ hl
-        rw [map_mul, htP P l j, if_neg hl, map_zero, mul_zero]
+        rw [map_mul, htP P l j, ite_eq_right hl, map_zero, mul_zero]
       · simp
-    rw [e1, htP P j j, if_pos rfl, tilF_fr I.sel (I.tup a) hPr u hQ d P]
+    rw [e1, htP P j j, ite_eq_left rfl, tilF_fr I.sel (I.tup a) hPr u hQ d P]
     rcases GlobalTheory.TopStep.idx_cases hN i with ⟨i', rfl⟩ | rfl <;> rcases GlobalTheory.TopStep.idx_cases hN j with ⟨j', rfl⟩ | rfl
     · have h1 : ¬ ((Br.iC hN j').1 + 1 = B.R.N B.R.m) := by
         show ¬ (j'.1 + 1 = B.R.N B.R.m)
         have := j'.2
         omega
-      rw [if_neg h1, map_one, mul_one, extM_iC_iC, hg'.fr P i' j']
+      rw [ite_eq_right h1, map_one, mul_one, extM_iC_iC, hg'.fr P i' j']
       congr 1
       exact ((congrFun (GlobalTheory.TopStep.prH_sumE hN (d.fr P) _ (Pi.single (Br.iC hN j') 1)) i').trans
         (by rw [prH_single_iC])).symm
@@ -226,7 +249,7 @@ theorem pt_tilF_gen : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → P
     · have h1 : (Br.iL hN).1 + 1 = B.R.N B.R.m := by
         show (B.R.N B.R.m - 1) + 1 = B.R.N B.R.m
         omega
-      rw [if_pos h1, extM_iL_iL, map_one, one_mul, GlobalTheory.TopStep.sumE_last, Pi.single_eq_same, mul_one,
+      rw [ite_eq_left h1, extM_iL_iL, map_one, one_mul, GlobalTheory.TopStep.sumE_last, Pi.single_eq_same, mul_one,
         unitOf_val (hQ P)]
 
 end GlobalTheory.Mem.Col2.TilQ

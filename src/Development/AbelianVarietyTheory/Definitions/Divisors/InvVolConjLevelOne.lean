@@ -6,7 +6,29 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.KernelNormCo
 public import Development.AbelianVarietyTheory.Definitions.Divisors.FlatTensorVacuum
 import Development.AbelianVarietyTheory.Counterexamples.HeightSurvey.EmbRelExistsUnique
 import Development.AbelianVarietyTheory.Definitions.Foundations.SecondCountableAndT2LocalField
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -309,8 +331,8 @@ theorem vCore_smul (a b : ℂ) (Ψ F) : S.vCore t Φ (a • Ψ) (b • F) = a * 
   rw [mul_finsum]
   refine finsum_congr fun β => ?_
   by_cases hβ : β ∈ S.supp t Φ
-  · rw [finsum_eq_if, finsum_eq_if, if_pos hβ, if_pos hβ, h]; ring
-  · rw [finsum_eq_if, finsum_eq_if, if_neg hβ, if_neg hβ, mul_zero]
+  · rw [finsum_eq_if, finsum_eq_if, ite_eq_left hβ, ite_eq_left hβ, h]; ring
+  · rw [finsum_eq_if, finsum_eq_if, ite_eq_right hβ, ite_eq_right hβ, mul_zero]
 
 variable {S t Φ}
 

@@ -3,6 +3,30 @@ module
 import Lemmata.CharpolySmul
 public import Formalism.SharpRestriction.LevelLetterCocycles.SumRepresentations
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.AwayRepIsoLoc
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -16,7 +40,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.HeckeCharEqOfLAdicRealisation
 import Formalism.LocalToGlobal.NormalizedHeckeFactors.ChiDefs
 
@@ -133,12 +159,8 @@ theorem exists_cast [TopologicalSpace Γ] [TopologicalSpace K] {m n : ℕ} (h : 
   exact ⟨ρ, id, fun _ => rfl⟩
 
 theorem prod_get {M : Type} [CommMonoid M] {α : Type} (F : α → M) :
-    ∀ L : List α, ∏ k : Fin L.length, F (L.get k) = (L.map F).prod
-  | [] => by simp
-  | a :: L => by
-    show ∏ k : Fin (L.length + 1), F ((a :: L).get k) = _
-    rw [Fin.prod_univ_succ, List.map_cons, List.prod_cons, ← prod_get F L]
-    rfl
+    ∀ L : List α, ∏ k : Fin L.length, F (L.get k) = (L.map F).prod :=
+  fun L => Fin.prod_univ_fun_getElem L F
 
 end Alg
 

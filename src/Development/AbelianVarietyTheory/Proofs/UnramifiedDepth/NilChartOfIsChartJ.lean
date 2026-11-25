@@ -6,7 +6,31 @@ public import Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.GermEval
 public import Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.IsUniversalChartOfFormalGroupChart
 public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.EvBasicNEvalSubCoeffMem
 public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.NEvalSqZero
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 public import Mathlib.RingTheory.Noetherian.Nilpotent
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -146,9 +170,9 @@ private theorem psJet_eq_nv {R : Type} [CommRing R] {n d : ℕ} (m : ℕ) (f : P
     have he0 : (Finsupp.equivFunOnFinite.symm fun i => ((⟨e i, hle i⟩ : Fin (m + 1)) : ℕ)) = e := by
       ext i; rfl
     rw [MvPolynomial.coeff_sum, Finset.sum_eq_single (fun i => (⟨e i, hle i⟩ : Fin (m + 1)))]
-    · rw [he0, MvPolynomial.coeff_monomial, if_pos rfl]
+    · rw [he0, MvPolynomial.coeff_monomial, ite_eq_left rfl]
     · intro e' _ hne
-      rw [MvPolynomial.coeff_monomial, if_neg]
+      rw [MvPolynomial.coeff_monomial, ite_eq_right]
       intro h
       apply hne
       funext i
@@ -207,7 +231,7 @@ theorem nilChart_of_isChartJ : ∀ (R : Type) [CommRing R] [IsLocalRing R] (G : 
     intro S _ _ a m ψ hψ
     have h : ∃ (m : ℕ) (ψ : Chart.JetR R (Fin 1 × Fin d) m →ₐ[R] S), ∀ q, ψ (Chart.zR m q) = a q.2 :=
       ⟨m, ψ, hψ⟩
-    exact (dif_pos h).trans
+    exact (dite_eq_left h).trans
       (jetPt_indep x ht _ ψ fun q => (h.choose_spec.choose_spec q).trans (hψ q).symm)
   refine ⟨X, ⟨fun S _ _ => ?_, fun S _ _ S' _ _ φ a ha => ?_, fun S _ _ a b ha hb e => ?_,
     fun S _ _ S' _ _ ρ σ hρ hn z hz => ?_, fun S _ _ a b ha hb => ?_⟩,

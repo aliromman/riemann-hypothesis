@@ -13,7 +13,30 @@ import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FiniteAdeleStron
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.IntegralFiniteAdeleCompleteSeparated
 import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Levelaf
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -27,6 +50,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.HCFFromRecipA
 
 @[expose] public section
@@ -245,7 +270,7 @@ theorem exists_locF_mul {a : Ideles E} {b : FiniteAdeleRing (𝓞 F) F} (hab : (
         locMap F w (algebraMap F _ (k (w.under (𝓞 F)) : F)) := by
       rw [locMap_algebraMap]
       rfl
-    rw [map_mul, hc, if_pos hw, e, ha, ← map_mul, ← map_one (locMap F w), ← map_sub]
+    rw [map_mul, hc, ite_eq_left hw, e, ha, ← map_mul, ← map_one (locMap F w), ← map_sub]
     exact (locMap_valued w 1 _ (hk _ hb)).trans_lt hlt
   have hmem : ∀ w, w ∈ T ∪ {v | IdlFact.valAt v a ≠ 1} → w.under (𝓞 F) ∈ S := fun w hw =>
     Finset.mem_image_of_mem _ (hfin.mem_toFinset.2 hw)
@@ -255,7 +280,7 @@ theorem exists_locF_mul {a : Ideles E} {b : FiniteAdeleRing (𝓞 F) F} (hab : (
   · have h := Valuation.map_eq_of_sub_lt (Valued.v) (x := (1 : w.adicCompletion E)) (y := compAt w (P * a))
       (by rw [map_one]; exact h1 w hw)
     rw [h, map_one]
-  · rw [map_mul, hc, if_neg hw, one_mul]
+  · rw [map_mul, hc, ite_eq_right hw, one_mul]
     by_contra hne
     exact hw (hmem w (Or.inr hne))
 

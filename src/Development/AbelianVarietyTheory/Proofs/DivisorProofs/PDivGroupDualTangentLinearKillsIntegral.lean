@@ -3,6 +3,32 @@ module
 public import Development.AbelianVarietyTheory.Definitions.Divisors.EqZeroOfForallPowDvd
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PDivGroupFormalChartEvNatMultipleEqConvPowerStatement
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConstantCoeffNmul
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -117,7 +143,7 @@ theorem ev_subst_eq (n : ℕ) (a : Fin d → MvPowerSeries (Fin d) O)
       coeff α (subst a (s - (P : MvPowerSeries (Fin d) O))) = 0 := by
     have h1 : (N : ℕ∞) ≤ (s - (P : MvPowerSeries (Fin d) O)).order := by
       refine nat_le_order fun α hα => ?_
-      rw [map_sub, MvPolynomial.coeff_coe, hP, coeff_trunc', if_pos, sub_self]
+      rw [map_sub, MvPolynomial.coeff_coe, hP, coeff_trunc', ite_eq_left, sub_self]
       intro i
       have : α i ≤ α.degree := Finsupp.le_degree i α
       have h' : (Finsupp.equivFunOnFinite.symm fun _ : Fin d => N) i = N := by simp
@@ -140,7 +166,7 @@ theorem ev_subst_eq (n : ℕ) (a : Fin d → MvPowerSeries (Fin d) O)
   have hz' : (fun i => c.ev n (a i)) = 0 := funext hz
   rw [e, map_add (f := _), subst_coe, ← AlgHom.comp_apply, MvPolynomial.comp_aeval, hy, hz',
     MvPolynomial.aeval_zero, Algebra.smul_def, map_pow, map_natCast, MvPolynomial.constantCoeff_eq,
-    hP, coeff_trunc', if_pos (by simp), coeff_zero_eq_constantCoeff_apply]
+    hP, coeff_trunc', ite_eq_left (by simp), coeff_zero_eq_constantCoeff_apply]
 
 end GlobalTheory.LieLin
 

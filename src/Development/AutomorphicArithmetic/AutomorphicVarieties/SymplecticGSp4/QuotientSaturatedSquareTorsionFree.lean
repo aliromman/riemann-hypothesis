@@ -20,8 +20,37 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.Commutative
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.DerExtend
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.DerHom
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.ASmooth
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Etale.Weakly
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -34,8 +63,11 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.Tactic.Lemma
+import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Algebra.Module.StablyFree.Basic
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.Tactic.Linter.HaveILetI
@@ -93,7 +125,7 @@ private theorem crLin_wt (h : IsChart 𝒜 x wt φ) (i : τ) {j : X} (hij : wt i
 private theorem crLin_const (φ : A →ₐ[O] MvPowerSeries τ (FractionRing O)) (i : τ) (c : O) :
     crLin φ i (algebraMap O A c) = 0 := by
   classical
-  rw [crLin_apply, AlgHom.commutes, MvPowerSeries.algebraMap_apply, MvPowerSeries.coeff_C, if_neg (by simp)]
+  rw [crLin_apply, AlgHom.commutes, MvPowerSeries.algebraMap_apply, MvPowerSeries.coeff_C, ite_eq_right (by simp)]
 
 private theorem cr_fixed (h : IsChart 𝒜 x wt φ) {j : X} (hj : j ≠ 0) {f : A} (hf : f ∈ 𝒜 j) : x f = 0 := by
   have h1 := h.graded j f hf 0 (by simpa using hj.symm)
@@ -235,18 +267,18 @@ theorem UpperTheory.V.Alg.cot_fg :
       simp only [map_smul, coeff_X, smul_eq_mul, mul_ite, mul_one, mul_zero]
       by_cases hw : Finsupp.weight W.wt m = j
       · rcases deg_lt_two m (not_le.1 fun h2 => hm ⟨hw, h2⟩) with rfl | ⟨s, rfl⟩
-        · rw [Finset.sum_eq_zero fun s _ => if_neg (Finsupp.single_ne_zero.2 one_ne_zero).symm]
+        · rw [Finset.sum_eq_zero fun s _ => ite_eq_right (Finsupp.single_ne_zero.2 one_ne_zero).symm]
           simpa using h0
         · have hs : W.wt s = j := by simpa [Finsupp.weight_single] using hw
-          rw [Finset.sum_eq_single (⟨s, hs⟩ : {s // W.wt s = j}), if_pos rfl, sub_self]
+          rw [Finset.sum_eq_single (⟨s, hs⟩ : {s // W.wt s = j}), ite_eq_left rfl, sub_self]
           · intro t _ ht
-            rw [if_neg]
+            rw [ite_eq_right]
             intro h2
             exact ht (Subtype.ext (Finsupp.single_left_injective one_ne_zero h2).symm)
           · simp
       · rw [hf m hw, Finset.sum_eq_zero, sub_self]
         intro s _
-        rw [if_neg]
+        rw [ite_eq_right]
         rintro rfl
         exact hw (by simpa [Finsupp.weight_single] using s.2)
     have h2 : (satSq (W.originA h)).mkQ x = (satSq (W.originA h)).mkQ
@@ -402,9 +434,9 @@ private theorem prj_fst {O : Type} [CommRing O] (c : Fin 4 → O) (X : M4 (DualN
     by_cases hai : a = i
     · subst hai
       simp
-    · rw [if_pos rfl, if_neg (fun h => hai h.1)]
+    · rw [ite_eq_left rfl, ite_eq_right (fun h => hai h.1)]
       exact Finset.prod_eq_zero (Finset.mem_erase.2 ⟨hai, Finset.mem_univ _⟩) (sub_self _)
-  · rw [if_neg hab, if_neg (fun h => hab (h.1.trans h.2.symm))]
+  · rw [ite_eq_right hab, ite_eq_right (fun h => hab (h.1.trans h.2.symm))]
 
 private theorem triple {O : Type} [CommRing O] (A B C : M4 (DualNumber O)) (p q : Fin 4) (α γ : O) (β : Fin 4 → O)
     (hA : ∀ a b, (A a b).fst = if a = p ∧ b = p then α else 0)

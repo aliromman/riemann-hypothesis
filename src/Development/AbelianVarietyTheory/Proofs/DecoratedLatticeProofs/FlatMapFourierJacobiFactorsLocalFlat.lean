@@ -11,7 +11,32 @@ public import Mathlib.CategoryTheory.Category.Basic
 public import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ContrFactor
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PadicIsNonarchimedeanLocalField
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsClosedEmbeddingAffPtUncurry
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -24,9 +49,16 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LinearMapKillingPartialEvalIntegralKernelTransla
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
 import Mathlib.RingTheory.Henselian
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ValuationDetOfMemKO
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ContinuousCharactersLocallyConstantNonarchLocalF
@@ -135,14 +167,6 @@ open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.RootE
 
 noncomputable section
 namespace GlobalTheory.FlatFactor.LowStage
-
-section Shear
-variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
-  [MeasurableSpace k] [BorelSpace k]
-
-variable {m m' : Type} [Fintype m] [DecidableEq m] [Fintype m'] [DecidableEq m']
-
-end Shear
 
 section Transv
 variable {k : Type} [Field k] {n n' : Type} [Fintype n] [DecidableEq n] {c : ℕ}
@@ -286,15 +310,15 @@ private theorem killsKernel_rowShear_invariant_lemma_10 (ν : Measure k) [ν.IsA
     have hfm : ∀ p, Measurable (f p) := by
       intro p
       by_cases hp : p.1.1 = Sum.inr i₀
-      · simp only [f, hp, if_true]
+      · simp only [f, hp, ite_true]
         exact (continuous_const.mul ((continuous_apply _).comp
           ((continuous_apply _).comp hXc))).measurable
-      · simp only [f, hp, if_false]
+      · simp only [f, hp, ite_false]
         exact measurable_const
     have hfd : ∀ (p : ↥it) (x y : ↥it → k), (∀ q, rk q < rk p → x q = y q) → f p x = f p y := by
       intro p x y hxy
       by_cases hp : p.1.1 = Sum.inr i₀
-      · simp only [f, hp, if_true, hX]
+      · simp only [f, hp, ite_true, hX]
         split_ifs with h1 h2
         · congr 1
           apply hxy
@@ -302,7 +326,7 @@ private theorem killsKernel_rowShear_invariant_lemma_10 (ν : Measure k) [ν.IsA
           omega
         · rfl
         · rfl
-      · simp only [f, hp, if_false]
+      · simp only [f, hp, ite_false]
     have hmp := _root_.GlobalTheory.SgLoc.TriShift.measurePreserving_triangular ν rk f hfm hfd
     have hshear : ∀ a, X (fun p => a p + f p a) = (1 + single (Sum.inr i₀) (Sum.inr j) s : Matrix (n ⊕ Fin c) (n ⊕ Fin c) k) * X a := by
       intro a
@@ -312,7 +336,7 @@ private theorem killsKernel_rowShear_invariant_lemma_10 (ν : Measure k) [ν.IsA
       · subst hr
         rw [single_mul_apply_same, hX, hX]
         by_cases hit : (Sum.inr i₀, q) ∈ it
-        · simp only [hit, dite_true, f, if_true]
+        · simp only [hit, dite_true, f, ite_true]
         · simp only [hit, dite_false]
           have hz : X a (Sum.inr j) q = 0 := by
             rw [mem_itB_iff] at hit
@@ -328,7 +352,7 @@ private theorem killsKernel_rowShear_invariant_lemma_10 (ν : Measure k) [ν.IsA
                 subst hq'
                 simp [_root_.GlobalTheory.RootEx.Free] at hit
                 omega
-            rw [hX, dite_eq_right hnit, if_pos hev]
+            rw [hX, dite_eq_right hnit, ite_eq_left hev]
             rcases q with q | q
             · simp [hβdef, _root_.GlobalTheory.RootEx.basePt]
             · simp [_root_.GlobalTheory.RootEx.Free] at hit
@@ -406,7 +430,7 @@ private theorem twist_invariant_of_lowerEntry_lemma_4 (ψ : AddChar k Circle) (�
   have hmem : _root_.GlobalTheory.RootEx.embA n u ∈ _root_.GlobalTheory.RootEx.N k n c (ρ + 1) := by
     rw [_root_.GlobalTheory.RootEx.Model.mem_N_iff]
     intro r s hrs
-    rw [hg, _root_.Matrix.add_apply, Matrix.single_apply, if_neg, add_zero]
+    rw [hg, _root_.Matrix.add_apply, Matrix.single_apply, ite_eq_right, add_zero]
     rintro ⟨rfl, rfl⟩
     simp [_root_.GlobalTheory.RootEx.lev] at hrs
     omega
@@ -812,7 +836,7 @@ theorem rowAdd_fill (l j : Fin c) (hl : l.val < j.val) (hj : j.val < ρ) (a : k)
         (t + Matrix.single (Sum.inr l) (Sum.inr j.castSucc) a) α r q := by
   have h' := h
   rw [mem_itUp] at h
-  simp only [rowAdd, fill, Matrix.of_apply, Matrix.add_apply, Matrix.single_apply, dif_neg h']
+  simp only [rowAdd, fill, Matrix.of_apply, Matrix.add_apply, Matrix.single_apply, dite_eq_right h']
   by_cases hr : r = Sum.inr l
   · subst hr
     rcases q with q | i
@@ -829,13 +853,13 @@ theorem rowAdd_fill (l j : Fin c) (hl : l.val < j.val) (hj : j.val < ρ) (a : k)
         rw [mem_evAll]
         simp only [Free, IsRead, not_false_eq_true, and_true]
         omega
-      rw [dif_neg hj', if_pos hjev]
+      rw [dite_eq_right hj', ite_eq_left hjev]
       by_cases hli : l.val < i.val
       · have hlev : (Sum.inr l, Sum.inr i) ∉ evAll n n' c ρ := by
           rw [mem_evAll]
           simp only [Free]
           omega
-        rw [if_neg hlev, if_neg hlev]
+        rw [ite_eq_right hlev, ite_eq_right hlev]
         by_cases hji : j.val = i.val
         · simp [basePt, Fin.ext_iff, hji]
         · simp [basePt, Fin.ext_iff, hji]
@@ -843,7 +867,7 @@ theorem rowAdd_fill (l j : Fin c) (hl : l.val < j.val) (hj : j.val < ρ) (a : k)
           rw [mem_evAll]
           simp only [Free, IsRead, not_false_eq_true, and_true]
           omega
-        rw [if_pos hlev, if_pos hlev]
+        rw [ite_eq_left hlev, ite_eq_left hlev]
         have hji : j.val ≠ i.val := by omega
         simp [basePt, hji]
   · simp [hr, Ne.symm hr]
@@ -923,7 +947,7 @@ theorem translate_law (ψ : AddChar k Circle) (ν : Measure k) (hψ : Continuous
     have hfv : fill (evAll n n' c ρ) (itUp n n' c ρ (j.val + 1)) (basePt c (0 : Matrix n n' k)) t α (Sum.inr j) (Sum.inr l.succ)
         = if j.val = l.val + 1 then 1 else 0 := by
       simp only [fill, Matrix.of_apply]
-      rw [dif_neg hnit2, if_pos hev2]
+      rw [dite_eq_right hnit2, ite_eq_left hev2]
       simp [basePt]
     show (ψ (-simpleSum (embA n u)) : ℂ) * ((ψ (-a * _) : ℂ) * Θ.1 _) = Θ.1 _
     rw [← mul_assoc, hfv, hu, simpleSum_tv]
@@ -1048,7 +1072,7 @@ theorem fill_eq (ρ : ℕ) (h : ρ < c + 1) (t : Matrix (n ⊕ Fin c) (n' ⊕ Fi
       simp [basePt, colAt, h2]
   · rw [dite_eq_right (fun hh => hF ((mem_itFree ρ _).1 hh)), dite_eq_right hF]
     by_cases hR : IsRead n n' c ρ (r, q)
-    · rw [if_neg (fun hh => ((mem_evAll ρ _).1 hh).2 hR)]
+    · rw [ite_eq_right (fun hh => ((mem_evAll ρ _).1 hh).2 hR)]
       rcases r with r | l <;> rcases q with s | i
       · simp [basePt, colAt, readPart]
       · have h1 : i.val = ρ := hR
@@ -1056,7 +1080,7 @@ theorem fill_eq (ρ : ℕ) (h : ρ < c + 1) (t : Matrix (n ⊕ Fin c) (n' ⊕ Fi
         simp [basePt, colAt, readPart]
       · exact hR.elim
       · exact hR.elim
-    · rw [if_pos ((mem_evAll ρ _).2 ⟨hF, hR⟩)]
+    · rw [ite_eq_left ((mem_evAll ρ _).2 ⟨hF, hR⟩)]
       rcases r with r | l <;> rcases q with s | i
       · exact (hR trivial).elim
       · have h1 : i.val ≠ ρ := hR

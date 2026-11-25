@@ -8,6 +8,32 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqZeroOfUpwa
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGluedSectionUpwardFamilyStandardCover
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.OneCocycleUpwardFamilyIsCoboundary
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GlueCommaOfBasis
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -21,6 +47,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Divisors.OneFormMapEqKaehlerDifferentialMap
 import Mathlib.Topology.Sheaves.Presheaf
 import Mathlib.CategoryTheory.Monoidal.Mon
@@ -170,7 +197,7 @@ theorem coboundary_on_piece : ∀ {R : Type} [CommRing R] {C : Type} [Category.{
     (fun t t' _ a ↦ if h : Nonempty (p ⟶ t) then z p t t' v h.some a else 0)
     (fun t t' t'' u a b hp ↦ by
       have hp' := up t t t' (𝟙 t) a hp
-      simp only [dif_pos hp, dif_pos hp']
+      simp only [dite_eq_left hp, dite_eq_left hp']
       have k := hz p t t' t'' v hp.some a b
       rw [Subsingleton.elim (v ≫ G.map hp.some) u,
         Subsingleton.elim (hp.some ≫ a) hp'.some] at k
@@ -327,7 +354,7 @@ theorem twoCocycle_comma_coboundary_of_standardCover : ∀ {R : Type} [CommRing 
     refine ⟨fun i t u ↦ if h : ∃ i, IsUnit (mp F u (d i)) then
       β h.choose i t u - e h.choose i _ u else 0, fun i j t u hi hj ↦ ?_⟩
     have h : ∃ i, IsUnit (mp F u (d i)) := ⟨i, hi⟩
-    simp only [dif_pos h]
+    simp only [dite_eq_left h]
     linear_combination -he' _ i j _ u h.choose_spec hi hj + hxs _ i j t u h.choose_spec hi hj
   obtain ⟨α, hα⟩ : ∃ α : ∀ t t', (T ⟶ G.obj t) → (t ⟶ t') → F.obj (G.obj t'), ∀ i t t' u a,
       IsUnit (mp F u (d i)) →
@@ -336,7 +363,7 @@ theorem twoCocycle_comma_coboundary_of_standardCover : ∀ {R : Type} [CommRing 
       y h.choose t t' u a - (γ h.choose t' (u ≫ G.map a) - mp F (G.map a) (γ h.choose t u)) else 0,
       fun i t t' u a hi ↦ ?_⟩
     have h : ∃ i, IsUnit (mp F u (d i)) := ⟨i, hi⟩
-    simp only [dif_pos h]
+    simp only [dite_eq_left h]
     have k1 := congrArg (mp F (G.map a)) (hγ i _ t u hi h.choose_spec)
     have k2 := hγ i _ t' (u ≫ G.map a) (hu a hi) (hu a h.choose_spec)
     have k3 := he i _ _ _ u (G.map a) ⟨hi, h.choose_spec⟩

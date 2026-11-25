@@ -1,18 +1,6 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsTestRep
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -38,14 +26,14 @@ theorem map_map_equiv_right {α β γ : Type} [MeasurableSpace α] [MeasurableSp
       (if AEMeasurable (e ∘ T) μ then μ.map (e ∘ T) else 0) := by
   by_cases hT : AEMeasurable T μ
   · have hT' := e.measurable.comp_aemeasurable hT
-    simpa only [if_pos hT, if_pos hT'] using
+    simpa only [ite_eq_left hT, ite_eq_left hT'] using
       AEMeasurable.map_map_of_aemeasurable e.measurable.aemeasurable hT
   · have hT' : ¬ AEMeasurable (e ∘ T) μ := by
       intro h
       apply hT
       have := e.symm.measurable.comp_aemeasurable h
       simpa [Function.comp_def] using this
-    simp only [if_neg hT, if_neg hT', Measure.map_zero]
+    simp only [ite_eq_right hT, ite_eq_right hT', Measure.map_zero]
 
 end GlobalTheory.TransportSD
 

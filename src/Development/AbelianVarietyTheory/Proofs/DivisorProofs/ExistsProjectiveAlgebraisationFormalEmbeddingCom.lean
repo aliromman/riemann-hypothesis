@@ -13,7 +13,32 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsHomoge
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ThickTransComp
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TowerSquares
 import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.ExistsSecNonzeroLocusEqOfLbIso
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.AlgebraicGeometry.Modules.Sheaf
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -29,10 +54,17 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Aesop.BuiltinRules
 import Aesop.Frontend.Tactic
 import Aesop.Main
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.Tactic.Linter.Style
 import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.SubmoduleEqTopOfSupSmulOfIsNilpotent
@@ -196,11 +228,11 @@ theorem weightedHomogeneousComponent_one_int {σ A : Type*} [CommRing A] (F : Mv
   ext a
   rw [coeff_weightedHomogeneousComponent, weight_one_int]
   by_cases hm : 0 ≤ m
-  · rw [if_pos hm, coeff_homogeneousComponent]
+  · rw [ite_eq_left hm, coeff_homogeneousComponent]
     by_cases h : (a.degree : ℤ) = m
-    · rw [if_pos h, if_pos (by omega)]
-    · rw [if_neg h, if_neg (by omega)]
-  · rw [if_neg hm, if_neg (by omega)]
+    · rw [ite_eq_left h, ite_eq_left (by omega)]
+    · rw [ite_eq_right h, ite_eq_right (by omega)]
+  · rw [ite_eq_right hm, ite_eq_right (by omega)]
     simp
 
 theorem isHomogeneous_polyGrading_of_component {ι A : Type} [CommRing A]
@@ -377,7 +409,7 @@ theorem coeff_comp (e : ℕ) (Q : MvPolynomial σ (reesAlgebra I)) (m : σ →�
   simp only [coeff_monomial, Finset.sum_ite_eq', mem_support_iff]
   split_ifs with h
   · rfl
-  · push_neg at h; rw [h]; simp
+  · push Not at h; rw [h]; simp
 
 
 open scoped Classical in
@@ -400,7 +432,7 @@ theorem coeff_lift (e : ℕ) (P : MvPolynomial σ R) (m : σ →₀ ℕ) :
   simp only [coeff_monomial, Finset.sum_ite_eq', mem_support_iff]
   split_ifs with h
   · rfl
-  · push_neg at h; rw [h, liftFun_zero]
+  · push Not at h; rw [h, liftFun_zero]
 
 theorem comp_lift (e e' : ℕ) (P : MvPolynomial σ R) (hP : ∀ m, AddMonoidAlgebra.coeff P m ∈ I ^ e) :
     comp e' (lift I e P) = if e' = e then P else 0 := by
@@ -477,7 +509,7 @@ theorem GlobalTheory.uniform_serre_sections : ∀ (R : Type) [CommRing R] [IsNoe
       (isHomogeneous_sub' (isHomogeneous_lift (I := I) (e := e) (hFh i))
         (by rw [show d + N = 1 * N + d by ring]; exact ((isHomogeneous_X _ i).pow N).mul hG'h))
     have := (hmemiff _ _ hhom).1 hL e
-    rwa [comp_X_pow_mul, comp_sub, comp_X_pow_mul, comp_lift _ _ _ (hFc i), if_pos rfl] at this
+    rwa [comp_X_pow_mul, comp_sub, comp_X_pow_mul, comp_lift _ _ _ (hFc i), ite_eq_left rfl] at this
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UniformSerreSections =====

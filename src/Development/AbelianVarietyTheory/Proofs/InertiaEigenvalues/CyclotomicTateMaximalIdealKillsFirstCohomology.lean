@@ -6,21 +6,11 @@ public import Mathlib.Analysis.Normed.Group.Ultra
 public import Development.AbelianVarietyTheory.Definitions.Foundations.HTBasis
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ContinuousOrbitPadicComplex
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CyclotomicTowerTraceAlmostSurjective
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Algebra.Order.Star.Real
 import Mathlib.FieldTheory.Galois.Profinite
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Algebra.Nonarchimedean.Completion
@@ -217,8 +207,8 @@ theorem step (act : GQ l →* (PadicComplex l ≃+* PadicComplex l)) (hact : IsA
     refine this.eventually (p := fun r => r < ε) (gt_mem_nhds ?_)
     simpa [hc1] using hε
   rw [eventually_nhdsWithin_iff] at hev
-  obtain ⟨L, S, hL, hst, hS, hS', hW⟩ := exists_field (Kinf K) _ hev
-  obtain ⟨b, hbL, hb1, hb⟩ := _root_.GlobalTheory.Cyc.trace_almost_onto l K L S hL hst hS hS' a₀ ha₀ (by simpa using ha1)
+  obtain ⟨L, S, hL, -, hS, hS', hW⟩ := exists_field (Kinf K) _ hev
+  obtain ⟨b, hbL, hb1, hb⟩ := _root_.GlobalTheory.Cyc.trace_almost_onto l K L S hL hS hS' a₀ ha₀ (by simpa using ha1)
   refine _root_.GlobalTheory.PermutationExistence.main act hact.2 (Hinf K) L.fixingSubgroup S hS hS' _ (b : PadicComplex l)
     (by simpa using hb1) (fun g hg => ?_) ?_ c hc t ε ht0 hε.le ht (fun g hg hg' => (hW g hg' hg).le)
   · rw [hact.1, (IntermediateField.mem_fixingSubgroup_iff _ _).1 hg b hbL]

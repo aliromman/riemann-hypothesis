@@ -4,18 +4,6 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureR
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GeometricSideEstimates.GeometryOfNumbersLatticeEstimate
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GeometricSideEstimates.HermitianSpaceGeometricEstimate
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.LieGeometryGrowth.QhtFacts
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicArithmetic.AutomorphicVarieties.GeometricSideEstimates.GlobalGeometricEstimateOfLocal
 import Development.AutomorphicArithmetic.AutomorphicVarieties.GeometricSideEstimates.RationalPointRetractionExistsCmDatum
 
@@ -72,12 +60,12 @@ theorem UpperTheory.geometric_side_upper_bound :
               nlinarith [Real.pi_pos]
             have h1 := Real.exp_le_one_iff.mpr h0
             have h2 : 0 ≤ Real.exp (-Real.pi * (K - 1)) * Real.exp (-Real.pi * (1 / μ * q i)) := by positivity
-            rw [if_pos h]
+            rw [ite_eq_left h]
             linarith
           · have hr : 1 ≤ q i / μ := by
               rw [le_div_iff₀ hμ]
               linarith [hgap i h]
-            rw [if_neg h, zero_add, ← Real.exp_add]
+            rw [ite_eq_right h, zero_add, ← Real.exp_add]
             apply Real.exp_le_exp.mpr
             have e3 : K / μ * q i = K * (q i / μ) := by ring
             have e4 : 1 / μ * q i = q i / μ := by ring

@@ -60,27 +60,8 @@ public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.ZetaValue
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PartialZetaDenominatorsCMFieldOfSiegelKlingenDel
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistLattice
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeierstrassEisensteinNonholomorphicIdentity
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.Algebra.Order.Star.Real
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HomogeneityOfIsTauOf
-import Mathlib.Algebra.Order.Star.Rat
 import Mathlib.Geometry.Manifold.StructureGroupoid
 import Mathlib.NumberTheory.ModularForms.SlashActions
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertLatticeTwistHasLevel
@@ -894,7 +875,7 @@ private theorem exists_eisensteinCombination_of_isModularForm {w : ℕ} {F : ℍ
     rw [Finset.sum_image (fun x _ y _ h => congrArg Prod.fst h), ← hf τ, ← hc]
     rw [Finset.sum_apply, ← Finset.sum_attach (_root_.ReciprocityTheory.PGsh.monoIdx w)]
     refine Finset.sum_congr rfl fun a _ => ?_
-    simp only [Pi.smul_apply, smul_eq_mul, a.2, dif_pos]
+    simp only [Pi.smul_apply, smul_eq_mul, a.2, dite_eq_left]
     rw [_root_.ReciprocityTheory.PGsh.coe_monoW a.2]
     rfl
 

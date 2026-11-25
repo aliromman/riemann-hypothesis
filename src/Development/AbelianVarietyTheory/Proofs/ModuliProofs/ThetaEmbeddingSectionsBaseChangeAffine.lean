@@ -8,7 +8,32 @@ public import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.IsL
 public import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsSegreCoordinates
 public import Development.AbelianVarietyTheory.Proofs.ThetaFamilyOrigin.IsThetaPtOverOfSubsingleton
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsNonvanishing
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.AlgebraicGeometry.QuasiAffine
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -235,13 +260,13 @@ theorem exists_pow_kill_secM [IsAffine T.left] (a : ℤ) (f : Γ(T.left, ⊤)) (
   rw [← map_pow]
   rfl
 
-theorem isGenSec_pullS (hS : SecBaseChangeAnySt) [IsAffine T.left] [IsAffine T'.left] (h : T' ⟶ T)
+theorem isGenSec_pullS_of_baseChangeAt (hS : ∀ p : S, SecBaseChangeAt P 1 p) [IsAffine T.left] [IsAffine T'.left] (h : T' ⟶ T)
     {th : LB.Sec (LPow P.A P.L 1 T)} (H : IsGenSec P.A P.L 1 th) : IsGenSec P.A P.L 1 (pullS P.A 1 h th) := by
   intro s
   let I : Ideal Γ(T'.left, ⊤) := (Submodule.span Γ(T'.left, ⊤)
     {pullM P.A P.L 1 h (SecM.ofSec P.A th)}).comap (LinearMap.toSpanSingleton _ _ (SecM.ofSec P.A s))
   have key : ∀ p : T'.left, ∃ f ∈ I, p ∈ T'.left.basicOpen f := fun p => by
-    obtain ⟨V, hV, b, hb⟩ := hS S P 1 le_rfl (T.hom (h.left p))
+    obtain ⟨V, hV, b, hb⟩ := hS (T.hom (h.left p))
     have hq : Unique (Fin (1 ^ P.g)) := by rw [one_pow]; infer_instance
     obtain ⟨f, hf, hp⟩ := (isAffineOpen_top T.left).exists_basicOpen_le (V := T.hom ⁻¹ᵁ V) ⟨h.left p, hV⟩ trivial
     let f' := h.left.appTop.hom f
@@ -300,6 +325,10 @@ theorem isGenSec_pullS (hS : SecBaseChangeAnySt) [IsAffine T.left] [IsAffine T'.
   obtain ⟨r, hr⟩ := Submodule.mem_span_singleton.1 hI
   rw [LinearMap.toSpanSingleton_apply, one_smul] at hr
   exact ⟨r, fun j => (congrArg (fun q => q.1 j) hr).symm⟩
+
+theorem isGenSec_pullS (hS : SecBaseChangeAnySt) [IsAffine T.left] [IsAffine T'.left] (h : T' ⟶ T)
+    {th : LB.Sec (LPow P.A P.L 1 T)} (H : IsGenSec P.A P.L 1 th) : IsGenSec P.A P.L 1 (pullS P.A 1 h th) :=
+  isGenSec_pullS_of_baseChangeAt P (hS S P 1 le_rfl) h H
 
 end GlobalTheory.EmbPull
 

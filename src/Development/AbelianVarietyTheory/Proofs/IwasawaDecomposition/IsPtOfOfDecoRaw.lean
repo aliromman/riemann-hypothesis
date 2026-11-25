@@ -11,7 +11,31 @@ public import Formalism.LocalToGlobal.GroupLattices.LevelCharts.JoinForms
 public import Formalism.PeriodIntegrals.SplitIntLoc
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SplitPrimeIntegers.ExistsUnitDiff
 import Formalism.LocalToGlobal.Columns.AdelicLemmas
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
 import Mathlib.LinearAlgebra.FreeModule.IdealQuotient
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -25,6 +49,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -53,12 +80,12 @@ theorem isPtOf_of_decoRaw [IsEmpty Q] {x : GL (Fin n) (AfE F E)} (hx : x ∈ UAd
     rw [← hN] at hv
     rw [← hd]
     simp only [decoRaw]
-    rw [if_pos (le_locP _ _ hv), e]
+    rw [ite_eq_left (le_locP _ _ hv), e]
     exact PtExist.hasRes_redA _ ((mem_globLat x v).1 hv i)
   · rw [← hN] at hv
     rw [← hd]
     simp only [decoRaw]
-    rw [if_pos (le_locP _ _ hv)]
+    rw [ite_eq_left (le_locP _ _ hv)]
     exact PtExist.hasRes_redA _ ((mem_globLat x v).1 hv i)
 
 theorem isPtOf_mul_inv [IsEmpty Q] {g : GL (Fin n) (AfE F E)} {p : DecoF E n ST SG Q} (h : IsPtOf hc g p) (z : J0 hc n ST) :
@@ -407,10 +434,10 @@ theorem lastDiag_commute {A : Type} [CommRing A] (φ : A →+* κ) (u : Aˣ) {M 
   by_cases hij : i = j
   · rw [hij, mul_comm]
   by_cases hi : i.1 + 1 = n
-  · rw [(h j i hi).2, if_neg (Ne.symm hij), mul_zero, zero_mul]
+  · rw [(h j i hi).2, ite_eq_right (Ne.symm hij), mul_zero, zero_mul]
   by_cases hj : j.1 + 1 = n
-  · rw [(h i j hj).1, if_neg hij, mul_zero, zero_mul]
-  · rw [if_neg hi, if_neg hj, mul_comm]
+  · rw [(h i j hj).1, ite_eq_right hij, mul_zero, zero_mul]
+  · rw [ite_eq_right hi, ite_eq_right hj, mul_comm]
 
 end Mat
 

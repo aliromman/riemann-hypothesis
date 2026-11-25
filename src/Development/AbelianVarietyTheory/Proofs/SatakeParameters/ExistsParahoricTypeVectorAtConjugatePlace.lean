@@ -7,8 +7,35 @@ public import Formalism.LocalToGlobal.GaloisLevelStructure.DefsLevel
 import Development.AbelianVarietyTheory.Definitions.Divisors.LineOppositeParabolicUnitaryLeviSectionEq
 public import Development.AbelianVarietyTheory.Definitions.Divisors.T2SpaceGeneralLinearGroup
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.LcscAdelicUnitaryGroup
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -22,8 +49,11 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 public import Mathlib.Topology.Algebra.Group.OpenMapping
 import Mathlib.Topology.Baire.LocallyCompactRegular
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Topology.UniformSpace.Uniformizable
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.NStageTrivialCharacterCoeffEqAlt
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ExistsReadingLaws
@@ -110,24 +140,24 @@ theorem exists_conj (r t : ℕ) : ∃ m : GL (Fin (r + t)) k, ∀ h : GL (Fin (r
   have hlt : ∀ a b : Fin (r + t), a.val < r → ¬ b.val < r → valuation k ((m * h * m⁻¹).val a b) < 1 := by
     intro a b ha hb
     rw [key]
-    simp only [e, ha, hb, if_true, if_false, inv_one, mul_one, map_mul]
+    simp only [e, ha, hb, ite_true, ite_false, inv_one, mul_one, map_mul]
     exact lt_of_le_of_lt (mul_le_of_le_one_right' (h1 a b)) hγ1
   refine ⟨fun a b => ?_, fun a b ha => ?_, fun i j => ?_⟩
   · by_cases ha : a.val < r <;> by_cases hb : b.val < r
     · rw [key]
-      simp only [e, ha, hb, if_true]
+      simp only [e, ha, hb, ite_true]
       rw [mul_right_comm, mul_inv_cancel₀ h0', one_mul]
       exact h1 a b
     · exact (hlt a b ha hb).le
     · rw [key]
-      simp only [e, ha, hb, if_true, if_false, one_mul, map_mul, map_inv₀]
+      simp only [e, ha, hb, ite_true, ite_false, one_mul, map_mul, map_inv₀]
       rw [mul_inv_le_iff₀ (zero_lt_iff.2 h0), one_mul]
       have := h2 ⟨a.val - r, by omega⟩ ⟨b.val, hb⟩
       have ea : Fin.natAdd r (⟨a.val - r, by omega⟩ : Fin t) = a := by ext; simp; omega
       rw [ea] at this
       exact hγ _ this
     · rw [key]
-      simp only [e, ha, hb, if_false, one_mul, inv_one, mul_one]
+      simp only [e, ha, hb, ite_false, one_mul, inv_one, mul_one]
       exact h1 a b
   · by_cases hb : b.val < r
     · exact Or.inr hb

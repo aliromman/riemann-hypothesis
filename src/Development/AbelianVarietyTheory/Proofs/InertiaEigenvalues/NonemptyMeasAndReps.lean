@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.MeasureTheory.Measure.Haar.DistribChar
-import Mathlib.RingTheory.Flat.TorsionFree
 public import Mathlib.Topology.Algebra.IsOpenUnits
 public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.Analysis.InnerProductSpace.Basic
@@ -18,19 +17,9 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FiniteN
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.QuadraticStarStructure
 public import Mathlib.Topology.Algebra.Group.OpenMapping
 import Mathlib.Order.CompletePartialOrder
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Algebra.Group.Units
 import Mathlib.Topology.Compactness.Paracompact
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.FourierMatch
@@ -41,6 +30,7 @@ import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Topology.Algebra.Star.Unitary
 import Mathlib.Topology.Baire.LocallyCompactRegular
 import Mathlib.Topology.Connected.Separation

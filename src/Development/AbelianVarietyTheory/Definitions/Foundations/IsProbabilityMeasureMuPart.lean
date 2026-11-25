@@ -6,6 +6,31 @@ public import Formalism.LocalToGlobal.ProjectiveLattices.NonnegIffOfLiesTotal
 public import Formalism.HarderNarasimhan.HarderNarasimhanProofs.QuotRealize
 public import Formalism.HarderNarasimhan.ShiftInvariance
 public import Formalism.MeanHeightDescent.AverageDegreeBounds.GlobalBoundRefinements
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -19,8 +44,12 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -250,7 +279,7 @@ theorem IsGram.hasGram {ι : Type} [Fintype ι] [DecidableEq ι] {b : Basis ι K
 theorem slope_sq_eq {ι : Type} [Fintype ι] [DecidableEq ι] {b : Basis ι K V} {X : InfinitePlace K → Matrix ι ι ℂ}
     {N : (K →+* ℂ) → V → ℝ} (h : IsGram b X N) {L : Submodule (𝓞 K) V} (hL : L.FG) :
     slope_sq N L = Formalism.HN.muDef b X L := by
-  rw [slope_sq, dif_pos h.hasGram]
+  rw [slope_sq, dite_eq_left h.hasGram]
   show Formalism.HN.muDef h.hasGram.some.2.1.1 h.hasGram.some.2.1.2 L = _
   obtain ⟨h1, h2⟩ := IsGram.rk_deg h.hasGram.some.2.2 h hL
   unfold Formalism.HN.rk at h1
@@ -271,7 +300,7 @@ theorem slopeMax_slopeMin_eq {ι : Type} [Fintype ι] [DecidableEq ι] {b : Basi
         have : IsNoetherian (𝓞 K) L := isNoetherian_of_fg_of_noetherian L hL
         exact isNoetherian_submodule.1 inferInstance M hM
       simpa using IsGram.rk_deg h' h hM')).2.1 h0
-  rw [slopeMax_sq, slopeMin_sq, dif_pos h.hasGram, dif_pos h.hasGram]
+  rw [slopeMax_sq, slopeMin_sq, dite_eq_left h.hasGram, dite_eq_left h.hasGram]
   show Formalism.HN.muMaxDef h.hasGram.some.2.1.1 h.hasGram.some.2.1.2 L = _ ∧
     Formalism.HN.muMinDef h.hasGram.some.2.1.1 h.hasGram.some.2.1.2 L = _
   unfold Formalism.HN.muMaxDef Formalism.HN.muMinDef
@@ -340,13 +369,13 @@ theorem conj_not_mem (τ : Psi H) : ¬ conjEmb τ.1 (H.rt : E) = H.rt0 := by
 
 theorem wtOf_big (la : Weight Dw) (m : ℤ) (τ : Psi H) (i : ℕ) (hi : i < Dw.p) :
     (wtOf Dw la m).1 (τ.1, i) = la τ ⟨i, by omega⟩ - m := by
-  simp only [wtOf, dif_pos τ.2, dif_pos hi]
+  simp only [wtOf, dite_eq_left τ.2, dite_eq_left hi]
 
 theorem wtOf_small (la : Weight Dw) (m : ℤ) (τ : Psi H) (i : ℕ) (hi : i < Dw.q) :
     (wtOf Dw la m).1 (conjEmb τ.1, i) = -la τ ⟨Dw.p + (Dw.q - 1 - i), by omega⟩ - m := by
   have h' : conjEmb (conjEmb τ.1) (H.rt : E) = H.rt0 := by rw [conjEmb_conjEmb]; exact τ.2
   have e : (⟨conjEmb (conjEmb τ.1), h'⟩ : Psi H) = τ := Subtype.ext (conjEmb_conjEmb _)
-  simp only [wtOf, dif_neg (conj_not_mem τ), dif_pos h', dif_pos hi, e]
+  simp only [wtOf, dite_eq_right (conj_not_mem τ), dite_eq_left h', dite_eq_left hi, e]
 
 theorem wtOf_add (la la' : Weight Dw) (m m' : ℤ) :
     wtOf Dw (la + la') (m + m') = wtOf Dw la m + wtOf Dw la' m' := by
@@ -417,7 +446,7 @@ theorem exOf_weightOf (a : (E →+* ℂ) × ℕ → ℤ) (m : ℤ) : exOf Dw (we
       rw [e]
       have h1 : ¬ Dw.p + (Dw.q - 1 - (i : ℕ)) < Dw.p := by omega
       have h2 : Dw.q - 1 - (Dw.p + (Dw.q - 1 - (i : ℕ)) - Dw.p) = i := by omega
-      simp only [weightOf, h1, if_false, h2, conjEmb_conjEmb]
+      simp only [weightOf, h1, ite_false, h2, conjEmb_conjEmb]
       ring
 
 variable (Xo : Moduli Dw l) (c : Coeff l)
@@ -530,7 +559,7 @@ theorem relab_conj (σ : c.F →+* ℂ) (τ : E →+* ℂ) : relab c σ (conjEmb
 theorem modelWt_wtOf_big {σ : c.F →+* ℂ} (U : Unf Xo c σ r) (la : Weight Dw) (m : ℤ) (k : U.Comp)
     (hq : (U.X k).p0 = Dw.q) (τ : Psi H) (hτ : relab c σ τ.1 ∈ (U.X k).Ψ) (i : ℕ) (hi : i < Dw.p)
     (hr : Dw.q + i < r) : modelWt U (wtOf Dw la m) k ⟨_, hτ⟩ ⟨_, hr⟩ = la τ ⟨i, by omega⟩ := by
-  simp only [modelWt, hq, Nat.le_add_right, if_true, Nat.add_sub_cancel_left,
+  simp only [modelWt, hq, Nat.le_add_right, ite_true, Nat.add_sub_cancel_left,
     Function.leftInverse_invFun (relab_injective σ) τ.1, wtOf_big la m τ i hi, wtOf_snd]
   omega
 
@@ -539,7 +568,7 @@ theorem modelWt_wtOf_small {σ : c.F →+* ℂ} (U : Unf Xo c σ r) (la : Weight
     (hr : j < r) : modelWt U (wtOf Dw la m) k ⟨_, hτ⟩ ⟨_, hr⟩ = la τ ⟨Dw.p + j, by omega⟩ := by
   have h1 : ¬ Dw.q ≤ j := by omega
   have h2 : Dw.q - 1 - (Dw.q - 1 - j) = j := by omega
-  simp only [modelWt, hq, h1, if_false, ← relab_conj,
+  simp only [modelWt, hq, h1, ite_false, ← relab_conj,
     Function.leftInverse_invFun (relab_injective σ) (conjEmb τ.1), wtOf_small la m τ (Dw.q - 1 - j) (by omega),
     wtOf_snd, h2]
   omega
@@ -588,8 +617,8 @@ theorem modelWt_congr {σ : c.F →+* ℂ} (U : Unf Xo c σ r) (hσ : GoodEmb c 
   unfold modelWt
   rw [e1, e2, h2]
   split_ifs with hj'
-  · rw [h1 ρ _ (by rw [Datum.mult, if_pos hρΨ]; omega)]
-  · rw [h1 (conjEmb ρ) _ (by rw [Datum.mult, if_neg (conj_not_mem ⟨ρ, hρΨ⟩)]; omega)]
+  · rw [h1 ρ _ (by rw [Datum.mult, ite_eq_left hρΨ]; omega)]
+  · rw [h1 (conjEmb ρ) _ (by rw [Datum.mult, ite_eq_right (conj_not_mem ⟨ρ, hρΨ⟩)]; omega)]
 
 theorem cuspZ_weightOf (hU : ∀ σ, GoodEmb c σ → IsUnf (U σ)) (a : (E →+* ℂ) × ℕ → ℕ) (m : ℕ) :
     cuspZ Xo c U (weightOf Dw (fun x => (a x : ℤ)) m) m = cusp Xo c U a (2 * m) := by
@@ -804,7 +833,7 @@ theorem homN_nonneg (G : WTZ E) (f : Rul Xo c) (z : Σ k, Frame (U.X k).Ψ r) : 
 theorem rdU_mul (f g : Rul Xo c) : rdU U (f * g) = rdU U f * rdU U g := by
   funext k y
   by_cases h : y ∈ (U.X k).dom
-  · simp only [rdU, LinearMap.coe_mk, AddHom.coe_mk, Pi.mul_apply, h, dif_pos]
+  · simp only [rdU, LinearMap.coe_mk, AddHom.coe_mk, Pi.mul_apply, h, dite_eq_left]
     exact evalAt_mul (K := c.F) (fun S _ _ => FrPt Xo c S) (fun φ y z => FrMap φ y z) f g (U.un k ⟨y, h⟩)
   · simp [rdU, h]
 
@@ -837,7 +866,7 @@ def framesOn (Z : Comp Xo c) : Set (Σ k, Frame (U.X k).Ψ r) :=
 theorem rdU_eq_zero {Z : Comp Xo c} {f : Rul Xo c} (hf : f ∈ suppOn Z) {z : Σ k, Frame (U.X k).Ψ r}
     (hz : z ∉ framesOn U Z) : rdU U f z.1 z.2 = 0 := by
   by_cases h : z.2 ∈ (U.X z.1).dom
-  · simp only [rdU, LinearMap.coe_mk, AddHom.coe_mk, h, dif_pos]
+  · simp only [rdU, LinearMap.coe_mk, AddHom.coe_mk, h, dite_eq_left]
     refine hf (CAt σ) _ fun s hs => hz ⟨h, fun s' => ?_⟩
     have : s = s' := Subsingleton.elim (α := PrimeSpectrum ℂ) s s'
     exact this ▸ hs

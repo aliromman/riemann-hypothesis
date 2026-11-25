@@ -2,18 +2,6 @@ module
 
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnipotentBlockColumnIndex
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WhittakerCoefficientRationalMirabolicMulStatement
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicArithmetic.IntegralCasts.IsOpenStabOfMemNhds
 
 @[expose] public section
@@ -43,12 +31,12 @@ theorem colT_isMir_invariant : ∀ (E : Type) [Field E] [NumberField E] (a : ℕ
     have ht := t.2.1
     simp only [eLast, Matrix.one_apply]
     by_cases h : (t.1.1 : ℕ) = m
-    · rw [if_pos (Fin.ext h.symm), if_pos (by omega)]
-    · rw [if_neg (fun e => h (congrArg Fin.val e).symm), if_neg (by omega)]
+    · rw [ite_eq_left (Fin.ext h.symm), ite_eq_left (by omega)]
+    · rw [ite_eq_right (fun e => h (congrArg Fin.val e).symm), ite_eq_right (by omega)]
   · intro s _ hs
     have h0 : eLast (E := E) a (m + 1) s = 0 := by
       simp only [eLast]
-      rw [if_neg]
+      rw [ite_eq_right]
       intro e
       apply hs
       have h2 := s.2.2

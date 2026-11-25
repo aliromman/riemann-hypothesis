@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.RingTheory.Discriminant
-import Mathlib.RingTheory.Flat.TorsionFree
 public import Mathlib.RingTheory.TotallySplit
 public import Mathlib.Analysis.RCLike.Basic
 public import Mathlib.RingTheory.DiscreteValuationRing.Basic
@@ -11,18 +10,9 @@ import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Tactic.Linter.HaveILetI
 
@@ -153,19 +143,6 @@ theorem det_points_ne_zero_of_basis (P : ι ≃ (S →ₐ[R] E)) (b : Basis ι R
 
 end Split
 
-section General
-
-variable {R S : Type*} [CommRing R] [CommRing S] [Algebra R S] {ι : Type*} [Fintype ι]
-  [DecidableEq ι]
-
-end General
-
-section Hadamard
-
-variable {𝕜 : Type*} [RCLike 𝕜] {ι : Type*} [Fintype ι] [DecidableEq ι]
-
-end Hadamard
-
 section Etale
 
 variable (K A : Type*) [Field K] [CommRing A] [Algebra K A]
@@ -196,13 +173,6 @@ theorem discr_ne_zero_iff_of_etale [Algebra.Etale K A] (h : Fintype.card ι = fi
   simp
 
 end Etale
-
-section DiscrBaseChange
-
-variable {R S : Type*} [CommRing R] [CommRing S] [Algebra R S] [Module.Free R S]
-  [Module.Finite R S] {ι : Type*} [Fintype ι] [DecidableEq ι]
-
-end DiscrBaseChange
 
 end GlobalTheory
 end -- clump:auto

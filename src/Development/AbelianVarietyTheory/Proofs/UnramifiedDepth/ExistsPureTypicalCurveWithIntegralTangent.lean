@@ -5,6 +5,32 @@ public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.AdjointEnd
 public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
 public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.CurveLogarithmsInvNatCastSmulMemStatement
 public import Mathlib.RingTheory.RootsOfUnity.EnoughRootsOfUnity
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -17,12 +43,18 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalToGlobal.ProjectiveLattices.SubConstMemOrig
 import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.GaugedCurveLogarithmsClosedUnderTadicLimits
 import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.GaugedFormalGroupCurveLogarithmsAddSubgroupResca
 import Formalism.LocalToGlobal.CharacterGerms.ConstMemTypeSetOfNonneg
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Formalism.LocalToGlobal.CharacterGerms.NegMem
 import Formalism.LocalToGlobal.CharacterGerms.ValNonnegLeadingCoeffOfMemTySet
@@ -146,7 +178,7 @@ theorem filt_congr {P Q : ℕ → Prop} (h : ∀ m, P m ↔ Q m) (f : PowerSerie
 
 theorem filt_true {P : ℕ → Prop} (h : ∀ m, P m) (f : PowerSeries C) : filt P f = f := by
   ext m
-  rw [coeff_filt, if_pos (h m)]
+  rw [coeff_filt, ite_eq_left (h m)]
 
 def Good (l n m : ℕ) : Prop := ∀ p < n, p.Prime → p ≠ l → ¬ p ∣ m
 
@@ -156,10 +188,10 @@ theorem coeff_filt_good {l : ℕ} (hl : l.Prime) (hl2 : l ≠ 2) (f : PowerSerie
   unfold typ
   by_cases hm : ∃ s, l ^ s = m
   · obtain ⟨s, rfl⟩ := hm
-    rw [coeff_tyS_pow hl.two_le, if_pos]
+    rw [coeff_tyS_pow hl.two_le, ite_eq_left]
     intro p _ hp hpl hd
     exact hpl ((Nat.prime_dvd_prime_iff_eq hp hl).1 (hp.dvd_of_dvd_pow hd))
-  · rw [coeff_tyS_of_ne _ m (fun s hs => hm ⟨s, hs⟩), if_neg]
+  · rw [coeff_tyS_of_ne _ m (fun s hs => hm ⟨s, hs⟩), ite_eq_right]
     intro hg
     rcases Nat.eq_zero_or_pos m with rfl | hpos
     · exact hg 2 (by omega) Nat.prime_two (Ne.symm hl2) (dvd_zero 2)
@@ -394,8 +426,8 @@ theorem exists_start (hR : RLaw X V) (hP : HasProj X V) (g : Fin 2) (w : I g →
   have hlg1 : ∀ i j, MvPowerSeries.coeff (Finsupp.single j 1) (X.lg i) = if j = i then 1 else 0 := fun i j => by
     rw [hR.lin i _ (by rw [Finsupp.degree_single]), MvPowerSeries.coeff_X]
     by_cases hji : j = i
-    · rw [hji, if_pos rfl, if_pos rfl]
-    · rw [if_neg hji, if_neg]
+    · rw [hji, ite_eq_left rfl, ite_eq_left rfl]
+    · rw [ite_eq_right hji, ite_eq_right]
       intro h
       exact hji (Finsupp.single_left_injective one_ne_zero h)
   have h0 : ((fun i => alongCv γ (X.lg i), fun q => 0 - alongCv γ (X.sg (X.u (1 - g) q))) :
@@ -566,13 +598,13 @@ theorem exists_pure_typical : ∀ (C : Type) [Field C] (V : VF C) (d : ℕ) [NeZ
     cases n with
     | inl c =>
       have hn' : X.ty g c ≠ a + i := hn
-      simp only [Sum.elim_inl, hb', if_neg hn']
+      simp only [Sum.elim_inl, hb', ite_eq_right hn']
     | inr q =>
       have hn' : X.ty (1 - g) q ≠ a + i := hn
-      simp only [Sum.elim_inr, he', if_neg hn', zero_add]
+      simp only [Sum.elim_inr, he', ite_eq_right hn', zero_add]
       refine Finset.sum_eq_zero fun c _ => ?_
       split_ifs with hc
-      · simp only [hb', hc, if_neg hn', mul_zero]
+      · simp only [hb', hc, ite_eq_right hn', mul_zero]
       · rfl
 
 end GlobalTheory.RowLaw

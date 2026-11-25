@@ -9,6 +9,31 @@ public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.Res
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SymLevelCharacterByResidueCharacter
 public import Development.AbelianVarietyTheory.Definitions.LatticeFrames.OnesRepresent
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SymmetricLevelChainPatternIterated
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -21,6 +46,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
+import Mathlib.RingTheory.WittVector.IsPoly
 import Mathlib.Tactic.Linter.Style
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -61,15 +88,15 @@ theorem patOfPlaces : ∀ (F : Type) [Zero F] [One F] (κ ρ s τ j : ℕ) (R : 
     by_cases h : i.val = i'.val
     · have : i = i' := Fin.ext h
       subst this
-      rw [if_pos rfl]
+      rw [ite_eq_left rfl]
       exact (h1 _ (by omega)).1
-    · rw [if_neg (by intro e; simp only [Sum.inl.injEq] at e; exact h (congrArg Fin.val e))]
+    · rw [ite_eq_right (by intro e; simp only [Sum.inl.injEq] at e; exact h (congrArg Fin.val e))]
       refine (h1 _ (by omega)).2 _ (by omega) (by omega) (Or.inr (Or.inl ?_))
       simp only [symIdx]; split_ifs <;> omega
   ·
     simp only [FreeIx, FreeTop, not_lt] at hab
     simp only [zPos]
-    rw [if_neg (by simp)]
+    rw [ite_eq_right (by simp)]
     rcases Nat.lt_or_eq_of_le hab with hl | hl
     · refine (h1 _ (by omega)).2 _ (by omega) (by omega) (Or.inr (Or.inl ?_))
       simp only [symIdx]; split_ifs <;> omega
@@ -78,7 +105,7 @@ theorem patOfPlaces : ∀ (F : Type) [Zero F] [One F] (κ ρ s τ j : ℕ) (R : 
   ·
     simp only [FreeIx, FreeTop, not_lt] at hab
     simp only [zPos]
-    rw [if_neg (by simp)]
+    rw [ite_eq_right (by simp)]
     refine (h1 _ (by omega)).2 _ (by omega) (by omega) (Or.inr (Or.inl ?_))
     simp only [symIdx]; split_ifs <;> omega
   ·
@@ -87,25 +114,25 @@ theorem patOfPlaces : ∀ (F : Type) [Zero F] [One F] (κ ρ s τ j : ℕ) (R : 
     by_cases h : i.val = i'.val
     · have : i = i' := Fin.ext h
       subst this
-      rw [if_pos rfl]
+      rw [ite_eq_left rfl]
       exact (h1 _ (by omega)).1
-    · rw [if_neg (by intro e; simp only [Sum.inl.injEq, Sum.inr.injEq] at e; exact h (congrArg Fin.val e))]
+    · rw [ite_eq_right (by intro e; simp only [Sum.inl.injEq, Sum.inr.injEq] at e; exact h (congrArg Fin.val e))]
       refine (h1 _ (by omega)).2 _ (by omega) (by omega) (Or.inr (Or.inl ?_))
       simp only [symIdx]; split_ifs <;> omega
   · simp [FreeIx] at hab
   ·
     simp only [zPos]
-    rw [if_neg (by simp)]
+    rw [ite_eq_right (by simp)]
     have := hA i u
     exact (h1 _ (by omega)).2 _ (by omega) (by omega) (Or.inl (by omega))
   · simp only [zPos]
-    rw [if_neg (by simp)]
+    rw [ite_eq_right (by simp)]
     have := hA i u
     exact (h1 _ (by omega)).2 _ (by omega) (by omega) (Or.inl (by omega))
   ·
     simp only [FreeIx, not_le, Fin.lt_def] at hab
     simp only [zPos]
-    rw [if_neg (by intro e; simp only [Sum.inr.injEq, Prod.mk.injEq] at e; rw [e.1] at hab; omega)]
+    rw [ite_eq_right (by intro e; simp only [Sum.inr.injEq, Prod.mk.injEq] at e; rw [e.1] at hab; omega)]
     have hu := hA i u
     have hu' := hA i' u'
     apply h2 _ _ (by omega) (by omega) (by omega)

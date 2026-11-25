@@ -11,8 +11,32 @@ import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsMulLeftInvaria
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.LocallyConstantExtensionByZero
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.NormalizedAbsCharacterization
 public import Formalism.DoubleCosetMeasures.Statement
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
 import Mathlib.Data.Pi.Interval
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -26,8 +50,11 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Algebra.Group.Matrix
 import Mathlib.Topology.Algebra.Nonarchimedean.TotallyDisconnected
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -559,9 +586,9 @@ theorem upperProjection_blockUpper_transpose {b : GL (Fin (a + a')) k} (hb : IsB
   rw [frameMatrixFirstColumnBlock_mul_apply]
   obtain ⟨j | j, rfl⟩ := (finSumFinEquiv (m := a) (n := a')).surjective j
   · simp only [Matrix.mul_apply, X0, of_apply, EmbeddingLike.apply_eq_iff_eq, Sum.inl.injEq, mul_ite, mul_one, mul_zero,
-      Finset.sum_ite_eq', Finset.mem_univ, if_true]
+      Finset.sum_ite_eq', Finset.mem_univ, ite_true]
     rfl
-  · simp only [Matrix.mul_apply, X0, of_apply, EmbeddingLike.apply_eq_iff_eq, reduceCtorEq, if_false, mul_zero,
+  · simp only [Matrix.mul_apply, X0, of_apply, EmbeddingLike.apply_eq_iff_eq, reduceCtorEq, ite_false, mul_zero,
       Finset.sum_const_zero]
     exact hb j i
 
@@ -570,11 +597,11 @@ theorem lowerProjection_blockUpper {b : GL (Fin (a + a')) k} (hb : IsBlockUpper 
   ext i j
   rw [frameMatrixSecondColumnBlock_mul_apply]
   obtain ⟨j | j, rfl⟩ := (finSumFinEquiv (m := a) (n := a')).surjective j
-  · simp only [Matrix.mul_apply, Y0, of_apply, EmbeddingLike.apply_eq_iff_eq, reduceCtorEq, if_false, mul_zero,
+  · simp only [Matrix.mul_apply, Y0, of_apply, EmbeddingLike.apply_eq_iff_eq, reduceCtorEq, ite_false, mul_zero,
       Finset.sum_const_zero]
     exact hb i j
   · simp only [Matrix.mul_apply, Y0, of_apply, EmbeddingLike.apply_eq_iff_eq, Sum.inr.injEq, mul_ite, mul_one, mul_zero,
-      Finset.sum_ite_eq', Finset.mem_univ, if_true]
+      Finset.sum_ite_eq', Finset.mem_univ, ite_true]
     rfl
 
 theorem exists_upperProjection_inverse_transpose {b : GL (Fin (a + a')) k} (hb : IsBlockUpper b) {dA : kˣ} (h1 : (dA : k) = (blkA b).det) :

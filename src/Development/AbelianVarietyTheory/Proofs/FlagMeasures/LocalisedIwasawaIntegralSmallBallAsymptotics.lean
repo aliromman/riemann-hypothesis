@@ -11,8 +11,31 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.LeviFactorInv
 public import Mathlib.Topology.MetricSpace.Pseudo.Defs
 public import Mathlib.Topology.Order.Real
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.TendstoSmallBallDensityOfSqueeze
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -25,6 +48,11 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Aesop.Main
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Topology.UniformSpace.Uniformizable
@@ -383,14 +411,14 @@ theorem integral_squeeze {X : Type} [MeasurableSpace X] (ν : Measure X) (φ : X
     intro x
     by_cases hx : x ∈ A
     · rw [Set.indicator_of_mem hx, hA1 x hx]
-    · simp only [Set.indicator, hx, if_false]
+    · simp only [Set.indicator, hx, ite_false]
       exact h0 x
   have hi : ∀ x, φ x ≤ B.indicator (fun _ => (1:ℝ)) x := by
     intro x
     by_cases hx : x ∈ B
     · rw [Set.indicator_of_mem hx]
       exact h1 x
-    · simp only [Set.indicator, hx, if_false]
+    · simp only [Set.indicator, hx, ite_false]
       exact le_of_eq (hB0 x hx)
   have iB : Integrable (B.indicator fun _ => (1:ℝ)) ν :=
     (integrable_indicator_iff hB).2 (integrableOn_const hB')
@@ -476,7 +504,7 @@ theorem exists_cutoff (ρ : V → ℝ) (hc : Continuous ρ) {s t : ℝ} (hst : s
   · intro x hx
     have h1 : (t - ρ x) / (t - s) ≤ 0 := by
       rw [div_le_iff₀ hpos]
-      push_neg at hx
+      push Not at hx
       linarith
     show max 0 (min 1 ((t - ρ x) / (t - s))) = 0
     exact max_eq_left (le_trans (min_le_right _ _) h1)
@@ -1036,7 +1064,7 @@ theorem localised_iwasawa_asymptotics : ∀ (n : ℕ) (ε : Fin n → Bool) (a :
         crd EK (uMat x.2.2 - 1)) ≤ (1 + η) * r :=
       hγη.trans (mul_le_mul_of_nonneg_left hσ hη1.le)
     simp only [Set.indicator_apply, Set.mem_ofPred_eq]
-    rw [if_pos ⟨⟨hu, hm, hk⟩, hγ⟩, Pi.one_apply, mul_one]
+    rw [ite_eq_left ⟨⟨hu, hm, hk⟩, hγ⟩, Pi.one_apply, mul_one]
     exact (h₃ x.2.1 hxM (lt_of_lt_of_le hm htt₃)).1
 
 end GlobalTheory.IwConst

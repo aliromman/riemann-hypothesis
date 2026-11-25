@@ -1,10 +1,37 @@
 module
 
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.PlaceIdem
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
 import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -18,6 +45,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 public import Mathlib.RingTheory.Ideal.Norm.AbsNorm
 
@@ -75,7 +103,7 @@ theorem _root_.GlobalTheory.PlaceInt.placeIdem : _root_.ReciprocityTheory.ChartR
   by_cases hex : ∃ ψ0 : E →+* k, Q ψ0 = P
   swap
   · refine ⟨0, Fin.elim0, Fin.elim0, fun ψ => ?_⟩
-    rw [if_neg (fun h => hex ⟨ψ, (hcond ψ).mp h⟩)]
+    rw [ite_eq_right (fun h => hex ⟨ψ, (hcond ψ).mp h⟩)]
     simp
   obtain ⟨ψ0, hψ0⟩ := hex
   haveI : CharZero k := ⟨fun a b h => by
@@ -154,7 +182,7 @@ theorem _root_.GlobalTheory.PlaceInt.placeIdem : _root_.ReciprocityTheory.ChartR
     simp only [map_pow, map_mul]
   rw [hsum]
   by_cases h : Q ψ = P
-  · rw [if_pos ((hcond ψ).mpr h)]
+  · rw [ite_eq_left ((hcond ψ).mpr h)]
     have hp1z : p1.eval (σ ψ b) = 0 := by
       rw [hp1, eval_prod]
       exact Finset.prod_eq_zero (i := ψ) (by simp [h]) (by simp)
@@ -164,7 +192,7 @@ theorem _root_.GlobalTheory.PlaceInt.placeIdem : _root_.ReciprocityTheory.ChartR
         add_zero] at h2
       exact h2
     rw [this, map_one]
-  · rw [if_neg (fun h' => h ((hcond ψ).mp h'))]
+  · rw [ite_eq_right (fun h' => h ((hcond ψ).mp h'))]
     have hp0z : p0.eval (σ ψ b) = 0 := by
       rw [hp0, eval_prod]
       exact Finset.prod_eq_zero (i := ψ) (by simp [h]) (by simp)

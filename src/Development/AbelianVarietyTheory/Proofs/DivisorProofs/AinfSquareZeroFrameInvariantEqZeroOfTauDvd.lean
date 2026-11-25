@@ -4,18 +4,6 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.EqZeroOfFora
 public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.EpsilonPairingZeta
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AinfFrobeniusSemilinearEquationExistsUnique
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsIsoWindowsOfMatrixCongrModTau
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.GhostFrobenius
 
 @[expose] public section
@@ -33,10 +21,6 @@ theorem p_cancel {b c : F.B} (h : (p : F.B) * b = p * c) : b = c := by
   have h1 := congrArg (algebraMap F.B F.Q) h
   simp only [map_mul, map_natCast] at h1
   exact F.frame.inj (F.frame.unit_p.mul_left_cancel h1)
-
-theorem frob_teich (x : PreTilt O p) :
-    WittVector.frobenius (WittVector.teichmuller p x) = WittVector.teichmuller p x ^ p := by
-  rw [WittVector.frobenius_eq_map_frobenius, WittVector.map_teichmuller, frobenius_def, map_pow]
 
 theorem sigma_tau : F.σ F.τ = p * F.τ := by
   apply GlobalTheory.WindowIso.σ_τ

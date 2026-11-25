@@ -6,21 +6,7 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PrismHo
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BreuilKisinFlatRadiusIdealFacts
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsClosedDiscExtensionOfPowDvdStatement
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GaloisActionExtendsToAinfDiscRings
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsClosedDiscExtensionBreuilKisinHom, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsDiscMaps
@@ -63,11 +49,11 @@ theorem E_eq {K : FinExt l} (bk : BK K) : ∃ q : bk.S, bk.E = X ^ bk.Ep.natDegr
     intro n
     rw [Polynomial.coeff_sub, Polynomial.coeff_X_pow]
     rcases lt_trichotomy n bk.Ep.natDegree with hn | hn | hn
-    · rw [if_neg hn.ne, sub_zero]
+    · rw [ite_eq_right hn.ne, sub_zero]
       exact Ideal.mem_span_singleton.2 (bk.dvd_coeff n hn)
     · subst hn
-      rw [if_pos rfl, bk.monic.coeff_natDegree, sub_self]; exact zero_mem _
-    · rw [if_neg hn.ne', Polynomial.coeff_eq_zero_of_natDegree_lt hn, sub_zero]; exact zero_mem _
+      rw [ite_eq_left rfl, bk.monic.coeff_natDegree, sub_self]; exact zero_mem _
+    · rw [ite_eq_right hn.ne', Polynomial.coeff_eq_zero_of_natDegree_lt hn, sub_zero]; exact zero_mem _
   rw [Ideal.map_span, Set.image_singleton, Ideal.mem_span_singleton] at hm
   obtain ⟨q, hq⟩ := hm
   refine ⟨(q : bk.S), ?_⟩

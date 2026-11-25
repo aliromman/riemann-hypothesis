@@ -14,12 +14,38 @@ public import ReciprocityTheory.ReductiveGroups.SymplecticTraces.WeylCharacters.
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.RowActCoefPolyAndUnitaryDense
 public import Mathlib.Topology.Algebra.MvPolynomial
 public import ReciprocityTheory.ReductiveGroups.SymplecticTraces.WeylCharacters.SqChar
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Coalgebra.CoassocSimps
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -32,9 +58,15 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
 
@@ -110,7 +142,7 @@ theorem exists_common_eigenvector {k ι V : Type} [Field k] [IsAlgClosed k] [Add
   by_cases hs : ∀ i, ∃ c : k, ∀ w ∈ W, f i w = c • w
   · obtain ⟨x, hx, hx0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot hW
     exact ⟨x, hx, hx0, fun i => let ⟨c, hc⟩ := hs i; ⟨c, hc x hx⟩⟩
-  · push_neg at hs
+  · push Not at hs
     obtain ⟨i, hi⟩ := hs
     let g : Module.End k W := (f i).restrict (fun w hw => hinv i w hw)
     haveI : Nontrivial W := Submodule.nontrivial_iff_ne_bot.mpr hW
@@ -145,8 +177,6 @@ theorem exists_common_eigenvector {k ι V : Type} [Field k] [IsAlgClosed k] [Add
       rw [h2, h1, map_smul]
     obtain ⟨x, hx, hx0, hxe⟩ := ih _ hdlt W' rfl hW'ne hinv'
     exact ⟨x, hx.1, hx0, hxe⟩
-
-alias target := _root_.GlobalTheory.CommonEigenvectorExistenceInertiaEigenvalues.exists_common_eigenvector
 
 end GlobalTheory.CommonEigenvectorExistenceInertiaEigenvalues
 end -- clump:auto
@@ -188,7 +218,7 @@ theorem lift_eigen : ∀ (k ι V : Type) [Field k] [AddCommGroup V] [Module k V]
   intro k ι V _ _ _ f v u χ μ r hc hv0 hu0 hv hu
   by_cases h : ∀ i, χ i = μ i
   · exact ⟨v, hv0, fun i => by rw [hv, h]⟩
-  push_neg at h
+  push Not at h
   obtain ⟨i₀, hi₀⟩ := h
   have hd : μ i₀ - χ i₀ ≠ 0 := sub_ne_zero.mpr (Ne.symm hi₀)
   set t : k := r i₀ / (μ i₀ - χ i₀) with ht
@@ -489,8 +519,8 @@ theorem trace_sqRep_of_upper {n : ℕ} (lam : DomWeight n) (T D : GL (Fin n) ℂ
     refine congrArg (fun f => MvPolynomial.eval f Q) (funext fun x => ?_)
     rw [hD, diagonal_apply]
     by_cases h : x.2 = x.1
-    · rw [if_pos h, h, Nat.sub_self, pow_zero, mul_one]
-    · rw [if_neg h]
+    · rw [ite_eq_left h, h, Nat.sub_self, pow_zero, mul_one]
+    · rw [ite_eq_right h]
       rcases lt_or_gt_of_ne h with h' | h'
       · rw [zero_pow (by rw [Fin.lt_def] at h'; omega), mul_zero]
       · rw [hT h', zero_mul]

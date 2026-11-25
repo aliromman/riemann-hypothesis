@@ -10,6 +10,30 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HolomorphicTypeOfSm
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmFnAndKilledFnOfHolFn
 public import Development.AbelianVarietyTheory.Proofs.HeightProofs.EmbeddingXiZeroNeZero
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsLowestKTypeLeSmoothVectors
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -23,6 +47,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -47,7 +73,7 @@ theorem smFn_coef (hσ : Formalism.QuantumDeterminants.IsCRepOn (Formalism.Quant
       obtain ⟨i, rfl⟩ := List.mem_ofFn.1 hv
       exact single_mem_UG (fun _ : Unit => Hm) _ (hX i) _
   simp only [Pi.mul_apply, hσ.2 _ (hu ()) _ (hmem _ ()), ContinuousLinearMap.comp_apply]
-  simp only [prod_single_apply, if_true]
+  simp only [prod_single_apply, ite_true]
   have h1 := hv k Xs hX
   exact (((innerSL ℂ l).comp (σ (u ()))).restrictScalars ℝ).contDiff.comp h1
 
@@ -68,21 +94,10 @@ theorem derC_coef {q : ℕ} {x₀ : Mt n} (h : OrthFr Hm q x₀)
     (hσ : Formalism.QuantumDeterminants.IsCRepOn (Formalism.QuantumDeterminants.UH Hm) σ) (hv : SmoothVec (lieH Hm) σ v) (l : H) (Z : Mt n) {u : Unit → Mt n}
     (hu : u ∈ UG (fun _ : Unit => Hm)) :
     derC (fun _ : Unit => Hm) () Z (fun u => ⟪l, σ (u ()) v⟫_ℂ) u = ⟪l, σ (u ()) (dRepC Hm σ Z v)⟫_ℂ := by
-  obtain ⟨h1, h2⟩ := conj_facts (herm_of_orth h) (dets_ne h).1 Z
-  have hA : (1 / 2 : ℂ) • (Z + conjH Hm Z) ∈ lieH Hm := by
-    show _ = _
-    rw [conjTranspose_smul, conjTranspose_add, Matrix.smul_mul, Matrix.mul_smul, Matrix.add_mul, Matrix.mul_add, h1, h2]
-    have : star (1 / 2 : ℂ) = 1 / 2 := by simp
-    rw [this, ← smul_add]
-    abel_nf
-    simp
-  have hB : (1 / (2 * Complex.I) : ℂ) • (Z - conjH Hm Z) ∈ lieH Hm := by
-    show _ = _
-    rw [conjTranspose_smul, conjTranspose_sub, Matrix.smul_mul, Matrix.mul_smul, Matrix.sub_mul, Matrix.mul_sub, h1, h2]
-    have : star (1 / (2 * Complex.I) : ℂ) = -(1 / (2 * Complex.I)) := by simp
-    rw [this, neg_smul, ← smul_neg, ← smul_add]
-    abel_nf
-    simp
+  have hA : (1 / 2 : ℂ) • (Z + conjH Hm Z) ∈ lieH Hm :=
+    GlobalTheory.UnitarySmVec.re_mem (herm_of_orth h) (dets_ne h).1.isUnit Z
+  have hB : (1 / (2 * Complex.I) : ℂ) • (Z - conjH Hm Z) ∈ lieH Hm :=
+    GlobalTheory.UnitarySmVec.im_mem (herm_of_orth h) (dets_ne h).1.isUnit Z
   unfold derC dRepC
   rw [der_coef hσ hv l hA hu, der_coef hσ hv l hB hu, map_add (f := _), map_smul, inner_add_right, inner_smul_right]
 

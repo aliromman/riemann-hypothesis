@@ -5,6 +5,28 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedOrbit
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedOrbitalIntegralTwistedConjInvariant
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsConjGLOfCharpolyEqOfSeparable
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.StableTwistedOrbitalIntegralIntegralNormCongruen
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -20,7 +42,11 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedOrbitalIntegralProductGroup
 import GroundTheory.GlobalFields.CompletionAtPlace.Integers
 import GroundTheory.LocalFields.PadicLogSeries
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SplitPlaceTwistedConstantTermMatches
@@ -120,9 +146,9 @@ theorem clSum_oneClass : ∀ {G : Type} [Group G] [TopologicalSpace G] (θ : G �
   · obtain ⟨g, hg⟩ : ∃ g, c₀.rep = g⁻¹ * δ * θ g := by
       have h1 : (Quot.mk _ c₀.rep : TwCl θ) = Quot.mk _ δ := (Quot.out_eq c₀).trans hc₀
       exact heqv.eqvGen_iff.mp (Quot.eqvGen_exact h1.symm)
-    rw [hg, if_pos (hS' g), hwt, horb]
+    rw [hg, ite_eq_left (hS' g), hwt, horb]
   · intro c hc
-    rw [if_neg]
+    rw [ite_eq_right]
     intro hmem
     apply hc
     obtain ⟨g, hg⟩ := hS _ hmem
@@ -330,10 +356,10 @@ theorem match_ctMu_of_isSplitAt : ∀ (E : Type) [Field E] [NumberField E] [IsCM
     IsSplitAt w → ∀ (μ : (w.adicCompletion E)ˣ →* ℂˣ), ∀ K' : Subgroup (UL n w), IsLevel (MonoidHom.id _) (KL n w) K' →
     ∀ f, IsHecke K' f → Match n a (n - a) w μ f (ctMu (Nat.add_sub_cancel' ha) w μ f) := by
   intro E _ _ _ n a ha w hw μ K' hK' f hf Q₁ Q₂ hm₁ hm₂ hd₁ hd₂ hsep _ _
-  have hth : ∀ k, thL k w = MonoidHom.id _ := fun k => by simp only [thL, if_pos hw]
-  have hnr : ∀ k (y : GLw k w), nrmL k w y = y := fun k y => by simp only [nrmL, if_pos hw]
-  have hUL : UL n w = ⊤ := by simp only [UL, if_pos hw]
-  have hks : ∀ γ, kapSign n w Q₁ γ = 1 := fun γ => by simp only [kapSign, if_pos hw]
+  have hth : ∀ k, thL k w = MonoidHom.id _ := fun k => by simp only [thL, ite_eq_left hw]
+  have hnr : ∀ k (y : GLw k w), nrmL k w y = y := fun k y => by simp only [nrmL, ite_eq_left hw]
+  have hUL : UL n w = ⊤ := by simp only [UL, ite_eq_left hw]
+  have hks : ∀ γ, kapSign n w Q₁ γ = 1 := fun γ => by simp only [kapSign, ite_eq_left hw]
   have hKL : (KL n w).map (UL n w).subtype = GlobalTheory.LFun.KGL w (n := n) := by
     rw [KL, Subgroup.subgroupOf_map_subtype, hUL, inf_top_eq]
   have hmem : ∀ g : GLw n w, g ∈ UL n w := fun g => by rw [hUL]; trivial
@@ -361,10 +387,10 @@ theorem match_ctMu_of_isSplitAt : ∀ (E : Type) [Field E] [NumberField E] [IsCM
       unfold clSum
       apply finsum_eq_zero_of_forall_eq_zero
       intro c
-      rw [if_neg (hS c.rep)]
+      rw [ite_eq_right (hS c.rep)]
     rw [hz _ _ {y : GLw a w × GLw (n - a) w | y.1.val.charpoly = Q₁ ∧ y.2.val.charpoly = Q₂} _ _ hL,
       hz _ _ {γ : UL n w | γ.1.val.charpoly = Q₁ * Q₂} _ _ hR, mul_zero]
-  · push_neg at h0
+  · push Not at h0
     obtain ⟨x₁, hx₁⟩ := existsOfCharpoly _ a Q₁ hm₁ hd₁ h0.1
     obtain ⟨x₂, hx₂⟩ := existsOfCharpoly _ (n - a) Q₂ hm₂ hd₂ h0.2
     have hs₁ : Q₁.Separable := hsep.of_mul_left
@@ -424,7 +450,7 @@ theorem match_ctMu_of_isSplitAt : ∀ (E : Type) [Field E] [NumberField E] [IsCM
     have hδ : delta w μ Q₁ Q₂ = (μ ((-1) ^ (a * (n - a)) * GeneralLinearGroup.det x₁ ^ (n - a) *
         GeneralLinearGroup.det x₂ ^ a) : ℂ) * absHalf w (resultant Q₁ Q₂ ^ 2 / (x₁.val.det ^ (n - a) * x₂.val.det ^ a)) := by
       unfold delta
-      simp only [if_pos hw]
+      simp only [ite_eq_left hw]
       rw [dite_eq_left hne, hu, hdd]
     have hct : ctMu (Nat.add_sub_cancel' ha) w μ f = fun y =>
         (μ ((-1) ^ (a * (n - a)) * GeneralLinearGroup.det y.1 ^ (n - a) * GeneralLinearGroup.det y.2 ^ a) : ℂ) *

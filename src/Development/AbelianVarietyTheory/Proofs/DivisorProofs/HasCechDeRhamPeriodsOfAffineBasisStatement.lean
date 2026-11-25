@@ -4,18 +4,6 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.IsRatioCover
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UniformisationPreimageValueRulesStatement
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UniformisedOneFormEvaluationRestrictionEqStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UniformisedOneFormEvaluationRulesStatement
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsKSValueOneOfRetraction
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -55,7 +43,7 @@ theorem isPer_of_basis : ∀ (A : Over (Sp ℂ)) [GrpObj A] (g : ℕ) (L : LB A.
     intro U i hi z hz
     have hzU : z ∈ pre u.ex U.1 := hmono _ _ hi hz
     obtain ⟨hj, hzj⟩ := (hbasis U z hzU).choose_spec
-    simp only [h, dif_pos hzU]
+    simp only [h, dite_eq_left hzU]
     generalize_proofs p1 p2
     generalize p1.choose = j at *
     obtain ⟨l, hli, hlj, hzl, e1, e2⟩ := hcomp i j z hz hzj

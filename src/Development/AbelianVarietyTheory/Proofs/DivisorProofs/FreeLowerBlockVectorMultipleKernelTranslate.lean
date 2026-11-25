@@ -29,6 +29,30 @@ import Formalism.LocalToGlobal.Columns.CoefModAt
 import Formalism.LocalToGlobal.Columns.CoefficientsModP
 public import Formalism.LocalToGlobal.UnitaryNorms.CharProd
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Levelaf
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -43,6 +67,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.Divisors.RealisedChainTorusEq
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.MemLatOIffExistsActO
@@ -393,7 +419,7 @@ theorem mem_of_nu_mul {z : Datum.EAf D} (hν : ν * z ∈ OA D) (h : ∀ PP ∈ 
 theorem redM_apply {a b : ℕ} {u : Matrix (Fin a) (Fin b) (Datum.EAf D)} (PP : Pl D.host.E) (i : Fin a) (j : Fin b)
     {z : Datum.EAf D} (e : u i j = z) (hz : z ∈ OA D) : redM PP u i j = resS D.host.F PP ⟨z, hz⟩ := by
   subst e
-  exact dif_pos hz
+  exact dite_eq_left hz
 
 theorem eq_std_iff {κ : Type} [CommRing κ] {n r : ℕ} (hr : r ≤ n) (y : Matrix (Fin n) (Fin r) κ) :
     (LowZero r y ∧ topL r y = 1) ↔ y = Matrix.of fun (a : Fin n) (b : Fin r) => if (a : ℕ) = (b : ℕ) then (1 : κ) else 0 := by
@@ -405,10 +431,10 @@ theorem eq_std_iff {κ : Type} [CommRing κ] {n r : ℕ} (hr : r ≤ n) (y : Mat
     · have := congrFun (congrFun h2 ⟨a.val, ha⟩) b
       rw [Matrix.one_apply] at this
       simpa [Fin.ext_iff] using this
-    · rw [h1 a b (not_lt.1 ha) b.2, Matrix.of_apply, if_neg (by have := b.2; omega)]
+    · rw [h1 a b (not_lt.1 ha) b.2, Matrix.of_apply, ite_eq_right (by have := b.2; omega)]
   · rintro rfl
     refine ⟨fun a b ha hb => ?_, ?_⟩
-    · rw [Matrix.of_apply, if_neg (by omega)]
+    · rw [Matrix.of_apply, ite_eq_right (by omega)]
     · ext a b
       simp [Matrix.one_apply, Fin.ext_iff]
 
@@ -425,8 +451,8 @@ theorem datum_eq (R : RealDat D A Ks) (i : Fin D.R.m) (hr : (Wc D i).rank ≤ (V
       if IsIntM u then omegaFree R i Q ξR (fun PP : Pl D.host.E => Matrix.of
         fun (a : Fin (Vc D i).rank) (b : Fin (Wc D i).rank) => if (a : ℕ) = (b : ℕ) then (1 : kP PP) else 0)
         (fun PP => redM PP u) else 0 := by
-  have top : ∀ a b, a.val < (Wc D i).rank → u' a b = u a b := fun a b h => by rw [hu, if_pos h, one_mul]
-  have low : ∀ a b, ¬ a.val < (Wc D i).rank → u' a b = ν * u a b := fun a b h => by rw [hu, if_neg h]
+  have top : ∀ a b, a.val < (Wc D i).rank → u' a b = u a b := fun a b h => by rw [hu, ite_eq_left h, one_mul]
+  have low : ∀ a b, ¬ a.val < (Wc D i).rank → u' a b = ν * u a b := fun a b h => by rw [hu, ite_eq_right h]
   by_cases hI : IsIntM u
   · have hν : ∀ a b, ν * u a b ∈ OA D := fun a b => mul_mem (nu_mem h1 h2) (hI a b)
     have hI' : IsIntM u' := fun a b => by
@@ -444,20 +470,20 @@ theorem datum_eq (R : RealDat D A Ks) (i : Fin D.R.m) (hr : (Wc D i).rank ≤ (V
     have rL : ∀ PP, topL (Wc D i).rank (redM PP u') = topL (Wc D i).rank (redM PP u) := fun PP => by
       rw [GlobalTheory.AdjDatumMove.topL_eq hr, GlobalTheory.AdjDatumMove.topL_eq hr]
       exact Matrix.ext fun a b => rtop PP _ _ a.2
-    rw [if_pos hI, if_pos hI']
+    rw [ite_eq_left hI, ite_eq_left hI']
     unfold omegaK omegaQ omegaFree
     refine congrArg₂ (· * ·) (if_congr (forall₂_congr fun PP hPP => ?_) rfl rfl) ?_
     · beta_reduce
       rw [roff PP (Finset.disjoint_left.1 hd hPP)]
       exact eq_std_iff hr _
     · by_cases h : ∀ PP ∈ Q, IsUnit (topL (Wc D i).rank (redM PP u)).det
-      · rw [dif_pos h, dif_pos fun PP hPP => ⟨rlow PP hPP, by rw [rL]; exact h PP hPP⟩]
+      · rw [dite_eq_left h, dite_eq_left fun PP hPP => ⟨rlow PP hPP, by rw [rL]; exact h PP hPP⟩]
         refine Finset.prod_congr rfl fun PP _ => ?_
         rw [zpow_neg_one, Units.val_inv_eq_inv_val]
         congr 3
         exact Units.ext (congrArg Matrix.det (rL PP.1))
       · rw [dite_eq_right h, dite_eq_right fun h' => h fun PP hPP => by rw [← rL]; exact (h' PP hPP).2]
-  · rw [if_neg hI]
+  · rw [ite_eq_right hI]
     split_ifs with hI'
     · unfold omegaQ
       rw [dite_eq_right, mul_zero]
@@ -870,7 +896,7 @@ theorem vecFree_base_translate : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (
       have h3 := GlobalTheory.AdjDatumMove.isHalf_actO' g⁻¹ 1⁻¹ h
       rw [GlobalTheory.SplitHecke.actO_inv_actO] at h3
       exact hx h3
-    simp only [eq_false hx, eq_false hx', false_and, if_false]
+    simp only [eq_false hx, eq_false hx', false_and, ite_false]
 
 end GlobalTheory.FreeBlockTwist
 

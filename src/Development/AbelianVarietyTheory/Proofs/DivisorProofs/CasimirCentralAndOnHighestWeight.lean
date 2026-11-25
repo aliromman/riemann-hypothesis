@@ -1,20 +1,6 @@
 module
 
 public import Formalism.LocalRingCardinality.DataTheta
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
 import Development.AbelianVarietyTheory.Definitions.Foundations.IsFockIPOfFockData
 import Formalism.SharpRestriction.Divisibility.SchurIrreducible
 
@@ -83,7 +69,7 @@ theorem casimir_on_highest_rat {V : Type*} [AddCommGroup V] [Module ℂ V] {m : 
       rw [← Finset.sum_filter, Finset.sum_const, Finset.filter_gt_eq_Iio, Fin.card_Iio,
         nsmul_eq_mul]
     rw [a1, a2]
-    simp only [Finset.sum_ite_eq, Finset.mem_univ, if_true]
+    simp only [Finset.sum_ite_eq, Finset.mem_univ, ite_true]
     ring
   simp only [key]
   rw [← hz]
@@ -125,8 +111,8 @@ theorem casimir_central_and_highest : ∀ (p q : ℕ) (V : Type) [AddCommGroup V
     have s2 : ∀ i j, sameBlock (p := p) (q := q) (.inr i) (.inr j) := fun _ _ => trivial
     have s3 : ∀ i j, ¬ sameBlock (p := p) (q := q) (.inl i) (.inr j) := fun _ _ => id
     have s4 : ∀ i j, ¬ sameBlock (p := p) (q := q) (.inr i) (.inl j) := fun _ _ => id
-    simp only [Fintype.sum_sum_type, if_pos (s1 _ _), if_pos (s2 _ _), if_neg (s3 _ _),
-      if_neg (s4 _ _), Finset.sum_const_zero, add_zero, zero_add]
+    simp only [Fintype.sum_sum_type, ite_eq_left (s1 _ _), ite_eq_left (s2 _ _), ite_eq_right (s3 _ _),
+      ite_eq_right (s4 _ _), Finset.sum_const_zero, add_zero, zero_add]
     rw [h1, h2, ← add_smul, ← Rat.cast_add]
     congr 2
     ring

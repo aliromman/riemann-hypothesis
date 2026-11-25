@@ -1,6 +1,31 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.UpperOff
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -14,6 +39,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.IsotropicStabilizerRadicalStructure
 
@@ -60,7 +88,7 @@ variable {k r : ℕ} (u : Matrix (Fin r) (Fin r) ℂ) (a b : Fin r) (m n : Fin (
 
 theorem u_ee : uEmb k r u (eI k r a) (eI k r b) = u a b := by
   have h : (eI k r a).val < r ∧ (eI k r b).val < r := ⟨a.2, b.2⟩
-  simp only [uEmb, dif_pos h]
+  simp only [uEmb, dite_eq_left h]
   rfl
 theorem u_em : uEmb k r u (eI k r a) (mI k r n) = 0 := by
   have va : (eI k r a).val = a.val := rfl
@@ -114,7 +142,7 @@ theorem u_ss : uEmb k r u (esI k r a) (esI k r b) = star (u⁻¹ b a) := by
   have h2 : r + k < (esI k r a).val ∧ r + k < (esI k r b).val := by rw [vsa, vsb]; omega
   have e1 : 2 * r + k - (esI k r b).val = b.val := by rw [vsb]; omega
   have e2 : 2 * r + k - (esI k r a).val = a.val := by rw [vsa]; omega
-  simp only [uEmb, dif_neg h1, dif_pos h2]
+  simp only [uEmb, dite_eq_right h1, dite_eq_left h2]
   congr 1
   exact congrArg₂ (fun x y => u⁻¹ x y) (Fin.ext e1) (Fin.ext e2)
 

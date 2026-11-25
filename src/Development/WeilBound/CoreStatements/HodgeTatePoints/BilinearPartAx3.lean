@@ -2,8 +2,36 @@ module
 
 public import Development.WeilBound.CoreStatements.HodgeTatePoints.Comp1IdentityLeft
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.CanonA
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Coalgebra.CoassocSimps
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -17,6 +45,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -33,9 +63,9 @@ theorem coeff_ax3_vanish {f : PS R 3 d} (hf : Ax3 f) (D : Fin 3 × Fin d →₀ 
     (hk : ∀ b, D (k, b) = 0) : coeff D f = 0 := by
   obtain ⟨h0, h1, h2⟩ := hf
   have h := coeff_kill k f D
-  rw [if_pos hk, sb_apply] at h
+  rw [ite_eq_left hk, sb_apply] at h
   rw [← h]
-  convert (show coeff D (1 : PS R 3 d) = 0 by rw [coeff_one, if_neg hD]) using 2
+  convert (show coeff D (1 : PS R 3 d) = 0 by rw [coeff_one, ite_eq_right hD]) using 2
   fin_cases k
   · convert eval3_axiom_zero h0 (Z_pt (R := R) (d := d) (n := 3) 1) (Z_pt 2) using 2
     funext j
@@ -56,7 +86,7 @@ theorem bilinear_part_ax3 {f : PS R 3 d} (hf : Ax3 f) {a : Fin 3 → Pt R 2 d} (
     obtain ⟨k, hk, -⟩ := exists_third p.1 p.1
     rw [coeff_ax3_vanish hf _ (by simp) k ?_, zero_mul]
     intro b
-    rw [Finsupp.single_apply, if_neg]
+    rw [Finsupp.single_apply, ite_eq_right]
     rintro rfl
     exact hk rfl
   have h2 : ∀ p q : Fin 3 × Fin d, constantCoeff ((pderiv q) ((pderiv p) f)) = 0 := by
@@ -66,11 +96,11 @@ theorem bilinear_part_ax3 {f : PS R 3 d} (hf : Ax3 f) {a : Fin 3 → Pt R 2 d} (
     rw [coeff_ax3_vanish hf _ (by simp) k ?_, zero_mul, zero_mul]
     intro b
     have e1 : (Finsupp.single q 1 : Fin 3 × Fin d →₀ ℕ) (k, b) = 0 := by
-      rw [Finsupp.single_apply, if_neg]
+      rw [Finsupp.single_apply, ite_eq_right]
       rintro rfl
       exact hk2 rfl
     have e2 : (Finsupp.single p 1 : Fin 3 × Fin d →₀ ℕ) (k, b) = 0 := by
-      rw [Finsupp.single_apply, if_neg]
+      rw [Finsupp.single_apply, ite_eq_right]
       rintro rfl
       exact hk1 rfl
     rw [Finsupp.add_apply, e1, e2]

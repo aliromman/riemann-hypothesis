@@ -6,6 +6,28 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Split
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.UnderEqIffConjPl
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.RingEquivPlaceCorrespondencePlaceUnder
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GeneralizedEigenspaces.SmoothDepth.OpenLevelSubgroups.SecSpec
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -18,6 +40,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ContinuousMapPFin
 
 @[expose] public section
@@ -94,16 +118,16 @@ private theorem cut (w : Plc L) (x : UA L n) (hx : x ∈ finU (E := L) (n := n))
     refine finGL_mem_UA _ fun u => ?_
     rw [GlobalTheory.EulerTwKU.pLoc_prjG, GlobalTheory.EulerTwKU.pLoc_prjG]
     by_cases hu : u ∈ T
-    · rw [if_pos hu, if_pos ((memC u).2 hu)]
+    · rw [ite_eq_left hu, ite_eq_left ((memC u).2 hu)]
       exact comp_eq x u
-    · rw [if_neg hu, if_neg (fun h => hu ((memC u).1 h))]
+    · rw [ite_eq_right hu, ite_eq_right (fun h => hu ((memC u).1 h))]
       simp
   have hc : ∀ u, cLoc u (⟨_, hU⟩ : UA L n) = if u ∈ T then cLoc u x else 1 := fun u => by
     rw [cLoc_finGL, GlobalTheory.EulerTwKU.pLoc_prjG, cLoc_eq]
   refine ⟨⟨_, hU⟩, Subgroup.mem_inf.2 ⟨pInf_finGL _, Subgroup.mem_iInf.2 fun u =>
     Subgroup.mem_iInf.2 fun hu => MonoidHom.mem_ker.2 ?_⟩, fun u hu => ?_⟩
-  · rw [hc, if_neg (fun h => hu ((memT u).1 h))]
-  · rw [hc, if_pos ((memT u).2 hu)]
+  · rw [hc, ite_eq_right (fun h => hu ((memT u).1 h))]
+  · rw [hc, ite_eq_left ((memT u).2 hu)]
 
 private theorem K_conj (x : UA L n) (u : Plc L) (h : cLoc (conjSrc (conjE L) u) x ∈ GlobalTheory.LFun.KGL (conjSrc (conjE L) u) (n := n)) :
     cLoc u x ∈ GlobalTheory.LFun.KGL u (n := n) := by

@@ -7,6 +7,28 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Funda
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.LcscAdelicUnitaryGroup
 import Formalism.LocalToGlobal.GlobalTheory.GL5.FamilyMassVolumeIdentityOfClassDecomp
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompactness.T2SpaceTensorProductFiniteExtension
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -19,6 +41,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -51,48 +74,9 @@ def thetaTerm (Φ : (Fin 1 → Fin M → AF F ⊗[F] E) → ℂ) (h : HA (AF F) 
 def theta (Φ : (Fin 1 → Fin M → AF F ⊗[F] E) → ℂ) (h : HA (AF F) σ J) : ℂ :=
   ∑' x : Fin 1 → Fin M → E, thetaTerm σ J Φ h x
 
-def eisIntegrand (ψ : AddChar (AF F) ℂ) (Φ : (Fin 1 → Fin M → AF F ⊗[F] E) → ℂ) (b : F)
-    (x : Fin 1 → Fin M → AF F ⊗[F] E) : ℂ :=
-  Φ x * ψ (algebraMap F (AF F) b * qR (AF F) σ J (x 0))
-
-def eisTerm (ψ : AddChar (AF F) ℂ) (dx : Measure (Fin 1 → Fin M → AF F ⊗[F] E))
-    (Φ : (Fin 1 → Fin M → AF F ⊗[F] E) → ℂ) (b : F) : ℂ :=
-  ∫ x, eisIntegrand σ J ψ Φ b x ∂dx
-
-def eisSeries (ψ : AddChar (AF F) ℂ) (dx : Measure (Fin 1 → Fin M → AF F ⊗[F] E))
-    (Φ : (Fin 1 → Fin M → AF F ⊗[F] E) → ℂ) : ℂ :=
-  Φ 0 + ∑' b : F, eisTerm σ J ψ dx Φ b
-
-def ThetaConverges (μ : Measure (HA (AF F) σ J)) (𝓕 : Set (HA (AF F) σ J))
-    (Φ : (Fin 1 → Fin M → AF F ⊗[F] E) → ℂ) : Prop :=
-  (∀ h, Summable fun x => ‖thetaTerm σ J Φ h x‖) ∧
-    ∫⁻ h in 𝓕, ∑' x, ‖thetaTerm σ J Φ h x‖ₑ ∂μ < ⊤ ∧ IntegrableOn (theta σ J Φ) 𝓕 μ
-
-def EisConverges (ψ : AddChar (AF F) ℂ) (dx : Measure (Fin 1 → Fin M → AF F ⊗[F] E))
-    (Φ : (Fin 1 → Fin M → AF F ⊗[F] E) → ℂ) : Prop :=
-  (∀ b, Integrable (eisIntegrand σ J ψ Φ b) dx) ∧ Summable fun b => ‖eisTerm σ J ψ dx Φ b‖
-
 end Defs
 
 end GlobalTheory.Published.SiegelOneVector
-
-namespace GlobalTheory.Published
-
-open SiegelOneVector
-
-def WeilSiegelOneVector : Prop :=
-  ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
-    (σ : E →ₐ[F] E), IsCMExt F E σ →
-    ∀ (M : ℕ) (J : Matrix (Fin M) (Fin M) E), IsHermND σ J → 2 < M →
-    ∀ ψ : AddChar (AF F) ℂ, IsCharAF F ψ →
-    AllSome (SdW F E σ M J (AF F) ψ 1) fun dx =>
-    ∀ (μ : Measure (HA (AF F) σ J)) (𝓕 : Set (HA (AF F) σ J)),
-      μ.IsHaarMeasure → IsFundamentalDomain (HFinIn (AF F) σ J) 𝓕 μ → μ 𝓕 = 1 →
-    ∀ Φ : (Fin 1 → Fin M → AF F ⊗[F] E) → ℂ, IsSchwartzBruhat Φ →
-      ThetaConverges σ J μ 𝓕 Φ ∧ EisConverges σ J ψ dx Φ ∧
-        ∫ h in 𝓕, theta σ J Φ h ∂μ = eisSeries σ J ψ dx Φ
-
-end GlobalTheory.Published
 
 namespace GlobalTheory.Published.SiegelOneVector
 

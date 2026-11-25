@@ -6,6 +6,28 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.EqZer
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsNsmulIntMemLatO
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GramMapMulInv
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsEqMulOfResSNeOne
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -18,6 +40,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.MemLatOIffExistsActO
 import Formalism.LocalToGlobal.IndefiniteReal.ExistsChosenExtremalVector
 
@@ -39,13 +62,13 @@ def rectOne (R : Type) [Zero R] [One R] (b a : ℕ) : Matrix (Fin b) (Fin a) R :
   fun i j => if i.val = j.val then 1 else 0
 
 theorem lowZero_rectOne (R : Type) [Zero R] [One R] (b a k : ℕ) : LowZero k (rectOne R b a) :=
-  fun i j hi hj => if_neg (by omega)
+  fun i j hi hj => ite_eq_right (by omega)
 
 theorem topL_rectOne (R : Type) [Zero R] [One R] {b a : ℕ} (h : a ≤ b) : topL a (rectOne R b a) = 1 := by
   ext i j
   have h1 : i.val < b ∧ j.val < a := ⟨by omega, j.2⟩
   unfold topL rectOne
-  rw [dif_pos h1, Matrix.one_apply]
+  rw [dite_eq_left h1, Matrix.one_apply]
   simp only [Fin.ext_iff]
 
 theorem sandwich_cancel' {R : Type} [CommRing R] {m n : ℕ} (A A' G G' : Matrix (Fin m) (Fin m) R)
@@ -115,14 +138,14 @@ theorem redM_smul_rectOne {ε : EAf D} (hi : ε ∈ Formalism.L2.Herm.intAf D.ho
     (h : Formalism.L2.DIV.resS D.host.F PP ⟨ε, hi⟩ = 1) (b a : ℕ) :
     redM PP (ε • rectOne (EAf D) b a) = rectOne _ b a := by
   funext i j
-  refine (dif_pos (isIntM_smul_rectOne hi b a i j)).trans ?_
+  refine (dite_eq_left (isIntM_smul_rectOne hi b a i j)).trans ?_
   by_cases hij : i.val = j.val
-  · refine Eq.trans (congrArg _ (Subtype.ext ?_)) (h.trans (if_pos hij).symm)
+  · refine Eq.trans (congrArg _ (Subtype.ext ?_)) (h.trans (ite_eq_left hij).symm)
     change ε * (if i.val = j.val then 1 else 0) = ε
-    rw [if_pos hij, mul_one]
-  · refine Eq.trans (congrArg _ (Subtype.ext ?_)) ((RingHom.map_zero _).trans (if_neg hij).symm)
+    rw [ite_eq_left hij, mul_one]
+  · refine Eq.trans (congrArg _ (Subtype.ext ?_)) ((RingHom.map_zero _).trans (ite_eq_right hij).symm)
     change ε * (if i.val = j.val then 1 else 0) = 0
-    rw [if_neg hij, mul_zero]
+    rw [ite_eq_right hij, mul_zero]
 
 theorem exists_datum_ne_zero : ∀ (D : D7) (S T : HSp D) (βS : GL (Fin S.rank) (EAf D)) (βT : GL (Fin T.rank) (EAf D)) (Pg Q P : Finset (Formalism.L2.DIV.Pl D.host.E)) (ξ : ∀ PP : Formalism.L2.DIV.Pl D.host.E, (Formalism.L2.DIV.kP PP)ˣ →* ℂˣ) (e : AE D), T.rank ≤ S.rank → IsIdemSum e P → (∀ PP ∈ Pg, PP ∈ P) → (∀ PP ∈ Q, PP ∈ P) → ∃ x : WO S T, IsHalf (cA D e) x ∧ IsIntM (frMapAdj S T βS βT x) ∧ omegaK Pg (fun PP => redM PP (frMapAdj S T βS βT x)) * omegaQ Q T.rank ξ (-1) (fun PP => redM PP (frMapAdj S T βS βT x)) ≠ 0 := by
   intro D S T βS βT Pg Q P ξ e hr he hg hQ
@@ -136,10 +159,10 @@ theorem exists_datum_ne_zero : ∀ (D : D7) (S T : HSp D) (βS : GL (Fin S.rank)
       exact ⟨lowZero_rectOne _ _ _ _, topL_rectOne _ hr⟩
     refine mul_ne_zero ?_ ?_
     · unfold omegaK
-      rw [if_pos fun PP hPP => key PP (hg PP hPP)]
+      rw [ite_eq_left fun PP hPP => key PP (hg PP hPP)]
       exact one_ne_zero
     · unfold omegaQ
-      rw [dif_pos fun PP hPP => ⟨(key PP (hQ PP hPP)).1, by
+      rw [dite_eq_left fun PP hPP => ⟨(key PP (hQ PP hPP)).1, by
         rw [(key PP (hQ PP hPP)).2, Matrix.det_one]; exact isUnit_one⟩]
       exact Finset.prod_ne_zero_iff.2 fun PP _ => zpow_ne_zero _ (Units.ne_zero _)
 

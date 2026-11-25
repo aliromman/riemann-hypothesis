@@ -6,6 +6,31 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.Dedekin
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeckeLEntireAndNonzeroAtOneHolds
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ZetaEulerProductNeZeroOneAddMulI
 import Formalism.LocalToGlobal.UnitaryNorms.CharUniq
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -18,6 +43,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -106,7 +134,7 @@ theorem _root_.GlobalTheory.Published.HeckeLPartialContinuation_holds : GlobalTh
       fun s hs => mul_ne_zero (IsHeckeL.ne_zero_of_one_le hu hχ hΛ hs) (removed_ne_zero T hu (by linarith))⟩
   · obtain ⟨Z, hZd, hZ1, hZ⟩ := GlobalTheory.dedekindZeta_eulerProduct_mul_sub_one_entire_ne_zero K
     have hu : (1 : HChar K).IsUnitary := fun _ => by simp
-    have hc : ∀ P : HeightOneSpectrum (𝓞 K), cf (1 : HChar K) P = 1 := fun P => if_pos fun _ _ => rfl
+    have hc : ∀ P : HeightOneSpectrum (𝓞 K), cf (1 : HChar K) P = 1 := fun P => ite_eq_left fun _ _ => rfl
     refine ⟨fun s => Z s * removed T 1 s, hZd.mul (differentiable_removed T 1), fun s hs => ?_,
       fun s hs => mul_ne_zero ?_ (removed_ne_zero T hu (by linarith))⟩
     · have h := hasProd_exp hu hs

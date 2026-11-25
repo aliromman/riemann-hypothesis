@@ -4,9 +4,33 @@ import all Mathlib.MeasureTheory.Constructions.Pi
 public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.HermitianFormUnitaryOneOne
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.EventuallyBallSubset
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsLimitOfChart
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Real
 import Mathlib.Analysis.CStarAlgebra.ContinuousLinearMap
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -20,7 +44,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Algebra.Group.Units
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -90,7 +116,7 @@ theorem dOp_chart_le {n : ℕ} {ε : Fin n → Bool} {s : ℝ} {E : Fin (n ^ 2) 
     intro i
     have hF : ‖E i‖ = 1 := by
       have h2 : ‖E i‖ ^ 2 = 1 := by
-        rw [← GlobalTheory.ProductChart.ip_self, GlobalTheory.ProductChart.ip_apply, hE i i, if_pos rfl]
+        rw [← GlobalTheory.ProductChart.ip_self, GlobalTheory.ProductChart.ip_apply, hE i i, ite_eq_left rfl]
       nlinarith [norm_nonneg (E i)]
     refine ContinuousLinearMap.opNorm_le_bound _ zero_le_one fun v => ?_
     have hv : T (E i) v = WithLp.toLp 2 (E i *ᵥ WithLp.ofLp v) := rfl
@@ -271,7 +297,7 @@ theorem lintegral_chart_all_le : ∀ (I : AutInst) (c : InfinitePlace I.F → �
               apply Real.exp_le_exp.2
               rw [mul_one]
               exact_mod_cast hcard
-      · push_neg at hc0
+      · push Not at hc0
         obtain ⟨v, hv⟩ := hc0
         have : ENNReal.ofReal (Kc * c v) = 0 :=
           ENNReal.ofReal_eq_zero.2 (mul_nonpos_of_nonneg_of_nonpos (Real.exp_pos _).le hv.le)

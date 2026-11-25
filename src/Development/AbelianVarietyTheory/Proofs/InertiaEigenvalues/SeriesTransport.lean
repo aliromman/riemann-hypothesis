@@ -1,22 +1,6 @@
 module
 
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PeriodDiscExtensionTateElement
-import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.Order.Interval.Finset.Box
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -60,7 +44,7 @@ theorem cz_X_pow_mul (w : ℕ) (f : PowerSeries L) (k : ℤ) :
     rcases lt_or_ge (k + (w : ℤ)) 0 with h' | h'
     · exact cz_neg _ h'
     · obtain ⟨m, hm⟩ := Int.eq_ofNat_of_zero_le h'
-      rw [hm, cz_nat, PowerSeries.coeff_X_pow_mul', if_neg (by omega)]
+      rw [hm, cz_nat, PowerSeries.coeff_X_pow_mul', ite_eq_right (by omega)]
   · obtain ⟨m, rfl⟩ := Int.eq_ofNat_of_zero_le h
     rw [← Nat.cast_add, cz_nat, cz_nat, PowerSeries.coeff_X_pow_mul]
 

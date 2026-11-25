@@ -1,6 +1,35 @@
 module
 
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ClassCounting.HasVal
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -13,6 +42,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -204,11 +236,11 @@ theorem prism_toInh (k : G) (n : ℕ) (y : Ch A G (n + 1)) :
   funext j
   have h1 : ∀ (q : Fin (n + 2)) (r : Fin (n + 1)), (q : ℕ) ≤ i → (r : ℕ) = q → pv (· * k) i x q = x r := by
     intro q r h hr
-    rw [pv, if_pos h, Fin.predAbove_of_le_castSucc _ _ h]
+    rw [pv, ite_eq_left h, Fin.predAbove_of_le_castSucc _ _ h]
     exact congrArg x (Fin.ext hr.symm)
   have h2 : ∀ (q : Fin (n + 2)) (r : Fin (n + 1)), (i : ℕ) < q → (r : ℕ) + 1 = q → pv (· * k) i x q = x r * k := by
     intro q r h hr
-    rw [pv, if_neg (not_le.mpr h), Fin.predAbove_of_castSucc_lt _ _ h]
+    rw [pv, ite_eq_right (not_le.mpr h), Fin.predAbove_of_castSucc_lt _ _ h]
     exact congrArg (fun t => x t * k) (Fin.ext (by simp; omega))
   refine Fin.succAboveCases i ?_ (fun j => ?_) j
   · rw [Fin.insertNth_apply_same, h1 _ i (by simp) (by simp), h2 _ i (by simp) (by simp)]

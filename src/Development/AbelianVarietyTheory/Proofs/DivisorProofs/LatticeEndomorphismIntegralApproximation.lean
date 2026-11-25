@@ -2,18 +2,6 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.Divisors.HasDivPlace
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeCompletionEqLatticeVectorAddNsmul
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsDimEqOne
 import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 
@@ -53,7 +41,7 @@ theorem exists_lift_sys : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (h₀ : Mod
   refine ⟨h, fun n hn hnp x => ?_⟩
   have hx : x ∈ Submodule.span ℤ (Set.range b) := by rw [b.span_eq]; trivial
   have hh' : h n = (b.constr ℤ (fun i => (key n hn hnp i).choose)).toAddMonoidHom := by
-    simp only [h, dif_pos (And.intro hn hnp)]
+    simp only [h, dite_eq_left (And.intro hn hnp)]
   induction hx using Submodule.span_induction with
   | mem y hy =>
     obtain ⟨i, rfl⟩ := hy

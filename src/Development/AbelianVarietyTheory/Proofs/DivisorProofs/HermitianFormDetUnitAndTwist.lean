@@ -6,23 +6,7 @@ public import Mathlib.Data.Matrix.Mul
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ContinuousConjFin
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsContinuousPadic
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsAevalEqOfSeparable
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.LinearAlgebra.Charpoly.ToMatrix
-import Mathlib.RingTheory.PiTensorProduct
 import Development.AbelianVarietyTheory.Definitions.Divisors.SimpleTwistedTraceFormulaStable
 import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.BaseChangeDefiniteUnitary
 
@@ -147,22 +131,22 @@ theorem UpperTheory.Reformulated.B.Yzd3.phi_mul_self :
   rw [Finset.sum_eq_single (⟨a - 1 - (i : ℕ), hj⟩ : Fin a)]
   · have h1 : (i : ℕ) + (a - 1 - (i : ℕ)) + 1 = a := by omega
     dsimp only
-    rw [if_pos h1]
+    rw [ite_eq_left h1]
     by_cases hik : i = k
     · subst hik
       have h2 : (a - 1 - (i : ℕ)) + (i : ℕ) + 1 = a := by omega
-      rw [if_pos h2, if_pos rfl, mul_one, ← pow_add]
+      rw [ite_eq_left h2, ite_eq_left rfl, mul_one, ← pow_add]
       congr 1
       omega
     · have h2 : ¬ ((a - 1 - (i : ℕ)) + (k : ℕ) + 1 = a) := by
         intro h
         exact hik (Fin.ext (by omega))
-      rw [if_neg h2, if_neg hik, mul_zero, mul_zero]
+      rw [ite_eq_right h2, ite_eq_right hik, mul_zero, mul_zero]
   · intro j _ hne
     have h1 : ¬ ((i : ℕ) + (j : ℕ) + 1 = a) := by
       intro h
       exact hne (Fin.ext (by simp only []; omega))
-    rw [if_neg h1, zero_mul]
+    rw [ite_eq_right h1, zero_mul]
   · intro h
     exact absurd (Finset.mem_univ _) h
 end -- clump:auto
@@ -194,7 +178,7 @@ theorem UpperTheory.Reformulated.B.Yzd2.phi_mul_transpose :
     have hk : (k : ℕ) = a - 1 - (i : ℕ) := rfl
     rw [Finset.sum_eq_single k]
     · have h1 : (i : ℕ) + (k : ℕ) + 1 = a := by omega
-      rw [if_pos h1, if_pos rfl, ← mul_pow]
+      rw [ite_eq_left h1, ite_eq_left rfl, ← mul_pow]
       simp
     · intro b _ hb
       have h1 : ¬ ((i : ℕ) + (b : ℕ) + 1 = a) := by
@@ -205,7 +189,7 @@ theorem UpperTheory.Reformulated.B.Yzd2.phi_mul_transpose :
       simp [h1]
     · intro hk'
       exact absurd (Finset.mem_univ k) hk'
-  · rw [if_neg h]
+  · rw [ite_eq_right h]
     apply Finset.sum_eq_zero
     intro k _
     by_cases h1 : (i : ℕ) + (k : ℕ) + 1 = a

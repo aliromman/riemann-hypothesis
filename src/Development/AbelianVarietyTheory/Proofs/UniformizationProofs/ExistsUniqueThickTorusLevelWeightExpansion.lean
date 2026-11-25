@@ -8,9 +8,34 @@ public import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.Stalk
 public import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.SvalEqZeroOfSumMulCoord
 public import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.TorusStableAffineOpenFunctionsWeightGraded
 public import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ValTorusPointAndTranslate
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.AlgebraicGeometry.Modules.Sheaf
 import Mathlib.AlgebraicGeometry.Morphisms.WeaklyEtale
 import Mathlib.AlgebraicGeometry.QuasiAffine
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -384,10 +409,10 @@ theorem existsUnique_level_expansion : (∀ (R : Type) [CommRing R] [IsDomain R]
     g.isKernel D.P.isLB σ
   choose d hd using fun α => exists_coeff g k α (τ α) (h₁ α)
   refine existsUnique_of_exists_of_unique ⟨fun α => if α ∈ s then d α else DVR.SecOps.secZero, s,
-    fun α hα j => by beta_reduce; rw [if_neg hα]; rfl, fun z J hJ => ?_⟩ ?_
+    fun α hα j => by beta_reduce; rw [ite_eq_right hα]; rfl, fun z J hJ => ?_⟩ ?_
   · refine (h₂ _ (𝟙 _) z J hJ).trans (Finset.sum_congr rfl fun α hα => ?_)
     beta_reduce
-    rw [if_pos hα]
+    rw [ite_eq_left hα]
     exact hd α z J hJ
   · rintro f f' ⟨s₁, a₁, b₁⟩ ⟨s₂, a₂, b₂⟩
     exact coeff_unique g k f f' s₁ s₂ a₁ a₂ fun z J hJ => (b₁ z J hJ).symm.trans (b₂ z J hJ)

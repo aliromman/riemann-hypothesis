@@ -6,6 +6,29 @@ import Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsAffineLie
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsAffineStableLieEigenspaceFrame
 import Formalism.LocalToGlobal.ProjectiveLattices.GenFrPfB
 import Formalism.LocalToGlobal.ProjectiveLattices.GenSpecLocFrM
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -191,7 +214,7 @@ theorem lieMult_univ (Xo : Moduli D l) (k : Type) [Field k] [IsAlgClosed k] (φ 
   · exact hd.2 fun h' => h (congrArg Subtype.val (φ.injective h'))
 
 theorem mult_conj {τ : E →+* ℂ} (hτ : τ (H.rt : E) = H.rt0) : D.mult (conjEmb τ) = D.q := by
-  refine if_neg fun h => ?_
+  refine ite_eq_right fun h => ?_
   have h3 : starRingEnd ℂ (τ (H.rt : E)) = H.rt0 := h
   rw [hτ] at h3
   have h5 : H.rt0.im = 0 := Complex.conj_eq_iff_im.1 h3
@@ -211,7 +234,7 @@ theorem GlobalTheory.DetLine.frameCover_univ : ∀ (E : Type) [Field E] [NumberF
     exists_affine_bases (t := Xo.univ.t) c (toX Xo c) (toF Xo c) D.mult (lieMult_univ c Xo) U z hz
   have h₁ := hb τ
   have h₂ := hb (conjEmb τ)
-  rw [show D.mult τ = D.p from if_pos hτ] at h₁
+  rw [show D.mult τ = D.p from ite_eq_left hτ] at h₁
   rw [mult_conj hτ] at h₂
   obtain ⟨v, hv⟩ := h₁
   obtain ⟨w, hw⟩ := h₂

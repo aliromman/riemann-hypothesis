@@ -1,6 +1,30 @@
 module
 
 public import Development.AbelianVarietyTheory.Statements.HeckeThetaIntegrals.StepUnfold
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -13,6 +37,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 
 @[expose] public section
 
@@ -62,7 +87,7 @@ theorem realLine_of_periodsOnLine (ch : Choice R) (h : PeriodsOnLine ch) : RealL
   let ell : PolCol ch.G × PolRow ch.G → ℂ := if ell₀ = 0 then fun _ => 1 else ell₀
   have hne : ell ≠ 0 := by
     by_cases e : ell₀ = 0
-    · simp only [ell, e, if_true]
+    · simp only [ell, e, ite_true]
       intro h1
       have := congrFun h1 (Classical.arbitrary _)
       simp at this
@@ -76,13 +101,13 @@ theorem realLine_of_periodsOnLine (ch : Choice R) (h : PeriodsOnLine ch) : RealL
     · refine ⟨0, fun P => ?_⟩
       rw [hκ P, e]
       simp
-    · exact ⟨κ, fun P => by simp only [ell, e, if_false]; exact hκ P⟩
+    · exact ⟨κ, fun P => by simp only [ell, e, ite_false]; exact hκ P⟩
   refine ⟨ell, hne, fun t a hS β hβ M hM τ hτ y => ?_, fun z => ?_⟩
   · choose κ hκ using hline t a hS β hβ M hM τ hτ
     let κ' : PureDat ch.G t → ℂ := fun d => if hd : d ∈ τ.support then κ d hd y else 0
     refine ⟨τ.sum fun d c' => c' * κ' d, fun σ => ?_⟩
     refine sum_sum_line σ τ _ ell κ' fun d hd P => ?_
-    simp only [κ', dif_pos hd]
+    simp only [κ', dite_eq_left hd]
     exact hκ d hd y P
   · obtain ⟨P₀, hP₀⟩ := Function.ne_iff.1 hne
     refine ⟨Finsupp.single P₀ (z / ell P₀), fun hz => by simp [hz], ?_⟩

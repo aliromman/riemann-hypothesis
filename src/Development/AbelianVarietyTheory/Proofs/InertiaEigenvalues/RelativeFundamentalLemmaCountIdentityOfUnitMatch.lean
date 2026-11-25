@@ -26,28 +26,10 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SelfDua
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SgnLatSpanBasis
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnitaryGroupPositiveCharacterTrivialAndUnimodula
 public import Mathlib.Data.Set.Card.Arithmetic
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Analysis.CStarAlgebra.Classes
 import Mathlib.Tactic.Linter.HaveILetI
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnitaryOrbitNormalFormUnitInvariant
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.Tactic.Lemma
-import Mathlib.RingTheory.PiTensorProduct
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ToMatrixTwRight, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DetTracePowAddMulUnitNeZero, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HermBasisOrthonormal, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IntegralRightCosetFunEqFinsum, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MemRangeAlgebraMapOfStarEq, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NormLeIffValuationLe, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.OrthonormalIffUnitary, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SpanSelfDual, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RelativeFundamentalLemmaCountIdentityOfUnitMatch
@@ -694,7 +676,7 @@ theorem eta_eq_uq_eta : ∀ (K : UQ) (F E : Type) [NontriviallyNormedField F] [N
   by_cases hx : x = 0
   · subst hx
     simp only [map_zero, WithZero.log_zero, neg_zero, zpow_zero, Rat.cast_one]
-    rw [if_pos ⟨0, by simp⟩]
+    rw [ite_eq_left ⟨0, by simp⟩]
   set z := φ.symm (algebraMap F E x) with hz
   have hz0 : z ≠ 0 := by simpa [z] using hx
   have hvz : v z ≠ 0 := (Valuation.ne_zero_iff v).2 hz0

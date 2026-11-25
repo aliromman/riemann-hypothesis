@@ -36,7 +36,29 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.PeriodsOn
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.AdaptedFrameOrthonormal
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FinrankInvFunBranch
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TensorProductDefiniteUnitaryLocalModelsIrreducib
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Coalgebra.CoassocSimps
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -50,17 +72,24 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ReduceModChar
 import Formalism.GradedWeylDivisibility.FinalD
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
 import Mathlib.Algebra.Module.StablyFree.Basic
 import Mathlib.LinearAlgebra.PiTensorProduct.Finite
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ToPairMul
 import Mathlib.RingTheory.PiTensorProduct
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaIntegrandIntegrable
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.AdelicUnitaryTopology
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsPerfectPairingCoefficientSpaceTensorModel, Development.AbelianVarietyTheory.Proofs.TwistedOperators.HighestWeightBaseParEqNegLowestKType, Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeylKTypeTensorEqContragredientTranslatesSpan, Development.AbelianVarietyTheory.Proofs.TwistedOperators.CastRealAll, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExtCastMulReal, Development.AbelianVarietyTheory.Proofs.TwistedOperators.GenPerMove, Development.AbelianVarietyTheory.Proofs.TwistedOperators.GenPerMultilinear, Development.AbelianVarietyTheory.Proofs.TwistedOperators.InvContCast, Development.AbelianVarietyTheory.Proofs.TwistedOperators.LeftCast, Development.AbelianVarietyTheory.Proofs.TwistedOperators.OmLiftOfMultilinearTprod, Development.AbelianVarietyTheory.Proofs.TwistedOperators.RowTestDefinitePeriodsInvariantFunctional, Development.AbelianVarietyTheory.Proofs.TwistedOperators.RowTestRealPlacesDefinitePeriodsOnOneLine, Development.AbelianVarietyTheory.Proofs.TwistedOperators.RealLine
@@ -162,20 +191,20 @@ theorem pairEquiv_realAll : ∀ (D : D7) (V : HSp D) (S : D.what₂.Tau → SPar
       intro w
       have h0 : (fun ρ => unfr M ρ (us ∅ ρ)) = 1 := by
         funext ρ
-        have : us ∅ ρ = 1 := if_neg (Finset.notMem_empty ρ)
+        have : us ∅ ρ = 1 := ite_eq_right (Finset.notMem_empty ρ)
         rw [this, OneMemClass.coe_one, Pi.one_apply]
         exact GlobalTheory.CoefPairTens.unfr_one M ρ
       have h1 : (fun ρ => F ρ (us ∅ ρ)⁻¹) = fun ρ => LinearMap.id := by
         funext ρ
-        have : us ∅ ρ = 1 := if_neg (Finset.notMem_empty ρ)
+        have : us ∅ ρ = 1 := ite_eq_right (Finset.notMem_empty ρ)
         show ((M.σ ρ ((us ∅ ρ)⁻¹ : Matrix.unitaryGroup (Fin V.rank) ℂ) : M.H ρ →L[ℂ] M.H ρ) : M.H ρ →ₗ[ℂ] M.H ρ) = _
         rw [this, inv_one, OneMemClass.coe_one, GlobalTheory.CoefPairTens.sigma_one]
         rfl
       rw [h0, realAll_one hθ, map_one, Module.End.one_apply, h1, PiTensorProduct.map_id, LinearMap.comp_id]
     | insert τ s hτ ih =>
       intro w
-      have hs : us s τ = 1 := if_neg hτ
-      have h3 : us (insert τ s) τ = u τ := if_pos (Finset.mem_insert_self τ s)
+      have hs : us s τ = 1 := ite_eq_right hτ
+      have h3 : us (insert τ s) τ = u τ := ite_eq_left (Finset.mem_insert_self τ s)
       have h4 : ∀ ρ, ρ ≠ τ → us (insert τ s) ρ = us s ρ := fun ρ h => by
         simp only [us, Finset.mem_insert, h, false_or]
       rw [realAll_eq_atTau_mul hθ (hM (insert τ s)) τ]
@@ -195,7 +224,7 @@ theorem pairEquiv_realAll : ∀ (D : D7) (V : HSp D) (S : D.what₂.Tau → SPar
         rw [inv_one, OneMemClass.coe_one, GlobalTheory.CoefPairTens.sigma_one]
         rfl
       · rw [Function.update_of_ne h, h4 ρ h, LinearMap.comp_id]
-  have huniv : us Finset.univ = u := funext fun ρ => if_pos (Finset.mem_univ ρ)
+  have huniv : us Finset.univ = u := funext fun ρ => ite_eq_left (Finset.mem_univ ρ)
   have := ind Finset.univ w
   rw [huniv] at this
   exact this
@@ -245,11 +274,11 @@ theorem base_mem_Dpar (D : D7) (C : ℝ) (τ : D.what₂.Tau) :
   rcases hx with ⟨i, rfl⟩ | ⟨j, h | h⟩
   · refine ⟨true, Finset.mem_image.2 ⟨((Ptw D).v τ i, true), ?_, ?_⟩⟩
     · exact Finset.mem_union_left _ (Finset.mem_union_left _ (Finset.mem_image_of_mem _ (Finset.mem_univ i)))
-    · simp only [hodd, if_false, add_zero]
+    · simp only [hodd, ite_false, add_zero]
       exact Prod.ext (hv i) rfl
   · refine ⟨decide ((j : ℕ) ≤ D.R.m ∨ Even ((j : ℕ) - D.R.m)), Finset.mem_image.2 ⟨(-(Ptw D).b τ j, decide ((j : ℕ) ≤ D.R.m ∨ Even ((j : ℕ) - D.R.m))), ?_, ?_⟩⟩
     · exact Finset.mem_union_left _ (Finset.mem_union_right _ (Finset.mem_image_of_mem _ (Finset.mem_univ j)))
-    · simp only [hodd, if_false, add_zero]
+    · simp only [hodd, ite_false, add_zero]
       refine Prod.ext ?_ rfl
       rw [h]
       show -(D.hc τ).b j = _
@@ -263,7 +292,7 @@ theorem base_mem_Dpar (D : D7) (C : ℝ) (τ : D.what₂.Tau) :
         rw [he j]; rfl
       rw [this]
       exact hx'
-    · simp only [hodd, if_false, add_zero]
+    · simp only [hodd, ite_false, add_zero]
 
 end GlobalTheory.RowReal.BaseWeights
 

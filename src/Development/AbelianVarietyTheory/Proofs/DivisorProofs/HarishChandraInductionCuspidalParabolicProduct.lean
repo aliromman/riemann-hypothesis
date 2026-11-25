@@ -10,21 +10,7 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsCuspProdCharTrans
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CentralIdempotentsSimpleFDRepFiniteFinsumEqOne
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IrreducibleCharacterSeries.FrobeniusSumFormula
 import Mathlib.LinearAlgebra.PiTensorProduct.Finite
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.RingTheory.PicardGroup
 
 @[expose] public section
 
@@ -97,13 +83,13 @@ theorem sum_unipRadical_eq_zero (b : Fin r → Fin s) (c : Fin s) (τ : FDRep �
     · rw [hu.2 _ _ hkl]
       by_cases e : k = l
       · subst e; simp
-      · rw [if_neg (fun h => e (F.symm.injective h)), Matrix.one_apply_ne e, sub_zero]
-    · have hk : ¬ c' k ≤ c' i0 := fun hk => hkl (by rw [hb, hb, if_pos hk, if_pos (hlk.trans hk)])
+      · rw [ite_eq_right (fun h => e (F.symm.injective h)), Matrix.one_apply_ne e, sub_zero]
+    · have hk : ¬ c' k ≤ c' i0 := fun hk => hkl (by rw [hb, hb, ite_eq_left hk, ite_eq_left (hlk.trans hk)])
       have hl : c' l ≤ c' i0 := by
         by_contra hl
-        exact hkl (by rw [hb, hb, if_neg hk, if_neg hl])
+        exact hkl (by rw [hb, hb, ite_eq_right hk, ite_eq_right hl])
       have hlt : bb (F.symm l) < bb (F.symm k) := by
-        rw [hb, hb, if_neg hk, if_pos hl]; decide
+        rw [hb, hb, ite_eq_right hk, ite_eq_left hl]; decide
       have ekl : k ≠ l := fun e => hkl (by rw [e])
       rw [hu.1.1 _ _ hlt, Matrix.one_apply_ne ekl, sub_zero]
   have := hv ⟨u', hmem⟩

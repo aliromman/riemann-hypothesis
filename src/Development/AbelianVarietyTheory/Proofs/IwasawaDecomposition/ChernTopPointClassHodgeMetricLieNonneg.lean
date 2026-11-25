@@ -36,6 +36,30 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Unifo
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ToroidalCompactificationData
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TopDegreeFormCoeffLinearSubstEqAbsDetSqMul
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PointPoly
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -48,6 +72,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.TypeStar
 import Mathlib.Analysis.Matrix.Order
 import Mathlib.Tactic.Linter.Style
@@ -57,6 +82,8 @@ import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.DifferentiableOn
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsHolomorphicLieFrame
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.HolDifferentiableAt
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ReduceModChar
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.HolomorphicFamilies.ExpRowsPf
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.HolomorphicFamilies.HolPairA
 import Std.Tactic.BVDecide.Normalize.Prop
@@ -567,7 +594,7 @@ theorem coords_holomorphic : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
   let L := EuclideanSpace.equiv (Fin d) ℂ
   let x : (Fin d → ℂ) → (U.X k).dom := fun b =>
     if h : G (L.symm b) ∈ (U.X k).dom then ⟨G (L.symm b), h⟩ else ⟨G u₀, h₀⟩
-  have hxb : ∀ b (h : G (L.symm b) ∈ (U.X k).dom), x b = ⟨G (L.symm b), h⟩ := fun b h => dif_pos h
+  have hxb : ∀ b (h : G (L.symm b) ∈ (U.X k).dom), x b = ⟨G (L.symm b), h⟩ := fun b h => dite_eq_left h
   let P : (Fin d → ℂ) → ((F.Di (ik k)).La →+ (Fin g → ℂ)) := fun b => Pm k (x b)
   let p : (Fin d → ℂ) → (Sp ℂ ⟶ Xo.XF c) := fun b => GlobalTheory.AllWt.ptF (S := CAt σ) (U.un k (x b))
   have hu : ∀ b, F.u (ik k) (P b) =
@@ -626,7 +653,7 @@ theorem coords_holomorphic : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
       obtain ⟨w, hw, -⟩ := hExp.2.2 _ ht
       exact ⟨w, (hgF τ i) ▸ hw⟩
     have hW : IsDerivAt0 (Ex b) (Wd i b) (spMap (dualMap (ev' b)) ≫ fR.v τ i) := by
-      have e0 : Wd i b = hex.choose := dif_pos hex
+      have e0 : Wd i b = hex.choose := dite_eq_left hex
       rw [e0]
       exact hex.choose_spec
     refine ⟨hW, ?_⟩
@@ -927,7 +954,7 @@ theorem exists_holo_coord_frameAt : ∀ (E : Type) [Field E] [NumberField E] [Is
   classical
   let ev : V X.dim → (Γ(X.X, W) →+* ℂ) := fun u =>
     if h : c'.e.symm u ∈ ptsIn X.str (σ.comp e.toRingHom) W then evHom h else evHom hyW
-  have hev : ∀ u (h : c'.e.symm u ∈ ptsIn X.str (σ.comp e.toRingHom) W), ev u = evHom h := fun u h => dif_pos h
+  have hev : ∀ u (h : c'.e.symm u ∈ ptsIn X.str (σ.comp e.toRingHom) W), ev u = evHom h := fun u h => dite_eq_left h
   set S : Set (V X.dim) := c'.e.target ∩ c'.e.symm ⁻¹' ptsIn X.str (σ.comp e.toRingHom) W with hSdef
   have hSo : IsOpen S := c'.e.continuousOn_symm.isOpen_inter_preimage c'.e.open_target (isOpen_ptsIn _)
   have hu0 : c'.e y ∈ S := ⟨c'.e.map_source hyc, by show c'.e.symm (c'.e y) ∈ ptsIn X.str (σ.comp e.toRingHom) W; rw [c'.e.left_inv hyc]; exact hyW⟩
@@ -1272,7 +1299,7 @@ theorem isHol_chart_framePt : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
   · obtain ⟨x₀, hx₀⟩ := hne
     let sf : Frame (U.X k).Ψ (Dw.p + Dw.q) → (U.X k).dom := fun x =>
       if h : x ∈ (U.X k).dom then ⟨x, h⟩ else ⟨x₀, hx₀⟩
-    have hsf : ∀ x (h : x ∈ (U.X k).dom), sf x = ⟨x, h⟩ := fun x h => dif_pos h
+    have hsf : ∀ x (h : x ∈ (U.X k).dom), sf x = ⟨x, h⟩ := fun x h => dite_eq_left h
     have h1 := BdArc.Leave.isHolTo_ptC (U := U.toPj) hU' k sf fun x h => by rw [hsf x h]
     have h2 := LocLift.isHolTo_comp_hom h1 T.Z.jQ
     have hψ : DifferentiableOn ℂ ψ W :=
@@ -1296,7 +1323,7 @@ theorem isHol_chart_framePt : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
       if h : ∃ y' ∈ c'.e.source, cxOf e σ hj y' = P w then h.choose else c'.e.symm 0
     have hq : ∀ w, (∃ y' ∈ c'.e.source, cxOf e σ hj y' = P w) →
         q w ∈ c'.e.source ∧ cxOf e σ hj (q w) = P w := fun w h => by
-      simp only [q, dif_pos h]
+      simp only [q, dite_eq_left h]
       exact h.choose_spec
     refine ⟨q, ?_, fun w _ h hex => ?_, ?_⟩
     · rw [hS]

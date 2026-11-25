@@ -39,6 +39,31 @@ import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ConjInvolutiveAn
 import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsRealSpanEqConjFixedPrimeMulRelNorm
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.RationalPointsIntegralPointsMembership
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -51,6 +76,12 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.Tactic.Linter.HaveILetI
@@ -305,7 +336,7 @@ theorem sum_char {G : Type} [AddCommGroup G] [Fintype G] (f : G → ℂ) (h0 : f
     ∑ a, f a = if ∀ a, f a = 1 then (Nat.card G : ℂ) else 0 := by
   split_ifs with hf
   · simp [hf]
-  · push_neg at hf
+  · push Not at hf
     obtain ⟨a, ha⟩ := hf
     have e : ∑ b, f b = f a * ∑ b, f b := by
       rw [Finset.mul_sum, ← Equiv.sum_comp (Equiv.addLeft a)]
@@ -367,7 +398,7 @@ theorem card_mul_card_orth [Finite M] (hc : ∀ x y, β x y = β y x) (hz : ∀ 
     rw [Finset.sum_eq_single (0 : X)]
     · simp [hc _ 0, hz]
     · intro x _ hx
-      rw [sum_char (fun y => β y x) (hz _) (fun a b => h2 _ _ _), if_neg]
+      rw [sum_char (fun y => β y x) (hz _) (fun a b => h2 _ _ _), ite_eq_right]
       intro h
       exact hx (Subtype.ext (h4 _ fun y => by rw [hc]; exact h y))
     · simp
@@ -590,7 +621,7 @@ theorem gauss_sign {R : Type} [CommRing R] (σ : R →+* R) (hσ : ∀ a, σ (σ
     rw [e, e', c, ← Nat.card_prod, smul, Nat.card_prod, smul, ← mul_assoc (s _), ssq]
     push_cast
     ring
-  · push_neg at hφ
+  · push Not at hφ
     obtain ⟨x, hxX, hx1⟩ := hφ
     have hx0 : x ≠ 0 := by rintro rfl; exact hx1 (phi_zero h0 h1 h2)
     let f := LinearMap.toSpanSingleton R M x

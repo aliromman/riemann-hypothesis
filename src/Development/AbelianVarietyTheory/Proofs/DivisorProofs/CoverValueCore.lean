@@ -10,18 +10,6 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsLatOfInt
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ModelsAtRecordCore
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.OscillatorModelValuesFifth
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsAlgebraMapOfSigRFixed
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.DatEqZero
 
 @[expose] public section
@@ -61,6 +49,6 @@ theorem cover_value_core : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T0
   obtain ⟨a, ha⟩ := hrat γ' hγ'
   have hv := hval k γ' ⟨hγ', h2, h3⟩
   rw [(hO.tuple t).xi _ _ (hmul _ _ _ _ ha hxk), map_mul, (hR.lev.xi (tup t)).1.2 a, _root_.one_mul] at hv
-  exact (evR_eq_of_point _ hlev.2.2.2.2.2.2.2.1 _ y₂ hpt).trans ((dif_pos hd).symm.trans hv)
+  exact (evR_eq_of_point _ hlev.2.2.2.2.2.2.2.1 _ y₂ hpt).trans ((dite_eq_left hd).symm.trans hv)
 
 end GlobalTheory.AdTh.CoverVal

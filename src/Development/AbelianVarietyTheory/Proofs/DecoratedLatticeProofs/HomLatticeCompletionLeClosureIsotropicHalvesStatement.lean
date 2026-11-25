@@ -6,6 +6,28 @@ public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.MemRan
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.RealIdemMulOfReal
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.SmulMemLatO
 import Development.AbelianVarietyTheory.Counterexamples.HeightSurvey.StarPurelyImaginaryEqNeg
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -19,6 +41,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HomLatticeCompletionLeClosureIsotropicHalves, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HomLatticeCompletionLeClosureIsotropicHalvesStatement
@@ -62,7 +85,7 @@ theorem sum_splitIdem_eq {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace
   show evalV D.host.F w (I.map α).sum = evalV D.host.F w (GlobalTheory.FinPlLoc.ePl D P)
   rw [GlobalTheory.FinPlLoc.evalV_ePl, map_list_sum, List.map_map, ← List.sum_toFinset _ h.nodup]
   by_cases hw : P w
-  · rw [if_pos hw]
+  · rw [ite_eq_left hw]
     obtain ⟨j, rfl⟩ := (h.mem w).1 hw
     have hj : ∀ i, evalV D.host.F (p j).v (α i) = if i = j then 1 else 0 := by
       intro i
@@ -70,8 +93,8 @@ theorem sum_splitIdem_eq {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace
       · subst hij; exact hα1 i
       · exact hα0 i _ fun hv => hij (h.inj hv.symm)
     simp only [Function.comp_apply, hj]
-    rw [Finset.sum_ite_eq' , if_pos (List.mem_toFinset.2 (h.all j))]
-  · rw [if_neg hw]
+    rw [Finset.sum_ite_eq' , ite_eq_left (List.mem_toFinset.2 (h.all j))]
+  · rw [ite_eq_right hw]
     refine Finset.sum_eq_zero fun i _ => ?_
     exact hα0 i w fun hv => hw ((h.mem w).2 ⟨i, hv⟩)
 

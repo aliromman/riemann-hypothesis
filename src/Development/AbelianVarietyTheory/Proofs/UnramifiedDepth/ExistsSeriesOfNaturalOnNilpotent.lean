@@ -1,9 +1,36 @@
 module
 
 public import ReciprocityTheory.DualLattices.FormalChartAtZero
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
 public import Mathlib.CategoryTheory.Monoidal.Cartesian.Over
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.MvPolynomial.IrreducibleQuadratic
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -17,6 +44,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 public import Mathlib.Algebra.MvPolynomial.CommRing
 import Mathlib.Topology.Sheaves.Presheaf
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ChartPullbacks.UniversalCharts.LePreimageOfNil
@@ -37,7 +65,7 @@ private lemma serNat_coeff {R₀ κ : Type} [CommRing R₀] [DecidableEq κ] {N 
   refine Submodule.span_induction ?_ ?_ ?_ ?_ hq
   · rintro _ ⟨j, rfl⟩ m hm
     simp only [MvPolynomial.coeff_X_pow]
-    rw [if_neg]
+    rw [ite_eq_right]
     rintro rfl
     simpa using hm j
   · intro m _; simp
@@ -70,10 +98,10 @@ private lemma serNat_aeval {R₀ κ : Type} [CommRing R₀] [Fintype κ] [Decida
     rw [MvPolynomial.aeval_monomial, Finsupp.prod_fintype _ _ (fun i => pow_zero _)]
     by_cases hm : ∀ j, m j < N
     · rw [Finset.sum_eq_single (fun j => (⟨m j, hm j⟩ : Fin N))]
-      · rw [MvPolynomial.coeff_monomial, if_pos]
+      · rw [MvPolynomial.coeff_monomial, ite_eq_left]
         ext j; simp
       · intro e _ he
-        rw [MvPolynomial.coeff_monomial, if_neg, map_zero, zero_mul]
+        rw [MvPolynomial.coeff_monomial, ite_eq_right, map_zero, zero_mul]
         intro h
         apply he
         funext j
@@ -86,7 +114,7 @@ private lemma serNat_aeval {R₀ κ : Type} [CommRing R₀] [Fintype κ] [Decida
         rw [Finset.prod_eq_zero (f := fun i => a i ^ m i) (Finset.mem_univ j)
           (pow_eq_zero_of_le hj (ha j)), mul_zero]
       · intro e _
-        rw [MvPolynomial.coeff_monomial, if_neg, map_zero, zero_mul]
+        rw [MvPolynomial.coeff_monomial, ite_eq_right, map_zero, zero_mul]
         intro h
         apply hm
         intro j

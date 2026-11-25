@@ -11,18 +11,6 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.CardInver
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsEqMulOfResSNeOne
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsIdempotentMulNatPowOfMul
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -120,8 +108,8 @@ theorem prim_map_eq {k₁ k₂ : Type} [Field k₁] [Field k₂] (ι : k₁ →+
     (y : Matrix (Fin m) (Fin n) k₁) : prim (y.map ι) = prim y := by
   unfold prim
   by_cases h : LinearIndependent k₁ y.row
-  · rw [if_pos h, if_pos ((linIndep_rows_iff_map ι y).1 h)]
-  · rw [if_neg h, if_neg (mt (linIndep_rows_iff_map ι y).2 h)]
+  · rw [ite_eq_left h, ite_eq_left ((linIndep_rows_iff_map ι y).1 h)]
+  · rw [ite_eq_right h, ite_eq_right (mt (linIndep_rows_iff_map ι y).2 h)]
 
 theorem gl_map_inv_val {R S : Type} [CommRing R] [CommRing S] (f : R →+* S) {n : ℕ} (β : GL (Fin n) R) :
     ((Matrix.GeneralLinearGroup.map f β)⁻¹).1 = (β⁻¹).1.map f := by
@@ -184,7 +172,7 @@ theorem chart_levels : ∀ (D : D7) (e : AE D) (P : Pl D.host.E) (v : HeightOneS
     have e1 : z.map (IsLocalRing.residue (GlobalTheory.SplitHecke.Ov D v)) = (redM P N).map ι := by
       ext i j
       have hzij : z i j = φR ⟨N i j, hN i j⟩ := Subtype.ext (congrFun (congrFun hz i) j)
-      simp only [Matrix.map_apply, redM, dif_pos (hN i j), hι, hzij]
+      simp only [Matrix.map_apply, redM, dite_eq_left (hN i j), hι, hzij]
       rfl
     rw [e1]
     exact (prim_map_eq ι _).symm

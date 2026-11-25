@@ -12,28 +12,8 @@ public import Mathlib.GroupTheory.Torsion
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsEmbOfFixed
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsIntegralCyclotomicChar
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LocPrimeVNormalised
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.GroupTheory.Nilpotent
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.HopfAlgebra.Basic
-import Mathlib.RingTheory.TotallySplit
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsGamGamKTorsion, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsUnitLat, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NormCoeAlgebraMap
@@ -55,7 +35,7 @@ theorem exists_max_norm {ι : Type*} [Nonempty ι] (f : ι → ℤ_[l]) :
   by_cases h0 : ∀ j, f j = 0
   · obtain ⟨i⟩ := ‹Nonempty ι›
     exact ⟨i, fun j => by rw [h0 j, h0 i]⟩
-  · push_neg at h0
+  · push Not at h0
     have hex : ∃ n, ∃ j, f j ≠ 0 ∧ (f j).valuation = n := by
       obtain ⟨j, hj⟩ := h0
       exact ⟨_, j, hj, rfl⟩

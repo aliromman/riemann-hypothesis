@@ -27,7 +27,33 @@ public import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrin
 public import Development.ResolutionOfSingularities.EmbeddedResolution.StrictTransformCharts.TotalTransform
 public import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MonomialCase.StrictTransformComponents
 public import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MonomialCase.TransformedBoundaryComponents
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.AlgebraicGeometry.Modules.Sheaf
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -53,7 +79,11 @@ import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.SimpleRing.Principal
 import Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.CoordinateSubscheme
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
 import Mathlib.Tactic.Linter.HaveILetI
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -1478,7 +1508,7 @@ private theorem mem_mvPolynomialCoordIdeal_of_X_mul_mem (k : Type u) [Field k] (
     rintro _ ⟨j, hj, rfl⟩
     have hz : ψ (MvPolynomial.X (ULift.up.{u} j)) = 0 := by
       rw [hψX j]
-      exact if_pos (Finset.mem_coe.mp hj)
+      exact ite_eq_left (Finset.mem_coe.mp hj)
     exact SetLike.mem_coe.mpr (RingHom.mem_ker.mpr hz)
   have key : (Ideal.Quotient.mk (mvPolynomialCoordIdeal k m S)).comp ψ
       = Ideal.Quotient.mk (mvPolynomialCoordIdeal k m S) := by
@@ -1489,12 +1519,12 @@ private theorem mem_mvPolynomialCoordIdeal_of_X_mul_mem (k : Type u) [Field k] (
       obtain ⟨j⟩ := i
       rw [RingHom.comp_apply, hψX j]
       by_cases hi : j ∈ S
-      · rw [if_pos hi, map_zero]
+      · rw [ite_eq_left hi, map_zero]
         exact (Ideal.Quotient.eq_zero_iff_mem.mpr (X_mem_mvPolynomialCoordIdeal k m S hi)).symm
-      · rw [if_neg hi]
+      · rw [ite_eq_right hi]
   have h0 : ψ (MvPolynomial.X (ULift.up.{u} s) * r) = 0 :=
     RingHom.mem_ker.mp (hker h)
-  rw [map_mul, hψX s, if_neg hs] at h0
+  rw [map_mul, hψX s, ite_eq_right hs] at h0
   have hXne : (MvPolynomial.X (ULift.up.{u} s) : MvPolynomial (ULift.{u} (Fin m)) k) ≠ 0 :=
     MvPolynomial.X_ne_zero _
   have hψr : ψ r = 0 := by

@@ -4,8 +4,35 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GEqui
 public import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.FSatakeB
 public import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.FSatakeC
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.GlintPrincRelIndexNeZero
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -18,6 +45,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.NStageTrivialCharacterCoeffEqAlt
 import Formalism.LocalToGlobal.IndefiniteReal.DoubleCosetOperators.Objects
 import Formalism.LocalToGlobal.NormalizedHeckeFactors.TypesDefs
@@ -145,17 +175,17 @@ theorem cosetT_tMat_unit {σ : K →+* K} {u : K} (hσ : σ u = u) (hv : Valued.
     by_cases h1 : (i : ℕ) < m
     · have h2 : ¬ (i.rev : ℕ) < m := by omega
       have h3 : n - m ≤ (i.rev : ℕ) ∧ n - 1 - (i.rev : ℕ) < m := by omega
-      simp only [dif_pos h1, dif_neg h2, dif_pos h3, hs]
+      simp only [dite_eq_left h1, dite_eq_right h2, dite_eq_left h3, hs]
       have : (⟨n - 1 - (i.rev : ℕ), h3.2⟩ : Fin m) = ⟨i, h1⟩ := Fin.ext (by simp only; omega)
       rw [this, ← zpow_add₀ h0, add_neg_cancel, zpow_zero]
     · by_cases h1' : n - m ≤ (i : ℕ) ∧ n - 1 - (i : ℕ) < m
       · have h2 : (i.rev : ℕ) < m := by omega
-        simp only [dif_neg h1, dif_pos h1', dif_pos h2, hs]
+        simp only [dite_eq_right h1, dite_eq_left h1', dite_eq_left h2, hs]
         have : (⟨(i.rev : ℕ), h2⟩ : Fin m) = ⟨n - 1 - i, h1'.2⟩ := Fin.ext (by simp only; omega)
         rw [this, ← zpow_add₀ h0, neg_add_cancel, zpow_zero]
       · have h2 : ¬ (i.rev : ℕ) < m := by omega
         have h3 : ¬ (n - m ≤ (i.rev : ℕ) ∧ n - 1 - (i.rev : ℕ) < m) := by omega
-        simp only [dif_neg h1, dif_neg h1', dif_neg h2, dif_neg h3, map_one, one_mul]
+        simp only [dite_eq_right h1, dite_eq_right h1', dite_eq_right h2, dite_eq_right h3, map_one, one_mul]
   obtain ⟨t, ht, ht'⟩ := fSatake_diag_exists f hf
   have hfval : ∀ i, Valued.v (f i) = 1 := by
     intro i

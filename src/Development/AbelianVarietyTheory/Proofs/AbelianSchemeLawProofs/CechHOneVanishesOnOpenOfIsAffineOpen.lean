@@ -1,7 +1,33 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.AbelianSchemeLaws.IsScalarTowerOfAlgebraMapEq
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
 import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -14,6 +40,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -468,11 +495,11 @@ theorem exactAt_of_isCoboundary
       -restrict M (le_pair D inf_le_right inf_le_left) (comp M D f x {b, a} (Finset.card_pair h.ne))
     else 0
   have hlt : ∀ a b (h : a < b), φ a b = restrict M (le_pair D inf_le_left inf_le_right)
-      (comp M D f x {a, b} (Finset.card_pair h.ne)) := fun a b h => dif_pos h
+      (comp M D f x {a, b} (Finset.card_pair h.ne)) := fun a b h => dite_eq_left h
   have hgt : ∀ a b (h : b < a), φ a b = -restrict M (le_pair D inf_le_right inf_le_left)
       (comp M D f x {b, a} (Finset.card_pair h.ne)) := fun a b h =>
-    (dif_neg h.not_gt).trans (dif_pos h)
-  have h0 : ∀ a, φ a a = 0 := fun a => (dif_neg (lt_irrefl a)).trans (dif_neg (lt_irrefl a))
+    (dite_eq_right h.not_gt).trans (dite_eq_left h)
+  have h0 : ∀ a, φ a a = 0 := fun a => (dite_eq_right (lt_irrefl a)).trans (dite_eq_right (lt_irrefl a))
   obtain ⟨ψ, hψ⟩ := h φ (by
     intro a b d W ha hb hd
     refine add_eq_of_ordered (κ := {i // W ≤ D i})

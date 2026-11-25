@@ -1,7 +1,32 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.FirstIndexEqOfUnfolded
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
 import Mathlib.CategoryTheory.Countable
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -15,6 +40,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.KaUnfoldPfB
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.KaUnfoldPfC
 
@@ -83,9 +110,9 @@ theorem uni_eq_of_entries {e : Fin r ≃ Fin p ⊕ Fin q} (he : IsBlockSL2Embedd
   ext a b
   rw [reindex_apply, submatrix_apply]
   by_cases hab : e.symm b < e.symm a
-  · simp only [uni, of_apply, dif_pos hab]
+  · simp only [uni, of_apply, dite_eq_left hab]
     rw [h]; simp [uni]
-  · simp only [uni, of_apply, dif_neg hab, EmbeddingLike.apply_eq_iff_eq]
+  · simp only [uni, of_apply, dite_eq_right hab, EmbeddingLike.apply_eq_iff_eq]
     rw [Fin.lt_def] at hab
     rcases a with a | a <;> rcases b with b | b <;> simp only [he.1, he.2] at hab
     · have : ¬ b < a := by rw [Fin.lt_def]; omega
@@ -115,7 +142,7 @@ theorem glue_surjective {e : Fin r ≃ Fin p ⊕ Fin q} (he : IsBlockSL2Embeddin
   obtain ⟨b, rfl⟩ := e.symm.surjective b
   have hy : y ⟨(e.symm a, e.symm b), hab⟩ = M a b := by
     have hab' : e.symm b < e.symm a := hab
-    simp only [hM, reindex_apply, submatrix_apply, uni, of_apply, dif_pos hab']
+    simp only [hM, reindex_apply, submatrix_apply, uni, of_apply, dite_eq_left hab']
   rw [hy]
   simp only [glue, toMat_vecOf, Equiv.apply_symm_apply]
   rw [nonsing_inv_mul_cancel_right _ _ (by rw [det_uni]; exact isUnit_one)]

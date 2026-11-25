@@ -1,7 +1,6 @@
 module
 
 public import Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.GoodRoot
-import Mathlib.Algebra.Order.Ring.Star
 public import Mathlib.RingTheory.Ideal.Quotient.Operations
 public import Mathlib.LinearAlgebra.Basis.Basic
 public import Mathlib.RingTheory.Ideal.BigOperators
@@ -26,6 +25,32 @@ public import Mathlib.Dynamics.Newton
 public import Mathlib.Algebra.Group.Commute.Units
 public import Mathlib.Algebra.Polynomial.AlgebraMap
 public import Mathlib.Algebra.Polynomial.Derivative
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -39,11 +64,17 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Tactic.Linter.Style
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.RingTheory.Smooth.StandardSmoothCotangent
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Order.CompletePartialOrder
 import Mathlib.Algebra.Order.Star.Int
 import Std.Tactic.BVDecide.Normalize.Prop
@@ -387,9 +418,9 @@ theorem UpperTheory.exists_twoChart_quotient_of_finite_coord :
     · refine Ideal.Quotient.eq.2 (mem_map_of_coord β I (fun i => ?_))
       rw [map_sub, Finsupp.sub_apply, hrx, hf, Finsupp.filter_apply]
       by_cases hi : i ∈ V j
-      · rw [if_pos hi, sub_self]
+      · rw [ite_eq_left hi, sub_self]
         exact I.zero_mem
-      · rw [if_neg hi, zero_sub]
+      · rw [ite_eq_right hi, zero_sub]
         have hw0 : β.repr (T.t ^ j * c) i = 0 := Finsupp.notMem_support_iff.1 (fun h => hi (hwV h))
         have hci := hcoord i
         rw [map_sub, Finsupp.sub_apply, hw0, sub_zero] at hci
@@ -590,7 +621,7 @@ private lemma UpperTheory.eval_zero_pderiv {R : Type} [CommRing R] {n : ℕ} (j 
     by_cases hs : s = Finsupp.single j 1
     · subst hs
       simp
-    · rw [if_neg hs]
+    · rw [ite_eq_right hs]
       split_ifs with h
       · by_cases hsj : s j = 0
         · simp [hsj]
@@ -757,7 +788,7 @@ private lemma coord_setup (T : TC A D) (hC : T.Coord) (j : ℕ) :
     rw [Module.Basis.repr_self, Finsupp.single_apply]
     by_cases h : i = k
     · subst h; simp
-    · rw [if_neg, if_neg h]
+    · rw [ite_eq_right, ite_eq_right h]
       intro h'
       exact h (F.equivFin.symm.injective (Subtype.ext h'.symm))
   · intro x hx hL

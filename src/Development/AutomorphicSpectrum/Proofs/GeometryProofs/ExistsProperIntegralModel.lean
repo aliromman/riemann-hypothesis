@@ -6,8 +6,11 @@ public import Mathlib.AlgebraicGeometry.ProjectiveSpectrum.Basic
 import Mathlib.AlgebraicGeometry.ProjectiveSpectrum.Proper
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.HaveILetI
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 
 @[expose] public section
 
@@ -120,7 +123,7 @@ instance gradedRing : GradedRing (grading o x) where
   one_mem := by
     intro i hi
     change (1 : (Polynomial Ω)).coeff i = 0
-    rw [Polynomial.coeff_one, if_neg hi]
+    rw [Polynomial.coeff_one, ite_eq_right hi]
   mul_mem := by
     intro i j a b ha hb k hk
     change ((a : (Polynomial Ω)) * (b : (Polynomial Ω))).coeff k = 0
@@ -273,7 +276,7 @@ lemma unit_coord {c : κ} (hc : x c ≠ 0) : IsUnit (ev (coord (o := o) (x := x)
 lemma algebraMap_mem_grading (r : o) : algebraMap o (rees o x) r ∈ grading o x 0 := by
   intro i hi
   change (algebraMap o (Polynomial Ω) r).coeff i = 0
-  rw [Polynomial.algebraMap_apply, Polynomial.coeff_C, if_neg hi]
+  rw [Polynomial.algebraMap_apply, Polynomial.coeff_C, ite_eq_right hi]
 
 lemma ev_algebraMap (r : o) : ev (algebraMap o (rees o x) r) = algebraMap o Ω r := by
   rw [ev_apply]

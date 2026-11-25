@@ -7,6 +7,31 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.WeilPairi
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.LineDerivListCompForm
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ConjugateCurveDatumLatticeIsCurveLattice
 import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.ExistsRingEquivOfIsTranscendenceBasis
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -19,6 +44,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.Foundations.NormSumPairRankZeroOfCurveCoordNorm
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.GaloisConjTaylorThetaTranslate
@@ -289,7 +317,7 @@ theorem OddLaw.ee_eq_one {Λ : AddSubgroup ℂ} {g : ℂ → ℂ} (h : OddLaw Λ
   have hne : (if a / 2 ∈ Λ then (1 : ℂ) else -1) ≠ 0 := by split_ifs <;> simp
   rw [funext (h.2 a ha), thetaTranslation_const_mul, h.2 _ (Λ.add_mem h2 ha)] at e1
   simp only at e1
-  rw [h.2 _ h2, show 2 * b / 2 = b by ring, if_pos hb, show (2 * b + a) / 2 = b + a / 2 by ring] at e1
+  rw [h.2 _ h2, show 2 * b / 2 = b by ring, ite_eq_left hb, show (2 * b + a) / 2 = b + a / 2 by ring] at e1
   simp only [Λ.add_mem_cancel_left hb, one_mul] at e1
   exact (mul_right_cancel₀ (mul_ne_zero hne hz) (by rw [one_mul]; exact e1)).symm
 
@@ -301,7 +329,7 @@ theorem OddLaw.doubleTranslate_shift_lattice_mod_two_mul {Λ : AddSubgroup ℂ} 
     rw [mul_assoc, two_mul]; exact Λ.add_mem hmμ hmμ
   have hω : U1 Λ (2 * m * μ) g = g := by
     funext z
-    rw [h.2 _ h2, show (2 * m * μ : ℂ) / 2 = m * μ by ring, if_pos hmμ, one_mul]
+    rw [h.2 _ h2, show (2 * m * μ : ℂ) / 2 = m * μ by ring, ite_eq_left hmμ, one_mul]
   have e1 := thetaTranslation_comp_eq_cocycle_mul Λ (x + t) (2 * m * μ) g
   have f1 : gl3FieldFirst Λ (2 * m * μ) ((x + t) / 2) = gl3FieldFirst Λ μ (m * x + m * t) := by
     have a1 := riemannFormImag_real_smul_left Λ (2 * m) μ ((x + t) / 2)
@@ -324,7 +352,7 @@ noncomputable def topHom (s : ℂ →+* ℂ) : (⊤ : IntermediateField ℚ ℂ)
   s.toRatAlgHom.comp (IntermediateField.val ⊤)
 
 theorem cj_topHom (s : ℂ →+* ℂ) (x : ℂ) : cj ⊤ (topHom s) x = s x := by
-  simp only [cj, TaylorLogMetric.liftM, IntermediateField.mem_top, dif_pos]
+  simp only [cj, TaylorLogMetric.liftM, IntermediateField.mem_top, dite_eq_left]
   rfl
 
 section GenusOne

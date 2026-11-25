@@ -4,6 +4,35 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityA
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.LocalHermitianForms.EvenOfNorm
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.LocalHermitianForms.ExistsUnitOneAddGenerator
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.LocalHermitianForms.LocalOrbitCounts.RamUnit
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -16,6 +45,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -29,15 +60,15 @@ theorem UpperTheory.V.Z.Sym.Loc.hsLaw : UpperTheory.V.Z.Sym.Loc.HsLaw := by
   · intro x y hx hy
     unfold hs
     by_cases h1 : ∃ a b : K, a ^ 2 - x * b ^ 2 = y
-    · rw [if_pos h1, if_pos (nm_symm hx h2 h1 hy)]
+    · rw [ite_eq_left h1, ite_eq_left (nm_symm hx h2 h1 hy)]
     · have h1' : ¬ ∃ a b : K, a ^ 2 - y * b ^ 2 = x := fun h => h1 (nm_symm hy h2 h hx)
-      rw [if_neg h1, if_neg h1']
+      rw [ite_eq_right h1, ite_eq_right h1']
   · rintro x y ⟨U, s, hs0, rfl⟩ ⟨V, t, -, rfl⟩
     obtain ⟨a, b, hab⟩ := L.nm_unit U V
     have hK := congrArg (algebraMap O K) hab
     simp only [map_sub, map_mul, map_pow] at hK
     unfold hs
-    rw [if_pos]
+    rw [ite_eq_left]
     refine ⟨algebraMap O K a * t, algebraMap O K b * t / s, ?_⟩
     rw [← hK]
     field_simp
@@ -55,7 +86,7 @@ theorem UpperTheory.V.Z.Sym.Loc.hsLaw : UpperTheory.V.Z.Sym.Loc.HsLaw := by
         rw [h0, map_zero]
       refine ⟨algebraMap O K p, hp0, ?_⟩
       unfold hs
-      rw [if_neg]
+      rw [ite_eq_right]
       rintro ⟨a, b, hab⟩
       have e : a ^ 2 - algebraMap O K ↑U * (s * b) ^ 2 = algebraMap O K p := by
         rw [← hab]; ring
@@ -67,14 +98,14 @@ theorem UpperTheory.V.Z.Sym.Loc.hsLaw : UpperTheory.V.Z.Sym.Loc.HsLaw := by
       intro h0
       rw [h0] at hε
       unfold hs at hε
-      rw [if_pos ⟨0, 0, by ring⟩] at hε
+      rw [ite_eq_left ⟨0, 0, by ring⟩] at hε
       norm_num at hε
   · rintro D x hD ⟨r, rfl⟩
     have hr : r ≠ 0 := by
       rintro rfl
       simp at hD
     unfold hs
-    rw [if_pos]
+    rw [ite_eq_left]
     refine ⟨(x + 1) / 2, (x - 1) / (2 * r), ?_⟩
     field_simp
     ring

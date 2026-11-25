@@ -17,6 +17,28 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Idemp
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsNsmulActO
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeilRepSchrodingerModelHalfSubstitution
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeilRepThetaDatumHalfEqSmul
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -30,6 +52,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -304,10 +329,10 @@ theorem sum_ite_reps {G : Type} [AddCommGroup G] {Λ X : AddSubgroup G} (A : G �
   by_cases hc : q
   · obtain ⟨v, ⟨hv, hv'⟩, hu⟩ := hRu (-s) (by rw [map_neg]; exact neg_mem (hq.1 hc).2) (neg_mem hs)
     have k : ∀ u : G, -s - u ∈ Λ ↔ s + u ∈ Λ := fun u => by rw [← neg_add', neg_mem_iff]
-    rw [if_pos hc, Finset.sum_eq_single_of_mem v hv fun u hu' hne =>
-      if_neg fun hh => hne (hu u ⟨hu', (k u).2 ((hp u hu').1 hh).2⟩), if_pos ((hp v hv).2 ⟨(hq.1 hc).1, (k v).1 hv'⟩)]
-  · rw [if_neg hc]
-    refine Finset.sum_eq_zero fun u hu => if_neg fun hh => hc (hq.2 ⟨((hp u hu).1 hh).1, ?_⟩)
+    rw [ite_eq_left hc, Finset.sum_eq_single_of_mem v hv fun u hu' hne =>
+      ite_eq_right fun hh => hne (hu u ⟨hu', (k u).2 ((hp u hu').1 hh).2⟩), ite_eq_left ((hp v hv).2 ⟨(hq.1 hc).1, (k v).1 hv'⟩)]
+  · rw [ite_eq_right hc]
+    refine Finset.sum_eq_zero fun u hu => ite_eq_right fun hh => hc (hq.2 ⟨((hp u hu).1 hh).1, ?_⟩)
     have := sub_mem (hle _ ((hp u hu).1 hh).2 (add_mem hs (hR u hu).2)) (hR u hu).1
     rwa [map_add, add_sub_cancel_right] at this
 

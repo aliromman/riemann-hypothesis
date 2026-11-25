@@ -5,6 +5,31 @@ public import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.IsNsmulIf
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UniTrait
 public import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsToricRankOne
 public import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.TorsionClause
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -44,13 +69,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke
 
 variable {R : Type} [CommRing R] [IsDomain R]
 
-section Act
-
-variable {O : Type} [CommRing O] [StarRing O] {D : DegPre R} [Module O D.X]
-variable {F : Type} [Field F] [Algebra (FractionRing R) F]
-
-end Act
-
 section Ext
 
 variable {D : DegPre R} {F F' : Type} [Field F] [Algebra (FractionRing R) F] [Field F']
@@ -69,18 +87,6 @@ theorem qkExt_unique {f : F →+* F'} {p : QkPt D F k} {q q' : QkPt D F' k} (h :
   rfl
 
 end Ext
-
-section Through
-
-variable {O : Type} [CommRing O] [StarRing O] {D : DegPre R} [Module O D.X]
-
-end Through
-
-section Unit
-
-variable (D : DegPre R) (χ : D.X)
-
-end Unit
 
 end GlobalTheory.DegActCompare
 end -- clump:auto

@@ -5,6 +5,29 @@ public import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries
 public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.SqNormIntegralFundamentalDomainEqL2NormSq
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaSquareIntegrable
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.VacuumFockOfThetaSquareIntegrable
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -17,6 +40,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Std.Tactic.BVDecide.Normalize.Prop
 public import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.HermitianSymplecticScalars
@@ -241,11 +266,11 @@ private theorem laws_lemma_7 {D : D7} {V W : HSp D} {ψ : AddChar (AF D.host.F) 
           (if k = l then ((ε' k.1 * ε k.2 : ℝ) : ℂ) else 0)))).re : ℝ)) : ℂ) := by
     intro α β k l
     unfold GlobalTheory.IndefiniteRowSideFullHecke.HermitianSymplecticScalars.commScalar GlobalTheory.IndefiniteRowSideFullHecke.HermitianSymplecticScalars.symplAt GlobalTheory.IndefiniteRowSideFullHecke.HermitianSymplecticScalars.hermAt
-    rw [if_pos rfl, htr]
+    rw [ite_eq_left rfl, htr]
   have kap0 : ∀ (α β : ℂ) (k l : Fin W.rank × Fin V.rank), k ≠ l →
       GlobalTheory.IndefiniteRowSideFullHecke.HermitianSymplecticScalars.commScalar V W τ τ (α • unitMap B B' k.1 k.2) (β • unitMap B B' l.1 l.2) = 0 := by
     intro α β k l hkl
-    rw [kap, if_neg hkl]
+    rw [kap, ite_eq_right hkl]
     simp
   have kapI : ∀ k : Fin W.rank × Fin V.rank,
       GlobalTheory.IndefiniteRowSideFullHecke.HermitianSymplecticScalars.commScalar V W τ τ (unitMap B B' k.1 k.2) ((Complex.I * ((ε' k.1 * ε k.2 : ℝ) : ℂ)) • unitMap B B' k.1 k.2) =
@@ -253,7 +278,7 @@ private theorem laws_lemma_7 {D : D7} {V W : HSp D} {ψ : AddChar (AF D.host.F) 
     intro k
     have e := kap 1 (Complex.I * ((ε' k.1 * ε k.2 : ℝ) : ℂ)) k k
     rw [one_smul] at e
-    rw [e, if_pos rfl]
+    rw [e, ite_eq_left rfl]
     have h2 : (tauE D τ D.host.xi0 * (1 * ((starRingEnd ℂ) (Complex.I * ((ε' k.1 * ε k.2 : ℝ) : ℂ)) * ((ε' k.1 * ε k.2 : ℝ) : ℂ)))).re =
         (tauE D τ D.host.xi0).im := by
       have e2 : (1 : ℂ) * ((starRingEnd ℂ) (Complex.I * ((ε' k.1 * ε k.2 : ℝ) : ℂ)) * ((ε' k.1 * ε k.2 : ℝ) : ℂ)) =
@@ -347,14 +372,14 @@ private theorem laws_lemma_7 {D : D7} {V W : HSp D} {ψ : AddChar (AF D.host.F) 
     simp only [hA, hBo, L]
     by_cases hkl : k = l
     · subst hkl
-      rw [if_pos rfl]
+      rw [ite_eq_left rfl]
       funext x
       have e2 := Cm (unitMap B B' k.1 k.2) ((Complex.I * ((ε' k.1 * ε k.2 : ℝ) : ℂ)) • unitMap B B' k.1 k.2) g hg x
       rw [kapI k] at e2
       simp only [Pi.add_apply, Pi.smul_apply, smul_eq_mul]
       linear_combination ((-((fockScale D τ : ℂ)⁻¹ * Complex.I)) * (-(fockScale D τ : ℂ)⁻¹ - (fockScale D τ : ℂ)⁻¹)) * e2 + (g x) * hcinv +
         (-(8 * Real.pi) * (fockScale D τ : ℂ)⁻¹ * (fockScale D τ : ℂ)⁻¹ * ((tauE D τ D.host.xi0).im : ℂ) * g x) * Complex.I_mul_I
-    · rw [if_neg hkl]
+    · rw [ite_eq_right hkl]
       funext x
       have k1 := kap0 1 1 k l hkl
       rw [one_smul, one_smul] at k1

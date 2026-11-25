@@ -8,18 +8,6 @@ import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
 import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExistsGenerators
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -116,10 +104,10 @@ theorem spread_conj (hY : GlobalTheory.UnivChar.IsUnivChar Y) {i : X.Tw} {M : �
     simp only [hS]
     rw [← hS]
     exact (mem_half.1 hPh).1
-  rw [spread_apply, Finset.sum_eq_single ⟨P, hPh⟩, weight, if_neg hne, dite_eq_left ⟨hva, hPv⟩, sign_eq_one hY _ _ hPv hPaa,
+  rw [spread_apply, Finset.sum_eq_single ⟨P, hPh⟩, weight, ite_eq_right hne, dite_eq_left ⟨hva, hPv⟩, sign_eq_one hY _ _ hPv hPaa,
     one_mul]
   · intro P' _ h'
-    rw [weight, if_neg fun e : v = P'.1 => hvc (e ▸ (mem_half.1 P'.2).2), dite_eq_right fun h => h' (Subtype.ext
+    rw [weight, ite_eq_right fun e : v = P'.1 => hvc (e ▸ (mem_half.1 P'.2).2), dite_eq_right fun h => h' (Subtype.ext
       (GlobalTheory.GalChar.isConjPl_unique (GlobalTheory.GalChar.isConjPl_symm h.2) hvP)), zero_mul]
   · exact fun h => absurd (Finset.mem_univ _) h
 

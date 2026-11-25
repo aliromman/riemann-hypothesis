@@ -31,7 +31,29 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.LineOpposite
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.BaseChangeThetaLiftSatakeParameterEqAddSegment
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.SatakeTransformEqAtThetaLiftOfVacuumEq
 import Formalism.SatakeDualWeyl.KpqSubgroupCompact
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -44,11 +66,17 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsOpenIsCompactLevelOffFinEmpty
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Cartan
+import Mathlib.Tactic.Basify
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ThetaVacuumHeckeIdentitySplitPlace
 import Mathlib.Tactic.Lemma
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ChainParSucc
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -340,7 +368,7 @@ theorem split_label_ops : ∀ (D : D7) (V : HSp D) (v : HeightOneSpectrum (𝓞 
   have hJ := key (fun i => if (i : ℕ) < k then 1 else 0) tJ (fun i => if (i : ℕ) < k then ϖ else 1)
     (fun i j hij => by
       have hij' : (i : ℕ) ≤ j := hij
-      by_cases h1 : (i : ℕ) < k <;> by_cases h2 : (j : ℕ) < k <;> simp only [h1, h2, if_true, if_false] <;> omega)
+      by_cases h1 : (i : ℕ) < k <;> by_cases h2 : (j : ℕ) < k <;> simp only [h1, h2, ite_true, ite_false] <;> omega)
     (fun i => by by_cases h1 : (i : ℕ) < k <;> simp [h1, hv])
     (by rw [htJ]; rfl)
   have hlJ : List.ofFn (fun i : Fin n => if (i : ℕ) < k then (1 : ℤ) else 0) = dualLab (splitLab n k) := by
@@ -358,7 +386,7 @@ theorem split_label_ops : ∀ (D : D7) (V : HSp D) (v : HeightOneSpectrum (𝓞 
   have hS := key (fun i => if n - k ≤ (i : ℕ) then -1 else 0) tS (fun i => if n - k ≤ (i : ℕ) then ϖ⁻¹ else 1)
     (fun i j hij => by
       have hij' : (i : ℕ) ≤ j := hij
-      by_cases h1 : n - k ≤ (i : ℕ) <;> by_cases h2 : n - k ≤ (j : ℕ) <;> simp only [h1, h2, if_true, if_false] <;> omega)
+      by_cases h1 : n - k ≤ (i : ℕ) <;> by_cases h2 : n - k ≤ (j : ℕ) <;> simp only [h1, h2, ite_true, ite_false] <;> omega)
     (fun i => by by_cases h1 : n - k ≤ (i : ℕ) <;> simp [h1, hv])
     (by rw [htS]; rfl)
   have hlS : List.ofFn (fun i : Fin n => if n - k ≤ (i : ℕ) then (-1 : ℤ) else 0) = splitLab n k := by
@@ -378,8 +406,8 @@ theorem split_label_ops : ∀ (D : D7) (V : HSp D) (v : HeightOneSpectrum (𝓞 
     funext i
     have e1 : (n - k ≤ (i.rev : ℕ)) ↔ (i : ℕ) < k := by rw [Fin.val_rev]; omega
     by_cases h1 : (i : ℕ) < k
-    · rw [if_pos h1, if_pos (e1.2 h1), mul_inv_cancel₀ hϖ0]
-    · rw [if_neg h1, if_neg (mt e1.1 h1), mul_one]
+    · rw [ite_eq_left h1, ite_eq_left (e1.2 h1), mul_inv_cancel₀ hϖ0]
+    · rw [ite_eq_right h1, ite_eq_right (mt e1.1 h1), mul_one]
   have hTinv : (fun g => Tj ℂ n (Ov D.host.E w) ϖ k g⁻¹) = Formalism.UG.dosetInd ℂ (KGL w (n := n)) tS := by
     rw [hTj, GlobalTheory.ChainOnto.dosetInd_comp_inv, hinv, dosetInd_mul (revGL_mem _) (revGL_mem _)]
   refine ⟨?_, ?_⟩

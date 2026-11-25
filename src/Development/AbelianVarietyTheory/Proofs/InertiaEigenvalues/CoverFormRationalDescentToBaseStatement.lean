@@ -41,6 +41,28 @@ public import Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.TwistS
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DictionaryCharacterTrivialOnPrincipalLevel
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LevelFormCompatBaseEmbedding
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HolomorphicSectionsSpanRestriction
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -59,9 +81,12 @@ import Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.Permutes
 import Development.AbelianVarietyTheory.Definitions.HeightFunctions.XiValIffXiAt
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IntFormsSubset
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.Tactic.Basify
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.Valuation.AlgebraInstances
+import Mathlib.Tactic.ENatToNat
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.FundamentalDomainExtension.PointAssembly.Frames
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.OrthonormalFlagTranslateHolds
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.SiegelSpaceAlgebraHolds
@@ -70,6 +95,10 @@ import Mathlib.Algebra.Azumaya.Basic
 import Formalism.LocalToGlobal.ProjectiveLattices.FreeBridge
 import Mathlib.RingTheory.TotallySplit
 import Formalism.LocalRingCardinality.DataHost
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Divisors.PerCEmb
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.UnivOfNotLinearIndependent
 import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.DatEqZero
@@ -82,9 +111,11 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.JetI
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.Signature
 import Mathlib.Algebra.Module.StablyFree.Basic
 import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
 import Mathlib.FieldTheory.IsAlgClosed.Classification
 import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
 import Formalism.LocalRingCardinality.HeightBoundGeFourthPowerRank
 import Formalism.LocalToGlobal.ProjectiveLattices.HostSize
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.TameHeckeCharTrivialOnFiniteUnitsCongOne
@@ -292,7 +323,7 @@ theorem exists_evalAt_ne_zero {K : Type} [Field K] (pts : ∀ (S : Type) [CommRi
     {S : Type} [CommRing S] [Nontrivial S] [Algebra K S] (y : pts S) (h : FromTest pts mapR y) :
     ∃ i, evalAt pts mapR (t i) y ≠ 0 := by
   unfold evalAt
-  simp only [dif_pos h]
+  simp only [dite_eq_left h]
   obtain ⟨s, hs⟩ := (Submodule.mem_span_range_iff_exists_fun _).1
     ((hunit h.choose h.choose_spec.choose_spec.choose).symm ▸ Submodule.mem_top (x := (1 : h.choose.R)))
   by_contra hall
@@ -313,7 +344,7 @@ theorem exists_rdU_t_ne_zero : ∀ (D : D7) (T : CoreJ D), LawsJ T → ∀ j, Fo
   refine ⟨i, ?_⟩
   have e : rdU (T.U j σ) (t i) k x = toC (evR (T.Q.Xo j) T.Q.c (t i) ((T.U j σ).un k ⟨x, hx⟩)) := by
     classical
-    exact dif_pos hx
+    exact dite_eq_left hx
   rw [e]
   exact hi
 
@@ -612,7 +643,7 @@ theorem exists_scalar_ne_zero
     obtain ⟨Q, hQ, hQx⟩ := exists_holSub0_of_SS V (laU V 0 n) k
       (GlobalTheory.BoundedCusp.mem_SS_of_definite _ _ τ0 hdef _ ⟨hs, bounded_of_definite _ hdef _ _ hs⟩)
     refine ⟨n, hn, he, Q, hQ, ?_⟩
-    have e : rdU V f k x = toC (evR Xo c f (V.un k ⟨x, hx⟩)) := dif_pos hx
+    have e : rdU V f k x = toC (evR Xo c f (V.un k ⟨x, hx⟩)) := dite_eq_left hx
     rw [hQx x hx, e]
     exact hne
   · have hle := (V.X k).p0_le
@@ -675,7 +706,7 @@ theorem exists_weight_of_pointwise
   set B : ℕ := 4 * (Module.finrank ℚ D.host.E * D.R.r) + 4 with hB
   have hU := h.unf j hj σ hσ
   have hrd : ∀ (f : T.R j) k (x : ((T.U j σ).X k).dom),
-      rdU (T.U j σ) f k x.1 = toC (evR (T.Q.Xo j) T.Q.c f ((T.U j σ).un k x)) := fun f k x => dif_pos x.2
+      rdU (T.U j σ) f k x.1 = toC (evR (T.Q.Xo j) T.Q.c f ((T.U j σ).un k x)) := fun f k x => dite_eq_left x.2
 
   have hpt : ∀ k (x : ((T.U j σ).X k).dom), ∃ n, Even n ∧ B ≤ n ∧ ∃ f ∈ T.cuspA j (fun _ => 1) n,
       rdU (T.U j σ) f k x.1 ≠ 0 := by
@@ -808,7 +839,7 @@ theorem evR_of_frMap {D : D7} (T : CoreJ D) (h : LawsJ T) {j : ℕ} (hj : Formal
   have hT : FromTest (K := T.Q.c.F) (fun S _ _ => FrPt (T.Q.Xo j) T.Q.c S) (fun φ y z => FrMap φ y z) z :=
     ⟨p, ψ, y, hz⟩
   unfold evR evalAt
-  rw [dif_pos hT]
+  rw [dite_eq_left hT]
   exact h.evalWD j hj f hf S _ p _ ψ _ y z hT.choose_spec.choose_spec.choose_spec hz
 
 
@@ -838,7 +869,7 @@ theorem exists_family : ∀ (D : D7) (T : CoreJ D), LawsJ T → ∀ j, Formalism
       have hu : wchar (ex (T.Q.Dw j) b m) t ≠ 0 :=
         Finset.prod_ne_zero_iff.2 fun c _ => pow_ne_zero _ (t c).ne_zero
       have h0 := (mul_eq_zero.1 hw.symm).resolve_left hu
-      simp only [rdU, LinearMap.coe_mk, AddHom.coe_mk, dif_pos x.2]
+      simp only [rdU, LinearMap.coe_mk, AddHom.coe_mk, dite_eq_left x.2]
       exact congrArg toC h0
     let ev : FDSec (T.U j σ).X →ₗ[ℂ] ℂ :=
       { toFun := fun P => P k x.1, map_add' := fun _ _ => rfl, map_smul' := fun _ _ => rfl }
@@ -993,7 +1024,7 @@ theorem span_conj_eq_top : ∀ (K : Type) [Field K] [NumberField K] (σ : K →+
     intro z hz hcard
     by_contra hne
     obtain ⟨i0, hi0⟩ : ∃ i, z i ≠ 0 := by
-      by_contra h; push_neg at h; exact hne (funext h)
+      by_contra h; push Not at h; exact hne (funext h)
     set z' := (z i0)⁻¹ • z with hz'
     have hz'R : z' ∈ R := R.smul_mem _ hz
     have hz'i0 : z' i0 = 1 := by simp [z', hi0]

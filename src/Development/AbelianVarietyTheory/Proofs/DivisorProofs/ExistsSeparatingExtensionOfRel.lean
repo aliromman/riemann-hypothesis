@@ -4,6 +4,31 @@ public import Mathlib.Basic.Finite.Defs
 public import Mathlib.Data.Finset.Defs
 public import Mathlib.Tactic.Continuity
 import Formalism.LocalRingCardinality.DataHost
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -17,6 +42,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 public import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.NormalFam
 public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry₂.HoweUnram
 import Formalism.LocalRingCardinality.DataTheta
@@ -64,14 +90,14 @@ theorem exists_separating_extension_of_rel : ∀ {α β L : Type} [Infinite L] (
     intro c
     by_cases h : ∃ f, ∃ e ∈ S, e ∘ r = c ∧ Rel e f
     · left
-      have : g c = h.choose := dif_pos h
+      have : g c = h.choose := dite_eq_left h
       rw [this]
       exact h.choose_spec
-    · exact Or.inr (dif_neg h)
+    · exact Or.inr (dite_eq_right h)
   refine ⟨fun e => Function.extend r (g (e ∘ r)) e, ?_, ?_⟩
   · intro e he f hf k
     have h : ∃ f, ∃ e' ∈ S, e' ∘ r = e ∘ r ∧ Rel e' f := ⟨f, e, he, rfl, hf⟩
-    have h1 : g (e ∘ r) = h.choose := dif_pos h
+    have h1 : g (e ∘ r) = h.choose := dite_eq_left h
     obtain ⟨e', he', h2, h3⟩ := h.choose_spec
     have h4 := (H e' he' e he _ _ h3 hf).1 h2
     show f k = Function.extend r (g (e ∘ r)) e (r k)

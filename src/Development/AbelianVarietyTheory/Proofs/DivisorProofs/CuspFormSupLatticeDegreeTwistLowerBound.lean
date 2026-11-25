@@ -12,21 +12,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLinear
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PeterssonNormMulTwistingSectionEqConstMul
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistingSectionPreservesHermitianLatticesRanks
 import Formalism.LocalToGlobal.ProjectiveLattices.ArchimedeanQuadraticData.FinitePlaceArcs.BeSumPf
-import Mathlib.Algebra.Order.Star.Int
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Algebra.GroupWithZero.Submonoid.CancelMulZero
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.ComponentMassSum
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -190,7 +176,7 @@ theorem exists_rounding (K : Type) [Field K] [NumberField K] (B : Finset ℕ) (�
         rw [hnK] at h1
         have h2 : (1 : ℝ) ≤ vAdd w (n : K) := by exact_mod_cast h1
         linarith [Int.fract_lt_one (ρ w)]
-      · push_neg at h
+      · push Not at h
         obtain ⟨m, hm⟩ := hint w h
         have h1 := vAdd_int_nonneg w hn0'
         rw [hnK] at h1

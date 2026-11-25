@@ -1,6 +1,30 @@
 module
 
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.L2UnitaryRepresentationData
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -13,6 +37,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.FockJointHarmonicVectorsIffPolynomials, Development.AbelianVarietyTheory.Proofs.TwistedOperators.FockJointHarmonicVectorsIffPolynomialsStatement
@@ -219,9 +246,9 @@ theorem killedBy_iff (hA : Side A pt κ (phiFr (M.fr τ) br e) c a) {i j : Ix p 
       rw [← two_smul ℂ v] at hv
       simpa using hv
     cases br
-    · simp only [sb, Bool.false_eq_true, if_false, Complex.ofReal_one, neg_smul, one_smul]
+    · simp only [sb, Bool.false_eq_true, ite_false, Complex.ofReal_one, neg_smul, one_smul]
       exact ⟨fun hv => h2 _ (by linear_combination hv), fun hv => by rw [hv]; ring⟩
-    · simp only [sb, if_true, Complex.ofReal_neg, Complex.ofReal_one, neg_neg, one_smul]
+    · simp only [sb, ite_true, Complex.ofReal_neg, Complex.ofReal_one, neg_neg, one_smul]
       exact ⟨fun hv => h2 _ (by linear_combination -hv), fun hv => by rw [hv]; ring⟩
   simp only [mul_zero, zero_smul, add_zero] at d1 d2
   rw [← key]
@@ -251,13 +278,13 @@ theorem isHi_iff {lam : Ix p q → ℚ} (hp : IsParam lam) (ho : IsOrd (M.ε τ)
     cases br <;> simp [sb, sg]
   · simp only [e.surjective.forall, ho.1 _, lt_iff ho, posC_iff hp]
     cases br
-    · simp only [sg, if_true, one_mul, Rat.cast_lt]
+    · simp only [sg, ite_true, one_mul, Rat.cast_lt]
       constructor
       · rintro h i j ⟨h1, h2⟩
         exact (killedBy_iff hA (fun hh => by subst hh; exact lt_irrefl _ h2) h1 P).1 (h i j h2 h1)
       · intro h i j h2 h1
         exact (killedBy_iff hA (fun hh => by subst hh; exact lt_irrefl _ h2) h1 P).2 (h i j ⟨h1, h2⟩)
-    · simp only [sg, Bool.true_eq_false, if_false, neg_mul, one_mul, neg_lt_neg_iff, Rat.cast_lt]
+    · simp only [sg, Bool.true_eq_false, ite_false, neg_mul, one_mul, neg_lt_neg_iff, Rat.cast_lt]
       constructor
       · rintro h i j ⟨h1, h2⟩
         exact (killedBy_iff hA (fun hh => by subst hh; exact lt_irrefl _ h2) h1.symm P).1 (h j i h2 h1.symm)
@@ -273,13 +300,13 @@ theorem isLo_iff {lam : Ix p q → ℚ} (hp : IsParam lam) (ho : IsOrd (M.ε τ)
     cases br <;> simp [sb, sg]
   · simp only [e.surjective.forall, ho.1 _, lt_iff ho, posC_iff hp]
     cases br
-    · simp only [sg, Bool.false_eq_true, if_false, neg_mul, one_mul, neg_lt_neg_iff, Rat.cast_lt]
+    · simp only [sg, Bool.false_eq_true, ite_false, neg_mul, one_mul, neg_lt_neg_iff, Rat.cast_lt]
       constructor
       · rintro h i j ⟨h1, h2⟩
         exact (killedBy_iff hA (fun hh => by subst hh; exact lt_irrefl _ h2) h1 P).1 (h j i h2 h1.symm)
       · intro h i j h2 h1
         exact (killedBy_iff hA (fun hh => by subst hh; exact lt_irrefl _ h2) h1.symm P).2 (h j i ⟨h1.symm, h2⟩)
-    · simp only [sg, if_true, one_mul, Rat.cast_lt]
+    · simp only [sg, ite_true, one_mul, Rat.cast_lt]
       constructor
       · rintro h i j ⟨h1, h2⟩
         exact (killedBy_iff hA (fun hh => by subst hh; exact lt_irrefl _ h2) h1.symm P).1 (h i j h2 h1)

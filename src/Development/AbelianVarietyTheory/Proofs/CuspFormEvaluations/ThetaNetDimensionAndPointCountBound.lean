@@ -16,6 +16,28 @@ public import Development.AbelianVarietyTheory.Definitions.HeightFunctions.Growt
 public import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.GamAtOfLawsCore
 public import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.SizePageRowsOfSizePageAt
 public import Development.AbelianVarietyTheory.Proofs.TorusSplitting.PageRows
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -30,8 +52,10 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.TypeStar
+import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalToGlobal.ProjectiveLattices.FreeBridge
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.Tactic.ReduceModChar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.DeepSubMulRecAll, Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsNetDataFromHalfConjugateEmbeddings, Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.NetDataExists, Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.PageRelationDegThree, Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ThetaNetDimensionAndPointCountBound
@@ -90,8 +114,8 @@ theorem exists_netData_of_readings_on_half :
     intro σ h
     by_contra h'
     exact h ((hgood σ).2 h')
-  have g1 : ∀ σ, good σ → g σ = σ := fun σ h => if_pos h
-  have g2 : ∀ σ, ¬ good σ → g σ = ComplexEmbedding.conjugate σ := fun σ h => if_neg h
+  have g1 : ∀ σ, good σ → g σ = σ := fun σ h => ite_eq_left h
+  have g2 : ∀ σ, ¬ good σ → g σ = ComplexEmbedding.conjugate σ := fun σ h => ite_eq_right h
   have gg : ∀ σ, good (g σ) := by
     intro σ
     by_cases h : good σ
@@ -121,11 +145,11 @@ theorem exists_netData_of_readings_on_half :
         intro a F
         by_cases h : good σ
         · have e : g σ a = σ a := by rw [g1 σ h]
-          simp only [if_pos h, map_smulₛₗ, e]
+          simp only [ite_eq_left h, map_smulₛₗ, e]
         · have e : g σ a = conj (σ a) := by rw [g2 σ h]; rfl
-          simp [if_neg h, map_smulₛₗ, e] }
-  have e1 : ∀ σ y F, good σ → ev' σ y F = ev (g σ) y F := fun σ y F h => if_pos h
-  have e2 : ∀ σ y F, ¬ good σ → ev' σ y F = conj (ev (g σ) y F) := fun σ y F h => if_neg h
+          simp [ite_eq_right h, map_smulₛₗ, e] }
+  have e1 : ∀ σ y F, good σ → ev' σ y F = ev (g σ) y F := fun σ y F h => ite_eq_left h
+  have e2 : ∀ σ y F, ¬ good σ → ev' σ y F = conj (ev (g σ) y F) := fun σ y F h => ite_eq_right h
   have en : ∀ σ y F, ‖ev' σ y F‖ = ‖ev (g σ) y F‖ := by
     intro σ y F
     by_cases h : good σ
@@ -196,14 +220,14 @@ theorem good_conj_iff (c : Coeff l) (σ : c.F →+* ℂ) :
   · intro h
     have := goodEmb_goodOf c σ
     unfold goodOf at this
-    rwa [if_neg h] at this
+    rwa [ite_eq_right h] at this
 
 theorem goodOf_conj (c : Coeff l) (σ : c.F →+* ℂ) : goodOf c (ComplexEmbedding.conjugate σ) = goodOf c σ := by
   unfold goodOf
   by_cases h : GoodEmb c σ
-  · rw [if_neg (fun h' => (good_conj_iff c σ).1 h' h), if_pos h]
+  · rw [ite_eq_right (fun h' => (good_conj_iff c σ).1 h' h), ite_eq_left h]
     ext x; simp [ComplexEmbedding.conjugate]
-  · rw [if_pos ((good_conj_iff c σ).2 h), if_neg h]; rfl
+  · rw [ite_eq_left ((good_conj_iff c σ).2 h), ite_eq_right h]; rfl
 
 end
 

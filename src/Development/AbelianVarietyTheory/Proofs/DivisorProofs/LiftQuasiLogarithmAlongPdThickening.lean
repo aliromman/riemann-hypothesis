@@ -7,18 +7,6 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FormalGroupL
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SwapSubInOfCob2In
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SymmetricCocycleModIdealEqCoboundaryQuasiLog
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.EpsilonPairingZeta
 import Development.AbelianVarietyTheory.Definitions.Divisors.GhostFrobenius
 
@@ -303,7 +291,7 @@ theorem lift_quasiLog : ∀ (p : ℕ) [Fact p.Prime] (B O Q : Type) [CommRing B]
     refine ⟨c, RingHom.mem_ker.2 (ker_of_alg G hΘ c ?_), e⟩
     rw [← e, map_mul, map_natCast, ← coeff_map, hκ1Θ, map_zero, mul_zero]
   have hc1 : constantCoeff κ₁ = 0 := by
-    rw [hκ1, map_sub, hκ0, ← coeff_zero_eq_constantCoeff_apply, coeff_map, hK, if_pos rfl,
+    rw [hκ1, map_sub, hκ0, ← coeff_zero_eq_constantCoeff_apply, coeff_map, hK, ite_eq_left rfl,
       map_zero, sub_zero]
   have hJ : ∀ α, ∃ k : ℕ, ∃ c ∈ RingHom.ker θ, (p : Q) ^ k * coeff α κ₁ = algebraMap B Q c :=
     fun α => kerQ F G hΘ _ (by rw [← coeff_map, hκ1Θ, map_zero])

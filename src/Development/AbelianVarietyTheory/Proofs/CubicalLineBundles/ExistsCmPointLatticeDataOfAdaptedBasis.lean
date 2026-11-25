@@ -8,17 +8,6 @@ public import Development.AbelianVarietyTheory.Definitions.CMLattices.IsCyclotom
 public import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.FinrankInt
 public import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.InvMulVecEqZero
 public import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.TraceMulConjIntIffMemOfMulDifferentEqOne
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.CMLattices.IntegralOf
 import Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.UnivFrame
@@ -189,6 +178,6 @@ theorem exists_cmLat_unfAt : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
   obtain ⟨h1, h2, -⟩ := hU
   refine exists_cmLat H (U.X k) x₀ Xx hX 𝔄 hr h𝔄 h1 (h2 k).1 (h2 k).2 hΛ _ W.per (W.φ k) (W.isom k)
     (fun j => (W.e j).2) (fun j hj => ?_) W.pm_eq La lam hl
-  exact (W.e j).2.2.trans_eq (if_neg hj)
+  exact (W.e j).2.2.trans_eq (ite_eq_right hj)
 
 end GlobalTheory.LamT.CMBasis

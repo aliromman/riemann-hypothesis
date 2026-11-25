@@ -36,6 +36,29 @@ import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ComponentAttaine
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsUniqueFramedPointMoveUniversalTriple
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FrMoveTransfer
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.RelabelEmbeddingsGoodBijectiveConjCompat
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -48,6 +71,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 
 @[expose] public section
 
@@ -199,7 +223,7 @@ theorem exists_root {D : D7} (T : Full D) (hT : LawsFull T) {j : ℕ} (hj : InR 
   obtain ⟨_, _, _, _, _, _, _, hL, hI, -⟩ := hT.j.adPin j hj T.σ₀ T.toCore.good_σ₀
   obtain ⟨_, ψ, _, -, -, hψ⟩ := hT.sh.dPhi j hj n hn
   obtain ⟨Cls, _, _, δ, gdet, hsec, hC⟩ := hT.sh.dRoot j hj n
-  simp only [Bool.false_eq_true, if_false] at hC
+  simp only [Bool.false_eq_true, ite_false] at hC
   have hN : Nat.card Cls ≠ 0 := Nat.card_pos.ne'
   have hσ : T.σ₀.comp ((T.dδ j n).eF.symm : (T.dδ j n).c₂.F →+* T.Q.c.F) = (T.dδ j n).c₂.F.val.toRingHom :=
     RingHom.ext fun _ => rfl

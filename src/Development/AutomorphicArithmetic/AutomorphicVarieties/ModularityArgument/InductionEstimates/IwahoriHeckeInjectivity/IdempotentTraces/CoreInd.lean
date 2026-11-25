@@ -58,7 +58,29 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.Integrab
 public import Development.AutomorphicArithmetic.Foundations.Convolution.TraceSplitting.GoodEx
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective
 import GroundTheory.AutomorphicForms.CuspidalDiscreteness.SummandsAreCuspForms
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.AdicCompletion.Noetherian
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -80,10 +102,15 @@ import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKern
 import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.KernelTransforms.NormIntLe
 import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.KernelTransforms.RrTens
 import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.KernelTransforms.TensApply
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Development.AutomorphicArithmetic.Foundations.Convolution.TraceSplitting.Places
 import Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.BrData
 import Mathlib.RingTheory.Ideal.Norm.RelNorm
 import Std.Tactic.BVDecide.Normalize.Prop
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Topology.Sheaves.Init
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.InductionEstimates.UnipotentBlockMatrices.ClosedKernelMinors.SecStr
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.InductionEstimates.UnipotentBlockMatrices.ClosedKernelMinors.TensInterp
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.InductionEstimates.UnipotentBlockMatrices.ClosedKernelMinors.TypeFin
@@ -91,6 +118,7 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.WittVector.IsPoly
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.InductionEstimates.UnipotentBlockMatrices.ClosedKernelMinors.ThBasic
 import Mathlib.Tactic.Linter.Style
@@ -643,8 +671,8 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.E.sideX :
     exact hsm _
   have hcases : ∀ i : ZMod 2, i = 0 ∨ i = 1 := by decide
   let Uq : ZMod 2 → LL μ →L[ℂ] LL μ := fun i => if i = 0 then Uiw μ w₀.1 ν else Uiw μ w₁.1 ν
-  have h0 : Uq 0 = Uiw μ w₀.1 ν := if_pos rfl
-  have h1 : Uq 1 = Uiw μ w₁.1 ν := if_neg (by decide)
+  have h0 : Uq 0 = Uiw μ w₀.1 ν := ite_eq_left rfl
+  have h1 : Uq 1 = Uiw μ w₁.1 ν := ite_eq_right (by decide)
   have hin : ∀ w : PlacesOver E q, Inner μ (Uiw μ w.1 ν) := fun w =>
     (UpperTheory.ConvolutionTheory.Tf.innerOps E n μ).2.2.2.2.2 w.1 _ _ (iw_oc μ w.1).1 (iw_oc μ w.1).2
   have hcm : Commute (Uiw μ w₀.1 ν) (Uiw μ w₁.1 ν) :=
@@ -1335,10 +1363,10 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.E.coreInd :
     have h := hu' v
     by_cases h1 : v ∈ SE'
     · have h1' := (hSE' v).1 h1
-      rw [if_pos ((hSE v).2 (Or.inl h1')), ] at h
-      rw [if_pos h1]
+      rw [ite_eq_left ((hSE v).2 (Or.inl h1')), ] at h
+      rw [ite_eq_left h1]
       exact hUle v h1' h
-    · rw [if_neg h1]
+    · rw [ite_eq_right h1]
       split_ifs at h with h2
       · exact (hU v).2 h
       · exact h

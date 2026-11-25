@@ -1,6 +1,32 @@
 module
 
 public import Formalism.LocalToGlobal.ProjectiveLattices.UnFree
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -14,6 +40,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.ExhaustFStatementPfB
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.EmbeddingHermitianPairs
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.MmatMulVec
@@ -39,7 +66,7 @@ lemma perFr_mem (x : Frame X.Ψ r) (v : Fin r → E) (τ : X.Ψ) (i : ℕ) :
     perFr X x v τ.1 i =
       if hi : X.p0 + i < r then ((mat x τ)⁻¹.mulVec (Data.emb τ.1 v)) ⟨X.p0 + i, hi⟩ else 0 := by
   unfold perFr
-  rw [dif_pos τ.2]
+  rw [dite_eq_left τ.2]
 
 lemma perFr_conj (x : Frame X.Ψ r) (v : Fin r → E) (τ : X.Ψ) (i : ℕ) (j : Fin r)
     (hj : (j : ℕ) = X.p0 - 1 - i) :
@@ -50,7 +77,7 @@ lemma perFr_conj (x : Frame X.Ψ r) (v : Fin r → E) (τ : X.Ψ) (i : ℕ) (j :
   have h2 : conjEmb (conjEmb τ.1) ∈ X.Ψ := by rw [hcc]; exact τ.2
   have h3 : X.p0 - 1 - i < r := hj ▸ j.2
   unfold perFr
-  rw [dite_eq_right h1, dif_pos h2, dif_pos h3]
+  rw [dite_eq_right h1, dite_eq_left h2, dite_eq_left h3]
   have key : ∀ (σ : E →+* ℂ) (hσ : σ ∈ X.Ψ), σ = τ.1 →
       hermC σ X.Gm (FD.col (mat x ⟨σ, hσ⟩) ⟨X.p0 - 1 - i, h3⟩) (Data.emb σ v) =
         hermC τ.1 X.Gm (FD.col (mat x τ) j) (Data.emb τ.1 v) := by
@@ -182,7 +209,7 @@ lemma block_change (x : Frame X.Ψ r) (hx : x ∈ X.dom)
   · have hlt : ∀ k : Fin (r - X.p0), X.p0 + k < r := fun k => by have := k.2; omega
     have hidx : ∀ k : Fin (r - X.p0), (⟨X.p0 + k, hlt k⟩ : Fin r) = blockEquiv X (.inr k) :=
       fun k => Fin.ext (blockEquiv_inr X k).symm
-    simp only [perFr_mem, dif_pos (hlt _), hidx]
+    simp only [perFr_mem, dite_eq_left (hlt _), hidx]
     rw [hm, Matrix.mul_inv_rev, inv_eq_right_inv (hone τ), ← mulVec_mulVec, blk_mulVec_inr]
   · have hr : ∀ (y : Frame X.Ψ r) (k : Fin X.p0), perFr X y v (conjEmb τ.1) k =
         hermC τ.1 X.Gm (X.colP y τ k.rev) (Data.emb τ.1 v) := fun y k =>

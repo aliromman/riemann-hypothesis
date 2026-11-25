@@ -5,6 +5,34 @@ public import Development.AbelianVarietyTheory.Definitions.TeichmullerDepth.HasT
 public import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.CoeffSubstInvMemOfTwoLeOrder
 public import Mathlib.RingTheory.PowerSeries.Substitution
 public import Formalism.LocalToGlobal.CharacterGerms.ConstMemTypeSetOfNonneg
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -18,6 +46,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -85,7 +115,7 @@ theorem coeff_subst_tyS {τ : Type} {l : ℕ} (hl : 2 ≤ l) (a : ℕ → C) {t 
         rw [coeff_tyS_pow hl, Finset.sum_eq_single s]
         · simp
         · intro s' _ hs'
-          rw [if_neg fun e => hs' (Nat.pow_right_injective hl e)]
+          rw [ite_eq_right fun e => hs' (Nat.pow_right_injective hl e)]
         · intro hs'
           exfalso
           apply hs'
@@ -94,7 +124,7 @@ theorem coeff_subst_tyS {τ : Type} {l : ℕ} (hl : 2 ≤ l) (a : ℕ → C) {t 
           omega
       · push Not at h
         rw [coeff_tyS_of_ne a n h, zero_smul]
-        exact (Finset.sum_eq_zero fun s _ => if_neg (h s)).symm
+        exact (Finset.sum_eq_zero fun s _ => ite_eq_right (h s)).symm
     rw [Finset.sum_congr rfl h1, Finset.sum_comm]
     refine Finset.sum_congr rfl fun s _ => ?_
     rw [Finset.sum_ite_eq]
@@ -244,7 +274,7 @@ theorem one_group (hY : RLaw Y V) (g : Fin 2) (H : Y.CartHyp V g) (S : Sys (RawC
         rw [(S.curve j).2.1]; rfl
       have h2 : ¬ (1 = V.l) := by omega
       have h3 : coeff (Finsupp.single j 1) ((X j : MvPowerSeries (I g) C) ^ V.l) = 0 := by
-        rw [coeff_X_pow, if_neg]
+        rw [coeff_X_pow, ite_eq_right]
         intro e'
         have := DFunLike.congr_fun e' j
         simp only [Finsupp.single_eq_same] at this
@@ -254,7 +284,7 @@ theorem one_group (hY : RLaw Y V) (g : Fin 2) (H : Y.CartHyp V g) (S : Sys (RawC
     · intro c _ hcj
       rw [coeff_subst_tyS hl _ (constantCoeff_X c)]
       refine Finset.sum_eq_zero fun s _ => ?_
-      rw [coeff_X_pow, if_neg, mul_zero]
+      rw [coeff_X_pow, ite_eq_right, mul_zero]
       intro e'
       have := DFunLike.congr_fun e' j
       simp [hcj] at this

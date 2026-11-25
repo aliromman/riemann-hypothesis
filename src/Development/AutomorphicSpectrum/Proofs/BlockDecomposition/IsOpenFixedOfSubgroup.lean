@@ -8,8 +8,11 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PadicIsNo
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousMirProj
 public import GroundTheory.AutomorphicForms.LocallyProfinite
 public import Mathlib.GroupTheory.DoubleCoset
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Algebra.Group.Units
 import Mathlib.Topology.Algebra.Nonarchimedean.TotallyDisconnected
 import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.MirabolicDerivatives.TwistedKernels.ExPhiPlusOnto
@@ -87,7 +90,7 @@ theorem exists_bump (H : Subgroup G) (ρ : Representation ℂ H W) (K : Subgroup
   have hb1 : ∀ (a : H), ∀ x ∈ K, b ((a : G) * c * x) = ρ a w := by
     intro a x hx
     have h : ∃ a' : H, ∃ x' ∈ K, (a : G) * c * x = (a' : G) * c * x' := ⟨a, x, hx, rfl⟩
-    simp only [b, dif_pos h]
+    simp only [b, dite_eq_left h]
     obtain ⟨x', hx', e⟩ := h.choose_spec
     generalize h.choose = a' at e ⊢
     have e2 : ((a'⁻¹ * a : H) : G) = c * (x' * x⁻¹) * c⁻¹ := by
@@ -99,7 +102,7 @@ theorem exists_bump (H : Subgroup G) (ρ : Representation ℂ H W) (K : Subgroup
     rw [map_mul, Module.End.mul_apply] at e4
     calc ρ a' w = ρ a' (ρ a'⁻¹ (ρ a w)) := by rw [e4]
       _ = ρ a w := by rw [← Module.End.mul_apply (ρ a'), ← map_mul]; simp
-  have hb0 : ∀ g, (¬ ∃ a : H, ∃ x ∈ K, g = (a : G) * c * x) → b g = 0 := fun g h => dif_neg h
+  have hb0 : ∀ g, (¬ ∃ a : H, ∃ x ∈ K, g = (a : G) * c * x) → b g = 0 := fun g h => dite_eq_right h
   have hind : b ∈ indSpace H ρ := by
     intro h g
     by_cases hg : ∃ a : H, ∃ x ∈ K, g = (a : G) * c * x

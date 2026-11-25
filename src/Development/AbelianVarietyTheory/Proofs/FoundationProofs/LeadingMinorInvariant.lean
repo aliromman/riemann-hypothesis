@@ -1,7 +1,36 @@
 module
 
 public import Formalism.FormalDegreeBessel.StatementG
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -16,6 +45,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -92,24 +124,24 @@ lemma exists_N (k r : ℕ) (z : Fin (2 * r + k + 1) → ℂ) (hz : inWb k r z)
     intro a i
     have ha := a.isLt
     by_cases hia : i.val < a.val
-    · rw [if_pos hia]
+    · rw [ite_eq_left hia]
       suffices h0 : fvec k r z a i = 0 by rw [h0, zero_add]
       by_cases har : a.val < r
-      · simp only [fvec, dif_pos har, bvec]
-        rw [Pi.single_apply, if_neg]
+      · simp only [fvec, dite_eq_left har, bvec]
+        rw [Pi.single_apply, ite_eq_right]
         intro he
         have h1 := congrArg Fin.val he
         simp [eI] at h1
         omega
-      · simp only [fvec, dif_neg har]
+      · simp only [fvec, dite_eq_right har]
         exact hz i (Or.inl (by omega))
-    · rw [if_neg hia, add_zero]
+    · rw [ite_eq_right hia, add_zero]
       by_cases har : a.val < r
-      · simp only [fvec, dif_pos har, bvec]
+      · simp only [fvec, dite_eq_left har, bvec]
         simp only [Matrix.mulVec, dotProduct, Pi.single_apply, mul_ite, mul_one, mul_zero,
-          Finset.sum_ite_eq', Finset.mem_univ, if_true]
+          Finset.sum_ite_eq', Finset.mem_univ, ite_true]
         exact hm2 ⟨a.val, har⟩ i (by show a.val ≤ i.val; omega)
-      · simp only [fvec, dif_neg har]
+      · simp only [fvec, dite_eq_right har]
         have hterm : ∀ j, m i j * z j = if i = j then z j else 0 := by
           intro j
           by_cases hj : r ≤ j.val ∧ j.val ≤ r + k
@@ -117,7 +149,7 @@ lemma exists_N (k r : ℕ) (z : Fin (2 * r + k + 1) → ℂ) (hz : inWb k r z)
             split_ifs <;> simp
           · rw [hz j (by omega)]
             simp
-        simp only [Matrix.mulVec, dotProduct, hterm, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+        simp only [Matrix.mulVec, dotProduct, hterm, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
   refine ⟨Matrix.of fun b a => (if b = a then 1 else 0) +
       (if hba : b.val < a.val then
         (m *ᵥ fvec k r z a) (eI k r ⟨b.val, by have := a.isLt; omega⟩) else 0), ⟨?_, ?_⟩, ?_⟩
@@ -130,13 +162,13 @@ lemma exists_N (k r : ℕ) (z : Fin (2 * r + k + 1) → ℂ) (hz : inWb k r z)
   · ext i a
     rw [mul_flagMat, Matrix.mul_apply]
     simp only [flagMat, Matrix.of_apply, mul_add, Finset.sum_add_distrib, mul_ite, mul_one,
-      mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+      mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
     rw [key a i]
     congr 1
     have ha := a.isLt
     by_cases hia : i.val < a.val
     · have hir : i.val < r := by omega
-      rw [if_pos hia, Finset.sum_eq_single (⟨i.val, by omega⟩ : Fin (r + 1))]
+      rw [ite_eq_left hia, Finset.sum_eq_single (⟨i.val, by omega⟩ : Fin (r + 1))]
       · have he : eI k r ⟨i.val, hir⟩ = i := Fin.ext rfl
         simp [fvec, hir, hia, he, bvec]
       · intro b _ hb
@@ -150,7 +182,7 @@ lemma exists_N (k r : ℕ) (z : Fin (2 * r + k + 1) → ℂ) (hz : inWb k r z)
           simp [fvec, hbr, bvec, hne]
         · simp
       · simp
-    · rw [if_neg hia]
+    · rw [ite_eq_right hia]
       symm
       apply Finset.sum_eq_zero
       intro b _
@@ -185,9 +217,9 @@ lemma exists_S (k r : ℕ) (z : Fin (2 * r + k + 1) → ℂ) (hz : inWb k r z)
       rw [mul_flagMat]
       simp only [flagMat, Matrix.of_apply]
       by_cases hb : b.val < r
-      · simp only [fvec, dif_pos hb]
+      · simp only [fvec, dite_eq_left hb]
         rw [(hfix ⟨b.val, hb⟩).1]
-      · simp only [fvec, dif_neg hb]
+      · simp only [fvec, dite_eq_right hb]
         rw [hhz]
     rw [Matrix.mul_assoc, hmF, ← Matrix.mul_assoc, hF]
 

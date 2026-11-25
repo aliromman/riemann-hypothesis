@@ -2,13 +2,38 @@ module
 
 public import Mathlib.Basic.Complex.Basic
 public import Mathlib.RepresentationTheory.Basic
-import Mathlib.RingTheory.Flat.TorsionFree
 public import Mathlib.Topology.Algebra.Group.Defs
 public import Mathlib.GroupTheory.Index
 public import Mathlib.Topology.Algebra.OpenSubgroup
 public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsSubquotientDetRepParInd
 public import Development.AbelianVarietyTheory.Definitions.Divisors.T2SpaceGeneralLinearGroup
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -23,8 +48,13 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Foundations.SecondCountableAndT2LocalField
 import Mathlib.Algebra.Order.Star.Int
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Algebra.Group.Units
 import Std.Tactic.BVDecide.Normalize.Prop
 
@@ -362,9 +392,9 @@ theorem exists_flip {f : n → n → ℤ} (hf : Chamber f) {i j : n} (hij : i �
   let g : n → n → ℤ := fun a b => if a = i ∧ b = j then f a b - 1 else f a b
   let f' : n → n → ℤ := fun a b => if a = j ∧ b = i then g a b + 1 else g a b
   have g1 : f i j = g i j + 1 := by simp [g]
-  have g2 : ∀ a b, ¬ (a = i ∧ b = j) → f a b = g a b := fun a b h => by simp only [g, if_neg h]
+  have g2 : ∀ a b, ¬ (a = i ∧ b = j) → f a b = g a b := fun a b h => by simp only [g, ite_eq_right h]
   have f1 : f' j i = g j i + 1 := by simp [f']
-  have f2 : ∀ a b, ¬ (a = j ∧ b = i) → f' a b = g a b := fun a b h => by simp only [f', if_neg h]
+  have f2 : ∀ a b, ¬ (a = j ∧ b = i) → f' a b = g a b := fun a b h => by simp only [f', ite_eq_right h]
   have gle : ∀ a b, g a b ≤ f a b := fun a b => by simp only [g]; split_ifs <;> omega
   have fle : ∀ a b, g a b ≤ f' a b := fun a b => by simp only [f']; split_ifs <;> omega
   clear_value f' g
@@ -638,7 +668,7 @@ theorem eventually_mem_ray {u : GL n k} (hu : u ∈ unipB k n) :
           ⟨i, by simpa using h, by simp⟩))
         simp only [Finset.mem_filter, Finset.mem_univ, true_and] at ha ⊢
         exact ha.trans h
-      simp only [ray, if_neg h.not_gt]
+      simp only [ray, ite_eq_right h.not_gt]
       nlinarith
     · simp [((mem_unipB k).1 hu).2, ray, deep_zero_iff]
     · simp [((mem_unipB k).1 hu).1 i j h, deep_zero]

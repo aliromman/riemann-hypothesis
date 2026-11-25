@@ -7,20 +7,7 @@ public import Mathlib.Data.Finset.Preimage
 public import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.TraceDefinitePairsEqAutomorphicTrace
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelatedPairsOrbitalTermEq
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.TraceFormulaEigenvalues.TraceBlocks
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelatedPairsSamePolarization
-import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.Tactic.Linter.Style
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -227,7 +214,7 @@ theorem summand_toCls
     rw [← hpol]; exact h.2.2
   show _ = summand wt Kf f K' f' (Quot.mk _ M)
   unfold summand
-  rw [if_pos hirr, ← hpol, ← ht Kf f 1 K' f' one_pos hf hf', hterm M (Quotient.out x.2).2]
+  rw [ite_eq_left hirr, ← hpol, ← ht Kf f 1 K' f' one_pos hf hf', hterm M (Quotient.out x.2).2]
   rfl
 
 theorem regroup_of
@@ -268,20 +255,20 @@ theorem regroup_of
     intro q c
     by_cases h : RegAt G ⟨q, c⟩
     · have h' : RegIrr G (((Quotient.out c : GlobalTheory.LKCx.grp G (Quot.out q).β).1.1 : G.Cˣ) : G.C) := h
-      simp only [H, dif_pos h]
-      rw [if_pos h']
+      simp only [H, dite_eq_left h]
+      rw [ite_eq_left h']
       exact summand_toCls wt Kf f K' f' hterm hf hf' ⟨q, c⟩ h
     · have h' : ¬ RegIrr G (((Quotient.out c : GlobalTheory.LKCx.grp G (Quot.out q).β).1.1 : G.Cˣ) : G.C) := h
-      simp only [H, dif_neg h]
-      rw [if_neg h']
+      simp only [H, dite_eq_right h]
+      rw [ite_eq_right h']
   have hsuppH : (Function.support H).Finite := by
     apply ((hfinF.preimage (toCls_injective).injOn).image Subtype.val).subset
     intro x hx
     rw [Function.mem_support] at hx
     by_cases h : RegAt G x
-    · simp only [H, dif_pos h] at hx
+    · simp only [H, dite_eq_left h] at hx
       exact ⟨⟨x, h⟩, hx, rfl⟩
-    · simp only [H, dif_neg h] at hx
+    · simp only [H, dite_eq_right h] at hx
       exact absurd rfl hx
   have hRHS : (∑ᶠ q : DFCls G, ∑ᶠ c : ConjClasses (GlobalTheory.LKCx.grp G (Quot.out q).β),
       (if GlobalTheory.LKDef.RegIrr G (((Quotient.out c : GlobalTheory.LKCx.grp G (Quot.out q).β).1.1 : G.Cˣ) : G.C) then
@@ -297,12 +284,12 @@ theorem regroup_of
       finsum_mem_range Subtype.val_injective]
     · apply finsum_congr
       intro x
-      simp only [H, dif_pos x.2]
+      simp only [H, dite_eq_left x.2]
     · intro x hx
       rw [Function.mem_support] at hx
       by_cases h : RegAt G x
       · exact ⟨⟨x, h⟩, rfl⟩
-      · simp only [H, dif_neg h] at hx
+      · simp only [H, dite_eq_right h] at hx
         exact absurd rfl hx
   rw [h1, ← finsum_mem_range (toCls_injective (G := G)), finsum_eq_mem_of_supp F _ hrange]
 

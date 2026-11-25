@@ -7,6 +7,28 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Idemp
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FirstStandardPairMemberHasThetaFunction
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FrameMatrixAdjointJointAction
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FrameMatrixAdjointSupportedOfConjHalf
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -19,6 +41,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.Divisors.CmHostImaginaryGeneratorNeZero
 import Development.AbelianVarietyTheory.Definitions.Divisors.FinitePrimesUnder
 import Development.AbelianVarietyTheory.Definitions.Divisors.FlatTensorVacuum
@@ -252,10 +276,10 @@ private theorem stdSnd_frames : ∀ {D : D7} (ν : (AE D)ˣ →* Circle) (e : AE
         fun H i j hj => inId_mul hκ (fun l => H l j hj) i⟩
     by_cases hc : IsIntM (dualCoord A' WW βA' βW' y) ∧
         ∀ i j, j.1 < a → InId I (dualCoord A' WW βA' βW' y i j)
-    · rw [if_pos ⟨hy, hc⟩, if_pos ⟨hh.2 hy, (hint _).2 hc.1, (hid _).2 hc.2⟩, rightBlock_mul]
+    · rw [ite_eq_left ⟨hy, hc⟩, ite_eq_left ⟨hh.2 hy, (hint _).2 hc.1, (hid _).2 hc.2⟩, rightBlock_mul]
       exact unitChar_mul ν hE (βA⁻¹ * βA') x h1 h2 h3 hxI hxI' _
-    · rw [if_neg (fun h => hc h.2), if_neg (fun h => hc ⟨(hint _).1 h.2.1, (hid _).1 h.2.2⟩), mul_zero]
-  · rw [if_neg (fun h => hy h.1), if_neg (fun h => hy (hh.1 h.1)), mul_zero]
+    · rw [ite_eq_right (fun h => hc h.2), ite_eq_right (fun h => hc ⟨(hint _).1 h.2.1, (hid _).1 h.2.2⟩), mul_zero]
+  · rw [ite_eq_right (fun h => hy h.1), ite_eq_right (fun h => hy (hh.1 h.1)), mul_zero]
 
 end GlobalTheory.SndFrames
 

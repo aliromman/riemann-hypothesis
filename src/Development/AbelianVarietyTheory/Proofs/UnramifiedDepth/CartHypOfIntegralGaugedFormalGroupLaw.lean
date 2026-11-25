@@ -8,10 +8,38 @@ public import Formalism.LocalToGlobal.CharacterGerms.NegMem
 public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.AddCurveStableOfIntegralGaugedFormalGroupLaw
 public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.GaugedCurveLogarithmsClosedUnderTadicLimitsStatement
 public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.FrobeniusMemTypicalCurveSet
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.Order.CompletePartialOrder
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -25,8 +53,12 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Formalism.LocalToGlobal.ProjectiveLattices.SubConstMemOrig
+import Mathlib.Data.Nat.Choose.Multinomial
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.IntegralGaugeBilinearTermOfTypeNe, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.CartHypOfIntegralGaugedFormalGroupLaw
@@ -81,13 +113,13 @@ theorem coeff_single_subst {σ τ : Type} [Fintype σ] {a : σ → MvPowerSeries
       rw [coeff_zero_eq_constantCoeff_apply, hf]
       symm
       refine Finset.sum_eq_zero fun s _ => ?_
-      rw [if_neg, mul_zero]
+      rw [ite_eq_right, mul_zero]
       exact (Finsupp.single_ne_zero.2 one_ne_zero).symm
     · obtain ⟨i, rfl⟩ := finsupp_deg_one e (by omega)
       rw [Finset.sum_eq_single i]
       · simp
       · intro s _ hsi
-        rw [if_neg, mul_zero]
+        rw [ite_eq_right, mul_zero]
         exact fun h => hsi (Finsupp.single_left_injective one_ne_zero h).symm
       · simp
   have hz : coeff (Finsupp.single t 1) (subst a (f - L)) = 0 :=
@@ -159,12 +191,12 @@ theorem hAt_order (Y : RawChart C d I κ)
         rw [Finset.sum_eq_single (x, y)]
         · simp
         · intro p _ hp
-          rw [if_neg, mul_zero]
+          rw [ite_eq_right, mul_zero]
           intro h
           exact hp (Prod.ext (bexp_inj h).1.symm (bexp_inj h).2.symm)
         · simp
       · push Not at h
-        rw [Finset.sum_eq_zero fun p _ => by rw [if_neg (h _ _), mul_zero]]
+        rw [Finset.sum_eq_zero fun p _ => by rw [ite_eq_right (h _ _), mul_zero]]
         by_cases h0 : ∀ s ∈ e.support, s.1 ≠ 0
         · exact hax 0 e h0
         by_cases h1 : ∀ s ∈ e.support, s.1 ≠ 1
@@ -174,7 +206,7 @@ theorem hAt_order (Y : RawChart C d I κ)
         obtain ⟨⟨g', y⟩, hy, rfl⟩ := h1
         exact absurd (eq_bexp e he hx hy) (h x y))
   rw [subst_sub hs, subst_sum_smul hs] at key
-  simpa only [subst_mul hs, subst_X hs, hAt, if_true, one_ne_zero, if_false] using key
+  simpa only [subst_mul hs, subst_X hs, hAt, ite_true, one_ne_zero, ite_false] using key
 
 theorem coeff_mvExp_two {τ : Type} {F : MvPowerSeries τ C} (hF : ((2 : ℕ) : ℕ∞) ≤ F.order) (m : τ →₀ ℕ)
     (hm : m.degree = 2) : coeff m (mvExp F) = coeff m F := by
@@ -246,7 +278,7 @@ theorem RLaw.coeff_single_ex (h : RLaw Y V) (i s : κ) :
     coeff (Finsupp.single s 1) (Y.ex i) = if s = i then 1 else 0 := by
   have := coeff_single_subst h.exc (h.constantCoeff_lg i) s
   rw [h.lgex, coeff_X] at this
-  simp only [h.coeff_single_lg, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ, if_true,
+  simp only [h.coeff_single_lg, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ, ite_true,
     (Finsupp.single_left_injective one_ne_zero).eq_iff] at this
   exact this.symm
 
@@ -266,20 +298,20 @@ theorem RLaw.coeff_single_endP (h : RLaw Y V) (M : Matrix κ κ C) {τ : Type} {
     coeff (Finsupp.single t 1) (endP Y M a x) = ∑ y, M x y * coeff (Finsupp.single t 1) (a y) := by
   unfold endP
   rw [coeff_single_subst (h.constantCoeff_lin M ha) (h.exc x)]
-  simp only [h.coeff_single_ex, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+  simp only [h.coeff_single_ex, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
 
   rw [map_sum]
   refine Finset.sum_congr rfl fun y _ => ?_
   rw [coeff_smul, coeff_single_subst ha (h.constantCoeff_lg y)]
-  simp only [h.coeff_single_lg, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+  simp only [h.coeff_single_lg, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
 
 theorem coeff_bexp_mul_X (f : MvPowerSeries (Fin 2 × κ) C) (s t y : κ) :
     coeff (bexp s t) (f * X (1, y)) = if y = t then coeff (Finsupp.single (0, s) 1) f else 0 := by
   rw [X_def, coeff_mul_monomial]
   by_cases hy : y = t
   · subst hy
-    rw [bexp, if_pos (le_add_self), if_pos rfl, mul_one, add_tsub_cancel_right]
-  · rw [if_neg hy, if_neg]
+    rw [bexp, ite_eq_left (le_add_self), ite_eq_left rfl, mul_one, add_tsub_cancel_right]
+  · rw [ite_eq_right hy, ite_eq_right]
     rw [Finsupp.single_le_iff]
     simp [bexp, Ne.symm hy]
 
@@ -288,8 +320,8 @@ theorem coeff_bexp_X_mul (f : MvPowerSeries (Fin 2 × κ) C) (s t x : κ) :
   rw [X_def, coeff_monomial_mul]
   by_cases hy : x = s
   · subst hy
-    rw [bexp, if_pos (le_self_add), if_pos rfl, one_mul, add_tsub_cancel_left]
-  · rw [if_neg hy, if_neg]
+    rw [bexp, ite_eq_left (le_self_add), ite_eq_left rfl, one_mul, add_tsub_cancel_left]
+  · rw [ite_eq_right hy, ite_eq_right]
     rw [Finsupp.single_le_iff]
     simp [bexp, Ne.symm hy]
 

@@ -8,9 +8,32 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.EtaProdEq
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsBasisOfIsQuadraticExtension
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsEverywhereNormDivOfEtaProdEqOne
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IndexTwoOfFiniteReal
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
 import Mathlib.NumberTheory.NumberField.Completion.LiesOverInstances
 public import Mathlib.NumberTheory.NumberField.Completion.Ramification
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.Valuation.LocalSubring
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -24,6 +47,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.HDiscAA
 import Std.Tactic.BVDecide.Normalize.Prop
 
@@ -86,7 +112,7 @@ theorem exists_finite_decomp :
         exact hu (by simp only [Set.mem_ofPred_eq] at h; simp [h])⟩
     refine ⟨_, funext fun w => (GlobalTheory.LFun.finAdEquiv_apply w.2 Y).symm.trans ?_⟩
     rw [hY]
-    exact dif_pos w.2
+    exact dite_eq_left w.2
   · simpa using GlobalTheory.LFun.complMap_mem w.2 ha
 
 
@@ -127,7 +153,7 @@ theorem exists_infinite_decomp :
         fun x => ⟨1 ⊗ₜ x, funext fun w => h1 v w x⟩
     have := key fun u => if h : u.comap (algebraMap F K) = v then z ⟨u, h⟩ else 0
     rwa [show (fun w : {w : InfinitePlace K // w.comap (algebraMap F K) = v} => _) = z from
-      funext fun w => dif_pos w.2] at this
+      funext fun w => dite_eq_left w.2] at this
   haveI : Module.Finite v.Completion
       (∀ w : {w : InfinitePlace K // w.comap (algebraMap F K) = v}, w.1.Completion) :=
     Module.Finite.of_surjective f hs

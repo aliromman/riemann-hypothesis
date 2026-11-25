@@ -6,6 +6,29 @@ public import Formalism.LocalToGlobal.ProjectiveLattices.FamilyUniformisationBas
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.MemLatOIffExistsActO
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IdempotentMulEqZeroOfOrthogonal
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FirstStandardPairMemberHasThetaFunction
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -19,6 +42,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.Divisors.CmHostImaginaryGeneratorNeZero
 import Development.AbelianVarietyTheory.Definitions.Divisors.FinitePrimesUnder
@@ -271,15 +295,15 @@ private theorem stdFst_change_frames : ∀ {D : D7} (ν : (AE D)ˣ →* Circle) 
       rwa [Matrix.mul_assoc, hkk, Matrix.mul_one] at this
     by_cases hc : IsIntM (frMapO A WW βA' βW' y) ∧
         ∀ i j, A.rank ≤ i.1 → GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle.InId I (frMapO A WW βA' βW' y i j)
-    · rw [if_pos ⟨hh, hc⟩, if_pos ⟨hh', hI.2 hc.1, hR.2 hc.2⟩, ← mul_assoc, ← Circle.coe_mul, mul_inv_cancel,
+    · rw [ite_eq_left ⟨hh, hc⟩, ite_eq_left ⟨hh', hI.2 hc.1, hR.2 hc.2⟩, ← mul_assoc, ← Circle.coe_mul, mul_inv_cancel,
         Circle.coe_one, one_mul]
-    · rw [if_neg fun h => hc h.2, if_neg fun h => hc ⟨hI.1 h.2.1, hR.1 h.2.2⟩, mul_zero]
+    · rw [ite_eq_right fun h => hc h.2, ite_eq_right fun h => hc ⟨hI.1 h.2.1, hR.1 h.2.2⟩, mul_zero]
   · have hh' : ¬ IsHalf e (HMul.hMul (mt WW k⁻¹) (y : Matrix (Fin WW.rank) (Fin A.rank) (AE D)) : Mx D WW.rank A.rank) :=
       fun h => hh (by
         have := half_mul (mt WW k) h
         rwa [← Matrix.mul_assoc, ← GlobalTheory.AdelicLatMove.mt_mul, mul_inv_cancel, GlobalTheory.AdelicLatMove.mt_one,
           Matrix.one_mul] at this)
-    rw [if_neg fun h => hh h.1, if_neg fun h => hh' h.1, mul_zero]
+    rw [ite_eq_right fun h => hh h.1, ite_eq_right fun h => hh' h.1, mul_zero]
 
 end GlobalTheory.frameChangeUnitDeterminant
 

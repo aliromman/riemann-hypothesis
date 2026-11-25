@@ -1,18 +1,6 @@
 module
 
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqLastAddGaps
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.Divisors.NormNegCmConstantEqAtAllEmbeddings
 
@@ -44,7 +32,7 @@ theorem exOf_tailWt (τ : Psi H) (k : ℕ) (hk : Dw.p ≤ k) :
       have := i.2; have := FlagMod.mult_of_mem (Dw := Dw) τ'; omega
     have h2 : ¬ (τ'.1 = conjEmb τ.1 ∧ (i : ℕ) < Dw.p + Dw.q - 1 - k) := fun h =>
       GlobalTheory.AllWt.conj_not_mem τ (h.1 ▸ τ'.2)
-    simp only [GlobalTheory.NefWt.tailWt, stepEx, Option.elim, if_neg h1, if_neg h2]
+    simp only [GlobalTheory.NefWt.tailWt, stepEx, Option.elim, ite_eq_right h1, ite_eq_right h2]
   · have hq := FlagMod.mult_conj (Dw := Dw) τ'
     have hi' := i.2
     by_cases e : τ' = τ
@@ -73,7 +61,7 @@ theorem exOf_headWt (τ : Psi H) (k : ℕ) (hk : k < Dw.p) :
     have h1 : ¬ (τ' = τ ∧ Dw.p + (Dw.q - 1 - (i : ℕ)) ≤ k) := fun h => by omega
     have h2 : ¬ (conjEmb τ'.1 = τ.1 ∧ (i : ℕ) < k + 1) := fun h =>
       GlobalTheory.AllWt.conj_not_mem τ' (h.1 ▸ τ.2)
-    simp only [GlobalTheory.NefWt.headWt, stepEx, Option.elim, if_neg h1, if_neg h2, neg_zero]
+    simp only [GlobalTheory.NefWt.headWt, stepEx, Option.elim, ite_eq_right h1, ite_eq_right h2, neg_zero]
 
 variable {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} {Y : Model Xo c (RingHom.id c.F)} (X : FlagMod.FlagCover Y)
   (Z : Comp Xo c)

@@ -11,7 +11,35 @@ public import Mathlib.Analysis.Calculus.FDeriv.Analytic
 public import Mathlib.Analysis.Calculus.MeanValue
 public import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.DifferentiableOnOfTendstoLocallyUniformlyOn
 public import Mathlib.Analysis.Calculus.Deriv.Prod
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
 import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -26,6 +54,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Order.CompletePartialOrder
 import Mathlib.Algebra.Order.Star.Real
 import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
@@ -87,7 +118,7 @@ theorem exists_analytic_param_of_primitives_on_box : ∀ {P : Type} [NormedAddCo
   have hFeq : ∀ k, ∀ p ∈ W k, p ∈ Z ×ˢ C → F p = G k p - G' k p := by
     intro k p hk hp
     have h : ∃ k, p ∈ W k := ⟨k, hk⟩
-    simp only [F, dif_pos h]
+    simp only [F, dite_eq_left h]
     exact hov _ _ p h.choose_spec hk hp
   have hFloc : ∀ k, ∀ p ∈ W k, p ∈ Z ×ˢ C → (fun q => G k q - G' k q) =ᶠ[nhds p] F := by
     intro k p hk hp
@@ -151,7 +182,7 @@ theorem _root_.GlobalTheory.exists_merge_fibre_primitives : ∀ {P : Type} [Norm
       fun k l p hk hl hp => hG'c k l p hk hl (hsubC' hp)⟩
   classical
   have hCeq : ∀ k, ∀ q ∈ W k ∩ Z ×ˢ C,
-      (if q.2 ∈ C then G k q else G' k q + h q.1) = G k q := fun k q hq => if_pos hq.2.2
+      (if q.2 ∈ C then G k q else G' k q + h q.1) = G k q := fun k q hq => ite_eq_left hq.2.2
   have hC'eq : ∀ k, ∀ q ∈ W k ∩ Z ×ˢ C',
       (if q.2 ∈ C then G k q else G' k q + h q.1) = G' k q + h q.1 := by
     intro k q hq
@@ -190,7 +221,7 @@ theorem _root_.GlobalTheory.exists_merge_fibre_primitives : ∀ {P : Type} [Norm
       simp
   · dsimp only
     rcases memcase p hp with h1 | h2
-    · rw [if_pos h1.2, if_pos h1.2]
+    · rw [ite_eq_left h1.2, ite_eq_left h1.2]
       exact hGc k l p hk hl h1
     · rw [hC'eq k p ⟨hk, h2⟩, hC'eq l p ⟨hl, h2⟩, add_sub_add_right_eq_sub]
       exact hG'c k l p hk hl h2

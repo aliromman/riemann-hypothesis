@@ -2,18 +2,6 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.Divisors.PerCEmb
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsInverseChart
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -136,12 +124,12 @@ theorem cplx_of_frame : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : InfF
     simp only [zOf, Pi.smul_apply, smul_eq_mul, perC]
     obtain ⟨τ, a⟩ := idx j
     have hτ : ∃ ρ', τ.1 = tauE D ρ' := (hM.psi _).1 τ.2
-    simp only [realM, dif_pos hτ, (hL _).2.2, hGm]
+    simp only [realM, dite_eq_left hτ, (hL _).2.2, hGm]
     by_cases e : hτ.choose = ρ
-    · simp only [if_pos e]
+    · simp only [ite_eq_left e]
       have := per_cplx X τ.1 (HSpace.gram W) (mat x τ) (s ρ) (hG τ) (hs' ρ τ (e ▸ hτ.choose_spec)) (fun k => u k b) a
       convert this using 3 <;> (try funext k) <;> simp [cplxO, Matrix.mul_apply, mulVec, dotProduct]
-    · simp only [if_neg e]
+    · simp only [ite_eq_right e]
       simp [hermC, mulVec, dotProduct]
 
 end GlobalTheory.FrameCplx

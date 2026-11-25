@@ -4,19 +4,6 @@ public import Formalism.SharpRestriction.LevelLetterCocycles.AdmissibleParameter
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.EqOfStabilizerTrivial
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InducesWAndExistsEmb
 public import Formalism.LocalToGlobal.LatticeGeometry.CmTypeMeetsConjugatePair
-import Mathlib.Algebra.Order.Star.Rat
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -99,7 +86,7 @@ theorem elem_ok (L : SizeData₂ D) (hJb : CloudCentreDistance L) (hJc : jcCondi
     · right; right
       obtain ⟨h1, h2⟩ := hcl _ hq
       simp only [PairedCharacterCondition.cloud, PairedCharacterCondition.cen, AdmissibleParameterJ.refl] at h1 h2 ⊢
-      simp only [Bool.false_eq_true, if_false]
+      simp only [Bool.false_eq_true, ite_false]
       constructor <;> linarith
     · right; left
       have h := hlow _ hq
@@ -116,7 +103,7 @@ theorem elem_ok (L : SizeData₂ D) (hJb : CloudCentreDistance L) (hJc : jcCondi
     rcases ha with (hq | hq) | ⟨c, hc, hx⟩
     · right; right
       obtain ⟨h1, h2⟩ := hcl _ hq
-      simp only [PairedCharacterCondition.cloud, PairedCharacterCondition.cen, if_true]
+      simp only [PairedCharacterCondition.cloud, PairedCharacterCondition.cen, ite_true]
       constructor <;> linarith
     · right; left
       exact hlow _ hq
@@ -181,7 +168,7 @@ theorem main : ∀ (D : D7) (L : SizeData₂ D) (ep : Bool), AdmissibleParameter
         (fun a : ℤ => (a : ℚ) ∈ JJ D (sg w) (D.nd.j i) (ρf w hw))
     else ∅
   have hsg : ∀ w (hw : w ∈ placesOver D.host.E (D.nd.l i)), sg w = decide (TypeU D ep (gf w hw)) :=
-    fun w hw => dif_pos hw
+    fun w hw => dite_eq_left hw
   refine ⟨sg, U, ?_, ?_⟩
   · intro w w' hw hc _hne
     have hw' : w' ∈ placesOver D.host.E (D.nd.l i) := by
@@ -209,7 +196,7 @@ theorem main : ∀ (D : D7) (L : SizeData₂ D) (ep : Bool), AdmissibleParameter
     exact decide_flip (typeU_flip D ep (gf w' hw'))
   · intro w hw
     have hU : U w = (Finset.Icc (-((⌊3 * L.sc.b⌋₊ + 2 : ℕ) : ℤ)) ((⌊3 * L.sc.b⌋₊ + 2 : ℕ) : ℤ)).filter
-        (fun a : ℤ => (a : ℚ) ∈ JJ D (sg w) (D.nd.j i) (ρf w hw)) := dif_pos hw
+        (fun a : ℤ => (a : ℚ) ∈ JJ D (sg w) (D.nd.j i) (ρf w hw)) := dite_eq_left hw
     refine ⟨?_, ?_, ?_⟩
     · rw [hU, ← Set.ncard_coe_finset]
       have h1 : ((Finset.filter (fun a : ℤ => (a : ℚ) ∈ JJ D (sg w) (D.nd.j i) (ρf w hw))

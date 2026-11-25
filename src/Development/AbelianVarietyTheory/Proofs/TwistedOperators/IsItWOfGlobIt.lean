@@ -28,6 +28,28 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsFoc
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsGlobalFockIntertwinerTensorRealPlacesStatement
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsLocalFockIntertwinerRealPlaceOfCoverContraStatement
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.GluingLawHoldsStatement
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -40,9 +62,18 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Tactic.TypeStar
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Data.Nat.Choose.Multinomial
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsStepWeil
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
+import Mathlib.RingTheory.WittVector.IsPoly
 import Mathlib.Tactic.Linter.Style
 import Formalism.LocalToGlobal.BesselHermitianTheta.NoncompactGapAtLeastRange
 import Formalism.LocalToGlobal.IndefiniteReal.IndefiniteWeightData
@@ -225,19 +256,19 @@ theorem term_mem (i : Fin b) (j k : Fin a) :
     raiO τ ε ε' i j * lowO τ ε ε' i k - LinearMap.mulLeft ℂ (quad τ ε ε' i j k) ∈ nonRaising (FVar D b a) := by
   unfold raiO lowO quad
   by_cases h1 : ε' i = ε j <;> by_cases h2 : ε' i = ε k
-  · rw [if_pos h1, if_pos h2, if_neg (fun h => h.2 h2), LinearMap.mulLeft_zero_eq_zero, sub_zero,
+  · rw [ite_eq_left h1, ite_eq_left h2, ite_eq_right (fun h => h.2 h2), LinearMap.mulLeft_zero_eq_zero, sub_zero,
       smul_mul_smul_comm]
     exact Submodule.smul_mem _ _ (mem_nonRaising.2 fun P => deg_X_pderiv _ _ P)
-  · rw [if_pos h1, if_neg h2, if_pos ⟨h1, h2⟩]
+  · rw [ite_eq_left h1, ite_eq_right h2, ite_eq_left ⟨h1, h2⟩]
     convert Submodule.zero_mem _
     rw [sub_eq_zero]
     refine LinearMap.ext fun P => ?_
     simp [smul_smul, mul_assoc, mul_comm (sgn (ε k))]
-  · rw [if_neg h1, if_pos h2, if_neg (fun h => h1 h.1), LinearMap.mulLeft_zero_eq_zero, sub_zero,
+  · rw [ite_eq_right h1, ite_eq_left h2, ite_eq_right (fun h => h1 h.1), LinearMap.mulLeft_zero_eq_zero, sub_zero,
       smul_mul_smul_comm, neg_mul]
     exact Submodule.smul_mem _ _ (Submodule.neg_mem _
       (mem_nonRaising.2 fun P => (deg_pderiv _ _).trans (deg_pderiv _ P)))
-  · rw [if_neg h1, if_neg h2, if_neg (fun h => h1 h.1), LinearMap.mulLeft_zero_eq_zero, sub_zero,
+  · rw [ite_eq_right h1, ite_eq_right h2, ite_eq_right (fun h => h1 h.1), LinearMap.mulLeft_zero_eq_zero, sub_zero,
       smul_mul_smul_comm, neg_mul]
     exact Submodule.smul_mem _ _ (Submodule.neg_mem _
       (mem_nonRaising.2 fun P => deg_pderiv_X _ _ P))
@@ -282,7 +313,7 @@ theorem quadS_ne_zero (X : Matrix (Fin a) (Fin a) ℂ) (i : Fin b) (j k : Fin a)
     by_cases h : i' = i ∧ j' = j ∧ k' = k
     · obtain ⟨rfl, rfl, rfl⟩ := h
       simp [quad, hj, f, hj ▸ hk]
-    · rw [if_neg h]
+    · rw [ite_eq_right h]
       unfold quad
       split_ifs with h'
       · simp only [map_smul, map_mul, MvPolynomial.aeval_X, f, Prod.mk.injEq, true_and]
@@ -420,14 +451,14 @@ theorem term_mem (i l : Fin b) (j : Fin a) :
   unfold raiO lowO quad
   rw [smul_mul_smul_comm, sgn_mul_self, one_smul]
   by_cases hi : ε' i = ε j <;> by_cases hl : ε' l = ε j
-  · simp only [hi, hl, if_true, ne_eq, not_true, and_false, if_false, LinearMap.mulLeft_zero_eq_zero, sub_zero]
+  · simp only [hi, hl, ite_true, ne_eq, not_true, and_false, ite_false, LinearMap.mulLeft_zero_eq_zero, sub_zero]
     exact mul_pderiv_mem _ _
-  · simp only [hi, hl, if_true, ne_eq, not_false_iff, and_self, if_false]
+  · simp only [hi, hl, ite_true, ne_eq, not_false_iff, and_self, ite_false]
     rw [LinearMap.mulLeft_mul, Module.End.mul_eq_comp, sub_self]
     exact Submodule.zero_mem _
-  · simp only [hi, hl, if_true, false_and, if_false, LinearMap.mulLeft_zero_eq_zero, sub_zero, neg_mul]
+  · simp only [hi, hl, ite_true, false_and, ite_false, LinearMap.mulLeft_zero_eq_zero, sub_zero, neg_mul]
     exact Submodule.neg_mem _ (mul_mem (pderiv_mem _) (pderiv_mem _))
-  · simp only [hi, hl, false_and, if_false, LinearMap.mulLeft_zero_eq_zero, sub_zero, neg_mul]
+  · simp only [hi, hl, false_and, ite_false, LinearMap.mulLeft_zero_eq_zero, sub_zero, neg_mul]
     exact Submodule.neg_mem _ (pderiv_mul_mem _ _)
 
 def quadAll (Y : Matrix (Fin b) (Fin b) ℂ) : PolF D b a :=
@@ -451,14 +482,14 @@ theorem fockQuadraticPart_ne_zero_of_offBlock_entry (Y : Matrix (Fin b) (Fin b) 
     intro i l j
     unfold quad
     by_cases hc : ε' i = ε j ∧ ε' l ≠ ε j
-    · rw [if_pos hc, map_mul, eval_X, eval_X]
+    · rw [ite_eq_left hc, map_mul, eval_X, eval_X]
       by_cases hj : j = j₀
       · subst hj
         have h1 : i ≠ l₀ := fun h => hl (h ▸ hc.1)
         have h2 : l ≠ i₀ := fun h => hc.2 (h ▸ hi)
         by_cases h3 : i = i₀ <;> by_cases h4 : l = l₀ <;> simp [pt, h1, h2, h3, h4]
       · simp [pt, hj]
-    · rw [if_neg hc, map_zero, if_neg]
+    · rw [ite_eq_right hc, map_zero, ite_eq_right]
       rintro ⟨rfl, rfl, rfl⟩
       exact hc ⟨hi, hl⟩
   have := congrArg (eval pt) h0

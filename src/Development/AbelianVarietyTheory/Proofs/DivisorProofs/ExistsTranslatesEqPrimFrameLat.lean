@@ -2,8 +2,37 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.Divisors.RankEqCardIffExistsFrameMatrixFirstColumnBlock
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PadicIsNonarchimedeanLocalField
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -17,7 +46,10 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -134,7 +166,7 @@ theorem indicator_isPrimFrame_succ [Fintype D] [Fintype 𝓀[k]] {ϖ : kˣ} (hϖ
   swap
   · simp [h]
   obtain ⟨h1, h2⟩ := isPrimFrame_iff.1 h
-  simp only [h, true_and, if_true, one_mul]
+  simp only [h, true_and, ite_true, one_mul]
   generalize Y.submatrix Fin.succ id = Y' at *
   generalize Y.row 0 = y
   have key : ∀ c c' : Fin n → 𝒪[k], (ϖ : k)⁻¹ • (y + (fun i => (c i : k)) ᵥ* Y') ∈ Λ →
@@ -147,9 +179,9 @@ theorem indicator_isPrimFrame_succ [Fintype D] [Fintype 𝓀[k]] {ϖ : kˣ} (hϖ
     simp only [hϖ.residue_eq_iff]
     exact ⟨fun h => h2 _ h, fun h => vecMul_mem_of_int h1 h⟩
   by_cases h3 : ∀ c : Fin n → k, (∀ i, c i ∈ 𝒪[k]) → (ϖ : k)⁻¹ • (y + c ᵥ* Y') ∉ Λ
-  · rw [Finset.sum_eq_zero fun r _ => if_neg (h3 _ fun i => (l (r i)).2), sub_zero]
+  · rw [Finset.sum_eq_zero fun r _ => ite_eq_right (h3 _ fun i => (l (r i)).2), sub_zero]
     simp only [and_iff_left h3]
-  · rw [if_neg fun h => h3 h.2]
+  · rw [ite_eq_right fun h => h3 h.2]
     push Not at h3
     obtain ⟨c, hc, hc'⟩ := h3
     have hy : y ∈ Λ := by
@@ -212,7 +244,7 @@ theorem exists_comb_isPrimFrame.{u} {k : Type u} [Field k] [ValuativeRel k] [Top
         add_zero, Finset.sum_mul, ← Finset.sum_add_distrib]
       refine Finset.sum_congr rfl fun i _ => ?_
       by_cases h : γ i * Y.submatrix Fin.succ id ∈ matLat (Fin n) Λ
-      · simp only [h, true_and, if_true, mul_one, mul_sub, Finset.mul_sum, neg_mul, Finset.sum_neg_distrib]
+      · simp only [h, true_and, ite_true, mul_one, mul_sub, Finset.mul_sum, neg_mul, Finset.sum_neg_distrib]
         ring
       · simp [h]
     · rw [Finset.prod_range_succ, ← h3, Fintype.sum_sum_type, Fintype.sum_prod_type]

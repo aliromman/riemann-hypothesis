@@ -3,13 +3,40 @@ module
 public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.NumberTheory.NumberField.CanonicalEmbedding.FundamentalCone
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsSmoothCompactSupportHasSumLatticeTranslate
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Real
 import Mathlib.Algebra.Ring.IsFormallyReal
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
 public import Mathlib.Analysis.InnerProductSpace.Calculus
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
 import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -23,7 +50,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Separation.CompletelyRegular
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -171,7 +200,7 @@ theorem exists_smooth_homogeneous_hasSum_unit_smul : ∀ (K : Type) [Field K] [N
         η (logMap y) / (Nat.card (torsion K) : ℝ)) =ᶠ[nhds x]
         fun y => η (logMap y) / (Nat.card (torsion K) : ℝ) := by
       filter_upwards [hopen.mem_nhds hx] with y hy
-      rw [if_neg hy]
+      rw [ite_eq_right hy]
     exact ((hη.contDiffAt.comp x (contDiffAt_logMap x hx')).div_const _).congr_of_eventuallyEq hev
   · intro t x ht
     have ht0 : t ≠ 0 := ht.ne'
@@ -180,7 +209,7 @@ theorem exists_smooth_homogeneous_hasSum_unit_smul : ∀ (K : Type) [Field K] [N
     · simp [hx]
     · have hne : |t| ^ Module.finrank ℚ K * mixedEmbedding.norm x ≠ 0 :=
         mul_ne_zero (pow_ne_zero _ (abs_ne_zero.2 ht0)) hx
-      rw [if_neg hne, if_neg hx, logMap_real_smul hx ht0]
+      rw [ite_eq_right hne, ite_eq_right hx, logMap_real_smul hx ht0]
   · intro x hx
     let e : ((𝓞 K)ˣ ⧸ torsion K) ≃ unitLattice K :=
       Additive.ofMul.trans (logEmbeddingEquiv K).toEquiv
@@ -190,7 +219,7 @@ theorem exists_smooth_homogeneous_hasSum_unit_smul : ∀ (K : Type) [Field K] [N
     convert hu using 2 with u
     have hux : mixedEmbedding.norm (u • x) ≠ 0 := by rwa [norm_unit_smul]
     dsimp only
-    rw [if_neg hux, logMap_unit_smul u hx, add_comm]
+    rw [ite_eq_right hux, logMap_unit_smul u hx, add_comm]
     simp only [Function.comp_apply, e, Equiv.trans_apply, LinearEquiv.coe_toEquiv,
       logEmbeddingEquiv_apply]
   · intro a b ha
@@ -202,7 +231,7 @@ theorem exists_smooth_homogeneous_hasSum_unit_smul : ∀ (K : Type) [Field K] [N
       fun x hx => (ha.trans_le hx.2).ne', fun x hx hax hxb => ⟨?_, hax⟩⟩
     have hx0 : mixedEmbedding.norm x ≠ 0 := (ha.trans_le hax).ne'
     dsimp only at hx
-    rw [if_neg hx0] at hx
+    rw [ite_eq_right hx0] at hx
     have hηx : η (logMap x) ≠ 0 := fun h0 => hx (by rw [h0, zero_div])
     have hlog : ‖logMap x‖ ≤ R := hR _ (subset_tsupport _ hηx)
     rw [mem_closedBall_zero_iff, norm_eq_sup'_normAtPlace]

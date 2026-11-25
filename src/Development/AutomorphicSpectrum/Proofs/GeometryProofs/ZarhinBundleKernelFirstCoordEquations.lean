@@ -2,6 +2,8 @@ module
 
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsCptGen
 public import Mathlib.RingTheory.MvPolynomial.Homogeneous
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.RingTheory.GradedAlgebra.HomogeneousLocalization
 
 @[expose] public section
@@ -53,21 +55,6 @@ theorem genMap_push_injective (η : Spec (CommRingCat.of Ω) ⟶ Y) (f : Y ⟶ X
   exact h.comp hb.1
 
 end OpenImm
-
-section Chart
-
-variable {X : Scheme.{0}} {Ω A : Type} [Field Ω] [CommRing A]
-
-end Chart
-
-section Away
-
-open HomogeneousLocalization
-
-variable {σ A Ω : Type} [CommRing A] [SetLike σ A] [AddSubgroupClass σ A] (𝒜 : ℕ → σ) [GradedRing 𝒜]
-  [Field Ω]
-
-end Away
 
 section Poly
 

@@ -2,26 +2,7 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.Divisors.PointHeight
 public import Development.AbelianVarietyTheory.Definitions.Divisors.IrreducibleOfIrreducibleMap
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.HopfAlgebra.Basic
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
 public import ReciprocityTheory.SemistableReduction.AevalIsWeightedHomogeneous
 public import ReciprocityTheory.SemistableReduction.LagrangeIdealLiftsFact
 public import ReciprocityTheory.SemistableReduction.LogNormCoeffSubLeBlockSphereLogMean
@@ -30,7 +11,6 @@ public import ReciprocityTheory.SemistableReduction.TorusL2CauchyInequality
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.Divisors.MemSubPtsCutBaseChangeIff
 public import Mathlib.NumberTheory.NumberField.ProductFormula
-import Mathlib.Topology.Sheaves.Presheaf
 
 @[expose] public section
 
@@ -142,7 +122,7 @@ theorem _root_.GlobalTheory.HeightUnique.gaussAbs_C {K σ : Type} [Field K] [Num
   by_cases hc : c = 0
   · subst hc
     simp
-  · rw [C_apply, support_monomial, if_neg hc]
+  · rw [C_apply, support_monomial, ite_eq_right hc]
     simp [Real.coe_toNNReal _ (apply_nonneg w c)]
 
 open CategoryTheory AlgebraicGeometry NumberField MvPolynomial in

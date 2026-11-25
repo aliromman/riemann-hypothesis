@@ -5,18 +5,6 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIsLocC
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsPolarizedTwistAbsPow
 public import Development.AutomorphicArithmetic.Foundations.UnitarySphericalFixing.SatakeParameters.AbsCentralAlt
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.EventuallyUnr
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -26,11 +14,6 @@ section
 noncomputable section
 namespace GlobalTheory.HeightCounting.Blocks
 open NumberField IsDedekindDomain Polynomial Filter
-section Satake
-open GlobalTheory.LFun GlobalTheory.PRep GlobalTheory.CuspRep Formalism.UG
-variable {E : Type} [Field E] [NumberField E] {w : HeightOneSpectrum (𝓞 E)} {n : ℕ}
-variable [_root_.NumberField.IsTotallyComplex E]
-end Satake
 section Local
 open GlobalTheory.CuspRep GlobalTheory.CuspRep.ParLaws GlobalTheory.WeilDeligne GlobalTheory.LocLanglands Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.L2.Host
 variable {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω]
@@ -49,12 +32,6 @@ theorem local_parameter_twist_abs_pow (π : CG E a) {ν : HChar E} {s : ℝ} (h�
   congr 1
   exact loc_of_isAbsPow hν w
 end Local
-section Polar
-end Polar
-section Record
-end Record
-section True
-end True
 end GlobalTheory.HeightCounting.Blocks
 namespace GlobalTheory.HeightCounting
 end GlobalTheory.HeightCounting

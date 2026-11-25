@@ -3,6 +3,32 @@ module
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.ModerateCoefficientPositivity
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsPosLowerBoundNearMax
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MonoSpMapRingOfIntegersAlt
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -16,6 +42,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.AdmissibleHermitianColumns
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.EmbeddingHermitianPairs
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.FlowDomainCriterionHolds
@@ -97,7 +125,7 @@ theorem cusp_pnorm_le_exp_neg_of_isIso (E : Type) [Field E] [NumberField E] [IsC
       have : {ζ : ℂ | -(2 * t) < ζ.im} ∈ 𝓝 ζ :=
         (isOpen_lt continuous_const Complex.continuous_im).mem_nhds hζ
       filter_upwards [this] with ζ' h'
-      simp only [hg, if_pos (show -(2 * t) < ζ'.im from h')]
+      simp only [hg, ite_eq_left (show -(2 * t) < ζ'.im from h')]
     refine DifferentiableAt.congr_of_eventuallyEq ?_ hev
     have hF : DifferentiableAt ℂ (fun ζ : ℂ => X.flow v (fun _ => ζ) z0) ζ :=
       ((FlowMeanContinuity.flow_differentiable X v z0).comp
@@ -106,13 +134,13 @@ theorem cusp_pnorm_le_exp_neg_of_isIso (E : Type) [Field E] [NumberField E] [IsC
   have hzero : Tendsto g (comap im atTop) (𝓝 0) :=
     HalfMax.tendsto_zero X la P hP hz0 hξ
       (fun ζ hζ => hdom ζ (by linarith)) g
-      (fun ζ hζ => by simp only [hg, if_pos (show -(2 * t) < ζ.im by linarith)])
+      (fun ζ hζ => by simp only [hg, ite_eq_left (show -(2 * t) < ζ.im by linarith)])
   have hnz : 0 < X.nfac la z0 := flowTermNormDecay.nfac_pos X la hz0
   set B : ℝ := 2 ^ (w / 2) * C0 / X.nfac la z0 with hB
   have hBd : ∀ ζ : ℂ, ζ.im = -t → ‖g ζ‖ ≤ B := by
     intro ζ hζ
     have hlt : -(2 * t) < ζ.im := by linarith
-    simp only [hg, if_pos hlt]
+    simp only [hg, ite_eq_left hlt]
     set y := X.flow v (fun _ => ζ) z0 with hy
     have hyd := hdom ζ hlt
     have hnf : 0 < X.nfac la y := flowTermNormDecay.nfac_pos X la hyd
@@ -161,7 +189,7 @@ theorem cusp_pnorm_le_exp_neg_of_isIso (E : Type) [Field E] [NumberField E] [IsC
       _ ≤ 2 ^ (w / 2) * C0 := by gcongr
   have hsch := PeriodicSchwarzLemma.periodic_schwarz hM ht0 (show t < 2 * t by linarith) hper hdiff hzero hBd
   have hg0 : g 0 = P z0 := by
-    simp only [hg, Complex.zero_im, if_pos (show -(2 * t) < (0 : ℝ) by linarith)]
+    simp only [hg, Complex.zero_im, ite_eq_left (show -(2 * t) < (0 : ℝ) by linarith)]
     congr 1
     exact EmbeddingHermitianPairs.flow_zero X v z0
   rw [hg0] at hsch

@@ -24,7 +24,32 @@ public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCoh
 public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.InclStd
 public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.GeometricGenericComponents
 public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.PowKNeZeroOf
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
 import Mathlib.CategoryTheory.EffectiveEpi.Comp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -37,11 +62,18 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.AlgebraicGeometry.Modules.Sheaf
+import Mathlib.Tactic.Basify
 import Std.Tactic.BVDecide.Normalize.Prop
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.Order.CompletePartialOrder
 import Mathlib.RingTheory.MvPolynomial.IrreducibleQuadratic
+import Mathlib.Tactic.ENatToNat
 import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.RingTheory.SimpleRing.Principal
 
@@ -1020,7 +1052,7 @@ theorem jacobian_infinityDerivation (t : Fin (n + 1) → Rˣ) (D : Fin (n + 1) �
       | succ i =>
         simp only [id] at hki
         simp only [hC, Matrix.of_apply, Fin.cases_succ]
-        rw [if_neg (show i.succ ≠ k from fun h => by subst h; exact lt_irrefl _ hki)]
+        rw [ite_eq_right (show i.succ ≠ k from fun h => by subst h; exact lt_irrefl _ hki)]
   have hM : ∀ bs : Fin (n + 1) → B, (Matrix.of fun k l => infinityDerivation t D (id k) ((bs l : R))) =
       C * Matrix.of fun k l => D (id k) ((bs l : R)) := by
     intro bs; ext j l
@@ -1178,10 +1210,10 @@ theorem infinityCoord_algebraicIndependent (t : Fin (n + 1) → Rˣ) (ht : Algeb
   have hβ' : β ∈ f.support := MvPolynomial.mem_support_iff.2 hβ
   have := congrArg (AddMonoidAlgebra.coeff · (h β)) hg0
   rw [MvPolynomial.coeff_zero, MvPolynomial.coeff_sum, Finset.sum_eq_single β] at this
-  · rw [MvPolynomial.coeff_monomial, if_pos rfl] at this
+  · rw [MvPolynomial.coeff_monomial, ite_eq_left rfl] at this
     exact hβ this
   · intro α hα hne
-    rw [MvPolynomial.coeff_monomial, if_neg (fun e => hne (hinj α hα β hβ' e))]
+    rw [MvPolynomial.coeff_monomial, ite_eq_right (fun e => hne (hinj α hα β hβ' e))]
   · intro hn; exact absurd hβ' hn
 
 theorem infinityCoord_localization (t : Fin (n + 1) → Rˣ) (ht : AlgebraicIndependent K fun k => (t k : R)) :
@@ -1377,7 +1409,7 @@ theorem resRPf_linInd (t : Fin (n + 1) → Rˣ) (ht : AlgebraicIndependent K fun
   rw [MvPolynomial.coeff_sum, MvPolynomial.coeff_zero, Finset.sum_eq_single m0] at hc
   · simpa [MvPolynomial.coeff_monomial] using hc
   · intro m hm hne
-    rw [MvPolynomial.coeff_monomial, if_neg (fun h => hne (hinj m hm m0 hm0 h))]
+    rw [MvPolynomial.coeff_monomial, ite_eq_right (fun h => hne (hinj m hm m0 hm0 h))]
   · intro h
     exact absurd hm0 h
 
@@ -1407,7 +1439,7 @@ theorem resRPf_Dk (t : Fin (n + 1) → Rˣ) (D : Fin (n + 1) → Derivation K R 
     D k (tpow t m) = m k • tpow t (m - Pi.single k (1 : ℤ)) := by
   have h := resRPf_logD t (D k) m
   simp only [hD, mul_ite, mul_one, mul_zero, smul_ite, smul_zero, Finset.sum_ite_eq, Finset.mem_univ,
-    if_true] at h
+    ite_true] at h
   have hU : tpow t m * (((∏ j, t j ^ m j)⁻¹ : Rˣ) : R) = 1 := Units.mul_inv _
   calc D k (tpow t m) = tpow t m * ((((∏ j, t j ^ m j)⁻¹ : Rˣ) : R) * D k (tpow t m)) := by
         rw [← mul_assoc, hU, one_mul]
@@ -1431,12 +1463,12 @@ theorem res_R_pf (t : Fin (n + 1) → Rˣ) (ht : AlgebraicIndependent K fun k =>
     rw [LinearMap.comp_apply, Submodule.subtype_apply] at h2
     rw [h1, h2, Module.Basis.coord_apply, Module.Basis.repr_self, Finsupp.single_apply]
   refine ⟨res, ?_, ?_, ?_⟩
-  · rw [← resRPf_tpow_negOne, hval, if_pos rfl]
+  · rw [← resRPf_tpow_negOne, hval, ite_eq_left rfl]
   · intro x hx
     have hle : Submodule.span K (tpow t '' {m | m ≠ fun _ => -1}) ≤ LinearMap.ker res := by
       rw [Submodule.span_le]
       rintro _ ⟨m, hm, rfl⟩
-      rw [SetLike.mem_coe, LinearMap.mem_ker, hval, if_neg hm]
+      rw [SetLike.mem_coe, LinearMap.mem_ker, hval, ite_eq_right hm]
     exact hle hx
   · intro k x hx
     have hx' : x ∈ Submodule.span K (Set.range (tpow t)) := by
@@ -1461,7 +1493,7 @@ theorem res_R_pf (t : Fin (n + 1) → Rˣ) (ht : AlgebraicIndependent K fun k =>
         simp only [Pi.sub_apply, Pi.single_eq_same] at h'
         have h0 : m k = 0 := by omega
         rw [h0, zero_smul]
-      · rw [if_neg h, smul_zero]
+      · rw [ite_eq_right h, smul_zero]
     have h2 := hker hx'
     rwa [LinearMap.mem_ker, LinearMap.comp_apply, Derivation.coeFn_coe] at h2
 

@@ -14,24 +14,9 @@ public import Development.AbelianVarietyTheory.Proofs.HeightProofs.AdelicUnitary
 public import Development.AbelianVarietyTheory.Proofs.HeightProofs.AdelicUnitaryRealPointsStructureRealPlaces
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.CocompactTensor
 import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasSign
-import Mathlib.Analysis.Matrix.Order
 import Mathlib.RingTheory.Etale.Weakly
-import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
-import Mathlib.RingTheory.TotallySplit
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -70,7 +55,7 @@ def blk (b : O → Matrix (Fin m) (Fin m) ℂ) (a : O → Matrix (Fin n) (Fin n)
 theorem blockDiagonal_mulVec {κ : Type} [Fintype κ] (M : O → Matrix κ κ ℂ) (v : κ × O → ℂ) (i : κ) (τ : O) :
     (blockDiagonal M *ᵥ v) (i, τ) = (M τ *ᵥ fun j => v (j, τ)) i := by
   simp only [mulVec, dotProduct, Fintype.sum_prod_type, blockDiagonal_apply, ite_mul, zero_mul, Finset.sum_ite_eq,
-    Finset.mem_univ, if_true]
+    Finset.mem_univ, ite_true]
 
 theorem cpt_blk (b : O → Matrix (Fin m) (Fin m) ℂ) (a : O → Matrix (Fin n) (Fin n) ℂ)
     (v : (Fin m × Fin n) × O → ℂ) (τ : O) : cpt (blk b a *ᵥ v) τ = b τ * cpt v τ * a τ := by

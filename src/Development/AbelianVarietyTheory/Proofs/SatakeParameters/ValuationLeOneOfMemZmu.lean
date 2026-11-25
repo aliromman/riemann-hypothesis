@@ -6,10 +6,34 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ActPMemLo
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.FiniteDivLatticeQuotient
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.NotDvdCardOfInjective
 import Formalism.LocalToGlobal.Columns.CoefficientsModP.TauLatticeLatticeHolds
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
 import Mathlib.GroupTheory.FiniteAbelian.Basic
 import Mathlib.LinearAlgebra.FreeModule.IdealQuotient
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Etale.Weakly
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -23,6 +47,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -231,7 +258,7 @@ theorem kerOf_thDistC (Sa SB : Finset (HeightOneSpectrum (𝓞 X.E))) {cA cB : �
   rw [smul_comm]
   congr 1
   unfold thDistC
-  rw [if_pos]
+  rw [ite_eq_left]
   refine ⟨Dvd.intro_left _ rfl, ?_⟩
   have h := (Function.surjInv (Submodule.Quotient.mk_surjective
     ((mulLat cB (homAt Sa N N')).comap (divLat cA (homAt Sa N N')).subtype)) z).2
@@ -284,7 +311,7 @@ theorem latWithBasis_of_stdOver {E K : Type} [Field E] [NumberField E] [StarRing
       have : (fun a => emb τ (x a)) = ∑ j, φ (r j) • fun a => ((1 : GL (Fin n) K) : Matrix (Fin n) (Fin n) K) a j := by
         funext a
         simp only [Finset.sum_apply, Pi.smul_apply, Units.val_one, Matrix.one_apply, Algebra.smul_def, mul_ite, mul_zero, mul_one,
-          Finset.sum_ite_eq, Finset.mem_univ, if_true, ← hr]
+          Finset.sum_ite_eq, Finset.mem_univ, ite_true, ← hr]
         rfl
       change (fun a => emb τ (x a)) ∈ _
       rw [this]

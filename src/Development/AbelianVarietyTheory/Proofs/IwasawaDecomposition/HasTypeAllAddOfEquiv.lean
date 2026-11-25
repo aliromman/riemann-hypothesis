@@ -3,6 +3,29 @@ module
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NormDwLeSobNorm
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContDiffSetIntegralNat
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HasTypeTransport
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -16,6 +39,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.AdelicDataRowMeasureScaleTrivialTuple
 
 @[expose] public section
@@ -70,8 +96,8 @@ theorem HasTypeAll.add {Lie Gs : Set (Mx n)} {f f' : Mx n → ℂ} (h : HasTypeA
   have sumAll : ∀ S', Words Lie S' → Summable (fun i => (if i % 2 = 0 then C (i / 2) else C' (i / 2)) *
       sobNorm σ S' (if i % 2 = 0 then v (i / 2) else v' (i / 2))) := fun S' hS' => by
     refine Summable.even_add_odd ?_ ?_
-    · simpa only [e1, e3, if_true] using a6 S' hS'
-    · simpa only [e2, e4, if_false] using b6 S' hS'
+    · simpa only [e1, e3, ite_true] using a6 S' hS'
+    · simpa only [e2, e4, ite_false] using b6 S' hS'
   refine ⟨S₀ ++ S₁, hS, ⟨fun g => |B₀ g| + |B₁ g|, (continuous_abs.comp hB₀).add (continuous_abs.comp hB₁),
     fun g hg w hw => ?_⟩, fun i => if i % 2 = 0 then v (i / 2) else v' (i / 2),
     fun i => if i % 2 = 0 then ℓ (i / 2) else ℓ' (i / 2), fun i => if i % 2 = 0 then C (i / 2) else C' (i / 2),
@@ -98,8 +124,8 @@ theorem HasTypeAll.add {Lie Gs : Set (Mx n)} {f f' : Mx n → ℂ} (h : HasTypeA
     · exact (a3 _ w hw).trans (mul_le_mul_of_nonneg_left (by linarith) (a2 _))
     · exact (b3 _ w hw).trans (mul_le_mul_of_nonneg_left (by linarith) (b2 _))
   · refine HasSum.even_add_odd ?_ ?_
-    · simpa only [e1, e3, if_true] using a5 g hg
-    · simpa only [e2, e4, if_false] using b5 g hg
+    · simpa only [e1, e3, ite_true] using a5 g hg
+    · simpa only [e2, e4, ite_false] using b5 g hg
 
 
 open GlobalTheory.TypeSum.Transport in

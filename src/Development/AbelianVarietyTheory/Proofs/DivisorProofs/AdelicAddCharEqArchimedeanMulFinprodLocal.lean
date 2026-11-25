@@ -3,18 +3,6 @@ module
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatAtVAtStable
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalAddCharComponentTrivialIntegersEventually
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ActFromBlocks
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ContinuousAtPlace
 
@@ -146,7 +134,7 @@ theorem psi_prod : ∀ (F : Type) [Field F] [NumberField F] (ψ : AddChar (AF F)
     if hw : w ∈ S then 0 else ⟨evalV F w xf, by
       have : w ∉ hT.toFinset := fun h => hw (Finset.mem_union_right _ h)
       simpa using this⟩
-  have hr : ∀ v ∈ I, r v = 0 := fun v hv => dif_pos (Finset.mem_union_left _ hv)
+  have hr : ∀ v ∈ I, r v = 0 := fun v hv => dite_eq_left (Finset.mem_union_left _ hv)
   have hdec : xf = ∑ v ∈ S, GlobalTheory.AdelicU.singleFin v (evalV F v xf) + intFin r := by
     refine GlobalTheory.AdelicU.af_ext fun w => ?_
 

@@ -2,22 +2,7 @@ module
 
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DltEqZero
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnramifiedQuadraticNormsTraceUniformizerFacts
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -65,7 +50,7 @@ theorem eS_idem {e : ι → B.A} (he : OrthogonalIdempotents e) (I : Finset ι) 
   show (∑ i ∈ I, e i) * eS B e I = _
   rw [Finset.sum_mul]
   refine Finset.sum_congr rfl fun i hi => ?_
-  rw [e_mul_eS B he, if_pos hi]
+  rw [e_mul_eS B he, ite_eq_left hi]
 
 theorem sigma_e {e : ι → B.A} {S : Finset ι} (h : IsPre B e S) (i : ι) : B.σ (e i) = e i := by
   obtain ⟨f, -, -, -, h1, h2⟩ := h.2 i
@@ -112,7 +97,7 @@ theorem chi_prod {e π : ι → B.A} {S : Finset ι} (h : IsFrame B e π S) (I J
     intro j hj
     obtain ⟨hjJ, hjI⟩ := Finset.mem_filter.1 hj
     have hEe : E = (1 - e j) * E := by
-      rw [sub_mul, one_mul, mul_comm (e j) E, hEdef, mul_comm, e_mul_eS B he, if_neg hjI, sub_zero]
+      rw [sub_mul, one_mul, mul_comm (e j) E, hEdef, mul_comm, e_mul_eS B he, ite_eq_right hjI, sub_zero]
     show π j * E = E
     rw [hEe, ← mul_assoc, (h.2 j (hJ hjJ)).2.1]
   have h2 : (∏ j ∈ J.filter (· ∈ I), π j) * (1 - E) = 1 - E := by
@@ -121,7 +106,7 @@ theorem chi_prod {e π : ι → B.A} {S : Finset ι} (h : IsFrame B e π S) (I J
     obtain ⟨hjJ, hjI⟩ := Finset.mem_filter.1 hj
     have hEe : 1 - E = (1 - e j) * (1 - E) := by
       have := e_mul_eS B he j I
-      rw [if_pos hjI] at this
+      rw [ite_eq_left hjI] at this
       rw [← hEdef] at this
       linear_combination -this
     show π j * (1 - E) = 1 - E

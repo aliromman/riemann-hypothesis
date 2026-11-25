@@ -4,20 +4,7 @@ public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsTe
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsSelfDualOfDualSubgroups
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsSmallDualLattices
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NonemptyMeasAndReps
-import Mathlib.Algebra.Order.Star.Real
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 public import Mathlib.Topology.LocallyConstant.Algebra
 
 @[expose] public section
@@ -100,7 +87,7 @@ theorem isTest_fourB {F : Type} [NontriviallyNormedField F] [IsUltrametricDist F
     · simp [image_eq_zero_of_notMem_tsupport hx]
   · refine HasCompactSupport.intro hNc fun y hy => ?_
     have : ¬ ∀ x ∈ M, ψ (β x y) = 1 := fun h => hy ((hN y).2 h)
-    push_neg at this
+    push Not at this
     obtain ⟨m, hm, hne⟩ := this
     refine AbsInv.integral_eq_zero_of_translate μ _ m _ hne fun x => ?_
     simp only [map_add (f := _), LinearMap.add_apply, AddChar.map_add_eq_mul, hUinv M hMU x m hm]

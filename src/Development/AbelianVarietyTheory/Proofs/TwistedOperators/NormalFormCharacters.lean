@@ -9,6 +9,31 @@ public import Formalism.LocalToGlobal.UnitaryNorms.CharHost
 public import Formalism.LocalToGlobal.UnitaryNorms.IsUnitaryNormOf
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeckeCharUniformiserValueIsAlgebraic
 import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.FrameFacts
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -22,10 +47,17 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AlgebraicValuesFinite.EvFLocalIdeleSelf
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsNumberFieldValuesInEtaCharHalfTwist, Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeckeCharLocalValueDivUniformiserPow, Development.AbelianVarietyTheory.Proofs.TwistedOperators.NormalFormCharacters
@@ -218,11 +250,11 @@ theorem algType_of_hasInf {L : Type} [Field L] [NumberField L] {I : Type} [Finty
   refine Finset.prod_congr rfl fun i _ => ?_
   rw [Finset.prod_mul_distrib, Finset.prod_inv_distrib]
   have p1 : ∏ ψ : L →+* ℂ, ψ (k : L) ^ (if φ i = ψ then a i else 0) = φ i (k : L) ^ a i := by
-    rw [Finset.prod_eq_single (φ i) (fun b _ hb => by rw [if_neg (Ne.symm hb), zpow_zero]) (by simp), if_pos rfl]
+    rw [Finset.prod_eq_single (φ i) (fun b _ hb => by rw [ite_eq_right (Ne.symm hb), zpow_zero]) (by simp), ite_eq_left rfl]
   have p2 : ∏ ψ : L →+* ℂ, ψ (k : L) ^ (if (starRingEnd ℂ).comp (φ i) = ψ then a i else 0) =
       (starRingEnd ℂ (φ i (k : L))) ^ a i := by
-    rw [Finset.prod_eq_single ((starRingEnd ℂ).comp (φ i)) (fun b _ hb => by rw [if_neg (Ne.symm hb), zpow_zero]) (by simp),
-      if_pos rfl, RingHom.comp_apply]
+    rw [Finset.prod_eq_single ((starRingEnd ℂ).comp (φ i)) (fun b _ hb => by rw [ite_eq_right (Ne.symm hb), zpow_zero]) (by simp),
+      ite_eq_left rfl, RingHom.comp_apply]
   rw [p1, p2, zpow_mul, sq_div_norm (hne _), div_zpow, div_eq_mul_inv]
 
 end GlobalTheory.RowExNF

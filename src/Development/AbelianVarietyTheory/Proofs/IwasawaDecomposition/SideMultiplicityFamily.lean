@@ -2,6 +2,27 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.RingSpecNormalisedCharacterEq
 import Formalism.LocalToGlobal.UnitaryNorms.CharUniq
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -289,8 +310,8 @@ theorem qPl_sub {D : D7} {cf : CharFrame D} {C : NChoice D} (tp : TupTied D cf C
   refine HChar.UnrAt.mul ((cf.isMu0 j).unr w' fun k hk => hg ⟨w', hov, k, hk⟩) (HChar.UnrAt.mul ?_ ?_)
   · unfold CharFrame.delAt
     split_ifs with h
-    · exact cf.isDel'.unr w' fun hp => hno.2 (by rw [if_pos h]; exact hp)
-    · exact cf.isDel.unr w' fun hp => hno.2 (by rw [if_neg h]; exact hp)
+    · exact cf.isDel'.unr w' fun hp => hno.2 (by rw [ite_eq_left h]; exact hp)
+    · exact cf.isDel.unr w' fun hp => hno.2 (by rw [ite_eq_right h]; exact hp)
   · exact ((tp.psi_is w hw).ram w').2 hno.1
 
 end Chars

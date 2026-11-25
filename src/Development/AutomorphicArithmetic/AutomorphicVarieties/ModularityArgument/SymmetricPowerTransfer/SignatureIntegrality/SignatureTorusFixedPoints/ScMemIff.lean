@@ -5,6 +5,28 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityA
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.SignatureIntegrality.SignatureTorusFixedPoints.Contract
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.SignatureIntegrality.SignatureTorusFixedPoints.DiagDC
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.SignatureIntegrality.SignatureTorusFixedPoints.FinFacts
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -19,6 +41,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 
 @[expose] public section
 
@@ -154,9 +178,9 @@ theorem UpperTheory.V.Z.Sym.Sig.eqZ :
           convert hc using 1
           rw [map_mul]
           group), map_mul, mul_inv, Units.val_mul]
-      · have h0 : V.fZ ω d g = 0 := dif_neg h
+      · have h0 : V.fZ ω d g = 0 := dite_eq_right h
         have h1 : V.fZ ω d (GeneralLinearGroup.scalar (Fin n) z * g) = 0 :=
-          dif_neg (fun ⟨c, hc⟩ => h ⟨z⁻¹ * c, by
+          dite_eq_right (fun ⟨c, hc⟩ => h ⟨z⁻¹ * c, by
             convert hc using 1
             rw [map_mul, map_inv]
             group⟩)
@@ -165,8 +189,8 @@ theorem UpperTheory.V.Z.Sym.Sig.eqZ :
       by_cases h : ∃ c : kˣ, (GeneralLinearGroup.scalar (Fin n) c)⁻¹ * g ∈ V.DC d
       · obtain ⟨c, hc⟩ := h
         rw [fZ_eq V ω hω hn hd hc, fZ_eq V ω hω hn hd (dc_tr V hu hu' hc)]
-      · have h0 : V.fZ ω d g = 0 := dif_neg h
-        have h1 : V.fZ ω d (u * g * u') = 0 := dif_neg (fun ⟨c, hc⟩ => h ⟨c, by
+      · have h0 : V.fZ ω d g = 0 := dite_eq_right h
+        have h1 : V.fZ ω d (u * g * u') = 0 := dite_eq_right (fun ⟨c, hc⟩ => h ⟨c, by
           have h2 := dc_tr V (inv_mem hu) (inv_mem hu') hc
           have e : u⁻¹ * (u * g * u') * u'⁻¹ = g := by group
           rwa [e] at h2⟩)
@@ -177,7 +201,7 @@ theorem UpperTheory.V.Z.Sym.Sig.eqZ :
       intro y hy
       have hex : ∃ c : kˣ, (GeneralLinearGroup.scalar (Fin n) c)⁻¹ * y.out ∈ V.DC d := by
         by_contra h
-        exact hy (dif_neg h)
+        exact hy (dite_eq_right h)
       obtain ⟨c, a, ha, b, hb, e⟩ := hex
       obtain ⟨j, hj⟩ := QuotientGroup.mk_out_eq_mul (V.J n) (a * dg d)
       refine ⟨((a * dg d : GL (Fin n) k) : GL (Fin n) k ⧸ V.J n), ⟨⟨a, ha⟩, rfl⟩, ?_⟩

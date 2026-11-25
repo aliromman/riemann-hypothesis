@@ -6,12 +6,40 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityA
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.LocalHermitianForms.LocalOrbitCounts.HsNE
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.LocalHermitianForms.LocalOrbitCounts.NormEx
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.LocalHermitianForms.LocalOrbitCounts.WCard
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
 import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.Order.CompletePartialOrder
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -24,6 +52,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 public import Mathlib.RingTheory.Finiteness.Prod
 public import Mathlib.RingTheory.Nakayama
 
@@ -105,12 +136,13 @@ variable {O : Type} [CommRing O] {K : Type} [Field K] [Algebra O K] {Δ τ : K}
 private theorem int_of (a : O) : IsInt O (algebraMap K (Lsq K Δ) (algebraMap O K a)) := by
   rw [← IsScalarTower.algebraMap_apply]; exact isIntegral_algebraMap
 
-private theorem int_star {y : Lsq K Δ} (hy : IsInt O y) : IsInt O (star y) := by
-  let φ : Lsq K Δ →ₐ[O] Lsq K Δ :=
-    { starRingEnd (Lsq K Δ) with
+private theorem int_star {a b : K} {y : QuadraticAlgebra K a b} (hy : IsIntegral O y) :
+    IsIntegral O (star y) := by
+  let φ : QuadraticAlgebra K a b →ₐ[O] QuadraticAlgebra K a b :=
+    { starRingEnd (QuadraticAlgebra K a b) with
       commutes' := fun r => by
-        change star (algebraMap O (Lsq K Δ) r) = _
-        rw [IsScalarTower.algebraMap_apply O K (Lsq K Δ)]
+        change star (algebraMap O (QuadraticAlgebra K a b) r) = _
+        rw [IsScalarTower.algebraMap_apply O K (QuadraticAlgebra K a b)]
         ext <;> simp }
   exact hy.map φ
 
@@ -552,14 +584,8 @@ private theorem normE (hl : IsLoc O Δ) (hτ : τ ∈ (algebraMap O K).range) (u
 private theorem IB_of_int (hl : IsLoc O Δ) (hτ : τ ∈ (algebraMap O K).range) (u : Oˣ)
     (hu : algebraMap O K u = τ ^ 2 - 4) {x : Etau K τ} (hx : IsIntegral O x) : IB O (ofE Δ x) := by
   haveI := hl.frac
-  let φ : Etau K τ →ₐ[O] Etau K τ :=
-    { starRingEnd (Etau K τ) with
-      commutes' := fun r => by
-        change star (algebraMap O (Etau K τ) r) = _
-        rw [IsScalarTower.algebraMap_apply O K (Etau K τ)]
-        ext <;> simp }
   have k : ∀ x : Etau K τ, IsIntegral O x → IsInt O (QuadraticAlgebra.trace (ofE Δ x)) := fun x hx => by
-    have h : IsIntegral O (x + star x) := hx.add (hx.map φ)
+    have h : IsIntegral O (x + star x) := hx.add (int_star hx)
     rw [← algebraMap_trace_eq_add_star] at h
     obtain ⟨a, ha⟩ := IsIntegrallyClosed.isIntegral_iff.mp
       ((isIntegral_algebraMap_iff ).mp h)

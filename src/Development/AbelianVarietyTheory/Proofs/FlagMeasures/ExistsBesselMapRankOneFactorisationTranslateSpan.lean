@@ -20,7 +20,36 @@ public import Formalism.FormalDegreeBessel.FinalG
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.BoundedEquivariantMapSmoothContinuousSeminormBou
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.BesselFunctionalStandardSide
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.MeasurableSetNotGG
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -33,6 +62,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Analysis.CStarAlgebra.Classes
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.MatGroupHaarUniqueFiniteCompactOpenPos
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.OppositeWeylSubgroupClosed
@@ -45,6 +76,7 @@ import Development.AbelianVarietyTheory.Proofs.FlagMeasures.SmoothVectorsDenseIn
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.UnimodularBesselSubgroupsUWN
 import Mathlib.Analysis.CStarAlgebra.ContinuousLinearMap
 import Std.Tactic.BVDecide.Normalize.Prop
+import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.TypeStar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -277,14 +309,14 @@ theorem extend_ae_linear_of_local_sq : ∀ {X : Type} [MeasurableSpace X] (μ : 
   have hTae : ∀ u, T u =ᵐ[ν] Ext u := by
     intro u
     by_cases hu : u ∈ D
-    · simp only [T, if_pos hu]
+    · simp only [T, ite_eq_left hu]
       rw [hExt u hu]
       exact (MemLp.coeFn_toLp _).symm
-    · simp only [T, if_neg hu]
+    · simp only [T, ite_eq_right hu]
       rfl
   have hres : ∀ n, μ.restrict (K n) ≪ ν := fun n =>
     (Measure.absolutelyContinuous_of_le Measure.restrict_le_self).trans hμν
-  refine ⟨T, fun u hu => if_pos hu, fun u u' => ?_, fun b u => ?_, fun n => ?_⟩
+  refine ⟨T, fun u hu => ite_eq_left hu, fun u u' => ?_, fun b u => ?_, fun n => ?_⟩
   · refine hμν.ae_le ?_
     filter_upwards [hTae (u + u'), hTae u, hTae u', Lp.coeFn_add (Ext u) (Ext u')]
       with x h1 h2 h3 h4
@@ -964,7 +996,7 @@ theorem GlobalTheory.SgInf.exists_besselExt : ∀ (k r : ℕ) {H : Type} [Normed
       ‖F u 1‖ ≤ C * (Ws.map fun ws => ‖dsigW σ ws u‖).sum := by
     intro u hu
     have := (hreg u hu).choose_spec
-    simp only [F, dif_pos hu]
+    simp only [F, dite_eq_left hu]
     exact this
   have hDDsm : ∀ u ∈ DD σ w, IsSmoothVec σ u := fun u hu => (hDDi.2.2.2.2 hw).1 u (hDDi.2.2.1 hu)
   refine ⟨fun u => F u 1, ⟨?_, ?_, ?_, ?_⟩, ?_⟩

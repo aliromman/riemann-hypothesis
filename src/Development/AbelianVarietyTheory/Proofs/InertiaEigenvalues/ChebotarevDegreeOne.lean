@@ -40,7 +40,34 @@ public import Mathlib.RingTheory.RamificationInertia.Inertia
 public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.ChebotarevDegreeOneIffCheb
 public import ReciprocityTheory.GaloisValuations.Global
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FinitePlacesInertiaNotFixingFiniteExtension
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -54,12 +81,17 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import ReciprocityTheory.GaloisValuations.GlobalA
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.IdealCharacterLSeriesContinuation
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.TsumIdealMulAbsNormCpowEqExpTsum
 import Mathlib.Algebra.Order.Star.Real
 import Mathlib.Analysis.Complex.RemovableSingularity
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.LinearAlgebra.Matrix.CharP
 import Mathlib.Tactic.TypeStar
@@ -352,19 +384,19 @@ theorem _root_.GlobalTheory.idealCharacterL_continuation_ne_zero_one :
           else 0) := by
       intro P
       by_cases hP : P ∈ S
-      · rw [if_pos hP]
+      · rw [ite_eq_left hP]
         have hXP : X P.asIdeal = 0 := hXzero _ (by
           rw [sup_eq_left.mpr ((hmemS P).mp hP)]
           exact P.isPrime.ne_top)
         rw [hXP, zero_mul, sub_zero, Complex.log_one, neg_zero, zero_add]
-      · rw [if_neg hP, add_zero, hcX P (fun h => hP ((hmemS P).mpr h))]
+      · rw [ite_eq_right hP, add_zero, hcX P (fun h => hP ((hmemS P).mpr h))]
     show LX s * F s = _
-    rw [tsum_congr hsplit, hsa.tsum_add (summable_of_ne_finset_zero (s := S) fun P hP => if_neg hP),
-      tsum_eq_sum (s := S) (fun P hP => if_neg hP), Complex.exp_add, ← hLX s hs, hF,
+    rw [tsum_congr hsplit, hsa.tsum_add (summable_of_ne_finset_zero (s := S) fun P hP => ite_eq_right hP),
+      tsum_eq_sum (s := S) (fun P hP => ite_eq_right hP), Complex.exp_add, ← hLX s hs, hF,
       Complex.exp_sum]
     congr 1
     refine Finset.prod_congr rfl fun P hP => ?_
-    rw [if_pos hP, Complex.exp_neg, Complex.exp_log (hfac P s hs0)]
+    rw [ite_eq_left hP, Complex.exp_neg, Complex.exp_log (hfac P s hs0)]
   · show LX 1 * F 1 ≠ 0
     rw [hF]
     exact mul_ne_zero hLX1 (Finset.prod_ne_zero_iff.mpr fun P _ => inv_ne_zero (hfac P 1 (by simp)))
@@ -582,14 +614,14 @@ theorem exists_continuous_ne_zero_one :
     by_cases hy : y = 0
     · simp [ψ, hy]
     have hxy : x * y ≠ 0 := mul_ne_zero hx hy
-    simp only [ψ, dif_neg hx, dif_neg hy, dif_neg hxy]
+    simp only [ψ, dite_eq_right hx, dite_eq_right hy, dite_eq_right hxy]
     rw [← Units.val_mul, ← map_mul]
     congr 3
     ext
     simp
   have hψunit : ∀ u : (ZMod m)ˣ, ψ (u : ZMod m) = ((χ u : ℂˣ) : ℂ) := by
     intro u
-    simp only [ψ, dif_neg u.ne_zero]
+    simp only [ψ, dite_eq_right u.ne_zero]
     congr 3
     ext
     simp
@@ -607,7 +639,7 @@ theorem exists_continuous_ne_zero_one :
   have hXnorm : ∀ I, I ≠ ⊥ → I ⊔ M = ⊤ → ‖X I‖ = 1 := by
     intro I _ hI
     have hne := (hcop I).1 hI
-    simp only [X, ψ, dif_neg hne]
+    simp only [X, ψ, dite_eq_right hne]
     exact GlobalTheory.Mem.RayPrimes.norm_char χ _
   have hXzero : ∀ I, I ⊔ M ≠ ⊤ → X I = 0 := by
     intro I hI

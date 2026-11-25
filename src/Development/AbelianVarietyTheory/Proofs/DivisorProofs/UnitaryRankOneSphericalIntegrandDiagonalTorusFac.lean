@@ -2,10 +2,39 @@ module
 
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConvUAbsU
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIdealWeight
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -18,6 +47,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemShellUIffDepth
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.HasBoundedSumsOne
 
@@ -102,7 +134,7 @@ theorem torus_factor : ∀ (L : Type) [Field L] [Valued L (WithZero (Multiplicat
     have := hU.2.2.2.2.2.1
     exact_mod_cast (by omega : q ≠ 0)
   have hs : simpleU k = Equiv.swap (lo k) (lo k).rev := by
-    rw [simpleU, if_neg hk]
+    rw [simpleU, ite_eq_right hk]
   set a : Fin n := lo k with ha
   have hkv : k.val = n / 2 - 1 := by have := k.2; omega
   have hodd : n % 2 = 1 := by
@@ -136,7 +168,7 @@ theorem torus_factor : ∀ (L : Type) [Field L] [Valued L (WithZero (Multiplicat
     exact conj_diag_apply _ Y Yi T hinv hYw hYi ht i j
   have hB : IsBorelU b := by
     intro i j hij
-    rw [hb, if_neg (ne_of_gt hij)]
+    rw [hb, ite_eq_right (ne_of_gt hij)]
   have hsph := hφ b (y⁻¹ * w * x) 1 hB (one_mem _)
   have hprod : y⁻¹ * t * w * x = b * (y⁻¹ * w * x) * 1 := by
     rw [hbd]; group
@@ -194,8 +226,8 @@ theorem torus_factor : ∀ (L : Type) [Field L] [Valued L (WithZero (Multiplicat
         · intro h; have := congrArg Fin.val h; rw [hrv] at this
           have h3 : (lo i : Fin n).val = i.val := rfl
           have := i.2; omega
-      rw [hb, if_pos rfl, hfix, hact, if_neg hik]
-    rw [hrest, hb, if_pos rfl, ← ha, Equiv.swap_apply_left, hTa.2, hact, if_pos rfl]
+      rw [hb, ite_eq_left rfl, hfix, hact, ite_eq_right hik]
+    rw [hrest, hb, ite_eq_left rfl, ← ha, Equiv.swap_apply_left, hTa.2, hact, ite_eq_left rfl]
     have hE : ((n : ℤ) - 1 - 2 * (k.val : ℤ)) = 2 := by omega
     rw [hE]
     set o := ordL (T a a)

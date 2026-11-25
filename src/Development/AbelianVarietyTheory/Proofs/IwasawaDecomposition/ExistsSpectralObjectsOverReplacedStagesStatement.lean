@@ -59,6 +59,30 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MultR
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MvEvHolds
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MvRowJ
 import Aesop.Main
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -72,12 +96,16 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalToGlobal.IndefiniteReal.AutomorphicEvaluation
 import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.ConcreteLevelAdelicSubset
 import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.InHHAlg
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PostOnGaLMemGoodPart
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.LevelGroupActionEqZeroOfNoLift
 import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedVolumeStatements.LevelSubgroupProperties
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.TypeStar
 import Formalism.LocalRingCardinality.DataTheta
@@ -189,12 +217,12 @@ theorem top_expand [Fintype (G0g D.nd)] (X : HidaSetting D) {red : X.B.I.Gf → 
         ∑ γ, (Fb γ).indicator (fun _ => cf γ) g := by
     intro g
     by_cases hg : g ∈ X.B.I.Kset
-    · rw [if_pos hg, Finset.sum_eq_single (red g)]
+    · rw [ite_eq_left hg, Finset.sum_eq_single (red g)]
       · rw [Set.indicator_of_mem (show g ∈ Fb (red g) from ⟨hg, rfl⟩), hy g hg]
       · intro b _ hb
         exact Set.indicator_of_notMem (by exact fun hm => hb hm.2.symm) _
       · intro h1; exact absurd (Finset.mem_univ _) h1
-    · rw [if_neg hg, zero_mul]
+    · rw [ite_eq_right hg, zero_mul]
       symm
       refine Finset.sum_eq_zero fun b _ => ?_
       exact Set.indicator_of_notMem (by exact fun hm => hg hm.1) _
@@ -237,9 +265,9 @@ theorem eg_eq_step {D : D7} (X : HidaSetting D) {red : X.B.I.Gf → G0g D.nd} (h
   unfold eg
   by_cases hx : x ∈ X.B.I.Kset
   · have hex : x ∈ X.B.I.Kset ∧ ∃ γ : G0g D.nd, GoodAt X x γ := ⟨hx, red x, hr.1 x hx⟩
-    rw [dite_eq_left hex, if_pos hx,
+    rw [dite_eq_left hex, ite_eq_left hx,
       Formalism.L2.SG.Pf.rowDictEgWellDef_holds X x _ _ (Classical.choose_spec hex.2) (hr.1 x hx)]
-  · rw [dite_eq_right (fun h => hx h.1), if_neg hx]
+  · rw [dite_eq_right (fun h => hx h.1), ite_eq_right hx]
 
 theorem rg_expand : ∀ (D : D7) (X : HidaSetting D) (G : GoodOp X) [Fintype (G0g D.nd)] (red : X.B.I.Gf → G0g D.nd) (s : G0g D.nd → X.B.I.Gf), IsRedHom X red → (∀ γ, s γ ∈ X.B.I.Kset ∧ red (s γ) = γ) → ∀ φ : L2X X, (∀ k ∈ X.B.I.Kg X.B.g, X.B.R (1, k) φ = φ) → G.Rg φ = ∑ γ, D.ntypes.e0.coeff γ • X.B.R (1, s γ) φ := by
   intro D X G _ red s hr hs φ hφ
@@ -340,9 +368,9 @@ theorem evalOn_good : ∀ (D : D7) (G' : Type) [Group G'] [Fintype G'] (Pl0 T : 
       intro γ
       by_cases hγ : γ = 1
       · subst hγ
-        simp only [s, if_pos rfl]
+        simp only [s, ite_eq_left rfl]
         exact ⟨hkK, hrk⟩
-      · simp only [s, if_neg hγ]
+      · simp only [s, ite_eq_right hγ]
         exact hs0' γ
     have hI := GlobalTheory.Mem.SRe.evalAct_intertwines D G' Pl0 T A Ks R F X h t v₀ σ red hB (S : MMap (MP R)) S.2
       ((J S : conjRows X) : L2X X) (hJ S).1 (hGQ _ S.2) a s hs
@@ -893,7 +921,7 @@ theorem kap_mem' (R : RealDat D A Ks) (X : HidaSetting D) (h : X.B.I = Formalism
       intro i j hij
       exfalso
       unfold Formalism.L2.DIV.blkOf at hij
-      rw [if_pos (hr i), if_pos (hr j)] at hij
+      rw [ite_eq_left (hr i), ite_eq_left (hr j)] at hij
       exact lt_irrefl 0 hij
     · exact absurd hP (Finset.notMem_empty PP)
 
@@ -1537,7 +1565,7 @@ theorem chi2_apply_one : X.chi2 1 = 1 := by
 
 theorem e_one : X.B.e 1 = 1 / (X.volK2 : ℂ) := by
   have h1 : (1 : X.B.I.Gf) ∈ K2set X.B.I X.B.g X.e0 X.z0 X.bw := (Formalism.L2.SG.Pf.level_subgroup_character_unitary X).1
-  rw [X.e_eq 1, if_pos h1]
+  rw [X.e_eq 1, ite_eq_left h1]
   have hc : chi2f X.B.I X.psiEf X.B.g X.e0 X.f0 X.z0 X.bw X.bwd 1 = 1 := chi2_apply_one X
   rw [hc, star_one]
   rfl

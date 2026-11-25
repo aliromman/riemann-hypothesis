@@ -4,7 +4,36 @@ public import Development.AbelianVarietyTheory.Definitions.Foundations.ExistsFin
 public import Mathlib.Basic.Complex.Basic
 public import Mathlib.GroupTheory.DoubleCoset
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsContinuousPadic
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -18,6 +47,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Divisors.SimpleTwistedTraceFormulaStable
 import Development.AbelianVarietyTheory.Definitions.Foundations.SmoothPartStable
 import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.BaseChangeDefiniteUnitary
@@ -68,14 +100,14 @@ theorem finsum_doubleCoset_restr {X V : Type} {Y : V → Type} [Group X] [Topolo
     let t' : ∀ v, Y v := fun v => if pf v x ∈ K v ∧ pf v y ∈ K v then 1 else t v
     have ht'T : ∀ v, t' v ∈ Tv v := fun v => by
       by_cases c : pf v x ∈ K v ∧ pf v y ∈ K v
-      · simp only [t', if_pos c]; exact one_mem _
-      · simp only [t', if_neg c]; exact ht v
+      · simp only [t', ite_eq_left c]; exact one_mem _
+      · simp only [t', ite_eq_right c]; exact ht v
     have ht'K : ∀ v, (pf v x)⁻¹ * (t' v)⁻¹ * pf v y ∈ K v := fun v => by
       by_cases c : pf v x ∈ K v ∧ pf v y ∈ K v
-      · simp only [t', if_pos c, inv_one, mul_one]; exact mul_mem (inv_mem c.1) c.2
-      · simp only [t', if_neg c]; rw [e v]; simpa [mul_assoc] using hk v
+      · simp only [t', ite_eq_left c, inv_one, mul_one]; exact mul_mem (inv_mem c.1) c.2
+      · simp only [t', ite_eq_right c]; rw [e v]; simpa [mul_assoc] using hk v
     have hev' : ∀ᶠ v in cofinite, t' v ∈ K v := ((hX.eventually_mem x).and (hX.eventually_mem y)).mono
-      fun v c => by simp only [t', if_pos c]; exact one_mem _
+      fun v c => by simp only [t', ite_eq_left c]; exact one_mem _
     obtain ⟨g, -, hg⟩ := hX.exists_eq isEmptyElim t' hev'
     refine (@DoubleCoset.eq _ _ _ _ _ _).2 ⟨g, (hT g).2 fun v => hg v ▸ ht'T v, x⁻¹ * g⁻¹ * y,
       (memKg _).2 fun v => by simpa [hg v] using ht'K v, by group⟩
@@ -132,7 +164,7 @@ theorem finsum_doubleCoset_restr {X V : Type} {Y : V → Type} [Group X] [Topolo
     · have hb' := hH b hb
       let y : ∀ v, Y v := fun v => if h : v ∈ S0 then Quotient.out (b ⟨v, h⟩) else 1
       obtain ⟨x, -, hx⟩ := hX.exists_eq isEmptyElim y
-        (eventually_of_finset S0 fun v hv => by simp only [y, dif_neg hv]; exact one_mem _)
+        (eventually_of_finset S0 fun v hv => by simp only [y, dite_eq_right hv]; exact one_mem _)
       have hq := L1 _ _ (DoubleCoset.out_eq' (DoubleCoset.mk T Kg x))
       have hxS : ∀ v : S0, DoubleCoset.mk (Tv v.1) (K v.1) (pf v.1 x) = b v := fun v => by
         rw [hx, show y v.1 = Quotient.out (b v) by simp [y, v.2]]
@@ -141,11 +173,11 @@ theorem finsum_doubleCoset_restr {X V : Type} {Y : V → Type} [Group X] [Topolo
       refine ⟨DoubleCoset.mk T Kg x, ?_, hΦ⟩
       show F _ ≠ 0
       have hne : ∀ v ∉ S0, Fv v (pf v (Quotient.out (DoubleCoset.mk T Kg x))) ≠ 0 := fun v hv => by
-        rw [L0 v _ _ (hq v), hx]; simp only [y, dif_neg hv, (hS0 v hv).1]; exact one_ne_zero
+        rw [L0 v _ _ (hq v), hx]; simp only [y, dite_eq_right hv, (hS0 v hv).1]; exact one_ne_zero
       rw [DegreeKernelLowerBound _ hne, Finset.prod_ne_zero_iff]
       intro v hv
       rw [L0 v _ _ (hq v), hx]
-      simp only [y, dif_pos hv]
+      simp only [y, dite_eq_left hv]
       exact hb' ⟨v, hv⟩
   refine ((finsum_mem_support _).symm.trans ((finsum_mem_eq_of_bijOn Φ hbij fun q hq => hval q hq).trans
     (finsum_mem_support H))).trans ?_

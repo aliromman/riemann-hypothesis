@@ -1,6 +1,34 @@
 module
 
 public import Mathlib.RingTheory.MvPowerSeries.Substitution
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -13,6 +41,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.EpsilonPairingZeta
 import Development.AbelianVarietyTheory.Definitions.Divisors.EqZeroOfForallPowDvd
 import Development.AbelianVarietyTheory.Definitions.Divisors.FormalCoboundarySmul
@@ -41,13 +70,13 @@ theorem coeff_prod_pow_of_embedding {σ τ R : Type} [CommRing R] (j : σ → τ
     have hs : (∑ i ∈ β.support, Finsupp.single i (β i)) = β := Finsupp.sum_single β
     rw [hs, coeff_monomial]
     simp only [(Finsupp.mapDomain_injective hj).eq_iff, eq_comm]
-  · push_neg at h
+  · push Not at h
     obtain ⟨t, ht, hdt⟩ := h
     have hne : d ≠ α.mapDomain j := by
       intro hd
       have : d ∈ Set.range (Finsupp.mapDomain j) := ⟨α, hd.symm⟩
       exact hdt (((Finsupp.mem_range_mapDomain_iff j hj d).mp this) t ht)
-    rw [if_neg hne, Finsupp.prod, Finset.prod_eq_zero (Finsupp.mem_support_iff.mpr hdt)
+    rw [ite_eq_right hne, Finsupp.prod, Finset.prod_eq_zero (Finsupp.mem_support_iff.mpr hdt)
       (by rw [h0 t ht, zero_pow hdt]), map_zero]
 
 theorem coeff_subst_of_embedding {σ τ R : Type} [CommRing R] [Finite τ] (j : σ → τ)
@@ -62,9 +91,9 @@ theorem coeff_subst_of_embedding {σ τ R : Type} [CommRing R] [Finite τ] (j : 
       rw [ha]; exact constantCoeff_X s
     · rw [h0 t ht]; exact map_zero _)
   rw [coeff_subst hsub, finsum_eq_single _ (α.mapDomain j)]
-  · rw [coeff_prod_pow_of_embedding j hj a ha h0, if_pos rfl, smul_eq_mul, mul_one]
+  · rw [coeff_prod_pow_of_embedding j hj a ha h0, ite_eq_left rfl, smul_eq_mul, mul_one]
   · intro d hd
-    rw [coeff_prod_pow_of_embedding j hj a ha h0, if_neg hd, smul_zero]
+    rw [coeff_prod_pow_of_embedding j hj a ha h0, ite_eq_right hd, smul_zero]
 
 theorem coeff_subst_restrict_sum {R ι κ : Type} [CommRing R] [Fintype ι] [Fintype κ]
     (g : MvPowerSeries (ι ⊕ κ) R) :

@@ -1,7 +1,31 @@
 module
 
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.UnitsLiftSpec
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
 import Mathlib.LinearAlgebra.Eigenspace.Semisimple
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -239,7 +263,7 @@ theorem evA_gen (i : LocT B) {v : HeightOneSpectrum (𝓞 H.E)} {k : ℕ}
     (hvk : GenAt0 H (lOf B i) (B.Qw (wOf B i)) v k) :
     evA i ⟨B.hK (jOf B i) (wOf B i) v k, Algebra.subset_adjoin ⟨v, k, hvk, rfl⟩⟩ = hTfun B i v k := by
   funext x
-  simp [evA, hTfun, dif_pos hvk]
+  simp [evA, hTfun, dite_eq_left hvk]
 
 theorem evA_mem (i : LocT B) (t : hAlg B i) : evA i t ∈ TOf B i := by
   have hle : (Algebra.adjoin (OOf B i) (((↑) : hAlg B i → Module.End (FractionRing (OOf B i)) (B.V (jOf B i) (wOf B i))) ⁻¹'
@@ -327,7 +351,7 @@ theorem actEx_of : ∀ {R : Ranks} {H : Host R} {what₂ : Rows.Data R} (B : Loc
       apply Subtype.ext
       rw [show ((evT i ⟨B.hK (jOf B i) (wOf B i) v k, Algebra.subset_adjoin ⟨v, k, hvk, rfl⟩⟩ : TOf B i) : XOf B i → OOf B i) =
         hTfun B i v k from evA_gen i hvk]
-      simp [hTOf, dif_pos hvk]
+      simp [hTOf, dite_eq_left hvk]
     rw [e, actA_evT]
     rfl
 

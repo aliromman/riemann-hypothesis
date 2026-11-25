@@ -17,6 +17,34 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityA
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GlobalUnitaryForms.FinMulSupp
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GlobalUnitaryForms.ScalarTuples.ModelFacts
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GlobalUnitaryForms.ScalarTuples.ModelMap
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -30,6 +58,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Order.CompletePartialOrder
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.Henselian
@@ -37,6 +66,9 @@ import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.Tactic.Linter.HaveILetI
@@ -465,7 +497,7 @@ private theorem exists_scale [IsFractionRing O K] {ι : Type} [Finite ι] (f g :
     have hc0 : algebraMap O K (c : O) ≠ 0 := IsFractionRing.to_map_ne_zero_of_mem_nonZeroDivisors c.2
     refine ⟨(algebraMap O K c)⁻¹, inv_ne_zero hc0, fun i => ⟨0, by simp [hall i]⟩, fun j => ⟨N * q j, ?_⟩⟩
     rw [map_mul, hq j, inv_inv, Algebra.smul_def]
-  push_neg at hall
+  push Not at hall
   obtain ⟨i1, hi1⟩ := hall
   haveI : Nonempty ι := ⟨i1⟩
   obtain ⟨i0, hi0⟩ := Finite.exists_min (fun i => IsDiscreteValuationRing.addVal O (p i))
@@ -1197,24 +1229,15 @@ private theorem hasTau_conj {K : Type} [Field K] {Δ τ : K} {δ : U3 Δ} (h : H
   rw [e, ← h]
   exact key
 
-private theorem isIntegral_star_of_isIntegral {K : Type} [Field K] (O : Type) [CommRing O] [Algebra O K] (τ : K)
-    {x : Etau K τ} (hx : IsIntegral O x) : IsIntegral O (star x) := by
-  let f : Etau K τ →ₐ[O] Etau K τ :=
-    { starRingEnd (Etau K τ) with
-      commutes' := fun r => by
-        rw [IsScalarTower.algebraMap_apply O K (Etau K τ)]
-        ext <;> simp [starRingEnd_apply] }
-  exact hx.map f
-
 private theorem cu_le_cint {K : Type} [Field K] (O : Type) [CommRing O] [Algebra O K] (τ : K) : Cu O τ ≤ Cint O τ := by
   rintro _ ⟨u, rfl⟩
   have hI : ∀ w : (integralClosure O (Etau K τ))ˣ, IsIntegral O (((w : integralClosure O (Etau K τ)) : Etau K τ)) :=
     fun w => (w : integralClosure O (Etau K τ)).2
   refine ⟨?_, ?_⟩
   · simp only [quo, ← map_inv]
-    exact (hI u).mul (isIntegral_star_of_isIntegral O τ (hI u⁻¹))
+    exact (hI u).mul (isIntegral_star (hI u⁻¹))
   · simp only [quo, ← map_inv, inv_inv]
-    exact (hI u⁻¹).mul (isIntegral_star_of_isIntegral O τ (hI u))
+    exact (hI u⁻¹).mul (isIntegral_star (hI u))
 
 set_option maxHeartbeats 1600000 in
 theorem UpperTheory.V.Z.Sym.Glob.gqG :
@@ -1239,11 +1262,11 @@ theorem UpperTheory.V.Z.Sym.Glob.gqG :
   have hlocF := fun v : Pl F => by
     haveI := hcz v
     exact modelFacts (Kv v) (cv v Δ) (cv v τ) (cv v c) _ _ _ (ιv v) (Pv v) (hΔv v) (hdatv v) (hMv v)
-  have hfS : ∀ v ∈ D.Sg, D.fGv t v = (D.S v).fG (t v) := fun v hv => funext fun g => if_pos hv
+  have hfS : ∀ v ∈ D.Sg, D.fGv t v = (D.S v).fG (t v) := fun v hv => funext fun g => ite_eq_left hv
   have hfN : ∀ v ∉ D.Sg, D.fGv t v = fun g => one (g ∈ KU (Ov v) (cv v Δ)) :=
-    fun v hv => funext fun g => if_neg hv
-  have hJS : ∀ v ∈ D.Sg, D.Jv v = (D.S v).J := fun v hv => if_pos hv
-  have hJN : ∀ v ∉ D.Sg, D.Jv v = KU (Ov v) (cv v Δ) := fun v hv => if_neg hv
+    fun v hv => funext fun g => ite_eq_right hv
+  have hJS : ∀ v ∈ D.Sg, D.Jv v = (D.S v).J := fun v hv => ite_eq_left hv
+  have hJN : ∀ v ∉ D.Sg, D.Jv v = KU (Ov v) (cv v Δ) := fun v hv => ite_eq_right hv
   obtain ⟨hphi⟩ : Nonempty (∃ φ, IsDiagT τ φ) := ⟨(iotaEx F Δ).2.2 τ⟩
   set φ := hphi.choose with hφdef
   have hφ : IsDiagT τ φ := hphi.choose_spec
@@ -1370,7 +1393,7 @@ theorem UpperTheory.V.Z.Sym.Glob.gqG :
       Finset.prod_congr rfl fun v hv => by simp [one, hAdm v hv]
     show mass φ (scalE τ) _ * ∏ v ∈ S, orb (ιv v) (Cint (Ov v) (cv v τ)) (theta (cv v Δ)) (D.Jv v) (D.fGv t v) ((ι δ).1 v) = _
     rw [hsplit, hprod, hms]
-    simp only [one, if_pos hAdm, Dat.nL]
+    simp only [one, ite_eq_left hAdm, Dat.nL]
     ring
   · have hz : ∀ y : GA Δ ⧸ D.UG,
         D.FG t ((Quotient.out y)⁻¹ * ι δ * θ (Quotient.out y)) = 0 := by

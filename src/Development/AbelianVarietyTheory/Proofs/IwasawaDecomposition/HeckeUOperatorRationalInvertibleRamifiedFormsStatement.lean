@@ -23,6 +23,29 @@ public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.SpreadLe
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.UpwardOperatorPreservesRationality
 public import Formalism.LocalToGlobal.HermitianForms.TransportT
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -35,13 +58,22 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Algebra.Module.StablyFree.Basic
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Formalism.LocalToGlobal.GlobalTheory.GL6.Statement
 import Formalism.LocalToGlobal.HermitianForms.IsLocBasis
@@ -175,7 +207,7 @@ theorem eq_zero_of_hyperplane_sums (k W M : Type) [Field k] [Fintype k] [Decidab
         Finset.sum_comm]
       refine Finset.sum_eq_zero fun x _ => ?_
       by_cases hx : g x = 0
-      · simp only [hx, if_true]; exact h2 x
+      · simp only [hx, ite_true]; exact h2 x
       · simp [hx]
     · by_cases hg : g = 0
       · subst hg
@@ -208,15 +240,15 @@ theorem eq_zero_of_hyperplane_sums (k W M : Type) [Field k] [Fintype k] [Decidab
     rw [← mul_smul]
     by_cases hx : x = x0
     · subst hx
-      simp only [sub_self, map_zero, Finset.filter_true, Finset.card_univ, if_true, hr]
+      simp only [sub_self, map_zero, Finset.filter_true, Finset.card_univ, ite_true, hr]
       rw [← add_smul]; congr 1; ring
     · have := card_annihilator_mul k W (x - x0) (sub_ne_zero.mpr hx)
-      rw [if_neg hx, add_zero, hN, ← this]
+      rw [ite_eq_right hx, add_zero, hN, ← this]
       congr!
   have D := congrArg (fun m => Fintype.card k • m) B
   simp only [Finset.smul_sum, C] at D
   simp only [smul_zero, Finset.sum_add_distrib, ← Finset.smul_sum, T,
-    Finset.sum_ite_eq', Finset.mem_univ, if_true, zero_add] at D
+    Finset.sum_ite_eq', Finset.mem_univ, ite_true, zero_add] at D
   exact hcancel _ _ (Nat.mul_ne_zero (show r ≠ 0 by omega) Fintype.card_ne_zero) D
 
 end GlobalTheory.FiniteRadon
@@ -356,13 +388,13 @@ theorem eq_zero_of_upSum_of_norm : ∀ (R V k W M : Type) [CommRing R] [AddCommG
   let ψ : W → M := fun w => if h : ∃ q, Rel res t Λ π q w then Φ h.choose else 0
   have ψ1 : ∀ q w, Rel res t Λ π q w → ψ w = Φ q := fun q w h => by
     have h0 : ∃ q, Rel res t Λ π q w := ⟨q, h⟩
-    simp only [ψ, dif_pos h0]
+    simp only [ψ, dite_eq_left h0]
     rw [rel_inj hs ht htf hsat hr h0.choose_spec h]
-  have ψ0 : ∀ w, (¬ ∃ q, Rel res t Λ π q w) → ψ w = 0 := fun w h => dif_neg h
+  have ψ0 : ∀ w, (¬ ∃ q, Rel res t Λ π q w) → ψ w = 0 := fun w h => dite_eq_right h
   let j : Pr R V k → W := fun q => if h : ∃ w, Rel res t Λ π q w then h.choose else 0
   have j1 : ∀ q : Pr R V k, q.Ok res → q.IsKer Λ → Rel res t Λ π q (j q) := fun q ho hk => by
     have h0 : ∃ w, Rel res t Λ π q w := rel_ex hs ho hk
-    simp only [j, dif_pos h0]
+    simp only [j, dite_eq_left h0]
     exact h0.choose_spec
   have key := _root_.GlobalTheory.FiniteRadon.eq_zero_of_hyperplane_sums k W M ψ (fun g hg => ?_) (fun w => ?_)
   · intro q ho hk
@@ -904,10 +936,6 @@ noncomputable section
 namespace GlobalTheory.LevelIndexCompare
 
 open Formalism.BasicNotions Formalism.MainNotions GlobalTheory.IndefiniteRowSideFullHecke.IndexAtLevelRanks
-
-section General
-
-end General
 
 variable (D : D7) (u : D.what₂.Word)
 

@@ -14,6 +14,31 @@ public import Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.KugaCo
 public import Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.KugaCoordinates.UnitaryCurves.StarMulOfPlaces
 public import Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.KTypeHolds
 public import Development.AbelianVarietyTheory.Definitions.Divisors.Tpr
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -26,6 +51,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.Topology.Algebra.Star.Unitary
 
@@ -69,7 +96,7 @@ theorem cone_root {a b : Fin n} (h : a < b) : Cone (ev a - ev b) := by
   refine ⟨fun c d => if c = a ∧ d = b then 1 else 0, fun c d hcd => ?_, fun x => ?_⟩
   · by_cases h1 : c = a ∧ d = b
     · rw [h1.1, h1.2]; exact h
-    · exact absurd (if_neg h1) hcd
+    · exact absurd (ite_eq_right h1) hcd
   · rw [sum_eq_single a, sum_eq_single b]
     · simp [ev]
     · intro d _ hd; simp [hd]
@@ -447,7 +474,7 @@ theorem UpperTheory.V.Z.GSp4Splitting.lowType :
       · have := hlam hij.le
         have : (i : ℕ) < j := hij
         omega
-      · simp only [infOf, if_true]
+      · simp only [infOf, ite_true]
         push_cast
         ring
     · by_cases h2 : τ = barE E w.embedding
@@ -457,7 +484,7 @@ theorem UpperTheory.V.Z.GSp4Splitting.lowType :
         · have := hlam hij.le
           have : (i : ℕ) < j := hij
           omega
-        · simp only [infOf, Bool.false_eq_true, if_false]
+        · simp only [infOf, Bool.false_eq_true, ite_false]
           push_cast
           ring
       · obtain ⟨l, hl, hl'⟩ := GlobalTheory.CompanionTheory.RgCz.charInt_at π hr τ

@@ -18,6 +18,33 @@ public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.TsumId
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ClassGroupCoprimeRepresentative
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.CountableIdealSummableAbsNormRpow
 public import Mathlib.Analysis.Calculus.BumpFunction.Normed
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -32,8 +59,13 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Algebra.Module.ZLattice.Summable
 import Mathlib.Analysis.Distribution.SchwartzSpace.Fourier
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
@@ -678,7 +710,7 @@ private theorem exists_periodic_mod_ideal_eq_character_div_infinity_type {K : Ty
     by_cases ha : a = 0
     · simp [ψ, ha, hm]
     · have h1 : Ideal.span {a} ⊔ m = ⊤ := by rw [hm, sup_top_eq]
-      simp only [ψ, h1, ne_eq, ha, not_false_eq_true, and_self, if_true]
+      simp only [ψ, h1, ne_eq, ha, not_false_eq_true, and_self, ite_true]
       rw [hXφ a ha (by rw [hm]; exact Submodule.mem_top)]
       exact mul_inv_cancel₀ (hφne a ha)
   refine ⟨ψ, ?_, ?_⟩
@@ -723,7 +755,7 @@ private theorem exists_periodic_mod_ideal_eq_character_div_infinity_type {K : Ty
         rw [h0, zero_mul] at eA
         exact mul_ne_zero (hφne r (fun h => by simp [h] at hr; exact hm ((Ideal.eq_top_iff_one _).2
           (by simpa using m.neg_mem hr)))) (hφne a ha0) eA.symm
-      simp only [ψ, ha, hb, ne_eq, ha0, hb0, not_false_eq_true, and_self, if_true]
+      simp only [ψ, ha, hb, ne_eq, ha0, hb0, not_false_eq_true, and_self, ite_true]
       have hφa := hφne a ha0
       have hφb := hφne b hb0
       rw [← div_eq_mul_inv, ← div_eq_mul_inv, div_eq_div_iff hφa hφb]
@@ -733,7 +765,7 @@ private theorem exists_periodic_mod_ideal_eq_character_div_infinity_type {K : Ty
       simp [ψ, ha, hb, hm]
   · intro β hβ
     by_cases hc : Ideal.span {β} ⊔ m = ⊤
-    · simp only [ψ, hc, ne_eq, hβ, not_false_eq_true, and_self, if_true]
+    · simp only [ψ, hc, ne_eq, hβ, not_false_eq_true, and_self, ite_true]
       rw [mul_assoc, inv_mul_cancel₀ (hφne β hβ), mul_one]
     · have hm : m ≠ ⊤ := fun hm => hc (by rw [hm, sup_top_eq])
       simp [ψ, hc, hm, hXcop _ hc]

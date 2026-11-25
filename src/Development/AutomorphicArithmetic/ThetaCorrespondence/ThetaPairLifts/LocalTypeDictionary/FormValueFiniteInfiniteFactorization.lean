@@ -29,25 +29,10 @@ import Formalism.LocalToGlobal.Columns.CoefficientsModP.FkMapInitMinor
 import Formalism.LocalToGlobal.Columns.CoefficientsModP.FkPderivBlockEmbNe
 import Formalism.LocalToGlobal.Divisibility.ProjLemmas
 import Formalism.SharpRestriction.Divisibility.LiftErrorLocal
-import Mathlib.LinearAlgebra.Eigenspace.Triangularizable
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.CardFiniteSubgroupGLIntDvd
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.UnitaryRationalConjIntersectionCardDvdInvariant
 import Formalism.LocalToGlobal.UnitaryNorms.CharUniq
-import Mathlib.LinearAlgebra.FreeModule.IdealQuotient
-import Mathlib.RingTheory.PiTensorProduct
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.FinCongMemLevEnv
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.LatticeExtensionAlongFieldEmbeddingDuals
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.LevelHyperspecialTrivialCharacterSplitsOffPlaces
@@ -301,7 +286,7 @@ private theorem herm_eq_csumAt (hb : S.HasRatBasis) (z : Fin S.dim → K) :
     star (fun i => σ (z i)) ⬝ᵥ (S.H.map σ).mulVec (fun i => σ (z i)) =
       csumAt S σ (S.basis.equivFun.symm z : S.Forms) (S.basis.equivFun.symm z : S.Forms) := by
   have hr : ∀ i, S.IsRat (S.basis i : S.Cl → S.V) := by
-    have : S.basis = hb.choose := by unfold CSD.basis; exact dif_pos hb
+    have : S.basis = hb.choose := by unfold CSD.basis; exact dite_eq_left hb
     rw [this]
     exact hb.choose_spec
   rw [Module.Basis.equivFun_symm_apply, Submodule.coe_sum]

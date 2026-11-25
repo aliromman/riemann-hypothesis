@@ -1,6 +1,30 @@
 module
 
 public import Formalism.LocalToGlobal.ProjectiveLattices.ReadProofs
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -14,6 +38,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -84,7 +110,7 @@ theorem chi_eq_one (U : Unf Xo c σ r)
           laU U (step (Function.invFun (relab c σ) τ0.1) (j0 - (U.X k).p0 + 1)) 0 k -
             laU U (step (Function.invFun (relab c σ) τ0.1) (j0 - (U.X k).p0)) 0 k := by
         funext τ j
-        simp only [Pi.sub_apply, laU, step, hI.eq_iff, hcn τ τ0, false_and, if_false, Subtype.val_inj]
+        simp only [Pi.sub_apply, laU, step, hI.eq_iff, hcn τ τ0, false_and, ite_false, Subtype.val_inj]
         by_cases ht : τ = τ0
         · subst ht
           simp only [Pi.single_eq_same, Pi.single_apply, true_and, Fin.ext_iff]
@@ -95,7 +121,7 @@ theorem chi_eq_one (U : Unf Xo c σ r)
           laU U (step (Function.invFun (relab c σ) (conjEmb τ0.1)) ((U.X k).p0 - 1 - j0)) 0 k -
             laU U (step (Function.invFun (relab c σ) (conjEmb τ0.1)) ((U.X k).p0 - j0)) 0 k := by
         funext τ j
-        simp only [Pi.sub_apply, laU, step, hI.eq_iff, (hcn τ0 τ).symm, false_and, if_false]
+        simp only [Pi.sub_apply, laU, step, hI.eq_iff, (hcn τ0 τ).symm, false_and, ite_false]
         by_cases ht : τ = τ0
         · subst ht
           simp only [Pi.single_eq_same, Pi.single_apply, true_and, Fin.ext_iff]

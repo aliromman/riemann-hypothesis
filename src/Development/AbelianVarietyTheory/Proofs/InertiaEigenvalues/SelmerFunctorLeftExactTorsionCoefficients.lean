@@ -2,18 +2,6 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.H1MapSubgroup
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.ContinuousCycMod
 
 @[expose] public section
@@ -122,9 +110,9 @@ theorem mem_selAll_bkCond {F Ω : Type} [Field F] [NumberField F] [Field Ω] [Al
   · intro h
     refine ⟨fun v hv => ?_, fun v hv hv' => ?_⟩
     · have := h v
-      rwa [if_pos (show ((l : ℕ) : 𝓞 F) ∈ v.asIdeal from hv)] at this
+      rwa [ite_eq_left (show ((l : ℕ) : 𝓞 F) ∈ v.asIdeal from hv)] at this
     · have := h v
-      rwa [if_neg (show ¬ ((l : ℕ) : 𝓞 F) ∈ v.asIdeal from hv), if_neg hv'] at this
+      rwa [ite_eq_right (show ¬ ((l : ℕ) : 𝓞 F) ∈ v.asIdeal from hv), ite_eq_right hv'] at this
   · rintro ⟨h1, h2⟩ v
     split_ifs with a b
     · exact h1 v a

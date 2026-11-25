@@ -46,6 +46,28 @@ public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.Fin
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.GaussianTwistedRealReadingEntireAndInjective
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MovedWeilVacuumEqVacuumOfMovedLattices
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.JetCConstMul
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -61,6 +83,8 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.IsDiscriminantTwelfthRootOfIdealLatticeIffDelta1
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.FiniteDimensionalMram
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.MidChart
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Foundations.ValuedAlgebraMapEqOne
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.WittSmallGroupEmbeddingMemPointwiseStabilizerIso
 import Formalism.LocalRingCardinality.DataTheta
@@ -70,7 +94,11 @@ import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GapAtLeast
 import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes
 import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsOverBoth
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.HostFacts
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsNsmulIntMemLatO
 import Mathlib.Tactic.Linter.Style
@@ -225,13 +253,13 @@ theorem exists_prime_to_dvd_away {R : Type} [CommRing R] [IsDedekindDomain R] (S
   have hSS : ∀ Q ∈ SS, t0 ∉ Q.asIdeal := by
     intro Q hQ hmem
     have h := ht0 Q (Finset.mem_union_left _ hQ)
-    simp only [if_pos hQ, pow_one] at h
+    simp only [ite_eq_left hQ, pow_one] at h
     exact hone Q (by simpa using Q.asIdeal.sub_mem hmem h)
   have hgood : ∀ Q : HeightOneSpectrum R, Q ∉ SS → ∃ u : R, u ∉ Q.asIdeal ∧ ∃ w : R, u * t0 = m * w := by
     intro Q hQ
     by_cases hQT : Q.asIdeal ∣ Ideal.span {m}
     · have h := ht0 Q (Finset.mem_union_right _ (hT.mem_toFinset.2 hQT))
-      simp only [if_neg hQ, sub_zero] at h
+      simp only [ite_eq_right hQ, sub_zero] at h
       obtain ⟨hnd, hEq⟩ := hJ Q
       rw [Ideal.dvd_iff_le] at hnd
       obtain ⟨u, huJ, huQ⟩ := SetLike.not_le_iff_exists.1 hnd
@@ -264,7 +292,7 @@ theorem tmul_mem_of {E : Type} [Field E] [NumberField E] [StarRing E] {W : Type}
   intro Q
   by_cases hQ : Q ∈ SS
   · have h1 := (Formalism.L2.Ker.mem_twO M c _ y).1 hy Q
-    simp only [expS, if_pos hQ, zpow_one] at h1
+    simp only [expS, ite_eq_left hQ, zpow_one] at h1
     obtain ⟨s, hs, hsy⟩ := h1
     refine ⟨s, hs, ?_⟩
     have e : s • (((t : E) * (c : E)⁻¹) • y) = t • (s • ((c : E)⁻¹ • y)) := by
@@ -382,7 +410,7 @@ theorem mem_localization_of_mem_halfBO {E : Type} [Field E] [NumberField E] [Sta
   have h1 := (Formalism.L2.Ker.mem_twO M c _ y).1 hy Q
   have h0 : expS SS Q = 0 := by
     unfold expS
-    rw [if_neg (fun h => hQ (Or.inl h)), if_neg (fun h => hQ (Or.inr h))]
+    rw [ite_eq_right (fun h => hQ (Or.inl h)), ite_eq_right (fun h => hQ (Or.inr h))]
   rw [h0, zpow_zero, inv_one, one_smul] at h1
   exact h1
 
@@ -723,7 +751,7 @@ theorem conjHalf_mem {N : Submodule (𝓞 D.host.E) (Fin S.rank → D.host.E)} {
       (Submodule.mem_iInf _).1 hx _
     have hexp : expS SS (Formalism.L2.Col.conjPrime₂ PP) = -1 := by
       unfold expS
-      rw [if_neg (hno PP hPP), GlobalTheory.AdForm.HalfASign.conjP_conjP_self, if_pos hPP]
+      rw [ite_eq_right (hno PP hPP), GlobalTheory.AdForm.HalfASign.conjP_conjP_self, ite_eq_left hPP]
     rw [hexp, neg_neg, zpow_one] at h
     exact h
 
@@ -791,14 +819,14 @@ theorem alV_embH_eq_exp_trace (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : In
     intro τ
 
     simp only [GlobalTheory.LatVac.hRat, hP.gS, hP.gT, inv_one, Matrix.one_apply, ite_mul, one_mul, zero_mul, mul_ite, mul_one, mul_zero,
-    Finset.sum_ite_eq, Finset.mem_univ, if_true, map_sum, hs]
+    Finset.sum_ite_eq, Finset.mem_univ, ite_true, map_sum, hs]
     simp only [apply_ite (⇑(tauE D τ)), map_zero, map_mul, tauE_star]
     push_cast
     rw [Finset.sum_comm]
     calc _ = ∑ j, ∑ i, ((Complex.normSq (tauE D τ (M i j)) : ℝ) : ℂ) := by
           refine Finset.sum_congr rfl fun j _ => ?_
           rw [Finset.sum_comm]
-          simp only [Finset.sum_ite_eq', Finset.mem_univ, if_true]
+          simp only [Finset.sum_ite_eq', Finset.mem_univ, ite_true]
           refine Finset.sum_congr rfl fun i _ => ?_
           rw [Complex.normSq_eq_conj_mul_self]
       _ = _ := Finset.sum_comm
@@ -1345,9 +1373,9 @@ theorem reads_datum_eq_thC : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ :
   let py : VV D.what₂.Tau a b → Formalism.L2.Col.HomE D.host.E a b := fun y =>
     if h : ∃ y', y' ∈ MB ∧ embH (tauE D) δ y' = y then h.choose else 0
   have hpx' : ∀ x ∈ SX, px x ∈ MA ∧ embH (tauE D) δ (px x) = x := fun x hx => by
-    simp only [px, dif_pos (hpx x hx)]; exact (hpx x hx).choose_spec
+    simp only [px, dite_eq_left (hpx x hx)]; exact (hpx x hx).choose_spec
   have hpy' : ∀ y ∈ SB, py y ∈ MB ∧ embH (tauE D) δ (py y) = y := fun y hy => by
-    simp only [py, dif_pos (hpy y hy)]; exact (hpy y hy).choose_spec
+    simp only [py, dite_eq_left (hpy y hy)]; exact (hpy y hy).choose_spec
   let mt : Formalism.L2.Col.HomE D.host.E a b → Matrix (Fin T.rank) (Fin S.rank) D.host.E := fun x =>
     (LinearMap.toMatrix' x).reindex (finCongr hT.symm) (finCongr hS.symm)
   have hmt : ∀ x, toHom S T hS hT (mt x) = x := fun x => by

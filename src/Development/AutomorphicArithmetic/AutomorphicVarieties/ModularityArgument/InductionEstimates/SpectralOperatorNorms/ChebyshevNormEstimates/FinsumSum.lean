@@ -18,9 +18,32 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.BlockEva
 public import Development.AutomorphicArithmetic.Foundations.Convolution.BlockEvaluation.TotalDegreeAevalLe
 public import Development.AutomorphicArithmetic.Foundations.Convolution.PolynomialCoefficientBounds.Degree
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ScatteringLimits.ConvolutionSpectra.ConvSpec
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
 import Mathlib.LinearAlgebra.Eigenspace.ContinuousLinearMap
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -34,8 +57,16 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.ReduceModChar
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.InductionEstimates.UnipotentBlockMatrices.UnipotentBlockPairs
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ScatteringLimits.Carries
 import Development.AutomorphicArithmetic.Foundations.Convolution.BlockEvaluation.TruncSpec
@@ -419,14 +450,14 @@ private lemma regroup {T : Type} (s : Finset T) (a : T → ℝ) (S : T → Finse
       = ∑ q ∈ (S i).image (fun ζ : ℂ => (a i, ζ)), (if a i = q.1 ∧ q.2 ∈ S i then w i * c i q.2 else 0) * f q := by
         rw [Finset.sum_image hinj]
         refine Finset.sum_congr rfl fun ζ hζ => ?_
-        rw [if_pos ⟨rfl, hζ⟩, mul_assoc]
+        rw [ite_eq_left ⟨rfl, hζ⟩, mul_assoc]
     _ = _ := by
         refine Finset.sum_subset ?_ ?_
         · intro q hq
           obtain ⟨ζ, hζ, rfl⟩ := Finset.mem_image.1 hq
           exact hP i hi ζ hζ
         · intro q _ hq
-          rw [if_neg, zero_mul]
+          rw [ite_eq_right, zero_mul]
           rintro ⟨h1, h2⟩
           exact hq (Finset.mem_image.2 ⟨q.2, h2, Prod.ext h1 rfl⟩)
 
@@ -528,7 +559,7 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.absX :
     refine Finset.sum_congr rfl fun i hi => ?_
     by_cases hg : good i
     · by_cases ha : a i = x
-      · simp only [hg, ha, and_self, if_true, hgood i hi hg ha, hj i hi]
+      · simp only [hg, ha, and_self, ite_true, hgood i hi hg ha, hj i hi]
       · simp [ha]
     · simp [hg, hbad i hi hg]
   have h4 : {i | act i ∧ good i ∧ a i = x} = ↑(s.filter (fun i => good i ∧ a i = x)) := by

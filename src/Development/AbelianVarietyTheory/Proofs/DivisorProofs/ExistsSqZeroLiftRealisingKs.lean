@@ -25,6 +25,30 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HarrisTaylor
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SumProjSingle
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CrystalGluedHodgeGraphFiltrationOrderStable
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemHodgeFiltrationIffReductionGluedFilHtObject
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -47,7 +71,11 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DualAbelianSchemeEx
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsBCTrivSqZeroExt
 import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ConnectedSpaceSpecOfIsLocalRing
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
+import Mathlib.Tactic.Basify
 import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsLocalRingTrivSqZeroExt
 
@@ -306,21 +334,6 @@ theorem exists_combo {k F : Type} [Field k] [CommRing F] {a : ℕ} (χ : Fin a �
   refine Finset.sum_congr rfl fun l _ => ?_
   rw [Pi.smul_apply, ← hc l, smul_eq_mul]
 
-theorem injective_chars {p : ℕ} [Fact p.Prime] {D : GlobalTheory.UPel.HT.Datum p} {R : Type} [CommRing R]
-    (b : GlobalTheory.UPel.HT.Base D R) {k : Type} [Field k] (β : R →+* k) :
-    Function.Injective (fun i => β.comp (b.t i)) := by
-  intro i j h
-  by_contra hij
-  have h1 := b.comax i j hij
-  have h2 : Ideal.map β (Ideal.span (Set.range fun x => b.t i x - b.t j x)) = ⊥ := by
-    rw [Ideal.map_span, Ideal.span_eq_bot]
-    rintro _ ⟨_, ⟨x, rfl⟩, rfl⟩
-    have := RingHom.congr_fun h x
-    simp only [RingHom.comp_apply] at this
-    rw [map_sub, this, sub_self]
-  rw [h1, Ideal.map_top] at h2
-  exact (top_ne_bot : (⊤ : Ideal k) ≠ ⊥) h2
-
 end GlobalTheory.HTGlueLie
 
 noncomputable section
@@ -545,7 +558,7 @@ theorem glueFil_lie : ∀ (p : ℕ) [Fact p.Prime] (D : GlobalTheory.UPel.HT.Dat
   have hrho : ∀ π, crd o₀.A π e' ∈ rhoPart o₀ β := fun π => by
     rw [he', crd_smul, map_sub, hT, crd_smul]
     exact smul_mem_rhoPart o₀ β _ _
-  choose r lam c hc using fun i => exists_combo (fun j => β.comp (b.t j)) (injective_chars b β)
+  choose r lam c hc using fun i => exists_combo (fun j => β.comp (b.t j)) (b.injective_char_comp β)
     (fun j => if i = j then (1 : k) else 0)
   have hc' : ∀ i j, ∑ l, lam i l * β (b.t j (c i l)) = if i = j then 1 else 0 := hc
   refine ⟨fun i => ∑ l, algebraMap k (TrivSqZeroExt k (Fin d → k)) (lam i l) •

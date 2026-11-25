@@ -6,6 +6,29 @@ public import Formalism.PadicSubsetSums.CentralIdempotents.GaloisConjCentralIdem
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ChiIdemMulLvlIdemBaseNeZero
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HasLabelTransportEquiv
 import Formalism.LocalToGlobal.NormalizedHeckeFactors.CoeffZeroNeOfMonicIrr
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -18,6 +41,8 @@ import Mathlib.Tactic.NormNum.NatSqrt
 import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -45,20 +70,20 @@ theorem mem_unipRadical_twoBlocks_iff {d a : ℕ} (had : a ≤ d) (x : Gn g d) :
     · funext i j
       have := h ⟨i, by omega⟩ ⟨j, by omega⟩ (by simp [twoBlocks, i.2, j.2])
       rw [Matrix.sub_apply, sub_eq_zero] at this
-      simp only [tl, Formalism.MainNotions.ArithmeticCylinders.entN, dif_pos (show (i : ℕ) < d ∧ (j : ℕ) < d by omega)]
+      simp only [tl, Formalism.MainNotions.ArithmeticCylinders.entN, dite_eq_left (show (i : ℕ) < d ∧ (j : ℕ) < d by omega)]
       rw [this]
       simp [Matrix.one_apply, Fin.ext_iff]
     · funext i j
       have := h ⟨a + i, by omega⟩ ⟨a + j, by omega⟩ (by simp [twoBlocks])
       rw [Matrix.sub_apply, sub_eq_zero] at this
-      simp only [br, Formalism.MainNotions.ArithmeticCylinders.entN, dif_pos (show a + (i : ℕ) < d ∧ a + (j : ℕ) < d by omega)]
+      simp only [br, Formalism.MainNotions.ArithmeticCylinders.entN, dite_eq_left (show a + (i : ℕ) < d ∧ a + (j : ℕ) < d by omega)]
       rw [this]
       simp [Matrix.one_apply, Fin.ext_iff]
   · rintro ⟨hP, htl, hbr⟩ i j hij
     rw [Matrix.sub_apply, sub_eq_zero]
     by_cases hi : (i : ℕ) < a <;> by_cases hj : (j : ℕ) < a
     · have := congrFun (congrFun htl ⟨i, hi⟩) ⟨j, hj⟩
-      simp only [tl, Formalism.MainNotions.ArithmeticCylinders.entN, dif_pos (show (i : ℕ) < d ∧ (j : ℕ) < d from ⟨i.2, j.2⟩)] at this
+      simp only [tl, Formalism.MainNotions.ArithmeticCylinders.entN, dite_eq_left (show (i : ℕ) < d ∧ (j : ℕ) < d from ⟨i.2, j.2⟩)] at this
       rw [this]
       simp [Matrix.one_apply, Fin.ext_iff]
     · exfalso
@@ -67,7 +92,7 @@ theorem mem_unipRadical_twoBlocks_iff {d a : ℕ} (had : a ≤ d) (x : Gn g d) :
       rw [hP i j hj (not_lt.1 hi), Matrix.one_apply_ne hne]
     · have := congrFun (congrFun hbr ⟨i - a, by omega⟩) ⟨j - a, by omega⟩
       simp only [br, Formalism.MainNotions.ArithmeticCylinders.entN] at this
-      rw [dif_pos (show a + ((i : ℕ) - a) < d ∧ a + ((j : ℕ) - a) < d by omega)] at this
+      rw [dite_eq_left (show a + ((i : ℕ) - a) < d ∧ a + ((j : ℕ) - a) < d by omega)] at this
       have ei : (⟨a + ((i : ℕ) - a), by omega⟩ : Fin d) = i := Fin.ext (by simp; omega)
       have ej : (⟨a + ((j : ℕ) - a), by omega⟩ : Fin d) = j := Fin.ext (by simp; omega)
       rw [ei, ej] at this
@@ -128,7 +153,7 @@ theorem mem_unipRadical_of_mem_unip {d a : ℕ} {u : Gn g d} (hu : u ∈ unip (Z
       have e' : twoBlocks d a i ≠ twoBlocks d a j := fun h => e (Fin.ext (by rw [val_cb, val_cb, h]))
       omega
     have hne : i ≠ j := fun h => e (by rw [h])
-    rw [hA i j hlt, if_neg hne, sub_zero]
+    rw [hA i j hlt, ite_eq_right hne, sub_zero]
 
 theorem glEquiv_mem_unip {d a s : ℕ} (b : Fin d → Fin s) (z : Fin s) (hz : ∀ i, z ≤ b i) (σ : Fin d ≃ Fin d)
     (hσ : ∀ k : Fin d, (k : ℕ) < a ↔ b (σ k) = z) {u : Gn g d} (hu : u ∈ unipRadical (ZMod g) (twoBlocks d a)) :
@@ -160,9 +185,9 @@ theorem glEquiv_mem_unip {d a s : ℕ} (b : Fin d → Fin s) (z : Fin s) (hz : �
   have hne : ∀ i j : Fin d, b j < b i → i ≠ j := fun i j h e => by rw [e] at h; exact lt_irrefl _ h
   refine ⟨⟨?_, ?_⟩, ?_⟩
   · intro i j h
-    rw [hent u hu i j (Or.inr (hlt i j h)), if_neg (hne i j h)]
+    rw [hent u hu i j (Or.inr (hlt i j h)), ite_eq_right (hne i j h)]
   · intro i j h
-    rw [← map_inv, hent u⁻¹ (inv_mem hu) i j (Or.inr (hlt i j h)), if_neg (hne i j h)]
+    rw [← map_inv, hent u⁻¹ (inv_mem hu) i j (Or.inr (hlt i j h)), ite_eq_right (hne i j h)]
   · intro i j h
     rw [hent u hu i j (by by_cases e : b i = z <;> simp_all)]
 

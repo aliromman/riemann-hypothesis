@@ -17,20 +17,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.CTSmallCone
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaEqB
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsThetaSubSelf
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Algebra.Module.StablyFree.Basic
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Parity
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFactorPureTensorComponentAtPlace
 import Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts
 
@@ -218,13 +205,13 @@ theorem exists_not_polZero : ∀ (F E : Type) [Field F] [NumberField F] [Field E
   let φ : ∀ v : Pl F, (Fin a × Fin (a + a') → Fv F v) → ℂ := fun v => if v ∈ Xc.T then ψ0 v else G.M.vac v
   have hφSB : ∀ v, φ v ∈ GlobalTheory.WeilM.SB _ := fun v => by
     by_cases h : v ∈ Xc.T
-    · simp only [φ, h, if_true]; exact hψ0 v
-    · simp only [φ, h, if_false]; exact (hvac v).1
+    · simp only [φ, h, ite_true]; exact hψ0 v
+    · simp only [φ, h, ite_false]; exact (hvac v).1
   have hφout : ∀ v ∉ Xc.T, φ v = G.M.vac v := fun v h => by simp [φ, h]
   have hφne : ∀ v, Rf.p v (φ v) ≠ 0 := fun v => by
     by_cases h : v ∈ Xc.T
-    · simp only [φ, h, if_true]; exact hψ0ne v
-    · simp only [φ, h, if_false]; exact (hM.fin.sph v h).2
+    · simp only [φ, h, ite_true]; exact hψ0ne v
+    · simp only [φ, h, ite_false]; exact (hM.fin.sph v h).2
   refine ⟨GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.pure f φ, ?_, ?_⟩
   · have := sum_pure_mem_algD G.M Bs.ψ Bs.emb Xc.T (m := 1) (fun _ => f) (fun _ => φ) (fun _ => ⟨hfP, hφSB, hφout⟩)
     simpa using this

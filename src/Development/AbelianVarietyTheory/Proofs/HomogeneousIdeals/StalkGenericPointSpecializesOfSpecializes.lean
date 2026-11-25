@@ -2,10 +2,35 @@ module
 
 public import Mathlib.RingTheory.AdicCompletion.Basic
 public import Mathlib.RingTheory.PowerSeries.Basic
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 public import Mathlib.AlgebraicGeometry.Scheme
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
 import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 public import Mathlib.RingTheory.AdicCompletion.Topology
 public import Mathlib.RingTheory.PowerSeries.Evaluation
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -30,26 +55,6 @@ universe u
 
 namespace GlobalTheory
 
-section Generisation
-
-variable {Z : Scheme.{u}} (η : Z) [IsDomain (Z.presheaf.stalk η)]
-
-variable [IsDiscreteValuationRing (Z.presheaf.stalk η)]
-
-end Generisation
-
-section ResidueCharacteristic
-
-end ResidueCharacteristic
-
-section LocalSource
-
-variable {Z : Scheme.{u}} {R : CommRingCat.{u}} [IsLocalRing R]
-
-variable {η ξ : Z} [IsDomain (Z.presheaf.stalk η)] [IsDiscreteValuationRing (Z.presheaf.stalk η)]
-
-end LocalSource
-
 section ThetaShiftProofs
 
 open PowerSeries
@@ -68,11 +73,5 @@ variable {Z : Scheme.{u}} {η ξ : Z} [IsDomain (Z.presheaf.stalk η)]
   {O : Type u} [CommRing O] [IsDomain O] [IsLocalRing O]
 
 end ThetaShiftProofs
-
-section Model
-
-open PowerSeries
-
-end Model
 
 end GlobalTheory

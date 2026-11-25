@@ -14,29 +14,8 @@ public import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsPushEqu
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CardTorsionGeometricPointsEqPowTwoDim
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianVarietyIntCastSmulIsogenyDegree
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsIsogenyCompIffAndDegreeMul
-import Mathlib.RingTheory.PicardGroup
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsEtPlace
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompEqOneOfTransl
-import Mathlib.Algebra.Azumaya.Basic
-import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
-import Mathlib.Algebra.Order.PUnit
-import Mathlib.FieldTheory.PurelyInseparable.Exponent
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.DivMemOfForallPowSuccDivPowMem
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ClsLinCombSingle
@@ -501,7 +480,7 @@ theorem deg_eq_card_ker_of_unram : ∀ (K : Type) [Field K] (A B : AbVar K) (f :
     congr 1
     exact Subsingleton.elim _ _
   rw [horig] at hcard
-  rw [deg, if_pos hiso, ← hcard]
+  rw [deg, ite_eq_left hiso, ← hcard]
   symm
   refine Nat.card_congr ?_
   exact

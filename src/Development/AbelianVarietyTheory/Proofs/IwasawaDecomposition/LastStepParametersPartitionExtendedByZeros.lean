@@ -2,7 +2,31 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsStepWeil
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HcParameterEAddHalfShiftLeBSucc
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Rat
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -16,6 +40,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.BitVec
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TotalDegreeSubstFLe
@@ -125,7 +151,7 @@ lemma partition {n t : ℕ} (e s p : ℤ) (ht : (t : ℤ) = 2 * s + 1) (hn : (n 
     have ha : (⟨n - 1 - c, by omega⟩ : Fin n) = a := Fin.ext (by simp only; omega)
     have ha' : n - 1 - c = a := by omega
     have : (ν c : ℤ) = e + z a - (s + 1) - (a : ℕ) := by
-      simp only [ν, dif_pos hc, ha]
+      simp only [ν, dite_eq_left hc, ha]
       rw [ha']
       exact Int.toNat_of_nonneg (hpos a)
     exact_mod_cast this
@@ -156,7 +182,7 @@ lemma partition {n t : ℕ} (e s p : ℤ) (ht : (t : ℤ) = 2 * s + 1) (hn : (n 
     · have h0 : ν (Fin.rev b) = 0 := by
         simp only [ν]
         rw [dite_eq_right (by simp only [Fin.val_rev]; omega)]
-      rw [dif_pos hc, h0]
+      rw [dite_eq_left hc, h0]
       push_cast
       rw [htR, hnR]
       ring
@@ -246,22 +272,22 @@ theorem lastStep_param : ∀ (D : D7) (k : Fin D.R.m) (τ : D.what₂.Tau) (n N 
   have A : ∀ x b, (∃ a, (q a, ε a) = (x, b)) ↔ b = true ∧ IsEntry (D.hc τ) k (-x + 1 / 2) := by
     intro x b
     have := mem_parB D k (by omega) τ x b
-    rw [hS, if_pos hkodd, sub_neg_eq_add] at this
+    rw [hS, ite_eq_left hkodd, sub_neg_eq_add] at this
     simpa using this
   have B : ∀ x b, (∃ a, (q' a, ε' a) = (x, b)) ↔ b = true ∧ IsEntry (D.hc τ) D.R.m (-x) := by
     intro x b
     have := mem_parB D D.R.m (by omega) τ x b
-    rw [hS', if_neg hmno, sub_zero] at this
+    rw [hS', ite_eq_right hmno, sub_zero] at this
     simpa using this
   have hε : ∀ a, ε a = true := fun a => ((A _ _).mp ⟨a, rfl⟩).1
   have hε' : ∀ a, ε' a = true := fun a => ((B _ _).mp ⟨a, rfl⟩).1
   have hE : ∀ a, IsEntry (D.hc τ) k (-q a + 1 / 2) := fun a => ((A _ _).mp ⟨a, rfl⟩).2
   choose z hz using fun a => entry_int _ _ _ (hE a)
   refine ⟨funext hε, funext hε', -e + p, e - p - s, ?_, ?_, ?_⟩
-  · simp only [expS, if_neg hkne, he, hpQ]
+  · simp only [expS, ite_eq_right hkne, he, hpQ]
     push_cast
     ring
-  · simp only [expT, if_neg hkne, he]
+  · simp only [expT, ite_eq_right hkne, he]
     push_cast
     rw [hpQ, hsQ]
     ring

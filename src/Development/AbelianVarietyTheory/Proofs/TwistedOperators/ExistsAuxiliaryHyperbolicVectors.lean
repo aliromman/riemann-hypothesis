@@ -9,7 +9,31 @@ public import Mathlib.Data.Matrix.ColumnRowPartitioned
 import Development.AbelianVarietyTheory.BlockTheory.HeightDefect.AdelicUnitaryGroups
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.HeightOneSpectrumPlacesOverFiniteSet
 import Formalism.HermitianLattices.HermitianLatticesProofs.UnimodUnramUnique
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
 import Mathlib.LinearAlgebra.FreeModule.IdealQuotient
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -22,6 +46,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.SignatureConjugationInvariant
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -467,17 +494,17 @@ theorem exists_auxiliaryHyperbolicVectors : ∀ (D : D7) (j : ℕ), j < D.R.m �
     if h : 0 < (D.R.m - 1 - j) % 2 then w (.inr ⟨0, h⟩) else 0, ?_⟩
   unfold GlobalTheory.IndefiniteRowSideFullHecke.ChainMatrices.IsAuxiliaryHeckeCharacter GlobalTheory.IndefiniteRowSideFullHecke.ChainMatrices.nAux HSpace.hD
   refine ⟨fun i hi l hl => ?_, fun i hi x => ?_, fun he => ?_⟩
-  · simp only [dif_pos hi, dif_pos hl, hw]
+  · simp only [dite_eq_left hi, dite_eq_left hl, hw]
     simp [stdGram, Matrix.one_apply, Fin.ext_iff, eq_comm]
-  · simp only [dif_pos hi, h0, and_self]
+  · simp only [dite_eq_left hi, h0, and_self]
   · have h : 0 < (D.R.m - 1 - j) % 2 := by
       obtain ⟨a, ha⟩ := D.R.m_even
       obtain ⟨b, hb⟩ := he
       omega
     refine ⟨?_, fun x => ?_, fun i hi => ?_⟩
-    · simp only [dif_pos h, hw]; simp [stdGram]
-    · simp only [dif_pos h, h0]
-    · simp only [dif_pos h, dif_pos hi, hw]; simp [stdGram]
+    · simp only [dite_eq_left h, hw]; simp [stdGram]
+    · simp only [dite_eq_left h, h0]
+    · simp only [dite_eq_left h, dite_eq_left hi, hw]; simp [stdGram]
 
 end GlobalTheory.StandardGramVectors
 end -- clump:auto

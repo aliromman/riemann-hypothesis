@@ -1,6 +1,31 @@
 module
 
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ContinuousExptPY
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -13,6 +38,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -25,11 +53,11 @@ theorem shc_neg' (x : ℝ) : shc (-x) = shc x := by
   unfold shc
   by_cases hx : x = 0
   · simp [hx]
-  · rw [if_neg (neg_ne_zero.mpr hx), if_neg hx, Real.sinh_neg, neg_div_neg_eq]
+  · rw [ite_eq_right (neg_ne_zero.mpr hx), ite_eq_right hx, Real.sinh_neg, neg_div_neg_eq]
 
 theorem shc_zero' : shc 0 = 1 := by
   unfold shc
-  exact if_pos rfl
+  exact ite_eq_left rfl
 
 theorem prod_square (n : ℕ) (F : ℕ → ℕ → ℝ) :
     ∏ i ∈ Finset.range n, ∏ j ∈ Finset.range n, F i j =
@@ -49,7 +77,7 @@ theorem prod_square (n : ℕ) (F : ℕ → ℕ → ℝ) :
     intro i hi
     have hd : (∏ j ∈ Finset.range n, if j = i then F i i else 1) = F i i := by
       rw [Finset.prod_ite_eq']
-      exact if_pos hi
+      exact ite_eq_left hi
     rw [← Finset.prod_mul_distrib, ← hd, ← Finset.prod_mul_distrib]
     exact Finset.prod_congr rfl fun j _ => by rw [← mul_assoc]; exact split3 i j
 
@@ -72,8 +100,8 @@ theorem prod_PIx (p q : ℕ) (h : ℕ → ℝ) :
   rw [← Finset.prod_subtype (Finset.univ.filter fun ab : Ix p q × Ix p q => ¬ sameBlock ab.1 ab.2)
     (fun ab => by simp) (fun ab => shc (rootP h ab))]
   rw [Finset.prod_filter, Fintype.prod_prod_type]
-  simp only [Fintype.prod_sum_type, sameBlock, not_true_eq_false, not_false_eq_true, if_false,
-    if_true, Finset.prod_const_one, one_mul, mul_one, rootP, Sum.isLeft_inl, Sum.isLeft_inr,
+  simp only [Fintype.prod_sum_type, sameBlock, not_true_eq_false, not_false_eq_true, ite_false,
+    ite_true, Finset.prod_const_one, one_mul, mul_one, rootP, Sum.isLeft_inl, Sum.isLeft_inr,
     posIx, Sum.elim_inl, Sum.elim_inr, Bool.false_eq_true]
   simp_rw [Finset.prod_range, Finset.prod_mul_distrib]
   congr 1
@@ -86,9 +114,9 @@ theorem prod_rect (m d : ℕ) (h c : ℕ → ℝ) (hc : ∀ n, c n = if n < m th
         ∏ i ∈ Finset.range m, ∏ j ∈ Finset.range m,
           if i < j then (shc (h i - h j) * shc (h i + h j)) ^ 2 else 1 := by
   have hin : ∀ i ∈ Finset.range m, c i = h i := fun i hi => by
-    rw [hc, if_pos (Finset.mem_range.mp hi)]
+    rw [hc, ite_eq_left (Finset.mem_range.mp hi)]
   have hout : ∀ k, c (m + k) = 0 := fun k => by
-    rw [hc, if_neg (by omega)]
+    rw [hc, ite_eq_right (by omega)]
 
   have swap : ∀ a b : ℝ, shc (b - a) * shc (b + a) = shc (a - b) * shc (a + b) := fun a b => by
     rw [show b - a = -(a - b) by ring, shc_neg', add_comm b a]

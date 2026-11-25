@@ -37,7 +37,31 @@ public import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.IsAdmiss
 public import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.StdOK
 public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.EqAndAlg
 public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.UnitPeriodTranslatesMomentsFinite
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Ideal.Norm.RelNorm
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -51,13 +75,18 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalToGlobal.KernelLattices.XiIndCClass
 import Formalism.SharpRestriction.CuspSpanNormBounds.Point
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.PerLatticeFacts
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.WeylHeisenbergOperatorCalculusRational
 import Formalism.LocalToGlobal.Columns.BaseLemmas
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.RelIndexPerDvd
+import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.AbsNormSpanInvol
@@ -406,7 +435,7 @@ variable {p : ℕ} [Fact p.Prime] (lam : TaylorLogMetric.Qbar →+* ℂ_[p])
 
 theorem lamC_mul {x y : ℂ} (hx : x ∈ TaylorLogMetric.Qbar) (hy : y ∈ TaylorLogMetric.Qbar) :
     TaylorLogMetric.lamC lam (x * y) = TaylorLogMetric.lamC lam x * TaylorLogMetric.lamC lam y := by
-  simp only [TaylorLogMetric.lamC, dif_pos hx, dif_pos hy, dif_pos (mul_mem hx hy)]
+  simp only [TaylorLogMetric.lamC, dite_eq_left hx, dite_eq_left hy, dite_eq_left (mul_mem hx hy)]
   exact map_mul lam ⟨x, hx⟩ ⟨y, hy⟩
 
 theorem lamC_sum {κ : Type} (s : Finset κ) (f : κ → ℂ) (h : ∀ k ∈ s, f k ∈ TaylorLogMetric.Qbar) :
@@ -414,14 +443,14 @@ theorem lamC_sum {κ : Type} (s : Finset κ) (f : κ → ℂ) (h : ∀ k ∈ s, 
   classical
   induction s using Finset.induction_on with
   | empty =>
-    have : TaylorLogMetric.lamC lam 0 = lam 0 := dif_pos (zero_mem _)
+    have : TaylorLogMetric.lamC lam 0 = lam 0 := dite_eq_left (zero_mem _)
     simp only [Finset.sum_empty, this, map_zero]
   | insert k s hk ih =>
     have h1 := h k (Finset.mem_insert_self _ _)
     have h2 : ∀ j ∈ s, f j ∈ TaylorLogMetric.Qbar := fun j hj => h j (Finset.mem_insert_of_mem hj)
     have h3 := sum_mem h2
     rw [Finset.sum_insert hk, Finset.sum_insert hk, ← ih h2]
-    simp only [TaylorLogMetric.lamC, dif_pos h1, dif_pos h3, dif_pos (add_mem h1 h3)]
+    simp only [TaylorLogMetric.lamC, dite_eq_left h1, dite_eq_left h3, dite_eq_left (add_mem h1 h3)]
     exact map_add lam ⟨_, h1⟩ ⟨_, h3⟩
 
 theorem lamC_zero' : TaylorLogMetric.lamC lam 0 = 0 := by simpa using lamC_sum lam (∅ : Finset Unit) (fun _ => 0) (by simp)
@@ -430,7 +459,7 @@ theorem norm_lamC_ratio {n k c : ℕ} (hn : n ≠ 0) (hc : ¬ p ∣ c) (h : n �
     ‖TaylorLogMetric.lamC lam ((n : ℂ)⁻¹ * k)‖ ≤ 1 := by
   have hm : (n : ℂ)⁻¹ * k ∈ TaylorLogMetric.Qbar := mul_mem (inv_mem (natCast_mem _ n)) (natCast_mem _ k)
   have e : TaylorLogMetric.lamC lam ((n : ℂ)⁻¹ * k) = (n : ℂ_[p])⁻¹ * k := by
-    simp only [TaylorLogMetric.lamC, dif_pos hm]
+    simp only [TaylorLogMetric.lamC, dite_eq_left hm]
     have : (⟨_, hm⟩ : TaylorLogMetric.Qbar) = (n : TaylorLogMetric.Qbar)⁻¹ * k := Subtype.ext (by simp)
     rw [this]; simp
   obtain ⟨d, hd⟩ := h
@@ -786,7 +815,7 @@ section abelian₂
 
 variable {p : ℕ} [Fact p.Prime] (lam : TaylorLogMetric.Qbar →+* ℂ_[p])
 
-theorem lamC_of_mem {x : ℂ} (h : x ∈ TaylorLogMetric.Qbar) : TaylorLogMetric.lamC lam x = lam ⟨x, h⟩ := dif_pos h
+theorem lamC_of_mem {x : ℂ} (h : x ∈ TaylorLogMetric.Qbar) : TaylorLogMetric.lamC lam x = lam ⟨x, h⟩ := dite_eq_left h
 
 theorem lamC_zpow {x : ℂ} (hx : x ∈ TaylorLogMetric.Qbar) (n : ℤ) : TaylorLogMetric.lamC lam (x ^ n) = TaylorLogMetric.lamC lam x ^ n := by
   rw [lamC_of_mem lam hx, lamC_of_mem lam (zpow_mem hx n), ← map_zpow₀]; rfl
@@ -854,7 +883,7 @@ theorem assemble {p : ℕ} [Fact p.Prime] (lam : TaylorLogMetric.Qbar →+* ℂ_
     subset_rfl (Set.subset_univ _) fun m hm => ?_
   · by_cases h : Ξ x = 0
     · simpa [h] using clo_zero Sup tab Set.univ
-    · simp only [if_neg h]
+    · simp only [ite_eq_right h]
       refine clo_mul (h3 x (hR x hx) h) _ ?_
       rw [norm_mul, hinv, norm_inv, hχ1, inv_one, mul_one]
       exact h2 x (hR x hx)
@@ -871,7 +900,7 @@ theorem assemble {p : ℕ} [Fact p.Prime] (lam : TaylorLogMetric.Qbar →+* ℂ_
       intro j hj'
       have := hm (x + j) (add_mem (hR x hx) (hC (hJ.1 j hj'))) (by rw [hj j hj']; exact h)
       unfold Amb.jetK desc
-      rw [dif_pos this]
+      rw [dite_eq_left this]
       exact this.choose_spec
     have e : A.σ₀ (∑ j ∈ J, A.jetK S N N' c (x + j) m) =
         (A.chiF a b N N')⁻¹ * ∑ j ∈ J, jetC A.cD (A.thInd S N N' c (x + j)) m := by
@@ -906,8 +935,8 @@ theorem phiT_add (K : Type) [Field K] {d : Deco E a ST SG} {d' : Deco E b ST SG'
     simpa using this
   unfold phiT
   by_cases hx : x ∈ suppBar d d'
-  · exact (if_pos (h.2 hx)).trans (if_pos hx).symm
-  · exact (if_neg fun h' => hx (h.1 h')).trans (if_neg hx).symm
+  · exact (ite_eq_left (h.2 hx)).trans (ite_eq_left hx).symm
+  · exact (ite_eq_right fun h' => hx (h.1 h')).trans (ite_eq_right hx).symm
 
 theorem ker_of_mulLat {d : Deco E a ST SG} {d' : Deco E b ST SG'} (hd' : d'.Ok) {S : Finset (HeightOneSpectrum (𝓞 E))}
     (hS : ST ⊆ S) {c : ℕ} (hc : ∀ P ∈ ST, (c : 𝓞 E) ∈ P.asIdeal) {y : HomE E a b} (hy : y ∈ mulLat c (homAt S d.N d'.N)) :

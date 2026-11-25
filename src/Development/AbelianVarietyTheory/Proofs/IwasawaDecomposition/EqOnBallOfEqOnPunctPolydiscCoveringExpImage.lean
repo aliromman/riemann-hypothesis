@@ -1,6 +1,29 @@
 module
 
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PerValNeZero
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -61,8 +84,8 @@ theorem eq_on_ball_of_eq_on_logExp_image : ∀ (n a : ℕ) (ρ₁ : ℝ) (X : Ty
     have hg : Continuous g := by
       refine continuous_pi fun k => ?_
       by_cases hk : (k:ℕ) < a
-      · simp only [g, hk, if_true]; fun_prop
-      · simp only [g, hk, if_false]; fun_prop
+      · simp only [g, hk, ite_true]; fun_prop
+      · simp only [g, hk, ite_false]; fun_prop
     let T : Set ℂ := Set.range (fun k : Fin n => - z k)
     have hT : T.Finite := Set.finite_range _
     have hS : Dense (Set.univ \ T) := dense_univ.diff_finite hT
@@ -74,7 +97,7 @@ theorem eq_on_ball_of_eq_on_logExp_image : ∀ (n a : ℕ) (ρ₁ : ℝ) (X : Ty
     have h2 : U ∩ g '' (Set.univ \ T) ⊆ D := by
       rintro _ ⟨hU, t, ⟨-, htT⟩, rfl⟩
       refine ⟨hU, fun k hk => ?_⟩
-      simp only [g, hk, if_true]
+      simp only [g, hk, ite_true]
       intro heq
       exact htT ⟨k, by linear_combination -heq⟩
     exact closure_mono h2 (Metric.isOpen_ball.inter_closure ⟨hz, h1⟩)

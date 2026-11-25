@@ -3,18 +3,6 @@ module
 public import Formalism.LocalToGlobal.IndefiniteReal.FWExist
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MultiplicativeInnerProductModel
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsAntilinear
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilGramSignature
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ReadingsExistRow
@@ -41,7 +29,7 @@ theorem inner_eq_integral {D : D7} {V : HSp D} {S : D.what₂.Tau → SPar} (M :
       simp
     · by_contra hn
       have := h z z
-      simp only [ipM, dif_neg hn, mul_zero] at this
+      simp only [ipM, dite_eq_right hn, mul_zero] at this
       exact hz (inner_self_eq_zero.1 this)
   obtain ⟨a, ha⟩ := hd x
   obtain ⟨b, hb⟩ := hd y

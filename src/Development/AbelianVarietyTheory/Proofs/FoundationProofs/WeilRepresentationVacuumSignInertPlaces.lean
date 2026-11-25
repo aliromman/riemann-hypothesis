@@ -20,6 +20,32 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.InducedTy
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.KernelLatticesFormSelfDualTriples
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ThetaFunctionsAllLevelsClosure
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.WeilRepresentationCommHeisenbergIntertwiner
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -32,10 +58,15 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.TypeStar
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.RationalPointsIntegralPointsMembership
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.Linter.Style
 import Development.AbelianVarietyTheory.Definitions.Foundations.NormSumPairRankZeroOfCurveCoordNorm
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsLatticeOfAdelicPoint
@@ -93,8 +124,6 @@ theorem exists_int_smul_mem {K : Type u_1} {V : Type u_2} [Field K] [NumberField
       rw [← algebraMap_smul K r (m • x), hr, smul_comm (d • c) m x, smul_assoc, mul_comm, mul_smul]
     rw [key]
     exact L.smul_mem r hmx
-
-alias main := _root_.GlobalTheory.IntegerScalarIntegral.exists_int_smul_mem
 
 end GlobalTheory.IntegerScalarIntegral
 end -- clump:auto
@@ -725,11 +754,11 @@ theorem mu_eq_sign : ∀ (D : D7) (T : Tor D) (N N' : ℕ) (A₁ A₂ A₃ : Add
   let χ : Fin r → 𝓞 D.host.E → ℂ := fun i s => ch D (φ i s)
   have χadd : ∀ i a b, χ i (a + b) = χ i a * χ i b := fun i a b => by simp only [χ, map_add (f := _), ch_add]
   have hYX : ∀ i a a', bc D T (Y i a') (X i a) = χ i (a' * sgO D a) := fun i a a' => by
-    rw [bc_eq, hH, if_pos rfl]
+    rw [bc_eq, hH, ite_eq_left rfl]
   have hYX' : ∀ i j a a', i ≠ j → bc D T (Y i a') (X j a) = 1 := fun i j a a' h => by
-    rw [bc_eq, hH, if_neg h, ch_zero]
+    rw [bc_eq, hH, ite_eq_right h, ch_zero]
   have hXY' : ∀ i j a a', i ≠ j → bc D T (X j a) (Y i a') = 1 := fun i j a a' h => by
-    rw [bc_eq, ← Hf_conj, hH, if_neg h, map_zero, ch_zero]
+    rw [bc_eq, ← Hf_conj, hH, ite_eq_right h, map_zero, ch_zero]
   have χP : ∀ i, ∀ a ∈ P, χ i a = 1 := fun i a ha => by
     have := hYX i 1 a
     rw [map_one (sgO D), mul_one] at this
@@ -812,7 +841,7 @@ theorem mu_eq_sign : ∀ (D : D7) (T : Tor D) (N N' : ℕ) (A₁ A₂ A₃ : Add
       refine forall_congr' fun i => ?_
       rw [← u, ← v, eq_comm, Ideal.Quotient.eq, Pi.sub_apply]
     by_cases h : e₃ q₃ = e₂ q₂
-    · rw [if_pos (hiff.2 h), if_pos h]
+    · rw [ite_eq_left (hiff.2 h), ite_eq_left h]
       have wx : x = sumHom X (a₂ q₂) + (x - sumHom X (a₂ q₂)) := by abel
       have wy : y = sumHom Y (a₃ q₃) + (y - sumHom Y (a₃ q₃)) := by abel
       rw [wy, bc_add_left, n₂.2.1 _ v2 _ x2, mul_one, wx, bc_add_right, n₃.2.1 _ (mY _) _ u3, mul_one,
@@ -825,10 +854,10 @@ theorem mu_eq_sign : ∀ (D : D7) (T : Tor D) (N N' : ℕ) (A₁ A₂ A₃ : Add
       have w : a₃ q₃ i * sgO D (a₂ q₂ i) = t * sgO D t +
           ((a₃ q₃ i - t) * sgO D (a₂ q₂ i) + t * sgO D (a₂ q₂ i - t)) := by rw [map_sub]; ring
       rw [w, χadd, χP i _ (P.add_mem (P.mul_mem_right _ t3) (P.mul_mem_left _ (hσ _ t2))), mul_one]
-    · rw [if_neg (mt hiff.1 h), if_neg h]
+    · rw [ite_eq_right (mt hiff.1 h), ite_eq_right h]
   rw [finsum_congr key, finsum_comp_equiv (Equiv.prodCongr e₃ e₂) (f := F), finsum_eq_sum_of_fintype,
     Fintype.sum_prod_type_right] at hμ
-  simp only [F, Finset.sum_ite_eq', Finset.mem_univ, if_true] at hμ
+  simp only [F, Finset.sum_ite_eq', Finset.mem_univ, ite_true] at hμ
   simp only [finsum_eq_sum_of_fintype] at hmG
   rw [← Fintype.piFinset_univ, ← Finset.prod_univ_sum (fun _ => Finset.univ)
     (fun i (t : 𝓞 D.host.E ⧸ P) => χ i (Quotient.out t * sgO D (Quotient.out t)))] at hμ
@@ -1475,8 +1504,8 @@ theorem cT_tv (D : D7) {n : ℕ} (μ : D.host.E) (w : Fin n → D.host.E) :
   simp only [cT, tv, Matrix.transpose_apply, Matrix.map_apply, Matrix.add_apply, Matrix.smul_apply,
     Matrix.vecMulVec_apply, smul_eq_mul, map_add, map_mul, conj_conj, Matrix.one_apply]
   by_cases h : i = j
-  · subst h; simp only [if_true, map_one]; ring
-  · rw [if_neg h, if_neg (Ne.symm h), map_zero]; ring
+  · subst h; simp only [ite_true, map_one]; ring
+  · rw [ite_eq_right h, ite_eq_right (Ne.symm h), map_zero]; ring
 
 theorem tv_unitary (D : D7) {n : ℕ} (μ : D.host.E) (w : Fin n → D.host.E)
     (h : μ + D.host.conj μ + μ * D.host.conj μ * hE D w w = 0) : tv D μ w * cT D (tv D μ w) = 1 := by

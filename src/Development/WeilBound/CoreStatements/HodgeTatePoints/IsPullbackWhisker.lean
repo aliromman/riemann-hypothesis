@@ -29,6 +29,32 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDesc
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.PrecompleteBases.PsbLb
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsCocharLie
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.GermFunPf
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -41,6 +67,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.AlgebraicGeometry.Modules.Sheaf
 import Mathlib.AlgebraicGeometry.Sites.Fpqc
 import Mathlib.CategoryTheory.Limits.Shapes.Connected
@@ -96,15 +124,15 @@ theorem psTrunc_expand {σ : Type} [Fintype σ] [DecidableEq σ] (p : ℕ) (hp :
   rw [hR]
   by_cases hs : ∃ j, Finsupp.single j p = e
   · obtain ⟨j, rfl⟩ := hs
-    rw [GermFun.coeff_psTrunc _ _ _ (by simp), Finset.sum_eq_single j, if_pos rfl]
+    rw [GermFun.coeff_psTrunc _ _ _ (by simp), Finset.sum_eq_single j, ite_eq_left rfl]
     · have : Finsupp.single j p = p • Finsupp.single j 1 := by simp
       rw [this, MvPowerSeries.coeff_expand_smul]
     · intro b _ hb
-      rw [if_neg]
+      rw [ite_eq_right]
       intro h
       exact hb ((Finsupp.single_left_inj hp).1 h)
     · simp
-  · rw [Finset.sum_eq_zero fun j _ => if_neg fun h => hs ⟨j, h⟩]
+  · rw [Finset.sum_eq_zero fun j _ => ite_eq_right fun h => hs ⟨j, h⟩]
     by_cases hd : e.degree ≤ p
     · rw [GermFun.coeff_psTrunc _ _ _ hd]
       by_cases hdv : ∀ i, p ∣ e i
@@ -130,7 +158,7 @@ theorem psTrunc_expand {σ : Type} [Fintype σ] [DecidableEq σ] (p : ℕ) (hp :
         exact MvPowerSeries.coeff_expand_of_not_dvd _ _ _ hi
     · rw [psTrunc, MvPolynomial.coeff_sum]
       refine Finset.sum_eq_zero fun b hb => ?_
-      rw [MvPolynomial.coeff_monomial, if_neg]
+      rw [MvPolynomial.coeff_monomial, ite_eq_right]
       rintro rfl
       apply hd
       have := (Finset.mem_filter.1 hb).2
@@ -778,7 +806,7 @@ theorem first_eq_zero {k : Type} [Field k] (p : ℕ) [Fact p.Prime] [CharP k p] 
       simpa [MvPolynomial.constantCoeff_eq] using h0
   rw [pow_eq_of_first p hp _ _ e, ← map_pow, Ideal.Quotient.eq_zero_iff_mem, mem_orig_pow_iff] at h
   have h4 := h (p • Finsupp.single () 1) (by simp)
-  rw [MvPolynomial.monomial_pow, MvPolynomial.coeff_monomial, if_pos rfl, pow_eq_zero_iff (by omega)] at h4
+  rw [MvPolynomial.monomial_pow, MvPolynomial.coeff_monomial, ite_eq_left rfl, pow_eq_zero_iff (by omega)] at h4
   rw [e, h4]
   simp
 

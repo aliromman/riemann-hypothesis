@@ -6,18 +6,6 @@ public import Mathlib.LinearAlgebra.Dimension.Finrank
 public import Mathlib.RingTheory.MvPolynomial.Homogeneous
 public import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.MonomialCountAndBinomialEstimates
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsRatioOfWeight
 public import Mathlib.LinearAlgebra.Dimension.StrongRankCondition
 
@@ -41,12 +29,12 @@ theorem coeff_sum_monomial {D q : ℕ} [Fintype {α : Fin (D + 1) →₀ ℕ // 
   · rw [Finset.sum_eq_single ⟨β, h⟩]
     · simp
     · intro b _ hb
-      rw [if_neg]
+      rw [ite_eq_right]
       intro e
       exact hb (Subtype.ext e)
     · simp
   · refine Finset.sum_eq_zero fun a _ => ?_
-    rw [if_neg]
+    rw [ite_eq_right]
     rintro rfl
     exact h a.2
 
@@ -91,7 +79,7 @@ theorem GlobalTheory.HSAmp.card_bounded_forms : ∀ (D q δ : ℕ) (R : ℝ), 0 
       · funext i a
         apply Subtype.ext
         change AddMonoidAlgebra.coeff (∑ b, monomial b.1 (f i b : ℤ)) a.1 = (f i a : ℤ)
-        rw [coeff_sum_monomial, dif_pos a.2]
+        rw [coeff_sum_monomial, dite_eq_left a.2]
   let e := Equiv.ofBijective F hF
   have hfin : S.Finite := Set.finite_coe_iff.1 (Finite.of_equiv _ e.symm)
   refine ⟨hfin, ?_, hAcard, ?_, ?_⟩

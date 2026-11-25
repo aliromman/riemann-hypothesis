@@ -3,7 +3,29 @@ module
 public import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsSumFrame
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LatticesAgreeAlmostEverywhere
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.OneSubIdemQMulSelf
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -18,6 +40,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ExistsUnitarySupportedAtPlaceOfMulEqIdem
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.JointSmooth
 import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
@@ -145,7 +170,7 @@ theorem latV_le_of_local (S : HSp D) (N M : Lat S) (hN : Submodule.IsLattice D.h
           split_ifs
           · rw [mul_one]; exact hα w
           · rw [mul_zero]; exact zero_mem _
-        · rw [map_mul, evalV_indQ, if_neg (by rwa [Finset.mem_singleton]), mul_zero]
+        · rw [map_mul, evalV_indQ, ite_eq_right (by rwa [Finset.mem_singleton]), mul_zero]
       exact latV_mono' S M (fun w hw => hw ▸ hv) (h v hv h1)
     · have h0 : α * indQ D {v} = 0 := by
         apply RestrictedProduct.ext
@@ -173,7 +198,7 @@ theorem latV_le_of_local (S : HSp D) (N M : Lat S) (hN : Submodule.IsLattice D.h
     refine AddSubgroup.subset_closure ⟨((d : D.host.F))⁻¹ • β, fun w => ?_, fun w hw => ?_,
       1, rfl, d • x, hNM x hx, ?_⟩
     · by_cases hw : w ∈ B
-      · rw [hsm, hβB, if_pos hw, mul_zero]
+      · rw [hsm, hβB, ite_eq_left hw, mul_zero]
         exact zero_mem _
       · have hwv : ((d : 𝓞 D.host.F)) ∉ w.asIdeal := hB w hw
         have hval : Valued.v (algebraMap D.host.F (w.adicCompletion D.host.F) (d : D.host.F)) = 1 := by
@@ -183,7 +208,7 @@ theorem latV_le_of_local (S : HSp D) (N M : Lat S) (hN : Submodule.IsLattice D.h
             map_intCast (algebraMap (𝓞 D.host.F) D.host.F) _
           exact h2.trans (h4 ▸ h1)
         have hαw := hα w
-        have e1 : evalV D.host.F w β = evalV D.host.F w α := by rw [hβB, if_neg hw]
+        have e1 : evalV D.host.F w β = evalV D.host.F w α := by rw [hβB, ite_eq_right hw]
         rewrite [map_smul, e1]
         rw [HeightOneSpectrum.mem_adicCompletionIntegers] at hαw ⊢
         rw [Algebra.smul_def, map_mul, map_inv₀, map_inv₀, hval, inv_one, one_mul]

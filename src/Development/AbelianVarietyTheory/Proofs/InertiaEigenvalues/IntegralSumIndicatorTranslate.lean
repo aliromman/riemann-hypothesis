@@ -3,19 +3,6 @@ module
 public import Mathlib.Analysis.InnerProductSpace.Basic
 public import Mathlib.MeasureTheory.Integral.Bochner.Basic
 import Aesop.Main
-import Mathlib.Analysis.CStarAlgebra.Classes
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.FourierMatch
 public import Mathlib.MeasureTheory.Integral.Bochner.Set
 
@@ -100,7 +87,7 @@ theorem integral_eq_of_coset_support
         rw [e]
         simp only [Set.mem_preimage, SetLike.mem_coe, mul_assoc]
         exact Subgroup.mul_mem_cancel_left R₀ hk
-      simp only [Set.indicator, hmem, Finset.sum_ite_eq, if_pos (hsuppT s hs), hrep, hinv k hk]
+      simp only [Set.indicator, hmem, Finset.sum_ite_eq, ite_eq_left (hsuppT s hs), hrep, hinv k hk]
   have hS : (fun x => h (i x)) = fun x => ∑ q ∈ T,
       ((fun y => y * q.out⁻¹) ⁻¹' (i ⁻¹' (R₀ : Set R))).indicator (fun _ => h (i q.out)) x := by
     funext x

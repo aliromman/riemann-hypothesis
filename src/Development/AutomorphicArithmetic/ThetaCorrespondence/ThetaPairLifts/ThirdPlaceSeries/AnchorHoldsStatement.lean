@@ -10,18 +10,6 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AnchoredWeig
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LiftLambdaBound
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.HostN
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.WtNZ
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.TupleReadBaseTupleEqFamily
 import Mathlib.Tactic.Linter.Style
 
@@ -89,7 +77,7 @@ theorem laOf_big (D : D7) (T : CoreJ D) (hT : LawsJ T) (i : Fin D.R.m) (κ : Wei
     laOf (T.Q.Dw ((i : ℕ) + 1)) (wtA κ) κ.n τ k = (κ.aP t a : ℤ) + ((κ.n / 2 : ℕ) : ℤ) := by
   have hD := hT.pins.2.2.2 ((i : ℕ) + 1) ⟨by omega, i.2⟩
   have hk : (k : ℕ) < (T.Q.Dw ((i : ℕ) + 1)).p := by have := hD.1; have := a.2; omega
-  simp only [laOf, weightOf, if_pos hk, hτ]
+  simp only [laOf, weightOf, ite_eq_left hk, hτ]
   rw [GlobalTheory.WeightExponents.wtA_tauEmb hT.pins.1, Formalism.L2.Pj.ext0, dite_eq_left (by omega)]
   have : (⟨(k : ℕ), by omega⟩ : Fin (D.R.sigW ((i : ℕ) + 1)).1) = a := Fin.ext ha.symm
   rw [this]
@@ -104,7 +92,7 @@ theorem laOf_small (D : D7) (T : CoreJ D) (hT : LawsJ T) (i : Fin D.R.m) (κ : W
   have hp := hD.1
   have hq := hD.2.1
   have hk : ¬ (k : ℕ) < (T.Q.Dw ((i : ℕ) + 1)).p := by omega
-  simp only [laOf, weightOf, if_neg hk, hτ]
+  simp only [laOf, weightOf, ite_eq_right hk, hτ]
   rw [GlobalTheory.Shares.WtDic.wtA_conj, Formalism.L2.Pj.ext0, dite_eq_left (by omega)]
   have : (⟨(T.Q.Dw ((i : ℕ) + 1)).q - 1 - ((k : ℕ) - (T.Q.Dw ((i : ℕ) + 1)).p), by omega⟩ :
       Fin (D.R.sigW ((i : ℕ) + 1)).2) = a := Fin.ext (by simp only; omega)
@@ -170,7 +158,7 @@ theorem anchor_eq (P : ParameterChoice' D L) (t : D.what₂.Tau) (τ : Psi p.T.Q
     (p.fw.kap i t).1 ⟨D.R.k - 2, hj⟩]
   rw [GlobalTheory.RecGaps.sig_Wc]
   unfold aPl
-  rw [if_pos hj, Int.toNat_of_nonneg hnn]
+  rw [ite_eq_left hj, Int.toNat_of_nonneg hnn]
 
 theorem abs_anchor_sub_le (P : ParameterChoice' D L) (t : D.what₂.Tau) (τ : Psi p.T.Q.H) (hτ : τ.1 = DV.tauEmb D t) :
     |((anchor (dat p i) (wtA (p.κ i)) (p.κ i).n (D.R.k - 1) τ : ℤ) : ℝ) - (((D.hc t).e i : ℚ) : ℝ)| ≤

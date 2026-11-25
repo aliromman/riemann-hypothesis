@@ -54,18 +54,6 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.BottomPairsE
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.MeasureToRealEqMass
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.IdemElt
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.CmHostImaginaryGeneratorNeZero
 import Development.AbelianVarietyTheory.Definitions.Divisors.FlatTensorVacuum
 import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.NormSmall
@@ -570,12 +558,6 @@ open Formalism.MainNotions.SchurIrreducible (IsSplit)
 open Formalism.L2.Host (HChar aboveF)
 open GlobalTheory.CMVal (eulerFactor IsHeckeL)
 
-section Seg
-
-variable {E : Type} [Field E] [NumberField E] (w : HeightOneSpectrum (𝓞 E)) (n : ℕ)
-
-end Seg
-
 variable {D : D7}
 
 section Char
@@ -593,18 +575,6 @@ theorem unrAt_inv (ν : HChar E) (w : HeightOneSpectrum (𝓞 E)) : (ν⁻¹).Un
 alias val_inv := _root_.Formalism.L2.Host.HChar.val_inv
 
 end Char
-
-section Global
-
-variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
-
-end Global
-
-section Bottom
-
-open GlobalTheory.FunObj.SqNum (botBig botSmall)
-
-end Bottom
 
 end GlobalTheory.UnrCharZeta
 
@@ -696,9 +666,9 @@ theorem main : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {μ₀ : T}
     exact ⟨fun h => inv_inv χ ▸ h.inv, fun h => h.inv⟩
   have hfam : GlobalTheory.LFun.charFam χ⁻¹ = GlobalTheory.LFun.heckeFam (nuH G t i j)⁻¹ := funext fun w => by
     by_cases h : (nuH G t i j)⁻¹.UnrAt w
-    · rw [GlobalTheory.LFun.heckeFam_of_unrAt h, GlobalTheory.LFun.charFam, if_pos ((hu w).2 h), GlobalTheory.LFun.val_inv,
+    · rw [GlobalTheory.LFun.heckeFam_of_unrAt h, GlobalTheory.LFun.charFam, ite_eq_left ((hu w).2 h), GlobalTheory.LFun.val_inv,
         GlobalTheory.LFun.val_eq_of_chrEq hχ, GlobalTheory.UnrCharZeta.val_inv]
-    · rw [GlobalTheory.LFun.heckeFam_of_not_unrAt h, GlobalTheory.LFun.charFam, if_neg (mt (hu w).1 h)]
+    · rw [GlobalTheory.LFun.heckeFam_of_not_unrAt h, GlobalTheory.LFun.charFam, ite_eq_right (mt (hu w).1 h)]
   have hΛ' := GlobalTheory.CMVal.isHeckeL_inv_of_trivOnF D.host.E (nuH G t i j) Λ hT hΛ
   have hr' : ∀ w ∈ GlobalTheory.LFun.above D.host.E ((sfB G t : Finset (FinPl D)) : Set (FinPl D)),
       ¬ (nuH G t i j)⁻¹.UnrAt w := fun w hw h =>

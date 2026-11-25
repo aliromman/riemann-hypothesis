@@ -9,6 +9,32 @@ public import Formalism.FormalDegreeBessel.FormalDegreeRatio.GBasic
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.FrameCompletion
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.FrameExtension
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.HermitianFormRankFour
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -21,8 +47,14 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Formalism.HermitianCurvature.StatementQr
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -74,14 +106,14 @@ private theorem Hpk_mulVec_of_inWb {k r : ℕ} {v : Fin (2 * r + k + 1) → ℂ}
   rw [Finset.sum_eq_single i]
   · by_cases hi : (i : ℕ) < r ∨ r + k < i
     · rw [hv i hi]; simp
-    · push_neg at hi
+    · push Not at hi
       have h1 : ¬ (i : ℕ) < r := by omega
-      simp only [_root_.Formalism.QuantumDeterminants.Hpk, h1, false_and, if_false, hi.1, hi.2, true_and, if_true]
+      simp only [_root_.Formalism.QuantumDeterminants.Hpk, h1, false_and, ite_false, hi.1, hi.2, true_and, ite_true]
       split_ifs <;> simp
   · intro j _ hj
     by_cases hjm : (j : ℕ) < r ∨ r + k < j
     · rw [hv j hjm]; simp
-    · push_neg at hjm
+    · push Not at hjm
       have hne : (i : ℕ) ≠ j := fun h => hj (Fin.ext h).symm
       simp only [_root_.Formalism.QuantumDeterminants.Hpk]
       split_ifs with h1 h2 h3 <;> first | omega | exact absurd (congrArg Fin.val h3.2.2) hne | simp
@@ -117,13 +149,13 @@ private theorem exists_unit_orth_in_Wb {n r : ℕ} {z : Fin (2 * r + (n + 1) + 1
     rw [Hpk_mulVec_of_inWb hv]
     funext i
     by_cases hip : i = p
-    · rw [hip, if_neg hpval, hvdef]
+    · rw [hip, ite_eq_right hpval, hvdef]
       simp [hpq]
     · by_cases hiq : i = q
-      · rw [hiq, if_pos hqval, hvdef]
+      · rw [hiq, ite_eq_left hqval, hvdef]
         simp [hpq.symm]
       · have : (i : ℕ) ≠ r + (n + 1) := fun h => hiq (Fin.ext (h.trans hqval.symm))
-        rw [if_neg this, hvdef]
+        rw [ite_eq_right this, hvdef]
         simp [hip, hiq]
   have hvz : _root_.Formalism.QuantumDeterminants.herm (_root_.Formalism.QuantumDeterminants.Hpk (n + 1) r) v z = 0 := by
     rw [_root_.Formalism.QuantumDeterminants.herm, hHv, dotProduct_sub, dotProduct_single, dotProduct_single]
@@ -142,16 +174,16 @@ private theorem exists_unit_orth_in_Wb {n r : ℕ} {z : Fin (2 * r + (n + 1) + 1
       intro i
       split_ifs <;> simp [Complex.normSq_apply, Complex.mul_re]
     simp only [Pi.star_apply, hf]
-    rw [← Finset.add_sum_erase _ _ (Finset.mem_univ q), if_pos hqval]
+    rw [← Finset.add_sum_erase _ _ (Finset.mem_univ q), ite_eq_left hqval]
     have hpe : p ∈ Finset.univ.erase q := Finset.mem_erase.2 ⟨hpq, Finset.mem_univ _⟩
     have h2 := Finset.single_le_sum (f := fun i : Fin (2 * r + (n + 1) + 1) =>
         if (i : ℕ) = r + (n + 1) then -Complex.normSq (z i) else Complex.normSq (z i))
       (fun i hi => by
         have hiq : (i : ℕ) ≠ r + (n + 1) := fun h =>
           Finset.ne_of_mem_erase hi (Fin.ext (h.trans hqval.symm))
-        simp only [if_neg hiq]
+        simp only [ite_eq_right hiq]
         exact Complex.normSq_nonneg _) hpe
-    simp only [if_neg hpval] at h2
+    simp only [ite_eq_right hpval] at h2
     linarith
   have hT' : (_root_.Formalism.QuantumDeterminants.herm (_root_.Formalism.QuantumDeterminants.Hpk (n + 1) r) z z).re < 0 := by
     have := hT; unfold _root_.Formalism.QuantumDeterminants.Tz at this; linarith

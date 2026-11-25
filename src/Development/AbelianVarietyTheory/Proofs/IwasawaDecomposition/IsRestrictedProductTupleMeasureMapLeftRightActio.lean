@@ -5,6 +5,33 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Integ
 public import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MeasurableEmbeddingAdelicTupleLocalComponents
 public import Mathlib.Analysis.SpecialFunctions.Log.Summable
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -17,9 +44,12 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.Topology.Connected.Separation
 import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -113,7 +143,7 @@ theorem abstract_transport {ι X Xi : Type*} {Xv : ι → Type*} [MeasurableSpac
     by_cases hx : x ∈ B
     · have e2 : ∏ v ∈ (S ∪ S₀) \ S, gv v (pv v x) = 1 :=
         Finset.prod_eq_one fun v hv => by
-          simp only [gv, if_neg (Finset.mem_sdiff.1 hv).2]
+          simp only [gv, ite_eq_right (Finset.mem_sdiff.1 hv).2]
           exact Set.indicator_of_mem (hx v hv) _
       rw [Set.indicator_of_mem hx, e2, one_mul, hci]; rfl
     · rw [Set.indicator_of_notMem hx]
@@ -121,7 +151,7 @@ theorem abstract_transport {ι X Xi : Type*} {Xv : ι → Type*} [MeasurableSpac
       obtain ⟨v, hv, hv'⟩ := hx
       have e2 : ∏ v ∈ (S ∪ S₀) \ S, gv v (pv v x) = 0 :=
         Finset.prod_eq_zero hv (by
-          simp only [gv, if_neg (Finset.mem_sdiff.1 hv).2]
+          simp only [gv, ite_eq_right (Finset.mem_sdiff.1 hv).2]
           exact Set.indicator_of_notMem hv' _)
       rw [e2, zero_mul, mul_zero]
   rw [hl, key, tprod_tail_split _ hsum S (S ∪ S₀) hsub, ← Finset.prod_sdiff hsub,
@@ -133,7 +163,7 @@ theorem abstract_transport {ι X Xi : Type*} {Xv : ι → Type*} [MeasurableSpac
   have e2 : ∏ v ∈ (S ∪ S₀) \ S, ∫⁻ y, gv v y ∂(mv v) =
       ∏ v ∈ (S ∪ S₀) \ S, ENNReal.ofReal ((mv v).map (Tv v) (L v)).toReal :=
     Finset.prod_congr rfl fun v hv => by
-      simp only [gv, if_neg (Finset.mem_sdiff.1 hv).2]
+      simp only [gv, ite_eq_right (Finset.mem_sdiff.1 hv).2]
       rw [lintegral_indicator_one (hTL v), Measure.map_apply (hTv v) (hL v),
         ENNReal.ofReal_toReal (hfin v)]
   have e3 : ∏' v : {v // v ∉ S ∪ S₀}, (mv v.1 (L v.1)).toReal =

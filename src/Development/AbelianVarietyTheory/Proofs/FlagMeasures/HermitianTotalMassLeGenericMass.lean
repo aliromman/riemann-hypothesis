@@ -23,7 +23,35 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.TermOverFrame
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.TsumOrbitNormaliser
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HermitianDoubleCosetTermBasicFacts
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.IsPrincipalIdealRingOfHenselian
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -36,6 +64,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HermitianDoubleCosetFrameClassProperties
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HermitianFramesComplementUnitaryActsOnTerms
@@ -45,6 +76,7 @@ import Development.AbelianVarietyTheory.Proofs.FlagMeasures.SpanToZero
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.TermInvariantsIndependentOfWitnesses
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.TermsCorrespond
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.TsumTransversalEqTsumOrbitQuotientGeneral
+import Mathlib.Tactic.ENatToNat
 import Formalism.SharpRestriction.CuspSpanNormBounds.Point
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -113,11 +145,11 @@ theorem sumCls_eq_single (S : Frames L r k) (h1 : (S.sumCls fun _ => 1) ≤ 1) (
   have hh' : h.1 • C = o'.out := hh
   have ho' : S.IsIntCls o'.out := hh' ▸ GlobalTheory.HL.ClassCount.isIntCls_smul S h.2 hC
   unfold Frames.sumCls at h1 ⊢
-  rw [tsum_eq_single o', if_pos ho', ← hh', hφ _ h.2, ((GlobalTheory.HL.volSt L r k S).2 C hC.1).2.2.2 _ h.2]
+  rw [tsum_eq_single o', ite_eq_left ho', ← hh', hφ _ h.2, ((GlobalTheory.HL.volSt L r k S).2 C hC.1).2.2.2 _ h.2]
   intro o hne
-  refine if_neg fun ho => ?_
+  refine ite_eq_right fun ho => ?_
   have h2 := (ENNReal.sum_le_tsum {o, o'}).trans h1
-  rw [Finset.sum_pair hne, if_pos ho, if_pos ho', mul_one, mul_one] at h2
+  rw [Finset.sum_pair hne, ite_eq_left ho, ite_eq_left ho', mul_one, mul_one] at h2
   have h3 := ENNReal.one_le_ofReal.2 ((GlobalTheory.HL.volSt L r k S).2 _ ho.1).2.2.1
   have h4 := ENNReal.one_le_ofReal.2 ((GlobalTheory.HL.volSt L r k S).2 _ ho'.1).2.2.1
   have h5 := (add_le_add h3 h4).trans h2
@@ -336,7 +368,7 @@ theorem total_le_generic : ∀ {F : Type} [Field F] [ValuativeRel F] [Topologica
     intro δ Q hδ
     unfold GlobalTheory.HL.Frames.mass
     refine ENNReal.tsum_eq_zero.mpr fun o => ?_
-    rw [if_neg]
+    rw [ite_eq_right]
     exact fun h => hδ ⟨_, h.1⟩
   have hQst : ∀ δ, ∀ s ∈ S.St, ∀ Λ, S.IsTerm δ Λ → Qd δ Λ → Qd δ (s • Λ) := by
     intro δ s hs Λ hΛ hq
@@ -457,7 +489,7 @@ theorem total_le_generic : ∀ {F : Type} [Field F] [ValuativeRel F] [Topologica
       · rintro ⟨Λ, hΛ⟩
         exact ⟨_, (GlobalTheory.HL.ComplAct.main M.L r k S _ _ hΛ h hh).1⟩
     have hind := hκ (fun δ => if ∃ Λ, S.IsTerm δ Λ then (1 : ℝ≥0∞) else 0)
-      (fun h hh δ => by simp only [hex h hh δ]) (fun δ hδ => by simp only [hδ, if_false])
+      (fun h hh δ => by simp only [hex h hh δ]) (fun δ hδ => by simp only [hδ, ite_false])
     intro hκz
     have hle1 : (1 : ℝ≥0∞) ≤ ∑' d : R.RD, ENNReal.ofReal (LocNG.Datum.wt d0 d.1) *
         (fun δ => if ∃ Λ, S.IsTerm δ Λ then (1 : ℝ≥0∞) else 0) (c.dat d.1) := by

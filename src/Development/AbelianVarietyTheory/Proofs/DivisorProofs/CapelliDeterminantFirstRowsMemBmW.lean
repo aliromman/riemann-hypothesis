@@ -5,22 +5,9 @@ public import Formalism.BranchSandwichDivisors.BranchIsometryProofs.BranchMap
 public import Development.AbelianVarietyTheory.Definitions.Foundations.GelfA
 public import Formalism.LocalToGlobal.Columns.FiniteSumNonzeroLargeDepth
 public import Development.AbelianVarietyTheory.Definitions.Foundations.TracePowApply
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
 import Formalism.GradedWeylDivisibility.DualWeylDominanceOf
 import Formalism.LocalToGlobal.Divisibility.CoefModLemmas
-import Mathlib.RingTheory.SimpleRing.Principal
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.SplitLastBlockActX
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -90,10 +77,6 @@ variable [CharZero K]
 variable {K}
 
 end Maps
-
-section Statement
-
-end Statement
 
 end GlobalTheory.IndefiniteRowSideFullHecke.InterlacingNumerators
 end -- clump:auto
@@ -217,7 +200,7 @@ theorem rE_zmon (n : ℕ) (i j : Fin n) (b : Fin n → ℕ) : rE K n n i j (zmon
   · intro s _
     induction b s with
     | zero => exact rowE_C K _ _ _ _ 1
-    | succ k ih => rw [pow_succ, rowE_mul, ih, rowE_X, if_neg (Fin.castSucc_lt_last j).ne]; simp
+    | succ k ih => rw [pow_succ, rowE_mul, ih, rowE_X, ite_eq_right (Fin.castSucc_lt_last j).ne]; simp
 
 theorem rE_lead (n : ℕ) (i j : Fin n) (b : Fin n → ℕ) (f : MvPolynomial (Fin n × Fin n) K) :
     rE K n n i j (zmon K n b * emb K n f) = zmon K n b * emb K n (rowE K n n i j f) := by

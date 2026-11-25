@@ -15,6 +15,32 @@ public import Mathlib.RingTheory.Henselian
 public import Mathlib.FieldTheory.Finite.GaloisField
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ModelLat
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsHermitianModelOfNormNeZero
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -27,17 +53,23 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Foundations.SmoothPartStable
 import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.BaseChangeDefiniteUnitary
 import Development.AutomorphicArithmetic.IntegralCasts.IsOpenStabOfMemNhds
 import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.FinsumNormNeg
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.RingTheory.PiTensorProduct
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Tjcosets
@@ -66,7 +98,7 @@ theorem cptPart_iff_intUnits_of_model : ∀ (E : Type) [Field E] [NumberField E]
   intro E _ _ _ hE w hw K e he hint n B ψ x γ hmod hsep τ hτ t
   have hcont := (GlobalTheory.ConjAtPlace.main E hE w).1
   have hcl : IsClosed ((UL n w : Subgroup (GLw n w)) : Set (GLw n w)) := by
-    unfold UL; rw [if_neg hw]
+    unfold UL; rw [ite_eq_right hw]
     have : ((UJ (cj w) (1 : Matrix (Fin n) (Fin n) (w.adicCompletion E)) : Subgroup _) : Set (GLw n w)) =
         (fun g : GLw n w => cT (cj w) (g : Matrix (Fin n) (Fin n) (w.adicCompletion E)) * 1 *
           (g : Matrix (Fin n) (Fin n) (w.adicCompletion E))) ⁻¹' {1} := rfl
@@ -821,7 +853,7 @@ theorem exists_orthonormal {K : GlobalTheory.UnitLemma.UQ} (n : ℕ) (V : Type) 
       · refine Fin.cases ?_ (fun i => ?_) i <;> refine Fin.cases ?_ (fun j => ?_) j
         · simpa using he1
         · simpa [(Fin.succ_ne_zero j).symm] using he0 j
-        · simp only [Fin.cons_succ, Fin.cons_zero, Fin.succ_ne_zero, if_false]
+        · simp only [Fin.cons_succ, Fin.cons_zero, Fin.succ_ne_zero, ite_false]
           rw [hc, he0, map_zero]
         · simpa using hon i j
   exact main n le_rfl
@@ -894,7 +926,7 @@ theorem exists_unitLat_eq : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
     exact (he _).symm
   have hqU : qG ∈ UL n w := by
     unfold UL
-    rw [if_neg hns]
+    rw [ite_eq_right hns]
     show Formalism.UG.cT (cj w) (P.map eh) * 1 * P.map eh = 1
     rw [hcT, Matrix.mul_one, hmul2]
   refine ⟨⟨qG, hqU⟩, ?_⟩
@@ -912,7 +944,7 @@ theorem exists_unitLat_eq : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
     intro y j
     conv_lhs => rw [← b.sum_repr y]
     rw [show B.herm x (∑ i, b.repr y i • b i) (v j) = ∑ i, b.repr y i * B.herm x (b i) (v j) from ?_]
-    · simp only [hb, hv, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+    · simp only [hb, hv, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
     · induction (Finset.univ : Finset (Fin n)) using Finset.induction_on with
       | empty =>
         simp only [Finset.sum_empty]
@@ -1022,7 +1054,7 @@ theorem mem_KGL_of_unitary {E : Type} [Field E] [NumberField E] [IsCMField E] (h
     (h1 : ∀ i j, Valued.v ((M : Matrix (Fin n) (Fin n) (w.adicCompletion E)) i j) ≤ 1) :
     M ∈ GlobalTheory.LFun.KGL w (n := n) := by
   have hcj := (GlobalTheory.ConjAtPlace.main E hU w).2.2.1
-  rw [UL, if_neg hw] at hM
+  rw [UL, ite_eq_right hw] at hM
   have hM' : Formalism.UG.cT (cj w) (M : Matrix (Fin n) (Fin n) (w.adicCompletion E)) * 1 *
       (M : Matrix (Fin n) (Fin n) (w.adicCompletion E)) = 1 := hM
   have hinv : ((M⁻¹ : GLw n w) : Matrix (Fin n) (Fin n) (w.adicCompletion E)) =

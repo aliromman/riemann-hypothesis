@@ -6,7 +6,33 @@ public import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsUniqueI
 public import Development.AbelianVarietyTheory.Proofs.ModuliProofs.InvariantVectorFieldsAlongGroupHom
 public import Development.AbelianVarietyTheory.Proofs.ModuliProofs.InvariantVectorFieldsBasisVerticalDerivations
 public import Development.AbelianVarietyTheory.Proofs.ModuliProofs.LogDerivativePrincipalPolarisationIndependent
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.AlgebraicGeometry.Modules.Sheaf
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -19,7 +45,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.RingTheory.WittVector.IsPoly
 import Mathlib.Tactic.Lemma
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.LeISupInfPreimage
 import Mathlib.Tactic.TypeStar
 
@@ -58,10 +86,10 @@ variable {X Y Z T : Scheme.{0}}
 alias pbT_pbT := _root_.GlobalTheory.KS.InvField.pbT_pbT
 
 theorem app_eq (f : Z ⟶ Y) {O : Y.Opens} (s : Γ(Y, O)) : (f.app O).hom s = pbT f s (f ⁻¹ᵁ O) := by
-  simp only [pbT, dif_pos (le_refl (f ⁻¹ᵁ O)), Scheme.Hom.appLE_eq_app]
+  simp only [pbT, dite_eq_left (le_refl (f ⁻¹ᵁ O)), Scheme.Hom.appLE_eq_app]
 
 theorem resG_eq {O₀ O : Y.Opens} (h : O ≤ O₀) (s : Γ(Y, O₀)) : resG Y h s = rsT s O := by
-  simp only [rsT, dif_pos h]
+  simp only [rsT, dite_eq_left h]
 
 theorem pbT_ι_bijective (O : Y.Opens) {O' : Y.Opens} (h : O' ≤ O) {V : O.toScheme.Opens} (hV : V = O.ι ⁻¹ᵁ O') :
     Function.Bijective (fun s : Γ(Y, O') => pbT O.ι s V) := by
@@ -73,7 +101,7 @@ theorem pbT_ι_bijective (O : Y.Opens) {O' : Y.Opens} (h : O' ≤ O) {V : O.toSc
       exact ⟨⟨x, h hx⟩, hx, rfl⟩
   have key : (fun s : Γ(Y, O') => pbT O.ι s (O.ι ⁻¹ᵁ O')) = (O.ι.appLE O' _ le_rfl).hom := by
     funext s
-    simp only [pbT, dif_pos (le_refl (O.ι ⁻¹ᵁ O'))]
+    simp only [pbT, dite_eq_left (le_refl (O.ι ⁻¹ᵁ O'))]
   rw [key, Scheme.Opens.ι_appLE]
   rw [show homOfLE (x := O.ι ''ᵁ O.ι ⁻¹ᵁ O') (Set.image_subset_iff.mpr le_rfl) = eqToHom e from Subsingleton.elim _ _]
   rw [eqToHom_op, eqToHom_map]
@@ -95,10 +123,10 @@ private lemma rsT_eq_pbT_id {Y : Scheme.{0}} {O₀ : Y.Opens} (s : Γ(Y, O₀)) 
     rsT s O = pbT (𝟙 Y) s O := by
   by_cases h : O ≤ O₀
   · have h' : O ≤ (𝟙 Y) ⁻¹ᵁ O₀ := h
-    simp only [rsT, pbT, dif_pos h, dif_pos h', Scheme.Hom.appLE, resG]
+    simp only [rsT, pbT, dite_eq_left h, dite_eq_left h', Scheme.Hom.appLE, resG]
     rfl
   · have h' : ¬ O ≤ (𝟙 Y) ⁻¹ᵁ O₀ := h
-    simp only [rsT, pbT, dif_neg h, dif_neg h']
+    simp only [rsT, pbT, dite_eq_right h, dite_eq_right h']
 
 private lemma locDerK_zero' {Y X : Scheme.{0}} {K R : Type} [Field K] [CommRing R] (q : Y ⟶ Sp K)
     (p : X ⟶ Sp R) (m : Y ⟶ X) (W₀ : X.Opens) :
@@ -183,7 +211,7 @@ theorem comb_exists {q : Y ⟶ Sp K} {p : X ⟶ Sp R} {m : Y ⟶ X} {dd : Fin g 
 
 private lemma pbT_mul_of_le_preimage {Y Z : Scheme.{0}} (f : Z ⟶ Y) {O₀ : Y.Opens} (a b : Γ(Y, O₀)) {V : Z.Opens}
     (h : V ≤ f ⁻¹ᵁ O₀) : pbT f (a * b) V = pbT f a V * pbT f b V := by
-  simp only [pbT, dif_pos h, map_mul]
+  simp only [pbT, dite_eq_left h, map_mul]
 
 private lemma pbT_congr {Y Z : Scheme.{0}} {f f' : Z ⟶ Y} (e : f = f') {O₀ : Y.Opens} (s : Γ(Y, O₀))
     (V : Z.Opens) : pbT f s V = pbT f' s V := by

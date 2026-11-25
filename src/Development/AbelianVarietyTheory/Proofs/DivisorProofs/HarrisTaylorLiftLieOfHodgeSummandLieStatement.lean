@@ -14,18 +14,6 @@ public import Mathlib.Data.Matrix.Mul
 public import Mathlib.Data.Matrix.Basic
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTangentCoordsBaseChangeSmoothCommGroupStatement
 public import Development.AbelianVarietyTheory.Definitions.Divisors.NotCompactOfMEqOne
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.ThetaCore
 import Development.AbelianVarietyTheory.Definitions.AbelianSchemeLaws.FirstCohomologyVanishesSpecOfIsLocalRing
 import Development.AbelianVarietyTheory.Definitions.Degenerations.ExistsGenPullTriv
@@ -33,7 +21,6 @@ import Development.AbelianVarietyTheory.Definitions.Uniformization.ExistsUniqueT
 import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.DiagZEqNegAddY
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.HenselianLocalRingOfIsAdicComplete
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.TypeStar
 import Development.AbelianVarietyTheory.Definitions.Divisors.InfUniv
 import Development.AbelianVarietyTheory.Definitions.Divisors.Pullback1MemHodgeFiltration
 
@@ -282,7 +269,7 @@ theorem eigen_decomp_base_change :
       Finset.sum_ite_eq]
     have hg := congrArg g huinv
     simp only [map_mul, map_sub, map_intCast, map_one, map_ofNat] at hg ⊢
-    simp only [Finset.mem_univ, if_true]
+    simp only [Finset.mem_univ, ite_true]
     linear_combination (-(v k)) * hg
   refine ⟨fun i => ∑ j, v j • (g ∘ W j i), ?_, ?_⟩
   · intro i c

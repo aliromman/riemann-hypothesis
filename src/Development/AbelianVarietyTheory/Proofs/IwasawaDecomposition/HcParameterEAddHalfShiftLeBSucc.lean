@@ -3,7 +3,30 @@ module
 public import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 public import Formalism.LocalToGlobal.IndefiniteReal.BridgeTie
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LamGeoEqFormula
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Rat
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -17,6 +40,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.BitVec
 import Std.Tactic.BVDecide.Normalize.Prop
 
@@ -184,7 +209,7 @@ lemma dpar_eq (D : D7) (τ : D.what₂.Tau) :
     (Ptw D).Dpar D.R.m τ = Finset.univ.image fun x => (entry (D.hc τ) x, true) := by
   have hm : ¬ Odd D.R.m := Nat.not_odd_iff_even.mpr D.R.m_even
   ext ⟨y, s⟩
-  simp only [TPar.Dpar, TPar.block, hm, if_false, add_zero, Ptw, tparRec, tparHC, Finset.mem_image,
+  simp only [TPar.Dpar, TPar.block, hm, ite_false, add_zero, Ptw, tparRec, tparHC, Finset.mem_image,
     Finset.mem_union, Finset.mem_biUnion, Finset.mem_filter, Finset.mem_univ, true_and,
     Finset.mem_range, Prod.mk.eta, exists_eq_right]
   constructor
@@ -216,7 +241,7 @@ theorem lamRForced (D : D7) : Bridge.LamRForced (Ptw D) := by
       obtain ⟨b, hb⟩ := D.R.m_even
       exact ⟨a + b - 1, by unfold Ranks.r; omega⟩
   unfold Bridge.lamRdef
-  rw [dif_pos h]
+  rw [dite_eq_left h]
   exact h.choose_spec
 
 theorem lamLForced (D : D7) : Bridge.LamLForced D := by
@@ -234,10 +259,10 @@ theorem lamLForced (D : D7) : Bridge.LamLForced D := by
         b := fun n => if h : n - 1 < D.R.m then b ⟨n - 1, h⟩ else 0 }
     have hWv : ∀ (n : ℕ) (h : n - 2 < D.R.k - 1), (W.v n : ℚ) = (D.hc τ).v ⟨n - 2, h⟩ := by
       intro n h
-      simp only [W, dif_pos h, hv]
+      simp only [W, dite_eq_left h, hv]
     have hWb : ∀ (n : ℕ) (h : n - 1 < D.R.m), (W.b n : ℚ) = (D.hc τ).b ⟨n - 1, h⟩ := by
       intro n h
-      simp only [W, dif_pos h, hb]
+      simp only [W, dite_eq_left h, hb]
     have hWe : (W.e : ℚ) = (D.hc τ).e ⟨j - 1, hj⟩ := he.symm
     have ht : (0 : ℚ) ≤ D.R.t := by positivity
     have hg : W.GapHyp := by
@@ -297,7 +322,7 @@ theorem lamLForced (D : D7) : Bridge.LamLForced D := by
     rw [hd]
     exact hanti d i (by omega)
   unfold Bridge.lamLdef
-  rw [dif_pos h]
+  rw [dite_eq_left h]
   exact h.choose_spec
 
 theorem lam_forced : ∀ D : D7, Bridge.LamRForced (Ptw D) ∧ Bridge.LamLForced D :=

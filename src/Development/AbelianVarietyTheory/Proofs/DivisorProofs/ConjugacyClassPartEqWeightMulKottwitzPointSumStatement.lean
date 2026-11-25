@@ -4,6 +4,29 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.StabEqStabil
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ToVInjective
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FixLineConjIff
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HermitianPositivityInvariant
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -17,6 +40,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinsumDoubleCosetEqFinsumOrbit, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjugacyClassPartEqWeightMulKottwitzPointSum, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjugacyClassPartEqWeightMulKottwitzPointSumStatement
@@ -316,14 +342,14 @@ theorem cls_eq_of_uniq : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (v : Infin
     exact ((Subgroup.mem_centralizer_iff.1 hη) y₀ (Set.mem_singleton _)).symm
   by_cases hpos : ∃ z : Fin G.n → ℂ, 0 < (star z ⬝ᵥ (herm G v β *ᵥ z)).re ∧ FixL G v β y₀ z
   swap
-  · rw [if_neg hpos]
+  · rw [ite_eq_right hpos]
     refine finsum_eq_zero_of_forall_eq_zero fun o => ?_
-    rw [cxF, if_neg (fun h => hpos ⟨_, h⟩), mul_zero]
-  rw [if_pos hpos]
+    rw [cxF, ite_eq_right (fun h => hpos ⟨_, h⟩), mul_zero]
+  rw [ite_eq_left hpos]
   obtain ⟨z₀, hz₀pos, hz₀fix⟩ := hpos
   by_cases hf0 : ∃ h, f (h⁻¹ * toAfF G β x t hx y₀ * h) ≠ 0
   swap
-  · push_neg at hf0
+  · push Not at hf0
     have hl : ∀ o : MulAction.orbitRel.Quotient Z (Ys G v β x t hx Kf K'),
         cxF G v wt β x t hx Kf f K' f' (Quotient.out o) y₀ = 0 := by
       intro o
@@ -363,7 +389,7 @@ theorem cls_eq_of_uniq : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (v : Infin
   have hF0 : ∀ u l, l ≠ l₀ → F (u, l) = 0 := by
     intro u l hl
     simp only [hF]
-    rw [cxF, if_neg]
+    rw [cxF, ite_eq_right]
     rintro ⟨hp, hfx⟩
     obtain ⟨d, hd⟩ := huniq _ hp hfx
     apply hl
@@ -372,7 +398,7 @@ theorem cls_eq_of_uniq : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (v : Infin
   have hF1 : ∀ u, F (u, l₀) = c u := by
     intro u
     simp only [hF, hc]
-    rw [cxF, if_pos]
+    rw [cxF, ite_eq_left]
     · rfl
     refine ⟨?_, ?_⟩
     · have hp := (GlobalTheory.LKCx.pos_iff_smul_toV p G v β 1 z₀ a ha0).1 hz₀pos

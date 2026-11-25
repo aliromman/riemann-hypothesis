@@ -1,6 +1,28 @@
 module
 
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.MemHatIffOfSelfDual
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -13,7 +35,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
+import Mathlib.Topology.Sheaves.Init
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsIsAdelicGlueVectorOfGlueBaseData, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsIsAdelicGlueVectorOfGlueBaseDataStatement
@@ -177,13 +201,13 @@ theorem exists_isGlueVec (D : D7) (u : D.what₂.Word) (π : 𝓞 D.host.E) (hπ
     have := pi_notMem_cP hπ h
     rwa [cP_cP] at this
   have compS : ∀ v, π ∈ v.asIdeal → idem v • ∑ w ∈ hSf.toFinset, (f₀ w + g w) = f₀ v := fun v hv => by
-    rw [hcomp, if_pos ((hmem v).mpr hv), if_neg (fun h => pi_notMem_cP hπ hv ((hmem _).mp h)), add_zero]
+    rw [hcomp, ite_eq_left ((hmem v).mpr hv), ite_eq_right (fun h => pi_notMem_cP hπ hv ((hmem _).mp h)), add_zero]
   have compC : ∀ v, π ∈ (cP v).asIdeal → idem v • ∑ w ∈ hSf.toFinset, (f₀ w + g w) = g (cP v) :=
     fun v hv => by
-      rw [hcomp, if_neg (fun h => hnot v hv ((hmem v).mp h)), if_pos ((hmem _).mpr hv), zero_add]
+      rw [hcomp, ite_eq_right (fun h => hnot v hv ((hmem v).mp h)), ite_eq_left ((hmem _).mpr hv), zero_add]
   have comp0 : ∀ v, π ∉ v.asIdeal → π ∉ (cP v).asIdeal →
       idem v • ∑ w ∈ hSf.toFinset, (f₀ w + g w) = 0 := fun v h1 h2 => by
-    rw [hcomp, if_neg (fun h => h1 ((hmem v).mp h)), if_neg (fun h => h2 ((hmem _).mp h)), add_zero]
+    rw [hcomp, ite_eq_right (fun h => h1 ((hmem v).mp h)), ite_eq_right (fun h => h2 ((hmem _).mp h)), add_zero]
   refine ⟨∑ w ∈ hSf.toFinset, (f₀ w + g w), ⟨?_, ?_, ?_, ?_, ?_⟩, compS⟩
   · rw [Finset.smul_sum]
     exact Finset.sum_induction _ (· ∈ hat L₀) (fun _ _ => add_mem_hat) zero_mem_hat
@@ -268,15 +292,15 @@ theorem exists_isGlueVec (D : D7) (u : D.what₂.Word) (π : 𝓞 D.host.E) (hπ
       · rw [compS v h1]
         obtain ⟨hf, -⟩ := HB v h1
         have e1 : (∑ w ∈ hSf.toFinset, (idem w * a1 w + idem (cP w) * a2 w)) • f₀ v = a1 v • f₀ v := by
-          rw [← hf, smul_smul, smul_smul, mul_comm _ (idem v), hca, if_pos ((hmem v).mpr h1),
-            if_neg (fun h => pi_notMem_cP hπ h1 ((hmem _).mp h)), add_zero, mul_comm (idem v)]
+          rw [← hf, smul_smul, smul_smul, mul_comm _ (idem v), hca, ite_eq_left ((hmem v).mpr h1),
+            ite_eq_right (fun h => pi_notMem_cP hπ h1 ((hmem _).mp h)), add_zero, mul_comm (idem v)]
         rw [e1]; exact hy1 v h1
       · by_cases h2 : π ∈ (cP v).asIdeal
         · rw [compC v h2]
           have e1 : (∑ w ∈ hSf.toFinset, (idem w * a1 w + idem (cP w) * a2 w)) • g (cP v) =
               a2 (cP v) • g (cP v) := by
             rw [← hgw (cP v) h2, smul_smul, smul_smul, mul_comm _ (idem (cP (cP v))), cP_cP, hca,
-              if_neg (fun h => hnot v h2 ((hmem v).mp h)), if_pos ((hmem _).mpr h2), zero_add,
+              ite_eq_right (fun h => hnot v h2 ((hmem v).mp h)), ite_eq_left ((hmem _).mpr h2), zero_add,
               cP_cP, mul_comm (idem v)]
           have key := hy2 (cP v) h2
           rw [cjA_idem, cP_cP] at key

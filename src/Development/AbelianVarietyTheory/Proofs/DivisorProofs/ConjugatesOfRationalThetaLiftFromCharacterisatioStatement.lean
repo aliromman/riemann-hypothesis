@@ -37,6 +37,30 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CentralShift
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.EvInjOfIsModelsOfTie
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.JEvExistsAndJEvBar
 public import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.IsSystem
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -49,9 +73,12 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.Linter.Style
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilGramSignature
 import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasChr
+import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalToGlobal.Divisibility.CoefMod
 import Formalism.LocalToGlobal.IndefiniteReal.ExistsChosenExtremalVector
 import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
@@ -267,7 +294,7 @@ theorem prod_hv (hL : IsTotallyComplex L) {I : Type} [Fintype I] (φ : I → L �
   have hp := GlobalTheory.TypeValues.productRule χ ∅ (fun v _ => hu v) (GlobalTheory.Mem.ValAlg.uOf a ha)
   have e1 : ∀ v, (∏ᶠ (_ : v ∉ (∅ : Finset (HeightOneSpectrum (𝓞 L)))), χ.val v ^ ordF v (GlobalTheory.Mem.ValAlg.uOf a ha)) =
       χ.val v ^ cnt a v := fun v => by
-    rw [finprod_eq_if, if_pos (Finset.notMem_empty v), ordF_eq, zpow_natCast]
+    rw [finprod_eq_if, ite_eq_left (Finset.notMem_empty v), ordF_eq, zpow_natCast]
   simp_rw [e1] at hp
   rw [Finset.prod_empty, mul_one, finprod_eq_prod_of_mulSupport_subset (s := U) _ (fun v hv' => by
     by_contra h
@@ -313,7 +340,7 @@ theorem hv_mem (hL : IsTotallyComplex L) {I : Type} [Fintype I] (φ : I → L �
   obtain ⟨a, ha⟩ := IsDedekindDomain.exists_forall_sub_mem_ideal (s := S) (fun v => v.asIdeal) (fun _ => 2)
     (fun v _ => v.prime) (fun v _ w _ h h' => h (HeightOneSpectrum.ext h')) (fun v => if v.1 = P then b else 1)
   have haP := ha P hP
-  rw [if_pos rfl] at haP
+  rw [ite_eq_left rfl] at haP
   have ha2 : a ∉ P.asIdeal ^ 2 := fun h => hb2 (by simpa using (P.asIdeal ^ 2).sub_mem h haP)
   have ha1 : a ∈ P.asIdeal := by simpa using P.asIdeal.add_mem (Ideal.pow_le_self two_ne_zero haP) hb1
   have ha0 : a ≠ 0 := by rintro rfl; exact ha2 (zero_mem _)
@@ -331,7 +358,7 @@ theorem hv_mem (hL : IsTotallyComplex L) {I : Type} [Fintype I] (φ : I → L �
   refine div_mem (inv_mem (prod_mem fun i _ => hM i _)) (prod_mem fun v hv' => pow_mem (hS v fun hvS => ?_) _)
   obtain ⟨hvP, hva⟩ := Finset.mem_erase.1 hv'
   have h1 := ha v hvS
-  rw [if_neg hvP] at h1
+  rw [ite_eq_right hvP] at h1
   refine v.isPrime.ne_top ((Ideal.eq_top_iff_one _).2 ?_)
   simpa using v.asIdeal.sub_mem ((hU v).2 hva) (Ideal.pow_le_self two_ne_zero h1)
 
@@ -358,7 +385,7 @@ theorem hv_mem_of_inert {F : Type} [Field F] [NumberField F] [Algebra F L] (χ :
     omega
   have hk := (hval _ _).1 (unif_spec (v.under (𝓞 F)))
   have h := hr.1 (v.under (𝓞 F)) (unif (v.under (𝓞 F)))
-  rw [HChar.resFin, etaFin, hab, Finset.prod_singleton, MonoidHom.comp_apply, if_pos (Finset.card_singleton _), hk, zpow_one] at h
+  rw [HChar.resFin, etaFin, hab, Finset.prod_singleton, MonoidHom.comp_apply, ite_eq_left (Finset.card_singleton _), hk, zpow_one] at h
   have h2 : χ.val v = -1 := (χ.val_eq hu _ ((hval _ _).2 ((ho _).trans hk))).symm.trans h
   unfold hv
   rw [h2, hN, Nat.cast_pow, Real.sqrt_sq (Nat.cast_nonneg _), Complex.ofReal_inv, Complex.ofReal_natCast, Units.val_neg,

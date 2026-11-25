@@ -2,6 +2,28 @@ module
 
 public import Formalism.LocalToGlobal.IndefiniteReal.FWExist
 public import Development.AbelianVarietyTheory.Definitions.Foundations.AbsCharNotUnitary
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -84,7 +106,7 @@ theorem exists_lift_mem (χ : HChar L) (Λ : Subgroup ℂˣ) (S : Finset (Height
     (fun v _ => v.prime) (fun v _ w _ h h' => h (HeightOneSpectrum.ext h')) (fun v => if v.1 = P then b else 1)
   have hua : (u : 𝓞 L ⧸ P.asIdeal) = Ideal.Quotient.mk _ a := by
     have h1 := ha P hP
-    rw [if_pos rfl, pow_one] at h1
+    rw [ite_eq_left rfl, pow_one] at h1
     rw [← hb]
     exact (Ideal.Quotient.eq.2 h1).symm
   have : Nontrivial (𝓞 L ⧸ P.asIdeal) := Ideal.Quotient.nontrivial_iff.2 P.isPrime.ne_top
@@ -96,7 +118,7 @@ theorem exists_lift_mem (χ : HChar L) (Λ : Subgroup ℂˣ) (S : Finset (Height
   have h := productRule χ S hu (Units.mk0 _ ha0)
   rw [hi, one_mul, Finset.prod_eq_single_of_mem P hP (fun v hvS hvP => locK_eq_one (ht v) _ a rfl (by
     have h1 := ha v hvS
-    rwa [if_neg hvP, pow_one] at h1))] at h
+    rwa [ite_eq_right hvP, pow_one] at h1))] at h
   rw [eq_inv_of_mul_eq_one_left h]
   refine Λ.inv_mem (finprod_induction (· ∈ Λ) Λ.one_mem (fun _ _ => Λ.mul_mem) fun v => ?_)
   exact finprod_induction (· ∈ Λ) Λ.one_mem (fun _ _ => Λ.mul_mem) fun hvS => Λ.zpow_mem (hv v hvS) _

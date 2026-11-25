@@ -1,6 +1,32 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.Divisors.IsTorsionFreeOfForallExists
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -13,6 +39,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -112,7 +139,7 @@ theorem IsTriangular.spn_le (H : IsTriangular v rk e g) {S : Finset α}
   by_cases hb : b = a ∨ rk b < rk a
   · have hbS : b ∈ S := hb.elim (fun hba => hba ▸ ha) (hS a ha b)
     exact Submodule.smul_mem _ _ (Submodule.subset_span ⟨b, hbS, rfl⟩)
-  · push_neg at hb
+  · push Not at hb
     rw [h2 b hb.1 hb.2, zero_smul]
     exact zero_mem _
 
@@ -139,8 +166,8 @@ theorem IsTriangular.repr_eq (H : IsTriangular v rk e g) (hv : ∀ j, IsFrame (v
     have hcf : cf a = resG C (le_inf h h') (g a j j') * (if b = a then 1 else 0) := by
       by_cases hab : b = a
       · subst hab
-        rw [if_pos rfl, mul_one, h1]
-      · rw [if_neg hab, mul_zero]
+        rw [ite_eq_left rfl, mul_one, h1]
+      · rw [ite_eq_right hab, mul_zero]
         exact h2 a (Ne.symm hab) (ha b hb)
     have hB : ∀ i, resM F h (v j i) = (hv j).basis h i := fun i => ((hv j).basis_apply h i).symm
     have hr : ((hv j').basis h').repr (resM F h' (v j' (e j' b))) (e j' a) = if b = a then 1 else 0 := by
@@ -152,7 +179,7 @@ theorem IsTriangular.repr_eq (H : IsTriangular v rk e g) (hv : ∀ j, IsFrame (v
     rw [hr, h3, map_sum, Finset.sum_apply']
     simp only [hB, map_smul, Module.Basis.repr_self, Finsupp.smul_apply, Finsupp.single_apply,
       (e j).injective.eq_iff, smul_eq_mul, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq',
-      Finset.mem_univ, if_true]
+      Finset.mem_univ, ite_true]
     rwa [mul_ite, mul_one, mul_zero] at hcf
   | zero => simp
   | add x y _ _ hx hy =>

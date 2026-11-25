@@ -3,6 +3,30 @@ module
 public import Formalism.SharpRestriction.CuspSpanNormBounds.CongruenceAtSplitFrobeniusHolds
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.IsWordLetters
 import Formalism.HermitianCurvature.HeisenbergConjugationMeasurePreserving
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -16,6 +40,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.VanishingGramTermsBoundParams
 import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.OwnEvIntro
 
@@ -168,7 +193,7 @@ theorem tcrit_low_of_sizes (D : D7) (large₂ : SizeData₂ D) (C' Cl Cg cb Cu c
   have hae : 0 < c.aeff ∧ c.aeff ≤ B ^ e ∧ 0 ≤ c.vthp ∧ c.vthp ≤ 1 := by
     unfold Sz.Cfg.aeff Sz.Cfg.vthp
     by_cases ht : IsTop D τ
-    · rw [if_pos (htp.2 ht), if_pos (htp.2 ht)]
+    · rw [ite_eq_left (htp.2 ht), ite_eq_left (htp.2 ht)]
       obtain ⟨t1, t2⟩ := htop τ ht
       have ha0 : 0 < uOne D u τ 1 := by linarith [ha u τ]
       have hbp : 0 < bTop D τ := by linarith
@@ -185,7 +210,7 @@ theorem tcrit_low_of_sizes (D : D7) (large₂ : SizeData₂ D) (C' Cl Cg cb Cu c
       · show 4 * (D.R.k : ℝ) * D.s.Del / bTop D τ ≤ 1
         rw [div_le_one hbp]
         linarith
-    · rw [if_neg (fun h => ht (htp.1 h)), if_neg (fun h => ht (htp.1 h)), hv1]
+    · rw [ite_eq_right (fun h => ht (htp.1 h)), ite_eq_right (fun h => ht (htp.1 h)), hv1]
       have h1 := ha u τ
       have h2 := ha' u τ ht
       refine ⟨?_, ?_, le_rfl, zero_le_one⟩

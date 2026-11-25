@@ -8,10 +8,35 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Hecke
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsPlaceOverMoveValConjPl
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LocalIdeleSndSelf
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.UnderEqIffConjPl
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
 public import Mathlib.LinearAlgebra.FreeModule.IdealQuotient
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
 public import Mathlib.NumberTheory.RamificationInertia.Basic
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.Valuation.Integral
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -26,6 +51,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.HCFFromRecipA
 
 @[expose] public section
@@ -222,8 +250,8 @@ theorem trivOn_of_cofinite (hr : ∀ (P : HeightOneSpectrum (𝓞 E)) (k : Fˣ),
         χ.val P ^ ordF P (upF F k)) = 1 := by
       refine finprod_eq_one_of_forall_eq_one fun P => ?_
       by_cases hP : P ∈ T'.biUnion (aboveF (L := E) F)
-      · exact finprod_eq_if.trans (if_neg (not_not.2 hP))
-      rw [finprod_eq_if, if_pos hP]
+      · exact finprod_eq_if.trans (ite_eq_right (not_not.2 hP))
+      rw [finprod_eq_if, ite_eq_left hP]
       have : ordF (P.under (𝓞 F)) k = 0 := by
         by_contra hne
         exact hP ((hS P).2 (Finset.mem_union_right _ ((Set.Finite.mem_toFinset _).2 hne)))
@@ -250,7 +278,7 @@ theorem trivOn_of_cofinite (hr : ∀ (P : HeightOneSpectrum (𝓞 E)) (k : Fˣ),
       obtain ⟨y, hy⟩ := exists_approx T (fun u => if u = v then a else 1)
         (fun u => by split_ifs; exacts [ha', one_ne_zero])
       have hP := hy v hvT
-      simp only [if_true] at hP
+      simp only [ite_true] at hP
       have hy0 : (y : F) ≠ 0 := by
         intro h0
         rw [h0, zero_sub, Valuation.map_neg] at hP
@@ -262,7 +290,7 @@ theorem trivOn_of_cofinite (hr : ∀ (P : HeightOneSpectrum (𝓞 E)) (k : Fˣ),
       symm
       refine Finset.prod_eq_single_of_mem v hvT fun u hu hne => ?_
       have h3 := hy u hu
-      simp only [if_neg hne] at h3
+      simp only [ite_eq_right hne] at h3
       rw [h2 u 1 _ (by simpa using h3), map_one]
     obtain ⟨a, b, hb, hab⟩ := IsFractionRing.div_surjective (𝓞 F) (k : F)
     have hb0 : (b : F) ≠ 0 := by simpa using nonZeroDivisors.ne_zero hb

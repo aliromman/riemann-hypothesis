@@ -21,7 +21,29 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SiegelCo
 public import Development.WeilBound.RepresentationTheoryGL.LimitMultiplicityWeights.RegularClassIntegrals.DecayFinal
 public import Development.WeilBound.ThetaLifts.Reductions.SiegelOfCore
 public import Development.WeilBound.CoreStatements.AbelianHeightsDuality.PublishedTheoremStatements.SiegelSetUnitaryHolds
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -34,7 +56,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Separation.CompletelyRegular
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Divisors.HasTypeVec
 import Development.AbelianVarietyTheory.Definitions.Foundations.InnerEqZeroOfNotUEquiv
 import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.InverseChamberMap
@@ -43,7 +67,10 @@ import Development.AbelianVarietyTheory.Definitions.Foundations.MeasurePreservin
 import Formalism.LocalToGlobal.IndefiniteReal.ScalarOnPartsFull
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.Tactic.Polynomial.Basic
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.IdemElt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConeIntegralFiniteLargeExponent, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConeIntegralFiniteLargeExponentStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegrableDescendOfCover, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemParabolicOfFlagPreserving, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemParabolicOfFlagPreservingStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RegularSemisimpleConjugateUnipotentTranslate, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RegularSemisimpleConjugateUnipotentTranslateStatement, Development.WeilBound.RepresentationTheoryGL.LimitMultiplicityWeights.RegularClassIntegrals.ContinuousClassKernel, Development.WeilBound.RepresentationTheoryGL.LimitMultiplicityWeights.RegularClassIntegrals.RegClassIntHolds
@@ -748,11 +775,11 @@ theorem coset_sum {G : Type} [Group G] (N : Subgroup G) (Cl : Set G) (h : G → 
     have hq : ∀ ν : N, q (δ₀ * ν) = q δ₀ := fun ν => by
       exact QuotientGroup.eq.2 (by simp)
     have e3 : ∑' ν : N, h (δ₀ * ν) = ∑' ν : N, u (δ₀ * ν) :=
-      tsum_congr fun ν => by simp only [hu, hq ν, if_true]
+      tsum_congr fun ν => by simp only [hu, hq ν, ite_true]
     have hsupp : Function.support u ⊆ Set.range fun ν : N => δ₀ * (ν : G) := by
       intro δ hδ
       have hδ' : q δ = q δ₀ := by
-        by_contra hn; exact hδ (by simp only [hu, if_neg hn])
+        by_contra hn; exact hδ (by simp only [hu, ite_eq_right hn])
       have : δ₀⁻¹ * δ ∈ N := QuotientGroup.eq.1 hδ'.symm
       exact ⟨⟨_, this⟩, by simp⟩
     rw [e3, hinj.tsum_eq hsupp]
@@ -760,15 +787,15 @@ theorem coset_sum {G : Type} [Group G] (N : Subgroup G) (Cl : Set G) (h : G → 
       refine tsum_eq_sum fun δ hδ => ?_
       by_contra hne'
       have hq' : q δ = q δ₀ := by
-        by_contra hn; exact hne' (by simp only [hu, if_neg hn])
+        by_contra hn; exact hne' (by simp only [hu, ite_eq_right hn])
       have hhδ : h δ ≠ 0 := by
-        intro h0; exact hne' (by simp only [hu, if_pos hq', h0])
+        intro h0; exact hne' (by simp only [hu, ite_eq_left hq', h0])
       have hN : δ₀⁻¹ * δ ∈ N := QuotientGroup.eq.1 hq'.symm
       have hc := h1 δ₀ hcl hne _ hN
       rw [mul_inv_cancel_left] at hc
       exact hδ (Finset.mem_filter.2 ⟨(hSm δ).2 ⟨hhδ, hc⟩, hq'⟩)
     rw [e4]
-    exact Finset.sum_congr rfl fun δ hδ => by simp only [hu, if_pos (Finset.mem_filter.1 hδ).2]
+    exact Finset.sum_congr rfl fun δ hδ => by simp only [hu, ite_eq_left (Finset.mem_filter.1 hδ).2]
   have hcardS : ((S.image q).card : ℝ) ≤ κ := by
     refine le_trans ?_ hcard
     rw [Set.ncard_eq_toFinset_card _ hfin]
@@ -929,7 +956,7 @@ theorem class_bound {X Y : Matrix (Fin V.rank) (Fin r) D.host.E} (hW : IsWittFra
           have : 0 ≤ B₁' * B₂ * ∏ i, (t i)⁻¹ ^ m := by positivity
           linarith
   ·
-    push_neg at hsh
+    push Not at hsh
     obtain ⟨j₁, hj₁⟩ := hsh
     obtain ⟨j, -, hjmax⟩ := Finset.exists_max_image Finset.univ (root t) ⟨j₁, Finset.mem_univ _⟩
     set ρ : ℝ := root t j with hρ

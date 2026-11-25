@@ -25,6 +25,31 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNormal
 public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.CapOComp
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoordinatesRestrictAffineOpen
 public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.LocalSystemQuotients.FlatL
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -39,7 +64,12 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.CategoryTheory.Monoidal.Mon
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
+import Mathlib.Topology.Sheaves.Init
 import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.MapHComp
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FlatThickeningQuotient
@@ -549,7 +579,7 @@ theorem eta_X (he : m.Fr E E' e) (X : Pt E') :
       E.τ 0 ((e ≫ m.G.map X.s) ≫ m.G.map (Q'.j X.T)) (e ≫ m.G.map (Cut.sec Q' X)) :=
     Q.lift_X _ _ (E.mem 0 ((e ≫ m.G.map X.s) ≫ m.G.map (Q'.j X.T)) (e ≫ m.G.map (Cut.sec Q' X)))
   have h2 := he 0 (X.s ≫ Q'.j X.T) (Cut.sec Q' X)
-  rw [Cut.sec_spec, if_pos rfl, m.G.map_comp, ← Category.assoc] at h2
+  rw [Cut.sec_spec, ite_eq_left rfl, m.G.map_comp, ← Category.assoc] at h2
   rw [h1, h2]
 
 def etaH (he : m.Fr E E' e) (X : Pt E') : Q.P (m.G.obj X.T) ⟶ m.G.obj (Q'.P X.T) := ((eta m Q Q' he).app X).1
@@ -853,13 +883,13 @@ theorem comm_g (B B' : IdF Φ'.A) (hB : ∀ T, c.S T ≤ B.S T) (hB' : ∀ T, c.
   obtain ⟨cc, rfl⟩ := Q.span (m.G.obj X.T) x
   let g : Φ.A.obj (m.G.obj X.T) → Φ'.A.obj X.T :=
     fun u => if u = 0 then 0 else Classical.choose (Ideal.Quotient.mk_surjective (m.ρ X.T u))
-  have g0 : g 0 = 0 := if_pos rfl
+  have g0 : g 0 = 0 := ite_eq_left rfl
   have hg : ∀ u, m.ρ X.T u = Ideal.Quotient.mk _ (g u) := by
     intro u
     by_cases hu : u = 0
     · subst hu
       rw [g0, map_zero, map_zero]
-    · simp only [g, if_neg hu]
+    · simp only [g, ite_eq_right hu]
       exact (Classical.choose_spec (Ideal.Quotient.mk_surjective (m.ρ X.T u))).symm
   let sc : ℕ →₀ Φ.A.obj (m.G.obj X.T) := GlobalTheory.CompanionTheory.PolySes.sh cc
   have e1 := hβ₀ ((Gpt m E E' e).obj X) cc sc (fun k => rfl)

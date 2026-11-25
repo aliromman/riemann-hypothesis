@@ -8,21 +8,6 @@ public import Mathlib.Analysis.Calculus.FDeriv.Mul
 public import Mathlib.Analysis.Calculus.ParametricIntegral
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqZeroOfMemWeakIn
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CapCommuteRtInfGL
-import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
-import Mathlib.Order.CompletePartialOrder
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.RingTheory.PiTensorProduct
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GrowthOfTame
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -208,10 +193,10 @@ theorem chartL_lie (g : GA E a) (X : Lie E a) (φ : Sm E a) :
     chartL g (lie E a X φ) = Lop X (chartL g φ) := Subtype.ext <| funext fun x => by
   by_cases hx : x ∈ invSet E a
   · change chart (lieD X φ.1) g x = lv X (chart φ.1 g) x
-    rw [lv, if_pos hx]
+    rw [lv, ite_eq_left hx]
     exact chart_lieD φ.2 X g hx
   · change chart (lieD X φ.1) g x = lv X (chart φ.1 g) x
-    rw [lv, if_neg hx]
+    rw [lv, ite_eq_right hx]
     simp [chart, show ¬ IsUnit (Matrix.of x) from hx]
 
 end GlobalTheory.CentreSmooth
@@ -243,10 +228,10 @@ theorem good_lop (X : Lie E a) : Good ν (Lop X) := by
   refine ⟨?_, fun α hα hI => funext fun x => ?_⟩
   · refine (contDiffOn_partial isOpen_invSet hG (rmul X).contDiff).congr fun p hp => ?_
     change lv X (G p.2).1 p.1 = _
-    rw [lv, if_pos hp.1]
+    rw [lv, ite_eq_left hp.1]
   · change lv X _ x = ∫ y, α y * lv X (G y).1 x ∂ν
     by_cases hx : x ∈ invSet E a
-    · simp only [lv, if_pos hx]
+    · simp only [lv, ite_eq_left hx]
       exact fderiv_integral_mul ν isOpen_invSet hα hG hx _
     · simp [lv, hx]
 

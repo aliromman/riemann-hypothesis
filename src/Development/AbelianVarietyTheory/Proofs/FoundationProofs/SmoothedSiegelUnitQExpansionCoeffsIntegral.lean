@@ -3,10 +3,37 @@ module
 public import Development.AbelianVarietyTheory.Definitions.Divisors.HasQIff
 public import Development.AbelianVarietyTheory.Definitions.Foundations.CthFac
 public import Development.AbelianVarietyTheory.Definitions.Foundations.MultipliableAndSgNeZero
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 public import Mathlib.Analysis.Complex.LocallyUniformLimit
 public import Mathlib.Analysis.Complex.TaylorSeries
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
 public import Mathlib.Analysis.Normed.Module.MultipliableUniformlyOn
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -19,8 +46,11 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 public import Mathlib.Topology.MetricSpace.ProperSpace.Lemmas
+import Mathlib.Topology.Sheaves.Init
 public import Mathlib.Analysis.Complex.CauchyIntegral
 import Mathlib.Geometry.Manifold.StructureGroupoid
 
@@ -134,7 +164,7 @@ theorem _root_.GlobalTheory.SiegQ.tc_lin (w : ℂ) (e : ℕ) :
         -(w * ((e.descFactorial n : ℂ) * 0 ^ (e - n))) := by
       rw [iteratedDeriv_const_sub hn, iteratedDeriv_neg, iteratedDeriv_const_mul_field,
         iteratedDeriv_pow]
-    rw [_root_.GlobalTheory.SiegQ.tc, h1, if_neg hn.ne']
+    rw [_root_.GlobalTheory.SiegQ.tc, h1, ite_eq_right hn.ne']
     rcases lt_trichotomy n e with h | rfl | h
     · simp [h.ne, Nat.sub_ne_zero_of_lt h]
     · have : (n.factorial : ℂ) ≠ 0 := by exact_mod_cast n.factorial_ne_zero
@@ -166,7 +196,7 @@ theorem Good.inv {F : ℂ → ℂ} (hF : Good R F) (h0 : ∀ z : ℂ, ‖z‖ < 
     · simpa [tc_zero] using hi
     · have h := congrFun hc (n + 1)
       simp only [conv, Finset.Nat.antidiagonal_succ, Finset.sum_cons, Finset.sum_map, tc_zero,
-        Nat.succ_ne_zero, if_false] at h
+        Nat.succ_ne_zero, ite_false] at h
       have h1 := h0 0 (by simp)
       have : tc (fun z => (F z)⁻¹) (n + 1) = -(F 0)⁻¹ * ∑ p ∈ Finset.HasAntidiagonal.antidiagonal n,
           tc F (p.1 + 1) * tc (fun z => (F z)⁻¹) p.2 := by

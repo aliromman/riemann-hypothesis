@@ -4,8 +4,37 @@ public import Mathlib.Algebra.MvPolynomial.PDeriv
 public import Development.AbelianVarietyTheory.Definitions.Foundations.IsSatFrame
 public import Mathlib.RingTheory.MvPolynomial.Homogeneous
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DetFactorDepthInChartIndependentClosedField
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.MvPolynomial.IrreducibleQuadratic
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -18,7 +47,10 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import ReciprocityTheory.DualLattices.VEqZeroOfPowEqOne
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.WeightedSumBounds.PtOrderProdSub
@@ -131,7 +163,7 @@ theorem pair_C_left (c : R) (Q : MvPolynomial κ R) : pair (C c) Q = c * constan
     rw [MvPolynomial.mem_support_iff, coeff_C] at hA
     simp only [Finset.mem_singleton]
     by_contra h
-    exact hA (if_neg (Ne.symm h)))]
+    exact hA (ite_eq_right (Ne.symm h)))]
   simp [wt, constantCoeff_eq]
 
 theorem pair_mul_X (P Q : MvPolynomial κ R) (v : κ) :
@@ -320,7 +352,7 @@ theorem derivAt0_subst_linP {i : ℕ} (g : Matrix (Fin i) (Fin i) C)
     rw [coeff_subst hL, coeff_subst hL]
     refine finsum_congr fun d => ?_
     by_cases hd : e.degree = d.degree
-    · rw [MvPolynomial.coeff_coe, coeff_trunc', if_pos (le_const_of_degree_le (hd ▸ he))]
+    · rw [MvPolynomial.coeff_coe, coeff_trunc', ite_eq_left (le_const_of_degree_le (hd ▸ he))]
     · rw [coeff_prod_linP g d e hd, smul_zero, smul_zero]
   have h2 : subst (fun s => (↑(linP g s) : MvPowerSeries (Σ _ : Fin i, Fin i) C)) (Q : MvPowerSeries _ C) =
       ((GlobalTheory.PolyPairingAdjoint.subst (kerMat g) Q : MvPolynomial _ C) : MvPowerSeries _ C) := by
@@ -343,7 +375,7 @@ theorem derivAt0_subst_linP {i : ℕ} (g : Matrix (Fin i) (Fin i) C)
         unfold derivAt0
         refine Finset.sum_congr rfl fun α hα => ?_
         rw [MvPolynomial.coeff_coe, coeff_trunc',
-          if_pos (le_const_of_degree_le (le_trans (degree_le_totalDegree hα) (le_max_right _ _)))]
+          ite_eq_left (le_const_of_degree_le (le_trans (degree_le_totalDegree hα) (le_max_right _ _)))]
 
 end
 

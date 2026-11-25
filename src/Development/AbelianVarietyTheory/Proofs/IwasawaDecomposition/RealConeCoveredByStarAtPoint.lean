@@ -3,7 +3,30 @@ module
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MinkowskiWeylOrthantConeIntegralConstraints
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsBaryStageStart
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsStrictIff
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -147,7 +170,7 @@ theorem star_cover : ∀ (X : Type) [AddCommGroup X] (m : ℕ) (γ : Fin m → L
     by_contra hno
     rw [Finset.not_nonempty_iff_eq_empty, Finset.filter_eq_empty_iff] at hno
     have hneg : (-1 : ℝ) • Ev ∈ rcone T := (hA _).mpr fun a ha => by
-      rw [dotR_smul]; have := hno ha; push_neg at this; linarith
+      rw [dotR_smul]; have := hno ha; push Not at this; linarith
     obtain ⟨r, hr, hrEq⟩ := exists_of_mem_rcone_image u _ hneg
     have hzero : ∀ x y, ∑ j, (r j + c j) * (γ j x y : ℝ) = 0 := hp _ fun k => by
       have := congrFun hrEq k
@@ -181,7 +204,7 @@ theorem star_cover : ∀ (X : Type) [AddCommGroup X] (m : ℕ) (γ : Fin m → L
     · have := hamin a' (Finset.mem_filter.mpr ⟨ha', hpos⟩)
       rw [le_div_iff₀ hpos] at this
       linarith
-    · push_neg at hpos; nlinarith [hAB a' ha']
+    · push Not at hpos; nlinarith [hAB a' ha']
   have hB'a : dotR a (EB - ts • Ev) = 0 := by
     rw [dotR_sub, dotR_smul, hts]; field_simp; ring
   obtain ⟨d, hd, hdEq⟩ := exists_of_mem_rcone_image u _ hB'T

@@ -1,18 +1,6 @@
 module
 
 public import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.GindikinKarpelevich
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -52,10 +40,10 @@ theorem IsWeylRep.inv {R : Type} [CommRing R] {n : ℕ} {v : Equiv.Perm (Fin n)}
   intro i j hij
   have hu : IsUnit ((y : Matrix (Fin n) (Fin n) R) j (v⁻¹ j)) := by
     have h := key (v⁻¹ j) (v⁻¹ j)
-    rw [hv, if_pos rfl] at h
+    rw [hv, ite_eq_left rfl] at h
     exact IsUnit.of_mul_eq_one_right _ h
   have h := key i (v⁻¹ j)
-  rw [hv, if_neg hij] at h
+  rw [hv, ite_eq_right hij] at h
   exact hu.mul_left_eq_zero.1 h
 
 end WeylCell

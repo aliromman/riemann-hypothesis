@@ -9,8 +9,31 @@ public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.Fou
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.WittExtensionHomMulEmbeddedAnisotropic
 import Formalism.LocalToGlobal.ProjectiveLattices.HalfOneAddSqrtNegIsIntegral
 import Mathlib.Algebra.Module.StablyFree.Basic
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.RingTheory.PicardGroup
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -25,6 +48,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 
 @[expose] public section
 
@@ -160,7 +185,7 @@ theorem GlobalTheory.th_isTh : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), Is
   obtain ⟨t, ht⟩ := exists_psiE_ne_one hψ
   let A : Fin (σ + 1) → AE D := GlobalTheory.IndefiniteRowSideFullHecke.TransvectionAction.ratVec a
   let Bv : Fin (σ + 1) → AE D := fun k => if k = j' then cA D t else 0
-  have hB0 : ∀ k, k ≠ j' → Bv k = 0 := fun k hk => if_neg hk
+  have hB0 : ∀ k, k ≠ j' → Bv k = 0 := fun k hk => ite_eq_right hk
   have hA0 : ∀ i, j < i → A i = 0 := fun i hi => by
     show incA D (a i) = 0
     rw [ha0 i hi, map_zero]
@@ -184,7 +209,7 @@ theorem GlobalTheory.th_isTh : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), Is
   have hup : upSum (tvN A Bv) = t := by
     unfold upSum
     rw [Finset.sum_eq_single j, Finset.sum_eq_single j']
-    · rw [if_pos (by simp [j']), tvN_apply, show Bv j' = cA D t from if_pos rfl, cA_cA']
+    · rw [ite_eq_left (by simp [j']), tvN_apply, show Bv j' = cA D t from ite_eq_left rfl, cA_cA']
       show incA D (a j) * t = t
       rw [ha1, map_one, one_mul]
     · intro k _ hk
@@ -193,7 +218,7 @@ theorem GlobalTheory.th_isTh : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), Is
     · intro i _ hi
       refine Finset.sum_eq_zero fun k _ => ?_
       by_cases hk : k = j'
-      · rw [if_neg]
+      · rw [ite_eq_right]
         intro h
         apply hi
         rw [hk] at h
@@ -212,7 +237,7 @@ theorem GlobalTheory.th_isTh : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), Is
     have h1 := congrFun (congrFun (J.d.levi_jX (tvGL A Bv hAB)) k) i.1
     simp only [Matrix.mul_apply, Matrix.submatrix_apply, id] at h1 ⊢
     rw [h1]
-    simp only [hcol, Matrix.one_apply, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+    simp only [hcol, Matrix.one_apply, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   · intro h1
     apply ht
     rw [← star_star (psiE ψ t), h1, star_one]

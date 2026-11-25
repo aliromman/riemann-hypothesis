@@ -2,8 +2,32 @@ module
 
 import Formalism.PieriBlockIdeals.PieriColumnMinors.HeckeLFunctionIdealEulerProduct
 public import Formalism.SharpRestriction.LevelLetterCocycles.AdmissibleParameterJ
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Rat
 import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -18,6 +42,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -388,8 +415,8 @@ theorem count_PPm {L : SizeData₂ D} {j : ℕ} {ρ : D.what₂.Tau} (hF : JFact
     (PPm D j ρ).count (q - sz D j ρ - c0 D) = if q ∈ Jp D j ρ then 1 else 0 := by
   rw [Multiset.count_eq_of_nodup (jp_nodup hF)]
   by_cases h : q ∈ Jp D j ρ
-  · rw [if_pos ((jp_mem_iff hF q).2 h), if_pos h]
-  · rw [if_neg (mt (jp_mem_iff hF q).1 h), if_neg h]
+  · rw [ite_eq_left ((jp_mem_iff hF q).2 h), ite_eq_left h]
+  · rw [ite_eq_right (mt (jp_mem_iff hF q).1 h), ite_eq_right h]
 
 end GlobalTheory.JumpSets
 
@@ -1070,14 +1097,14 @@ theorem count_key {L : SizeData₂ D} {j : ℕ} {ρ : D.what₂.Tau} (hF : JFact
       show AdmissibleParameterJ.refl D (a : ℚ) ∈ Jp D j ρ ↔ _
       rw [hr]
     by_cases h : (D.R.t : ℚ) - 1 - a ∈ Jp D j ρ
-    · rw [if_pos h, if_pos (hm.2 h)]; simp
-    · rw [if_neg h, if_neg (fun h' => h (hm.1 h'))]; simp
+    · rw [ite_eq_left h, ite_eq_left (hm.2 h)]; simp
+    · rw [ite_eq_right h, ite_eq_right (fun h' => h (hm.1 h'))]; simp
   · have hs := hsU rfl
     subst hs
     have : (1 : ℚ) * ((a : ℚ) + c - cτ) = (a : ℚ) - sz D j ρ - c0 D := by
       rw [hc]; ring
     rw [this, count_PPm hF]
-    simp only [JJ, if_true]
+    simp only [JJ, ite_true]
     split_ifs <;> simp
 
 theorem ite_ne_zero_iff' (P : Prop) [Decidable P] : ((if P then (1 : ℤ) else 0) ≠ 0) ↔ P := by

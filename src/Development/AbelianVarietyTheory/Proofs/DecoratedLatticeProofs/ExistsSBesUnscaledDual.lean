@@ -18,6 +18,28 @@ public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.Gra
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.StarEqHostConj
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FiniteAdeleStrongApproximationModNat
 import Mathlib.Algebra.Module.StablyFree.Basic
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -31,6 +53,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LatticeCountingBound.ArchPlace
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.FiniteDimensionalMram
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ThetaIdentityOfMapsAll
@@ -39,6 +64,8 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RowDict
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RowsJoinPinned
 import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.HidaSetting
 import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.PoincareInHH
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.CovolOneIntegralAdd
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.WittSmallGroupEmbeddingMemPointwiseStabilizerIso
 import Formalism.LocalToGlobal.BesselHermitianTheta.NoncompactGapAtLeastRange
@@ -243,15 +270,15 @@ theorem simpleSum_eq (D : D7) {V₀ : HSp D} {ρ : ℕ} (d : HypDec (D.sp.Y 0) V
   have ha := a.2
   by_cases h1 : a.1 + 1 < ρ
   · have h2 : ¬ (a.1 + 1 = ρ) := by omega
-    rw [Finset.sum_eq_single (⟨a.1 + 1, h1⟩ : Fin ρ) (fun b _ hb => if_neg fun e => hb (Fin.ext e))
-      (fun h => absurd (Finset.mem_univ _) h), if_pos rfl, ell, if_neg h2, zero_mul, add_zero, blockX_eq, hF, hE, hN_smul,
+    rw [Finset.sum_eq_single (⟨a.1 + 1, h1⟩ : Fin ρ) (fun b _ hb => ite_eq_right fun e => hb (Fin.ext e))
+      (fun h => absurd (Finset.mem_univ _) h), ite_eq_left rfl, ell, ite_eq_right h2, zero_mul, add_zero, blockX_eq, hF, hE, hN_smul,
       nxt, dite_eq_left h1]
     congr 2
     have e : ρ - (a : ℕ) = (ρ - (a.1 + 1)) + 1 := by omega
     rw [star_inv₀, star_star, e, pow_succ]
     field_simp
   · have h2 : a.1 + 1 = ρ := by omega
-    rw [Finset.sum_eq_zero (fun b _ => if_neg (by have := b.2; omega)), zero_add, ell, if_pos h2, one_mul, coefX_eq, hF, hz,
+    rw [Finset.sum_eq_zero (fun b _ => ite_eq_right (by have := b.2; omega)), zero_add, ell, ite_eq_left h2, one_mul, coefX_eq, hF, hz,
       hN_smul, nxt, dite_eq_right h1]
     congr 2
     have e : ρ - (a : ℕ) = 1 := by omega

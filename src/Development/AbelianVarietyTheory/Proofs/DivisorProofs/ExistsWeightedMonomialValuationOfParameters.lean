@@ -12,6 +12,31 @@ public import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.I
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FreeGeneratorTopForm
 import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.ExistsBasisKaehlerOfAlgebraicIndependent
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.SpanFinrankMaximalIdealLeNcardOfLeSupSq
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -24,6 +49,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Algebra.GroupWithZero.Submonoid.CancelMulZero
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.PicardGroup
@@ -31,6 +58,10 @@ import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.RingTheory.TotallySplit
 import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.IsWeaklyRegularIffIsQuasiRegularSeqOfIsLocalRing
@@ -258,7 +289,7 @@ theorem weightedRelation_step (z : Fin n → R) (w : Fin n → ℕ) (hw : ∀ i,
       (MvPolynomial.homogeneousComponent_isHomogeneous k H) hmem
   refine ⟨fun β hβ => ?_, ?_⟩
   · have := hI β
-    rwa [hcoeffk, if_pos hβ] at this
+    rwa [hcoeffk, ite_eq_left hβ] at this
   obtain ⟨G, hG, hGs⟩ := exists_eval_eq_shift z Hk hI
   have hGw : ∀ γ, G.coeff γ ≠ 0 → k + 1 ≤ γ.degree ∧ D + 1 ≤ Finsupp.weight w γ := by
     intro γ hγ
@@ -280,7 +311,7 @@ theorem weightedRelation_step (z : Fin n → R) (w : Fin n → ℕ) (hw : ∀ i,
     · exact hrest' β h1
   · rw [map_add (f := _), hG, ← map_add (f := _), sub_add_cancel, h0]
   · intro β hβw hβd
-    rw [MvPolynomial.coeff_add, hrest, if_neg (by omega)]
+    rw [MvPolynomial.coeff_add, hrest, ite_eq_right (by omega)]
     by_cases h : G.coeff β = 0
     · rw [h, add_zero]
     · have := hGw β h
@@ -496,7 +527,7 @@ theorem exists_weightedMonomialPlace : ∀ {L : Type} [Field L] (c : ℂ →+* L
     have h1 : z 0 = 0 := Subtype.ext h
     have := _root_.GlobalTheory.weightedRelation_coeff_mem_span z wt hw hz (wt 0) (X 0) (isWeightedHomogeneous_X Q wt 0)
       (by simp [h1]) (Finsupp.single 0 1)
-    rw [coeff_X, if_pos rfl, hm] at this
+    rw [coeff_X, ite_eq_left rfl, hm] at this
     exact (IsLocalRing.maximalIdeal.isMaximal Q).ne_top ((Ideal.eq_top_iff_one _).mpr this)
   set u : Fin r → L := fun i => (z i.succ : L) / (z 0 : L) ^ wt i.succ with hu
   have key0 : ∀ P : MvPolynomial (Fin r) Q, eval₂ Q.subtype u P = 0 →
@@ -684,7 +715,7 @@ theorem dForm_cons_pow_mul : ∀ {k A : Type} [CommRing k] [CommRing A] (α : k 
   | zero => simp [powCoeffMatrix]
   | succ i' =>
     simp only [powCoeffMatrix, Fin.cons_succ, Fin.cases_zero, Fin.cases_succ, Fin.cons_zero,
-      ite_smul, zero_smul, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+      ite_smul, zero_smul, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
     letI := α.toAlgebra
     change KaehlerDifferential.D k A (t ^ e i' * w i') = _
     rw [Derivation.leibniz, Derivation.leibniz_pow, add_comm]
@@ -711,7 +742,7 @@ theorem monomial_place : ∀ {L : Type} [Field L] (c : ℂ →+* L) (Q : Subring
   have h1m : (1 : Q) ∉ IsLocalRing.maximalIdeal Q := fun h =>
     (IsLocalRing.maximalIdeal.isMaximal Q).ne_top ((Ideal.eq_top_iff_one _).mpr h)
   have huu : ∀ i, IsUnit (u i) := fun i => by
-    have h := hunit (MvPolynomial.X i) ⟨Finsupp.single i 1, by rw [MvPolynomial.coeff_X, if_pos rfl]; exact h1m⟩
+    have h := hunit (MvPolynomial.X i) ⟨Finsupp.single i 1, by rw [MvPolynomial.coeff_X, ite_eq_left rfl]; exact h1m⟩
     rw [MvPolynomial.eval₂_X] at h
     exact h
   have hu0 : ∀ i, (u i : L) ≠ 0 := fun i h => (huu i).ne_zero (Subtype.ext h)

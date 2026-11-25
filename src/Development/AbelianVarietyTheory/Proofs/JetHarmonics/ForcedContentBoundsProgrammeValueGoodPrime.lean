@@ -8,7 +8,36 @@ public import Mathlib.Data.ZMod.Basic
 public import Development.AbelianVarietyTheory.Definitions.Jets.DepthNumbersThresholdEq
 public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.CyclicSolvable
 public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.LevelsUsedBalancedValueOrbitSums
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -22,6 +51,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Tactic.Linter.Style
 import Std.Tactic.BVDecide.Normalize.Prop
 
@@ -108,16 +139,16 @@ theorem main : ∀ (N : NumDatum) (j l : ℕ), l.Prime → l ∉ N.H.small → l
   have hS : 0 ≤ ∑ z, N.w j z := Finset.sum_nonneg fun z _ => hw z
   have hcls : Inert N l ∨ N.cls l = PrimeClass.splitK := by
     unfold Inert NumDatum.cls primeClass
-    rw [if_neg h2, if_neg hq, if_neg hd]
+    rw [ite_eq_right h2, ite_eq_right hq, ite_eq_right hd]
     split_ifs <;> simp
   have hnd : N.cls l ≠ PrimeClass.ramD := by
     rcases hcls with (h | h) | h <;> rw [h] <;> simp
   have hF : N.FjP j l = if Inert N l ∧ (l : ℝ) ≤ N.sc.X'' N.R.n then N.FInert j l else 0 := by
     unfold NumDatum.FjP
-    rw [if_neg (by tauto), if_neg hnd]
+    rw [ite_eq_right (by tauto), ite_eq_right hnd]
     by_cases h : Inert N l ∧ (l : ℝ) ≤ N.sc.X'' N.R.n
-    · rw [if_pos h]; exact if_pos h
-    · rw [if_neg h]; exact if_neg h
+    · rw [ite_eq_left h]; exact ite_eq_left h
+    · rw [ite_eq_right h]; exact ite_eq_right h
   have hD : ∀ z, 0 ≤ ((N.R.k : ℝ) - 1) * N.w j z := fun z => mul_nonneg (by linarith) (hw z)
   have hI : 0 ≤ N.FInert j l := by
     unfold NumDatum.FInert
@@ -147,17 +178,17 @@ theorem main : ∀ (N : NumDatum) (j l : ℕ), l.Prime → l ∉ N.H.small → l
   · intro hc
     have hi : Inert N l := Or.inl hc.1
     by_cases hX : (l : ℝ) ≤ N.sc.X'' N.R.n
-    · rw [hF, if_pos ⟨hi, hX⟩, if_neg (not_lt.2 hX), add_zero]
+    · rw [hF, ite_eq_left ⟨hi, hX⟩, ite_eq_right (not_lt.2 hX), add_zero]
       unfold NumDatum.FInert
-      rw [if_pos (show N.cls l = PrimeClass.inertClass ∧ N.hP l = 0 from hc), ← Finset.sum_div, ← Finset.mul_sum]
-    · rw [hF, if_neg (fun h => hX h.2), if_pos (not_le.1 hX), zero_add]
+      rw [ite_eq_left (show N.cls l = PrimeClass.inertClass ∧ N.hP l = 0 from hc), ← Finset.sum_div, ← Finset.mul_sum]
+    · rw [hF, ite_eq_right (fun h => hX h.2), ite_eq_left (not_le.1 hX), zero_add]
       exact hb
   · intro hi hc Z hZ
     have hZ' : Formalism.L2.FormalSeriesBounds.IsReps N l Z := hZ
     by_cases hX : (l : ℝ) ≤ N.sc.X'' N.R.n
-    · rw [hF, if_pos ⟨hi, hX⟩, if_neg (not_lt.2 hX), add_zero]
+    · rw [hF, ite_eq_left ⟨hi, hX⟩, ite_eq_right (not_lt.2 hX), add_zero]
       exact (GlobalTheory.LevelsOrbits.fInertReps N j l Z hZ' hi hc).1.ge
-    · rw [hF, if_neg (fun h => hX h.2), if_pos (not_le.1 hX), zero_add]
+    · rw [hF, ite_eq_right (fun h => hX h.2), ite_eq_left (not_le.1 hX), zero_add]
       refine le_trans (le_of_eq ?_) hb
       have ho2 := two_le_ordP N l hi hc
       have hl3 : 3 ≤ l := by

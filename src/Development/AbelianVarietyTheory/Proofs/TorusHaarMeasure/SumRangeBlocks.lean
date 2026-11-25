@@ -11,10 +11,38 @@ import Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.MajLactRmul
 public import Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.MuFSublevelLtTop
 public import Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.MulSgnMatMulConjTranspose
 import Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.OneLeMinorOfIsOrth
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -29,6 +57,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.FundSetPf
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.InterpStatementPfH
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.LUStatementPfB
@@ -74,11 +105,11 @@ theorem sum_range_blocks (p : ℕ) (M : ℕ → ℝ) (a a' : ℝ) (n : ℕ) :
   | succ n ih =>
     rw [Finset.sum_range_succ, ih]
     by_cases h : n < p
-    · rw [if_pos h, min_eq_left h.le, max_eq_right h.le, min_eq_left (Nat.succ_le_of_lt h),
+    · rw [ite_eq_left h, min_eq_left h.le, max_eq_right h.le, min_eq_left (Nat.succ_le_of_lt h),
         max_eq_right (Nat.succ_le_of_lt h)]
       ring
     · have h' := not_lt.1 h
-      rw [if_neg h, min_eq_right h', max_eq_left h', min_eq_right (h'.trans (Nat.le_succ n)),
+      rw [ite_eq_right h, min_eq_right h', max_eq_left h', min_eq_right (h'.trans (Nat.le_succ n)),
         max_eq_left (h'.trans (Nat.le_succ n))]
       ring
 
@@ -86,7 +117,7 @@ theorem sum_fin_blocks {r p : ℕ} (hp : p ≤ r) (L : Fin (r + 1) → ℝ) (a a
     ∑ i : Fin r, (if (i : ℕ) < p then a else a') * (L i.succ - L i.castSucc) =
       a * (L ⟨p, Nat.lt_succ_of_le hp⟩ - L 0) + a' * (L (Fin.last r) - L ⟨p, Nat.lt_succ_of_le hp⟩) := by
   set M : ℕ → ℝ := fun n => if h : n < r + 1 then L ⟨n, h⟩ else 0 with hM
-  have e : ∀ k : Fin (r + 1), L k = M k := fun k => by simp only [hM, dif_pos k.isLt]
+  have e : ∀ k : Fin (r + 1), L k = M k := fun k => by simp only [hM, dite_eq_left k.isLt]
   simp only [e, Fin.val_succ, Fin.val_castSucc, Fin.val_zero, Fin.val_last]
   rw [Fin.sum_univ_eq_sum_range (fun i => (if i < p then a else a') * (M (i + 1) - M i)),
     sum_range_blocks, min_eq_right hp, max_eq_left hp]

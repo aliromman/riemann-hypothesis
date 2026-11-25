@@ -17,19 +17,6 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForm
 public import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.ToroidalChartsForFan
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCommonModification
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsWeightSectionsNonvanishingOpen
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.NormNegCmConstantEqAtAllEmbeddings
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.AbProj
 import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.IsProjOverIffIsProperAndExistsIsAmpleLB
@@ -184,12 +171,12 @@ theorem exists_weight_isAmple_lineBundle_comp : _root_.GlobalTheory.CovTop.Hypot
     · have hm := GlobalTheory.FlagMod.mult_of_mem (Dw := Dw) τ
       have h2 := i.2
       simp only [hρ, e, Pi.neg_apply, Option.elim]
-      rw [if_pos (by omega)]
+      rw [ite_eq_left (by omega)]
       omega
     · have hm := GlobalTheory.FlagMod.mult_conj (Dw := Dw) τ
       have h2 := i.2
       simp only [hρ, e, Pi.neg_apply, Option.elim]
-      rw [if_neg (by omega)]
+      rw [ite_eq_right (by omega)]
       push_cast
       omega
   have : IsProper TF.Y.s := projProper _ _ _ TF.Y.proj

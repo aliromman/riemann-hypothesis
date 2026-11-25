@@ -1,15 +1,43 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.GoodChi
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
 import Mathlib.LinearAlgebra.Eigenspace.Charpoly
 import Mathlib.LinearAlgebra.Matrix.CharP
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RepresentationTheory.Maschke
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
 import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.Radical.NatInt
 public import Mathlib.RingTheory.SimpleModule.IsAlgClosed
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -23,6 +51,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -178,16 +209,16 @@ theorem exists_family {G S : Type} [Group G] [Finite G] (c : G → S) (hc : Func
   refine ⟨q, fun s => ?_, fun s a => ?_, fun s t hst => ?_, fun s h => ?_, ?_⟩
   · conv_lhs => enter [1]; simp only [q]
     rw [Finset.sum_mul]
-    exact Finset.sum_congr rfl fun i hi => by rw [hpq, if_pos (by simpa using hi)]
+    exact Finset.sum_congr rfl fun i hi => by rw [hpq, ite_eq_left (by simpa using hi)]
   · simp only [q, Finset.sum_mul, Finset.mul_sum, h2]
   · conv_lhs => enter [1]; simp only [q]
     rw [Finset.sum_mul]
     refine Finset.sum_eq_zero fun i hi => ?_
     have : π i = s := by simpa using hi
-    rw [hpq, if_neg (this ▸ hst)]
+    rw [hpq, ite_eq_right (this ▸ hst)]
   · obtain ⟨i, rfl⟩ := hπ s
     have := hpq i (π i)
-    rw [h, mul_zero, if_pos rfl] at this
+    rw [h, mul_zero, ite_eq_left rfl] at this
     exact h4 i this.symm
   · rw [← h5]; exact Finset.sum_fiberwise _ _ _
 
@@ -234,7 +265,7 @@ theorem exists_isSer : ∀ (r g N : ℕ), g.Prime → 0 < N → Nat.card (GL (Fi
     fun f x => coeff_mem hN hG _ (hi f) (hce f) x⟩
   · by_cases h : P f
     · by_cases h' : P f'
-      · simp only [e, dif_pos h, dif_pos h']
+      · simp only [e, dite_eq_left h, dite_eq_left h']
         exact h3 _ _ (fun hh => hf (congrArg Subtype.val hh))
       · simp [e, h']
     · simp [e, h]

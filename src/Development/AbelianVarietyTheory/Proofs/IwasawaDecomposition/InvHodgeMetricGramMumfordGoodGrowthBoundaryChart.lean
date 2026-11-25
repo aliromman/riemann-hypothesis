@@ -21,9 +21,37 @@ public import Mathlib.Algebra.Order.BigOperators.Ring.Finset
 public import Mathlib.Analysis.Real.Sqrt
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HodgeChartBoundsOfSchurLemW
 public import Mathlib.Analysis.Complex.ExponentialBounds
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Etale.Weakly
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -36,10 +64,14 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
+import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Analysis.Calculus.FDeriv.Symmetric
 import Mathlib.Order.CompletePartialOrder
 import Mathlib.Tactic.TypeStar
+import Mathlib.Analysis.SpecialFunctions.Bernstein
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HodgeMetricGramMatrixLocalHolomorphicImPart
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.FnAlgClosedOfFixedPoints
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsProperToroidalModelStructureMap
@@ -322,7 +354,7 @@ theorem bound_one_add {g a : ℕ} (B : Fin a → Matrix (Fin g) (Fin g) ℝ)
       Matrix.fromRows_apply_inl, Matrix.fromRows_apply_inr, Sum.elim_inl, Sum.elim_inr,
       Matrix.of_apply, Pi.smul_apply, smul_eq_mul, mul_zero, Finset.sum_const_zero, zero_add]
     rw [Finset.sum_eq_single i]
-    · simp only [if_true]
+    · simp only [ite_true]
       rw [Finset.mul_sum Finset.univ _ (t i)]
       exact Finset.sum_congr rfl fun m _ => by ring
     · intro l _ hl
@@ -680,7 +712,7 @@ theorem gnorm_mul_poinWt_le_five : ∀ (n a : ℕ) (ha : a ≤ n) (ρ : ℝ), ρ
   intro n a ha ρ hρ v hv k
   rw [gnorm_poincareGram_single, GlobalTheory.GoodMetric.poinWt]
   by_cases hk : k.val < a
-  · rw [if_pos hk, if_pos ((mem_castLE_iff ha k).2 hk)]
+  · rw [ite_eq_left hk, ite_eq_left ((mem_castLE_iff ha k).2 hk)]
     have h0 : v.ofLp k ≠ 0 := by
       have := hv.2 ⟨k.val, hk⟩
       simpa [Fin.castLE] using this
@@ -699,7 +731,7 @@ theorem gnorm_mul_poinWt_le_five : ∀ (n a : ℕ) (ha : a ≤ n) (ρ : ℝ), ρ
     rw [← Real.sqrt_sq hB, ← Real.sqrt_mul (by positivity)]
     convert sqrt_two_mul_pi_le using 2
     field_simp
-  · rw [if_neg hk, if_neg (fun h => hk ((mem_castLE_iff ha k).1 h)), mul_one]
+  · rw [ite_eq_right hk, ite_eq_right (fun h => hk ((mem_castLE_iff ha k).1 h)), mul_one]
     calc √(1 / 2 : ℝ) ≤ √1 := Real.sqrt_le_sqrt (by norm_num)
       _ ≤ 5 := by rw [Real.sqrt_one]; norm_num
 
@@ -1002,7 +1034,7 @@ theorem inv_hodgeGram_goodBound : ∀ (n a : ℕ) (ha : a ≤ n) (g rk : ℕ) (�
   have hE : 1 / c₀ ≤ c * s ^ (if a = 0 then 0 else g) ∧
       (g.factorial : ℝ) * (C' * (1 + s / (2 * Real.pi))) ^ g ≤ c * s ^ (if a = 0 then 0 else g) := by
     by_cases ha0 : a = 0
-    · rw [if_pos ha0, pow_zero, mul_one]
+    · rw [ite_eq_left ha0, pow_zero, mul_one]
       have hs' : s / (2 * Real.pi) = 0 := by rw [← hts]; subst ha0; simp
       refine ⟨?_, ?_⟩
       · refine le_trans ?_ hcA
@@ -1018,7 +1050,7 @@ theorem inv_hodgeGram_goodBound : ∀ (n a : ℕ) (ha : a ≤ n) (g rk : ℕ) (�
           have : 0 ≤ 1 / (2 * Real.pi) := by positivity
           linarith
         nlinarith
-    · rw [if_neg ha0]
+    · rw [ite_eq_right ha0]
       have hs2 : Real.log 2 ≤ s := hlog (Nat.pos_of_ne_zero ha0)
       refine ⟨?_, ?_⟩
       · calc 1 / c₀ = ((1 / c₀) * (1 / Real.log 2) ^ g) * Real.log 2 ^ g := by

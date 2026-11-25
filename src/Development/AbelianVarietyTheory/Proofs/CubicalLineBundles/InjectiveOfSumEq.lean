@@ -12,21 +12,6 @@ public import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.Integra
 public import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.LieAlgebraEigenDecompositionCMSignature
 import Development.AbelianVarietyTheory.Proofs.GenericRegularity.LieCombBaseChange
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsIsLieBasisBaseChange
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.LinearAlgebra.DirectSum.Finite
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.ISupRangeDifferentialEqTopOfJointlyOnto, Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.InjectiveOfSumEq
@@ -193,6 +178,10 @@ section Linear
 
 variable {K V J : Type} [Field K] [AddCommGroup V] [Module K V] [FiniteDimensional K V] [Fintype J]
 
+private instance finite_directSum_submodule (N : J → Submodule K V) :
+    Module.Finite K (DirectSum J fun i => N i) :=
+  Module.Finite.equiv DFinsupp.linearEquivFunOnFintype.symm
+
 theorem finrank_le_sum {N : J → Submodule K V} (h : ⨆ i, N i = ⊤) :
     Module.finrank K V ≤ ∑ i, Module.finrank K (N i) := by
   classical
@@ -270,8 +259,8 @@ theorem letters_independent : ThetaUnifAV → Out.Laws → IndSt := by
       refine ⟨fun τ => ?_, b, c, by rw [(FA false).fib.1]; simpa using d⟩
       rw [a]
       by_cases h : τ H.rt = ρ
-      · rw [if_pos h, if_neg (by simpa [hsq] using h)]
-      · rw [if_neg h, if_pos (by simpa [hsq] using h)]
+      · rw [ite_eq_left h, ite_eq_right (by simpa [hsq] using h)]
+      · rw [ite_eq_right h, ite_eq_left (by simpa [hsq] using h)]
     · obtain ⟨a, b, c, d, -⟩ := _root_.GlobalTheory.CM.EigDec.eigen_decomposition E H K ρ (X.A true) (FA true) 1 0 X.split X.typeP X.ρ_sq
       refine ⟨fun τ => ?_, b, c, by rw [(FA true).fib.1]; simpa using d⟩
       rw [a]

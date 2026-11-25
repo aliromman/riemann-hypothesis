@@ -5,9 +5,36 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsInteger
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HermFramePairCommonUnipotentStabiliserSummary
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HermFramePairNormalFormGeometrySummary
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.NormalFormFlagLatticesNearUnderStabiliser
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -21,6 +48,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -240,9 +270,9 @@ theorem q_zero {y : V} (h : ∀ b : Fin r, N.j ≤ b.val → H.B y (N.F.e b.cast
 
 theorem p_e (a : Fin r) (ha : N.j ≤ a.val) : pI N (N.F.e a.castSucc) = N.F.e a.castSucc := by
   rw [GlobalTheory.DegCnt.LiftS.pI_apply, Finset.sum_eq_single a]
-  · rw [N.ist_e a a ha, if_pos rfl, one_smul]
+  · rw [N.ist_e a a ha, ite_eq_left rfl, one_smul]
   · intro b hb hba
-    rw [N.ist_e a b (Finset.mem_filter.1 hb).2, if_neg (fun h => hba h.symm), zero_smul]
+    rw [N.ist_e a b (Finset.mem_filter.1 hb).2, ite_eq_right (fun h => hba h.symm), zero_smul]
   · intro h
     exact absurd (Finset.mem_filter.2 ⟨Finset.mem_univ a, ha⟩) h
 
@@ -252,9 +282,9 @@ theorem i_e (a b : Fin r) (ha : N.j ≤ a.val) : H.B (N.ist a) (N.F.e b.castSucc
 
 theorem q_i (a : Fin r) (ha : N.j ≤ a.val) : qI N (N.ist a) = N.ist a := by
   rw [GlobalTheory.DegCnt.LiftS.qI_apply, Finset.sum_eq_single a]
-  · rw [GlobalTheory.DegCnt.LiftS.i_e N a a ha, if_pos rfl, one_smul]
+  · rw [GlobalTheory.DegCnt.LiftS.i_e N a a ha, ite_eq_left rfl, one_smul]
   · intro b _ hba
-    rw [GlobalTheory.DegCnt.LiftS.i_e N a b ha, if_neg hba, zero_smul]
+    rw [GlobalTheory.DegCnt.LiftS.i_e N a b ha, ite_eq_right hba, zero_smul]
   · intro h
     exact absurd (Finset.mem_filter.2 ⟨Finset.mem_univ a, ha⟩) h
 
@@ -303,7 +333,7 @@ theorem hermForm_second_flag_X_z_eq_zero {y : V} (hy : y ∈ N.F'.X) : H.B y N.F
 
 theorem p_Xa {y : V} (hy : y ∈ N.F.Xa N.j) : pI N y = 0 := by
   refine p_zero N (fun b hb => orth_of N.F hy (fun a ha => ?_))
-  rw [N.ist_e a b hb, if_neg]
+  rw [N.ist_e a b hb, ite_eq_right]
   rintro rfl
   omega
 

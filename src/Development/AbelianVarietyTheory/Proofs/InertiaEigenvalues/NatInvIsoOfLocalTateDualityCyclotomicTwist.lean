@@ -25,26 +25,10 @@ public import Mathlib.RingTheory.Finiteness.Defs
 public import Mathlib.Topology.Algebra.MulAction
 public import Mathlib.RingTheory.Finiteness.Cardinality
 public import Mathlib.Topology.Algebra.Module.Basic
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Formalism.WachLatticeTwists.LatticeDualFibres.Statement
 import Mathlib.Tactic.Linter.HaveILetI
 import ReciprocityTheory.GaloisValuations.GlobalA
 import Mathlib.Tactic.Linter.Style
-import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
-import Mathlib.RingTheory.AdicCompletion.Noetherian
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.HopfAlgebra.Basic
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CardH2EqSameAction, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CardDualZmodLeCard, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CardH2LeCardLocal, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NatCardH2CompEquiv, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NatCardH2CompEquivStatement, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.H2QuotientFiniteCard, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PhiInjectiveQuotientH2, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.EveryGeneratorH2Twist, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsEquivDvrFgModuleStructure, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CycEqImage, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FundamentalTwoCocycleMultipleNotCoboundary, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsAdicCompleteOfPadicCoeff, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PadicIntRingHomContinuousOfPadicCoeff, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TwoCocycleFundamentalMultipleModPow, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TwoCocycleMemCoboundariesOfModUniformizerPow, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsGeneratorH2Twist, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LinearMapContinuousOfCompactSpaceOfFinite, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NatInvIsoOfLocalTateDualityCyclotomicTwist

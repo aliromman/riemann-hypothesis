@@ -19,8 +19,30 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThre
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.LevelAt
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.LevelAway
 public import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.MatIrrConj
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
 import Mathlib.FieldTheory.Galois.Profinite
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -33,6 +55,8 @@ import Mathlib.Tactic.NormNum.NatSqrt
 import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Algebra.ClopenNhdofOne
 import Mathlib.Topology.Algebra.ProperAction.Basic
 import Mathlib.Topology.Compactness.Paracompact
@@ -393,9 +417,9 @@ private theorem key (hP : _root_.UpperTheory.V.Af.HypothesesH') (hU : UpperTheor
   have hne : ∀ i ∈ s, (r i (toGS Ω _ (UpperTheory.V.Base.galEmb ℚ K Ω τ)⁻¹)).mat.trace ≠
       (F.rz (PadicAlgCl l) (toGS Ω _ (UpperTheory.V.Base.galEmb ℚ K Ω τ)⁻¹)).mat.trace := fun i his => by
     rw [htr, ← hρτ i his]
-    exact H1 o₀ (ρ i) (by rw [if_pos rfl]; exact Finset.mem_image_of_mem _ his)
+    exact H1 o₀ (ρ i) (by rw [ite_eq_left rfl]; exact Finset.mem_image_of_mem _ his)
   refine ⟨hne, le_trans ?_ ((log_le_of_norm (l := l) hN0).trans hle)⟩
-  rw [Finset.prod_eq_single o₀ (fun o _ ho => by rw [if_neg ho, Finset.prod_empty]) (by simp), if_pos rfl,
+  rw [Finset.prod_eq_single o₀ (fun o _ ho => by rw [ite_eq_right ho, Finset.prod_empty]) (by simp), ite_eq_left rfl,
     Finset.prod_image fun i his i' his' h => hiso i his i' his' ⟨1, fun t => by simp [h]⟩,
     Finset.prod_congr rfl fun i his => by rw [hρτ i his]] at H2
   rw [Finset.sum_neg_distrib, neg_le_neg_iff, ← Real.log_prod fun i his => norm_ne_zero_iff.2 (sub_ne_zero.2 (hne i his)),

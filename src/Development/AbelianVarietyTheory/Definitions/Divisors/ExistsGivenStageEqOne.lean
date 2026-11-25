@@ -6,7 +6,31 @@ public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsContinuousPadic
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.LatSelfDualOfUnimod
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsSelfDualAdelicFrameLevelOne
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -21,7 +45,10 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -67,9 +94,9 @@ theorem canFlip_col {m i : ℕ} (hi : i < m) : ∀ j, j ≤ m →
     refine ⟨canFlip_append h1 (h2 ▸ .cons ?_ (.nil _)), ?_⟩
     · have := infix_map_range (midEdge m i j) (p := i + m - j - 1) (n := m + m) (by omega)
       have e1 : midEdge m i j (i + m - j - 1) = .theta i j := by
-        rw [midEdge, if_neg (by omega), if_pos (by omega)]; congr 1; omega
+        rw [midEdge, ite_eq_right (by omega), ite_eq_left (by omega)]; congr 1; omega
       have e2 : midEdge m i j (i + m - j - 1 + 1) = .ex i j := by
-        rw [midEdge, if_neg (by omega), if_neg (by omega), if_pos (by omega)]
+        rw [midEdge, ite_eq_right (by omega), ite_eq_right (by omega), ite_eq_left (by omega)]
       rwa [e1, e2] at this
     · simp only [List.map_cons, List.map_nil, List.foldl_cons, List.foldl_nil, flipPath, List.map_map]
       refine List.map_congr_left fun p _ => ?_
@@ -142,7 +169,7 @@ theorem depthAt_w (G : GridData L sc) {v : Pl D.host.F} (hv : v ∈ G.pl.S0) :
     cosExp G (G.pl.w v) = G.pl.depth sc v ∧ depthAt G (G.pl.w v) = G.pl.depth sc v := by
   classical
   have h : cosExp G (G.pl.w v) = G.pl.depth sc v := by
-    rw [cosExp, if_pos (by unfold Places.W0; convert Finset.mem_image_of_mem _ hv), G.pl.under_w hv]
+    rw [cosExp, ite_eq_left (by unfold Places.W0; convert Finset.mem_image_of_mem _ hv), G.pl.under_w hv]
   exact ⟨h, by rw [depthAt, h, max_eq_left (G.pl.depth_pos sc v)]⟩
 
 theorem depthAt_of_notMem (G : GridData L sc) {w : Pl D.host.E} (hw : w ∉ G.pl.W0) : cosExp G w = 0 ∧ depthAt G w = 1 := by
@@ -228,12 +255,12 @@ def psiAt {G : GridData L sc} (W : G.Weil) (w : Pl D.host.E) : AddChar (Kw w) Ci
 def colFrame (L : LevCh D T) : ∀ j, GL (Fin (columnBlock L j).sp.rank) (Formalism.IndefR.Lev.EAf D)
   | 0 => L.βY 0
   | j + 1 => if h : j + 1 < D.R.m then cast (by rw [colY_lt L h]) (L.βY (j + 1))
-      else cast (by rw [show columnBlock L (j + 1) = ⟨D.sp.X', L.ΛX⟩ from if_neg h]) L.βX
+      else cast (by rw [show columnBlock L (j + 1) = ⟨D.sp.X', L.ΛX⟩ from ite_eq_right h]) L.βX
 
 theorem colFrame_lt (L : LevCh D T) {j : ℕ} (h : j < D.R.m) : HEq (colFrame L j) (L.βY j) := by
   cases j with
   | zero => rfl
-  | succ j => rw [colFrame, dif_pos h]; exact cast_heq _ _
+  | succ j => rw [colFrame, dite_eq_left h]; exact cast_heq _ _
 
 theorem colFrame_m (L : LevCh D T) : HEq (colFrame L D.R.m) L.βX := by
   obtain ⟨j, hj⟩ : ∃ j, D.R.m = j + 1 := ⟨D.R.m - 1, by have := D.R.two_le_m; omega⟩

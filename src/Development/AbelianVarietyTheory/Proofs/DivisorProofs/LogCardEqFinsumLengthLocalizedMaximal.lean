@@ -4,21 +4,6 @@ public import Mathlib.Analysis.SpecialFunctions.Log.Basic
 public import Mathlib.RingTheory.Length
 public import Mathlib.RingTheory.Localization.AtPrime.Basic
 public import Mathlib.Algebra.Module.LocalizedModule.Exact
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.Order.CompletePartialOrder
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -124,8 +109,8 @@ theorem card_eq_prod_lenAt : ∀ (n : ℕ) (Q : Type) [AddCommGroup Q] [Module R
           Finsupp.single_apply]
         by_cases hw : (⟨m0, hm0⟩ : MaximalSpectrum R) = w
         · subst hw
-          rw [if_pos rfl, lenAt_quot_self]; simp
-        · rw [if_neg hw, lenAt_quot_ne w.asIdeal m0
+          rw [ite_eq_left rfl, lenAt_quot_self]; simp
+        · rw [ite_eq_right hw, lenAt_quot_ne w.asIdeal m0
             (fun h => hw (MaximalSpectrum.ext h.symm))]; simp
       · have hz : ∀ w : MaximalSpectrum R, Nat.card (R ⧸ w.asIdeal) ^ 0 = 1 :=
           fun _ => pow_zero _

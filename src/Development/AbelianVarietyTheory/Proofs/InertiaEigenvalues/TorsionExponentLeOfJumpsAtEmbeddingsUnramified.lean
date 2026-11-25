@@ -6,18 +6,6 @@ public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Deco
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PadicValNatFinrankKs
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CLLUnitIntervalLe, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TorsionExponentLeOfJumpsAtEmbeddingsUnramified
@@ -73,7 +61,7 @@ theorem cLL_unit_interval_le : ∀ (l h N v : ℕ) (U : Finset ℤ) (U' : Set �
       rw [Function.mem_support] at hu
       by_contra hnot
       have hnU' : u ∉ U' := fun h' => hnot (Finset.mem_coe.mpr (hU h'))
-      exact hu (by simp only [finsum_eq_if, if_neg hnU'])
+      exact hu (by simp only [finsum_eq_if, ite_eq_right hnU'])
   have hNL : 1 ≤ N * (4 + 2 * L) := by
     have := Nat.mul_le_mul hN (show 1 ≤ 4 + 2 * L by omega)
     omega

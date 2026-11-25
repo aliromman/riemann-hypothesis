@@ -4,18 +4,6 @@ public import Mathlib.Algebra.BigOperators.Group.Finset.Defs
 public import Mathlib.Basic.Complex.Basic
 public import Mathlib.Data.Fintype.Basic
 public import Formalism.LocalRingCardinality.DataHost
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaloisOfRegularForms
 import Development.AutomorphicArithmetic.IntegralCasts.IsOpenStabOfMemNhds
 public import Formalism.LocalRingCardinality.DataRows
@@ -34,12 +22,6 @@ open Formalism.IndefR.Mult Formalism.UG Polynomial GlobalTheory.SphPar GlobalThe
 open scoped TensorProduct
 
 namespace GlobalTheory.SphGal
-
-section Global
-
-variable {E : Type} [Field E] [NumberField E]
-
-end Global
 
 def spehInf (d : ℕ) (A : Multiset ℂ) : Multiset ℂ :=
   ∑ j : Fin d, A.map (· + (((d : ℂ) - 1) / 2 - (j : ℕ)))

@@ -2,6 +2,31 @@ module
 
 public import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.EqOfIsometricTrivShift
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.NontrivialIsomClassInt
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -15,6 +40,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsAmbOfIsArithVar
 
 @[expose] public section
@@ -131,7 +157,7 @@ theorem exists_linear_of_multiadditive : ∀ (k : Type) [CommRing k] (X : Scheme
   have hφ : ∀ c, φ (expv c) = f c := by
     intro c
     have h : ∃ c' : Fin (d + 1) → ι, expv c' = expv c := ⟨c, rfl⟩
-    simp only [φ, dif_pos h]
+    simp only [φ, dite_eq_left h]
     obtain ⟨e, he⟩ := exists_perm_of_expv_eq h.choose_spec
     rw [← hf h.choose e]
     exact congrArg f (funext fun a => (he a).symm)
@@ -152,7 +178,7 @@ theorem exists_linear_of_multiadditive : ∀ (k : Type) [CommRing k] (X : Scheme
     refine Finset.sum_eq_zero fun s hs => ?_
     have hm : monomial s (AddMonoidAlgebra.coeff P s) = AddMonoidAlgebra.coeff P s • monomial s (1 : ℝ) := by rw [smul_monomial, smul_eq_mul, mul_one]
     rw [hm, map_smul, hΦ, smul_eq_mul]
-    refine mul_eq_zero_of_right _ (dif_neg ?_)
+    refine mul_eq_zero_of_right _ (dite_eq_right ?_)
     rintro ⟨c, rfl⟩
     have := hP (mem_support_iff.1 hs)
     rw [weight_expv] at this

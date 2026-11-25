@@ -12,6 +12,32 @@ public import Mathlib.Topology.Algebra.InfiniteSum.Order
 public import Mathlib.Topology.Algebra.InfiniteSum.Real
 public import Development.WeilBound.RepresentationTheoryGL.EisensteinSeries.SiegelEisensteinContinuation.IsEpCont
 import GroundTheory.GlobalFields.TateThesis.AdelePoisson
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -25,6 +51,9 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.TypeStar
+import Mathlib.Topology.Sheaves.Init
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
@@ -260,11 +289,11 @@ theorem exists_summable_bound_tensor_cosetIndicator (φ : 𝓢(ι → mixedSpace
   simp only [schwartzBruhatTensorPi, finiteTensor]
   by_cases hm : ∀ i, finPartPi Y i - b i ∈ idealFiniteAdeles I
   · have h1 : ∏ i, cosetIndicator I (b i) (finPartPi Y i) = 1 :=
-      Finset.prod_eq_one fun i _ ↦ by rw [cosetIndicator_apply, if_pos (hm i)]
+      Finset.prod_eq_one fun i _ ↦ by rw [cosetIndicator_apply, ite_eq_left (hm i)]
     rw [h1, mul_one]
     have hξJ := hJ h hh ξ hm
     have hw : ∀ i, latticeWeight J k (ξ i) = ((1 + ‖mixedEmbedding K (ξ i)‖) ^ k)⁻¹ :=
-      fun i ↦ if_pos (hξJ i)
+      fun i ↦ ite_eq_left (hξJ i)
     simp only [hw]
     set y := infPartPi Y
     have hy : embPi K ξ =
@@ -295,10 +324,10 @@ theorem exists_summable_bound_tensor_cosetIndicator (φ : 𝓢(ι → mixedSpace
       _ ≤ A * B' ^ (k * n) * ∏ i, ((1 + ‖mixedEmbedding K (ξ i)‖) ^ k)⁻¹ := by
           refine mul_le_mul_of_nonneg_left ?_ (by positivity)
           exact Finset.prod_le_prod₀ (fun _ _ ↦ by positivity) fun i _ ↦ hinv i
-  · push_neg at hm
+  · push Not at hm
     obtain ⟨i, hi⟩ := hm
     have hz : ∏ i, cosetIndicator I (b i) (finPartPi Y i) = 0 :=
-      Finset.prod_eq_zero (Finset.mem_univ i) (by rw [cosetIndicator_apply, if_neg hi])
+      Finset.prod_eq_zero (Finset.mem_univ i) (by rw [cosetIndicator_apply, ite_eq_right hi])
     rw [hz, mul_zero, norm_zero]
     exact hu0
 

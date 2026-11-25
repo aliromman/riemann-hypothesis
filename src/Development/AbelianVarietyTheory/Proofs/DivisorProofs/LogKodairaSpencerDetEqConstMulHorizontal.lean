@@ -10,24 +10,11 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValua
 public import Development.AbelianVarietyTheory.Definitions.Divisors.BarCompSubsetClosure
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PrimeSpectrumDualNumberEq
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EvalRingPointDualNumberSndLinearDerivation
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.Divisors.CommGroupMulMulEqMulInvMulMulMul
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsChartOfIsLocalRing
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsoOverOfIsOpenImmersion
 import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.NonemptyIsLimitBaseChange
-import Mathlib.Algebra.Ring.IsFormallyReal
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.BalancedSymmetricPairMatrixHorizontalSingle, Development.AbelianVarietyTheory.Proofs.DivisorProofs.DetFlagTangentConjugateMatrixChangeEqOne, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDualNumberTangentPointOfLogarithmicDerivat, Development.AbelianVarietyTheory.Proofs.DivisorProofs.TangentDerivativeLinearInKodairaSpencerMatrixOfI, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LogKodairaSpencerDetEqConstMulHorizontal
@@ -74,7 +61,7 @@ theorem symPair_entry {R : Type} [CommRing R] {n : ℕ} (e : (Σ τ : E →+* �
     have h5 : σ = (starRingEnd ℂ).comp τ := congrArg Sigma.fst (e.injective h)
     exact GlobalTheory.LogKSDiv.DetChange.conj_off H τ hτ (h5 ▸ hσ')
   simp only [GlobalTheory.LogKSDiv.symPair, Matrix.of_apply]
-  rw [if_neg h2, add_zero]
+  rw [ite_eq_right h2, add_zero]
   by_cases h : τ = σ
   · subst h
     have key : (e ⟨τ, b⟩ = e ⟨τ, i⟩ ∧ e ⟨conjEmb τ, a⟩ = e ⟨(starRingEnd ℂ).comp τ, k'⟩) ↔
@@ -95,7 +82,7 @@ theorem symPair_entry {R : Type} [CommRing R] {n : ℕ} (e : (Σ τ : E →+* �
   · have h3 : ¬ (e ⟨σ, b⟩ = e ⟨τ, i⟩ ∧ e ⟨conjEmb σ, a⟩ = e ⟨(starRingEnd ℂ).comp τ, k'⟩) := by
       rintro ⟨h4, -⟩
       exact h (congrArg Sigma.fst (e.injective h4)).symm
-    rw [if_neg h3, if_neg]
+    rw [ite_eq_right h3, ite_eq_right]
     intro h4
     exact h (congrArg (fun x : HIx Dw (psiSet H) => x.1.1) h4)
 
@@ -108,8 +95,8 @@ theorem symPair_horizontal_single : ∀ {E : Type} [Field E] [NumberField E] [Is
   refine ⟨ε.trans pairToH, fun f n e j k => ?_⟩
   rw [symPair_entry, Pi.single_apply, Equiv.trans_apply]
   by_cases h : pairToH (ε j) = k
-  · rw [if_pos h, if_pos h.symm, map_one]
-  · rw [if_neg h, if_neg (Ne.symm h), map_zero]
+  · rw [ite_eq_left h, ite_eq_left h.symm, map_one]
+  · rw [ite_eq_right h, ite_eq_right (Ne.symm h), map_zero]
 
 end GlobalTheory.LogKSDiv.PairEntry
 end -- clump:auto

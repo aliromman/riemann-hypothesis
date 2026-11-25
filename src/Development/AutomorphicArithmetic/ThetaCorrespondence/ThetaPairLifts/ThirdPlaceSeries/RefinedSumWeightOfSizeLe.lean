@@ -82,6 +82,27 @@ public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLif
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DvdOfMemBadPrimes
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.SizesStatement
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.SumPtOfSizeStatement
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -96,10 +117,14 @@ import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.AllUniformizationLawsHold
 import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.TwistBaseChangeAndValuationStatements
 import Formalism.SharpRestriction.GrowthBounds.MonomialOrderSegments.BrData
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Tactic.Basify
 import Mathlib.Tactic.NormNum.Parity
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.Divisors.TupleReadBaseTupleEqFamily
 import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.SymmetricTranslatesMultiplicationPullbackDescrip
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.HalfPrincipalAndSplit
 import Development.AbelianVarietyTheory.Proofs.JetHarmonics.StarRingExtOfStar
@@ -107,7 +132,11 @@ import Mathlib.Tactic.Linter.Style
 import Mathlib.RingTheory.PiTensorProduct
 import Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.ExistsRingOfIntegersLift
 import Development.AbelianVarietyTheory.BlockTheory.AdelicCMFields.UnitaryHeckeCharacterIdele
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Data.Nat.Choose.Multinomial
 import Mathlib.Tactic.Linter.HaveILetI
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.BlockTheory.HeightDefect.SchurLatticeConjugates
 import Formalism.LocalRingCardinality.SpanPowerMembership.HasStrictFDerivAtExpZero
 import Formalism.SharpRestriction.CuspSpanNormBounds.Point
@@ -115,7 +144,10 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.RingTheory.WittVector.IsPoly
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.BeSumStatementIffDefectSumBound
+import Mathlib.Tactic.ENatToNat
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsNumberFieldPoint
 import Formalism.SharpRestriction.GlobalSchurBounds.ThickPlacesCorollaryOfAnyTranslate
 
@@ -604,13 +636,13 @@ theorem GlobalTheory.RefSum.primeSum_add_pair {S : Finset ℕ} {e : ℕ → ℝ}
     · obtain ⟨k, -, rfl⟩ := Finset.mem_image.1 hq
       exact hg k
   · rw [Finset.mem_union, not_or] at hq
-    simp only [h3 q hq.1, if_neg hq.2, add_zero]
+    simp only [h3 q hq.1, ite_eq_right hq.2, add_zero]
   · have a : ∑ q ∈ S ∪ Finset.univ.image g, e q * Real.log q = ∑ q ∈ S, e q * Real.log q :=
       (Finset.sum_subset Finset.subset_union_left fun q _ hq => by rw [h3 q hq, zero_mul]).symm
     have b : ∑ q ∈ S ∪ Finset.univ.image g, (if q ∈ Finset.univ.image g then (1 : ℝ) else 0) * Real.log q =
         ∑ q ∈ Finset.univ.image g, Real.log q := by
-      rw [← Finset.sum_subset Finset.subset_union_right fun q _ hq => by rw [if_neg hq, zero_mul]]
-      exact Finset.sum_congr rfl fun q hq => by rw [if_pos hq, one_mul]
+      rw [← Finset.sum_subset Finset.subset_union_right fun q _ hq => by rw [ite_eq_right hq, zero_mul]]
+      exact Finset.sum_congr rfl fun q hq => by rw [ite_eq_left hq, one_mul]
     have c : ∑ q ∈ Finset.univ.image g, Real.log (q : ℕ) ≤ ∑ k : Fin 2, Real.log (g k) :=
       Finset.sum_image_le_of_nonneg (f := fun q : ℕ => Real.log q) fun q _ => Real.log_natCast_nonneg q
     rw [Fin.sum_univ_two] at c
@@ -809,13 +841,13 @@ theorem GlobalTheory.RefSum.refCore_of_size_sumPt : _root_.GlobalTheory.CovTop.S
   · obtain ⟨k, -, rfl⟩ := Finset.mem_image.1 hq'
     refine (_root_.GlobalTheory.RefLevel.refExp_level_le_one _ p.T.toCore p.fw.laws.toLawsM (Fm.ex x hx ι).errX _ hI _ _ _ hD hL sum_le_nCol hr hJ k).trans
       (EReal.coe_le_coe_iff.2 ?_)
-    simp only [if_pos hq']
+    simp only [ite_eq_left hq']
     linarith [hP.2.1 ((Fm.D x ι).host.g k)]
   · haveI := Fact.mk hq
     have hne : ∀ k, q ≠ (Fm.D x ι).host.g k := fun k h => hq' (Finset.mem_image.2 ⟨k, Finset.mem_univ _, h.symm⟩)
     refine (_root_.GlobalTheory.RefAway.refExp_le_of_oscLe _ p.T.toCore p.fw.laws.toLawsM (Fm.ex x hx ι).errX _ hI _ _ _ hD hL sum_le_nCol hr hJ q hne _
       (hO q hne)).trans (EReal.coe_le_coe_iff.2 ?_)
-    simp only [if_neg hq', add_zero, le_refl]
+    simp only [ite_eq_right hq', add_zero, le_refl]
 end
 end -- clump:auto
 end -- clump:auto
@@ -1111,9 +1143,9 @@ theorem primeSum_add (E : Type) [Field E] [NumberField E] {S B : Finset ℕ} {e 
     refine add_le_add ?_ ?_
     · rw [← Finset.sum_subset Finset.subset_union_left fun q _ hq => by rw [h3 q hq, zero_mul]]
       exact h4
-    · rw [← Finset.sum_subset Finset.subset_union_right fun q _ hq => by rw [if_neg hq, zero_mul]]
+    · rw [← Finset.sum_subset Finset.subset_union_right fun q _ hq => by rw [ite_eq_right hq, zero_mul]]
       rw [Finset.sum_congr rfl fun q hq => show (if q ∈ B then a * (different_vp E q : ℝ) + 1 else 0) * Real.log q =
-        a * ((different_vp E q : ℝ) * Real.log q) + Real.log q by rw [if_pos hq]; ring,
+        a * ((different_vp E q : ℝ) * Real.log q) + Real.log q by rw [ite_eq_left hq]; ring,
         Finset.sum_add_distrib, ← Finset.mul_sum]
       exact add_le_add (mul_le_mul_of_nonneg_left (sum_different_le E B hB) ha) le_rfl
 
@@ -1379,12 +1411,12 @@ theorem two_mul_sum_mult {E : Type} [Field E] [NumberField E] [IsCMField E] {H :
     unfold Datum.mult
     rw [h3]
     by_cases h : τ (H.rt : E) = H.rt0
-    · rw [if_pos h, if_neg fun e => h2 (by linear_combination (h - e) / 2)]
+    · rw [ite_eq_left h, ite_eq_right fun e => h2 (by linear_combination (h - e) / 2)]
     · have : -τ (H.rt : E) = H.rt0 := by
         rcases sq_eq_sq_iff_eq_or_eq_neg.1 (hs.trans H.sqrt_neg_disc_sq.symm) with e | e
         · exact absurd e h
         · rw [e, neg_neg]
-      rw [if_neg h, if_pos this, add_comm]
+      rw [ite_eq_right h, ite_eq_left this, add_comm]
   have hinv : Function.Involutive (ComplexEmbedding.conjugate : (E →+* ℂ) → (E →+* ℂ)) := fun τ => star_star τ
   have e := Equiv.sum_comp hinv.toPerm Dw.mult
   rw [two_mul]

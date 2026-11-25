@@ -10,6 +10,28 @@ import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsAdeleRingT
 import Formalism.LocalRingCardinality.SpanPowerMembership.LocAtA
 import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasChr
 import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasWeil
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -22,6 +44,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinPartConjMem
 
 @[expose] public section
@@ -39,8 +64,8 @@ theorem exists_pole_idem {E : Type} [Field E] [NumberField E] (z w : FiniteAdele
   let e : FiniteAdeleRing (𝓞 E) E := ⟨fun P => if 1 < Valued.v (z P) then 1 else 0,
     Filter.Eventually.of_forall fun P => by
       by_cases h : 1 < Valued.v (z P)
-      · simp only [if_pos h]; exact one_mem _
-      · simp only [if_neg h]; exact zero_mem _⟩
+      · simp only [ite_eq_left h]; exact one_mem _
+      · simp only [ite_eq_right h]; exact zero_mem _⟩
   have he : ∀ P, e P = if 1 < Valued.v (z P) then 1 else 0 := fun _ => rfl
   have hmul : ∀ (a b : FiniteAdeleRing (𝓞 E) E) P, (a * b) P = a P * b P := fun _ _ _ => rfl
   refine ⟨e, ?_, fun P => ?_, fun h P => ?_, fun f hf hfz => ?_⟩
@@ -58,7 +83,7 @@ theorem exists_pole_idem {E : Type} [Field E] [NumberField E] (z w : FiniteAdele
     · simp
   · have h0 : e P = 0 := by rw [h]; rfl
     by_contra h3
-    rw [he, if_pos (not_le.1 h3)] at h0
+    rw [he, ite_eq_left (not_le.1 h3)] at h0
     exact one_ne_zero h0
   · refine Subtype.ext (funext fun P => ?_)
     change e P * f P = 0

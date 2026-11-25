@@ -3,6 +3,29 @@ module
 public import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.HalfLinearCocycle
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.APlusComm
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FockPolynomialVectorMaximalCompactBasisSubstitut
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -15,6 +38,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.BitVec
 import Std.Tactic.BVDecide.Normalize.Prop
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ComplexEmbeddingHermitianQuadrupleSum
@@ -89,10 +115,10 @@ theorem cplxO_unitMap_both {m n : ℕ} {G s B : Matrix (Fin n) (Fin n) ℂ} {p :
     ext x y
     simp only [Matrix.mul_diagonal, Matrix.diagonal_mul, Matrix.smul_apply, Matrix.single_apply, smul_eq_mul]
     by_cases hxy : i = x ∧ j = y
-    · rw [if_pos hxy]
+    · rw [ite_eq_left hxy]
       obtain ⟨rfl, rfl⟩ := hxy
       ring
-    · rw [if_neg hxy]
+    · rw [ite_eq_right hxy]
       ring
   unfold cplxO unitMap
   rw [e1, e2, Matrix.mul_smul, Matrix.smul_mul, smul_smul]
@@ -133,11 +159,11 @@ theorem pureTensorO_fockSub : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ 
       · have hd : decide (b.1.val < pT τ ↔ b.2.val < pS τ) = true := by
           rw [decide_eq_true_iff, h1, ← h2]
           exact hc
-        rw [if_pos hd, if_pos hc]
+        rw [ite_eq_left hd, ite_eq_left hc]
       · have hd : ¬ decide (b.1.val < pT τ ↔ b.2.val < pS τ) = true := by
           rw [decide_eq_true_iff, h1, ← h2]
           exact hc
-        rw [if_neg hd, if_neg hc]
+        rw [ite_eq_right hd, ite_eq_right hc]
   have key := GlobalTheory.FockSubst.pure_subst (ι := FVar D T.rank S.rank) (X := WO S T) (κ := Fin T.rank × Fin S.rank)
     (A := fun k => aPlus (heisO ψ S T) θ k.1 (cplxO (sS k.1) (sT k.1)) (unitMap (BS k.1) (BT k.1) k.2.1 k.2.2))
     (A' := fun k => aPlus (heisO ψ S T) θ k.1 (cplxO (sS k.1) (sT k.1)) (unitMap (BS' k.1) (BT' k.1) k.2.1 k.2.2))
@@ -162,7 +188,7 @@ theorem pureTensorO_fockSub : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ 
       dsimp only
       by_cases hρ : ρ = τ
       · subst hρ
-        simp only [if_true]
+        simp only [ite_true]
         exact hτ i j g hg
       · obtain ⟨h1, h2⟩ := hne ρ hρ
         simp [hρ, h1, h2, ite_smul])
@@ -180,7 +206,7 @@ theorem pureTensorO_fockSub : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ 
     obtain ⟨ρ, i, j⟩ := y
     by_cases hρ : ρ = τ
     · subst hρ
-      simp only [if_true, Fintype.sum_prod_type, MvPolynomial.smul_eq_C_mul]
+      simp only [ite_true, Fintype.sum_prod_type, MvPolynomial.smul_eq_C_mul]
     · simp [hρ, ite_smul]
   unfold pureTensorO aPlusAll
   beta_reduce

@@ -14,7 +14,36 @@ public import Formalism.LocalToGlobal.IndefiniteReal.DatumLemmas
 public import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.CharLem
 import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.FiniteAdeleTopology
 import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.StandardAdelicCharacter
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -28,6 +57,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.PublishedTheorems.GlobalTheta.IsSchwartzBruhatOfProd
 import Development.AutomorphicSpectrum.Proofs.GlobalProofs.IsCovolOne
 import Development.AbelianVarietyTheory.Counterexamples.HeightSurvey.StarPurelyImaginaryEqNeg
@@ -35,6 +66,7 @@ import Development.AbelianVarietyTheory.Proofs.HeightProofs.IsTopologicalRingAE
 import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasWeil
 import Formalism.LocalToGlobal.ProjectiveLattices.HalfOneAddSqrtNegIsIntegral
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.Tactic.Polynomial.Basic
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GlobalProofs.AdelicCharacterOrthogonalIsRational, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousHalfTr
@@ -331,8 +363,8 @@ theorem ann_gen (P : A → Prop) (hP : ∀ x : A, (∀ t : F, P (algebraMap F A 
     simp only [h2] at h1
     have h4 : ∑ l, B.repr z l * algebraMap F A (if l = k then t else 0) =
         algebraMap F A t * B.repr z k := by
-      rw [Finset.sum_eq_single k (fun l _ hl => by rw [if_neg hl, map_zero, mul_zero])
-        (fun hk => absurd (Finset.mem_univ k) hk), if_pos rfl, mul_comm]
+      rw [Finset.sum_eq_single k (fun l _ hl => by rw [ite_eq_right hl, map_zero, mul_zero])
+        (fun hk => absurd (Finset.mem_univ k) hk), ite_eq_left rfl, mul_comm]
     rwa [h4] at h1
   choose c hc using hak
   refine ⟨∑ k, c k • b k, ?_⟩
@@ -374,7 +406,7 @@ theorem adj_single' (a b : Fin r) (v : AE D) :
   by_cases h : a = l ∧ b = k
   · obtain ⟨rfl, rfl⟩ := h
     simp
-  · rw [if_neg h, if_neg (by tauto), map_zero]
+  · rw [ite_eq_right h, ite_eq_right (by tauto), map_zero]
 
 theorem hE_mem (i j : Fin r) (w : AE D) : hE i j w ∈ hermA D r := by
   change adj (hE i j w) = hE i j w
@@ -392,8 +424,8 @@ theorem rat_single' (a b : Fin r) (e : D.host.E) :
   ext k l
   simp only [rat, Matrix.map_apply, Matrix.single_apply]
   by_cases h : a = k ∧ b = l
-  · rw [if_pos h, if_pos h]
-  · rw [if_neg h, if_neg h, map_zero]
+  · rw [ite_eq_left h, ite_eq_left h]
+  · rw [ite_eq_right h, ite_eq_right h, map_zero]
 
 theorem hE_rat (i j : Fin r) (e : D.host.E) : hE i j (incA D e) ∈ ratMx D r r := by
   refine ⟨Matrix.single j i e + Matrix.single i j (star e), ?_⟩

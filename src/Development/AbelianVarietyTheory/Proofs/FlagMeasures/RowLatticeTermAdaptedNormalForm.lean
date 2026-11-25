@@ -5,9 +5,31 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.FlagFramesSam
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.SaturatedPf
 import Formalism.SharpRestriction.CuspSpanNormBounds.LatticeGluingRadicals
 import Mathlib.Algebra.Module.StablyFree.Basic
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -21,6 +43,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -52,7 +77,7 @@ theorem val_of_split {T : E} (F : Formalism.MainNotions.S.FlagG S r T) (𝔡 : I
       rw [map_smul, hfe, smul_eq_mul]
       by_cases h : c = a
       · subst h; simpa using hx
-      · rw [if_neg h, mul_zero]; exact Submodule.zero_mem _
+      · rw [ite_eq_right h, mul_zero]; exact Submodule.zero_mem _
     · intro x hx
       show S.hT (f c) x ∈ (aaI 𝔡 c : Submodule (𝓞 E) E)
       rw [hLf x hx c]; exact Submodule.zero_mem _
@@ -77,7 +102,7 @@ theorem fe_swap {e f : Fin r → S.V} (hef : ∀ a b, S.hT (e a) (f b) = if a = 
   rw [← S.herm.eq, hef b a]
   by_cases h : a = b
   · subst h; simp
-  · rw [if_neg (Ne.symm h), if_neg h, map_zero]
+  · rw [ite_eq_right (Ne.symm h), ite_eq_right h, map_zero]
 
 theorem frF_Xa {T : E} (F : Formalism.MainNotions.S.FlagG S r T) (hT : T ≠ 0) (a : ℕ) :
     (GlobalTheory.TypeAsm.frF F hT).Xa a = F.Xa a := by
@@ -98,7 +123,7 @@ theorem frame_gen {T : E} (G : Formalism.MainNotions.S.Lat.LFlag S r T) (hT : T 
       refine Submodule.span_le.2 ?_
       rintro _ ⟨i, hi, rfl⟩
       show S.hT (f a) (G.fl.e i) = 0
-      rw [hfe, if_neg]
+      rw [hfe, ite_eq_right]
       rintro rfl; exact lt_irrefl _ (show a.val < a.val from hi)
     exact hle hx
   have hXiso : ∀ x ∈ G.fl.X, ∀ y ∈ G.fl.X, S.hT x y = 0 := by
@@ -124,7 +149,7 @@ theorem frame_gen {T : E} (G : Formalism.MainNotions.S.Lat.LFlag S r T) (hT : T 
     constructor
     · intro ht
       obtain ⟨y, hy, x, hx, hxy⟩ := Submodule.mem_sup.1 ht
-      have h1 : S.hT (f a) (t • G.fl.e a) = t := by rw [map_smul, hfe, if_pos rfl, smul_eq_mul, mul_one]
+      have h1 : S.hT (f a) (t • G.fl.e a) = t := by rw [map_smul, hfe, ite_eq_left rfl, smul_eq_mul, mul_one]
       rw [← hxy, map_add (f := _), hXa0 a x hx, add_zero] at h1
       rw [← h1]; exact hval a y hy
     · intro ht
@@ -252,7 +277,7 @@ theorem admissibleFrame_congruent_mod_unitriangular {T T' : E} (G : Formalism.Ma
       refine Submodule.span_le.2 ?_
       rintro _ ⟨i, hi, rfl⟩
       show S.hT (f' b) (G'.fl.e i) = 0
-      rw [hfe', if_neg]
+      rw [hfe', ite_eq_right]
       rintro rfl
       have : b.val < n := hi
       omega
@@ -306,7 +331,7 @@ theorem admissibleFrame_congruent_mod_unitriangular {T T' : E} (G : Formalism.Ma
       obtain ⟨s, hs, ho⟩ := hloc P hg _ hm (Submodule.smul_mem _ _ (Submodule.subset_span ⟨a0, rfl⟩))
       obtain ⟨o, ho⟩ := ho a0
       refine ⟨s, hs, o, ?_⟩
-      rw [ho, map_smul, hfe', if_pos rfl, smul_eq_mul, mul_one]
+      rw [ho, map_smul, hfe', ite_eq_left rfl, smul_eq_mul, mul_one]
   intro a t x' hx' hxa
   change x' - t • G'.fl.fvec a ∈ (GlobalTheory.TypeAsm.frF G'.fl hT').Xa a.val at hxa
   rw [frF_Xa] at hxa

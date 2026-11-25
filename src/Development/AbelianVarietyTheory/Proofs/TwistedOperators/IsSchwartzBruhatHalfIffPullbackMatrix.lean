@@ -2,6 +2,30 @@ module
 
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LocallyConstantPartial
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.RestrictedTensorBasePointNormSq
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -15,6 +39,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Topology.UniformSpace.Uniformizable
 
 @[expose] public section
@@ -103,7 +129,7 @@ theorem isSBHalf_iff_pull : ∀ (D : D7) (S T : HSp D) (v : FinPl D) (m n : ℕ)
     · by_cases htH : IsHalf a t
       · have h' : IsHalf a (t + (p ^ N) • u) := isHalf_add htH (isHalf_nsmul hhu _)
         have hm : ∀ x, Φ (x + (p ^ N) • κ u) = Φ x := hN1 (κ u) ⟨u, ⟨hu, hhu⟩, rfl⟩
-        simp only [pull, if_pos htH, if_pos h']
+        simp only [pull, ite_eq_left htH, ite_eq_left h']
         rw [hadd, hns]
         exact hm (κ t)
       · have h' : ¬ IsHalf a (t + (p ^ N) • u) := by
@@ -111,7 +137,7 @@ theorem isSBHalf_iff_pull : ∀ (D : D7) (S T : HSp D) (v : FinPl D) (m n : ℕ)
           apply htH
           have hc' := isHalf_sub hc (isHalf_nsmul hhu (p ^ N))
           simpa using hc'
-        simp only [pull, if_neg htH, if_neg h']
+        simp only [pull, ite_eq_right htH, ite_eq_right h']
     · have htH : IsHalf a t := by
         by_contra hh
         exact ht (by simp [pull, hh])
@@ -169,9 +195,9 @@ theorem isSBHalf_iff_pull : ∀ (D : D7) (S T : HSp D) (v : FinPl D) (m n : ℕ)
         exact ⟨_, hmem, inv_smul_smul₀ hkF x⟩
     · funext t
       by_cases ht : IsHalf a t
-      · simp only [pull, if_pos ht]
+      · simp only [pull, ite_eq_left ht]
         rw [hgk t ht]
-      · simp only [pull, if_neg ht]
+      · simp only [pull, ite_eq_right ht]
         by_contra hne
         exact ht (hsupp t hne)
 

@@ -7,18 +7,6 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelIndexUpLatEqProd
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnipLatIsOpenIsCompact
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.RelIndexMulMeasure
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.EqOfHasValueAtInfinite
 
 @[expose] public section
@@ -84,13 +72,6 @@ theorem distribHaarChar_eq [CompleteSpace L] [LocallyCompactSpace L] {ϖ : L} {�
   rw [← h2]
   congr 1
   ring
-
-section Mat
-omit [Valued L (WithZero (Multiplicative ℤ))]
-
-variable (x y : Fin n → L) (z : L)
-
-end Mat
 
 variable {σ : L →+* L} (hσ : ∀ x, σ (σ x) = x) (hc : Continuous σ)
 

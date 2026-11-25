@@ -3,6 +3,27 @@ module
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.InductionEstimates.IwahoriBlocks.SimpleIn
 public import Development.AutomorphicArithmetic.AdelicGluing.LevFIsOpenIsCompactLeIntegral
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.InductionEstimates.IwahoriBlocks.IwahoriCentralBorel.PiHomExt
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -15,6 +36,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import PositivityTheory.AutomorphicForms.PublishedInputs.CyclicBaseChange.PSConjSpaceR
 
 @[expose] public section
@@ -39,7 +62,7 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.IwahoriBlocks.levLaws 
   · intro U hU
     obtain ⟨ho, hc, hi, -⟩ := UpperTheory.levF_isOpen_isCompact_le_integral K n
       (fun v => if v ∈ S then U v else GLnLocal.integralGL (v.adicCompletion K) n) S
-      (fun v hv => by simpa only [if_pos hv] using And.intro (hU v).1.2 (hU v).2) (fun v hv => if_neg hv)
+      (fun v hv => by simpa only [ite_eq_left hv] using And.intro (hU v).1.2 (hU v).2) (fun v hv => ite_eq_right hv)
     exact ⟨⟨hc, ho⟩, hi⟩
   · intro U U' hU hU'
     refine ⟨fun v => ⟨⟨(hU v).1.1.inter_right (Subgroup.isClosed_of_isOpen _ (hU' v).1.2),
@@ -51,23 +74,23 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.IwahoriBlocks.levLaws 
       refine ⟨fun v => ?_, fun v => ?_⟩
       · have h' := h v
         by_cases hv : v ∈ S
-        · rw [if_pos hv] at h' ⊢
+        · rw [ite_eq_left hv] at h' ⊢
           exact (Subgroup.mem_inf.1 h').1
-        · rw [if_neg hv] at h' ⊢
+        · rw [ite_eq_right hv] at h' ⊢
           exact h'
       · have h' := h v
         by_cases hv : v ∈ S
-        · rw [if_pos hv] at h' ⊢
+        · rw [ite_eq_left hv] at h' ⊢
           exact (Subgroup.mem_inf.1 h').2
-        · rw [if_neg hv] at h' ⊢
+        · rw [ite_eq_right hv] at h' ⊢
           exact h'
     · rintro ⟨h₁, h₂⟩ v
       have a := h₁ v
       have b := h₂ v
       by_cases hv : v ∈ S
-      · rw [if_pos hv] at a b ⊢
+      · rw [ite_eq_left hv] at a b ⊢
         exact Subgroup.mem_inf.2 ⟨a, b⟩
-      · rw [if_neg hv] at a b ⊢
+      · rw [ite_eq_right hv] at a b ⊢
         exact a
   · intro k h
     exact (MultiplicityOne.finProj_mul_archProj_comm h _).symm
@@ -98,8 +121,8 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.IwahoriBlocks.levLaws 
       have hu' := (hmem _ _).1 hu v
       rw [hcf]
       by_cases hv : v ∈ S
-      · rw [if_pos hv] at hu' ⊢
+      · rw [ite_eq_left hv] at hu' ⊢
         exact Subgroup.mem_comap.1 (Subgroup.mem_inf.1 hu').2
-      · rw [if_neg hv] at hu' ⊢
+      · rw [ite_eq_right hv] at hu' ⊢
         rw [hout g v (hS ▸ hv)]
         simpa using hu'

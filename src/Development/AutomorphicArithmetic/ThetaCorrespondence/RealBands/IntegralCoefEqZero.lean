@@ -31,18 +31,6 @@ public import Development.AutomorphicArithmetic.ThetaCorrespondence.RealBands.Is
 public import Formalism.SharpRestriction.CuspSpanNormBounds.RelevantZeroGramTerms
 public import Development.AbelianVarietyTheory.Proofs.HeightProofs.SchurOrthogonalityIndefiniteUnitaryGroup
 import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Compactness.Paracompact
 import Mathlib.Topology.UniformSpace.Uniformizable
 import Mathlib.Algebra.Order.Archimedean.Real.Hom
@@ -1112,7 +1100,7 @@ theorem UpperTheory.Lit.Cusp.exists_split :
   choose a ha using key
   have hs : ∀ t, IsSplit ε W (fun _ => t) (a t) := fun t => by
     convert isSplit_of_tor hW h0 h1 h2 (ha t) using 2 with i
-    rw [if_pos (Fin.le_last _)]
+    rw [ite_eq_left (Fin.le_last _)]
   refine ⟨a, ?_, fun s t => ?_, hs⟩
   · refine (Formalism.REAL.isClosedEmbeddingMatrix n ε).1.isInducing.continuous_iff.2 ?_
     refine Continuous.congr (f := fun r : ℝ => GlobalTheory.IsoTorus.tor P (Jm ε * P * Jm ε) (Real.exp r) (Real.exp (-r)))

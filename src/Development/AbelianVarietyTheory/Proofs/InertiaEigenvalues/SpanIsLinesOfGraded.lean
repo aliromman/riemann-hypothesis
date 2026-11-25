@@ -3,18 +3,6 @@ module
 public import Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.GradedSeries
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CompletionLines
 public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -120,7 +108,7 @@ theorem gradedSer_eq_range {r : ℕ} (u : Fin r → ℤ) (d : Fin r → M) (A : 
     refine Submodule.sum_mem _ fun k _ => ?_
     refine Submodule.mem_iSup_of_mem (u k) ⟨fun m hm => ?_, fun m => ?_⟩
     · unfold serLine
-      rw [if_neg (by omega)]
+      rw [ite_eq_right (by omega)]
     · unfold serLine
       split_ifs
       · rw [hA]

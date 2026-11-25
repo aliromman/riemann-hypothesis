@@ -2,17 +2,6 @@ module
 
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsSystemOf
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.SmallnessCondition
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -20,12 +9,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 section
 noncomputable section
-namespace GlobalTheory.FrameAut
-open Formalism.CohomologicalDescent.DepthNonnegative GlobalTheory.ExpFrame
-section Op
-variable (K : Type) [CommRing K] (n : ℕ) {ι : Type} [Fintype ι] [DecidableEq ι] (mu : ι → ℕ → ℕ) (sh : ι → ℤ)
-end Op
-end GlobalTheory.FrameAut
 open NumberField IsDedekindDomain TensorProduct
 open Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Indef Formalism.IndefR Formalism.IndefR.Links Formalism.L2.Pj GlobalTheory.BigTop GlobalTheory.BigOn
 open Formalism.CohomologicalDescent.LogSmallConstantBounds (Par)

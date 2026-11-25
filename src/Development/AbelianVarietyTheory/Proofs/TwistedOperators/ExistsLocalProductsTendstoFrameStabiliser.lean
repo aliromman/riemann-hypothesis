@@ -3,7 +3,31 @@ module
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.SupportedSubgroupSplitCommutePrimeIdempotents
 public import Development.AbelianVarietyTheory.Definitions.Divisors.IsUnitaryOnTheta
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Levelaf
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -17,6 +41,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.TameOnOne
 import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
@@ -53,14 +80,14 @@ theorem evalV_indA_of_mem {s : Finset (HeightOneSpectrum (𝓞 F))} {v : HeightO
     evalV F v (indA F s) = 1 := by
   classical
   show ((if v ∈ s then (1 : v.adicCompletionIntegers F) else 0 : v.adicCompletionIntegers F) : v.adicCompletion F) = 1
-  rw [if_pos h]
+  rw [ite_eq_left h]
   rfl
 
 theorem evalV_indA_of_notMem {s : Finset (HeightOneSpectrum (𝓞 F))} {v : HeightOneSpectrum (𝓞 F)} (h : v ∉ s) :
     evalV F v (indA F s) = 0 := by
   classical
   show ((if v ∈ s then (1 : v.adicCompletionIntegers F) else 0 : v.adicCompletionIntegers F) : v.adicCompletion F) = 0
-  rw [if_neg h]
+  rw [ite_eq_right h]
   rfl
 
 theorem af_ext {a b : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.Af F} (h : ∀ v, evalV F v a = evalV F v b) : a = b := Subtype.ext (funext fun v => h v)
@@ -117,7 +144,7 @@ theorem tendsto_indA : Tendsto (indA F) atTop (𝓝 1) := by
     intro v
     apply tendsto_const_nhds.congr'
     filter_upwards [Filter.eventually_ge_atTop {v}] with s hs
-    rw [if_pos (hs (Finset.mem_singleton_self v))]
+    rw [ite_eq_left (hs (Finset.mem_singleton_self v))]
   have h2 := ((continuous_intFam F).tendsto _).comp hp
   rw [h1] at h2
   convert h2 using 1

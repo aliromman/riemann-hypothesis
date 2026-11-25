@@ -3,19 +3,6 @@ module
 public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.BoundAtTwoThreeFamily
 public import Formalism.SharpRestriction.LevelLetterCocycles.SumRepresentations
 public import Formalism.SharpRestriction.AdmissibleParameterJoins.NandDIVb
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -72,9 +59,9 @@ theorem sum_mult_le (D : D7) (hZ : SumRepresentations.ConclusionZ D) (i : D.nd.L
     rw [← Finset.sum_subset (Finset.subset_univ (D.nd.Zgood i))]
     · apply Finset.sum_congr rfl
       intro x hx
-      rw [if_pos ((D.Zgood_tie i x).1 hx)]
+      rw [ite_eq_left ((D.Zgood_tie i x).1 hx)]
     · intro x _ hx
-      rw [if_neg (fun h => hx ((D.Zgood_tie i x).2 h))]
+      rw [ite_eq_right (fun h => hx ((D.Zgood_tie i x).2 h))]
 
 end GlobalTheory.MultiplicityBound
 

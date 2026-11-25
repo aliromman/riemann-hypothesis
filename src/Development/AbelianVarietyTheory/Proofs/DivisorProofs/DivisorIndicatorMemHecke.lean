@@ -1,18 +1,6 @@
 module
 
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaloisOfRegularForms
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicArithmetic.IntegralCasts.IsOpenStabOfMemNhds
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -89,8 +77,6 @@ theorem sameDiv_doubleCoset {n : ℕ} {O : Subring L}
           * Matrix.diagonal (fun i : Fin n => ϖ' ^ d.getD i 0) * ((b2 : Matrix (Fin n) (Fin n) L) * ((b2⁻¹ : GL (Fin n) L) : Matrix (Fin n) (Fin n) L)) * (b1 : Matrix (Fin n) (Fin n) L) := by
         rw [e1, e2]; simp only [Matrix.mul_one, Matrix.mul_assoc]
     _ = _ := by simp only [Matrix.mul_assoc]
-
-alias main := _root_.GlobalTheory.DoubleCosetDivisors.sameDiv_doubleCoset
 
 end GlobalTheory.DoubleCosetDivisors
 end -- clump:auto

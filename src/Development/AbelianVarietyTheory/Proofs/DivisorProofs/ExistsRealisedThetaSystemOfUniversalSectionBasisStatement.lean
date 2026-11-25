@@ -15,10 +15,35 @@ public import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsS
 public import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsThetaSystemOfPolarisedLevel
 public import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsThetaLevelAbelianSchemeGlueAffineCover
 import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.ForallGeometricallyIntegralOfSmoothOfGeometrical
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.AlgebraicGeometry.Modules.Sheaf
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -41,6 +66,7 @@ import Development.AbelianVarietyTheory.Proofs.ThetaFamilyOrigin.IsThetaPtOverMo
 import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsGeneratorNeZero
 import Development.AbelianVarietyTheory.Statements.TorsionEndomorphisms.ExistsGeneratorOfIsField
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.Tactic.Basify
 import Mathlib.Tactic.Linter.Style
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.IsNatDiagIffIsDiag
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.SumMulEqZeroOfSumToReal
@@ -389,9 +415,9 @@ theorem exists_monomial_matrices_of_indep : ∀ (o A M : Type) [CommRing o] [Com
     rw [LinearMap.toMatrix_apply, hb, hE, ← hb, map_smul, Module.Basis.repr_self]
     rw [Matrix.map_apply, Finsupp.smul_apply, smul_eq_mul]
     by_cases h : l = π a + i
-    · have : ρ a l i = ζ ^ E a i := if_pos h
+    · have : ρ a l i = ζ ^ E a i := ite_eq_left h
       rw [this, h, Finsupp.single_eq_same, _root_.mul_one]
-    · have : ρ a l i = 0 := if_neg h
+    · have : ρ a l i = 0 := ite_eq_right h
       rw [this, Finsupp.single_eq_of_ne h, mul_zero, map_zero]
   have hinj : Function.Injective (fun X : Matrix (Fin g ⊕ Fin g → ZMod m) (Fin g ⊕ Fin g → ZMod m) o => X.map f) := Matrix.map_injective hf
   have hmul : ∀ a c, (ρ a * ρ c).map f = LinearMap.toMatrix b b (u a ∘ₗ u c) := by

@@ -33,6 +33,28 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Exist
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsMeasDefOfIsTermVol
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaKernelGridRationalLeftInvariant
 public import Formalism.SharpRestriction.GlobalSchurBounds.GlobalRankLatticeProofs.UnitTraceSumBounds.StmtTransInvHolds
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -45,11 +67,15 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.IdemElt
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompactness.T2SpaceTensorProductFiniteExtension
 import Mathlib.Algebra.Order.Star.Int
@@ -59,6 +85,7 @@ import Development.AbelianVarietyTheory.Proofs.TwistedOperators.TendstoInfMulPro
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsGivenStageEqOne
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsMatchOver
 import Development.AbelianVarietyTheory.Statements.HeckeThetaIntegrals.FormulaAt
+import Mathlib.Tactic.Basify
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.CompactUnitaryAverageFockPolynomialJetFunctional, Development.AbelianVarietyTheory.Proofs.TwistedOperators.FockComponentTransportedPointsEqJetOperator, Development.AbelianVarietyTheory.Proofs.TwistedOperators.RealPointsTopNodeOntoUnitaryHaarUnique, Development.AbelianVarietyTheory.Proofs.TwistedOperators.DenseOfPolynomialStdGaussianMemSchwartz, Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsThetaFunOFockMovedVecTop, Development.AbelianVarietyTheory.Proofs.TwistedOperators.LastColumnArrowRealAverageFunctional, Development.AbelianVarietyTheory.Proofs.TwistedOperators.RealActionOnVertexWeightContinuous, Development.AutomorphicArithmetic.LocalEmbeddings.JetsGrid
@@ -524,15 +551,15 @@ theorem exps_chi : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} (G : Gr
     fun τ => hatt _ τ, fun τ => hatt _ τ, fun τ => ?_, fun τ => ?_⟩
   · simp only [sgnP]
     rcases Nat.even_or_odd (G.pS (.chi i D.R.m : Pair T)).rank with ⟨k, hk⟩ | ⟨k, hk⟩
-    · rw [if_neg (Nat.not_odd_iff_even.2 ⟨k, hk⟩), hk, show (k + k + 1) / 2 = k by omega]
+    · rw [ite_eq_right (Nat.not_odd_iff_even.2 ⟨k, hk⟩), hk, show (k + k + 1) / 2 = k by omega]
       push_cast; ring
-    · rw [if_pos ⟨k, hk⟩, hk, show (2 * k + 1 + 1) / 2 = k + 1 by omega]
+    · rw [ite_eq_left ⟨k, hk⟩, hk, show (2 * k + 1 + 1) / 2 = k + 1 by omega]
       push_cast; ring
   · simp only [sgnP]
     rcases Nat.even_or_odd (G.pT (.chi i D.R.m : Pair T)).rank with ⟨k, hk⟩ | ⟨k, hk⟩
-    · rw [if_neg (Nat.not_odd_iff_even.2 ⟨k, hk⟩), hk, show (k + k + 1) / 2 = k by omega]
+    · rw [ite_eq_right (Nat.not_odd_iff_even.2 ⟨k, hk⟩), hk, show (k + k + 1) / 2 = k by omega]
       push_cast; ring
-    · rw [if_pos ⟨k, hk⟩, hk, show (2 * k + 1 + 1) / 2 = k + 1 by omega]
+    · rw [ite_eq_left ⟨k, hk⟩, hk, show (2 * k + 1 + 1) / 2 = k + 1 by omega]
       push_cast; ring
 
 theorem ker_fock_moved_fin : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc} {W : G.Weil} {U : Set T} (S : GridChoice W U) {μ0 : T},
@@ -678,7 +705,7 @@ theorem exists_rec {α : ℕ → Type} [∀ n, Zero (α n)] {N : ℕ} {R : ∀ n
   choose g hg using h
   refine ⟨fun n => Nat.rec a (fun n b => if hn : n < N then g n hn b else 0) n, rfl, fun n hn => ?_⟩
   have := hg n hn (Nat.rec a (fun n b => if hn : n < N then g n hn b else 0) n)
-  simpa only [dif_pos hn] using this
+  simpa only [dite_eq_left hn] using this
 
 theorem inRange_of_def {p : Pair T} (hp : DefPair D.R.m p) : p.InRange D.R.m := by
   have hn := DefPair.nodes hp
@@ -781,14 +808,14 @@ theorem defPer_eq (S : GridChoice W U) (P : PolCol G × PolRow G) {t : T} (d : P
           (stabilizerEmbedding G.sp.topDec h) *
         liftC (V := fun i => G.V (.grid i D.R.m)) (fun i => M.ν (.grid i D.R.m)) (fun i => M.fd (.grid i D.R.m)) (rowKer S P d) F
           D.R.m h ∂M.ν (.grid D.R.m D.R.m) := by
-  rw [defPer, pathLift_column_eq_kernelLift M t (colKer S P d) φ _ _ fun j g h => dif_pos j.2, pathLift_row_eq_kernelLift M (rowKer S P d) F _ _ fun j g h => dif_pos j.2]
+  rw [defPer, pathLift_column_eq_kernelLift M t (colKer S P d) φ _ _ fun j g h => dite_eq_left j.2, pathLift_row_eq_kernelLift M (rowKer S P d) F _ _ fun j g h => dite_eq_left j.2]
 
 theorem col_near (S : GridChoice W U) (P : PolCol G × PolRow G) {t : T} (d : PureDat G t) (hd : ∀ j, S.Z.HasVec (d.1 j))
     {F : Fn G (.top 0)} (hF : ∀ᶠ k in 𝓝 (1 : GA D (G.V (.top 0))), k ∈ GfC _ → ∀ g, F (g * k) = F g) :
     NearOK (V := fun j => G.V (.top j)) (colKer S P d) F D.R.m := by
   refine ⟨hF, fun n hn => ?_⟩
   have hp : DefPair D.R.m (.top t n) := hn
-  simp only [colKer, dif_pos hn]
+  simp only [colKer, dite_eq_left hn]
   exact ker_near W (inRange_of_def hp) (theta_fock S hp _ (hd ⟨n, hn⟩) _)
 
 theorem row_near (S : GridChoice W U) (P : PolCol G × PolRow G) {t : T} (d : PureDat G t) (hd : ∀ j, S.Z.HasVec (d.2 j))
@@ -796,7 +823,7 @@ theorem row_near (S : GridChoice W U) (P : PolCol G × PolRow G) {t : T} (d : Pu
     NearOK (V := fun j => G.V (.grid j D.R.m)) (rowKer S P d) F D.R.m := by
   refine ⟨hF, fun n hn => ?_⟩
   have hp : DefPair D.R.m (.chi n D.R.m : Pair T) := ⟨hn, rfl⟩
-  simp only [rowKer, dif_pos hn]
+  simp only [rowKer, dite_eq_left hn]
   exact ker_near W (inRange_of_def hp) (theta_fock S hp _ (hd ⟨n, hn⟩) _)
 
 theorem col_chain (S : GridChoice W U) {μ0 : T} (hL : L.Is μ0) (P : PolCol G × PolRow G) (Λ0 : Module.Dual ℂ (VV ℂ (wt G (.top 0)))) :
@@ -820,7 +847,7 @@ theorem col_chain (S : GridChoice W U) {μ0 : T} (hL : L.Is μ0) (P : PolCol G �
   have hl := GlobalTheory.RowReal.ker_rat_left W _ (inRange_of_def hp) _ hθ
   refine ⟨TermVolDef.isDefiniteSpace_of_isV (node_isV G hL (X := .top n) hn.le), posDef_top G hn.le,
     fun g hg => realAct_fin _ _ _ hg, fun u => _root_.GlobalTheory.RealActCont.realAct_inv_continuous W.θ W.θ_is S.N.fr _ _ u, ?_⟩
-  simp only [colKer, colComp, dif_pos hn]
+  simp only [colKer, colComp, dite_eq_left hn]
   exact ⟨fun γ hγ g h => by simpa using hl γ hγ 1 (one_mem _) g h, fun γ hγ g h => by simpa using hl 1 (one_mem _) γ hγ g h,
     (kerA_col_aut_cont S hL n hn _ t ht _ (hd ⟨n, hn⟩)).2, h n hn t ht _ (hd ⟨n, hn⟩)⟩
 
@@ -850,7 +877,7 @@ theorem row_chain (S : GridChoice W U) {μ0 : T} (hL : L.Is μ0) (P : PolCol G �
   rw [e] at hV
   refine ⟨TermVolDef.isDefiniteSpace_of_isV hV, posDef_grid hL hn.le,
     fun g hg => realAct_fin _ _ _ hg, fun u => _root_.GlobalTheory.RealActCont.realAct_inv_continuous W.θ W.θ_is S.N.fr _ _ u, ?_⟩
-  simp only [rowKer, rowComp, dif_pos hn]
+  simp only [rowKer, rowComp, dite_eq_left hn]
   exact ⟨fun γ hγ g h => by simpa using hl γ hγ 1 (one_mem _) g h, fun γ hγ g h => by simpa using hl 1 (one_mem _) γ hγ g h,
     fun z h => ((W.om_is _ (inRange_of_def hp)).om_cont _ hθ 0).comp
       (continuous_const.prodMk (continuous_const.mul continuous_subtype_val)), h n hn t ht _ (hd ⟨n, hn⟩)⟩

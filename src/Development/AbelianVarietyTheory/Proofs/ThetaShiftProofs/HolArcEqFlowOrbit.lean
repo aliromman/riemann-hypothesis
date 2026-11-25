@@ -18,8 +18,35 @@ import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsUniqueScal
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.IsDerivAt0CompLinear
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.RelabelEmbeddingsGoodBijectiveConjCompat
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.UniformizationPeriodLatticeChange
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -33,6 +60,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.ExhaustFStatementPfB
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.EmbeddingHermitianPairs
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.HermitianTraceFormVanishing
@@ -81,7 +110,7 @@ lemma eq_of_hermC_lattice (τ : E →+* ℂ) (u u' : Fin r → ℂ)
   funext b
   have h2 := h1 (Pi.single b 1)
   simp only [hermC, Data.emb, Pi.single_apply, apply_ite τ, apply_ite (starRingEnd ℂ), map_one, map_zero,
-    mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true] at h2
+    mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true] at h2
   simp [Matrix.vecMul, dotProduct, sub_mul, Finset.sum_sub_distrib, h2]
 
 lemma flow_mem_dom {ξ : Fin r → E} (hξ : herm X.Gm ξ ξ = 0) (s : X.Ψ → ℂ) {x x' : Frame X.Ψ r} (hx : x ∈ X.dom)
@@ -183,8 +212,8 @@ lemma exists_idx (hσ : GoodEmb c σ) (hU : IsUnf U) (k : U.Comp) :
   have hcc : ∀ τ : E →+* ℂ, ComplexEmbedding.conjugate (ComplexEmbedding.conjugate τ) = τ := fun τ =>
     ComplexEmbedding.involutive_conjugate E τ
   obtain ⟨f, hf⟩ := GlobalTheory.FrameUnif.exists_letter_equiv (U.X k).Ψ (U.X k).cmType Dw.p Dw.q r hU.1 (relab c σ) hbij
-    Dw.mult (fun τ h => by unfold Datum.mult; rw [if_pos ((hrt τ).1 ((hty _).1 h))])
-      (fun τ h => by unfold Datum.mult; rw [if_neg (fun h' => h ((hty _).2 ((hrt τ).2 h')))])
+    Dw.mult (fun τ h => by unfold Datum.mult; rw [ite_eq_left ((hrt τ).1 ((hty _).1 h))])
+      (fun τ h => by unfold Datum.mult; rw [ite_eq_right (fun h' => h ((hty _).2 ((hrt τ).2 h')))])
   obtain ⟨idx, hi⟩ : ∃ idx : Fin Uw.g ≃ (U.X k).Ψ × Fin r, ∀ j,
       (relab c σ (Uw.e j).1 ∈ (U.X k).Ψ ∧ (idx j).1.1 = relab c σ (Uw.e j).1 ∧
         ((idx j).2 : ℕ) = Dw.q + (Uw.e j).2) ∨
@@ -193,8 +222,8 @@ lemma exists_idx (hσ : GoodEmb c σ) (hU : IsUnf U) (k : U.Comp) :
     ⟨Uw.e.trans f, fun j => hf (Uw.e j)⟩
   refine ⟨idx, fun j => ?_, fun j hj => ?_, fun x v j => ?_⟩
   · rcases hi j with ⟨a, b, c'⟩ | ⟨a, b, c', d⟩
-    · rw [if_neg (by omega), b]
-    · rw [if_pos (by omega), b, hcc]
+    · rw [ite_eq_right (by omega), b]
+    · rw [ite_eq_left (by omega), b, hcc]
   · rcases hi j with ⟨a, b, c'⟩ | ⟨a, b, c', d⟩
     · omega
     · exact d
@@ -204,10 +233,10 @@ lemma exists_idx (hσ : GoodEmb c σ) (hU : IsUnf U) (k : U.Comp) :
     dsimp only at h ⊢
     rw [← hp0] at h ⊢
     rcases h with ⟨a, rfl, rfl⟩ | ⟨a, rfl, rfl, d⟩
-    · rw [if_neg (by omega)]
+    · rw [ite_eq_right (by omega)]
       unfold perFr
       rw [dite_eq_left a, dite_eq_left hn]
-    · rw [if_pos (by omega)]
+    · rw [ite_eq_left (by omega)]
       unfold perFr
       rw [dite_eq_right a, dite_eq_left (show conjEmb (relab c σ (Uw.e j).1) ∈ (U.X k).Ψ from hτ), dite_eq_left hn]
       rfl
@@ -270,7 +299,7 @@ lemma flow_period (hσ : GoodEmb c σ) (hU : IsUnf U) (k : U.Comp) (hκ : (U.X k
     have h1 := key ((Uw.φ k).symm ⟨w, hw⟩) (idx.symm (τ, a))
     rw [← hx', Uw.Pm_eq, hper, hper] at h1
     rw [hp0] at ha
-    simpa only [Equiv.apply_symm_apply, if_pos ha, LinearEquiv.apply_symm_apply] using h1
+    simpa only [Equiv.apply_symm_apply, ite_eq_left ha, LinearEquiv.apply_symm_apply] using h1
   exact ⟨hx, AddMonoidHom.ext fun v => funext fun j => (Uw.Pm_eq k _ v j).trans (key v j)⟩
 
 lemma orbit (hL : Out.Laws) (hσ : GoodEmb c σ) (hU : IsUnf U) {Y : Type} [AddCommGroup Y] [Module (𝓞 E) Y]

@@ -14,6 +14,28 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryHecke
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinrankIntegralFixedVectorsEqOneAlmostAllStatement
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinrankLevelFixedVectorsDefiniteUnitaryEqProdStatement
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedTraceIndicatorLevelLocalUnitaryStatement
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -28,9 +50,13 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.LinearAlgebra.Eigenspace.Triangularizable
 import Mathlib.RingTheory.SimpleModule.Isotypic
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsContinuousRetractionOntoUnitaryLocalPoints
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IrreducibleRepIsotypicOfCentraliserFactor
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -239,9 +265,9 @@ theorem exists_factor (σ : Representation ℂ H W) [σ.IsIrreducible] (τ : Rep
   refine Finset.sum_congr rfl fun i _ => ?_
 
   rw [map_sum, Finset.sum_eq_single i]
-  · rw [map_smul, LinearMap.trace_comp_comm', h2, if_pos rfl, smul_eq_mul]
+  · rw [map_smul, LinearMap.trace_comp_comm', h2, ite_eq_left rfl, smul_eq_mul]
   · intro j _ hj
-    rw [map_smul, LinearMap.trace_comp_comm', h2, if_neg hj, map_zero, smul_zero]
+    rw [map_smul, LinearMap.trace_comp_comm', h2, ite_eq_right hj, map_zero, smul_zero]
   · simp
 
 theorem trOn_cross {V : Type} [AddCommGroup V] [Module ℂ V] (σ : Representation ℂ H W) [σ.IsIrreducible]
@@ -268,7 +294,7 @@ theorem trOn_cross {V : Type} [AddCommGroup V] [Module ℂ V] (σ : Representati
     have := congrArg (p i).toLinearMap hg
 
     simp only [Function.comp_apply, Submodule.subtype_apply, map_sum, map_smul, hps, map_zero] at this
-    rw [Finset.sum_eq_single i (fun j _ hj => by rw [if_neg hj, smul_zero]) (fun h => absurd hi h), if_pos rfl] at this
+    rw [Finset.sum_eq_single i (fun j _ hj => by rw [ite_eq_right hj, smul_zero]) (fun h => absurd hi h), ite_eq_left rfl] at this
     exact (smul_eq_zero.1 this).resolve_right hu0
   haveI : Finite ι := hli.finite
   haveI := Fintype.ofFinite ι
@@ -673,7 +699,7 @@ theorem trOn_hop_eq_dimW_mul_finprod_twTr : ∀ (E : Type) [Field E] [NumberFiel
     induction U using Finset.induction_on with
     | empty =>
       intro _
-      simp only [Finset.notMem_empty, if_false, Finset.prod_empty, mul_one, one_mul]
+      simp only [Finset.notMem_empty, ite_false, Finset.prod_empty, mul_one, one_mul]
     | insert a U ha ih =>
       intro hsub
       have haS : a ∈ S := hsub (Finset.mem_insert_self a U)
@@ -681,12 +707,12 @@ theorem trOn_hop_eq_dimW_mul_finprod_twTr : ∀ (E : Type) [Field E] [NumberFiel
       have hg : IsTest (KL n) K' (fun w => if w ∈ insert a U then f w else one w) := by
         refine ⟨fun w => ?_, ?_⟩
         · by_cases h : w ∈ insert a U
-          · simp only [h, if_true]; exact hf.1 w
-          · simp only [h, if_false]; exact (hTW w).1
+          · simp only [h, ite_true]; exact hf.1 w
+          · simp only [h, ite_false]; exact (hTW w).1
         · filter_upwards [hf.2, hK'.2] with w h1 h2
           by_cases h : w ∈ insert a U
-          · simp only [h, if_true]; exact h1
-          · simp only [h, if_false, hone]; rw [h2]
+          · simp only [h, ite_true]; exact h1
+          · simp only [h, ite_false, hone]; rw [h2]
       have hstep := _root_.GlobalTheory.BCT.Peel.trOn_hop_peel E hU n hn π hπ S hS K' hK' _ hg a haS (σ a) (hσ a)
       have hupd : Function.update (fun w => if w ∈ insert a U then f w else one w) a
           ((K' a : Set (UL n a)).indicator 1) = fun w => if w ∈ U then f w else one w := by
@@ -697,7 +723,7 @@ theorem trOn_hop_eq_dimW_mul_finprod_twTr : ∀ (E : Type) [Field E] [NumberFiel
         · rw [Function.update_of_ne h]
           simp [Finset.mem_insert, h]
       rw [hupd] at hstep
-      simp only [Finset.mem_insert_self, if_true] at hstep
+      simp only [Finset.mem_insert_self, ite_true] at hstep
       rw [Finset.prod_insert ha, Finset.prod_insert ha]
       have e1 : twTr (σ a).ρ (KL n a) (K' a) (one a) LinearMap.id =
           twTr (σ a).ρ (KL n a) (K' a) ((K' a : Set (UL n a)).indicator 1) LinearMap.id := rfl
@@ -716,9 +742,9 @@ theorem trOn_hop_eq_dimW_mul_finprod_twTr : ∀ (E : Type) [Field E] [NumberFiel
     refine hcongr _ _ fun w hw => ?_
     by_cases h : w ∈ F
     · have : w ∈ U := Finset.mem_filter.2 ⟨h, hw⟩
-      simp only [this, if_true]
+      simp only [this, ite_true]
     · have : w ∉ U := fun h' => h (Finset.mem_filter.1 h').1
-      simp only [this, if_false, hone]
+      simp only [this, ite_false, hone]
       exact ((hout w h).1).symm
   have hkey := key U hUS
   rw [hfU] at hkey

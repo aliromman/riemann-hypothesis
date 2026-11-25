@@ -5,11 +5,35 @@ public import Development.AbelianVarietyTheory.Counterexamples.HeightSurvey.Exis
 public import Development.AbelianVarietyTheory.Proofs.HeightProofs.RhoCompactTwiceEqOfSignBlockOrdered
 public import Development.AbelianVarietyTheory.Definitions.Foundations.ExistsUnitaryMulTriangular
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsIrreducibleSmallRepUnitary
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.Analysis.CStarAlgebra.Matrix
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -22,10 +46,14 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Foundations.CdScaleTieIff
 import Formalism.GradedWeylDivisibility.FinalC
 import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LDlatLemmas
 import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LDrowLemmas
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HasModelOfAntitone, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsHarishChandraTypeDualWeylModuleFockNorm
@@ -170,7 +198,7 @@ theorem chr_inj {μ ν : Fin N → ℝ} (h : ∀ θ, chr μ θ = chr ν θ) : μ
   by_contra hne
   have hne' : μ a - ν a ≠ 0 := sub_ne_zero.2 hne
   have h2 := h (Pi.single a (Real.pi / (μ a - ν a)))
-  simp only [chr, Pi.single_apply, mul_ite, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true] at h2
+  simp only [chr, Pi.single_apply, mul_ite, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true] at h2
   have h3 : Complex.exp (Real.pi * Complex.I) = 1 := by
     have e : (Real.pi : ℂ) * Complex.I = ((μ a * (Real.pi / (μ a - ν a)) : ℝ) : ℂ) * Complex.I -
         ((ν a * (Real.pi / (μ a - ν a)) : ℝ) : ℂ) * Complex.I := by
@@ -213,7 +241,7 @@ theorem cdom_single {a b : Fin N} (h : a ≤ b) : CDom (allPos N) (Pi.single b 1
   rcases h.eq_or_lt with rfl | h
   · exact cdom_refl _ _
   refine ⟨fun x y => if x = a ∧ y = b then 1 else 0, fun x y hxy => ?_, ?_⟩
-  · have : x = a ∧ y = b := by by_contra h'; exact hxy (if_neg h')
+  · have : x = a ∧ y = b := by by_contra h'; exact hxy (ite_eq_right h')
     obtain ⟨rfl, rfl⟩ := this
     exact ⟨h, rfl⟩
   · simp [ite_and, Formalism.REAL.root, ite_smul]
@@ -358,13 +386,13 @@ theorem hasModel_lower (p : Fin N → Prop) [DecidablePred p] (hp : ∀ i j, j �
   have h := Fin.lt_card_filter_univ_iff_apply_of_imp (j := a) p hp
   rw [Finset.sum_apply]
   by_cases ha : p a
-  · rw [if_pos ha, Finset.sum_eq_single ⟨a, h.2 ha⟩]
+  · rw [ite_eq_left ha, Finset.sum_eq_single ⟨a, h.2 ha⟩]
     · simp
     · intro b _ hb
       refine Pi.single_eq_of_ne (M := fun _ : Fin N => ℝ) (fun e => hb (Fin.ext ?_)) _
       exact (congrArg Fin.val e).symm
     · simp
-  · rw [if_neg ha, Finset.sum_eq_zero]
+  · rw [ite_eq_right ha, Finset.sum_eq_zero]
     intro b _
     refine Pi.single_eq_of_ne (fun e => ha (h.1 ?_)) _
     rw [e]
@@ -518,13 +546,13 @@ theorem cdom_of_partial_sums (μ ν : Fin n → ℕ)
     · intro b _ hb
       have : b.val ≠ i.val := fun e => hb (Fin.ext e)
       by_cases h1 : b.val < i.val
-      · rw [if_pos h1, if_pos (by omega), sub_self]
-      · rw [if_neg h1, if_neg (by omega), sub_self]
+      · rw [ite_eq_left h1, ite_eq_left (by omega), sub_self]
+      · rw [ite_eq_right h1, ite_eq_right (by omega), sub_self]
     · simp
   have h0 : D 0 = 0 := by simp [D]
   have hn : D n = 0 := by simp [D, he]
   refine ⟨fun a b => if b.val = a.val + 1 then D b.val else 0, fun a b hab => ?_, ?_⟩
-  · have : b.val = a.val + 1 := by by_contra h'; exact hab (if_neg h')
+  · have : b.val = a.val + 1 := by by_contra h'; exact hab (ite_eq_right h')
     exact ⟨Fin.lt_def.2 (by omega), rfl⟩
   · funext i
     have e1 : ∑ b : Fin n, ((if b.val = i.val + 1 then D b.val else 0 : ℕ) : ℝ) = D (i.val + 1) := by
@@ -532,28 +560,28 @@ theorem cdom_of_partial_sums (μ ν : Fin n → ℕ)
       · rw [Finset.sum_eq_single ⟨i.val + 1, hi⟩]
         · simp
         · intro b _ hb
-          rw [if_neg (fun e => hb (Fin.ext e)), Nat.cast_zero]
+          rw [ite_eq_right (fun e => hb (Fin.ext e)), Nat.cast_zero]
         · simp
       · rw [Finset.sum_eq_zero, show i.val + 1 = n by omega, hn, Nat.cast_zero]
         intro b _
-        rw [if_neg (by omega), Nat.cast_zero]
+        rw [ite_eq_right (by omega), Nat.cast_zero]
     have e2 : ∑ a : Fin n, ((if i.val = a.val + 1 then D i.val else 0 : ℕ) : ℝ) = D i.val := by
       by_cases hi : 0 < i.val
       · rw [Finset.sum_eq_single ⟨i.val - 1, by omega⟩]
-        · rw [if_pos (by simp only; omega)]
+        · rw [ite_eq_left (by simp only; omega)]
         · intro b _ hb
-          rw [if_neg (fun e => hb (Fin.ext (by simp only; omega))), Nat.cast_zero]
+          rw [ite_eq_right (fun e => hb (Fin.ext (by simp only; omega))), Nat.cast_zero]
         · simp
       · rw [Finset.sum_eq_zero, show i.val = 0 by omega, h0, Nat.cast_zero]
         intro b _
-        rw [if_neg (by omega), Nat.cast_zero]
+        rw [ite_eq_right (by omega), Nat.cast_zero]
     rw [Pi.sub_apply, ← hstep, ← e1, ← e2]
     simp only [Finset.sum_apply, Pi.smul_apply, Formalism.REAL.root, Pi.sub_apply, smul_eq_mul, mul_sub,
       Finset.sum_sub_distrib, Pi.single_apply, mul_ite, mul_one, mul_zero]
     congr 1
     · rw [Finset.sum_comm]
-      simp only [Finset.sum_ite_eq, Finset.mem_univ, if_true]
-    · simp only [Finset.sum_ite_eq, Finset.mem_univ, if_true]
+      simp only [Finset.sum_ite_eq, Finset.mem_univ, ite_true]
+    · simp only [Finset.sum_ite_eq, Finset.mem_univ, ite_true]
 
 theorem cdom_of_coeff_ne_zero {la : Fin n → ℕ} {f : Pol n ℂ} (hf : f ∈ nabla la ℂ) (m : Fin n × Fin n →₀ ℕ)
     (hm : AddMonoidAlgebra.coeff f m ≠ 0) : CDom (allPos n) (fun a => (rowDeg m a : ℝ)) (fun a => (la a : ℝ)) := by

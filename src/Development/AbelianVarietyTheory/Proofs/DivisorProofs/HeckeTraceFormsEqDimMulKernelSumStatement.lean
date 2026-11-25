@@ -19,18 +19,6 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinrankWsp
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TraceDualWeylModuleInvRationalPointEqConjCharAt
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.KernSum
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeTraceFormsWeightEqFinrankMulStatement
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Linter.Style
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteNumberFieldBddDenomConjNormLeOneStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormEmbeddingEntryDefiniteUnitaryRationalPointLeStatement
@@ -43,11 +31,8 @@ import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsOpenProductOfLocalLevelsUnitaryStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalComponentDefiniteUnitaryFinitePartEqLocalPo
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective
-import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 import Mathlib.LinearAlgebra.PiTensorProduct.Finite
 import Mathlib.RingTheory.AdicCompletion.Noetherian
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.HopfAlgebra.Basic
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EquivariantDoubleCosetSectionMemEquivariant, Development.AbelianVarietyTheory.Proofs.DivisorProofs.EquivariantFunctionEqFinsumDoubleCosetSections, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteDefiniteUnitaryRationalInfConjLevelBis, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteDoubleCosetDefiniteUnitaryRationalOfIsOpenStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteProductOfLocalFunctionsUnitaryNeZero, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteRationalPointsConjInSupport, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeOperatorEquivariantDoubleCosetSectionBasePoint, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeOperatorPreservesEquivariantRightInvariant, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeTraceVectorValuedEqFiniteKernelSum, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeTraceFormsEqDimMulKernelSum, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeTraceFormsEqDimMulKernelSumStatement
@@ -137,12 +122,12 @@ theorem finsum_apply_eq (ι : H →* G) (ρ : Representation ℂ H V) (K : Subgr
       Finset.sum_congr rfl (g := fun _ => φ y) ?_, Finset.sum_const, ← Nat.card_eq_card_finite_toFinset]
     intro h hh
     rw [Set.Finite.mem_toFinset, Set.mem_setOf_eq] at hh
-    rw [if_pos hh, ← hφ.1 h x, ← hφ.2 _ hh (ι h * x), mul_inv_cancel_left]
+    rw [ite_eq_left hh, ← hφ.1 h x, ← hφ.2 _ hh (ι h * x), mul_inv_cancel_left]
   · intro h hh
     rw [Function.mem_support] at hh
     rw [Set.Finite.coe_toFinset, Set.mem_setOf_eq]
     by_contra hc
-    exact hh (if_neg hc)
+    exact hh (ite_eq_right hc)
 
 theorem card_eq (ι : H →* G) (hι : Function.Injective ι) (K : Subgroup G) (x : G) (h₀ : H) {k₀ : G}
     (hk₀ : k₀ ∈ K) :
@@ -193,7 +178,7 @@ theorem secM_self (ι : H →* G) (hι : Function.Injective ι) (ρ : Representa
 theorem secM_off (ι : H →* G) (ρ : Representation ℂ H V) (K : Subgroup G) (x y : G) (v : V)
     (hy : ∀ h : H, (ι h * x)⁻¹ * y ∉ K) : secM ι ρ K x v y = 0 := by
   rw [secM_apply']
-  simp only [hy, if_false, finsum_zero, LinearMap.zero_apply, smul_zero]
+  simp only [hy, ite_false, finsum_zero, LinearMap.zero_apply, smul_zero]
 
 end GlobalTheory.BCT.TraceBlocks.Decomp
 
@@ -463,7 +448,7 @@ theorem levOp_secM_apply_self : ∀ (G H V : Type) [Group G] [Group H] [AddCommG
     · rw [← e, hout, smul_comm]
     · simp only [LinearMap.zero_apply, smul_zero]
   rw [Finset.sum_congr rfl this, Finset.sum_ite_eq]
-  rw [if_pos]
+  rw [ite_eq_left]
   simp only [Set.Finite.mem_toFinset, Set.mem_setOf_eq, hout]
   exact hh
 

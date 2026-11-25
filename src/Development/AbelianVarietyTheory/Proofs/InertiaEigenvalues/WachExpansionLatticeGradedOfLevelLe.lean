@@ -11,21 +11,7 @@ public import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
 public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NotFullBot
 public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.UnramifiedSubfieldLeCyclotomicExt
 public import Mathlib.Data.Nat.Choose.Dvd
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
-import Mathlib.Algebra.Order.Star.Rat
-import Mathlib.Topology.Sheaves.Presheaf
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SingleMemOfSupportSubset, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WachExpansionLatticeGradedOfLevelLe
@@ -263,9 +249,9 @@ theorem graded_of_full (u : L) (D : Submodule L M) (Λ : Submodule L (ℤ → M)
       have := Λ.sub_mem hx (tail x a hD ha)
       simpa using this
     have h2 := GlobalTheory.Per.single_mem_of_support_subset u Λ hu hr hγ (Finset.Ico a m) _ h1
-      (fun k hk => by rw [hval, if_neg hk]) k
+      (fun k hk => by rw [hval, ite_eq_right hk]) k
     by_cases hk : k ∈ Finset.Ico a (m : ℤ)
-    · rwa [hval, if_pos hk] at h2
+    · rwa [hval, ite_eq_left hk] at h2
     · by_cases hk' : k < a
       · rw [ha k hk']; simp
       · apply hm

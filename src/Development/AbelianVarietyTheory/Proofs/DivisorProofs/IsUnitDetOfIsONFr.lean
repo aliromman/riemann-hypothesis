@@ -2,7 +2,31 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.Divisors.PerCEmb
 public import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -15,6 +39,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -136,7 +162,7 @@ theorem perC_block {E : Type} [Field E] [NumberField E] [IsCMField E] {r : ℕ} 
     split_ifs <;> simp
   simp only [hN, perC, hx']
   by_cases ha : (a : ℕ) < X.p0
-  · simp only [ha, if_true]
+  · simp only [ha, ite_true]
     have : hermC τ.1 X.Gm (FD.col (mat x τ * b) a) (u τ) =
         ∑ c, b c a * hermC τ.1 X.Gm (FD.col (mat x τ) c) (u τ) := by
       simp only [hermC, FD.col, Matrix.mul_apply, Finset.mul_sum, Finset.sum_mul]
@@ -145,15 +171,15 @@ theorem perC_block {E : Type} [Field E] [NumberField E] [IsCMField E] {r : ℕ} 
     rw [this]
     refine Finset.sum_congr rfl fun c _ => ?_
     by_cases hc0 : (c : ℕ) < X.p0
-    · simp only [hc0, if_true]
+    · simp only [hc0, ite_true]
     · rw [prFst_block_zero hc (by tauto), zero_mul, zero_mul]
-  · simp only [ha, if_false]
+  · simp only [ha, ite_false]
     rw [Matrix.mul_inv_rev, ← mulVec_mulVec]
     change ∑ c, b⁻¹ a c * _ = _
     refine Finset.sum_congr rfl fun c _ => ?_
     by_cases hc0 : (c : ℕ) < X.p0
     · rw [prFst_block_zero hc' (by tauto), zero_mul, zero_mul]
-    · simp only [hc0, if_false]
+    · simp only [hc0, ite_false]
 
 theorem sgnM_eq {E : Type} [Field E] [NumberField E] [IsCMField E] {r : ℕ} (X : Data E r) :
     sgnM X = (2 : ℂ) • prFst r X.p0 - 1 := by

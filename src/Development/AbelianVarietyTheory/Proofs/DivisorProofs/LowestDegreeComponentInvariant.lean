@@ -2,18 +2,6 @@ module
 
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TprodMemTensSpan
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockActDualPairCommutingLieActions
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -65,13 +53,13 @@ theorem mem_nonRaising {σ : Type} {L : Module.End ℂ (MvPolynomial σ ℂ)} :
 theorem rl_pos {P Q R S : ℕ} (l l' : Ln P Q R S) (hl : linePos l = true) (hl' : linePos l' = true) :
     raiB l * lowB l' ∈ nonRaising (Ln P Q R S) := by
   refine mem_nonRaising.2 fun g => ?_
-  rw [Module.End.mul_apply, raiB, lowB, if_pos hl, if_pos hl', LinearMap.mulLeft_apply, Derivation.coeFn_coe]
+  rw [Module.End.mul_apply, raiB, lowB, ite_eq_left hl, ite_eq_left hl', LinearMap.mulLeft_apply, Derivation.coeFn_coe]
   exact deg_X_pderiv _ _ _
 
 theorem rl_neg {P Q R S : ℕ} (l l' : Ln P Q R S) (hl : linePos l = false) (hl' : linePos l' = false) :
     raiB l * lowB l' ∈ nonRaising (Ln P Q R S) := by
   refine mem_nonRaising.2 fun g => ?_
-  rw [Module.End.mul_apply, raiB, lowB, if_neg (by simp [hl]), if_neg (by simp [hl']), LinearMap.mulLeft_apply,
+  rw [Module.End.mul_apply, raiB, lowB, ite_eq_right (by simp [hl]), ite_eq_right (by simp [hl']), LinearMap.mulLeft_apply,
     LinearMap.neg_apply, Derivation.coeFn_coe, totalDegree_neg]
   exact deg_pderiv_X _ _ _
 

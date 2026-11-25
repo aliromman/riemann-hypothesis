@@ -16,6 +16,29 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.WeilOpera
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.WeilRepresentationVacuumSignInertPlaces
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.RelIndexNeZeroOfMoves
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsDual
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -29,11 +52,16 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.RationalPointsIntegralPointsMembership
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
 import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ThetaLatticeAgreeOfTrivialAtPrime, Development.AbelianVarietyTheory.Proofs.FoundationProofs.OddnessConditionHolds
@@ -707,7 +735,7 @@ theorem UnitAt.mul {p : ℕ} [Fact p.Prime] {lam : Qbar →+* ℂ_[p]} {a b : �
   obtain ⟨ha, ha'⟩ := ha
   obtain ⟨hb, hb'⟩ := hb
   refine ⟨mul_mem ha hb, ?_⟩
-  simp only [lamC, ha, hb, mul_mem ha hb, dif_pos] at ha' hb' ⊢
+  simp only [lamC, ha, hb, mul_mem ha hb, dite_eq_left] at ha' hb' ⊢
   have : (⟨a * b, mul_mem ha hb⟩ : Qbar) = ⟨a, ha⟩ * ⟨b, hb⟩ := rfl
   rw [this, map_mul, norm_mul, ha', hb', one_mul]
 
@@ -715,14 +743,14 @@ theorem UnitAt.zpow {p : ℕ} [Fact p.Prime] {lam : Qbar →+* ℂ_[p]} {a : ℂ
     UnitAt lam (a ^ k) := by
   obtain ⟨ha, ha'⟩ := ha
   refine ⟨zpow_mem ha k, ?_⟩
-  simp only [lamC, ha, zpow_mem ha k, dif_pos] at ha' ⊢
+  simp only [lamC, ha, zpow_mem ha k, dite_eq_left] at ha' ⊢
   have : (⟨a ^ k, zpow_mem ha k⟩ : Qbar) = ⟨a, ha⟩ ^ k := rfl
   rw [this, map_zpow₀, norm_zpow, ha', one_zpow]
 
 theorem unitAt_neg_one {p : ℕ} [Fact p.Prime] (lam : Qbar →+* ℂ_[p]) : UnitAt lam (-1) := by
   have h : (-1 : ℂ) ∈ Qbar := neg_mem (one_mem _)
   refine ⟨h, ?_⟩
-  simp only [lamC, h, dif_pos]
+  simp only [lamC, h, dite_eq_left]
   have : (⟨-1, h⟩ : Qbar) = -1 := rfl
   rw [this, map_neg, map_one, norm_neg, norm_one]
 

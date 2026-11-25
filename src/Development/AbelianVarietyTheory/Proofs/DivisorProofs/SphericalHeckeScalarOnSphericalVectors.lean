@@ -22,7 +22,36 @@ public import Mathlib.Data.Finset.Card
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AlgebraMapIntertwiningMapBijectiveOfIsSmooth
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.SphericalHeckeCombinationsCommuteFixedVectorsStatement
 public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry₂.HoweUnram
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -36,7 +65,10 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Tactic.Linter.Style
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -411,7 +443,7 @@ def ext0 (Q : principalLevelFrame.RowPsi V n) : (Formalism.AUTREP.GAf D.host.E n
 theorem extendByZeroThroughUnitaryFrame_psi (Q : principalLevelFrame.RowPsi V n) (x : Formalism.AUTREP.GAf D.host.E n → ℂ) (h : Formalism.AUTREP.GAf D.host.E n) :
     ext0 Q x (Q.ψ h) = x h := by
   simp only [ext0, LinearMap.coe_mk, AddHom.coe_mk]
-  rw [if_pos ⟨h, rfl⟩, pre_psi]
+  rw [ite_eq_left ⟨h, rfl⟩, pre_psi]
 
 theorem extendByZeroThroughUnitaryFrame_right_translate (Q : principalLevelFrame.RowPsi V n) (x : Formalism.AUTREP.GAf D.host.E n → ℂ) (h : Formalism.AUTREP.GAf D.host.E n) :
     ext0 Q (Formalism.L2.NG.rt D.host.E n h x) = rtA V (Q.ψ h) (ext0 Q x) := by
@@ -423,7 +455,7 @@ theorem extendByZeroThroughUnitaryFrame_right_translate (Q : principalLevelFrame
       hg ⟨y * h⁻¹, by rw [map_mul, hy, map_inv, mul_inv_cancel_right]⟩
     rw [rtA_apply]
     simp only [ext0, LinearMap.coe_mk, AddHom.coe_mk]
-    rw [if_neg hg, if_neg hg']
+    rw [ite_eq_right hg, ite_eq_right hg']
 
 theorem extendByZeroThroughUnitaryFrame_injective (Q : principalLevelFrame.RowPsi V n) {x x' : Formalism.AUTREP.GAf D.host.E n → ℂ} (H : ext0 Q x = ext0 Q x') :
     x = x' := funext fun h => by

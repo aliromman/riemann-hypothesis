@@ -3,18 +3,6 @@ module
 public import Mathlib.Basic.Real.Basic
 public import Mathlib.Data.Nat.Choose.Multinomial
 public import Mathlib.RingTheory.MvPolynomial.IrreducibleQuadratic
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -60,7 +48,7 @@ theorem coeff_polOf (φ : Module.Dual ℝ (MvPolynomial σ ℝ)) (d : ℕ) (m : 
   rw [Finset.sum_eq_single (⇑m)]
   · simp
   · intro k _ hk
-    rw [if_neg]
+    rw [ite_eq_right]
     intro h
     apply hk
     rw [← h]

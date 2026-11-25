@@ -32,6 +32,28 @@ import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKern
 import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.KernelTransforms.LactConv
 import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.KernelTransforms.NormIntLe
 import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.KernelTransforms.PrjFix
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -45,12 +67,17 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Compactness.Paracompact
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.InductionEstimates.UnipotentBlockMatrices.ClosedKernelMinors.FlatInt
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ScatteringLimits.ConvolutionSpectra.ConvSpec
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.UniformSpace.Uniformizable
 import GroundTheory.GlobalFields.Adele.Topology
 import Development.AutomorphicArithmetic.Foundations.Convolution.BlockHeckeSlices.CuspidalNormBounds.HkApply
@@ -1085,7 +1112,7 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.evzEx :
   have hπX : ∀ y, π (X y) = if y.1 ∈ 𝔢.S then 0 else X y := fun y => eval₂Hom_X' _ _ _
   have hπ : ∀ R : PR E (2 + 2), (∀ y ∈ R.vars, y.1 ∉ 𝔢.S) → π R = R := fun R hR =>
     hom_congr_vars (f₁ := π) (f₂ := RingHom.id _) (RingHom.ext fun p => hπC p)
-      (fun y hy _ => by rw [hπX, if_neg (hR y hy)]; rfl) rfl
+      (fun y hy _ => by rw [hπX, ite_eq_right (hR y hy)]; rfl) rfl
   have hA : Act 𝔵.A'.J 𝔢.toAmp.A (symb 𝔵.βa) := by
     rw [← 𝔢.a_op]
     exact (actLaws 𝔵.A'.J).2.1 _ _ 𝔵.a_acts.1 𝔵.a_acts.2.1
@@ -1109,10 +1136,10 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.evzEx :
         rfl
     · simp only [RingHom.comp_apply, hπX]
       by_cases hy : y.1 ∈ 𝔢.S
-      · simp only [if_pos hy, map_zero]
+      · simp only [ite_eq_left hy, map_zero]
         simpa only [zero_smul] using good_const (J := 𝔵.A'.J) (P := 𝔵.P) (a := 𝔵.a₀) 0
       · obtain ⟨w, i⟩ := y
-        simp only [if_neg hy, val, eval₂Hom_X']
+        simp only [ite_eq_right hy, val, eval₂Hom_X']
         rw [hev.hecke w hy i]
         obtain ⟨⟨s, hs, hz⟩, hP⟩ := genT 𝔵 w hy i
         refine ⟨⟨s, hs, fun x hx v hv => ?_⟩, hP⟩

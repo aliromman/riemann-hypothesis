@@ -6,6 +6,29 @@ public import Development.AbelianVarietyTheory.BlockTheory.HeightDefect.LevelCus
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.KppRedW
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.KppFrameW
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicClassFiniteness.DictLat
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -20,6 +43,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ConcreteLevelAdelicSubset
 import Formalism.LocalToGlobal.IndefiniteReal.AutomorphicEvaluation
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RowLevelMatch
@@ -260,7 +285,7 @@ theorem main_kv (X : HidaSetting D) (b : Fin D.R.r → Fin X.B.I.n → X.B.I.E) 
       (if i = j then 1 else 0) ∈ Wq X.B.I (wB X (D.naut.plGw kv.1 kv.2)) := by
     intro i j
     by_cases hE : GlobalTheory.Mem.SymFrame.EwAt X (D.naut.plGw kv.1 kv.2)
-    · simp only [epsD, GlobalTheory.Mem.SymFrame.epsW, if_pos hE]
+    · simp only [epsD, GlobalTheory.Mem.SymFrame.epsW, ite_eq_left hE]
       have h1 := zmod_Wq X kv (X.bw_dual i j)
       have h2 : (if i = j then X.ew - 1 else 0) ∈ Wq X.B.I (wB X (D.naut.plGw kv.1 kv.2)) := by
         split_ifs
@@ -272,7 +297,7 @@ theorem main_kv (X : HidaSetting D) (b : Fin D.R.r → Fin X.B.I.n → X.B.I.E) 
         split_ifs <;> ring
       rw [e]
       exact add_mem h1 h2
-    · simp only [epsD, GlobalTheory.Mem.SymFrame.epsW, if_neg hE]
+    · simp only [epsD, GlobalTheory.Mem.SymFrame.epsW, ite_eq_right hE]
       have h1 := sw X kv (X.bw_dual (Fin.rev j) (Fin.rev i))
       have h2 : (if i = j then sg X.B.I X.ew - 1 else 0) ∈ Wq X.B.I (wB X (D.naut.plGw kv.1 kv.2)) := by
         split_ifs
@@ -282,9 +307,9 @@ theorem main_kv (X : HidaSetting D) (b : Fin D.R.r → Fin X.B.I.n → X.B.I.E) 
           (hhat X.B.I (X.bw (Fin.rev i)) (X.bwd (Fin.rev j)) -
             sg X.B.I (if Fin.rev j = Fin.rev i then X.ew else 0)) + (if i = j then sg X.B.I X.ew - 1 else 0) := by
         by_cases h : i = j
-        · subst h; simp only [if_true]; ring
+        · subst h; simp only [ite_true]; ring
         · have h' : ¬ Fin.rev j = Fin.rev i := fun h' => h (Fin.rev_injective h').symm
-          simp only [h, h', if_false, map_zero, sub_zero, add_zero]
+          simp only [h, h', ite_false, map_zero, sub_zero, add_zero]
       rw [e]
       exact add_mem h1 h2
 

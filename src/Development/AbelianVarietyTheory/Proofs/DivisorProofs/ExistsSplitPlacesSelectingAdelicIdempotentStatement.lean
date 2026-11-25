@@ -4,6 +4,29 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.IsUnitaryOnT
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsIntegralSplitIdempotentOverTwo
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsIsArchimedeanAdeleChartOfRealChart
 import Formalism.LocalRingCardinality.ConjSqrtMinusD
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -16,6 +39,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -60,18 +86,18 @@ theorem exists_sqrt_adele (d : ℕ) : ∃ s ι : Af F, ∀ v,
     ⟨fun v => if ∃ y : Fv F v, y * y = -(d : Fv F v) then 1 else 0,
       Filter.Eventually.of_forall fun v => ?_⟩, fun v => ?_⟩
   · by_cases h : ∃ y : Fv F v, y * y = -(d : Fv F v)
-    · simp only [h, dif_pos]; exact sqrt_mem F d v _ h.choose_spec
-    · simp only [h, dif_neg, not_false_iff]; exact zero_mem _
+    · simp only [h, dite_eq_left]; exact sqrt_mem F d v _ h.choose_spec
+    · simp only [h, dite_eq_right, not_false_iff]; exact zero_mem _
   · by_cases h : ∃ y : Fv F v, y * y = -(d : Fv F v)
-    · simp only [h, if_true]; exact one_mem _
-    · simp only [h, if_false]; exact zero_mem _
+    · simp only [h, ite_true]; exact one_mem _
+    · simp only [h, ite_false]; exact zero_mem _
   · by_cases h : ∃ y : Fv F v, y * y = -(d : Fv F v)
     · left
-      refine ⟨if_pos h, ?_⟩
+      refine ⟨ite_eq_left h, ?_⟩
       have e : ∀ x : Fv F v, x = h.choose → x * x = -(d : Fv F v) := fun x hx => hx ▸ h.choose_spec
-      exact e _ (dif_pos h)
+      exact e _ (dite_eq_left h)
     · right
-      exact ⟨if_neg h, dif_neg h, fun y hy => h ⟨y, hy⟩⟩
+      exact ⟨ite_eq_right h, dite_eq_right h, fun y hy => h ⟨y, hy⟩⟩
 
 theorem pair_mul (α β : Af F) : pairA F 0 α * pairA F 0 β = pairA F 0 (α * β) :=
   Prod.ext (mul_zero _) rfl

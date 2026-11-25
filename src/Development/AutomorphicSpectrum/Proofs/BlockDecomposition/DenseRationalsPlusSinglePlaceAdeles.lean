@@ -14,11 +14,13 @@ public import Mathlib.NumberTheory.NumberField.AdeleRing
 import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes
 import Mathlib.Algebra.Quaternion
 import Mathlib.NumberTheory.NumberField.ClassNumber
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
 import GroundTheory.GlobalFields.LocalFieldAtPlace
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Tactic.ReduceModChar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermitianPlaneStrongApprox, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ExistsSupported, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WeakApproximationIntegral, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DenseRationalsPlusSinglePlaceAdeles
@@ -45,38 +47,6 @@ variable {F}
 
 
 end Places
-
-section Quat
-
-variable {F : Type} [Field F]
-
-variable {d β : F} {R : Type} [CommRing R] [Algebra F R]
-
-section Top
-
-variable [TopologicalSpace R]
-
-end Top
-
-end Quat
-
-section QuatAlg
-
-variable {F : Type} [Field F] {d β : F} {R : Type} [CommRing R] [Algebra F R]
-
-end QuatAlg
-
-section Adelic
-
-variable {F : Type} [Field F] [NumberField F] {d β : F}
-
-end Adelic
-
-section Two
-
-variable {F E : Type} [Field F] [NumberField F] [Field E] [Algebra F E]
-
-end Two
 
 end GlobalTheory.CompanionTheory.PlaneSA
 end -- clump:auto
@@ -328,8 +298,8 @@ theorem exists_approx_core (s : Pl F) (T₁ : Finset (InfinitePlace F))
   obtain ⟨r, hr, hball⟩ := exists_radius (F := F) cI
     (fun w => if w ∈ T₁ then OI w else Set.univ) (fun w => by
       by_cases h : w ∈ T₁
-      · simpa only [if_pos h] using hOI w h
-      · simp only [if_neg h]
+      · simpa only [ite_eq_left h] using hOI w h
+      · simp only [ite_eq_right h]
         exact Filter.univ_mem)
 
   obtain ⟨d, hd0, hd⟩ := exists_scale (F := F) T₂
@@ -379,7 +349,7 @@ theorem exists_approx_core (s : Pl F) (T₁ : Finset (InfinitePlace F))
         _ < r / R * R := mul_lt_mul_of_pos_right h1 hR
         _ = r := by field_simp
     have := hball w _ hlt
-    simp only [if_pos hw] at this
+    simp only [ite_eq_left hw] at this
     rw [hcompI]
     exact this
   · obtain ⟨o, ho, heq⟩ := hOv v (h₂ v hv)

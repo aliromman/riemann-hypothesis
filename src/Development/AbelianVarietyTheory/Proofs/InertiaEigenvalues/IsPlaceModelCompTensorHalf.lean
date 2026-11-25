@@ -3,18 +3,6 @@ module
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RestrictHalfApply
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.RealIdemMulOfReal
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsPlaceModelCompRestrictToHalfLatticeIndicator
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.UnivOfNotLinearIndependent
 
 @[expose] public section
@@ -54,7 +42,7 @@ theorem isSBHalf_tensorHalf {a' b : AE D} (ha' : a' * a' = a') (hb : b * b = b) 
   refine ⟨fun t ht => ?_, k * k', Nat.mul_pos hk hk', fun u hu hhu t => ?_, fun t ht => ?_⟩
   · rw [tensorHalf_apply] at ht
     by_contra h
-    exact ht (by rw [if_neg h, mul_zero])
+    exact ht (by rw [ite_eq_right h, mul_zero])
   · rw [isHalf_iff'] at hhu
     simp only [tensorHalf_apply]
     have e1 : a' • (t + (k * k') • u) = a' • t + k • (a' • (k' • u)) := by
@@ -69,7 +57,7 @@ theorem isSBHalf_tensorHalf {a' b : AE D} (ha' : a' * a' = a') (hb : b * b = b) 
     have h2 : Ψ (b • t) ≠ 0 := fun h => ht (by rw [h, mul_zero, zero_mul])
     have h3 : IsHalf (a' + b) t := by
       by_contra h
-      exact ht (by rw [if_neg h, mul_zero])
+      exact ht (by rw [ite_eq_right h, mul_zero])
     rw [isHalf_iff', add_smul] at h3
     rw [← h3, smul_add, mul_smul, mul_comm k k', mul_smul k']
     exact Λ.add_mem (by rw [smul_comm k k']; exact Λ.nsmul_mem (hlat _ h1) k') (by rw [smul_comm k' k]; exact Λ.nsmul_mem (hlat' _ h2) k)

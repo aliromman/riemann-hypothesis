@@ -2,18 +2,6 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsUniqueIsTanFrameOfIsEmpty
 public import Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.IsLieBasisIffIsUnitDet
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.CommGroupMulMulEqMulInvMulMulMul
 public import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsAlgHomOfComp
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsChartOfIsLocalRing
@@ -48,9 +36,9 @@ theorem isKSRow_of_isKSValue : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
     intro a
     congr 1
     rw [Finset.sum_eq_single (e ⟨conjEmb τ, a₀⟩)]
-    · rw [hf, Equiv.symm_apply_apply, if_pos rfl, mul_one]
+    · rw [hf, Equiv.symm_apply_apply, ite_eq_left rfl, mul_one]
     · intro b _ hb'
-      rw [hf, if_neg, mul_zero]
+      rw [hf, ite_eq_right, mul_zero]
       intro hq
       exact hb' (by rw [← hq, Equiv.apply_symm_apply])
     · intro hn; exact absurd (Finset.mem_univ _) hn

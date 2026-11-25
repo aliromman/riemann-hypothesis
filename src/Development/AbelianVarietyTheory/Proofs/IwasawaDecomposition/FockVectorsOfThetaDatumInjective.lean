@@ -8,10 +8,34 @@ import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsInverse
 public import Development.AbelianVarietyTheory.Proofs.HeightProofs.EmbeddingXiZeroNeZero
 public import Development.AbelianVarietyTheory.Proofs.HeightProofs.HeisenbergDerivativeCommutatorRelation
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.HeisenbergDirectionalDerivFormulaAndSmooth
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -25,6 +49,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 public import ReciprocityTheory.SemistableReduction.AlgebraicIndependentOfDerivations
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TotalDegreeSubstFLe
@@ -131,8 +158,8 @@ theorem pure_injective (hadd : ∀ f f', P f → P f' → P (f + f')) (hsm : ∀
       congr 1
       by_cases h : i = j
       · subst h
-        rw [if_pos rfl, MvPolynomial.pderiv_X_self, one_mul]
-      · rw [if_neg h, MvPolynomial.pderiv_X_of_ne (Ne.symm h), zero_mul, map_zero, zero_smul, smul_zero]
+        rw [ite_eq_left rfl, MvPolynomial.pderiv_X_self, one_mul]
+      · rw [ite_eq_right h, MvPolynomial.pderiv_X_of_ne (Ne.symm h), zero_mul, map_zero, zero_smul, smul_zero]
   refine injective_of_pderiv _ (fun Q hQ i => ?_) fun a ha => ?_
   · have h := key i Q
     have h2 := Bsm i 0 f hf
@@ -181,7 +208,7 @@ theorem trace_single {m n : ℕ} (ε : Fin n → Bool) (ε' : Fin m → Bool) (i
   · obtain ⟨rfl, rfl⟩ := h
     unfold sg
     cases ε j <;> cases ε' i <;> simp [mul_comm]
-  · rw [if_neg h, if_neg (c := k = i ∧ l = j) (fun h' => h ⟨h'.1.symm, h'.2.symm⟩)]
+  · rw [ite_eq_right h, ite_eq_right (c := k = i ∧ l = j) (fun h' => h ⟨h'.1.symm, h'.2.symm⟩)]
     simp
 
 theorem Jm_single_Jm {m n : ℕ} (ε : Fin n → Bool) (ε' : Fin m → Bool) (i : Fin m) (j : Fin n) :
@@ -376,16 +403,16 @@ theorem op_comm (hψ : IsStdChar D ψ (-1)) (hθ : IsInfFam θ) (α β : ℂ) (p
   dsimp only
   by_cases h : τ = τ'
   · subst h
-    rw [if_pos rfl, formAt_uv, formAt_uv, formAt_uv, formAt_uv]
+    rw [ite_eq_left rfl, formAt_uv, formAt_uv, formAt_uv, formAt_uv]
     by_cases h' : i = k ∧ j = l
     · obtain ⟨rfl, rfl⟩ := h'
-      simp only [and_self, if_true]
+      simp only [and_self, ite_true]
       congr 1
       unfold sg
       cases M'.ε τ i <;> cases M.ε τ j <;> simp [xi_re] <;> ring
-    · rw [if_neg h', if_neg h', if_neg h', if_neg h', if_neg (fun e => h' (by simpa using e))]
+    · rw [ite_eq_right h', ite_eq_right h', ite_eq_right h', ite_eq_right h', ite_eq_right (fun e => h' (by simpa using e))]
       simp
-  · rw [if_neg h, if_neg (fun e => h (congrArg Prod.fst e))]
+  · rw [ite_eq_right h, ite_eq_right (fun e => h (congrArg Prod.fst e))]
 
 theorem aPlusAll_eq (p : FVar D T.rank S.rank) (f : WO S T → ℂ) :
     aPlusAll (heisO ψ S T) θ (fun τ => cplxO (cart M τ) (cart M' τ)) (onb M) (onb M') p f =

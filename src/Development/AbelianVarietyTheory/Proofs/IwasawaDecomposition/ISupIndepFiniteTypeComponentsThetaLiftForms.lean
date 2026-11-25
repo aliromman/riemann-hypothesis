@@ -9,6 +9,27 @@ public import Formalism.SharpRestriction.Divisibility.LiftErrorLocal
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsHermPosChainRealEndSpaceTuple
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LinksAnalyticHypothesesOfWeilRepHarishChandraStatement
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RowFiniteTypesIsotypicPartsSpanOrthogonalStatement
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -22,6 +43,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HasLab
 
 @[expose] public section
@@ -50,26 +72,26 @@ theorem gaL_finSum {D : D7} {G : Type} [Group G] [Fintype G] (V : HSp D) (β : G
     intro F
     funext h
     by_cases hx : ∃ κ, IsLevelLift V β L (eG g) κ
-    · have e1 : a g = c0 g * (levChi V β (flagL L) hx.choose)⁻¹ := dif_pos hx
-      have e2 : k g = hx.choose := dif_pos hx
+    · have e1 : a g = c0 g * (levChi V β (flagL L) hx.choose)⁻¹ := dite_eq_left hx
+      have e2 : k g = hx.choose := dite_eq_left hx
       rw [e1, e2]
       show c0 g * actG0 V β L (eG g) F h = c0 g * (levChi V β (flagL L) hx.choose)⁻¹ * F (h * hx.choose)
       unfold actG0
-      rw [dif_pos hx, mul_assoc]
-    · have e1 : a g = 0 := dif_neg hx
+      rw [dite_eq_left hx, mul_assoc]
+    · have e1 : a g = 0 := dite_eq_right hx
       rw [e1, zero_smul]
       show c0 g * actG0 V β L (eG g) F h = 0
       unfold actG0
-      rw [dif_neg hx]
+      rw [dite_eq_right hx]
       simp
   refine ⟨Finset.univ.image k, fun x => ∑ g ∈ Finset.univ.filter (fun g => k g = x), a g, ?_, ?_⟩
   · intro x hx
     obtain ⟨g, -, rfl⟩ := Finset.mem_image.1 hx
     by_cases h : ∃ κ, IsLevelLift V β L (eG g) κ
-    · have e2 : k g = h.choose := dif_pos h
+    · have e2 : k g = h.choose := dite_eq_left h
       rw [e2]
       exact h.choose_spec.1
-    · have e2 : k g = 1 := dif_neg h
+    · have e2 : k g = 1 := dite_eq_right h
       rw [e2]
       exact one_mem _
   · have e0 : gaL V β L eG c0 = ∑ g, a g • principalLevelFrame.rtA (k g) := by

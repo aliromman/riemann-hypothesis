@@ -2,12 +2,40 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.Divisors.SplitDoublingNBlock
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsColReduced
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
 import Mathlib.Data.Fin.Tuple.Sort
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
 public import Mathlib.LinearAlgebra.Eigenspace.Triangularizable
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -22,6 +50,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -344,7 +375,7 @@ theorem edgeSum_tv (i j : Fin r) (h : i ≠ j) (x : F) :
     intro a b
     by_cases hs : supEdge a b
     · have hab : a ≠ b := by rintro rfl; simp [supEdge] at hs
-      rw [if_pos hs, tv_val, Matrix.add_apply, Matrix.one_apply_ne hab, zero_add, Matrix.single_apply]
+      rw [ite_eq_left hs, tv_val, Matrix.add_apply, Matrix.one_apply_ne hab, zero_add, Matrix.single_apply]
       by_cases h1 : b = j
       · by_cases h2 : a = i
         · subst h1 h2
@@ -352,7 +383,7 @@ theorem edgeSum_tv (i j : Fin r) (h : i ≠ j) (x : F) :
           simp [hs']
         · simp [h1, h2, Ne.symm h2]
       · simp [h1, Ne.symm h1]
-    · rw [if_neg hs]
+    · rw [ite_eq_right hs]
       split_ifs with h1 h2 h3
       · subst h1 h2; exact absurd h3 hs
       all_goals rfl
@@ -382,7 +413,7 @@ theorem sg_monomial (ψ : AddChar F ℂ) (hψ : ψ ≠ 1) (n : GL (Fin r) F) (w 
       by_cases hi : i = w a
       · by_cases hj : j = b
         · subst hi hj
-          simp only [Matrix.single_mul_apply_same, Matrix.mul_single_apply_same, Matrix.of_apply, if_true]
+          simp only [Matrix.single_mul_apply_same, Matrix.mul_single_apply_same, Matrix.of_apply, ite_true]
           ring
         · subst hi
           rw [Matrix.mul_single_apply_of_ne _ _ _ _ _ hj, Matrix.single_mul_apply_same]
@@ -397,7 +428,7 @@ theorem sg_monomial (ψ : AddChar F ℂ) (hψ : ψ ≠ 1) (n : GL (Fin r) F) (w 
     · by_cases h2 : b.val = a.val + 1
       · refine ⟨iff_of_true h1 h2, fun _ => Units.ext (sub_eq_zero.1 (hker _ fun z => ?_))⟩
         have := h z
-        rw [if_pos h1, if_pos h2] at this
+        rw [ite_eq_left h1, ite_eq_left h2] at this
         rw [mul_sub, AddChar.map_sub_eq_div, this, div_self]
         exact (ψ.val_isUnit _).ne_zero
       · exact absurd (hker (t a) fun z => by simpa [h1, h2] using h z) (t a).ne_zero
@@ -408,8 +439,8 @@ theorem sg_monomial (ψ : AddChar F ℂ) (hψ : ψ ≠ 1) (n : GL (Fin r) F) (w 
   rw [sg_apply, hn, Matrix.of_apply, Matrix.of_apply]
   by_cases hac : a = w c
   · subst hac
-    rw [if_pos (key c).1.symm, if_pos rfl, (key c).2]
-  · rw [if_neg hac, if_neg]
+    rw [ite_eq_left (key c).1.symm, ite_eq_left rfl, (key c).2]
+  · rw [ite_eq_right hac, ite_eq_right]
     intro h
     apply hac
     have := (key a.rev).1

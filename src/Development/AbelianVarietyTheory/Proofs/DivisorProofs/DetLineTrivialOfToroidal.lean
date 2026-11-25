@@ -45,25 +45,11 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsFlatOfCons
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsIntegralGeometricallyConnectedOpenModuli
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SncToroidalGenericBoundaryOfSncBoundary
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.AmpleOnAbelianBase
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.FnAlgClosedOfFixedPoints
 import Formalism.LocalToGlobal.ProjectiveLattices.ErealAddIInf
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsStalkFactor
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsLocalHomOfAlgebraic
-import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
-import Mathlib.Algebra.Azumaya.Basic
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.DeterminantSectionRule
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsLocalEquationComplexPoints
 import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.ExistsValuationSubringDominatingSubring
@@ -71,8 +57,6 @@ import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ModuliFiniteSurjecti
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.OneArc
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsVecEquiv
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsCombinationIffOfSameVecs
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AbelianVarietyTheory.Statements.HyperbolicHypotheses.HypothesesInhabitedHyperbolic
 import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.PolBaseChangeOfRelAmpleLocal
@@ -1385,13 +1369,13 @@ private theorem mult_conjEmb_eq_ite {H : Host E} (D : Datum H) (τ : E →+* ℂ
   · have h2 : ¬ conjEmb τ (H.rt : E) = H.rt0 := by
       rw [hc, h, _root_.GlobalTheory.ModelsExist.rt0_conj_neg_ne_zero]
       exact fun e => hne e.symm
-    rw [if_pos h, if_neg h2]
+    rw [ite_eq_left h, ite_eq_right h2]
   · have h2 : conjEmb τ (H.rt : E) = H.rt0 := by
       rw [hc, h, map_neg, _root_.GlobalTheory.ModelsExist.rt0_conj_neg_ne_zero, neg_neg]
     have h3 : ¬ τ (H.rt : E) = H.rt0 := by
       rw [h]
       exact fun e => hne e.symm
-    rw [if_pos h2, if_neg h3]
+    rw [ite_eq_left h2, ite_eq_right h3]
 
 end GlobalTheory.ConjugateMultiplicity
 

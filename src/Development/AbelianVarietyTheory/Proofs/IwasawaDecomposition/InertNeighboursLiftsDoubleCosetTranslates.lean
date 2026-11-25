@@ -20,6 +20,30 @@ public import Formalism.LocalToGlobal.Columns.InputsGenus
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.DcOpCommOfCommute
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsApprox
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsSpan
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -33,8 +57,14 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.BitVec
 import Std.Tactic.BVDecide.Normalize.Prop
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.RingTheory.WittVector.IsPoly
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.SphericalLabelOperatorsOnHyperspecialFixedVector
 import Formalism.LocalToGlobal.Columns.HeckeInertLemmas
 import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.ValBasic
@@ -639,15 +669,15 @@ theorem decoRaw_mul_idem [StarRing E] {n : ℕ} [NeZero n] (ST SG : Finset (Pl E
   · have hP : P.1 ≠ Q := fun e => hQT (e ▸ P.2)
     simp only [decoRaw]
     by_cases hv : v ∈ Formalism.HermitianLatticesTheory.localization₂ P.1.asIdeal (Formalism.UG.CS.globLat y (stdLat E n))
-    · rw [if_pos ((hiff P.1 hP v).2 hv), if_pos hv, hred P.1 hP v hv]
-    · rw [if_neg (fun h' => hv ((hiff P.1 hP v).1 h')), if_neg hv]
+    · rw [ite_eq_left ((hiff P.1 hP v).2 hv), ite_eq_left hv, hred P.1 hP v hv]
+    · rw [ite_eq_right (fun h' => hv ((hiff P.1 hP v).1 h')), ite_eq_right hv]
   · have hP : w.1 ≠ Q := fun e => hQG (e ▸ w.2)
     simp only [decoRaw]
     by_cases hv : v ∈ Formalism.HermitianLatticesTheory.localization₂ w.1.asIdeal (Formalism.UG.CS.globLat y (stdLat E n))
-    · rw [if_pos ((hiff w.1 hP v).2 hv), if_pos hv]
+    · rw [ite_eq_left ((hiff w.1 hP v).2 hv), ite_eq_left hv]
       funext i
       exact hred w.1 hP v hv i
-    · rw [if_neg (fun h' => hv ((hiff w.1 hP v).1 h')), if_neg hv]
+    · rw [ite_eq_right (fun h' => hv ((hiff w.1 hP v).1 h')), ite_eq_right hv]
 
 end GlobalTheory.InertNbr
 end -- clump:auto

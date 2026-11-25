@@ -14,21 +14,7 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.Capelli
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CapelliDetDiagonalBlockActsByInfinitesimalCharac
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CommuteCapOfCommuteEop
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HasInfCharInfCharOfCommute
-import Mathlib.Analysis.Calculus.Deriv.Prod
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.BaseChangeDefiniteUnitary
 
@@ -387,11 +373,11 @@ theorem tv_mem_unipRad (e : (Σ a, m a) ≃ Fin N) {p q : Fin N} (hpq : blk e p 
   · have hne : i ≠ j := by rintro rfl; exact lt_irrefl _ hij
     change (transvection p q c) i j = 0
     rw [transvection, Matrix.add_apply, Matrix.one_apply_ne hne, Matrix.single_apply]
-    rw [if_neg, zero_add]
+    rw [ite_eq_right, zero_add]
     rintro ⟨rfl, rfl⟩
     exact lt_asymm hpq hij
   · change (transvection p q c) (e ⟨a, i⟩) (e ⟨a, j⟩) = _
-    rw [transvection, Matrix.add_apply, Matrix.single_apply, if_neg, add_zero]
+    rw [transvection, Matrix.add_apply, Matrix.single_apply, ite_eq_right, add_zero]
     · by_cases hij : i = j
       · subst hij; simp
       · have hne : e ⟨a, i⟩ ≠ e ⟨a, j⟩ := fun h => hij (by simpa using e.injective h)

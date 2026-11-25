@@ -3,19 +3,6 @@ module
 public import Mathlib.Algebra.Group.AddChar
 public import Mathlib.Analysis.Complex.Norm
 public import Mathlib.RingTheory.Ideal.Defs
-import Mathlib.Analysis.CStarAlgebra.Classes
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 public import Mathlib.Algebra.Module.Submodule.Lattice
 public import Mathlib.Analysis.Complex.Basic
@@ -35,7 +22,7 @@ theorem sum_ideal_of_exists (I : Ideal R) [DecidablePred (· ∈ I)] (ψ : AddCh
     ∑ x, (if x ∈ I then ψ (b * x) else 0) = 0 := by
   obtain ⟨x₀, hx₀I, hx₀⟩ := hb
   have hne : ¬ ∀ r, ψ (b * x₀ * r) = 1 := fun h => hx₀ (hψ _ h)
-  push_neg at hne
+  push Not at hne
   obtain ⟨r, hr⟩ := hne
   have hyI : x₀ * r ∈ I := I.mul_mem_right r hx₀I
   have hby : ψ (b * (x₀ * r)) ≠ 1 := by rwa [← mul_assoc]
@@ -49,9 +36,9 @@ theorem sum_ideal_of_exists (I : Ideal R) [DecidablePred (· ∈ I)] (ψ : AddCh
     refine Finset.sum_congr rfl (fun x _ => ?_)
     by_cases hx : x ∈ I
     · have h' : x + x₀ * r ∈ I := I.add_mem hx hyI
-      rw [if_pos h', if_pos hx, mul_add, AddChar.map_add_eq_mul, mul_comm]
+      rw [ite_eq_left h', ite_eq_left hx, mul_add, AddChar.map_add_eq_mul, mul_comm]
     · have h' : x + x₀ * r ∉ I := fun h => hx (by simpa using I.sub_mem h hyI)
-      rw [if_neg h', if_neg hx, mul_zero]
+      rw [ite_eq_right h', ite_eq_right hx, mul_zero]
   have h1 : (1 - ψ (b * (x₀ * r))) * ∑ x, (if x ∈ I then ψ (b * x) else 0) = 0 := by
     rw [sub_mul, one_mul, ← hS, sub_self]
   rcases mul_eq_zero.mp h1 with h | h
@@ -146,7 +133,7 @@ theorem gauss_units_norm_sq : ∀ {R : Type} [CommRing R] [Fintype R] [Decidable
         exact fun h' => h (Units.val_eq_one.mp h')
     · split_ifs with h
       · exact sum_ideal_of_forall m ψ _ h
-      · push_neg at h
+      · push Not at h
         exact sum_ideal_of_exists m ψ hψ _ h
   have hcond : ∀ t : Rˣ, (∀ x ∈ m, (((t₀ * t : Rˣ) : R) - 1) * x = 0) ↔
       (∀ x ∈ m, ((t : R) - 1) * x = 0) := by

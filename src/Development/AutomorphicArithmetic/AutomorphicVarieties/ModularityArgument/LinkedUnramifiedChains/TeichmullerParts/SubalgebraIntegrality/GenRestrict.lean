@@ -4,6 +4,27 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityA
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.GlBridge
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.UOpMul
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.UpOperatorEigenvalues.MemOrdC
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -16,6 +37,8 @@ import Mathlib.Tactic.NormNum.NatSqrt
 import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -204,13 +227,13 @@ theorem UpperTheory.V.Z.J.D.zEq :
           rw [alV, al_zero]
           exact Pi.mulSingle_one v
         have hl : H.lowVal ι lam v 0 = 1 := by simp [HSet.lowVal]
-        have he : e v 0 = 1 := dif_neg (by omega)
+        have he : e v 0 = 1 := dite_eq_right (by omega)
         rw [h0, hl, he, one_mul, Module.End.mem_maxGenEigenspace]
         refine ⟨1, ?_⟩
         rw [pow_one, LinearMap.sub_apply, one_smul, Module.End.one_apply,
           (uOpMul _ H.X.I ℂ _ (H.X.rpF ℂ d H.m) 1 1 (one_mem _) (one_mem _) F hF).2.2.1, sub_self]
       · have hj' : j < n := by omega
-        have he : e v (j + 1) = ev (Sum.inr (v, ⟨j, hj'⟩)) := dif_pos ⟨Nat.succ_pos j, by omega⟩
+        have he : e v (j + 1) = ev (Sum.inr (v, ⟨j, hj'⟩)) := dite_eq_left ⟨Nat.succ_pos j, by omega⟩
         rw [he]
         exact hU v ⟨j, hj'⟩
     have h2 : ∀ v ∈ Finset.univ.toList, ((List.range n).map (alV n H.Sl v)).prod ∈ H.X.I.P ∧

@@ -9,10 +9,35 @@ public import Development.AbelianVarietyTheory.Proofs.ThetaFamilyOrigin.AppLESur
 public import Development.AbelianVarietyTheory.Proofs.ThetaFamilyOrigin.ExistsBasisOfIsField
 public import Development.AbelianVarietyTheory.Proofs.ThetaFamilyOrigin.ExistsLevelStructureOfWeilPairing
 public import Development.AbelianVarietyTheory.Proofs.ThetaFamilyOrigin.ExistsStdSympZmod
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Ring.IsFormallyReal
 import Mathlib.AlgebraicGeometry.Modules.Sheaf
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -73,12 +98,12 @@ theorem vol_one [IsAlgClosed K] (hH : Out.GlobalSectionsRankAlgClosed) (hG : Out
       show ∏ _ : PUnit.{1}, (_ : Γ(P.A.left, LB.wchart P.L (fun _ : PUnit.{1} => 𝟙 _) i ⊓
         LB.wchart P.L (fun _ : PUnit.{1} => 𝟙 _) j)ˣ) ^ (0 : ℤ) = 1
       simp only [zpow_zero, Finset.prod_const_one]
-    · simp only [if_neg he.ne']
+    · simp only [ite_eq_right he.ne']
       exact PowSec.exists_basis_sections hH K P e he
   · refine tendsto_const_nhds.congr' ?_
     filter_upwards [Filter.eventually_gt_atTop 0] with e he
     have : (e : ℝ) ^ P.g ≠ 0 := pow_ne_zero _ (Nat.cast_ne_zero.2 he.ne')
-    rw [if_neg he.ne', Nat.cast_pow, div_self this]
+    rw [ite_eq_right he.ne', Nat.cast_pow, div_self this]
 
 theorem formIs_id (P : Out.PolAV (Sp K)) : FormIs P P.L (𝟙 P.A) := by
   refine ⟨inferInstance, ?_⟩

@@ -2,7 +2,32 @@ module
 
 public import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.InterPolyProdSum
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.VecMulVecComm
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -96,7 +121,7 @@ theorem topCoeff_prod {m : ℕ} (x : Fin m → Fin n × Fin n) :
     rw [h0]
     simp only [AlternatingMap.zero_apply, mul_zero]
     refine Finset.sum_eq_zero fun w _ => ?_
-    rw [if_neg, mul_zero]
+    rw [ite_eq_right, mul_zero]
     intro heq
     have := congrArg Multiset.card heq
     simp at this
@@ -133,7 +158,7 @@ theorem topCoeff_prod {m : ℕ} (x : Fin m → Fin n × Fin n) :
       · rw [det_single_not_inj b h, mul_zero]
     rw [this]
     refine Finset.sum_eq_zero fun w _ => ?_
-    rw [if_neg, mul_zero]
+    rw [ite_eq_right, mul_zero]
     exact fun heq => hab (hcond w heq)
   obtain ⟨ha, hb⟩ := hab
   let π : Equiv.Perm (Fin m) := Equiv.ofBijective a (Finite.injective_iff_bijective.mp ha)
@@ -147,11 +172,11 @@ theorem topCoeff_prod {m : ℕ} (x : Fin m → Fin n × Fin n) :
   have hmap : Finset.univ.val.map x = Finset.univ.val.map (fun c => (c, (τ * π⁻¹) c)) := by
     rw [hx, ← Multiset.map_map, Multiset.map_univ_val_equiv]
   rw [Finset.sum_eq_single (τ * π⁻¹)]
-  · rw [if_pos hmap, mul_one, Equiv.Perm.sign_mul, Equiv.Perm.sign_inv]
+  · rw [ite_eq_left hmap, mul_one, Equiv.Perm.sign_mul, Equiv.Perm.sign_inv]
     push_cast
     ring
   · intro w _ hw
-    rw [if_neg, mul_zero]
+    rw [ite_eq_right, mul_zero]
     intro heq
     apply hw
     ext c

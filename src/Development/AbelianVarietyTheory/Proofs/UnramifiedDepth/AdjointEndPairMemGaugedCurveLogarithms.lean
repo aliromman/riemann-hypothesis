@@ -4,7 +4,35 @@ public import Development.AbelianVarietyTheory.Definitions.TeichmullerDepth.HasT
 public import Mathlib.RingTheory.MvPowerSeries.Rename
 public import Formalism.LocalToGlobal.CharacterGerms.ConstMemTypeSetOfNonneg
 public import Formalism.LocalToGlobal.CharacterGerms.ValNonnegLeadingCoeffOfMemTySet
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.Order.CompletePartialOrder
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -18,6 +46,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Formalism.LocalToGlobal.ProjectiveLattices.SubConstMemOrig
 
@@ -67,7 +98,7 @@ theorem ordGe_pow {w : τ → ℕ} {F : MvPowerSeries τ C} (hF : F ∈ ordGe C 
 theorem ordGe_X {w : τ → ℕ} (s : τ) : (X s : MvPowerSeries τ C) ∈ ordGe C w (w s) := by
   classical
   intro e he
-  rw [coeff_X, if_neg]
+  rw [coeff_X, ite_eq_right]
   rintro rfl
   simp [Finsupp.weight_single] at he
 
@@ -106,7 +137,7 @@ theorem coeff_mvExp_weight_one {w : τ → ℕ} {G : MvPowerSeries τ C} (hG : G
   · simp
   · intro k _ hk
     by_cases h0 : k = 0
-    · rw [h0, pow_zero, coeff_one, if_neg hne, zero_div]
+    · rw [h0, pow_zero, coeff_one, ite_eq_right hne, zero_div]
     · rw [ordGe_pow hG k e (by omega), zero_div]
   · intro h
     exfalso
@@ -220,10 +251,10 @@ theorem dz_X_mul [DecidableEq κ] (i j : κ) (f : MvPowerSeries κ C) :
   rw [coeff_dz, X, coeff_monomial_mul, one_mul]
   by_cases hij : i = j
   · subst hij
-    rw [if_pos (by unfold em; exact le_add_self), if_pos rfl]
+    rw [ite_eq_left (by unfold em; exact le_add_self), ite_eq_left rfl]
     unfold em
     rw [add_tsub_cancel_right, coeff_embDomain_rename]
-  · rw [if_neg hij, if_neg, map_zero]
+  · rw [ite_eq_right hij, ite_eq_right, map_zero]
     rw [Finsupp.single_le_iff]
     simp [em, emb_one, hij]
 

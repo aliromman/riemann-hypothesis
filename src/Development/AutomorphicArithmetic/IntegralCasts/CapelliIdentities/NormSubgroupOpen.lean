@@ -2,14 +2,41 @@ module
 
 public import Mathlib.RingTheory.WittVector.Compare
 public import Mathlib.Topology.Instances.Matrix
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
 import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
 public import Mathlib.RingTheory.WittVector.DiscreteValuationRing
 public import Mathlib.RingTheory.WittVector.Teichmuller
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
@@ -24,6 +51,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 public import Mathlib.Topology.Algebra.OpenSubgroup
 
 @[expose] public section
@@ -248,14 +278,8 @@ omit [CharP R p] in
 private lemma unit_of_per {m : ℕ} (hm : 0 < m) {y : R} (hy : y ^ p ^ m = y) (h0 : y ≠ 0) :
     IsUnit y := by
   have h1 : 1 < p ^ m := Nat.one_lt_pow hm.ne' hp.out.one_lt
-  obtain ⟨k, hk⟩ : ∃ k, p ^ m = k + 2 := ⟨p ^ m - 2, by omega⟩
-  rw [hk] at hy
-  have : y * y ^ k = 1 := by
-    apply mul_left_cancel₀ h0
-    rw [mul_one]
-    conv_rhs => rw [← hy]
-    ring
-  exact IsUnit.of_mul_eq_one _ this
+  refine IsUnit.of_pow_eq_one (n := p ^ m - 1) (mul_left_cancel₀ h0 ?_) (by omega)
+  rw [← pow_succ', Nat.sub_add_cancel h1.le, hy, mul_one]
 
 private noncomputable def chi (ρ : G →* R ≃+* R) (p : ℕ) [Fact (Nat.Prime p)] [CharP R p] (m : ℕ)
     (q : G ⧸ Nm ρ p m) : Km p R m →+* R := (ρ q.out).toRingHom.comp (Km p R m).subtype
@@ -470,19 +494,9 @@ omit [CharP R p] [CompactSpace G] in
 private lemma Nm_open (ρ : G →* R ≃+* R)
     (h : ∀ (y : R) (m : ℕ), 0 < m → y ^ p ^ m = y → ∀ᶠ (g : G) in nhds (1 : G), ρ g y = y)
     {m : ℕ} (hm : 0 < m) : IsOpen (Nm ρ p m : Set G) := by
-  classical
-  have h1 : 1 < p ^ m := Nat.one_lt_pow hm.ne' hp.out.one_lt
-  have hfin : {y : R | y ^ p ^ m = y}.Finite := by
-    have hne : (Polynomial.X ^ p ^ m - Polynomial.X : Polynomial R) ≠ 0 :=
-      by
-      intro h0
-      have h2 := congrArg Polynomial.natDegree (sub_eq_zero.1 h0)
-      rw [Polynomial.natDegree_X_pow, Polynomial.natDegree_X] at h2
-      omega
-    refine (Polynomial.roots (Polynomial.X ^ p ^ m - Polynomial.X : Polynomial R)).toFinset.finite_toSet.subset ?_
-    intro y hy
-    simp only [Finset.mem_coe, Multiset.mem_toFinset, Polynomial.mem_roots hne]
-    simpa [sub_eq_zero] using hy
+  have hfin : {y : R | y ^ p ^ m = y}.Finite :=
+    (Polynomial.finite_setOfPred_isRoot (Polynomial.X_pow_sub_X_ne_zero
+      (Nat.one_lt_pow hm.ne' hp.out.one_lt))).subset fun y hy => by simpa [sub_eq_zero] using hy
   apply Subgroup.isOpen_of_mem_nhds (g := 1)
   exact (Filter.eventually_all_finite hfin).2 fun y hy => h y m hm hy
 

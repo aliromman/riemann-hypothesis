@@ -10,18 +10,6 @@ public import GroundTheory.GlobalFields.TateThesis.GlobalZeta
 public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.BaseChangeDefiniteUnitary
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.T2SpaceAdelicGeneralLinearGroupNumberField
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContinuousSplitCentre
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Linter.HaveILetI
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts
@@ -225,7 +213,7 @@ theorem bound {s : ℝ} (hs : 1 < s) {U : Set (Fin (Module.finrank F E) → Af F
       simp only [hy, crd_eq]
     have hfz : finiteZetaBound L s (IdeleGroup.toFinite E (idl F E l)) =
         finiteModule (ofFinite (IdeleGroup.toFinite E (idl F E l))) ^ s := by
-      rw [finiteZetaBound, if_pos]
+      rw [finiteZetaBound, ite_eq_left]
       exact hfin
     rw [hfz, absE_eq, ideleModule_rpow_eq]
     set fm := finiteModule (ofFinite (IdeleGroup.toFinite E (idl F E l))) ^ s

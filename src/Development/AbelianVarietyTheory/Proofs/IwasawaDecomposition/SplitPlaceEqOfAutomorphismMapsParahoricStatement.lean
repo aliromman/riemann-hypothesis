@@ -6,6 +6,27 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsR
 import Development.AbelianVarietyTheory.Definitions.Foundations.ExistsAuxiliaryPlaceNotMemFinset
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RankLeAleph0SmoothIrreducibleUnitaryAdelic
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsAdelicUnitaryTrivialOutsideSplitPlaceLocEq
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -20,6 +41,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.EtaJUntw
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.NStageTrivialCharacterCoeffEqAlt
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.NotBaseCondFalse
@@ -195,7 +218,7 @@ theorem mem_low_iff {w : HeightOneSpectrum (𝓞 L⁺)} {n r : ℕ} (i : L →�
     refine ⟨(GlobalTheory.HeckeScalarSph.loc_mem_GLint_iff (SplitPlace.mk w i) κ.2.2).2 κ.2.1, fun a b ha hb => ?_⟩
     refine (redLoc_eq_zero_iff i κ a b).1 (h a b ?_)
     simp only [wLow]
-    rw [if_pos hb, if_neg (Nat.not_lt.2 ha)]
+    rw [ite_eq_left hb, ite_eq_right (Nat.not_lt.2 ha)]
     exact Nat.zero_lt_one
   · rintro ⟨-, h⟩ a b hab
     have key : r ≤ a.val ∧ b.val < r := by
@@ -307,7 +330,7 @@ theorem core {w : HeightOneSpectrum (𝓞 L⁺)} (i j : L →ₐ[L⁺] w.adicCom
     rw [hxu]
     refine ⟨hu, fun a b ha hb => ?_⟩
     show Valued.v (Matrix.transvection i0 ir (1 : w.adicCompletion L⁺) a b) < 1
-    rw [hent, if_neg, if_neg, add_zero, map_zero]
+    rw [hent, ite_eq_right, ite_eq_right, add_zero, map_zero]
     · exact zero_lt_one
     · rintro ⟨-, h⟩
       have := congrArg Fin.val h
@@ -324,7 +347,7 @@ theorem core {w : HeightOneSpectrum (𝓞 L⁺)} (i j : L →ₐ[L⁺] w.adicCom
     show (((SplitPlace.mk w i).loc n x : GL (Fin n) (w.adicCompletion L⁺)) : Matrix (Fin n) (Fin n) (w.adicCompletion L⁺)) i0 ir = 1
     rw [hxu]
     show Matrix.transvection i0 ir (1 : w.adicCompletion L⁺) i0 ir = 1
-    rw [hent, if_neg hne, if_pos ⟨rfl, rfl⟩, zero_add]
+    rw [hent, ite_eq_right hne, ite_eq_left ⟨rfl, rfl⟩, zero_add]
   rw [e, map_one] at h0
   exact lt_irrefl _ h0
 

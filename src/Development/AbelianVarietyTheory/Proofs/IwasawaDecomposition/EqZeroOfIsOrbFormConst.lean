@@ -2,6 +2,28 @@ module
 
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PullLinInjective
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SysExOfPol
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -140,7 +162,7 @@ def orbFun (w0 : O) (v : LinearMap.BilinForm ℤ X₀) : InvFun O where
   inv n m r hr B := by
     simp only [isOrbForm_comp_iff v _ hr]
   zero B := by
-    rw [if_neg]
+    rw [ite_eq_right]
     rintro ⟨hv, σ, -, h⟩
     exact hv (eq_zero_of_isOrbForm_zero h)
 
@@ -161,7 +183,7 @@ theorem orbFun_eval_eq_zero_or_one (w0 : O) (v : LinearMap.BilinForm ℤ X₀) {
 theorem orbFun_evalZ_self (w0 : O) {v : LinearMap.BilinForm ℤ X₀} [Module.Finite O X₀] (hv : v ≠ 0)
     (hsym : ∀ y z, v y z = v z y) : (orbFun O w0 v).evalZ v = 1 := by
   obtain ⟨n, r, hr⟩ := Module.Finite.exists_fin' O X₀
-  rw [InvFun.evalZ, (orbFun O w0 v).eval_eq hr, orbFun_toFun, if_pos]
+  rw [InvFun.evalZ, (orbFun O w0 v).eval_eq hr, orbFun_toFun, ite_eq_left]
   refine ⟨hv, RingEquiv.refl O, rfl, (CarDim.orad v).mkQ ∘ₗ r, (Submodule.mkQ_surjective _).comp hr,
     fun a b x y hx hy => ?_⟩
   have hx' : x - r a ∈ (CarDim.orad v : Submodule O X₀) := (Submodule.Quotient.eq _).1 hx

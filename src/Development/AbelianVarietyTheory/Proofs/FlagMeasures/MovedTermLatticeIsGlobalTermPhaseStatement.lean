@@ -18,6 +18,30 @@ public import Formalism.LocalRingCardinality.DataHost
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HermitianLatticeDatumEquivariantFlagIsometries
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.MovedTermLatticeIsLocalTermAtPlaceStatement
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.TermsOrbitsHeightsAmplitudesInCoordinates
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -32,18 +56,26 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.NGData
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.Tactic.ReduceModChar
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.PoincareConstantEq
 import Development.WeilBound.CoreStatements.SesquilinearFractions.NIdeal
 import Mathlib.Algebra.Module.StablyFree.Basic
 import Mathlib.Algebra.Order.Star.Real
 import Mathlib.Algebra.Ring.IsFormallyReal
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Topology.Connected.Separation
 import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 import Std.Tactic.BVDecide.Normalize.Prop
@@ -103,9 +135,9 @@ theorem GCoord.c_mul_gS_eq_delta_theta : ∀ (D : D7) (X : HidaSetting D) (Y : F
       have hn : Loc.resChar p ∉ ({D.host.g 0, D.host.g 1} : Finset ℕ) := by
         rw [← hs, hD]; simp
       simp only [Finset.mem_insert, Finset.mem_singleton, not_or] at hn
-      have hgp : gpart p = 1 := by unfold gpart; rw [if_neg hn.1, if_neg hn.2]
+      have hgp : gpart p = 1 := by unfold gpart; rw [ite_eq_right hn.1, ite_eq_right hn.2]
       rw [Frames.th, hgg, hgp]
-      exact (if_neg (by decide)).trans Nat.cast_one.symm
+      exact (ite_eq_right (by decide)).trans Nat.cast_one.symm
     · simp [hM, hD] at hA
     · simp [hM, hD] at hA
     · have hgs := wc.gg_some g hM
@@ -117,11 +149,11 @@ theorem GCoord.c_mul_gS_eq_delta_theta : ∀ (D : D7) (X : HidaSetting D) (Y : F
       have hgp : gpart p = Loc.resChar p := by
         unfold gpart
         rcases hn with h | h
-        · rw [if_pos h, h]
+        · rw [ite_eq_left h, h]
         · by_cases h0 : Loc.resChar p = D.host.g 0
-          · rw [if_pos h0, h0]
-          · rw [if_neg h0, if_pos h, h]
-      simp only [Frames.th, hgs.1, if_true, hgs.2, hA.2, hgp]
+          · rw [ite_eq_left h0, h0]
+          · rw [ite_eq_right h0, ite_eq_left h, h]
+      simp only [Frames.th, hgs.1, ite_true, hgs.2, hA.2, hgp]
       exact hq
   exact h1.trans (congrArg (Y.δ p * ·) h2.symm)
 
@@ -320,7 +352,7 @@ theorem coef_eq {H : Loc.HermSp M V} (Fr : LocNG.FrameD H r) {n : ℕ} (Hm : Mat
     | last =>
       have h0 : H.h (Fr.f (Fin.last r)) (Fr.es j) = 0 := by
         rw [H.h_herm (Fr.es j) (Fr.f (Fin.last r)), Fr.h_sz j, map_zero]
-      rw [h0, if_neg (Fin.castSucc_lt_last j).ne']
+      rw [h0, ite_eq_right (Fin.castSucc_lt_last j).ne']
     | cast i =>
       rw [Fr.h_es i j]
       simp [Fin.castSucc_inj]
@@ -1134,8 +1166,8 @@ theorem coef_sum {E : Type} [Field E] [NumberField E] (sig : E → E) {r n : ℕ
   rw [Finset.sum_congr rfl fun a _ => h1 a]
   unfold Formalism.L2.SG.PairVal.sgUp
   rw [Fin.sum_univ_castSucc]
-  simp only [Fin.coe_castSucc, Fin.val_last, lt_self_iff_false, dif_neg, not_false_eq_true, add_zero,
-    add_lt_add_iff_right, Fin.is_lt, dif_pos]
+  simp only [Fin.coe_castSucc, Fin.val_last, lt_self_iff_false, dite_eq_right, not_false_eq_true, add_zero,
+    add_lt_add_iff_right, Fin.is_lt, dite_eq_left]
   refine Finset.sum_congr rfl fun a _ => ?_
   rfl
 

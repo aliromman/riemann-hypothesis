@@ -67,28 +67,9 @@ public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLif
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.RowPositivityOfSiegelWeil
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.RowsFinDimLink
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LoopRowsOfRowsFinDim
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.IntegralConjInnerMulInnerOfIsEmptyEquiv
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Topology.Algebra.Star.Unitary
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Analysis.CStarAlgebra.Classes
-import Mathlib.Algebra.Ring.IsFormallyReal
-import Mathlib.Tactic.TypeStar
-import Mathlib.Tactic
 import CompanionTheory.AutomorphicTheory.LocalBesselUniqueness.BesselModels.AtFormAdmOne
 import CompanionTheory.AutomorphicTheory.LocalBesselUniqueness.BesselModels.Inputs
 import CompanionTheory.AutomorphicTheory.LocalBesselUniqueness.BesselModels.WuFinal
@@ -467,9 +448,9 @@ theorem tendsto_integral_normalised_pow_peak :
     refine integral_mono_ae ((integrable_const (η ^ m)).indicator hWm) (hfm_int m) ?_
     filter_upwards [hKae] with x hx
     by_cases hxW : x ∈ {x | η < f x}
-    · rw [Set.indicator_apply, if_pos hxW]
+    · rw [Set.indicator_apply, ite_eq_left hxW]
       exact pow_le_pow_left₀ hη (le_of_lt hxW) m
-    · rw [Set.indicator_apply, if_neg hxW]
+    · rw [Set.indicator_apply, ite_eq_right hxW]
       exact pow_nonneg (hf01 x hx).1 m
   rw [Metric.tendsto_atTop]
   intro ε hε

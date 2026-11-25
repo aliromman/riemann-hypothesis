@@ -6,22 +6,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.NegativeFram
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothGramSchmidtIndefiniteHermitianFrames
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorusLawOfKilled
 import Mathlib.Analysis.Complex.AbsMax
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -180,7 +165,7 @@ lemma local_zero {Q : (ι → Fin n → Fin n → ℂ) → ℂ} {Ω : Set (ι �
       rcases lt_trichotomy c a with h | h | h
       · have hne : a ≠ c := (ne_of_lt h).symm
         have hca : (c : ℕ) ≤ a := (Fin.lt_iff_val_lt_val.mp h).le
-        simp only [if_neg hne, if_pos h, zero_add, one_pow, one_mul]
+        simp only [ite_eq_right hne, ite_eq_left h, zero_add, one_pow, one_mul]
         rw [show ζ ^ (a : ℕ) = ζ ^ ((a : ℕ) - c) * ζ ^ (c : ℕ) by
           rw [← pow_add, Nat.sub_add_cancel hca]]
         ring

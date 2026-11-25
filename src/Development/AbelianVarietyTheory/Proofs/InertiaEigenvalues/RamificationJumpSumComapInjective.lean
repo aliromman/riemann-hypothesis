@@ -1,18 +1,6 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NoTowerQ
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -38,7 +26,7 @@ theorem jumpSum_comap_injective :
     rw [top_inf_eq, ← Subgroup.map_comap_eq, Subgroup.card_map_of_injective hj]
   rw [h2]
   by_cases h : j.range ⊓ R t ≤ B
-  · rw [if_pos (h1.mpr h), if_pos h]
-  · rw [if_neg (fun h' => h (h1.mp h')), if_neg h]
+  · rw [ite_eq_left (h1.mpr h), ite_eq_left h]
+  · rw [ite_eq_right (fun h' => h (h1.mp h')), ite_eq_right h]
 
 end GlobalTheory.PMon.Ram

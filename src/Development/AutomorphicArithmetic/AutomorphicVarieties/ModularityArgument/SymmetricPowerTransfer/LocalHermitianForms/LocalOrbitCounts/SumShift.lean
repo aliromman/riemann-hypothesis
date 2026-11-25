@@ -3,10 +3,39 @@ module
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.LocalHermitianForms.NormOneIsCoboundaryUnramifiedQuadratic
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.LocalHermitianForms.LocalOrbitCounts.HsNE
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.LocalHermitianForms.LocalOrbitCounts.NonsqMul
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -19,6 +48,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -37,7 +68,7 @@ theorem UpperTheory.V.Z.Sym.Loc.sumShift : UpperTheory.V.Z.Sym.Loc.SumShift := b
     exact hsMul O K Δ L _ a b hτ a.ne_zero b.ne_zero
   have hone : hs (τ ^ 2 - 4) ((1 : Kˣ) : K) = 1 := by
     unfold hs
-    rw [if_pos]
+    rw [ite_eq_left]
     exact ⟨1, 0, by simp⟩
   have hsq : ∀ a : Kˣ, hs (τ ^ 2 - 4) (a : K) * hs (τ ^ 2 - 4) (a : K) = 1 := by
     intro a
@@ -106,10 +137,10 @@ theorem UpperTheory.V.Z.Sym.Loc.sumShift : UpperTheory.V.Z.Sym.Loc.SumShift := b
       exact (hmk _ _).1 (by simp)
     constructor
     · rw [finsum_eq_single _ (t0 : Kˣ ⧸ NE τ)]
-      · rw [hfx, if_pos h0]
+      · rw [hfx, ite_eq_left h0]
       · intro q hq'
-        rw [hfx, if_neg (hq q hq')]
+        rw [hfx, ite_eq_right (hq q hq')]
     · rw [finsum_eq_single _ (t0 : Kˣ ⧸ NE τ)]
-      · rw [hfx, if_pos h0, h0]
+      · rw [hfx, ite_eq_left h0, h0]
       · intro q hq'
-        rw [hfx, if_neg (hq q hq'), mul_zero]
+        rw [hfx, ite_eq_right (hq q hq'), mul_zero]

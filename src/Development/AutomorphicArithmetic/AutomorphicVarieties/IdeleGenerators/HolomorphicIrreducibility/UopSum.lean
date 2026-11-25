@@ -4,18 +4,6 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenera
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.DcSumEqOfMk
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.GlintPrincRelIndexNeZero
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.ConstSmall
 
 @[expose] public section
@@ -198,7 +186,7 @@ private theorem gen (φ : O →+* K) (hφ : Function.Injective φ) [Finite (Resi
       intro h
       obtain ⟨u, -, h⟩ := Finset.mem_image.1 h
       exact yz_ne φ hφ 0 π p hp hpm u (congrArg _ h)
-    rw [h1 (insert (zz π) (S.image fun u => aff π (φ u))) ?_ ?_ v hv, Finset.sum_insert hz, hsum, if_pos rfl, add_comm]
+    rw [h1 (insert (zz π) (S.image fun u => aff π (φ u))) ?_ ?_ v hv, Finset.sum_insert hz, hsum, ite_eq_left rfl, add_comm]
     · intro y hy
       rcases Finset.mem_insert.1 hy with rfl | hy
       · exact z_mem φ π
@@ -218,7 +206,7 @@ private theorem gen (φ : O →+* K) (hφ : Function.Injective φ) [Finite (Resi
         · rfl
         · obtain ⟨u', hu', rfl⟩ := Finset.mem_image.1 hy
           exact absurd h (yz_ne φ hφ 0 π p hp hpm u')
-  · rw [h1 (S.image fun u => aff π (φ u)) ?_ ?_ v hv, hsum, if_neg hn, add_zero]
+  · rw [h1 (S.image fun u => aff π (φ u)) ?_ ?_ v hv, hsum, ite_eq_right hn, add_zero]
     · intro y hy
       obtain ⟨u, -, rfl⟩ := Finset.mem_image.1 hy
       exact y_mem φ n π u

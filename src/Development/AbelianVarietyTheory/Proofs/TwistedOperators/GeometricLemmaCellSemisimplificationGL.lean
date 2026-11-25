@@ -16,7 +16,36 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Normalise
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.PiExteriorTensorSmoothIrreducibleIsIrreducible
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.TensorProductDeterminesFactorClasses
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.JhMultSubAddQuot
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -29,6 +58,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.Foundations.SecondCountableAndT2LocalField
 import Mathlib.Tactic.Linter.Style
@@ -131,7 +162,7 @@ theorem one_coord₂ (B : SmRep G) (h : HasFiniteLength B.ρ) (T : Finset (IrrCl
       simp at this
     rw [h1, h2, ih R hR.lt fun c hc => (add_eq_zero.1 ((hm c).symm.trans (hS' c hc))).1]
     simp only [hm, add_mul, Finset.sum_add_distrib, ite_mul, one_mul, zero_mul,
-      Finset.sum_ite_eq', if_pos h3]
+      Finset.sum_ite_eq', ite_eq_left h3]
   have h4 := key ⊤ (by simpa only [jhMult_congr_right _ (topEquiv B.ρ)] using hT)
   rw [← congr_equiv φ h0 hadd (B := sub B ⊤) (B' := B) (topEquiv B.ρ), h4]
   simp only [jhMult_congr_right _ (topEquiv B.ρ)]
@@ -163,7 +194,7 @@ theorem additive_family_expand : ∀ (α : Type) [Fintype α] [DecidableEq α] (
         by_contra hn
         obtain ⟨i, hi⟩ := hT c hn
         exact one_ne_zero ((jhMult_self (c i).rep.irr).symm.trans hi)
-      simp only [hm, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq', if_pos h3]
+      simp only [hm, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq', ite_eq_left h3]
     | insert i s his ih =>
       intro A hA hl T hT
       let μ : ∀ j, IrrCl (Γ j) → SmRep (Γ j) → ℕ∞ := fun j c B => jhMult c.rep.ρ B.ρ
@@ -200,7 +231,7 @@ theorem additive_family_expand : ∀ (α : Type) [Fintype α] [DecidableEq α] (
           change μ j (t j) (Function.update A i (SmRep.ofIrr c.rep) j) = 0
           rcases eq_or_ne j i with rfl | hji
           · rw [Function.update_self]
-            refine (jhMult_rep_rep _ _).trans (if_neg ?_)
+            refine (jhMult_rep_rep _ _).trans (ite_eq_right ?_)
             rintro rfl
             exact (hC.mem_toFinset.1 hc) hj
           · rw [Function.update_of_ne hji]; exact hj
@@ -787,7 +818,7 @@ theorem GlobalTheory.SmGL.CellSemis.cellSemisimplification : GlobalTheory.Publis
   have hT' : ∀ t ∉ T', ∃ i, jhMult (t i).rep.ρ (A i).ρ = 0 := by
     intro t ht
     rw [Fintype.mem_piFinset] at ht
-    push_neg at ht
+    push Not at ht
     obtain ⟨i, hi⟩ := ht
     exact ⟨i, by simpa using hi⟩
   let P : ∀ i, (∀ j, IrrCl (GL (c i j) k)) → IrrRep (Levi k (c i)) := fun i s =>

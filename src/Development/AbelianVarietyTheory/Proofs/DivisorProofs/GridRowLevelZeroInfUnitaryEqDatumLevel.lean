@@ -9,18 +9,6 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaGridBlo
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaGridBlockCongruenceTypePrimeDescription
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PlacesApart
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ThetaLiftLevelsGoodPrimesProperties
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Formalism.LocalRingCardinality.SpanPowerMembership.LocAtA
 import Mathlib.Tactic.Linter.Style
 import Formalism.LocalToGlobal.UnitaryNorms.CharUniq
@@ -308,7 +296,7 @@ theorem upperLeftBlock_eq_one_iff_of_mem_blockTri {κ : Type} [CommRing κ] {n r
     rw [e2, Matrix.one_apply, Matrix.one_apply]
     by_cases hab : a = b
     · subst hab; simp
-    · rw [if_neg hab, if_neg (fun h' => hab (Fin.ext (Fin.mk.inj h')))]
+    · rw [ite_eq_right hab, ite_eq_right (fun h' => hab (Fin.ext (Fin.mk.inj h')))]
   · intro h
     apply Units.ext
     ext i j
@@ -317,7 +305,7 @@ theorem upperLeftBlock_eq_one_iff_of_mem_blockTri {κ : Type} [CommRing κ] {n r
     rw [e, Matrix.one_apply, Matrix.one_apply]
     by_cases hij : i = j
     · subst hij; simp
-    · rw [if_neg hij, if_neg (fun h' => hij (Fin.castLE_injective hr h'))]
+    · rw [ite_eq_right hij, ite_eq_right (fun h' => hij (Fin.castLE_injective hr h'))]
 
 theorem levelChainTypePlaces_subset_chosenPlaces {T : Type} {L : LevCh D T} {sc : Consts} (G : GridData L sc) {μ₀ : T} (hL : L.Is μ₀) (t : T) :
     L.Pg ⊆ G.pl.W0 := by
@@ -378,7 +366,7 @@ theorem prodLev_inf_UA {V : HSp D} {β : GL (Fin V.rank) (Lev.EAf D)} {Λ : Subm
         rcases GlobalTheory.GoodPrimes.eq_or_conj_of_under_eq e with rfl | rfl
         · exact hK0
         · exact _root_.GlobalTheory.ConjPlaceLev.inBasis_conjPl_mem_KO_of_isBaseFrame V β Λ hβ x hU w0 hK0
-      · push_neg at hw
+      · push Not at hw
         exact Subgroup.mem_iInf.1 (Subgroup.mem_iInf.1 h2 w) hw
     have hgP : ∀ PP ∈ Ld.Pg, redFn β PP x ∈ blockTri (blkOf Ld.r Ld.t) := fun PP hP => by
       rw [mem_blockTri]

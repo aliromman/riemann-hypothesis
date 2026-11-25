@@ -21,6 +21,28 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsP
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FiniteRamifiedPlacesHeckeCharacter
 public import Development.AbelianVarietyTheory.Definitions.Foundations.TupleConstantsNeZero
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnramifiedCharacterAtUniformizer
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -33,6 +55,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Divisors.CmHostImaginaryGeneratorNeZero
 import Development.AbelianVarietyTheory.Definitions.Divisors.FinitePrimesUnder
 import Development.AbelianVarietyTheory.Definitions.Divisors.FlatTensorVacuum
@@ -42,7 +65,11 @@ import Formalism.LocalToGlobal.IndefiniteReal.IndefiniteWeightData
 import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 import Formalism.LocalToGlobal.IndefiniteReal.LocalNewformFunction
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsSplitChartSplitChart
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Formalism.LocalToGlobal.Columns.AdelicLemmas
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsContinuousPadic
@@ -350,7 +377,7 @@ theorem base_place_factor_zero : ∀ {D : D7} {T : Type} {Lc : LevCh D T} {sc : 
       · exact G.pl.levelPlace_ne_basePlace t _ h (hwu.trans e)
       · exact G.pl.levelPlace_ne_basePlace t PP' h ((GlobalTheory.LevelPlaces.under_eq_of_isConjPl hc').trans (hwu.trans e))
     have hv1 : v.1 ∈ S1 D := (G.pl.mem_S0_of_sum_eq.1 hv).resolve_left hv0
-    have hce : condExp G.pl v.1 = 2 := if_neg hv0
+    have hce : condExp G.pl v.1 = 2 := ite_eq_right hv0
     have hloc : GlobalTheory.AdelicU.splitPrime (Bs.τ v) ∈ locPl G t := hB.2.2.2 v (Finset.mem_union_left _ hv)
     have hw : GlobalTheory.AdelicU.splitPrime (Bs.τ v) = G.pl.w v.1 := by
       rcases Finset.mem_union.1 hloc with h | h
@@ -361,7 +388,7 @@ theorem base_place_factor_zero : ∀ {D : D7} {T : Type} {Lc : LevCh D T} {sc : 
         rwa [hwu] at this
     have hdep : depthAt G (GlobalTheory.AdelicU.splitPrime (Bs.τ v)) = 2 := by
       rw [hw, (depthAt_w G hv).2]
-      exact if_neg hv0
+      exact ite_eq_right hv0
     have hroots := hN.roots t _ hloc
     rw [hdep, GlobalTheory.LFun.SplitChart.absNorm_splitPrime] at hroots
     have hchr : ∀ t', chrW (GlobalTheory.SqStep.chs G i j t').ν (Bs.τ v) = ((nuH G t' i j).loc (GlobalTheory.AdelicU.splitPrime (Bs.τ v))).comp
@@ -620,7 +647,7 @@ theorem unitOff_val : ∀ (L : Type) [Field L] [NumberField L] (χ : Formalism.L
       (fun hm => haw w (hne w hw) (w.isPrime.mem_of_pow_mem M hm)) (hM1 w hw)), mul_one,
     finprod_eq_single _ v (fun w hw => by
       rw [hord, HeightOneSpectrum.intValuation_eq_one_iff.2 (fun hm => haw w hw (w.isPrime.mem_of_pow_mem M hm))]
-      simp), finprod_eq_if, if_pos hvS] at hp
+      simp), finprod_eq_if, ite_eq_left hvS] at hp
   have hpos : 0 < ordF v k := by
     rw [hord]
     have h0 : v.intValuation (a ^ M) ≠ 0 := v.intValuation_ne_zero _ hc0
@@ -1026,29 +1053,29 @@ theorem stepFac_ratio_core {D : D7} {T : Type} {Lc : LevCh D T} {sc : Consts} (G
   · refine hcmul _ _ (hcmul _ _ (hcmul _ _ (hzpow b1 n1 hn1 hb1 _) (hzpow b2 n2 hn2 hb2 _)) ?_) ?_
     · refine hprod _ _ fun v hv => ?_
       have hv' : v.1 ∈ Sz := by simpa using hv
-      simp only [bS₁, dif_pos hv']
+      simp only [bS₁, dite_eq_left hv']
       exact hbS v hv'
     · refine hprod _ _ fun v hv => ?_
       have hv' : v.1 ∈ X.T ∧ v.1 ∉ Sz := by simpa using hv
-      simp only [bT₁, dif_pos hv']
+      simp only [bT₁, dite_eq_left hv']
       exact hbT v hv'.1 hv'.2
   · intro v hv
     have h : v ∈ Bs.P ∧ v ∈ Sz := ⟨hSP v hv, hv⟩
-    simp only [g, g', dif_pos h]
+    simp only [g, g', dite_eq_left h]
     exact ⟨hgS _ h.2, hgS' _ h.2⟩
   · have hA : ∀ v ∈ Finset.univ.filter (fun v : Bs.P => v.1 ∈ Sz),
         f X₀ v = σ (bS₁ v * ((g v.1 : D.what₂.LL) / (g' v.1 : D.what₂.LL))) * f X v := by
       intro v hv
       have hv' : v.1 ∈ Sz := by simpa using hv
       have h2 : v.1 ∈ Bs.P ∧ v.1 ∈ Sz := ⟨v.2, hv'⟩
-      simp only [bS₁, g, g', dif_pos hv', dif_pos h2]
+      simp only [bS₁, g, g', dite_eq_left hv', dite_eq_left h2]
       exact heS v hv'
     have hTw : (∏ v ∈ Finset.univ.filter (fun v : Bs.P => v.1 ∈ X.T ∧ v.1 ∉ Sz), f X v) *
         σ (∏ v ∈ Finset.univ.filter (fun v : Bs.P => v.1 ∈ X.T ∧ v.1 ∉ Sz), bT₁ v) = 1 := by
       rw [map_prod, ← Finset.prod_mul_distrib]
       refine Finset.prod_eq_one fun v hv => ?_
       have hv' : v.1 ∈ X.T ∧ v.1 ∉ Sz := by simpa using hv
-      simp only [bT₁, dif_pos hv']
+      simp only [bT₁, dite_eq_left hv']
       rw [mul_comm]
       exact heT v hv'.1 hv'.2
     rw [hst X₀, hst X, hsplit, hT0, Finset.prod_congr rfl hA, Finset.prod_mul_distrib, ← map_prod,

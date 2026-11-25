@@ -7,6 +7,31 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OrderedC
 public import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.RealDescent.RealLeviDescent.IsCoreMod
 public import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ArchimedeanGelfandKernels.LeftEquivariantFunctions.ComplexMatrixCalculus.DeterminantPowerSmoothness.DetPowSmooth
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LowestDegreeComponentInvariant
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -20,9 +45,12 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DifferentiableAtOfSmooth
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -208,7 +236,7 @@ theorem fderiv_evalMatrix_mul_single (p : MvPolynomial (Fin n × Fin n) ℂ) (g 
     fderiv ℂ (evP p) g (g * Matrix.single a b (1 : ℂ)) = evP (Tp a b p) g := by
   rw [fderiv_evalMatrix, evP_Tp]
   refine Finset.sum_congr rfl fun c _ => ?_
-  simp only [mul_single_entry, mul_ite, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+  simp only [mul_single_entry, mul_ite, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   ring
 
 def detP : MvPolynomial (Fin n × Fin n) ℂ := (Matrix.mvPolynomialX (Fin n) (Fin n) ℂ).det
@@ -275,12 +303,12 @@ theorem detz_fderiv (m : ℤ) {g : Mat n} (hg : g ∈ GLs n) (a b : Fin n) :
   have h3 : HasDerivAt (fun t : ℂ => g.det ^ m * (1 + if a = b then t else 0) ^ m)
       ((if a = b then (m : ℂ) else 0) * g.det ^ m) 0 := by
     by_cases h : a = b
-    · simp only [h, if_true]
+    · simp only [h, ite_true]
       have h4 : HasDerivAt (fun z : ℂ => z ^ m) ((m : ℂ) * (1 + 0 : ℂ) ^ (m - 1)) (1 + 0) :=
         hasDerivAt_zpow m _ (Or.inl (by simp))
       have h5 := (h4.comp_const_add 1 0).const_mul (g.det ^ m)
       simpa [mul_comm] using h5
-    · simp only [h, if_false]
+    · simp only [h, ite_false]
       simpa using hasDerivAt_const (0 : ℂ) (g.det ^ m * (1 + 0 : ℂ) ^ m)
   rw [funext h2] at h1
   exact h1.unique h3
@@ -419,8 +447,8 @@ theorem Kf_wf (e : Fin n → ℤ) (m : ℤ) (p : MvPolynomial (Fin n × Fin n) �
     have := Qf_kill e _ hX hg hQd
     rwa [Matrix.mul_add, map_add] at this
   rw [Kf_val a b w hg, Eu_val, Eu_val, hfd, hL]
-  simp only [_root_.add_apply, _root_.smul_apply, smul_eq_mul, hres, if_true, Bool.false_eq_true,
-    if_false]
+  simp only [_root_.add_apply, _root_.smul_apply, smul_eq_mul, hres, ite_true, Bool.false_eq_true,
+    ite_false]
   rw [hI a b, hI b a, hIr, hIr]
   rw [← hI a b, ← hI b a]
   have hI2 : Complex.I * Complex.I = -1 := Complex.I_mul_I
@@ -481,7 +509,7 @@ theorem fRaw_factor (lam : Fin n → ℤ) (hl : Antitone lam) (lev : Fin n → �
         have := Fin.val_lt_last h
         omega
       have h0 := dif_nonneg hμ j hlt
-      simp only [h, if_false, one_mul, hx]
+      simp only [h, ite_false, one_mul, hx]
       rw [← zpow_natCast, Int.toNat_of_nonneg h0]
   have key : ∏ j, GlobalTheory.CompanionTheory.ModelS.lm j g ^ GlobalTheory.CompanionTheory.ModelS.dif μ j =
       g.det ^ GlobalTheory.CompanionTheory.ModelS.dif μ (Fin.last k) * ∏ j, GlobalTheory.CompanionTheory.ModelS.lm j g ^ x j := by

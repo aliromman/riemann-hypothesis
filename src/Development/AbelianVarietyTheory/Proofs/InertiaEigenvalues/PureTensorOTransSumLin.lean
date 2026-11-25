@@ -5,18 +5,6 @@ import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ComplexEmbedd
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.SmulEqZeroOfInf
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HeisenbergCombinationCommFockPolynomialVectors
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IdempotentMulEqZeroOfOrthogonal
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.DatEqZero
 
 @[expose] public section
@@ -82,9 +70,9 @@ theorem pureTensorO_transSum_lin : ∀ (D : D7) (H : Geo.Tor.Host D.host.E) (Dw 
   rw [key w]
   refine Finset.sum_congr rfl fun q _ => ?_
   rw [key, Finset.sum_eq_single q]
-  · rw [if_pos rfl, mul_one, mul_comm, ← smul_smul]
+  · rw [ite_eq_left rfl, mul_one, mul_comm, ← smul_smul]
   · intro b _ hb
-    rw [if_neg hb, mul_zero, zero_smul]
+    rw [ite_eq_right hb, mul_zero, zero_smul]
   · intro h
     exact absurd (Finset.mem_univ q) h
 

@@ -6,18 +6,6 @@ public import Mathlib.NumberTheory.NumberField.CMField
 public import Mathlib.NumberTheory.NumberField.InfiniteAdeleRing
 public import Mathlib.NumberTheory.NumberField.Completion.InfinitePlace
 public import Development.AbelianVarietyTheory.Definitions.Divisors.IsFinSetSplitPlacesCoprimeConductor
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.DefiningCoordinates
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.OmegaFactorization
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DifferentiableRisingS
@@ -69,9 +57,9 @@ theorem exists_im_pos (E : Type) [Field E] [NumberField E] [IsCMField E] (I : Ty
   have hfc : ∀ i, Continuous (f i) := by
     intro i
     by_cases h : (InfinitePlace.mk (φ i)).embedding = φ i
-    · simp only [f, h, if_true]
+    · simp only [f, h, ite_true]
       exact Complex.continuous_im.comp (continuous_apply _)
-    · simp only [f, h, if_false]
+    · simp only [f, h, ite_false]
       exact (Complex.continuous_im.comp (continuous_apply _)).neg
   let U : Set (InfinitePlace E → ℂ) := {z | ∀ i, 0 < f i z}
   have hU : IsOpen U := by
@@ -104,7 +92,7 @@ theorem exists_im_pos (E : Type) [Field E] [NumberField E] [IsCMField E] (I : Ty
   · simpa [f, h] using this
   · by_cases h' : (InfinitePlace.mk (φ i)).embedding = φ i
     · simpa [f, h'] using this
-    · simp only [f, h', if_false] at this
+    · simp only [f, h', ite_false] at this
       rw [h, ComplexEmbedding.conjugate_coe_eq, Complex.conj_im] at this
       linarith
 

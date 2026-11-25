@@ -1,18 +1,6 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.Divisors.TorsionTowersOfDivisibleGroup
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -28,12 +16,6 @@ namespace GlobalTheory.DeRhamCpl
 
 open GlobalTheory.PDiv (ModPow)
 
-section Rings
-
-variable (p : ℕ) (O : Type) [CommRing O]
-
-end Rings
-
 section BaseChange
 
 variable {O O' B B' : Type} [CommRing O] [CommRing O'] [CommRing B] [CommRing B']
@@ -44,15 +26,6 @@ instance bcObj.instGrpObj (a : O →+* B) (A : Over (Sp O)) [GrpObj A] : GrpObj 
   Functor.grpObjObj
 
 end BaseChange
-
-section Levels
-
-variable (p : ℕ) {O : Type} [CommRing O]
-
-variable {p} {A : Over (Sp O)} [GrpObj A]
-
-
-end Levels
 
 abbrev Family (p : ℕ) : Type 1 :=
   ∀ ⦃R : Type⦄ [CommRing R], IsAdicComplete (Ideal.span {(p : R)}) R →

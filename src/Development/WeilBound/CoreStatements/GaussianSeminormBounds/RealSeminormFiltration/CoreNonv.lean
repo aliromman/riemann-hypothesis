@@ -11,6 +11,35 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FockDegreeOne.Sa
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FockHarmonicSplitting.ConjTransposeOneKronecker
 public import Mathlib.RingTheory.MvPolynomial.EulerIdentity
 public import Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreLie
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -23,6 +52,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.Tactic.Linter.Style
 import Mathlib.RingTheory.PiTensorProduct
@@ -676,13 +708,13 @@ theorem unit_homog {p q r : ℕ} (a b : Ix p q) (i : ℕ) (P : Pol p q r 0) (hP 
   · refine ⟨1 + (1 + i), Submodule.sum_mem _ fun c _ => ?_⟩
     rcases c with c | c
     · rw [PI.FHS.omE_apply_of_ne (by simp)]
-      simp only [raiB, lowB, linePos, if_true, Bool.false_eq_true, if_false, LinearMap.mulLeft_apply]
+      simp only [raiB, lowB, linePos, ite_true, Bool.false_eq_true, ite_false, LinearMap.mulLeft_apply]
       exact (isHomogeneous_X ℂ _).mul ((isHomogeneous_X ℂ _).mul hP')
     · exact c.elim0
   · refine ⟨i - 1 - 1, Submodule.sum_mem _ fun c _ => ?_⟩
     rcases c with c | c
     · rw [PI.FHS.omE_apply_of_ne (by simp)]
-      simp only [raiB, lowB, linePos, if_true, Bool.false_eq_true, if_false, LinearMap.neg_apply]
+      simp only [raiB, lowB, linePos, ite_true, Bool.false_eq_true, ite_false, LinearMap.neg_apply]
       exact Submodule.neg_mem _ (hP'.pderiv.pderiv)
     · exact c.elim0
   · exact absurd trivial hab
@@ -920,7 +952,7 @@ theorem nontrivial_of_pair {p q r s : ℕ} (c : ℂ) (c0 : ℚ) (hc : c = c0) (h
   have hlam : ∀ a, (starRingEnd ℂ) (lam a) = lam a := by
     intro a
     have h1 := fock_inner_adjoint_first a a x x
-    rw [hxw a a (hsb a), if_pos rfl, epsB_self, one_mul, PI.FHS.fockInner_smul_left,
+    rw [hxw a a (hsb a), ite_eq_left rfl, epsB_self, one_mul, PI.FHS.fockInner_smul_left,
       PI.FHS.fockInner_smul_right] at h1
     have hne : fockInner x x ≠ 0 := fun h0 => hx0 (PI.FHS.fockInner_self_eq_zero h0)
     exact mul_right_cancel₀ hne h1
@@ -935,10 +967,10 @@ theorem nontrivial_of_pair {p q r s : ℕ} (c : ℂ) (c0 : ℚ) (hc : c = c0) (h
     rw [← conj_first_action_comm, hyw b a (hsym a b hab)]
     by_cases hab' : a = b
     · subst hab'
-      rw [if_pos rfl, if_pos rfl, if_pos rfl, cjP_smul, epsB_self, one_smul, map_sub, hlam, map_ratCast,
+      rw [ite_eq_left rfl, ite_eq_left rfl, ite_eq_left rfl, cjP_smul, epsB_self, one_smul, map_sub, hlam, map_ratCast,
         sub_smul]
       abel
-    · rw [if_neg hab', if_neg hab', if_neg (Ne.symm hab'), zero_smul, zero_smul]
+    · rw [ite_eq_right hab', ite_eq_right hab', ite_eq_right (Ne.symm hab'), zero_smul, zero_smul]
       simp [cjP]
   have hyl' : ∀ (i : Fin p) (j : Fin q), ρB (Eab (Sum.inr j) (Sum.inl i)) (cjP y : FV p q 0 s) = 0 := by
     intro i j
@@ -946,7 +978,7 @@ theorem nontrivial_of_pair {p q r s : ℕ} (c : ℂ) (c0 : ℚ) (hc : c = c0) (h
     refine (dualAct_Eab (fvAct1 p q 0 s) (c0 : ℂ) _ _ (cjP y)).trans ?_
     change (if (Sum.inr j : Ix p q) = Sum.inl i then (c0 : ℂ) else 0) • cjP y -
       epsB (Sum.inr j) (Sum.inl i) • fockAct1 p q 0 s (Eab (Sum.inl i) (Sum.inr j)) (cjP y) = 0
-    rw [← conj_first_action_comm, hyl i j, if_neg (by simp)]
+    rw [← conj_first_action_comm, hyl i j, ite_eq_right (by simp)]
     simp [cjP]
   obtain ⟨Φ, hΦ, hΦx⟩ := graph_map (fvAct1 p q r 0) ρB (lie1 p q r 0) (dualAct_lie (lie1 p q 0 s) _)
     (adj1 p q r 0) (dualAct_adj (adj1 p q 0 s) c0) lam x (cjP y) hx0 hxw hyw' hxl hyl' (proj_gen x dx hxh)

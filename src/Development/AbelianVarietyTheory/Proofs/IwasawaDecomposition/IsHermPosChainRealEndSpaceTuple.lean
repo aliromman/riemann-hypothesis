@@ -5,8 +5,31 @@ public import Formalism.LocalToGlobal.IndefiniteReal.LinksStage
 public import Development.AbelianVarietyTheory.Counterexamples.RotationExamples.OneLeAPlLast
 public import Formalism.LocalToGlobal.IndefiniteReal.LinksExistW
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.SignatureConjugationInvariant
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -21,6 +44,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -164,7 +190,7 @@ theorem lev_datY_zero {r : ℕ} (hn : n ≤ r) (t : ℕ) (hr : r ≤ n) (Pg Q : 
       simp
     unfold levFn
     rw [h1, h1', blockDiagonalExtendByOnePrimeField_one, blockDiagonalExtendByOnePrimeField_one]
-    simp only [datY, if_true, Finset.range_zero, Finset.prod_empty, Finset.prod_const_one, mul_one, one_mul]
+    simp only [datY, ite_true, Finset.range_zero, Finset.prod_empty, Finset.prod_const_one, mul_one, one_mul]
     exact Finset.prod_eq_one fun PP hP => by rw [hd PP hP, map_one]
 
 end Gen
@@ -242,13 +268,13 @@ theorem cc_eq (b : Bool) (μ : D.what₂.Tup) {j : ℕ} (hj : j < D.R.m) :
     (toChainReal R F tupT hm hTop).CC b μ j = MultT R.θ (R.MY j) (levS _ (R.βY j) (R.datYt (tupT μ) j R.triv))
       (levChi _ (R.βY j) (R.datYt (tupT μ) j R.triv)) := by
   show MultT R.θ (R.MY j) (if j < D.R.m then _ else Set.univ) (if j < D.R.m then _ else 0) = _
-  rw [if_pos hj, if_pos hj]
+  rw [ite_eq_left hj, ite_eq_left hj]
 
 theorem ccp_eq (b : Bool) (μ : D.what₂.Tup) {j : ℕ} (hj : j < D.R.m) :
     (toChainReal R F tupT hm hTop).CCP b μ j = MultT R.θ (R.MY j) (levS _ (R.βY j) (R.datYt (tupT μ) j (R.levR F b)))
       (levChi _ (R.βY j) (R.datYt (tupT μ) j (R.levR F b))) := by
   show MultT R.θ (R.MY j) (if j < D.R.m then _ else Set.univ) (if j < D.R.m then _ else 0) = _
-  rw [if_pos hj, if_pos hj]
+  rw [ite_eq_left hj, ite_eq_left hj]
 
 theorem eec_le (b : Bool) : (toChainReal R F tupT hm hTop).EEc b ≤
     MultT R.θ (R.MY 0) (levS _ (R.βY 0) (R.dat0 (R.levR F b))) (levChi _ (R.βY 0) (R.dat0 (R.levR F b))) :=
@@ -343,7 +369,7 @@ theorem holW (i : Fin D.R.m) :
   rw [e]
   funext ρ
   unfold parAt Mult.parW
-  rw [GlobalTheory.ThetaFiresProbe.lab_fixed, if_pos (GlobalTheory.ThetaFiresProbe.labE_fixed ρ)]
+  rw [GlobalTheory.ThetaFiresProbe.lab_fixed, ite_eq_left (GlobalTheory.ThetaFiresProbe.labE_fixed ρ)]
 
 theorem hermW (hI : Inputs D) (hB : R.BaseW F) (i : Fin D.R.m) :
     IsHermPos ((toLiftReal R F tupT hm hTop hinj).Wc i) ((toLiftReal R F tupT hm hTop hinj).ipWc i) := by

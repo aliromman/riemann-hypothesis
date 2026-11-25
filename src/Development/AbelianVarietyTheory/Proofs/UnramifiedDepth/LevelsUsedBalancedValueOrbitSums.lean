@@ -3,7 +3,32 @@ module
 public import Formalism.LocalToGlobal.CharacterGerms.ValuationChoiceHypothesis
 public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.CyclicSolvable
 public import Formalism.LocalRingCardinality.DataForced
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -18,6 +43,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.BitVec
 import Std.Tactic.BVDecide.Normalize.Prop
 
@@ -109,7 +136,7 @@ lemma lpFeasible_eq (l d : ℕ) [NeZero d] (D : ZMod d → ℝ) :
         rcases h with h | h
         · exact h a
         · omega
-      simp only [this, if_false]
+      simp only [this, ite_false]
     · intro s
       simp only [mul_ite, mul_zero]
       rw [sum_range_ite, sum_range_ite]
@@ -171,7 +198,7 @@ lemma pos_mul_period (N : NumDatum) (l : ℕ) (z : RPl N.R) (c : ℕ) :
     N.pos l z (N.ordP l * c) = z := by
   unfold NumDatum.pos NumDatum.ordP
   by_cases h : N.cls l = PrimeClass.signal
-  · rw [if_pos h]
+  · rw [ite_eq_left h]
     refine Prod.ext ?_ ?_
     · have : ¬ Odd (2 * addOrderOf (2 • N.hP l) * c) := by
         rw [Nat.not_odd_iff_even, mul_assoc]; exact even_two_mul _
@@ -180,7 +207,7 @@ lemma pos_mul_period (N : NumDatum) (l : ℕ) (z : RPl N.R) (c : ℕ) :
     · dsimp only
       rw [show 2 * addOrderOf (2 • N.hP l) * c = c * addOrderOf (2 • N.hP l) * 2 by ring,
         mul_smul, mul_smul, addOrderOf_nsmul_eq_zero, smul_zero, add_zero]
-  · rw [if_neg h]
+  · rw [ite_eq_right h]
     refine Prod.ext ?_ ?_
     · simp [h]
     · dsimp only
@@ -215,7 +242,7 @@ theorem fInertReps : FInertReps := by
   intro N j l Z hZ hc hn
   constructor
   · unfold NumDatum.FInert
-    rw [if_neg hn, sum_reps N l Z hZ]
+    rw [ite_eq_right hn, sum_reps N l Z hZ]
     have hd : (N.ordP l : ℝ) ≠ 0 := Nat.cast_ne_zero.2 (NeZero.ne _)
     simp only [FOrb_step, Finset.sum_const, Finset.card_univ, ZMod.card, nsmul_eq_mul]
     rw [← Finset.mul_sum, mul_div_cancel_left₀ _ hd]
@@ -226,7 +253,7 @@ theorem fInertReps : FInertReps := by
     unfold NumDatum.FjP
     have hr : N.cls l ≠ PrimeClass.ramD := by
       rcases hc with h | h <;> rw [h] <;> simp
-    rw [if_neg (by tauto), if_neg hr, if_pos ⟨hc, hX⟩]
+    rw [ite_eq_right (by tauto), ite_eq_right hr, ite_eq_left ⟨hc, hX⟩]
 
 theorem main : ThlEq ∧ LevelBound ∧ LemmaFe ∧ FInertReps :=
   ⟨thlEq, levelBound, lemmaFe, fInertReps⟩

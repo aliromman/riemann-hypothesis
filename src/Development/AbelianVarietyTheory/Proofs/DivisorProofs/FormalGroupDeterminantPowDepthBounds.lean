@@ -9,6 +9,33 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FormalGroupE
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DepthNonnegIntegralOperatorIntegralVectors
 public import Mathlib.Analysis.SpecialFunctions.Log.Base
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DividedPowerContentValuationDetPowBounds
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -24,6 +51,9 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Presheaf
 import Mathlib.Order.CompletePartialOrder
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.WeightedSumBounds.PtOrderProdSub
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MatrixVariablesDeterminantPowMonomialShape
@@ -245,7 +275,7 @@ theorem coeff_single_exp {C : Type} [Field C] {v : AddValuation C (WithTop ℝ)}
   have e := congrArg (coeff (Finsupp.single b 1)) (h.2 a)
   rw [GlobalTheory.FormalSeries.coeff_single_subst h.1] at e
   simp only [G.lg_lin, smul_eq_mul, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq,
-    Finset.mem_univ, if_true, coeff_X] at e
+    Finset.mem_univ, ite_true, coeff_X] at e
   rw [e]
   by_cases hab : a = b
   · subst hab; simp
@@ -279,7 +309,7 @@ theorem depth_le_content : ∀ (C : Type) [Field C] [CharZero C] (v : AddValuati
     show coeff (Finsupp.single y 1) (subst _ (expOf (G x.1) x.2)) = _
     rw [GlobalTheory.FormalSeries.coeff_single_subst (hlin0 x.1)]
     simp only [coeff_single_exp (G x.1) (hexp x.1), hlin1, smul_eq_mul, ite_mul, one_mul,
-      zero_mul, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+      zero_mul, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
   set Y : (Σ b, Fin (n b)) → MvPowerSeries (Σ b, Fin (n b)) C :=
     fun y => ∑ e, l y.1 y.2 e • A ⟨y.1, e⟩ with hYdef
   have hY : ∀ y, 2 ≤ (Y y - X y).order := by
@@ -300,7 +330,7 @@ theorem depth_le_content : ∀ (C : Type) [Field C] [CharZero C] (v : AddValuati
     have key2 : ∑ e : Fin (d y.1), ∑ a : Fin (n y.1),
         l y.1 y.2 e * (u y.1 a e * if z = ⟨y.1, a⟩ then (1 : C) else 0) = if z = y then 1 else 0 := by
       rw [Finset.sum_comm]
-      simp_rw [key, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+      simp_rw [key, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
     exact key2
   have hAs : HasSubst A := hasSubst_of_constantCoeff_zero hA0
   unfold content
@@ -328,7 +358,7 @@ theorem depth_le_content : ∀ (C : Type) [Field C] [CharZero C] (v : AddValuati
     · intro β hβ hne
       rw [GlobalTheory.FormalSeries.coeff_eq_of_le_order_sub hord
         (by rw [hdeg β hβ, ← hdeg α hα]; exact Nat.lt_succ_self _), coeff_monomial,
-        if_neg hne, mul_zero]
+        ite_eq_right hne, mul_zero]
     · intro h; exact absurd hα h
   unfold depth
   refine (iInf_le _ ⟨f, hfint⟩).trans (le_of_eq ?_)

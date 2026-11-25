@@ -6,18 +6,6 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CoeffPr
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.InertialOrderFifteenCharAuxiliaryPrimeSpec
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TypeConditions.GalRead
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.AlIsTripleWithcharpolyFrob
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.HCFFromRecipA
 
 @[expose] public section
@@ -114,9 +102,9 @@ theorem IsGaloisTripleOfExpansion.adm8 (h : _root_.GlobalTheory.Triple.IsGaloisT
   · obtain ⟨hl, hg⟩ := notMem_of_mem_pD hv
     cases hb : X.side i s
     · refine Or.inl fun g hI => (matW_of_mem_Ine hu hl hg hA hI).trans ?_
-      rw [chiS, X.twistCharacterFamily_at_auxiliaryPlaces i _ _ v hv A hA g hI, hb, if_neg Bool.false_ne_true, inv_inv]
+      rw [chiS, X.twistCharacterFamily_at_auxiliaryPlaces i _ _ v hv A hA g hI, hb, ite_eq_right Bool.false_ne_true, inv_inv]
     · refine Or.inr fun g hI => (matW_of_mem_Ine hu hl hg hA hI).trans ?_
-      rw [chiS, X.twistCharacterFamily_at_auxiliaryPlaces i _ _ v hv A hA g hI, hb, if_pos rfl]
+      rw [chiS, X.twistCharacterFamily_at_auxiliaryPlaces i _ _ v hv A hA g hI, hb, ite_eq_left rfl]
   · change _ = algebraMap (X.O0 i) (X.O i) (1 - matW s g).det
 
     rw [← sum_coeff_charpolyRev, map_sum, matW_eq]

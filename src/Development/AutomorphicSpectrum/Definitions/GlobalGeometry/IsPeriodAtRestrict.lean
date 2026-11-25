@@ -2,6 +2,7 @@ module
 
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsHodgeLine
 public import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FrameDefinitions.IsFrameOverLine
+import Mathlib.Tactic.ENatToNat
 import Mathlib.NumberTheory.Zsqrtd.GaussianInt
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterSt
 
@@ -98,15 +99,5 @@ variable (II) (hII : ∀ W : Ideal (MRing (PBlk 2)), IsArithVar W 1 → 0 ≤ II
 end Plane
 
 end Origin
-
-section Comparison₂
-
-variable {Y : Model Xo c β} {S₀ : Finset ℕ} {Dc : ComponentData II (CMType H) K J Ω W} {Hd : HodgeData Dc}
-  (Or : CptOrigin Y S₀ Dc Hd) {T T' : Set ((Σ k, J k) → ℂ)} {O' Lt : Type} [CommRing O'] [AddCommGroup Lt]
-  [Module O' Lt]
-
-variable {Or}
-
-end Comparison₂
 
 end GlobalTheory.CompanionTheory.Ar

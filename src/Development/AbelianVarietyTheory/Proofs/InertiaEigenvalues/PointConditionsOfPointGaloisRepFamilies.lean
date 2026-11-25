@@ -5,18 +5,6 @@ public import Formalism.SharpRestriction.LevelLetterCocycles.JointConditionsZpow
 public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsRhoPtOfSplitting
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.T2SpaceCoefficientRing
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -31,9 +19,9 @@ theorem sum_single_jumps {M : Type} [AddCommMonoid M] [One M] (t : ℕ) (a : ℤ
   split_ifs with h
   · obtain ⟨n, rfl⟩ := Int.eq_ofNat_of_zero_le h.1
     rw [Finset.sum_eq_single (n + 1)]
-    · rw [if_pos (by push_cast; ring)]
+    · rw [ite_eq_left (by push_cast; ring)]
     · intro c _ hne
-      rw [if_neg]
+      rw [ite_eq_right]
       omega
     · intro hn
       exfalso
@@ -43,7 +31,7 @@ theorem sum_single_jumps {M : Type} [AddCommMonoid M] [One M] (t : ℕ) (a : ℤ
   · apply Finset.sum_eq_zero
     intro c hc
     rw [Finset.mem_Icc] at hc
-    rw [if_neg]
+    rw [ite_eq_right]
     omega
 
 theorem isSSRep_rhoChiK (D : D7) (i : D.nd.Loc) (ρ : GE D.nd →* GL (Fin D.R.r) (D.nd.O i))

@@ -7,6 +7,30 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SplitEm
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ConjPrincipalFractionalIntegralIdempotentSum
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsEqMulOfResSNeOne
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.TameHeckeIntegralUnitsEqResidueCharProduct
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -20,6 +44,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ConjTupRefl
 import Development.AbelianVarietyTheory.Definitions.ThetaValues.ExistsRootNotMem
 import Formalism.LocalToGlobal.IndefiniteReal.ExistsChosenExtremalVector
@@ -90,7 +116,7 @@ theorem integral_div_iff : ∀ (D : D7) (Q : Finset (Pl D.host.E)) (es : Pl D.ho
       calc es P * incA D (ϖ P : D.host.E) * (es P' * incA D ((ϖ P' : D.host.E))⁻¹)
             = (es P * es P') * incA D ((ϖ P : D.host.E) * (ϖ P' : D.host.E)⁻¹) := by
               rw [map_mul]; ring
-          _ = 0 := by rw [hmul P hP P' hP', if_neg (Ne.symm hne), zero_mul]
+          _ = 0 := by rw [hmul P hP P' hP', ite_eq_right (Ne.symm hne), zero_mul]
     · intro h; exact absurd hP h
   have hoToS : ∀ x : 𝓞 D.host.E,
       ((oToS D.host.F D.host.E x : Formalism.L2.Herm.intAf D.host.F D.host.E) : EAf D) =
@@ -115,7 +141,7 @@ theorem integral_div_iff : ∀ (D : D7) (Q : Finset (Pl D.host.E)) (es : Pl D.ho
         push_cast
         apply Finset.sum_congr rfl
         intro P hP
-        simp only [eI, dif_pos hP, map_mul, hoToS]
+        simp only [eI, dite_eq_left hP, map_mul, hoToS]
       show N = ((∑ P ∈ Q, eI P * oToS D.host.F D.host.E (ϖ P) :
           Formalism.L2.Herm.intAf D.host.F D.host.E) : EAf D) * M
       rw [hs, hMdef, ← mul_assoc, ← map_mul, hpp, hfix]
@@ -126,7 +152,7 @@ theorem integral_div_iff : ∀ (D : D7) (Q : Finset (Pl D.host.E)) (es : Pl D.ho
       exact Ideal.mul_mem_left _ _ (Ideal.mem_map_of_mem _ (hϖ P hP).1)
     · refine Ideal.mul_mem_right _ _ ?_
       refine (_root_.Formalism.L2.DIV.resS_eq_zero_iff (F := D.host.F) (E := D.host.E) PP _).mp ?_
-      simp only [eI, dif_pos hP]
+      simp only [eI, dite_eq_left hP]
       exact GlobalTheory.TameProd.resS_idem_eq_zero (hid P hP) hPe _
   · intro hres
 

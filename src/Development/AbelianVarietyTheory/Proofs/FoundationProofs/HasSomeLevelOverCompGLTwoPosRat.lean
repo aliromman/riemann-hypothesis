@@ -12,7 +12,36 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.QExpansionCo
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ModularDiscriminantDivQIntegerQExpansions
 public import ReciprocityTheory.ReductiveGroups.UnramifiedIntegrals.ModBasic
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.CmpProps
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -26,6 +55,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.Divisors.ZetaActRefl
 import Mathlib.Geometry.Manifold.StructureGroupoid
@@ -209,9 +241,9 @@ theorem hermite (g : GQ) : ∃ n : ℕ, 0 < n ∧ ∀ γ₀ : SL(2, ℤ), ∃ (�
   have hps : p * s - q * r = nI := by
     rw [hp_def, hr_def, hq_def, hs_def, hnI]; linear_combination (m 0 0 * m 1 1 - m 0 1 * m 1 0) * hdet0
   have hpr : p ≠ 0 ∨ r ≠ 0 := by
-    by_contra h; push_neg at h; rw [h.1, h.2] at hps; omega
+    by_contra h; push Not at h; rw [h.1, h.2] at hps; omega
   have hrs : r ≠ 0 ∨ s ≠ 0 := by
-    by_contra h; push_neg at h; rw [h.1, h.2] at hps; omega
+    by_contra h; push Not at h; rw [h.1, h.2] at hps; omega
   set a : ℕ := Int.gcd p r with ha_def
   have ha : 0 < a := Int.gcd_pos_iff.mpr hpr
   set p' : ℤ := p / a
@@ -247,7 +279,7 @@ theorem hermite (g : GQ) : ∃ n : ℕ, 0 < n ∧ ∀ γ₀ : SL(2, ℤ), ∃ (�
       rw [this]; push_cast; rfl
     have hD0 : ((γ₀ 1 0 : ℤ) : ℂ) * τ + ((γ₀ 1 1 : ℤ) : ℂ) ≠ 0 := by
       apply lin_ne_zero _ _ _ hz
-      by_contra h; push_neg at h; rw [h.1, h.2] at hdet0; simp at hdet0
+      by_contra h; push Not at h; rw [h.1, h.2] at hdet0; simp at hdet0
     have hRS : (r : ℂ) * τ + s ≠ 0 := lin_ne_zero r s _ hz hrs
     have hpC : (p : ℂ) = a * p' := by exact_mod_cast hp
     have hrC : (r : ℂ) = a * r' := by exact_mod_cast hr
@@ -312,7 +344,7 @@ theorem qAll_affine : ∀ (E : Subring ℂ) (N a d : ℕ) (b : ℤ) (f : ℍ →
     · show HasSum (fun k => _) (f _)
       convert hτ using 1
       funext k
-      simp only [Function.comp_apply, dvd_mul_right, if_true, Nat.mul_div_cancel_left _ ha, e]
+      simp only [Function.comp_apply, dvd_mul_right, ite_true, Nat.mul_div_cancel_left _ ha, e]
       rw [mul_assoc, ← Complex.exp_add]
       congr 2
       push_cast
@@ -325,9 +357,9 @@ theorem qAll_affine : ∀ (E : Subring ℂ) (N a d : ℕ) (b : ℤ) (f : ℍ →
       simp [this]
   · intro m
     by_cases h : a ∣ m
-    · simp only [h, if_true]
+    · simp only [h, ite_true]
       exact E.mul_mem (hcE _) (hE _)
-    · simp only [h, if_false]; exact E.zero_mem
+    · simp only [h, ite_false]; exact E.zero_mem
 
 end GlobalTheory.FNQ
 end -- clump:auto

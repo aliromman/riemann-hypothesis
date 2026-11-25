@@ -19,6 +19,32 @@ public import Mathlib.NumberTheory.NumberField.InfinitePlace.TotallyRealComplex
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsIsKum
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.HerbrandPrimeOrder
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.PowsSubgroupOfSelfSPow
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -31,10 +57,16 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Algebra.Order.Star.Int
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
 import Std.Tactic.BVDecide.Normalize.Prop
 
@@ -151,7 +183,7 @@ theorem exists_uniformizer_lt_one (E : Type) [Field E] [NumberField E]
     (fun v => if v.1 = w then π else 0)
   have h1 : w.intValuation y = WithZero.exp (-1) := by
     have h2 := hy w hw
-    simp only [if_true] at h2
+    simp only [ite_true] at h2
     rw [← HeightOneSpectrum.intValuation_le_pow_iff_mem] at h2
     have h3 : w.intValuation (y - π) < w.intValuation π := by
       rw [hπ]
@@ -164,7 +196,7 @@ theorem exists_uniformizer_lt_one (E : Type) [Field E] [NumberField E]
   · rw [hww, h1, ← WithZero.exp_zero]
     exact WithZero.exp_lt_exp.2 (by norm_num)
   · have h2 := hy w' hw'
-    simp only [if_neg hww, sub_zero] at h2
+    simp only [ite_eq_right hww, sub_zero] at h2
     rw [← HeightOneSpectrum.intValuation_le_pow_iff_mem] at h2
     rw [← WithZero.exp_zero]
     exact h2.trans_lt (WithZero.exp_lt_exp.2 (by norm_num))
@@ -457,9 +489,9 @@ theorem prime_mul_card_le_card_over : ∀ (p : ℕ) (F E : Type) [Field F] [Numb
   · obtain ⟨w, hw⟩ := (places_over F E).2.1 v
     have : 0 < (SE.filter (fun w => w.under (𝓞 F) = v)).card :=
       Finset.card_pos.2 ⟨w, Finset.mem_filter.2 ⟨(hSE w).2 (hw ▸ hv), hw⟩⟩
-    rw [if_pos hs]
+    rw [ite_eq_left hs]
     omega
-  · rw [if_neg hs]
+  · rw [ite_eq_right hs]
     push Not at hs
     obtain ⟨r, hr⟩ := hs
     have hδ : δ ≠ 0 := fun h0 => hq.nonpow 0 (by rw [h0, zero_pow hp.ne_zero])

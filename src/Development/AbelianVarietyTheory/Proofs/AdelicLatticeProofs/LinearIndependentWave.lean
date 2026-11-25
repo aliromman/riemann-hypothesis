@@ -3,9 +3,37 @@ module
 public import Mathlib.Basic.Complex.Basic
 public import Mathlib.GroupTheory.Coset.Defs
 public import Mathlib.LinearAlgebra.LinearIndependent.Defs
-import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -19,6 +47,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 public import Mathlib.LinearAlgebra.Basis.Basic
 public import Mathlib.LinearAlgebra.Basis.VectorSpace
 
@@ -52,8 +83,8 @@ variable {χ : G → G → ℂ} {X Y L L' : AddSubgroup G}
 theorem ind_add (L : AddSubgroup G) (t : G) {u : G} (hu : u ∈ L) : ind L (t + u) = ind L t := by
   unfold ind
   by_cases ht : t ∈ L
-  · rw [if_pos ht, if_pos ((L.add_mem_cancel_right hu).mpr ht)]
-  · rw [if_neg ht, if_neg fun h' => ht ((L.add_mem_cancel_right hu).mp h')]
+  · rw [ite_eq_left ht, ite_eq_left ((L.add_mem_cancel_right hu).mpr ht)]
+  · rw [ite_eq_right ht, ite_eq_right fun h' => ht ((L.add_mem_cancel_right hu).mp h')]
 
 theorem IsBichar.neg_mul (h : IsBichar χ) (x y : G) : χ (-x) y * χ x y = 1 := by
   rw [← h.left, neg_add_cancel, h.zero_left]
@@ -119,7 +150,7 @@ theorem linearIndependent_wave (h : IsBichar χ) (hY : ∀ y ∈ Y, (∀ u ∈ L
     by_cases hb : b = a
     · subst hb
       simp [ind, hu]
-    · rw [if_neg hb]
+    · rw [ite_eq_right hb]
       have hn : u - ((a.out : X) : G) + ((b.out : X) : G) ∉ L := by
         intro hm
         apply hb
@@ -140,12 +171,12 @@ theorem linearIndependent_wave (h : IsBichar χ) (hY : ∀ y ∈ Y, (∀ u ∈ L
       refine (Finset.sum_congr rfl fun i _ => ?_).trans e
       rw [hsupp i.1 _ _ (Multiplicative.toAdd u).2]
       by_cases h1 : i.1 = a
-      · rw [if_pos h1, if_pos h1]
+      · rw [ite_eq_left h1, ite_eq_left h1]
         obtain ⟨i1, i2⟩ := i
         simp only at h1
         subst h1
         rfl
-      · rw [if_neg h1, if_neg h1, mul_zero]
+      · rw [ite_eq_right h1, ite_eq_right h1, mul_zero]
     · simp only [Finset.coe_filter, Set.mem_ofPred_eq] at hi hj
       exact Prod.ext (hi.2.trans hj.2.symm) hij
   exact hind T (fun d => g (a, d)) hrel c
@@ -330,12 +361,12 @@ theorem mem_of_finite_cosets {K : AddSubgroup G} (hK : ind K ∈ waveSpan χ X Y
           if t + -(s + u0) ∈ K then 0 else Φ t := by
         intro t
         by_cases ht : t + -(s + u0) ∈ K
-        · rw [if_pos ht, hconst t ht]
+        · rw [ite_eq_left ht, hconst t ht]
           unfold ind
-          rw [if_pos ht, mul_one, sub_self]
-        · rw [if_neg ht]
+          rw [ite_eq_left ht, mul_one, sub_self]
+        · rw [ite_eq_right ht]
           unfold ind
-          rw [if_neg ht, mul_zero, sub_zero]
+          rw [ite_eq_right ht, mul_zero, sub_zero]
       have hΨ : (fun t => Φ t - Φ (s + u0) * ind K (t + -(s + u0))) ∈ waveSpan χ X Y L := by
         refine ih _ ?_ ?_ ?_
         · intro t ht
@@ -453,7 +484,7 @@ theorem exists_intertwiner {V : Type} [AddCommGroup V] [Module ℂ V] (h : IsBic
       have hex : ∃ s, k • s = r := ⟨t - u, by rw [smul_sub, hku, add_sub_cancel_right]⟩
       have hσ : σ r = t - u := by
         apply tf k hk
-        simp only [σ, dif_pos hex]
+        simp only [σ, dite_eq_left hex]
         rw [hex.choose_spec, smul_sub, hku, add_sub_cancel_right]
       obtain ⟨r', hr', u', hu', rfl⟩ := hcov u hu
       refine ⟨σ r + r', Finset.mem_image.mpr ⟨(r, r'), ?_, rfl⟩, k • u',

@@ -17,18 +17,6 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MemSpan
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NonemptyThetaOnBdRPlusPeriodData
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsFinExt
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IdemNotMemFilVOne
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -159,7 +147,7 @@ theorem sum_conv {ι ι' : Type} [Fintype ι] [Fintype ι'] (k : ι → ℤ) (k'
   rw [Finset.sum_comm, Fintype.sum_prod_type]
   refine Finset.sum_congr rfl fun i _ => ?_
   simp only [ite_mul, one_mul, zero_mul]
-  rw [Finset.sum_ite_eq, if_pos (hS i)]
+  rw [Finset.sum_ite_eq, ite_eq_left (hS i)]
   exact Finset.sum_congr rfl fun j _ => if_congr (by omega) rfl rfl
 
 variable {l : ℕ} [Fact l.Prime] {P : LocPrime l} {AI : LocAinf l P} (T : LocTied l P AI)

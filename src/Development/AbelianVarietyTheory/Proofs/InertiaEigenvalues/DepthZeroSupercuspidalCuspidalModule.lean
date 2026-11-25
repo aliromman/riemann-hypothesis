@@ -8,19 +8,10 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsLocally
 import Mathlib.Algebra.Order.Star.Real
 import Mathlib.NumberTheory.Padics.ProperSpace
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Connected.Separation
 import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 import Std.Tactic.BVDecide.Normalize.Prop
@@ -270,9 +261,9 @@ theorem isCuspidal_repK {π : Representation ℂ (GL (Fin n) ℚ_[g]) V} (hπ : 
     simp only [FiniteGL.twoBlocks] at hij
     by_cases hi : (i : ℕ) < a
     · by_cases hj : (j : ℕ) < a
-      · rw [← a2, if_pos hj, mul_one, sub_self]
+      · rw [← a2, ite_eq_left hj, mul_one, sub_self]
       · simp [hi, hj] at hij
-    · rw [← a1, if_neg hi, zero_mul]
+    · rw [← a1, ite_eq_right hi, zero_mul]
   by_contra hne
   obtain ⟨l, hl⟩ := exists_dual_frequently (fun m => (twKer π (KOne g n) 1).mkQ (π (dd hP m) v)) fun m h =>
     hne (eq_zero_of_mem_twKer hπ.1 hP m v hv' ((Submodule.Quotient.mk_eq_zero _).1 h))

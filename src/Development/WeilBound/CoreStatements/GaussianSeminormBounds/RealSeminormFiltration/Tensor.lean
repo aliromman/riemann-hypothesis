@@ -1,7 +1,6 @@
 module
 
 public import Mathlib.Algebra.Algebra.Subalgebra.Basic
-import Mathlib.Analysis.Complex.Polynomial.Basic
 public import Mathlib.Basic.Complex.Basic
 public import Mathlib.LinearAlgebra.Dimension.Basic
 public import Mathlib.FieldTheory.IsAlgClosed.Spectrum
@@ -15,8 +14,37 @@ public import Mathlib.RingTheory.SimpleModule.Basic
 public import Mathlib.RingTheory.Algebraic.Defs
 public import Mathlib.LinearAlgebra.PiTensorProduct.Basis
 public import Mathlib.RingTheory.Algebraic.LinearIndependent
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
@@ -31,6 +59,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.RingTheory.Coalgebra.CoassocSimps
 import Std.Tactic.BVDecide.Normalize.Prop
 
@@ -62,7 +91,7 @@ private lemma spectrum_nonempty_of_countable_rank {V : Type} [AddCommGroup V] [_
     rw [Cardinal.mk_complex] at h1
     exact absurd (h1.trans hV) (not_le.mpr Cardinal.aleph0_lt_continuum)
   rw [linearIndependent_iff'] at hdep
-  push_neg at hdep
+  push Not at hdep
   obtain ⟨s, m, hm, i, hi, hmi⟩ := hdep
   let q : ℂ → ℂ[X] := fun a => ∏ j ∈ s.erase a, (X - C j)
   let p : ℂ[X] := ∑ a ∈ s, C (m a) * q a

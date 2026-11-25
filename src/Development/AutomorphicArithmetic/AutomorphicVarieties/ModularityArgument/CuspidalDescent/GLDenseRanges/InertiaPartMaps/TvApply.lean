@@ -1,7 +1,32 @@
 module
 
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.CuspidalDescent.GLDenseRanges.KirCusp
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -15,6 +40,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NonemptyEquivOfRangeEq
 import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.BaseChangeDefiniteUnitary
@@ -32,10 +60,7 @@ section Rank
 variable {R : Type} [CommRing R] {n : ℕ}
 
 private theorem vv_sq (y w : Fin n → R) : vecMulVec y w * vecMulVec y w = (w ⬝ᵥ y) • vecMulVec y w := by
-  ext a b
-  simp only [Matrix.mul_apply, Matrix.vecMulVec_apply, Matrix.smul_apply, smul_eq_mul, dotProduct]
-  rw [Finset.sum_mul]
-  refine Finset.sum_congr rfl (fun x _ => by ring)
+  rw [Matrix.vecMulVec_mul_vecMulVec, Matrix.vecMulVec_smul]
 
 private theorem tv_mul (y w : Fin n → R) (c : R) (h : c * (1 + w ⬝ᵥ y) = 1) :
     (1 + vecMulVec y w) * (1 - c • vecMulVec y w) = 1 := by
@@ -265,9 +290,9 @@ private theorem exists_mem_Kc_rows_unitriangular (p : GL (Fin n) k) (i : Fin n)
   have hdv : ∀ j, valuation k (d j) < 1 := by
     intro j
     by_cases hj : j ≤ i
-    · simp only [d, if_pos hj]
+    · simp only [d, ite_eq_left hj]
       exact hd j hj
-    · simp only [d, if_neg hj, map_zero]
+    · simp only [d, ite_eq_right hj, map_zero]
       exact zero_lt_one
   have hint : ∀ j, d j ∈ 𝒪[k] := fun j => (Valuation.mem_integer_iff _ _).2 (hdv j).le
   have hI := Valuation.integer.integers (valuation k)
@@ -380,9 +405,9 @@ private theorem descent {W : Type} [AddCommGroup W] [Module ℂ W] (τ : Represe
           rw [Pi.single_apply]
           rcases eq_or_ne i j with h | h
           · subst h
-            simp only [Matrix.one_apply_eq, if_true]
+            simp only [Matrix.one_apply_eq, ite_true]
             ring
-          · simp only [h, Matrix.one_apply_ne h, if_false]
+          · simp only [h, Matrix.one_apply_ne h, ite_false]
             ring
         rw [e, AddChar.map_sub_eq_div, hs s, div_self']
       have h3 := lev_lt ψ hψ _ h2

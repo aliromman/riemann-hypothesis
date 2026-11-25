@@ -3,18 +3,6 @@ module
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ContinuousComplEquivSymm
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ZetaIdentityTransportLocalFieldIso
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -35,7 +23,7 @@ theorem latCorr_blockLat : ∀ {k k' : Type} [Field k] [ValuativeRel k] [Topolog
     intro c
     by_cases hc : c ∈ P₂
     · have hc' : cD c ∈ P := (hP c).1 hc
-      simp only [blockUnits, if_pos hc, if_pos hc', Units.val_inv_eq_inv_val, Units.val_pow_eq_pow_val, map_inv₀,
+      simp only [blockUnits, ite_eq_left hc, ite_eq_left hc', Units.val_inv_eq_inv_val, Units.val_pow_eq_pow_val, map_inv₀,
         map_pow, hu]
     · have hc' : cD c ∉ P := fun h => hc ((hP c).2 h)
       simp [blockUnits, hc, hc']

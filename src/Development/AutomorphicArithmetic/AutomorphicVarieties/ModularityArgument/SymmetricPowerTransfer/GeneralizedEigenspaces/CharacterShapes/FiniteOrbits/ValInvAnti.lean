@@ -6,6 +6,30 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityA
 public import Mathlib.Algebra.DirectSum.LinearMap
 public import Mathlib.LinearAlgebra.Eigenspace.Pi
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.TraceFormulaEigenvalues.TraceFibreCardinality.EigVec
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -19,10 +43,17 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
 import Mathlib.Order.CompletePartialOrder
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
 import Mathlib.Topology.Sheaves.Presheaf
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -39,12 +70,6 @@ open NumberField IsDedekindDomain ValuativeRel GlobalTheory.PRep GlobalTheory.Sm
 open UpperTheory.V.Z.Sym UpperTheory.V.Z.Sym.Loc UpperTheory.V.Z.Sym.Glob UpperTheory.V.Z.Sym.Sig UpperTheory.V.Z.Sym.So
 
 namespace UpperTheory.V.Z.Sym.So.CS
-
-section One
-
-variable {G : Type} [CommGroup G]
-
-end One
 
 section Main
 
@@ -80,12 +105,6 @@ end X
 end D
 
 end Main
-
-section Ord
-
-variable (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
-
-end Ord
 
 end UpperTheory.V.Z.Sym.So.CS
 
@@ -457,7 +476,7 @@ theorem UpperTheory.V.Z.Sym.So.charShape :
           have e : L v = z0 v * y ⟨v, hv⟩ / (rep ⟨v, hv⟩ (z0 v * y ⟨v, hv⟩) *
               sq ⟨v, hv⟩ (z0 v * y ⟨v, hv⟩) ^ 2) := by
             rw [hL]
-            simp only [Pi.mul_apply, Pi.inv_apply, hhat, hSq, dif_pos hv, hφ]
+            simp only [Pi.mul_apply, Pi.inv_apply, hhat, hSq, dite_eq_left hv, hφ]
             ext
             push_cast
             field_simp
@@ -770,18 +789,18 @@ theorem UpperTheory.V.Z.Sym.Tf.trTheta :
       · intro ψ
         by_cases h : ψ = χ
         · subst h
-          rw [if_pos rfl]
+          rw [ite_eq_left rfl]
           exact nfix ψ hfix
-        · rw [if_neg h]
+        · rw [ite_eq_right h]
           exact fun e => h e.symm
       · intro ψ x hx
         by_cases h : ψ = χ
         · subst h
-          rw [if_pos rfl]
+          rw [ite_eq_left rfl]
           show u a (Θ (P ψ x)) ∈ V _
           rw [hP1 ψ x hx]
           exact uV a _ _ (ΘV ψ _ (fun b => rfl) x hx)
-        · rw [if_neg h]
+        · rw [ite_eq_right h]
           show u a (Θ (P χ x)) ∈ V χ
           rw [hP2 χ ψ h x hx, map_zero, map_zero]
           exact zero_mem _
@@ -866,7 +885,7 @@ theorem UpperTheory.V.Z.Sym.So.gSpec :
     fun χ hχ => (Tf.eigVec _ ↥B.Forms uΛ hcomm χ).1 (hX χ hχ).1
   let ext : ({d : ParN F 3 // A.DomS d} → ℂ) → ParN F 3 → ℂ :=
     fun χ d => if h : A.DomS d then χ ⟨d, h⟩ else 0
-  have hext : ∀ χ (d : ParN F 3) (h : A.DomS d), ext χ d = χ ⟨d, h⟩ := fun χ d h => dif_pos h
+  have hext : ∀ χ (d : ParN F 3) (h : A.DomS d), ext χ d = χ ⟨d, h⟩ := fun χ d h => dite_eq_left h
   have hlevdom : ∀ d : ParN F 3, (∀ v ∈ A.Sg, ∀ i, d v i ∈ (A.V v).H) → A.DomS d := by
     intro d hd v hv
     exact dom_of_val (fun i => (A.V v).H_le (hd v hv i))
@@ -914,7 +933,7 @@ theorem UpperTheory.V.Z.Sym.So.gSpec :
       have hyv : y ⟨v, hv⟩ ∈ A.Ry v := Fintype.mem_piFinset.1 hy ⟨v, hv⟩
       have hr := (hA.ry v hv).1 _ hyv
       show Dom ![t v * (unif (Kv v))⁻¹, if h : v ∈ A.Sg then y ⟨v, h⟩ else 1, (unif (Kv v))⁻¹]
-      rw [dif_pos hv]
+      rw [dite_eq_left hv]
       exact dom_cone (ht v hv) hr.1 hr.2
 
     rw [hO.tr t ht, map_sum]

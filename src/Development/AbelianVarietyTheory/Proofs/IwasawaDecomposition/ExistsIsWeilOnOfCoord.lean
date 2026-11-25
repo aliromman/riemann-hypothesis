@@ -6,6 +6,28 @@ public import Development.AbelianVarietyTheory.Counterexamples.HeightSurvey.Exis
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsOpenKer
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SumEqTraceOriented
 import Formalism.LocalToGlobal.BesselHermitianTheta.LemmasWeil
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -20,6 +42,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -254,7 +277,7 @@ theorem weilCoreEx_of_datum : ∀ D : D7, (∀ (ψ : AddChar (AF D.host.F) ℂ),
         (fun g h x => (GlobalTheory.OrientedSmall.bridgeSmall D V W hr.le).2 g h x) (fun _ a _ b => ⟨a, b⟩)
         fun e g h hg hh x y hx hy => ⟨x, y, hg, hh, hx, hy, ?_⟩
       unfold splitFacO splitFac
-      rw [if_pos hr.le]
+      rw [ite_eq_left hr.le]
     · obtain ⟨om, H⟩ := hO ψ hψ W V χ' χ h2.1 h1.1 h4 h3
       refine exists_isWeilOn_of_coord (isCoord_large W V hr) H ((MonoidHom.snd _ _).prod (MonoidHom.fst _ _)) continuous_swap
         (fun g h x => ?_) (fun _ a _ b => ⟨b, a⟩) fun e g h hg hh x y hx hy => ⟨y, x, hh, hg, hy, hx, ?_⟩
@@ -262,7 +285,7 @@ theorem weilCoreEx_of_datum : ∀ D : D7, (∀ (ψ : AddChar (AF D.host.F) ℂ),
         have e2 := actHom_swap V W hne g h (mulGramInv W V x)
         exact Matrix.transpose_injective (e1.trans e2)
       · unfold splitFacO splitFac
-        rw [if_neg (not_le.2 hr), mul_comm]
+        rw [ite_eq_right (not_le.2 hr), mul_comm]
   choose om hom using key
   exact ⟨⟨om, hom⟩⟩
 

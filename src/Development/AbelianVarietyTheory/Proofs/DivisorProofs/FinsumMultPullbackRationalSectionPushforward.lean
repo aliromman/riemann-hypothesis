@@ -15,6 +15,29 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RationalSect
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoheightOneIffPointClosureDimProjArith
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.PointClosureDimLeAndResidueDegreeNeZeroIff
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TopologicalKrullDimAddOneLeOfSsubset
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -249,7 +272,7 @@ theorem sum_ord_fnMap {X Y : Scheme.{0}} [IsIntegral X] [IsIntegral Y] [IsLocall
       have hw' : w ∈ g ⁻¹ᵁ V := by
         show g w ∈ V
         rw [show g w = z from hw]; exact hzV
-      simp only [Set.mem_setOf_eq, dif_pos hw']
+      simp only [Set.mem_setOf_eq, dite_eq_left hw']
       exact (comap_primeIdealOf g hV hU w hw').trans
         (congrArg (fun x => (hV.primeIdealOf x).asIdeal) (Subtype.ext hw))
     · intro w₁ hw₁ w₂ hw₂ h
@@ -259,7 +282,7 @@ theorem sum_ord_fnMap {X Y : Scheme.{0}} [IsIntegral X] [IsIntegral Y] [IsLocall
       have h₂ : w₂ ∈ g ⁻¹ᵁ V := by
         show g w₂ ∈ V
         rw [show g w₂ = z from hw₂]; exact hzV
-      simp only [dif_pos h₁, dif_pos h₂] at h
+      simp only [dite_eq_left h₁, dite_eq_left h₂] at h
       have e₁ := hU.fromSpec_primeIdealOf ⟨w₁, h₁⟩
       have e₂ := hU.fromSpec_primeIdealOf ⟨w₂, h₂⟩
       rw [h] at e₁
@@ -279,14 +302,14 @@ theorem sum_ord_fnMap {X Y : Scheme.{0}} [IsIntegral X] [IsIntegral Y] [IsLocall
         rw [c2] at d1
         exact d1.symm.trans d2
       refine ⟨hU.fromSpec Q, hgw, ?_⟩
-      simp only [dif_pos hQU]
+      simp only [dite_eq_left hQU]
       exact hQ'
     · intro w hw
       have hw' : w ∈ g ⁻¹ᵁ V := by
         show g w ∈ V
         rw [show g w = z from hw]; exact hzV
       have hd : (if hw : w ∈ g ⁻¹ᵁ V then hU.primeIdealOf ⟨w, hw⟩ else hU.primeIdealOf ⟨_, hηU⟩) =
-          hU.primeIdealOf ⟨w, hw'⟩ := dif_pos hw'
+          hU.primeIdealOf ⟨w, hw'⟩ := dite_eq_left hw'
       beta_reduce
       rw [hd, fnMap_germ, ord_germ_eq Y (g ⁻¹ᵁ V) hU w hw' (hcod w hw) _ ha',
         _root_.GlobalTheory.ResidueDegreeChart.residueDegree_eq_inertiaDeg X Y g V hV hU w hw']

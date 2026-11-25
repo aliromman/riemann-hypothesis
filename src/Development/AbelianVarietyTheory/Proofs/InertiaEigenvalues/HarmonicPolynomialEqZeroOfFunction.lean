@@ -4,18 +4,6 @@ public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Tran
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FsubMinorMinus
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FockPolynomialActionOneMulAdjoint
 public import Formalism.LocalToGlobal.Columns.FockNormSubstitutionBound
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.BitVec
 import Std.Tactic.BVDecide.Normalize.Prop
 public import Formalism.LocalToGlobal.Columns.CoefficientMapHeightBound
@@ -36,12 +24,12 @@ theorem fockSubst_eq_fsub {D : D7} {m n : ℕ} (p : D.what₂.Tau → ℕ) (u : 
   refine MvPolynomial.algHom_ext fun v => ?_
   rw [fockSubst, fsub, MvPolynomial.aeval_X, MvPolynomial.aeval_X]
   by_cases h : v.2.1.val < p v.1
-  · rw [if_pos h, Finset.sum_eq_single v.2.1]
+  · rw [ite_eq_left h, Finset.sum_eq_single v.2.1]
     · simp [sgnOf, h, Matrix.coe_units_inv]
     · intro a _ ha
       simp [sgnOf, h, Matrix.one_apply_ne ha]
     · simp
-  · rw [if_neg h, Finset.sum_eq_single v.2.1]
+  · rw [ite_eq_right h, Finset.sum_eq_single v.2.1]
     · simp [sgnOf, h]
     · intro a _ ha
       simp [sgnOf, h, Matrix.one_apply_ne (Ne.symm ha)]

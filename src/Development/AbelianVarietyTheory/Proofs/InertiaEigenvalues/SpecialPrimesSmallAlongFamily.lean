@@ -3,18 +3,6 @@ module
 public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.BoundAtTwoThreeFamily
 public import Formalism.SharpRestriction.LevelLetterCocycles.NEqRZeroMulXPow
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 public import Formalism.SharpRestriction.LevelLetterCocycles.MemPrimesOverOfMem
 
 @[expose] public section
@@ -73,9 +61,9 @@ theorem not_inert_three {D : D7} (h : 3 ≤ D.host.splitBound) : ¬ TwistedPlace
   unfold TwistedPlaces.InertK
   simp only [Host.cls, primeClass]
   by_cases h3 : 3 ∈ D.host.small
-  · rw [if_pos h3]
+  · rw [ite_eq_left h3]
     simp
-  · rw [if_neg h3, if_neg hq, if_neg hd, if_pos hj]
+  · rw [ite_eq_right h3, ite_eq_right hq, ite_eq_right hd, ite_eq_left hj]
     simp
 
 

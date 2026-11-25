@@ -15,25 +15,10 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisCocha
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisCochains.PtTail
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisCochains.TameEq
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
 import Development.AutomorphicArithmetic.AutomorphicVarieties.FrobeniusSmoothVectors.ContinuousCoboundaries2
 import Mathlib.Topology.Connected.Separation
-import Mathlib.Topology.Separation.CompletelyRegular
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.FieldTheory.Galois.Profinite
-import Mathlib.Topology.Algebra.ProperAction.Basic
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisCochains.GlobEuler, Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisCochains.InflKer, Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisCochains.H2GaloisQuotientEq
@@ -410,9 +395,9 @@ theorem UpperTheory.V.GC.H2_galois_quotient_eq :
       A = fun v : S => A' v.1 := by
     refine ⟨fun v => if hv : v ∈ S then A ⟨v, hv⟩ else (exists_isPlaceOver Ω v).choose, fun v => ?_, funext fun v => ?_⟩
     · by_cases hv : v ∈ S
-      · simpa only [dif_pos hv] using hA ⟨v, hv⟩
-      · simpa only [dif_neg hv] using (exists_isPlaceOver Ω v).choose_spec
-    · simp only [dif_pos v.2]
+      · simpa only [dite_eq_left hv] using hA ⟨v, hv⟩
+      · simpa only [dite_eq_right hv] using (exists_isPlaceOver Ω v).choose_spec
+    · simp only [dite_eq_left v.2]
   obtain ⟨S', p, hSS, hp, hps, rfl, hker⟩ := levelS F Ω l S K Γ π h
   haveI hcl := isClosed_NS Ω (S' : Set (HeightOneSpectrum (𝓞 F)))
   haveI : TotallyDisconnectedSpace (GS Ω (S' : Set (HeightOneSpectrum (𝓞 F)))) :=

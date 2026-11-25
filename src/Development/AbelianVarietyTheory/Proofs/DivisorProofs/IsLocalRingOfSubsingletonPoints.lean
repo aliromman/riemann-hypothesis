@@ -18,9 +18,38 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsCocommOfSu
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.KerAppEqBialgHomKernelIdealOfIdempotents
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.KerIdealFinrankEqPowOfIdempotent
 public import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ValuationRingHenselianAndSmoothPointsLift
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -35,6 +64,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.EpsilonPairingZeta
 import Development.AbelianVarietyTheory.Definitions.Divisors.XiMulNu
 import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.IsCounitDerivationCounitComp
@@ -159,7 +191,7 @@ theorem exists_idempotent {O : Type} [CommRing O] [IsLocalRing O] {A : Type} [Co
         apply Multiset.prod_eq_zero
         refine Multiset.mem_map.2 ⟨x, Multiset.mem_filter.2 ⟨hx, hρ⟩, ?_⟩
         simp [hcx]
-      rw [if_pos (hcx.trans hρ), map_mul]
+      rw [ite_eq_left (hcx.trans hρ), map_mul]
       rw [hg0, mul_zero, zero_add] at h1
       exact h1
     · have hh0 : aeval (c a) h = 0 := by
@@ -167,7 +199,7 @@ theorem exists_idempotent {O : Type} [CommRing O] [IsLocalRing O] {A : Type} [Co
         apply Multiset.prod_eq_zero
         refine Multiset.mem_map.2 ⟨x, Multiset.mem_filter.2 ⟨hx, hρ⟩, ?_⟩
         simp [hcx]
-      rw [if_neg (show ¬ c a = ρ by rwa [hcx]), map_mul, hh0, mul_zero]
+      rw [ite_eq_right (show ¬ c a = ρ by rwa [hcx]), map_mul, hh0, mul_zero]
 
 end GlobalTheory.FiniteAlgIdem
 
@@ -236,8 +268,8 @@ theorem finite_and_idempotents {L : Type} [Field L] [IsAlgClosed L] {v : Valuati
     simp only [e, map_prod, hEc]
     by_cases hcc : c = c'
     · subst hcc
-      rw [if_pos rfl, Finset.prod_boole, if_pos (fun j _ => rfl)]
-    · rw [if_neg hcc, Finset.prod_boole, if_neg (fun hh => hcc (hsep c c' hh).symm)]
+      rw [ite_eq_left rfl, Finset.prod_boole, ite_eq_left (fun j _ => rfl)]
+    · rw [ite_eq_right hcc, Finset.prod_boole, ite_eq_right (fun hh => hcc (hsep c c' hh).symm)]
   have hei : ∀ c, IsIdempotentElem (e c) := fun c =>
     Finset.prod_induction _ IsIdempotentElem (fun _ _ ha hb => ha.mul hb)
       IsIdempotentElem.one (fun j _ => hEi _ _)
@@ -689,7 +721,7 @@ theorem counit_endo (n : ℕ) :
   simp_rw [map_smul, (he n).ptO]
   simp only [smul_eq_mul, mul_ite, mul_one, mul_zero]
   rw [Finset.sum_ite_eq']
-  simp only [Finset.mem_univ, if_true]
+  simp only [Finset.mem_univ, ite_true]
   have h := congrArg (fun x : G.A n →ₐ[O] O => x a) (sig_one (hpt := hpt) hw n)
   exact h
 
@@ -735,7 +767,7 @@ theorem comul_endo (H : HasIdem O) (n : ℕ) :
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun x _ => ?_
   rw [Finset.sum_ite_eq]
-  simp only [Finset.mem_univ, if_true]
+  simp only [Finset.mem_univ, ite_true]
   rw [sig_mul hw]
   congr 1
   exact (AlgHom.convMul_apply _ _ a).symm
@@ -752,7 +784,7 @@ theorem res_endo (H : HasIdem O) (n : ℕ) (a : G.A (n + 1)) :
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun c' _ => ?_
   rw [Finset.sum_ite_eq]
-  simp only [Finset.mem_univ, if_true]
+  simp only [Finset.mem_univ, ite_true]
   rw [sig_res hw]
   rfl
 
@@ -786,7 +818,7 @@ theorem exists_endo (H : HasIdem O) : ∃ u : G ⟶ G, u ≫ u = u ∧
     rw [endo_apply, map_sum]
     simp_rw [map_smul, (he n).pt, smul_ite, smul_zero]
     rw [Finset.sum_ite_eq']
-    simp only [Finset.mem_univ, if_true, Algebra.smul_def, mul_one]
+    simp only [Finset.mem_univ, ite_true, Algebra.smul_def, mul_one]
     exact DFunLike.congr_fun (ofId_comp_sig (hpt := hpt) hs hw n c) a
   · have h : ((uEnd s hpt hs hw he H).app n : G.A n →ₐ[O] G.A n) = endo s hpt he n := rfl
     rw [h]

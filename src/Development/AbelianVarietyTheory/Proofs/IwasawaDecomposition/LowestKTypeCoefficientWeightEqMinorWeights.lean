@@ -5,6 +5,30 @@ public import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries
 public import Development.AbelianVarietyTheory.Counterexamples.RotationExamples.OneLeAPlLast
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ThetaWeightArithmeticAtPlaceProofStatement
 public import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.HolomorphicDiscreteSeries
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -17,6 +41,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -67,7 +92,7 @@ theorem weights_of_minors : ∀ (D : D7) (i : Fin D.R.m) (σ : D.what₂.LL →+
         exact_mod_cast this
       rw [h2]
       unfold wtK
-      rw [if_pos (by simp)]
+      rw [ite_eq_left (by simp)]
       simp
     · have h1 := A.kap_minus c
       rw [hsq, eS, he] at h1
@@ -78,7 +103,7 @@ theorem weights_of_minors : ∀ (D : D7) (i : Fin D.R.m) (σ : D.what₂.LL →+
         exact_mod_cast this
       rw [h2]
       unfold wtK
-      rw [if_neg (by simp)]
+      rw [ite_eq_right (by simp)]
       have h3 : (Wc D i).rank - 1 - ((Fin.cast hn (finSumFinEquiv (Sum.inr c)) : Fin (Wc D i).rank) : ℕ) =
           qS D i τ - 1 - c := by
         simp only [finSumFinEquiv_apply_right, Fin.val_cast, Fin.val_natAdd]
@@ -97,13 +122,13 @@ theorem weights_of_minors : ∀ (D : D7) (i : Fin D.R.m) (σ : D.what₂.LL →+
     simp only [pS, qS] at hpq ⊢
     by_cases c1 : (j : ℕ) < ((Wc D i).sig (tauE D τ)).1
     · have ht := D.R.three_m_lt_t
-      rw [if_pos c1, if_pos c1, if_neg (by omega)]
+      rw [ite_eq_left c1, ite_eq_left c1, ite_eq_right (by omega)]
       ring
-    · rw [if_neg c1, if_neg c1]
+    · rw [ite_eq_right c1, ite_eq_right c1]
       by_cases c2 : (j : ℕ) < ((Wc D i).sig (tauE D τ)).1 + D.R.t
-      · rw [if_pos c2, if_neg (by omega)]
+      · rw [ite_eq_left c2, ite_eq_right (by omega)]
         ring
-      · rw [if_neg c2, if_pos (by omega)]
+      · rw [ite_eq_right c2, ite_eq_left (by omega)]
         have h3 : (Vc D i).rank - 1 - (j : ℕ) = ((Wc D i).sig (tauE D τ)).2 - 1 - (j - (((Wc D i).sig (tauE D τ)).1 + D.R.t)) := by
           omega
         rw [h3]

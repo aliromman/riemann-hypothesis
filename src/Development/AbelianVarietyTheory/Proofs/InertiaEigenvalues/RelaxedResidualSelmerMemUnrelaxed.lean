@@ -3,18 +3,6 @@ module
 public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsDualDualRep
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsPlaceOverMoveValCc
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.ContinuousCycMod
 
 @[expose] public section
@@ -97,16 +85,16 @@ theorem unrelax : ∀ (D : Formalism.BasicNotions.D7) (N : NData D.R D.host D.wh
   have hv := (mem_Sel _ _ _ _ _).1 hx v
   unfold Formalism.GaloisCohomology.bkCond at hv ⊢
   by_cases h1 : ((X.l i : ℕ) : 𝓞 D.host.E) ∈ v.asIdeal
-  · rw [if_pos h1] at hv ⊢
+  · rw [ite_eq_left h1] at hv ⊢
     exact hv
-  rw [if_neg h1] at hv ⊢
+  rw [ite_eq_right h1] at hv ⊢
   by_cases h2 : v ∈ Spl i
-  · rw [if_pos (Set.mem_union_left _ h2)]
+  · rw [ite_eq_left (Set.mem_union_left _ h2)]
     exact Submodule.mem_top
-  rw [if_neg (by simpa using h2)]
+  rw [ite_eq_right (by simpa using h2)]
   by_cases h3 : v ∈ Q
   swap
-  · rw [if_neg (by simp [h2, h3])] at hv
+  · rw [ite_eq_right (by simp [h2, h3])] at hv
     exact hv
   obtain ⟨q, hq⟩ := (hQ v).1 h3
   rcases q with a | a

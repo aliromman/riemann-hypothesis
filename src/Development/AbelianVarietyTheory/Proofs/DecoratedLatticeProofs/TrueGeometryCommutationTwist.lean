@@ -4,6 +4,30 @@ public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.Mem
 public import Formalism.LocalToGlobal.IndefiniteReal.RealSeparation.SignsG
 import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.NcardPrimesOverOfSplitsCompl
 public import Formalism.SharpRestriction.CuspSpanNormBounds.StandingHypothesesHoldFamily
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -16,6 +40,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 public import Development.AbelianVarietyTheory.Definitions.LatticeFrames.CxTiesOf
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsOneComb
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsOpenKerUnramMulTame
@@ -60,8 +86,8 @@ theorem edgeSum_elem (Ed : Fin r → Fin r → Prop) [DecidableRel Ed] (hE : ∀
   have h1 : ∀ a b, (if Ed a b then (elem h u).val a b else 0) = if i = a then (if j = b then u else 0) else 0 := fun a b => by
     rw [elem_apply]
     by_cases h2 : Ed a b
-    · rw [if_pos h2, one_apply_ne fun e => hE a (by rwa [← e] at h2), zero_add, ite_and]
-    · rw [if_neg h2, ← ite_and, if_neg]
+    · rw [ite_eq_left h2, one_apply_ne fun e => hE a (by rwa [← e] at h2), zero_add, ite_and]
+    · rw [ite_eq_right h2, ← ite_and, ite_eq_right]
       rintro ⟨rfl, rfl⟩
       exact h2 hij
   unfold edgeSum
@@ -72,13 +98,13 @@ theorem elem_mem_unipCol {i j : Fin r} (h : i ≠ j) (hij : i.val < j.val) (u : 
     elem h u ∈ unipCol κ r a c := by
   refine ⟨⟨fun x y hxy => ?_, fun x => ?_⟩, fun x y h1 h2 h3 => ?_⟩
   · have hxy' : y.val < x.val := hxy
-    rw [elem_apply, one_apply_ne (fun e => by rw [e] at hxy'; omega), if_neg, add_zero]
+    rw [elem_apply, one_apply_ne (fun e => by rw [e] at hxy'; omega), ite_eq_right, add_zero]
     rintro ⟨rfl, rfl⟩
     omega
-  · rw [elem_apply, one_apply_eq, if_neg, add_zero]
+  · rw [elem_apply, one_apply_eq, ite_eq_right, add_zero]
     rintro ⟨rfl, rfl⟩
     exact h rfl
-  · rw [elem_apply, one_apply_ne (fun e => by rw [e] at h2; omega), if_neg, add_zero]
+  · rw [elem_apply, one_apply_ne (fun e => by rw [e] at h2; omega), ite_eq_right, add_zero]
     rintro ⟨rfl, rfl⟩
     omega
 
@@ -227,22 +253,15 @@ theorem edgeSum_eq_supSum {κ : Type} [CommRing κ] {r : ℕ} (g : GL (Fin r) κ
   refine Finset.sum_congr rfl fun i _ => ?_
   split_ifs with h
   · rw [Finset.sum_eq_single ⟨i.1 + 1, h⟩]
-    · exact if_pos (show supEdge i ⟨i.1 + 1, h⟩ from rfl)
+    · exact ite_eq_left (show supEdge i ⟨i.1 + 1, h⟩ from rfl)
     · intro j _ hj
-      exact if_neg (fun hj' => hj (Fin.ext hj'))
+      exact ite_eq_right (fun hj' => hj (Fin.ext hj'))
     · intro hn; exact absurd (Finset.mem_univ _) hn
   · refine Finset.sum_eq_zero fun j _ => ?_
-    refine if_neg (fun hj => ?_)
+    refine ite_eq_right (fun hj => ?_)
     have := j.2
     unfold supEdge at hj
     omega
-
-section Gen
-
-variable {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : Formalism.MainNotions.G.Inst D L} {Gl : Formalism.MainNotions.G.LatInst D} {Kc : Formalism.MainNotions.G.Consts}
-  {Yd : DivX D} {cX : ExtraC} {ex : Extra D L hT Gi Gl Kc Yd cX} {W : RealPack ex} {u : D.what₂.Word}
-
-end Gen
 
 end GlobalTheory.LevelUnif
 

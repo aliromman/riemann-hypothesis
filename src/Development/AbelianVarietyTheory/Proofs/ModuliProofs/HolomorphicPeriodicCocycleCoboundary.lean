@@ -14,8 +14,32 @@ public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
 public import Development.AbelianVarietyTheory.Proofs.ModuliProofs.CauchyRiemannIffDifferentiableOnComplex
 public import Development.AbelianVarietyTheory.Proofs.ModuliProofs.PeriodicCechCocycleSmoothCoboundary
 public import Mathlib.Analysis.Calculus.FDeriv.Symmetric
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Analysis.Calculus.SmoothSeries
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
 import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -28,13 +52,20 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Compactness.DeltaGeneratedSpace
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Algebra.Module.ZLattice.Summable
 import Mathlib.Algebra.Order.Archimedean.Real.Hom
 import Mathlib.Algebra.Order.Star.Real
 import Mathlib.Analysis.Fourier.AddCircleMulti
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Topology.Separation.CompletelyRegular
 import Std.Tactic.BVDecide.Normalize.Prop
+import Mathlib.Analysis.SpecialFunctions.Bernstein
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.RingTheory.PiTensorProduct
@@ -517,7 +548,7 @@ theorem _root_.GlobalTheory.fourier_coeff_eq_zero_of_tsum_eq_zero_fin :
     by_cases hνμ : ν = μ
     · subst hνμ; simp
     · obtain ⟨k, hk⟩ := Function.ne_iff.mp hνμ
-      rw [if_neg hνμ, Finset.prod_eq_zero (Finset.mem_univ k) (by simp [sub_eq_zero, hk]), mul_zero]
+      rw [ite_eq_right hνμ, Finset.prod_eq_zero (Finset.mem_univ k) (by simp [sub_eq_zero, hk]), mul_zero]
   have hsum : ∀ x, ∑' ν, G ν x = 0 := by
     intro x
     have hx := h x
@@ -735,9 +766,9 @@ theorem torus_elliptic_system_solvable : ∀ (n m : ℕ) (p : Fin m → Fin n �
     have hn : 0 < ‖(2 * π * I : ℂ)‖ := norm_pos_iff.2 h2pi
     have hS : 0 ≤ ∑ a, C a := Finset.sum_nonneg fun a _ => hC0 a
     by_cases h : ν = 0
-    · simp only [d, dif_pos h, norm_zero, zero_mul]
+    · simp only [d, dite_eq_left h, norm_zero, zero_mul]
       positivity
-    · simp only [d, dif_neg h]
+    · simp only [d, dite_eq_right h]
       rw [norm_div, norm_mul (2 * π * I : ℂ), div_mul_eq_mul_div]
       have h1 := Finset.single_le_sum (f := C) (fun a _ => hC0 a) (Finset.mem_univ (α ν h))
       have h2 := hα ν h
@@ -757,8 +788,8 @@ theorem torus_elliptic_system_solvable : ∀ (n m : ℕ) (p : Fin m → Fin n �
     rw [h0, add_sub_cancel_left]
     refine tsum_congr fun ν => ?_
     by_cases h : ν = 0
-    · simp only [d, dif_pos h, if_pos h, mul_zero, zero_mul]
-    · simp only [d, dif_neg h, if_neg h]
+    · simp only [d, dite_eq_left h, ite_eq_left h, mul_zero, zero_mul]
+    · simp only [d, dite_eq_right h, ite_eq_right h]
       have h2 : (∑ k, p (α ν h) k * (ν k : ℂ)) ≠ 0 := by
         intro h0
         have := hα ν h

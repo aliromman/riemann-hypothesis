@@ -1,6 +1,30 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsGivenStageEqOne
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -13,7 +37,10 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -345,11 +372,11 @@ theorem muBase_unr (hL : L.Is μ₀) (hw : w ∈ locPl G t) (hP : w ∉ L.Pg) (j
 theorem chi_condLE (hw : w ∈ locPl G t) {i : ℕ} (h1 : 1 ≤ i) (h2 : i ≤ D.R.m) :
     CondLE (unifAt w) (cosExp G w) ((G.ch.chiH i).loc w) := by
   by_cases h : w ∈ G.pl.W0
-  · rw [cosExp, if_pos h]
+  · rw [cosExp, ite_eq_left h]
     by_cases h0 : w.under (𝓞 D.host.F) = G.pl.v0
     · exact condLE_loc (G.ch.lev0 i h1 h2 w h0).1 (G.pl.depth_pos sc _)
     · refine condLE_loc (G.ch.lev1 i h1 h2 w ((G.pl.mem_S0_of_sum_eq.1 (under_mem_and_place_above_eq_of_mem h).1).resolve_left h0)).1 ?_
-      rw [Places.depth, if_neg h0]
+      rw [Places.depth, ite_eq_right h0]
   · refine condLE_of_isUnram _ _ (isUnram_loc (G.ch.unr i h1 h2 w fun h' => h ?_))
     classical
     rw [eq_of_mem_Q ((mem_locPl.1 hw).resolve_left h) h']
@@ -504,7 +531,7 @@ theorem column_law (hL : L.Is μ₀) (hw : w ∈ locPl G t) (g : (locGrid G t w)
     · by_cases h : w ∈ G.pl.W0
       · refine ((P 0).reindex (ixFin G t w 0)).KOne_le (mem_KOne.2 fun a b => ?_)
         refine ((mem_glLatCong.1 (hg (0, 0))).2 a b).trans_lt ?_
-        rw [Units.val_pow_eq_pow_val, map_pow, isUnif_unifAt w, cosExp, if_pos h]
+        rw [Units.val_pow_eq_pow_val, map_pow, isUnif_unifAt w, cosExp, ite_eq_left h]
         exact pow_lt_one₀ zero_le uniformizer_lt_one (G.pl.depth_pos sc _).ne'
       · refine hK h (mem_KO.2 ⟨fun a b => intM_of_mem_KO (hKO (0, 0)) _ _, fun a b => ?_⟩)
         rw [← map_inv]

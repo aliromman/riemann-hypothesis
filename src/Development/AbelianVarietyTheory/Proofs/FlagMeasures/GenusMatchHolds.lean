@@ -21,13 +21,40 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.StepLevelTLat
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.TransportedColumnLatticeHasLevelAndDualGeneratorStatement
 public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.FrLink
 import Mathlib.Algebra.Module.StablyFree.Basic
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Coalgebra.CoassocSimps
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -40,12 +67,17 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalToGlobal.HermitianForms.IsLocBasis
 import Formalism.SatakeDualWeyl.Statement
 import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
 import Development.AbelianVarietyTheory.Proofs.FlagMeasures.SplitPlaceLatticeComponents
 import Formalism.PeriodIntegrals.SplitIntLoc
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SplitPrimeIntegers.ExistsUnitDiff
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsIsUnitFormSelfOfNotMem
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ValuationLocalVolumes.OmVSDBwdHolds
@@ -1085,20 +1117,20 @@ theorem tlat_one_genus : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [N
   have hkU : ∀ v, k v ∈ UPts cm.sig J (v.adicCompletion F) := by
     intro v
     by_cases hv : loc v L = loc v M
-    · simp only [k, if_pos hv]; exact one_mem _
-    · simp only [k, if_neg hv]; exact hgU v
+    · simp only [k, ite_eq_left hv]; exact one_mem _
+    · simp only [k, ite_eq_right hv]; exact hgU v
   have hfin : {v | k v ≠ 1}.Finite := by
     refine (_root_.GlobalTheory.St.G.loc_eq_almost_all F E n L M hLat hMat).subset ?_
     intro v hv heq
-    exact hv (by simp only [k, if_pos heq])
+    exact hv (by simp only [k, ite_eq_left heq])
   obtain ⟨y, hyU, hy⟩ := _root_.GlobalTheory.St.G.exists_adelic_of_finite_support F E n cm.sig J k hkU hfin
   have hglob : ∀ x, x ∈ hat F L ↔ y.1 *ᵥ x ∈ hat F M := by
     rw [_root_.GlobalTheory.St.G.Carry.carry_iff F E n L M hLat hMat y]
     intro v x
     rw [hy v]
     by_cases hv : loc v L = loc v M
-    · simp only [k, if_pos hv, Units.val_one, Matrix.one_mulVec, hv]
-    · simp only [k, if_neg hv]; exact hg v x
+    · simp only [k, ite_eq_left hv, Units.val_one, Matrix.one_mulVec, hv]
+    · simp only [k, ite_eq_right hv]; exact hg v x
   refine ⟨⟨y, hyU⟩, fun x => ?_⟩
   rw [hglob, Matrix.mulVec_mulVec]
   have hinv : ((⟨y, hyU⟩ : UPts cm.sig J (Ad F))⁻¹).1 = y⁻¹ := rfl

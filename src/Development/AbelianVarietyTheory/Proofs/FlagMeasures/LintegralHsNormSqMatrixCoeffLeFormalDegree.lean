@@ -12,6 +12,31 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ClosedSubgrou
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ClosedSubgroupBesselUnitaryHaarUnique
 public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.ExistsIsFolnerUWset
 import Formalism.FormalDegreeBessel.FinalG
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -24,11 +49,14 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Analysis.CStarAlgebra.ContinuousLinearMap
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.Tactic.Polynomial.Basic
 import Formalism.FormalDegreeBessel.FormalDegreeRatio.UnitaryWeylNormalHolds
 import Mathlib.Algebra.Order.Star.Real
 import Std.Tactic.BVDecide.Normalize.Prop
@@ -648,7 +676,7 @@ theorem dd_pair {τ : ℝ} (hτ : τ ≠ 0) {i j : Fin (2 * r + k + 1)} (h : i.v
 theorem dd_middle (τ : ℝ) {i : Fin (2 * r + k + 1)} (h1 : r ≤ i.val) (h2 : i.val ≤ r + k) :
     dd k r τ i = 1 := by
   unfold dd
-  rw [if_neg (by omega), if_pos h2]
+  rw [ite_eq_right (by omega), ite_eq_left h2]
 
 theorem dil_entry (a b : ℝ) (m : Mat k r) (i j : Fin (2 * r + k + 1)) :
     (dil k r a * m * dil k r b) i j = dd k r a i * m i j * dd k r b j := by
@@ -684,8 +712,8 @@ theorem dil_mem {τ : ℝ} (hτ : τ ≠ 0) : dil k r τ ∈ UH (Hpk k r) := by
       rw [dd_middle τ hr hk, one_mul, mul_one]
     · have h0 : Hpk k r i j = 0 := by
         simp only [Hpk]
-        rw [if_neg (fun hc => h1 ⟨Or.inl hc.1, hc.2⟩), if_neg (fun hc => h1 ⟨Or.inr hc.1, hc.2⟩),
-          if_neg h2]
+        rw [ite_eq_right (fun hc => h1 ⟨Or.inl hc.1, hc.2⟩), ite_eq_right (fun hc => h1 ⟨Or.inr hc.1, hc.2⟩),
+          ite_eq_right h2]
       rw [h0, mul_zero, zero_mul]
 
 theorem Hpk_row {i p t : Fin (2 * r + k + 1)} (h : i.val < r ∨ r + k < i.val)
@@ -693,12 +721,12 @@ theorem Hpk_row {i p t : Fin (2 * r + k + 1)} (h : i.val < r ∨ r + k < i.val)
   have hpo : ¬ (r ≤ p.val ∧ p.val ≤ r + k) := by omega
   simp only [Hpk]
   rcases eq_or_ne t i with rfl | hti
-  · rw [if_pos rfl]
+  · rw [ite_eq_left rfl]
     rcases h with h | h
-    · rw [if_neg (by omega), if_pos ⟨h, by omega⟩]
-    · rw [if_pos ⟨by omega, by omega⟩]
+    · rw [ite_eq_right (by omega), ite_eq_left ⟨h, by omega⟩]
+    · rw [ite_eq_left ⟨by omega, by omega⟩]
   · have hv : t.val ≠ i.val := fun e => hti (Fin.ext e)
-    rw [if_neg hti, if_neg (by omega), if_neg (by omega), if_neg (fun hc => hpo ⟨hc.1, hc.2.1⟩)]
+    rw [ite_eq_right hti, ite_eq_right (by omega), ite_eq_right (by omega), ite_eq_right (fun hc => hpo ⟨hc.1, hc.2.1⟩)]
 
 theorem uw_col {z : Fin (2 * r + k + 1) → ℂ} {h : Mat k r} (hh : h ∈ UWset k r z)
     {p : Fin (2 * r + k + 1)} (hp : p.val < r ∨ r + k < p.val) (s : Fin (2 * r + k + 1)) :
@@ -741,9 +769,9 @@ theorem uw_zero {z : Fin (2 * r + k + 1) → ℂ} {h : Mat k r} (hh : h ∈ UWse
     · simp
   have e := congrFun (congrFun hU p) j
   rw [Matrix.mul_apply] at e
-  simp only [hleft, hrow, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ, if_true] at e
+  simp only [hleft, hrow, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ, ite_true] at e
   have hji : j ≠ i := fun hc => by subst hc; omega
-  rw [if_neg hji] at e
+  rw [ite_eq_right hji] at e
   exact e
 
 theorem dil_comm {z : Fin (2 * r + k + 1) → ℂ} (τ : ℝ) {h : Mat k r} (hh : h ∈ UWset k r z) :
@@ -801,11 +829,11 @@ theorem contract {τ : ℝ} (hτ : 1 ≤ τ) {m : Mat k r} (hm : m ∈ Nset k r)
   rw [dil_inv hτ0, Matrix.sub_apply, Matrix.sub_apply, dil_entry, Matrix.one_apply]
   rcases lt_trichotomy i j with hij | rfl | hij
   · have hij' : i.val < j.val := hij
-    rw [if_neg hij.ne, sub_zero, sub_zero]
+    rw [ite_eq_right hij.ne, sub_zero, sub_zero]
     by_cases hmid : r ≤ i.val ∧ j.val ≤ r + k
     · have h0 : m i j = 0 := by
         have e := hb i j (by omega) hmid.2 hmid.1
-        rwa [if_neg hij.ne] at e
+        rwa [ite_eq_right hij.ne] at e
       rw [h0]
       simp
     · have hw := wt_lt (k := k) (r := r) hij' hmid
@@ -814,12 +842,12 @@ theorem contract {τ : ℝ} (hτ : 1 ≤ τ) {m : Mat k r} (hm : m ∈ Nset k r)
       rw [norm_zpow, Complex.norm_real, Real.norm_of_nonneg hpos.le, ← _root_.zpow_neg_one]
       exact _root_.zpow_le_zpow_right₀ hτ (by omega)
   · have h1 : m i i = 1 := by simpa using apply_self_eq_one_of_mem_Nset hm i
-    rw [h1, if_pos rfl, mul_one, dd_inv_mul hτ0, sub_self, _root_.zpow_zero]
+    rw [h1, ite_eq_left rfl, mul_one, dd_inv_mul hτ0, sub_self, _root_.zpow_zero]
     simp
   · have h0 : m i j = 0 := by
       have e := Formalism.FourierDecayAlt.P.UnipotentUpperFacts.N_upper hm i j hij.le
-      rwa [if_neg hij.ne'] at e
-    rw [if_neg hij.ne', h0]
+      rwa [ite_eq_right hij.ne'] at e
+    rw [ite_eq_right hij.ne', h0]
     simp
 
 theorem main : ∀ (k r : ℕ) (z : Fin (2 * r + k + 1) → ℂ), inWb k r z → (∀ τ : ℝ, 0 < τ → dil k r τ ∈ GG k r ∧ (∀ h ∈ UWset k r z, dil k r τ * h = h * dil k r τ) ∧ (∀ m ∈ Nset k r, dil k r τ * m * (dil k r τ)⁻¹ ∈ Nset k r ∧ (dil k r τ)⁻¹ * m * dil k r τ ∈ Nset k r)) ∧ (∀ τ : ℝ, 1 ≤ τ → ∀ m ∈ Nset k r, ∀ i j, ‖((dil k r τ)⁻¹ * m * dil k r τ - 1) i j‖ ≤ τ⁻¹ * ‖(m - 1) i j‖) := by

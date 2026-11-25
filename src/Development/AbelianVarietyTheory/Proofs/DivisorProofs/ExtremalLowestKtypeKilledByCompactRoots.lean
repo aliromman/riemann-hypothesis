@@ -2,8 +2,31 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.Divisors.IsSmoothVector
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ComplexifiedDerivedActionIsLieActionStatement
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
 import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -18,6 +41,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Formalism.RealPlaceAnalysis.RealPlaceTaylor.CartanInvolutionConjTransposeMul
 
@@ -191,8 +216,8 @@ private theorem single_ct_lemma (a c : Fin n) : (Matrix.single a c (1 : ℂ))ᴴ
   ext i j
   simp only [Matrix.conjTranspose_apply, Matrix.single, Matrix.of_apply]
   by_cases h : c = i ∧ a = j
-  · rw [if_pos ⟨h.2, h.1⟩, if_pos h, star_one]
-  · rw [if_neg (fun h' => h ⟨h'.2, h'.1⟩), if_neg h, star_zero]
+  · rw [ite_eq_left ⟨h.2, h.1⟩, ite_eq_left h, star_one]
+  · rw [ite_eq_right (fun h' => h ⟨h'.2, h'.1⟩), ite_eq_right h, star_zero]
 
 theorem conjH_single {a c : Fin n} (h : ε a = ε c) :
     conjH (Formalism.REAL.Jm ε) (Matrix.single a c 1) = -Matrix.single c a 1 := by
@@ -255,7 +280,7 @@ theorem dRepC_diag (hσ : IsURepOn (UJset ε) σ) {μ : Fin n → ℝ} {v : H} (
         · simp [Matrix.single, hia, Ne.symm hia]
       · rw [Matrix.diagonal_apply_ne _ hij]
         simp only [Matrix.smul_apply, Matrix.single, Matrix.of_apply]
-        rw [if_neg (fun h' => hij (h'.1.symm.trans h'.2))]
+        rw [ite_eq_right (fun h' => hij (h'.1.symm.trans h'.2))]
         simp
     rw [hs, Matrix.exp_diagonal]
     congr 1

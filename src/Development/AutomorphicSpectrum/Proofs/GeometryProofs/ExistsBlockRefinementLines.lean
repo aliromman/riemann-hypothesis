@@ -8,6 +8,7 @@ public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.CoordsA
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.CoordsJoinBlocks
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.LegendreSymbol
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
@@ -439,7 +440,7 @@ theorem exists_addBlocks_isDegOn : ∀ (X : Scheme.{0}) (Ω : Type) [Field Ω] (
           (Sum.elim (fun _ => -(n i : ℤ)) (fun i' => if i' = i then (1 : ℤ) else 0) (Sum.inr i' : K ⊕ I) : ℤ) =
           s i (c (Sum.inr i)) := by
         rw [Fintype.prod_eq_single i]
-        · simp only [Sum.elim_inr, if_true, zpow_one]
+        · simp only [Sum.elim_inr, ite_true, zpow_one]
           rfl
         · intro i' hi'
           simp [hi']

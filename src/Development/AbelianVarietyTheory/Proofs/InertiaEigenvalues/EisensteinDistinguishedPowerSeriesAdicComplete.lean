@@ -1,21 +1,7 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsAdicCompleteOfPowLe
-import Mathlib.RingTheory.PowerSeries.Inverse
-import Mathlib.RingTheory.WittVector.DiscreteValuationRing
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MemBallOfGaugeLt
 
 @[expose] public section
@@ -61,10 +47,10 @@ theorem eisPoly_distinguished_complete : ∀ (l : ℕ) [Fact l.Prime] (a : ℕ) 
       intro i
       rw [Polynomial.coeff_sub, Polynomial.coeff_X_pow]
       rcases lt_trichotomy i e with h | rfl | h
-      · rw [if_neg h.ne, sub_zero]; exact hdvd i h
+      · rw [ite_eq_right h.ne, sub_zero]; exact hdvd i h
       · have h1 : Ep.coeff e = 1 := hmon.coeff_natDegree
-        rw [if_pos rfl, h1, sub_self]; exact dvd_zero _
-      · rw [if_neg h.ne', Polynomial.coeff_eq_zero_of_natDegree_lt h, sub_zero]; exact dvd_zero _
+        rw [ite_eq_left rfl, h1, sub_self]; exact dvd_zero _
+      · rw [ite_eq_right h.ne', Polynomial.coeff_eq_zero_of_natDegree_lt h, sub_zero]; exact dvd_zero _
     obtain ⟨q, hq⟩ := hP
     have hS : (Ep : (Wq l a)⟦X⟧) = X ^ e + (l : (Wq l a)⟦X⟧) * (q : (Wq l a)⟦X⟧) := by
       have := congrArg (fun p : Polynomial (Wq l a) => (p : (Wq l a)⟦X⟧)) hq

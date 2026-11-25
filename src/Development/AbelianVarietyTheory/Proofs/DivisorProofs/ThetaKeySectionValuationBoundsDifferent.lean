@@ -23,6 +23,27 @@ import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsIsLieBasis
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FibreSectionNowhereZeroOfGenerates
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.LieBasisIffTangentBasisPullbackUniversal
 import Formalism.LocalToGlobal.ProjectiveLattices.ExtPtUnique
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -120,7 +141,7 @@ theorem nval_bounds {F : Type} [Field F] [NumberField F] {w : HeightOneSpectrum 
     omega
   have hD0 := pow_ne_zero 4 (left_ne_zero_of_mul hne)
   have he : (0 : ℝ) < e := by exact_mod_cast ho.1
-  rw [map_mul, map_pow, nval, if_neg (mul_ne_zero hD0 (hu u)), vV_mul hD0 (hu u), hu0, pw, add_zero]
+  rw [map_mul, map_pow, nval, ite_eq_right (mul_ne_zero hD0 (hu u)), vV_mul hD0 (hu u), hu0, pw, add_zero]
   have h2 : (0 : ℝ) ≤ vV T.V (algebraMap T.V T.Fr D) := by exact_mod_cast nn D
   have h3 : (vV T.V (algebraMap T.V T.Fr D) : ℝ) ≤ ∑ i, (n i : ℝ) * (e * (vLa w (x i) : ℝ)) := by
     have := nn q

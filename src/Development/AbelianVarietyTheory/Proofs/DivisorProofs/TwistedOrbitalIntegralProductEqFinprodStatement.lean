@@ -29,6 +29,28 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedCentr
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CentraliserCompactPartLeIntegralAlmostAllStatement
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalTwistContinuousInvolutionIntegralProperties
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryLocalFinitenessRegularSemisimpleCentraliz
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -42,12 +64,22 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Foundations.SmoothPartStable
 import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.BaseChangeDefiniteUnitary
 import Development.AutomorphicArithmetic.IntegralCasts.IsOpenStabOfMemNhds
 import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
 import Mathlib.Analysis.CStarAlgebra.Classes
 import Mathlib.Order.CompletePartialOrder
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Lemma
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.Divisors.T2SpaceGeneralLinearGroup
@@ -154,12 +186,12 @@ theorem finsum_doubleCoset_trivial_eq_one (H : Type) [Group H] (TH KH : Subgroup
   have h1 : ∀ q : DoubleCoset.Quotient (TH : Set H) (KH : Set H), q ≠ DoubleCoset.mk TH KH 1 →
       f (Quotient.out q) = 0 := by
     intro q hq
-    rw [hf, if_neg]
+    rw [hf, ite_eq_right]
     rintro ⟨t, ht, k, hk, he⟩
     apply hq
     rw [← DoubleCoset.out_eq' q, DoubleCoset.eq]
     exact ⟨t⁻¹, inv_mem ht, k⁻¹, inv_mem hk, by rw [he]; group⟩
-  rw [finsum_eq_single _ (DoubleCoset.mk TH KH 1) h1, hf, if_pos]
+  rw [finsum_eq_single _ (DoubleCoset.mk TH KH 1) h1, hf, ite_eq_left]
   obtain ⟨a, ha, b, hb, he⟩ := DoubleCoset.mk_out_eq_mul TH KH (1 : H)
   exact ⟨a, ha, b, hb, by rw [he, mul_one]⟩
 
@@ -189,21 +221,21 @@ theorem eval_eq_ite_prod_of_finprod (ι G : Type) [Group G] (H : ι → Type) [�
   have hone : ∀ i ∉ B, s' i (p i g) = 1 := by
     intro i hi
     simp only [B, Finset.mem_union, not_or, Set.Finite.mem_toFinset, Set.mem_setOf_eq, not_not] at hi
-    rw [hS0 i hi.1, if_pos ⟨1, (TH i).one_mem, p i g, hi.2, (one_mul _).symm⟩]
+    rw [hS0 i hi.1, ite_eq_left ⟨1, (TH i).one_mem, p i g, hi.2, (one_mul _).symm⟩]
   rw [finprod_eq_prod_of_mulSupport_subset (f := fun i => s' i (p i g)) (s := B) (fun i hi => by by_contra h; exact hi (hone i h))]
   split_ifs with hgood
   · symm
     apply Finset.prod_subset Finset.subset_union_left
     intro i _ hi
-    rw [hS0 i hi, if_pos (hgood i hi)]
-  · push_neg at hgood
+    rw [hS0 i hi, ite_eq_left (hgood i hi)]
+  · push Not at hgood
     obtain ⟨i, hi, hbad⟩ := hgood
     apply Finset.prod_eq_zero (i := i)
     · refine Finset.mem_union_right _ ?_
       simp only [Set.Finite.mem_toFinset, Set.mem_setOf_eq]
       intro hk
       exact hbad 1 (TH i).one_mem (p i g) hk (one_mul _).symm
-    · rw [hS0 i hi, if_neg (by push_neg; exact hbad)]
+    · rw [hS0 i hi, ite_eq_right (by push Not; exact hbad)]
 
 theorem doubleCoset_mk_eq_of_local (ι G : Type) [Group G] (H : ι → Type) [∀ i, Group (H i)] (p : ∀ i, G →* H i)
     (T K : Subgroup G) (TH KH : ∀ i, Subgroup (H i)) (S0 : Finset ι)
@@ -270,9 +302,9 @@ theorem finsum_doubleCoset_eq_finprod_local : ∀ (ι G : Type) [Group G] (H : �
     intro q
     rw [finsum_eq_if, eval_eq_ite_prod_of_finprod ι G H p TH KH s s' S0 hcof hS0 hprod (Quotient.out q)]
     by_cases hq : ∀ i ∉ S0, ∃ t ∈ TH i, ∃ k ∈ KH i, p i (Quotient.out q) = t * k
-    · rw [if_pos hq, if_pos ((hAdef q).2 hq), ← Finset.prod_coe_sort S0]
+    · rw [ite_eq_left hq, ite_eq_left ((hAdef q).2 hq), ← Finset.prod_coe_sort S0]
       simp only [hΦ, hloc]
-    · rw [if_neg hq, if_neg (fun h => hq ((hAdef q).1 h))]
+    · rw [ite_eq_right hq, ite_eq_right (fun h => hq ((hAdef q).1 h))]
   refine (finsum_congr hLHS).trans ?_
   refine (finsum_mem_eq_of_bijOn (t := Set.univ)
     (g := fun y : (∀ i : S0, DoubleCoset.Quotient (TH i.1 : Set (H i.1)) (KH i.1 : Set (H i.1))) =>
@@ -816,7 +848,7 @@ theorem twOrb_globFn_eq_finprod : ∀ (E : Type) [Field E] [NumberField E] [IsCM
   have hp : ∀ (i : S) (x : finU (E := E) (n := n)), p i x = toSub (UL n i.1) (cLoc i.1 (x : UA E n)) := by
     intro i x
     unfold toSub
-    rw [dif_pos (GlobalTheory.T.finiteAdelicUnitaryPoint_localComponent_mem_localUnitary E hU n i.1 x)]
+    rw [dite_eq_left (GlobalTheory.T.finiteAdelicUnitaryPoint_localComponent_mem_localUnitary E hU n i.1 x)]
     rfl
   have hδ : ∀ i : S, p i (finPt γ) = locPt i.1 γ := fun i => (hp i _).trans (GlobalTheory.T.localComponent_definiteUnitaryFinitePart_eq_localPoint E hU n γ i.1)
   have hsep : ∀ w : Pl E, (locPt w γ).1.val.charpoly.Separable := by
@@ -859,7 +891,7 @@ theorem twOrb_globFn_eq_finprod : ∀ (E : Type) [Field E] [NumberField E] [IsCM
         intro w hw
         by_cases hwS : w ∈ S
         · exact ⟨⟨w, hwS⟩, by simpa [y', hwS] using hw, rfl⟩
-        · exact absurd (by simp only [y', dif_neg hwS]; exact one_mem _) hw
+        · exact absurd (by simp only [y', dite_eq_right hwS]; exact one_mem _) hw
       obtain ⟨x, hx⟩ := _root_.GlobalTheory.BCT.exists_finU_of_loc E hU n S hS y' hy'
       exact ⟨x, fun i => by rw [hp, hx i.1 i.2]; simp [y', i.2]⟩)
     (fun x => by
@@ -878,11 +910,11 @@ theorem twOrb_globFn_eq_finprod : ∀ (E : Type) [Field E] [NumberField E] [IsCM
         intro w hw
         by_cases hwS : w ∈ S
         · exact ⟨⟨w, hwS⟩, by simpa [C', hwS] using hw, rfl⟩
-        · exact absurd (by simp only [C', dif_neg hwS]) hw
+        · exact absurd (by simp only [C', dite_eq_right hwS]) hw
       have h := _root_.GlobalTheory.BCT.LocCpt.loc_cpt E hU n S hS C' (fun w => by
         by_cases hw : w ∈ S
-        · simp only [C', dif_pos hw]; exact hC _
-        · simp only [C', dif_neg hw]; exact hKc w) hC'
+        · simp only [C', dite_eq_left hw]; exact hC _
+        · simp only [C', dite_eq_right hw]; exact hKc w) hC'
       convert h using 1
       ext x
       simp only [Set.mem_setOf_eq]

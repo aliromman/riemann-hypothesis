@@ -31,21 +31,8 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThre
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.HostNumber
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.FrameClassOne
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.GaloisValuations.GlobalB
 import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.RestrictionMemInvariantH1
-import Mathlib.Topology.Algebra.Group.Units
 import Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoLevFacts
 import Mathlib.Tactic.Linter.HaveILetI
 
@@ -779,9 +766,9 @@ theorem UpperTheory.V.X.So.vanEOf :
   simp only [z, Fin.rev_rev] at e0 e0' e1 e1'
   simp only [U3.cob, Matrix.sub_apply, Matrix.smul_apply, smul_eq_mul, U3.adRep_baseLift_apply, X, Matrix.of_apply, Fin.rev_rev]
   by_cases hη : F.η g = 1
-  · simp only [hη, if_true] at e0 e0' e1 e1' ⊢
+  · simp only [hη, ite_true] at e0 e0' e1 e1' ⊢
     linear_combination e0 - e0' + e1 + e1'
-  · simp only [hη, if_false] at e0 e0' e1 e1' ⊢
+  · simp only [hη, ite_false] at e0 e0' e1 e1' ⊢
     linear_combination e0 - e0' + e1 + e1'
 end -- clump:auto
 end -- clump:auto

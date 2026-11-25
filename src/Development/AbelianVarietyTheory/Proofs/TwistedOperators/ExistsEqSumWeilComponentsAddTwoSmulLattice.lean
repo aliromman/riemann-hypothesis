@@ -6,6 +6,28 @@ public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.OneEqS
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.RealIdemMulOfReal
 public import Development.AbelianVarietyTheory.Proofs.HeightProofs.CmTypeRestrictRealSubfieldInfinitePlaceBijective
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.IsTopologicalRingAE
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -19,6 +41,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.RestrictedTensorBasePointNormSq
 
 @[expose] public section
@@ -38,8 +62,8 @@ theorem tendsto_one_sub_sum (F : Type) [Field F] [NumberField F] :
   let y : Finset (HeightOneSpectrum (𝓞 F)) → (∀ v, A v) := fun Q v =>
     ⟨if v ∈ Q then 0 else 1, by
       by_cases h : v ∈ Q
-      · rw [if_pos h]; exact (v.adicCompletionIntegers F).zero_mem
-      · rw [if_neg h]; exact (v.adicCompletionIntegers F).one_mem⟩
+      · rw [ite_eq_left h]; exact (v.adicCompletionIntegers F).zero_mem
+      · rw [ite_eq_right h]; exact (v.adicCompletionIntegers F).one_mem⟩
   let z : ∀ v, A v := fun v => ⟨0, (v.adicCompletionIntegers F).zero_mem⟩
   have hy : Tendsto y atTop (𝓝 z) := by
     rw [tendsto_pi_nhds]
@@ -49,7 +73,7 @@ theorem tendsto_one_sub_sum (F : Type) [Field F] [NumberField F] :
     have hv : v ∈ Q := Finset.singleton_subset_iff.mp hQ
     apply Subtype.ext
     show (if v ∈ Q then (0 : v.adicCompletion F) else 1) = 0
-    rw [if_pos hv]
+    rw [ite_eq_left hv]
   have hc : Continuous (RestrictedProduct.structureMap (fun v : HeightOneSpectrum (𝓞 F) => v.adicCompletion F)
       A Filter.cofinite) := RestrictedProduct.isEmbedding_structureMap.continuous
   have key : ∀ Q, (1 : Af F) - ∑ v ∈ Q, singleV F v 1 =
@@ -63,9 +87,9 @@ theorem tendsto_one_sub_sum (F : Type) [Field F] [NumberField F] :
     show _ = (if w ∈ Q then (0 : w.adicCompletion F) else 1)
     by_cases h : w ∈ Q
     · rw [Finset.sum_eq_single_of_mem w h (fun b _ hb => GlobalTheory.LatVac.evalV_singleV_ne F b w (Ne.symm hb)),
-        GlobalTheory.LatVac.evalV_singleV_same, if_pos h, sub_self]
+        GlobalTheory.LatVac.evalV_singleV_same, ite_eq_left h, sub_self]
     · rw [Finset.sum_eq_zero (fun b hb => GlobalTheory.LatVac.evalV_singleV_ne F b w (by rintro rfl; exact h hb)),
-        if_neg h, sub_zero]
+        ite_eq_right h, sub_zero]
   have h0 : RestrictedProduct.structureMap (fun v : HeightOneSpectrum (𝓞 F) => v.adicCompletion F) A
       Filter.cofinite z = (0 : Af F) :=
     by

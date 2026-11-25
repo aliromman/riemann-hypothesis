@@ -19,6 +19,28 @@ import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IntegralIdempote
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.LocalProjectionEqOfIdempotentPatchStatement
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.SelfDualFrameConjIntegralSmulOfIntegralStatement
 import Formalism.LocalToGlobal.Columns.AdelicLemmas
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -63,7 +85,7 @@ theorem datum_specQ (S T : HSp D) (βS : GL (Fin S.rank) (Lev.EAf D)) (βT : GL 
         topL S.rank (redM PP.1 (frMapO S T βS βT x))) ∧
       (∀ PP : ↥L.Pg, a PP ∈ blockTri (blkOf L.r L.t)) ∧ (fun PP => upperLeftBlock L.hr (a PP)) ∈ L.P.H := by
   by_cases hc : IsHalf e x ∧ IsIntM (frMapO S T βS βT x)
-  · rw [if_pos hc] at hx
+  · rw [ite_eq_left hc] at hx
     have hG := left_ne_zero_of_mul hx
     unfold omegaG at hG
     split_ifs at hG with hd
@@ -72,7 +94,7 @@ theorem datum_specQ (S T : HSp D) (βS : GL (Fin S.rank) (Lev.EAf D)) (βT : GL 
       rw [← ha ⟨PP, hPP⟩]
       exact Matrix.isUnits_det_units (a ⟨PP, hPP⟩)
     · exact absurd rfl hG
-  · rw [if_neg hc] at hx
+  · rw [ite_eq_right hc] at hx
     exact absurd rfl hx
 
 theorem idemSum_left {e : AE D} {P Q : Finset (Pl D.host.E)} (h : IsIdemSum e (P ∪ Q)) :
@@ -119,7 +141,7 @@ theorem finE_gAt_mem : ∀ (D : D7) (S T : HSp D) (ΛS : Submodule (𝓞 D.host.
   intro D S T ΛS βS βT L χ ξ e hSD hFr hST hId hH g x hx hgx PP hPP _
   have hHalf : IsHalf e x := by
     by_contra hn
-    exact hx (if_neg fun h => hn h.1)
+    exact hx (ite_eq_right fun h => hn h.1)
   obtain ⟨hI1, hU1, a, ha, haT, haH⟩ := datum_specQ S T βS βT L χ ξ L.Q e x hx
   obtain ⟨hI2, hU2, a', ha', ha'T, ha'H⟩ := datum_specQ S T βS βT L χ ξ L.Q e (actO S T g 1 x) hgx
 

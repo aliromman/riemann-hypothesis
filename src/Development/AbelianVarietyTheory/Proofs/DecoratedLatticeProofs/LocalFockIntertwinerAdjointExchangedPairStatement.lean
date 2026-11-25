@@ -6,6 +6,28 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.JacobianCommutat
 public import Formalism.LocalToGlobal.BesselHermitianTheta.TiedType
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiscreteSeriesModelUnitaryIrreducibleOrthonormal
 public import Formalism.LocalToGlobal.IndefiniteReal.GvPairOfOrbitDerivCont
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -19,10 +41,15 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsVacFOfIsVacVec
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.CartFrSgn
 import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
 import Formalism.LocalToGlobal.IndefiniteReal.SchurOrthogonality
 import Mathlib.Analysis.InnerProductSpace.Calculus
@@ -120,11 +147,11 @@ lemma swapHom_rai (i : Fin b) (j : Fin a) (Q : LPol b a) :
   unfold rai
   have hs := C_sg_mul_self (σ := Fin a × Fin b) (ε j)
   by_cases h : ε' i = ε j
-  · rw [if_pos h, if_pos h.symm]
+  · rw [ite_eq_left h, ite_eq_left h.symm]
     simp only [LinearMap.smul_apply, LinearMap.mulLeft_apply, swapHom_C, map_mul, swapHom_X, conj_sg,
       swSign, smul_eq_C_mul, Prod.swap_prod_mk]
     linear_combination (C (GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.sgn (ε' i)) * X (j, i) * swapHom ε ε' Q) * hs
-  · rw [if_neg h, if_neg (Ne.symm h)]
+  · rw [ite_eq_right h, ite_eq_right (Ne.symm h)]
     simp only [LinearMap.smul_apply, LinearMap.neg_apply, Derivation.coeFn_coe, map_neg, swapHom_C,
       swapHom_pderiv, map_mul, conj_sg, swSign, smul_eq_C_mul, Prod.swap_prod_mk]
     linear_combination (-(C (GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.sgn (ε' i)) * pderiv (j, i) (swapHom ε ε' Q))) * hs
@@ -134,11 +161,11 @@ lemma swapHom_low (i : Fin b) (j : Fin a) (Q : LPol b a) :
   unfold low
   have hs := C_sg_mul_self (σ := Fin a × Fin b) (ε j)
   by_cases h : ε' i = ε j
-  · rw [if_pos h, if_pos h.symm]
+  · rw [ite_eq_left h, ite_eq_left h.symm]
     simp only [LinearMap.smul_apply, Derivation.coeFn_coe, swapHom_C, swapHom_pderiv, map_mul, conj_sg,
       swSign, smul_eq_C_mul, Prod.swap_prod_mk]
     linear_combination (C (GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.sgn (ε' i)) * pderiv (j, i) (swapHom ε ε' Q)) * hs
-  · rw [if_neg h, if_neg (Ne.symm h)]
+  · rw [ite_eq_right h, ite_eq_right (Ne.symm h)]
     simp only [LinearMap.smul_apply, LinearMap.mulLeft_apply, swapHom_C, map_mul, swapHom_X, conj_sg,
       swSign, smul_eq_C_mul, Prod.swap_prod_mk]
     linear_combination (C (GlobalTheory.IndefiniteRowSideFullHecke.RaisingLoweringOperators.sgn (ε' i)) * X (j, i) * swapHom ε ε' Q) * hs

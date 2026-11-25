@@ -10,21 +10,7 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LineOfS
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnitSumTensorDualOfWachMonoidal
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsJumpVOfInjective
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.SecondTwistSmallIffExactlyAtAndFinClause
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -77,14 +63,14 @@ theorem multV_of_le_one (ρ : Representation LL G V) (τ : K →ₐ[Qp] LL)
   rcases lt_trichotomy a b with h | h | h
   · have := mono (a + 1) b (by omega)
     have := mono a (a + 1) (by omega)
-    rw [if_neg h.ne]
+    rw [ite_eq_right h.ne]
     omega
   · subst h
-    rw [if_pos rfl]
+    rw [ite_eq_left rfl]
     omega
   · have := mono (b + 1) a (by omega)
     have := mono a (a + 1) (by omega)
-    rw [if_neg h.ne']
+    rw [ite_eq_right h.ne']
     omega
 
 def transport (e : V ≃ₗ[LL] V') (ρ' : Representation LL G V') : Representation LL G V where

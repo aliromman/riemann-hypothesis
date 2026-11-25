@@ -2,18 +2,6 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.Divisors.SmallFam
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HermLineBundlePairSectionsMulMemNormMul
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -64,7 +52,7 @@ theorem prod_mem_of_le (P : Pair p) (D : ℕ) (J : Type) (e : J → X.functionFi
       refine Finset.prod_congr rfl fun i _ => ?_
       rcases Nat.eq_zero_or_pos (n i) with h0 | h0
       · simp [h0]
-      · rw [if_pos h0, ← pow_succ', Nat.sub_add_cancel (by omega : 1 ≤ n i)]
+      · rw [ite_eq_left h0, ← pow_succ', Nat.sub_add_cancel (by omega : 1 ≤ n i)]
     have key : (∏ l, e (u l)) * ∏ i, x i ^ n i =
         boxFam e x (u 0, Finset.univ.filter (fun i => 0 < n i)) *
           ((∏ l : Fin m, e (u l.succ)) * ∏ i, x i ^ (n i - 1)) := by

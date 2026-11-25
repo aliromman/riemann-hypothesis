@@ -5,7 +5,34 @@ public import Mathlib.Basic.Complex.Basic
 public import Mathlib.LinearAlgebra.LinearIndependent.Defs
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.LinearIndependentOfJointEigenvectors
 public import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.SphericalThetaInertPlace
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -19,6 +46,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Divisors.EqOfHasValueAtInfinite
 import Development.AbelianVarietyTheory.Definitions.Divisors.HilbertNinetyQuotientHomEqIff
 import Development.AbelianVarietyTheory.Definitions.Foundations.NormEulerPolySubOneLe
@@ -50,11 +80,11 @@ theorem exists_linearForm_invariant_isotropic_vacuum : ∀ {R X M : Type} [CommR
   have hrep : ∀ q, (Submodule.Quotient.mk (rep q) : X ⧸ Λ) = q := by
     intro q
     by_cases hq : P q
-    · simp only [rep, dif_pos hq]; exact hq.choose_spec.2
-    · simp only [rep, dif_neg hq]; exact Quotient.out_eq q
+    · simp only [rep, dite_eq_left hq]; exact hq.choose_spec.2
+    · simp only [rep, dite_eq_right hq]; exact Quotient.out_eq q
   have hrepA : ∀ q, P q → rep q ∈ A := by
     intro q hq
-    simp only [rep, dif_pos hq]; exact hq.choose_spec.1
+    simp only [rep, dite_eq_left hq]; exact hq.choose_spec.1
   let e : X ⧸ Λ → M := fun q => W (rep q) s
   have he : ∀ z, W z s = γ (w • z) (rep (Submodule.Quotient.mk z) - z) • e (Submodule.Quotient.mk z) := by
     intro z
@@ -94,7 +124,7 @@ theorem exists_linearForm_invariant_isotropic_vacuum : ∀ {R X M : Type} [CommR
   · have h0 : P (Submodule.Quotient.mk 0) := ⟨0, A.zero_mem, rfl⟩
     have h1 := he 0
     rw [h.zero, hwA 0 A.zero_mem _ (A.sub_mem (hrepA _ h0) A.zero_mem), one_smul] at h1
-    rw [h1, hℓ, if_pos h0]
+    rw [h1, hℓ, ite_eq_left h0]
   · intro a ha v
     have hext : ℓ ∘ₗ W a = ℓ := by
       refine b.ext fun q => ?_
@@ -104,14 +134,14 @@ theorem exists_linearForm_invariant_isotropic_vacuum : ∀ {R X M : Type} [CommR
       by_cases hq : P q
       · have hA1 : a + rep q ∈ A := A.add_mem ha (hrepA q hq)
         have hq' : P (Submodule.Quotient.mk (a + rep q)) := ⟨_, hA1, rfl⟩
-        rw [if_pos hq, if_pos hq', hwA a ha _ (hrepA q hq), hwA _ hA1 _ (A.sub_mem (hrepA _ hq') hA1)]
+        rw [ite_eq_left hq, ite_eq_left hq', hwA a ha _ (hrepA q hq), hwA _ hA1 _ (A.sub_mem (hrepA _ hq') hA1)]
         simp
       · have hq' : ¬ P (Submodule.Quotient.mk (a + rep q)) := by
           rintro ⟨c, hc, hce⟩
           apply hq
           refine ⟨c - a, A.sub_mem hc ha, ?_⟩
           rw [Submodule.Quotient.mk_sub, hce, ← Submodule.Quotient.mk_sub, add_sub_cancel_left, hrep]
-        rw [if_neg hq, if_neg hq']
+        rw [ite_eq_right hq, ite_eq_right hq']
         simp
     exact LinearMap.congr_fun hext v
 

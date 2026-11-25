@@ -2,6 +2,29 @@ module
 
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.OtherInstanceCharacterEqPsiSymmetricArgument
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.LevelSubgroupCharacterUnitary
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -14,6 +37,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ConcreteLevelAdelicSubset
 import Formalism.LocalToGlobal.IndefiniteReal.AutomorphicEvaluation
 import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RowLevelMatch
@@ -44,17 +68,17 @@ theorem GlobalTheory.Mem.SymChar.Resid.hA_bw_symVec_not_ewAt : ∀ (D : D7) (X :
     rw [map_sub, apply_ite (sigA X.B.I), map_zero] at h
     rw [Formalism.L2.SG.Pf.unitaryCongruence.hA_symm X.B.I (X.bwd l) (X.bw m)]
     by_cases hl : l = m
-    · simp only [hl, if_true] at h ⊢
+    · simp only [hl, ite_true] at h ⊢
       have := add_mem (hZ _ h) hs
       convert this using 1
       ring
-    · simp only [hl, if_false] at h ⊢
+    · simp only [hl, ite_false] at h ⊢
       simpa using hZ _ h
   unfold symVec epsW
-  rw [if_neg hEw]
+  rw [ite_eq_right hEw]
   unfold GlobalTheory.SeeConjRead.flagV
   by_cases h1 : j.1 < D.R.rS
-  · rw [dite_eq_left h1, if_neg (by omega), sub_zero]
+  · rw [dite_eq_left h1, ite_eq_right (by omega), sub_zero]
     exact hS _ ((X.weightVectorsIntegral m).2.2 ⟨j.1, h1⟩).1
   rw [dite_eq_right h1]
   by_cases h2 : j.1 < D.R.rS + D.R.k
@@ -63,17 +87,17 @@ theorem GlobalTheory.Mem.SymChar.Resid.hA_bw_symVec_not_ewAt : ∀ (D : D7) (X :
       rw [Fin.ext_iff, Fin.val_rev]; simp only; constructor <;> intro h <;> omega
     have := hB (Fin.rev ⟨j.1 - D.R.rS, by omega⟩)
     by_cases h' : j.val = D.R.rS + D.R.k - 1 - m.val
-    · rw [if_pos h']; rwa [if_pos (e.2 h')] at this
-    · rw [if_neg h']; rwa [if_neg (fun hh => h' (e.1 hh))] at this
+    · rw [ite_eq_left h']; rwa [ite_eq_left (e.2 h')] at this
+    · rw [ite_eq_right h']; rwa [ite_eq_right (fun hh => h' (e.1 hh))] at this
   rw [dite_eq_right h2]
   by_cases h4 : j.1 = D.R.rS + D.R.k
-  · rw [dite_eq_left h4, if_neg (by omega), sub_zero]
+  · rw [dite_eq_left h4, ite_eq_right (by omega), sub_zero]
     exact hS _ (X.weightVectorsIntegral m).1
   rw [dite_eq_right h4]
   by_cases h3 : j.1 < 2 * D.R.rS + D.R.k + 1
-  · rw [dite_eq_left h3, if_neg (by omega), sub_zero]
+  · rw [dite_eq_left h3, ite_eq_right (by omega), sub_zero]
     exact hS _ ((X.weightVectorsIntegral m).2.2 _).2.1
-  · rw [dite_eq_right h3, if_neg (by omega), sub_zero, hA_zero_right']
+  · rw [dite_eq_right h3, ite_eq_right (by omega), sub_zero, hA_zero_right']
     exact zero_mem _
 
 end

@@ -12,6 +12,27 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SimilitudeAc
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.FixedPointsIntBaseHolds
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LefschetzSigmaSums.HodgeTraceFromLefschetzAndGroupSide
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.PAdicWittLattices.FibrePowerTowerAdmissibleLevel
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -30,6 +51,7 @@ import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.FormallyUnramifiedOfTangentMapInjective
 import Mathlib.AlgebraicGeometry.ZariskisMainTheorem
 import Mathlib.Tactic.Lemma
+import Mathlib.Tactic.Basify
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsTorusAbelianQuotientPDivisibleSmoothGroup
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSiegelObjectLoweredLevel
@@ -647,11 +669,11 @@ private lemma pow_prop (P : MorphismProperty Scheme.{0}) [P.IsMultiplicative]
           have h0 : h ≫ Pi.π (fun _ : Fin k => A) j' = Pi.π (fun _ : Fin k => A) j' := by
             have := hh j'
             simpa [GlobalTheory.KS.pr, j'] using this
-          rw [if_pos rfl, if_pos (by simp [j']), ← Category.assoc, h0]
+          rw [ite_eq_left rfl, ite_eq_left (by simp [j']), ← Category.assoc, h0]
         · have hne : i.val ≠ j := fun e => hi (Fin.ext e)
           have := hh i
           simp only [GlobalTheory.KS.pr] at this
-          simp only [hi, if_false, this]
+          simp only [hi, ite_false, this]
           by_cases hlt : i.val < j
           · simp [hlt, Nat.lt_succ_of_lt hlt]
           · have : ¬ i.val < j + 1 := by omega
@@ -659,7 +681,7 @@ private lemma pow_prop (P : MorphismProperty Scheme.{0}) [P.IsMultiplicative]
   obtain ⟨h, hP, hh⟩ := step k le_rfl
   have : g = h := Pi.hom_ext _ _ fun i => by
     have := hh i
-    simp only [i.isLt, if_true] at this
+    simp only [i.isLt, ite_true] at this
     exact (hg i).trans this.symm
   rw [this]
   exact hP
@@ -1180,7 +1202,7 @@ private lemma eps_eq (D : Datum p) : W2.epsD D = LocalSmoothExtension.epsOf D :=
       rcases mul_eq_zero.mp hfac with h0 | h0
       · exact absurd (sub_eq_zero.mp h0) h
       · exact sub_eq_zero.mp h0
-    rw [if_neg h, if_pos h']
+    rw [ite_eq_right h, ite_eq_left h']
 
 private lemma map_inv {K K' : Type} [Field K] [Field K'] (f : K →+* K') (P : K[X]) :
     (W2.invPoly P).map f = LocalSmoothExtension.invPol (P.map f) := by
@@ -1212,8 +1234,8 @@ private lemma kap_eq {D : Datum p} {G : HTGroup p} (L : Link D G) (ha : D.a = 1)
     (W2.kap L v (D.tau i₀) μ)⁻¹ = LocalSmoothExtension.markOf L v μ := by
   unfold W2.kap LocalSmoothExtension.markOf
   by_cases h : v.embedding (L.e (D.ω : D.F)) = D.ρc
-  · rw [if_pos ((kap_iff L ha i₀ v hv).mpr h), if_pos h]
-  · rw [if_neg (fun h' => h ((kap_iff L ha i₀ v hv).mp h')), if_neg h]
+  · rw [ite_eq_left ((kap_iff L ha i₀ v hv).mpr h), ite_eq_left h]
+  · rw [ite_eq_right (fun h' => h ((kap_iff L ha i₀ v hv).mp h')), ite_eq_right h]
 
 end UpperTheory.Gal.FixZ
 

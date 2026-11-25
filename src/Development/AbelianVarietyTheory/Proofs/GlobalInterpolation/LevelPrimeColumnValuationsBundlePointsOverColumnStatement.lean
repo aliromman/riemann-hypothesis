@@ -53,6 +53,28 @@ public import Formalism.LocalToGlobal.GroupLattices.AdmissibleAtGeneratorPlaces
 public import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.AndLeft
 public import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.LevelPrimeColumnValuationsAtBundlePoints
 public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.PropertyAtConstructedPointsOfTrueColumnsViewStatement
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -65,6 +87,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.StepBoxIffStepSuppDeg
 import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.ThDistC
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.PredMemGamRanks
@@ -72,8 +96,12 @@ import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.MemExtLatOfMe
 import Formalism.LocalToGlobal.Columns.BaseLemmas
 import Formalism.LocalToGlobal.Columns.CoefficientsModP
 import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.ColInst
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
+import Mathlib.Tactic.Polynomial.Basic
 import Std.Tactic.BVDecide.Normalize.Prop
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.PlacesOverConjPrimes
 import Formalism.HermitianLattices.HermitianLatticesProofs.NeighbourConstruct
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
@@ -549,8 +577,8 @@ theorem exists_basis_ker {d : Deco E n ST SG} (hd : d.Ok) (P : ST) (hs : d.at P.
     obtain ⟨s', hs', b, hb⟩ := exists_mul_eq_of_unif hT hT2 h1
     refine (Formalism.L2.Col.mem_locP P.1 _ x).2 ⟨s' * s, fun hm => (P.1.isPrime.mem_or_mem hm).elim hs' hs1, ?_⟩
     have h2 : s' • r = ∑ j, (Function.update (s' • r) i b) j • fun a => B₀ a j := by
-      rw [← Finset.add_sum_erase _ _ (Finset.mem_univ i), hcol, if_pos rfl, Function.update_self,
-        Finset.sum_congr rfl fun j hj => by rw [hcol, if_neg (Finset.ne_of_mem_erase hj),
+      rw [← Finset.add_sum_erase _ _ (Finset.mem_univ i), hcol, ite_eq_left rfl, Function.update_self,
+        Finset.sum_congr rfl fun j hj => by rw [hcol, ite_eq_right (Finset.ne_of_mem_erase hj),
           Function.update_of_ne (Finset.ne_of_mem_erase hj)]]
       funext a
       by_cases ha : a = i
@@ -1108,7 +1136,7 @@ omit hP hq hq2 hd₀ in
 theorem up_f {v : Sp E n} (hv : v ∈ d.at P.1) : d.f P v = d₀.f P (q • v) := by
   obtain ⟨x, -, -, rfl⟩ := h
   rw [Deco.up_f]
-  exact if_pos hv
+  exact ite_eq_left hv
 
 omit hP hq hq2 hd₀ in
 theorem up_be : d₀.be = d.be := by
@@ -1191,13 +1219,13 @@ theorem exists_dn_of_up {d₁ : Deco E b ST SG'} (h₁ : d'.IsUp P q d₁) (r₁
   have hone : ∀ e ∈ d.N, d.f P e = 1 → q • e ∈ d.dnN P ∧ f₀ (q • e) = 1 := fun e he hfe => by
     have m1 : q • e ∈ d.dnN P := (le_sup_left : d.kerAt P ≤ d.dnN P) (hd.smul_mem_kerAt P hq he)
     refine ⟨m1, ?_⟩
-    simp only [f₀, if_pos (le_locP _ _ m1)]
+    simp only [f₀, ite_eq_left (le_locP _ _ m1)]
     rw [hom_smul, ← up_f h₁ (r₁ P e (le_locP _ _ he)).1, (r₁ P e (le_locP _ _ he)).2, hfe]
   have hok : (d.dn P f₀).Ok := by
-    refine hd.dn P hP (fun y hy z hz => ?_) (fun c y hy => ?_) (fun y hy => if_neg hy) ?_
-    · simp only [f₀, if_pos hy, if_pos hz, if_pos (add_mem hy hz)]
+    refine hd.dn P hP (fun y hy z hz => ?_) (fun c y hy => ?_) (fun y hy => ite_eq_right hy) ?_
+    · simp only [f₀, ite_eq_left hy, ite_eq_left hz, ite_eq_left (add_mem hy hz)]
       rw [map_add (f := _), hd'.f_add P _ (hx y hy) _ (hx z hz)]
-    · simp only [f₀, if_pos hy, if_pos (Submodule.smul_mem _ c hy)]
+    · simp only [f₀, ite_eq_left hy, ite_eq_left (Submodule.smul_mem _ c hy)]
       rw [hom_smul, hd'.f_smul P c _ (hx y hy)]
     · obtain ⟨e, he, hfe⟩ := exists_f_one hd P
       exact ⟨_, (hone e he hfe).1, by rw [(hone e he hfe).2]; exact one_ne_zero⟩
@@ -1209,7 +1237,7 @@ theorem exists_dn_of_up {d₁ : Deco E b ST SG'} (h₁ : d'.IsUp P q d₁) (r₁
   · subst hQ
     have hy' : y ∈ localization₂ Q.1.asIdeal (d.dnN Q) := hy
     rw [hf]
-    exact ⟨hx y hy', (if_pos hy').symm⟩
+    exact ⟨hx y hy', (ite_eq_left hy').symm⟩
   · rw [up_at_ne hP hq hq2 hok hup hQ] at hy
     rw [up_at_ne hP' hq hq2 hd' h₁ hQ, up_f_ne h₁ hQ, up_f_ne hup hQ]
     exact r₁ Q y hy
@@ -1262,8 +1290,8 @@ theorem sum_ite_unique {α K : Type} [Field K] (s : Finset α) (p : α → Prop)
     (∑ u ∈ s, if p u then (1 : K) else 0) = if ∃ u ∈ s, p u then 1 else 0 := by
   split_ifs with he
   · obtain ⟨u, hu, hp⟩ := he
-    rw [Finset.sum_eq_single_of_mem u hu fun v hv hne => if_neg fun hv' => hne (h v hv u hu hv' hp), if_pos hp]
-  · exact Finset.sum_eq_zero fun v hv => if_neg fun hv' => he ⟨v, hv, hv'⟩
+    rw [Finset.sum_eq_single_of_mem u hu fun v hv hne => ite_eq_right fun hv' => hne (h v hv u hu hv' hp), ite_eq_left hp]
+  · exact Finset.sum_eq_zero fun v hv => ite_eq_right fun hv' => he ⟨v, hv, hv'⟩
 
 theorem sum_phiT (K : Type) [Field K] {P : ST} (hP : MoveHyp ST SG P) (hP' : MoveHyp ST SG' P) {q : 𝓞 E} (hq : q ∈ P.1.asIdeal)
     (hq2 : q ∉ P.1.asIdeal ^ 2) (d : DecoSet (E := E) (n := a) (ST := ST) (SG := SG)) (d' : DecoSet (E := E) (n := b) (ST := ST) (SG := SG')) (U : Finset (DecoSet (E := E) (n := b) (ST := ST) (SG := SG')))
@@ -1301,7 +1329,7 @@ theorem inBox_of {K : Type} [Field K] {SA SB : Finset (HeightOneSpectrum (𝓞 E
   · rcases (hS Q).1 hQ with hQ | hQ
     · have hr : Rel d d' x := by
         by_contra hr
-        exact left_ne_zero_of_mul hx (by rw [phiT_eq, if_neg hr])
+        exact left_ne_zero_of_mul hx (by rw [phiT_eq, ite_eq_right hr])
       exact Submodule.smul_mem _ (cA : 𝓞 E) (h1 x hr ⟨Q, hQ⟩ v hv)
     · exact h₀.1 x (right_ne_zero_of_mul hx) Q hQ v hv
   · rintro x _ ⟨z, hz, rfl⟩

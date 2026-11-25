@@ -9,6 +9,29 @@ public import Mathlib.LinearAlgebra.Eigenspace.Basic
 public import Development.WeilBound.SimpleEigenvalues.SimpleEigenvalueExtension.SimEig
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.RootSumWOff
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ProjectiveAutomorphicHecke.PProjOne
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -21,8 +44,10 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Basify
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsGDatumOneOneOne
+import Mathlib.Tactic.ENatToNat
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
@@ -1101,10 +1126,10 @@ theorem UpperTheory.Gal.LocalSmoothExtension.schWConj_of :
     rfl
   · have h0 : schW lam χ = 0 := by
       unfold schW
-      exact dif_neg h
+      exact dite_eq_right h
     have h1 : schW (conjWt σ lam) χ = 0 := by
       unfold schW
-      exact dif_neg h
+      exact dite_eq_right h
     rw [h0, h1, map_zero]
 end -- clump:auto
 end -- clump:auto
@@ -1221,7 +1246,7 @@ theorem UpperTheory.Gal.LocalSmoothExtension.traceSemi_of :
       rintro ⟨t, ⟨c⟩⟩
       obtain ⟨c', -⟩ := exists_basis (semi_symm h) c
       exact H ⟨_, ⟨c'.reindexFinsetRange⟩⟩
-    simp only [LinearMap.trace, dif_neg H, dif_neg H', LinearMap.zero_apply, map_zero]
+    simp only [LinearMap.trace, dite_eq_right H, dite_eq_right H', LinearMap.zero_apply, map_zero]
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.LefschetzSigmaSums.PTraceSemi =====

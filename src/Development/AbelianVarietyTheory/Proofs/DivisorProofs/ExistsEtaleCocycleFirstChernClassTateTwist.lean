@@ -7,19 +7,6 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleLocalPr
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleLocalPropertyCalculusRulesStatement
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleSheafSectionsExtAndGlue
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCochainEvEqOfNaturalStatement
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -135,13 +122,13 @@ theorem exists_single {E : Spc} {I : Cx R} {n : ℤ} (p₀ : ℕ) (s₀ : ℤ) (
       intro p s h V U g x
       by_cases hp : p = p₀
       · subst hp; subst h
-        simp only [dif_pos]
+        simp only [dite_eq_left]
         exact hb V U g x
-      · simp only [dif_neg hp]
+      · simp only [dite_eq_right hp]
         exact map_zero _)
   refine ⟨α, fun U x => ?_, fun p s h U x hp => ?_⟩
-  · rw [hα]; simp only [dif_pos]
-  · rw [hα]; simp only [dif_neg hp]
+  · rw [hα]; simp only [dite_eq_left]
+  · rw [hα]; simp only [dite_eq_right hp]
 
 alias ev_add := _root_.GlobalTheory.EtC.CupSpec.ev_add
 
@@ -506,7 +493,7 @@ theorem kumT_cases (q : ℕ) : IsKum q (kumT q) ∨ kumT q = 0 := by
   · exact Or.inl (pick_spec h)
   · right
     unfold kumT pick
-    rw [dif_neg h]
+    rw [dite_eq_right h]
 
 end ClsSpec
 

@@ -16,6 +16,31 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.UnderEqIffCo
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.UnitaryDeterminantKernelOpenAndFactor
 import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
 import Formalism.LocalToGlobal.Columns.BaseLemmas
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -30,7 +55,10 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.HCFFromRecipA
 
@@ -158,12 +186,12 @@ theorem compAt_detIdl (SB : Finset (HeightOneSpectrum (𝓞 E))) {N : Submodule 
   rw [map_mul, map_prod, MonoidHom.map_finprod _ (finite_detIdl SB hN), finprod_eq_single _ w]
   · by_cases h : w ∈ SB
     · rw [Finset.prod_eq_single_of_mem w h fun Q _ hQ => compAt_localIdele_ne hQ.symm _, compAt_localIdele_self,
-        if_pos (Or.inl h), if_pos h, map_one, mul_one]
+        ite_eq_left (Or.inl h), ite_eq_left h, map_one, mul_one]
       rfl
-    · rw [Finset.prod_eq_one fun Q hQ => compAt_localIdele_ne (ne_of_mem_of_not_mem hQ h).symm _, one_mul, if_neg h]
+    · rw [Finset.prod_eq_one fun Q hQ => compAt_localIdele_ne (ne_of_mem_of_not_mem hQ h).symm _, one_mul, ite_eq_right h]
       by_cases h' : conjPrime₂ w ∈ SB
-      · rw [if_pos (Or.inr h'), if_pos h', map_one]
-      · rw [if_neg (not_or.2 ⟨h, h'⟩), if_neg h', map_pow, compAt_localIdele_self]
+      · rw [ite_eq_left (Or.inr h'), ite_eq_left h', map_one]
+      · rw [ite_eq_right (not_or.2 ⟨h, h'⟩), ite_eq_right h', map_pow, compAt_localIdele_self]
         rfl
   · intro v hv
     split_ifs
@@ -324,13 +352,13 @@ theorem isPtOf_base [NeZero n] : IsPtOf hc 1 (DecoF.base E n ST SG Q) := by
     have e : lastIdx n = i := Fin.ext (by simp [lastIdx]; omega)
     show HasRes _ _ ((Deco.base E n ST SG).f P x)
     simp only [Deco.base]
-    rw [if_pos (le_locP _ _ hx), h1, adAt_inclE, e, ← hr, reduction_coe]
+    rw [ite_eq_left (le_locP _ _ hx), h1, adAt_inclE, e, ← hr, reduction_coe]
     exact hasRes_coe _ _
   · replace hx : x ∈ stdLat E n := hx
     obtain ⟨r, hr⟩ := (mem_stdLat x).1 hx i
     show HasRes _ _ ((Deco.base E n ST SG).be w x i)
     simp only [Deco.base]
-    rw [if_pos (le_locP _ _ hx), h1, adAt_inclE, ← hr, reduction_coe]
+    rw [ite_eq_left (le_locP _ _ hx), h1, adAt_inclE, ← hr, reduction_coe]
     exact hasRes_coe _ _
   · show _ = algebraMap E _ ((Pi.single j 1 : Sp E n) i)
     rw [Units.val_one, Matrix.one_apply, Pi.single_apply]
@@ -491,7 +519,7 @@ theorem mem_KDq_of_local (a : Ideles H.E) (h : ∀ v : HeightOneSpectrum (𝓞 H
   have hmem : ∀ w, ((∃ i, OverP H (H.g i) w) ∨ AtQ H SQ w) ∨ IdlFact.valAt w a ≠ 1 → w.under (𝓞 H.F) ∈ S := fun w hw =>
     Finset.mem_image_of_mem _ (hfin.mem_toFinset.2 hw)
   have hl : ∀ w, (∃ i, OverP H (H.g i) w) ∨ AtQ H SQ w → Valued.v (compAt w b - 1) < 1 := fun w hw => by
-    rw [hc, if_pos (hmem w (Or.inl hw))]
+    rw [hc, ite_eq_left (hmem w (Or.inl hw))]
     exact (hκ _ w rfl).2 hw
   have hbK : b ∈ KDq H SQ := by
     refine mem_KDq_of_congQ H SQ ⟨fun w => ?_, fun i w hw => hl w (Or.inl ⟨i, hw⟩), fun w hw => hl w (Or.inr hw)⟩

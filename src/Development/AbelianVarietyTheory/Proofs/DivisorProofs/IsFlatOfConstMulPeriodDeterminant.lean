@@ -13,7 +13,30 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFramed
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsVecEquiv
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsDerivAt0CompLinear
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.IsEigAtIffOfIsDerivAt0
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -27,6 +50,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsFrPtOfEigFrame
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsPeriodsInFrameOffBoundary
@@ -285,9 +309,9 @@ end GlobalTheory.DetLine.WedgePer
 open GlobalTheory.DetLine.WedgePer in
 theorem GlobalTheory.DetLine.perVal_mul_wedgeCoord : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (D : Datum H) (l : Level H) (c : Coeff l) (e : c.F →+* ℂ) (τ : E →+* ℂ) (Di : Datum H) (x : Hor.Idx D τ → Di.La) (hm : Matrix (Hor.Idx D τ) (Hor.Idx D τ) E) (g g' : ℕ) (Hm : Matrix (Fin g) (Fin g) ℂ) (Hm' : Matrix (Fin g') (Fin g') ℂ) (P : Di.La →+ (Fin g → ℂ)) (P' : Di.La →+ (Fin g' → ℂ)) (W : Pad.Letter D → Fin g → ℂ) (W' : Pad.Letter D → Fin g' → ℂ) (Q Q' : Di.La →+ (Pad.Letter D → ℂ)) (φ : (Fin g → ℂ) ≃ₗ[ℝ] (Fin g' → ℂ)) (V : Fin D.p → Fin g → ℂ) (W₀ : Fin D.q → Fin g → ℂ) (V' : Fin D.p → Fin g' → ℂ) (W₀' : Fin D.q → Fin g' → ℂ) (y : Fin D.q ⊕ Fin D.p → Fin g → ℂ) (Δ Δ' : ℂ), τ (H.rt : E) = H.rt0 → IsPerBasis Di x hm → PerData c e Di Hm P W Q → PerData c e Di Hm' P' W' Q' → GoodPer c e τ x hm Q → GoodPer c e τ x hm Q' → (∀ a, φ (P a) = P' a) → MatchVec τ W V W₀ → MatchVec τ W' V' W₀' → IsWedgeCoord Hm V W₀ y Δ → IsWedgeCoord Hm' V' W₀' (fun k => φ (y k)) Δ' → perVal c e τ x hm Q * Δ' = perVal c e τ x hm Q' * Δ := by
   intro E _ _ _ H D l c e τ Di x hm g g' Hm Hm' P P' W W' Q Q' φ V W₀ V' W₀' y Δ Δ' hτ hx h h' hG hG' hφ hM hM' hΔ hΔ'
-  have hp : D.p = D.mult τ := (if_pos hτ).symm
+  have hp : D.p = D.mult τ := (ite_eq_left hτ).symm
   have hq : D.q = D.mult (conjEmb τ) := by
-    refine (if_neg fun hc => ?_).symm
+    refine (ite_eq_right fun hc => ?_).symm
     have h1 : starRingEnd ℂ H.rt0 = H.rt0 := by rw [← hτ]; exact hc.trans hτ.symm
     have h2 := H.sqrt_neg_disc_sq
     rw [← Complex.conj_eq_iff_re.1 h1] at h2

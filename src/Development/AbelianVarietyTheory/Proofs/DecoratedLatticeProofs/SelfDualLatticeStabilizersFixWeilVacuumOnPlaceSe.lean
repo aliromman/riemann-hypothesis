@@ -7,7 +7,31 @@ public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.InL
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LatticeVacuumIffPlacewise
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.TendstoUnitaryAdelicPointsAgreeOnGrowingFinset
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.MemAdelicLatticeIffLocalSelfDualCompletion
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -21,6 +45,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -192,7 +219,7 @@ theorem pe_mul_of_mem {v : Pl D} {x : AE D} (hx : x ∈ idAt D (· = v)) : pe D 
   · rw [zero_mul, h2 w h]
 
 theorem pe_mul_mem (v : Pl D) (x : AE D) : pe D v * x ∈ idAt D (· = v) :=
-  mem_idAt.2 ⟨by rw [map_mul, inf_pe, zero_mul], fun w hw => by rw [map_mul, comp_pe, if_neg hw, zero_mul]⟩
+  mem_idAt.2 ⟨by rw [map_mul, inf_pe, zero_mul], fun w hw => by rw [map_mul, comp_pe, ite_eq_right hw, zero_mul]⟩
 
 theorem idAt_mono {P : Pl D → Prop} {v : Pl D} (hv : P v) {x : AE D} (hx : x ∈ idAt D (· = v)) : x ∈ idAt D P := by
   obtain ⟨h1, h2⟩ := mem_idAt.1 hx
@@ -304,10 +331,10 @@ theorem finite_place_products : ∀ (D : D7) (S : HSp D) (L : Lat S) (P : Pl D �
   · rw [hp, locM_apply]
     by_cases hPw : P w
     · have hc : compAt D w (peT D (Fs.filter P)) = 1 := by
-        rw [comp_peT, if_pos (Finset.mem_filter.2 ⟨hw, hPw⟩)]
+        rw [comp_peT, ite_eq_left (Finset.mem_filter.2 ⟨hw, hPw⟩)]
       exact hom_loc_one (compAt D w) hc _ _
     · have hc : compAt D w (peT D (Fs.filter P)) = 0 := by
-        rw [comp_peT, if_neg fun h => hPw (Finset.mem_filter.1 h).2]
+        rw [comp_peT, ite_eq_right fun h => hPw (Finset.mem_filter.1 h).2]
       have := (mem_idAt.1 (hK i j)).2 w hPw
       rw [map_sub, sub_eq_zero] at this
       rw [hom_loc_zero (compAt D w) hc]
@@ -315,7 +342,7 @@ theorem finite_place_products : ∀ (D : D7) (S : HSp D) (L : Lat S) (P : Pl D �
   · have e1 : mt S l.prod i j = peT D (Fs.filter P) * mt S κ i j +
         (1 - peT D (Fs.filter P)) * (1 : Matrix (Fin S.rank) (Fin S.rank) (AE D)) i j := by rw [hp, locM_apply]
     refine (congrArg (compAt D w) e1).trans (hom_loc_zero (compAt D w) ?_ _ _)
-    rw [comp_peT, if_neg fun h => hw (Finset.mem_filter.1 h).1]
+    rw [comp_peT, ite_eq_right fun h => hw (Finset.mem_filter.1 h).1]
 
 end GlobalTheory.PlaceProducts
 

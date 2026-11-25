@@ -4,18 +4,6 @@ public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ToUn
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HarmonicPolynomialEqZeroOfFunctionStatement
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MapVVSymmMapVV
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsIsScaleOfChar
 
 @[expose] public section
@@ -37,10 +25,10 @@ theorem locC_conj {τ : ℂ ≃+* ℂ} {ν ν' : Twist D Circle} (h : ConjChar �
   unfold Twist.locC
   by_cases hP : PP ∈ ν.Q
   · have hP' : PP ∈ ν'.Q := by rw [h.1]; exact hP
-    rw [if_pos hP, if_pos hP']
+    rw [ite_eq_left hP, ite_eq_left hP']
     exact (h.res hν hν' hP u).symm
   · have hP' : PP ∉ ν'.Q := by rw [h.1]; exact hP
-    rw [if_neg hP, if_neg hP']
+    rw [ite_eq_right hP, ite_eq_right hP']
     simp
 
 theorem levPOf_ext1_apply_eq_units_map_inv {r : ℕ} {Pg : Finset (Pl D.host.E)} (P : LevelP Pg r ℂ) {τ : ℂ ≃+* ℂ}

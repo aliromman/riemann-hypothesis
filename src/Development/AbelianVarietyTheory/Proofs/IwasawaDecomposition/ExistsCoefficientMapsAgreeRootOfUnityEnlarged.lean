@@ -12,6 +12,29 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TameC
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ClassPresBasic
 import Formalism.LocalToGlobal.Columns.RowFormsAdelic
 import Formalism.LocalToGlobal.Columns.RowFormsGood
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -106,7 +129,7 @@ theorem gram_eq_one (X : Stages) {px : PreX X.B.toPre} (I : ColIn X.B px) (hI : 
 theorem decoOf_lat {X : Formalism.L2.Col.Fields} (hc : CMData X.F X.E) (n : ℕ) [NeZero n] (S : Finset (Pl X.E)) (y : UAd hc n) :
     (decoOf (F := X.F) (E := X.E) ∅ S y.1).1.N = Formalism.UG.CS.globLat y.1 (Formalism.L2.Col.stdLat X.E n) := by
   have hok := decorated_lattice_exists hc n ∅ S y.1 y.2
-  have e : (decoOf (F := X.F) (E := X.E) ∅ S y.1).1 = decoRaw ∅ S y.1 := congrArg Subtype.val (dif_pos hok)
+  have e : (decoOf (F := X.F) (E := X.E) ∅ S y.1).1 = decoRaw ∅ S y.1 := congrArg Subtype.val (dite_eq_left hok)
   rw [e]
   rfl
 
@@ -152,7 +175,7 @@ theorem exists_root_reading (X : Stages) {px : PreX X.B.toPre} (I : ColIn X.B px
   have hneg : X.toD7.sp.Vneg ((i : ℕ) + 1) = false := X.B.V_pos _ (by omega) i.2
   have ht := hT.coefL i t
   have hgr : (if X.toD7.sp.Vneg ((i : ℕ) + 1) then -(X.toD7.sp.V ((i : ℕ) + 1)).gram else (X.toD7.sp.V ((i : ℕ) + 1)).gram) = 1 := by
-    rw [hneg, if_neg (by simp)]
+    rw [hneg, ite_eq_right (by simp)]
     exact hG
   rw [hgr] at ht
   have hΛ := hL.is.βV i

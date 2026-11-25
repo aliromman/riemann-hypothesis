@@ -16,18 +16,6 @@ import Formalism.LocalToGlobal.Columns.CoefficientsModP.PairingNondegenerateHold
 import Formalism.LocalToGlobal.Columns.PolyFnLemmas
 import Formalism.LocalToGlobal.GlobalTheory.GL5.FamilyMassVolumeIdentityOfClassDecomp
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -413,7 +401,7 @@ theorem exists_coef_round (V : HSp D) (hV : ∀ τ, (V.gram.map (tauE D τ)).Pos
 
 theorem exists_coef_lift : ∀ (D : D7) (i : Fin D.R.m), (Vc D i).IsPosDef → ∃ (c : CoefA (Vc D i)) (c0 : VV D.what₂.LL (lamV D i) →ₛₗ[D.what₂.embLL] c.W), c.Is ∧ Bridge.CoefMapTie (Vc D i) c.coef c0 (rhoVr (labLL D) _) ∧ ∀ x y, inner ℂ (c0 x) (c0 y) = D.what₂.embLL (pairVr (labLL D) _ (if D.sp.Vneg ((i : ℕ) + 1) then -(Vc D i).gram else (Vc D i).gram) x y) := by
   intro D i h
-  rw [GlobalTheory.StdFrame.neg_eq_false_of_posDef D i h, if_neg Bool.false_ne_true]
+  rw [GlobalTheory.StdFrame.neg_eq_false_of_posDef D i h, ite_eq_right Bool.false_ne_true]
   refine exists_coef_round (Vc D i) (fun τ => ?_) _
   have := D.sp.V_sig ((i : ℕ) + 1) (tauE D τ)
   rw [h (tauE D τ)] at this

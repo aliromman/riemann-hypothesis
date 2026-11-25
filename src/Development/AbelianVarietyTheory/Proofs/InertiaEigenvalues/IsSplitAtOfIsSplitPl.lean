@@ -5,6 +5,29 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HostC
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.DualIsoDetGenMNeZero
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsIrreducibleIffOfLinearEquiv
 public import Formalism.LocalToGlobal.ProjectiveLattices.UnramBridgeHolds
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -17,6 +40,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -39,7 +63,7 @@ theorem exists_equiv_dual {m : ℕ} (lam : DomWeight (m + 1)) :
   have h0 : lam.dual.detShift = -(lam.detShift + lam.natW 0 + 0) := by
     have := hs 0
     have e : lam.dual.detShift = -lam.w 0 := by
-      simp only [DomWeight.detShift, Nat.succ_pos, dif_pos, DomWeight.dual]
+      simp only [DomWeight.detShift, Nat.succ_pos, dite_eq_left, DomWeight.dual]
       congr 2
       ext
       simp [Fin.val_rev]
@@ -123,9 +147,9 @@ theorem coord_conjugate (τ : E →+* ℂ) (z : Cinf E) :
   unfold coord
   simp only [InfinitePlace.mk_conjugate_eq]
   rcases InfinitePlace.embedding_mk_eq τ with h | h
-  · rw [if_pos h, if_neg (by rw [InfinitePlace.mk_conjugate_eq, h]; exact hne.symm)]
+  · rw [ite_eq_left h, ite_eq_right (by rw [InfinitePlace.mk_conjugate_eq, h]; exact hne.symm)]
     rfl
-  · rw [if_pos (by rw [InfinitePlace.mk_conjugate_eq, h]), if_neg (by rw [h]; exact hne)]
+  · rw [ite_eq_left (by rw [InfinitePlace.mk_conjugate_eq, h]), ite_eq_right (by rw [h]; exact hne)]
     simp
 
 theorem coord_conjAd (τ : E →+* ℂ) (x : Ad E) :

@@ -3,7 +3,35 @@ module
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.InterpStatementPfH
 public import Mathlib.Algebra.DualNumber
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.ExhaustFStatementPfC
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -16,7 +44,10 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
+import Mathlib.Topology.Sheaves.Init
 public import ReciprocityTheory.L2DbarEstimates.LeviForms.OfRealNormSqSumMul
 public import ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.DerivDerivNonposOfIsLocalMax
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.InterpStatementPfE
@@ -325,9 +356,9 @@ theorem jet_nM (ξ : Fin (nd X) → ℂ) (τ : X.Ψ) (a b : Fin r) :
     HasJet ξ 0 (fun z => ExF.nM X z τ a b) ((if a = b then 1 else 0) + sJ * cH (zMat X ξ τ a b)) := by
   simp only [ExF.nM, mat, nmat, zMat, Matrix.of_apply]
   by_cases h : b < a
-  · simp only [dif_pos h, if_neg h.ne', zero_add]
+  · simp only [dite_eq_left h, ite_eq_right h.ne', zero_add]
     exact HasJet.coord _
-  · simp only [dif_neg h, map_zero, mul_zero, add_zero]
+  · simp only [dite_eq_right h, map_zero, mul_zero, add_zero]
     have := HasJet.const (ξ := ξ) (x := 0) (if a = b then 1 else 0)
     rw [cJ_eq] at this
     split_ifs at this ⊢ <;> simpa using this
@@ -337,9 +368,9 @@ theorem jet_conj_nM (ξ : Fin (nd X) → ℂ) (τ : X.Ψ) (a b : Fin r) :
       ((if a = b then 1 else 0) + tJ * cH (conj (zMat X ξ τ a b))) := by
   simp only [ExF.nM, mat, nmat, zMat, Matrix.of_apply]
   by_cases h : b < a
-  · simp only [dif_pos h, if_neg h.ne', zero_add]
+  · simp only [dite_eq_left h, ite_eq_right h.ne', zero_add]
     exact HasJet.conj_coord _
-  · simp only [dif_neg h, map_zero, mul_zero, add_zero]
+  · simp only [dite_eq_right h, map_zero, mul_zero, add_zero]
     have := HasJet.const (ξ := ξ) (x := 0) (if a = b then 1 else 0)
     rw [cJ_eq] at this
     split_ifs at this ⊢ <;> simpa using this
@@ -407,14 +438,14 @@ theorem leviV_Lm {x0 : Frame X.Ψ r} (ho : IsOrth X x0) (ξ : Fin (nd X) → ℂ
     simp only [Matrix.of_apply, Matrix.add_apply, Matrix.smul_apply, Matrix.mul_diagonal,
       Matrix.diagonal_mul, Matrix.transpose_apply, Matrix.diagonal_apply, smul_eq_mul,
       add_mul, mul_add, Finset.sum_add_distrib, ite_mul, mul_ite, one_mul, zero_mul, mul_one,
-      mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true, Finset.mul_sum, hκi]
+      mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true, Finset.mul_sum, hκi]
     have e1 : ∑ a, sJ * cH (Z a (κ b)) * cH (ε a) * (tJ * cH (conj (Z a (κ c)))) =
         ∑ a, sJ * tJ * (cH (Z a (κ b)) * cH (ε a) * cH (conj (Z a (κ c)))) :=
       Finset.sum_congr rfl fun a _ => by ring
     rw [e1]
     by_cases hbc : b = c
-    · subst hbc; simp only [if_true]; ring
-    · simp only [if_neg hbc, if_neg (Ne.symm hbc)]; ring
+    · subst hbc; simp only [ite_true]; ring
+    · simp only [ite_eq_right hbc, ite_eq_right (Ne.symm hbc)]; ring
   rw [hmat, hdet] at hjet
 
   simp only [Matrix.of_apply, ← map_mul, ← map_sum, ← map_sub, ← map_prod] at hjet
@@ -429,11 +460,11 @@ theorem leviV_Lm {x0 : Frame X.Ψ r} (ho : IsOrth X x0) (ξ : Fin (nd X) → ℂ
   refine Finset.sum_congr rfl fun b _ => ?_
   rw [sum_castLE hi (fun a => Z a b * ε a * conj (Z a b))]
   by_cases hb : (b : ℕ) < i
-  · rw [if_pos hb, ← Finset.sum_sub_distrib, Finset.mul_sum]
+  · rw [ite_eq_left hb, ← Finset.sum_sub_distrib, Finset.mul_sum]
     refine Finset.sum_congr rfl fun a _ => ?_
     by_cases ha : (a : ℕ) < i
     · simp [ha, not_le.2 ha]
-    · simp only [if_neg ha, hb, not_lt.1 ha, and_self, if_true, hε]
+    · simp only [ite_eq_right ha, hb, not_lt.1 ha, and_self, ite_true, hε]
       push_cast
       rw [← Complex.mul_conj']
       ring
@@ -470,7 +501,7 @@ theorem levi_phla_zero (r : ℕ) (X : Data E r) (la : Wt X.Ψ r) (x : Frame X.Ψ
       if b < a then ((la τ b : ℝ) - (la τ a : ℝ)) * w a b else 0), ← Finset.sum_filter,
       Finset.sum_subtype (p := fun p : Fin r × Fin r => p.2 < p.1) _ (by simp)]
     refine Finset.sum_congr rfl fun y _ => ?_
-    simp only [hw, zMat, dif_pos y.2]
+    simp only [hw, zMat, dite_eq_left y.2]
     ring
   rw [hR]
   simp only [Finset.mul_sum, ← Finset.sum_add_distrib]
@@ -489,8 +520,8 @@ theorem levi_phla_zero (r : ℕ) (X : Data E r) (la : Wt X.Ψ r) (x : Frame X.Ψ
       simp only [Fin.val_succ, Fin.val_castSucc, Fin.ext_iff]
       split_ifs <;> first | omega | ring
     simp only [hw] at hi
-    rw [Finset.sum_congr rfl fun i _ => hi i, Finset.sum_sub_distrib, if_pos hba]
-    simp only [Finset.sum_ite_eq', Finset.mem_univ, if_true, ← sub_mul, hw]
+    rw [Finset.sum_congr rfl fun i _ => hi i, Finset.sum_sub_distrib, ite_eq_left hba]
+    simp only [Finset.sum_ite_eq', Finset.mem_univ, ite_true, ← sub_mul, hw]
     norm_cast
   · simp [hba, zMat]
 

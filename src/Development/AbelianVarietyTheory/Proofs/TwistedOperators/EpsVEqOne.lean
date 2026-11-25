@@ -2,6 +2,28 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsRealFam
 public import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsCombAt
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -161,7 +183,7 @@ theorem epsV_mem (t : T) (w : Pl D.host.E) (X : ℕ × ℕ) : epsV G t w X ∈ G
     · exact one_mem _
   · have h1 : epsV G t w (a, j) = 1 := by
       unfold epsV onColumn
-      exact dif_neg ha
+      exact dite_eq_right ha
     rw [h1]
     exact one_mem _
 
@@ -175,10 +197,10 @@ theorem elt_eq_one (t : T) (w : Pl D.host.E) (β : Cosets (G := locGrid G t w) o
   have hi : ¬ i < (locGrid G t w).m - 2 := by
     show ¬ i < D.R.m - 2
     omega
-  exact dif_neg hi
+  exact dite_eq_right hi
 
 theorem epsV_eq_one (t : T) (w : Pl D.host.E) {j : ℕ} (hj : D.R.m ≤ j + 1) : epsV G t w (D.R.m, j) = 1 := by
-  rw [epsV_apply, if_neg]
+  rw [epsV_apply, ite_eq_right]
   rw [mem_idx]
   omega
 

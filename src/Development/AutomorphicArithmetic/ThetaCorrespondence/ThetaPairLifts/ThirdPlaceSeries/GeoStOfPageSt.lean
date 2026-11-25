@@ -57,6 +57,28 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LeafDepthAll
 public import Development.AbelianVarietyTheory.Definitions.Divisors.TupleReadBaseTupleEqFamily
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.RunNumericalConditionsHoldAlongFamily
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.Links2OfRowsStatement
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -75,9 +97,14 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.NotOntoOfCharAlone
 import Formalism.LocalToGlobal.IndefiniteReal.ExistsChosenExtremalVector
 import Formalism.LocalToGlobal.IndefiniteReal.IndefiniteWeightData
 import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalToGlobal.IndefiniteForms.IndefSide
 import Formalism.LocalToGlobal.IndefiniteForms.IndefiniteTree.ExampleSatisfiesConditionsAtFive
 import Formalism.LocalToGlobal.ProjectiveLattices.ErealAddIInf
@@ -89,7 +116,10 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AbelianVarietyTheory.Definitions.Jets.TwoPlaces
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.GermCut
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
 import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.IsLocallyNoetherian
 import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.UniversalNormalisedMulByNatPullbackIso
@@ -250,20 +280,20 @@ theorem nusOf_eq_nuN {D : D7} (B : WeightFamilies.Prov D) {j : ℕ} (w : WeightF
     rw [← hch, mul_div_assoc]
     congr 1
     by_cases e0 : resCharOf la = D.host.g 0
-    · rw [if_pos e0, e0]
-    · rw [if_neg e0]
+    · rw [ite_eq_left e0, e0]
+    · rw [ite_eq_right e0]
       have e1 : resCharOf la = D.host.g 1 := by
         generalize Classical.choose hc = i at hch
         fin_cases i
         · exact absurd hch e0
         · exact hch
-      rw [if_pos e1, e1]
+      rw [ite_eq_left e1, e1]
   · rw [dite_eq_right hc]
     have e0 : ¬ resCharOf la = D.host.g 0 := fun e =>
       hc ⟨0, (H1algLink.prime_mem_iff la (D.host.g_prime 0)).2 e⟩
     have e1 : ¬ resCharOf la = D.host.g 1 := fun e =>
       hc ⟨1, (H1algLink.prime_mem_iff la (D.host.g_prime 1)).2 e⟩
-    rw [if_neg e0, if_neg e1]
+    rw [ite_eq_right e0, ite_eq_right e1]
     congr 2
     unfold DepPage.cP DepPage.IsRam
     rw [hq1, hdd, hvd, hsm, show ringChar (𝓞 B.KO ⧸ la.asIdeal) = resCharOf la from rfl]
@@ -271,17 +301,17 @@ theorem nusOf_eq_nuN {D : D7} (B : WeightFamilies.Prov D) {j : ℕ} (w : WeightF
       (UpperTheory.cmDatum_natCast_mem_heightOneSpectrum_iff D.host.toHostRaw B.KO la).1
     simp only [hS, H1algLink.prime_mem_iff la hq, H1algLink.prime_mem_iff la hd]
     by_cases a2 : resCharOf la ∈ D.host.small
-    · rw [if_pos a2, if_pos (Or.inl a2)]
+    · rw [ite_eq_left a2, ite_eq_left (Or.inl a2)]
       unfold c2 vdOf
-      rw [if_pos a2, Int.ceil_toNat, ← Nat.cast_mul, Nat.ceil_natCast]
-    · rw [if_neg a2]
+      rw [ite_eq_left a2, Int.ceil_toNat, ← Nat.cast_mul, Nat.ceil_natCast]
+    · rw [ite_eq_right a2]
       by_cases b : resCharOf la = D.host.q ∨ resCharOf la = D.host.d
-      · rw [if_pos b, if_pos (Or.inr b)]
+      · rw [ite_eq_left b, ite_eq_left (Or.inr b)]
         unfold Formalism.MainNotions.DIV.Cons.cHalf vdOf
-        rw [if_neg a2, Int.ceil_toNat]
+        rw [ite_eq_right a2, Int.ceil_toNat]
         congr 2
         ring
-      · rw [if_neg b, if_neg (fun h => h.elim a2 b)]
+      · rw [ite_eq_right b, ite_eq_right (fun h => h.elim a2 b)]
         simp
 
 theorem nusOf_eq_ram_mul_nuStarAt : ∀ (D : D7) (L : SizeData₂ D) (Pm : ParameterChoice' D L) (Tp : ParamsT D L Pm) (hK : DV.KapDef D) (T : Top D) (h : LawsP T) (EX : ErrX D) (j : ℕ), InR D j → letI := T.Q.H.starRing; ∀ la : HeightOneSpectrum (𝓞 T.Q.c.F), nusOf (recB h.toLawsCore) (lR Tp hK j) (fun la' => (nuW (T.Q.Xo j) T.Q.c la' T.Q.l.M (wtA (lR Tp hK j)) Tp.nWn).toReal / (ramOverZ la' : ℝ)) la = (ramOverZ la : ℝ) * nuStarAt (Xo := T.Q.Xo j) (c := T.Q.c) (depOf T.toCore EX Tp hK) la j := by
@@ -1489,10 +1519,6 @@ open NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Indef.Tree Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx Formalism.IndefR.FWT
 open GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.OntoChain GlobalTheory.RealIndexBound GlobalTheory.OnTies
 namespace GlobalTheory.BigOn
-section Comparison₂
-variable {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : Formalism.MainNotions.G.Inst D L} {Gl : Formalism.MainNotions.G.LatInst D} {Kc : Formalism.MainNotions.G.Consts}
-  {Y : DivX D} {cX : ExtraC} {ex : Extra D L hT Gi Gl Kc Y cX} {Csz : ℝ}
-end Comparison₂
 theorem geoSt_of_pageSt_alt : _root_.GlobalTheory.BigOn.PageStatement → _root_.GlobalTheory.BigOn.GeometricStatement' := by
   intro hP
   obtain ⟨CK, xa, HR⟩ := runsHold_of_ties

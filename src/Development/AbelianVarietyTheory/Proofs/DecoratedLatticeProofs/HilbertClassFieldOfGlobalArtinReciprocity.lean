@@ -19,6 +19,29 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NormC
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsIdeleClassGroupHomOpenKernel
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.InertiaElementEqOneOrLiesAboveFinitePlace
 public import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.HilbertClassFieldA
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -33,9 +56,12 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.HCFFromRecipA
 import Mathlib.FieldTheory.Galois.Profinite
 import Mathlib.RingTheory.PicardGroup
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Connected.Separation
 import Mathlib.Topology.Separation.CompletelyRegular
 
@@ -91,7 +117,7 @@ theorem tendsto_embedding {K : Type} [Field K] [NumberField K] {j : K →+* ℂ}
       (if InfinitePlace.mk σ = InfinitePlace.mk j then -1 else 1) = if σ = j then -1 else 1 := by
     by_cases hσ : σ = j
     · subst hσ; simp
-    · rw [if_neg (fun e => hσ ((mk_eq_mk_iff_of_isReal hj).1 e)), if_neg hσ, map_one]
+    · rw [ite_eq_right (fun e => hσ ((mk_eq_mk_iff_of_isReal hj).1 e)), ite_eq_right hσ, map_one]
   rw [hc] at h
   rcases InfinitePlace.embedding_mk_eq σ with e | e
   · rw [e] at h; exact h
@@ -122,10 +148,10 @@ theorem tendsto_norm {E K : Type} [Field E] [NumberField E] [Field K] [NumberFie
     let σ₀ : K →ₐ[E] ℂ := { toRingHom := j, commutes' := fun e => (RingHom.congr_fun he e).symm }
     have hiff : ∀ σ : K →ₐ[E] ℂ, (σ : K →+* ℂ) = j ↔ σ = σ₀ := fun σ =>
       ⟨fun h => AlgHom.coe_ringHom_injective h, fun h => by rw [h]; rfl⟩
-    rw [if_pos hu, Finset.prod_congr rfl fun σ _ => if_congr (hiff σ) rfl rfl]
+    rw [ite_eq_left hu, Finset.prod_congr rfl fun σ _ => if_congr (hiff σ) rfl rfl]
     simp
-  · rw [if_neg hu]
-    refine (Finset.prod_eq_one fun σ _ => if_neg fun h => hu ?_).symm
+  · rw [ite_eq_right hu]
+    refine (Finset.prod_eq_one fun σ _ => ite_eq_right fun h => hu ?_).symm
     have he : u.embedding = j.comp (algebraMap E K) := by
       ext e
       have := σ.commutes e
@@ -159,7 +185,7 @@ theorem exists_norm_sign : ∀ (E K : Type) [Field E] [NumberField E] [Field K] 
 
   have h0 : ∀ᶠ x in l, x ≠ 0 := by
     have hj' := hσ j
-    rw [if_pos rfl] at hj'
+    rw [ite_eq_left rfl] at hj'
     filter_upwards [hj'.eventually_ne (by norm_num : (-1 : ℂ) ≠ 0)] with x hx e
     exact hx (by rw [e, map_zero])
 
@@ -193,11 +219,11 @@ theorem exists_norm_sign : ∀ (E K : Type) [Field E] [NumberField E] [Field K] 
     intro u
     by_cases hu : u = w₀
     · subst hu
-      rw [if_pos rfl]
+      rw [ite_eq_left rfl]
       show InfinitePlace.Completion.extensionEmbedding _ ((P : AdeleRing (𝓞 E) E).1 _) = _
       rw [ReciprocityTheory.Neutral.Bridge.HCFR.infIdele_fst_self]
       simp
-    · rw [if_neg hu]
+    · rw [ite_eq_right hu]
       show InfinitePlace.Completion.extensionEmbedding _ ((P : AdeleRing (𝓞 E) E).1 _) = _
       rw [ReciprocityTheory.Neutral.Bridge.HCFR.infIdele_fst_ne E w₀ u hu, map_one]
   have hg : Tendsto (fun x => algebraMap E (InfiniteAdeleRing E) (Algebra.norm E x)) l

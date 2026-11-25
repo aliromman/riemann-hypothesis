@@ -17,7 +17,33 @@ public import Mathlib.RingTheory.MvPowerSeries.Rename
 public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.CoeffLeafGaugeSubMainTermEqZeroOnFirstAxis
 public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.HPullWUpGTwoGroupEmbeddingEqRename
 public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.PderivLeafGaugeEqPairingAddIntegral
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -30,6 +56,12 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Polynomial.Basic
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.Linter.HaveILetI
@@ -285,7 +317,7 @@ theorem linPull_coord_weight_nonneg : ∀ (C : Type) [Field C] [CharZero C] (V :
       (∀ c (k : ℕ) x, 1 ≤ k → S.al c k x = ∑ b, al c k b * S.al b 0 x) ∧
       ∀ c (n : ℕ) b, V.Ge (-(n : ℝ)) (al c n b) := by
     refine ⟨fun c k b => if k = 0 then (if c = b then 1 else 0) else S.co (Sum.elim (S.al c k) 0) b,
-      fun c b => if_pos rfl, ?_, ?_⟩
+      fun c b => ite_eq_left rfl, ?_, ?_⟩
     · intro c k x hk
       have hk0 : k ≠ 0 := by omega
       have hs := S.co_spec (Sum.elim (S.al c k) 0) x
@@ -293,16 +325,16 @@ theorem linPull_coord_weight_nonneg : ∀ (C : Type) [Field C] [CharZero C] (V :
       rw [← hs]
       refine Finset.sum_congr rfl fun b _ => ?_
       beta_reduce
-      rw [if_neg hk0, Sys.al, S.cur_zero_inl]
+      rw [ite_eq_right hk0, Sys.al, S.cur_zero_inl]
     · intro c n b
       rcases Nat.eq_zero_or_pos n with rfl | hn
       · beta_reduce
-        rw [if_pos rfl, Nat.cast_zero, neg_zero]
+        rw [ite_eq_left rfl, Nat.cast_zero, neg_zero]
         split_ifs
         · exact VF.Ge.one
         · exact VF.Ge.zero _
       · beta_reduce
-        rw [if_neg (show n ≠ 0 by omega)]
+        rw [ite_eq_right (show n ≠ 0 by omega)]
         exact hco _ _ (fun k => lattice_inclusion_forms_injective G S c n (Sum.inl k)) b
   obtain ⟨h0, hlog, -⟩ := _root_.GlobalTheory.MainTerm.linPull_coords C V d I J G S t hT (Fin N) e z al hze hal0 halk
 

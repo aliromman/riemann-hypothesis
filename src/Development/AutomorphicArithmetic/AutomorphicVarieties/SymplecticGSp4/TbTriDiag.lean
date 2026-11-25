@@ -19,12 +19,41 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeT
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.EptInt
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticGSp4.PtInSmul
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.AdicCompletion.Noetherian
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -38,6 +67,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.RestrictionMemInvariantH1
 import Development.AutomorphicArithmetic.AutomorphicVarieties.HeightAndVanishing.DirichletPrimeToLPartMulLPowerPart
 import Formalism.ConjugateSelfDual.Statement
@@ -314,12 +346,6 @@ section -- clump:auto
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal IsLocalRing UpperTheory.V UpperTheory.V.Base UpperTheory.V.Alg UpperTheory.V.HV UpperTheory.V.GradeZeroInterpolatingElement
 
-private theorem tb_avg {k G W : Type} [Field k] [CharZero k] [Group G] [AddCommGroup W] [Module k W]
-    (a : G → W →ₗ[k] W) (hmul : ∀ g h w, a (g * h) w = a g (a h w)) (f : G → W)
-    (hf : ∀ g h, f (g * h) = f g + a g (f h)) (H : Subgroup G) [H.FiniteIndex] (x : W)
-    (hx : ∀ h ∈ H, f h = a h x - x) : ∃ y, ∀ g, f g = a g y - y := by
-  exact Formalism.SharedLemmas.cocycle_coboundary_of_finiteIndex_sub a hmul f hf H x hx
-
 section Alg
 
 variable {E H : Type} [CommRing E] [Group H]
@@ -379,10 +405,6 @@ private theorem tb_sp (X : M4 (DualNumber E)) (ν : DualNumber E) (hν : ν.snd 
   show adj _ = -_
   rw [Loc.SpFlag.adj_mul, h4, mul_neg, ← mul_assoc, ← mul_assoc, h3, one_mul]
 
-private theorem tb_tri_diag {A B : M4 E} (hA : ∀ i j, j < i → A i j = 0) (hB : ∀ i j, j < i → B i j = 0) (i : Fin 4) :
-    (A * B) i i = A i i * B i i :=
-  Loc.SpFlag.tri_mul_diag (fun i j h => hA i j h) (fun i j h => hB i j h) i
-
 private theorem tb_chars (r : H →* M4 E) (u : (M4 E)ˣ)
     (h : ∀ g i j, j < i → ((u : M4 E) * r g * (u⁻¹ : (M4 E)ˣ)) i j = 0) :
     ∃ κ : Fin 4 → H →* Eˣ, ∀ g i, ((u : M4 E) * r g * (u⁻¹ : (M4 E)ˣ)) i i = κ i g := by
@@ -390,7 +412,7 @@ private theorem tb_chars (r : H →* M4 E) (u : (M4 E)ˣ)
     { toFun := fun g => ((u : M4 E) * r g * (u⁻¹ : (M4 E)ˣ)) i i
       map_one' := by simp
       map_mul' := fun a b => by
-        rw [← tb_tri_diag (h a) (h b), map_mul]
+        rw [← Loc.SpFlag.tri_mul_diag (h a) (h b), map_mul]
         simp only [mul_assoc, Units.inv_mul_cancel_left] }
   exact ⟨fun i => (k i).toHomUnits, fun g i => rfl⟩
 
@@ -430,7 +452,7 @@ private theorem tb_uniq {K H : Type} [Field K] (r : H → M4 K) (U U' V V' : M4 
     exact mul_ne_zero (Matrix.isUnit_det_of_right_inverse hU').ne_zero (Matrix.isUnit_det_of_right_inverse hV).ne_zero
   rw [Matrix.det_of_upperTriangular (fun i j h => hP i j h)] at hdet
   have h3 := congrFun (congrFun (e g) i) i
-  rw [tb_tri_diag (h1 g) hP, tb_tri_diag hP (h2 g), mul_comm] at h3
+  rw [Loc.SpFlag.tri_mul_diag (h1 g) hP, Loc.SpFlag.tri_mul_diag hP (h2 g), mul_comm] at h3
   exact mul_left_cancel₀ (Finset.prod_ne_zero_iff.1 hdet i (Finset.mem_univ i)) h3
 
 private theorem tb_sub {l : ℕ} [Fact l.Prime] {Γ A : Type} [Group Γ] [TopologicalSpace Γ] [IsTopologicalGroup Γ] [CompactSpace Γ]
@@ -647,7 +669,8 @@ theorem UpperTheory.V.GradeZeroInterpolatingElement.tanBK :
   · obtain ⟨A, N, hA, hN, h1⟩ := tb_place D hD _ r' hr' w hw
     haveI := Subgroup.quotient_finite_of_isOpen N hN
     haveI : N.FiniteIndex := Subgroup.finiteIndex_of_finite_quotient
-    obtain ⟨y, hy⟩ := tb_avg (k := PadicAlgCl l) (G := Ine (F := ℚ) A)
+    obtain ⟨y, hy⟩ := Formalism.SharedLemmas.cocycle_coboundary_of_finiteIndex_sub (k := PadicAlgCl l)
+      (G := Ine (F := ℚ) A)
       (fun g => Loc.adGL r.toHomUnits g) (fun g h x => by simp)
       (fun g => tbSnd (r' g) * r (g : G ℚ Ω)⁻¹) (fun g h => hZ.2 g h) (N.subgroupOf _) 0 (fun g hg => by
         rw [h1 g g.2 hg, tbSnd_one, zero_mul, map_zero, sub_zero])

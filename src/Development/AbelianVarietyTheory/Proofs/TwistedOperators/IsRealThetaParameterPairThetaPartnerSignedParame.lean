@@ -2,7 +2,30 @@ module
 
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.CartFrSgn
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ChainParIffStepGap
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Rat
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -15,6 +38,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Bool
 import Std.Tactic.BVDecide.Normalize.Prop
 
@@ -106,17 +131,17 @@ theorem mem_move {P : SPar} {c c' y : ℚ} {s : Bool} (hc : ∀ x ∈ P, x.1 ≠
     have e1 : x - c + c' - c' + c = x := by ring
     rw [e1]
     by_cases h : x < c
-    · right; simp only [h, if_true, Bool.not_not]; exact ⟨by linarith, hx⟩
+    · right; simp only [h, ite_true, Bool.not_not]; exact ⟨by linarith, hx⟩
     · left
       have : c < x := lt_of_le_of_ne (not_lt.1 h) (fun e => hc _ hx e.symm)
-      simp only [h, if_false]; exact ⟨by linarith, hx⟩
+      simp only [h, ite_false]; exact ⟨by linarith, hx⟩
   · rintro (⟨h, hx⟩ | ⟨h, hx⟩)
     · refine ⟨_, hx, ?_⟩
       have : ¬ (y - c' + c < c) := by linarith
-      simp only [this, if_false, Prod.mk.injEq, and_true]; ring
+      simp only [this, ite_false, Prod.mk.injEq, and_true]; ring
     · refine ⟨_, hx, ?_⟩
       have : y - c' + c < c := by linarith
-      simp only [this, if_true, Bool.not_not, Prod.mk.injEq, and_true]; ring
+      simp only [this, ite_true, Bool.not_not, Prod.mk.injEq, and_true]; ring
 
 theorem signed_zero_shift {l₁ l₂ : List ℚ} {c : ℚ} {x : ℚ × Bool} (h : x ∈ signed l₁ l₂ 0) :
     (x.1 + c, x.2) ∈ signed l₁ l₂ c := by

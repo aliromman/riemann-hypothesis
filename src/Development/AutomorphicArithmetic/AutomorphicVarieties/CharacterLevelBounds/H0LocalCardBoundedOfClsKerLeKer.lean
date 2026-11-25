@@ -11,19 +11,6 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.CharacterLe
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CharacterLevelBounds.H0Nu
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CharacterLevelBounds.PlacesQ
 import Mathlib.GroupTheory.Nilpotent
-import Mathlib.Order.CompletePartialOrder
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.CyclotomicBounds.ClassNumberBounds.TotallyRealRoots.NuBasic, Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.GaloisCohomologyLength.NuLeBound, Development.AutomorphicArithmetic.AutomorphicVarieties.CharacterLevelBounds.H0LocalCardBoundedOfClsKerLeKer
@@ -103,7 +90,7 @@ private theorem nlb_main {U : Subgroup ℤ_[l]ˣ} {s e : ℕ} (h : princ l s ≤
     · refine emultiplicity_pow_sub_one_sq ?_ e
       rw [hu]
       refine pow_dvd_pow _ ?_
-      rw [ha, if_pos hl]
+      rw [ha, ite_eq_left hl]
       exact le_max_right _ _
     · refine emultiplicity_pow_sub_one_odd hl ?_ e
       rw [hu]
@@ -120,9 +107,9 @@ theorem UpperTheory.V.LDataCardLeFinrank.nuLeBound :
   intro l _ N e U h he
   unfold nuBound
   by_cases hc : l ∣ N ∨ l - 1 ∣ e
-  · rw [if_pos hc]
+  · rw [ite_eq_left hc]
     exact nlb_main h he
-  · rw [if_neg hc]
+  · rw [ite_eq_right hc]
     rw [not_or] at hc
     obtain ⟨h1, h2⟩ := KStar.TotallyRealRoots.levelGroup_eq_top (l := l) hc.1 ⊤
     rw [h1] at h2

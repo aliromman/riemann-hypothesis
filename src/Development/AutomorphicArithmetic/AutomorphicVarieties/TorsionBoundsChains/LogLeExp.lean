@@ -21,26 +21,8 @@ public import Mathlib.Analysis.SpecialFunctions.Log.Basic
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.GroupHomologyLongExact
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.ImageRep
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.PermCard
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.RingTheory.TotallySplit
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.Order.CompletePartialOrder
-import Mathlib.SetTheory.ZFC.PSet
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.FullEnum, Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.DetNatAbsLeProdL1Norms, Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.IndexLe, Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.MaxIndep, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.TorsSatMult, Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.TorsSat, Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.CokerTors, Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.Imports, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.TorsStep, Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.TorsStep, Development.AutomorphicArithmetic.AutomorphicVarieties.TorsionBoundsChains.LogLeExp
@@ -73,7 +55,7 @@ theorem UpperTheory.V.KH.fullEnum :
     simp only [Finsupp.finsetSum_apply, Finsupp.smul_apply, Finsupp.single_apply, smul_eq_mul,
       Finsupp.coe_zero, Pi.zero_apply] at this
     rw [Finset.sum_eq_single i] at this
-    · simp only [if_true, mul_one] at this
+    · simp only [ite_true, mul_one] at this
       rcases mul_eq_zero.1 this with h | h
       · exact h
       · exact absurd h (hn0 i)
@@ -206,7 +188,7 @@ theorem UpperTheory.V.KH.maxIndep :
       ⟨hsm.trans (Set.subset_insert _ _), Set.insert_subset hx hmt, hi⟩ (Set.subset_insert _ _)
     exact hxm (he ▸ Set.mem_insert x m)
   rw [linearIndepOn_iff] at hdep
-  push_neg at hdep
+  push Not at hdep
   obtain ⟨l, hl, hl0, hlne⟩ := hdep
   have hl' : Finsupp.erase x l ∈ Finsupp.supported ℤ ℤ m := by
     rw [Finsupp.mem_supported] at hl ⊢

@@ -3,18 +3,6 @@ module
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.ShortLatticeUnitarize.Unitarize
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdicIntegersCompact.IsCompactAdicCompletionIntegers
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Algebra.Ring.Compact
 import Mathlib.Topology.Connected.Separation
 import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
@@ -57,10 +45,10 @@ theorem UpperTheory.V.Sd.Wc.hkReps :
     intro V _ _ ρ x hx
     obtain ⟨h1, h2⟩ := hU F w V ρ c x hx
     refine ⟨h1, ?_⟩
-    rw [h2 S hS, if_pos hc, Fin.sum_univ_succ, hsum, Fin.cons_zero, add_comm]
+    rw [h2 S hS, ite_eq_left hc, Fin.sum_univ_succ, hsum, Fin.cons_zero, add_comm]
     simp only [Fin.cons_succ]
   · refine ⟨S.card, b, fun _ i => ⟨(e i : HeightOneSpectrum.adicCompletionIntegers F w), rfl⟩, ?_⟩
     intro V _ _ ρ x hx
     obtain ⟨h1, h2⟩ := hU F w V ρ c x hx
     refine ⟨h1, ?_⟩
-    rw [h2 S hS, if_neg hc, add_zero, hsum]
+    rw [h2 S hS, ite_eq_right hc, add_zero, hsum]

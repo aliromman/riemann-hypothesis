@@ -7,6 +7,28 @@ import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CyclotomicChar
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.IntegralityOfNormCoefficients
 import Development.AutomorphicArithmetic.AutomorphicVarieties.FrobeniusSmoothVectors.ScNorm
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.GalEmbTop
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -19,6 +41,8 @@ import Mathlib.Tactic.NormNum.NatSqrt
 import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.ConstSmall
 
@@ -116,10 +140,10 @@ theorem JJ : (!![(1 : R), 0; 0, -1] * !![(1 : R), 0; 0, -1] : M2 R) = 1 := by
   refine mat_eq ?_ ?_ ?_ ?_ <;> ring
 
 theorem tauF_mem {g : Γ} (hg : g ∈ H) : tauF H k u g0 g = Nm k u g := by
-  simp only [tauF, Nm, xg, sg, if_pos hg, one_mul]
+  simp only [tauF, Nm, xg, sg, ite_eq_left hg, one_mul]
 
 theorem tauF_nmem {g : Γ} (hg : g ∉ H) : tauF H k u g0 g = Nm k u (g * g0⁻¹) * !![(1 : R), 0; 0, -1] := by
-  simp only [tauF, Nm, xg, sg, if_neg hg]
+  simp only [tauF, Nm, xg, sg, ite_eq_right hg]
   rw [Matrix.mul_fin_two]
   refine mat_eq ?_ ?_ ?_ ?_ <;> ring
 
@@ -389,12 +413,12 @@ theorem tauOf : TauOf := by
     intro g hg
     show (sg K'.fixingSubgroup g : c₂.O) * aa k u (xg K'.fixingSubgroup g0 g) = aa k u (xg K'.fixingSubgroup g0 g) ∧
       bb k u (xg K'.fixingSubgroup g0 g) = (sg K'.fixingSubgroup g : c₂.O) * bb k u (xg K'.fixingSubgroup g0 g)
-    simp only [sg, if_pos hg, one_mul, and_self]
+    simp only [sg, ite_eq_left hg, one_mul, and_self]
   ·
     intro g hg
     show (sg K'.fixingSubgroup g : c₂.O) * aa k u (xg K'.fixingSubgroup g0 g) = -aa k u (xg K'.fixingSubgroup g0 g) ∧
       bb k u (xg K'.fixingSubgroup g0 g) = -((sg K'.fixingSubgroup g : c₂.O) * bb k u (xg K'.fixingSubgroup g0 g))
-    simp only [sg, if_neg hg]
+    simp only [sg, ite_eq_right hg]
     constructor <;> ring
   ·
     intro g
@@ -477,12 +501,12 @@ theorem tauOf : TauOf := by
           intro x' hx'
           obtain ⟨y, hyA, hcy, hk, -⟩ := tr x' hx'
           rw [hk hgH, hP y hyA, hcy]
-        rw [if_pos hP, if_pos hP']
+        rw [ite_eq_left hP, ite_eq_left hP']
       · have hQ' : PP K' κ (-(m : ℤ)) A' := by
           intro x' hx'
           obtain ⟨y, hyA, hcy, hk, -⟩ := tr x' hx'
           rw [hk hgH, hQ hP y hyA, hcy]
-        rw [if_neg hP, if_neg (fun h => hex ⟨h, hQ'⟩)]
+        rw [ite_eq_right hP, ite_eq_right (fun h => hex ⟨h, hQ'⟩)]
     · intro hgH
       unfold sA
       rcases em (PP K' κ (m : ℤ) A) with hP | hP
@@ -490,12 +514,12 @@ theorem tauOf : TauOf := by
           intro x' hx'
           obtain ⟨y, hyA, hcy, -, hk⟩ := tr x' hx'
           rw [hk hgH, hP y hyA, hcy, ← zpow_neg]
-        rw [if_pos hP, if_neg (fun h => hex ⟨h, hQ'⟩)]
+        rw [ite_eq_left hP, ite_eq_right (fun h => hex ⟨h, hQ'⟩)]
       · have hP' : PP K' κ (m : ℤ) A' := by
           intro x' hx'
           obtain ⟨y, hyA, hcy, -, hk⟩ := tr x' hx'
           rw [hk hgH, hQ hP y hyA, hcy, zpow_neg, inv_inv]
-        rw [if_neg hP, if_pos hP', neg_neg]
+        rw [ite_eq_right hP, ite_eq_left hP', neg_neg]
   ·
     intro A hA g hg
     have hgH : g ∈ K'.fixingSubgroup := hDec A hA (Ine_le_Dec (F := ℚ) A hg)
@@ -505,15 +529,15 @@ theorem tauOf : TauOf := by
       ((cycBar K' Ω l x ^ (m : ℤ) : (Qbar l)ˣ) : Qbar l) by rw [zpow_natCast]; rfl]
     show ((aa k u (xg K'.fixingSubgroup g0 (resQ K' x)) + (sg K'.fixingSubgroup (resQ K' x) : c₂.O) *
       bb k u (xg K'.fixingSubgroup g0 (resQ K' x)) * sA K' κ c₂ m A : c₂.O) : Qbar l) = _
-    simp only [xg, sg, if_pos hgH]
+    simp only [xg, sg, ite_eq_left hgH]
     unfold sA
     rcases em (PP K' κ (m : ℤ) A) with hP | hP
-    · rw [if_pos hP]
+    · rw [ite_eq_left hP]
       have e : aa k u (resQ K' x) + 1 * bb k u (resQ K' x) * 1 = k (resQ K' x) := by
         simp only [aa, bb]
         linear_combination (k (resQ K' x)) * hu
       rw [e, kres, hP x hg]
-    · rw [if_neg hP]
+    · rw [ite_eq_right hP]
       have hQ : PP K' κ (-(m : ℤ)) A := (hκ.ine A hA).resolve_left hP
       have e : aa k u (resQ K' x) + 1 * bb k u (resQ K' x) * (-1) = k (resQ K' x⁻¹) := by
         rw [map_inv]
@@ -526,7 +550,7 @@ theorem tauOf : TauOf := by
     have e : (tau hy (resQ K' h) 0 0 + tau hy (resQ K' h) 0 1 : c₂.O) = k (resQ K' h) := by
       show aa k u (xg K'.fixingSubgroup g0 (resQ K' h)) +
         (sg K'.fixingSubgroup (resQ K' h) : c₂.O) * bb k u (xg K'.fixingSubgroup g0 (resQ K' h)) = _
-      simp only [xg, sg, if_pos hg, aa, bb]
+      simp only [xg, sg, ite_eq_left hg, aa, bb]
       linear_combination (k (resQ K' h)) * hu
     rw [e, kres]
 

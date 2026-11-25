@@ -35,18 +35,6 @@ import Mathlib.Algebra.Category.ModuleCat.Projective
 import Mathlib.Algebra.Module.StablyFree.Basic
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.RingTheory.PiTensorProduct
 import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.MatchingAdjoints
 import Development.AbelianVarietyTheory.Definitions.Foundations.IsIwasawaOfIsCompact
@@ -929,8 +917,8 @@ theorem prod_eq (hJ : V.J = (1 : D.host.E) • W.gram) {k : GlobalTheory.Indefin
       show (Eqv.matA D W _).map (Eqv.psiT D τ) = _
       rw [← Eqv.infMat_thetaC]
       by_cases e : τ = t
-      · subst e; rw [if_pos rfl, (hat τ 1).2.1, one_smul, (hZ τ).2]
-      · rw [if_neg e]; exact (hat t 1).2.2 τ e
+      · subst e; rw [ite_eq_left rfl, (hat τ 1).2.1, one_smul, (hZ τ).2]
+      · rw [ite_eq_right e]; exact (hat t 1).2.2 τ e
     rw [Eqv.infMat_thetaC]
     show φ _ = gsOf k τ
     rw [map_list_prod, List.map_map]

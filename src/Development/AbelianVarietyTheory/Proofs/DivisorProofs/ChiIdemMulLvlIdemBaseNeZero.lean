@@ -17,8 +17,35 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsCuspIndPro
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsCuspProdCharTransport
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SumCoeffChiIdemMul
 import Mathlib.Algebra.Module.StablyFree.Basic
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -32,6 +59,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.BlockEmbeddingFactors
 import Development.AbelianVarietyTheory.Definitions.Divisors.SplitDoublingNBlock
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrobeniusOrbitDegreeOverPrimeFieldFbar
@@ -39,6 +67,8 @@ import Formalism.CyclotomicNorms.StatementI
 import Formalism.LocalToGlobal.Divisibility.ClassSum
 import Formalism.SharpRestriction.Divisibility.PrimeDegreeVariant
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Development.AbelianVarietyTheory.Definitions.Foundations.SamePartIffOfNeZero
 import Development.AbelianVarietyTheory.Proofs.CharacterTheory.FiniteGroupFunctionPairingSelfIrreducibleAlgClos
 import Development.AbelianVarietyTheory.Proofs.CharacterTheory.IsCharacterOverSubfieldOfRepresentation
@@ -51,6 +81,8 @@ import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CuspidalCharEx
 import Formalism.LocalToGlobal.Divisibility.ProjLemmas
 import Mathlib.Data.Finsupp.Pointwise
 import Mathlib.RepresentationTheory.FinGroupCharZero
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.RingTheory.PicardGroup
 
@@ -137,12 +169,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.BlockEmbeddingFactors GlobalTheory.
 variable {g : ℕ} [Fact g.Prime] {r : ℕ}
 
 end Local
-
-section Global
-
-open GlobalTheory.IndefiniteRowSideFullHecke.BlockEmbeddingFactors
-
-end Global
 
 end GlobalTheory.GoodFamily
 end -- clump:auto
@@ -286,13 +312,13 @@ theorem character_coind_eq_ind {G V : Type} [Group G] [Finite G] (H : Subgroup G
   unfold ext0
   split_ifs with hx
   · rw [Finset.sum_eq_single (⟨_, hx⟩ : H)⁻¹]
-    · rw [inv_inv, if_pos rfl]; rfl
+    · rw [inv_inv, ite_eq_left rfl]; rfl
     · intro γ _ hγ
-      rw [if_neg]
+      rw [ite_eq_right]
       intro e
       exact hγ (inv_eq_iff_eq_inv.1 (Subtype.ext e))
     · simp
-  · exact Finset.sum_eq_zero fun γ _ => if_neg fun e : ((γ⁻¹ : H) : G) = x⁻¹ * g * x => hx (e ▸ (γ⁻¹).2)
+  · exact Finset.sum_eq_zero fun γ _ => ite_eq_right fun e : ((γ⁻¹ : H) : G) = x⁻¹ * g * x => hx (e ▸ (γ⁻¹).2)
 
 theorem isChar_prod {ι : Type} [Fintype ι] {G : Type} [Group G] {χ : ι → G → ℂ}
     (h : ∀ i, IsChar ℂ ℂ (χ i)) : IsChar ℂ ℂ (fun t => ∏ i, χ i t) := by
@@ -410,7 +436,7 @@ theorem blocksHom_apply (b : Fin r → ℕ) (e : (Σ a, Fin (d a)) ≃ Fin r) (h
     (p : blockTri (κ := F) b) (a : ι) (i j : Fin (d a)) :
     (blocksHom b e he p a : Matrix (Fin (d a)) (Fin (d a)) F) i j =
       ((p : GL (Fin r) F) : Matrix (Fin r) (Fin r) F) (e ⟨a, i⟩) (e ⟨a, j⟩) :=
-  if_pos ((he ⟨a, i⟩ ⟨a, j⟩).2 rfl)
+  ite_eq_left ((he ⟨a, i⟩ ⟨a, j⟩).2 rfl)
 
 theorem blocksHom_diagHom (b : Fin r → ℕ) (e : (Σ a, Fin (d a)) ≃ Fin r) (he : ∀ x y, b (e x) = b (e y) ↔ x.1 = y.1)
     (x : ∀ a, GL (Fin (d a)) F) : blocksHom b e he (diagHom b e he x) = x := by
@@ -595,7 +621,7 @@ theorem isCuspProdChar_typeChar {s : SSParam p ℂ r} (hs : IsRegularParam s) :
     rw [h1]
     unfold ext0
     by_cases hz : y⁻¹ * x * y ∈ blockTri (κ := ZMod p) (b₀ ∘ w)
-    · rw [dite_eq_left hz, if_pos ((hm _).2 hz), hch]
+    · rw [dite_eq_left hz, ite_eq_left ((hm _).2 hz), hch]
       refine Finset.prod_congr rfl fun c _ => ?_
       unfold cuspOn
       congr 1
@@ -604,7 +630,7 @@ theorem isCuspProdChar_typeChar {s : SSParam p ℂ r} (hs : IsRegularParam s) :
       simp only [e, Equiv.trans_apply, cycEquiv_apply]
       rw [← conj_permGL_apply w, Equiv.apply_symm_apply, Equiv.apply_symm_apply]
       rfl
-    · rw [dite_eq_right hz, if_neg (mt (hm _).1 hz)]
+    · rw [dite_eq_right hz, ite_eq_right (mt (hm _).1 hz)]
 
 theorem isChar_of_isCuspProdChar {θ : GL (Fin r) (ZMod p) → ℂ} (h : GlobalTheory.IndefiniteRowSideFullHecke.CuspidalProductMultiplicity.IsCuspProdChar θ) : IsChar ℂ ℂ θ := by
   haveI : NeZero p := ⟨(Fact.out : p.Prime).ne_zero⟩

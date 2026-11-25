@@ -1,6 +1,32 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.ChartGen
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -13,6 +39,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 public import Mathlib.Basic.ENNReal.Inv
 public import Mathlib.Topology.Algebra.InfiniteSum.Basic
 public import Mathlib.Topology.Algebra.InfiniteSum.ENNReal
@@ -40,10 +67,10 @@ theorem main : ∀ (G α : Type) [Group G] [MulAction G α] , (∀ (X Y : Set α
     simp only [orbSum_eq]
     refine ENNReal.tsum_le_tsum fun q => ?_
     by_cases hq : Quotient.out q ∈ X
-    · rw [if_pos hq, if_pos (hXY hq)]
+    · rw [ite_eq_left hq, ite_eq_left (hXY hq)]
       gcongr
       exact hN _ hq
-    · rw [if_neg hq]
+    · rw [ite_eq_right hq]
       exact zero_le
   · intro X B
     simp only [orbMass, orbSum]
@@ -57,7 +84,7 @@ theorem main : ∀ (G α : Type) [Group G] [MulAction G α] , (∀ (X Y : Set α
     · obtain ⟨i, hi, hqi⟩ := Set.mem_iUnion₂.1 (hX hq)
       refine le_trans ?_ (Finset.single_le_sum (fun j _ => zero_le) hi)
       simp [hq, hqi]
-    · rw [if_neg hq]
+    · rw [ite_eq_right hq]
       exact zero_le
   · intro X s hs
     have key : ∀ q : {q : MulAction.orbitRel.Quotient G α // Quotient.out q ∈ X},

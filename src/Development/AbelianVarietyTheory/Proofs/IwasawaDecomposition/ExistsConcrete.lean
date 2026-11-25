@@ -40,6 +40,30 @@ import Formalism.LocalToGlobal.GroupLattices.ComparisonMaps.RecAct
 import Formalism.LocalToGlobal.GroupLattices.TiedFamilies.TiePtRec
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Afsplit
 import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.GlintPrincRelIndexNeZero
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -53,13 +77,19 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Formalism.LocalToGlobal.GroupLattices.TiedRec
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.ReduceModChar
 import Formalism.GradedWeylDivisibility.FinalD
 import Formalism.LocalToGlobal.GlobalTheory.GL6.WeylLengthDiagonalUnitUniformiser
 import Formalism.LocalToGlobal.GroupLattices.FockModels.SwRowGenMonomial
@@ -67,6 +97,7 @@ import Formalism.LocalToGlobal.GroupLattices.LevelGatherings.GramDetIsUnit
 import Formalism.LocalToGlobal.GroupLattices.TrivialTransfer.GramTotallyDefinite
 import Formalism.SharpRestriction.GrowthBounds.ScaleEdges.WeylDimShift
 import Mathlib.Tactic.Linter.Style
+import Mathlib.Tactic.Polynomial.Basic
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.FractionRingFrobeniusAlgebraMap
 import Formalism.LocalToGlobal.GroupLattices.CloudFilling.GatRecStepFrob
 import Formalism.SharpRestriction.RamificationFrobenius.TotientGaloisClasses.FrameFacts
@@ -455,7 +486,7 @@ theorem evalReps_surjective (Hv : P.Tup → Submodule O P.Xsp)
     intro i γ
     have h := isLatTup_smul C γ (hr.lat i)
     have e := hgam _ h
-    simp only [F, dif_pos h]
+    simp only [F, dite_eq_left h]
     generalize idx _ h = j at e ⊢
     generalize gam _ h = δ at e ⊢
     have e' : C.smul (δ⁻¹ * γ) (rep i) = rep j := by
@@ -463,7 +494,7 @@ theorem evalReps_surjective (Hv : P.Tup → Submodule O P.Xsp)
     obtain rfl := hr.inj _ _ _ e'
     obtain rfl : δ = γ := inv_mul_eq_one.1 (htriv _ _ (hr.lat i) e')
     rfl
-  refine ⟨⟨F, (mem_funMod_iff C Hv F).2 ⟨fun L hL => ?_, fun L hL => dif_neg hL, fun γ L => ?_⟩⟩, ?_⟩
+  refine ⟨⟨F, (mem_funMod_iff C Hv F).2 ⟨fun L hL => ?_, fun L hL => dite_eq_right hL, fun γ L => ?_⟩⟩, ?_⟩
   · obtain ⟨i, γ, rfl⟩ := hr.surj L hL
     rw [key, ← hact γ _ (hr.lat i)]
     exact Submodule.smul_mem _ _ ⟨_, (x i).2, rfl⟩
@@ -472,8 +503,8 @@ theorem evalReps_surjective (Hv : P.Tup → Submodule O P.Xsp)
       rw [← smul_mul, key, key, map_mul, Units.val_mul, mul_smul, actX_mul]
       congr 1
       exact (((C.actX γ).restrictScalars O).map_smul _ _).symm
-    · have h1 : F L = 0 := dif_neg hL
-      have h2 : F (C.smul γ L) = 0 := dif_neg (fun h => hL ((isLatTup_smul_iff C γ L).1 h))
+    · have h1 : F L = 0 := dite_eq_right hL
+      have h2 : F (C.smul γ L) = 0 := dite_eq_right (fun h => hL ((isLatTup_smul_iff C γ L).1 h))
       rw [h1, h2, map_zero, smul_zero]
   · funext i
     apply Subtype.ext
@@ -744,7 +775,7 @@ theorem card_ssIdx_natW {N m : ℕ} (h : m + 1 = N) (lam : Formalism.BasicNotion
   subst h
   have : nuOf l = lam.natW := by
     funext t
-    simp only [nuOf, Formalism.BasicNotions.DomWeight.natW, Formalism.BasicNotions.DomWeight.detShift, hl, dif_pos (Nat.succ_pos m)]
+    simp only [nuOf, Formalism.BasicNotions.DomWeight.natW, Formalism.BasicNotions.DomWeight.detShift, hl, dite_eq_left (Nat.succ_pos m)]
     rfl
   rw [this]
 
@@ -1477,11 +1508,6 @@ def embAlg (u : D.what₂.Word) (w : D.what₂.places.Pl) (hg : GIdx D.host (D.m
 theorem embK_embAlg (u : D.what₂.Word) (w : D.what₂.places.Pl) (hg : GIdx D.host (D.mem u).A.T (D.what₂.places.resChar w))
     (z : D.what₂.LL) : embK D L0 u w hg (embRec D w (nFr D (D.what₂.places.resChar w)) z) = lamV (embAlg D L0 u w hg) (D.what₂.embLL z) :=
   (Classical.choose_spec (Classical.choose_spec (Classical.choose_spec (GlobalTheory.PlaceOrbit.exists_locId D u (L0 u) w hg)))).1 z
-
-def awayChar (T : ∀ u : D.what₂.Word, Forms0 D u) (hJ : ∀ u, Joint0 L0 u (T u)) (hψ : ∀ u, LevelZeroCharacterRational T u) (u : D.what₂.Word)
-    (w : D.what₂.places.Pl) (hg : GIdx D.host (D.mem u).A.T (D.what₂.places.resChar w)) :
-    Formalism.L2.Herm.awayFrom₂ (L0 u) (D.what₂.places.resChar w) →* (ORec D w (nFr D (D.what₂.places.resChar w)))ˣ :=
-  Classical.choose (GlobalTheory.Mem.AwayChar.exists_psi D L0 T hJ hψ u w hg)
 
 def gatOf (I : ∀ u (w : D.what₂.places.Pl), GIdx D.host (D.mem u).A.T (D.what₂.places.resChar w) →
       LocId (L0 u) (D.what₂.places.resChar w) (nOrb (zH D.R.toFrame (hP D (D.what₂.places.resChar w))))

@@ -18,23 +18,8 @@ import Development.AbelianVarietyTheory.Proofs.TwistedOperators.JhMultSubAddQuot
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ParIndJacPlacing
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.SubsingletonJacquetOfPerm
 public import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Basic
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ExistsNotCongPow
 import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.HasExponentZeroIff
@@ -261,11 +246,11 @@ theorem exists_sum_of_jac (hG : GeometricLemma) (hZ : ZelevinskyPolynomialRing) 
     intro i j
     by_cases hj : j = J i
     · subst hj
-      simp only [u, if_true]
+      simp only [u, ite_true]
       rw [hJ i]
       exact hasSupport_self (hx i)
     · obtain ⟨s', hs'⟩ := SupportRing.exists_hasSupport hZ (IrrGL.of (c i j).ρ (c i j).smooth (c i j).irr)
-      simp only [u, if_neg hj]
+      simp only [u, ite_eq_right hj]
       rwa [eq_zero_of_hasSupport (hJ0 i j hj) hs'] at hs'
   refine ⟨fun j => ∑ i, u i j, fun j => ?_, ?_⟩
   · have hd : ∑ i, b.1 i j = d j := by simpa using b.2.2 j
@@ -278,7 +263,7 @@ theorem exists_sum_of_jac (hG : GeometricLemma) (hZ : ZelevinskyPolynomialRing) 
       (y := fun i => IrrGL.of (c i j).ρ (c i j).smooth (c i j).irr) (fun i => hu i j) (y j).irr
       (h1.trans (.of_injective ψ.toIntertwiningMap ψ.toLinearEquiv.injective))
   · rw [Finset.sum_comm]
-    simp only [u, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+    simp only [u, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
     rw [← Multiset.sum_map_singleton (Finset.univ.val.map x), Multiset.map_map]
     rfl
 

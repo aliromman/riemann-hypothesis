@@ -6,6 +6,30 @@ public import Formalism.LocalToGlobal.IndefiniteReal.ScalarOnPartsFull
 public import Formalism.SatakeDualWeyl.StatementF
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryDivisorDualLabel
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.SupportedSubgroupSplitCommutePrimeIdempotentsStatement
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -20,6 +44,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.NormalFam
 import Formalism.LocalToGlobal.IndefiniteForms.IndefSide
@@ -87,9 +114,9 @@ theorem selfDual_antiJ (n : ℕ) (x : Fin n → E) :
     convert this using 1
     simp [ReciprocityTheory.ChartRestriction.G.FD.herm, Formalism.UG.antiJ, Pi.single_apply, ReciprocityTheory.ChartRestriction.G.FD.cc]
     rw [Finset.sum_eq_single i]
-    · rw [if_pos (by have := i.2; omega)]
+    · rw [ite_eq_left (by have := i.2; omega)]
     · intro b _ hb
-      rw [if_neg]
+      rw [ite_eq_right]
       intro hc; apply hb; ext; have := i.2; have := b.2; omega
     · intro h; exact absurd (Finset.mem_univ i) h
 
@@ -196,11 +223,11 @@ theorem exists_std [Algebra.Unramified (𝓞 (maximalRealSubfield E)) (𝓞 E)]
     by_cases hij : i.val + j.val + 1 = n
     · have hj : j = i.rev := Fin.ext (by rw [Fin.val_rev]; omega)
       subst hj
-      simp only [Formalism.UG.antiJ, if_pos hij, map_one, mul_one]
+      simp only [Formalism.UG.antiJ, ite_eq_left hij, map_one, mul_one]
       show sigR (Fv (maximalRealSubfield E) v) hc.sig (inclR (Fv (maximalRealSubfield E) v) (ϖ ^ d i.1)) *
         inclR (Fv (maximalRealSubfield E) v) (ϖ ^ d i.rev.1) = 1
       rw [hσι, map_zpow₀, hσ, hd, ← map_mul, ← zpow_add₀ h0, add_neg_cancel, zpow_zero, map_one]
-    · simp only [Formalism.UG.antiJ, if_neg hij, map_zero, mul_zero, zero_mul]
+    · simp only [Formalism.UG.antiJ, ite_eq_right hij, map_zero, mul_zero, zero_mul]
   have hu := conj_mem_UJ _ hh hT
   have hTv : ∀ w, T.1 *ᵥ w = t * w := fun w => funext fun k => by
     show (Matrix.diagonal t *ᵥ w) k = t k * w k

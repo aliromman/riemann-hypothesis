@@ -1,18 +1,6 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.TwConj
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -48,10 +36,10 @@ theorem phi_transpose_mul : (Phi n R)ᵀ * Phi n R = 1 := mul_eq_one_comm.mp phi
 theorem phi_mul_phi : Phi n R * Phi n R = ((-1 : R) ^ (n - 1)) • (1 : Matrix (Fin n) (Fin n) R) := by
   ext i k
   simp only [Matrix.mul_apply, phi_apply, Matrix.smul_apply, Matrix.one_apply, smul_eq_mul, ite_mul, zero_mul,
-    Finset.sum_ite_eq', Finset.mem_univ, if_true, Fin.rev_rev]
+    Finset.sum_ite_eq', Finset.mem_univ, ite_true, Fin.rev_rev]
   by_cases h : k = i
   · subst h
-    simp only [if_true, mul_one]
+    simp only [ite_true, mul_one]
     rw [← pow_add, Fin.val_rev]
     have hk := k.isLt
     rw [show (k : ℕ) + (n - ((k : ℕ) + 1)) = n - 1 by omega]

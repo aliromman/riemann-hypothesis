@@ -5,6 +5,29 @@ public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.Loc
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.UnfoldingIntegralTwistPrimeEqDeepFiniteSum
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.IsTwIffCanonEq
 public import Development.AbelianVarietyTheory.Definitions.LatticeFrames.XiEqXiOffMul
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -17,6 +40,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.Tactic.Linter.Style
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -77,24 +101,24 @@ theorem xiAt_eq_prod (i : ℕ) (hi : i + 1 ≤ B.R.m) (α : Ch₀ i) (γ : Ch₀
       Formalism.L2.Col.phiT B.fields.K (A.p0 i α).1.1.deco.1 (A.p0 (i + 1) γ).1.1.deco.1 x *
         ∏ P : BadPr I a, locXi A i α γ P x := by
   rcases lt_trichotomy (i + 2) B.R.m with h | h | h
-  · rw [xiAt, dif_pos h]
+  · rw [xiAt, dite_eq_left h]
     unfold Formalism.L2.Col.XiEntry
     congr 1
     refine Finset.prod_congr rfl fun P _ => ?_
-    rw [locXi, dif_pos h]
-  · rw [xiAt, dite_eq_right (by omega), dif_pos h]
+    rw [locXi, dite_eq_left h]
+  · rw [xiAt, dite_eq_right (by omega), dite_eq_left h]
     unfold Formalism.L2.Col.XiCpl1
     congr 1
     refine Finset.prod_congr rfl fun P _ => ?_
-    rw [locXi, dite_eq_right (by omega), dif_pos h]
+    rw [locXi, dite_eq_right (by omega), dite_eq_left h]
   · have h1 : i + 1 = B.R.m := by omega
     obtain ⟨n, rfl⟩ : ∃ n, i = n + 1 := ⟨i - 1, by have := B.R.two_le_m; omega⟩
-    rw [xiAt, dite_eq_right (by omega), dite_eq_right (by omega), dif_pos h1]
+    rw [xiAt, dite_eq_right (by omega), dite_eq_right (by omega), dite_eq_left h1]
     show xiOver _ _ _ _ n h1 _ _ _ x = _
     unfold xiOver
     congr 1
     refine Finset.prod_congr rfl fun P _ => ?_
-    rw [locXi, dite_eq_right (by omega), dite_eq_right (by omega), dif_pos h1]
+    rw [locXi, dite_eq_right (by omega), dite_eq_right (by omega), dite_eq_left h1]
     rfl
 
 theorem xi_eq_xiOff_mul (i : ℕ) (hi : i + 1 ≤ B.R.m) (α : Ch₀ i) (γ : Ch₀ (i + 1))
@@ -116,7 +140,7 @@ theorem entry_eq_sgn_mul (hI : I.Ok) : ∀ (c : Comm (I.rec7 l Z)) (v : VCom c) 
     (hR.rep (j + 1) d H hj' γ) e' e he' he
     (Formalism.L2.Col.inFr (Formalism.L2.Col.frsF I.sel (I.tup a) (A.p0 j α).1.1 P) (Formalism.L2.Col.frsF I.sel (I.tup a) (A.p0 (j + 1) γ).1.1 P) x)
   have hlt : j + 2 < B.R.m := by have := hAt.steps; omega
-  simp only [locXi, dif_pos hlt]
+  simp only [locXi, dite_eq_left hlt]
   exact h2
 
 end

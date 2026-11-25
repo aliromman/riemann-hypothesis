@@ -17,18 +17,6 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeo
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IdealSheafEqSpanOnBasicOpensOfStalkPrincipal
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothAffineOpenFinitePresentationStalkKaehlerFr
 import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.ExistsUniqueLbIsoPullEqOfCoheightLeOne
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.CommGroupMulMulEqMulInvMulMulMul
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsChartOfIsLocalRing
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsLocalRingTrivSqZeroExt
@@ -41,10 +29,8 @@ import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ClsLinCombSingle
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CocycleRightZeroThd
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SymplecticGenerators.StTransl
-import Mathlib.Topology.Sheaves.Presheaf
 import Mathlib.Tactic.Linter.Style
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
 import Mathlib.Tactic.Linter.HaveILetI
 import ReciprocityTheory.AnalyticForms.RegularLocalRings.DivSheafA
 
@@ -329,11 +315,11 @@ theorem logDet_local_eq_unit_mul_prod :
         refine derivation_prod_eq_zero_of_forall _ _ _ fun j hj => ?_
         have hne : e j ≠ e j0 := fun h => (Finset.ne_of_mem_erase hj) (e.injective h)
         show dd (e j0) (φ (x (e j))) = 0
-        rw [hδ, if_neg hne]
+        rw [hδ, ite_eq_right hne]
       have hone : dd (e j0) (r j0) = 1 := by
         show dd (e j0) (φ (x (e j0))) = 1
-        rw [hδ, if_pos rfl]
-      have hmv : hm (e j0) = r j0 := if_pos hi
+        rw [hδ, ite_eq_left rfl]
+      have hmv : hm (e j0) = r j0 := ite_eq_left hi
       have : hm (e j0) * dd (e j0) g = g := by
         conv_lhs => rw [hsplit]
         rw [Derivation.leibniz, hrest, hone, hmv, smul_zero, zero_add, smul_eq_mul, mul_one, ← hsplit]
@@ -343,7 +329,7 @@ theorem logDet_local_eq_unit_mul_prod :
         refine derivation_prod_eq_zero_of_forall _ _ _ fun j hj => ?_
         have hne : e j ≠ i := fun h => hi (Finset.mem_map.mpr ⟨j, hj, h⟩)
         show dd i (φ (x (e j))) = 0
-        rw [hδ, if_neg hne]
+        rw [hδ, ite_eq_right hne]
       rw [this, mul_zero]
       exact Ideal.zero_mem _
   have hE : ∀ i, ∀ f ∈ I.map φ, E i f ∈ I.map φ := by
@@ -379,11 +365,11 @@ theorem logDet_local_eq_unit_mul_prod :
       have := _root_.GlobalTheory.dvd_derivation_of_mem_span_prod_params R m r hrsp J (D' k) hgk j hj
       obtain ⟨c, hc⟩ := this
       refine ⟨c, ?_⟩
-      have hmv : hm (e j) = r j := if_pos hl
+      have hmv : hm (e j) = r j := ite_eq_left hl
       rw [hmv, ← hc]
       exact (hD'a k (x (e j))).symm
     · refine ⟨φ (b k (x l)), ?_⟩
-      have hmv : hm l = 1 := if_neg hl
+      have hmv : hm l = 1 := ite_eq_right hl
       rw [hmv, one_mul]
   choose M hM using hdiv
 

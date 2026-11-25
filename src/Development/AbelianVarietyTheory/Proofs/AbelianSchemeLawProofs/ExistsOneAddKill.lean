@@ -1,9 +1,34 @@
 module
 
 public import Mathlib.AlgebraicGeometry.AffineScheme
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.AlgebraicGeometry.Modules.Sheaf
 public import Mathlib.AlgebraicGeometry.Morphisms.Affine
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
 import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -122,12 +147,12 @@ theorem frac {D W : Z.Opens} {w F : Fn Z} (hW : IsAffineOpen W) (h : IsLoc D W w
   obtain ⟨x, hx⟩ := hF
   obtain rfl := h.eq_basicOpen ha
   obtain ⟨n, y, hn⟩ := exists_eq_pow_mul_of_isAffineOpen Z W hW a x
-  refine ⟨n, fun z => if hz : z ∈ W then (Z.presheaf.germ W z hz).hom y else 0, ⟨y, fun z hz => by beta_reduce; rw [dif_pos hz]⟩,
+  refine ⟨n, fun z => if hz : z ∈ W then (Z.presheaf.germ W z hz).hom y else 0, ⟨y, fun z hz => by beta_reduce; rw [dite_eq_left hz]⟩,
     fun z hz => ?_⟩
   have hw := Z.basicOpen_le a hz
   have e := congrArg (Z.presheaf.germ _ z hz).hom hn
   rw [map_mul, map_pow, hx] at e
-  exact ((dif_pos hw).trans ((germ_res' (Z.basicOpen_le a) y z hz).symm.trans (e.trans (congrArg (· ^ n * F z)
+  exact ((dite_eq_left hw).trans ((germ_res' (Z.basicOpen_le a) y z hz).symm.trans (e.trans (congrArg (· ^ n * F z)
     ((germ_res' (Z.basicOpen_le a) a z hz).trans (ha z hw)))))).symm
 
 theorem Gen.mono {D : Z.Opens} {S S' : Set (Fn Z)} (h : Gen D S)

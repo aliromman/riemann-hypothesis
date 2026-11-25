@@ -9,6 +9,29 @@ public import Formalism.LocalRingCardinality.DataNChoice
 public import Formalism.LocalToGlobal.UnitaryNorms.CharTied
 public import Formalism.SharpRestriction.GlobalSchurBounds.GL3Theta
 public import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -21,11 +44,16 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Formalism.LocalToGlobal.UnitaryNorms.IsUnitaryNormOf
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.RingTheory.Valuation.Integral
 import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
 import Mathlib.NumberTheory.NumberField.ClassNumber
+import Mathlib.Tactic.Polynomial.Basic
 import Development.AbelianVarietyTheory.Proofs.SatakeParameters.InfDiagMulFinPartI
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -50,12 +78,6 @@ variable {R : Ranks} (H : Formalism.BasicNotions.Host R)
 abbrev Ad : Type := FiniteAdeleRing (𝓞 H.E) H.E
 
 end Adelic
-
-section abelian₂
-
-variable {l : ℕ} [Fact l.Prime] (lam : (algebraicClosure ℚ ℂ) →+* ℂ_[l])
-
-end abelian₂
 
 abbrev Reps (D : D7) (u : D.what₂.Word) (μ : D.what₂.Tup) : Type :=
   ∀ i, (D.chTw u μ).cls i → GL (Fin (D.R.N i)) (Ad D.host)
@@ -97,20 +119,6 @@ theorem emb_mem {K : Type} [Field K] [NumberField K] (φ : K →+* ℂ) (x : K) 
 variable {R : Ranks} (H : Formalism.BasicNotions.Host R) (φ : H.E →+* ℂ) {N : ℕ} (g : GL (Fin N) (Ad H))
 
 end Units
-
-section Rescale
-
-variable {D : D7} {Dx : DivX D} {Tw : TwForms D}
-
-end Rescale
-
-section Ties
-
-variable {D : D7} {Dx : DivX D} {Tw : TwForms D} {C : CharFrame D} {nch : NChoice D}
-
-variable (E : KerEnt D Dx Tw) (Tp : TupTied D C nch) (g : ∀ u μ, Reps D u μ) (fr : ∀ u μ, Frames D u μ)
-
-end Ties
 
 end GlobalTheory.UnUnitCmp
 end -- clump:auto
@@ -228,13 +236,6 @@ def ball (r : ℝ) (hr : 0 ≤ r) : Submodule (𝓞 K) K where
 
 end Local
 
-section Det
-
-variable (D : D7) {l : ℕ} [Fact l.Prime] (ψ : D.host.E →+* ℂ_[l]) {N : ℕ}
-  {L₀ L : Submodule (𝓞 D.host.E) (Fin N → D.host.E)} {P : Matrix (Fin N) (Fin N) D.host.E}
-
-end Det
-
 section Power
 
 variable (D : D7) {l : ℕ} [Fact l.Prime] (lam : Qbar →+* ℂ_[l])
@@ -249,14 +250,6 @@ theorem tauEmb_eq (τ : D.what₂.Tau) : tauEmb D lam τ = lamTau D lam τ := by
   rfl
 
 end Power
-
-section Main
-
-variable {D : D7} {Dx : DivX D} {Tw : TwForms D}
-
-variable (E : KerEnt D Dx Tw) (O : ∀ u μ, LiftObj D (D.chTw u μ))
-
-end Main
 
 end GlobalTheory.KernelScalarUnit
 end -- clump:auto

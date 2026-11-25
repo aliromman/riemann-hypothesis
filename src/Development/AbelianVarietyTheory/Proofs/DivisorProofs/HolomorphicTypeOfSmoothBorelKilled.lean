@@ -9,20 +9,6 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothGramSc
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorusLawOfKilled
 public import Mathlib.Analysis.Calculus.Deriv.Prod
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
-import Mathlib.Tactic.Lemma
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiagOfUpTOfPreserves, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HolomorphicTypeOfSmoothBorelKilled
@@ -222,10 +208,10 @@ lemma decomp {H x : Mt n} {q : ℕ} (h : OrthFr H q x) (Z : Mt n) :
     ext a c
     simp only [hX, Matrix.add_apply, mul_diagonal, diagonal_mul, conjTranspose_apply, of_apply, Matrix.zero_apply]
     rcases lt_trichotomy a c with hac | hac | hac
-    · rw [if_pos hac, if_neg (not_lt.2 hac.le), if_pos hac]
+    · rw [ite_eq_left hac, ite_eq_right (not_lt.2 hac.le), ite_eq_left hac]
       linear_combination (-(s c * star (Y c a))) * hs2 a
     · subst hac; simp
-    · rw [if_neg (not_lt.2 hac.le), if_pos hac, if_pos hac, star_neg, star_mul, star_mul, star_star, hs3, hs3]
+    · rw [ite_eq_right (not_lt.2 hac.le), ite_eq_left hac, ite_eq_left hac, star_neg, star_mul, star_mul, star_star, hs3, hs3]
       linear_combination (-(s a * Y a c)) * hs2 c
   refine ⟨x * X * x⁻¹, ?_, Y - X, ?_, ?_⟩
   · change (x * X * x⁻¹)ᴴ * H + H * (x * X * x⁻¹) = 0

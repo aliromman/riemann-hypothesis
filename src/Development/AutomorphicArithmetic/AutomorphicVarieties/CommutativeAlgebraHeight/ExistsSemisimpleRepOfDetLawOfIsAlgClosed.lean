@@ -6,7 +6,6 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.Commutative
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebraHeight.DUnit
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebraHeight.DkerOfKills
 public import Mathlib.Algebra.MvPolynomial.Nilpotent
-import Mathlib.RingTheory.Flat.TorsionFree
 public import Mathlib.RingTheory.Jacobson.Ring
 public import Mathlib.FieldTheory.IsAlgClosed.Basic
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebraHeight.ChEltOne
@@ -21,13 +20,40 @@ public import Mathlib.RingTheory.TensorProduct.Pi
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebraHeight.DFactor
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebraHeight.DPull
 public import Mathlib.RingTheory.SimpleModule.IsAlgClosed
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.AdicCompletion.Noetherian
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.RingTheory.TotallySplit
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -41,8 +67,13 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebraHeight.IsLocalHom
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebraHeight.HomTwo
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Algebra.AffineMonoid.UniqueSums
 import Mathlib.Tactic.Linter.Style
 import Mathlib.RingTheory.Congruence.Hom
@@ -632,23 +663,6 @@ private theorem det_bd {α : Type*} [Fintype α] [DecidableEq α] {m : α → Ty
     simp [Matrix.toSquareBlock_def, Equiv.sigmaSubtype]
   rw [this, Matrix.det_submatrix_equiv_self]
 
-private theorem pull_pull {n : ℕ} {A E E' E'' : Type} [CommRing A] [Ring E] [Algebra A E] [Ring E'] [Algebra A E']
-    [Ring E''] [Algebra A E''] (D : Det n A E) (f : E' →ₐ[A] E) (g : E'' →ₐ[A] E') :
-    (D.pull f).pull g = D.pull (f.comp g) := by
-  refine Det.ext' fun S _ _ x => ?_
-  change D.D S (Algebra.TensorProduct.map (AlgHom.id S S) f (Algebra.TensorProduct.map (AlgHom.id S S) g x)) =
-    D.D S (Algebra.TensorProduct.map (AlgHom.id S S) (f.comp g) x)
-  congr 1
-  induction x with
-  | tmul s y => simp
-  | add a b ha hb => simp only [map_add (f := _), ha, hb]
-
-private theorem pull_id {n : ℕ} {A E : Type} [CommRing A] [Ring E] [Algebra A E] (D : Det n A E) :
-    D.pull (AlgHom.id A E) = D := by
-  refine Det.ext' fun S _ _ x => ?_
-  change D.D S (Algebra.TensorProduct.map (AlgHom.id S S) (AlgHom.id A E) x) = D.D S x
-  simp
-
 private theorem ofRep_comp {n : ℕ} {A E E' ι : Type} [CommRing A] [Ring E] [Algebra A E] [Ring E'] [Algebra A E']
     [Fintype ι] [DecidableEq ι] (h : Fintype.card ι = n) (r : E →ₐ[A] Matrix ι ι A) (g : E' →ₐ[A] E) :
     Det.ofRep h (r.comp g) = (Det.ofRep h r).pull g := by
@@ -747,10 +761,13 @@ theorem UpperTheory.V.CA.exists_semisimple_rep_of_detLaw_of_isAlgClosed :
     rw [hrange]
     exact RingHom.isSemisimpleRing_of_surjective (r.comp e.toAlgHom).rangeRestrict.toRingHom
       (AlgHom.rangeRestrict_surjective _)
-  · rw [ofRep_comp, ofRep_comp, hr, pull_pull D']
-    have : e.symm.toAlgHom.comp e.toAlgHom = AlgHom.id k _ := by
-      ext x; simp
-    rw [this, pull_id, hD']
+  · rw [ofRep_comp, ofRep_comp, hr]
+    refine Eq.trans (congrArg (Det.pull · f) ?_) hD'
+    refine Det.ext' fun S _ _ x => ?_
+    change D'.D S (Algebra.TensorProduct.map (AlgHom.id S S) e.symm.toAlgHom
+      (Algebra.TensorProduct.map (AlgHom.id S S) e.toAlgHom x)) = D'.D S x
+    rw [← AlgHom.comp_apply, ← Algebra.TensorProduct.map_id_comp]
+    simp [AlgEquiv.symm_comp]
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebraHeight.ExistsSemisimpleRepOfDetLawOfIsAlgClosed =====

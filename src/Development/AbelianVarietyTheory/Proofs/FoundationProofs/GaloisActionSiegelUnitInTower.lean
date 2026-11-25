@@ -18,8 +18,35 @@ public import Mathlib.RingTheory.Algebraic.Cardinality
 public import Mathlib.RingTheory.Polynomial.Cyclotomic.Basic
 public import Mathlib.RingTheory.Polynomial.Cyclotomic.Roots
 import Development.AbelianVarietyTheory.Definitions.Foundations.MultipliableAndSgNeZero
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
 import Mathlib.Analysis.SpecialFunctions.Log.Summable
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -33,6 +60,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 import Formalism.LocalToGlobal.GlobalTheory.GL3.CubicFields.ComplexMultiplication.ExtEmbEquivComp
 import Mathlib.Algebra.Order.Star.Rat
@@ -419,7 +448,7 @@ theorem lc_zero {R : Type} [Zero R] {M : ℕ} {k : ℤ} (A : ℕ → R) {r : ℚ
     lc M k A r = 0 := by
   unfold lc
   rw [dite_eq_right]
-  push_neg
+  push Not
   exact h
 
 theorem lc_map {R S : Type} [Zero R] [Zero S] (M : ℕ) (k : ℤ) (A : ℕ → R) (g : R → S) (hg : g 0 = 0) (r : ℚ) :
@@ -434,7 +463,7 @@ theorem eq_lc {R : Type} [Zero R] {M : ℕ} (hM : 0 < M) {k : ℤ} {A : ℕ → 
   by_cases h : ∃ n : ℕ, r = ((k : ℚ) + n) / M
   · obtain ⟨n, rfl⟩ := h
     rw [h1, lc_eq hM]
-  · push_neg at h
+  · push Not at h
     rw [h2 r h, lc_zero A h]
 
 theorem lc_unique {M : ℕ} (hM : 0 < M) {f : ℍ → ℂ} {k k' : ℤ} {A A' : ℕ → ℂ}
@@ -463,7 +492,7 @@ theorem lc_unique {M : ℕ} (hM : 0 < M) {f : ℍ → ℂ} {k k' : ℤ} {A A' : 
     · rw [← hQ] at h2
       have e2 : (fun n => (if m ≤ n then A' (n - m) else 0) * Q ^ n) ∘ (· + m) = fun i => A' i * Q ^ i * Q ^ m := by
         funext n
-        simp only [Function.comp, le_add_iff_nonneg_left, zero_le, if_true, Nat.add_sub_cancel, pow_add]
+        simp only [Function.comp, le_add_iff_nonneg_left, zero_le, ite_true, Nat.add_sub_cancel, pow_add]
         ring
       rw [e2]; exact h2
   have hA := HasQ.coeff_unique hM h hs
@@ -474,18 +503,18 @@ theorem lc_unique {M : ℕ} (hM : 0 < M) {f : ℍ → ℂ} {k k' : ℤ} {A A' : 
   · obtain ⟨n, rfl⟩ := hr
     rw [lc_eq hM]
     by_cases hmn : m ≤ n
-    · rw [if_pos hmn]
+    · rw [ite_eq_left hmn]
       have : ((k : ℚ) + n) / M = (((k + m : ℤ) : ℚ) + ((n - m : ℕ) : ℚ)) / M := by
         push_cast [Nat.cast_sub hmn]; ring
       rw [this, lc_eq hM]
-    · rw [if_neg hmn, lc_zero]
+    · rw [ite_eq_right hmn, lc_zero]
       intro n' hn'
       rw [div_left_inj' hM'] at hn'
       push_cast at hn'
       have : (n : ℚ) = m + n' := by linarith
       have : n = m + n' := by exact_mod_cast this
       omega
-  · push_neg at hr
+  · push Not at hr
     rw [lc_zero _ hr, lc_zero]
     intro n' hn'
     apply hr (m + n')

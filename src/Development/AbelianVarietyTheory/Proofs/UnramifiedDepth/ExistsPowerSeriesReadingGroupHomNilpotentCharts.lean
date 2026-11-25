@@ -3,7 +3,32 @@ module
 public import Development.AbelianVarietyTheory.Definitions.TeichmullerDepth.IsEigBasisIff
 public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.EvBasicNEvalSubCoeffMem
 public import Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsSeriesOfNaturalOnNilpotent
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 public import Mathlib.RingTheory.Noetherian.Nilpotent
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -89,7 +114,7 @@ theorem exists_reads : ∀ (R : Type) [CommRing R] (G : Over (Spec (CommRingCat.
     intro j S _ _ S' _ _ φ a ha
     have h1 : ∀ i, IsNilpotent (a (0, i)) := fun i => ha _
     have h2 : ∀ i, IsNilpotent (φ (a (0, i))) := fun i => (ha _).map φ
-    simp only [c, dif_pos h1, dif_pos h2]
+    simp only [c, dite_eq_left h1, dite_eq_left h2]
     refine congrFun (h'.inj S' (fun j => φ (b S _ h1 j)) (b S' _ h2) (fun j => (hb S _ h1 j).map φ)
       (hb S' _ h2) ?_) j
     rw [← hX, ← h'.nat _ _ φ _ (hb S _ h1), ← hX, ← Category.assoc, h.nat _ _ φ _ h1]
@@ -99,7 +124,7 @@ theorem exists_reads : ∀ (R : Type) [CommRing R] (G : Over (Spec (CommRingCat.
     intro S _ inst a ha
     funext j
     have h1 := hφ j S (fun q => a q.2) (fun q => ha _)
-    simp only [c, dif_pos ha] at h1
+    simp only [c, dite_eq_left ha] at h1
     rw [h1, nv]
     have : (algebraMap R S).toAlgebra = inst := Algebra.algebra_ext _ _ fun _ => rfl
     rw [this]
@@ -114,7 +139,7 @@ theorem exists_reads : ∀ (R : Type) [CommRing R] (G : Over (Spec (CommRingCat.
     rw [← hX, h.zero, h'.zero, MonObj.one_comp])
   have h2 := hφ j R 0 (fun _ => IsNilpotent.zero)
   have h3 : c j R 0 = 0 := by
-    exact (dif_pos h0).trans (congrFun h1 j)
+    exact (dite_eq_left h0).trans (congrFun h1 j)
   have h4 := (Ideal.span_le.2 (by rintro _ ⟨i, rfl⟩; simp) : Ideal.span _ ≤ (⊥ : Ideal R))
     (evBasic_nEval_sub_coeff_mem (φ j) (0 : Fin 1 × Fin d → R) (fun _ => IsNilpotent.zero))
   rw [← h2, h3] at h4

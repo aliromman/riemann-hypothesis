@@ -3,6 +3,28 @@ module
 public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilTensorModels
 public import Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.FinSplit
 public import Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.InertDef
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -15,10 +37,13 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
 import Mathlib.RingTheory.TotallySplit
 import Mathlib.Tactic.Linter.HaveILetI
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.CompDef, Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.ExistsEigenLift
@@ -228,8 +253,8 @@ theorem finAt_of {ω ρ ω' ρ'} (L : IsLocRep G.M B.ψ om v ω ρ) (L' : IsLocR
     { Pi := fun _ => Q
       p := fun u => if h : v = u then h ▸ (π ∘ₗ p) else 0
       p' := fun u => if h : v = u then h ▸ (π ∘ₗ q) else 0 }
-  have e : R.p v = π ∘ₗ p := dif_pos rfl
-  have e' : R.p' v = π ∘ₗ q := dif_pos rfl
+  have e : R.p v = π ∘ₗ p := dite_eq_left rfl
+  have e' : R.p' v = π ∘ₗ q := dite_eq_left rfl
   have on' : ∀ x : Q, ∃ φ ∈ SB _, q φ = x := fun x => x.2
   have on : ∀ x : Q, ∃ φ ∈ SB _, p φ = x := fun x => (h1.symm ▸ x.2 : x.1 ∈ (SB _).map p)
   have hx : ∀ x : Q, π x.1 = x := fun x => hπ' x.1 x.2
@@ -346,7 +371,7 @@ theorem finInert_of (hKS : CompAtTriple) (hR : CoinvEmbeds) (hA : LocRepEx) (hB1
       (fun g hg g' hg' => by
         have hg₁ : g ∈ KSub σ G.W v := hg
         have hg₂ : g' ∈ KSub σ G.W v := hg'
-        rw [dif_pos (mul_mem hg₁ hg₂), dif_pos hg₁, dif_pos hg₂, ← Units.val_mul, div_mul_div_comm, ← map_mul, ← map_mul]
+        rw [dite_eq_left (mul_mem hg₁ hg₂), dite_eq_left hg₁, dite_eq_left hg₂, ← Units.val_mul, div_mul_div_comm, ← map_mul, ← map_mul]
         rfl)
       (fun g hg hgP => by
         have hg₁ : g ∈ KSub σ G.W v := hg
@@ -357,8 +382,8 @@ theorem finInert_of (hKS : CompAtTriple) (hR : CoinvEmbeds) (hA : LocRepEx) (hB1
         rw [hf' ⟨g, hg₁⟩, map_smul, smul_eq_mul] at a2
         have : c ⟨g, hg₁⟩ = c' ⟨g, hg₁⟩ :=
           Units.ext ((mul_right_cancel₀ hl0 a1).trans (mul_right_cancel₀ hlf a2).symm)
-        rw [dif_pos hg₁, this, div_self', Units.val_one]) k.1 k.2
-    rw [dif_pos k.2] at this
+        rw [dite_eq_left hg₁, this, div_self', Units.val_one]) k.1 k.2
+    rw [dite_eq_left k.2] at this
     exact div_eq_one.1 (Units.ext this)
   set t := l f.1 / l (G.M.vac v) with ht
   have ht0 : t ≠ 0 := div_ne_zero hlf hl0

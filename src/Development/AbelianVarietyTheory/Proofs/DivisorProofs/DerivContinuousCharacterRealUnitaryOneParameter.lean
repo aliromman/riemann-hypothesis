@@ -4,20 +4,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.FramedDConst
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ArchimedeanFrameCharacterFactorization
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryLieElementsGenerateOneParamLines
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsGrpDataMapHaar
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.RingTheory.TotallySplit
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -173,7 +160,7 @@ theorem deriv_charD :
     exact hu.subtype_mk _
   classical
   let χ : (∀ w : InfinitePlace F, Mat (R w) (S w)) → ℂ := fun h => if hh : h ∈ U then ν (G ⟨h, hh⟩) else 0
-  have χG : ∀ h : U, χ h = ν (G h) := fun h => by simp only [χ, dif_pos h.2]
+  have χG : ∀ h : U, χ h = ν (G h) := fun h => by simp only [χ, dite_eq_left h.2]
   have memU : ∀ h h' : ∀ w : InfinitePlace F, Mat (R w) (S w), h ∈ U → h' ∈ U → h * h' ∈ U := fun h h' hh hh' w =>
     mem_mul (hh w) (hh' w)
   obtain ⟨n, hn⟩ := prod_charD (R := R) (S := S) χ

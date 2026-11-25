@@ -8,6 +8,30 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.BplusOfEquiv
 public import Mathlib.Data.Matrix.ColumnRowPartitioned
 public import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsFinCombSingleZero
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AntiDiagonalEpsilonGramMulVec
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -21,6 +45,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsHeightLeTwoMulQuotHeight
 import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 
@@ -97,14 +123,14 @@ def jacDec {σ : ℕ} (d : HermitianOrthogonalExtensionData A B c ε) (h : c = 2
     refine (gram_sub' d _ _).trans (Matrix.ext fun i j => ?_)
     have := i.2; have := j.2
     simp only [submatrix_apply, antiDiagonalSignGramMatrix, Fin.val_castLE, Matrix.zero_apply]
-    rw [if_neg (by omega)]
+    rw [ite_eq_right (by omega)]
   e'e' := by
     refine (gram_sub' d _ _).trans (Matrix.ext fun i j => ?_)
     have := i.2; have := j.2
     have hi : (i : ℕ) + 1 ≤ c := by omega
     have hj : (j : ℕ) + 1 ≤ c := by omega
     simp only [submatrix_apply, antiDiagonalSignGramMatrix, Fin.val_rev, Fin.val_castLE, Matrix.zero_apply]
-    rw [if_neg (by omega)]
+    rw [ite_eq_right (by omega)]
   e'e := by
     refine (gram_sub' d _ _).trans (Matrix.ext fun i j => ?_)
     have := i.2; have := j.2
@@ -140,7 +166,7 @@ theorem coreMat_gram {σ : ℕ} (d : HermitianOrthogonalExtensionData A B c (-1)
   have hNN : (midCol d h)ᴴ * B.gram * midCol d h = (GlobalTheory.SeeSaw.Model.nLine D).gram := by
     refine (gram_sub' d _ _).trans (Matrix.ext fun i j => (?_ : _ = (-1 : D.host.E)).trans (nLine_gram i j).symm)
     simp only [submatrix_apply, antiDiagonalSignGramMatrix]
-    rw [if_pos (by omega), if_true]
+    rw [ite_eq_left (by omega), ite_true]
   have key : (Matrix.fromCols (frameMat B A d.ι) (midCol d h))ᴴ * B.gram * Matrix.fromCols (frameMat B A d.ι) (midCol d h) =
       Matrix.fromBlocks A.gram 0 0 (GlobalTheory.SeeSaw.Model.nLine D).gram := by
     rw [conjTranspose_fromCols_eq_fromRows_conjTranspose, fromRows_mul, fromRows_mul_fromCols, frameMat_isom,
@@ -158,7 +184,7 @@ theorem coreMat_perp {σ k : ℕ} (d : HermitianOrthogonalExtensionData A B c ε
     rw [conjTranspose_fromCols_eq_fromRows_conjTranspose, fromRows_mul, fromRows_mul, perp_sub]
     rw [show (midCol d h)ᴴ * B.gram * d.a.submatrix id f = 0 from (gram_sub' d _ _).trans (Matrix.ext fun i j => by
       simp only [submatrix_apply, antiDiagonalSignGramMatrix, Matrix.zero_apply]
-      rw [if_neg (by have := hf j; omega)])]
+      rw [ite_eq_right (by have := hf j; omega)])]
     exact fromRows_zero
   refine Matrix.ext fun i j => ?_
   exact congrFun (congrFun key _) j
@@ -171,14 +197,14 @@ def besDec {σ : ℕ} (d : HermitianOrthogonalExtensionData A B c (-1)) (h : c =
     refine (gram_sub' d _ _).trans (Matrix.ext fun i j => ?_)
     have := i.2; have := j.2
     simp only [submatrix_apply, antiDiagonalSignGramMatrix, Fin.val_castLE, Matrix.zero_apply]
-    rw [if_neg (by omega)]
+    rw [ite_eq_right (by omega)]
   e'e' := by
     refine (gram_sub' d _ _).trans (Matrix.ext fun i j => ?_)
     have := i.2; have := j.2
     have hi : (i : ℕ) + 1 ≤ c := by omega
     have hj : (j : ℕ) + 1 ≤ c := by omega
     simp only [submatrix_apply, antiDiagonalSignGramMatrix, Fin.val_rev, Fin.val_castLE, Matrix.zero_apply]
-    rw [if_neg (by omega)]
+    rw [ite_eq_right (by omega)]
   e'e := by
     refine (gram_sub' d _ _).trans (Matrix.ext fun i j => ?_)
     have := i.2; have := j.2

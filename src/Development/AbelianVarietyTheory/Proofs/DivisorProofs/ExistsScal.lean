@@ -2,6 +2,30 @@ module
 
 public import Formalism.LocalRingCardinality.DataArith
 public import Development.AbelianVarietyTheory.Definitions.Foundations.ExistsFlatSecRankZero
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -14,6 +38,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.Divisors.EightDvdNCol
 import Development.AbelianVarietyTheory.Definitions.Divisors.MulSmulIdemMem
 import Development.AbelianVarietyTheory.Definitions.Divisors.NormNegCmConstantEqAtAllEmbeddings
@@ -86,7 +112,7 @@ theorem exists_scal : ∀ (K : Type) [Field K] [NumberField K] (ρ : HeightOneSp
     (fun v _ => v.prime) (fun v _ u _ h h' => h (HeightOneSpectrum.ext h'))
     (fun v => if (v : HeightOneSpectrum (𝓞 K)) = w then π ^ E w else 0)
   have hbw := hb w hwT
-  simp only [if_true] at hbw
+  simp only [ite_true] at hbw
   have hπE : π ^ E w ∈ w.asIdeal ^ E w := (w.intValuation_le_pow_iff_mem _ _).1 (le_of_eq (hπpow _))
   have hπE1 : π ^ E w ∉ w.asIdeal ^ (E w + 1) := by
     rw [← w.intValuation_le_pow_iff_mem, hπpow, WithZero.exp_le_exp]
@@ -107,7 +133,7 @@ theorem exists_scal : ∀ (K : Type) [Field K] [NumberField K] (ρ : HeightOneSp
     · by_cases hvw' : v = w
       · subst hvw'; rw [hvw]
       · have := hb v hv
-        simp only [hvw', if_false, sub_zero] at this
+        simp only [hvw', ite_false, sub_zero] at this
         exact (mem_pow_iff v hb0 _).1 this
     · have hvS : v ∉ S := fun h => hv (Finset.mem_union_left _ h)
       have hρv : ρ v = 0 := by

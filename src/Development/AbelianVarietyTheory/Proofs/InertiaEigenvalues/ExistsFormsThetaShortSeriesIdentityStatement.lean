@@ -36,6 +36,32 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PureTen
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsDeltaDatumHigherLevel
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsRingEquivComplexCompEq
 import Formalism.LocalRingCardinality.DataHost
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -48,6 +74,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Divisors.PerCEmb
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.UnivOfNotLinearIndependent
 import Development.AbelianVarietyTheory.Definitions.SpanningFamilies.DatEqZero
@@ -61,6 +90,7 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.S
 import Mathlib.Algebra.GroupWithZero.Submonoid.CancelMulZero
 import Mathlib.RingTheory.PicardGroup
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Tactic.Basify
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Algebra.Azumaya.Basic
 import Mathlib.Tactic.Linter.Style
@@ -278,7 +308,7 @@ theorem exists_basis_integral_coords : ∀ (F : IntermediateField ℚ ℂ) [Numb
     intro k
     set_option synthInstance.maxHeartbeats 100000 in
       rw [hxs, map_sum]
-    simp only [map_smul, key, smul_eq_mul, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+    simp only [map_smul, key, smul_eq_mul, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
   refine ⟨?_, fun k => ?_⟩
   · conv_lhs => rw [hxs]
     refine Finset.sum_congr rfl fun j _ => ?_
@@ -545,7 +575,7 @@ theorem thetaSum_value_emb : ∀ (D : D7) (H : Geo.Tor.Host D.host.E) (Dw : Datu
   obtain ⟨vt, hvt, hev⟩ := hth ℂ halg _ y₂ hov₂
 
   have hrdU : rdU U f (dict g).1 (dict g).2 =
-      evR Xo c f (unC (Formalism.L2.PjFree.Unf.ofPj U) (dict g).1 ⟨(dict g).2, hx⟩) := dif_pos hx
+      evR Xo c f (unC (Formalism.L2.PjFree.Unf.ofPj U) (dict g).1 ⟨(dict g).2, hx⟩) := dite_eq_left hx
 
   have hcsv : evR d.Xo₂ d.c₂ 1 y₂ = 1 := evalAt_one _ _ y₂
     (GlobalTheory.Frames.allTest_of_secBaseChange GlobalTheory.firstFiveLaws.1.secBaseChange _ H Dw d.l₂ d.Xo₂ d.c₂ ℂ y₂)
@@ -584,7 +614,7 @@ theorem thetaSum_value_emb : ∀ (D : D7) (H : Geo.Tor.Host D.host.E) (Dw : Datu
     have hm' : ∀ τ, τ ∉ (U.X (dict g).1).Ψ →
         Dw.mult τ ≤ (U.X (dict g).1).p0 := fun τ hτ => by
       unfold Datum.mult
-      rw [if_neg fun h => hτ ((hΨ τ).2 h), hp0]
+      rw [ite_eq_right fun h => hτ ((hΨ τ).2 h), hp0]
     obtain ⟨h1', h2'⟩ := GlobalTheory.AdTh.Dic.letter Dc hrel hm' ℓ
     obtain ⟨g1, g2, g3⟩ := hvr (Dc.eL ℓ)
     refine AddValue.fvar_eq (τ := ℓ.1) (i := ℓ.2.1) (p := Dw.p) (j := ℓ.2.2) ⟨g2.trans h1', ?_⟩ (hlt ℓ) hne

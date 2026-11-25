@@ -13,6 +13,29 @@ public import Formalism.PairingDivisors.StatementH
 public import Development.AbelianVarietyTheory.Definitions.Divisors.EntireEqOfHalfPlane
 public import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.ReductionLemmaFirst
 public import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.AuxiliaryPrimeNeTypePrime
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -25,6 +48,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.Divisors.CmHostImaginaryGeneratorNeZero
 import Development.AbelianVarietyTheory.Definitions.Divisors.FlatTensorVacuum
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ExistsMatchOver
@@ -34,14 +58,21 @@ import Formalism.LocalToGlobal.IndefiniteReal.LinksDefs
 import Formalism.LocalToGlobal.IndefiniteReal.LocalNewformFunction
 import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GapAtLeast
 import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Data.Nat.Choose.Multinomial
 import Mathlib.Tactic.TypeStar
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.HermitianCodeWordWeilElementMemQuadraticField
 import Formalism.PairingDivisors.PairingDivisorProofs.SumValuationNat
 import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.ValBasic
 import Mathlib.LinearAlgebra.FreeModule.IdealQuotient
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DefiniteThetaPairNormNeZeroOfCoordNeZero, Development.AbelianVarietyTheory.Proofs.FoundationProofs.SumCompLeSumOfInjOn, Development.AbelianVarietyTheory.Proofs.DivisorProofs.OneSqStOfClaims, Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsRatios, Development.AbelianVarietyTheory.Proofs.FoundationProofs.StepRatioAbsVwProd, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SquareRatioValuationWithoutNormFormula, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SquareRatioValuationWithoutNormFormulaStatement
@@ -346,9 +377,9 @@ theorem exists_ratios : ∀ (K : Type) [Field K] [NumberField K] [StarRing K] (�
   refine ⟨fun s => if 1 ≤ s then zψ s / zT s else Ep s * (zψ (1 - s) / zT (1 - s)), ?_, ?_, ?_⟩
   · intro s h1 h2
     by_cases hs : 1 ≤ s
-    · simp only [hs, if_true]
+    · simp only [hs, ite_true]
       exact (key s hs h2).2
-    · simp only [hs, if_false]
+    · simp only [hs, ite_false]
       obtain ⟨hu, hrel⟩ := hneg s h1 (by omega)
       obtain ⟨-, hne, hk⟩ := key (1 - s) (by omega) (by omega)
       refine ⟨mul_ne_zero (away hQ hu).1 hne, ?_⟩
@@ -357,7 +388,7 @@ theorem exists_ratios : ∀ (K : Type) [Field K] [NumberField K] [StarRing K] (�
       rw [hrel, map_mul, ← hk]
       ring
   · intro s h1 h2
-    simp only [h1, if_true]
+    simp only [h1, ite_true]
     obtain ⟨hT, -, -, hb1, hb2⟩ := hpos s h1 h2
     have hψ := (key s h1 h2).1
     have hv : vw w (zψ s / zT s) = vw w (zψ s) - vw w (zT s) := by
@@ -373,7 +404,7 @@ theorem exists_ratios : ∀ (K : Type) [Field K] [NumberField K] [StarRing K] (�
   · intro s h1 h2
     have hs : ¬ 1 ≤ s := by omega
     have hs' : 1 ≤ 1 - s := by omega
-    simp only [hs, hs', if_true, if_false]
+    simp only [hs, hs', ite_true, ite_false]
     obtain ⟨hu, -⟩ := hneg s h1 h2
     obtain ⟨hE, hv⟩ := away hQ hu
     rw [vw_mul w _ _ hE (key (1 - s) hs' (by omega)).2.1, hv, zero_add]

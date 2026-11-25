@@ -11,22 +11,8 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MeasurableTh
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchwartzMapBarrelledSpace
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsArchEquivEq
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.IdemElt
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompactness.T2SpaceTensorProductFiniteExtension
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.Tactic.TypeStar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchwartzCoordinatesInInfiniteFamily, Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbsoluteThetaIntegralLeContinuousSeminorm
@@ -379,7 +365,7 @@ theorem absThetaInt_le_contSeminorm : GlobalTheory.Published.WeilThetaConvergenc
   refine Seminorm.continuous_of_lowerSemicontinuous (ν.comp L) fun f y hy => ?_
   by_cases hy0 : y < 0
   · exact Filter.Eventually.of_forall fun f' => hy0.trans_le ENNReal.toReal_nonneg
-  · push_neg at hy0
+  · push Not at hy0
     have h1 : ENNReal.ofReal y < absThetaInt B m ((pureS g f).1 ∘ coord ε) :=
       (ENNReal.ofReal_lt_iff_lt_toReal hy0 (hfin _)).2 hy
     filter_upwards [hN f _ h1] with f' hf'

@@ -6,18 +6,6 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsArchOn
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.Realised
 public import Development.AbelianVarietyTheory.Definitions.Divisors.BadElt
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.TupleReadBaseTupleEqFamily
 import Formalism.LocalToGlobal.IndefiniteForms.IndefiniteTree.IndefiniteTreeX
 import Formalism.LocalToGlobal.IndefiniteReal.ExistsChosenExtremalVector
@@ -73,13 +61,13 @@ theorem edgeSum_supEdge_eq (M : GL (Fin r) κ) :
     unfold Formalism.MainNotions.ArithmeticCylinders.entN
     by_cases hi : i.val + 1 < r
     · rw [Finset.sum_eq_single ⟨i.val + 1, hi⟩]
-      · rw [if_pos (show supEdge i ⟨i.val + 1, hi⟩ from rfl), dite_eq_left ⟨i.isLt, hi⟩]
+      · rw [ite_eq_left (show supEdge i ⟨i.val + 1, hi⟩ from rfl), dite_eq_left ⟨i.isLt, hi⟩]
       · intro j _ hj
-        rw [if_neg (show ¬ supEdge i j from fun e => hj (Fin.ext e))]
+        rw [ite_eq_right (show ¬ supEdge i j from fun e => hj (Fin.ext e))]
       · intro h; exact absurd (Finset.mem_univ _) h
     · rw [dite_eq_right (by omega)]
       refine Finset.sum_eq_zero fun j _ => ?_
-      rw [if_neg (show ¬ supEdge i j from fun e => by
+      rw [ite_eq_right (show ¬ supEdge i j from fun e => by
         have := j.isLt
         unfold supEdge at e
         omega)]

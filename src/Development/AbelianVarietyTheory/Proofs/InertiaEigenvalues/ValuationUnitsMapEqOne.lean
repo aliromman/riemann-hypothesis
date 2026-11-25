@@ -5,18 +5,6 @@ public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.MemChainVecsDet
 public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsComp
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 public import Mathlib.NumberTheory.Padics.LocalField
 
 @[expose] public section
@@ -77,7 +65,7 @@ theorem mapsToProd_of_jac₂ : ∀ (g : ℕ) [Fact g.Prime] (a b n : ℕ) (h : a
         have hi : (i : ℕ) < n := by omega
         have hj : (j : ℕ) < n := by omega
         rw [hx]
-        simp only [Formalism.MainNotions.ArithmeticCylinders.entN, hi, hj, and_self, dif_pos]
+        simp only [Formalism.MainNotions.ArithmeticCylinders.entN, hi, hj, and_self, dite_eq_left]
         rfl
       · refine Units.ext (Matrix.ext fun i j => ?_)
         rw [leviProj_apply]
@@ -85,7 +73,7 @@ theorem mapsToProd_of_jac₂ : ∀ (g : ℕ) [Fact g.Prime] (a b n : ℕ) (h : a
         have hi : a + (i : ℕ) < n := by omega
         have hj : a + (j : ℕ) < n := by omega
         rw [hy]
-        simp only [Formalism.MainNotions.ArithmeticCylinders.entN, hi, hj, and_self, dif_pos]
+        simp only [Formalism.MainNotions.ArithmeticCylinders.entN, hi, hj, and_self, dite_eq_left]
         rfl
     obtain ⟨u, hu, hpu⟩ := exists_levi_mul_unip ℚ_[g] (two (stdSum h)) ⟨p, hp⟩
     rw [hl] at hpu

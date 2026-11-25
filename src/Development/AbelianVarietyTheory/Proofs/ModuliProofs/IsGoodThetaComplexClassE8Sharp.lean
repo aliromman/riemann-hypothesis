@@ -26,6 +26,32 @@ public import Development.AbelianVarietyTheory.Proofs.ModuliProofs.TransportThet
 public import Development.AbelianVarietyTheory.Proofs.ToricGeometry.RiemannFormBijectiveOfWeilNondeg
 public import Development.AbelianVarietyTheory.Proofs.ModuliProofs.GoodThetaClassOfLatticeFamilies
 public import Development.AbelianVarietyTheory.Proofs.ModuliProofs.IsOpenPosDefOfContinuous
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -40,8 +66,12 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Proofs.ToricGeometry.CubeTrivialisationOnUniformisingSpace
 import Development.AbelianVarietyTheory.Proofs.ToricGeometry.TopLePreimageOfValAtNeZero
+import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.PrecompleteBases.PsbLb
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.AmplePt
@@ -875,7 +905,7 @@ theorem exists_equiv_pi_range_of_matrixUnits {R M n : Type} [CommRing R] [AddCom
       rw [hf]
       obtain ⟨z, hz⟩ := (y u).2
 
-      simp only [map_sum, hpq, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+      simp only [map_sum, hpq, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
       rw [← hz, hP]
   exact ⟨LinearEquiv.ofBijective f hb, hf, fun x => (hs x).symm⟩
 
@@ -895,8 +925,8 @@ theorem matrixUnits_apply {La : Type} [AddCommGroup La]
       simp only [Matrix.single_mul_single_same, Matrix.sum_apply, Matrix.single_apply, Matrix.one_apply]
       by_cases hij : i = j
       · subst hij; simp
-      · rw [if_neg hij]
-        refine Finset.sum_eq_zero fun u _ => if_neg ?_
+      · rw [ite_eq_right hij]
+        refine Finset.sum_eq_zero fun u _ => ite_eq_right ?_
         rintro ⟨rfl, rfl⟩; exact hij rfl
     simp only [← Module.End.mul_apply, ← map_mul]
 
@@ -1679,7 +1709,7 @@ theorem goodClass_sharpClass : Out.Laws → Out.Laws2 → (∀ (S : Scheme.{0}) 
       show ∑ v, a w u v • x v + ∑ v, a w' u v • x v = x u
       rw [← Finset.sum_add_distrib]
       simp only [← add_smul, h1, Matrix.one_apply, ite_smul, one_smul, zero_smul,
-        Finset.sum_ite_eq, Finset.mem_univ, if_true]
+        Finset.sum_ite_eq, Finset.mem_univ, ite_true]
     · intro x y
       rw [hEF, hEF]
       exact tensor_form_adjoint _ _ _ hadj x y

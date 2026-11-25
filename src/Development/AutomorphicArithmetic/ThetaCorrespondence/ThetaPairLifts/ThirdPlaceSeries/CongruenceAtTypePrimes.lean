@@ -1,18 +1,6 @@
 module
 
 public import Formalism.SharpRestriction.LevelLetterCocycles.PairedCharacterCondition
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Formalism.SharpRestriction.LevelLetterCocycles.EndomorphismIndexBound
 
 @[expose] public section
@@ -25,16 +13,6 @@ noncomputable section
 namespace Formalism.MainNotions.PairedCharacterCondition.CongruenceModules
 open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N Formalism.WeaklyAdmissibleFiltrations NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal
   Module IsDiscreteValuationRing
-section Hecke
-open Formalism.MainNotions.TruncatedSeriesCountingIdentities.Br Formalism.NG Formalism.NG.QuotientPowerLengths
-variable {O : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] {X : Type} [Fintype X]
-  {M : Type} [AddCommGroup M] [Module O M] [Module.Finite O M]
-  (T : Subalgebra O (X → O)) (act : T →ₐ[O] Module.End O M)
-end Hecke
-section Record
-open Formalism.MainNotions.TruncatedSeriesCountingIdentities.Br
-variable {D : D7}
-end Record
 section Reduce
 open Formalism.MainNotions.TruncatedSeriesCountingIdentities.Br Formalism.NG Formalism.NG.QuotientPowerLengths
 variable {D : D7}

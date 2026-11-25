@@ -2,19 +2,6 @@ module
 
 public import Development.AbelianVarietyTheory.BlockTheory.NonGaloisCusps.ResidualConstruction
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MemSpanRingCornerIdealModuleIff
-import Mathlib.RingTheory.PicardGroup
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -116,7 +103,7 @@ theorem exists_block_action {Γ X O : Type} [Group Γ] [CommRing O] [IsDomain O]
       then h.choose.2 j else 0, ?_, ?_⟩
   · intro a ha u
     have hex := hact (a π) (eval_mem_span ha π)
-    simp only [dif_pos hex]
+    simp only [dite_eq_left hex]
     exact hex.choose_spec u
   · intro P
     have hP : P ∈ Submodule.span O (Set.range (mat ρ)) := hspan ▸ Submodule.mem_top
@@ -135,7 +122,7 @@ theorem exists_block_action {Γ X O : Type} [Group Γ] [CommRing O] [IsDomain O]
       have hex : ∃ p : Matrix (Fin r) (Fin r) O × (Fin t → O),
           ActsAs e ((∑ k, c k • (fun x => mat (rep x) (γ k))) π) p.1 p.2 :=
         ⟨(∑ k, c k • mat ρ (γ k), fun j => ∑ k, c k * ((χ ((j : ℕ) + 1) (γ k) : Oˣ) : O)), hA⟩
-      simp only [dif_pos hex]
+      simp only [dite_eq_left hex]
       rw [ActsAs.unique hex.choose_spec hA, ← hsum]
       simp only [hγ]
 

@@ -12,6 +12,30 @@ public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.Exi
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.FourierPairingDualIndicatorAddNonzeroCosets
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LineModelKappaTransformIsLocalModel
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SchwartzBruhatTensorIndicatorCharacterFacts
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -25,6 +49,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.JointSmooth
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.PlacewiseToAdelicDecompositionForall
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.PadOneMemSecondBlockTriangular
@@ -33,6 +58,8 @@ import Mathlib.Topology.LocallyConstant.Algebra
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.SplitPlaceMatrixCoordinateOnHalf
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.FourierPairingPairCharIndicatorCosetIndicator
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PadicIsNonarchimedeanLocalField
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsSchwartzBruhatExtByZeroOfSplitPlaceHalf, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SchwartzBruhatMulConjugateHalfCharacterSplitPlac, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SplitPlaceHomLatticeCompletionOpenCompact, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SplitPlaceHomLatticeCompletionOpenCompactStatement, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsSplitPlaceModelExtensionLineLattice, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SbHalfOfNsmul, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LatticePairCharacterIndicatorTransformEqCosetInd
@@ -278,8 +305,8 @@ theorem exists_placeModel_ext : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel 
     intro Φ Ψ h
     apply Subtype.ext; funext x
     have := congrFun h (P.up FS FL'' x)
-    rwa [Witness.ext_apply, Witness.ext_apply, if_pos (Witness.up_half P FS FL'' x),
-      if_pos (Witness.up_half P FS FL'' x), Witness.down_up] at this
+    rwa [Witness.ext_apply, Witness.ext_apply, ite_eq_left (Witness.up_half P FS FL'' x),
+      ite_eq_left (Witness.up_half P FS FL'' x), Witness.down_up] at this
   obtain ⟨G, hG⟩ := LinearMap.exists_leftInverse_of_injective (Witness.ext P FS FL'') (LinearMap.ker_eq_bot.2 hinj)
   set T₃ : (WO S L'' → ℂ) →ₗ[ℂ] (WO S L'' → ℂ) := TL ∘ₗ G with hT₃d
   have hT₃ : ∀ Φ, T₃ (Witness.ext P FS FL'' Φ) = TL Φ := fun Φ => by
@@ -297,13 +324,13 @@ theorem exists_placeModel_ext : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel 
     rw [Witness.ext_apply, halfInd]
     change (if IsHalf p.e t then _ else _) = _
     by_cases ht : IsHalf p.e t
-    · rw [if_pos ht]
+    · rw [ite_eq_left ht]
       change (A : Set (Matrix Unit n k)).indicator 1 _ = _
       rw [Set.indicator_apply, ← hA]
       refine if_congr ?_ rfl rfl
       change P.up FS FL'' (P.down FS FL'' t) ∈ Λ ↔ _
       rw [Witness.up_down P FS FL'' ht, and_iff_left ht]
-    · rw [if_neg ht, if_neg fun h => ht h.2]
+    · rw [ite_eq_right ht, ite_eq_right fun h => ht h.2]
   refine ⟨TL Φ₀, T₃, hTL.theta Φ₀, ⟨fun Φ hΦ x hx => ?_, fun Φ hΦ y hy => ?_, ?_⟩, hT₃⟩
   · obtain ⟨Φ', rfl⟩ := hsb Φ hΦ
     let Φ'' : SB (Matrix Unit n k) := ⟨fun s => Φ'.1 (s + P.down FS FL'' x),
@@ -471,7 +498,7 @@ theorem rowExt : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [Topological
       exact congrArg (· * _) (hFL i).symm
     have h2 : u j = f h * FL.γ () j := by
       rw [← hu1, Finset.sum_mul]
-      simp only [mul_assoc, h1, Matrix.one_apply, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+      simp only [mul_assoc, h1, Matrix.one_apply, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
     rw [h2, inv_mul_cancel_left₀ h0]
   funext r
   simp only [GlobalTheory.LocMod.Place.down, GlobalTheory.FinPl.ExtZero.zrow, Pi.smul_apply, smul_eq_mul, Matrix.mul_apply, hγ, Matrix.map_apply]
@@ -521,7 +548,7 @@ theorem fourier : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k]
     · have hy' : y ∈ L' := hy
       obtain ⟨t, ht, hr⟩ := hF ⟨_, hy⟩
       have hr' : Q.ev (s⁻¹ • y) = residue 𝒪[k] t := ((Q.hasVal_fn ⟨_, hy⟩).ev_eq).trans hr.symm
-      rw [charInd, vecInd, vecInd, if_pos hy, if_pos hy', hr', ← map_neg, resChar_residue, hψk, mul_one, one_mul,
+      rw [charInd, vecInd, vecInd, ite_eq_left hy, ite_eq_left hy', hr', ← map_neg, resChar_residue, hψk, mul_one, one_mul,
         ← Circle.coe_mul, ← AddChar.map_add_eq_mul]
       congr 2
       have ht' : (t : k) = s⁻¹ * (F ⬝ᵥ y) := by rw [ht]; simp
@@ -529,7 +556,7 @@ theorem fourier : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k]
       rw [hη', sub_dotProduct, smul_dotProduct, smul_dotProduct, Subring.coe_neg, ht', hx, smul_eq_mul, smul_eq_mul]
       linear_combination (q.inv * s⁻¹ * (F ⬝ᵥ y)) * hww
     · have hy' : y ∉ L' := hy
-      rw [charInd, vecInd, vecInd, if_neg hy, if_neg hy', mul_zero, zero_mul, zero_mul]
+      rw [charInd, vecInd, vecInd, ite_eq_right hy, ite_eq_right hy', mul_zero, zero_mul, zero_mul]
   show _ * cosetInd q Q.lat ((resUnit w)⁻¹ • Q).red (η ()) =
     ∫ y, charInd (resChar χ hχ q) Q (s⁻¹ • y) * (ψk (-1 * (η () ⬝ᵥ y)) : ℂ) ∂(MeasureTheory.Measure.pi fun _ => ν)
   simp only [e2]
@@ -545,7 +572,7 @@ theorem fourier : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k]
         simp [mul_assoc, hwk]
       rw [apply_int_eq_one hχ ⟨_, h1⟩]
       simp
-    · rw [vecInd, if_neg hy, zero_mul]
+    · rw [vecInd, ite_eq_right hy, zero_mul]
   · rw [mul_zero]
     obtain ⟨y, hy, hn⟩ : ∃ y ∈ Q.lat, η' ⬝ᵥ y ∉ 𝒪[k] := by
       by_contra h

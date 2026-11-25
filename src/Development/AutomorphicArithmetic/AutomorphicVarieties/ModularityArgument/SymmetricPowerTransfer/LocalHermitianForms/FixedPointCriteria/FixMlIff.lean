@@ -4,9 +4,36 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityA
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.LocalHermitianForms.IrreducibleParity.NotEvenIrr
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.IsFixPOrderPowIffLeAndAssocPow
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.LocalHermitianForms.CintIdx
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Radical.NatInt
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -20,6 +47,11 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -406,7 +438,7 @@ theorem gs_count (L : IsLoc O Δ) (hτ : τ ^ 2 - 4 ≠ 0) {π : O} {n : ℕ} {e
       if EvenVal O ((t : K) * algebraMap O K (π ^ (n + m))) then (Hu O (yy π m x)).relIndex (Gu O τ) else 0 := by
     intro m hm
     by_cases hev : EvenVal O ((t : K) * algebraMap O K (π ^ (n + m)))
-    · rw [if_pos hev]
+    · rw [ite_eq_left hev]
       obtain ⟨r, w, hrw⟩ := (evenVal_mul_pi_pow_iff_exists_sq_unit L hπ (t : K) n m).1 hev
       rw [← ncard_unit_translates_order_eq_relIndex O K τ (PS.sc τ r) (yy π m x)]
       congr 1
@@ -421,7 +453,7 @@ theorem gs_count (L : IsLoc O Δ) (hτ : τ ^ 2 - 4 ≠ 0) {π : O} {n : ℕ} {e
         rw [hS, ← mul_assoc, ← map_mul, mul_div_cancel]
       · rintro ⟨u, hu, hS⟩
         exact ⟨hS ▸ ml_sc_mul_mem_gs_of_val_eq L hτ C t r hu m hm ⟨w, hrw⟩, _, hS⟩
-    · rw [if_neg hev]
+    · rw [ite_eq_right hev]
       have hfinite : {S | S ∈ PS.Gs O τ (t : K) 1 ∧ ∃ w : (Etau K τ)ˣ, S = PS.ml w (Ord O (yy π m x))}.Finite :=
         hfin.subset (fun S hS => hS.1)
       rw [Set.ncard_eq_zero hfinite]

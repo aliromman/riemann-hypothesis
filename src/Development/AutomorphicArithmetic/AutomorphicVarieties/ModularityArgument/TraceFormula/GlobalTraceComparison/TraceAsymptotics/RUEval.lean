@@ -7,7 +7,30 @@ import Development.AbelianVarietyTheory.Proofs.FoundationProofs.HasSatakeGLOfIsS
 import GroundTheory.AutomorphicForms.GLnLocal
 import GroundTheory.GlobalFields.LocalFieldAtPlace
 import GroundTheory.LocalFields.LocalFourierHaar
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Coalgebra.CoassocSimps
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -20,6 +43,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Separation.CompletelyRegular
 import Mathlib.Topology.Separation.Connected
 
@@ -149,7 +174,7 @@ section Local
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {n : ℕ} {w : Pl E}
 
 private theorem mem_UL (hs : IsSplitAt w) (g : GLw n w) : g ∈ UL n w := by
-  rw [UL, if_pos hs]
+  rw [UL, ite_eq_left hs]
   exact Subgroup.mem_top _
 
 private def eSp (hs : IsSplitAt w) : GLw n w ≃* UL n w where
@@ -264,8 +289,8 @@ theorem rUEval : RUEval := by
   have hB₀ : ∀ i, ∀ w ∈ S, w ∉ Z → ∀ hs : IsSplitAt w, HasSatGL w (toGL hs (σ i w)).ρ (B₀ i w) := fun i w hw hz =>
     Classical.epsilon_spec (p := fun B => ∀ hs : IsSplitAt w, HasSatGL w (toGL hs (σ i w)).ρ B) (hline i w hw hz).2.2
   let B : ι → Pl E → Multiset ℂˣ := fun i w => if w ∈ S then B₀ i w else inv (B₀ i (cPl w))
-  have hBS : ∀ i, ∀ w ∈ S, B i w = B₀ i w := fun i w hw => if_pos hw
-  have hBN : ∀ i w, w ∉ S → B i w = inv (B₀ i (cPl w)) := fun i w hw => if_neg hw
+  have hBS : ∀ i, ∀ w ∈ S, B i w = B₀ i w := fun i w hw => ite_eq_left hw
+  have hBN : ∀ i w, w ∉ S → B i w = inv (B₀ i (cPl w)) := fun i w hw => ite_eq_right hw
   let A : ι → ℂ := fun i => ∏ w ∈ Z, twTr (σ i w).ρ (KL n w) (K' w) (fun x => f w x.1) LinearMap.id
   refine ⟨K', ι, hι, π, A, B, hLev, fun i => ⟨(hσ i).1, fun w hns => ?_, fun w hoff hs => ?_⟩, fun T hT hd e₁ e₂ k => ?_⟩
   ·

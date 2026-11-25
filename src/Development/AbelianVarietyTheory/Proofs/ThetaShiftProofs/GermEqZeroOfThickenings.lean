@@ -8,7 +8,33 @@ public import Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.ExpandsAtO
 public import Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.ExpandsAtSub
 public import Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.PGAppEqZeroIff
 public import Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.ValueAtUnitSection
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
 import Mathlib.AlgebraicGeometry.Modules.Sheaf
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -22,6 +48,8 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CubeVal
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.FamMod
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ChartPullbacks.WeightedChartPullback.WeightIndep
@@ -43,7 +71,7 @@ variable {A A' : Type} [CommRing A] [CommRing A'] {X Y : Scheme.{0}}
 
 theorem toStkA_valR_eq_gs (x : Sp A ⟶ X) (V : X.Opens) (z : Sp A) (ht : ⊤ ≤ x ⁻¹ᵁ V) (a : Γ(X, V)) :
     toStkA z (valR x V a) = gs x z V a := by
-  rw [valR, dif_pos ht, gs_eq x z V (ht trivial)]
+  rw [valR, dite_eq_left ht, gs_eq x z V (ht trivial)]
   show ((Sp A).presheaf.germ ⊤ z trivial).hom ((Scheme.ΓSpecIso (CommRingCat.of A)).inv.hom
     ((Scheme.ΓSpecIso (CommRingCat.of A)).hom.hom _)) = _
   rw [Iso.hom_inv_id_apply]
@@ -54,7 +82,7 @@ theorem top_le_comp {x : Sp A ⟶ X} {V : X.Opens} (ht : ⊤ ≤ x ⁻¹ᵁ V) (
 
 theorem valR_spMap (ρ : A →+* A') (x : Sp A ⟶ X) (V : X.Opens) (ht : ⊤ ≤ x ⁻¹ᵁ V) (a : Γ(X, V)) :
     valR (spMap ρ ≫ x) V a = ρ (valR x V a) := by
-  rw [valR, valR, dif_pos ht, dif_pos (top_le_comp ht _),
+  rw [valR, valR, dite_eq_left ht, dite_eq_left (top_le_comp ht _),
     ← Scheme.Hom.appLE_comp_appLE (spMap ρ) x V ⊤ ⊤ ht le_top]
   have e := congrArg (fun q => q.hom ((x.appLE V ⊤ ht).hom a))
     (Scheme.ΓSpecIso_naturality (CommRingCat.ofHom ρ))
@@ -67,14 +95,14 @@ theorem toStkA_map_valR (ρ : A →+* A') (x : Sp A ⟶ X) (V : X.Opens) (z : Sp
   rw [← valR_spMap ρ x V ht, toStkA_valR_eq_gs _ V z (top_le_comp ht _)]
 
 theorem isUnit_valR (x : Sp A ⟶ X) (V : X.Opens) (ht : ⊤ ≤ x ⁻¹ᵁ V) (a : Γ(X, V)ˣ) : IsUnit (valR x V a.val) := by
-  rw [valR, dif_pos ht]
+  rw [valR, dite_eq_left ht]
   exact (a.isUnit.map _).map _
 
 theorem valR_fromSpecStalk (x : X) (V : X.Opens) (hx : x ∈ V) (a : Γ(X, V)) :
     valR (A := X.presheaf.stalk x) (X.fromSpecStalk x) V a = (X.presheaf.germ V x hx).hom a := by
   have ht : ⊤ ≤ X.fromSpecStalk x ⁻¹ᵁ V := (top_le_iff_cpt (A := X.presheaf.stalk x) _ V).2 (by
     rw [show X.fromSpecStalk x (cpt (X.presheaf.stalk x)) = x from Scheme.fromSpecStalk_closedPoint]; exact hx)
-  refine (dif_pos ht).trans ?_
+  refine (dite_eq_left ht).trans ?_
   have : (X.fromSpecStalk x).appLE V ⊤ ht ≫ (Scheme.ΓSpecIso (X.presheaf.stalk x)).hom = X.presheaf.germ V x hx := by
     rw [Scheme.Hom.appLE, Scheme.fromSpecStalk_app hx]
     simp only [Category.assoc]
@@ -463,7 +491,7 @@ theorem exists_isTau (h : IsFormalPt U J g x) (hL : ⊤ ≤ x ⁻¹ᵁ U.LG.L.U 
 
 theorem isTau_tau (h : IsFormalPt U J g x) (hL : ⊤ ≤ x ⁻¹ᵁ U.LG.L.U jL)
     (hM : ⊤ ≤ basePt g ⁻¹ᵁ D.toPre.P.L.U jM) : IsTau U J x jL jM (tau U J x jL jM) := by
-  rw [tau, dif_pos (exists_isTau h hL hM)]
+  rw [tau, dite_eq_left (exists_isTau h hL hM)]
   exact (exists_isTau h hL hM).choose_spec
 
 

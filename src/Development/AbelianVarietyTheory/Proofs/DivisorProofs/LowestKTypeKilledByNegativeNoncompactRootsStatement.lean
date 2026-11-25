@@ -7,23 +7,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LowestKtypeH
 public import Formalism.LocalToGlobal.BesselHermitianTheta.TiedType
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothVectorsSubspaceStableSobolevFormDeriv
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.VoganNormSqHolomorphicLowestKTypeSubRootLt
-import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Std.Tactic.BVDecide.Normalize.BitVec
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothReal
 
@@ -199,18 +183,18 @@ theorem dRepC_single_eq_zero (p : ℕ) (s : Bool) (ε : Fin n → Bool) (lam : F
           simp only [hJ, Formalism.REAL.Jm, Matrix.mul_diagonal, Matrix.smul_apply, smul_eq_mul, u₀] at this
           by_contra hj
           cases s
-          · rw [if_pos (by simpa using hj), if_neg (by simp)] at this
+          · rw [ite_eq_left (by simpa using hj), ite_eq_right (by simp)] at this
             exact hij (by linear_combination (1 / 2 : ℂ) * this)
-          · rw [if_neg hj, if_pos rfl] at this
+          · rw [ite_eq_right hj, ite_eq_left rfl] at this
             exact hij (by linear_combination (-1 / 2 : ℂ) * this)
         · have := congrFun (congrFun hZ2 i) j
           simp only [hJ, Formalism.REAL.Jm, Matrix.diagonal_mul, Matrix.neg_apply, Matrix.smul_apply, smul_eq_mul,
             u₀] at this
           by_contra hi
           cases s
-          · rw [if_neg (by simpa using hi), if_neg (by simp)] at this
+          · rw [ite_eq_right (by simpa using hi), ite_eq_right (by simp)] at this
             exact hij (by linear_combination (-1 / 2 : ℂ) * this)
-          · rw [if_pos (by simpa using hi), if_pos rfl] at this
+          · rw [ite_eq_left (by simpa using hi), ite_eq_left rfl] at this
             exact hij (by linear_combination (1 / 2 : ℂ) * this)
     exact hu0 (inner_self_eq_zero.1 (Submodule.mem_orthogonal_singleton_iff_inner_left.1 (h huS)))
   obtain ⟨a', c', ha', hc', w, hw, hwu⟩ := hex
@@ -236,11 +220,11 @@ theorem lowK_killed : ∀ (n : ℕ) (H : Type) [NormedAddCommGroup H] [InnerProd
     rw [hε a, hε b] at hab ⊢
     rw [Fin.lt_def] at hba
     by_cases ha : (a : ℕ) < p
-    · rw [if_pos ha, if_pos (hba.trans ha)] at hab
+    · rw [ite_eq_left ha, ite_eq_left (hba.trans ha)] at hab
       exact absurd rfl hab
     · by_cases hb : (b : ℕ) < p
       · simp [ha, hb]
-      · rw [if_neg ha, if_neg hb] at hab
+      · rw [ite_eq_right ha, ite_eq_right hb] at hab
         exact absurd rfl hab
   have h := dRepC_single_eq_zero p s ε lam H π hlam hε hDS v hv hsm b a hb.1 hb.2
   rw [← hXY] at h

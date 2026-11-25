@@ -1,19 +1,6 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.Divisors.EqZeroOfForallPowDvd
-import Mathlib.RingTheory.MvPolynomial.IrreducibleQuadratic
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.EpsilonPairingZeta
 import Development.AbelianVarietyTheory.Definitions.Divisors.GhostFrobenius
 
@@ -124,12 +111,12 @@ theorem ker_tensor : ∀ (p : ℕ) (O A B σ τ : Type) [CommRing O] [CommRing A
         | inl i => simpa [hα₁, hγ₁] using congrArg (fun g => g i) h1
         | inr j => simpa [hα₂, hγ₂] using congrArg (fun g => g j) h2
     by_cases h : α = γ
-    · rw [if_pos h, if_pos (hiff.1 h).1, if_pos (hiff.1 h).2]
+    · rw [ite_eq_left h, ite_eq_left (hiff.1 h).1, ite_eq_left (hiff.1 h).2]
       simp [Algebra.smul_def]
-    · rw [if_neg h]
+    · rw [ite_eq_right h]
       by_cases h1 : α₁ = γ₁
-      · rw [if_neg (fun h2 => h (hiff.2 ⟨h1, h2⟩))]; simp
-      · rw [if_neg h1]; simp
+      · rw [ite_eq_right (fun h2 => h (hiff.2 ⟨h1, h2⟩))]; simp
+      · rw [ite_eq_right h1]; simp
   have hpoly : ∀ P : MvPolynomial (σ ⊕ τ) O,
       Λ (E (P : MvPowerSeries (σ ⊕ τ) O)) = Ideal.Quotient.mk I (coeff α (P : MvPowerSeries (σ ⊕ τ) O)) := by
     intro P
@@ -146,7 +133,7 @@ theorem ker_tensor : ∀ (p : ℕ) (O A B σ τ : Type) [CommRing O] [CommRing A
       intro k
       simp only [Finsupp.coe_equivFunOnFinite_symm]
       exact le_of_lt (lt_of_le_of_lt (le_degree γ k) hγ)
-    rw [map_sub, MvPolynomial.coeff_coe, hP, coeff_trunc', if_pos hle, sub_self]
+    rw [map_sub, MvPolynomial.coeff_coe, hP, coeff_trunc', ite_eq_left hle, sub_self]
   obtain ⟨c, hc⟩ := hN' (f - (P : MvPowerSeries (σ ⊕ τ) O))
     (fun γ hγ => hrest γ (lt_of_lt_of_le hγ (le_max_left _ _)))
   have hzero : Λ (E (f - (P : MvPowerSeries (σ ⊕ τ) O))) = 0 := by

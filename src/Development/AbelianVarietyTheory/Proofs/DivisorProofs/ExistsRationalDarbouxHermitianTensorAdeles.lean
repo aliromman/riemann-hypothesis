@@ -3,10 +3,34 @@ module
 public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.WeilTensorModels
 public import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsGivenStageEqOne
 public import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.DualRestrictSurjectiveOfIsTorsionFreeQuotient
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.RingTheory.PiTensorProduct
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -21,6 +45,9 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.Prop
 public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.UnitaryConjugation
 
@@ -79,7 +106,7 @@ theorem exists_darboux_of_basis {R W κ : Type} [CommRing R] [Invertible (2 : R)
   show _ = (∑ k, b.repr w (.inl k) * b.repr w' (.inr k)) - ∑ k, b.repr w' (.inl k) * b.repr w (.inr k)
   rw [key]
   simp only [Fintype.sum_sum_type, h11, h22, e12, e21, mul_zero, Finset.sum_const_zero, zero_add, add_zero,
-    mul_ite, mul_one, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+    mul_ite, mul_one, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
   rw [sub_eq_add_neg, ← Finset.sum_neg_distrib]
   congr 1
   refine Finset.sum_congr rfl fun i _ => ?_
@@ -251,10 +278,10 @@ theorem exists_darboux [CharZero F] [Invertible (2 : R)] (h2 : finrank F E = 2) 
   obtain ⟨co, hco⟩ := exists_darboux_of_basis BR bR
     (fun i j => by rw [hbv, hb.left_left, map_zero])
     (fun i j => by rw [hbv, hb.right_right, map_zero])
-    (fun i => by rw [hbv, hb.left_right, if_pos rfl, map_one])
-    (fun i j hij => by rw [hbv, hb.left_right, if_neg hij, map_zero])
-    (fun i => by rw [hbv, hb.right_left halt, if_pos rfl, map_neg, map_one])
-    (fun i j hij => by rw [hbv, hb.right_left halt, if_neg hij, map_zero])
+    (fun i => by rw [hbv, hb.left_right, ite_eq_left rfl, map_one])
+    (fun i j hij => by rw [hbv, hb.left_right, ite_eq_right hij, map_zero])
+    (fun i => by rw [hbv, hb.right_left halt, ite_eq_left rfl, map_neg, map_one])
+    (fun i j hij => by rw [hbv, hb.right_left halt, ite_eq_right hij, map_zero])
   refine ⟨co, fun x => ⟨fun k => b.repr x (.inl k), fun k => b.repr x (.inr k), ?_⟩⟩
   rw [hco]
   ext k <;> simp [hrep]

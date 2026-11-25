@@ -5,6 +5,33 @@ public import Aesop.BuiltinRules
 import Aesop.Main
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PadicIsNonarchimedeanLocalField
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsClosedEmbeddingAffPtUncurry
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.RingTheory.WittVector.IsPoly
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.ENatToNat
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.Irrational
@@ -19,7 +46,10 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Tactic.Polynomial.Basic
+import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
+import Mathlib.Topology.Sheaves.Init
 import Std.Tactic.BVDecide.Normalize.BitVec
 
 @[expose] public section
@@ -74,8 +104,8 @@ theorem continuous_freeMat (p : ℕ) :
     Continuous (freeMat (k := k) (n := n) (n' := n') (c := c) p) := by
   refine continuous_matrix fun r s => ?_
   by_cases h : Free p (r, s)
-  · simp only [freeMat, Matrix.of_apply, dif_pos h]; fun_prop
-  · simp only [freeMat, Matrix.of_apply, dif_neg h]; exact continuous_const
+  · simp only [freeMat, Matrix.of_apply, dite_eq_left h]; fun_prop
+  · simp only [freeMat, Matrix.of_apply, dite_eq_right h]; exact continuous_const
 
 theorem isClosedEmbedding_freeMat (p : ℕ) :
     Topology.IsClosedEmbedding (freeMat (k := k) (n := n) (n' := n') (c := c) p) := by
@@ -410,9 +440,9 @@ theorem continuous_ptCol (p : ℕ) :
     rcases r with r | r <;> rcases s with s | s
     · simp only [colAt, fromBlocks_apply₁₁, Matrix.zero_apply]; exact continuous_const
     · by_cases h : s.val + 1 = p
-      · simp only [colAt, fromBlocks_apply₁₂, Matrix.of_apply, h, if_true]
+      · simp only [colAt, fromBlocks_apply₁₂, Matrix.of_apply, h, ite_true]
         exact continuous_fst.matrix_elem _ _
-      · simp only [colAt, fromBlocks_apply₁₂, Matrix.of_apply, h, if_false]; exact continuous_const
+      · simp only [colAt, fromBlocks_apply₁₂, Matrix.of_apply, h, ite_false]; exact continuous_const
     · simp only [colAt, fromBlocks_apply₂₁, Matrix.zero_apply]; exact continuous_const
     · simp only [colAt, fromBlocks_apply₂₂, Matrix.zero_apply]; exact continuous_const
 
@@ -426,9 +456,9 @@ theorem continuous_ptRow (p : ℕ) :
     · simp only [rowAt, fromBlocks_apply₁₁, Matrix.zero_apply]; exact continuous_const
     · simp only [rowAt, fromBlocks_apply₁₂, Matrix.zero_apply]; exact continuous_const
     · by_cases h : r.val + 1 = p
-      · simp only [rowAt, fromBlocks_apply₂₁, Matrix.of_apply, h, if_true]
+      · simp only [rowAt, fromBlocks_apply₂₁, Matrix.of_apply, h, ite_true]
         exact continuous_fst.matrix_elem _ _
-      · simp only [rowAt, fromBlocks_apply₂₁, Matrix.of_apply, h, if_false]; exact continuous_const
+      · simp only [rowAt, fromBlocks_apply₂₁, Matrix.of_apply, h, ite_false]; exact continuous_const
     · simp only [rowAt, fromBlocks_apply₂₂, Matrix.zero_apply]; exact continuous_const
 
 variable [MeasurableSpace k] [BorelSpace k]

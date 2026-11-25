@@ -6,18 +6,6 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TameTwi
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IdempotentMulEqZeroOfOrthogonal
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.PlaceIdempotentUnderEqOfLiesOver
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsWeilDatumPowersUnramifiedEtaTilde
 
@@ -79,10 +67,10 @@ theorem resAt_of_unramEverywhere {χ : (AE D)ˣ →* Circle} (hχ : UnramEverywh
 theorem resAt_twist {t : Twist D Circle} (ht : t.Good) {P : Finset (Pl D.host.E)} (h : SplitSet P) (hQ : t.Q ⊆ P)
     {PP : Pl D.host.E} (hPP : PP ∈ P) : ResAt t.chi PP (t.locC PP) := by
   by_cases hq : PP ∈ t.Q
-  · have e : t.locC PP = t.resC PP := by simp only [Twist.locC, if_pos hq]
+  · have e : t.locC PP = t.resC PP := by simp only [Twist.locC, ite_eq_left hq]
     rw [e]
     exact resAt_of_isResAt (ht.res PP hq)
-  · have e : t.locC PP = 1 := by simp only [Twist.locC, if_neg hq]
+  · have e : t.locC PP = 1 := by simp only [Twist.locC, ite_eq_right hq]
     rw [e]
     exact resAt_of_unram ht.unram h hQ hPP hq
 
@@ -125,10 +113,10 @@ theorem tuple_chars : ∀ {D : D7} {S T : HSp D} (B : Base S T), B.Good → ∀ 
     have hνr := resAt_twist hν hP hνP hPPP
     by_cases hg : PP ∈ B.G.Pg
     · have hde : PP ∉ B.de.Q := fun h => Finset.disjoint_left.1 hA.1.disj hg (Finset.mem_union_left _ h)
-      have hdl : B.de.locC PP = 1 := by simp only [Twist.locC, if_neg hde]
-      rw [resP, if_pos hg, hdl, mul_one]
+      have hdl : B.de.locC PP = 1 := by simp only [Twist.locC, ite_eq_right hde]
+      rw [resP, ite_eq_left hg, hdl, mul_one]
       exact ResAt.mul (resAt_of_isResAt (hB.tame PP hg)) hνr
-    · rw [resP, if_neg hg]
+    · rw [resP, ite_eq_right hg]
       exact ResAt.mul (ResAt.mul (resAt_of_unram hB.unram hP hPg hPPP hg) (resAt_twist hB.de hP hdeP hPPP)) hνr
   have u1 : UnrOff (B.mu * ν.chi) (allP B ν.Q) :=
     UnrOff.mul (UnrOff.mul (unrOff_of_unram hB.unram (hP.mono hPg) (by intro x hx; simp [allP, hx]))

@@ -18,27 +18,12 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsArchim
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsCuspFunOfTransvectionConstantTermsZeroStatement
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothVectorAutomorphicDerivativesStatement
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SobolevBoundForSmoothVectorsStatement
-import Mathlib.Dynamics.Ergodic.Action.Regular
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Topology.Compactness.Paracompact
 import Mathlib.Tactic.Linter.Style
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiscreteSeriesModelUnitaryIrreducibleOrthonormalStatement
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothVectorsSubspaceStableSobolevFormDerivStatement
 import Development.AbelianVarietyTheory.Proofs.HeightProofs.IsTopologicalRingAE
-import Mathlib.RingTheory.PiTensorProduct
 import Std.Tactic.BVDecide.Normalize.BitVec
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -81,7 +66,7 @@ theorem exists_bound_orbit (Γ : Subgroup G) [DiscreteTopology Γ] {K : Set G} (
       Set.indicator_apply_le' (fun _ => le_rfl) (fun _ => zero_le_one)) ?_
     simp only [nsmul_eq_mul, mul_one, Nat.cast_le]
     exact Finset.card_image_le
-  · push_neg at h
+  · push Not at h
     simp only [Set.indicator_of_notMem (h _), tsum_zero, zero_le]
 
 variable [MeasurableSpace G] [BorelSpace G] [SecondCountableTopology G]
@@ -857,11 +842,11 @@ theorem gelfRep_scalar : ∀ (n : ℕ) (Hm : Mt n) (q : ℕ) (x₀ : Mt n) (w : 
   have hup : ∀ a c, a < c → opM (dEnd hh hd hσ) x₀ x₀⁻¹ a c v₀s = 0 := by
     intro a c hac
     apply Subtype.ext
-    rw [hEv, hw a c hac.le, if_neg hac.ne, Submodule.coe_zero]
+    rw [hEv, hw a c hac.le, ite_eq_right hac.ne, Submodule.coe_zero]
   have hdiag : ∀ a, opM (dEnd hh hd hσ) x₀ x₀⁻¹ a a v₀s = ((w a : ℂ)) • v₀s := by
     intro a
     apply Subtype.ext
-    rw [hEv, hw a a le_rfl, if_pos rfl, Submodule.coe_smul]
+    rw [hEv, hw a a le_rfl, ite_eq_left rfl, Submodule.coe_smul]
   have htr := GlobalTheory.Mem.GelfCheck.trace_pow_apply (μ := fun a => (w a : ℂ)) hgl hdiag hup (k + 1)
   rw [trace_opM_pow _ hxinv'] at htr
   set c := GlobalTheory.Mem.Gelf.gelfC (fun a => (w a : ℂ)) (k + 1) with hcdef

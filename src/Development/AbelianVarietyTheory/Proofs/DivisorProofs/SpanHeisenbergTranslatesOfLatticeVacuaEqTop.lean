@@ -2,6 +2,32 @@ module
 
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsHeisTrivial
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PerfectPairingQuotients
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.Normed.Algebra.GelfandRadius
+import Mathlib.Analysis.SpecialFunctions.Bernstein
+import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Data.Nat.Choose.Multinomial
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
@@ -15,6 +41,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Mathlib.Topology.Sheaves.Init
 
 @[expose] public section
 
@@ -152,12 +179,12 @@ theorem _root_.GlobalTheory.FinWeil.span_translates_vacua : ∀ {R X M : Type} [
           ↥A.toAddSubgroup) : X) ∈ S :=
         AddSubgroup.mem_addSubgroupOf.mp
           ((QuotientAddGroup.eq_zero_iff _).mp (QuotientAddGroup.out_eq' 0))
-      rw [if_pos h0, hfix _ h0.1 h0.2]
+      rw [ite_eq_left h0, hfix _ h0.1 h0.2]
     · intro q _ hq
       have hqS : ¬ (((Quotient.out q : ↥A.toAddSubgroup) : X) ∈ S) := fun h => hq (by
         rw [← QuotientAddGroup.out_eq' q, QuotientAddGroup.eq_zero_iff]
         exact AddSubgroup.mem_addSubgroupOf.mpr h)
-      rw [if_neg hqS, zero_smul]
+      rw [ite_eq_right hqS, zero_smul]
     · intro h
       exact absurd (Finset.mem_univ _) h
   have hNne : ((T₀.relIndex T.toAddSubgroup : ℕ) : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr hidx

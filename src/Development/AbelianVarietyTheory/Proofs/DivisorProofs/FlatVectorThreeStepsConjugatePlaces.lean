@@ -11,6 +11,29 @@ import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.VacuumVectorDr
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsNsmulIntMemLatO
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.GramMapMulInv
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IdempotentMulEqZeroOfOrthogonal
+import Mathlib.Algebra.Order.Floor.Extended
+import Mathlib.Algebra.Order.Floor.Semifield
+import Mathlib.Algebra.Order.Interval.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.Combinatorics.Enumerative.DyckWord
+import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
+import Mathlib.Data.NNRat.Floor
+import Mathlib.Geometry.Euclidean.Volume.Basic
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.NumberTheory.Height.NumberField
+import Mathlib.NumberTheory.Height.Projectivization
+import Mathlib.NumberTheory.LucasLehmer
+import Mathlib.NumberTheory.SelbergSieve
+import Mathlib.RingTheory.Radical.NatInt
+import Mathlib.Tactic.Basify
+import Mathlib.Tactic.Echelon.Zsqrtd
+import Mathlib.Tactic.Inclusion.Extension.Core.Core
+import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
+import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
+import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -164,19 +187,19 @@ theorem tensorHalf_dat (F : Frame S T) {Q J K : Finset (Pl D.host.E)} (hQ : Spli
   unfold dat
   by_cases hx : IsHalf (idem Q) x
   swap
-  · rw [if_neg hx, if_neg (show ¬ (IsHalf (idem Q) x ∧ IsIntM (frMapO S T F.βS F.βT x)) from fun h => hx h.1), mul_zero]
+  · rw [ite_eq_right hx, ite_eq_right (show ¬ (IsHalf (idem Q) x ∧ IsIntM (frMapO S T F.βS F.βT x)) from fun h => hx h.1), mul_zero]
   have hxe : idem J • x + idem K • x = x := by
     rw [← add_smul, ← idem_split hd hU]
     exact Matrix.ext fun i j => hx i j
   have i1 := isHalf_smul hj x
   have i2 := isHalf_smul hk x
-  rw [if_pos hx, mul_one]
+  rw [ite_eq_left hx, mul_one]
   by_cases hi : IsIntM (frMapO S T F.βS F.βT x)
   · have k1 : IsIntM (frMapO S T F.βS F.βT (idem J • x)) := by
       rw [frMapO_smul]; exact isIntM_smul hj hi
     have k2 : IsIntM (frMapO S T F.βS F.βT (idem K • x)) := by
       rw [frMapO_smul]; exact isIntM_smul hk hi
-    rw [if_pos ⟨i1, k1⟩, if_pos ⟨i2, k2⟩, if_pos ⟨hx, hi⟩]
+    rw [ite_eq_left ⟨i1, k1⟩, ite_eq_left ⟨i2, k2⟩, ite_eq_left ⟨hx, hi⟩]
     congr 1
     · refine hω _ _ fun PP hPP => ?_
       have e : frMapO S T F.βS F.βT (idem J • x) =
@@ -192,13 +215,13 @@ theorem tensorHalf_dat (F : Frame S T) {Q J K : Finset (Pl D.host.E)} (hQ : Spli
       rw [e, GlobalTheory.RedHalfDrop.redM_sub_smul PP hi (toEAf_mem_intAf_of_idem hj)
         (GlobalTheory.RedHalfDrop.resS_eq_zero_of_mul (hQ.isIdemAt (sK hPP)) _
           (idemAt_mul_idem hQ sJ (sK hPP) (Finset.disjoint_right.1 hd hPP)))]
-  · rw [if_neg (show ¬ (IsHalf (idem Q) x ∧ IsIntM (frMapO S T F.βS F.βT x)) from fun h => hi h.2)]
+  · rw [ite_eq_right (show ¬ (IsHalf (idem Q) x ∧ IsIntM (frMapO S T F.βS F.βT x)) from fun h => hi h.2)]
     by_cases k2 : IsIntM (frMapO S T F.βS F.βT (idem K • x))
-    · rw [if_neg (show ¬ (IsHalf (idem J) (idem J • x) ∧
+    · rw [ite_eq_right (show ¬ (IsHalf (idem J) (idem J • x) ∧
         IsIntM (frMapO S T F.βS F.βT (idem J • x))) from fun k1 => hi ?_), zero_mul]
       rw [← hxe, frMapO_add']
       exact fun i j => add_mem (k1.2 i j) (k2 i j)
-    · rw [if_neg (show ¬ (IsHalf (idem K) (idem K • x) ∧
+    · rw [ite_eq_right (show ¬ (IsHalf (idem K) (idem K • x) ∧
         IsIntM (frMapO S T F.βS F.βT (idem K • x))) from fun h => k2 h.2), mul_zero]
 
 theorem vec_three_steps (hF : F.Good) {G : TypeDat D T.rank} {Q J K : Finset (Pl D.host.E)} (h : PlacesOK G.Pg Q)
@@ -281,9 +304,9 @@ theorem locFn_eq_prod {S T : HSp D} {B : Base S T} {ψ : Twist D Circle} (hQ : B
   rw [Base.locFn, Finset.prod_coe_sort ψ.Q fun PP => flat (ψ.resC PP) (y PP), Finset.prod_union hQ.2]
   congr 1
   · refine Finset.prod_congr rfl fun PP hP => ?_
-    rw [Twist.locC, Twist.locC, if_pos hP, if_neg (Finset.disjoint_left.1 hQ.2 hP), mul_one]
+    rw [Twist.locC, Twist.locC, ite_eq_left hP, ite_eq_right (Finset.disjoint_left.1 hQ.2 hP), mul_one]
   · refine Finset.prod_congr rfl fun PP hP => ?_
-    rw [Twist.locC, Twist.locC, if_pos hP, if_neg (Finset.disjoint_right.1 hQ.2 hP), one_mul]
+    rw [Twist.locC, Twist.locC, ite_eq_left hP, ite_eq_right (Finset.disjoint_right.1 hQ.2 hP), one_mul]
 
 end Real
 
