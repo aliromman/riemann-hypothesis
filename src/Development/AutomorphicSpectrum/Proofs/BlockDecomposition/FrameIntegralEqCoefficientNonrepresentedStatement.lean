@@ -902,7 +902,6 @@ end GlobalTheory.SubstIntertw
 
 namespace GlobalTheory.SubstIntertw
 
-open GroundTheory.Global
 
 
 end GlobalTheory.SubstIntertw

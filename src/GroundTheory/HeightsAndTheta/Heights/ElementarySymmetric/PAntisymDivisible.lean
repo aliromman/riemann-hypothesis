@@ -208,23 +208,10 @@ lemma prod_dvd_of_primes {ι : Type*} (s : Finset ι) (f : ι → MvPolynomial �
 lemma homogeneousComponent_mul_of_isHomogeneous {Δ : MvPolynomial σ ℝ} {D : ℕ}
     (hΔ : Δ.IsHomogeneous D) (l : MvPolynomial σ ℝ) (n : ℕ) :
     homogeneousComponent (D + n) (Δ * l) = Δ * homogeneousComponent n l := by
-  conv_lhs => rw [← sum_homogeneousComponent l]
-
-  rw [Finset.mul_sum, map_sum]
-  have key : ∀ m, homogeneousComponent (D + n) (Δ * homogeneousComponent m l) =
-      if n = m then Δ * homogeneousComponent n l else 0 := by
-    intro m
-    rw [homogeneousComponent_of_mem (hΔ.mul (homogeneousComponent_isHomogeneous m l))]
-    by_cases h : n = m
-    · subst h; simp
-    · rw [if_neg (by omega), if_neg h]
-  simp_rw [key]
-  rw [Finset.sum_ite_eq]
-  split_ifs with h
-  · rfl
-  · rw [homogeneousComponent_eq_zero, mul_zero]
-    simp only [Finset.mem_range, not_lt] at h
-    omega
+  let _ := MvPolynomial.gradedAlgebra (σ := σ) (R := ℝ)
+  simp_rw [← decomposition.decompose'_apply]
+  exact DirectSum.coe_decompose_mul_add_of_left_mem (homogeneousSubmodule σ ℝ) (j := n) (b := l)
+    ((mem_homogeneousSubmodule D Δ).mpr hΔ)
 
 end General
 

@@ -937,7 +937,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.InfinitePlaceGluing.UnfOf
 open UpperTheory.ConvolutionTheory.R2.G (FS2 Rw nE row)
 
-open UpperTheory.ConvolutionTheory.RankTwoDescent
 
 theorem UpperTheory.ConvolutionTheory.RankTwoDescent.unf_of :
     Unf := by

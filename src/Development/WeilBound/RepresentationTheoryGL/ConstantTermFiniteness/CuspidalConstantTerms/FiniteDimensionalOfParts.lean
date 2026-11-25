@@ -234,9 +234,6 @@ end Gen
 
 end GlobalTheory.CompanionTheory.LeviGen
 
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Matrix
-open scoped TensorProduct
-open Formalism.UG (cT)
 
 noncomputable section
 
@@ -304,9 +301,6 @@ end Adelic
 
 end GlobalTheory.CompanionTheory.LeviGen
 
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Matrix
-open scoped TensorProduct
-open Formalism.UG (cT)
 
 noncomputable section
 
@@ -388,9 +382,6 @@ end Levi
 
 end GlobalTheory.CompanionTheory.LeviGen
 
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Matrix
-open scoped TensorProduct
-open Formalism.UG (cT)
 
 noncomputable section
 
@@ -474,9 +465,6 @@ end Parts
 
 end GlobalTheory.CompanionTheory.LeviGen
 
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Matrix
-open scoped TensorProduct
-open Formalism.UG (cT)
 
 noncomputable section
 
@@ -946,7 +934,6 @@ open GlobalTheory.UAut GlobalTheory.AdelicU GlobalTheory.SiegelSet
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.LeviPart.Sep
 
-open GlobalTheory.Published GlobalTheory.Published.AutFin GlobalTheory.StdPar GlobalTheory.ThK.SmoothLev GlobalTheory.CompanionTheory.Hypotheses₂.ConstFin GlobalTheory.CompanionTheory.Hypotheses₂.LeviPart
 open GlobalTheory.CompanionTheory.Hypotheses₂.LeviPart.KInf GlobalTheory.UAut GlobalTheory.AdelicU GlobalTheory.SiegelSet
 open scoped Pointwise
 
