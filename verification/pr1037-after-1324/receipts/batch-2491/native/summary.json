@@ -1,0 +1,42 @@
+{
+  "merge": "0e33c950c14ed48833fa38e401c9db04c4be5567",
+  "base": "ef451fc356cbc66861df031531aaafd2843797ac",
+  "head": "ef7b2af7f6017c9e6875d4d8803907ac0cd8804b",
+  "tree": "5aaf227d22e4db7fc59dd9ae4d279fed43eecfa6",
+  "lean": "Lean (version 4.37.0-rc1, arm64-apple-darwin24.6.0, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)",
+  "default_targets": [
+    "CompanionTheory",
+    "Development",
+    "Formalism",
+    "GroundTheory",
+    "GroundTheoryFields",
+    "Lemmata",
+    "PositivityTheory",
+    "ReciprocityTheory",
+    "Main"
+  ],
+  "project_modules": 59406,
+  "project_modules_depending_on_change": 14195,
+  "fresh_in_default_log": 13408,
+  "default_completion": [
+    "Build completed successfully (137117 jobs).",
+    "All targets up-to-date (137117 jobs)."
+  ],
+  "main_olean": {
+    "bytes": 4968,
+    "sha256": "7979dcd40052b769498bb09e7396305fdf9056b75381b01353e1ec3ce8eaf5d5"
+  },
+  "protected_theorem_names": [
+    "riemannHypothesis",
+    "riemannZeta_eq_zero_re",
+    "LFunction_ne_zero_of_half_lt_re",
+    "LFunction_eq_zero_re",
+    "LFunction_eq_zero_re_of_isPrimitive"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "linux_verdict_included": false
+}

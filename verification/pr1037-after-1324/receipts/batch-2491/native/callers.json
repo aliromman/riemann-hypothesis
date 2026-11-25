@@ -1,0 +1,151 @@
+{
+  "merge": "0e33c950c14ed48833fa38e401c9db04c4be5567",
+  "head": "ef7b2af7f6017c9e6875d4d8803907ac0cd8804b",
+  "base": "ef451fc356cbc66861df031531aaafd2843797ac",
+  "tree": "5aaf227d22e4db7fc59dd9ae4d279fed43eecfa6",
+  "lean": "Lean (version 4.37.0-rc1, arm64-apple-darwin24.6.0, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)",
+  "runs": [
+    {
+      "command": [
+        "lake",
+        "--no-cache",
+        "build",
+        "Main"
+      ],
+      "exit": 0,
+      "finished": "2026-11-25T13:30:26.846020+00:00",
+      "markers": [
+        "Build completed successfully (137041 jobs)."
+      ],
+      "log": "main.log",
+      "sha256": "46752ae78152a9fecd04734bc506239373876aa801c33d7f952f67e2b2d3a106"
+    },
+    {
+      "command": [
+        "lake",
+        "--no-cache",
+        "build",
+        "--no-build",
+        "Main",
+        "Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LocalInvariantIntegralsSymmetricHaarSubgroupsStatement",
+        "Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ProdRFJCoe",
+        "Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.RootExchangeUnipotentHaarIntegralPointsEqOneStatement",
+        "Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SymmetricDoubleIntegralsPositionOneEqCellSum",
+        "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDoubledSchrodingerModelTransposedSiegelRulStatement",
+        "Development.AbelianVarietyTheory.Proofs.DivisorProofs.SumOKEx",
+        "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ValuationDetBlocks",
+        "Development.AbelianVarietyTheory.Proofs.SatakeParameters.ThetaFunctionsSpannedHeckeTwistedStandardFrameStatement",
+        "Development.AbelianVarietyTheory.Proofs.TwistedOperators.SplitThetaGridIsAdmissibleFlipTensor",
+        "Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.LocalZetaFunctionalUniqueness",
+        "Development.AutomorphicArithmetic.LocalEmbeddings.ReBaseMain",
+        "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.FiniteDataBound",
+        "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.LocalCharacterPowerConductorBound",
+        "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.RegConstEqAwayUnitMulFactor",
+        "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.AtChoice",
+        "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.VolLevelWtConstStatement",
+        "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FinSplitOfNarrow",
+        "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.SiegelWeilStandard.SiegelWeilStd",
+        "Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.ExistsUpperProjectionInverseTranspose",
+        "Development.WeilBound.CoreStatements.TemperedRepresentationTheory.BernsteinNarrowness.BernsteinClosure.RamifiedMultiplicityOne",
+        "Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.ExistsVol",
+        "GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi",
+        "GroundTheory.AutomorphicForms.GL2.GJFELevi"
+      ],
+      "exit": 0,
+      "finished": "2026-11-25T13:31:32.927774+00:00",
+      "markers": [
+        "All targets up-to-date (137041 jobs)."
+      ],
+      "log": "consumers.log",
+      "sha256": "a66875d169ab4bb1338afcdc8881881c8a56de7a7f1b244994de12fea7d90625"
+    },
+    {
+      "command": [
+        "lake",
+        "--no-cache",
+        "env",
+        "leanchecker",
+        "-v",
+        "Development.AbelianVarietyTheory.Proofs.SatakeParameters.ThetaFunctionsSpannedHeckeTwistedStandardFrameStatement"
+      ],
+      "exit": 0,
+      "finished": "2026-11-25T13:33:04.911733+00:00",
+      "markers": [
+        "replaying Development.AbelianVarietyTheory.Proofs.SatakeParameters.ThetaFunctionsSpannedHeckeTwistedStandardFrameStatement"
+      ],
+      "log": "term-1.log",
+      "sha256": "d22b481ebd601738087cff9a2c31734621622b354cd311e311933f539a39603d"
+    },
+    {
+      "command": [
+        "lake",
+        "--no-cache",
+        "env",
+        "leanchecker",
+        "-v",
+        "Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.LocalZetaFunctionalUniqueness"
+      ],
+      "exit": 0,
+      "finished": "2026-11-25T13:35:04.977131+00:00",
+      "markers": [
+        "replaying Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.LocalZetaFunctionalUniqueness"
+      ],
+      "log": "term-2.log",
+      "sha256": "b4d02f4264eb3bb9a5d626244b8d8c06be05020c8a8acc753977664ab7a609b2"
+    },
+    {
+      "command": [
+        "lake",
+        "--no-cache",
+        "env",
+        "leanchecker",
+        "-v",
+        "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.VolLevelWtConstStatement"
+      ],
+      "exit": 0,
+      "finished": "2026-11-25T13:36:45.933689+00:00",
+      "markers": [
+        "replaying Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.VolLevelWtConstStatement"
+      ],
+      "log": "term-3.log",
+      "sha256": "967727205ba3d03ff1afa4f29af1f69e5f8c2f7d5485a48713f064490172e080"
+    },
+    {
+      "command": [
+        "lake",
+        "--no-cache",
+        "env",
+        "leanchecker",
+        "-v",
+        "GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi"
+      ],
+      "exit": 0,
+      "finished": "2026-11-25T13:38:04.836658+00:00",
+      "markers": [
+        "replaying GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi"
+      ],
+      "log": "term-4.log",
+      "sha256": "d8bf94af55839571fca77a411244273071c87591f1f552628c4f03cb0c2abb16"
+    },
+    {
+      "command": [
+        "lake",
+        "--no-cache",
+        "env",
+        "leanchecker",
+        "-v",
+        "GroundTheory.AutomorphicForms.GL2.GJFELevi"
+      ],
+      "exit": 0,
+      "finished": "2026-11-25T13:39:23.104079+00:00",
+      "markers": [
+        "replaying GroundTheory.AutomorphicForms.GL2.GJFELevi"
+      ],
+      "log": "term-5.log",
+      "sha256": "3b9852f63bc4489b29f53394d1f41874f92f65e3f8815a23fdbf4e6f2f58abc8"
+    }
+  ],
+  "started": "2026-11-25T13:29:21.729910+00:00",
+  "main_olean_sha256": "7979dcd40052b769498bb09e7396305fdf9056b75381b01353e1ec3ce8eaf5d5",
+  "completed": "2026-11-25T13:39:23.591024+00:00"
+}

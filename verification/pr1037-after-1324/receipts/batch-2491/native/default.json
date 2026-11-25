@@ -1,0 +1,50 @@
+{
+  "merge": "0e33c950c14ed48833fa38e401c9db04c4be5567",
+  "head": "ef7b2af7f6017c9e6875d4d8803907ac0cd8804b",
+  "base": "ef451fc356cbc66861df031531aaafd2843797ac",
+  "tree": "5aaf227d22e4db7fc59dd9ae4d279fed43eecfa6",
+  "source_tree": "031b16e750c9cad90ece13f043fe84741d677883",
+  "lean": "Lean (version 4.37.0-rc1, arm64-apple-darwin24.6.0, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)",
+  "targets": [],
+  "closure": 59406,
+  "affected_in_closure": 14195,
+  "cache_manifest": "6e1593fd13c4821b16ccbe036158ef4d676b3506b14e1d01d7ba12ef767486de",
+  "cache_donor": "4104e35eefad89ac76324cf2f83072cf4c3a1f14",
+  "jobs": 4,
+  "rehash": true,
+  "started": "2026-11-25T09:29:48.645367+00:00",
+  "runs": [
+    {
+      "command": [
+        "lake",
+        "--no-cache",
+        "--rehash",
+        "build"
+      ],
+      "exit": 0,
+      "log_sha256": "bc2470b60ca8d4a8eb79e1c1cee74cb1ea1254041bd65135a6772ead798173ad",
+      "errors": [],
+      "finished": "2026-11-25T13:26:50.068452+00:00"
+    },
+    {
+      "command": [
+        "lake",
+        "--no-cache",
+        "--rehash",
+        "build",
+        "--no-build"
+      ],
+      "exit": 0,
+      "log_sha256": "181e336a9c398bfe16f5a51746c56e866b6c55a2117cf959140c7b4d475306dc",
+      "errors": [],
+      "finished": "2026-11-25T13:28:40.893985+00:00"
+    }
+  ],
+  "target_oleans": {
+    "Main": {
+      "bytes": 4968,
+      "sha256": "7979dcd40052b769498bb09e7396305fdf9056b75381b01353e1ec3ce8eaf5d5"
+    }
+  },
+  "completed": "2026-11-25T13:28:41.401499+00:00"
+}

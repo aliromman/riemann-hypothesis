@@ -1,0 +1,23 @@
+{
+  "merge": "0e33c950c14ed48833fa38e401c9db04c4be5567",
+  "base": "ef451fc356cbc66861df031531aaafd2843797ac",
+  "source_tree": "031b16e750c9cad90ece13f043fe84741d677883",
+  "lean": "Lean (version 4.37.0-rc1, arm64-apple-darwin24.6.0, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)",
+  "donor": "4104e35eefad89ac76324cf2f83072cf4c3a1f14",
+  "manifest": "6e1593fd13c4821b16ccbe036158ef4d676b3506b14e1d01d7ba12ef767486de",
+  "changed": [
+    "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.IndepDomK",
+    "Formalism.DoubleCosetMeasures.StatementZ",
+    "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord"
+  ],
+  "total_modules": 59406,
+  "all_affected": 14195,
+  "targets": [],
+  "closure": 59406,
+  "affected_in_closure": 14195,
+  "newly_restored": 43086,
+  "reused_archives": 42594,
+  "downloads": 492,
+  "previously_restored": 2124
+}

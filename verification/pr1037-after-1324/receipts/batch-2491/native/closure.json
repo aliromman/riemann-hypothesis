@@ -1,0 +1,9 @@
+{
+  "merge": "0e33c950c14ed48833fa38e401c9db04c4be5567",
+  "project_modules": 59406,
+  "main_project_closure": 59371,
+  "main_affected": 14172,
+  "consumers_project_closure": 17361,
+  "consumer_modules_also_in_main": 23,
+  "term_callers_also_in_main": 5
+}
