@@ -30,8 +30,6 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Form
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Datum Level)
 open scoped TensorProduct Matrix
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 namespace GlobalTheory.GeoActRoad
 
 section Lattice

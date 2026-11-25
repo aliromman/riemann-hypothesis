@@ -25,7 +25,6 @@ open Formalism.IndefR.Lev (EAf finE)
 open Formalism.IndefR.Datum (IsSelfDualC)
 open Formalism.UG (cT hform)
 open GlobalTheory.IndefiniteRowSideFullHecke.FlatSpaceComponents GlobalTheory.AdIsom
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.AdIsomCorrection
 

@@ -29,8 +29,6 @@ open scoped TensorProduct ContDiff Topology
 
 namespace GlobalTheory.Mem.ThetaClosed
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 open GlobalTheory.WeilTieCheck GlobalTheory.FockCompare
 
 variable {D : D7}

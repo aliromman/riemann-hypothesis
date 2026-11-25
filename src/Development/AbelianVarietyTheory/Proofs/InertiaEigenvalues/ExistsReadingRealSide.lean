@@ -716,8 +716,6 @@ open GlobalTheory.MtRead
 
 
 
-theorem _root_.GlobalTheory.T.exists_standard_frameKeepsMatrices : ∀ (D : D7) (hF : D.host.F = maximalRealSubfield D.host.E) (j : Fin D.R.m), FWT.VStd D j → ∃ P : principalLevelFrame.RowPsi (Vc D j) D.R.nV, IdFrame hF P ∧ GlobalTheory.Mem.R3.StdFrame hF P := by
-  first | exact @GlobalTheory.MtRead.IdFrameStd.exists_idFrame
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsStandardFrameKeepsMatricesStatement =====
@@ -1409,8 +1407,6 @@ theorem exists_reading : GlobalTheory.Published.GlobalArtinReciprocity → ∀ (
     · exact ⟨0, fun h => absurd h hT⟩
   choose r hr using cell
   exact ⟨r, fun i j b k Q ψ hT => (hr i j b k Q ψ hT).1, fun i j b k Q ψ _ hT => (hr i j b k Q ψ hT).2⟩
-
-theorem exists_idFrame : ∀ (D : D7) (hF : D.host.F = maximalRealSubfield D.host.E) (j : Fin D.R.m), FWT.VStd D j → ∃ P : principalLevelFrame.RowPsi (Vc D j) D.R.nV, IdFrame hF P ∧ GlobalTheory.Mem.R3.StdFrame hF P := GlobalTheory.T.exists_standard_frameKeepsMatrices
 
 end GlobalTheory.MtRead
 end

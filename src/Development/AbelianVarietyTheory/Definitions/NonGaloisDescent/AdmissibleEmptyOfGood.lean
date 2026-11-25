@@ -43,8 +43,6 @@ open scoped TensorProduct
 
 namespace GlobalTheory.ExportSeries
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7} {S T : HSp D}
 
 structure Base (S T : HSp D) where

@@ -20,7 +20,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 @[expose] public section
 
 open Formalism.BasicNotions NumberField IsDedekindDomain Formalism.L2 Formalism.IndefR.Links
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.TwistSplitPlace
 

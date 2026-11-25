@@ -35,7 +35,6 @@ open IsDedekindDomain NumberField Matrix GlobalTheory.ChiGrid GlobalTheory.FunOb
 open Formalism.DivisionValues (vw lw)
 noncomputable section
 namespace GlobalTheory.CompanionTheory.InfAssembly
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open Formalism.UG
 
 theorem exists_ratFin {D : D7} (V : HSp D) (γ : UR D.sp.cm V.gram) :
@@ -600,7 +599,6 @@ open IsDedekindDomain NumberField Matrix GlobalTheory.ChiGrid GlobalTheory.FunOb
 open Formalism.DivisionValues (vw lw)
 noncomputable section
 namespace GlobalTheory.CompanionTheory.InfAssembly
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open Formalism.UG
 
 section Place

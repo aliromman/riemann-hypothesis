@@ -24,8 +24,6 @@ public import Mathlib.RingTheory.Ideal.Quotient.ChineseRemainder
 
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.LevDesc

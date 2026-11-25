@@ -29,7 +29,7 @@ namespace GlobalTheory.CompanionTheory.PresSobA
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Fc GlobalTheory.CompanionTheory.SobGL.HaarDom
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
+open scoped Matrix.Norms.Elementwise
 
 variable {n : ℕ}
 

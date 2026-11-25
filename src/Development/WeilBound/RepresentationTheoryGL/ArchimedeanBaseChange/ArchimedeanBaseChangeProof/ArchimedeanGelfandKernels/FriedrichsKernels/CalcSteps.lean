@@ -26,7 +26,7 @@ namespace PositivityTheory.RgBcC.Fc
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
+open scoped Matrix.Norms.Elementwise
 
 def CalcSteps : Prop :=
   AbsFC ∧ AbsCut ∧ Fcurve ∧ WvAlg ∧ ClsFacts ∧ SobOps ∧ CptSob ∧ SecBound ∧ PresSob ∧ ConcT ∧ CurveJoint ∧

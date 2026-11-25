@@ -834,7 +834,6 @@ noncomputable section
 
 namespace GlobalTheory.RegLabelChar
 
-open Polynomial GlobalTheory.GLq
 
 variable {g : ℕ} [Fact g.Prime]
 

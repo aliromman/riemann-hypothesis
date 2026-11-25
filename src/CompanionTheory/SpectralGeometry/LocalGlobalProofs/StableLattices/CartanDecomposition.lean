@@ -267,22 +267,6 @@ theorem Hq_outer (k r : ℕ) (i j : Fin (2 * r + k + 1)) (hi : outer k r i) (hij
   simp only [hHq, hout, Fin.ext_iff]
   split_ifs <;> (try simp) <;> omega
 
-theorem Hq_inner (k r : ℕ) (j : Fin (2 * r + k + 1)) (hj : ¬ outer k r j) :
-    Hq k r *ᵥ bvec j = bvec j := by
-  have hHq : ∀ i j : Fin (2 * r + k + 1), Hq k r i j =
-      if outer k r i then (if (i : ℕ) + (j : ℕ) = 2 * r + k then 1 else 0) else if i = j then 1 else 0 :=
-    fun _ _ => rfl
-  have hout : ∀ i : Fin (2 * r + k + 1), outer k r i ↔ ((i : ℕ) ≤ r ∨ r + k ≤ (i : ℕ)) := fun _ => Iff.rfl
-  have hbv : ∀ {m : ℕ} (i : Fin m), bvec i = Pi.single i (1 : ℂ) := fun _ => rfl
-  funext m
-  have hm := m.isLt
-  have hjl := j.isLt
-  simp only [Matrix.mulVec, dotProduct, hbv, Pi.single_apply, mul_ite, mul_one, mul_zero,
-    Finset.sum_ite_eq', Finset.mem_univ, if_true]
-  rw [hout] at hj
-  simp only [hHq, hout, Fin.ext_iff]
-  split_ifs <;> (try simp) <;> omega
-
 theorem Hq_sq (k r : ℕ) : Hq k r * Hq k r = 1 := by
   apply GlobalTheory.CompanionTheory.BesselLevi.Hq_sq
 

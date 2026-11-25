@@ -31,8 +31,6 @@ open scoped TensorProduct
 
 namespace GlobalTheory.AdIsomImage
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 open GlobalTheory.NormSum.AdLattice (lat)
 
 section Ring

@@ -385,8 +385,6 @@ open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 namespace GlobalTheory.SpanVA
 
 open TopologicalSpace
-open ReciprocityTheory.ChartRestriction.G.Semi (LB)
-open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp PSpace resG)
 open GlobalTheory.ProjSpace (toProj toProj_str toProj_preimage_chart O1 coord coord_f chart pullRatio secRatio_on
   pullRatio_toProj_on appLE_resG appLE_appLE appLE_of_eq)
 
@@ -478,8 +476,6 @@ noncomputable section
 namespace GlobalTheory.SpanVA
 
 open TopologicalSpace
-open ReciprocityTheory.ChartRestriction.G.Semi (LB)
-open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp PSpace resG)
 open GlobalTheory.ProjSpace (toProj O1 coord)
 
 theorem comb_f {R : Type} [CommRing R] {X : Scheme.{0}} {H : LB X} {n : ℕ} (g : X ⟶ Sp R) (c : Fin n → R)
@@ -561,9 +557,6 @@ noncomputable section
 namespace GlobalTheory.SpanVA
 
 open TopologicalSpace
-open ReciprocityTheory.ChartRestriction.G.Semi (LB)
-open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
-open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp PSpace resG)
 open GlobalTheory.ProjSpace (toProj O1 coord)
 
 theorem iSup_nonzeroLocus_of_span {R : Type} [CommRing R] {X : Scheme.{0}} (f : X ⟶ Sp R) {H : LB X} {m N : ℕ}

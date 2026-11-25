@@ -27,7 +27,7 @@ namespace PositivityTheory.RgBcC.Cxc
 
 open PositivityTheory.RgTw (Mat)
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
+open scoped Matrix.Norms.Elementwise
 
 variable {n : ℕ}
 

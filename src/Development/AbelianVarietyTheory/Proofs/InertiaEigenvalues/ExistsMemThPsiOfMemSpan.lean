@@ -28,7 +28,6 @@ open scoped TensorProduct
 
 
 namespace GlobalTheory.SeriesTie
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section Ser
 
@@ -70,7 +69,6 @@ end Ser
 end GlobalTheory.SeriesTie
 
 namespace GlobalTheory.SeriesTie
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section SpecLoc
 
@@ -95,7 +93,6 @@ end SpecLoc
 end GlobalTheory.SeriesTie
 
 namespace GlobalTheory.SeriesTie
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section Ser2
 

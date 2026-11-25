@@ -25,15 +25,12 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open IsDedekindDomain NumberField MeasureTheory GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.Grow
 open GlobalTheory.IndefiniteRowSideFullHecke.LevelPlusSubgroup (coefPlus Cols SizeRows)
 open GlobalTheory.SepRows GlobalTheory.CoreOnto
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 noncomputable section
 open scoped TensorProduct nonZeroDivisors ComplexConjugate
 open GlobalTheory.PairLift (adjO)
 
 namespace GlobalTheory.LatExchPf
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7}
 
@@ -110,8 +107,6 @@ theorem AA_eq (i : ℕ) : D.host.AA =
 end GlobalTheory.LatExchPf
 
 namespace GlobalTheory.LatExchPf
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7}
 
@@ -214,8 +209,6 @@ end GlobalTheory.LatExchPf
 
 namespace GlobalTheory.LatExchPf
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7}
 
 theorem fi_neg {I : FI D} {x : D.host.E} (hx : x ∈ I) : -x ∈ I :=
@@ -289,8 +282,6 @@ theorem gen_mem_left {V V' : HSp D} {Λ : Submodule (𝓞 D.host.E) (Fin V.rank 
 end GlobalTheory.LatExchPf
 
 namespace GlobalTheory.LatExchPf
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7}
 

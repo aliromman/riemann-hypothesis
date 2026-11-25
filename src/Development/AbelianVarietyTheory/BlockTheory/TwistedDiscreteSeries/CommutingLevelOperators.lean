@@ -25,8 +25,6 @@ open scoped TensorProduct InnerProductSpace
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.CommutingLevelOperators
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7}
 
 section Chain

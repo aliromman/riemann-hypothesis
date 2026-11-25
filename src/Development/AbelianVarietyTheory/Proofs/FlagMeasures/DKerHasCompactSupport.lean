@@ -32,7 +32,7 @@ namespace GlobalTheory.SmLinSub
 
 section Smoothing
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
+open scoped Matrix.Norms.Elementwise
 
 open PI.UpqRep PI.KFinSmoothW
 

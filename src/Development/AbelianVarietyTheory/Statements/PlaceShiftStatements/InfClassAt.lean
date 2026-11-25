@@ -24,8 +24,6 @@ open Formalism.DivisionValues (vw lw)
 
 namespace GlobalTheory.SumSize
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section Sizes
 
 variable {D : D7}

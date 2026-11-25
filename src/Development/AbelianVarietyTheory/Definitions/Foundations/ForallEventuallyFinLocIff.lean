@@ -164,8 +164,6 @@ theorem IsFactorisation.hasCompPl (h : IsFactorisation σ J δ ξ π B) (v : For
 
 end Places
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7} (V : HSp D)
 
 section Groups

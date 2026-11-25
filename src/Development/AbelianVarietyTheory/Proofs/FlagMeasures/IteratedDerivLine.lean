@@ -27,7 +27,7 @@ open scoped InnerProductSpace ComplexOrder
 
 namespace GlobalTheory.Jet.Line
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
+open scoped Matrix.Norms.Elementwise
 
 variable {n : ℕ} {ε : Fin n → Bool}
 

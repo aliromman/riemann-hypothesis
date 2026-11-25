@@ -119,7 +119,6 @@ theorem isEmb_conj_blockW {m r : ℕ} {J Q Qi : Matrix (Fin (2 * r + m + 1)) (Fi
 
 end UpperTheory.Lit.Bur.BlockEmb
 
-open Matrix GlobalTheory.RealBessel GlobalTheory.BesselMapOne Formalism.L2.Theta GlobalTheory.SmVec
 
 end -- clump:auto
 end -- clump:auto
@@ -192,7 +191,6 @@ theorem isCWCont_of_sobCont {k r : ℕ} {H : Type} [NormedAddCommGroup H] [Inner
 
 end UpperTheory.Lit.Bur.CWCombo
 
-open Matrix GlobalTheory.RealBessel GlobalTheory.BesselMapOne Formalism.L2.Theta GlobalTheory.SmVec
 
 end -- clump:auto
 end -- clump:auto
@@ -335,7 +333,6 @@ theorem unitarize : ∀ {k : ℕ} {W : Type} [AddCommGroup W] [Module ℂ W] [Fi
 
 end UpperTheory.Lit.Bur.Unitarize
 
-open Matrix GlobalTheory.RealBessel GlobalTheory.BesselMapOne Formalism.L2.Theta GlobalTheory.SmVec
 
 end -- clump:auto
 end -- clump:auto
@@ -417,7 +414,6 @@ theorem isContIrred_contra_conj : ∀ {m : ℕ} {W : Type} [AddCommGroup W] [Mod
 
 end UpperTheory.Lit.Bur.BesselContra
 
-open Matrix GlobalTheory.RealBessel GlobalTheory.BesselMapOne Formalism.L2.Theta GlobalTheory.SmVec
 
 end -- clump:auto
 end -- clump:auto
@@ -507,7 +503,6 @@ theorem exists_congr_one {m : ℕ} {J₀ : Matrix (Fin m) (Fin m) ℂ} (hH : J�
 
 end UpperTheory.Lit.Bur.HermCongr
 
-open Matrix GlobalTheory.RealBessel GlobalTheory.BesselMapOne Formalism.L2.Theta GlobalTheory.SmVec
 
 end -- clump:auto
 end -- clump:auto
@@ -768,7 +763,6 @@ theorem exists_frame_matrix {m r : ℕ} {J : Matrix (Fin (2 * r + m + 1)) (Fin (
 
 end UpperTheory.Lit.Bur.BesselFrame
 
-open Matrix GlobalTheory.RealBessel GlobalTheory.BesselMapOne Formalism.L2.Theta GlobalTheory.SmVec
 
 end -- clump:auto
 end -- clump:auto
@@ -881,7 +875,6 @@ theorem exists_dual_cols {n m r : ℕ} {J : Matrix (Fin n) (Fin n) ℂ} {J₀ : 
 
 end UpperTheory.Lit.Bur.DualCols
 
-open Matrix GlobalTheory.RealBessel GlobalTheory.BesselMapOne Formalism.L2.Theta GlobalTheory.SmVec
 
 end -- clump:auto
 end -- clump:auto
@@ -934,7 +927,6 @@ theorem conj_mem_unipRad : ∀ {n r : ℕ} {J G Q Qi : Matrix (Fin n) (Fin n) �
 
 end UpperTheory.Lit.Bur.UnipRadConj
 
-open Matrix GlobalTheory.RealBessel GlobalTheory.BesselMapOne Formalism.L2.Theta GlobalTheory.SmVec
 
 end -- clump:auto
 end -- clump:auto
@@ -1035,7 +1027,6 @@ theorem mem_unipRad_of_mem_Nset {k r : ℕ} {u : Matrix (Fin (2 * r + k + 1)) (F
 
 end UpperTheory.Lit.Bur.BesselRadical
 
-open Matrix GlobalTheory.RealBessel GlobalTheory.BesselMapOne Formalism.L2.Theta GlobalTheory.SmVec
 
 end -- clump:auto
 end -- clump:auto
@@ -1136,7 +1127,6 @@ theorem smoothVec_conj_iff (σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H))
 
 end UpperTheory.Lit.Bur.SmoothConj
 
-open Matrix GlobalTheory.RealBessel GlobalTheory.BesselMapOne Formalism.L2.Theta GlobalTheory.SmVec
 
 end -- clump:auto
 end -- clump:auto
@@ -1195,7 +1185,6 @@ theorem smoothVec_translate : ∀ {n : ℕ} {H : Type} [NormedAddCommGroup H] [I
 
 end UpperTheory.Lit.Bur.SmoothTranslate
 
-open Matrix GlobalTheory.RealBessel GlobalTheory.BesselMapOne Formalism.L2.Theta GlobalTheory.SmVec
 
 end -- clump:auto
 end -- clump:auto
@@ -1235,7 +1224,6 @@ theorem sobCont_conj {n : ℕ} {H : Type} [NormedAddCommGroup H] [InnerProductSp
 
 end UpperTheory.Lit.Bur.SobConj
 
-open Matrix GlobalTheory.RealBessel GlobalTheory.BesselMapOne Formalism.L2.Theta GlobalTheory.SmVec
 
 end -- clump:auto
 end -- clump:auto
@@ -1261,7 +1249,6 @@ theorem card_plus_of_congr_Hpk : ∀ {m r : ℕ} (ε : Fin (2 * r + m + 1) → B
 
 end UpperTheory.Lit.Bur.Inertia
 
-open Matrix GlobalTheory.RealBessel GlobalTheory.BesselMapOne Formalism.L2.Theta GlobalTheory.SmVec
 
 end -- clump:auto
 end -- clump:auto

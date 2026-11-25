@@ -30,8 +30,6 @@ open GlobalTheory.SignedHC GlobalTheory.ChiGrid Formalism.L2.DIV Formalism.L2.Ke
 
 namespace GlobalTheory.FunObj
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section Weights
 
 open Finset

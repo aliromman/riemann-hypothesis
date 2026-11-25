@@ -47,7 +47,7 @@ namespace Ex
 
 open scoped ContDiff
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
+open scoped Matrix.Norms.Elementwise
 
 end Ex
 

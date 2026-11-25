@@ -39,8 +39,6 @@ open Formalism.DivisionValues (vw lw)
 
 namespace GlobalTheory.CompanionTheory.FinDen
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section Val
 
 variable {K : Type} [Field K] [NumberField K] [StarRing K]
@@ -371,8 +369,6 @@ open IsDedekindDomain NumberField Matrix GlobalTheory.ChiGrid GlobalTheory.FunOb
 open Formalism.DivisionValues (vw lw)
 
 namespace GlobalTheory.CompanionTheory.FinDen
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section Test
 

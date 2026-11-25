@@ -65,6 +65,12 @@ removes, renames or moves.>
 
 Drop the part from `---` on if the pull request depends on no other.
 
+## Batches
+
+If you assemble a batch of pull requests, leave out every pull request labelled `deferred`: it
+should not be merged for now. If a batch already contains one, take it out before the batch is
+merged, by rebuilding the batch without it or by reverting the merge commit that brought it in.
+
 ## Do not
 
 - change the Comparator challenge files: `src/Challenge.lean`, `comparator.json`,

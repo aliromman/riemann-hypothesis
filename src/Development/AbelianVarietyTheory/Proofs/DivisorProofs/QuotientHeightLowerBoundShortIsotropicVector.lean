@@ -131,8 +131,6 @@ open NumberField IsDedekindDomain Matrix Formalism.BasicNotions Formalism.BasicN
 open GlobalTheory.IndefiniteRowSideFullHecke.LieAlgebraExponentialFamilies
 open scoped TensorProduct
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7} {V : HSp D}
 
 theorem mulVec_of_mem_ZI {ξ : Fin V.rank → D.host.E} (hξ : IsoVec V ξ) {z : GA D V} (hz : z ∈ ZI V ξ) :
@@ -282,7 +280,6 @@ end GlobalTheory.HolDict.ShortVec
 
 open NumberField IsDedekindDomain MeasureTheory Matrix Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Lev Formalism.IndefR.Datum Formalism.L2.Pj Formalism.IndefR.FWT Formalism.IndefR GlobalTheory.HolDict
 open scoped TensorProduct InnerProductSpace ContDiff
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.HolDict
 

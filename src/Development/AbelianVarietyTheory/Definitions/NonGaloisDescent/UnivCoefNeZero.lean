@@ -35,8 +35,6 @@ open scoped TensorProduct ComplexOrder
 
 namespace GlobalTheory.ExportSeries.Model
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7} {S T : HSp D}
 
 open GlobalTheory.AdelicLatMove GlobalTheory.PlaceVec GlobalTheory.AdjDatumNe

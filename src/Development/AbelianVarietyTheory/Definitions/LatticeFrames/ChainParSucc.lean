@@ -27,8 +27,6 @@ open scoped TensorProduct InnerProductSpace ComplexConjugate
 
 namespace GlobalTheory.ChainOnto
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7}
 
 structure Com (D : D7) where

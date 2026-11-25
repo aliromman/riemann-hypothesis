@@ -63,8 +63,6 @@ theorem act_sub_mem_of_mem_span {S : Set V.V} {A : Submodule E V.V} {g : HA R hc
 
 end Span
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7} {V : HSp D}
 
 section Groups

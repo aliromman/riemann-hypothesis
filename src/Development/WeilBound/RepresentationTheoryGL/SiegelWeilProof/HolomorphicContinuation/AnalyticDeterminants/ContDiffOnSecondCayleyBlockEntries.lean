@@ -31,7 +31,7 @@ namespace PositivityTheory.Rg.Sw.LVs
 
 open PositivityTheory.Rg.Sw
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
+open scoped Matrix.Norms.Elementwise
 
 variable {n : ℕ} {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 

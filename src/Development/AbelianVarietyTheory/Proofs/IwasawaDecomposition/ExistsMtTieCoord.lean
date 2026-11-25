@@ -32,8 +32,6 @@ namespace GlobalTheory.Mem.LiftForms
 
 section Main
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.what₂.LL G Pl0 T D.R.m}
   {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL]
 
@@ -57,8 +55,6 @@ variable {R : RealDat D A Ks} {F : Face D A}
 end Main
 
 section Comparison₂
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7}
 

@@ -26,8 +26,6 @@ open scoped TensorProduct
 
 namespace GlobalTheory.SmoothAutCheck
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section Lin
 variable {n : ℕ} {H : Matrix (Fin n) (Fin n) ℂ}
 

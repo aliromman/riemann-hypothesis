@@ -1056,7 +1056,6 @@ noncomputable section
 
 namespace GlobalTheory.GelfSymm
 
-open scoped Matrix
 
 open GlobalTheory.Mem.RealTranslate (derEnd)
 open GlobalTheory.RegSch (wordDer)
@@ -1091,7 +1090,6 @@ end GlobalTheory.GelfSymm
 
 namespace GlobalTheory.GelfSymm
 
-open scoped Matrix
 open GlobalTheory.Mem.RealTranslate (derEnd)
 open GlobalTheory.RegSch (wordDer)
 

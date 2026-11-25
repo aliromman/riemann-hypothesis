@@ -27,7 +27,7 @@ namespace GlobalTheory.CompanionTheory.FcCls
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Fc
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
+open scoped Matrix.Norms.Elementwise
 
 variable {n : ℕ} [MeasurableSpace (G n)]
 

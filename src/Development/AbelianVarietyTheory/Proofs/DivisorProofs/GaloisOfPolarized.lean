@@ -35,8 +35,6 @@ open scoped TensorProduct
 
 namespace GlobalTheory.SphGal
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section Global
 
 variable {E : Type} [Field E] [NumberField E]

@@ -26,8 +26,6 @@ open scoped TensorProduct
 
 namespace GlobalTheory.Mem.R3
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {B : Base} {C : Cols B}
 
 structure Refill (a : Late B C) where

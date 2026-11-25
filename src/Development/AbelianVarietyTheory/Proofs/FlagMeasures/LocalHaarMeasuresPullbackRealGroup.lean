@@ -69,8 +69,6 @@ end GlobalTheory.PullbackComparison
 
 namespace GlobalTheory.PullbackComparison
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7} {X : HidaSetting D} {θ : ℝ} (C : Choice X θ)
 
 def eM (τ : D.what₂.Tau) : Formalism.REAL.UJ (X.B.I.ε (vOf X τ)) → Formalism.QuantumDeterminants.Mt D.R.k D.R.rS :=
@@ -151,8 +149,6 @@ end GlobalTheory.PullbackComparison
 
 namespace GlobalTheory.PullbackComparison
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section Smap
 
 variable {D : D7} {X : HidaSetting D} {θ : ℝ} (C : Choice X θ)
@@ -228,8 +224,6 @@ end GlobalTheory.PullbackComparison
 
 namespace GlobalTheory.PullbackComparison
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section Place
 
 variable {D : D7} {X : HidaSetting D} (C : Choice X 1) {Y : Full X} {u : D.what₂.Word} (t : GlobalTheory.TypeAsm.GT Y u)
@@ -290,8 +284,6 @@ end GlobalTheory.PullbackComparison
 
 namespace GlobalTheory.PullbackComparison
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section Weil
 
 variable {D : D7} {X : HidaSetting D} (C : Choice X 1) {Y : Full X} {u : D.what₂.Word} (t : GlobalTheory.TypeAsm.GT Y u)
@@ -346,8 +338,6 @@ end Weil
 end GlobalTheory.PullbackComparison
 
 namespace GlobalTheory.PullbackComparison
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem pullC_holds : GlobalTheory.TypeAsm.PullC := by
   intro D X Y u C t μ ν h

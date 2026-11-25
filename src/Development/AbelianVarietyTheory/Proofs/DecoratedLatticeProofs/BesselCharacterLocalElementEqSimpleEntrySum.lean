@@ -20,7 +20,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 
 noncomputable section
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR.Datum MeasureTheory Matrix ValuativeRel GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Unf GlobalTheory.SplitWeil GlobalTheory.RootEx GlobalTheory.LocMod
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 namespace GlobalTheory.LocBesChar
 open GlobalTheory.LocFrame (hA hQ besselAuxiliaryVectors IsHermitianAuxiliaryVectorSystem ent colN)
 open Finset (range)

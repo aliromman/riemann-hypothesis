@@ -17,7 +17,6 @@ import Mathlib.Tactic.NormNum.RealSqrt
 @[expose] public section
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH IsDedekindDomain NumberField Formalism.L2 Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Lev
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 noncomputable section
 

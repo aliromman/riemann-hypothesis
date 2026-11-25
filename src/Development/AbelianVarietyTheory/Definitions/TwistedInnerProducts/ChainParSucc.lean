@@ -27,8 +27,6 @@ open GlobalTheory.ChainOnto (stepPar)
 
 namespace GlobalTheory.EvenOnto
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7}
 
 def UpPair (t : ℕ) (S S' : SPar) (aS aT : ℚ) : Prop :=

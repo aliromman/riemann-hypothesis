@@ -24,8 +24,6 @@ open scoped TensorProduct InnerProductSpace
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.WeilGramSignature
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7}
 
 def OverK (σ : D.what₂.LL →+* ℂ) : Prop :=
