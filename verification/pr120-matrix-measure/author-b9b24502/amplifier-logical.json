@@ -1,0 +1,132 @@
+{
+  "revision": "b9b24502d0b9e84c5e6c91fd00aa87c658c518d0",
+  "module": "Development.AbelianVarietyTheory.Proofs.FlagMeasures.AmplifierOfHypotheses",
+  "lean": "Lean (version 4.36.0, arm64-apple-darwin24.6.0, commit 611c117bfaf7b7ae1cfcf246ce6fba31e8f509e9, Release)",
+  "full_source_sha256": "4c2669beb1a207e88fac404e4d48efe75d42a74814f925c347af18d2f1f9c23c",
+  "body_sha256": "a061f76db122b3cb734a6e57075bf3dd4c09339203afb180dfeb701c51e09899",
+  "physical_imports": [
+    "Mathlib",
+    "Development.AbelianVarietyTheory.Definitions.SemilocalFrames.Bundle0010",
+    "Development.AbelianVarietyTheory.Definitions.Jets.SideFam",
+    "Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0260",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.Bundle0056",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.Bundle0069",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.Bundle0049",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.Bundle0045",
+    "Development.AbelianVarietyTheory.Proofs.FlagMeasures.UnipotentRadicalInterConjugateClosedUnimodular",
+    "Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0120"
+  ],
+  "logical_members": [
+    "Mathlib",
+    "Development.AbelianVarietyTheory.Definitions.SemilocalFrames.ActSingleNeZero",
+    "Development.AbelianVarietyTheory.Definitions.SemilocalFrames.DegVand",
+    "Development.AbelianVarietyTheory.Definitions.SemilocalFrames.ExistsIsSatFlagOne",
+    "Development.AbelianVarietyTheory.Definitions.SemilocalFrames.IsNormalFormStabilizerMeasure",
+    "Development.AbelianVarietyTheory.Definitions.SemilocalFrames.IsProjOnOne",
+    "Development.AbelianVarietyTheory.Definitions.SemilocalFrames.OnePlaceKF",
+    "Development.AbelianVarietyTheory.Definitions.SemilocalFrames.SmallHostRootDiscriminantLe",
+    "Development.AbelianVarietyTheory.Definitions.SemilocalFrames.ThresholdProductsBounded",
+    "Development.AbelianVarietyTheory.Definitions.Jets.SideFam",
+    "Development.AbelianVarietyTheory.Proofs.FlagMeasures.CellDataSupport",
+    "Development.AbelianVarietyTheory.Proofs.FlagMeasures.LocalDataBothAmplitudeSides",
+    "Development.AbelianVarietyTheory.Proofs.FlagMeasures.MemLevelOfPreservesFirstComponentsSplit",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.FixesWedgeAndForm",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.FlowProgrammeBoundsAndLowLevelOptimum",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.GrowthUnitaryGroupRpowNegIntegrable",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.HaarEqSmul",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.IsFRepDualStandardUnitaryRepStatement",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.IsFRepExteriorPowerStandardRep",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.NormSqIntegralInnerWeightLeStatement",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.AntisymProdEqSumQuantumMinor",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.BesselFrameEntryRelation",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.BesselLieTriangularVanishing",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.CayleyEndomorphismsUnitary",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.DiscreteSeriesUnitarySmoothBasic",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.HpkConjTranspose",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.IsFRepDualStandardUnitaryRep",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.IsHaarOnIffGroupsUnitaryUnipotent",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.LintegralInvEqOfBiInvariantMatGroup",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.AbsCoordLeOfLOneNormLe",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.BesselCharacterUnipotentRadicalProperties",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.BesselFunctionLocalityInvariantFactorFiniteSum",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.BesselFunctionalSideGrowth",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.CapelliComatrixLastRow",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.CapelliComatrixPicksSplitCasimirEigencomponent",
+    "Development.AbelianVarietyTheory.Proofs.JetHarmonics.CompoundMatrixCauchyBinetProperties",
+    "Development.AbelianVarietyTheory.Proofs.FlagMeasures.UnipotentRadicalInterConjugateClosedUnimodular",
+    "Development.AbelianVarietyTheory.Proofs.FlagMeasures.SumNormSqEqTrace",
+    "Development.AbelianVarietyTheory.Proofs.FlagMeasures.UnitriSubOnePow"
+  ],
+  "package_lock_sha256": "ee003c5c7a9b2b2a82a142b6633916661c07117199dd143d94d1af63910237df",
+  "cases": {
+    "logical": {
+      "extra": [],
+      "compile_exit": 1,
+      "errors": [
+        {
+          "pos": {
+            "column": 22,
+            "line": 45
+          },
+          "message": "Unknown constant `Formalism.DoubleCosetMeasures.instMeasMat`"
+        }
+      ],
+      "source_sha256": "e903b5e76bad02ee85df113ebea6e38137e1e0c111d2e003853eaee0e1af1eb7",
+      "kernel_exit": null
+    },
+    "all-providers": {
+      "extra": [
+        "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+        "Formalism.DoubleCosetMeasures.StatementZ",
+        "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord"
+      ],
+      "compile_exit": 0,
+      "errors": [],
+      "source_sha256": "0919e1f79962d26732624179eb6abb38bbd71105debfcbd816cadf5058cba50f",
+      "kernel_exit": 0
+    },
+    "all-providers-local-instance": {
+      "extra": [
+        "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+        "Formalism.DoubleCosetMeasures.StatementZ",
+        "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord"
+      ],
+      "compile_exit": 0,
+      "errors": [],
+      "source_sha256": "8de3700170f93d225b5d6ba3d3006b396ef457e3f518c1cd5b29483b411d6695",
+      "kernel_exit": 0
+    },
+    "aliases": {
+      "extra": [
+        "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+        "Formalism.DoubleCosetMeasures.StatementZ",
+        "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord"
+      ],
+      "compile_exit": 0,
+      "errors": [],
+      "source_sha256": "0919e1f79962d26732624179eb6abb38bbd71105debfcbd816cadf5058cba50f",
+      "kernel_exit": 0
+    }
+  },
+  "ir_signature_control": {
+    "mismatched_kernel_signal": 11,
+    "modules": {
+      "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace": {
+        "old": "c1ddd27469841d62cc9be6b2619f8030a10d88c2cc31ff15fa7f13987a04f283",
+        "new": "c801f098eb1f035b6ccd8a63c1834fe53fc4dd64049cf1dc015222822b48d492",
+        "ir": "3ad7db5fed6560aaa938fecbd749e0d52d2a4aab97a484e6114af1a695d2f765"
+      },
+      "Formalism.DoubleCosetMeasures.StatementZ": {
+        "old": "7af675cdea584085e7a7656768cee08edf7f1244be456580e57e2ad6bfbc5148",
+        "new": "108a4b7dbc1a15e299b7f673bf0a29093dc8868ae47efcd833e952eeb6507779",
+        "ir": "03052edafdc57d0b65357ac89efdddeb32abced1ae4c7c33e3b65217728796dc"
+      },
+      "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord": {
+        "old": "7305f82c52c260eb8caf1559168abf6760f7e06913e085f1ff7a537ed6d64e2c",
+        "new": "c9906b4ebd8561f008be6d3fae7e54f75e83c08d862b25cf0341227a76c9df32",
+        "ir": "4b28813ff71786858dc8d88d59a4b5298e616ab0b051f1bfee9f47eac34171cb"
+      }
+    },
+    "matching_kernel_exit": 0
+  }
+}
