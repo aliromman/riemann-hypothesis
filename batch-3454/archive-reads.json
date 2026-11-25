@@ -1,0 +1,85 @@
+{
+  "base": "91b273530883b723ef4422436e0dc3557749325a",
+  "head": "a65d357901f20edd8ae8ddfb282a8c5a58b072a7",
+  "counts": {
+    "with_markers": 12049,
+    "readable": 12031,
+    "members": 64098,
+    "unedited": 694,
+    "edited": 11337
+  },
+  "inherited_reader_errors": [
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/DefectTorsionSecondCohomologyKernel.lean",
+      "error": "JSONDecodeError"
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/SmoothGrpSchemeDescendsToFgSubring.lean",
+      "error": "JSONDecodeError"
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/CommutativeAlgebra/LemmaP.lean",
+      "error": "AssertionError"
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/RigSp4.lean",
+      "error": "JSONDecodeError"
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/Foundations/Convolution/TraceSplitting/FdFixed.lean",
+      "error": "JSONDecodeError"
+    },
+    {
+      "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/ExistsFiniteExtensionPrimes.lean",
+      "error": "AssertionError"
+    },
+    {
+      "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/FlatDegreeHolds.lean",
+      "error": "AssertionError"
+    },
+    {
+      "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/HodgeTateWeilPullback.lean",
+      "error": "AssertionError"
+    },
+    {
+      "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/PeriodLatticeOnPuncturedDisc.lean",
+      "error": "AssertionError"
+    },
+    {
+      "path": "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/TwistAutHolds.lean",
+      "error": "AssertionError"
+    },
+    {
+      "path": "src/Formalism/GL3MeanSquares/HookFormulaTorsion/GlobalBoundRefinements.lean",
+      "error": "AssertionError"
+    },
+    {
+      "path": "src/Formalism/LocalToGlobal/KernelLattices/ColumnData/ColumnDataEquations/SecondConstantHolds.lean",
+      "error": "AssertionError"
+    },
+    {
+      "path": "src/Formalism/LocalToGlobal/KernelLattices/KernelLocalFactors/RkVolLaHyp.lean",
+      "error": "JSONDecodeError"
+    },
+    {
+      "path": "src/Formalism/PeriodIntegrals/UnitaryGroupMassFormula/CountingFormula/JordanDecompositionExists.lean",
+      "error": "JSONDecodeError"
+    },
+    {
+      "path": "src/Formalism/SharpRestriction/GrowthBounds/RootWeights/WeightConditionFromIntegralForm.lean",
+      "error": "AssertionError"
+    },
+    {
+      "path": "src/Formalism/SharpRestriction/GrowthBounds/TwistedSubstitution/TwistedMonomialFiltration/MaxTwistDegreePderivLeAddOne.lean",
+      "error": "JSONDecodeError"
+    },
+    {
+      "path": "src/GroundTheory/ArithmeticGeometry/SchemeCohomology/ProjectiveCohomology/PSpaceFinite.lean",
+      "error": "AssertionError"
+    },
+    {
+      "path": "src/GroundTheory/AutomorphicForms/GL2/GJStandardLEuler.lean",
+      "error": "AssertionError"
+    }
+  ]
+}

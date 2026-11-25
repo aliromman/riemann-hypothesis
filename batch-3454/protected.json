@@ -1,0 +1,23 @@
+{
+  "base": "91b273530883b723ef4422436e0dc3557749325a",
+  "head": "a65d357901f20edd8ae8ddfb282a8c5a58b072a7",
+  "identical_git_blobs": {
+    ".github/workflows/checks.yml": "0633ccfcba2a90ee35beff24b043cf658cfe27f7",
+    "comparator.json": "e989bcf90ff0c487a7146319a026e661a5bad47c",
+    "comparator/FormalConjecturesBridge.lean": "f8f064e374a16d3220da57623f638b77ecd4d4ba",
+    "comparator/FormalConjecturesChallenge.lean": "290a2c6270f8da3852c7051d7da0f30032a70421",
+    "comparator/FormalConjecturesSolution.lean": "64e53c52fe4499eecb77178a99a6751507fb25ee",
+    "comparator/FormalConjecturesStatement.lean": "c289164615f5da1a0ee7c8115131741ef3b9cab9",
+    "comparator/formal-conjectures-export-targets.txt": "80bbbf91461783bb8e7f0bb8061b792668d4140a",
+    "comparator/formal-conjectures.json": "e3afddc98129d1d1183ff217d434165fd893a0fe",
+    "export-targets.txt": "e2d4c02bac8a1411eae85af0376c1aad3b6b5294",
+    "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d",
+    "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+    "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+    "src/Challenge.lean": "9677ace64b3a5e8b1a571d82d52ee13c53b08026",
+    "src/Development/AutomorphicArithmetic/CharacterBoxes/ClaimStrip.lean": "38d2273d9e3a17c289cc3c69325abae1a4a23a24",
+    "src/Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean": "d834a44196956df3feb46337ff1c474a986e923d",
+    "src/Main.lean": "eb95ca808793dd61984cc853ab5630f54a74490c",
+    "src/Statements.lean": "23b01f745b80075e377c415abae96ece3570d0b0"
+  }
+}
