@@ -78,11 +78,10 @@ import Mathlib.Tactic.Lemma
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
+open GlobalTheory.Mum
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DescendedCommGroupOfPullbackProperSurjection
 @[expose] public section
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 noncomputable section
 
@@ -231,8 +230,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GeometricallyConnectedOfIsPullbackSurjectiveLft
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 namespace GlobalTheory.Mum
 
@@ -264,8 +261,6 @@ end GlobalTheory.Mum
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GroupInverseDescendsProperSurjection
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 namespace GlobalTheory.Mum
 
@@ -329,8 +324,6 @@ end GlobalTheory.Mum
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GroupMultiplicationDescendsProperSurjection
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 namespace GlobalTheory.GrpDescent
 
@@ -446,8 +439,6 @@ end GlobalTheory.GrpDescent
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GroupUnitDescendsProperSurjection
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 
 namespace GlobalTheory.Mum
@@ -494,8 +485,6 @@ end GlobalTheory.Mum
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsSeparatedOfIsPullbackUniversallyClosedSurjective
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 namespace GlobalTheory.SepDescent
 
@@ -559,8 +548,6 @@ theorem GlobalTheory.isSeparated_of_isPullback_universallyClosed_surjective :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorusExtensionGeometricFibresOfDescendedGroup
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 namespace GlobalTheory.Mum
 
@@ -579,8 +566,6 @@ end GlobalTheory.Mum
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSemiAbelianDescentAlongProperSurjective
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 namespace GlobalTheory.DescGrp
 
@@ -610,8 +595,6 @@ end GlobalTheory.DescGrp
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SemiAbelianDescendsOfDescendsNearClosedFibre
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 namespace GlobalTheory.Mum
 

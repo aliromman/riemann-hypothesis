@@ -79,7 +79,6 @@ theorem _root_.GlobalTheory.T.even_cubical_tensor_posDef_form_positive : ∀ (R 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorDataPsiMemMaximalIdealTendstoZero
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum GlobalTheory.UU
 
 

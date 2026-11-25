@@ -61,7 +61,6 @@ section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperator
 @[expose] public section
 open Formalism.L2.Host (HChar)
 open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (Tri)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.RowEx MeasureTheory
 
 noncomputable section

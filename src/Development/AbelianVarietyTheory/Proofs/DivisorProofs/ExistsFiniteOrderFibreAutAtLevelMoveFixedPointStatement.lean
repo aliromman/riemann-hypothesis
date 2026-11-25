@@ -67,7 +67,6 @@ open scoped Matrix Classical
 open AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj ReciprocityTheory.ChartRestriction.G.Semi
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFiniteOrderFibreAutAtLevelMoveFixedPoint
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.LevMoveFibre
 

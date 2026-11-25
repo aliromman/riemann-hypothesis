@@ -91,7 +91,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdditivePicClassOfLocallyAdditive
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.PicGlue
 
@@ -145,7 +144,6 @@ end GlobalTheory.PicGlue
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCechLineBundleAmbientOfOpenImmersionStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_cech_lineBundle_ambient_of_openImmersion : ∀ (X X' : Scheme.{0}) (f : X' ⟶ X) [IsOpenImmersion f] (L : LB X'), L.IsLB → ∃ L' : LB X, IsOn f.opensRange L' ∧ LBIso (L'.pull f) L := by
   first | exact @GlobalTheory.PicGlue.exists_isOn_of_openImmersion
@@ -164,7 +162,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormalisedLineBundleIsoCocycleIdentity
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.PicGlue
@@ -281,7 +278,6 @@ end GlobalTheory.PicGlue
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGlueRigidifiedLineBundleClasses
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.PicGlue
 
@@ -359,7 +355,6 @@ end GlobalTheory.PicGlue
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PullLiftOneEqZero
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.PicGlue
 
@@ -438,7 +433,6 @@ end GlobalTheory.PicGlue
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PullUnitEqZero
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.PicGlue
 
@@ -461,7 +455,6 @@ end GlobalTheory.PicGlue
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ChartsRepresentedFunctorOpenCover
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 
@@ -506,7 +499,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsSheafOfOpenImmersionLocalGlue
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 
@@ -537,7 +529,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUniversalOfZariskiSheafOpenCharts
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 
@@ -574,7 +565,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmallOfSeparatedPresheafOpenCharts
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.PicGlue
 
@@ -604,7 +594,6 @@ end GlobalTheory.PicGlue
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RepresentableOfZariskiSheafOpenChartsLarge
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.PicGlue
 
@@ -795,7 +784,6 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory Car
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GlueOpenChartsAdditiveFamiliesRepresenting
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AbLaw GlobalTheory.CechPic GlobalTheory.AbDual GlobalTheory.DualCon GlobalTheory.PicGlue Opposite
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.PicGlue
 

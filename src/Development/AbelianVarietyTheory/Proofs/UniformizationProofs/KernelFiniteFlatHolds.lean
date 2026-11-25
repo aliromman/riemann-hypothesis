@@ -60,7 +60,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.KernelOfAmpleBundleFiniteFlatOfLaws
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.KernelFlat
 
@@ -87,7 +86,6 @@ end GlobalTheory.KernelFlat
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.KernelFiniteFlatHolds
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 

@@ -64,10 +64,9 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.DivisionValues Polynomial
 open Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.Datum Formalism.IndefR.Cx
 open scoped TensorProduct InnerProductSpace
+open GlobalTheory.LiftRows
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.GoodSplitPlaceOfFamilyPrimeBaseTuple
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.LiftRows
 
 namespace GlobalTheory.GoodSplitFam
 
@@ -106,8 +105,6 @@ end GlobalTheory.GoodSplitFam
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeckeEigenvaluesEqOfDualEnlargingLabelsSplit
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.LiftRows
 
 
 namespace GlobalTheory.Hk3.LabDetRows
@@ -161,8 +158,6 @@ end GlobalTheory.Hk3.LabDetRows
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.FiniteTypeCarriesOnePart
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.LiftRows
 
 namespace GlobalTheory.CarriesOne
 

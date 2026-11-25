@@ -71,7 +71,6 @@ theorem _root_.GlobalTheory.T.conductor_rec_compatible : DepthZeroCuspidalLL →
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DeterminantRecCompatible
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace GlobalTheory.LocLanglands
 
@@ -117,7 +116,6 @@ theorem _root_.GlobalTheory.T.determinant_rec_compatible : StandardCosocleGL →
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LFactorRecCompatible
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace GlobalTheory.LocLanglands
 
@@ -158,7 +156,6 @@ theorem _root_.GlobalTheory.T.twist_rec_compatible : LanglandsExhaustionGL → L
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RecOfRecLiteral
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace GlobalTheory.LocLanglands
 

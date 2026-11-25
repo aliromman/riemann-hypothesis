@@ -58,12 +58,10 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Form
 open scoped TensorProduct InnerProductSpace Classical
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LowestWeightMatrixCoefficientDependsOnWeightStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsOperatorLowestWeightHolomorphicKType
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.JointHarm.KTypeOp
 
@@ -182,7 +180,6 @@ end GlobalTheory.JointHarm.KTypeOp
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HolomorphicFamilyLowLieAction
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.JointHarm.MultiOp
 

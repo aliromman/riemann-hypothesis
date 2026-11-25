@@ -87,10 +87,9 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Form
 open Formalism.IndefR.Links Formalism.IndefR.Datum Formalism.IndefR.FWT Formalism.L2.Pj
 open GlobalTheory.ConjTwist GlobalTheory.ExportSeries GlobalTheory.SeriesTie GlobalTheory.OnTies GlobalTheory.OnCmp GlobalTheory.BaseCmp
 open scoped TensorProduct
+open Classical
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompletedPairLatticeDilationMemOfInteger
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Classical
 
 
 
@@ -111,8 +110,6 @@ end GlobalTheory.BaseCmp
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompletedPairLatticeDilationMemOfIntegerStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Classical
 
 
 
@@ -121,8 +118,6 @@ theorem _root_.GlobalTheory.T.completedPairLattice_dilation_mem_of_integer : âˆ€
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsHalfDilatedReductionResidueMatrices
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Classical
 set_option synthInstance.maxHeartbeats 400000
 set_option maxHeartbeats 1600000
 
@@ -255,8 +250,6 @@ theorem GlobalTheory.HalfLiftRed.exists_half_dil_redM_eq : âˆ€ (D : D7) (G : Typ
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsHalfDilatedReductionResidueMatricesStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Classical
 
 
 
@@ -265,8 +258,6 @@ theorem _root_.GlobalTheory.T.exists_half_dilated_reduction_residueMatrices : âˆ
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUniformizerSectionAtPrimeSet
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Classical
 set_option synthInstance.maxHeartbeats 400000
 set_option maxHeartbeats 1600000
 
@@ -563,8 +554,6 @@ end GlobalTheory.QResChar
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsUnitAwayFromLevelProdNormalisedMatrixGaussSum
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Classical
 
 
 
@@ -648,8 +637,6 @@ end GlobalTheory.GaussUnit
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemCompletedPairLatticeIffAdjointFrameMatrixInteStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Classical
 
 
 
@@ -658,8 +645,6 @@ theorem _root_.GlobalTheory.T.mem_completedPairLattice_iff_adjointFrameMatrix_in
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemLatticeIffUniformiserReductionVanishesStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Classical
 
 
 
@@ -668,8 +653,6 @@ theorem _root_.GlobalTheory.T.mem_lattice_iff_uniformiser_reduction_vanishes : â
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ResidueMatrixDatumFourierExpansionGaussSum
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Classical
 
 
 
@@ -846,8 +829,6 @@ end GlobalTheory.ResidueFourier
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LiftDatumConjugateHalfFiniteFourierSum
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Classical
 set_option synthInstance.maxHeartbeats 400000
 set_option maxHeartbeats 1600000
 
@@ -988,8 +969,6 @@ end GlobalTheory.LiftFour
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LiftDatumConjugateHalfFiniteFourierSumStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Classical
 
 
 

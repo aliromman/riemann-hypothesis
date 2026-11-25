@@ -70,7 +70,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCoeffsTangentVectorTranslatedBasis
 open MonoidalCategory CartesianMonoidalCategory MonObj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.VertSpan
 

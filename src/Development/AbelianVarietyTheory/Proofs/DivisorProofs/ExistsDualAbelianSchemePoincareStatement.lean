@@ -92,7 +92,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AffineOpenMeetingFibresPullbackSpecRingHom
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 
@@ -114,7 +113,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBasicOpenAffineOpenMeetingFibresGrpScheme
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem GlobalTheory.chartAroundUnit (R : Type) [CommRing R] (A : Over (Sp R)) [GrpObj A] (s : Sp R) :
     ∃ f : R, s ∈ Set.range (spMap (algebraMap R (Localization.Away f))) ∧ ∃ W : A.left.Opens,
@@ -143,14 +141,12 @@ theorem GlobalTheory.chartAroundUnit (R : Type) [CommRing R] (A : Over (Sp R)) [
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsRelAmpleOfAffineOpenMeetsFibresStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_relAmple_of_affineOpen_meets_fibres : ∀ (R : Type) [CommRing R] [IsNoetherianRing R] [IsDomain R] [IsIntegrallyClosed R] (A : Over (Sp R)) [GrpObj A], IsAbelianScheme A → ∀ V : A.left.Opens, IsAffineOpen V → (∀ s : Sp R, ∃ x ∈ V, A.hom x = s) → ∃ L : LB A.left, L.IsLB ∧ Out.RelAmple A L := by
   first | exact @GlobalTheory.ProjNormal.exists_relAmple_of_affine
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdditiveLineBundleFamilyOfDisjointOpenPieces
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.DualCon.ProdGlue
@@ -206,7 +202,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPointDisjointUnionRepresentingAdditiveFami
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DualCon.ProdGlue
 
@@ -297,7 +292,6 @@ end GlobalTheory.DualCon.ProdGlue
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteSetsInAffineOpenFiniteCoproduct
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DualCon
 
@@ -319,7 +313,6 @@ end GlobalTheory.DualCon
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasProperSmoothDualRepresentativeFinAffineOfIso
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 
@@ -346,7 +339,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PointDisjointUnionRepresentingFamilyUnique
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.DualCon.ProdGlue
@@ -413,7 +405,6 @@ end GlobalTheory.DualCon.ProdGlue
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ProperSmoothGeomConnectedSigmaDescDisjointCover
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.DualCon
@@ -464,7 +455,6 @@ end GlobalTheory.DualCon
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SpecPiDisjointOpenCoverFactors
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.SpecPi
 
@@ -507,7 +497,6 @@ end GlobalTheory.SpecPi
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasProperSmoothDualRepOfFiniteProductAlgebras
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DualCon.ProdGlue
 
@@ -576,7 +565,6 @@ end GlobalTheory.DualCon.ProdGlue
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasProperSmoothDualRepresentativeFinAffineOfIsEm
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.DualCon
@@ -615,8 +603,7 @@ namespace GlobalTheory.ReducedNormalisation
 theorem exists_mem_others_not_mem {R : Type} [CommRing R] {ι : Type} [Fintype ι] [DecidableEq ι]
     (p : ι → Ideal R) (hp : ∀ i, (p i).IsPrime) (hmin : ∀ i j, p i ≤ p j → i = j) (i : ι) :
     ∃ a : R, a ∉ p i ∧ ∀ j, j ≠ i → a ∈ p j := by
-  by_contra h
-  push_neg at h
+  by_contra! h
   have hle : (Finset.univ.erase i).inf p ≤ p i := by
     intro a ha
     by_contra hai
@@ -783,7 +770,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasProperSmoothDualRepresentativeNoetherianInduc
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DualConStep
 
@@ -855,14 +841,12 @@ end GlobalTheory.DualConStep
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasProperSmoothDualRepresentativeNoetherianInducStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.hasProperSmoothDualRepresentative_noetherianInduction : ∀ (R : Type) [CommRing R] [Algebra.FiniteType ℤ R] [IsReduced R] (A : Over (Sp R)) [GrpObj A] (g : ℕ), IsAbelianScheme A → SmoothOfRelativeDimension g A.hom → ∀ V : A.left.Opens, IsAffineOpen V → (∀ s : Sp R, ∃ x ∈ V, A.hom x = s) → (∀ J : Ideal R, J ≠ ⊥ → HasRep A g (Over.mk (spMap (Ideal.Quotient.mk J)))) → HasRep A g (𝟙_ _) := by
   first | exact @GlobalTheory.DualConStep.step
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasProperSmoothDualRepresentativeOfLocal
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DualCon
 
@@ -895,7 +879,6 @@ end GlobalTheory.DualCon
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasProperSmoothDualRepresentativeNoetherianInducBis
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DualCon.Step
 
@@ -1015,7 +998,6 @@ end GlobalTheory.DualCon.Step
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasProperSmoothDualRepresentativeFiniteType
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DualConFT
 
@@ -1085,14 +1067,12 @@ end GlobalTheory.DualConFT
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasProperSmoothDualRepresentativeFiniteTypeStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.hasProperSmoothDualRepresentative_finiteType : ∀ (R : Type) [CommRing R] [Algebra.FiniteType ℤ R] (A : Over (Sp R)) [GrpObj A] (g : ℕ), IsAbelianScheme A → SmoothOfRelativeDimension g A.hom → HasRep A g (𝟙_ _) := by
   first | exact @GlobalTheory.DualConFT.hasRep_of_finiteType
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianSchemeDualRepresentableAffineBase
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DualCon
 
@@ -1108,14 +1088,12 @@ end GlobalTheory.DualCon
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianSchemeDualRepresentableAffineBaseStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.abelianScheme_dual_representable_affine_base : ∀ (R : Type) [CommRing R] (A : Over (Sp R)) [GrpObj A] (g : ℕ), IsAbelianScheme A → SmoothOfRelativeDimension g A.hom → HasRep A g (𝟙_ _) := by
   first | exact @GlobalTheory.DualCon.hasRep_affine
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianSchemeLocallyConstantRelDim
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DualCon
 
@@ -1168,7 +1146,6 @@ end GlobalTheory.DualCon
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelDimPreservedOfEqualLocalRelDims
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.DualCon
@@ -1216,7 +1193,6 @@ end GlobalTheory.DualCon
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RepresentingAdditiveFamiliesIsDualComm
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.DualCon
@@ -1350,7 +1326,6 @@ end GlobalTheory.DualCon
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDualAbelianSchemePoincare
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.DualExist

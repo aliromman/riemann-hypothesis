@@ -79,10 +79,9 @@ section -- clump: shared namespace opens
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
+open GlobalTheory.Mum GlobalTheory.Mum.GenDesc
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianOfFieldExtensionPullbackProper
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum GlobalTheory.Mum.GenDesc
 
 namespace GlobalTheory.Mum.GenDesc
 
@@ -112,8 +111,6 @@ end GlobalTheory.Mum.GenDesc
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGaloisConjugateGenericBundleIso
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum GlobalTheory.Mum.GenDesc
 
 namespace GlobalTheory.Mum.GenDesc
 
@@ -160,7 +157,6 @@ end GlobalTheory.Mum.GenDesc
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLinearisationInvariantRigidifiedBundleStatement
-open GlobalTheory.Mum GlobalTheory.Mum.GenDesc
 
 end -- clump:auto
 
@@ -216,7 +212,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLineBundleGaloisDescentAbelianVarietyFinit
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum GlobalTheory.Mum.GenDesc
 
 namespace GlobalTheory.Mum.GenDesc
@@ -381,7 +376,6 @@ end GlobalTheory.Mum.GenDesc
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsGrpPullbackGenericFibreFractionFieldMap
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum GlobalTheory.Mum.GenDesc
 
 namespace GlobalTheory.Mum.GenDesc
@@ -397,7 +391,6 @@ end GlobalTheory.Mum.GenDesc
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RigidifiedSymmetricOfSymmetricFieldExtensionPull
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum GlobalTheory.Mum.GenDesc
 
 namespace GlobalTheory.Mum.GenDesc
@@ -412,7 +405,6 @@ end GlobalTheory.Mum.GenDesc
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PolarisedGenericFibreDescendsGalois
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.Mum.GenDesc
 

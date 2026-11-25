@@ -119,7 +119,6 @@ end -- clump:auto
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Col Formalism.L2.DIV GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.Mem.Df
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsEquivHermitianFrameNormAtComplexPlace
-attribute [local instance] GlobalTheory.Mem.Col2.starE
 
 namespace GlobalTheory
 
@@ -183,21 +182,18 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsTupleUnitaryFormsEquivPeriodRowFormsStatement
-attribute [local instance] GlobalTheory.Mem.Col2.starE
 
 theorem _root_.GlobalTheory.T.exists_tupleUnitaryForms_equiv_periodRowForms : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC.Pins B X → ∀ (l : I.Laws) (hX : B.fields.Ok), ∀ (u : B.Word) (a : I.ι), ∃ g : MtCx I a ≃ₗ[ℂ] (I.per l u a).Mt, ∀ F, SameForm I l u a F (g F) := by
   first | exact @GlobalTheory.Mem.Df.mtCx_equiv_per
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.StepZeroColumnsClassSumFormPosDefStatement
-attribute [local instance] GlobalTheory.Mem.Col2.starE
 
 theorem _root_.GlobalTheory.T.stepZeroColumns_classSumForm_posDef : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC.Pins B X → ∀ (l : I.Laws) (hX : B.fields.Ok), SpectralModel.ColsPos (I.cols l) := by
   first | exact @GlobalTheory.Mem.Df.cols_pos
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MapMemSpanImage
-attribute [local instance] GlobalTheory.Mem.Col2.starE
 
 namespace GlobalTheory.Mem.Df.RowsEx
 

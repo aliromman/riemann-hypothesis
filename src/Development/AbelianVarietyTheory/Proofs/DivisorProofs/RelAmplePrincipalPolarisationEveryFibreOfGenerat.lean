@@ -64,10 +64,9 @@ import Mathlib.Data.Nat.Choose.Multinomial
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
+open GlobalTheory.Mum
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFieldPointPolarisedFibreUniformised
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 
 namespace GlobalTheory.PolPoint
@@ -176,8 +175,6 @@ end GlobalTheory.PolPoint
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelAmpleKernelTrivialOfSameImagePoint
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 namespace GlobalTheory.FibreTransfer
 
@@ -239,8 +236,6 @@ theorem GlobalTheory.FibreTransfer.relAmple_kTriv_of_same_point : ∀ (S : Schem
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelAmplePrincipalPolarisationEveryFibreOfGenerat
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 namespace GlobalTheory.Mum.PolFibre
 

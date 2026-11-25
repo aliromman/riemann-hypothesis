@@ -159,7 +159,6 @@ theorem _root_.GlobalTheory.T.evenDefect_degenerationData_baseChange : ∀ (R₁
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBaseChangeRawDegenerationDataInjective
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.PsiRing GlobalTheory.StrictPull GlobalTheory.ModelData GlobalTheory.DegPull
 
 namespace GlobalTheory.BaseChangeDeg
@@ -394,7 +393,6 @@ theorem _root_.GlobalTheory.T.exists_sqrt_latticeHom_finiteExtension_complete : 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFractionConstantPeriodRatioPolarised
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.HalfRatio
 
@@ -590,7 +588,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSymmetricDataComparePolarisedUpToFunction
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.HalfEx
 
@@ -664,7 +661,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PolarisedPeriodComparisonSymmCocycle
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.PolDeg.SymCoc
 
@@ -947,8 +943,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TauBimultOfRefinesPolarisedData
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.PolDeg
 

@@ -73,7 +73,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormChartLineBundleBaseChangeFieldExtension
 open GlobalTheory.ProjField
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.ProjField
@@ -208,7 +207,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianVarietyIsProjectiveOverRingByCharts
 open GlobalTheory.HTLat GlobalTheory.Published GlobalTheory.Published.AbVarRed IsLocalRing
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ProjField
 open GlobalTheory.AbelianProjective

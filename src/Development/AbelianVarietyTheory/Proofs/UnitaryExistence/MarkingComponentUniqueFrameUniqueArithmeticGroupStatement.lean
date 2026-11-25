@@ -60,7 +60,6 @@ open NumberField IsDedekindDomain ReciprocityTheory.ChartRestriction.G.Geo.Tor R
 open scoped TensorProduct Matrix Topology
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.MarkingComponentUniqueFrameUniqueArithmeticGroup
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Member
 
 namespace GlobalTheory.MarkUniq

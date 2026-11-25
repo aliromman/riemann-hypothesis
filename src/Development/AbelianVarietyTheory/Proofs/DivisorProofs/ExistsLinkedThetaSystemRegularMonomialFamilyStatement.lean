@@ -105,7 +105,6 @@ open GlobalTheory.ZH GlobalTheory.UPoinc GlobalTheory.UCovSep
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFiniteSurjectiveCoverFromOpens
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.FinCover
 
@@ -173,7 +172,6 @@ end GlobalTheory.FinCover
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLevelStructureNormalModelUnitaryModuliPoin
-attribute [local instance] Over.cartesianMonoidalCategory
 
 open GlobalTheory GlobalTheory.USep GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.Poinc GlobalTheory.TorRef
 
@@ -289,8 +287,6 @@ open GlobalTheory.Toroidal GlobalTheory.Models GlobalTheory.LN GlobalTheory.ShFa
 open scoped CategoryTheory.Obj
 open GlobalTheory.UPoinc
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 namespace GlobalTheory.UPoinc
 
 theorem exists_common_baseChange_of_uOver : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Geo.Tor.Level H) (Xo : Moduli Dw l) (cf : Coeff l) (K R R' : Type) [Field K] [CommRing R] [CommRing R'] (P : PolAV (Sp R)) (P' : PolAV (Sp R')) (σ : R →+* K) (σ' : R' →+* K) (u : Sp K ⟶ Xo.XF cf), UOver Xo cf P σ u → UOver Xo cf P' σ' u → ∃ (P₀ : PolAV (Sp K)) (a : P₀.A.left ⟶ P.A.left) (a' : P₀.A.left ⟶ P'.A.left), IsGrpPullback P₀.A P.A (spMap σ) a ∧ IsGrpPullback P₀.A P'.A (spMap σ') a' ∧ LBIso P₀.L (P.L.pull a) ∧ LBIso P₀.L (P'.L.pull a') := by
@@ -322,7 +318,6 @@ open GlobalTheory.ZH GlobalTheory.UPoinc GlobalTheory.UCovSep
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLocalSpreadUniversalAbelianScheme
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.UCovSep.LocalSpread
@@ -547,7 +542,6 @@ end GlobalTheory.XScov
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryActionBaseChangeSubalgebra
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UCovSep
 
@@ -609,7 +603,6 @@ open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZH
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFiniteCoverLinkedThetaSystems
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.USep
 open GlobalTheory.UCovSep
 
@@ -687,7 +680,6 @@ end GlobalTheory.UCovSep
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLiftGenericFibre
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory GlobalTheory.USep
 
 
@@ -776,7 +768,6 @@ end GlobalTheory.USep.Setup
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLinkedThetaSystemRegularMonomialFamily
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.USep
 
 namespace GlobalTheory.GSep

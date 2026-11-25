@@ -111,10 +111,9 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRin
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj TensorProduct
+open GlobalTheory.KeyPow GlobalTheory.KeyFam GlobalTheory.ZM GlobalTheory.AbLaw
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsLocalPeriodMatrix
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.KeyPow GlobalTheory.KeyFam GlobalTheory.ZM GlobalTheory.AbLaw
 
 namespace GlobalTheory.PeriodLift
 
@@ -305,7 +304,6 @@ end GlobalTheory.PeriodLift
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsNhdsSubsetImage
-open GlobalTheory.KeyPow GlobalTheory.KeyFam GlobalTheory.ZM GlobalTheory.AbLaw
 
 namespace GlobalTheory.SiegelOpen
 
@@ -355,8 +353,6 @@ end GlobalTheory.SiegelOpen
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsSeparatingPairs
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.KeyPow GlobalTheory.KeyFam GlobalTheory.ZM GlobalTheory.AbLaw
 
 namespace GlobalTheory.EtaleLocInj
 
@@ -431,8 +427,6 @@ end GlobalTheory.EtaleLocInj
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.SiegelFamilyComplexPointEqOfSamePeriodMatrix
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.KeyPow GlobalTheory.KeyFam GlobalTheory.ZM GlobalTheory.AbLaw
 
 
 namespace GlobalTheory.SiegelPointUnique
@@ -520,8 +514,6 @@ end GlobalTheory.SiegelPointUnique
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.SiegelFamilyNearbyPeriodsSameComponent
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.KeyPow GlobalTheory.KeyFam GlobalTheory.ZM GlobalTheory.AbLaw
 
 namespace GlobalTheory.SiegelNearby
 open GlobalTheory.ZM.SiegPull GlobalTheory.RigidTranslate

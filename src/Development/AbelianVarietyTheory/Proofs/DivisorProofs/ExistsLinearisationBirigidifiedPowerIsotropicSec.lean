@@ -67,7 +67,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.UPel.HT
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.BirigidifiedBundleTranslationInvariantFirstFacto
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CechPic
 
 namespace GlobalTheory.TranslFst
@@ -115,8 +114,6 @@ end GlobalTheory.TranslFst
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.BirigidifiedBundleTranslationInvariantSecondFact
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.TranslInv
 

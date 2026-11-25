@@ -134,7 +134,6 @@ open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCate
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open ReciprocityTheory.ChartRestriction.G.Out (RingAct)
 open scoped CategoryTheory.Obj NumberField
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.IwLevel
 
 namespace GlobalTheory.IwLevel.KerDet
@@ -427,8 +426,7 @@ theorem pair_dependent
       (ψ₂ : S →+* DualNumber k) = (epsScaleR c).comp (ψ₁ : S →+* DualNumber k))
     {a b : S} (ha : a ∈ maximalIdeal S) (hb : b ∈ maximalIdeal S) :
     ∃ c : k, a - c • b ∈ maximalIdeal S ^ 2 ∨ b - c • a ∈ maximalIdeal S ^ 2 := by
-  by_contra hne
-  push_neg at hne
+  by_contra! hne
   choose π hπ using h1
   obtain ⟨f₁, h11, h12, h13, h14⟩ := exists_form ha hb (fun c => (hne c).1)
   obtain ⟨f₂, h21, h22, h23, h24⟩ := exists_form hb ha (fun c => (hne c).2)
@@ -639,7 +637,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIdealFactorIff
 open ReciprocityTheory.ChartRestriction.G.Out (RingAct)
 open scoped CategoryTheory.Obj NumberField
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.IwLevel
 
 namespace GlobalTheory.KerIdeal
@@ -758,7 +755,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MaximalIdealPowLe
 open ReciprocityTheory.ChartRestriction.G.Out (RingAct)
 open scoped CategoryTheory.Obj NumberField
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.IwLevel
 
 namespace GlobalTheory.KerIdeal
@@ -818,7 +814,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RingHomEqOfCompEqId
 open ReciprocityTheory.ChartRestriction.G.Out (RingAct)
 open scoped CategoryTheory.Obj NumberField
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.IwLevel
 
 namespace GlobalTheory.TangentStalk
@@ -908,7 +903,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SectionExtOfApplyEq
 open ReciprocityTheory.ChartRestriction.G.Out (RingAct)
 open scoped CategoryTheory.Obj NumberField
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.IwLevel
 
 namespace GlobalTheory.IwLevel
@@ -937,7 +931,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TangentFixLine
 open ReciprocityTheory.ChartRestriction.G.Out (RingAct)
 open scoped CategoryTheory.Obj NumberField
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.IwLevel
 
 namespace GlobalTheory.HTLieFix
@@ -1568,7 +1561,6 @@ end -- clump:auto
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.TQCompare
 open GlobalTheory.UU

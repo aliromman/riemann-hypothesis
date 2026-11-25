@@ -92,10 +92,9 @@ section -- clump: shared namespace opens
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
+open GlobalTheory.Mum
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqOfSameExpansionThickeningOpen
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 namespace GlobalTheory.MumMult
 
@@ -202,8 +201,6 @@ end GlobalTheory.MumMult
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsClosedFibreChartPointMumfordMultiplierNonz
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 theorem GlobalTheory.MumMult.exists_pt_chart_of_leadPt : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] (D : DegData R (maximalIdeal R)) (A : PolAV (Sp (FractionRing R))) (G : Over (Sp R)) [GrpObj G] [IsCommMonObj G] (U : Unif (maximalIdeal R) D A G) (b : ∀ e : ℕ, thickObj R (maximalIdeal R) e G ⟶ thickObj R (maximalIdeal R) e G) (m : ∀ (e : ℕ) (i i' : Fin 1 → U.LG.L.ι), Γ((thickObj R (maximalIdeal R) e G).left, GlobalTheory.MumMult.multW U b e i i')), GlobalTheory.MumMult.LeadPt U b m → ∃ y : (thickObj R (maximalIdeal R) 0 G).left, (∃ i' : Fin 1 → U.LG.L.ι, y ∈ (fstG (maximalIdeal R) 0 G).left ⁻¹ᵁ secChart U.LG.L i') ∧ ∀ i i' : Fin 1 → U.LG.L.ι, y ∈ GlobalTheory.MumMult.multW U b 0 i i' → y ∈ (thickObj R (maximalIdeal R) 0 G).left.basicOpen (m 0 i i') := by
   intro R _ _ _ D A G _ _ U b m hL
@@ -236,8 +233,6 @@ theorem GlobalTheory.MumMult.exists_pt_chart_of_leadPt : ∀ (R : Type) [CommRin
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIntegralThetaExpansionOfSectionPowerGeThre
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 namespace GlobalTheory.Mum.SecExp
 
@@ -367,14 +362,12 @@ theorem int_cauchy_schwarz {X : Type} [AddCommGroup X] (F : X →+ X →+ ℤ)
   · have h2 := key (-(F u v)) (F u u)
     have h3 : 0 ≤ F u u * (F u u * F v v - F u v ^ 2) := by linarith [h2]
     have h4 : 0 ≤ F u u * F v v - F u v ^ 2 := by
-      by_contra hc
-      push_neg at hc
+      by_contra! hc
       linarith [mul_neg_of_pos_of_neg ht hc]
     linarith
   · rw [← ht]
     simp only [zero_mul]
-    by_contra hc
-    push_neg at hc
+    by_contra! hc
     have hs : (1 : ℤ) ≤ F u v ^ 2 := hc
     have h2 := key (-(F v v + 1) * F u v) 1
     rw [← ht] at h2
@@ -391,8 +384,7 @@ theorem seq_bound (a c : ℕ → ℤ) (n : ℕ) (hpos : ∀ k, 0 ≤ a k)
     simp [hS]
   rw [hcast]
   have hS0 : 0 ≤ S := Finset.sum_nonneg (fun i _ => abs_nonneg _)
-  by_contra H
-  push_neg at H
+  by_contra! H
   have ha0 : 0 < a 0 := by
     rcases (hpos 0).lt_or_eq with h | h
     · exact h
@@ -409,8 +401,7 @@ theorem seq_bound (a c : ℕ → ℤ) (n : ℕ) (hpos : ∀ k, 0 ≤ a k)
     | succ k ih =>
       obtain ⟨hk, hk'⟩ := ih
       have hk1 : 0 < a (k + 1) := by
-        by_contra hc
-        push_neg at hc
+        by_contra! hc
         linarith [mul_pos (by linarith : (0:ℤ) < a 1) hk, mul_le_mul_of_nonneg_right hc ha0.le]
       refine ⟨hk1, ?_⟩
       have h2 := hlc k
@@ -555,7 +546,7 @@ theorem pos_form_adjoint_bound : ∀ (X : Type) [AddCommGroup X] [Module.Free �
 end GlobalTheory.PosFormAdjoint
 end -- clump:auto
 
--- clump: shared namespace opens
+section -- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -596,7 +587,6 @@ end GlobalTheory.Mum.PosMult
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsMumfordMultiplierExponentNonzeroSection
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 open GlobalTheory GlobalTheory.CechPic
@@ -657,9 +647,16 @@ open GlobalTheory.Mum
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MumfordMultiplierThickeningChartSections
-attribute [local instance] Over.cartesianMonoidalCategory
+end -- clump: shared namespace opens
+
+section -- clump: shared namespace opens
+
+open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
+open scoped CategoryTheory.Obj
 open GlobalTheory.Mum
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MumfordMultiplierThickeningChartSections
 
 
 namespace GlobalTheory.MumMult
@@ -676,8 +673,6 @@ end GlobalTheory.MumMult
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MumfordSectionsMultiplierThickenings
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 namespace GlobalTheory.MumMult
 
@@ -701,8 +696,6 @@ end GlobalTheory.MumMult
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MumfordThickeningEndomorphismMapsSections
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 namespace GlobalTheory.MumSec
 
@@ -761,8 +754,6 @@ end GlobalTheory.MumSec
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SemiAbelianGenericFibreHomExtendsNormalNoetheria
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 theorem GlobalTheory.Mum.semiAbelian_end_generic_extends : ∀ (R : Type) [CommRing R] [IsDomain R] [IsNoetherianRing R] [IsIntegrallyClosed R] (G : Over (Sp R)) [GrpObj G], IsSemiAbelian G → ∀ φ : (Over.pullback (jK R)).obj G ⟶ (Over.pullback (jK R)).obj G, IsMonHom φ → ∃ g : G ⟶ G, IsMonHom g ∧ (Over.pullback (jK R)).map g = φ := by
   intro R _ _ _ _ G _ hG φ hφ
@@ -773,8 +764,6 @@ theorem GlobalTheory.Mum.semiAbelian_end_generic_extends : ∀ (R : Type) [CommR
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FormalEndSecCoNonzeroLift
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 
 namespace GlobalTheory.Mum
@@ -804,8 +793,6 @@ end GlobalTheory.Mum
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemBasicOpenOfSectionRatioEqBasePoint
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 namespace GlobalTheory.Mum
 
@@ -864,8 +851,6 @@ end GlobalTheory.Mum
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SecRatioAppRestrict
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 namespace GlobalTheory.Mum
 
@@ -877,8 +862,6 @@ end GlobalTheory.Mum
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SemiAbelianThickeningHomEqOfEqOnOpen
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 namespace GlobalTheory.MumAgree
 
@@ -926,8 +909,6 @@ end GlobalTheory.MumAgree
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThickeningEqOfGenericSectionRatios
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 
 namespace GlobalTheory.Mum
@@ -988,16 +969,12 @@ end GlobalTheory.Mum
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThickeningEqOfGenericSectionRatiosStatement
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 theorem _root_.GlobalTheory.T.thickening_eq_of_generic_section_ratios : (∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Base R → ∀ (D : DegData R (maximalIdeal R)) (A : PolAV (Sp (FractionRing R))) (G : Over (Sp R)) [GrpObj G] [IsCommMonObj G], IsSemiAbelian G → ∀ U : Unif (maximalIdeal R) D A G, ∀ (a a' : D.toPre.P.A ⟶ D.toPre.P.A) (h h' : D.toPre.X →+ D.toPre.X), EndData D.toPre a a' h h' → ∀ b, FormalEnd U.toUnifPre a h' b → ∀ (N : ℕ) (S : ∀ k : ℕ, H0 U.LG.L k → H0 U.LG.L (N * k)), (∀ (k e : ℕ) (s₁ s₂ : H0 U.LG.L k), SecRatioEq U.LG.L ((b e).left ≫ (fstG (maximalIdeal R) e G).left) (fstG (maximalIdeal R) e G).left s₁ s₂ (S k s₁) (S k s₂)) → (∀ k : ℕ, 3 ≤ k → ∃ s₀ : H0 U.LG.L k, SecCoNonzero U.LG.L ((b 0).left ≫ (fstG (maximalIdeal R) 0 G).left) (fstG (maximalIdeal R) 0 G).left s₀ (S k s₀)) → ∀ φ : (Over.pullback (jK R)).obj G ⟶ (Over.pullback (jK R)).obj G, (∀ (k : ℕ) (s₁ s₂ : H0 U.LG.L k), SecRatioEq U.LG.L (φ.left ≫ pullback.fst G.hom (jK R)) (pullback.fst G.hom (jK R)) s₁ s₂ (S k s₁) (S k s₂)) → ∀ g : G ⟶ G, IsMonHom g → (Over.pullback (jK R)).map g = φ → ∀ e, (Over.pullback (thick R (maximalIdeal R) e)).map g = b e) := by
   first | exact @GlobalTheory.Mum.thick_eq_of_ratios
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MumfordFormalEndomorphismAlgebraic
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 namespace GlobalTheory.Mum
 
@@ -1013,7 +990,13 @@ theorem formalEnd_algebraic : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalR
 end GlobalTheory.Mum
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MumfordFormalEndomorphismAlgebraicStatement
+
+open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
+open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 

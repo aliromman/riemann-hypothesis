@@ -63,7 +63,6 @@ open Formalism.IndefR.Fin Formalism.IndefR.Fin.LevelGroupLemmas
 open scoped TensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeckeCharacterConjHalfIdeleEqProdLocal
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 namespace GlobalTheory.IdemSumChar

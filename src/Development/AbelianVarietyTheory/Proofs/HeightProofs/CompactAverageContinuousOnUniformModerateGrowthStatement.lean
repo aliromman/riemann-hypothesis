@@ -67,10 +67,9 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open Formalism.REAL GlobalTheory.SmoothGlob GlobalTheory.TypeSum
 open scoped TensorProduct
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.AvgDerFamGrowth
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 open MeasureTheory Filter Topology
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.AvgDerFamGrowth
 
 
 namespace GlobalTheory.KAvgDeriv
@@ -239,9 +238,6 @@ end GlobalTheory.KAvgDeriv
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.ContinuousOnAvgRightTranslates
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-open MeasureTheory Filter Topology
 
 namespace GlobalTheory.AvgCont
 
@@ -289,9 +285,6 @@ end GlobalTheory.AvgCont
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.DerFamExpandWords
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-open MeasureTheory Filter Topology
 
 namespace GlobalTheory.TypeSum
 
@@ -364,7 +357,6 @@ open Formalism.REAL GlobalTheory.SmoothGlob GlobalTheory.TypeSum
 open scoped TensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.ExpSecondKindCoordinates
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 open MeasureTheory Filter Topology
 
@@ -516,7 +508,6 @@ end GlobalTheory.SecondKindChart
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.HasFDerivAtDerFamProdExp
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 open MeasureTheory Filter Topology
 
@@ -684,7 +675,6 @@ end GlobalTheory.TypeSum
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.MeasurableDerFamComp
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 open MeasureTheory Filter Topology
 
@@ -731,7 +721,6 @@ end GlobalTheory.TypeSum
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.MeasurableDerFamCompStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 open MeasureTheory Filter Topology
 
@@ -739,7 +728,6 @@ open MeasureTheory Filter Topology
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.CompactAverageContinuousOnUniformModerateGrowth
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 open MeasureTheory Filter Topology
 

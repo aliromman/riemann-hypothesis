@@ -118,8 +118,6 @@ namespace GlobalTheory.LogPole.CellSection
 open GlobalTheory.Reg GlobalTheory.FlagMod MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G.PullbackSections (TanM tv mkT tanM_ext tv_mem actR)
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 section Basic
 
 variable {X : Scheme.{0}} {S : Type} [CommRing S]
@@ -938,7 +936,6 @@ open GlobalTheory.FlagMod (initSpan initSpan_le_of_tri)
 open ReciprocityTheory.ChartRestriction.G.PullbackSections (TanM)
 
 open MonoidalCategory CartesianMonoidalCategory MonObj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 section Lin
 

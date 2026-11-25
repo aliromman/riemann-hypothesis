@@ -62,10 +62,9 @@ import Mathlib.AlgebraicGeometry.Morphisms.WeaklyEtale
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
+open GlobalTheory.Mum
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCubicalStructureSemiAbelianExtension
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 open Classical
 
 namespace GlobalTheory.ZH
@@ -109,8 +108,6 @@ end GlobalTheory.ZH
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGenericPointOfLiesOverGeneric
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 open Classical
 
 namespace GlobalTheory.Mum
@@ -199,8 +196,6 @@ end GlobalTheory.Mum
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsModificationClosureOfGraph
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 
 namespace GlobalTheory.Mum
 
@@ -225,8 +220,6 @@ end GlobalTheory.Mum
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GenericFibrePulledSemiAbelianEqAbelianVariety
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 open Classical
 
 namespace GlobalTheory.MumGen
@@ -272,8 +265,6 @@ end GlobalTheory.MumGen
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUniformisedCoverPullbackSemiAbelianModel
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
 open Classical
 
 namespace GlobalTheory.Mum.CoverPull

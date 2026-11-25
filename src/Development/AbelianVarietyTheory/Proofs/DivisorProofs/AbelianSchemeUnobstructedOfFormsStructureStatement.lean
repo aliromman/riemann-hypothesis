@@ -78,7 +78,6 @@ import Mathlib.AlgebraicGeometry.Modules.Sheaf
 open CategoryTheory AlgebraicGeometry KaehlerDifferential MonoidalCategory CartesianMonoidalCategory MonObj
 open scoped TensorProduct
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.LiftSys GlobalTheory.Obs
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.Obs.GluePair
@@ -251,7 +250,6 @@ end -- clump:auto
 open CategoryTheory AlgebraicGeometry KaehlerDifferential MonoidalCategory CartesianMonoidalCategory MonObj
 open scoped TensorProduct
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.LiftSys GlobalTheory.Obs
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.Obs
 
@@ -342,7 +340,6 @@ theorem _root_.GlobalTheory.T.exists_squareZeroAugmentedAlgebra : ∀ (R R₀ : 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNaturalLiftOfDefectCoboundary
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.LiftSys
 
@@ -408,7 +405,6 @@ end GlobalTheory.LiftSys
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSemilinearCochainOfDegreeOneObstructionZer
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.Obs
 
@@ -475,7 +471,6 @@ end GlobalTheory.Obs
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LiftsNaturalOfObstructionOneZero
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.Obs
 
@@ -488,7 +483,6 @@ end GlobalTheory.Obs
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ObstructionPullbackEqZeroOfNaturalLift
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.Obs
@@ -571,8 +565,6 @@ open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestric
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RetractionLiftObstructionZeroOfLiftedSection
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 namespace GlobalTheory.Obs
 
 theorem appLE_apply_of_eq_id {X : Scheme.{0}} {g : X ⟶ X} (hg : g = 𝟙 X) {U V : X.Opens} (e : V ≤ g ⁻¹ᵁ U)
@@ -645,8 +637,6 @@ end GlobalTheory.Obs
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MultiplicationLiftsSquareZeroSmoothLift
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.Obs.MulLift
 
@@ -766,7 +756,6 @@ open scoped TensorProduct
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.LiftSys GlobalTheory.Obs
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianSchemeUnobstructedOfFormsStructure
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.Obs
 

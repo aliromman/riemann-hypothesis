@@ -136,7 +136,6 @@ open Classical
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KeyFormulaUnitOverNormalBaseOfFamilyUnitOfTraits
-attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 

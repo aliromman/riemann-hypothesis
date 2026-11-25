@@ -355,7 +355,6 @@ end GlobalTheory.FramePrim
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsAddIsotropicSpanMemLocallyStandardLattice
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.IsotropicLift
 
@@ -520,7 +519,6 @@ end GlobalTheory.IsotropicLift
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsFlagOfUnitriangularIsotropicShift
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.MkFlag
 
@@ -755,8 +753,6 @@ end GlobalTheory.FixConvRow
 
 namespace GlobalTheory.FixConvRow
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 theorem ddS_zpow_eq (D : D7) (a : Fin D.R.rS) :
     (ddS D ^ (-((D.R.rS : ℤ) - (a : ℕ))) : FractionalIdeal (nonZeroDivisors (𝓞 D.host.E)) D.host.E) =
       ((↑((Ideal.map (algebraMap (𝓞 D.host.F) (𝓞 D.host.E)) (differentIdeal ℤ (𝓞 D.host.F))) ^
@@ -823,8 +819,6 @@ end GlobalTheory.FixConvRow
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.RowLatticePropertiesTransportByIsometry
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.RowLatTransport
 
@@ -966,8 +960,6 @@ end GlobalTheory.RowLatTransport
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.RowLatticeOfLocallyStandardFrame
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.RowLatAdapt
 

@@ -544,8 +544,6 @@ open scoped ContDiff
 
 namespace Formalism.FourierDecayAlt.P.CutEX.MkTopPf
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 section alg
 
 variable {k p ρ : ℕ}
@@ -581,8 +579,6 @@ namespace Formalism.FourierDecayAlt.P.CutEX.MkTopPf
 end Formalism.FourierDecayAlt.P.CutEX.MkTopPf
 
 namespace Formalism.FourierDecayAlt.P.CutEX.MkTopPf
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 section right
 
@@ -661,8 +657,6 @@ end right
 end Formalism.FourierDecayAlt.P.CutEX.MkTopPf
 
 namespace Formalism.FourierDecayAlt.P.CutEX.MkTopPf
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 section avg
 

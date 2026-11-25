@@ -103,7 +103,6 @@ end -- clump:auto
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj MeasureTheory
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.AbLaw
 open GlobalTheory.KeyKa
 
@@ -356,12 +355,11 @@ end -- clump:auto
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj MeasureTheory
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
+open GlobalTheory.AbLaw
+open GlobalTheory.KeyKa
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.TopLeTranslate
 @[expose] public section
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.AbLaw
-open GlobalTheory.KeyKa
 noncomputable section
 namespace GlobalTheory.KaUnique
 variable {T T' : Type} [CommRing T] [CommRing T'] {X : Scheme.{0}}
@@ -638,9 +636,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.KeyInvariantFromIntersectionUnique
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.AbLaw
-open GlobalTheory.KeyKa
 namespace GlobalTheory.KaUnique
 
 theorem exists_perm {K : Type} [Field K] {x : KeyIn K} {n d : ℕ} {s : Fin x.P.g → RR x n} {z z' : Fin d → Pt x}
@@ -783,8 +778,6 @@ end GlobalTheory.KaUnique
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.KeyInvariantFromIntersectionUniqueStatement
-open GlobalTheory.AbLaw
-open GlobalTheory.KeyKa
 
 
 

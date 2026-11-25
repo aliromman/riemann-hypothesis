@@ -111,10 +111,9 @@ section -- clump: shared namespace opens
 
 open scoped Classical ENNReal
 open Matrix MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.PackageTie2 Formalism.L2.SG.LocWSOf
+open Formalism.L2.SG.Pf.AmpWinLoc
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsBruhatFunctionLocalBesselIntegralEqL2Mass
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Formalism.L2.SG.Pf.AmpWinLoc
 
 
 namespace GlobalTheory.SlocTie
@@ -236,8 +235,6 @@ end GlobalTheory.SlocTie
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.PiPulledBackUnipotentMeasureEqBesselImage
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Formalism.L2.SG.Pf.AmpWinLoc
 
 namespace GlobalTheory
 
@@ -258,8 +255,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.SubgroupHaarEqConstSmulPiLocalMeasures
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Formalism.L2.SG.Pf.AmpWinLoc
 
 
 namespace GlobalTheory.MuHPi
@@ -294,8 +289,6 @@ end GlobalTheory.MuHPi
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.UnipotentHaarEqConstSmulPiLocalMeasures
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Formalism.L2.SG.Pf.AmpWinLoc
 
 namespace GlobalTheory.MuNPi
 
@@ -324,8 +317,6 @@ end GlobalTheory.MuNPi
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.UnipotentSubgroupHaarProductEqPiLocalImage
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Formalism.L2.SG.Pf.AmpWinLoc
 
 namespace GlobalTheory.MuSPi
 
@@ -357,8 +348,6 @@ end GlobalTheory.MuSPi
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.WeilFormulaBesselNormSqBruhatProduct
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Formalism.L2.SG.Pf.AmpWinLoc
 
 namespace GlobalTheory
 
@@ -414,8 +403,14 @@ theorem weil_bruhatProd_normSq : ∀ (D : D7) (X : HidaSetting D) (u : D.what₂
 end GlobalTheory
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
+section -- clump: shared namespace opens
+
+open scoped Classical ENNReal
+open Matrix MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.PackageTie2 Formalism.L2.SG.LocWSOf
+
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ProductL2Positive
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.ProductL2
 open Formalism.L2.SG.Pf.AmpWinLoc
@@ -500,7 +495,6 @@ end GlobalTheory.ProductL2
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.AmplitudeConstantEqProdCovolumes
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 namespace GlobalTheory.AmplitudeConst
@@ -561,7 +555,6 @@ end GlobalTheory.AmplitudeConst
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.AmplitudeConstantEqProdCovolumesStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 end -- clump:auto
 
@@ -895,7 +888,6 @@ open scoped Classical ENNReal
 open Matrix MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.PackageTie2 Formalism.L2.SG.LocWSOf
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.LocalRealDataFunctionsEquivariantContinuous
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.SlocTie
 
@@ -1010,7 +1002,6 @@ theorem _root_.GlobalTheory.T.localRealData_functions_equivariant_continuous :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.QuotientMeasureBesselModelOfLocalQuotient
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 namespace GlobalTheory.QuotTransport
@@ -1145,7 +1136,6 @@ open scoped Classical ENNReal
 open Matrix MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.PackageTie2 Formalism.L2.SG.TermTieOf Formalism.L2.SG.LocWSOf Formalism.L2.SG.LoopTerm
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.LocalAmplitudeWittLiftEqQuotientIntegral
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.AmpLoc
 
@@ -1180,12 +1170,10 @@ end GlobalTheory.AmpLoc
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.LocalAmplitudeWittLiftEqQuotientIntegralStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.RelevantLiftNormalisedDataExist
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory
 
@@ -1196,7 +1184,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.RelevantLiftNormalisedDataExistStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 end -- clump:auto
 
@@ -1227,7 +1214,6 @@ open scoped Classical ENNReal
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.RelevantTermHasRealRelativePoint
 open Matrix MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.PackageTie2 Formalism.L2.SG.TermTieOf Formalism.L2.SG.LocWSOf Formalism.L2.SG.LoopTerm
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.RelPtLift
 
@@ -1326,7 +1312,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.UMatMulLoc
 open Matrix MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.PackageTie2 Formalism.L2.SG.LocWSOf
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.StabInv
 
@@ -1482,7 +1467,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.LocalBesselJFactorAllWordsOfGap
 open Matrix MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.PackageTie2 Formalism.L2.SG.TermTieOf Formalism.L2.SG.LocWSOf Formalism.L2.SG.LoopTerm
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.JFactTie
 

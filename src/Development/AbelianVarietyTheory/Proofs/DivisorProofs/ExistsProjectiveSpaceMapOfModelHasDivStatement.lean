@@ -58,7 +58,6 @@ open GlobalTheory GlobalTheory.ZM GlobalTheory.ZH GlobalTheory.UMin GlobalTheory
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsProjectiveSpaceMapOfModelHasDiv
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UMin.CrdMap
 

@@ -77,7 +77,6 @@ open GlobalTheory.TInj
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwoTraitUniformisationsMatchingData
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.TInj
 open GlobalTheory.CechPic GlobalTheory.ZH.EndoExtend
 

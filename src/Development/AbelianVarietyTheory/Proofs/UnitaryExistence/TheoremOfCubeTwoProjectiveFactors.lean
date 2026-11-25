@@ -77,7 +77,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.O
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.BijectiveAppTopBaseChange
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp spMap)
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.AbLaw
 
 namespace GlobalTheory.UniversalConstants
@@ -93,7 +92,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.TrivProdOfSmallExtension
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp spMap)
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.AbLaw
 
 set_option backward.isDefEq.respectTransparency false
@@ -176,7 +174,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.LineBundleTrivialBasicOpenOfTrivialFibreProduct
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp spMap)
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.AbLaw
 open GlobalTheory.AbLaw.CubeOpen
 
@@ -306,7 +303,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.TheoremOfCubeLocallyTwoProjectiveFactors
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp spMap)
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.AbLaw GlobalTheory.AbLaw.CubeGen
 noncomputable section
 namespace GlobalTheory.CubeLocal
@@ -533,7 +529,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.TheoremOfCubeTwoProjectiveFactors
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp spMap)
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.AbLaw
 
 namespace GlobalTheory.CubeGlue

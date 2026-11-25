@@ -15,8 +15,6 @@ section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.Jacob
 
 open MeasureTheory Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.C6
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 
 namespace PI.UnitaryGroupMassFormula.JCC
 

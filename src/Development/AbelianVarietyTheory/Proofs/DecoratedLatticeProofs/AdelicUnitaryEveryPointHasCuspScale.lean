@@ -62,7 +62,6 @@ theorem _root_.GlobalTheory.T.unitaryGroup_twoModels_rationalReal_unipotent_dict
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.AdelicUnitaryEveryPointHasCuspScale
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 namespace GlobalTheory.CuspGeo

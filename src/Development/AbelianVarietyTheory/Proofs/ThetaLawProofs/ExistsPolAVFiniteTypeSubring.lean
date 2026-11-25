@@ -79,15 +79,14 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.Cha
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsFinsetKTrivOfSubring, Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.IsProjOverDescendsToSubring, Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsProjectiveAbelianModel, Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.RelAmpleSubring, Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsPolAVFiniteTypeSubring
 
--- clump: shared namespace opens
+section -- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj MeasureTheory
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsFinsetKTrivOfSubring
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.AbLaw
 open GlobalTheory.KeyPow GlobalTheory.KeyKa
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsFinsetKTrivOfSubring
 
 namespace GlobalTheory
 
@@ -120,9 +119,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.IsProjOverDescendsToSubring
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.AbLaw
-open GlobalTheory.KeyPow GlobalTheory.KeyKa
 
 namespace GlobalTheory
 
@@ -236,9 +232,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsProjectiveAbelianModel
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.AbLaw
-open GlobalTheory.KeyPow GlobalTheory.KeyKa
 open scoped CategoryTheory.Obj
 
 namespace GlobalTheory.KeyTf
@@ -302,9 +295,6 @@ end GlobalTheory.KeyTf
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.RelAmpleSubring
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.AbLaw
-open GlobalTheory.KeyPow GlobalTheory.KeyKa
 
 namespace GlobalTheory.AmpleSubring
 
@@ -346,9 +336,13 @@ theorem relAmple_subring : ∀ (S : Type) [CommRing S] [IsLocalRing S] (R₀ : S
 end GlobalTheory.AmpleSubring
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsPolAVFiniteTypeSubring
+
+open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj MeasureTheory
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.AbLaw
 open GlobalTheory.KeyPow GlobalTheory.KeyKa
 

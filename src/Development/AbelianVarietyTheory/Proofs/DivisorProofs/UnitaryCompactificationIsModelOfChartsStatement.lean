@@ -137,7 +137,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
 open GlobalTheory GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.UChart
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UPoinc
 
@@ -192,7 +191,6 @@ open GlobalTheory GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan Gl
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NonemptySemiAbelianCompletionChartOfOpenPart
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.Desc.OpenChart
 
@@ -272,7 +270,6 @@ end GlobalTheory.Desc.OpenChart
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelAmpleRigidifiedBundlePullbackUniversalTriple
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.PullAmpleXF
 
@@ -301,7 +298,6 @@ end GlobalTheory.PullAmpleXF
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSemiAbelianDescentOfToricChartsCorrectedSe
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.UChartDesc
@@ -391,7 +387,6 @@ end GlobalTheory.UChartDesc
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ChartRingActionCompatibleExtended
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.UChart
@@ -438,7 +433,6 @@ end GlobalTheory.UChart
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsRingActionExtendDescendedSemiAbelian
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DescAct
 
@@ -456,7 +450,6 @@ end GlobalTheory.DescAct
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HermitianAdjointnessIsoExtendsDescendedGroup
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ExtAdj
 
@@ -676,7 +669,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
 open GlobalTheory GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.UChart
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.PrimExt
@@ -850,7 +842,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.GeometryOfNumbersTheory
 open GlobalTheory.LieHt GlobalTheory.Cartier GlobalTheory.ThetaOnto
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 set_option backward.isDefEq.respectTransparency false
 
@@ -1138,7 +1129,6 @@ open MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.GeometryOfNumbersTheory
 open GlobalTheory.LieHt GlobalTheory.Cartier GlobalTheory.ThetaOnto
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 set_option backward.isDefEq.respectTransparency false
 
@@ -1311,7 +1301,6 @@ open GlobalTheory GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan Gl
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExtendsGenericRigidifiedGeneratorToricChartPower
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ChartCubExt
 
@@ -1337,7 +1326,6 @@ end GlobalTheory.ChartCubExt
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RigidCubicalExtensionPullbackOfToricChart
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ChartCubExt
 
@@ -1374,7 +1362,6 @@ end GlobalTheory.ChartCubExt
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTripleOnDescendedGroup
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.DescTriple
@@ -1404,7 +1391,6 @@ end GlobalTheory.DescTriple
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryCompactificationIsModelOfCharts
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.UChart

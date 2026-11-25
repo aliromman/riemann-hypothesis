@@ -60,7 +60,6 @@ theorem _root_.GlobalTheory.T.isogenyDegree_eq_card_kernel_of_killed_by_invertib
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CardTorsionGeometricPointsEqPowTwoDim
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.AV.AbVar
 

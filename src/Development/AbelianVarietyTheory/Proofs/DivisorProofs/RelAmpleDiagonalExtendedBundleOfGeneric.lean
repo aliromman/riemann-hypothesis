@@ -65,7 +65,6 @@ open GlobalTheory GlobalTheory.AbLaw GlobalTheory.UU GlobalTheory.LN GlobalTheor
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelAmpleOfGeneric
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.ModelAmpleExt
@@ -120,7 +119,6 @@ end GlobalTheory.ModelAmpleExt
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelAmpleDiagonalExtendedBundleOfGeneric
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.DiagAmpleExt

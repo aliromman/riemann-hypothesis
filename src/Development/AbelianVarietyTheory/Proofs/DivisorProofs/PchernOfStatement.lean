@@ -194,7 +194,6 @@ end GlobalTheory.AnPer
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFrameFactorOfAutomorphyLog
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.AnPer.FrameFn
 
@@ -292,7 +291,6 @@ end GlobalTheory.AnPer.FrameFn
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTranslationClosedChartsSubordinateToCover
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.AnPer
 
@@ -336,7 +334,6 @@ end GlobalTheory.AnPer
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnitsComparingLiftedTransitionsFactor
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.LiftUnits
@@ -488,7 +485,6 @@ end -- clump:auto
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj Filter Topology TopologicalSpace TensorProduct
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.Cris GlobalTheory.DeRham GlobalTheory.AnPer
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.AnPer
 
@@ -639,7 +635,6 @@ end -- clump:auto
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj Filter Topology TopologicalSpace TensorProduct
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.Cris GlobalTheory.DeRham GlobalTheory.AnPer
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.AnPer.ChernClause
 

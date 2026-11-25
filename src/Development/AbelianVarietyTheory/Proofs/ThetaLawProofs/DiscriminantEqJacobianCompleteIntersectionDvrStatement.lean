@@ -100,7 +100,6 @@ import Mathlib.Tactic.TypeStar
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj MeasureTheory
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.AbLaw
 open GlobalTheory.KeyKa
 
@@ -659,8 +658,6 @@ open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp epsR IsTangent IsLieComb I
 open TrivSqZeroExt (inl inr)
 open GlobalTheory.SqZero GlobalTheory.LieComb IsLocalRing MvPowerSeries
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 variable {O : Type} [CommRing O] [IsLocalRing O] [IsNoetherianRing O] [IsAdicComplete (maximalIdeal O) O]
   {G : Over (Spec (CommRingCat.of O))} [GrpObj G] [IsCommMonObj G] {n : ℕ} {v : Fin n → (epsR O ⟶ G)}
 
@@ -719,7 +716,6 @@ end GlobalTheory.JacSer
 section
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj MeasureTheory
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.AbLaw
 open GlobalTheory.KeyKa
 
@@ -779,11 +775,10 @@ section -- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj MeasureTheory
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.KosDApplyMap
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.AbLaw
 open GlobalTheory.KeyKa
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.KosDApplyMap
 
 namespace GlobalTheory.KosResidueExact
 
@@ -863,15 +858,11 @@ end GlobalTheory.KosResidueExact
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.TransversalZerosOfJacobianNeZeroDomainStatement
-open GlobalTheory.AbLaw
-open GlobalTheory.KeyKa
 
 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.KosDExactGeneric
-open GlobalTheory.AbLaw
-open GlobalTheory.KeyKa
 
 namespace GlobalTheory.KeyKa.KoszulGenExact
 
@@ -984,9 +975,6 @@ end GlobalTheory.KeyKa.KoszulGenExact
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.LePreimageOfClosedPoint
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.AbLaw
-open GlobalTheory.KeyKa
 
 namespace GlobalTheory.FormalChart
 
@@ -1497,11 +1485,10 @@ end -- clump:auto
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj MeasureTheory
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.DiscriminantEqJacobianCompleteIntersectionDvr
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.AbLaw
 open GlobalTheory.KeyKa
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.DiscriminantEqJacobianCompleteIntersectionDvr
 
 namespace GlobalTheory.DiscrJacGlobal
 open EtBaseChange
@@ -1655,8 +1642,6 @@ end GlobalTheory.DiscrJacGlobal
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.DiscriminantEqJacobianCompleteIntersectionDvrStatement
-open GlobalTheory.AbLaw
-open GlobalTheory.KeyKa
 
 
 

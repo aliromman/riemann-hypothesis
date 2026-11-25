@@ -55,7 +55,6 @@ open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZM
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MonomialsDifferByUnitsPositiveBoundaryCombinatio
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.TInj
 namespace GlobalTheory.TInj
 

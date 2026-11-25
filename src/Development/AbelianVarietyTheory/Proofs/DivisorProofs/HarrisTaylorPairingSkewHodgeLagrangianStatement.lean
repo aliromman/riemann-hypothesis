@@ -56,7 +56,6 @@ open GlobalTheory.UPel.Sm GlobalTheory.Cris GlobalTheory.DeRham
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HarrisTaylorPairingSkewHodgeLagrangian
 
-attribute [local instance] Over.cartesianMonoidalCategory
 namespace GlobalTheory.UPel.HT.FormFacts
 open GlobalTheory.AbDual
 

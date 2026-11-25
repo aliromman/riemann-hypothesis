@@ -127,8 +127,6 @@ namespace PI.UnitaryCorollaryDerivatives
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.U
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 open PolynomialDegreeClosure in
 theorem generating_function_polynomial : GfPoly := by
   intro k r z z'

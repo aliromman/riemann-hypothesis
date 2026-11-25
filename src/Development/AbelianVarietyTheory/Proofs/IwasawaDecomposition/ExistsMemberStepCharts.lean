@@ -64,7 +64,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Col Formalism.L2.DIV Formalism.L2.Ker Formalism.UG Formalism.L2.Forms GlobalTheory.Mem GlobalTheory.Mem.Chr GlobalTheory.Mem.Col2 GlobalTheory.Mem.Col2.TC Matrix
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsUnitaryDiagonalBasePointLevelPrimeStatement
-attribute [local instance] GlobalTheory.Mem.Col2.starE Formalism.BasicNotions.Host.cmStar
 
 end -- clump:auto
 
@@ -425,8 +424,6 @@ theorem stM_inj (h : (stR Λ Θ p₀ pref).Ok) (c : (stR Λ Θ p₀ pref).Cl) : 
 end Orb
 
 section Main
-
-attribute [local instance] GlobalTheory.Mem.Col2.starE Formalism.BasicNotions.Host.cmStar
 
 variable {B : Base} {X : PreX B.toPre} (I : TC B X)
 

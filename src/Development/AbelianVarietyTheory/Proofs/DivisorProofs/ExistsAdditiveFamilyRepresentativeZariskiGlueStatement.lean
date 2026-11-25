@@ -56,7 +56,6 @@ open scoped CategoryTheory.Obj
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAdditiveFamilyRepresentativeZariskiGlue
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DualCon.ZarGlue
 

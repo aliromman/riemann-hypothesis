@@ -509,8 +509,7 @@ theorem exists_prefix_small {a : ℤ → L} {ρ : ℝ} (hρ0 : 0 < ρ) (hρ1 : �
   obtain ⟨N0, hN0⟩ : ∃ N0 : ℤ, ∀ m, N0 ≤ m → ‖a m‖ * ρ ^ m ≤ ε := by
     obtain ⟨B, hB⟩ := (h.finite_le hε).bddAbove
     refine ⟨B + 1, fun m hm => ?_⟩
-    by_contra hc
-    push_neg at hc
+    by_contra! hc
     have := hB (show m ∈ {n | ε ≤ ‖a n‖ * ρ ^ n} from hc.le)
     omega
   have hG := gaussNorm_nonneg (a := a) hρ0
@@ -540,12 +539,10 @@ theorem convergesAt_of_eventually {a : ℤ → L} {ρ : ℝ} (hρ0 : 0 < ρ) (hn
   have hw : 0 ≤ ‖a n‖ * ρ ^ n := mul_nonneg (norm_nonneg _) (zpow_pos hρ0 n).le
   rw [Set.mem_setOf_eq, dist_zero_right, Real.norm_eq_abs, abs_of_nonneg hw, not_lt] at hn
   refine ⟨?_, ?_⟩
-  · by_contra hc
-    push_neg at hc
+  · by_contra! hc
     rw [hN1 n hc, norm_zero, zero_mul] at hn
     linarith
-  · by_contra hc
-    push_neg at hc
+  · by_contra! hc
     have := hN2 n hc
     linarith
 
@@ -770,12 +767,10 @@ theorem gaussNorm_lowIndex_zcoeff_mul {x y : Γ} (hρ0 : 0 < ρ) (hρ1 : ρ < 1)
   have hi0 := lowIndex_mem hρ0 hx hx0'
   have hl0 := lowIndex_mem hρ0 hy hy0'
   have hi0nn : 0 ≤ lowIndex (T.zcoeff x) ρ := by
-    by_contra h
-    push_neg at h
+    by_contra! h
     exact ne_zero_of_mem_domSet hρ0 hx hx0' hi0 (T.zcoeff_of_neg x h)
   have hl0nn : 0 ≤ lowIndex (T.zcoeff y) ρ := by
-    by_contra h
-    push_neg at h
+    by_contra! h
     exact ne_zero_of_mem_domSet hρ0 hy hy0' hl0 (T.zcoeff_of_neg y h)
   obtain ⟨k0, hk0⟩ : ∃ k0 : ℕ, lowIndex (T.zcoeff x) ρ = k0 :=
     ⟨_, (Int.toNat_of_nonneg hi0nn).symm⟩
@@ -851,8 +846,7 @@ theorem gaussNorm_lowIndex_zcoeff_mul {x y : Γ} (hρ0 : 0 < ρ) (hρ1 : ρ < 1)
     have := hE m m le_rfl
     rwa [le_div_iff₀ (zpow_pos hρ0 _)] at this
   have hn : gx * gy ≤ ‖T.coeff (x * y) n‖ * ρ ^ (n : ℤ) := by
-    by_contra hcon
-    push_neg at hcon
+    by_contra! hcon
     have hβ' : max β (‖T.coeff (x * y) n‖ * ρ ^ (n : ℤ)) < gx * gy := max_lt hβ hcon
     have h1 : T.PrefixLe (x * y) n (max β (‖T.coeff (x * y) n‖ * ρ ^ (n : ℤ)) / ρ ^ (n : ℤ)) :=
       fun m hm => by
@@ -887,8 +881,7 @@ theorem gaussNorm_lowIndex_zcoeff_mul {x y : Γ} (hρ0 : 0 < ρ) (hρ1 : ρ < 1)
   rw [hk0, hl0']
   refine le_antisymm ?_ ?_
   · have := lowIndex_le hρ0 hc hxyn hmem; rw [hndef] at this; exact_mod_cast this
-  · by_contra hcon
-    push_neg at hcon
+  · by_contra! hcon
     have hj := lowIndex_mem hρ0 hc hxyn
     set j := lowIndex (T.zcoeff (x * y)) ρ
     simp only [domSet, Set.mem_setOf_eq] at hj
@@ -1458,8 +1451,7 @@ theorem gn_dpow_le (hp0 : ‖(p : K)‖ ≤ ρ) (hρ0 : 0 < ρ) (hρ1 : ρ < 1) 
     pow_le_pow_left₀ (gn_nonneg hρ0 _) (gn_ker_le hp0 hρ0 hρ1 hx) n
   have h2 : ρ ^ n ≤ ρ ^ (n.factorial.factorization p) := pow_le_pow_of_le_one hρ0.le hρ1.le hv
   have hpos : 0 < ρ ^ (n.factorial.factorization p) := pow_pos hρ0 _
-  by_contra hc
-  push_neg at hc
+  by_contra! hc
   have := mul_lt_mul_of_pos_left hc hpos
   linarith
 
@@ -1511,8 +1503,7 @@ theorem norm_theta_le (x : AInf K p) :
       exact this
     · rw [norm_mul, norm_pow]
       exact mul_le_of_le_one_right (by positivity) (mem_normInteger.1 (θ d).2)
-  by_contra hlt
-  push_neg at hlt
+  by_contra! hlt
   obtain ⟨n, hn⟩ := exists_pow_lt_of_lt_one (lt_of_le_of_lt (gn_nonneg hr0 _) hlt) hr1
   have h2 : r₀ ^ (n + 1) < ‖((θ x : 𝒪) : K)‖ :=
     (pow_le_pow_of_le_one hr0.le hr1.le (Nat.le_succ n)).trans_lt hn

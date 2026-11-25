@@ -53,8 +53,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.AdjointIsotropicDecomposition Globa
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.MixedModelTermHeisenbergIsotropicCharacter
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 namespace GlobalTheory.MixedTermTranslate
 
 variable {D : D7}

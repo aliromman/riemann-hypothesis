@@ -49,7 +49,6 @@ open NumberField IsDedekindDomain MeasureTheory Matrix Formalism.BasicNotions Fo
 open scoped TensorProduct InnerProductSpace ContDiff ComplexOrder
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.WeilFiniteVectorFixedPrincipalLevelCoeffSpace
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.DefLift
 
 namespace GlobalTheory.DefLift.Level

@@ -60,7 +60,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.F
 open GlobalTheory.SW hiding Level
 open GlobalTheory.AdSpan.ReVec
 open scoped TensorProduct ComplexConjugate Classical
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.AdSpan.ReVec.FrMap
 
@@ -256,7 +255,6 @@ end -- clump:auto
 open GlobalTheory.SW hiding Level
 open GlobalTheory.AdSpan.ReVec
 open scoped TensorProduct ComplexConjugate Classical
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.AdSpan.ReVec
 
@@ -367,7 +365,6 @@ end -- clump:auto
 open GlobalTheory.SW hiding Level
 open GlobalTheory.AdSpan.ReVec
 open scoped TensorProduct ComplexConjugate Classical
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.AdSpan.ReVec.ThetaCarry
 
@@ -433,7 +430,6 @@ section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperator
 open GlobalTheory.SW hiding Level
 open GlobalTheory.AdSpan.ReVec
 open scoped TensorProduct ComplexConjugate Classical
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.ThetaAtReframe
 
@@ -572,7 +568,6 @@ end -- clump:auto
 open GlobalTheory.SW hiding Level
 open GlobalTheory.AdSpan.ReVec
 open scoped TensorProduct ComplexConjugate Classical
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.AdSpan.ReVec.Lat
 
@@ -668,7 +663,6 @@ end -- clump:auto
 open GlobalTheory.SW hiding Level
 open GlobalTheory.AdSpan.ReVec
 open scoped TensorProduct ComplexConjugate Classical
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.AdSpan.ReVec
 
@@ -744,7 +738,6 @@ end -- clump:auto
 open GlobalTheory.SW hiding Level
 open GlobalTheory.AdSpan.ReVec
 open scoped TensorProduct ComplexConjugate Classical
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.AdSpan.ReVec.Sympl
 
@@ -846,7 +839,6 @@ end -- clump:auto
 open GlobalTheory.SW hiding Level
 open GlobalTheory.AdSpan.ReVec
 open scoped TensorProduct ComplexConjugate Classical
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.AdSpan.ReVec
 

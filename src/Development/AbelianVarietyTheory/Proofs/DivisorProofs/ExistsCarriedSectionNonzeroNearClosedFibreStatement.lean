@@ -89,7 +89,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AppEqZeroOfSval
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 
@@ -354,7 +353,6 @@ end GlobalTheory.FamWtZero
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsExpandsAtOfAdmissibleBase
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 namespace GlobalTheory.Mum
@@ -377,7 +375,6 @@ end GlobalTheory.Mum
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCarriedSectionNonzeroClosedFibre
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 
@@ -634,7 +631,6 @@ end GlobalTheory.Mum.InvTheta
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsOpenSectionNonvanishingClosedFibre
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 
@@ -698,7 +694,6 @@ end GlobalTheory.Mum
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCarriedSectionNonzeroNearClosedFibre
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 namespace GlobalTheory.Mum

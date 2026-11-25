@@ -51,7 +51,6 @@ open MonObj
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TangentValuePullbackCrystallineFormDualNumbers
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.ParPt

@@ -146,7 +146,6 @@ open GlobalTheory GlobalTheory.ZM GlobalTheory.ZH GlobalTheory.UMin GlobalTheory
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteMorphismValuativeLiftingNormalDomain
-attribute [local instance] Over.cartesianMonoidalCategory
 namespace GlobalTheory
 
 theorem finite_lift_fractionField (R : Type) [CommRing R] [IsDomain R] [IsIntegrallyClosed R]
@@ -160,14 +159,12 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteMorphismValuativeLiftingNormalDomainStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.finite_morphism_valuative_lifting_normal_domain : ∀ (R : Type) [CommRing R] [IsDomain R] [IsIntegrallyClosed R] (Z P : Scheme.{0}) (p : Z ⟶ P) (ξ₀ : Sp R ⟶ P) (y : Sp (FractionRing R) ⟶ Z), IsFinite p → y ≫ p = jK R ≫ ξ₀ → ∃ ξ : Sp R ⟶ Z, jK R ≫ ξ = y ∧ ξ ≫ p = ξ₀ := by
   first | exact @GlobalTheory.finite_lift_fractionField
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsFiniteNormalNormalisationProjectiveSpaceArith
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ThetaFin
 
@@ -248,7 +245,6 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.UPoinc
 open GlobalTheory
 open Classical
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.SecCompact
 
@@ -309,7 +305,6 @@ open GlobalTheory GlobalTheory.ZM GlobalTheory.ZH GlobalTheory.UMin GlobalTheory
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsOpenImmersionDenseGenericFibreNormalisation
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UMin
 
@@ -335,7 +330,6 @@ end GlobalTheory.UMin
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ModuliSchemeCoefficientFieldNormalNoetherianSepa
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UMin
 
@@ -362,7 +356,6 @@ end GlobalTheory.UMin
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaConstantsTwoLevelsSameScaleAtTrait
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UMin.CmpTrait
 
@@ -547,7 +540,6 @@ theorem _root_.GlobalTheory.T.thetaConstants_two_levels_same_scale_at_trait : �
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaConstantsProjectivelyIntegralNormalModels
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UMin.ThInt
 
@@ -690,7 +682,6 @@ end GlobalTheory.UMin
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAffineOpenNormalNoetherianCharZero
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 
@@ -783,7 +774,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaMapAbelianSchemeNormalCharZeroBase
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UMin.ThetaMapGen
 
@@ -842,7 +832,6 @@ end GlobalTheory.UMin.ThetaMapGen
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPolarisationSectionNonvanishingClosedFibre
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UMin.ExtNZ
 
@@ -897,7 +886,6 @@ end GlobalTheory.UMin.ExtNZ
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsProjectiveSpacePointOfUnitCoordinate
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UMin
 
@@ -921,7 +909,6 @@ end GlobalTheory.UMin
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GeneratesSectionsOfThetaSymmetricFunctionsNeZero
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UMin.GenSym
 
@@ -974,7 +961,6 @@ end GlobalTheory.UMin.GenSym
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaSymmetricFunctionsIntegralUnitNormalLocalDo
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UMin.IntTheta
 
@@ -1134,7 +1120,6 @@ end GlobalTheory.UMin.IntTheta
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UniformisedPointExtendsAlongThetaMap
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UMin.ExtP
 
@@ -1198,7 +1183,6 @@ end GlobalTheory.UMin.ExtP
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryIntegralCompactificationExistsViaTheta
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UMinTop
 

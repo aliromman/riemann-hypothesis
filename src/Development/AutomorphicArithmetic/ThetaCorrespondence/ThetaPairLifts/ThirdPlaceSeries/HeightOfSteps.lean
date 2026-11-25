@@ -203,7 +203,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open Formalism.L2.Pj GlobalTheory.HTLat GlobalTheory.EigenSplit GlobalTheory.Frames GlobalTheory.AllWt GlobalTheory.CompHt
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiagNeZeroOfLinearIndependent
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.CompHt
 
@@ -247,7 +246,6 @@ end GlobalTheory.CompHt
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAdaptedBasis
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.CompHt.FlagBasis
 
@@ -598,7 +596,6 @@ end GlobalTheory.CompHt
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HodgeTateInclusionRaynaudExtensionAlgebraicPointStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 
@@ -1064,7 +1061,6 @@ open CategoryTheory AlgebraicGeometry NumberField IsDedekindDomain
 open scoped TensorProduct NNReal
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Pdiv ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open Formalism.L2.Pj GlobalTheory.HTLat GlobalTheory.EigenSplit GlobalTheory.Frames GlobalTheory.AllWt GlobalTheory.CompHt GlobalTheory.CovHt
-attribute [local instance] Over.cartesianMonoidalCategory
 namespace GlobalTheory.CovHt.FrameCmp
 section Different
 variable {C : Type} [Field C] [IsAlgClosed C] [CharZero C] {v : Valuation C ℝ≥0} {O : Type} [CommRing O] [Algebra O C]

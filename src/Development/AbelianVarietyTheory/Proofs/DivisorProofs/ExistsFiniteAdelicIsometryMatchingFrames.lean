@@ -53,22 +53,17 @@ import Mathlib.Tactic.ReduceModChar
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.Cx Polynomial
 open scoped TensorProduct InnerProductSpace
+open GlobalTheory.CuspMult
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFiniteAdelicUnitaryGroupIsoStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.CuspMult
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIntegralChangeBaseFrameOrthonormalStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.CuspMult
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFiniteAdelicIsometryMatchingFrames
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.CuspMult
 
 namespace GlobalTheory.FinIsoExists
 

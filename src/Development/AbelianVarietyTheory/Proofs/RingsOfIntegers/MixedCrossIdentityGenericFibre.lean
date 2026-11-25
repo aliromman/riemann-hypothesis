@@ -61,10 +61,9 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRin
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.DVR
+open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.SecEqOfThick
-attribute [local instance] Over.cartesianMonoidalCategory
-open scoped CategoryTheory.Obj
 
 namespace GlobalTheory.MixedCross
 
@@ -208,8 +207,6 @@ end GlobalTheory.MixedCross
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.MixedCrossIdentityGenericFibre
-attribute [local instance] Over.cartesianMonoidalCategory
-open scoped CategoryTheory.Obj
 
 namespace GlobalTheory.GenericCross
 

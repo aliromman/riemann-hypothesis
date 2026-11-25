@@ -255,7 +255,6 @@ section Adelic
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.FWT Formalism.L2.Pj
 open scoped TensorProduct Matrix
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.HeckePointIdent
 
@@ -697,7 +696,7 @@ open NumberField IsDedekindDomain AlgebraicGeometry CategoryTheory Limits Recipr
 open Formalism.IndefR.FWT (castDict)
 open scoped TensorProduct Matrix MonObj
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.HeckeEx.fieldCAt GlobalTheory.HeckeEx.algClosedCAt
+attribute [local instance] GlobalTheory.HeckeEx.fieldCAt GlobalTheory.HeckeEx.algClosedCAt
 
 namespace GlobalTheory.HeckePointIdent
 
@@ -868,7 +867,6 @@ end Point
 section Main
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.FWT Formalism.L2.Pj
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open NumberField
 
 namespace GlobalTheory.HeckePointIdent
@@ -978,10 +976,9 @@ end -- clump:auto
 -- clump: shared namespace opens
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.FWT Formalism.L2.Pj
+open NumberField
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeckePointEqUnipotentFrameChangeCosetRep
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open NumberField
 
 namespace GlobalTheory.HeckePointCoset
 
@@ -1019,8 +1016,6 @@ end GlobalTheory.HeckePointCoset
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeckePointEqUnipotentFrameChangeCosetRepStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open NumberField
 
 theorem _root_.GlobalTheory.T.hecke_point_eq_unipotent_frame_change_coset_rep : ∀ (D : D7), GlobalTheory.IndefiniteRowSideFullHecke.HeckePrimeDetection.HeckePointLaws → GlobalTheory.IndefiniteRowSideFullHecke.SplitLinearModelNorm.SplitLinearModel D → GlobalTheory.IndefiniteRowSideFullHecke.UnramifiedCharacter.VacFixed D →
     ∀ (G : Type) [Group G] [Fintype G] (Pl0 T0 : Type) (A : FamIn D.what₂.LL G Pl0 T0 D.R.m)
@@ -1053,8 +1048,6 @@ theorem _root_.GlobalTheory.T.hecke_point_eq_unipotent_frame_change_coset_rep : 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsHeckeKernelCosetFramedPoint
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open NumberField
 
 namespace GlobalTheory.HeckeExist
 
@@ -1227,8 +1220,6 @@ end GlobalTheory.HeckeExist
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsHeckeKernelCosetFramedPointStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open NumberField
 
 theorem _root_.GlobalTheory.T.exists_heckeKernel_coset_framedPoint : ∀ (D : D7), GlobalTheory.IndefiniteRowSideFullHecke.HeckePrimeDetection.HeckePointLaws → GlobalTheory.IndefiniteRowSideFullHecke.SplitLinearModelNorm.SplitLinearModel D → GlobalTheory.IndefiniteRowSideFullHecke.UnramifiedCharacter.VacFixed D →
     ∀ (G : Type) [Group G] [Fintype G] (Pl0 T0 : Type) (A : FamIn D.what₂.LL G Pl0 T0 D.R.m)

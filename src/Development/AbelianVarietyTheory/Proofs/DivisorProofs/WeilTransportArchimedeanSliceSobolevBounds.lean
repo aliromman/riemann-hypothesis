@@ -513,7 +513,6 @@ open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorMode
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdelicSchwartzL2WordBoundExists
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Chr incM)
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open scoped Classical
 
 namespace GlobalTheory.WeilL2Words
@@ -604,7 +603,6 @@ section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.F
 @[expose] public section
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Chr incM)
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open scoped Classical
 
 noncomputable section
@@ -701,7 +699,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteAdelicDualBasisIntegralStatement
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Chr incM)
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open scoped Classical
 
 
@@ -710,7 +707,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsStandardArchimedeanAddCharOfStandardChar
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Chr incM)
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open scoped Classical
 
 noncomputable section
@@ -776,7 +772,6 @@ section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.L
 @[expose] public section
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Chr incM)
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open scoped Classical
 
 noncomputable section
@@ -817,7 +812,6 @@ section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.T
 @[expose] public section
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Chr incM)
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open scoped Classical
 
 noncomputable section
@@ -850,7 +844,6 @@ section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.A
 @[expose] public section
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Chr incM)
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open scoped Classical
 
 noncomputable section
@@ -914,7 +907,6 @@ section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.A
 @[expose] public section
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Chr incM)
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open scoped Classical
 
 noncomputable section
@@ -974,7 +966,6 @@ section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.A
 @[expose] public section
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Chr incM)
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open scoped Classical
 
 noncomputable section
@@ -1187,7 +1178,6 @@ section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.S
 @[expose] public section
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Chr incM)
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open scoped Classical
 
 noncomputable section
@@ -1233,7 +1223,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilRepDerivativeLawOfL2Isometric
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Chr incM)
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open scoped Classical
 
 noncomputable section
@@ -1314,7 +1303,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilTransportArchimedeanSliceSobolevBounds
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Chr incM)
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open scoped Classical
 
 noncomputable section

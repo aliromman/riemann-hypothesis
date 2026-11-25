@@ -51,7 +51,6 @@ open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestric
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsRelativeFrobeniusGrpSchemeCharP
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.RelFrobGrp

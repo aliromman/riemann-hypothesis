@@ -86,7 +86,6 @@ open scoped Classical ENNReal
 open MeasureTheory Matrix NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.LocWSOf GlobalTheory.TypeAsm
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.BesselLowestVectorLocalMassEqTransported
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 namespace GlobalTheory.PhiTranslate
@@ -191,7 +190,6 @@ end GlobalTheory.PhiTranslate
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.HaarMeasureBesselUnitaryEqPullbackProduct
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.PullHaarW
 
@@ -419,7 +417,6 @@ end GlobalTheory.PullHaarW
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ProdLocalQuotientMassEqMeasureRatio
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.UnitW
 
@@ -559,7 +556,6 @@ end -- clump: shared namespace opens
 open scoped Classical ENNReal
 open MeasureTheory Matrix NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.LocWSOf GlobalTheory.TypeAsm
   Formalism.L2.SG.Pf.AmpWinLoc Formalism.L2.SG.Pf.WuDec
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 namespace GlobalTheory
 
 theorem muN_eq_const_mul_pi_trI : ∀ (D : D7) (X : HidaSetting D) (C : Choice X 1) (hB : WuBessel C), GoodLoc C hB →
@@ -591,7 +587,6 @@ end -- clump:auto
 
 open scoped Classical ENNReal
 open MeasureTheory Matrix NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.LocWSOf GlobalTheory.TypeAsm
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.LocalConst
 
@@ -673,8 +668,6 @@ open MeasureTheory NumberField Formalism.BasicNotions
 
 namespace GlobalTheory.TensHS
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 theorem hsNormSq_of_tens {D : D7} (X : Formalism.L2.SG.HidaSetting.HidaSetting D) (u u' : D.what₂.Word)
     (A : X.Vpi u' →L[ℂ] X.Vpi u) (J : ∀ v, X.Vloc u' v →L[ℂ] X.Vloc u v)
     (hA : ∀ y, A (X.tensU u' y) = X.tensU u (fun v => J v (y v))) :
@@ -722,7 +715,6 @@ open scoped Classical ENNReal
 open MeasureTheory Matrix NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Formalism.L2.SG.TermOp Formalism.L2.SG.Full
   Formalism.L2.SG.LocWSOf
 namespace GlobalTheory.TypeAsm
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem factC_of (hP : PullC) (hTn : TensC) (hC : ConstC) : FactC := by
   intro D X Y u C hB hG hcov t hrel μ ν K hμν hK

@@ -69,8 +69,6 @@ namespace GlobalTheory.RowMassCompare
 
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.Cnt GlobalTheory.IndefiniteRowSideFullHecke.DiscriminantKernelAutomorphisms
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section Pieces
 
 variable (D : D7) (u : D.what₂.Word)
@@ -116,7 +114,6 @@ end -- clump:auto
 
 open NumberField Module Matrix Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.Cnt GlobalTheory.LoopC
 open scoped ENNReal Classical
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 namespace GlobalTheory.MeanGenus

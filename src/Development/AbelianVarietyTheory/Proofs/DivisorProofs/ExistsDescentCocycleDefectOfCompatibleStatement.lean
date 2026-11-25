@@ -52,7 +52,6 @@ open GlobalTheory.LBDescent GlobalTheory.DescNorm
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDescentCocycleDefectOfCompatible
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.DescDefect

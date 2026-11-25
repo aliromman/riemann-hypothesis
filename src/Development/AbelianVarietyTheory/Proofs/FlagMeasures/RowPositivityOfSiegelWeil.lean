@@ -172,8 +172,6 @@ open Formalism.L2.SG.NGCut Formalism.L2.SG.NGAnalytic GlobalTheory.NGRow
 
 namespace GlobalTheory.NGRow
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 theorem rowNG_of_cut2P (hc : NGCut2P) : RowNGP := by
   have hR : PN.RowNGJoint := _root_.Formalism.FourierDecayAlt.P.HermitianFormNormLemmas.F.t_RowNGJoint
   have hC : PN.NGChain := _root_.Formalism.FourierDecayAlt.P.NormChainLemmas.nGChain
@@ -204,8 +202,6 @@ open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Fo
   GlobalTheory.NGRow
 
 namespace GlobalTheory.NGRow
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem stepAnalyticP_of_steps : StepPinExists → StepVanishPinned → StepLocGenPinnedC → StepThmBPinnedP →
     StepAnalyticP := by
@@ -248,8 +244,6 @@ open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Fo
   GlobalTheory.NGRow
 
 namespace GlobalTheory.NGRow
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem ngCut2P_of_steps (hM : StepAnalyticConstantsP) (hS : StepSizes) (hC : StepClass) (hN : StepNormals)
     (hP : StepPoints) (hH : StepHeight) : NGCut2P := by
@@ -313,8 +307,6 @@ end -- clump:auto
 open scoped Classical ENNReal
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.HidaSetting Formalism.L2.SG.TermOp Formalism.L2.SG.Full
   Formalism.L2.SG.RowsConc Formalism.L2.SG.NGData Formalism.L2.SG.TermLoc GlobalTheory.Unfold
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.Unfold.RowCls
 
@@ -535,8 +527,6 @@ open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Fo
 
 namespace GlobalTheory.SnFam
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 theorem famNG_holds : FamNG := by
   intro Cg cb Cw cT CT C0
   refine ⟨0, 0, fun C' Cl _ _ D large₂ X Y u u' hC => ?_⟩
@@ -550,7 +540,6 @@ end -- clump:auto
 
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.HidaSetting Formalism.L2.SG.TermOp Formalism.L2.SG.Full Formalism.FourierDecayAlt Formalism.L2.SG.RowsConc Formalism.L2.SG.NGData Formalism.L2.SG.TermLoc GlobalTheory.SnFam
 open scoped Classical
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.non_generic_corank_one_terms_family_cut_by_defect : GlobalTheory.SnFam.FamNG := by
   first | exact @GlobalTheory.SnFam.famNG_holds
@@ -562,8 +551,6 @@ end -- clump:auto
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.HidaSetting Formalism.L2.SG.TermOp
   Formalism.L2.SG.Full Formalism.FourierDecayAlt Formalism.L2.SG.RowsConc Formalism.L2.SG.NGData Formalism.L2.SG.TermLoc GlobalTheory.SnFam
 open scoped Classical
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.SnFamNG
 
@@ -623,7 +610,6 @@ end -- clump:auto
 
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.HidaSetting Formalism.L2.SG.TermOp Formalism.L2.SG.Full Formalism.FourierDecayAlt Formalism.L2.SG.RowsConc Formalism.L2.SG.NGData Formalism.L2.SG.TermLoc GlobalTheory.SnFam
 open scoped Classical
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.nongeneric_row_statements_of_family_statements : FamNG → (FamilyWeightSumUnfoldingIdentity → Formalism.L2.SG.FamDefs.OrbitFamilyIdentityNonGeneric) ∧ (WeightsFam → Formalism.L2.SG.FamDefs.WeightsNG) ∧ (FamilyGroupSumFactorsWeightAmplitude → Formalism.L2.SG.FamDefs.ProductStructureNonGeneric) ∧ (ExistFam → Formalism.L2.SG.FamDefs.ExistNG) := by
   first | exact @GlobalTheory.SnFamNG.leaves_of_fam

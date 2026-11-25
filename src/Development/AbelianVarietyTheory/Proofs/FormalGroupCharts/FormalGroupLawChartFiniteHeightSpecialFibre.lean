@@ -62,7 +62,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.IsFormalGroupLawOfChartOfJetChart
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ChartJLaw
 
@@ -156,7 +155,6 @@ end GlobalTheory.ChartJLaw
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.IsSeriesOfMorphismInChartsPowMulFormalGroupLaw
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.JetSer
 
@@ -184,7 +182,6 @@ end GlobalTheory.JetSer
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.FormalGroupLawChartFiniteHeightSpecialFibre
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.FiniteHeight
 

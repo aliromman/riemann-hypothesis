@@ -35,8 +35,6 @@ open scoped ContDiff Topology
 namespace Formalism.FourierDecayAlt.P.CutMP.SmoothTransferRegularity
 
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 theorem cvag_posL_iff {k r : ℕ} (a b : Fin (Q.mdim k r 0)) : Q.posL k r 0 a = Q.posL k r 0 b ↔ a = b := by
   simp [Q.posL, Fin.ext_iff]
 
@@ -577,8 +575,6 @@ open scoped ContDiff Topology
 namespace Formalism.FourierDecayAlt.P.CutMP.SmoothTransferRegularity
 
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 theorem clag_list {k r : ℕ} {E : Type} [NormedAddCommGroup E] [NormedSpace ℂ E]
     (Bs : Fin k → Fin (2 * r + k + 1) → ℂ) (w : ℂ) (σ : Equiv.Perm (Fin k)) :
     (List.ofFn fun i : Fin k => fun y : Q.Mx k r → E =>
@@ -610,8 +606,6 @@ open scoped ContDiff
 
 namespace Formalism.FourierDecayAlt.P.CutMP.SmoothTransferRegularity
 
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 theorem left_covariance_chart_holds : CovL := by
   intro k r d O U κ Φ hC x hx ξ Ξ₀ _hΞ₀ hcov X hX
@@ -686,8 +680,6 @@ open scoped ContDiff
 namespace Formalism.FourierDecayAlt.P.CutMP.SmoothTransferRegularity
 
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 theorem nilpotent_of_char_poly : NilOfCharpoly := by
   intro n M h
   have hmon := Matrix.charpoly_monic M
@@ -721,8 +713,6 @@ open scoped ContDiff Topology
 
 namespace Formalism.FourierDecayAlt.P.CutMP.SmoothTransferRegularity
 
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 theorem crag_list {k r : ℕ} {E : Type} [NormedAddCommGroup E] [NormedSpace ℂ E]
     (Bs : Fin k → Fin (2 * r + k + 1) → ℂ) (w : ℂ) (σ : Equiv.Perm (Fin k)) :
@@ -1090,8 +1080,6 @@ open scoped ContDiff
 namespace Formalism.FourierDecayAlt.P.CutMP.SmoothTransferRegularity
 
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 namespace SymbolOperatorExtension
 
 variable {d : ℕ}
@@ -1281,8 +1269,6 @@ end -- clump:auto
 namespace Formalism.FourierDecayAlt.P.CutMP.SmoothTransferRegularity
 
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 def liftA {d o : ℕ} (a : (k : Fin (o + 1)) → (Fin k → Fin d) → (Fin d → ℝ) → ℂ) (m' : ℕ) :
     (k : Fin (m' + 1)) → (Fin k → Fin d) → (Fin d → ℝ) → ℂ :=
   fun k w x => if h : (k : ℕ) ≤ o then a ⟨k, by omega⟩ w x else 0
@@ -1350,8 +1336,6 @@ end -- clump:auto
 namespace Formalism.FourierDecayAlt.P.CutMP.SmoothTransferRegularity
 
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 theorem symbol_operator_linear_holds : SOpLin := by
   intro d S T c O hST hS hT
   obtain ⟨o, a⟩ := S
@@ -1378,8 +1362,6 @@ end -- clump:auto
 
 namespace Formalism.FourierDecayAlt.P.CutMP.SmoothTransferRegularity
 
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 namespace IdentityZeroOperators
 
@@ -1469,8 +1451,6 @@ end -- clump:auto
 
 namespace Formalism.FourierDecayAlt.P.CutMP.SmoothTransferRegularity
 
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 def wfam {d : ℕ} {α : Type} (L : List (ℂ × List α)) (F : α → (Fin d → ℝ) → (Fin d → ℝ)) (c : ℂ) : WOp d :=
   L.map (fun t => (t.1, t.2.map F)) ++ [(c, [])]
@@ -1593,8 +1573,6 @@ end -- clump:auto
 
 namespace Formalism.FourierDecayAlt.P.CutMP.SmoothTransferRegularity
 
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 theorem word_family_apply_holds : WFamApp := by
   intro d α L F c v x

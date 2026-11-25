@@ -56,10 +56,9 @@ import Formalism.LocalToGlobal.IndefiniteReal.SelfDualFullLattice
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum MeasureTheory IsDedekindDomain NumberField Matrix
 open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Unf GlobalTheory.SeeSaw GlobalTheory.FinPl
 open scoped TensorProduct
+open GlobalTheory.LocMod GlobalTheory.SplitWeil ValuativeRel
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HomLatticeAtPlacesCongrLocalLattices
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.LocMod GlobalTheory.SplitWeil ValuativeRel
 
 
 namespace GlobalTheory.FinPl.LatCong
@@ -248,8 +247,6 @@ end GlobalTheory.FinPl.LatCong
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HomLatticeAtPlacesCongrLocalLatticesStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.LocMod GlobalTheory.SplitWeil ValuativeRel
 
 
 

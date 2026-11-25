@@ -1358,8 +1358,7 @@ theorem UpperTheory.cmDatum_splitPlaces_conj_stable :
     intro m hm
     have hle : v (m : C) ≤ 1 := by exact_mod_cast vle m
     refine le_antisymm hle ?_
-    by_contra hlt
-    push_neg at hlt
+    by_contra! hlt
     have hcop : Nat.Coprime p m := (Nat.Prime.coprime_iff_not_dvd hp).mpr hm
     have hb := Nat.gcd_eq_gcd_ab p m
     rw [Nat.Coprime.gcd_eq_one hcop] at hb
@@ -1449,8 +1448,7 @@ theorem UpperTheory.cmDatum_splitPlaces_conj_stable :
           _ ≤ v (p : C) ^ k := pow_le_pow_of_le_one (by positivity) vp.le (by omega)
           _ < _ := hk
       have hor : v (algebraMap O C (σ β)) = 1 ∨ v (algebraMap O C (σ γ)) = 1 := by
-        by_contra hc
-        push_neg at hc
+        by_contra! hc
         have h1 : v (algebraMap O C (σ β)) < 1 := lt_of_le_of_ne (hv.map_le_one _) hc.1
         have h2 : v (algebraMap O C (σ γ)) < 1 := lt_of_le_of_ne (hv.map_le_one _) hc.2
         have h3 : v (algebraMap O C (σ β + σ γ)) < 1 := by
@@ -1579,7 +1577,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.ValuationBoundAtResidueCharacteristic
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.CharDepth
 

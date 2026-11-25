@@ -122,7 +122,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.ZM GlobalTheory.ZH GlobalTheory.UMin GlobalTheory.UPoinc GlobalTheory.Ex.OneGen
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UMin
 
@@ -203,7 +202,6 @@ open GlobalTheory GlobalTheory.ZM GlobalTheory.ZH GlobalTheory.UMin GlobalTheory
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsThetaConstantLevelSquareNeZero
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.UMin.ThNe
@@ -329,7 +327,6 @@ end GlobalTheory.UMin.ThNe
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsThetaConstantLevelSquareNeZeroStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_thetaConstant_levelSquare_ne_zero : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G] [IsCommMonObj G] (L : LB G.left) (ρ : LB.Gen (L.pull (eSec G))), L.IsLB → ρ.IsGen → ∀ (g m N : ℕ) (K : Type) [Field K] (x : Sp K ⟶ S) (c : Fin N → K), Odd m → 3 ≤ m → (m : K) ≠ 0 → PolFib G L g x → HasTh G L ρ m x c → ∃ a, c a ≠ 0 := by
   first | exact @GlobalTheory.UMin.ThNe.th_ne_zero
@@ -539,7 +536,6 @@ open GlobalTheory GlobalTheory.ZM GlobalTheory.ZH GlobalTheory.UMin GlobalTheory
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaConstantListFieldExtensionEqUpToPerm
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.UMin.SymCmp
@@ -590,7 +586,6 @@ end GlobalTheory.UMin.SymCmp
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFiniteFlatCoverMSqTorsionSections
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UMin.TorsionList
 
@@ -705,7 +700,6 @@ end GlobalTheory.UMin.TorsionList
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLocalThetaConstantsLocalisation
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UMin.ThLocal
 open GlobalTheory.ThetaPtMove GlobalTheory.ThetaPtExist
@@ -942,7 +936,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaConstantUniqueFieldPointPolarisedFibre
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UMin
 
@@ -978,7 +971,6 @@ end GlobalTheory.UMin
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaConstantsFunctionsFiniteFlatCover
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UMin
 
@@ -1017,7 +1009,6 @@ end GlobalTheory.UMin
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaSymmetricFunctionsMemNormalDomain
-attribute [local instance] Over.cartesianMonoidalCategory
 open scoped TensorProduct
 
 
@@ -1073,14 +1064,12 @@ end GlobalTheory.UMin.SymRing
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaSymmetricFunctionsMemNormalDomainStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.thetaSymmetricFunctions_mem_normalDomain : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G] [IsCommMonObj G] (L : LB G.left) (ρ : LB.Gen (L.pull (eSec G))), L.IsLB → ρ.IsGen → ∀ (g m N : ℕ) (R : Type) [CommRing R] [IsDomain R] [IsNoetherianRing R] [IsIntegrallyClosed R] [CharZero R] (x : Sp R ⟶ S) (θ : SecAt G L x), Odd m → IsUnit (m : R) → N = m ^ (4 * g) → PolFib G L g x → ∃ e : Fin N → R, SymAt G L ρ m x θ e := by
   first | exact @GlobalTheory.UMin.SymRing.sym_ring
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsThetaMapAffineNormalBaseUniversalGenerator
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.UMin.MapAff
@@ -1146,7 +1135,6 @@ end GlobalTheory.UMin.MapAff
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNhdThetaMapOnNormalCharZeroAffine
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UMin
 

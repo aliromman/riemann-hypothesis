@@ -91,11 +91,10 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZM GlobalTheory.SiegelTor GlobalTheory.ZH
 open scoped CategoryTheory.Obj
 open GlobalTheory.Poinc Formalism.L2.Pj
-
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DvdOrdSub
-attribute [local instance] Over.cartesianMonoidalCategory
 open MonObj
 open Classical
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DvdOrdSub
 
 namespace GlobalTheory.TauFormGen
 
@@ -205,9 +204,6 @@ end GlobalTheory.TauFormGen
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGenericPointsEquiv
-attribute [local instance] Over.cartesianMonoidalCategory
-open MonObj
-open Classical
 
 namespace GlobalTheory.GenRestrict
 
@@ -241,9 +237,6 @@ end GlobalTheory.GenRestrict
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGenericPointsUniformisationsWeilPairingGal
-attribute [local instance] Over.cartesianMonoidalCategory
-open MonObj
-open Classical
 
 namespace GlobalTheory.GenRestrict
 
@@ -301,8 +294,6 @@ end GlobalTheory.GenRestrict
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGenericPointsUniformisationsWeilPairingGalStatement
-open MonObj
-open Classical
 
 
 end -- clump:auto
@@ -317,7 +308,6 @@ open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZM
 open scoped CategoryTheory.Obj
 open GlobalTheory.Poinc GlobalTheory.Poinc.Eq8 Formalism.L2.Pj
 open scoped TensorProduct
-attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 namespace GlobalTheory.Poinc.TorCoord

@@ -98,7 +98,6 @@ open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.UC
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DeterminantConditionSpreadsFromGeometricPoint
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.SpreadOnePoint
 
@@ -243,7 +242,6 @@ end GlobalTheory.SpreadOnePoint
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLevelIsometryOfPoint
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.LevelSpreadPt
 
@@ -447,7 +445,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnitaryModuliObjectSpreadNormalDomain
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.ObjSpread

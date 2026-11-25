@@ -87,7 +87,6 @@ open GlobalTheory.LamT (CMPt)
 open IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G.PullbackSections (TanM fullB tv)
 open scoped nonZeroDivisors
-attribute [local instance] Over.cartesianMonoidalCategory
 open MonObj
 
 noncomputable section
@@ -305,7 +304,6 @@ open GlobalTheory.LamT (CMPt)
 open IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G.PullbackSections (TanM fullB tv)
 open scoped nonZeroDivisors
-attribute [local instance] Over.cartesianMonoidalCategory
 open MonObj
 
 theorem GlobalTheory.DetInt.det_integral : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H)

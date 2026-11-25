@@ -65,7 +65,6 @@ theorem _root_.GlobalTheory.T.modN_sq_sum_iff_exists_genLat_decomposition : ∀ 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ExistsIsotropicGroupLatticeClassRepresentatives
-attribute [local instance] Over.cartesianMonoidalCategory
 open scoped TensorProduct
 
 namespace GlobalTheory.ZCount

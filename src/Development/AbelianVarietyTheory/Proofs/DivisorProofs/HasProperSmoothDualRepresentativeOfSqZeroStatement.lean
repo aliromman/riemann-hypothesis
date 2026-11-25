@@ -74,7 +74,6 @@ open scoped TensorProduct
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.CechPic GlobalTheory.AbDual GlobalTheory.Obs GlobalTheory.LBLift
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdditiveClassDegreeTwoVanishAffineBases
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.PrimBasis
@@ -170,7 +169,6 @@ theorem GlobalTheory.Obs.additiveClassDegreeTwo_vanish_affineBases : PrimitiveEx
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsIdealThickeningImmersionOfIsPullbackSquareZero
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.LBLift
@@ -228,7 +226,6 @@ end GlobalTheory.LBLift
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdditiveFamilyReductionLiftsLineBundle
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.AddFamLift
@@ -314,7 +311,6 @@ end GlobalTheory.AddFamLift
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAffineChartSmoothLiftSqZero
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.LBLift
@@ -641,7 +637,6 @@ end GlobalTheory.LBLift
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLineBundleLiftOfStrictCocycle
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.LBGlue
@@ -771,14 +766,12 @@ theorem GlobalTheory.LBLift.exists_pic_of_strict_lift : ∀ (R : Type) [CommRing
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLineBundleLiftOfStrictCocycleStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_lineBundle_lift_of_strict_cocycle : ∀ (R : Type) [CommRing R] (X X₀ : Scheme.{0}) (s : X ⟶ Sp R) (i : X₀ ⟶ X) (L : LB X₀) (hL : L.IsLB) (u : C1 (smallG i L ⋙ OAff s)), IsBasis (smallG i L) → IsLift s i L u → (∀ t t' a, IsUnit (u t t' a)) → mdef _ u = 0 → ∃ c : Pic X, GlobalTheory.CechPic.pull i c = cls L hL := by
   first | exact @GlobalTheory.LBLift.exists_pic_of_strict_lift
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FlatCoefficientExtensionH2Class
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.PrimIdeal
@@ -928,7 +921,6 @@ end GlobalTheory.PrimIdeal
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MultiplicativeRelationOfPullbackIsoThickening
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.LBLift.IsoRel
@@ -1132,7 +1124,6 @@ end GlobalTheory.LBLift.IsoRel
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmallAffineBasisAndTransitionUnitsLift
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.LBLift
@@ -1257,7 +1248,6 @@ open scoped CategoryTheory.Obj
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasProperSmoothDualRepresentativeOfSqZero
 @[expose] public noncomputable section
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.LBLift
 

@@ -112,7 +112,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsPullDegCompOfFirstTop
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 
@@ -174,7 +173,6 @@ end GlobalTheory.PullDegCompTop
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsPullDegRescaleBothSides
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.RescaleBoth
@@ -299,7 +297,6 @@ end GlobalTheory.RescaleBoth
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsPullDegWholeSpectrum
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.PullDegWhole
 
@@ -336,7 +333,6 @@ open GlobalTheory GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan Gl
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ComesFromBaseStableUnderPullbackOfData
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.UCanon.DivFromPull
@@ -423,7 +419,6 @@ end -- clump: shared namespace opens
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.PullDegResc
@@ -591,7 +586,6 @@ open GlobalTheory GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan Gl
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsPullDegIdSameCoordinates
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.UCanon.DivIso
@@ -637,7 +631,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TripleIsoOfLinearDegenerationDataIso
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.LinDataTriple
@@ -869,7 +862,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsQkPointExtensionOfDividedData
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DivTorsRat
 
@@ -1028,7 +1020,6 @@ end GlobalTheory.DivGalFix
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GenericFibreTorsionRationalOfBase
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.UCanon
@@ -1087,7 +1078,6 @@ end GlobalTheory.UCanon
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorsRatAwayIff
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.TorsAway
@@ -1151,7 +1141,6 @@ end GlobalTheory.TorsAway
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ClassifiedOnOpenOfSpecialisesToClassified
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ClsOpen
 

@@ -78,10 +78,9 @@ section -- clump: shared namespace opens
 
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.TermLoc GlobalTheory.Unfold GlobalTheory.LocOver GlobalTheory.GenMass
 open scoped Classical
+open Formalism.MainNotions.S.Loc Formalism.MainNotions.S.LocNG
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.FrameStandardLatticeHermitianIntegral
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Formalism.MainNotions.S.Loc Formalism.MainNotions.S.LocNG
 
 namespace GlobalTheory.LocStdInt
 
@@ -176,8 +175,6 @@ end GlobalTheory.LocStdInt
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.GramDetJoinedFamilyEqPmNormDifference
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Formalism.MainNotions.S.Loc Formalism.MainNotions.S.LocNG
 
 namespace GlobalTheory.GramDet
 
@@ -256,8 +253,6 @@ end GlobalTheory.GramDet
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.IsFamilyUnitriangularChangeOfMemFrameUnipotent
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Formalism.MainNotions.S.Loc Formalism.MainNotions.S.LocNG
 
 namespace GlobalTheory.NFrameTri
 
@@ -403,14 +398,10 @@ end GlobalTheory.NFrameTri
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.IsFamilyUnitriangularChangeOfMemFrameUnipotentStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Formalism.MainNotions.S.Loc Formalism.MainNotions.S.LocNG
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.PairingLeadingMinorEqOfUnitriangularChanges
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Formalism.MainNotions.S.Loc Formalism.MainNotions.S.LocNG
 
 namespace GlobalTheory.MinorTri
 
@@ -501,14 +492,10 @@ end GlobalTheory.MinorTri
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.PairingLeadingMinorEqOfUnitriangularChangesStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Formalism.MainNotions.S.Loc Formalism.MainNotions.S.LocNG
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.SaturatedSpanOfGramDetIsUnitIntegralLattice
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Formalism.MainNotions.S.Loc Formalism.MainNotions.S.LocNG
 
 namespace GlobalTheory
 
@@ -568,8 +555,12 @@ theorem satur_of_gram_det_unit : ∀ {F : Type} [Field F] [ValuativeRel F] [Topo
 end GlobalTheory
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.LocalTermNoDefectPrimeToInvariants
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
+
+open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.TermLoc GlobalTheory.Unfold GlobalTheory.LocOver GlobalTheory.GenMass
+open scoped Classical
 
 namespace GlobalTheory.LocNoDef
 open Formalism.MainNotions.S.Loc Formalism.MainNotions.S.LocNG
@@ -682,11 +673,11 @@ end GlobalTheory.LocNoDef
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.LocalTermNoDefectPrimeToInvariantsStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
+
+open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.TermLoc GlobalTheory.Unfold GlobalTheory.LocOver GlobalTheory.GenMass
+open scoped Classical
 
 end -- clump:auto
-
-end -- clump: shared namespace opens
 
 -- clump: shared namespace opens
 
@@ -773,8 +764,7 @@ theorem fibre : ∀ (D : D7) (Z : LocDat D) (FP : ∀ p : PlF D, LocNG.FPair (lo
   have hLG := LatLoc.lattices_local_global D Z
   haveI : Infinite (PlF D) := GlobalTheory.LvT.Inh.ResFin.infinite_places D.host.F
   obtain ⟨p₀, hp₀⟩ : ∃ p : PlF D, p ∉ P := by
-    by_contra h
-    push_neg at h
+    by_contra! h
     exact Set.infinite_univ (α := PlF D) (P.finite_toSet.subset fun p _ => h p)
   have hΛ₀full : Submodule.IsFullLattice D.host.E Λ₀ :=
     full_of_local_span Z Λ₀ hΛ₀ p₀ (isLat D Z FP p₀ (d0 p₀) _ (hΛ₀t p₀ hp₀)).2

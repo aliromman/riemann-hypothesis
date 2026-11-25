@@ -276,8 +276,6 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.KS
 open TrivSqZeroExt (inl inr)
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 noncomputable section
 
 namespace GlobalTheory.KSUniq

@@ -236,7 +236,6 @@ end GlobalTheory.LiftAway
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSchemePresentingSquareZeroSmoothLiftSystem
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.LiftGlue
 

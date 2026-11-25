@@ -83,22 +83,16 @@ open Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.Ind
 open GlobalTheory.Grid GlobalTheory.Doubling GlobalTheory.ChainFr GlobalTheory.IndefiniteRowSideFullHecke.MatchingAdjoints
 open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ContDiffHeisenbergArchimedeanDiffOperatorFamilyStatement
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.SquareComm GlobalTheory.SquareAgree
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 open scoped Classical
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ContDiffHeisenbergArchimedeanDiffOperatorFamilyStatement
 open GlobalTheory.HeisOrbit
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SmoothWeilOrbitPreservedByHeisenbergDerivatives
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.SquareComm GlobalTheory.SquareAgree
-open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
-open scoped Classical
 open GlobalTheory.HeisOrbit
 
 namespace GlobalTheory.HeisOrbit
@@ -164,11 +158,6 @@ end GlobalTheory.HeisOrbit
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ContinuousArchimedeanWeilOperatorLineTriple
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.SquareComm GlobalTheory.SquareAgree
-open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
-open scoped Classical
 
 open GlobalTheory.WeilM
 
@@ -241,11 +230,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.UnitaryArchimedeanLineOperatorsOneParameter
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.SquareComm GlobalTheory.SquareAgree
-open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
-open scoped Classical
-
 namespace GlobalTheory.LineGroup
 
 theorem archOp_oneParam : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}
@@ -267,11 +251,6 @@ end GlobalTheory.LineGroup
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeilActionOneParamSubgroupGaussVacuumSmooth
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.SquareComm GlobalTheory.SquareAgree
-open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
-open scoped Classical
 
 namespace GlobalTheory.GaussLine
 
@@ -305,11 +284,6 @@ end GlobalTheory.GaussLine
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsLieDerivativePolynomialFockSeesaw
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.SquareComm GlobalTheory.SquareAgree
-open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
-open scoped Classical
 
 namespace GlobalTheory.OscLie
 

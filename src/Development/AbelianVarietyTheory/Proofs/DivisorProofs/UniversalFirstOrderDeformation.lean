@@ -86,7 +86,6 @@ open NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRes
 open AlgebraicGeometry CategoryTheory MonObj MonoidalCategory
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GroupLiftTangentPhiAdditive
-attribute [local instance] Over.cartesianMonoidalCategory
 open ReciprocityTheory.ChartRestriction.G.Semi
 
 namespace GlobalTheory.ConstDefCub
@@ -119,7 +118,6 @@ theorem _root_.GlobalTheory.T.group_lift_tangent_Phi_additive : GlobalTheory.Cov
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GroupLiftTangentPhiLinear
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ConstDeform
 
@@ -180,7 +178,6 @@ theorem _root_.GlobalTheory.T.group_lift_tangent_Phi_linear : GlobalTheory.CovTo
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GroupLiftTangentUniqueness
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ConstDeform
 

@@ -52,7 +52,6 @@ section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLattic
 @[expose] public section
 open GlobalTheory.IndefiniteRowSideFullHecke.AppendedVectorData (lastKer)
 open scoped TensorProduct Pointwise
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 noncomputable section
 

@@ -86,10 +86,9 @@ section -- clump: shared namespace opens
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AbLaw GlobalTheory.CechPic GlobalTheory.AbDual GlobalTheory.DualCon
 open scoped CategoryTheory.Obj
+open GlobalTheory.CharKer
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CechTrivialPullbackOfIsPullbackGenerator
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CharKer
 
 namespace GlobalTheory.CharKer
 
@@ -115,8 +114,6 @@ end GlobalTheory.CharKer
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdditivityDefectGeneratorInvariantSameImage
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CharKer
 
 namespace GlobalTheory.CharKer
 
@@ -325,8 +322,6 @@ end GlobalTheory.CharKer
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsPullbackLineBundleGeneratorAdditivityDefect
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CharKer
 
 namespace GlobalTheory.CharKer
 
@@ -384,8 +379,6 @@ end GlobalTheory.CharKer
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LineBundleTrivialOfInvariantPullbackGenerator
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CharKer
 
 
 namespace GlobalTheory.CharKer
@@ -492,8 +485,6 @@ end GlobalTheory.CharKer
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ProdMapPairTimesIdentityFlatSurjectiveAffine
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CharKer
 
 namespace GlobalTheory.CharKer.PmapTwo
 
@@ -545,8 +536,6 @@ theorem GlobalTheory.CharKer.pmap2_flat_surjective_isAffineHom :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CharacterLineBundleAdditiveOfEquivariantGenerato
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.CharKer
 
 namespace GlobalTheory.CharKer
 
@@ -569,7 +558,6 @@ end -- clump: shared namespace opens
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CharKer
 
 
@@ -784,8 +772,7 @@ theorem exists_local_tensor [Module.FaithfullyFlat R B] {c : B ⊗[R] B} (hu : I
   have hI := hd.invertible_invariants
   let I := GlobalTheory.FlatDescent.invariants (datum c)
   obtain ⟨φ, m, hm⟩ : ∃ (φ : Module.Dual R I) (m : I), φ m ∉ P := by
-    by_contra hcon
-    push_neg at hcon
+    by_contra! hcon
     apply hP
     rw [Ideal.eq_top_iff_one]
     obtain ⟨z, hz⟩ := hI.bijective.2 1
@@ -872,7 +859,6 @@ end -- clump:auto
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CharKer
 
 
@@ -995,7 +981,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNhdsCharacterUnitKernelAction
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CharKer
 
 
@@ -1023,7 +1008,6 @@ end GlobalTheory.CharKer
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDescendedLineBundleEquivariantGenerator
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CharKer
 
 namespace GlobalTheory.CharKer
@@ -1094,7 +1078,6 @@ end GlobalTheory.CharKer
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNontrivialAdditiveFamilyKilledByIsogeny
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.CharKer
 
 

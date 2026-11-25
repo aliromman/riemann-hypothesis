@@ -63,7 +63,6 @@ open Formalism.REAL GlobalTheory.SmoothGlob GlobalTheory.TypeSum
 open scoped TensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.CompactUnitaryCasimirInverseTopDegreeBound
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.KFourier MeasureTheory
 
 
@@ -368,7 +367,6 @@ theorem _root_.GlobalTheory.T.compactUnitaryCasimir_inverse_topDegree_bound : âˆ
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.CompactUnitaryCasimirPowPairingModerateGrowthBou
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.KFourier MeasureTheory
 
 
@@ -554,7 +552,6 @@ end GlobalTheory.KFourier.CasimirMove
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsFiniteRealSpanningCompactLieAlgebra
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.KFourier MeasureTheory
 
 namespace GlobalTheory.KSpan
@@ -596,7 +593,6 @@ end GlobalTheory.KSpan
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.FinrankCompactUnitaryPolyFunDegLELe
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.KFourier MeasureTheory
 
 namespace GlobalTheory.KFourier
@@ -635,7 +631,6 @@ end GlobalTheory.KFourier
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.IntegralNormSqReproducingKernelLeFinrank
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.KFourier MeasureTheory
 
 
@@ -798,7 +793,6 @@ theorem _root_.GlobalTheory.T.integral_normSq_reproducingKernel_le_finrank : âˆ€
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.KFourierCoefficientRapidDecay
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.KFourier
 open MeasureTheory

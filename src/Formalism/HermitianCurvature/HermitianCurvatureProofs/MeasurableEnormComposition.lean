@@ -24,8 +24,6 @@ open scoped InnerProductSpace ENNReal NNReal
 
 namespace Formalism.FourierDecayAlt.P.S3dx4
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 open Formalism.FourierDecayAlt Formalism.FourierDecayAlt.ThreeDimData
 
 variable {k r : ℕ}
@@ -212,8 +210,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.MeasurableEnormComposition
 
 namespace Formalism.FourierDecayAlt.P.S3dx4
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 open Formalism.FourierDecayAlt Formalism.FourierDecayAlt.ThreeDimData
 

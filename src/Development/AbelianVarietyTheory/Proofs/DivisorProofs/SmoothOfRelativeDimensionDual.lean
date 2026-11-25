@@ -139,8 +139,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilPairingExistsOfCubeTheorem
 open GlobalTheory.DeRham GlobalTheory.AbDual GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.BadPt GlobalTheory.CartierDual WithConv
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 namespace GlobalTheory.WeilHom
 
 section Alg
@@ -301,8 +299,6 @@ open GlobalTheory.BadPt (IsWeilHom)
 open GlobalTheory.PerfdLat (dualBaseChange)
 open GlobalTheory.CompanionTheory.Hypotheses₂.Zarhin (IsPolarisation)
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 namespace GlobalTheory.SerreTateDef
 
 section Notions
@@ -400,7 +396,6 @@ open GlobalTheory.CompanionTheory.Hypotheses₂.Zarhin (IsPolarisation)
 open GlobalTheory.BadPt (IsWeilHom)
 open GlobalTheory.PerfdLat (dualBaseChange)
 
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory
 
 namespace GlobalTheory.DualTower

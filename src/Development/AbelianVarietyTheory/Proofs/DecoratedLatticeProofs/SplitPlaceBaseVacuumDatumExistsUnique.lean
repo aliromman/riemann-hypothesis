@@ -102,7 +102,6 @@ theorem _root_.GlobalTheory.T.schwartzBruhat_matrix_uniformly_locallyConstant_bo
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SymplecticPairingLatticeAwaySupportedAtPlaceEqZe
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.FinPl.OffSympl
 
@@ -152,7 +151,6 @@ theorem _root_.GlobalTheory.T.symplecticPairing_latticeAway_supportedAt_place_eq
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SplitPlaceBaseVacuumDatumExistsUnique
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.FinPl.OverProof
 

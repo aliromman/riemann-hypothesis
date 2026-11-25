@@ -63,8 +63,6 @@ open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ImportsLastFurther
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 namespace GlobalTheory.PsiCoordRescaleLocal
 
 theorem main : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] (D : DegPre R) (q : D.X → (FractionRing R)ˣ) (y : D.X),
@@ -103,8 +101,6 @@ end GlobalTheory.PsiCoordRescaleLocal
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GensOfPsiUnitOn
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UTautData
 
@@ -368,8 +364,7 @@ theorem main (W R : Type) [CommRing W] [IsDomain W] [CommRing R] [IsDomain R] [I
     obtain ⟨w, n, hn, hc⟩ := hmono χ
     rw [GlobalTheory.PeriodFormEdge.psiIn_iff hc]
     obtain ⟨i, hi⟩ : ∃ i, 0 < δ' i χ χ := by
-      by_contra h
-      push_neg at h
+      by_contra! h
       have := Finset.sum_nonpos fun i (_ : i ∈ Finset.univ) => h i
       linarith [hpos' χ hχ]
     have hni : 0 < n i := by
@@ -389,8 +384,7 @@ theorem main (W R : Type) [CommRing W] [IsDomain W] [CommRing R] [IsDomain R] [I
     obtain ⟨w, k, hk, hc⟩ := hmono χ
     have hχ' : ¬ (w : R) * ∏ i, t i ^ k i ∈ I ^ n := fun h => hχ ((GlobalTheory.PeriodFormEdge.psiIn_iff hc _).2 h)
     show B χ χ ≤ 2 * (n : ℤ)
-    by_contra hlt
-    push_neg at hlt
+    by_contra! hlt
     apply hχ'
     refine Ideal.mul_mem_left _ _ ?_
     have h1 : ∀ i, (M : ℤ) * δ' i χ χ = 2 * (k i : ℤ) := fun i => (hsm i χ).symm.trans (hk i)
@@ -421,8 +415,7 @@ theorem main (W R : Type) [CommRing W] [IsDomain W] [CommRing R] [IsDomain R] [I
   have hnt : Nontrivial D'.X := by
     obtain ⟨i, hi⟩ := hne
     obtain ⟨y, hy⟩ : ∃ y : D₀.X, y ≠ 0 := by
-      by_contra h
-      push_neg at h
+      by_contra! h
       exact hi (LinearMap.ext₂ fun y z => by simp [h y])
     exact ⟨⟨e.symm y, 0, by simpa using hy⟩⟩
   refine ⟨hPE, hTB, hPI, hfin, ⟨oa1, fun a => ?_, hPW⟩, hmono, ⟨τ₁, fun a b => (hτ₁ a b).2, hFB, hTI⟩, hnt, ⟨⟨_, hPE, hTB, hPI, hfin⟩, rfl⟩⟩

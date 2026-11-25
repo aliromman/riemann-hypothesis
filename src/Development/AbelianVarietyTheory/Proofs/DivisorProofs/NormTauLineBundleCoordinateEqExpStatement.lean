@@ -65,7 +65,6 @@ open GlobalTheory.Poinc GlobalTheory.TorusPart
 open Classical
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormTauLineBundleCoordinateEqExp
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Poinc.FibLat GlobalTheory.Poinc.Eq8
 
 namespace GlobalTheory.Poinc.TauNorm

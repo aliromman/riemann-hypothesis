@@ -160,7 +160,6 @@ open scoped CategoryTheory.Obj
 open Classical
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.JKCompEq
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.GenFibre
@@ -312,7 +311,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorusRankEqRankThetaGroupOfPointPerp
 @[expose] public section
-attribute [local instance] Over.cartesianMonoidalCategory
 
 noncomputable section
 
@@ -575,7 +573,6 @@ open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZM
 open scoped CategoryTheory.Obj
 open GlobalTheory.Poinc GlobalTheory.TorusPart
 open Classical
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Poinc.FibLat GlobalTheory.Poinc.Eq8
 
 

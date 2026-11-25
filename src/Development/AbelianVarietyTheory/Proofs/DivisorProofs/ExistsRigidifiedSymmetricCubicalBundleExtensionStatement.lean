@@ -97,7 +97,6 @@ open GlobalTheory GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan Gl
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsExtensionAtBoundary
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.BdLocalExt
@@ -130,7 +129,6 @@ end GlobalTheory.BdLocalExt
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLineBundleExtensionAtBoundaryPoint
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.BdStalkExt
@@ -699,7 +697,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
 open GlobalTheory GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.UChart
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DenseGlue
 
@@ -906,7 +903,6 @@ open GlobalTheory GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan Gl
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLineBundleExtensionDescendedSemiAbelian
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.DescLBExt
@@ -938,7 +934,6 @@ end GlobalTheory.DescLBExt
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsRigidifiedSymmetricCubicalBundleExtension
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.BundleExt

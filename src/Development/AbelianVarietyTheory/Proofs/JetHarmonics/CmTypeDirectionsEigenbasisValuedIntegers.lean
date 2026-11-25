@@ -194,7 +194,6 @@ theorem _root_.GlobalTheory.T.integral_chart_directions_isEigenBasis : ∀ (E : 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.IsEigenBasisMapFlatBaseChange
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.EigBaseChange
 

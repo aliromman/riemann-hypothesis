@@ -130,7 +130,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PullInvSymmIso
 
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.SymLB
 

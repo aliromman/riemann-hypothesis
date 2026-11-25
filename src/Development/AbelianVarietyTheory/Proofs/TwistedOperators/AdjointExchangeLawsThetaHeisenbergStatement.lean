@@ -54,7 +54,6 @@ section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperator
 @[expose] public section
 open GlobalTheory.IndefiniteRowSideFullHecke.LevelPlusSubgroup (coefPlus Cols SizeRows)
 open GlobalTheory.SepRows GlobalTheory.CoreOnto
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 noncomputable section
 

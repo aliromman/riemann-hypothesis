@@ -64,10 +64,9 @@ import Std.Tactic.BVDecide.Normalize.Prop
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR.Datum MeasureTheory IsDedekindDomain NumberField Matrix
 open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow
 open scoped TensorProduct
+open GlobalTheory.Unf
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.BaseTermNormCoords
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.Unf
 
 namespace GlobalTheory.Unf
 
@@ -140,8 +139,6 @@ end GlobalTheory.Unf
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.OrbitSumModerateGrowth
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.Unf
 open scoped ENNReal NNReal
 
 
@@ -203,8 +200,6 @@ end GlobalTheory.Unf
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.UnfoldNormBaseTermTranslate
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.Unf
 
 namespace GlobalTheory.Unf
 
@@ -299,8 +294,6 @@ end GlobalTheory.Unf
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.UnfoldedBesselJacobiIntegralAbsLe
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.Unf
 
 namespace GlobalTheory.Unf.UnfoldBound
 

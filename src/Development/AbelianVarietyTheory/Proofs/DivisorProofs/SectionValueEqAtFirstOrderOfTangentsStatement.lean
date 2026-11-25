@@ -64,7 +64,6 @@ open GlobalTheory GlobalTheory.LieHt GlobalTheory.Cartier GlobalTheory.ThetaOnto
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ValRPowIso
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.MBLow.BaseChRig
@@ -85,7 +84,6 @@ end GlobalTheory.MBLow.BaseChRig
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SectionValueEqAtFirstOrderOfTangents
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.TangentFirstOrder

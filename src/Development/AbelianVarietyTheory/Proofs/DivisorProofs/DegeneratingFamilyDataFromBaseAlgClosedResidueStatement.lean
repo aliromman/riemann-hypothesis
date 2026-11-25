@@ -120,7 +120,6 @@ open GlobalTheory GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan Gl
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianSchemeModuleActionHomomorphism
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.AbDivLocal
 
@@ -230,7 +229,6 @@ end GlobalTheory.AbDivLocal
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsRescaleIsPullDegGeneratingEverywhere
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.PreLiftData
@@ -302,7 +300,6 @@ end GlobalTheory.PreLiftData
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PsiUnitOnUnivOfPullbackReadTop
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.PullTopUnit
 open GlobalTheory.ArcPull
@@ -338,7 +335,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PullDegKeepsBimultActionPolarisationElement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 
@@ -372,7 +368,6 @@ end -- clump: shared namespace opens
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.RescaleForm
@@ -619,7 +614,6 @@ end GlobalTheory.UnitForm
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPeriodsMonomialFamilyCoordsOverBase
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.UCanon.Periods
@@ -744,7 +738,6 @@ open GlobalTheory GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan Gl
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EssFiniteTypePreimageFromSpecStalk
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.SmoothStalk
 
@@ -787,7 +780,6 @@ end GlobalTheory.SmoothStalk
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBaseSchOfHomScheme
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.UCanon.BaseSch
@@ -968,7 +960,6 @@ theorem _root_.GlobalTheory.T.nonempty_moduli_of_rank_zero : ∀ {E : Type} [Fie
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothOfRelativeDimensionShimuraObjectAbelianSch
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UObjDim
 
@@ -985,7 +976,6 @@ end -- clump: shared namespace opens
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open scoped CategoryTheory.Obj TensorProduct
 open ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Serre
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.TensorDualDim
 
@@ -1018,8 +1008,6 @@ end -- clump:auto
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj TensorProduct
 open scoped CategoryTheory.Obj
 open ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Serre
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.HomScheme
@@ -1117,7 +1105,6 @@ open GlobalTheory GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan Gl
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HomSchemeLow
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.UCanonHom
@@ -1277,7 +1264,6 @@ end GlobalTheory.UCanonHom
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLocalRingLinearHomSchemeLowerObject
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.UCanon
@@ -1293,7 +1279,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LowerDatumObjectComesFromBaseOfLinearPoints
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UCanon
 
@@ -1327,7 +1312,6 @@ end GlobalTheory.UCanon
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DegeneratingFamilyDataFromBaseAlgClosedResidue
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.VData
 

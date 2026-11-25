@@ -64,7 +64,6 @@ theorem _root_.GlobalTheory.T.thetaNullValue_existsUnique_natural_linear : Laws 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.EtaValAtExistsUniqueNatural
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.EtaForm

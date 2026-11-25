@@ -97,7 +97,6 @@ open GlobalTheory GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan Gl
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDivisionPointPairOverAlgClosed
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.UCanon
@@ -117,7 +116,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DivisionPointsCorrespondMatchedPullbacks
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.TInj
 
@@ -145,7 +143,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LineBundleIsoOfActionCompatibleMatch
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.UCanon.MatchBundle
@@ -225,7 +222,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PowLeftOfIsGrpPullback
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.FamTorsion
 
@@ -254,7 +250,6 @@ end GlobalTheory.FamTorsion
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SabMapKeepsLevelEta
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.UCanon
@@ -351,7 +346,6 @@ end GlobalTheory.UCanon
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SecHom
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UCanon.FineAgree
 
@@ -464,7 +458,6 @@ end GlobalTheory.UCanon.FineAgree
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CanonicalFamilyBaseEqOfMatchingPullbacks
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 alias GlobalTheory.UCanon.PairBase.spMap_comp := _root_.GlobalTheory.ZM.NearBuild.spMap_comp
@@ -837,7 +830,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompBEq
 open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.UChart GlobalTheory.UCanon
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UCanon.LowPull
 

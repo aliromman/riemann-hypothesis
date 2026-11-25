@@ -82,10 +82,9 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef
 open Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.Datum Formalism.IndefR.Cx Formalism.IndefR.Links
 open scoped TensorProduct InnerProductSpace
+open GlobalTheory.RawLift
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LocalLatticeIndexCartanDecompositionEqNormPow
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.RawLift
 open Formalism.UG (IsUnifV qV IsUnramInv GU KU IsInertAt)
 open Formalism.MainNotions.SchurIrreducible (IsSplit)
 open GlobalTheory.LFun (IsSplitChart IsInertChart KGL)
@@ -192,8 +191,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LocalLatticeIndexCartanDecompositionEqNormPowStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.RawLift
 open Formalism.UG (IsUnifV qV IsUnramInv GU KU IsInertAt)
 open Formalism.MainNotions.SchurIrreducible (IsSplit)
 open GlobalTheory.LFun (IsSplitChart IsInertChart KGL)
@@ -203,8 +200,6 @@ open GlobalTheory.AdelicU
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SelfDualLatticeIndexInertPlaceEqLocalIndex
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.RawLift
 open Formalism.UG (IsUnifV qV IsUnramInv GU KU IsInertAt)
 open Formalism.MainNotions.SchurIrreducible (IsSplit)
 open GlobalTheory.LFun (IsSplitChart IsInertChart KGL)
@@ -325,8 +320,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SelfDualLatticeIndexInertPlaceEqLocalIndexStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.RawLift
 open Formalism.UG (IsUnifV qV IsUnramInv GU KU IsInertAt)
 open Formalism.MainNotions.SchurIrreducible (IsSplit)
 open GlobalTheory.LFun (IsSplitChart IsInertChart KGL)
@@ -336,8 +329,6 @@ open GlobalTheory.AdelicU
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SelfDualLatticeIndexSplitPlaceEqMulStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.RawLift
 open Formalism.UG (IsUnifV qV IsUnramInv GU KU IsInertAt)
 open Formalism.MainNotions.SchurIrreducible (IsSplit)
 open GlobalTheory.LFun (IsSplitChart IsInertChart KGL)
@@ -347,8 +338,6 @@ open GlobalTheory.AdelicU
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SphericalKernelNormSqMulLatticeIndexEqOne
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.RawLift
 open Formalism.UG (IsUnifV qV IsUnramInv GU KU IsInertAt)
 open Formalism.MainNotions.SchurIrreducible (IsSplit)
 open GlobalTheory.LFun (IsSplitChart IsInertChart KGL)
@@ -362,8 +351,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ThetaIPEqStarL2
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.RawLift
 
 
 namespace GlobalTheory.RawLift.GoodModulus

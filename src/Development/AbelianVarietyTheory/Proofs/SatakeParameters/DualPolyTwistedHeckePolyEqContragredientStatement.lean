@@ -184,7 +184,6 @@ open scoped TensorProduct InnerProductSpace
 open GlobalTheory.Hk3
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.DualPolyTwistedHeckePolyEqContragredient
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 namespace GlobalTheory.Hk3.DualHecke

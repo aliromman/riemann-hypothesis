@@ -54,7 +54,6 @@ theorem _root_.GlobalTheory.T.kernelEntries_compatible_trueColumns : ∀ {B : Ba
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.KerEntTiedWithEnt
-attribute [local instance] GlobalTheory.Mem.Col2.starE Formalism.BasicNotions.Host.cmStar
 
 
 namespace GlobalTheory.Mem.Col2.TC
@@ -78,7 +77,6 @@ end GlobalTheory.Mem.Col2.TC
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.KerEntTiedTrueEnt
-attribute [local instance] GlobalTheory.Mem.Col2.starE Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.Mem.Col2.TC
 

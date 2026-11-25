@@ -66,7 +66,6 @@ open GlobalTheory.GoodPos
 open scoped TensorProduct nonZeroDivisors
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.LatticeFrames.IntOfKeeps
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 
@@ -300,7 +299,6 @@ end GlobalTheory.MiTop.Scale
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.LatticeFrames.SingleMemGluedIff
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 

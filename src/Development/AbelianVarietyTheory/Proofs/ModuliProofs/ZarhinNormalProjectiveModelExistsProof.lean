@@ -71,7 +71,6 @@ open Classical
 open ReciprocityTheory.ChartRestriction.G.Out
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsSemiAbelianModelOfGeometricHalf
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ZH
 

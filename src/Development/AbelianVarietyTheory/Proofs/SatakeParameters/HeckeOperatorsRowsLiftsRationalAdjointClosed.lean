@@ -54,7 +54,6 @@ import Mathlib.Tactic.ReduceModChar
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.LiftsOpMatMem
 
 open Formalism.BasicNotions Formalism.L2.DIV Formalism.IndefR.Links NumberField
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 namespace GlobalTheory.SplitHeckeCore
@@ -122,7 +121,6 @@ open scoped TensorProduct InnerProductSpace
 open GlobalTheory.Hk3
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.HeckeOperatorsRationalAdjointClosedOfWeakChar
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 namespace GlobalTheory.Hk3
@@ -137,7 +135,6 @@ end GlobalTheory.Hk3
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.HeckeOperatorsRowsLiftsRationalAdjointClosed
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 namespace GlobalTheory.InertOkH

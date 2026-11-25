@@ -78,7 +78,6 @@ import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.SemiPow
 
@@ -127,7 +126,6 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.Poinc GlobalTheory.Poinc.Eq8 Formalism.L2.Pj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsEighthPowerProjectionsExtendFromGeneric
-attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 
@@ -203,7 +201,6 @@ theorem _root_.GlobalTheory.T.exists_eighth_power_projections_extend_from_generi
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EighthPowerUniversalObjectAtModelStalk
-attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 open MonObj
 

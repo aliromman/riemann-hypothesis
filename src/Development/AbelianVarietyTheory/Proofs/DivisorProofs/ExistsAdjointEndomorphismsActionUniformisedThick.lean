@@ -66,7 +66,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsThickenedGroupEndomorphismTorusCoordinates
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.Mum.EndThick
 
@@ -156,7 +155,6 @@ end GlobalTheory.Mum.EndThick
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsMonHomThickenedGroupEndomorphismTorusCoordinat
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum.EndThick
 
 
@@ -224,7 +222,6 @@ end GlobalTheory.Mum.EndThick
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThickenedGroupEndomorphismTorusViaCharacters
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum.EndThick
 
 namespace GlobalTheory.Mum.EndThick
@@ -282,7 +279,6 @@ end GlobalTheory.Mum.EndThick
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThickenedGroupEndomorphismTransitionCompat
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum.EndThick
 
 namespace GlobalTheory.Mum.EndThick
@@ -325,7 +321,6 @@ end -- clump: shared namespace opens
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 namespace GlobalTheory.Mum.EndThick

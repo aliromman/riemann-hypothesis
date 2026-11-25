@@ -101,10 +101,9 @@ open GlobalTheory.Toroidal GlobalTheory.Models GlobalTheory.LN GlobalTheory.ShFa
 open scoped CategoryTheory.Obj
 open GlobalTheory.UPoinc GlobalTheory.Poinc.Eq8 Formalism.L2.Pj
 open GlobalTheory
+open Classical
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCompletedLocalRingEndomorphismCharacterAct
-attribute [local instance] Over.cartesianMonoidalCategory
-open Classical
 
 namespace GlobalTheory.UPoinc
 
@@ -122,8 +121,6 @@ end GlobalTheory.UPoinc
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KernelOverOpenPartSubsetAbelianLocus
-attribute [local instance] Over.cartesianMonoidalCategory
-open Classical
 
 namespace GlobalTheory.UPoinc.KerAb
 
@@ -156,8 +153,6 @@ end GlobalTheory.UPoinc.KerAb
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTraitLatticeMapAtClosedPoint
-attribute [local instance] Over.cartesianMonoidalCategory
-open Classical
 
 namespace GlobalTheory.UPoinc.TraitAtClosed
 
@@ -229,8 +224,6 @@ end GlobalTheory.UPoinc.TraitAtClosed
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnitaryTraitCentredClosedPoint
-attribute [local instance] Over.cartesianMonoidalCategory
-open Classical
 
 namespace GlobalTheory.UTraitCen
 
@@ -269,8 +262,6 @@ end GlobalTheory.UTraitCen
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianSchemeEndomorphismExtOfDensePoint
-attribute [local instance] Over.cartesianMonoidalCategory
-open Classical
 
 namespace GlobalTheory
 
@@ -342,10 +333,9 @@ open GlobalTheory.Toroidal GlobalTheory.Models GlobalTheory.LN GlobalTheory.ShFa
 open scoped CategoryTheory.Obj
 open GlobalTheory.UPoinc GlobalTheory.Poinc.Eq8 Formalism.L2.Pj
 open GlobalTheory
+open Classical
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegerActionExtendsSemiAbelianThetaModel
-attribute [local instance] Over.cartesianMonoidalCategory
-open Classical
 
 
 theorem GlobalTheory.UPoinc.exists_endo_of_generic {Z W : Scheme.{0}} [IsIntegral W] {G : Over Z} [GrpObj G] {G₀ : Over W}
@@ -439,8 +429,6 @@ theorem GlobalTheory.UPoinc.act_extends_ratModel : ∀ (E : Type) [Field E] [Num
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegerActionSemiAbelianAlongTraitsOpen
-attribute [local instance] Over.cartesianMonoidalCategory
-open Classical
 
 namespace GlobalTheory.UPoinc
 
@@ -467,8 +455,6 @@ end GlobalTheory.UPoinc
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsLocalHomCompletedStalkToDvrOverTrait
-attribute [local instance] Over.cartesianMonoidalCategory
-open Classical
 
 
 namespace GlobalTheory.Poinc.TraitLocal
@@ -529,8 +515,6 @@ theorem GlobalTheory.Poinc.TraitLocal.isLocalHom_of_square : ∀ (o' Ω : Type) 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UniformiserOrderEqOfAssociatedStalkImage
-attribute [local instance] Over.cartesianMonoidalCategory
-open Classical
 
 
 namespace GlobalTheory.UPoinc
@@ -568,8 +552,6 @@ end GlobalTheory.UPoinc
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBalancedLatticeDataClosedPoint
-attribute [local instance] Over.cartesianMonoidalCategory
-open Classical
 
 
 namespace GlobalTheory.UPoinc.ClosedPt

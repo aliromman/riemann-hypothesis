@@ -58,7 +58,6 @@ open GlobalTheory GlobalTheory.LieHt GlobalTheory.Cartier GlobalTheory.ThetaOnto
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DegenerationValuesNormsEqUniformizerZpow
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.MBLow.DiscNorm
 

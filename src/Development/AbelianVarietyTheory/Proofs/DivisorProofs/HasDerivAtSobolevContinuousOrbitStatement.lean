@@ -48,7 +48,6 @@ open NumberField IsDedekindDomain Matrix MeasureTheory ReciprocityTheory.ChartRe
 open scoped TensorProduct InnerProductSpace Classical
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasDerivAtSobolevContinuousOrbit
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.SobOrbit
 

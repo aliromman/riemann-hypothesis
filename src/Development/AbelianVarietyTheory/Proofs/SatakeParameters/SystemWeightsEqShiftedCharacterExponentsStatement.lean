@@ -49,8 +49,6 @@ open Formalism.BasicNotions NumberField IsDedekindDomain Formalism.MainNotions F
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.SystemWeightsEqShiftedCharacterExponents
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 namespace GlobalTheory.TwV.Xc
 
 theorem wG_succ_eq_shift (R : Ranks) (z : ℤ) (j : ℕ) :

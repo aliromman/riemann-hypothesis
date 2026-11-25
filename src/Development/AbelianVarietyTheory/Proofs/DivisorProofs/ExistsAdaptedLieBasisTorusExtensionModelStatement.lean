@@ -91,7 +91,6 @@ open GlobalTheory GlobalTheory.LieHt GlobalTheory.Cartier GlobalTheory.ThetaOnto
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DegenerationTangentPointUniqueLift
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.MBLow
@@ -190,7 +189,6 @@ end GlobalTheory.MBLow
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTorusExtensionTangentOfAdditiveMap
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.MBLow.TorVec
@@ -218,7 +216,6 @@ end GlobalTheory.MBLow.TorVec
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsLieBasisOfCompatibleTangentRelation
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.LieTransfer
@@ -265,7 +262,6 @@ theorem GlobalTheory.LieTransfer.isLieBasis_of_rel : ∀ (R : Type) [CommRing R]
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LieBasisCardEqDimUniformisationDvr
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.LieRankUnif
 
@@ -284,7 +280,6 @@ end GlobalTheory.LieRankUnif
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorusExtensionTangentCharacterValuesAdditive
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.MBLow.GtTanClass
@@ -360,7 +355,6 @@ end GlobalTheory.MBLow.GtTanClass
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorusTangentCombinationCharacterValues
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.MBLow.TorusVals
@@ -475,7 +469,6 @@ end GlobalTheory.MBLow.TorusVals
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LieBasisTorusExtensionOfLiftsAndDuals
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.GtBasis
@@ -658,7 +651,6 @@ end GlobalTheory.GtBasis
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TangentRelationAdditiveScaling
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.MBLow.TanAdd
@@ -772,7 +764,6 @@ end GlobalTheory.MBLow.TanAdd
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorusExtensionTangentPullbackComplexDualNumbers
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.MBLow.TanPull
@@ -882,7 +873,6 @@ end GlobalTheory.MBLow.TanPull
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAdaptedLieBasisTorusExtensionModel
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.MBLow.Adapt

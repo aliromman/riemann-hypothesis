@@ -84,8 +84,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 
 open scoped nonZeroDivisors
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 namespace GlobalTheory.SemicharShift
 
 def imForm {g : ℕ} (Hm : Matrix (Fin g) (Fin g) ℂ) :
@@ -227,8 +225,6 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.RealMult GlobalTheory.TorusRM
 
 open scoped nonZeroDivisors
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.Overlattice
 
@@ -475,8 +471,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 
 open scoped nonZeroDivisors
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 namespace GlobalTheory.LiftAffine
 
 section
@@ -558,7 +552,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.CMModuli.LocalFramePowerSections
-attribute [local instance] Over.cartesianMonoidalCategory
 namespace GlobalTheory.IndefiniteRowSideFullHecke.LocalFramePowerSections
 
 abbrev PowSec {X Y : Scheme.{0}} (L : LB X) (φ : Y ⟶ X) (N : ℕ) : Type :=
@@ -582,7 +575,6 @@ end GlobalTheory.IndefiniteRowSideFullHecke.LocalFramePowerSections
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.IsAmpleFramesIff
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.FrameCompare
 open GlobalTheory.IndefiniteRowSideFullHecke.LocalFramePowerSections (PowSec)
@@ -628,8 +620,6 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.RealMult GlobalTheory.TorusRM
 
 open scoped nonZeroDivisors
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.LefschetzAmple
 

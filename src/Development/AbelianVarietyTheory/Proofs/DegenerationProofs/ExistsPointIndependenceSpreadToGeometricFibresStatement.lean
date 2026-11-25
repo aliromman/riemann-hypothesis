@@ -59,7 +59,6 @@ open Classical
 open ReciprocityTheory.ChartRestriction.G.Out
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsPointIndependenceSpreadToGeometricFibres
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.GenSpread

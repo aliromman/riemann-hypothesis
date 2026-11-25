@@ -95,7 +95,6 @@ import Mathlib.Tactic.Linter.HaveILetI
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.LeadMinorGramMatrixConstDoubleCoset
 
 open Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory
 
@@ -172,7 +171,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.FrameGramMulEqConjTransposeMulFrameMatrices
 
 open Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.PackageTie2 Formalism.L2.SG.TermTieOf Formalism.L2.SG.LoopTieOf
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open Matrix
 
 namespace GlobalTheory.ZxMul
@@ -199,7 +197,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.FrameMatrixMemUnipotentStabilizerFrameGram
 
 open Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.PackageTie2 Formalism.L2.SG.TermTieOf Formalism.L2.SG.LoopTieOf
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open Matrix
 
 open scoped Classical
@@ -448,10 +445,9 @@ end -- clump:auto
 section -- clump: shared namespace opens
 
 open Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.PackageTie2 Formalism.L2.SG.TermTieOf Formalism.L2.SG.LoopTieOf
+open Matrix
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.RationalBesselFrameRealPlaceLinearIndependent
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Matrix
 
 namespace GlobalTheory.RationalFrame
 
@@ -514,8 +510,6 @@ end GlobalTheory.RationalFrame
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.RationalFrameGramEmbedEqRealFrameGram
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Matrix
 
 namespace GlobalTheory.ZhatRat
 
@@ -563,8 +557,6 @@ theorem GlobalTheory.zhatRat_embed : ∀ (D : D7) (X : HidaSetting D) (Y : Full 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.RationalLinkConjugateMemIntegralRealPoints
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Matrix
 
 namespace GlobalTheory.CoverAct
 
@@ -594,8 +586,6 @@ end GlobalTheory.CoverAct
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.RationalRootCoordinatesEqFrameMatrix
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Matrix
 
 namespace GlobalTheory.LoopVol
 
@@ -629,8 +619,6 @@ end GlobalTheory.LoopVol
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.RealBesselSubgroupActsFrameUpperUnitriangular
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Matrix
 
 namespace GlobalTheory.LoopAct
 
@@ -701,8 +689,6 @@ end GlobalTheory.LoopAct
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.RealPointRationalIsometryActsFrameMatrix
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open Matrix
 
 namespace GlobalTheory.ActQ
 
@@ -762,8 +748,11 @@ theorem GlobalTheory.realPoint_ratIsom_isMatOn : ∀ (D : D7) (X : HidaSetting D
 
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.IntegerPointsCoverRealPointsRootCoordinates
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
+
+open Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.PackageTie2 Formalism.L2.SG.TermTieOf Formalism.L2.SG.LoopTieOf
 
 open Matrix
 
@@ -1086,8 +1075,6 @@ end GlobalTheory.LoopVol
 
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.MeasurePreimageReindexScaleComplexLe
 
 namespace GlobalTheory.CoordScale
@@ -1213,7 +1200,6 @@ section -- clump: shared namespace opens
 open Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.PackageTie2 Formalism.L2.SG.TermTieOf Formalism.L2.SG.LoopTieOf
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.MemRootsPointMatrixIffSameBlock
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.RootsBijection
 
@@ -1294,7 +1280,6 @@ theorem GlobalTheory.roots_ptMat_iff : ∀ (K : Type) [Field K] (n : ℕ) (w : P
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.RatCoordConjEqStCoord
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.LoopVol
 
@@ -1324,7 +1309,6 @@ end GlobalTheory.LoopVol
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.StabiliserHaarRootCoordinatesLeLebesgue
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 open MeasureTheory
 
@@ -1380,7 +1364,6 @@ end GlobalTheory.LoopVol
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.StabiliserCovolumeLeRootCoordinateCover
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 open MeasureTheory in
@@ -1481,8 +1464,6 @@ end -- clump: shared namespace opens
 namespace GlobalTheory.LoopVol
 
 open Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.PackageTie2 Formalism.L2.SG.TermTieOf Formalism.L2.SG.LoopTieOf
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem hhz_dcrel {D : D7} (Λ : Submodule (NumberField.RingOfIntegers D.host.E) (VS D).V) {T T' : D.host.E}
     (F : LFlag (D.sp.Y 0) D.R.rS T) (F₁ F₂ : LFlag (D.sp.Y 0) D.R.rS T') (h : Formalism.L2.SG.TermDef.DCRel Λ F F₁ F₂) (b C : ℝ) :

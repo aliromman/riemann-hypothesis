@@ -70,7 +70,6 @@ theorem _root_.GlobalTheory.T.fockVector_negSpace_frameChange_conjSubst : ∀ (D
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeilActionNegPairPureTensorFock
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open scoped Kronecker
 
 

@@ -62,7 +62,6 @@ import Mathlib.Data.Nat.Choose.Multinomial
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.UPel.HT
 
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UPel.HT.HeckeRootA
 open GlobalTheory.UPel.HT.HeckeRoot

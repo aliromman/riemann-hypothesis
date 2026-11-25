@@ -66,7 +66,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj Formalism.MainNotions.ModuliIntegralCharts.H1
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.HarmonicSumTriangularFrameChange
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.TriangularFrame
@@ -234,7 +233,6 @@ end GlobalTheory.TriangularFrame
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.ThetaValueWeightTriangularFrame
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.ThetaValueWeight

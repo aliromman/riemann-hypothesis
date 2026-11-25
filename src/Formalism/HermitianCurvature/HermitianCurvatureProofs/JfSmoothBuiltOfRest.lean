@@ -27,8 +27,6 @@ open scoped ContDiff
 namespace Formalism.FourierDecayAlt.P.CutMP.SmoothTransferRegularity
 
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 namespace UnitInverseArithmetic
 
 variable {n : Type*} [Fintype n] [DecidableEq n]
@@ -248,8 +246,6 @@ namespace Formalism.FourierDecayAlt.P.CutMP.SmoothTransferRegularity
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.Q
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 namespace LeftTypeActionHermitianCurvature
 
 variable {k r : ℕ} {Wp Wq : Type} [NormedAddCommGroup Wp] [NormedSpace ℂ Wp] [NormedAddCommGroup Wq]
@@ -358,8 +354,6 @@ open scoped ContDiff
 namespace Formalism.FourierDecayAlt.P.CutMP.SmoothTransferRegularity
 
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 namespace LieBasisConstruction
 
 def lieSubR (k r : ℕ) : Submodule ℝ (B.Mat k r) where
@@ -424,8 +418,6 @@ open Matrix Finset Filter Topology
 namespace Formalism.FourierDecayAlt.P.CutMP.SmoothTransferRegularity
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.Q Formalism.FourierDecayAlt.P
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 namespace RightTypeActionHermitianCurvature
 

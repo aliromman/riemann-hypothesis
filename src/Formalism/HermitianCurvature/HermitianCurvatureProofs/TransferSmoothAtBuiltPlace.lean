@@ -1338,8 +1338,6 @@ open scoped ContDiff
 namespace Formalism.FourierDecayAlt.P.CutMP.SmoothTransferRegularity
 
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 namespace CapWP
 
 theorem sum_filter' {α M : Type*} [AddCommMonoid M] (l : List α) (p : α → Bool) (φ : α → M) :

@@ -51,7 +51,6 @@ open ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.UniversalJetCoordinatesDimUnique
 open ReciprocityTheory.ChartRestriction.G.TB (dLin transF IsInvPair dAct)
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.ChartCmp
 namespace GlobalTheory.ChartCmp.JetDim
 

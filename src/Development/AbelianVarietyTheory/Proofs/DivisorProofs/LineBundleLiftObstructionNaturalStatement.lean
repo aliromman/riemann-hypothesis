@@ -68,7 +68,6 @@ open scoped TensorProduct
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.LiftSys GlobalTheory.Obs GlobalTheory.LBObs GlobalTheory.AbLaw GlobalTheory.AbDual GlobalTheory.CechPic
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCommonAffineRefinementAlongMorphism
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.LBObs
@@ -131,7 +130,6 @@ end GlobalTheory.LBObs
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUniqueUnitRatioGeneratorsIsomorphicLineBun
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.GenRatio
 
@@ -221,7 +219,6 @@ end GlobalTheory.GenRatio
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FramesCohomologous
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.FrameCob
 
@@ -315,7 +312,6 @@ end GlobalTheory.LBObs
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitCocycleLiftObstructionUnique
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.LBObs
 
@@ -415,7 +411,6 @@ theorem GlobalTheory.LBObs.obU_eq_of_cohomologous : ∀ (R R₀ : Type) [CommRin
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LineBundleLiftObstructionEqOfIso
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.LBObsUniq
 
@@ -434,7 +429,6 @@ end GlobalTheory.LBObsUniq
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LineBundleLiftObstructionPairPullback
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.LBObs
@@ -479,7 +473,6 @@ end GlobalTheory.LBObs
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RestrictPairInjective
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.LBObs.PairInj
@@ -512,7 +505,6 @@ end GlobalTheory.LBObs.PairInj
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LineBundleLiftObstructionNatural
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.LBObs
 

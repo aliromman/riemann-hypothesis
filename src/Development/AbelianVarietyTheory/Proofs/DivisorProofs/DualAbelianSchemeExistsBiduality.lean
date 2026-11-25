@@ -98,7 +98,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdditiveFamilyTrivialOfQuotientPullbackTrivial
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DualInjPull
 
@@ -182,7 +181,6 @@ end GlobalTheory.DualInjPull
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsClosedSubgroupSchemePoincareLeftKernel
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DualKernel
 
@@ -260,7 +258,6 @@ end GlobalTheory.DualKernel
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemKernelOfLineBundleOfDualPairLeftTrivial
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.AbDual
 
@@ -311,7 +308,6 @@ open GlobalTheory.LBDescent GlobalTheory.DescNorm
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DescentCocycleDefectNormalisedEqOne
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.DescNorm
@@ -384,7 +380,6 @@ end GlobalTheory.DescNorm
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGlobalUnitTwistNormaliseDescentFamily
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.DescNormU
@@ -524,7 +519,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GlobalUnitTripleFibreProductInvariantSetGroupCoo
 @[expose] public noncomputable section
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.DescNorm.RigidW
@@ -685,7 +679,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LineBundleIsoPullbackFstSndOfAdditiveTrivialKern
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DescIsoExists
 
@@ -749,7 +742,6 @@ end GlobalTheory.DescIsoExists
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDescentDatumAdditiveLineBundleIsogeny
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DescNorm
 
@@ -785,7 +777,6 @@ end -- clump: shared namespace opens
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AbLaw GlobalTheory.CechPic GlobalTheory.AbDual GlobalTheory.DualCon
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.PoincareDescent
 
@@ -861,7 +852,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PoincareBundleDescendsQuotientFiniteSubgroup
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.PoincareDescent
 
@@ -901,7 +891,6 @@ end GlobalTheory.PoincareDescent
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothOfRelativeDimensionFiniteSurjectiveAbelian
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.FiniteSurjDimField
 
@@ -930,7 +919,6 @@ end GlobalTheory.FiniteSurjDimField
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DualPoincareLeftKernelTrivialAlgClosed
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.DualKer
@@ -966,7 +954,6 @@ end GlobalTheory.DualKer
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsDualAbelianSchemePoincareSwap
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.BidualAbelian
 
@@ -1057,7 +1044,6 @@ end GlobalTheory.BidualAbelian
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DualAbelianSchemeExistsBiduality
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 

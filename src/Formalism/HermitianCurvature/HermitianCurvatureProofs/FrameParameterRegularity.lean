@@ -116,8 +116,6 @@ open scoped ContDiff
 
 namespace Formalism.FourierDecayAlt.P.ParameterFamilyAlgebra
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 section RdV
 
 variable {k ρ : ℕ} {E : Type} [NormedAddCommGroup E] [NormedSpace ℂ E]

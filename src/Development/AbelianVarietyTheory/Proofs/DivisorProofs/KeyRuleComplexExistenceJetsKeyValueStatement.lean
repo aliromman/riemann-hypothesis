@@ -114,9 +114,9 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.GeometryOfNumbersTheory
 open GlobalTheory GlobalTheory.LieHt GlobalTheory.Cartier GlobalTheory.ThetaOnto GlobalTheory.KeyCl GlobalTheory.Ex GlobalTheory.MBLow GlobalTheory.SecJet
 open scoped CategoryTheory.Obj
+open GlobalTheory.MBLow.Cl Matrix
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DetEqDetBlock
-open GlobalTheory.MBLow.Cl Matrix
 
 namespace GlobalTheory.MBLow.Cl
 
@@ -140,8 +140,6 @@ end GlobalTheory.MBLow.Cl
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DimensionZeroCase
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.MBLow.Cl Matrix
 
 
 namespace GlobalTheory.MBLow.DimZero
@@ -334,7 +332,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EvTEqTerm
 @[expose] public section
-open GlobalTheory.MBLow.Cl Matrix
 
 noncomputable section
 namespace GlobalTheory.MBLow.Cl.Ev
@@ -874,7 +871,6 @@ open GlobalTheory GlobalTheory.LieHt GlobalTheory.Cartier GlobalTheory.ThetaOnto
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLevelOfLabels
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.MBLow.Cl Matrix
 
 
@@ -1528,7 +1524,6 @@ end GlobalTheory.MBLow.Cl
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ValRPush
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.MBLow.Cl Matrix
 
 

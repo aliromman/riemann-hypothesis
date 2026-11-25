@@ -72,7 +72,6 @@ open MeasureTheory NumberField IsDedekindDomain Matrix Formalism.BasicNotions Fo
 open scoped TensorProduct InnerProductSpace
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ColumnsCharacterEqLinkedFrameCharacter
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.St.G.ColChar
 
@@ -276,7 +275,6 @@ end GlobalTheory.St.G.ColChar
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.AdelicColumnsLatticeDivisibleByLevelAwayChosen
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.St.G.FrameFull
 
@@ -358,12 +356,10 @@ end GlobalTheory.St.G.FrameFull
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.TransportedFiniteCharacterInverseExpTraceStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.TransportedTypeVectorsDualModLevel
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.St.G.DualMod
 
@@ -464,7 +460,6 @@ end GlobalTheory.St.G.DualMod
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.TransportedTypeVectorsFixedByChosenPlacesIdempot
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.St.G.FrameEps
 
@@ -490,7 +485,6 @@ end GlobalTheory.St.G.FrameEps
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.AdelicEmbeddingBasisLiesInModule
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.St.G.TransportCong
 
@@ -568,7 +562,6 @@ end GlobalTheory.St.G.TransportCong
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.MovedTypeVectorsSpanFixedLatticeVectorModLevel
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.St.G.SpanMoved
 
@@ -724,7 +717,6 @@ end GlobalTheory.St.G.SpanMoved
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.TransportedTypeVectorsSpanAdelicLatticeModLevel
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.St.G.FrameSpan
 
@@ -746,7 +738,6 @@ end GlobalTheory.St.G.FrameSpan
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsFrameAdelicColumnLatticeLinkedReference
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.St.G.FrameLink
 
@@ -802,8 +793,6 @@ open Formalism.L2.SG.PoincareInHH.PoincareSetting
 open scoped TensorProduct
 
 namespace GlobalTheory.St.G.LinkCheck
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7} (X : HidaSetting D) (wt : (VS D).V ≃ₗ[D.host.E] (VS D).V)
   (ιA : X.B.I.E ⊗[X.B.I.F] Af X.B.I.F ≃+* D.host.E ⊗[D.host.F] Ad D.host.F)
@@ -1204,8 +1193,6 @@ end GlobalTheory.St.G
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.MemColumnLevelIffMemLinkedFrameLevel
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.St.G.ColLevel
 
@@ -1621,7 +1608,6 @@ end GlobalTheory.St.G.ColLevel
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.LevelConjHolds
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.St.G
 

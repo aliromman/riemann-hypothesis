@@ -211,7 +211,6 @@ end GlobalTheory.TypeSum.GKCoef
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.DiscreteSeriesGKMapValuesEqGeneralisedCoefficien
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 open GlobalTheory.SmoothGlob GlobalTheory.LowTypeDetermined GlobalTheory.PointAtPlaceHom GlobalTheory.Mem.AutSpace GlobalTheory.TypeSum GlobalTheory.TypeSum.GrowthAtPlace Formalism.REAL
 
@@ -353,7 +352,6 @@ end GlobalTheory.TypeSum.GKCoef
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.DiscreteSeriesGKMapValuesEqGeneralisedCoefficienStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 end -- clump:auto
 
@@ -772,7 +770,6 @@ open Formalism.REAL GlobalTheory.SmoothGlob GlobalTheory.TypeSum
 open scoped TensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsCommonGrowthExponentGKDiscreteSeries
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open scoped InnerProductSpace
 
 namespace GlobalTheory.TypeSum.CoefRep
@@ -918,7 +915,6 @@ end GlobalTheory.TypeSum.CoefRep
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.DiscreteSeriesCoeffSeriesOfKTypeProjections
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.TypeSum.KSeries
 
@@ -1076,7 +1072,6 @@ end GlobalTheory.TypeSum.KSeries
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.KProjectionLimitDiscreteSeriesCoeffs
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 open MeasureTheory
 open scoped InnerProductSpace
@@ -1199,7 +1194,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open scoped TensorProduct
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.HasAllKTypesOfClosureDiscreteSeriesCoefficients
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.ClosureSeries
 
@@ -1243,7 +1237,6 @@ theorem _root_.GlobalTheory.T.hasAllKTypes_of_closure_discreteSeriesCoefficients
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.MatrixCoefficientFrameChangeDiscreteSeries
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 open MeasureTheory Matrix Formalism.REAL GlobalTheory.SmoothGlob GlobalTheory.TypeSum
 
@@ -1580,8 +1573,6 @@ theorem _root_.GlobalTheory.T.matrix_coefficient_frame_change_discrete_series : 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.AutomorphicFormUniformLimitDiscreteSeriesSeries
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.ClosureSeries
 

@@ -66,10 +66,9 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRin
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.DVR
 open scoped CategoryTheory.Obj
+open GlobalTheory.UT GlobalTheory.Mum GlobalTheory.Mum.Two
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsMumfordBundleIsoTwoHomNormalisedAtOrigin
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.UT GlobalTheory.Mum GlobalTheory.Mum.Two
 
 namespace GlobalTheory.Mum.Two
 
@@ -113,8 +112,6 @@ end GlobalTheory.Mum.Two
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MumfordIsoEqRosatiGeneratorMulComparison
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.UT GlobalTheory.Mum GlobalTheory.Mum.Two
 
 namespace GlobalTheory.Mum.Two
 
@@ -195,8 +192,6 @@ end GlobalTheory.Mum.Two
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RosatiGeneratorValueOneZeroFirstFactor
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.UT GlobalTheory.Mum GlobalTheory.Mum.Two
 
 namespace GlobalTheory.RosZeroLeft
 
@@ -230,8 +225,6 @@ end GlobalTheory.RosZeroLeft
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FactorPeriodsProjectionPeriodPoints
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.UT GlobalTheory.Mum GlobalTheory.Mum.Two
 
 theorem GlobalTheory.Mum.Two.Fac.pt_ext (R : Type) [CommRing R] [IsDomain R] (D : DegPre R) (F : Type) [Field F]
     [Algebra (FractionRing R) F] (a b : 𝟙_ (Over (Sp R)) ⟶ D.P.A)

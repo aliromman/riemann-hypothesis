@@ -50,10 +50,9 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.KeyCl GlobalTheory.Ex GlobalTheory.KeyEven
 open scoped CategoryTheory.Obj
+open Classical
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLieBasisLiftModelVectors
-attribute [local instance] Over.cartesianMonoidalCategory
-open Classical
 
 
 namespace GlobalTheory.LieLift
@@ -125,8 +124,6 @@ end GlobalTheory.LieLift
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KeyDatumFalseOfModelSectionZero
-attribute [local instance] Over.cartesianMonoidalCategory
-open Classical
 
 namespace GlobalTheory.KeyEven
 
@@ -160,8 +157,6 @@ end GlobalTheory.KeyEven
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KeyDatumScaleSectionsByConstant
-attribute [local instance] Over.cartesianMonoidalCategory
-open Classical
 
 
 namespace GlobalTheory.KeyEven
@@ -193,13 +188,10 @@ end GlobalTheory.KeyEven
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KeyDatumScaleSectionsByConstantStatement
-open Classical
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KeyValueHomogOfFibres
-attribute [local instance] Over.cartesianMonoidalCategory
-open Classical
 
 namespace GlobalTheory.KeyEven
 

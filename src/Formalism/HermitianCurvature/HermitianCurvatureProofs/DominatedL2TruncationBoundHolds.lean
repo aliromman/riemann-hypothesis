@@ -33,8 +33,6 @@ open scoped ContDiff
 
 namespace Formalism.FourierDecayAlt.P.CutBP
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 
 theorem ccleQ_nonneg {k r : ℕ} {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] {A : ℝ} {m : ℕ}
     {F : B.Mat k r → E} {b : ℝ} (h : B.CCle A m F b) : 0 ≤ b := by
@@ -135,8 +133,6 @@ namespace Formalism.FourierDecayAlt.P.CutBP
 
 open Formalism.FourierDecayAlt Formalism.QuantumDeterminants Filter Topology MeasureTheory
 
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 def bcE (r : ℕ) : (Fin (r + 1) → ℂ) ≃ᵐ (Fin r → ℂ) × ℂ :=
   (MeasurableEquiv.piFinSuccAbove (fun _ => ℂ) (Fin.last r)).trans MeasurableEquiv.prodComm
@@ -304,8 +300,6 @@ namespace Formalism.FourierDecayAlt.P.CutBP
 open Formalism.FourierDecayAlt Formalism.QuantumDeterminants Filter Topology MeasureTheory
 open scoped ENNReal
 
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 section general
 

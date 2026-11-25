@@ -63,8 +63,6 @@ open scoped TensorProduct
 
 namespace GlobalTheory.DetNorm
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section Local
 
 open Formalism.BasicNotions.Examples₂
@@ -369,7 +367,6 @@ end GlobalTheory.DetNorm
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsAuxiliaryHyperbolicVectors
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.StandardGramVectors
 

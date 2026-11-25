@@ -75,7 +75,6 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.UPoinc
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryRechartingClassicalTraitSameGeometricFibr
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem GlobalTheory.UPoinc.USpread.noeth (o Ω : Type) [CommRing o] [IsNoetherianRing o] [Field Ω] [Algebra o Ω] (M : RatModel o Ω)
     (z : M.Z) : IsNoetherianRing (M.O z) := by
@@ -282,7 +281,6 @@ theorem _root_.GlobalTheory.T.exists_periodForm_automorphism_unitary_labellings 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSemilinearLabelActionOfGaloisDeeper
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UPoinc.UGalAct
 
@@ -321,7 +319,6 @@ end GlobalTheory.UPoinc.UGalAct
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsConjUniversalTripleIdentification
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.UPoinc.UGalTrans
@@ -401,7 +398,6 @@ end GlobalTheory.UPoinc.UGalTrans
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryRechartingsCommonGeometricFibre
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.UPoinc.USpreadU
@@ -589,7 +585,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryLabellingTransportGaloisConjugate
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.UPoinc.UGalTrans
@@ -676,7 +671,6 @@ end GlobalTheory.UPoinc
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DeeperUnitaryLevelGaloisActsOnLabels
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UPoinc.UGalLab
 

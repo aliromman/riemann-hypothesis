@@ -347,7 +347,6 @@ end GlobalTheory.BalMono
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalInjectionsAgreeCanonicalFamilyCoordinates
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UT GlobalTheory.Mum.Two
 
 namespace GlobalTheory.UInj
@@ -625,7 +624,6 @@ theorem GlobalTheory.UCanon.inj_of_canon : ∀ {E : Type} [Field E] [NumberField
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsUnitTauScaledGeneratorTorusMonomial
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UCanon.ScaleTorus
 
@@ -783,7 +781,6 @@ open GlobalTheory GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan Gl
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HomDescent
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.AlgClosedDescent
 
@@ -816,7 +813,6 @@ end GlobalTheory.AlgClosedDescent
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LbIsoOfLbIsoFieldExt
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem GlobalTheory.UCanon.lbIso_of_lbIso_fieldExt : ∀ (k₀ K : Type) [Field k₀] [Field K] (i₀ : k₀ →+* K) (B : Over (Sp k₀)) [GrpObj B], IsAbelianScheme B → ∀ L L' : LB B.left, L.IsLB → L'.IsLB → LBIso (L.pull (pullback.fst B.hom (spMap i₀))) (L'.pull (pullback.fst B.hom (spMap i₀))) → LBIso L L' := by
   intro k₀ K _ _ i₀ B _ hB L L' hL hL' h
@@ -833,7 +829,6 @@ open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.UC
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PeriodGeneratorsAgreeOverAlgClosedSubfield
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UCanon.BaseDescent
 

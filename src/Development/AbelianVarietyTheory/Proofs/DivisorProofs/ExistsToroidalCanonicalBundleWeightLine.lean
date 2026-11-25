@@ -987,8 +987,6 @@ end GlobalTheory.LogKSDiv.SpreadFrame
 
 section Spread
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 open MonoidalCategory CartesianMonoidalCategory MonObj
 open scoped CategoryTheory.Obj
 

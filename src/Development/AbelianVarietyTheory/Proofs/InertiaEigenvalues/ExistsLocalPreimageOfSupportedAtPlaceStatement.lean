@@ -48,10 +48,9 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef
 open Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.Datum Formalism.IndefR.Cx Formalism.IndefR.Links
 open scoped TensorProduct InnerProductSpace
+open GlobalTheory.RawLift
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsLocalPreimageOfSupportedAtPlace
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.RawLift
 
 
 namespace GlobalTheory.RawLift
@@ -67,8 +66,6 @@ end GlobalTheory.RawLift
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsLocalPreimageOfSupportedAtPlaceStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.RawLift
 
 theorem _root_.GlobalTheory.T.exists_local_preimage_of_supportedAtPlace : ∀ (D : D7) (V : HSp D) (v : HeightOneSpectrum (𝓞 D.host.F)) (f : AE D), IsFinIdem D v f → ∀ k : GA D V, SuppF V f k → ∃ a : GlobalTheory.FinZeta.Gv V v, GlobalTheory.FinZeta.embV V v a = k := by
   first | exact @GlobalTheory.RawLift.suppF_finIdem_mem_range

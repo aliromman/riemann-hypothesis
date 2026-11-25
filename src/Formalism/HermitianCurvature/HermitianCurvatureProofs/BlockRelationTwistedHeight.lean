@@ -21,8 +21,6 @@ namespace Formalism.FourierDecayAlt.P.PBH
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.Q
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 variable {k ρ : ℕ}
 
 section rel
@@ -269,8 +267,6 @@ open scoped ComplexConjugate ContDiff ENNReal
 namespace Formalism.FourierDecayAlt.P.PBH
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.Q
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 section aux
 

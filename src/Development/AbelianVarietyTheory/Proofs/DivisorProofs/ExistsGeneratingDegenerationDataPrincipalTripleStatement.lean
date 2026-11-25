@@ -215,7 +215,6 @@ end -- clump: shared namespace opens
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.TauBalAdd
 
@@ -326,7 +325,6 @@ end GlobalTheory.RosAddPair
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RosatiGeneratorValueCompEndomorphisms
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 
@@ -384,7 +382,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBalancedBimultiplicativeGeneratorLambdaInv
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UBalA
 
@@ -635,7 +632,6 @@ theorem _root_.GlobalTheory.T.exists_balanced_bimultiplicative_generator_lambda_
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SymmetricPullbackGeneratorEvenValue
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UTau0
 
@@ -739,7 +735,6 @@ theorem _root_.GlobalTheory.T.symmetricPullbackGenerator_even_value : ∀ (R : T
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SymmetricPullbackGeneratorSecondDifference
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UTau0.SecondDiff
 
@@ -886,7 +881,6 @@ theorem _root_.GlobalTheory.T.symmetricPullbackGenerator_second_difference : ∀
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPsiGeneratorsDegenerationLawsSymmetricBala
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UTau0
 
@@ -1004,7 +998,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SymmetricTrivialisationOfBalancedBimultiplicativ
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.SymTau
 variable {S : Scheme.{0}} {A : Over S} [GrpObj A] [IsCommMonObj A] {Lr : RigLB A} (c : CubicalStr A Lr)
@@ -1289,7 +1282,6 @@ theorem _root_.GlobalTheory.T.symmetric_trivialisation_of_balanced_bimultiplicat
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSymmetricBalancedGeneratorPsiZeroLocalRing
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UTau0
 
@@ -1330,7 +1322,6 @@ open GlobalTheory GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan Gl
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGeneratingDegenerationDataPrincipalTriple
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UBaseData
 

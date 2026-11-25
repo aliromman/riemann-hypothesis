@@ -285,8 +285,6 @@ open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt
 namespace Formalism.FourierDecayAlt.P.CutMP.Gauge.GC
 
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 namespace RRFin
 
 theorem hasDerivAt_rotExp (m : ℂ) :

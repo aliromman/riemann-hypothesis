@@ -55,14 +55,12 @@ open scoped TensorProduct InnerProductSpace ComplexConjugate
 open GlobalTheory.ChainOnto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ThetaChainHeckeParamsTrivialBoundRapidDecay
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem GlobalTheory.ChainOnto.parBound_of_rapidDecay : GlobalTheory.Published.CuspRapidDecay → ∀ D : D7, LevFacts D → ParBound D := by
   intro hCRD D _hLF c hc j hj s hs u B hB
   obtain ⟨hu0, hpar⟩ := hB
   have hex : ∃ v, PiLocalization₂.val u v ≠ 0 := by
-    by_contra h
-    push_neg at h
+    by_contra! h
     apply hu0
     apply Subtype.ext
     apply LinearMap.ext
@@ -96,7 +94,6 @@ theorem GlobalTheory.ChainOnto.parBound_of_rapidDecay : GlobalTheory.Published.C
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ThetaChainHeckeParamsTrivialBoundRapidDecayStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.thetaChain_heckeParams_trivialBound_rapidDecay : GlobalTheory.Published.CuspRapidDecay → ∀ D : D7, LevFacts D → ParBound D := by
   first | exact @GlobalTheory.ChainOnto.parBound_of_rapidDecay

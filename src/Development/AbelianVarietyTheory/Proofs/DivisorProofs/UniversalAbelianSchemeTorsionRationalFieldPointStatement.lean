@@ -73,8 +73,6 @@ import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
   TopologicalSpace
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 namespace GlobalTheory.ThetaGroupTest
 
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.H1
@@ -412,7 +410,6 @@ open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.UC
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UniversalAbelianSchemeTorsionRationalFieldPoint
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.XFTorsion

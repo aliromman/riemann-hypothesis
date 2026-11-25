@@ -67,7 +67,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.EvaluationLemmaForNablaLevels
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.CoverDescent
 

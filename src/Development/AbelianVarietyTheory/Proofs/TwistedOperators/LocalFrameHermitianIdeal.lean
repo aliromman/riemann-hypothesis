@@ -62,12 +62,11 @@ import Mathlib.Tactic.Linter.Style
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.S Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR.Links Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.AutomorphicEvaluation Formalism.L2.SG.RowDict Formalism.L2.SG.RowsJoinPinned Formalism.L2.SG.RowLevelMatch Formalism.L2.SG.PoincareInHH.PoincareSetting MeasureTheory NumberField IsDedekindDomain
 open scoped InnerProductSpace TensorProduct
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.HermitianFormDualFlagEqReducedFrameCoordinates
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.SeeConjRead
 open GlobalTheory.SeeConjGroup Formalism.L2.SG.HidaSetting
 open scoped Matrix
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.HermitianFormDualFlagEqReducedFrameCoordinates
 
 namespace GlobalTheory.SeeConjGroup.CoefRead
 
@@ -277,10 +276,6 @@ end GlobalTheory.SeeConjGroup.CoefRead
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.HermitianFormDualFlagEqReducedFrameCoordinatesStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.SeeConjRead
-open GlobalTheory.SeeConjGroup Formalism.L2.SG.HidaSetting
-open scoped Matrix
 
 
 theorem _root_.GlobalTheory.T.hermitianForm_dualFlag_eq_reduced_frame_coordinates : ∀ {D : D7} (g : ℕ) (e0 f0 : Fin D.R.rS → VA (II D)) (z0 : VA (II D)) (bw bwd : Fin D.R.k → VA (II D)) (ew : EAf D), Formalism.L2.SG.Pf.BunEx.Unip.FH (II D) g e0 f0 z0 bw bwd ew → ∀ (β : GL (Fin (Yc D 0).rank) (EAf D)) (PP : Pl D.host.E) (w : Bool), IsFrame β (II D).L → LocAt g e0 f0 z0 bw bwd ew β PP w → ∀ u ∈ (II D).Lf, (∀ p (h1 : hA (II D) (flagV D.R.rS D.R.k (Yc D 0).rank f0 e0 (dualOrRevBasis w bw bwd) (-z0) p) u ∈ Formalism.L2.Herm.intAf D.host.F D.host.E), resS D.host.F PP ⟨_, h1⟩ = redV β PP u p) ∧ (∀ i (h1 : hA (II D) ((if w then bw else bwd) i) u ∈ Formalism.L2.Herm.intAf D.host.F D.host.E), resS D.host.F PP ⟨_, h1⟩ = 0) := by
@@ -288,10 +283,6 @@ theorem _root_.GlobalTheory.T.hermitianForm_dualFlag_eq_reduced_frame_coordinate
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.MemSpanAddSmulLatticeOfFrameCoeffsZmod
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.SeeConjRead
-open GlobalTheory.SeeConjGroup Formalism.L2.SG.HidaSetting
-open scoped Matrix
 
 namespace GlobalTheory
 
@@ -319,10 +310,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.MemSpanAddSmulLatticeOfFrameCoeffsZmodStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.SeeConjRead
-open GlobalTheory.SeeConjGroup Formalism.L2.SG.HidaSetting
-open scoped Matrix
 
 
 theorem _root_.GlobalTheory.T.mem_span_add_smul_lattice_of_frame_coeffs_zmod : ∀ (I : AutInst) (g : ℕ) {r k : ℕ} (e0 f0 : Fin r → VA I) (z0 : VA I) (bw bwd : Fin k → VA I) (ew : I.E ⊗[I.F] Af I.F), Formalism.L2.SG.Pf.BunEx.Unip.FH I g e0 f0 z0 bw bwd ew → ∀ v ∈ I.Lf, ∀ (Se : Set (Fin r)) (Sb : Set (Fin k)), (∀ a, a ∉ Se → ZMod' I g (hA I (f0 a) v)) → (∀ a, ZMod' I g (hA I (e0 a) v)) → ZMod' I g (hA I z0 v) → (∀ i, i ∉ Sb → ZMod' I g (hA I (bwd i) v)) → (∀ i, ZMod' I g (hA I (bw i) v)) → v ∈ Formalism.L2.SG.Pf.unitaryCongruence.Mo I g (e0 '' Se ∪ bw '' Sb) := by
@@ -330,10 +317,6 @@ theorem _root_.GlobalTheory.T.mem_span_add_smul_lattice_of_frame_coeffs_zmod : �
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.LocalFrameHermitianIdeal
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.SeeConjRead
-open GlobalTheory.SeeConjGroup Formalism.L2.SG.HidaSetting
-open scoped Matrix
 
 namespace GlobalTheory.SeeConjGroup.Bwd
 

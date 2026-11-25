@@ -235,10 +235,9 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef
 open Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.Datum Formalism.IndefR.Cx Formalism.IndefR.Links
 open scoped TensorProduct InnerProductSpace
+open GlobalTheory.DownLift
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DefiniteSpaceFormsFunctionalPrincipalType
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.DownLift
 
 namespace GlobalTheory.DefiniteType
 
@@ -291,8 +290,6 @@ end GlobalTheory.DefiniteType
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DefiniteSpaceFormsFunctionalPrincipalTypeStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.DownLift
 
 theorem _root_.GlobalTheory.T.definiteSpace_forms_functional_principalType : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T : Type) (A : FamIn D.what₂.LL G Pl0 T D.R.m) (Ks : Type)
     [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A), GlobalTheory.Hk3.Core R F →
@@ -302,8 +299,6 @@ theorem _root_.GlobalTheory.T.definiteSpace_forms_functional_principalType : ∀
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ConvolutionSingleFactorGoodProjectorEqZero
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.DownLift
 
 namespace GlobalTheory.DownLift
 
@@ -381,14 +376,10 @@ end GlobalTheory.DownLift
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ConvolutionSingleFactorGoodProjectorEqZeroStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.DownLift
 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LevelCharacterTeichmullerLabelOfGoodTypes
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.DownLift
 
 namespace GlobalTheory.CharLabTransport
 
@@ -449,14 +440,10 @@ end GlobalTheory.CharLabTransport
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LevelCharacterTeichmullerLabelOfGoodTypesStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.DownLift
 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MirabolicAverageEqCoeffSinglePlaceElement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.DownLift
 
 namespace GlobalTheory.MirAvg
 
@@ -553,14 +540,10 @@ end GlobalTheory.MirAvg
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MirabolicAverageEqCoeffSinglePlaceElementStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.DownLift
 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GoodProjectorConvMirabolicAvgEqZero
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.DownLift
 
 namespace GlobalTheory.GoodNoChiTr
 
@@ -618,8 +601,6 @@ end GlobalTheory.GoodNoChiTr
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.GoodProjectorConvMirabolicAvgEqZeroStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.DownLift
 
 end -- clump:auto
 
@@ -847,7 +828,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef
 open Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.Datum Formalism.IndefR.Cx Formalism.IndefR.Links
 open scoped TensorProduct InnerProductSpace
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.DownLift
 
 namespace GlobalTheory.GoodTypeNoChi

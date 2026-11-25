@@ -136,7 +136,6 @@ end GlobalTheory.AV.AbVar
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SpMapSurjective
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.AV.AbVar

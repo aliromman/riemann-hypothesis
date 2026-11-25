@@ -255,15 +255,13 @@ theorem pow_div_mem_of_esymm_pow_div_mem (K : Type) [Field K] (V : ValuationSubr
     intro y
     rw [← V.valuation_le_one_iff, ← hv, map_div₀, div_le_one₀ (zero_lt_iff.mpr hvc)]
   rw [mem_iff]
-  by_contra hlt
-  push_neg at hlt
+  by_contra! hlt
   rw [Valuation.map_pow] at hlt
   have key : ∀ k, 1 ≤ k → k ≤ Multiset.card s → v (s.esymm k) < v (x a) ^ k := by
     intro k hk1 hkn
     obtain ⟨hkD, hmem⟩ := h k hk1 (hcard ▸ hkn)
     rw [mem_iff, Valuation.map_pow] at hmem
-    by_contra hge
-    push_neg at hge
+    by_contra! hge
     have hp : (v (x a) ^ k) ^ (D / k) ≤ v (s.esymm k) ^ (D / k) := pow_le_pow_left₀ zero_le' hge _
     rw [← pow_mul, Nat.mul_div_cancel' hkD] at hp
     exact absurd (hp.trans hmem) (not_le.mpr hlt)
@@ -302,7 +300,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.ZM GlobalTheory.ZH GlobalTheory.UMin GlobalTheory.UPoinc GlobalTheory.Ex.OneGen
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UMin
 
@@ -379,7 +376,6 @@ end GlobalTheory.RatNorm
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCExtComplex
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UMin.KeySmall
 
@@ -718,7 +714,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.KeyCl GlobalTheory.Ex GlobalTheory.KeyEven
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 open Classical
 
@@ -933,7 +928,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.KeyCl GlobalTheory.Ex GlobalTheory.KeyEven GlobalTheory.MBLow
 open scoped CategoryTheory.Obj Cardinal
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.UMin.KeySmall
@@ -1347,7 +1341,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SymmetricCoordinatesO1FactorialPower
 @[expose] public section
-attribute [local instance] Over.cartesianMonoidalCategory
 
 noncomputable section
 namespace GlobalTheory.UMin.CrdSym
@@ -1458,7 +1451,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaKeyFormulaNormalCoverRationalThetaConstants
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.UMin

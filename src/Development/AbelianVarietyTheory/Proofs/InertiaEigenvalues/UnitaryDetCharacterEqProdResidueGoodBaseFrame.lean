@@ -63,7 +63,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DetCharacterProductFormula
 open Formalism.IndefR.Links (PolF)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 
@@ -184,7 +183,6 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnitaryDetCharacterEqProdResidueGoodBaseFrame
 open Formalism.IndefR.Links (PolF)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 

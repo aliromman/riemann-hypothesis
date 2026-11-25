@@ -203,7 +203,6 @@ open GlobalTheory GlobalTheory.LieHt GlobalTheory.Cartier GlobalTheory.ThetaOnto
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsKeyDatumFibreOfGrpPullback
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.MBLow
 
@@ -236,7 +235,6 @@ end GlobalTheory.MBLow
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsKeyDatumPolarisedAbelianLocalDomain
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.MBLow
@@ -274,7 +272,6 @@ end GlobalTheory.MBLow
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsScalarMatrixBetweenKeyData
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.MBLow.TwoData
 
@@ -300,7 +297,6 @@ end GlobalTheory.MBLow.TwoData
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsThetaConstantsJetsLocalDomain
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.MBLow.JetEx
@@ -491,7 +487,6 @@ end GlobalTheory.MBLow
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLinearSectionValueAbelianPower
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
 
 namespace GlobalTheory.SecValLin
@@ -527,7 +522,6 @@ end GlobalTheory.SecValLin
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SectionsLineBundlePowSeparateFirstJetsOrigin
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
 
 
@@ -604,7 +598,6 @@ end GlobalTheory.MBLow.JetSep
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSmulOfTwistedPullbacksSameBundle
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
 
 namespace GlobalTheory.TwistRatio
@@ -654,7 +647,6 @@ open GlobalTheory.UU
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedPullbackNonvanishingOfPulledSection
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.TwistNZ
 
@@ -698,7 +690,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemNonzeroLocusOfIsTwistPull
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.MBLow.TranslateSection
@@ -746,7 +737,6 @@ end GlobalTheory.MBLow.TranslateSection
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTranslateThetaPullbackNeZero
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
 
 
@@ -798,7 +788,6 @@ theorem GlobalTheory.TransNZ.exists_ne : ∀ (K : Type) [Field K] [IsAlgClosed K
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SpanThetaTranslatesTorsionEqTop
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
 
 namespace GlobalTheory.TSpan
@@ -878,7 +867,6 @@ end GlobalTheory.TSpan
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaConstantsFirstJetsLinearIndependent
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
 
 namespace GlobalTheory.MBLow.TRank
@@ -930,7 +918,6 @@ end GlobalTheory.MBLow.TRank
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaConstantsJetsBaseChangePolarisedDatum
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.MBLow.JetBCGen
@@ -1297,7 +1284,6 @@ theorem GlobalTheory.MBLow.thJet_of_keyAtMap : ∀ (R K : Type) [CommRing R] [Fi
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaKeyValueTwoFibresLocalRing
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.MBLow
 

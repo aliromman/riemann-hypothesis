@@ -88,10 +88,9 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.GeometryOfNumbersTheory
 open GlobalTheory GlobalTheory.LieHt GlobalTheory.Cartier GlobalTheory.ThetaOnto GlobalTheory.KeyCl GlobalTheory.Ex GlobalTheory.MBLow GlobalTheory.SecJet
 open scoped CategoryTheory.Obj
+open GlobalTheory.MBLow.Cl Matrix
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FamilyMemberTangentValueEqFirstJet
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.MBLow.Cl Matrix
 
 
 namespace GlobalTheory.MBLow.Cl.JetF
@@ -319,13 +318,10 @@ end GlobalTheory.MBLow.Cl
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FamilyMemberTangentValueEqFirstJetStatement
-open GlobalTheory.MBLow.Cl Matrix
 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CubeValueComplexPointsEqFrameAlternatingProduct
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.MBLow.Cl Matrix
 
 namespace GlobalTheory.MBLow.Cl.CubeVal
 
@@ -442,8 +438,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AlternatingCubeProductValueFderivAtZero
 @[expose] public section
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.MBLow.Cl Matrix
 
 namespace GlobalTheory.AltJet
 
@@ -584,8 +578,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CubeValueConstPointsTangentEqDualFibreValue
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.MBLow.Cl Matrix
 
 
 namespace GlobalTheory.MBLow.JetGeo
@@ -739,13 +731,10 @@ end GlobalTheory.MBLow.JetGeo
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CubeValueConstPointsTangentEqDualFibreValueStatement
-open GlobalTheory.MBLow.Cl Matrix
 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CubeValueEqFirstJetAlternatingProduct
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.MBLow.Cl Matrix
 
 
 namespace GlobalTheory.MBLow.Cl.CubeJet
@@ -801,7 +790,6 @@ end GlobalTheory.MBLow.Cl.CubeJet
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorusExtensionCharacterValueConstantTermOne
-open GlobalTheory.MBLow.Cl Matrix
 namespace GlobalTheory.MBLow.Cl
 
 theorem fst_vE_eq_one : ∀ {R : Type} [CommRing R] [IsDomain R] {D : DegPre R} [Algebra (FractionRing R) ℂ] {N : NumD ℂ}
@@ -839,8 +827,6 @@ end GlobalTheory.MBLow.Cl
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorusExtensionDualCharValuesMulCube
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.MBLow.Cl Matrix
 
 namespace GlobalTheory.DualMult
 
@@ -888,7 +874,6 @@ end GlobalTheory.DualMult
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorusExtensionDualCharValuesMulCubeStatement
-open GlobalTheory.MBLow.Cl Matrix
 
 theorem _root_.GlobalTheory.T.torusExtension_dualCharValues_mul_cube : ∀ {R : Type} [CommRing R] [IsDomain R] {D : DegPre R} [Algebra (FractionRing R) ℂ] {N : NumD ℂ}
     (ν : NumOf D ℂ N) (gm : GtPt D (TE R ℂ)) (χ χ' : D.X),
@@ -899,7 +884,6 @@ theorem _root_.GlobalTheory.T.torusExtension_dualCharValues_mul_cube : ∀ {R : 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorusExtensionTangentGeneratorsHolomorphicFrame
-open GlobalTheory.MBLow.Cl Matrix
 
 
 namespace GlobalTheory.MBLow.Cl.JetGen
@@ -988,7 +972,6 @@ end GlobalTheory.MBLow.Cl.JetGen
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.JetFamilyDeriv
-open GlobalTheory.MBLow.Cl Matrix
 
 
 namespace GlobalTheory.MBLow.Cl.JetFam

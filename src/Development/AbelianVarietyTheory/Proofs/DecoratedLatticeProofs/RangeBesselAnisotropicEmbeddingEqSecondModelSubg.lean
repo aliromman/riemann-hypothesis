@@ -61,7 +61,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.S Fo
 open scoped TensorProduct InnerProductSpace Classical
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsLeviPreimageOfFixIsotropicFrames
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open Formalism.L2.SG.AdBridge GlobalTheory.BesselChar
 
 
@@ -103,14 +102,12 @@ end GlobalTheory.MixModel.HypDec
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsLeviPreimageOfFixIsotropicFramesStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open Formalism.L2.SG.AdBridge GlobalTheory.BesselChar
 
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsOrthogonalComplementPreimageOfFixLine
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open Formalism.L2.SG.AdBridge GlobalTheory.BesselChar
 
 namespace GlobalTheory.LineFix
@@ -186,7 +183,6 @@ theorem _root_.GlobalTheory.T.exists_orthogonalComplement_preimage_of_fix_line :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.RangeBesselAnisotropicEmbeddingEqSecondModelSubg
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open Formalism.L2.SG.AdBridge GlobalTheory.BesselChar
 
 

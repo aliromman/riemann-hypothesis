@@ -669,8 +669,6 @@ end -- clump: shared namespace opens
 
 open NumberField IsDedekindDomain GlobalTheory.CMVal Formalism.BasicNotions Formalism.IndefR.Links GlobalTheory.ChiGrid GlobalTheory.FunObj.SqNum
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 namespace GlobalTheory.TwistPairs
 
 open Formalism.L2.Host Formalism.L2.Host.CT GlobalTheory.CMVal.InvConj
@@ -1257,8 +1255,6 @@ end -- clump:auto
 open NumberField IsDedekindDomain GlobalTheory.CMVal Formalism.BasicNotions Formalism.IndefR.Links GlobalTheory.ChiGrid GlobalTheory.FunObj.SqNum
 
 namespace GlobalTheory.SqTop
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem card_quot_of_isConjPl {D : D7} {P P' : HeightOneSpectrum (𝓞 D.host.E)} (h : Formalism.IndefR.Lev.IsConjPl P P') :
     Nat.card (𝓞 D.host.E ⧸ P'.asIdeal) = Nat.card (𝓞 D.host.E ⧸ P.asIdeal) := by

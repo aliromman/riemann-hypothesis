@@ -422,8 +422,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open Formalism.L2.Pj
 open scoped Classical
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 namespace GlobalTheory.FlagTan
 
 open GlobalTheory.DeRham GlobalTheory.Cris GlobalTheory.Published
@@ -496,8 +494,6 @@ end -- clump:auto
 open NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
 open AlgebraicGeometry CategoryTheory GlobalTheory.DeRham GlobalTheory.Cris
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 namespace GlobalTheory.KSExist
 
 open FrameLift
@@ -537,7 +533,6 @@ open AlgebraicGeometry CategoryTheory GlobalTheory.DeRham GlobalTheory.Cris
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KodairaSpencerRowDualEigenvectorMemSpanRing
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.KSRing
 
@@ -608,7 +603,6 @@ end GlobalTheory.KSRing
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KodairaSpencerUniqueValueAbelianSchemeCommRing
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.DeRham
@@ -699,7 +693,6 @@ end GlobalTheory.DeRham
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PolarizationFormAdjointCmActionModuliPoint
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.PolAdjointRing

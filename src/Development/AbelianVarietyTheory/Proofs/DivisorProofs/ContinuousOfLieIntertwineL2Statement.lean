@@ -60,8 +60,6 @@ section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.C
 @[expose] public section
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Chr incM)
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 noncomputable section
 
 namespace GlobalTheory.RealWeil

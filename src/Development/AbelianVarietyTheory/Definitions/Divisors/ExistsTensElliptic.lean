@@ -58,7 +58,6 @@ end GlobalTheory.Mum
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.ExistsTensElliptic
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.Mum.TraitWit
 

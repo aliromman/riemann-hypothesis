@@ -59,7 +59,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open scoped TensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.TranslNBPreserves
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 
@@ -127,7 +126,6 @@ end GlobalTheory.HaarCoords
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.TranslNC
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 
@@ -170,7 +168,6 @@ end GlobalTheory.HaarCoords
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.HaarCoords
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 
@@ -233,7 +230,6 @@ end GlobalTheory.HaarCoords
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.MapMulMtEq
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.AdelicModulus.RowMat
 
@@ -284,7 +280,6 @@ end GlobalTheory.AdelicModulus.RowMat
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.MapConjSmallerUnitaryFlagUnipotentHaar
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 namespace GlobalTheory.FlagModulus

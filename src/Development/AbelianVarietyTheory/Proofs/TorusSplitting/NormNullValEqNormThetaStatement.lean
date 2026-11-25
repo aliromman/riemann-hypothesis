@@ -65,7 +65,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.L2.Pj Formalism.L2.PjFree GlobalTheory.EtaForm GlobalTheory.EtaAn GlobalTheory.ArcQ
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TorusSplitting.NormGenEqConstMul
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ConstNorm
 
@@ -244,7 +243,6 @@ end GlobalTheory.ConstNorm
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TorusSplitting.NormNullValEqNormTheta
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.NullNorm
 

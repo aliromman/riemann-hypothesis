@@ -62,7 +62,6 @@ open GlobalTheory GlobalTheory.Ex GlobalTheory.MBLow GlobalTheory.MBLow.Cl Globa
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CubeLocalUnitValueHolomorphicThird
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.MBLow.Cl.CubHol
@@ -95,7 +94,6 @@ end GlobalTheory.MBLow.Cl.CubHol
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CubeValueTimesThetaFramesChartGauge
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.MBLow.Cl.CubHol

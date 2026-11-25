@@ -59,8 +59,6 @@ open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestric
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothOfRelativeDimensionOfNilpotentReduction
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 namespace GlobalTheory.LiftDim
 
 theorem surjective_spMap_of_nilpotent {R R₀ : Type} [CommRing R] [CommRing R₀] (π : R →+* R₀)
@@ -90,9 +88,6 @@ end GlobalTheory.LiftDim
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothOfRelativeDimensionOfNilpotentReductionStatement
-
-attribute [local instance] Over.cartesianMonoidalCategory
-
 
 theorem _root_.GlobalTheory.T.smoothOfRelativeDimension_of_nilpotent_reduction : ∀ (R R₀ : Type) [CommRing R] [CommRing R₀] (π : R →+* R₀), Function.Surjective π → IsNilpotent (RingHom.ker π) →
     ∀ (g : ℕ) (X : Over (Sp R)) (X₀ : Over (Sp R₀)) (i : X₀.left ⟶ X.left), IsPullback i X₀.hom X.hom (spMap π) → Smooth X.hom →

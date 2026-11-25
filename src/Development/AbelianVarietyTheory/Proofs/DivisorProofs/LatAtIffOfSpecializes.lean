@@ -112,7 +112,6 @@ open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZM
 open scoped CategoryTheory.Obj
 open GlobalTheory.Poinc GlobalTheory.TorusPart
 open Classical
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Poinc.FibLat GlobalTheory.Poinc.Eq8
 
 namespace GlobalTheory.Poinc.FibLat
@@ -227,8 +226,7 @@ theorem exists_prime_hom_of_not_surjective {X : Type} [AddCommGroup X] {r : ℕ}
   · have hn0 : n = 0 := by omega
     subst hn0
     obtain ⟨i, hi⟩ : ∃ i, e i ≠ 0 := by
-      by_contra h
-      push_neg at h
+      by_contra! h
       apply not_subsingleton ((Fin r → ℤ) ⧸ M.range)
       refine ⟨fun a b => f.injective ?_⟩
       have key : ∀ x : (Fin 0 →₀ ℤ) × DirectSum κ (fun j ↦ ZMod (p j ^ e j)), x = 0 := fun x => by
@@ -362,7 +360,6 @@ open AlgebraicGeometry CategoryTheory Limits NumberField MonoidalCategory Cartes
 open Formalism.BasicNotions ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.PullbackSections ReciprocityTheory.ChartRestriction.G.Pdiv ReciprocityTheory.GeometryOfNumbersTheory
 open scoped CategoryTheory.Obj ComplexOrder
 open GlobalTheory GlobalTheory.LieMet GlobalTheory.LieHt GlobalTheory.LocM.Frm GlobalTheory.ShFam GlobalTheory.ShFam.Pad GlobalTheory.ShFam.Hor GlobalTheory.ShFam.Hor.LogCh GlobalTheory.Toroidal GlobalTheory.CovTop GlobalTheory.CovHt
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.TorusFibreImm
 
@@ -415,7 +412,6 @@ open GlobalTheory.Poinc GlobalTheory.TorusPart
 open Classical
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SplitTorusPartGenericFibreClosedFibreDvr
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Poinc.FibLat GlobalTheory.Poinc.Eq8
 
 namespace GlobalTheory.Poinc.FibClosed
@@ -562,7 +558,6 @@ end GlobalTheory.Poinc.FibClosed
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorusCompatOfCompatClosedPoint
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Poinc.FibLat GlobalTheory.Poinc.Eq8
 
 namespace GlobalTheory.Poinc.FibLat.ClosedLift
@@ -723,7 +718,6 @@ end GlobalTheory.Poinc.FibLat.ClosedLift
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorusCompatOfCompatOverField
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Poinc.FibLat GlobalTheory.Poinc.Eq8
 
 namespace GlobalTheory.Poinc.FibLat
@@ -807,7 +801,6 @@ end GlobalTheory.Poinc.FibLat
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatAtIffOfSpecializes
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.Poinc.FibLat
 

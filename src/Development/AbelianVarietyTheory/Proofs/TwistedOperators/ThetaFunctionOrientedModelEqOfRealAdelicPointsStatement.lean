@@ -52,7 +52,6 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Form
 open NumberField Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaFunctionOrientedModelEqOfRealAdelicPoints
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open scoped TensorProduct
 
 namespace GlobalTheory.ThetaUniqReal
@@ -139,7 +138,6 @@ end GlobalTheory.ThetaUniqReal
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaFunctionOrientedModelEqOfRealAdelicPointsStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 

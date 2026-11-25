@@ -275,7 +275,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped NumberField CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HarrisTaylorCardKilledByIdealEqAbsNormPow
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.HTTorsCount
 
@@ -410,7 +409,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsIsogenyDegreeKilledByPrimeToPHarrisTaylor
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.IwLevel.PrimeToP
 
@@ -454,7 +452,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsIsogenyOfDegreeTorsionCoprimeIdealsProduct
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.IwLevel.CoprimeTors
@@ -550,7 +547,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFiniteFlatTorsionHarrisTaylorAbelian
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.HTTors

@@ -20,8 +20,6 @@ import Mathlib.Algebra.Order.Star.Real
 
 open MeasureTheory Filter Topology Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 
 namespace PI.UnitaryGroupMassFormula.JCC.Ck
 

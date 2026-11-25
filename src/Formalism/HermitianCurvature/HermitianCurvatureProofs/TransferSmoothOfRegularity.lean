@@ -118,8 +118,6 @@ open scoped ContDiff
 namespace Formalism.FourierDecayAlt.P.CutMP.SmoothTransferRegularity
 
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 section ellw
 
 variable {d : ℕ}

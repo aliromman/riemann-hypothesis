@@ -98,10 +98,10 @@ section -- clump: shared namespace opens
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.DetNeZeroOfNormalAt
 open GlobalTheory.KeyPow GlobalTheory.KeyKa
 open GlobalTheory.KeyEq
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.DetNeZeroOfNormalAt
 
 namespace GlobalTheory.KeyEq
 
@@ -134,9 +134,6 @@ end GlobalTheory.KeyEq
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.NormalAtScale
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.KeyPow GlobalTheory.KeyKa
-open GlobalTheory.KeyEq
 
 namespace GlobalTheory.KeyEq
 
@@ -173,9 +170,6 @@ end GlobalTheory.KeyEq
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ThetaNormalFormTranslateHalfPeriod
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.KeyPow GlobalTheory.KeyKa
-open GlobalTheory.KeyEq
 
 
 namespace GlobalTheory.HalfTranslate
@@ -618,9 +612,6 @@ end GlobalTheory.HalfTranslate
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.KeyNormalFormDetRatioTwoTorsionTranslate
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.KeyPow GlobalTheory.KeyKa
-open GlobalTheory.KeyEq
 
 namespace GlobalTheory.KeyEq.TrVal
 
@@ -740,8 +731,6 @@ end GlobalTheory.KeyEq
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.KeyNormalFormDetRatioTwoTorsionTranslateStatement
-open GlobalTheory.KeyPow GlobalTheory.KeyKa
-open GlobalTheory.KeyEq
 
 end -- clump:auto
 
@@ -752,10 +741,9 @@ end -- clump: shared namespace opens
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj TensorProduct
+open GlobalTheory.KeyPow GlobalTheory.KeyFam GlobalTheory.ZM GlobalTheory.AbLaw
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ThetaFrameValueKnownOfPolarizedPullback
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.KeyPow GlobalTheory.KeyFam GlobalTheory.ZM GlobalTheory.AbLaw
 
 namespace GlobalTheory.KnownScale
 
@@ -842,8 +830,6 @@ end GlobalTheory.KnownScale
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ThetaFrameValueKnownOfTwoTorsionTranslate
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.KeyPow GlobalTheory.KeyFam GlobalTheory.ZM GlobalTheory.AbLaw
 
 namespace GlobalTheory.KnownTwist
 open GlobalTheory.KeyEq (trl IsTrl)
@@ -1195,8 +1181,6 @@ end GlobalTheory.KnownTwist
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.PotentiallyKnownOfSameLambdaBundle
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.KeyPow GlobalTheory.KeyFam GlobalTheory.ZM GlobalTheory.AbLaw
 
 namespace GlobalTheory.KeyFam.SameLam
 open GlobalTheory.ZM.SiegPull

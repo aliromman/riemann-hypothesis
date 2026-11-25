@@ -99,7 +99,6 @@ open Classical
 open ReciprocityTheory.ChartRestriction.G.Out
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsGeometricallyConnectedAwayOfGenericFibre
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.GenSpread
 
@@ -164,7 +163,6 @@ end GlobalTheory.GenSpread
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsGroupLawSmoothProperModelOfGeneric
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.GenSpread
 
@@ -367,7 +365,6 @@ open ReciprocityTheory.ChartRestriction.G.Out
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsKernelPolarisationTrivialSpreadLocalisatio
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.GenSpread
 
@@ -415,7 +412,6 @@ end GlobalTheory.GenSpread
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsRigidificationSpreadFromGenericFibre
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.GenSpread
 
@@ -432,7 +428,6 @@ end GlobalTheory.GenSpread
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.ExistsSymmetricSpreadOutLineBundleAbelianScheme
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.GenSpread
 
@@ -457,7 +452,6 @@ end GlobalTheory.GenSpread
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DegenerationProofs.IsFractionRingOfForallDiv
-attribute [local instance] Over.cartesianMonoidalCategory
 
 set_option backward.isDefEq.respectTransparency false
 

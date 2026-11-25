@@ -78,11 +78,10 @@ import Mathlib.Tactic.Linter.HaveILetI
 -- clump: shared namespace opens
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal ReciprocityTheory.Aut Formalism.AUTREP Formalism.L2 Formalism.L2.Host Formalism.L2.NT NumberField IsDedekindDomain Polynomial GlobalTheory.HeightCounting GlobalTheory.RowTie GlobalTheory.SplitRead GlobalTheory.NPin
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsBalancedBilinearTensorProductMap
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open Formalism.BasicNotions.Loc GlobalTheory.Pst GlobalTheory.WeilDeligne
 open scoped TensorProduct
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsBalancedBilinearTensorProductMap
 open GlobalTheory.Pst.TwistLetters
 
 
@@ -174,17 +173,11 @@ end GlobalTheory.LetterDescent
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsBalancedBilinearTensorProductMapStatement
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-open Formalism.BasicNotions.Loc GlobalTheory.Pst GlobalTheory.WeilDeligne
-open scoped TensorProduct
 open GlobalTheory.Pst.TwistLetters
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.PeriodProductCommutesFrobeniusZpow
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-open Formalism.BasicNotions.Loc GlobalTheory.Pst GlobalTheory.WeilDeligne
-open scoped TensorProduct
 open GlobalTheory.Pst.TwistLetters
 
 namespace GlobalTheory.Pst.TwistLetters
@@ -228,9 +221,6 @@ end GlobalTheory.Pst.TwistLetters
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.DpstLetterTwistTensorEquiv
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-open Formalism.BasicNotions.Loc GlobalTheory.Pst GlobalTheory.WeilDeligne
-open scoped TensorProduct
 
 
 namespace GlobalTheory.Pst.TwistLetters
@@ -303,16 +293,10 @@ end GlobalTheory.Pst.TwistLetters
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.DpstLetterTwistTensorEquivStatement
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-open Formalism.BasicNotions.Loc GlobalTheory.Pst GlobalTheory.WeilDeligne
-open scoped TensorProduct
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.TensorFrobeniusSemisimplification
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-open Formalism.BasicNotions.Loc GlobalTheory.Pst GlobalTheory.WeilDeligne
-open scoped TensorProduct
 
 namespace GlobalTheory.WeilDeligne
 
@@ -359,9 +343,6 @@ end GlobalTheory.WeilDeligne
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.FontaineParameterTwistPotentiallySemistable
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-open Formalism.BasicNotions.Loc GlobalTheory.Pst GlobalTheory.WeilDeligne
-open scoped TensorProduct
 
 namespace GlobalTheory.TwistParamAbove
 

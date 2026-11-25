@@ -68,8 +68,6 @@ open GlobalTheory.LieMet MonObj
 
 namespace GlobalTheory.ShFam.Pad.Pull
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 section Lin
 
 variable {k V : Type} [Field k] [AddCommGroup V] [Module k V] {m : ℕ}
@@ -180,8 +178,6 @@ open ReciprocityTheory.ChartRestriction.G.PullbackSections (TanM tv actR)
 open GlobalTheory.LieMet MonObj
 
 namespace GlobalTheory.ShFam.Pad.Pull
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 section Val
 

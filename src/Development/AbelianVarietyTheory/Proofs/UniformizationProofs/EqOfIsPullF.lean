@@ -64,7 +64,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.EqOfIsPullF
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.FiniteTorsionExt
 

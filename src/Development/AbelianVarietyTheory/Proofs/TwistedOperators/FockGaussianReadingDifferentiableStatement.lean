@@ -59,10 +59,9 @@ import Mathlib.Analysis.InnerProductSpace.Calculus
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links MeasureTheory IsDedekindDomain NumberField Matrix
 open scoped TensorProduct ComplexConjugate
+open GlobalTheory.FockTransl
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeisenbergTranslateFockVacuumCauchyRiemann
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.FockTransl
 open Formalism.L2.Ker (VCx DVar derivAt0)
 
 namespace GlobalTheory.HeisTranslCR
@@ -194,8 +193,6 @@ end GlobalTheory.HeisTranslCR
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SymplecticFormFockMatrixEqNegSumImRealPlaces
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.FockTransl
 open Formalism.L2.Ker (VCx DVar derivAt0)
 
 noncomputable section
@@ -276,8 +273,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.FockGaussianReadingDifferentiable
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.FockTransl
 open Formalism.L2.Ker (VCx DVar derivAt0)
 
 noncomputable section
@@ -425,8 +420,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.FockGaussianReadingDifferentiableStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.FockTransl
 open Formalism.L2.Ker (VCx DVar derivAt0)
 
 

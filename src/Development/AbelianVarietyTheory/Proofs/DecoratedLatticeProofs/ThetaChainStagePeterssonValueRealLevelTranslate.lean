@@ -68,7 +68,6 @@ theorem _root_.GlobalTheory.T.multiplicitySpace_equivariant_real_points : ∀ (D
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ThetaChainStagePeterssonValueRealLevelTranslate
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.ChainOnto.PetCoef
 

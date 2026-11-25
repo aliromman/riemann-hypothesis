@@ -679,8 +679,6 @@ namespace Formalism.FourierDecayAlt.P.CutSE
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt.Q Formalism.FourierDecayAlt.Wd Formalism.FourierDecayAlt.P5
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 namespace Comp0
 
 section loc

@@ -62,7 +62,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLineBundleLocalSectionFamilyUnitAtPoint
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.Pinch.SemiLoc
@@ -201,7 +200,6 @@ end GlobalTheory.Pinch.SemiLoc
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLocalUnitGeneratorOfLineBundleLocalSection
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.Pinch
 
@@ -275,7 +273,6 @@ end GlobalTheory.Pinch
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LineBundleLocalSectionFamilyUnitAtFinitePoints
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.Pinch
@@ -335,7 +332,6 @@ end GlobalTheory.Pinch
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLineBundleLocalGeneratorNearFiniteSet
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.Pinch.Semiloc

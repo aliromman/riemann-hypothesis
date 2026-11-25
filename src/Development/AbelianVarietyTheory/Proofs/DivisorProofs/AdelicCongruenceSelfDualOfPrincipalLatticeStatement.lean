@@ -51,7 +51,6 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.BasicNotions.
 open scoped TensorProduct Matrix
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdelicCongruenceSelfDualOfPrincipalLattice
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CovolCong
 

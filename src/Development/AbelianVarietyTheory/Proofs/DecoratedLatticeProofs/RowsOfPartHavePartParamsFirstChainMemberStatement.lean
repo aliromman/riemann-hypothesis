@@ -75,7 +75,6 @@ open GlobalTheory.ChainOnto GlobalTheory.ChainTw
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HeckeOperatorInverseCosetConjEigenvalue
 open GlobalTheory.IndefiniteRowSideFullHecke.RestrictedTensorSplitting (SplitProj IsProjAt IsIdemOf LiftsChar rdA grpCo frCo gAt)
 open GlobalTheory.IndefiniteRowSideFullHecke.VolumeFlatSection (Blocks parahoric datum)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 noncomputable section
 
@@ -202,7 +201,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.RowsOfPartHavePartParamsFirstChainMember
 open GlobalTheory.IndefiniteRowSideFullHecke.RestrictedTensorSplitting (SplitProj IsProjAt IsIdemOf LiftsChar rdA grpCo frCo gAt)
 open GlobalTheory.IndefiniteRowSideFullHecke.VolumeFlatSection (Blocks parahoric datum)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open GlobalTheory.LiftRows (Given)
 
 namespace GlobalTheory.ChainTw.LevelYZero
@@ -386,8 +384,7 @@ theorem rowPar_of_chain : GlobalTheory.Published.CuspRapidDecay → ∀ {D : D7}
       intro h
       exact hu0 (PiTensorProduct.lift.injective (h.trans (map_zero _).symm))
     obtain ⟨w, hw⟩ : ∃ w, PiLocalization₂.val y w ≠ 0 := by
-      by_contra hh
-      push_neg at hh
+      by_contra! hh
       exact hl0 (LinearMap.ext hh)
     obtain ⟨hl, hh, hb⟩ := hkey y (hy u hu) w
     have hne' : (fun g => conj (PiLocalization₂.val y w g)) ≠ 0 := by

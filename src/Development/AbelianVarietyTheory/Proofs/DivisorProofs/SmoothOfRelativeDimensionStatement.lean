@@ -264,7 +264,6 @@ open GlobalTheory.UPel.Sm GlobalTheory.Cris GlobalTheory.DeRham
 open scoped TensorProduct
 open GlobalTheory.AbDual GlobalTheory.AbLaw GlobalTheory.CechPic
 
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.HTPerf
 
@@ -890,7 +889,6 @@ end GlobalTheory.HTSummand
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCrysForm
-attribute [local instance] Over.cartesianMonoidalCategory
 open IsLocalRing GlobalTheory.AbDual GlobalTheory.Published.GrothendieckMessing
 
 namespace GlobalTheory.HTDefLift

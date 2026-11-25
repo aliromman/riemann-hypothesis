@@ -63,7 +63,6 @@ theorem _root_.GlobalTheory.T.doubleMixedModel_valueAtZero_equivariant : ∀ (D 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.FlatSchwartzTargetUnipotentConjBesselCharacter
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Unf GlobalTheory.Unf.FB
 
 namespace GlobalTheory.Unf.FB.UnipAct

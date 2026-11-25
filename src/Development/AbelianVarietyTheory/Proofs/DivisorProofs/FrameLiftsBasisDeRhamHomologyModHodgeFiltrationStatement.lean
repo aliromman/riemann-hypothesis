@@ -59,7 +59,6 @@ open NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRes
 open AlgebraicGeometry CategoryTheory GlobalTheory.DeRham GlobalTheory.Cris
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrameLiftsBasisDeRhamHomologyModHodgeFiltration
-attribute [local instance] Over.cartesianMonoidalCategory
 
 open GlobalTheory ReciprocityTheory.ChartRestriction.G.Semi
 

@@ -65,7 +65,6 @@ theorem _root_.GlobalTheory.T.kFinite_le_of_gKStable_discreteSeriesModel : Globa
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsCommonLevelGrowthExponentGKMap
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 namespace GlobalTheory.GKUnif

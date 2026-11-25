@@ -96,7 +96,6 @@ open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZM
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGeneratorMumfordBundleInvPullbackPrimitive
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.PolDeg.NegPrim
 open GlobalTheory.CechPic
@@ -144,7 +143,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsHalvingPointAbelianSchemeFiniteExt
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.HalfPt
 
@@ -213,7 +211,6 @@ theorem _root_.GlobalTheory.T.exists_halving_point_abelianScheme_finite_ext : âˆ
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSymmetricRigidifiedTranslateAmpleKTrivial
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.SymTranslate
@@ -267,7 +264,6 @@ theorem _root_.GlobalTheory.T.exists_symmetric_rigidified_translate_ample_K_triv
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPointTranslatePrimitiveOfAmpleKTrivial
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.PrimitiveNonSym
 open GlobalTheory.PrimitiveOverField GlobalTheory.CechPic GlobalTheory.AbLaw GlobalTheory.UU
@@ -353,7 +349,6 @@ end -- clump: shared namespace opens
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AbLaw GlobalTheory.UU
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 namespace GlobalTheory.PrimitiveAmpleLocal
 open GlobalTheory.CechPic GlobalTheory.StabFlat
 open GlobalTheory.PrimitiveOverLocalRing hiding exists_section_translate
@@ -533,7 +528,6 @@ open scoped CategoryTheory.Obj
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSymmetricPolarisationFiniteExtension
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.PolDeg.SymPol

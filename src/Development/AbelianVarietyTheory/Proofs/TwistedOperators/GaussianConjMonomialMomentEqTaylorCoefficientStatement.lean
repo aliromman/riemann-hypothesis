@@ -50,10 +50,9 @@ import Mathlib.Tactic.ReduceModChar
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links MeasureTheory IsDedekindDomain NumberField Matrix
 open scoped TensorProduct ComplexConjugate
+open GlobalTheory.FockTransl
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.GaussianConjMonomialMomentEqTaylorCoefficient
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.FockTransl
 open Formalism.L2.Ker (VCx DVar derivAt0)
 
 noncomputable section
@@ -198,8 +197,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.GaussianConjMonomialMomentEqTaylorCoefficientStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.FockTransl
 open Formalism.L2.Ker (VCx DVar derivAt0)
 
 

@@ -69,15 +69,15 @@ import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.TorsionPairing
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGtOver, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTorusComponentsOfUnimodularTensor, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTorusComponentsOfUnimodularTensorStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsComponentTupleTensorTorsionUnimodular, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDegenerationValuesAlgClosedField, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTensorTorsionPointOfComponentTuple, Development.AbelianVarietyTheory.Proofs.DivisorProofs.RosatiGeneratorComponentsTorusExtension, Development.AbelianVarietyTheory.Proofs.DivisorProofs.RosatiGeneratorComponentsTorusExtensionStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.RosatiValueTensorDataTransportLambdaBundle, Development.AbelianVarietyTheory.Proofs.DivisorProofs.RosatiValuesTensorDataMatrixAction, Development.AbelianVarietyTheory.Proofs.DivisorProofs.RosatiValuesTensorDataMatrixActionStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorQuotientTorsionOrderActionMatrix, Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorQuotientTorsionOrderActionMatrixStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorTorsionAddComponentwise, Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorTorsionPointEquivIffComponentsEquiv, Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorTorsionTowerNsmulComponentwise, Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorTorsionPairingEqProdFactorPairings, Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilPairingTensorTorsionEqProdComponents, Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorDegenerationDataTorsionIsometryOnto, Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorDegenerationDataTorsionIsometryOntoStatement
 
--- clump: shared namespace opens
+section -- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
-
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGtOver
 open GlobalTheory.Mum
 open GlobalTheory.Ex GlobalTheory.Mum.TensTor
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGtOver
 
 namespace GlobalTheory.Mum.TensTor.Vonto
 
@@ -240,8 +240,6 @@ end GlobalTheory.Mum.TensTor.Vonto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTorusComponentsOfUnimodularTensor
-open GlobalTheory.Mum
-open GlobalTheory.Ex GlobalTheory.Mum.TensTor
 
 namespace GlobalTheory.Mum.TensTor
 
@@ -255,16 +253,11 @@ end GlobalTheory.Mum.TensTor
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTorusComponentsOfUnimodularTensorStatement
-open GlobalTheory.Mum
-open GlobalTheory.Ex GlobalTheory.Mum.TensTor
 
 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsComponentTupleTensorTorsionUnimodular
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
-open GlobalTheory.Ex GlobalTheory.Mum.TensTor
 
 
 namespace GlobalTheory.Mum.TensTor
@@ -306,8 +299,6 @@ end GlobalTheory.Mum.TensTor
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDegenerationValuesAlgClosedField
-open GlobalTheory.Mum
-open GlobalTheory.Ex GlobalTheory.Mum.TensTor
 
 namespace GlobalTheory.MumValues
 
@@ -322,9 +313,6 @@ end GlobalTheory.MumValues
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTensorTorsionPointOfComponentTuple
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
-open GlobalTheory.Ex GlobalTheory.Mum.TensTor
 
 
 namespace GlobalTheory.Mum.TensTor
@@ -360,9 +348,6 @@ end GlobalTheory.Mum.TensTor
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RosatiGeneratorComponentsTorusExtension
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
-open GlobalTheory.Ex GlobalTheory.Mum.TensTor
 
 
 namespace GlobalTheory.Mum.RosComp
@@ -719,16 +704,11 @@ theorem GlobalTheory.Mum.TensRos.rosVT_components : ∀ (R : Type) [CommRing R] 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RosatiGeneratorComponentsTorusExtensionStatement
-open GlobalTheory.Mum
-open GlobalTheory.Ex GlobalTheory.Mum.TensTor
 
 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RosatiValueTensorDataTransportLambdaBundle
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
-open GlobalTheory.Ex GlobalTheory.Mum.TensTor
 
 
 namespace GlobalTheory.Mum.TensRosMove
@@ -832,9 +812,6 @@ end GlobalTheory.Mum.TensRosMove
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RosatiValuesTensorDataMatrixAction
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
-open GlobalTheory.Ex GlobalTheory.Mum.TensTor
 
 namespace GlobalTheory.Mum.TensRos
 
@@ -871,16 +848,11 @@ end GlobalTheory.Mum.TensRos
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RosatiValuesTensorDataMatrixActionStatement
-open GlobalTheory.Mum
-open GlobalTheory.Ex GlobalTheory.Mum.TensTor
 
 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorQuotientTorsionOrderActionMatrix
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
-open GlobalTheory.Ex GlobalTheory.Mum.TensTor
 
 
 namespace GlobalTheory.Mum.TensAct
@@ -1056,16 +1028,11 @@ theorem GlobalTheory.Mum.TensAct.qkAct_tens : ∀ (R : Type) [CommRing R] [IsDom
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorQuotientTorsionOrderActionMatrixStatement
-open GlobalTheory.Mum
-open GlobalTheory.Ex GlobalTheory.Mum.TensTor
 
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorTorsionAddComponentwise
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
-open GlobalTheory.Ex GlobalTheory.Mum.TensTor
 
 theorem GlobalTheory.Mum.TensTor.qkAdd_of_components : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Base R → ∀ (D D' : DegData R (maximalIdeal R)) {r : ℕ} (W : Matrix (Fin r) (Fin r) ℤ) (T : Tens D.toPre D'.toPre W) (F : Type) [Field F] [IsAlgClosed F] [Algebra (FractionRing R) F] (N N' : NumD F) (ν : NumOf D.toPre F N) (ν' : NumOf D'.toPre F N') (k : ℕ) (p' q' s' : QkPt D'.toPre F k) (ps qs ss : Fin r → QkPt D.toPre F k), PtRel T ν ν' p' ps → PtRel T ν ν' q' qs → PtRel T ν ν' s' ss → (∀ i, QkAdd (ps i) (qs i) (ss i)) → QkAdd p' q' s' := by
   intro R _ _ _ hR D D' r W T F _ _ _ N N' ν ν' k p' q' s' ps qs ss hp hq hs hadd
@@ -1128,9 +1095,6 @@ theorem GlobalTheory.Mum.TensTor.qkAdd_of_components : ∀ (R : Type) [CommRing 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorTorsionPointEquivIffComponentsEquiv
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
-open GlobalTheory.Ex GlobalTheory.Mum.TensTor
 
 
 namespace GlobalTheory.Mum.TensTor
@@ -1191,9 +1155,6 @@ end GlobalTheory.Mum.TensTor
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorTorsionTowerNsmulComponentwise
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
-open GlobalTheory.Ex GlobalTheory.Mum.TensTor
 
 namespace GlobalTheory.Mum.TensTower
 
@@ -1247,8 +1208,6 @@ end GlobalTheory.Mum.TensTower
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorTorsionPairingEqProdFactorPairings
-open GlobalTheory.Mum
-open GlobalTheory.Ex GlobalTheory.Mum.TensTor
 
 namespace GlobalTheory.Mum.TensTor.PairVal
 
@@ -1394,9 +1353,6 @@ end GlobalTheory.Mum.TensTor.PairVal
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilPairingTensorTorsionEqProdComponents
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
-open GlobalTheory.Ex GlobalTheory.Mum.TensTor
 
 namespace GlobalTheory.Mum.TensTor
 
@@ -1419,6 +1375,14 @@ theorem weilQk_tens : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], 
 
 end GlobalTheory.Mum.TensTor
 end -- clump:auto
+
+end -- clump: shared namespace opens
+
+-- clump: shared namespace opens
+
+open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
+open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorDegenerationDataTorsionIsometryOnto
 attribute [local instance] Over.cartesianMonoidalCategory

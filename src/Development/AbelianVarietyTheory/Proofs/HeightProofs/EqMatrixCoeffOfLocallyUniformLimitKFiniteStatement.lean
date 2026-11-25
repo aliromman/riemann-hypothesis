@@ -63,10 +63,9 @@ section -- clump: shared namespace opens
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S Formalism.L2.Theta Matrix
 open Formalism.REAL GlobalTheory.SmoothGlob GlobalTheory.TypeSum
 open scoped TensorProduct
+open GlobalTheory.TypeSum.CoefClos
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.CoeffSumSmoothRightDerivWords
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.TypeSum.CoefClos
 
 theorem GlobalTheory.TypeSum.CoefClos.coefSum_cSm_wordF : ∀ (n : ℕ) (ε : Fin n → Bool) (H : Type) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
     (σ : Mx n → (H →L[ℂ] H)), Std ε σ → ∀ (d : ℕ) (L : Fin d → (H →ₗ[ℂ] ℂ)), (∀ a, Sobolev₂ (lieSet ε) σ (L a)) →
@@ -107,8 +106,6 @@ theorem GlobalTheory.TypeSum.CoefClos.coefSum_cSm_wordF : ∀ (n : ℕ) (ε : Fi
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.CoeffWordModerateGrowthBound
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.TypeSum.CoefClos
 
 namespace GlobalTheory.TypeSum.CoefClos
 
@@ -352,10 +349,9 @@ section -- clump: shared namespace opens
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S Formalism.L2.Theta Matrix
 open Formalism.REAL GlobalTheory.SmoothGlob GlobalTheory.TypeSum
 open scoped TensorProduct
+open GlobalTheory.TypeSum.CoefClos
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsMapsOfRelations
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.TypeSum.CoefClos
 
 namespace GlobalTheory.TypeSum.CoefClos
 
@@ -538,8 +534,6 @@ end GlobalTheory.TypeSum.CoefClos
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsSobolevContinuousFormOfModerateGrowthMap
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.TypeSum.CoefClos
 
 open GlobalTheory.TypeSum.CoefLow GlobalTheory.LowTypeDetermined
 
@@ -829,7 +823,6 @@ open Formalism.REAL GlobalTheory.SmoothGlob GlobalTheory.TypeSum
 open scoped TensorProduct
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.RightDerivativeRelationOfLocallyUniformLimitStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.TypeSum.CoefClos
 
 
@@ -921,7 +914,6 @@ theorem _root_.GlobalTheory.T.rightDerivativeRelation_of_locallyUniformLimit : �
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.EqMatrixCoeffOfLocallyUniformLimitKFinite
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.TypeSum.CoefClos
 
 theorem GlobalTheory.TypeSum.CoefClos.eq_coef_of_closure : GlobalTheory.Published.HarishChandraModules → GlobalTheory.Published.CasselmanWallach →

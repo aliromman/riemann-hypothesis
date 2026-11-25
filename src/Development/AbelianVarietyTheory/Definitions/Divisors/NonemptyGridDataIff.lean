@@ -63,7 +63,6 @@ open IsDedekindDomain NumberField Matrix
 open scoped TensorProduct nonZeroDivisors Pointwise
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSpaceOfSignature
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.ChiGrid
 
@@ -115,7 +114,6 @@ end GlobalTheory.ChiGrid
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.NonemptyGridDataIff
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.ChiGridModel
 

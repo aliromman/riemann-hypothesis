@@ -68,7 +68,6 @@ open scoped Matrix Classical
 open AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory MonObj ReciprocityTheory.ChartRestriction.G.Semi
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFixedComplexPointOfFixedFieldPoint
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.FixedCx

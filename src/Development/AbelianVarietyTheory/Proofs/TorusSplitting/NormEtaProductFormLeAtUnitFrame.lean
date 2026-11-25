@@ -76,7 +76,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TorusSplitting.NormEtaProductFormLeAtUnitFrame
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.EtaAn.ArchPt

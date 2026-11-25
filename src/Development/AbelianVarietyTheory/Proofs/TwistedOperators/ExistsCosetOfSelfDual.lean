@@ -81,12 +81,9 @@ import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExistsGene
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsCosetRepHeckeElementPrincipalLevel, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ConjPrimeSmulLatticeHeckeElementLe, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsLocalHeckeMatrixIntermediateLattice, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsLocalMatrixChartSplitIdempotentCompletion, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsLocalMatrixChartSplitIdempotentCompletionStatement, Development.AbelianVarietyTheory.Proofs.TwistedOperators.IdempotentPartCompletedLatticeLocalChart, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsHeckeElementIdempotentPartSplitPlaceLattic, Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitDeterminantCongruentElement, Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeckeElementKeepsOneSubIdempotentPartLattice, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsHeckeElementLatticeBetweenPrimeMulSplit, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsCosetOfSelfDual
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsCosetRepHeckeElementPrincipalLevel
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.FWT Formalism.L2.Pj
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsCosetRepHeckeElementPrincipalLevel
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open NumberField
 
 open Formalism.IndefR.Lev GlobalTheory.HeckeParts Formalism.L2.NTheta
@@ -127,7 +124,8 @@ theorem GlobalTheory.HeckeDC.exists_rep : ∀ (D : D7) {G : Type} [Group G] [Fin
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ConjPrimeSmulLatticeHeckeElementLe
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
+
+open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.FWT Formalism.L2.Pj
 open NumberField
 
 namespace GlobalTheory.HeckeConjPart
@@ -254,11 +252,14 @@ theorem GlobalTheory.HeckeConjPart.conj_part : ∀ (D : D7) (V : HSp D) (P : For
   rfl
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsLocalHeckeMatrixIntermediateLattice
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
+section -- clump: shared namespace opens
+
+open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.FWT Formalism.L2.Pj
 open NumberField
 open IsDedekindDomain Formalism.L2.NTheta
 open scoped Matrix
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsLocalHeckeMatrixIntermediateLattice
 
 namespace GlobalTheory.HeckeLocMatrix
 
@@ -649,10 +650,6 @@ end GlobalTheory.HeckeLocMatrix
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsLocalMatrixChartSplitIdempotentCompletion
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open NumberField
-open IsDedekindDomain Formalism.L2.NTheta
-open scoped Matrix
 
 namespace GlobalTheory.HatLocalChart
 
@@ -816,10 +813,6 @@ end GlobalTheory.HatLocalChart
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsLocalMatrixChartSplitIdempotentCompletionStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open NumberField
-open IsDedekindDomain Formalism.L2.NTheta
-open scoped Matrix
 
 
 theorem _root_.GlobalTheory.T.exists_local_matrix_chart_split_idempotent_completion : ∀ (D : D7) (e : AE D) (v : HeightOneSpectrum (𝓞 D.host.F))
@@ -835,10 +828,6 @@ theorem _root_.GlobalTheory.T.exists_local_matrix_chart_split_idempotent_complet
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.IdempotentPartCompletedLatticeLocalChart
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open NumberField
-open IsDedekindDomain Formalism.L2.NTheta
-open scoped Matrix
 
 open scoped TensorProduct
 
@@ -1059,8 +1048,11 @@ theorem latGHat_chart : ∀ (D : D7) (V : HSp D) (e : AE D) (v : HeightOneSpectr
 end GlobalTheory.EPartChart
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsHeckeElementIdempotentPartSplitPlaceLattic
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
+
+open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.FWT Formalism.L2.Pj
 open NumberField
 
 namespace GlobalTheory.HeckeLocLift
@@ -1113,13 +1105,10 @@ theorem exists_hecke_ePart : ∀ (D : D7) (V : HSp D) (P : Formalism.L2.DIV.Pl D
 end GlobalTheory.HeckeLocLift
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitDeterminantCongruentElement
 
 open NumberField IsDedekindDomain Matrix Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Mult
 open scoped TensorProduct
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.LatReflection
 
@@ -1133,10 +1122,9 @@ end -- clump:auto
 -- clump: shared namespace opens
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.FWT Formalism.L2.Pj
+open NumberField
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeckeElementKeepsOneSubIdempotentPartLattice
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open NumberField
 
 namespace GlobalTheory.HeckeOffParts
 open scoped Matrix
@@ -1211,8 +1199,6 @@ end GlobalTheory.HeckeOffParts
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsHeckeElementLatticeBetweenPrimeMulSplit
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open NumberField
 
 namespace GlobalTheory.HeckeLocStep
 
@@ -1295,8 +1281,6 @@ end GlobalTheory.HeckeLocStep
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsCosetOfSelfDual
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open NumberField
 
 namespace GlobalTheory.HeckeLatCoset
 

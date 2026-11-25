@@ -299,7 +299,6 @@ end GlobalTheory.KeyPow
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.NonzeroLocusConstMul
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.PowChange

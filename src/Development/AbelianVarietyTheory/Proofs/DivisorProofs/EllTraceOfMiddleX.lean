@@ -370,7 +370,6 @@ section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperator
 open GlobalTheory.IndefiniteRowSideFullHecke.PlusPolynomialRoots (IsTestData PPol Tor Phi PhiOK PhiReal ellKernel Gap NoFixed IsLatticeConj GeomExpansion EllipticPart TraceEq)
 open GlobalTheory.PRep (IsAdmissible)
 open GlobalTheory.TrMult
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Chamber GlobalTheory.TruncKer GlobalTheory.Cusp
 
 noncomputable section
@@ -408,7 +407,6 @@ end -- clump:auto
 open GlobalTheory.IndefiniteRowSideFullHecke.PlusPolynomialRoots (IsTestData PPol Tor Phi PhiOK PhiReal ellKernel Gap NoFixed IsLatticeConj GeomExpansion EllipticPart TraceEq)
 open GlobalTheory.PRep (IsAdmissible)
 open GlobalTheory.TrMult
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Chamber GlobalTheory.TruncKer GlobalTheory.Cusp
 
 noncomputable section
@@ -552,7 +550,6 @@ section -- clump member: Development.WeilBound.RepresentationTheoryGL.LimitMulti
 open GlobalTheory.IndefiniteRowSideFullHecke.PlusPolynomialRoots (IsTestData NoFixed)
 open GlobalTheory.TrMult GlobalTheory.TruncKer
 open Matrix
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 noncomputable section
 
@@ -621,7 +618,6 @@ section -- clump member: Development.WeilBound.RepresentationTheoryGL.LimitMulti
 @[expose] public section
 open GlobalTheory.IndefiniteRowSideFullHecke.PlusPolynomialRoots (IsTestData NoFixed)
 open GlobalTheory.TrMult GlobalTheory.TruncKer
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 noncomputable section
 
@@ -678,8 +674,7 @@ theorem boundT : BoundT := by
   refine ⟨max b (max (1 / a) 1), ?_⟩
   intro τ hτ hbd j
   have col : ∃ i, J i j ≠ 0 := by
-    by_contra hc
-    push_neg at hc
+    by_contra! hc
     have : J.det = 0 := Matrix.det_eq_zero_of_column_eq_zero j hc
     rw [this] at hdet
     exact not_isUnit_zero hdet
@@ -688,8 +683,7 @@ theorem boundT : BoundT := by
   have hτ2 := norm_entry J τ hτ i j hij
   rcases lt_trichotomy ‖l j‖ 1 with hlt | heq | hgt
   · have hli : 1 < ‖l i‖ := by
-      by_contra hc
-      push_neg at hc
+      by_contra! hc
       have h0 : 0 ≤ ‖l j‖ := norm_nonneg _
       nlinarith
     have ha' := (hbd i hli).1
@@ -883,7 +877,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formali
 open GlobalTheory.IndefiniteRowSideFullHecke.PlusPolynomialRoots (IsTestData NoFixed)
 open GlobalTheory.TrMult GlobalTheory.TruncKer
 open GlobalTheory.IndefiniteRowSideFullHecke.ConstantTermVanishing GlobalTheory.Proof.parabolic_and_constant_term
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 noncomputable section
 
@@ -1577,7 +1570,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formali
 open GlobalTheory.IndefiniteRowSideFullHecke.PlusPolynomialRoots (IsTestDataX NoFixed)
 open GlobalTheory.TrMult GlobalTheory.TruncKer
 open GlobalTheory.IndefiniteRowSideFullHecke.NonFieldTypeVanishingAlt GlobalTheory.Chamber GlobalTheory.Cusp GlobalTheory.ArchVanish
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 noncomputable section
 namespace GlobalTheory.PsCo.Plug
 open MainStatements.WeightKernel
@@ -1627,7 +1619,6 @@ open GlobalTheory.AdelicU GlobalTheory.OpTrace GlobalTheory.Orb GlobalTheory.Aut
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.IndefR.Mult
 open GlobalTheory.IndefiniteRowSideFullHecke.PlusPolynomialRoots (IsTestDataX NoFixed)
 open GlobalTheory.TrMult GlobalTheory.TruncKer
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 namespace GlobalTheory.PsCo.Plug
 open MainStatements.WeightKernel
 theorem hyperZero_of_intX (hI : MainStatements.RegularCuspidalTrace.RegClassInt) (hRS : GlobalTheory.IndefiniteRowSideFullHecke.CentralizerTensorForms.RegularSemisimple) : HyperZeroX :=
@@ -1643,7 +1634,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formali
 open GlobalTheory.IndefiniteRowSideFullHecke.PlusPolynomialRoots (IsTestDataX PPol Tor Phi PhiOK PhiReal ellKernel Gap NoFixed IsLatticeConj GeomExpansion EllipticPartX TraceEq)
 open GlobalTheory.PRep (IsAdmissible)
 open GlobalTheory.TrMult
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Chamber GlobalTheory.TruncKer GlobalTheory.Cusp
 noncomputable section
 namespace GlobalTheory.PsCo.Plug
@@ -1742,7 +1732,6 @@ open GlobalTheory.AdelicU GlobalTheory.OpTrace GlobalTheory.Orb GlobalTheory.Aut
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.IndefR.Mult
 open GlobalTheory.PRep (IsAdmissible)
 open GlobalTheory.TrMult
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem GlobalTheory.PsCo.Plug.ellipticSideDirect : GlobalTheory.Published.CuspTraceClass → EllTraceX := fun tc =>
   GlobalTheory.PsCo.Plug.ellTrace_of_middleX MainStatements.WeightKernel.regClassInt_holds (GlobalTheory.T.siegel_implies_regular_class_finite CompanionTheory.Prw.siegelCore_holds) (GlobalTheory.T.cuspidalOperators_vanishingRadicalIntegrals_unitaryGroup tc)

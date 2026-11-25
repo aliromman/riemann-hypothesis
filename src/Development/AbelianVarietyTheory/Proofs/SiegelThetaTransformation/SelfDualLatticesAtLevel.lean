@@ -268,7 +268,6 @@ open GlobalTheory.SW hiding Level
 open GlobalTheory.Member (cF)
 open GlobalTheory.AdLat (hermA sg latOf)
 open scoped TensorProduct ComplexConjugate Real Classical
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7} {k : ℕ}
 

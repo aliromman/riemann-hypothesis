@@ -65,7 +65,6 @@ theorem _root_.GlobalTheory.T.groupExpansion_bijective_of_completeDVR : Laws →
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.ImportsBis
-attribute [local instance] Over.cartesianMonoidalCategory
 open scoped CategoryTheory.Obj
 
 

@@ -154,7 +154,6 @@ open MeasureTheory Matrix NumberField Formalism.BasicNotions Formalism.MainNotio
   Formalism.L2.SG.LocWSOf Formalism.MainNotions.S.Cnt Formalism.L2.SG.KappaOffDiagonal Formalism.MainNotions.LatticeGluingRadicals
 
 namespace GlobalTheory.TypeAsm.FibCard
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section Main
 variable {D : D7} {X : HidaSetting D}
@@ -198,7 +197,6 @@ end Main
 end GlobalTheory.TypeAsm.FibCard
 
 namespace GlobalTheory.TypeAsm.FibCard
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 section Main2
 variable {D : D7} {X : HidaSetting D}
 
@@ -246,7 +244,6 @@ end Main2
 end GlobalTheory.TypeAsm.FibCard
 
 namespace GlobalTheory.TypeAsm.FibCard
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem fibCardC : FibCardC := by
   intro D large₂ X Y u hStd t₀ s hs
@@ -495,7 +492,6 @@ end GlobalTheory.TypeAsm.InjProof
 
 namespace GlobalTheory.TypeAsm.InjProof
 open Formalism.HermitianLatticeCounting.S6 GlobalTheory.HermLat
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section Obj
 variable {D : D7} {X : HidaSetting D}
@@ -534,7 +530,6 @@ end GlobalTheory.TypeAsm.InjProof
 
 namespace GlobalTheory.TypeAsm.InjProof
 open Formalism.HermitianLatticeCounting.S6 GlobalTheory.HermLat
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem injC : InjC := by
   intro D large₂ X Y u hStd W HW hEmb t₁ t₂ hN hlam hEqv h hH₁ hH₂
@@ -623,7 +618,6 @@ end -- clump:auto
 open scoped Classical ENNReal Pointwise
 open MeasureTheory Matrix NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Formalism.L2.SG.TermOp Formalism.L2.SG.Full
   Formalism.L2.SG.LocWSOf Formalism.MainNotions.S.Cnt Formalism.L2.SG.KappaOffDiagonal Formalism.MainNotions.KappaEndpoints Formalism.L2.SG.RowsConc GlobalTheory.TypeAsm GlobalTheory.TypeAsm.PerRow
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.TypeAsm.PerRow
 
@@ -938,7 +932,6 @@ open scoped Classical ENNReal Pointwise
 open MeasureTheory Matrix NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Formalism.L2.SG.TermOp Formalism.L2.SG.Full
   Formalism.L2.SG.LocWSOf Formalism.MainNotions.S.Cnt Formalism.L2.SG.KappaOffDiagonal Formalism.MainNotions.KappaEndpoints Formalism.L2.SG.RowsConc
 namespace GlobalTheory.TypeAsm.PerRow
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem sum_le_encard_fibres {α Θ : Type} (S : Finset α) (xf yf : α → ℕ) (Φ : α → Θ) (Tr : ℕ → ℕ → Set Θ) (f : α → ℝ)
     (B₁ B₂ : ℕ → ℝ) (R₁ R₂ : Finset ℕ) (hf : ∀ a ∈ S, 0 ≤ f a)

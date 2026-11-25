@@ -110,7 +110,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.Toroidal GlobalTheory.Models GlobalTheory.LN GlobalTheory.ShFam GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZH GlobalTheory.Poinc
 open scoped CategoryTheory.Obj
 open GlobalTheory.UPoinc
-attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 theorem _root_.GlobalTheory.UPoinc.exists_zhModel_proper_over_uSetup : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H), 1 ≤ Dw.p + Dw.q → ∀ (l : Geo.Tor.Level H) (Xo : Moduli Dw l) (cf : Coeff l) (C : UCompact Xo cf), ∀ (X : USetup C), IsProjOver X.M.s → ∃ (Y : RatModel X.o₁ X.Ω₁) (U₀ : Y.Z.Opens) (EE : Y.Lat X.S.J) (_ : ZHOut X.ρ Y U₀ EE) (q : Y.Z ⟶ X.M.Z), X.S.Over₀ Y U₀ ∧ X.S.IsEE Y U₀ EE ∧ IsProper q ∧ Y.pt ≫ q = X.M.pt ∧ (∀ z : X.M.Z, _root_.IsPreconnected (q.base ⁻¹' {z})) ∧ ∀ (p : ℕ) [Fact p.Prime] (z : X.M.Z) (ct : UCTrait X p z), ∃ y : Sp (OO p) ⟶ Y.Z, y ≫ q = ct.y := by
@@ -146,10 +145,9 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.Toroidal GlobalTheory.Models GlobalTheory.LN GlobalTheory.ShFam GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZH GlobalTheory.Poinc GlobalTheory.Poinc.FibLat
 open scoped CategoryTheory.Obj
 open GlobalTheory.UPoinc
+open Classical
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CharacterLatticeAtFibreConstPreconnected
-attribute [local instance] Over.cartesianMonoidalCategory
-open Classical
 
 namespace GlobalTheory.UPoinc.GFib
 
@@ -173,8 +171,6 @@ end GlobalTheory.UPoinc.GFib
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CharacterLatticeAtFibreUniqueUpToIso
-attribute [local instance] Over.cartesianMonoidalCategory
-open Classical
 
 
 namespace GlobalTheory.UPoinc.GFibUniq
@@ -195,8 +191,6 @@ end GlobalTheory.UPoinc.GFibUniq
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CharacterLatticeUnitaryClassicalTraitCentre
-attribute [local instance] Over.cartesianMonoidalCategory
-open Classical
 open GlobalTheory.Poinc.Eq8 GlobalTheory.TorusPart GlobalTheory.ZM GlobalTheory.SiegelTor
 
 
@@ -553,8 +547,6 @@ end GlobalTheory.UPoinc.GFibCentre
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryEndomorphismsTorsionExtendSemiAbelian
-attribute [local instance] Over.cartesianMonoidalCategory
-open Classical
 
 
 namespace GlobalTheory.UPoinc.GFib
@@ -706,10 +698,9 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.Toroidal GlobalTheory.Models GlobalTheory.LN GlobalTheory.ShFam GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZH GlobalTheory.Poinc
 open scoped CategoryTheory.Obj
 open GlobalTheory.UPoinc
+open Classical
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LabelledUnitaryTraitsLatticesEquivConnectedFibre
-attribute [local instance] Over.cartesianMonoidalCategory
-open Classical
 open GlobalTheory.Poinc.FibLat
 
 namespace GlobalTheory.UPoinc.GFib
@@ -794,8 +785,6 @@ theorem GlobalTheory.UPoinc.GFib.labelled_lattices_equiv : ∀ (E : Type) [Field
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLinearEquivLabelledLatticesUnitaryTraits
-attribute [local instance] Over.cartesianMonoidalCategory
-open Classical
 
 theorem _root_.GlobalTheory.UPoinc.exists_linearEquiv_labelled_of_uIsLabW : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H), 1 ≤ Dw.p + Dw.q → ∀ (l : Geo.Tor.Level H) (Xo : Moduli Dw l) (cf : Coeff l) (C : UCompact Xo cf), ∀ (X : USetup C) (wi : UWit X), IsProjOver X.M.s → ∀ (p : ℕ) [Fact p.Prime] (z : X.M.Z) (ct ct' : UCTrait X p z) (yy : X.S.Gam →+ ModN (X.S.r * X.S.N) ct.T.P.D.toPre.X) (yy' : X.S.Gam →+ ModN (X.S.r * X.S.N) ct'.T.P.D.toPre.X), UIsLabW X wi ct yy → UIsLabW X wi ct' yy' → ∃ e : ct.T.P.D.toPre.X ≃ₗ[𝓞 E] ct'.T.P.D.toPre.X, ∀ a μ, yy a = QuotientAddGroup.mk μ → yy' a = QuotientAddGroup.mk (e μ) := by
   intro E _ _ _ H Dw hpq l Xo cf C X wi hproj p _ z ct ct' yy yy' hl hl'

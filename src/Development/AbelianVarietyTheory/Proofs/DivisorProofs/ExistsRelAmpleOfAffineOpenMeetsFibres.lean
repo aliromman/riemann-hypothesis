@@ -104,7 +104,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EffCartierComapOfLocal
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.FactorialLocus
 
@@ -254,7 +253,6 @@ end GlobalTheory.FactorialLocus
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAffinePreimageLe
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.Tube
 
@@ -275,7 +273,6 @@ end GlobalTheory.Tube
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsRegularRingLocalizationOfComapEqBot
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.GenericFibreFactorial
 
@@ -347,7 +344,6 @@ end GlobalTheory.GenericFibreFactorial
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCartierLocusOverDenseOpenBase
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DivStart
 
@@ -379,7 +375,6 @@ end GlobalTheory.DivStart
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCartierLocusOverDenseOpenBaseStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_cartier_locus_over_dense_open_base : ∀ (R : Type) [CommRing R] [IsNoetherianRing R] [IsDomain R] [IsIntegrallyClosed R] (A : Over (Sp R)) [GrpObj A], IsAbelianScheme A → ∀ V : A.left.Opens, IsAffineOpen V → (∀ s : Sp R, ∃ x ∈ V, A.hom x = s) → ∃ (U : (Sp R).Opens) (c : Pic (A.hom ⁻¹ᵁ U ⊔ V).toScheme), (U : Set (Sp R)).Nonempty ∧ IsLocus c ((A.hom ⁻¹ᵁ U ⊔ V).ι ⁻¹ᵁ V) := by
   first | exact @GlobalTheory.DivStart.exists_locus_over_dense_open
@@ -440,7 +435,6 @@ open scoped CategoryTheory.Obj
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NonvanishingLocusExtendFromBigOpen
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 
@@ -463,7 +457,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AffineOpenMeetingFibresIsNonvanishingLocus
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.AffineLocus
 
@@ -504,7 +497,6 @@ end -- clump: shared namespace opens
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AbLaw GlobalTheory.CechPic GlobalTheory.AbDual GlobalTheory.DualCon
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 
@@ -527,7 +519,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianVarietyFiniteCoverByTranslatePairs
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.AbCover
 
@@ -591,7 +582,6 @@ end GlobalTheory.AbCover
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFiniteTranslatesCoverGeometricFibre
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.FibreCover
 
@@ -640,7 +630,6 @@ end GlobalTheory.FibreCover
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsAffineOpenPreimageAddInfPreimageSubGrpScheme
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.SumAffine
 
@@ -696,7 +685,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TranslateMulInvIsNonvanishingLocusSquare
-attribute [local instance] Over.cartesianMonoidalCategory
 namespace GlobalTheory.SquareLocus
 
 
@@ -723,7 +711,6 @@ end GlobalTheory.SquareLocus
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsAmpleLineBundlePullbackOfTranslates
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory
@@ -754,7 +741,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelAmpleOfAffineNonzeroLocusAbelianSchemeNoether
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.AffineLocusAmple
@@ -774,7 +760,6 @@ end GlobalTheory.AffineLocusAmple
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsRelAmpleOfAffineOpenMeetsFibres
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ProjNormal
 

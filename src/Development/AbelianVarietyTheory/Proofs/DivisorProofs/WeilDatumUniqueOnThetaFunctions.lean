@@ -64,7 +64,6 @@ theorem _root_.GlobalTheory.T.unitary_adelic_character_trivial_rat_and_split : â
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilDatumUniqueOnThetaFunctions
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.WeilUniq
 

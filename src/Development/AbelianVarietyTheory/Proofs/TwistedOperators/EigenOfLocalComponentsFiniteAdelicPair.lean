@@ -55,7 +55,6 @@ open NumberField IsDedekindDomain MeasureTheory Formalism.BasicNotions Formalism
 open scoped TensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.TendstoPlaceComponentsFiniteAdelicUnitary
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open Filter Topology
 
 namespace GlobalTheory.PlaceLimit
@@ -170,7 +169,6 @@ theorem _root_.GlobalTheory.T.tendsto_placeComponents_finiteAdelicUnitary : ∀ 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.EigenOfLocalComponentsFiniteAdelicPair
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.PlaceProduct
 

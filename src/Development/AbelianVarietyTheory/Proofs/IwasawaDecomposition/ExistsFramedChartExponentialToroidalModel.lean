@@ -160,7 +160,6 @@ end GlobalTheory.ShFam.Hor.LogCh
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsHolomorphicFibreExponentialsNearCentre
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.ShFam.Hor.LogCh
@@ -235,8 +234,6 @@ end -- clump: shared namespace opens
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory GlobalTheory.Toroidal GlobalTheory.ShFam GlobalTheory.ShFam.Pad GlobalTheory.ShFam.Hor GlobalTheory.ShFam.Hor.LogCh
 open scoped Matrix CategoryTheory.Obj Topology
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ShFam.Hor.LogCh
 

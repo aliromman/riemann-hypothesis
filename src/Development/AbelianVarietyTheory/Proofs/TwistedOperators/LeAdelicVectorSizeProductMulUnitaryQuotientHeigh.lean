@@ -51,7 +51,6 @@ import Mathlib.Tactic.Polynomial.Basic
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Matrix NumberField IsDedekindDomain
 open scoped NNReal TensorProduct
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 namespace GlobalTheory.NormFin
@@ -82,7 +81,6 @@ end -- clump:auto
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Matrix NumberField IsDedekindDomain
 open scoped NNReal TensorProduct
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.NormInf
 
@@ -107,7 +105,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.LeAdelicVectorSizeProductMulUnitaryQuotientHeigh
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Matrix
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 
@@ -246,8 +243,7 @@ theorem rat_size {n : ℕ} (ξ : Fin n → D.host.E) (hξ : ξ ≠ 0) :
     simp only [Set.mem_union, Set.mem_setOf_eq, not_or, not_not, Function.mem_mulSupport, not_le] at hc
     apply hv
     refine le_antisymm (not_lt.1 hc.1) ?_
-    by_contra hlt
-    push_neg at hlt
+    by_contra! hlt
     have := (ha v).trans_lt (pow_lt_one₀ zero_le hlt hd)
     rw [hc.2] at this
     exact lt_irrefl _ this
@@ -277,8 +273,7 @@ theorem rat_size {n : ℕ} (ξ : Fin n → D.host.E) (hξ : ξ ≠ 0) :
     rw [← NNReal.coe_le_coe, coe_nnnorm, InfinitePlace.norm_embedding_eq, NNReal.coe_pow]
     exact hA w
   have h1 : (1 : ℝ≥0) ≤ (∏ w, vInf w (fun i => incA D (ξ i))) * ∏ᶠ v, vFin v (fun i => incA D (ξ i)) := by
-    by_contra hlt
-    push_neg at hlt
+    by_contra! hlt
     exact absurd hle (not_le.2 (pow_lt_one₀ zero_le hlt hd))
   exact_mod_cast h1
 

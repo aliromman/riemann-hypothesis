@@ -340,8 +340,7 @@ theorem main (C : Type) [NontriviallyNormedField C] [IsUltrametricDist C] [Compl
     fun Φ => ⟨lin_dvd hπ Φ, ?_⟩, fun Φ hΦ => ?_⟩
   · rintro ⟨G, rfl⟩
     rw [map_mul, ev_lin, zero_mul]
-  · by_contra hc
-    push_neg at hc
+  · by_contra! hc
     exact hΦ (eq_zero_of_forall_dvd hπ Φ hc)
 
 end GlobalTheory.SummableSeriesBounds
@@ -920,7 +919,6 @@ end GlobalTheory.MBLow
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFamilyLocalDomainOfTwoFibres
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.MBLow.TwoFibres
@@ -1183,7 +1181,6 @@ open GlobalTheory GlobalTheory.LieHt GlobalTheory.Cartier GlobalTheory.ThetaOnto
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsThetaPtOfThetaConstantsAndFirstJets
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.MBLow.ThetaOfJet
@@ -1290,7 +1287,6 @@ end GlobalTheory.MBLow.ThetaOfJet
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KeyRuleConstantAlongDeformationOfClauses
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.MBLow.KeyTop
 

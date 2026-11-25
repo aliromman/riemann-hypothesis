@@ -49,8 +49,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 
 namespace GlobalTheory.FirstBlocksReduction
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 open GlobalTheory.ExportSeries GlobalTheory.FlatVecSum
 
 variable {D : D7} {S T : HSp D}
@@ -125,7 +123,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Form
 open scoped TensorProduct
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FiniteCosetRepresentativesLevel
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 namespace GlobalTheory.LevReps
@@ -136,7 +133,6 @@ end GlobalTheory.LevReps
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FiniteCosetRepresentativesLevelStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 

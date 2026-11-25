@@ -69,11 +69,10 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRin
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj MeasureTheory
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.BoxProductsBasisSpanPowObjSections
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.AbLaw
 open GlobalTheory.KeyKa
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.BoxProductsBasisSpanPowObjSections
 
 
 namespace GlobalTheory.BoxSpan
@@ -195,16 +194,11 @@ end GlobalTheory.BoxSpan
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.BoxProductsBasisSpanPowObjSectionsStatement
-open GlobalTheory.AbLaw
-open GlobalTheory.KeyKa
 
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsEnumKerTransposeSimilitudePoints
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.AbLaw
-open GlobalTheory.KeyKa
 
 namespace GlobalTheory.KeyKa
 
@@ -233,8 +227,7 @@ theorem exists_enum_ker_transpose : Out.Laws → ∀ (K : Type) [Field K] [IsAlg
     ring
   obtain ⟨e⟩ := Finite.card_eq.mp hc
   refine ⟨fun I => (e I).1, fun I I' hI p => ?_, fun I c => ?_⟩
-  · by_contra hne
-    push_neg at hne
+  · by_contra! hne
     refine hI (e.injective (Subtype.ext (funext fun r => ?_)))
     have hp : p = IsLocalRing.closedPoint K := Subsingleton.elim _ _
     subst hp
@@ -247,21 +240,14 @@ end GlobalTheory.KeyKa
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsNormalisingUnitSimilitudeOriginStatement
-open GlobalTheory.AbLaw
-open GlobalTheory.KeyKa
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsSectionBoxProductDivGeneratorStatement
-open GlobalTheory.AbLaw
-open GlobalTheory.KeyKa
 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaLawProofs.ExistsSquareDeterminantComparisonIsAlgClosed
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.AbLaw
-open GlobalTheory.KeyKa
 
 
 namespace GlobalTheory.SimilDet

@@ -77,7 +77,6 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Form
 open NumberField Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.RationalMapColumnsMemLatGIffMovedFinitePart
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 
@@ -236,7 +235,6 @@ end GlobalTheory.ColSplit
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaDictionaryLatticeOfFrameCoordinates
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open scoped TensorProduct
 
 namespace GlobalTheory.DictLatPin
@@ -336,7 +334,6 @@ theorem GlobalTheory.DictLatPin.lat_of_frAt : ∀ (D : D7) (G : Type) [Group G] 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ColumnsMemPeriodLatticeIffFinitePartMovedLattice
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.AHPhase
 
@@ -405,7 +402,6 @@ theorem GlobalTheory.AHPhase.cols_per_iff_latO : ∀ (D : D7), GlobalTheory.Inde
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.StdCharSymplecticRealAdelicPointsModelForm
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.ArchPhase
 open GlobalTheory.IndefiniteRowSideFullHecke.OrthonormalLatticeThetaValues Matrix
@@ -571,7 +567,6 @@ end GlobalTheory.ArchPhase
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.PsiRealPtEqExpIm
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.AHPhase
 

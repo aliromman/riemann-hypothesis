@@ -63,7 +63,6 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Ro
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.UnfoldedVacuaAreRealDatumLargeDepth
 @[expose] public noncomputable section
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 open scoped TensorProduct
 namespace GlobalTheory.VacRealPf

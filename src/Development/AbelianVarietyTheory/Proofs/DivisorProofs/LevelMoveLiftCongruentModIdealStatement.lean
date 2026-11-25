@@ -51,7 +51,6 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.BasicNotions.
 open scoped TensorProduct Matrix
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LevelMoveLiftCongruentModIdeal
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 namespace GlobalTheory.LevelMoveCong

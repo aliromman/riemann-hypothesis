@@ -71,7 +71,6 @@ open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZM
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTorsionSectionOfTorsionRationalOverFractio
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.TorsConst
 
@@ -186,7 +185,6 @@ attribute [local instance] Over.cartesianMonoidalCategory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GrpPullbackOfSameFibreWithSquareBundle
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.FibrePull
@@ -251,7 +249,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilPairingEqZpowOfFieldPointDomain
 @[expose] public section
-attribute [local instance] Over.cartesianMonoidalCategory
 
 noncomputable section
 namespace GlobalTheory.WeilRoot
@@ -361,7 +358,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsGrpPullbackSelf
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.LevSpread

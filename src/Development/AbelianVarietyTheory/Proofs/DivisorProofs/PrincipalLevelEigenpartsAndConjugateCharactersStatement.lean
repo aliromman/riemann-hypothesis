@@ -86,7 +86,6 @@ import Mathlib.Tactic.Polynomial.Basic
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S IsDedekindDomain NumberField Formalism.L2.Theta Formalism.L2.NTheta Formalism.IndefR.Mult Formalism.IndefR.Links GlobalTheory.SphPar
 open scoped TensorProduct
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory
 
@@ -157,8 +156,6 @@ open Formalism.IndefR Formalism.IndefR.Mult
 open scoped TensorProduct
 
 namespace GlobalTheory.HeckeOrthSum
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section Abstract
 
@@ -288,7 +285,6 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Form
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Pj Formalism.DivisionValues Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.FWT
 open scoped TensorProduct InnerProductSpace Matrix
 open GlobalTheory.LiftLower
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.PrincipalDecomp
 
@@ -342,8 +338,6 @@ open Formalism.IndefR Formalism.IndefR.Mult Formalism.IndefR.Lev
 open scoped TensorProduct
 
 namespace GlobalTheory.HeckeKeepsGood
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7}
 
@@ -404,7 +398,6 @@ open scoped TensorProduct InnerProductSpace Matrix
 open GlobalTheory.LiftLower
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PrincipalLevelEigenpartsAndConjugateCharacters
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 namespace GlobalTheory.PrincipalDecomp

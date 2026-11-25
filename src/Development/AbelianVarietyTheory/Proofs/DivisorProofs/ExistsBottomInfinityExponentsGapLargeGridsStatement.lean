@@ -54,7 +54,6 @@ section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.E
 @[expose] public section
 open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (Tri)
 open scoped TensorProduct
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 noncomputable section
 

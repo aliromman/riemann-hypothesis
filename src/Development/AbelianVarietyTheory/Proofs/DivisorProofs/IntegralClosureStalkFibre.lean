@@ -69,7 +69,6 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.Poinc
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PrimeOfRingOnEqNonunitsAtPoint
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Points RatModel
 
 namespace GlobalTheory.Poinc
@@ -130,7 +129,6 @@ theorem GlobalTheory.Poinc.finite_preimage_integral : ∀ (o₁ Ω₁ o₂ Ω₂
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegralClosureStalkFibre
-attribute [local instance] Over.cartesianMonoidalCategory
 
 noncomputable section
 namespace GlobalTheory.Poinc.FinPts
@@ -354,8 +352,7 @@ theorem maximal_point (hN : ReciprocityTheory.ChartRestriction.G.Geo.Tor.IsNorma
   have fwd : ∀ b : integralClosure (M₁.Z.presheaf.stalk z₁) Ω₂, b ∈ 𝔷 →
       ((b : Ω₂) = 0 ∨ (b : Ω₂)⁻¹ ∉ M₂.O z₂) := by
     intro b hb
-    by_contra hcon
-    push_neg at hcon
+    by_contra! hcon
     obtain ⟨hb0, hbinv⟩ := hcon
     obtain ⟨c, hc, d, hd, hd0, hdinv, hcd⟩ := GlobalTheory.T.exists_fraction_ringOn_of_mem_modelLocalRing _ _ M₂ _ hU₂ z₂ hz₂U _ hbinv
     have e : ψ ⟨d, hd⟩ = ψ ⟨c, hc⟩ * b := by

@@ -54,7 +54,6 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HolomorphicPointExt
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj Filter Topology TopologicalSpace TensorProduct
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.Cris GlobalTheory.DeRham GlobalTheory.AnPer
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.AnPer.TaylorCore
 

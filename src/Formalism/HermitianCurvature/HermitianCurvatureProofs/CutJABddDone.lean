@@ -47,8 +47,6 @@ namespace Formalism.FourierDecayAlt.P.CutMP.JA
 open NumberField Formalism.FourierDecayAlt.P.CutMP
 
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 theorem jABddKapQQ_of_kapRealiser (hR : KapRealiser) : JABddKapQQ := by
   obtain ⟨K, hK, hR⟩ := hR
   refine ⟨K, hK, ?_⟩

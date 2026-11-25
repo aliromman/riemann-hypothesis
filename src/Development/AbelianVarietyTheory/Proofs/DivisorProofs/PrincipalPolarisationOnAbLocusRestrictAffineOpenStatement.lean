@@ -49,7 +49,6 @@ open scoped CategoryTheory.Obj
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PrincipalPolarisationOnAbLocusRestrictAffineOpen
 @[expose] public noncomputable section
-attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 

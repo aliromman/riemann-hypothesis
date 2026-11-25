@@ -79,10 +79,9 @@ section -- clump: shared namespace opens
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S Formalism.L2.Theta Matrix
 open Formalism.REAL GlobalTheory.SmoothGlob GlobalTheory.TypeSum
 open scoped TensorProduct
+open GlobalTheory.KFourier MeasureTheory
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.CompactUnitaryRightDerivRealLinearDirection
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.KFourier MeasureTheory
 
 
 namespace GlobalTheory.KFourier
@@ -222,8 +221,6 @@ end GlobalTheory.KFourier
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.CompactUnitaryHaarSmallBallLowerBound
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.KFourier MeasureTheory
 
 namespace GlobalTheory.HaarSmallBall
 
@@ -447,10 +444,9 @@ end -- clump:auto
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S Formalism.L2.Theta Matrix
 open Formalism.REAL GlobalTheory.SmoothGlob GlobalTheory.TypeSum
 open scoped TensorProduct
+open GlobalTheory.KFourier MeasureTheory
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.HilbertSchmidtCompactUnitarySubOneEqTrace
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.KFourier MeasureTheory
 
 namespace GlobalTheory
 
@@ -489,8 +485,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.HilbertSchmidtCompactUnitarySubOneLeFourMul
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.KFourier MeasureTheory
 
 namespace GlobalTheory.HsLe
 
@@ -536,8 +530,6 @@ end GlobalTheory.HsLe
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsCompactUnitaryKernelConcentratedNearOne
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.KFourier MeasureTheory
 
 
 namespace GlobalTheory.KFourier
@@ -750,8 +742,6 @@ end GlobalTheory.KFourier
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsSpanningLieAlgebraCoefSqBound
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.KFourier MeasureTheory
 
 namespace GlobalTheory.KGap
 
@@ -825,8 +815,6 @@ end GlobalTheory.KGap
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.L2normLeIntegralKernelMulTranslateDiff
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.KFourier MeasureTheory
 
 
 namespace GlobalTheory.KFourier
@@ -967,8 +955,6 @@ end GlobalTheory.KFourier
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.OrthogonalLowerDegreeKernelTranslates
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.KFourier MeasureTheory
 
 namespace GlobalTheory.KFourier
 
@@ -1001,8 +987,6 @@ end GlobalTheory.KFourier
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.PolyTranslationL2Bound
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.KFourier MeasureTheory
 
 
 namespace GlobalTheory.KFourier
@@ -1109,8 +1093,6 @@ end GlobalTheory.KFourier
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.CompactUnitaryPolynomialSpectralGap
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.KFourier MeasureTheory
 
 
 namespace GlobalTheory.KFourier
@@ -1237,8 +1219,6 @@ end GlobalTheory.KFourier
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.CompactUnitaryPolynomialSpectralGapStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.KFourier MeasureTheory
 
 
 

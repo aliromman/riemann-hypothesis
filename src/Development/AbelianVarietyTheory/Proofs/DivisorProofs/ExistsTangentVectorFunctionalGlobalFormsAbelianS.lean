@@ -105,7 +105,6 @@ open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G.Geo.T
 open MonObj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CmpFormEqZeroOfPullbackVanishing
-attribute [local instance] Over.cartesianMonoidalCategory
 
 open GlobalTheory.CechDR KaehlerDifferential
 attribute [local instance] GlobalTheory.Cris.opModule GlobalTheory.Cris.isCentralScalar_kaehler GlobalTheory.Cris.isScalarTower_kaehler
@@ -278,7 +277,6 @@ end GlobalTheory.PtVanish
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLieBasisSmoothCommGroupSchemeField
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.LieField
@@ -291,7 +289,6 @@ end GlobalTheory.LieField
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CmpFormEqZeroOfTangent
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.LieInjField
 
@@ -415,8 +412,6 @@ end -- clump: shared namespace opens
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry TensorProduct
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.DeRham GlobalTheory.CechDR
 open scoped CategoryTheory.Obj
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.LieDual
 

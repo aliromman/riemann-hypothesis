@@ -60,7 +60,6 @@ open IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes 
 open scoped TensorProduct Matrix
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ComponentRepresentativesInjectiveDoubleCoset
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.RepsInj
 open Matrix GlobalTheory.AdLat GlobalTheory.UCls

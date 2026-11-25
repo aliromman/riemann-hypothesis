@@ -89,7 +89,6 @@ import Mathlib.RingTheory.DualNumber
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AbLaw GlobalTheory.CechPic GlobalTheory.AbDual GlobalTheory.DualCon
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.DualCon.LiftInduct
@@ -261,7 +260,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsMonoClassifyingOfInjectiveFamily
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.DualCon
@@ -300,7 +298,6 @@ end GlobalTheory.DualCon -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasProperSmoothDualRepresentativeFieldPoint
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DualCon.FieldRep
 
@@ -324,7 +321,6 @@ end GlobalTheory.DualCon.FieldRep
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.OpenImmersionClassifyingFamilyChart
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.RepChart
@@ -394,7 +390,6 @@ end GlobalTheory.RepChart
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FieldChartOfInj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DualOpen
 
@@ -418,7 +413,6 @@ end GlobalTheory.DualOpen
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LiftsAlongPrincipalSmallExtension
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.DualOpen
@@ -449,7 +443,6 @@ end GlobalTheory.DualOpen
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianSchemeUnitsLiftAlongThickening
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.DualOpen
@@ -495,21 +488,18 @@ end GlobalTheory.DualOpen
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdditiveFamilyOfTrivialModEpsilonStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.additiveFamily_of_trivial_mod_epsilon : ∀ (S : Scheme.{0}) (A : Over S) [GrpObj A], IsAbelianScheme A → ∀ (k : Type) [Field k] (s : Sp (DualNumber k) ⟶ S) (D : LB (A ⊗ Over.mk s).left) (hD : D.IsLB), GlobalTheory.CechPic.pull (A ◁ ptMap s (dnFst k)).left (cls D hD) = 0 → Fam A D := by
   first | exact @GlobalTheory.DualOpen.fam_of_triv_mod_eps
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCechCocycleOneOnThickeningStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem _root_.GlobalTheory.T.exists_cechCocycle_one_on_thickening : ∀ (X X₀ : Scheme.{0}) (i : X₀ ⟶ X) [IsClosedImmersion i] [Surjective i] (c : Pic X), GlobalTheory.CechPic.pull i c = 0 → ∃ (D : LB X) (hD : D.IsLB), cls D hD = c ∧ ∀ a b, pullU i _ (D.g a b) = 1 := by
   first | exact @GlobalTheory.CechPic.exists_cocycle_one_on_thickening
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPicardClassExtendAffineMilnorSquare
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.DualOpen
@@ -636,7 +626,6 @@ end GlobalTheory.DualOpen
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GlueMorphismsIntoAffineOpenMilnorSquare
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DualOpen
 
@@ -687,7 +676,6 @@ end GlobalTheory.DualOpen
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AffineMilnorSquareOfCartesianRingSquare
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DualOpen
 
@@ -715,7 +703,6 @@ end GlobalTheory.DualOpen
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmallExtensionDualNumberFibreProductAffineMilnor
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DualOpen
 
@@ -839,7 +826,6 @@ theorem _root_.GlobalTheory.T.smallExtension_dualNumber_fibreProduct_affineMilno
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLineBundleFamilyAgreeingSmallExtensionTang
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DualOpen.SmallExt
 
@@ -973,7 +959,6 @@ theorem GlobalTheory.DualOpen.exists_same_of_smallExt : ∀ (S : Scheme.{0}) [Is
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothExistsPointLiftSquareZeroLocalRing
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.SmoothPtLift
 
@@ -1045,7 +1030,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LiftsAlongSmallExtensionOfDualNumberLifting
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DualOpen
 
@@ -1087,7 +1071,6 @@ theorem _root_.GlobalTheory.T.dualNumber_fieldHom_flat_surjective : ∀ (k K : T
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLiftMonoOfFpqcCoverLift
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DualOpen
 
@@ -1112,7 +1095,6 @@ end GlobalTheory.DualOpen
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsMonoFiniteTypeAgreementLocusInjectiveFamil
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.DualGraph
@@ -1195,7 +1177,6 @@ end GlobalTheory.DualGraph
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SubsingletonSpectrumDualNumber
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DualOpen
 
@@ -1269,7 +1250,6 @@ end GlobalTheory.DualOpen
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LiftsAlongOfSmoothInj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DualOpen
 
@@ -1294,7 +1274,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothInjectiveFamilyLiftsSmallArtinian
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DualCon
 

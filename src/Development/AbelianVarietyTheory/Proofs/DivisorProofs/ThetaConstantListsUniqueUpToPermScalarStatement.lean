@@ -55,7 +55,6 @@ open GlobalTheory GlobalTheory.ZM GlobalTheory.ZH GlobalTheory.UMin GlobalTheory
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaConstantListsUniqueUpToPermScalar
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UMin.ThUniq
 

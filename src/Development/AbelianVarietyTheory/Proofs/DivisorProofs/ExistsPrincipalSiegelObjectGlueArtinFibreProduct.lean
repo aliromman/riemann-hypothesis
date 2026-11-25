@@ -1323,7 +1323,6 @@ end GlobalTheory.SpecFibreProduct
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PicEqZeroOfPullbacksEqZeroArtinFibreProduct
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ArtinPicGlue
 
@@ -1420,7 +1419,6 @@ open GlobalTheory.AbLaw
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 namespace GlobalTheory.SharpLift
@@ -1511,7 +1509,6 @@ open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SiegelPrincipalArtinianOfPrincipalPullback
 open GlobalTheory.CechPic GlobalTheory.PrincipalIntegral
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.ArtinPrinc

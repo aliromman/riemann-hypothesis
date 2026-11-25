@@ -176,7 +176,6 @@ open scoped CategoryTheory.Obj
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DenseSectionsOfAlgebraicAffineNbhd
 @[expose] public noncomputable section
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 namespace GlobalTheory.DenseAff
@@ -690,7 +689,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothGroupSectionsDenseInFibres
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
 
@@ -704,8 +702,7 @@ theorem image_maximalIdeal_infinite {R Ω : Type} [CommRing R] [IsLocalRing R] [
   have hle : RingHom.ker (algebraMap R Ω) ≤ maximalIdeal R :=
     IsLocalRing.le_maximalIdeal (RingHom.ker_ne_top _)
   obtain ⟨m0, hm0, hm0k⟩ : ∃ m0 ∈ maximalIdeal R, m0 ∉ RingHom.ker (algebraMap R Ω) := by
-    by_contra hcon
-    push_neg at hcon
+    by_contra! hcon
     exact hker (le_antisymm hle hcon)
   rw [RingHom.mem_ker] at hm0k
   have hne : ∀ n k : ℕ, n < k → algebraMap R Ω (m0 ^ (n + 1)) ≠ algebraMap R Ω (m0 ^ (k + 1)) := by
@@ -733,8 +730,7 @@ theorem image_maximalIdeal_infinite {R Ω : Type} [CommRing R] [IsLocalRing R] [
 theorem exists_eval_ne_zero_of_infinite {Ω : Type} [Field Ω] (S : Set Ω) (hS : S.Infinite) (g : ℕ)
     (Q : MvPolynomial (Fin g) Ω) (hQ : Q ≠ 0) : ∃ c : Fin g → Ω, (∀ i, c i ∈ S) ∧ MvPolynomial.eval c Q ≠ 0 := by
   obtain ⟨T, hTS, hT⟩ := hS.exists_subset_card_eq (Q.totalDegree + 1)
-  by_contra hcon
-  push_neg at hcon
+  by_contra! hcon
   apply hQ
   refine MvPolynomial.eq_zero_of_eval_zero_at_prod_finset Q (fun _ => T) (fun i => ?_) (fun x hx => hcon x (fun i => hTS (hx i)))
   rw [hT]

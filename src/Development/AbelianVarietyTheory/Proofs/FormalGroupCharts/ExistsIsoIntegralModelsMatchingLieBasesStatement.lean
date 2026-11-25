@@ -58,7 +58,6 @@ open ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.ExistsIsoIntegralModelsMatchingLieBases
 open ReciprocityTheory.ChartRestriction.G.TB (dLin transF IsInvPair dAct)
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.ChartCmp
 
 namespace GlobalTheory.ChartCmp

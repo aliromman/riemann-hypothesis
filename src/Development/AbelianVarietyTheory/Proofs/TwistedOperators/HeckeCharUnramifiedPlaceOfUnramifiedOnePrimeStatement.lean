@@ -59,8 +59,6 @@ open scoped TensorProduct ComplexConjugate
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeckeCharUnramifiedPlaceOfUnramifiedOnePrime
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 namespace GlobalTheory.UnramFromOnePrime
 
 open GlobalTheory.IdemSupport GlobalTheory.ResLoc

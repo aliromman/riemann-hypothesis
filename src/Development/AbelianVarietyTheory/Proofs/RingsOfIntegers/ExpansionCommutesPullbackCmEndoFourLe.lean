@@ -65,11 +65,10 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRin
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.DVR
+open scoped CategoryTheory.Obj
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.ValueAtUnitSectionGenericFibre
 @[expose] public noncomputable section
-attribute [local instance] Over.cartesianMonoidalCategory
-open scoped CategoryTheory.Obj
 
 
 namespace GlobalTheory.GenericUnitValue
@@ -125,12 +124,9 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.ValueAtUnitSectionGenericFibreStatement
-open scoped CategoryTheory.Obj
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.ExpansionCommutesPullbackCmEndoFourLe
-attribute [local instance] Over.cartesianMonoidalCategory
-open scoped CategoryTheory.Obj
 
 namespace GlobalTheory.PullExpansion
 

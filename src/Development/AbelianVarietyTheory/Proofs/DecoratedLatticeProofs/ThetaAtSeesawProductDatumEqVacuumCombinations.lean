@@ -88,7 +88,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum MeasureTheory IsDedekindDomain NumberField Matrix
 open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Unf GlobalTheory.SeeSaw GlobalTheory.FinPl
 open scoped TensorProduct
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.LocMod GlobalTheory.SplitWeil ValuativeRel
 
 
@@ -250,7 +249,6 @@ open GlobalTheory.StepData (LatFrame)
 open GlobalTheory.RootEx (colE rowE)
 open GlobalTheory.IndefiniteRowSideFullHecke.FourierJacobiAverage (schT schM)
 open Classical
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 noncomputable section
 
@@ -279,10 +277,9 @@ end -- clump:auto
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum MeasureTheory IsDedekindDomain NumberField Matrix
 open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Unf GlobalTheory.SeeSaw GlobalTheory.FinPl
 open scoped TensorProduct
+open GlobalTheory.LocMod GlobalTheory.SplitWeil ValuativeRel
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IsThetaFunOSplitPlacesSchrodingerModelSum
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.LocMod GlobalTheory.SplitWeil ValuativeRel
 
 namespace GlobalTheory.PlaceSumTheta
 
@@ -306,8 +303,6 @@ end GlobalTheory.PlaceSumTheta
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SplitPlaceIdempotentMulEqZeroOfNePlace
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.LocMod GlobalTheory.SplitWeil ValuativeRel
 
 namespace GlobalTheory.SplitOrth
 
@@ -327,8 +322,6 @@ end GlobalTheory.SplitOrth
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ThetaAtSeesawProductDatumEqVacuumCombinations
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.LocMod GlobalTheory.SplitWeil ValuativeRel
 
 namespace GlobalTheory.VecProd
 

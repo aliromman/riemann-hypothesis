@@ -66,10 +66,9 @@ import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.PulledCompar
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.DVR
+open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.ExistsBoxIso
-attribute [local instance] Over.cartesianMonoidalCategory
-open scoped CategoryTheory.Obj
 
 
 namespace GlobalTheory.PowerThickIso
@@ -224,8 +223,6 @@ end GlobalTheory.PowerThickIso
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.ExistsIsoOfIsPowGrp
-attribute [local instance] Over.cartesianMonoidalCategory
-open scoped CategoryTheory.Obj
 
 namespace GlobalTheory
 
@@ -328,8 +325,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.SquareRes
-attribute [local instance] Over.cartesianMonoidalCategory
-open scoped CategoryTheory.Obj
 
 
 namespace GlobalTheory.PowUnif
@@ -544,8 +539,6 @@ end GlobalTheory.PowUnif
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.UniformisationPowerWithoutExpansion
-attribute [local instance] Over.cartesianMonoidalCategory
-open scoped CategoryTheory.Obj
 
 
 namespace GlobalTheory.PowUnif

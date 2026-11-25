@@ -690,8 +690,6 @@ theorem eps_stable (V : HSp D) (P : Pl D → Prop) (x : GA D V) :
     ∃ x', matHom V x' = Units.map (cutHom (eps_sq P)) (matHom V x) :=
   ⟨⟨_, cut_mem (eps_sq P) (by simp [sigR, eps]) x.2⟩, rfl⟩
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 theorem exists_level (D : D7) (V : HSp D) (N : Lat V) (A B : Finset (Pl D)) (JA JB : Subgroup (GA D V)) (b : GA D V)
     (hAB : Disjoint B A) (hN : Formalism.IndefR.Datum.IsSelfDualC V N) (_ : b ∈ GfC V)
     (lA : JA ≤ grpAt V fun x => x ∈ A) (cA : IsCompact (JA : Set (GA D V)))
@@ -745,7 +743,6 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Un
 open scoped TensorProduct
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LocallyFiniteOfTupleConditions
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.FirstCells
 
@@ -1028,21 +1025,18 @@ end GlobalTheory.FirstCells
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LocallyFiniteOfTupleConditionsStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.locally_finite_of_tuple_conditions : ∀ (D : D7) (c : Comm D) (v : VCom c) (t : Tup c) (w : VTup t), c.Is → v.Is → t.Is → VForm v w → OffLaw v w → GSupp (t := t) v → QFin v w → t.LocFin := by
   first | exact @GlobalTheory.FirstCells.locFin
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SeeSawLastTwoStepsDoubleLiftPeriodValueStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.seeSawLastTwoSteps_doubleLiftPeriod_value : ∀ (D : D7) (c : Comm D) (v : VCom c) (𝒯 : Type) (t : 𝒯 → Tup c) (w : ∀ s, VTup (t s)), c.Is → c.VolLast → v.Is → (∀ s, (t s).Is) → (∀ s, PlaceLaws v (w s)) → LastLaw D → SeeLast D → FlatLaw D → BiAct D → ValLastX t := by
   first | exact @GlobalTheory.SeeSawLastValue.valLast
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SeesawPlaceLawsGiveFiniteIntegralLaws
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.SeeSaw
 

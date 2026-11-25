@@ -312,8 +312,7 @@ theorem exists_integral_cball_char_eq_zero :
     ∀ (F : Type) [Field F] [CharZero F] [ValuativeRel F] [TopologicalSpace F] [IsNonarchimedeanLocalField F] [MeasurableSpace F] [BorelSpace F] (lam : Measure F) [lam.IsAddHaarMeasure] (ψ : AddChar F ℂ) (hψ : Continuous ψ) (_ : ∀ t, ‖ψ t‖ = 1) (_ : ψ ≠ 1), ∃ s₀ : Fˣ, ∀ s : Fˣ, (s₀ : F) ∈ GlobalTheory.SplitWeil.cball s → ∫ x in GlobalTheory.SplitWeil.cball s, ψ x ∂lam = 0 := by
   intro F _ _ _ _ _ _ _ lam _ ψ _ _ hne
   obtain ⟨t, ht⟩ : ∃ t, ψ t ≠ 1 := by
-    by_contra h
-    push_neg at h
+    by_contra! h
     exact hne (by ext x; simpa using h x)
   have ht0 : t ≠ 0 := by
     rintro rfl

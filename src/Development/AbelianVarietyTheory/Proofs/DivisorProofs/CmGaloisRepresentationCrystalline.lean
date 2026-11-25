@@ -64,7 +64,6 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsPolarizedT
 
 open NumberField IsDedekindDomain
 open Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.CuspRep GlobalTheory.SmGL
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace GlobalTheory.GeomFrobChar
 
@@ -125,7 +124,6 @@ theorem _root_.GlobalTheory.T.local_langlands_galois_compat : ∀ (E Ω : Type) 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CmGaloisRepresentationCrystalline
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 
 namespace GlobalTheory.CsdTwistGal

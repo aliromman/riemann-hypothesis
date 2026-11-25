@@ -421,7 +421,6 @@ end -- clump: shared namespace opens
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoefficientSpaceEndomorphismScalarSchur
 
 open NumberField Formalism.BasicNotions Formalism.L2.DIV Formalism.L2.Theta Formalism.IndefR
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 open MvPolynomial
 open scoped Matrix

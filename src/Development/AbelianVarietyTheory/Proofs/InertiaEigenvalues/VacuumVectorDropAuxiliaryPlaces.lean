@@ -63,7 +63,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FiniteAdeleCMMemIntegralOfIdempotentStatement
 open Formalism.IndefR.Links (PolF)
 open Classical
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 
@@ -74,7 +73,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FrameMatrixReductionEqOfHalfIdempotentSubsetStatement
 open Formalism.IndefR.Links (PolF)
 open Classical
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 
@@ -85,7 +83,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsPlaceModelCompRestrictToHalfLatticeIndicatorStatement
 open Formalism.IndefR.Links (PolF)
 open Classical
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 
@@ -95,7 +92,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.VacuumVectorDropAuxiliaryPlaces
 open Formalism.IndefR.Links (PolF)
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 

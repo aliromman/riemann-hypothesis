@@ -50,7 +50,6 @@ import Mathlib.Tactic.ReduceModChar
 open NumberField IsDedekindDomain Polynomial
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsConjugateDualTwistByTwistOfConjSelfDual
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 
 open GlobalTheory.CuspRep Formalism.L2.Host

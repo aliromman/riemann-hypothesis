@@ -88,7 +88,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.TorsionIsotropicCommutatorPairing
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 

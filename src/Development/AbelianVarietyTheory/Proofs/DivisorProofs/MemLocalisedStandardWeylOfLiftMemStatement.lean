@@ -306,7 +306,6 @@ open Formalism.CohomologicalDescent.DepthNonnegative Formalism.CohomologicalDesc
 open GlobalTheory.FrameRead
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemLocalisedStandardWeylOfLiftMem
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 namespace GlobalTheory.FrameRead.DelStd

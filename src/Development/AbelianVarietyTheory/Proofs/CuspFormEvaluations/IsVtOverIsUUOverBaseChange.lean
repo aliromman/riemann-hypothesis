@@ -60,7 +60,6 @@ theorem _root_.GlobalTheory.T.exists_symLift_pullback_isActOf : ∀ (S : Scheme.
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.IsVtOverIsUUOverBaseChange
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.VtBaseChange
 

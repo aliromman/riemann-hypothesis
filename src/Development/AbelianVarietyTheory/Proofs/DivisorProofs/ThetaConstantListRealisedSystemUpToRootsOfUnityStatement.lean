@@ -64,7 +64,6 @@ open scoped CategoryTheory.Obj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.ZH
 open Classical
 open ReciprocityTheory.ChartRestriction.G.Out
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ThetaCompare
 
@@ -140,7 +139,6 @@ open scoped CategoryTheory.Obj
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaConstantKthRootLabelledPointUpToRoot
 @[expose] public noncomputable section
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.ThetaAtRoot
@@ -230,7 +228,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaConstantListRealisedSystemUpToRootsOfUnity
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.UMin.RealTh
 

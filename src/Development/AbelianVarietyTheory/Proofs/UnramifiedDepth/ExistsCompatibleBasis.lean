@@ -363,7 +363,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsFormalChart
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.FormalChartOf
 
@@ -767,7 +766,6 @@ end GlobalTheory.FormalChartOf
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.FinOfLocalAlgebraMap
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.FinOf
 
@@ -1228,7 +1226,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.PadicEndApply
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.PadicOrderAction
 
@@ -1658,7 +1655,6 @@ end GlobalTheory.WittQuot
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsCompatibleBasis
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.PeriodDatum
 

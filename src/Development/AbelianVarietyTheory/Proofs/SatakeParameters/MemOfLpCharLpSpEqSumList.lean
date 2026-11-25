@@ -89,7 +89,6 @@ end -- clump:auto
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.MemOfLpCharLpSpEqSumList
 
 open NumberField IsDedekindDomain ValuativeRel Matrix Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.LocGL GlobalTheory.WeilDeligne GlobalTheory.LocLanglands GlobalTheory.LocDict
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 
 namespace GlobalTheory.WeilDeligne.SpSummand
@@ -169,8 +168,7 @@ theorem stable_eq_bot_or_top {ρ : Representation ℂ G V} (hρ : ρ.IsIrreducib
   · exact Or.inr (congrArg Subrepresentation.toSubmodule h)
 
 theorem exists_ne_zero {ρ : Representation ℂ G V} (hρ : ρ.IsIrreducible) : ∃ v : V, v ≠ 0 := by
-  by_contra hall
-  push_neg at hall
+  by_contra! hall
   haveI := hρ
   apply (bot_ne_top : (⊥ : Subrepresentation ρ) ≠ ⊤)
   apply Subrepresentation.ext
@@ -342,15 +340,13 @@ theorem eq_of_hasCopy (a : WDRep h V) (ha : a.ρ.IsIrreducible) (a' : WDRep h V'
   obtain ⟨f, g, hf, hc, hfg⟩ := H
   rw [tensor_sp_N_pow a' hN'] at hfg
   have hmk : m ≤ k := by
-    by_contra hlt
-    push_neg at hlt
+    by_contra! hlt
     obtain ⟨v, hv⟩ := exists_ne_zero ha'
     apply tmul_single_ne_zero (⟨k + 1, by omega⟩ : Fin (m + 1)) hv
     have := LinearMap.congr_fun Z (v ⊗ₜ Pi.single ⟨0, by omega⟩ 1)
     rwa [LinearMap.lTensor_tmul, shiftEnd_pow_single_zero, LinearMap.zero_apply] at this
   have hkm : k ≤ m := by
-    by_contra hlt
-    push_neg at hlt
+    by_contra! hlt
     apply hf
     rw [hfg, shiftEnd_pow_eq_zero (by omega), LinearMap.lTensor_zero, LinearMap.zero_comp]
   obtain rfl : m = k := le_antisymm hmk hkm

@@ -136,10 +136,9 @@ section -- clump: shared namespace opens
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.DVR
+open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.CrossEq
-attribute [local instance] Over.cartesianMonoidalCategory
-open scoped CategoryTheory.Obj
 
 namespace GlobalTheory.ExpFun
 
@@ -204,8 +203,6 @@ end GlobalTheory.ExpFun
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.IsBoxSecKOfPull
-attribute [local instance] Over.cartesianMonoidalCategory
-open scoped CategoryTheory.Obj
 
 namespace GlobalTheory.GenericBoxSpan
 
@@ -381,8 +378,6 @@ end GlobalTheory.GenericBoxSpan
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.PreboxExpansionWeight
-attribute [local instance] Over.cartesianMonoidalCategory
-open scoped CategoryTheory.Obj
 
 namespace GlobalTheory.BoxExpPre
 
@@ -541,8 +536,6 @@ end GlobalTheory.BoxExpPre
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.SecScalBoxSecGProd
-attribute [local instance] Over.cartesianMonoidalCategory
-open scoped CategoryTheory.Obj
 
 namespace GlobalTheory
 
@@ -557,8 +550,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.SecScalBoxSecGPre
-attribute [local instance] Over.cartesianMonoidalCategory
-open scoped CategoryTheory.Obj
 
 namespace GlobalTheory.ExpandsBoxPre
 
@@ -694,12 +685,9 @@ end GlobalTheory.ExpandsBoxPre
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.UniformisationPowerWithoutExpansionStatement
-open scoped CategoryTheory.Obj
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.FinrankOfExpBij
-attribute [local instance] Over.cartesianMonoidalCategory
-open scoped CategoryTheory.Obj
 
 namespace GlobalTheory.UnifPower
 
@@ -891,8 +879,6 @@ end GlobalTheory.UnifPower
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.ImportsMore
-attribute [local instance] Over.cartesianMonoidalCategory
-open scoped CategoryTheory.Obj
 
 namespace GlobalTheory.PelUnifPowerDvr
 
@@ -914,7 +900,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
 open ReciprocityTheory.ChartRestriction.G.DVR ReciprocityTheory.ChartRestriction.G.DVR.QForm Formalism.MainNotions.ModuliIntegralCharts.H1 Formalism.MainNotions.ModuliIntegralCharts.H1.ExpBijectiveUniformisation Formalism.MainNotions.ModuliIntegralCharts.H1.GSt
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
-attribute [local instance] Over.cartesianMonoidalCategory
 open Formalism.MainNotions.ModuliIntegralCharts.H1.BoxTuple Formalism.MainNotions.ModuliIntegralCharts.H1.BidegreeTwoJet GlobalTheory GlobalTheory.PowGerm
 open ReciprocityTheory.ChartRestriction.G.TB (colM dAct)
 open IsDedekindDomain

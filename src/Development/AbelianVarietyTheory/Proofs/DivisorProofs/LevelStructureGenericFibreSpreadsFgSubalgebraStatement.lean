@@ -68,7 +68,6 @@ open scoped CategoryTheory.Obj
 open GlobalTheory.Poinc
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LevelStructureGenericFibreSpreadsFgSubalgebra
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.LevelSpread

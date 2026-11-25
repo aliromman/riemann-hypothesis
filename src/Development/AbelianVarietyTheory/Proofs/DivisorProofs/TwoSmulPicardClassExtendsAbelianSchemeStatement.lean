@@ -95,7 +95,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CechPicardExtendOfLocallyTrivialNormalCodimTwo
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.ExtendClass
@@ -299,7 +298,6 @@ theorem GlobalTheory.extend_class_of_locally_trivial : ∀ (X : Scheme.{0}) [IsL
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CechPicardEqZeroOfTwoOpenCoverUnitsSplit
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.CechPic
@@ -503,7 +501,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PicardClassEqZeroOfZeroDenseOpenAndSectionOpen
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.PicGlue
 
@@ -547,7 +544,6 @@ end GlobalTheory.PicGlue
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SquareTheoremPicClassOverOpen
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.SquareOpen
 
@@ -598,7 +594,6 @@ end GlobalTheory.SquareOpen
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwicePicardClassEqZeroOfTranslatesMemOpen
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DualTriv
 
@@ -652,7 +647,6 @@ theorem GlobalTheory.twice_cls_eq_zero_of_translates_mem : ∀ (S : Scheme.{0}) 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CechPicardTwoNsmulPullbackEqZeroOnTripleParamete
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 
@@ -745,7 +739,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SurjectiveInfOfGeometricallyIntegral
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 
@@ -769,7 +762,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTranslatesSurjectiveFibrewiseDenseOpen
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.TranslateSurj
 
@@ -825,7 +817,6 @@ end GlobalTheory.TranslateSurj
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GeometricallyIntegralOfIsOpenImmersionCompSurjec
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 
@@ -851,7 +842,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsParameterSchemeTriplesAbelianScheme
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ParamTriple
 
@@ -965,7 +955,6 @@ end GlobalTheory.ParamTriple
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FlatPreimageContainsCodimLeOnePoints
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.FlatCodimOne
 
@@ -994,7 +983,6 @@ end GlobalTheory.FlatCodimOne
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNowhereZeroSectionNearOfFlatTrivial
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.FlatTrivSec
@@ -1087,8 +1075,7 @@ theorem exists_sec_near : ∀ (B C : Type) [CommRing B] [IsNoetherianRing B] [Co
       refine Eq.trans (Finset.sum_congr rfl fun i _ => _root_.mul_assoc _ _ _) h1.symm
     exact (Units.mul_left_inj _).1 h3
   obtain ⟨i, hi⟩ : ∃ i, e i ∉ y.asIdeal := by
-    by_contra hne
-    push_neg at hne
+    by_contra! hne
     apply y.isPrime.ne_top
     rw [Ideal.eq_top_iff_one, ← hsum]
     exact Ideal.sum_mem _ fun i _ => Ideal.mul_mem_left _ _ (hne i)
@@ -1107,7 +1094,6 @@ end GlobalTheory.FlatTrivSec
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PicardClassLocallyTrivialOfTrivialSmoothNormalCo
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.LocalTriv
@@ -1212,7 +1198,6 @@ end GlobalTheory.LocalTriv
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwoSmulPicardClassExtendsAbelianScheme
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.DoubleClassExtension
 

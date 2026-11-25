@@ -59,7 +59,6 @@ open GlobalTheory GlobalTheory.AbLaw GlobalTheory.UU GlobalTheory.LN GlobalTheor
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ImportsBisAltTail
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.TorusEndChar
 

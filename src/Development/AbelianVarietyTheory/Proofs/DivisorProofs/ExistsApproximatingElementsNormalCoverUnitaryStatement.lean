@@ -112,10 +112,9 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
 open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZH GlobalTheory.Poinc GlobalTheory.UPoinc GlobalTheory.TorRef
 open scoped CategoryTheory.Obj
+open GlobalTheory GlobalTheory.USep
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCorrectionProperNormalCoverPowerLocalEquat
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory GlobalTheory.USep
 
 namespace GlobalTheory.CorrCover
 
@@ -157,8 +156,6 @@ end GlobalTheory.CorrCover
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNormalisationBlowupPullbackFiniteCover
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory GlobalTheory.USep
 
 
 namespace GlobalTheory.USep
@@ -299,8 +296,6 @@ end GlobalTheory.USep
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FlatIntOfIntegralSchemeGenericPoint
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory GlobalTheory.USep
 
 namespace GlobalTheory.IntFlat
 
@@ -344,8 +339,6 @@ end GlobalTheory.IntFlat
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PointDefinedOverSubfieldOfIsIntegralHom
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory GlobalTheory.USep
 
 
 namespace GlobalTheory.DefOverIntegral
@@ -402,8 +395,6 @@ end GlobalTheory.DefOverIntegral
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNormalisedBlowupFiniteNormalCover
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory GlobalTheory.USep
 
 
 namespace GlobalTheory.USepCov
@@ -630,7 +621,6 @@ open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZH
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IdealAlongMonomialFamilyEqSpanMonomial
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory GlobalTheory.USep
 
 namespace GlobalTheory.UGZero
@@ -737,7 +727,6 @@ end GlobalTheory.USepTrait
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemSystemOfOrderGeAlongTraits
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.USep
 open GlobalTheory
 
@@ -822,7 +811,6 @@ end GlobalTheory.USepStrait
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.StalkValueClosedPointDefinedOverSubfield
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory GlobalTheory.USep
 
 namespace GlobalTheory.USep
@@ -886,7 +874,6 @@ end GlobalTheory.USep
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsApproximatingElementsNormalCoverUnitary
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory GlobalTheory.USep
 
 

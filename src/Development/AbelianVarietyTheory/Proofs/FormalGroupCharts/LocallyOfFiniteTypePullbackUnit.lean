@@ -69,7 +69,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.ExistsUniversalThickening
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.IsolPt
@@ -231,7 +230,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.LocallyOfFiniteTypePullbackUnit
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.JetSer
 

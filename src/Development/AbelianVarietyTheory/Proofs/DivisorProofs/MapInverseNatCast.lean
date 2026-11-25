@@ -65,15 +65,14 @@ import Mathlib.Tactic.Basify
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTwistedThetaValueSubsingletonBase, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTwistedThetaValueSubsingletonBaseStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTwistedThetaValuePullbackBaseChange, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTwistedThetaValuePullbackBaseChangeStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTwistedThetaValueTranslateOrthogonalTorsion, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTwistedThetaValueTranslateOrthogonalTorsionStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTwistedThetaValueUnique, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTwistedThetaValueUniqueStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.MapInverseNatCast
 
--- clump: shared namespace opens
+section -- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
+open GlobalTheory.ZH GlobalTheory.Poinc GlobalTheory.UPoinc.USum
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTwistedThetaValueSubsingletonBase
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.ZH GlobalTheory.Poinc GlobalTheory.UPoinc.USum
 
 namespace GlobalTheory.UPoinc.USum
 
@@ -130,14 +129,11 @@ end GlobalTheory.UPoinc.USum
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTwistedThetaValueSubsingletonBaseStatement
-open GlobalTheory.ZH GlobalTheory.Poinc GlobalTheory.UPoinc.USum
 
 
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTwistedThetaValuePullbackBaseChange
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.ZH GlobalTheory.Poinc GlobalTheory.UPoinc.USum
 
 namespace GlobalTheory.UPoinc.USum
 
@@ -174,14 +170,11 @@ end GlobalTheory.UPoinc.USum
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTwistedThetaValuePullbackBaseChangeStatement
-open GlobalTheory.ZH GlobalTheory.Poinc GlobalTheory.UPoinc.USum
 
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTwistedThetaValueTranslateOrthogonalTorsion
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.ZH GlobalTheory.Poinc GlobalTheory.UPoinc.USum
 
 namespace GlobalTheory.UPoinc.USum
 
@@ -250,14 +243,11 @@ end GlobalTheory.UPoinc.USum
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTwistedThetaValueTranslateOrthogonalTorsionStatement
-open GlobalTheory.ZH GlobalTheory.Poinc GlobalTheory.UPoinc.USum
 
 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTwistedThetaValueUnique
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.ZH GlobalTheory.Poinc GlobalTheory.UPoinc.USum
 
 namespace GlobalTheory.UPoinc.USum
 
@@ -298,13 +288,17 @@ end GlobalTheory.UPoinc.USum
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsTwistedThetaValueUniqueStatement
-open GlobalTheory.ZH GlobalTheory.Poinc GlobalTheory.UPoinc.USum
 
 
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MapInverseNatCast
-attribute [local instance] Over.cartesianMonoidalCategory
+
+open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
+open scoped CategoryTheory.Obj
 open GlobalTheory.ZH GlobalTheory.Poinc
 
 namespace GlobalTheory.UPoinc.USum

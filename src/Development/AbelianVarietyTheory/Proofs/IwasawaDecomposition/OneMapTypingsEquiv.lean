@@ -69,7 +69,6 @@ import Mathlib.Tactic.ENatToNat
 
 open NumberField IsDedekindDomain ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Pj
 open scoped TensorProduct Matrix
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Member
 
 namespace GlobalTheory.Member
@@ -116,8 +115,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Form
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.LatticeDeterminantCharacters
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T0 : Type} {A : FamIn D.what₂.LL G Pl0 T0 D.R.m}
   (T : CoreJ D) [Algebra T.Q.c.F D.what₂.LL] (R : RealDat D A T.Q.c.F) (i : Fin D.R.m)
 
@@ -158,8 +155,6 @@ open Formalism Formalism.IndefR Formalism.IndefR.FWT Formalism.BasicNotions Form
   Formalism.IndefR.Mult Formalism.L2.Pj
 open GlobalTheory.IndefiniteRowSideFullHecke.LatticeDeterminantCharacters
 open scoped TensorProduct
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section Cover
 

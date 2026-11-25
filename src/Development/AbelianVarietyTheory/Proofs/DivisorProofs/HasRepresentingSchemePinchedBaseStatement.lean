@@ -102,7 +102,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAdditiveFamilyOfPullbackFiniteSurjective
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.Pinch
 
@@ -146,7 +145,6 @@ end GlobalTheory.Pinch
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAffineNbhdBasicOpenStandardSmooth
-attribute [local instance] Over.cartesianMonoidalCategory
 set_option backward.isDefEq.respectTransparency false
 
 namespace GlobalTheory.Pinch
@@ -187,7 +185,6 @@ end GlobalTheory.Pinch
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAffineOpenSaturatedBasicOpenPreimage
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.Pinch
 
@@ -276,7 +273,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLineBundlePinchedOfMatchingGenerators
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.Pinch
 
@@ -386,7 +382,6 @@ end GlobalTheory.Pinch
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLocalGeneratorFiniteCoverNearPoint
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.Pinch
 
@@ -574,8 +569,7 @@ theorem ker_aeval_zero_eq_span (D κ : Type) [CommRing D] :
   · intro p hp
     rw [← Set.image_univ, MvPolynomial.mem_ideal_span_X_image]
     intro m hm
-    by_contra h
-    push_neg at h
+    by_contra! h
     have hm0 : m = 0 := by ext i; simpa using h i (Set.mem_univ i)
     subst hm0
     rw [RingHom.mem_ker] at hp
@@ -626,7 +620,6 @@ theorem GlobalTheory.PinchEnl.exists_submersivePresentation_sum_zero : ∀ (R D 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnitLiftClosedSubschemeNearFibre
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.Pinch
 
@@ -691,7 +684,6 @@ end GlobalTheory.Pinch
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnitRatioLocalGeneratorsCommonPullback
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.Pinch
@@ -919,7 +911,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PinchedChartsAffineOfSpectra
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.Pinch.Aff
 
@@ -1016,7 +1007,6 @@ end GlobalTheory.Pinch.Aff
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PinchedChartsRestrictMatchingOpens
-attribute [local instance] Over.cartesianMonoidalCategory
 
 
 namespace GlobalTheory.Pinch
@@ -1103,7 +1093,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RepresentsAdditiveLineBundleFamiliesCompare
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.Pinch
 
@@ -1164,7 +1153,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasRepresentingSchemePinchedBase
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.Pinch
 

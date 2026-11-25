@@ -704,8 +704,6 @@ open PI.UnitaryGroupMassFormula.GsFr PI.UnitaryGroupMassFormula.DLm.Gram
 open Matrix
 
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 namespace S5
 
 variable {k r : ℕ}
@@ -1266,8 +1264,6 @@ namespace Formalism.FourierDecayAlt.P.CutMP.JA.SSn.Geom
 open Formalism.QuantumDeterminants PI.UnitaryGroupMassFormula.GsFr
 open scoped Matrix
 
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 namespace S2
 

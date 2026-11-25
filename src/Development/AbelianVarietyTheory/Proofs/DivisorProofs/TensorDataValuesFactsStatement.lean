@@ -51,11 +51,10 @@ import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsIsMonH
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorDataCubicalStructureValues
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 open GlobalTheory.Ex GlobalTheory.Mum.TensTor
+
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorDataCubicalStructureValues
 
 
 namespace GlobalTheory.Mum.TensCube
@@ -225,9 +224,6 @@ end GlobalTheory.Mum.TensCube
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorDataPsiValuesThroughBundleIso
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
-open GlobalTheory.Ex GlobalTheory.Mum.TensTor
 
 namespace GlobalTheory.Mum.TensTor.PsiVal
 
@@ -365,9 +361,6 @@ theorem GlobalTheory.Mum.TensTor.tensFacts_psi : ∀ (R : Type) [CommRing R] [Is
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorDataValuesFacts
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
-open GlobalTheory.Ex GlobalTheory.Mum.TensTor
 
 
 namespace GlobalTheory.Mum.TensTor
@@ -431,9 +424,6 @@ theorem GlobalTheory.Mum.TensTor.tensFacts_holds : ∀ (R : Type) [CommRing R] [
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TensorDataValuesFactsStatement
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.Mum
-open GlobalTheory.Ex GlobalTheory.Mum.TensTor
 
 
 theorem _root_.GlobalTheory.T.tensorData_values_facts : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Base R → ∀ (D D' : DegData R (maximalIdeal R)) {r : ℕ} (W : Matrix (Fin r) (Fin r) ℤ) (T : Tens D.toPre D'.toPre W) (F : Type) [Field F] [IsAlgClosed F] [Algebra (FractionRing R) F] (N N' : NumD F) (ν : NumOf D.toPre F N) (ν' : NumOf D'.toPre F N'), TensFacts W (cmp T ν ν') (chi T ν ν') (wv T ν ν') := by

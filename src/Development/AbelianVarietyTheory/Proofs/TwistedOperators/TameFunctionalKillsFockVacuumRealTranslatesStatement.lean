@@ -91,10 +91,9 @@ section -- clump: shared namespace opens
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links MeasureTheory IsDedekindDomain NumberField Matrix
 open scoped TensorProduct ComplexConjugate
+open GlobalTheory.FockTransl
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.HasSumFinsuppProdPowDivFactorialExp
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.FockTransl
 open Formalism.L2.Ker (VCx DVar derivAt0)
 
 namespace GlobalTheory
@@ -160,8 +159,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.HasSumTaylorSeriesDerivAtOriginCoordinateSpace
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.FockTransl
 open Formalism.L2.Ker (VCx DVar derivAt0)
 
 namespace GlobalTheory.FockTaylor
@@ -236,8 +233,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.IntegrableGaussianExpLinearNormTermComplexMatrix
 @[expose] public section
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.FockTransl
 open Formalism.L2.Ker (VCx DVar derivAt0)
 
 noncomputable section
@@ -288,8 +283,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.IntegrableGaussianExpLinearNormTermComplexMatrixStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.FockTransl
 open Formalism.L2.Ker (VCx DVar derivAt0)
 
 theorem _root_.GlobalTheory.T.integrable_gaussian_exp_linear_norm_term_complex_matrix : ∀ (ι : Type) [Fintype ι] (a b : ℕ) (c : ι → ℝ), (∀ τ, 0 < c τ) → ∀ z₀ : VCx ι a b, Integrable fun z : VCx ι a b => Real.exp ((∑ k : DVar ι a b, ‖(c k.1 : ℂ) * z₀ k.1 k.2.1 k.2.2‖ * ‖z k.1 k.2.1 k.2.2‖) - gq c z / 2) := by
@@ -297,8 +290,6 @@ theorem _root_.GlobalTheory.T.integrable_gaussian_exp_linear_norm_term_complex_m
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.FockBargmannReproducingFormula
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.FockTransl
 open Formalism.L2.Ker (VCx DVar derivAt0)
 
 namespace GlobalTheory.FockRepr
@@ -413,8 +404,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.FockCreationOperatorMultiplierAntilinear
 @[expose] public section
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.FockTransl
 open Formalism.L2.Ker (VCx DVar derivAt0)
 
 noncomputable section
@@ -600,8 +589,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SumReImAddSmul
 @[expose] public section
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.FockTransl
 open Formalism.L2.Ker (VCx DVar derivAt0)
 
 noncomputable section
@@ -665,8 +652,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.FockCreationOperatorReading
 @[expose] public section
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.FockTransl
 open Formalism.L2.Ker (VCx DVar derivAt0)
 
 noncomputable section
@@ -811,8 +796,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.FockGaussianJetsAtOriginEqFockVectors
 @[expose] public section
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.FockTransl
 open Formalism.L2.Ker (VCx DVar derivAt0)
 
 noncomputable section
@@ -897,8 +880,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.IntegralBargmannEqZeroOfMoments
 @[expose] public section
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.FockTransl
 open Formalism.L2.Ker (VCx DVar derivAt0)
 
 noncomputable section
@@ -1076,7 +1057,6 @@ open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.Un
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.TameFunctionalKillsFockVacuumRealTranslates
 open scoped TensorProduct ComplexConjugate
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Asc
 
 namespace GlobalTheory.FockTransl

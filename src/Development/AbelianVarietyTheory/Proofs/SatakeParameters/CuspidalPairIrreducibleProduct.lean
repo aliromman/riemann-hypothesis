@@ -85,10 +85,9 @@ import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ParIndJacPlacing
 -- clump: shared namespace opens
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal ReciprocityTheory.Aut Formalism.AUTREP Formalism.L2 Formalism.L2.Host Formalism.L2.NT NumberField IsDedekindDomain Polynomial GlobalTheory.HeightCounting GlobalTheory.RowTie GlobalTheory.SplitRead GlobalTheory.NPin
+open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsCentralScalarDistinctGeometricLemmaCells
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil
 
 
 
@@ -181,8 +180,7 @@ theorem one_case (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsN
   obtain ⟨ψ₀, -, ⟨e₀⟩⟩ := h0
   obtain ⟨ψ₁, -, ⟨e₁⟩⟩ := h1
   have hψ : ∃ t, ψ₀ t ≠ ψ₁ t := by
-    by_contra hc
-    push_neg at hc
+    by_contra! hc
     have hu : unrChar k 1 = 1 := MonoidHom.ext fun x => by simp [unrChar_apply]
     have hdet : detChar (Fin 1) (1 : kˣ →* ℂˣ) = (1 : GL (Fin 1) k →* ℂˣ) :=
       MonoidHom.ext fun x => by simp
@@ -307,8 +305,6 @@ end GlobalTheory.CellCentral
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsIntertwiningOfCentralFiltrationStep
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil
 
 
 namespace GlobalTheory
@@ -462,8 +458,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.CuspidalPairIrreducibleProduct
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil
 
 
 
