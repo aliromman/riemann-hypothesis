@@ -1,0 +1,59 @@
+{
+  "main": "27b55787485ac2a5b5b3ed2dffc697e0ae6a2f59",
+  "pr_head": "41596f52921c716692c643accdcb210ef1e470d0",
+  "merge_tree": "076dbeb7aef775429d59a1fc853f5b83e31d2878",
+  "paths": [
+    "src/Development/AbelianVarietyTheory/Definitions/Foundations/MatrixMeasurableSpace.lean",
+    "src/Formalism/DoubleCosetMeasures/StatementZ.lean",
+    "src/GroundTheory/AutomorphicForms/GL2/GJMatrixCoord.lean"
+  ],
+  "targets": [
+    "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+    "Formalism.DoubleCosetMeasures.StatementZ",
+    "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord",
+    "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+    "GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi"
+  ],
+  "closure": 311,
+  "unaffected": 296,
+  "affected": 15,
+  "all_source_blobs_checked": true,
+  "lake_exit": 0,
+  "log_sha256": "79244ca65faa9ad9914e089856982e01c21e90750002834d8bd445ca99d15d56",
+  "builds": {
+    "stock": {
+      "exit": 0,
+      "completion": "Build completed successfully (10473 jobs).",
+      "compiled": [
+        "Formalism.DoubleCosetMeasures.StatementZ",
+        "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+        "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord",
+        "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+        "GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi"
+      ],
+      "log_sha256": "83b814314a30777416f2f2981e25e938f09c58990ea1e0482534ec226fa8c8ab"
+    },
+    "candidate": {
+      "exit": 0,
+      "completion": "Build completed successfully (10475 jobs).",
+      "compiled": [
+        "Formalism.DoubleCosetMeasures.StatementZ",
+        "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+        "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord",
+        "Development.AbelianVarietyTheory.Definitions.Foundations.SecondCountableAndT2LocalField",
+        "Development.AbelianVarietyTheory.Definitions.Foundations.SimpleSum",
+        "Development.AbelianVarietyTheory.Proofs.FoundationProofs.PadicIsNonarchimedeanLocalField",
+        "Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.HalfLinearCocycle",
+        "Development.AbelianVarietyTheory.Proofs.TwistedOperators.LinearChangeOfVariablesLocalFieldMatrix",
+        "Development.AbelianVarietyTheory.Proofs.TwistedOperators.RestrictedTensorBasePointNormSq",
+        "GroundTheory.AutomorphicForms.GL2.GJMatrixLocal",
+        "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+        "GroundTheory.AutomorphicForms.GL2.GJFEDefs",
+        "GroundTheory.AutomorphicForms.GL2.GJFEInducedChar",
+        "GroundTheory.AutomorphicForms.GL2.GJFEInducedParabolic",
+        "GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi"
+      ],
+      "log_sha256": "79244ca65faa9ad9914e089856982e01c21e90750002834d8bd445ca99d15d56"
+    }
+  }
+}

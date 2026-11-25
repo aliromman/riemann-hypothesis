@@ -1,0 +1,41 @@
+{
+  "base": "4a5b4a2d2a5177a2b6cb876425f0cb4cb6b85061",
+  "main": "27b55787485ac2a5b5b3ed2dffc697e0ae6a2f59",
+  "roots": [
+    "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+    "Formalism.DoubleCosetMeasures.StatementZ",
+    "GroundTheory.AutomorphicForms.GL2.GJMatrixCoord",
+    "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroOfIpEqZero",
+    "GroundTheory.AutomorphicForms.GL2.GJFEInducedLevi"
+  ],
+  "old_modules": 311,
+  "new_modules": 311,
+  "changed": [
+    "Development.AbelianVarietyTheory.BlockTheory.HeightDefect.AdelicUnitaryGroups",
+    "Development.AbelianVarietyTheory.Definitions.Foundations.HermitianSpaceBaseLatticeEqFrameLattice",
+    "Development.AbelianVarietyTheory.Definitions.QuasicoherentCohomology.MemSaturatedOrderIsoSubspaceSpanSymmApply",
+    "Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsIsUnitFormSelfOfNotMem",
+    "Development.AbelianVarietyTheory.Proofs.HeightProofs.EqOrConjOfPlaceOf",
+    "Development.AbelianVarietyTheory.PublishedTheorems.Landherr\u2082.ExistsNormTensor",
+    "Development.AutomorphicArithmetic.IntegralCasts.CrystallinePeriods.UniformContinuousConstSMulOfIsIsometricSMul",
+    "Formalism.FrobeniusOrbits.HostThickExists",
+    "Formalism.HermitianLattices.StatementMass",
+    "Formalism.LocalRingCardinality.DataArith",
+    "Formalism.LocalRingCardinality.DataDIV",
+    "Formalism.LocalRingCardinality.DataIdx",
+    "Formalism.LocalRingCardinality.DataLevel",
+    "Formalism.LocalRingCardinality.DataRows",
+    "Formalism.LocalRingCardinality.Params",
+    "Formalism.LocalToGlobal.GroupLattices.TrivialTransfer.FiniteStabAtOfLocal",
+    "Formalism.RealPlaceAnalysis.RealPlaceTaylor.MemUnitaryGroupIffMulConjTranspose",
+    "Formalism.SatakeDualWeyl.AdelicIwasawaHecke.CsGlobApprox",
+    "Formalism.SatakeDualWeyl.Statement",
+    "GroundTheory.AutomorphicForms.LocallyProfinite",
+    "GroundTheory.GlobalFields.TateThesis.TracePairing",
+    "GroundTheory.LocalFields.SeparableClosureValuation",
+    "ReciprocityTheory.Hypotheses.GalCoh",
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst"
+  ],
+  "removed": [],
+  "added": []
+}
