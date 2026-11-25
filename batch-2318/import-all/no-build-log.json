@@ -1,0 +1,8 @@
+{
+  "pr": "879",
+  "head": "8073aca8a95c7ec91dc448cd2238b171caabd9f3",
+  "scope": "private import consumers and their providers",
+  "exit": 0,
+  "last_line": "All targets up-to-date (10441 jobs).",
+  "full_log_sha256": "ed84ba9407dccb7e82457b4cbf04d1d5ce999236fff9804f3647e1673d4f9df8"
+}

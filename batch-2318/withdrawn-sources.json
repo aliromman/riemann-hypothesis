@@ -1,0 +1,30 @@
+{
+  "879": {
+    "src/Development/AutomorphicSpectrum/Proofs/AlgebraProofs/SymplecticUnipotentShape.lean": {
+      "sha256": "74cbf4982061231082a73a3fba8a5df365d98d4509f96cf07a85d252639ddf63",
+      "reason": "Upstream retained two different dependencies after pruning this file. Keep the complete upstream header."
+    }
+  },
+  "977": {
+    "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/ExistsFiniteExtensionPrimes.lean": {
+      "sha256": "f1a26c8cfd72b78ab917b5a8f0002d8e0a340edb49b5dc370cf4fa85f43336ea",
+      "reason": "Upstream converted the complete file to CRLF. Retain the complete upstream archive and its original Git bytes."
+    },
+    "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/FlatDegreeHolds.lean": {
+      "sha256": "3e42aafca6e8cdffe61fecff1b440fcf35702243b3c3e4329e36b8a963de21bf",
+      "reason": "Upstream converted the complete file to CRLF. Retain the complete upstream archive and its original Git bytes."
+    },
+    "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/HodgeTateWeilPullback.lean": {
+      "sha256": "ffe9ab52c1bf76f036b8f10e3e35f47ad42e44f0d6d8772505c0fdb9b6cef372",
+      "reason": "Upstream converted the complete file to CRLF. Retain the complete upstream archive and its original Git bytes."
+    },
+    "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/PeriodLatticeOnPuncturedDisc.lean": {
+      "sha256": "4d3bd1d9781a4d9dfc358607723041fcfa48cb0a8722829b8972728bdfb17cf6",
+      "reason": "Upstream converted the complete file to CRLF. Retain the complete upstream archive and its original Git bytes."
+    },
+    "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/TwistAutHolds.lean": {
+      "sha256": "68502ac1f89b26518c5e668a3c8c9ea7b3e1a864884a320b08f79f5c6298e538",
+      "reason": "Upstream converted the complete file to CRLF. Retain the complete upstream archive and its original Git bytes."
+    }
+  }
+}

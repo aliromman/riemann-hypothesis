@@ -1,0 +1,74 @@
+{
+  "base": "a18a350c3e5aad997766cff2670b292313e46574",
+  "merged_batch": 2318,
+  "observed_state": {
+    "headRefOid": "375ce0940c9521d703127ab88215c9e51e98e7cf",
+    "mergeCommit": {
+      "oid": "246656fc62ac80c1214f48550138076c4f278569"
+    },
+    "mergedAt": "2026-11-25T07:17:13Z",
+    "state": "MERGED",
+    "url": "https://github.com/leanprover-community/riemann-hypothesis/pull/2318"
+  },
+  "peer_head": "246656fc62ac80c1214f48550138076c4f278569",
+  "heads": {
+    "879": "ef04b1ad44251c9dae9c1bc3bdfcda7649d34508",
+    "977": "f498439153b72cf74f39a892245141c1b0849e61"
+  },
+  "unique_shared_sources": 2696,
+  "by_proposal": {
+    "879": {
+      "shared": 2433,
+      "all": {
+        "reconstructed": 758,
+        "deleted_by_peer": 25,
+        "already_in_community": 1649,
+        "withdrawn": 1
+      },
+      "textual_conflicts": {
+        "deleted_by_peer": 25,
+        "reconstructed": 41,
+        "already_in_community": 1539,
+        "withdrawn": 1
+      },
+      "requires_review": []
+    },
+    "977": {
+      "shared": 1114,
+      "all": {
+        "upstream_retired_archive": 3,
+        "reconstructed": 1097,
+        "deleted_by_peer": 9,
+        "withdrawn": 5
+      },
+      "textual_conflicts": {
+        "upstream_retired_archive": 3,
+        "reconstructed": 280,
+        "deleted_by_peer": 9,
+        "withdrawn": 5
+      },
+      "requires_review": []
+    }
+  },
+  "shared_tooling": {
+    "879": [],
+    "977": []
+  },
+  "exact_source_preview": {
+    "879": {
+      "unresolved_modules_excluded_from_estimate": 0,
+      "retained_owners": 36839,
+      "net_nonblank_lean_lines": 958004,
+      "net_lean_code_commands": 958004
+    },
+    "977": {
+      "unresolved_modules_excluded_from_estimate": 0,
+      "retained_owners": 11493,
+      "net_nonblank_lean_lines": 372707,
+      "net_lean_code_commands": 245249,
+      "net_code_less_added_python": 244801
+    }
+  },
+  "status": "Source reconstruction against the actual main tree after merged PR 2318. Native and stock build checks are separate.",
+  "rows_sha256": "0d804b03078630e73f2ec6f0ec46a0a8a18299bc9730acad1280f6354779c2a8"
+}

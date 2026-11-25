@@ -1,0 +1,75 @@
+{
+  "879": {
+    "head": "8073aca8a95c7ec91dc448cd2238b171caabd9f3",
+    "base": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
+    "draft": true,
+    "mergeable": true,
+    "jobs": [
+      {
+        "name": "pr-summary",
+        "conclusion": "failure",
+        "url": "https://github.com/leanprover-community/riemann-hypothesis/actions/runs/45569747647/job/139053190056",
+        "id": 139053190056,
+        "run": "45569747647",
+        "exact_git_fetch_error": true,
+        "errors": [
+          "2026-11-25T07:38:50.7537648Z fatal: remote error: upload-pack: not our ref 8073aca8a95c7ec91dc448cd2238b171caabd9f3",
+          "2026-11-25T07:38:50.7571390Z ##[error]Process completed with exit code 128."
+        ]
+      },
+      {
+        "name": "Comparator challenge files are unchanged",
+        "conclusion": "failure",
+        "url": "https://github.com/leanprover-community/riemann-hypothesis/actions/runs/45569747634/job/139053189793",
+        "id": 139053189793,
+        "run": "45569747634",
+        "exact_git_fetch_error": true,
+        "errors": [
+          "2026-11-25T07:38:48.1730469Z fatal: remote error: upload-pack: not our ref 8073aca8a95c7ec91dc448cd2238b171caabd9f3",
+          "2026-11-25T07:38:48.1759907Z ##[error]Process completed with exit code 128."
+        ]
+      },
+      {
+        "name": "label",
+        "conclusion": "failure",
+        "url": "https://github.com/leanprover-community/riemann-hypothesis/actions/runs/45569747638/job/139053189488",
+        "id": 139053189488,
+        "run": "45569747638",
+        "exact_git_fetch_error": true,
+        "errors": [
+          "2026-11-25T07:38:43.5620784Z fatal: remote error: upload-pack: not our ref 8073aca8a95c7ec91dc448cd2238b171caabd9f3",
+          "2026-11-25T07:38:43.5646602Z ##[error]Process completed with exit code 128."
+        ]
+      }
+    ]
+  },
+  "977": {
+    "head": "734178695efaf86734e2eca8503fad4062a062a1",
+    "base": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
+    "draft": true,
+    "mergeable": true,
+    "jobs": [
+      {
+        "id": 139053775463,
+        "name": "label",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/leanprover-community/riemann-hypothesis/actions/runs/45569921398/job/139053775463"
+      },
+      {
+        "id": 139053774640,
+        "name": "Comparator challenge files are unchanged",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/leanprover-community/riemann-hypothesis/actions/runs/45569921405/job/139053774640"
+      },
+      {
+        "id": 139053774506,
+        "name": "pr-summary",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/leanprover-community/riemann-hypothesis/actions/runs/45569921412/job/139053774506"
+      }
+    ]
+  }
+}

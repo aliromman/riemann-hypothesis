@@ -1,0 +1,15 @@
+{
+  "head": "8073aca8a95c7ec91dc448cd2238b171caabd9f3",
+  "parent": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
+  "src": "8d0111d85eebadaae23bb708fe185a48d617ac3f",
+  "scope": "import-all",
+  "counts": {
+    "modules": 270,
+    "edited": 128,
+    "warnings": 647,
+    "declaration_occurrences_counted": 12364,
+    "ordinary and official declarations compared directly": 270
+  },
+  "rows_sha256": "048952c87df153124cb143f86c663e3131fb3d9640d55e121ab37c36fe368ac9",
+  "checker_sha256": "ceabcaf423d986f10712143cc07d268dc37fcefa697d845d309e3305bb39ef53"
+}

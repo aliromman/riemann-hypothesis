@@ -1,0 +1,19 @@
+{
+  "pr": "879",
+  "branch": "codex/prune-development-mathlib-imports",
+  "head": "8073aca8a95c7ec91dc448cd2238b171caabd9f3",
+  "base": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
+  "old": "ef04b1ad44251c9dae9c1bc3bdfcda7649d34508",
+  "src": "8d0111d85eebadaae23bb708fe185a48d617ac3f",
+  "tree": "b9293a4c2700ff5ba02eb1f45e521ad44c892fdf",
+  "published_at": "2026-11-25T07:38:29.798270+00:00",
+  "raw_upstream_fetch_before_sync": false,
+  "raw_fetch_error": "fatal: remote error: upload-pack: not our ref 8073aca8a95c7ec91dc448cd2238b171caabd9f3",
+  "source_reference": "refs/heads/ci/batch-2318/pr-879-published",
+  "merge_base_at_readback": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
+  "merge_tree_at_readback": "b9293a4c2700ff5ba02eb1f45e521ad44c892fdf",
+  "mergeable": true,
+  "github_merge": "d517a7ca51b73d47c4371161131ba04be7e8c69d",
+  "draft": true,
+  "validated": "2026-11-25T07:39:43.318677+00:00"
+}
