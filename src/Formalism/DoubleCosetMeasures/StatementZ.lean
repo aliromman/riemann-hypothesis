@@ -1,6 +1,7 @@
 module
 
 public import Formalism.DoubleCosetMeasures.Statement
+public import Mathlib.Analysis.Matrix.MeasurableSpace
 public import Mathlib.Data.Matrix.ColumnRowPartitioned
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
@@ -50,8 +51,8 @@ open MeasureTheory Matrix ComplexConjugate
 
 namespace Formalism.DoubleCosetMeasures
 
-scoped instance instMeasMat {m n F : Type} [MeasurableSpace F] : MeasurableSpace (Matrix m n F) :=
-  inferInstanceAs (MeasurableSpace (m → n → F))
+@[reducible] scoped instance instMeasMat {m n F : Type} [MeasurableSpace F] : MeasurableSpace (Matrix m n F) :=
+  Matrix.instMeasurableSpace
 
 section Weil
 
