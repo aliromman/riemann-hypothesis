@@ -15,6 +15,8 @@ Daniel Ang's #1324 already covers the doubling regression. The matrix-provider c
 
 The two current theta targets `ThetaKernels.IndepDomK` and `ThetaKernels.SiegelWeilKfpDefs` built on the proposed merge. The up-to-date check passed with 23,476 Lake jobs. [Target receipt](theta.json) · [Failure and correction on the preceding batch](../fc-conj-k/README.md)
 
+The stock `Challenge` build and five-statement export passed on both revisions. The two exports have the same 363,237,517 bytes and SHA-256 `bb37c4bb518fe68a13f12aa3929dd62dfecb663f0c063ad8c338e39601f28a60`. The receipt covers the challenge side of Comparator. [Challenge inputs and results](challenge/receipt.json) · [Export check](../../verify_challenge_export.py)
+
 ## Reproduce
 
 Use checkouts of the main and proposed merge revisions above as `BEFORE` and `AFTER`. Set `REPO` to a checkout that contains archived commit `cb4dc6e23a6187db392c96664295415c55b6b01e`. Set `BIN` to the pinned Lean toolchain's bin directory, `EVIDENCE` to the absolute path of `verification/pr1037-after-1324`, and `OUT` to a directory for the test results. Install the dependencies in each checkout's `lake-manifest.json`. The upstream README gives the Mathlib cache command. [Upstream instructions](https://github.com/leanprover-community/riemann-hypothesis/blob/0e33c950c14ed48833fa38e401c9db04c4be5567/README.md#checking-the-proof-yourself)

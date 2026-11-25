@@ -1,0 +1,10 @@
+⚠ [18291/18293] Built Challenge (25s)
+warning: src/Challenge.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: src/Challenge.lean:19:8: declaration uses `sorry`
+warning: src/Challenge.lean:21:8: declaration uses `sorry`
+warning: src/Challenge.lean:23:8: declaration uses `sorry`
+warning: src/Challenge.lean:25:8: declaration uses `sorry`
+warning: src/Challenge.lean:27:8: declaration uses `sorry`
+⚠ [18292/18293] Ran Challenge:irArts
+warning: src/Challenge.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+Build completed successfully (18293 jobs).

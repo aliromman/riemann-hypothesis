@@ -35,4 +35,10 @@ Merge `c3679d4a79d297efdb223876790f02faf1819618` includes PR head `b57e4300c7a69
 
 ## Linux Comparator
 
-Use a fresh Linux checkout of the same merge. Fetch only the official Mathlib cache, then run `lake comparator` with the repository's `comparator.json`. Record the tested commit, each exit code, all five verdicts and both kernel results. The upstream README also gives the separate export and check commands. [Upstream procedure on the pinned merge](https://github.com/aliromman/riemann-hypothesis/blob/c3679d4a79d297efdb223876790f02faf1819618/README.md#checking-the-proof-yourself)
+Use a fresh checkout of the proposed merge on a Linux machine with bubblewrap. Run as an ordinary user. Set `expected` to the full commit that the operator agreed to check. Set `results` to an existing directory outside the checkout. Run the script from the checkout. It prints the name of a new directory for the report.
+
+```sh
+sh "$evidence/verification/pr120-successor-builds/run_linux_comparator.sh" "$expected" "$results"
+```
+
+The script adds the pinned Lean release to `PATH` so Comparator can find the external kernels. It fetches the Mathlib cache, runs upstream `lake comparator --json`, and records each exit code. Keep the revision, Lean version, report and stderr together. A successful run exits 0 and reports `sandboxed: true` and `judgement: accepted`. Check the five theorem names and the three permitted axioms against the pinned `comparator.json`. Check the statement comparison, axiom check and results for Lean default, Lean paranoid and nanoda. Comparator writes the JSON report when it finishes. [Upstream procedure](https://github.com/aliromman/riemann-hypothesis/blob/0e33c950c14ed48833fa38e401c9db04c4be5567/README.md#checking-the-proof-yourself)
