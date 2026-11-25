@@ -21,12 +21,6 @@ namespace GroundTheory.Variant₂.N1
 
 open NumberField
 
-theorem exists_ne_zero_smul_mem {K : Type} [Field K] [NumberField K] {i : ℕ}
-    (L : Submodule (RingOfIntegers K) (Fin i → K))
-    (hL : Submodule.span K (L : Set (Fin i → K)) = ⊤) (v : Fin i → K) :
-    ∃ d : RingOfIntegers K, d ≠ 0 ∧ d • v ∈ L := by
-  apply ReciprocityTheory.MultiplicativeHeights.sc_scale <;> assumption
-
 theorem exists_cover {K : Type} [Field K] [NumberField K] {i : ℕ}
     {F X : GroundTheory.Heights₂.Heights.HermLattice K i} :
     X.lattice < F.lattice →
@@ -41,7 +35,7 @@ theorem exists_cover {K : Type} [Field K] [NumberField K] {i : ℕ}
   obtain ⟨s, hs⟩ := F.fg
 
   obtain ⟨d, hd0, hdX⟩ : ∃ d : RingOfIntegers K, d ≠ 0 ∧ ∀ f ∈ F.lattice, d • f ∈ X.lattice := by
-    choose e he hem using fun v => exists_ne_zero_smul_mem X.lattice X.span_eq v
+    choose e he hem using fun v => Bl.general_b_fact_second.goal1 X.lattice X.span_eq v
     refine ⟨∏ g ∈ s, e g, Finset.prod_ne_zero_iff.2 fun g _ => he g, fun f hf => ?_⟩
     rw [← hs] at hf
     induction hf using Submodule.span_induction with
@@ -111,7 +105,7 @@ theorem exists_cover {K : Type} [Field K] [NumberField K] {i : ℕ}
 end GroundTheory.Variant₂.N1
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualTopStacked
+@[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualTopStacked
 
 set_option maxSynthPendingDepth 1
 
@@ -120,6 +114,7 @@ namespace GroundTheory.Heights₂.Heights
 open ReciprocityTheory.ChartRestriction.G.Geo NumberField
 open scoped ComplexOrder
 
+noncomputable section
 
 namespace TopDualStacked
 
@@ -215,7 +210,6 @@ theorem degForm_of_le (hSimple : DualTopSimpleSub.Statement) (hBasis : DualTopBa
 
 end TopDualStacked
 
-
 open TopDualStacked in
 theorem DualTopStacked.proof (hSimple : DualTopSimpleSub.Statement) (hBasis : DualTopBasisChange.Statement)
     (hDeg : DualStackedDegree.Statement) : DualTopStacked.Statement := by
@@ -224,6 +218,7 @@ theorem DualTopStacked.proof (hSimple : DualTopSimpleSub.Statement) (hBasis : Du
   rw [hDeg K i F F' T b b' a hle hab] at e
   exact e
 
+end
 
 end GroundTheory.Heights₂.Heights
 

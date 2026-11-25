@@ -129,7 +129,6 @@ theorem rTrans_lift {V V₀ W W₀ : HSp D} {ρ σ : ℕ} (s : Step ψ V V₀ W 
 
 end GlobalTheory.Unf.IterProof
 
-
 open GlobalTheory.Unf.IterProof in
 theorem GlobalTheory.Unf.iter_of_doubleStep_lastLaw : ∀ D : D7, DoubleStep D → LastLaw D → IT D := by
   intro D hD hL ψ T ρ B c
@@ -152,26 +151,23 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IteratedThetaUnfoldingOfDoubleStepLastTwoStepsStatement
 
-theorem _root_.GlobalTheory.T.iteratedThetaUnfolding_of_doubleStep_lastTwoSteps : ∀ D : D7, DoubleStep D → LastLaw D → IT D := by
-  first | exact @GlobalTheory.Unf.iter_of_doubleStep_lastLaw
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IteratedThetaUnfoldingOfWeilDatumDescent
 
 theorem GlobalTheory.Unf.iteratedUnfolding_of_descent : ∀ D : D7, Descent D → IT D :=
-  fun D hD => GlobalTheory.T.iteratedThetaUnfolding_of_doubleStep_lastTwoSteps D (GlobalTheory.T.besselPeriod_double_step_unfolding_of_descent D hD) (GlobalTheory.T.doubleLiftPeriod_rankZero_fubini_compactQuotient D)
+  fun D hD => GlobalTheory.Unf.iter_of_doubleStep_lastLaw D (GlobalTheory.T.besselPeriod_double_step_unfolding_of_descent D hD) (GlobalTheory.Unf.LastSteps.lastLaw D)
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IteratedThetaUnfoldingOfWeilDatumDescentStatement
 
-theorem _root_.GlobalTheory.T.iteratedThetaUnfolding_of_weilDatumDescent : ∀ D : D7, Descent D → IT D := by
-  first | exact @GlobalTheory.Unf.iteratedUnfolding_of_descent
 end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.QEqColPer
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.QEqColPer
 
+noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR.Datum MeasureTheory IsDedekindDomain NumberField Matrix
 open Formalism.IndefR Formalism.IndefR.Links GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.ChiGrid GlobalTheory.Unf
@@ -222,7 +218,7 @@ theorem iter_chain (hM : M.Is t) (d : PureT G (downPath t D.R.m D.R.m)) (hd : Al
     (hR : (chain G Wl t hM).Rapid (chainData G Wl t hM d) F) :
     (chain G Wl t hM).Iter ((chain G Wl t hM).Q (chainData G Wl t hM d) F φ 1)
       ((topLev G hM).per Wl.ψ φ ((chain G Wl t hM).down (chainData G Wl t hM d) F)) := by
-  have h := GlobalTheory.T.iteratedThetaUnfolding_of_weilDatumDescent D (GlobalTheory.T.weilDatum_descends_to_wittCore D) Wl.ψ _ _ _ (chain G Wl t hM) (chainData G Wl t hM d) F φ 1
+  have h := GlobalTheory.Unf.iteratedUnfolding_of_descent D (GlobalTheory.T.weilDatum_descends_to_wittCore D) Wl.ψ _ _ _ (chain G Wl t hM) (chainData G Wl t hM d) F φ 1
     (chainData_isTheta G Wl t hM d hd) hF hφ hR
   have e : rTrans 1 ((chain G Wl t hM).down (chainData G Wl t hM d) F) = (chain G Wl t hM).down (chainData G Wl t hM d) F := by
     funext z; simp [rTrans]

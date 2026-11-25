@@ -716,8 +716,9 @@ theorem cayDensU (P Q : ℕ) (m : Measure (UpqT P Q)) [hm : m.IsHaarMeasure] (la
 end HcHDC
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.CayDensEx
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.CayDensEx
 
+noncomputable section
 
 namespace PI.AprimeInfW
 
@@ -939,7 +940,6 @@ end Perm
 
 end CDX
 
-
 open CDX in
 theorem cayDensEx_holds : CayDensEx := by
   intro n ε
@@ -1019,6 +1019,7 @@ theorem cayDensEx_holds : CayDensEx := by
           exact (ENNReal.ofReal_toReal (hpt x hx).2.2).symm
 
 end PI.AprimeInfW
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.CayValId
@@ -1185,11 +1186,10 @@ theorem expR_zero' {n : ℕ} (ε : Fin n → Bool) : expR ε (0 : EuclideanSpace
   split_ifs with h
   · apply Subtype.ext
     apply Units.ext
-    simp [unrealify_zero', NormedSpace.exp_zero]
+    simp [Formalism.MainNotions.S.Gauge.unrealify_zero, NormedSpace.exp_zero]
   · rfl
 
 end CVI
-
 
 open CVI in
 theorem cayValId_holds : CayValId := by

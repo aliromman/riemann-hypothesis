@@ -14,22 +14,15 @@ import Formalism.SharpRestriction.GlobalSchurBounds.ShortIntervalPrimes
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GlobalProofs.AbelSummationByPartsWeights, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ConeSeriesDifferentiableLeftStrip
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.AbelSummationByPartsWeights
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.AbelSummationByPartsWeights
 
 open NumberField Formalism.MainNotions.ShortIntervalPrimes GlobalTheory.RayZeta GlobalTheory.CompanionTheory.Hypotheses₂.Shintani GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.StepIdentity
 
 variable {r : ℕ}
-
-theorem update_add_single (i : Fin r) (m : Fin r → ℕ) (n k : ℕ) :
-    Function.update (m + (Pi.single i n : Fin r → ℕ)) i k = Function.update m i k := by
-  funext j
-  by_cases hj : j = i
-  · subst hj
-    simp
-  · simp [hj]
 
 theorem update_self_add (i : Fin r) (m : Fin r → ℕ) (e : ℕ) :
     Function.update m i (m i + e) = m + (Pi.single i e : Fin r → ℕ) := by
@@ -41,7 +34,7 @@ theorem update_self_add (i : Fin r) (m : Fin r → ℕ) (e : ℕ) :
 
 theorem partialSum_succ (i : Fin r) (v : (Fin r → ℕ) → ℚ) (m : Fin r → ℕ) :
     partialSum i v (m + Pi.single i 1) = partialSum i v m + v m := by
-  simp only [partialSum, update_add_single, Pi.add_apply, Pi.single_eq_same]
+  simp only [partialSum, GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.AopProps.update_add_single, Pi.add_apply, Pi.single_eq_same]
   rw [Finset.sum_range_succ, Function.update_eq_self]
 
 theorem partialSum_of_zero (i : Fin r) (v : (Fin r → ℕ) → ℚ) (m : Fin r → ℕ) (h : m i = 0) :
@@ -50,11 +43,11 @@ theorem partialSum_of_zero (i : Fin r) (v : (Fin r → ℕ) → ℚ) (m : Fin r 
 
 theorem partialSumMean_add_single_one (l : ℕ) (i : Fin r) (v : (Fin r → ℕ) → ℚ) (m : Fin r → ℕ) :
     meanP l i v (m + Pi.single i 1) = meanP l i v m := by
-  simp only [meanP, update_add_single]
+  simp only [meanP, GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.AopProps.update_add_single]
 
 theorem partialSum_period {l : ℕ} {i : Fin r} {v : (Fin r → ℕ) → ℚ} (h : GoodAt l i v)
     (m : Fin r → ℕ) : partialSum i v (m + Pi.single i l) = partialSum i v m := by
-  simp only [partialSum, update_add_single, Pi.add_apply, Pi.single_eq_same]
+  simp only [partialSum, GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.AopProps.update_add_single, Pi.add_apply, Pi.single_eq_same]
   rw [Finset.sum_range_add]
   have h2 : ∑ e ∈ Finset.range l, v (Function.update m i (m i + e)) = 0 := by
     simp only [update_self_add]
@@ -189,6 +182,7 @@ theorem stepIdentity (r l : ℕ) (i : Fin r) (v : (Fin r → ℕ) → ℚ) (g : 
     _ = _ := by rw [hshift, sub_self, add_zero]
 
 end GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.Abel.StepIdentity
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.ConeSeriesDifferentiableLeftStrip

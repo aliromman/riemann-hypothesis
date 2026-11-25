@@ -182,8 +182,9 @@ theorem relAmple_diag_subring : ∀ (R : Type) [CommRing R] (R₁ : Subring R) [
 end GlobalTheory.AmpleDiagSubring
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RigidSymmetricBundleDescendsToSubringFinset
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RigidSymmetricBundleDescendsToSubringFinset
 
+noncomputable section
 
 namespace GlobalTheory.RigSymDescent
 
@@ -207,7 +208,6 @@ theorem axes_sq {S' S : Scheme.{0}} {G' : Over S'} {G : Over S} [GrpObj G'] [Grp
 end GlobalTheory.RigSymDescent
 
 namespace GlobalTheory
-
 
 open GlobalTheory.CechPic in
 theorem rigSym_descends_to_subring_containing_finset : ∀ (R : Type) [CommRing R] (R₁ : Subring R) (A : Over (Sp R)) [GrpObj A] (P : LB (A ⊗ A).left) (A₁ : Over (Sp R₁)) [GrpObj A₁] (P₁ : LB (A₁ ⊗ A₁).left) (φ : A.left ⟶ A₁.left) (φ₂ : (A ⊗ A).left ⟶ (A₁ ⊗ A₁).left), IsAbelianScheme A₁ → P.IsLB → P₁.IsLB → IsGrpPullback A A₁ (spMap R₁.subtype) φ → Geo.Tor.IsSquare φ φ₂ → LBIso P (P₁.pull φ₂) → IsTrivial (P.pull (lift (1 : A ⟶ A) (𝟙 A)).left) → IsTrivial (P.pull (lift (𝟙 A) (1 : A ⟶ A)).left) → LBIso P (P.pull (lift (snd A A) (fst A A)).left) → ∃ F : Finset R, ∀ (R₂ : Subring R) (h : R₁ ≤ R₂), (F : Set R) ⊆ R₂ → ∀ (A₂ : Over (Sp R₂)) [GrpObj A₂] (π : A₂.left ⟶ A₁.left) (π₂ : (A₂ ⊗ A₂).left ⟶ (A₁ ⊗ A₁).left), IsGrpPullback A₂ A₁ (spMap (Subring.inclusion h)) π → Geo.Tor.IsSquare π π₂ → IsTrivial ((P₁.pull π₂).pull (lift (1 : A₂ ⟶ A₂) (𝟙 A₂)).left) ∧ IsTrivial ((P₁.pull π₂).pull (lift (𝟙 A₂) (1 : A₂ ⟶ A₂)).left) ∧ LBIso (P₁.pull π₂) ((P₁.pull π₂).pull (lift (snd A₂ A₂) (fst A₂ A₂)).left) := by
@@ -266,6 +266,7 @@ theorem rigSym_descends_to_subring_containing_finset : ∀ (R : Type) [CommRing 
 
 end GlobalTheory
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SectionsEqOfSpMapSubtypeCompEq
 
@@ -321,11 +322,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SiegelObjectDataDescendsFiniteTypeSubring
 
 namespace GlobalTheory.SiegFg
-
-theorem spMap_subtype_inclusion' {R : Type} [CommRing R] {S₀ R₁ : Subring R} (h : S₀ ≤ R₁) :
-    spMap R₁.subtype ≫ spMap (Subring.inclusion h) = spMap S₀.subtype := by
-  rw [← Spec.map_comp]
-  rfl
 
 theorem smooth_pull {S S' : Scheme.{0}} (f : S' ⟶ S) (B : Over S) (g : ℕ) (hB : SmoothOfRelativeDimension g B.hom) :
     SmoothOfRelativeDimension g ((Over.pullback f).obj B).hom :=
@@ -397,7 +393,7 @@ theorem siegPre_data_descends_fg : ∀ (g n : ℕ), 3 ≤ n → ∀ (R : Type) [
   have hSLs : ∀ a, (SL a : Set R) ⊆ R₁ := fun a x hx => hT (by
     simp only [T, Finset.coe_union, Finset.coe_biUnion, Finset.coe_univ, Set.mem_univ, Set.iUnion_true]
     exact Or.inr (Set.mem_iUnion.2 ⟨a, hx⟩))
-  have hj : spMap R₁.subtype ≫ spMap (Subring.inclusion h) = spMap S₀.subtype := spMap_subtype_inclusion' h
+  have hj : spMap R₁.subtype ≫ spMap (Subring.inclusion h) = spMap S₀.subtype := GlobalTheory.SiegBaseChange.spMap_subtype_comp_inclusion h
 
   let A₁ : Over (Sp R₁) := (Over.pullback (spMap (Subring.inclusion h))).obj B
   have hA₁ : IsAbelianScheme A₁ :=
@@ -940,7 +936,6 @@ variable {G : Over S} [GrpObj G] {pr : Fin n → (G ⟶ A)} (hmon : ∀ u, IsMon
   (huniv : ∀ (T : Over S) (y : Fin n → (T ⟶ A)), ∃! x : T ⟶ G, ∀ u, x ≫ pr u = y u)
   {W : Matrix (Fin n) (Fin n) ℤ} {L : LB G.left} (hL : L.IsLB) (hLW : cls L hL = quad π W pr)
 
-
 include hadd hsym hLW hmon huniv in
 theorem trivAlong_of_kernelAlong {S' : Scheme.{0}} (g : S' ⟶ S) (hdet : (W + W.transpose).det = 1)
     (hker : ∀ (T : Over S) (a : T.left ⟶ S'), a ≫ g = T.hom → ∀ x : T ⟶ A,
@@ -988,7 +983,6 @@ theorem trivAlong_of_kernelAlong {S' : Scheme.{0}} (g : S' ⟶ S) (hdet : (W + W
   have e : j ≫ x ≫ pr u₀ = j ≫ 1 :=
     (hker T' ((V p).ι ≫ a) (by simp [T', ha]) _ k₁).trans (MonObj.comp_one j).symm
   exact congrArg (fun q => q.left) e
-
 
 include hadd hsym hLW hmon huniv in
 theorem kernelAlong_of_trivAlong {S' : Scheme.{0}} (g : S' ⟶ S) (u₀ : Fin n) (hK : TrivAlong G L g)

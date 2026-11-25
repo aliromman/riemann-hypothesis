@@ -59,7 +59,7 @@ import Mathlib.Tactic.Polynomial.Basic
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.SingleMemOfDiagonal
 
 theorem UpperTheory.Reformulated.B.SingleMemOfDiagonal.single_mem_of_diag :
-    ∀ {κ : Type} [inst : Field κ] {m : ℕ} (d : Fin m → κ),
+    ∀ {κ : Type} [Field κ] {m : ℕ} (d : Fin m → κ),
     Function.Injective d →
       ∀ (W : Submodule κ (Fin m → κ)),
         (∀ v ∈ W, (Matrix.diagonal d).mulVec v ∈ W) →

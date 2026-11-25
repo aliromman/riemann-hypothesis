@@ -195,8 +195,9 @@ end ReciprocityTheory.ChartRestriction.DS
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.HaarVolumes.KDensA
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.HaarVolumes.KDensA
 
+noncomputable section
 
 open Finset Matrix MeasureTheory Topology
 
@@ -268,13 +269,9 @@ lemma kdD_injective (ε : Fin n → Bool) : Function.Injective (kdD ε) := by
   have := congrFun (congrFun h (kdSig ε ⟨s, i⟩)) (kdSig ε ⟨s, j⟩)
   rwa [kdD_apply, kdD_apply, blockDiagonal'_apply_eq, blockDiagonal'_apply_eq] at this
 
-lemma kd_commJ_iff (ε : Fin n → Bool) (M : Matrix (Fin n) (Fin n) ℂ) :
-    M * Jm ε = Jm ε * M ↔ ∀ a b, ε a ≠ ε b → M a b = 0 := by
-  apply ReciprocityTheory.ChartRestriction.DS.HW.commJ_iff
-
 lemma kdD_commJ (ε : Fin n → Bool) (v : ∀ s : Bool, Matrix (Fin (kdC ε s)) (Fin (kdC ε s)) ℂ) :
     kdD ε v * Jm ε = Jm ε * kdD ε v := by
-  rw [kd_commJ_iff]
+  rw [ReciprocityTheory.ChartRestriction.DS.HW.commJ_iff]
   intro a b hab
   obtain ⟨⟨s, i⟩, rfl⟩ := (kdSig ε).surjective a
   obtain ⟨⟨s', j⟩, rfl⟩ := (kdSig ε).surjective b
@@ -297,7 +294,7 @@ lemma eq_kdD {ε : Fin n → Bool} {X : Matrix (Fin n) (Fin n) ℂ} (hX : X * Jm
   · subst h
     rw [blockDiagonal'_apply_eq]; rfl
   · rw [blockDiagonal'_apply_ne _ _ _ h]
-    exact (kd_commJ_iff ε X).1 hX _ _ (by rw [kdSig_apply, kdSig_apply, ε_kdE ε s i, ε_kdE ε s' j]; exact h)
+    exact (ReciprocityTheory.ChartRestriction.DS.HW.commJ_iff ε X).1 hX _ _ (by rw [kdSig_apply, kdSig_apply, ε_kdE ε s i, ε_kdE ε s' j]; exact h)
 
 lemma kdD_conjTranspose (ε : Fin n → Bool) (v : ∀ s : Bool, Matrix (Fin (kdC ε s)) (Fin (kdC ε s)) ℂ) :
     (kdD ε v)ᴴ = kdD ε (fun s => (v s)ᴴ) := by
@@ -457,6 +454,7 @@ theorem kd_dk_eq_map (ε : Fin n → Bool) (μp : Measure (UNgrp (pOf ε))) [μp
   exact Measure.isHaarMeasure_eq_of_isProbabilityMeasure _ _
 
 end ReciprocityTheory.ChartRestriction.DS
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.HaarVolumes.KDensB
@@ -653,11 +651,6 @@ variable {N : ℕ}
 
 def kdF (N : ℕ) (x : UCo N) : Fin N → Fin N → ℂ := Matrix.of.symm (NormedSpace.exp (skMat x))
 
-lemma kd_skMat_injective : Function.Injective (skMat (N := N)) := by
-  first
-    | exact _root_.ReciprocityTheory.ChartRestriction.DS.volU_skMat_injective
-    | apply _root_.ReciprocityTheory.ChartRestriction.DS.volU_skMat_injective <;> first | assumption | rfl | infer_instance
-
 lemma kd_continuous_skMat : Continuous (skMat (N := N)) := by
   refine continuous_matrix fun a b => ?_
   simp only [skMat]
@@ -707,7 +700,7 @@ lemma kdF_injOn : ∃ r > 0, InjOn (kdF N) (Metric.ball 0 r) := by
     rw [Set.mem_preimage, kd_skMat_zero]
     exact hV0
   obtain ⟨r, hr, hball⟩ := Metric.isOpen_iff.1 hU 0 h0
-  refine ⟨r, hr, fun x hx y hy hxy => kd_skMat_injective (hVi (hball hx) (hball hy) ?_)⟩
+  refine ⟨r, hr, fun x hx y hy hxy => ReciprocityTheory.ChartRestriction.DS.volU_skMat_injective (hVi (hball hx) (hball hy) ?_)⟩
   exact hxy
 
 end KDChart

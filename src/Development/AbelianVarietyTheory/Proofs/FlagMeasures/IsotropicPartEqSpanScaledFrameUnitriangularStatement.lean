@@ -137,10 +137,11 @@ theorem Ia_fg_and_mem_iff {E : Type} [Field E] [NumberField E] [StarRing E] (S :
 end GlobalTheory.RowLatXS
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.FractionalIdealEqOfLocalSpansEq
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.FractionalIdealEqOfLocalSpansEq
 
 open scoped Classical ENNReal
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.HidaSetting Formalism.L2.SG.TermOp Formalism.L2.SG.Full Formalism.L2.SG.RowsConc Formalism.L2.SG.NGData Formalism.L2.SG.TermLoc GlobalTheory.Unfold
+noncomputable section
 
 namespace GlobalTheory.Sloc.OneDim
 
@@ -193,7 +194,6 @@ private theorem le_of_locP_eq_forall_heightOneSpectrum {D : D7} {A B : Submodule
 
 end GlobalTheory.Sloc.OneDim
 
-
 open GlobalTheory.Sloc.OneDim in
 theorem GlobalTheory.Sloc.fg_eq_of_completions : ∀ (D : D7) (Z : LocDat D) (I J : Submodule (𝓞 D.host.E) D.host.E), I.FG → J.FG → (∀ p : PlF D, Submodule.span (Z.M p).L.O ((D.s.atP p).ιE '' (I : Set D.host.E)) = Submodule.span (Z.M p).L.O ((D.s.atP p).ιE '' (J : Set D.host.E))) → I = J := by
   intro D Z I J hI hJ hloc
@@ -211,6 +211,7 @@ theorem GlobalTheory.Sloc.fg_eq_of_completions : ∀ (D : D7) (Z : LocDat D) (I 
   have hAB : I.map (lineMap D) = J.map (lineMap D) :=
     le_antisymm (OneDim.le_of_locP_eq_forall_heightOneSpectrum hP) (OneDim.le_of_locP_eq_forall_heightOneSpectrum fun P => (hP P).symm)
   exact Submodule.map_injective_of_injective (lineMap_injective D) hAB
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.LatticeInfIsotropicEqSumFractionalIdealSmul
@@ -606,8 +607,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ScaledLocalDualCoeffEqGlobalCoeffStatement
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-theorem _root_.GlobalTheory.T.scaled_local_dual_coeff_eq_global_coeff : ∀ (D : D7) (T : D.host.E) (G : LFlag (D.sp.Y 0) D.R.rS T) (Z : LocDat D) (A : ∀ p : PlF D, LocNG.FrameD (locH Z p) D.R.rS), (∀ p, (A p).f = fun a => frFac Z.δ p a • baseChange₂ D p (frame G a)) → ∀ (p : PlF D) (a : Fin D.R.rS) (x : (VS D).V), x ∈ G.fl.X → frFac Z.δ p a.castSucc * (locH Z p).h (baseChange₂ D p x) ((A p).es a) = (D.s.atP p).ιE (G.fl.coefX x a) := by
-  first | exact @GlobalTheory.RowLatXS.scaled_local_coef_eq
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.SpanCoefficientIdealEqSpanFrameScale
@@ -634,8 +633,6 @@ theorem span_coef_mem {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
     rw [Subring.smul_def, H.h_smul_left, mul_left_comm]
     exact hmem
 
-
-
 theorem span_coefIdeal_eq_span_frFac : ∀ (D : D7) (T : D.host.E) (G : LFlag (D.sp.Y 0) D.R.rS T) (Z : LocDat D) (A : ∀ p : PlF D, LocNG.FrameD (locH Z p) D.R.rS), (∀ p, (A p).f = fun a => frFac Z.δ p a • baseChange₂ D p (frame G a)) → ∀ Λ : LV D, Submodule.IsLattice D.host.E Λ → (∀ p, ∃ n ∈ (A p).N, ∃ L, (A p).IsInner L ∧ lattice₂ D Z.M p Λ = LocNG.img n ((A p).LamStd L)) → ∀ (p : PlF D) (a : Fin D.R.rS), Submodule.span (Z.M p).L.O ((D.s.atP p).ιE '' (GlobalTheory.RowLatXS.Ia Λ G.fl a : Set D.host.E)) = Submodule.span (Z.M p).L.O {frFac Z.δ p a.castSucc} := by
   intro D T G Z A hA Λ hL hloc p a
   obtain ⟨n, hn, L, -, hΛ⟩ := hloc p
@@ -661,7 +658,7 @@ theorem span_coefIdeal_eq_span_frFac : ∀ (D : D7) (T : D.host.E) (G : LFlag (D
       have hv2 : baseChange₂ D p x ∈ LocNG.img n ((A p).LamStd L) := by
         rw [← hΛ]; exact Submodule.subset_span ⟨x, hxΛ, rfl⟩
       have hO := _root_.GlobalTheory.locCoef_integral (A p) n hn L a (baseChange₂ D p x) hv1 hv2
-      rw [← GlobalTheory.T.scaled_local_dual_coeff_eq_global_coeff D T G Z A hA p a x (hXle hxX)]
+      rw [← GlobalTheory.RowLatXS.scaled_local_coef_eq D T G Z A hA p a x (hXle hxX)]
       rw [SetLike.mem_coe, Submodule.mem_span_singleton]
       exact ⟨⟨_, hO⟩, by rw [Subring.smul_def, smul_eq_mul, mul_comm]⟩
     | zero =>
@@ -724,7 +721,7 @@ theorem span_coefIdeal_eq_span_frFac : ∀ (D : D7) (T : D.host.E) (G : LFlag (D
     · rw [hv1, mul_one] at key
       exact key
     · rintro _ ⟨x, ⟨hxΛ, hxX⟩, rfl⟩
-      rw [GlobalTheory.T.scaled_local_dual_coeff_eq_global_coeff D T G Z A hA p a x (hXle hxX)]
+      rw [GlobalTheory.RowLatXS.scaled_local_coef_eq D T G Z A hA p a x (hXle hxX)]
       exact Submodule.subset_span ⟨_, Submodule.subset_span ⟨x, hxΛ, hxX, rfl⟩, rfl⟩
 
 end GlobalTheory.RowLatXS

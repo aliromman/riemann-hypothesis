@@ -173,15 +173,15 @@ theorem mem_frobKerIdeal_of_cobOne (p : ℕ) [Fact p.Prime] (K H : Type) [Field 
 end GlobalTheory.PDiv.FrobKerPrim
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KerRigExtMapRelFrobLeRangeRigOfOmega
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KerRigExtMapRelFrobLeRangeRigOfOmega
 
+noncomputable section
 
 open CategoryTheory TensorProduct Coalgebra Bialgebra GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup
 
 namespace GlobalTheory.PDiv.FrobRigKer
 
 variable {O A B : Type} [CommRing O] [CommRing A] [CommRing B] [Bialgebra O A] [Bialgebra O B]
-
 
 variable (O A) in
 def evalZeroTwo : A ⊗[O] A →ₗ[O] O :=
@@ -316,6 +316,7 @@ theorem ker_rigExtMap_relFrob_le_range_rigOfOmega (p : ℕ) [Fact p.Prime] (K : 
 
 end GlobalTheory.PDivGroup
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAdditiveFrobeniusPullbackCotangentModVerscStatement
 
@@ -362,7 +363,6 @@ theorem mulP_mem_kerIdeal_comp_of_app_eq_zero (p : ℕ) [Fact p.Prime] (R : Type
   exact Ideal.Quotient.eq_zero_iff_mem.1 h1
 
 end GlobalTheory.PDivGroup
-
 
 open GlobalTheory.PDivGroup in
 theorem GlobalTheory.PDivGroup.mem_kerIdeal_of_app_eq_zero : ∀ (p : ℕ) [Fact p.Prime] (K : Type) [Field K]
@@ -429,15 +429,11 @@ end -- clump:auto
 
 open GlobalTheory
 
-theorem _root_.GlobalTheory.T.range_rigOfOmega_le_range_rigExtMap_verschiebung'
-    (p : ℕ) [Fact p.Prime] (K : Type) [Field K] (h : (p : K) = 0) (G : PDivGroup p K) :
-    LinearMap.range (PDivGroup.frobTwist h G).rigOfOmega ≤
-      LinearMap.range (PDivGroup.rigExtMap (PDivGroup.verschiebung h G)) :=
-  PDivGroup.range_rigOfOmega_le_range_rigExtMap_verschiebung p K h G
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KerEqRangeOfRangeEqKer
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KerEqRangeOfRangeEqKer
 
+noncomputable section
 
 open CategoryTheory TensorProduct
 
@@ -467,7 +463,7 @@ theorem rigExt_field_of_charP (p : ℕ) [Fact p.Prime] (K : Type)
       Submodule.span K (Set.range fun x : G.RigExt => SemiHom.rig (absFrob h G) x) := by
   obtain ⟨-, f1, d1, d2⟩ := _root_.GlobalTheory.PDivGroup.finrank_rigExt_omega p K h G
   obtain ⟨-, f2, d3, -⟩ := _root_.GlobalTheory.PDivGroup.finrank_rigExt_omega p K h (frobTwist h G)
-  have h4 := le_antisymm (range_rigExtMap_verschiebung_le h G) (GlobalTheory.T.range_rigOfOmega_le_range_rigExtMap_verschiebung' p K h G)
+  have h4 := le_antisymm (range_rigExtMap_verschiebung_le h G) (GlobalTheory.PDivGroup.range_rigOfOmega_le_range_rigExtMap_verschiebung p K h G)
   have h5 := le_antisymm (_root_.GlobalTheory.PDivGroup.ker_rigExtMap_relFrob_le_range_rigOfOmega p K h G)
     (LinearMap.range_le_ker_iff.2 (rigExtMap_relFrob_comp_rigOfOmega h G))
   have h6 : rigExtMap (verschiebung h G) ∘ₗ rigExtMap (relFrob h G) = 0 := by

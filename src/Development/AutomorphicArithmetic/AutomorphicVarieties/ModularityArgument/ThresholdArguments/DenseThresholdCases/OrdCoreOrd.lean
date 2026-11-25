@@ -74,9 +74,6 @@ import Mathlib.LinearAlgebra.Eigenspace.Triangularizable
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.OrdOrdJac
 @[expose] public section
 
-
-
-
 section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N Polynomial ValuativeRel IsLocalRing GlobalTheory.CuspRep GlobalTheory.WeilDeligne
 open GlobalTheory.LocLanglands GlobalTheory.LocGL GlobalTheory.GalOfCusp GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.UnitaryBC GlobalTheory.PRep UpperTheory.V UpperTheory.V.Hi UpperTheory.V.Hi.CaseU
@@ -417,9 +414,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.OrdOrdScal
 @[expose] public section
 
-
-
-
 section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N Polynomial ValuativeRel IsLocalRing GlobalTheory.CuspRep GlobalTheory.WeilDeligne
 open GlobalTheory.LocLanglands GlobalTheory.LocGL GlobalTheory.GalOfCusp GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.UnitaryBC GlobalTheory.PRep UpperTheory.V UpperTheory.V.Hi UpperTheory.V.Hi.CaseU
@@ -472,11 +466,6 @@ private theorem uOp_at {σ : Type} [Finite σ] [DecidableEq σ] {G : σ → Type
     rintro _ ⟨hw, hw'⟩
     obtain ⟨w, hw₁, rfl⟩ := Finset.mem_image.1 hw
     rw [huq w ⟨hw₁, (key y hy w).1 hw'⟩]
-private theorem Uc_le (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
-    {a b : ℕ} (h : a ≤ b) : Uc k b ≤ Uc k a := by
-  refine Subgroup.map_mono fun u hu => ?_
-  rw [MonoidHom.mem_ker, Units.ext_iff] at hu ⊢
-  exact (Ideal.Quotient.eq (y := 1)).2 (Ideal.pow_le_pow_right h ((Ideal.Quotient.eq (y := 1)).1 hu))
 private theorem local_exp (hJ : OrdJac) {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k]
     [IsNonarchimedeanLocalField k] {n : ℕ} {M : Type} [AddCommGroup M] [Module ℂ M]
     (ρ : Representation ℂ (GL (Fin n) k) M) {Y : Submodule ℂ M} (σ : SmIrr (GL (Fin n) k)) (hσ : IsoSum ρ Y σ)
@@ -536,7 +525,7 @@ theorem UpperTheory.V.Z.Ord.ordinary_scalar_of_literal_automorphy_n : _root_.Glo
     congr 2
   obtain ⟨ω, h1, h2, h3, h4⟩ := local_exp (_root_.UpperTheory.V.Z.Ord.ordinary_jacquet_of_literal_automorphy_n hLit) (H.atV d v) (Y.σl v) (Y.isoL v) hF.1 hF0 e
     (fun i y => ι (H.finPart θ x.toRingHom lam v i y)) hN hNm hT
-    (fun i y hy => by rw [hsp.triv v i y (Uc_le _ (by omega) hy), map_one]) a fun j =>
+    (fun i y hy => by rw [hsp.triv v i y (UpperTheory.V.Hi.Sp.Uc_anti _ (by omega) hy), map_one]) a fun j =>
       ⟨by rw [ha j]; exact mul_ne_zero (hl j) (hb j).1, by
         have h := (hop j).symm.trans (hb j).2
         rw [inv_smul_eq_iff₀ (hl j), smul_smul] at h
@@ -794,9 +783,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.OrdCoreOrd
-
-
-
 
 section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N Polynomial ValuativeRel IsLocalRing GlobalTheory.CuspRep GlobalTheory.WeilDeligne

@@ -119,9 +119,6 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.WeakShimuraTheory.
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.AutAway
 @[expose] public section
 
-
-
-
 section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N Polynomial ValuativeRel IsLocalRing GlobalTheory.CuspRep GlobalTheory.WeilDeligne
 open GlobalTheory.LocLanglands GlobalTheory.LocGL GlobalTheory.GalOfCusp GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.UnitaryBC GlobalTheory.PRep UpperTheory.V UpperTheory.V.Hi UpperTheory.V.Hi.CaseU
@@ -387,9 +384,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.JEnd1W
 @[expose] public section
 
-
-
-
 section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Polynomial ValuativeRel IsLocalRing GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.LocLanglands GlobalTheory.LocGL GlobalTheory.GalOfCusp GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.UnitaryBC UpperTheory.V UpperTheory.V.Hi UpperTheory.V.Hi.CaseU
 open UpperTheory.V.W (Plc Lp HidaSetting Vl Resid LamObj UniversalOrdinaryDeterminantRing Pair)
@@ -438,9 +432,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.OrdConjUnl
 @[expose] public section
-
-
-
 
 section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N Polynomial ValuativeRel IsLocalRing GlobalTheory.CuspRep GlobalTheory.WeilDeligne
@@ -770,9 +761,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.OrdExpTor
 @[expose] public section
 
-
-
-
 section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N Polynomial ValuativeRel IsLocalRing GlobalTheory.CuspRep GlobalTheory.WeilDeligne
 open GlobalTheory.LocLanglands GlobalTheory.LocGL GlobalTheory.GalOfCusp GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.UnitaryBC GlobalTheory.PRep UpperTheory.V UpperTheory.V.Hi UpperTheory.V.Hi.CaseU
@@ -1000,8 +988,6 @@ end Tw
 section Top
 variable {F Ω : Type} [Field F] [NumberField F] [Field Ω] [Algebra F Ω] [IsAlgClosure F Ω] {l : ℕ} [Fact l.Prime]
   {w : HeightOneSpectrum (𝓞 F)} {A : ValuationSubring Ω} {h : IsPlaceOver A w} {a : Weil h →* (w.adicCompletion F)ˣ}
-private theorem normV_absNorm : normV w = Ideal.absNorm w.asIdeal := by
-  rw [normV, Ideal.absNorm_apply, Submodule.cardQuot_apply]
 private theorem abs_unif (ι : Qbar l ≃+* ℂ) (ha : IsLocalArtin h a) :
     ((absPow (w.adicCompletion F) 1 (ImaginaryQuadraticEtaCharacter.unif (w.adicCompletion F)) : ℂˣ) : ℂ) = ((normV w : ℕ) : ℂ)⁻¹ := by
   obtain ⟨s0, hs0⟩ := ha.surj (ImaginaryQuadraticEtaCharacter.unif (w.adicCompletion F))
@@ -1035,7 +1021,7 @@ theorem UpperTheory.V.Z.Ord.exp_torsion_of_literal_automorphy_n :
   have H := N.aut.art
   obtain ⟨tor, hch⟩ := supp_ps hn π (fun i => (hO i).smooth) hσ
   have hQ0 : (0 : ℝ) < (Ideal.absNorm w.asIdeal : ℝ) := by
-    rw [← normV_absNorm]
+    rw [← GlobalTheory.CompletionNorm.normV_eq_absNorm]
     exact_mod_cast (one_lt_normV w).bot_lt
   refine ⟨tor, fun hU => ⟨tor, fun s hs ξ hξ ξ' hξ' hun hq => ?_⟩, fun t hW i j m hm1 e => ?_⟩
   · obtain ⟨i, rfl⟩ := (hch s hs).2 ξ hξ
@@ -1057,7 +1043,7 @@ theorem UpperTheory.V.Z.Ord.exp_torsion_of_literal_automorphy_n :
       have b0 := (ω j (ImaginaryQuadraticEtaCharacter.unif (w.adicCompletion F))).ne_zero
       rw [MonoidHom.mul_apply]
       refine Units.ext ?_
-      rw [Units.val_mul, abs_unif ι ha, normV_absNorm, ← hq]
+      rw [Units.val_mul, abs_unif ι ha, GlobalTheory.CompletionNorm.normV_eq_absNorm, ← hq]
       field_simp
     exact hU j i (link H ι hl ha hm hO j i ((ImaginaryQuadraticEtaCharacter.polFacts _).2.1 _ _ hu hv))
   · obtain ⟨s, hs⟩ := (Gam.suppFacts F n hn π w).1
@@ -1066,7 +1052,7 @@ theorem UpperTheory.V.Z.Ord.exp_torsion_of_literal_automorphy_n :
     have wj := (hW.2 s hs _ (hc j)).2
     have ht := tors H ι hl ha hm hO i j m hm1 e
     rw [MonoidHom.mul_apply, Units.val_mul, norm_mul] at wi wj
-    rw [ht, normV_absNorm] at wj
+    rw [ht, GlobalTheory.CompletionNorm.normV_eq_absNorm] at wj
     have e2 : (Ideal.absNorm w.asIdeal : ℝ) ^ (t + 1 / 2) = (Ideal.absNorm w.asIdeal : ℝ) * (Ideal.absNorm w.asIdeal : ℝ) ^ (t - 1 / 2) := by
       rw [show t + 1 / 2 = 1 + (t - 1 / 2) by ring, Real.rpow_add hQ0, Real.rpow_one]
     rw [e2, mul_assoc] at wj
@@ -1077,9 +1063,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.OrdFlagJ
 @[expose] public section
-
-
-
 
 section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N Polynomial ValuativeRel IsLocalRing GlobalTheory.CuspRep GlobalTheory.WeilDeligne
@@ -1212,9 +1195,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.OrdBornJ
 @[expose] public section
 
-
-
-
 section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N Polynomial ValuativeRel IsLocalRing GlobalTheory.CuspRep GlobalTheory.WeilDeligne
 open GlobalTheory.LocLanglands GlobalTheory.LocGL GlobalTheory.GalOfCusp GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.UnitaryBC GlobalTheory.PRep UpperTheory.V UpperTheory.V.Hi UpperTheory.V.Hi.CaseU
@@ -1260,9 +1240,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.JEndOf
 @[expose] public section
 
-
-
-
 section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N Polynomial ValuativeRel IsLocalRing GlobalTheory.CuspRep GlobalTheory.WeilDeligne
 open GlobalTheory.LocLanglands GlobalTheory.LocGL GlobalTheory.GalOfCusp GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.UnitaryBC GlobalTheory.PRep UpperTheory.V UpperTheory.V.Hi UpperTheory.V.Hi.CaseU
@@ -1283,9 +1260,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.ProjectedFormsLinkOfPrintedHida
 @[expose] public section
-
-
-
 
 section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N Polynomial ValuativeRel IsLocalRing GlobalTheory.CuspRep GlobalTheory.WeilDeligne
@@ -1325,9 +1299,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.JEnd
-
-
-
 
 section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N Polynomial ValuativeRel IsLocalRing GlobalTheory.CuspRep GlobalTheory.WeilDeligne

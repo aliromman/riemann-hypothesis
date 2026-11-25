@@ -151,8 +151,9 @@ end Formalism.L2.SG.NGCut.NormalIntegrality
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.NormBound
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.NormBound
 
+noncomputable section
 
 open scoped Classical
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat
@@ -264,12 +265,10 @@ theorem norm_bound :
     intro h
     rw [h] at hc0I
     exact hc0ne ((Submodule.mem_bot _).1 hc0I)
-  have hNIc : Ideal.absNorm (Ideal.map e I) = Ideal.absNorm I := by
-    rw [Ideal.absNorm_apply, Ideal.absNorm_apply, Submodule.cardQuot_apply, Submodule.cardQuot_apply]
-    exact Nat.card_congr (Ideal.quotientEquiv I (Ideal.map e I) e rfl).toEquiv.symm
   have hdvd := Ideal.absNorm_dvd_absNorm_of_le hA
-  rw [map_mul, map_mul, hNIc, Ideal.absNorm_span_singleton, Ideal.absNorm_span_singleton, map_mul,
-    normZ_cO, Int.natAbs_mul] at hdvd
+  rw [map_mul, map_mul, TorsionTotientBound.absNorm_map_equiv e I,
+    Ideal.absNorm_span_singleton, Ideal.absNorm_span_singleton, map_mul, normZ_cO,
+    Int.natAbs_mul] at hdvd
   have hn0 : (Algebra.norm ℤ c0).natAbs ≠ 0 := by
     rw [Int.natAbs_ne_zero]
     exact Algebra.norm_ne_zero_iff.2 hc0ne
@@ -306,6 +305,7 @@ theorem norm_bound :
 end Frac
 
 end Formalism.L2.SG.NGCut.NormalIntegrality
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FramesMem

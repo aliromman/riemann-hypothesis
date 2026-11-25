@@ -41,7 +41,6 @@ open scoped InnerProductSpace ENNReal ComplexConjugate
 
 noncomputable section
 
-
 namespace Formalism.FourierDecayAlt.P.DDSmoothness
 open Formalism.FourierDecayAlt.ThreeDimData
 
@@ -87,23 +86,16 @@ end
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: CompanionTheory.HarishChandraModules.BesselParameterIntegrals.BesselOrbitConvolutions.JacquetFunctionalNormalization
+section -- clump member: CompanionTheory.HarishChandraModules.BesselParameterIntegrals.BesselOrbitConvolutions.JacquetFunctionalNormalization
+@[expose] public section
 
 open MeasureTheory
 open scoped InnerProductSpace
 
+noncomputable section
 
-namespace CompanionTheory.D.Upq.BesselFunctionalConstruction
-
-open Formalism.FourierDecayAlt Formalism.FourierDecayAlt.ThreeDimData
-
-theorem inputs_holds : Inputs := by
-  have hDecay := CompanionTheory.FamilyDerivativeExpansion.DecS.decay_infinite_range
-  exact ⟨Formalism.L2.SG.BesselDiscreteSeries.decLow, hDecay,
-    CompanionTheory.D.gk.admitted.k_finite_smooth, trivial⟩
-
-end CompanionTheory.D.Upq.BesselFunctionalConstruction
-
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.WeylGroupActions.TorusMovesCharacter
@@ -268,11 +260,13 @@ end GlobalTheory.CompanionTheory.Bes
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: CompanionTheory.HarishChandraModules.BesselParameterIntegrals.BesselOrbitConvolutions.FinalC
+section -- clump member: CompanionTheory.HarishChandraModules.BesselParameterIntegrals.BesselOrbitConvolutions.FinalC
+@[expose] public section
 
 open MeasureTheory Matrix
 open scoped InnerProductSpace
 
+noncomputable section
 
 namespace CompanionTheory.D.Upq.BesselFunctionalConstruction
 
@@ -423,13 +417,15 @@ variable {ε : Fin (2 * r + k + 1) → Bool} {lam : Fin (2 * r + k + 1) → ℝ}
 theorem dDForm_scale (hS : Side k r ε lam h σ w0 z c u π μW μN μG νq) :
     DDForm z c π μW μN μG νq σ w0 :=
   DDSmoothness.GC.discrete_form_one_side psi_constant schur_hermitian norm_inverse_bound
-    growth_spherical_bound growth_group_bound decDD beConv normIdSm beBessel shapeC inputs_holds
+    growth_spherical_bound growth_group_bound decDD beConv normIdSm beBessel shapeC CompanionTheory.Lime.BM.inputs
     k r ε lam h H σ w0 Wp z c u π μW μN μG νq hS
 
 end Forms
 
 end CompanionTheory.D.Upq.BesselFunctionalConstruction
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: CompanionTheory.AutomorphicTheory.LocalBesselUniqueness.BesselModels.DoubleCosetBesselBoundOfGapConstantLe

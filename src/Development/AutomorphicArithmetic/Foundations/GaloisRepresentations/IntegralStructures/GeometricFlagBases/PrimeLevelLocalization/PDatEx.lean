@@ -73,8 +73,8 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DefiniteUnit
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ConjugateSqrtNeg
 
 theorem UpperTheory.Reformulated.B.ConjugateSqrtNeg.conj_sqrt_neg :
-    ∀ {E : Type} [inst : Field E] [inst_1 : NumberField E]
-    [inst_2 : NumberField.IsCMField E] (d : ℕ) (x : E),
+    ∀ {E : Type} [Field E] [NumberField E]
+    [NumberField.IsCMField E] (d : ℕ) (x : E),
     (0 : ℕ) < d → x ^ (2 : ℕ) = -(↑d : E) → (NumberField.IsCMField.complexConj E : E → E) x = -x := by
   intro E _ _ _ d x hd hx
   obtain ⟨φ⟩ : Nonempty (E →+* ℂ) := inferInstance

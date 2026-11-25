@@ -146,8 +146,6 @@ end -- clump:auto
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum MeasureTheory NumberField Matrix
 
-theorem _root_.GlobalTheory.T.fockCreation_preserves_fockVectors_two_frames : ∀ (D : D7) (V W : HSp D) (A : GlobalTheory.ChainFr.Fr V) (B : GlobalTheory.ChainFr.Fr W) (θ : InfFam D) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar D ψ (-1) → IsInfFam θ → ∀ f, IsThetaFunO ψ V W f → ∀ (τ : D.what₂.Tau) (z : Matrix (Fin W.rank) (Fin V.rank) ℂ) (P : PolF D W.rank V.rank), ∃ Q : PolF D W.rank V.rank, crea (heisO ψ V W) θ τ (cplxO (A.cart τ) (B.cart τ)) z (GlobalTheory.ChainFr.ptF ψ θ A B f P) = GlobalTheory.ChainFr.ptF ψ θ A B f Q := by
-  first | exact @GlobalTheory.FockCreaDir.crea_ptF
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.NormCreationAnnihilationWordLeNumberOperatorPow
@@ -592,8 +590,9 @@ theorem weyl_number_operator_commutation
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.FockVectorsOverVacuaDenseThetaFunctions
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.FockVectorsOverVacuaDenseThetaFunctions
 
+noncomputable section
 
 namespace GlobalTheory.FockDensity
 
@@ -636,10 +635,8 @@ def dE (hS : ∀ f ∈ S, Sm ρ f) (hD : ∀ v, ∀ f ∈ S, dH ρ v f ∈ S) (v
 variable (hJ : ∀ x, J (J x) = -x) (h : IsHeis (omJ J) ρ) (hΦ : ∀ v f, ‖Φ (ρ v f)‖ = ‖Φ f‖)
   (hS : ∀ f ∈ S, Sm ρ f) (hD : ∀ v, ∀ f ∈ S, dH ρ v f ∈ S)
 
-
 variable (J) in
 def cE (z : V) : Module.End ℂ S := dE hS hD z - I • dE hS hD (J z)
-
 
 variable (J) in
 def aE (z : V) : Module.End ℂ S := -(dE hS hD z + I • dE hS hD (J z))
@@ -677,7 +674,6 @@ theorem adjoint (z : V) (x y : S) :
   simp only [map_sub, map_neg, map_add (f := _), map_smul, inner_sub_left, inner_neg_right, inner_add_right, inner_smul_left,
     inner_smul_right, inner_dH hΦ h (hS _ x.2) (hS _ y.2), conj_I]
   ring
-
 
 include hJ h hΦ in
 theorem inner_translate (K : Submodule ℂ S) (hK : ∀ z, ∀ x ∈ K, cE J hS hD z x ∈ K) {v : S} (hv : v ∈ K)
@@ -717,7 +713,6 @@ theorem inner_translate (K : Submodule ℂ S) (hK : ∀ z, ∀ x ∈ K, cE J hS 
       _ ≤ _ := by
           rw [mul_pow, mul_assoc, mul_assoc, ← mul_assoc (‖Φ v‖ ^ 2)]
           exact mul_le_mul_of_nonneg_left (h2 k) (by positivity)
-
 
 include hJ hΦ in
 theorem dense_zero (hρ : ∀ w, ∀ f ∈ S, ρ w f ∈ S) (hP : ∀ f ∈ S, proj h f ∈ S) (K : Submodule ℂ S)
@@ -777,7 +772,6 @@ theorem wordSum_le {X Y ι : Type} [Fintype ι] (A : ι → X → X) (p : X → 
   simp only [wordSum, Finset.sum_mul]
   exact Finset.sum_le_sum fun k hk => Finset.sum_le_sum fun a _ => hC' _ (e k hk a) y
 
-
 include hJ h hΦ in
 theorem exists_number {ι : Type} [Fintype ι] (u : ι → V) (d : ℕ) : ∃ M : Module.End ℂ S,
     (∀ v, (∀ z, aE J hS hD z v = 0) → M v = ((8 * π : ℝ) : ℂ) • v) ∧
@@ -805,7 +799,6 @@ theorem exists_number {ι : Type} [Fintype ι] (u : ι → V) (d : ℕ) : ∃ M 
   refine ⟨ENNReal.ofReal (max C 0), ENNReal.ofReal_ne_top, fun x => ?_⟩
   rw [← hw, ← ofReal_norm_eq_enorm, ← ofReal_norm_eq_enorm, ← ENNReal.ofReal_mul (le_max_right _ _)]
   exact ENNReal.ofReal_le_ofReal ((hC x).trans (mul_le_mul_of_nonneg_right (le_max_left _ _) (norm_nonneg _)))
-
 
 include hJ hΦ hS hD in
 theorem dense_words (hρ : ∀ w, ∀ f ∈ S, ρ w f ∈ S) (hP : ∀ f ∈ S, proj h f ∈ S) (F : Submodule ℂ B)
@@ -839,7 +832,6 @@ theorem dense_words (hρ : ∀ w, ∀ f ∈ S, ρ w f ∈ S) (hP : ∀ f ∈ S, 
   refine mul_le_mul_left ?_ _
   rw [← ofReal_norm_eq_enorm, ← ENNReal.ofReal_coe_nnreal]
   exact ENNReal.ofReal_le_ofReal hd.le
-
 
 include hJ in
 theorem dense_transport {V' : Type} [NormedAddCommGroup V'] [NormedSpace ℝ V'] (E : V ≃L[ℝ] V') {J' : V' → V'}
@@ -965,7 +957,6 @@ theorem mem_level {U : AddSubgroup (WO V W)} (hU : IsOpen (U : Set (WO V W))) (G
       rw [← coe_rhoB hψ, hG.2 u hu h0]
     exact ⟨theta_of_sm h hψ G hG.1 ⟨U, hU, e⟩, e⟩
 
-
 include hψ in
 theorem crea_mem (A : Fr V) (B : Fr W) (U : AddSubgroup (WO V W)) (τ : D.what₂.Tau)
     (z : Matrix (Fin W.rank) (Fin V.rank) ℂ) {g : WO V W → ℂ} (hg : g ∈ fockSpan ψ θ A B U) :
@@ -974,7 +965,7 @@ theorem crea_mem (A : Fr V) (B : Fr W) (U : AddSubgroup (WO V W)) (τ : D.what�
   induction hg using Submodule.span_induction with
   | mem g hg =>
     obtain ⟨f, P, h1, h2, rfl⟩ := hg
-    obtain ⟨Q, hQ⟩ := GlobalTheory.T.fockCreation_preserves_fockVectors_two_frames D V W A B θ ψ hψ h.inf f h1.1 τ z P
+    obtain ⟨Q, hQ⟩ := GlobalTheory.FockCreaDir.crea_ptF D V W A B θ ψ hψ h.inf f h1.1 τ z P
     exact ⟨GlobalTheory.Chain.InnerSteps.theta_pureTensorO hψ h.inf _ _ _ _ h1.1 P, Submodule.subset_span ⟨f, Q, h1, h2, hQ⟩⟩
   | zero =>
     have e := fun y => GlobalTheory.FockIndep.dRho_smul hψ h.inf τ y 0 (theta_zero (ψ := ψ) (S := V) (T := W))
@@ -1053,6 +1044,7 @@ end Theta
 
 end GlobalTheory.FockDensity
 
+end
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.TwistedOperators.EqZeroAtOneOfIteratedDerivsVanishOfGrowth", "h": "module\n\npublic import Mathlib.Analysis.CStarAlgebra.Classes\npublic import Mathlib.Analysis.Calculus.Deriv.Basic\npublic import Mathlib.Analysis.InnerProductSpace.Basic\npublic import Mathlib.Analysis.LocallyConvex.AbsConvexOpen\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Real\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\npublic import Mathlib.Analysis.Calculus.Deriv.Mul\npublic import Mathlib.Analysis.Calculus.Deriv.Pow\npublic import Mathlib.Analysis.Calculus.MeanValue\npublic import Mathlib.Topology.Algebra.Order.Floor\n\n"}
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.TwistedOperators.FockCreationPreservesFockVectorsTwoFramesStatement", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsVacFOfIsVacVec\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FockCreationPreservesFockVectorsTwoFrames\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}

@@ -331,7 +331,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PsiUnitOnUnivOfPullbackReadTopStatement
 attribute [local instance] Over.cartesianMonoidalCategory
 
-
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PullDegKeepsBimultActionPolarisationElement
@@ -458,7 +457,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RescaledDegenerationDataDifferByScalarStatement
 attribute [local instance] Over.cartesianMonoidalCategory
-
 
 end -- clump:auto
 
@@ -777,8 +775,9 @@ theorem stalk_regular_essFiniteType_dim : ∀ (F : Type) [Field F] (Cs : Scheme.
 end GlobalTheory.SmoothStalk
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBaseSchOfHomScheme
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsBaseSchOfHomScheme
 
+noncomputable section
 
 namespace GlobalTheory.UCanon.BaseSch
 
@@ -830,8 +829,6 @@ end GlobalTheory.UCanon.BaseSch
 namespace GlobalTheory.UCanon.BaseSch
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E}
-
-
 
 theorem of_homScheme (D' : Datum H) {l : Geo.Tor.Level H} (c : Coeff l) (X : Type) [AddCommGroup X] [Module (𝓞 E) X]
     (Cs : Scheme.{0}) (g : Cs ⟶ Sp c.F)
@@ -940,6 +937,7 @@ theorem exists_baseSch_of_homScheme (hcs : ∀ {E : Type} [Field E] [NumberField
 
 end GlobalTheory.UCanon.BaseSch
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NonemptyModuliOfRankZero
 
@@ -953,8 +951,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NonemptyModuliOfRankZeroStatement
 
-theorem _root_.GlobalTheory.T.nonempty_moduli_of_rank_zero : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Geo.Tor.Level H), D.p + D.q = 0 → Nonempty (Moduli D l) := by
-  first | exact @GlobalTheory.UCanon.RankZero.nonempty_moduli
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothOfRelativeDimensionShimuraObjectAbelianSch
@@ -1102,8 +1098,9 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.UChart GlobalTheory.UCanon
 open scoped CategoryTheory.Obj
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HomSchemeLow
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HomSchemeLow
 
+noncomputable section
 
 namespace GlobalTheory.UCanonHom
 
@@ -1157,7 +1154,7 @@ theorem homScheme_low : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {
   have hXo : Nonempty (Moduli D' (LowDat.lowLevel l)) := by
     by_cases hpq : 1 ≤ D'.p + D'.q
     · exact GlobalTheory.Moduli.moduli_scheme_exists E H D' _ hpq
-    · exact GlobalTheory.T.nonempty_moduli_of_rank_zero H D' _ (by omega)
+    · exact GlobalTheory.UCanon.RankZero.nonempty_moduli H D' _ (by omega)
   obtain ⟨Xo⟩ := hXo
   set sF : Sp c.F ⟶ Sp (KA (LowDat.lowLevel l)) := lowMap c (RingHom.id c.F) with hsF
   have P := GlobalTheory.T.shimuraObject_pullback_comp_cancel (D := D') (l := LowDat.lowLevel l)
@@ -1259,6 +1256,7 @@ theorem homScheme_low : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {
     · simp only [Category.assoc]; rw [hcp]; exact GlobalTheory.Models.RankZero.eq_constPt_field _
 
 end GlobalTheory.UCanonHom
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLocalRingLinearHomSchemeLowerObject

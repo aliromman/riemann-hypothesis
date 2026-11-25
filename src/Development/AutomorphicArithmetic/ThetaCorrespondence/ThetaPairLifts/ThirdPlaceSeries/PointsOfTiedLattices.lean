@@ -313,8 +313,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ChiIneMain
 @[expose] public section
 
-
-
 section
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal Polynomial NumberField IsDedekindDomain GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.RowTie GlobalTheory.SplitRead
 noncomputable section
@@ -332,8 +330,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.MBlockParamH
 @[expose] public section
-
-
 
 section
 noncomputable section
@@ -415,8 +411,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ImportsBisBis
 @[expose] public section
 
-
-
 section
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal Polynomial NumberField IsDedekindDomain GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.RowTie GlobalTheory.SplitRead
 namespace GlobalTheory.InertialTypes
@@ -446,20 +440,14 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.EqOrIsConjPlaceOfOverSplitPlaceStatement
 
-theorem _root_.GlobalTheory.T.eq_or_isConjPlace_of_over_splitPlace : ∀ (D : D7) (s : SplitPlace D.host.E) (w : PlE D.host), NG.OverPl w s.v → s.w = w ∨ IsConjPl D.host w s.w := by
-  first | exact @GlobalTheory.SplitPlaceOver.eq_or_isConjPl
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsLevelCharacterAtConjugateSplitPlaceStatement
 
-theorem _root_.GlobalTheory.T.exists_level_character_at_conjugateSplitPlace : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L] (n : ℕ) (s : SplitPlace L) (K : Subgroup (GL (Fin n) (s.v.adicCompletion (maximalRealSubfield L)))) (θ : K →* ℂˣ), (∀ g ∈ K, g ∈ Formalism.UG.GLint (Fin n) (s.v.adicCompletionIntegers (maximalRealSubfield L)).toSubring) → IsOpen (θ.ker : Set K) → ∃ (K' : Subgroup (GL (Fin n) ((GlobalTheory.TypeTame.conjSP s).v.adicCompletion (maximalRealSubfield L)))) (θ' : K' →* ℂˣ), (∀ g ∈ K', g ∈ Formalism.UG.GLint (Fin n) ((GlobalTheory.TypeTame.conjSP s).v.adicCompletionIntegers (maximalRealSubfield L)).toSubring) ∧ IsOpen (θ'.ker : Set K') ∧ (∀ κ : GAf L n, (GlobalTheory.TypeTame.conjSP s).loc n κ ∈ K' ↔ s.loc n κ ∈ K) ∧ (∀ (κ : GAf L n) (h : s.loc n κ ∈ K) (h' : (GlobalTheory.TypeTame.conjSP s).loc n κ ∈ K'), θ' ⟨(GlobalTheory.TypeTame.conjSP s).loc n κ, h'⟩ = θ ⟨s.loc n κ, h⟩) ∧ ∀ g (hg : g ∈ K) (g' : GL (Fin n) ((GlobalTheory.TypeTame.conjSP s).v.adicCompletion (maximalRealSubfield L))), g'.val = (g⁻¹).val.transpose → ∃ h' : g' ∈ K', θ' ⟨g', h'⟩ = θ ⟨g, hg⟩ := by
-  first | exact @GlobalTheory.TypeTame.exists_conj_level
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsLocalComponentEigenvectorAtSplitPlaceIsotyStatement
 
-theorem _root_.GlobalTheory.T.exists_localComponent_eigenvector_at_splitPlace_isotypic : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L] (n : ℕ) (a : NG.AlgWt L n) (S : Submodule ℂ (GAf L n → a.W)), NG.IsIrrRep a.ρ S → ∀ (s : SplitPlace L) (σ : GlobalTheory.SmGL.IrrRep (GL (Fin n) (s.w.adicCompletion L))), IsLocS S s σ → ∀ c : s.v.adicCompletion (maximalRealSubfield L) ≃+* s.w.adicCompletion L, Continuous c → (∀ x : L, c (s.i x) = algebraMap L (s.w.adicCompletion L) x) → ∀ (K : Subgroup (GL (Fin n) (s.v.adicCompletion (maximalRealSubfield L)))) (θ : K →* ℂˣ), (∀ g ∈ K, g ∈ Formalism.UG.GLint (Fin n) (s.v.adicCompletionIntegers (maximalRealSubfield L)).toSubring) → IsOpen (θ.ker : Set K) → ∀ f ∈ NG.isoTyp a.ρ S, f ≠ 0 → (∀ κ, TrivOutside {s.v} κ → ∀ h : s.loc n κ ∈ K, NG.rt L n κ f = ((θ ⟨s.loc n κ, h⟩ : ℂˣ) : ℂ) • f) → ∃ u : σ.V, u ≠ 0 ∧ ∀ g (h : g ∈ K), σ.ρ (Matrix.GeneralLinearGroup.map c.toRingHom g) u = ((θ ⟨g, h⟩ : ℂˣ) : ℂ) • u := by
-  first | exact @GlobalTheory.LocVec.main
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsRealSubfieldPlaceInRamifiedSet
@@ -492,16 +480,12 @@ end GlobalTheory.GeoUnder
 end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsSplitPlaceParahoricSubgroupCharacter
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 namespace GlobalTheory.ParaLevel
 
 variable {L : Type} [Field L] [NumberField L] [IsCMField L] {n : ℕ}
-
-theorem trivOutside_one (T : Set (HeightOneSpectrum (𝓞 (maximalRealSubfield L)))) :
-    TrivOutside T (1 : GAf L n) := by
-  intro w _
-  exact Matrix.map_one _ (map_zero _) (map_one _)
 
 theorem detDD_one (s : SplitPlace L) (r : ℕ) :
     NG.detDD s r (1 : GL (Fin n) (s.v.adicCompletion (maximalRealSubfield L))) = 1 := by
@@ -528,7 +512,7 @@ def paraSub (hP : NG.LevelPara J χ s r ξ) :
     Subgroup (GL (Fin n) (s.v.adicCompletion (maximalRealSubfield L))) where
   carrier := {g | NG.ParaRT s r g}
   one_mem' := by
-    have h := (hP.mem 1 (trivOutside_one _)).1 J.one_mem
+    have h := (hP.mem 1 (GlobalTheory.InertSph.trivOutside_one _)).1 J.one_mem
     change NG.ParaRT s r 1
     rw [map_one] at h
     exact h
@@ -593,7 +577,7 @@ def theta (hP : NG.LevelPara J χ s r ξ) : paraSub s r J χ ξ hP →* ℂˣ wh
   toFun := thetaFun hP
   map_one' := by
     have h1 : s.loc n (1 : GAf L n) ∈ paraSub s r J χ ξ hP := by rw [map_one]; exact (paraSub s r J χ ξ hP).one_mem
-    have := chi_eq hP 1 (trivOutside_one _) J.one_mem h1
+    have := chi_eq hP 1 (GlobalTheory.InertSph.trivOutside_one _) J.one_mem h1
     have e : (⟨s.loc n 1, h1⟩ : paraSub s r J χ ξ hP) = 1 := by apply Subtype.ext; simp
     rw [e] at this
     rw [← this]
@@ -666,6 +650,7 @@ theorem exists_parahoric_char : ∀ (L : Type) [Field L] [NumberField L] [IsCMFi
 end GlobalTheory.ParaLevel
 end -- clump:auto
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.HeckeCharRamifiedOfRamifiedLocalComponent
 
@@ -690,12 +675,6 @@ end -- clump:auto
 namespace GlobalTheory.SameParahoric
 
 open Filter Topology
-
-theorem denseRange_i {L : Type} [Field L] [NumberField L] [IsCMField L] (s : SplitPlace L) :
-    DenseRange (s.i : L → s.v.adicCompletion (maximalRealSubfield L)) := by
-  refine (s.v.denseRange_algebraMap (maximalRealSubfield L)).mono ?_
-  rintro _ ⟨y, rfl⟩
-  exact ⟨algebraMap (maximalRealSubfield L) L y, s.i.commutes y⟩
 
 theorem eq_comp {L : Type} [Field L] [NumberField L] [IsCMField L] (s : SplitPlace L)
     (ξ : (s.v.adicCompletion (maximalRealSubfield L))ˣ →* ℂˣ) (μ : (s.w.adicCompletion L)ˣ →* ℂˣ)
@@ -731,7 +710,7 @@ theorem eq_comp {L : Type} [Field L] [NumberField L] [IsCMField L] (s : SplitPla
   have hyU : (d : s.v.adicCompletion (maximalRealSubfield L)) ∈ U := by
     have : d ∈ Units.val ⁻¹' U := by rw [hU']; exact hy
     exact this
-  obtain ⟨k, hk1, hk2⟩ := (denseRange_i s).exists_mem_open
+  obtain ⟨k, hk1, hk2⟩ := (GlobalTheory.ConjDense.denseRange_i s).exists_mem_open
     (hU.inter isOpen_ne (t := {z | z ≠ 0})) ⟨d, hyU, d.ne_zero⟩
   have hk0 : k ≠ 0 := fun e => hk2 (by rw [e, map_zero])
   have h3 : Units.map (s.i : L →* s.v.adicCompletion (maximalRealSubfield L)) (Units.mk0 k hk0) ∈ Units.val ⁻¹' U := hk1
@@ -786,8 +765,6 @@ end -- clump: shared namespace opens
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.TypeTameOfRamified
 @[expose] public section
 
-
-
 section
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal ReciprocityTheory.Aut Formalism.AUTREP Formalism.L2 Formalism.L2.Host Formalism.L2.NT NumberField
   IsDedekindDomain Polynomial GlobalTheory.HeightCounting GlobalTheory.RowTie GlobalTheory.SplitRead GlobalTheory.NPin
@@ -822,26 +799,26 @@ theorem typeTame_of_ramified_alt (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (
   have hmu_eq : ∀ g (hg : NG.ParaRT s D.R.r g) (d : (s.v.adicCompletion (maximalRealSubfield D.host.E))ˣ),
       (d : s.v.adicCompletion (maximalRealSubfield D.host.E)) = NG.detDD s D.R.r g →
       θ ⟨g, (hKm g).2 hg⟩ = ξ d := fun g hg d hd => hθ g _ d hd
-  rcases GlobalTheory.T.eq_or_isConjPlace_of_over_splitPlace D s w (hsv ▸ hov) with hsw | hconj
+  rcases GlobalTheory.SplitPlaceOver.eq_or_isConjPl D s w (hsv ▸ hov) with hsw | hconj
   · subst hsw
     obtain ⟨c, T, hc, hci, -⟩ := hT.rep i s hw Q
-    obtain ⟨u, hu0, hu⟩ := GlobalTheory.T.exists_localComponent_eigenvector_at_splitPlace_isotypic _ _ (P.M.loc i).wt (P.H.av.S i Q) (P.H.av.irr i Q) s _ (hT.rep i s hw Q) c hc hci
+    obtain ⟨u, hu0, hu⟩ := GlobalTheory.LocVec.main _ _ (P.M.loc i).wt (P.H.av.S i Q) (P.H.av.irr i Q) s _ (hT.rep i s hw Q) c hc hci
       K θ hKi hθo f hfI hf0 hfK
     refine ⟨u, hu0, _root_.GlobalTheory.SameParahoric.isParahoricVec_of_eigen _ s D.R.r D.R.t _ ξ _ c hc hci hcomp.1 hcs.1 (fun k => (hcs.2 k).trans (hcomp.2 k).symm) u ?_⟩
     intro g hg d hd
     rw [← hmu_eq g hg d hd]
     exact hu g _
-  · obtain ⟨hw', hci'⟩ := GlobalTheory.T.conjugateSplitPlace_eq_conjugatePlace_and_embedding D s w hconj
+  · obtain ⟨hw', hci'⟩ := GlobalTheory.TypeTame.conjSP_w_of_isConjPl D s w hconj
     subst hw'
     obtain ⟨c, T, hc, hci, -⟩ := hT.rep i (GlobalTheory.TypeTame.conjSP s) hw Q
-    obtain ⟨K', θ', hK'i, hθ'o, hK'iff, hθ'eq, hK'of⟩ := GlobalTheory.T.exists_level_character_at_conjugateSplitPlace _ _ s K θ hKi hθo
+    obtain ⟨K', θ', hK'i, hθ'o, hK'iff, hθ'eq, hK'of⟩ := GlobalTheory.TypeTame.exists_conj_level _ _ s K θ hKi hθo
     have hfK' : ∀ κ, TrivOutside {(GlobalTheory.TypeTame.conjSP s).v} κ → ∀ h' : (GlobalTheory.TypeTame.conjSP s).loc D.R.nV κ ∈ K',
         NG.rt D.host.E D.R.nV κ f = ((θ' ⟨(GlobalTheory.TypeTame.conjSP s).loc D.R.nV κ, h'⟩ : ℂˣ) : ℂ) • f := by
       intro κ hκ h'
       have h := (hK'iff κ).1 h'
       rw [hθ'eq κ h h']
       exact hfK κ hκ h
-    obtain ⟨u, hu0, hu⟩ := GlobalTheory.T.exists_localComponent_eigenvector_at_splitPlace_isotypic _ _ (P.M.loc i).wt (P.H.av.S i Q) (P.H.av.irr i Q) (GlobalTheory.TypeTame.conjSP s) _
+    obtain ⟨u, hu0, hu⟩ := GlobalTheory.LocVec.main _ _ (P.M.loc i).wt (P.H.av.S i Q) (P.H.av.irr i Q) (GlobalTheory.TypeTame.conjSP s) _
       (hT.rep i (GlobalTheory.TypeTame.conjSP s) hw Q) c hc hci K' θ' hK'i hθ'o f hfI hf0 hfK'
     have hcsd : IsCSD D.host (P.tp.tup (D.nd.mu i) j) := by
       rw [← P.chr.muC i j hj]; exact (P.chr.csd _).1 (D.naut.muC_csd i)
@@ -867,8 +844,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.TypeTameOfRamifiedStatement
 @[expose] public section
 
-
-
 section
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal ReciprocityTheory.Aut Formalism.AUTREP Formalism.L2 Formalism.L2.Host Formalism.L2.NT NumberField IsDedekindDomain Polynomial GlobalTheory.HeightCounting GlobalTheory.RowTie GlobalTheory.SplitRead GlobalTheory.NPin
 
@@ -880,8 +855,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.GaloisRepLocalTypesDeterminedAtPlace
 @[expose] public section
-
-
 
 section
 section
@@ -929,8 +902,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.PairLiftOfHoweDualityBernstein
 @[expose] public section
-
-
 
 section
 noncomputable section
@@ -1019,8 +990,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.PairReadOfJoin
 @[expose] public section
-
-
 
 section
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal ReciprocityTheory.Aut Formalism.AUTREP Formalism.L2 Formalism.L2.Host Formalism.L2.NT NumberField IsDedekindDomain Polynomial GlobalTheory.HeightCounting GlobalTheory.RowTie GlobalTheory.SplitRead GlobalTheory.NPin
@@ -1142,14 +1111,10 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.PairReadOfJoinStatement
 
-
-
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.RowUnitOfIsTrue
 @[expose] public section
-
-
 
 section
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal ReciprocityTheory.Aut Formalism.AUTREP Formalism.L2 Formalism.L2.Host Formalism.L2.NT NumberField IsDedekindDomain Polynomial GlobalTheory.HeightCounting GlobalTheory.RowTie GlobalTheory.SplitRead GlobalTheory.NPin
@@ -1224,8 +1189,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.SGalIso
 @[expose] public section
 
-
-
 section
 open Formalism Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N
 theorem UpperTheory.GalS.galIsoN_of_tie0_adm2_adm7 : ∀ D : D7, Formalism.MainNotions.SumRepresentations.tie0 D → _root_.Formalism.MainNotions.SumRepresentations.adm2_alt D → _root_.Formalism.MainNotions.SumRepresentations.adm7_alt D →
@@ -1239,8 +1202,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.UnitarySphericalComponentOfReading
 @[expose] public section
-
-
 
 section
 noncomputable section
@@ -1275,8 +1236,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.XiOverO
 @[expose] public section
-
-
 
 section
 noncomputable section
@@ -1344,8 +1303,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.PointsOfTiedLattices
-
-
 
 section
 noncomputable section

@@ -483,12 +483,10 @@ end GlobalTheory.Hk
 end -- clump:auto
 end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.LevFiniteIndex
 
 open UpperHalfPlane ModularForm CongruenceSubgroup MeasureTheory
 open scoped MatrixGroups ModularForm Manifold
-
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.LevFiniteIndex
 
 namespace GlobalTheory.Hk
 
@@ -503,6 +501,9 @@ end GlobalTheory.Hk
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.PeterssonCosetIntegralSumSelfPosGamma1InterGamma
+
+open UpperHalfPlane ModularForm CongruenceSubgroup MeasureTheory
+open scoped MatrixGroups ModularForm Manifold
 
 namespace GlobalTheory.Hk
 
@@ -574,22 +575,21 @@ theorem pet_self_pos (N l : ℕ) (k : ℤ) (hN : 0 < N) (hl : 0 < l) (f : CuspFo
 end GlobalTheory.Hk
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.PeterssonCosetIntegralSumSesquilinearHermitian
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.PeterssonCosetIntegralSumSesquilinearHermitian
+
+noncomputable section
+
+open UpperHalfPlane ModularForm CongruenceSubgroup MeasureTheory
+open scoped MatrixGroups ModularForm Manifold
 
 namespace GlobalTheory.Hk
-
-theorem lev_finiteIndex' (N l : ℕ) (hN : 0 < N) (hl : 0 < l) : (lev N l).FiniteIndex := by
-  haveI : NeZero N := ⟨hN.ne'⟩
-  haveI : NeZero l := ⟨hl.ne'⟩
-  unfold lev
-  infer_instance
 
 theorem pet_eq_quotInt (Γ : Subgroup SL(2, ℤ)) (k : ℤ) (f g : ℍ → ℂ) :
     pet Γ k f g = UpperTheory.V.Lit.KT.quotInt Γ (petersson k f g) := rfl
 
 theorem pet_sesq : ∀ (N l : ℕ) (k : ℤ), 0 < N → 0 < l → ∀ (f g h : CuspForm (GlobalTheory.Hk.lev N l) k) (c : ℂ), GlobalTheory.Hk.pet (GlobalTheory.Hk.lev N l) k ⇑f (⇑g + c • ⇑h) = GlobalTheory.Hk.pet (GlobalTheory.Hk.lev N l) k ⇑f ⇑g + c * GlobalTheory.Hk.pet (GlobalTheory.Hk.lev N l) k ⇑f ⇑h ∧ GlobalTheory.Hk.pet (GlobalTheory.Hk.lev N l) k ⇑g ⇑f = (starRingEnd ℂ) (GlobalTheory.Hk.pet (GlobalTheory.Hk.lev N l) k ⇑f ⇑g) := by
   intro N l k hN hl f g h c
-  haveI := lev_finiteIndex' N l hN hl
+  haveI := GlobalTheory.Hk.lev_finiteIndex N l hN hl
   haveI : Fintype (SL(2, ℤ) ⧸ lev N l) := Fintype.ofFinite _
   refine ⟨?_, ?_⟩
   · have e : petersson k ⇑f (⇑g + c • ⇑h) = fun z => petersson k f g z + c * petersson k f h z := by
@@ -615,8 +615,12 @@ theorem pet_sesq : ∀ (N l : ℕ) (k : ℤ), 0 < N → 0 < l → ∀ (f g h : C
 
 end GlobalTheory.Hk
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.HeckeTOperatorExplicitSemisimpleCuspForms
+
+open UpperHalfPlane ModularForm CongruenceSubgroup MeasureTheory
+open scoped MatrixGroups ModularForm Manifold
 
 namespace GlobalTheory.Hk.Semisimple
 

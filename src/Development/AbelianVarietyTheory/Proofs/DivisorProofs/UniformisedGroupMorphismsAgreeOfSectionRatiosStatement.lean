@@ -81,23 +81,15 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 open GlobalTheory.Mum
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaImmersionPointsAgreeNearOfEqualRatios
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaImmersionPointsAgreeNearOfEqualRatios
 
+noncomputable section
 
 namespace GlobalTheory.Mum.ThetaSep
 
 open GlobalTheory.ProjSpace
 
 variable {X H Z : Scheme.{0}} {L : LB X} {K : Type} [Fintype K]
-
-theorem sval_eq_secRatio_mul {φ : K → (H ⟶ X)} {ε : K → ℤ} (a b : LB.Sec (LB.LinComb L φ ε)) (r : Z ⟶ H) (z : Z)
-    {J : (Z ⟶ X) → L.ι} (hJ : Good L z J) (ha : r z ∈ nonzeroLocus a) :
-    sval b r z J = gs r z (nonzeroLocus a) (secRatio a b) * sval a r z J := by
-  have hc := hJ.mem φ r
-  have hm : r z ∈ nonzeroLocus a ⊓ (LB.LinComb L φ ε).U (fun k => J (r ≫ φ k)) := ⟨ha, hc⟩
-  have e := congrArg (gs r z _) (secRatio_spec a b (fun k => J (r ≫ φ k)))
-  rw [gs_mul r z _ hm, gs_res r z _ hm, gs_res r z _ hm, gs_res r z _ hm] at e
-  exact e
 
 theorem pullRatio_ι_comp {R : Type} [CommRing R] {M : ℕ} (P : H ⟶ PSpace R M) {U : H.Opens} {i : Fin (M + 1)}
     (hi : U ≤ P ⁻¹ᵁ chart R M i) (r : Z ⟶ H) (W : Z.Opens) (hW : W ≤ r ⁻¹ᵁ U)
@@ -137,8 +129,8 @@ theorem agree_near_of_minors : ∀ (R : Type) [CommRing R] [IsDomain R] (D : Deg
       gs y'.left z (nonzeroLocus (τ j₀)) (secRatio (τ j₀) (τ j)) := by
     intro j
     have h := hrel j₀ j
-    rw [sval_eq_secRatio_mul (τ j₀) (τ j) y.left z hJ hj₀,
-      sval_eq_secRatio_mul (τ j₀) (τ j) y'.left z hJ hj₀'] at h
+    rw [GlobalTheory.Mum.TermWeight.sval_eq_secRatio_mul (τ j₀) (τ j) y.left z hJ hj₀,
+      GlobalTheory.Mum.TermWeight.sval_eq_secRatio_mul (τ j₀) (τ j) y'.left z hJ hj₀'] at h
     refine ((ua.mul ub).mul_right_cancel ?_).symm
     calc _ = sval (τ j₀) y.left z J * (gs y'.left z (nonzeroLocus (τ j₀)) (secRatio (τ j₀) (τ j)) *
           sval (τ j₀) y'.left z J) := by ring
@@ -174,6 +166,7 @@ theorem agree_near_of_minors : ∀ (R : Type) [CommRing R] [IsDomain R] (D : Deg
     rw [← appLE_resG W.ι (h₁ j) hW₁, ← appLE_resG W.ι (h₂ j) hW₁, heq j]
 
 end GlobalTheory.Mum.ThetaSep
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThickeningMorphismsAgreeBeyondThreshold
@@ -410,8 +403,6 @@ open scoped CategoryTheory.Obj
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
-
-
 theorem GlobalTheory.Mum.FibreGerm.secGerm_eq_secRatio_mul : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] (D : DegData R (maximalIdeal R)) (A : PolAV (Sp (FractionRing R))) (G : Over (Sp R)) [GrpObj G] [IsCommMonObj G] (U : UnifPre (maximalIdeal R) D A G) (Y : Ext D.toPre) (ψ : Over.mk ((thickObj R (maximalIdeal R) 0 G).hom ≫ thick R (maximalIdeal R) 0) ⟶ Y.H), GlobalTheory.TorusCoord.IsPointOf (U.gt 0) (𝟙 (thickObj R (maximalIdeal R) 0 G).left) (Y.Φ _ ψ) → ∀ (k N : ℕ) (α : Fin N → D.toPre.X) (b : ∀ j, D.toPre.SecB k (α j)) (τ : Fin N → SecK D.toPre.P.L Y.q.left k) (F : Fin N → IntFam (maximalIdeal R) D.toPre k) (s : Fin N → H0 U.LG.L k), (∀ j, IsTermOf Y (b j) (τ j)) → (∀ j, (F j).Lead (α j) (b j)) → (∀ j, U.ExpandsAt 0 k (s j) (F j).f) → ∀ (z : (thickObj R (maximalIdeal R) 0 G).left) (j : Fin N) (i : Fin 1 → U.LG.L.ι), ψ.left z ∈ nonzeroLocus (τ j) → (fstG (maximalIdeal R) 0 G).left z ∈ secChart U.LG.L i → IsUnit (secGerm (Y := (thickObj R (maximalIdeal R) 0 G).left) (fstG (maximalIdeal R) 0 G).left z (s j) i) ∧ ∀ l, secGerm (Y := (thickObj R (maximalIdeal R) 0 G).left) (fstG (maximalIdeal R) 0 G).left z (s l) i = gs (Y := (thickObj R (maximalIdeal R) 0 G).left) ψ.left z (nonzeroLocus (τ j)) (GlobalTheory.ProjSpace.secRatio (τ j) (τ l)) * secGerm (Y := (thickObj R (maximalIdeal R) 0 G).left) (fstG (maximalIdeal R) 0 G).left z (s j) i := by
   intro R _ _ _ D A G _ _ U Y ψ hP k N α b τ F s hT hL hE z j i hτz hi
   obtain ⟨J, hJ⟩ := GlobalTheory.TorusCoord.exists_good' U.LG.isLB z
@@ -456,7 +447,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ClosedFibreThetaSectionGermEqFourierRatioMulStatement
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
-
 
 end -- clump:auto
 
@@ -590,9 +580,11 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFiniteThetaSectionsThickeningCover
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFiniteThetaSectionsThickeningCover
+@[expose] public section
 open GlobalTheory.Mum
 
+noncomputable section
 
 namespace GlobalTheory.Mum.ClosedGen
 
@@ -601,7 +593,6 @@ theorem cst_eq_baseRingHom {R : Type} [CommRing R] {X : Scheme.{0}} (f : X ⟶ S
   rfl
 
 end GlobalTheory.Mum.ClosedGen
-
 
 open GlobalTheory.Mum.ClosedGen in
 theorem GlobalTheory.Mum.exists_ratio_gen_closed : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Base R → ∀ (D : DegData R (maximalIdeal R)) (A : PolAV (Sp (FractionRing R))) (G : Over (Sp R)) [GrpObj G] [IsCommMonObj G], IsSemiAbelian G → ∀ U : Unif (maximalIdeal R) D A G, ∃ k₀ : ℕ, 3 ≤ k₀ ∧ ∀ k : ℕ, k₀ ≤ k → ∃ (n : ℕ) (τ : Fin n → H0 U.LG.L k), ∀ w : (thickObj R (maximalIdeal R) 0 G).left, ∃ (j : Fin n) (i : Fin 1 → U.LG.L.ι) (N : (thickObj R (maximalIdeal R) 0 G).left.Opens) (r : Fin n → Γ((thickObj R (maximalIdeal R) 0 G).left, N)), w ∈ N ∧ IsAffineOpen N ∧ N ≤ (fstG (maximalIdeal R) 0 G).left ⁻¹ᵁ secChart U.LG.L i ∧ (∀ y ∈ N, IsUnit (secGerm (Y := (thickObj R (maximalIdeal R) 0 G).left) (fstG (maximalIdeal R) 0 G).left y (τ j) i) ∧ ∀ l, secGerm (Y := (thickObj R (maximalIdeal R) 0 G).left) (fstG (maximalIdeal R) 0 G).left y (τ l) i = gs (𝟙 _) y N (r l) * secGerm (Y := (thickObj R (maximalIdeal R) 0 G).left) (fstG (maximalIdeal R) 0 G).left y (τ j) i) ∧ ∀ g : Γ((thickObj R (maximalIdeal R) 0 G).left, N), ∃ P Q : MvPolynomial (Fin n) R, IsUnit (MvPolynomial.eval₂ (GlobalTheory.AbLaw.cst (X := (thickObj R (maximalIdeal R) 0 G).left) ((fstG (maximalIdeal R) 0 G).left ≫ G.hom) N) r Q) ∧ g * MvPolynomial.eval₂ (GlobalTheory.AbLaw.cst (X := (thickObj R (maximalIdeal R) 0 G).left) ((fstG (maximalIdeal R) 0 G).left ≫ G.hom) N) r Q = MvPolynomial.eval₂ (GlobalTheory.AbLaw.cst (X := (thickObj R (maximalIdeal R) 0 G).left) ((fstG (maximalIdeal R) 0 G).left ≫ G.hom) N) r P := by
@@ -664,12 +655,13 @@ theorem GlobalTheory.Mum.exists_ratio_gen_closed : ∀ (R : Type) [CommRing R] [
     rw [hc] at hQ hPQ
     exact ⟨P, Q, hQ, hPQ⟩
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFiniteThetaSectionsThickeningCoverStatement
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
-
 
 end -- clump:auto
 
@@ -830,7 +822,6 @@ end -- clump:auto
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
-
 end -- clump:auto
 
 end -- clump: shared namespace opens
@@ -890,8 +881,9 @@ theorem pushout_inl_surjective_and_ker {A B C D : CommRingCat.{0}} {f : A ⟶ B}
 end GlobalTheory.TorsionChart
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RatioGenerationModMaxIdealOfClosedFibre
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RatioGenerationModMaxIdealOfClosedFibre
 
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -1009,7 +1001,6 @@ theorem app_incl (e : ℕ) (G : Over (Spec (CommRingCat.of R))) (V : (thickObj R
 end GlobalTheory.ClosedFibre
 
 namespace GlobalTheory.ClosedFibre
-
 
 open MvPolynomial in
 theorem gen_basicOpen {X : Scheme.{0}} {R : Type} [CommRing R] (p : X ⟶ Spec (CommRingCat.of R)) {N₀ : X.Opens}
@@ -1191,6 +1182,7 @@ theorem GlobalTheory.Mum.ratio_gen_mod_of_closedFibre : ∀ (R : Type) [CommRing
   · apply hNker
     rw [RingHom.mem_ker, map_sub, map_mul, hjev, hjev, hPQ, sub_self]
 end -- clump:auto
+end -- clump:auto
 
 section -- clump: shared namespace opens
 
@@ -1201,7 +1193,6 @@ open scoped CategoryTheory.Obj
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RatioGenerationModMaxIdealOfClosedFibreStatement
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
-
 
 end -- clump:auto
 
@@ -1219,7 +1210,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSectionRatiosGenerateModMaximalStatement
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
-
 
 end -- clump:auto
 

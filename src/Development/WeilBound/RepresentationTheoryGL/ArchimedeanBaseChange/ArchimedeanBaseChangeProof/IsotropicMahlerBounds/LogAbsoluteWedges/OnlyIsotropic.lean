@@ -484,22 +484,18 @@ theorem degBasis_of_degBasisG : DegBasisG → DegBasis := by
 end GlobalTheory.CompanionTheory.DegreeBasis
 end -- clump:auto
 
-section -- clump: shared namespace opens
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DegreeBasisGeneral
+@[expose] public section
 
+noncomputable section
 
 open NumberField IsDedekindDomain Matrix
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Tf.Loc
 open PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.D1
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DegreeBasisGeneral
-
 namespace GlobalTheory.CompanionTheory.DegBasisGen
 
 variable {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] {n : ℕ}
-
-theorem ultra (w : HeightOneSpectrum (𝓞 E)) : IsUltrametricDist (w.adicCompletion E) :=
-  inferInstanceAs (@IsUltrametricDist (w.adicCompletion E)
-    (Valued.toNormedField (w.adicCompletion E) (WithZero (Multiplicative ℤ))).toDist)
 
 theorem exists_left_inv {K ι κ : Type} [Field K] [Fintype ι] [DecidableEq ι] [Fintype κ] [DecidableEq κ]
     (P : Matrix ι κ K) (hP : LinearIndependent K Pᵀ) : ∃ Y : Matrix κ ι K, Y * P = 1 := by
@@ -529,7 +525,7 @@ theorem degG_reindex (hF : WedgeF) (hI : WedgeI) {κ κ' : Type} [Fintype κ] [D
     rw [← Matrix.submatrix_map]
     exact (hI (Fin n)).reindex κ κ' e (A.map (cV v))
   have hw : ∀ w, nF ((A.submatrix id e).map (cW w)) = nF (A.map (cW w)) := fun w => by
-    haveI := ultra w
+    haveI := GlobalTheory.CompanionTheory.DegMoveProof.ultra w
     rw [← Matrix.submatrix_map]
     exact (hF (w.adicCompletion E) (Fin n)).reindex κ κ' e (A.map (cW w))
   simp only [degG, hfr, ← hA, hv, hw]
@@ -558,7 +554,7 @@ theorem degG_mul (mF : MulF) (mI : MulI) (lg : LogAbsBasic) (fs : FinSupp) {κ :
     rw [Matrix.map_mul, (mI (Fin n) (Fin n) κ _).2.1, hdet, Real.log_mul (f1 v) hne]
   have hw : ∀ w, Real.log (nF ((A * s.map (algebraMap E (Ad E))).map (cW w))) =
       Real.log (nF (A.map (cW w))) + Real.log ‖cW w (algebraMap E (Ad E) s.det)‖ := fun w => by
-    haveI := ultra w
+    haveI := GlobalTheory.CompanionTheory.DegMoveProof.ultra w
     have hne : ‖cW w (algebraMap E (Ad E) s.det)‖ ≠ 0 := norm_ne_zero_iff.2 (hu.map (cW w)).ne_zero
     rw [Matrix.map_mul, (mF _ (Fin n) (Fin n) κ _).2.1, hdet, Real.log_mul (f2 w) hne]
   have hsupp : (Function.support fun w => Real.log (nF (A.map (cW w)))).Finite :=
@@ -610,9 +606,16 @@ theorem degBasisG_of : WedgeF → WedgeI → MulF → MulI → LogAbsBasic → F
 
 end GlobalTheory.CompanionTheory.DegBasisGen
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DegreeSubmoduleBound
+
+
+open NumberField IsDedekindDomain Matrix
+open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Tf.Loc
+open PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.D1
 
 namespace GlobalTheory.CompanionTheory.DegreeSubmod
 
@@ -760,8 +763,6 @@ end GlobalTheory.CompanionTheory.DegreeSubmod
 
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DeterminantMonotonicity
 
 open Matrix PositivityTheory.Rg.BcB.D1
@@ -846,18 +847,14 @@ theorem detMono : DetMono := by
 end GlobalTheory.CompanionTheory.DetMonotone
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteSupportOfSize
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteSupportOfSize
+@[expose] public section
 
+noncomputable section
 
 open Matrix PositivityTheory.Rg.BcB PositivityTheory.Rg.BcB.D1 NumberField IsDedekindDomain
 
 namespace GlobalTheory.CompanionTheory.WedgeSupport
-
-theorem nF_nonneg' {K ι κ : Type} [NormedField K] [Fintype κ] [DecidableEq κ] (A : Matrix ι κ K) : 0 ≤ nF A :=
-  Real.iSup_nonneg fun _ => norm_nonneg _
-
-theorem sz_nonneg' {K ι κ : Type} [NormedField K] (g : Matrix ι κ K) : 0 ≤ sz g :=
-  Real.iSup_nonneg fun _ => norm_nonneg _
 
 theorem map_mul_eq_one {R S ι κ : Type} [CommRing R] [CommRing S] [Fintype ι] [DecidableEq κ] (f : R →+* S)
     {A : Matrix ι κ R} {Y : Matrix κ ι R} (h : Y * A = 1) : Y.map f * A.map f = 1 := by
@@ -887,10 +884,10 @@ theorem nF_eq_one_of_sz_le (hF : MulF) {K ι κ : Type} [NormedField K] [IsUltra
     [DecidableEq κ] {A : Matrix ι κ K} {Y : Matrix κ ι K} (h : Y * A = 1) (hY : sz Y ≤ 1) (hA : sz A ≤ 1) :
     nF A = 1 := by
   apply le_antisymm
-  · exact (nF_le_sz_pow hF A).trans (pow_le_one₀ (sz_nonneg' A) hA)
+  · exact (nF_le_sz_pow hF A).trans (pow_le_one₀ (GlobalTheory.CompanionTheory.DegBound.sz_nonneg A) hA)
   · have h1 := one_le_sz_pow_mul_nF hF h
-    have h2 : sz Y ^ Fintype.card κ ≤ 1 := pow_le_one₀ (sz_nonneg' Y) hY
-    nlinarith [nF_nonneg' A]
+    have h2 : sz Y ^ Fintype.card κ ≤ 1 := pow_le_one₀ (GlobalTheory.CompanionTheory.DegBound.sz_nonneg Y) hY
+    nlinarith [GlobalTheory.CompanionTheory.DegBound.nF_nonneg A]
 
 theorem nI_ne_zero_of_left_inv (hI : MulI) {ι κ : Type} [Fintype ι] [Fintype κ] [DecidableEq κ]
     {A : Matrix ι κ ℂ} {Y : Matrix κ ι ℂ} (h : Y * A = 1) : nI A ≠ 0 := by
@@ -910,6 +907,8 @@ theorem finSupp_of_mul : MulF → MulI → SzFin → FinSupp := by
 
 end GlobalTheory.CompanionTheory.WedgeSupport
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OnlyIsotropicSubspaces
@@ -1041,7 +1040,6 @@ end -- clump:auto
 open Matrix PositivityTheory.Rg.BcB.D1
 
 namespace GlobalTheory.CompanionTheory.Wedge
-
 
 open ComplexOrder in
 theorem pairI_of_detMono : DetMono → PairI := by

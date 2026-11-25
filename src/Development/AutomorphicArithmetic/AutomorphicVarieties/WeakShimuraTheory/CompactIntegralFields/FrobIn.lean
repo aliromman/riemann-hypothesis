@@ -19,7 +19,7 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.WeakShimuraTheory.
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.FrobInPowCong
 
 theorem UpperTheory.Reformulated.B.Qf16.frobIn_pow_cong :
-    ∀ {Ω : Type} [inst : Field Ω] (A : ValuationSubring Ω)
+    ∀ {Ω : Type} [Field Ω] (A : ValuationSubring Ω)
     {a b : Ω},
     (A.valuation : Ω → A.ValueGroup) a ≤ (1 : A.ValueGroup) →
       (A.valuation : Ω → A.ValueGroup) b ≤ (1 : A.ValueGroup) →

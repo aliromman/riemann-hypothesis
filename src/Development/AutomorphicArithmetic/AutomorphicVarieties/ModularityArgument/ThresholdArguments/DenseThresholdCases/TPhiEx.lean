@@ -805,7 +805,6 @@ private theorem pp_tr {n : ℕ} {A B G H : Type} [CommRing A] [CommRing B] [Grou
     rw [ite_eq_right (by omega)]
   rw [(map_eq_zero_iff f hf).1 h0, mul_zero]
 
-
 theorem UpperTheory.V.Ws.phiPair :
     ∀ {l : ℕ} [Fact l.Prime] {F : W.GFrame l} {O : Type} [CommRing O] [IsLocalRing O] [Algebra ℤ_[l] O] {n : ℕ} (r : W.Resid F O n) {B A H : Type} [CommRing B] [Algebra O B] [IsCO O B] [CommRing A] [Algebra O A] [Algebra B A] [IsScalarTower O B A] [Group H], Function.Injective (algebraMap B A) → 0 < n → ∀ (π : H →* F.G₀), Function.Surjective π → ∀ (ρ : H →* Matrix (Fin n) (Fin n) A) (D : W.GDet n B F.G₀) (ψ : ∀ v, Fin n → F.Gv v →* Bˣ), (D.comap π).map (algebraMap B A) = W.GDet.ofRep ρ → D.IsCont (maximalIdeal B) → (∀ g, (D.chi (MonoidAlgebra.single (π g) 1)).map (res O B : B →+* ResidueField O) = ∏ i, (Polynomial.X - C (r.chib i (π g) : ResidueField O))) → (∀ v i, r.IsPsi v i (ψ v i)) → (∀ g, ∃ g', π g' = (F.conj (π g))⁻¹ ∧ (((F.eps O A (π g) ^ (1 - (n : ℤ)) : Aˣ) : A) • ρ g').charpoly = (ρ g).charpoly) → (∀ v, ∃ j : F.Gv v →* H, π.comp j = F.φ v ∧ W.HasFlag (ρ.toHomUnits.comp j) fun i => W.pushCh (algebraMap B A) (ψ v i)) → (∀ u, ∀ g ∈ r.Ip u, ∃ g', π g' = g ∧ ρ g' = 1) → ∃ p : W.Pair r B, p.D = D ∧ p.ψ = ψ := by
   intro l _ F O _ _ _ n r B A H _ _ _ _ _ _ _ _ hinj hn π hπ ρ D ψ hD hcont hred hpsi hstar hflag hI
@@ -906,13 +905,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.WeakShimuraTheory.PhiCharacterResidues.ResLeMemDec
 
-private theorem adic_mul {Γ R : Type} [TopologicalSpace Γ] [CommRing R] {I : Ideal R} {f g : Γ → R}
-    (hf : AdicCont I f) (hg : AdicCont I g) : AdicCont I fun x => f x * g x := by
-  intro N
-  convert (hf N).mul (hg N) using 1
-  funext x
-  exact map_mul _ _ _
-
 private theorem resLe_mem_Dec {Ω : Type} [Field Ω] [CharZero Ω] [IsAlgClosure ℚ Ω] {F L : IntermediateField ℚ Ω}
     (h : F ≤ L) {A A' : ValuationSubring Ω} (e : A = A') (g : Dec (F := L) A) : resLe h g ∈ Dec (F := F) A' := by
   subst e
@@ -929,7 +921,7 @@ theorem UpperTheory.V.Ws.phiIsPsi :
   · have hsc : AdicCont (maximalIdeal X.B)
         fun g : Dec (F := T.L) (K.s.A (v : W.Plc (W.Lp T.L))) => algebraMap c'.O X.B (K.sc n g) := by
       have h0 : AdicCont (maximalIdeal c'.O) fun g : G T.L Ω => K.sc n g :=
-        adic_mul K.κ_cont (_root_.ac_pow K.β_cont n)
+        ac_mul K.κ_cont (_root_.ac_pow K.β_cont n)
       have h1 : AdicCont (maximalIdeal c'.O)
           fun g : Dec (F := T.L) (K.s.A (v : W.Plc (W.Lp T.L))) => K.sc n g :=
         fun N => (h0 N).comp_continuous continuous_subtype_val
@@ -943,7 +935,7 @@ theorem UpperTheory.V.Ws.phiIsPsi :
       exact (X.ψ_cont (K.e v) i N).comp_continuous hc
     show AdicCont (maximalIdeal X.B)
       fun g : Dec (F := T.L) (K.s.A (v : W.Plc (W.Lp T.L))) => ((ψ v i g : X.Bˣ) : X.B)
-    convert adic_mul hsc hX using 1
+    convert ac_mul hsc hX using 1
     funext g
     exact hψ v i g
   · intro g
@@ -1170,9 +1162,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TPhiEx
-
-
-
 
 section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual Formalism.HC ReciprocityTheory.Gal IsLocalRing Polynomial UpperTheory.V UpperTheory.V.Base UpperTheory.V.Alg UpperTheory.V.HV UpperTheory.V.GradeZeroInterpolatingElement UpperTheory.V.Ws GlobalTheory.GalOfCusp

@@ -14,8 +14,8 @@ import Mathlib.Topology.Algebra.Group.Units
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.LocallyConstantFunctions
 
 theorem UpperTheory.Reformulated.B.LocallyConstantFunctions.locConst :
-    ∀ {Γ A : Type} [inst : Group Γ] [inst_1 : TopologicalSpace Γ]
-    [IsTopologicalGroup Γ] [inst_3 : Group A] (ψ : Γ →* A), IsOpen (↑ψ.ker : Set Γ) → IsLocallyConstant (⇑ψ : Γ → A) := by
+    ∀ {Γ A : Type} [Group Γ] [TopologicalSpace Γ]
+    [IsTopologicalGroup Γ] [Group A] (ψ : Γ →* A), IsOpen (↑ψ.ker : Set Γ) → IsLocallyConstant (⇑ψ : Γ → A) := by
   intro Γ A _ _ _ _ ψ h
   rw [IsLocallyConstant.iff_exists_open]
   intro x

@@ -169,8 +169,6 @@ theorem restrictedBlock_mem_unipSym_of_columns {κ : Type} [CommRing κ] {n r : 
 theorem mem_hatL_of_Lf (D : D7) : ∀ v ∈ (II D).Lf, v ∈ Formalism.L2.Herm.hatL (F := D.host.F) (E := D.host.E) (n := (Yc D 0).rank) (II D).L :=
     fun v hv => (Set.ext_iff.1 (Formalism.IndefR.Eqv.lamAf_eq_hatL (V := Yc D 0) (II D).L) v).1 hv
 
-
-
 theorem redV_mL (D : D7) (g : ℕ) (β : GL (Fin (Yc D 0).rank) (EAf D)) (PP : Pl D.host.E) (hβ : IsFrame β (II D).L)
     (hg : ((g : ℕ) : 𝓞 D.host.E) ∈ PP.asIdeal) :
     ∀ v ∈ Formalism.L2.SG.HidaSetting.mL (II D) g,
@@ -209,8 +207,6 @@ theorem redV_mL (D : D7) (g : ℕ) (β : GL (Fin (Yc D 0).rank) (EAf D)) (PP : P
     have hm := Submodule.smul_mem _ (⟨_, c2⟩ : Formalism.L2.Herm.intAf D.host.F D.host.E) ha.1
     exact ⟨hm, (hsmul ⟨_, c2⟩ a ha.1).trans (by rw [ha.2, smul_zero])⟩
 
-
-
 theorem redV_span (D : D7) (β : GL (Fin (Yc D 0).rank) (EAf D)) (PP : Pl D.host.E) (hβ : IsFrame β (II D).L)
     (T : Submodule (kP PP) (Fin (Yc D 0).rank → kP PP)) (S : Set (VA (II D)))
     (hS : ∀ s ∈ S, s ∈ Formalism.L2.Herm.hatL (F := D.host.F) (E := D.host.E) (n := (Yc D 0).rank) (II D).L ∧ redV β PP s ∈ T) :
@@ -233,8 +229,6 @@ theorem redV_span (D : D7) (β : GL (Fin (Yc D 0).rank) (EAf D)) (PP : Pl D.host
     have hm := Submodule.smul_mem _ (⟨_, c2⟩ : Formalism.L2.Herm.intAf D.host.F D.host.E) ha.1
     exact ⟨hm, (hsmul ⟨_, c2⟩ a ha.1) ▸ T.smul_mem _ ha.2⟩
 
-
-
 theorem redV_Mo (D : D7) (g : ℕ) (β : GL (Fin (Yc D 0).rank) (EAf D)) (PP : Pl D.host.E) (hβ : IsFrame β (II D).L)
     (hg : ((g : ℕ) : 𝓞 D.host.E) ∈ PP.asIdeal)
     (T : Submodule (kP PP) (Fin (Yc D 0).rank → kP PP)) (S : Set (VA (II D)))
@@ -250,8 +244,6 @@ theorem redV_Mo (D : D7) (g : ℕ) (β : GL (Fin (Yc D 0).rank) (EAf D)) (PP : P
   have e := hadd y hy1 z hz1
   rw [hz2, add_zero] at e
   exact e ▸ hy2
-
-
 
 theorem redFn_col_of_Mo (D : D7) (g : ℕ) (β : GL (Fin (Yc D 0).rank) (EAf D)) (PP : Pl D.host.E) (hβ : IsFrame β (II D).L)
     (hg : ((g : ℕ) : 𝓞 D.host.E) ∈ PP.asIdeal) (w : Fin (Yc D 0).rank → VA (II D))
@@ -275,8 +267,6 @@ theorem redFn_col_of_Mo (D : D7) (g : ℕ) (β : GL (Fin (Yc D 0).rank) (EAf D))
   · refine ⟨h1, ?_⟩
     rw [h2]
     exact Submodule.zero_mem _
-
-
 
 theorem redFn_mem_unipSym_of_cong : ∀ {D : D7} (g : ℕ) (e0 f0 : Fin D.R.rS → VA (II D)) (z0 : VA (II D)) (bb cc : Fin D.R.k → VA (II D)) (β : GL (Fin (Yc D 0).rank) (EAf D)) (PP : Pl D.host.E), IsFrame β (II D).L → ((g : 𝓞 D.host.E) ∈ PP.asIdeal) → RedIs β PP (flagV D.R.rS D.R.k (Yc D 0).rank e0 f0 bb z0) → (∀ i, cc i ∈ (II D).Lf ∧ redV β PP (cc i) = 0) → ∀ M : GL (Fin (Yc D 0).rank) (EAf D), M ∈ St β → (∀ a, (M.val - 1) *ᵥ e0 a ∈ Formalism.L2.SG.Pf.unitaryCongruence.Mo (II D) g (e0 '' {b | b.1 < a.1})) → ((M.val - 1) *ᵥ z0 ∈ Formalism.L2.SG.Pf.unitaryCongruence.Mo (II D) g (Set.range e0)) → (∀ i, (M.val - 1) *ᵥ bb i ∈ Formalism.L2.SG.Pf.unitaryCongruence.Mo (II D) g (Set.range e0 ∪ Set.range cc ∪ bb '' {j | j.1 < i.1})) → (∀ b, (M.val - 1) *ᵥ f0 b ∈ Formalism.L2.SG.Pf.unitaryCongruence.Mo (II D) g (Set.range e0 ∪ {z0} ∪ Set.range bb ∪ Set.range cc ∪ f0 '' {c | b < c})) → upperLeftBlock (r_le_Y (D := D) 0) (redFn β PP M) ∈ unipSym (kP PP) D.R.r D.R.rS D.R.k := by
   intro D g e0 f0 z0 bb cc β PP hβ hg hRed hcc M hM he0 hz0 hbb hf0
@@ -362,13 +352,11 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ReductionMemUnipSymOfFlagCongruencesStatement
 
-
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.UnipotentLevelMovesDualVectorUpper
 
 namespace GlobalTheory.SeeConjBwd
-
 
 open Formalism.L2.SG.Pf.BunEx.Unip Formalism.L2.SG.Pf.unitaryCongruence in
 theorem bwd_move : ∀ (I : AutInst) (g : ℕ) {r k : ℕ} (e0 f0 : Fin r → VA I) (z0 : VA I) (bw bwd : Fin k → VA I) (ew : I.E ⊗[I.F] Af I.F), Formalism.L2.SG.Pf.BunEx.Unip.FH I g e0 f0 z0 bw bwd ew → ∀ x : I.Gf, x ∈ I.Kset → K2cong I g e0 z0 bw x → ∀ j : Fin k, (I.fmat x - 1) *ᵥ bwd j ∈ Formalism.L2.SG.Pf.unitaryCongruence.Mo I g (Set.range e0 ∪ bwd '' {l | j < l}) := by
@@ -508,7 +496,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.CongruencesReductionMemSymmetricUnipotentStatement
 
-
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.DivisibilityTypeProductReadLevelPlaces
@@ -641,13 +628,9 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.FiniteMatrixIotaEqFinitePartStatement
 
-
-theorem _root_.GlobalTheory.T.finiteMatrix_iota_eq_finitePart : ∀ {D : D7} (κ : GA D (Yc D 0)), (GlobalTheory.SeeConjGroup.II D).fmat ((Formalism.IndefR.RationalEmbedding.iota D) κ).2 = (finE (Yc D 0) κ).val := by
-  first | exact @GlobalTheory.SeeConjGroup.fmat_iota_eq_finE
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.LocalFrameHermitianIdealStatement
-
 
 end -- clump:auto
 
@@ -845,7 +828,7 @@ theorem GlobalTheory.SeeConjRead.mem_deeperLevel_iff_reductions_symmetricUnipote
       exact ⟨true, hgP PP hP, fun _ => by simpa using (hA1 hc).1, fun _ => by simpa using (hA1 hc).2, hr⟩
     · rw [ite_eq_right hc] at hr
       exact ⟨false, hgP PP hP, fun _ => by simpa using (hA0 hc).1, fun _ => by simpa using (hA0 hc).2, hr⟩
-  have hxM : (II D).fmat ((Formalism.IndefR.RationalEmbedding.iota D) κ).2 = (finE (Yc D 0) κ).val := GlobalTheory.T.finiteMatrix_iota_eq_finitePart κ
+  have hxM : (II D).fmat ((Formalism.IndefR.RationalEmbedding.iota D) κ).2 = (finE (Yc D 0) κ).val := GlobalTheory.SeeConjGroup.fmat_iota_eq_finE κ
   show _ ∧ _ ↔ _
   constructor
   · rintro ⟨-, hc⟩ PP hP
@@ -862,7 +845,6 @@ end -- clump: shared namespace opens
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.S Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR.Links Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.AutomorphicEvaluation Formalism.L2.SG.RowDict Formalism.L2.SG.RowsJoinPinned Formalism.L2.SG.RowLevelMatch Formalism.L2.SG.PoincareInHH.PoincareSetting MeasureTheory NumberField IsDedekindDomain
 open scoped InnerProductSpace
 open GlobalTheory.SeeConjRead
-
 
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.TwistedOperators.ReductionMemUnipSymOfFlagCongruences", "h": "module\n\npublic import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.UnitaryHaarProducts.LevelSubgroupCharacterUnitary\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.BSlotD\npublic import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ResidueCoordinatesInFrameLinearStabiliserStatement\npublic import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.NatCastKPZero\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Formalism.LocalToGlobal.IndefiniteReal.AutomorphicEvaluation\nimport Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RowDict\nimport Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RowLevelMatch\nimport Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RowsJoinPinned\n\n"}

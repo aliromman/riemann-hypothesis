@@ -259,11 +259,8 @@ open MeasureTheory
 
 namespace PositivityTheory.KB.StokesSlices
 
-lemma isClosed_Δ (m : ℕ) : IsClosed (Δ m) := by
-  apply _root_.PositivityTheory.KB.StokesSlices.Hyp.isClosed_Δ <;> assumption
-
 lemma isCompact_Δ (m : ℕ) : IsCompact (Δ m) := by
-  refine (isCompact_Icc : IsCompact (Set.Icc (0 : Fin m → ℝ) 1)).of_isClosed_subset (isClosed_Δ m) ?_
+  refine (isCompact_Icc : IsCompact (Set.Icc (0 : Fin m → ℝ) 1)).of_isClosed_subset (PositivityTheory.KB.StokesSlices.Hyp.isClosed_Δ m) ?_
   rintro t ⟨h0, h1⟩
   refine ⟨fun j => h0 j, fun j => ?_⟩
   calc t j ≤ ∑ k, t k := Finset.single_le_sum (fun k _ => h0 k) (Finset.mem_univ j)
@@ -431,8 +428,9 @@ end PositivityTheory.KB.StokesSlices
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.StokesSimplices.SumInsertNth
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.StokesSimplices.SumInsertNth
 
+noncomputable section
 
 open MeasureTheory Set
 
@@ -455,7 +453,7 @@ lemma mem_Δ_insertNth {m : ℕ} (i : Fin (m + 1)) (x : ℝ) (s : Fin m → ℝ)
   · rintro ⟨⟨hs, _⟩, hx, h⟩
     exact ⟨⟨hx, hs⟩, by linarith⟩
 
-lemma measurableSet_Δ (m : ℕ) : MeasurableSet (Δ m) := (isClosed_Δ m).measurableSet
+lemma measurableSet_Δ (m : ℕ) : MeasurableSet (Δ m) := (PositivityTheory.KB.StokesSlices.Hyp.isClosed_Δ m).measurableSet
 
 lemma integrableOn_Δ_insertNth {m : ℕ} (i : Fin (m + 1)) (G : (Fin (m + 1) → ℝ) → ℝ)
     (W : Set (Fin (m + 1) → ℝ)) (hΔW : Δ (m + 1) ⊆ W) (hG : ContinuousOn G W)
@@ -533,6 +531,7 @@ theorem subSlice : SubSlice := by
     simp
 
 end PositivityTheory.KB.StokesSlices
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.StokesSimplices.SStokesOf

@@ -138,8 +138,9 @@ theorem gapped_infinitesimal_character : Formalism.MainNotions.GapDS.InfCharDSG 
 end Formalism.MainNotions.BesselDiscreteSeries
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CentralCharacters.AdjointEquivalence
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CentralCharacters.AdjointEquivalence
 
+noncomputable section
 
 namespace PI.UnitaryGroupMassFormula.DSIC
 
@@ -147,10 +148,6 @@ open PI.DSInfCharCap
 open scoped InnerProductSpace Matrix
 
 alias jm_sq := _root_.Formalism.REAL.Jm_mul_self
-
-theorem jm_jm_mul {n : ℕ} (ε : Fin n → Bool) (M : Matrix (Fin n) (Fin n) ℂ) :
-    Formalism.REAL.Jm ε * (Formalism.REAL.Jm ε * M) = M := by
-  rw [← Matrix.mul_assoc, jm_sq, Matrix.one_mul]
 
 theorem jm_inv {n : ℕ} (ε : Fin n → Bool) : (Formalism.REAL.Jm ε)⁻¹ = Formalism.REAL.Jm ε := Matrix.inv_eq_left_inv (jm_sq ε)
 
@@ -178,10 +175,11 @@ theorem exp_mem_UJ {n : ℕ} {ε : Fin n → Bool} {X : Matrix (Fin n) (Fin n) �
   rw [← Matrix.exp_conjTranspose, hA, Matrix.exp_conj _ _ (jm_isUnit ε), jm_inv]
   calc Formalism.REAL.Jm ε * NormedSpace.exp (-A) * Formalism.REAL.Jm ε * Formalism.REAL.Jm ε * NormedSpace.exp A
       = Formalism.REAL.Jm ε * (NormedSpace.exp (-A) * NormedSpace.exp A) := by
-        simp only [Matrix.mul_assoc, jm_jm_mul]
+        simp only [Matrix.mul_assoc, Formalism.REAL.f1alg_JJ_left]
     _ = Formalism.REAL.Jm ε := by rw [hcomm, Matrix.mul_one]
 
 end PI.UnitaryGroupMassFormula.DSIC
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.CapCoefGen
@@ -196,10 +194,6 @@ open ReciprocityTheory.ChartRestriction.DS
 
 variable {n : ℕ} {ε : Fin n → Bool}
 
-theorem jm_sq : Jm ε * Jm ε = 1 := by
-  unfold Jm; rw [Matrix.diagonal_mul_diagonal]
-  convert Matrix.diagonal_one; split_ifs <;> simp
-
 section Transp
 
 variable {P Q : Matrix (Fin n) (Fin n) ℂ}
@@ -208,7 +202,7 @@ theorem hinv (hQP : Q * P = 1) (hPQ : P * Q = 1) : (Pᴴ * Jm ε * P)⁻¹ = Q *
   apply Matrix.inv_eq_left_inv
   have h1 : Qᴴ * Pᴴ = 1 := by rw [← Matrix.conjTranspose_mul, hPQ, Matrix.conjTranspose_one]
   calc Q * Jm ε * Qᴴ * (Pᴴ * Jm ε * P) = Q * (Jm ε * ((Qᴴ * Pᴴ) * (Jm ε * P))) := by simp only [Matrix.mul_assoc]
-    _ = 1 := by rw [h1, Matrix.one_mul, ← Matrix.mul_assoc (Jm ε), jm_sq, Matrix.one_mul, hQP]
+    _ = 1 := by rw [h1, Matrix.one_mul, ← Matrix.mul_assoc (Jm ε), ReciprocityTheory.ChartRestriction.DS.PolarDecomposition.polar_Jm_mul_self, Matrix.one_mul, hQP]
 
 theorem conj_star (hQP : Q * P = 1) (hPQ : P * Q = 1) (Z : Matrix (Fin n) (Fin n) ℂ) :
     P * ((Pᴴ * Jm ε * P)⁻¹ * Zᴴ * (Pᴴ * Jm ε * P)) * Q = Jm ε * (P * Z * Q)ᴴ * Jm ε := by

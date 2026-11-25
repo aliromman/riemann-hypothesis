@@ -37,7 +37,7 @@ import Mathlib.Algebra.AffineMonoid.UniqueSums
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.FlagBundles.PFibreConstantClosedForm, GroundTheory.HeightsAndTheta.Heights.FlagBundles.PGHatIdentity, GroundTheory.HeightsAndTheta.Heights.FlagBundles.PGKernelIdentity, GroundTheory.HeightsAndTheta.Heights.FlagBundles.PZonalBilinearFormula, GroundTheory.HeightsAndTheta.Heights.FlagBundles.PZonalHeightReduction, GroundTheory.HeightsAndTheta.Heights.FlagBundles.PZonalKernel, GroundTheory.HeightsAndTheta.Heights.FlagBundles.ZonalPairingCalculus, GroundTheory.HeightsAndTheta.Heights.FlagBundles.PZonalKernelPairing, GroundTheory.HeightsAndTheta.Heights.FlagBundles.Assembly, GroundTheory.HeightsAndTheta.Heights.Intersections.PFibreLocal
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.FlagBundles.PFibreConstantClosedForm
+@[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.FlagBundles.PFibreConstantClosedForm
 
 set_option maxSynthPendingDepth 1
 
@@ -46,6 +46,7 @@ namespace GroundTheory.Heights₂.Heights.FlagBundles
 open MvPolynomial MeasureTheory Finset
 open scoped InnerProductSpace
 
+noncomputable section
 
 namespace FibreConstantClosedForm
 
@@ -311,7 +312,6 @@ theorem integral_even_pow (j : ℕ) : ∫ c in (-1 : ℝ)..1, c ^ (2 * j) = 2 / 
 
 end FibreConstantClosedForm
 
-
 open FibreConstantClosedForm in
 theorem FibreConstantClosedForm.proof (h0 : ZonalBilinearFormula.Statement)
     (h1 : GHatIdentity.Statement) : FibreConstantClosedForm.Statement := by
@@ -331,6 +331,7 @@ theorem FibreConstantClosedForm.proof (h0 : ZonalBilinearFormula.Statement)
     rw [this, smul_eq_mul]
     ring
   refine ⟨key, ?_, ?_, ?_, ?_, ?_, ?_⟩ <;> rw [key] <;> norm_num [Finset.sum_range_succ]
+end -- clump:auto
 end GroundTheory.Heights₂.Heights.FlagBundles -- clump:auto
 end -- clump:auto
 
@@ -655,7 +656,8 @@ theorem ZonalBilinearFormula.proof (hB : ZonalHeightReduction.Statement)
 end GroundTheory.Heights₂.Heights.FlagBundles
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.FlagBundles.PZonalHeightReduction
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.FlagBundles.PZonalHeightReduction
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -664,6 +666,7 @@ namespace GroundTheory.Heights₂.Heights.FlagBundles
 open MeasureTheory Set
 open scoped InnerProductSpace
 
+noncomputable section
 
 theorem inner_spherePoint (c₁ φ₁ c₂ φ₂ : ℝ) :
     ⟪spherePoint c₁ φ₁, spherePoint c₂ φ₂⟫_ℝ =
@@ -673,10 +676,6 @@ theorem inner_spherePoint (c₁ φ₁ c₂ φ₂ : ℝ) :
 
 theorem spherePoint_two (c φ : ℝ) : spherePoint c φ 2 = c := by
   simp [spherePoint]
-
-theorem continuous_spherePoint : Continuous (fun q : ℝ × ℝ => spherePoint q.1 q.2) := by
-  unfold spherePoint
-  fun_prop
 
 theorem measurable_kernelL : Measurable kernelL := by
   unfold kernelL
@@ -818,7 +817,7 @@ theorem integral_kernelL_mul (hK : ZonalKernel.Statement) {c₁ : ℝ} (h₁ : c
   have hmeas : Measurable
       (fun q : ℝ × ℝ => kernelL ⟪spherePoint c₁ φ₁, spherePoint q.1 q.2⟫_ℝ * h q.1) :=
     (measurable_kernelL.comp
-      ((continuous_const.inner continuous_spherePoint).measurable)).mul
+      ((continuous_const.inner GroundTheory.Heights₂.Heights.FlagBundles.SphereLongitudeCoordinates.continuous_spherePoint).measurable)).mul
       (hh.measurable.comp measurable_fst)
   have hint : Integrable
       (fun q : ℝ × ℝ => kernelL ⟪spherePoint c₁ φ₁, spherePoint q.1 q.2⟫_ℝ * h q.1)
@@ -863,7 +862,7 @@ theorem ZonalHeightReduction.proof (hA : SphereLongitudeCoordinates.Statement)
   have : IsProbabilityMeasure sphereMeasure := ⟨sphereMeasure_univ⟩
   set μ := heightLongitudeMeasure with hμ
   have hsp : Measurable (fun q : ℝ × ℝ => spherePoint q.1 q.2) :=
-    continuous_spherePoint.measurable
+    GroundTheory.Heights₂.Heights.FlagBundles.SphereLongitudeCoordinates.continuous_spherePoint.measurable
   have hι : Measurable (fun n : Sphere2 => (n : E3)) := measurable_subtype_coe
   set k : ENNReal := (ENNReal.ofReal (4 * Real.pi))⁻¹ with hk
   have hA' : sphereMeasure.map (fun n : Sphere2 => (n : E3)) =
@@ -986,8 +985,10 @@ theorem ZonalHeightReduction.proof (hA : SphereLongitudeCoordinates.Statement)
             ENNReal.toReal_ofReal (by positivity), smul_eq_mul]
           field_simp
 
+end
 
 end GroundTheory.Heights₂.Heights.FlagBundles
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.FlagBundles.PZonalKernel

@@ -317,7 +317,8 @@ end GroundTheory.Heights₂.Heights.NumbersDVR
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PSplitRelDeg
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PSplitRelDeg
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -325,6 +326,7 @@ namespace GroundTheory.Heights₂.Heights.FieldNumbers
 
 open MvPolynomial GroundTheory.Heights₂.Heights.NumbersDVR
 
+noncomputable section
 
 universe u
 
@@ -339,14 +341,16 @@ theorem contractFracMap_mk (f : MRing (fun k => ι' (j k)) F) :
   simp [contractFracMap, contractQuot]
   rfl
 
-
 end SplitRelDeg
 
+end
 
 end GroundTheory.Heights₂.Heights.FieldNumbers
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PFlagLineDegree
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PFlagLineDegree
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -354,6 +358,7 @@ namespace GroundTheory.Heights₂.Heights.NumbersDVR
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo
 
+noncomputable section
 
 namespace FlagLineDegreeProof
 
@@ -475,7 +480,6 @@ theorem subst_homog {K : Type*} [DecidableEq K] {ι : K → Type} {M : ℕ} {F :
   exact this
 
 end FlagLineDegreeProof
-
 
 open FlagLineDegreeProof in
 theorem FlagLineDegree.proof : FlagLineDegree.Statement := by
@@ -659,8 +663,10 @@ theorem FlagLineDegree.proof : FlagLineDegree.Statement := by
   simp only [map_mul, map_pow]
   ring
 
+end
 
 end GroundTheory.Heights₂.Heights.NumbersDVR
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PFlagLineSectionSplit
@@ -825,7 +831,8 @@ end FlagLineSectionProof
 end GroundTheory.Heights₂.Heights.NumbersDVR
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PFlagLineSection
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PFlagLineSection
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -833,6 +840,7 @@ namespace GroundTheory.Heights₂.Heights.NumbersDVR
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo
 
+noncomputable section
 
 set_option linter.unusedSectionVars false
 
@@ -849,7 +857,6 @@ theorem chartMon_not_mem {W : Ideal (MRing (bundleIdx ι M) F)} [hW : W.IsPrime]
   exact hc k (hW.mem_of_pow_mem _ hk)
 
 end FlagLineSectionProof
-
 
 open FlagLineSectionProof in
 theorem FlagLineSection.proof : FlagLineSection.Statement := by
@@ -1029,8 +1036,10 @@ theorem FlagLineSection.proof : FlagLineSection.Statement := by
         exact hW (le_and_isRelevant_of_divCycle_ne_zero hne)
       rw [hz, hz, sub_self]
 
+end
 
 end GroundTheory.Heights₂.Heights.NumbersDVR
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PSpanBundleDim
@@ -1275,7 +1284,8 @@ theorem SpanBundleTrdegGe.proof : SpanBundleTrdegGe.Statement := by
 end GroundTheory.Heights₂.Heights.NumbersDVR
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PSpanBundleTrdegLe
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PSpanBundleTrdegLe
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -1283,7 +1293,7 @@ namespace GroundTheory.Heights₂.Heights.NumbersDVR
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo IntermediateField.algebraAdjoinAdjoin
 
-
+noncomputable section
 
 set_option maxHeartbeats 400000 in
 theorem SpanBundleTrdegLe.proof : SpanBundleTrdegLe.Statement := by
@@ -1471,8 +1481,10 @@ theorem SpanBundleTrdegLe.proof : SpanBundleTrdegLe.Statement := by
     _ = Algebra.trdeg F (Algebra.adjoin F (Set.range gy)) + i := by rw [hSyL]
     _ ≤ _ := by gcongr
 
+end
 
 end GroundTheory.Heights₂.Heights.NumbersDVR
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.SemipositiveHeights.NumericalSegre
@@ -1480,7 +1492,6 @@ end -- clump:auto
 set_option maxSynthPendingDepth 1
 
 namespace GroundTheory.Heights₂.Heights.NumbersDVR
-
 
 open GroundTheory.Heights₂.Heights.FieldNumbers in
 theorem DivPushForwardLocalZero : FieldNumbers.DivPushForwardLocal.Statement.{0} := by

@@ -22,8 +22,9 @@ import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLat
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.TermsFiniteAtPoint.DShort, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.TermsFiniteAtPoint.FrameTop, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.TermsAtPtFinite
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.TermsFiniteAtPoint.DShort
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.TermsFiniteAtPoint.DShort
 
+noncomputable section
 
 open scoped Classical
 
@@ -65,10 +66,6 @@ theorem qcs_bound {W : Type*} [AddCommGroup W] [Module ℚ W] [FiniteDimensional
     rw [hexp] at hyy
     have h2 := (mul_nonneg_iff_of_pos_left hww).1 hyy
     linarith
-
-theorem trace_pos_of_re_pos {E : Type} [Field E] [NumberField E] (z : E)
-    (h : ∀ τ : E →+* ℂ, 0 < (τ z).re) : 0 < Algebra.trace ℚ E z := by
-  apply GlobalTheory.LoopC.PerpPos.trace_pos <;> assumption
 
 theorem exists_common_den {E : Type} [Field E] [NumberField E] (t : Finset E) :
     ∃ d : ℤ, d ≠ 0 ∧ ∀ e ∈ t, IsIntegral ℤ ((d : E) * e) := by
@@ -181,7 +178,7 @@ theorem shortFin_holds : ShortFin := by
     intro x hx
     have hx' : (x : S.V) ≠ 0 := by
       intro h; apply hx; exact Subtype.ext h
-    have := trace_pos_of_re_pos _ (hpos x x.2 hx')
+    have := GlobalTheory.LoopC.PerpPos.trace_pos _ (hpos x x.2 hx')
     rw [hBapp]; linarith
 
   obtain ⟨sg, hsg⟩ := hΛ.fg
@@ -253,6 +250,7 @@ theorem shortFin_holds : ShortFin := by
 
 end PI.TermsAtPtFiniteW
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.TermsFiniteAtPoint.FrameTop
 
@@ -272,7 +270,6 @@ theorem frameOp_holds : FrameOp := by
   exact _root_.Formalism.L2.S.Pv.ClassCounting.frameOpFull D u F0 Λ hΛ B
     (fun i j hji => (hB i j).1 hji)
     (fun i => (hB i i).2.1 rfl)
-
 
 end PI.TermsAtPtFiniteW
 end -- clump:auto

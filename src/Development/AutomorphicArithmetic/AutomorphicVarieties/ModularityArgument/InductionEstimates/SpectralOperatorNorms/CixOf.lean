@@ -769,12 +769,6 @@ private noncomputable def datOf {n : ℕ} (d : Dat S n) (h : 2 ≤ d.len) : Datu
   V := fun i => bV (d.blo i).2
   summand := fun i => bV_summand _
 
-private theorem map_split {r s : ℕ} (f : Fin (r + s) → ℂ) :
-    (Finset.univ.val.map f) = (Finset.univ.val.map fun i : Fin r => f (Fin.castAdd s i)) +
-      (Finset.univ.val.map fun i : Fin s => f (Fin.natAdd r i)) := by
-  simp only [Fin.univ_val_map, List.ofFn_add, Multiset.coe_add]
-  rfl
-
 private theorem lam_ms {n : ℕ} (d : Dat S n) (τ : E →+* ℂ) : ∀ z : Fin d.len → ℂ,
     (Finset.univ.val.map fun i : Fin n => d.lam τ i + z (d.idx i)) =
       ∑ j, (Finset.univ.val.map ((d.blo j).2.Λ τ)).map (· + z j) := by
@@ -786,7 +780,7 @@ private theorem lam_ms {n : ℕ} (d : Dat S n) (τ : E →+* ℂ) : ∀ z : Fin 
   | @cons r s b d ih =>
     intro (z : Fin (d.len + 1) → ℂ)
     change _ = ∑ j : Fin (d.len + 1), (Finset.univ.val.map (((Dat.cons b d).blo j).2.Λ τ)).map (· + z j)
-    rw [map_split, Fin.sum_univ_succ]
+    rw [UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.KX.map_addCases, Fin.sum_univ_succ]
     have h1 : (fun i : Fin r => (Dat.cons b d).lam τ (Fin.castAdd s i) + z ((Dat.cons b d).idx (Fin.castAdd s i))) =
         fun i => b.Λ τ i + z 0 := by
       funext i
@@ -836,7 +830,6 @@ private theorem form_mem {m : (E →+* ℂ) → Multiset ℂ} {B : BW.Pl E → M
   exact bV_mem b
 
 private theorem fin_two_ne : ∀ i j : Fin 2, i ≠ j → (i = 0 ∧ j = 1) ∨ (i = 1 ∧ j = 0) := by decide
-
 
 private theorem exempt_core (τ₁ τ₂ : Submodule ℂ (LL (mu1 E 2))) (m₁ m₂ : (E →+* ℂ) → Multiset ℂ) (B₁ B₂ : BW.Pl E → Multiset ℂ)
     (smo₁ : ∀ V, IsSummand (mu1 E 2) V → At (mu1 E 2) S V m₁ B₁ → V = τ₁)
@@ -893,7 +886,6 @@ private def step (S : Set (BW.Pl E)) (r : ℕ) (p : ((E →+* ℂ) → Fin r →
   (q.1 + 1, fun Λ t => ∃ (c : ℂ) (Λ' : (E →+* ℂ) → Multiset ℂ) (t' : BW.Pl E → Multiset ℂ), q.2 Λ' t' ∧
     (∀ τ, Λ τ = (Finset.univ.val.map fun i => p.1 τ i + c) + Λ' τ) ∧
     ∀ w ∉ S, t w = ((p.2 w).map fun x : ℂˣ => (x : ℂ) * ((Formalism.UG.qV E w : ℕ) : ℂ) ^ (-c)) + t' w)
-
 
 open Classical in
 private noncomputable def par {r : ℕ} (b : Blo S r) : ((E →+* ℂ) → Fin r → ℂ) × (BW.Pl E → Multiset ℂˣ) :=
@@ -1724,7 +1716,6 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.unitB :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.InductionEstimates.SpectralOperatorNorms.CixOf
-
 
 open UpperTheory.ConvolutionTheory UpperTheory.ConvolutionTheory.Ci UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial in
 theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.cix_of (hK : KernX) (hT : ForAllC fun _ _ _ μ _ _ _ _ _ _ _ _ A A' => TruncCpt μ A A') : CIx :=

@@ -275,11 +275,6 @@ namespace UpperTheory.V.Z.Sym.Al.ExtChar
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] {n : ℕ}
 
-private theorem val_eq (x : kˣ) : valuation k (x : k) = uniformizer k ^ ord k x := by
-  have h := UpperTheory.V.Hi.GlAx.val_div_ord x
-  rw [Units.val_div_eq_div_val, map_div₀, UpperTheory.V.Hi.GlAx.val_zpow] at h
-  exact (div_eq_one_iff_eq (zpow_pos UpperTheory.V.Hi.GlAx.unif_pos _).ne').1 h
-
 private theorem sdom_of_exp (u : Fin n → kˣ) (e : Fin n → ℤ)
     (hv : ∀ i, valuation k (u i : k) = uniformizer k ^ e i) (he : ∀ i j, i < j → e j < e i) : Sig.SDom u := by
   intro i j hij
@@ -313,7 +308,7 @@ private theorem exists_div (t : Fin n → kˣ) : ∃ a b : Fin n → kˣ, Sig.SD
   have hm : 0 < 2 * B + 1 := by omega
   refine ⟨t * rho n k (2 * B + 1), rho n k (2 * B + 1), ?_, rho_sdom hm, by simp⟩
   refine sdom_of_exp _ (fun i => ord k (t i) + -((2 * B + 1) * ((i : ℕ) : ℤ))) (fun i => ?_) fun i j hij => ?_
-  · rw [Pi.mul_apply, Units.val_mul, map_mul, val_eq, rho, UpperTheory.V.Hi.GlAx.val_zpow,
+  · rw [Pi.mul_apply, Units.val_mul, map_mul, UpperTheory.V.Z.Sym.Sig.val_ord, rho, UpperTheory.V.Hi.GlAx.val_zpow,
       zpow_add₀ UpperTheory.V.Hi.GlAx.unif_pos.ne']
   · have h0 : ((i : ℕ) : ℤ) + 1 ≤ ((j : ℕ) : ℤ) := by exact_mod_cast hij
     have h1 := abs_le.1 (hB i)
@@ -816,9 +811,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TLocSubD
 @[expose] public section
 
-
-
-
 section
 open NumberField IsDedekindDomain ValuativeRel Matrix GlobalTheory.CuspRep GlobalTheory.PRep GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.LocGL Formalism.BasicNotions
 open UpperTheory.V.Hi UpperTheory.V.AlgebraTools UpperTheory.V.Z.Sym UpperTheory.V.Z.Sym.Dict
@@ -1117,9 +1109,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.MemLevelOfLocalDepth
-
-
-
 
 section
 open NumberField IsDedekindDomain ValuativeRel GlobalTheory.CuspRep GlobalTheory.PRep GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.LocGL Formalism.BasicNotions

@@ -202,11 +202,6 @@ theorem torsion_reduction_trivial (S : StepLevel F E σ J T f bad) (G : GLoc F E
   have : bc (G.phi i v h) x = fr * M * fr⁻¹ := by rw [hM]; group
   rw [this, h1, mul_one, mul_inv_cancel]
 
-theorem diamond_conj_mem_level' (S : StepLevel F E σ J T f bad) (v : HeightOneSpectrum (𝓞 F))
-    (hv : (T : 𝓞 F) ∈ v.asIdeal) {k : ℤ} {δ : UPts σ J (FiniteAdeleRing (𝓞 F) F)}
-    (h : IsDia S v hv k δ) (κ : S.U) : δ.1⁻¹ * κ.1 * δ.1 ∈ S.U := by
-  apply Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.diamond_conj_mem_level <;> assumption
-
 theorem pow_mul_mem_of_normalises {G : Type} [Group G] (U : Subgroup G) (d : G) (hd : ∀ κ ∈ U, d⁻¹ * κ * d ∈ U) (N : ℕ)
     (hN : d ^ N ∈ U) (κ : G) (hκ : κ ∈ U) : (d * κ) ^ N ∈ U := by
   have key : ∀ m : ℕ, ∃ κ' ∈ U, (d * κ) ^ m = d ^ m * κ' := by
@@ -399,26 +394,6 @@ end Loc
 
 variable {D : D7} {u : D.what₂.Word}
 
-theorem level_prime_ne_type_prime' (A : AtTTied u) (j : Fin 2) : (D.mem u).A.T ≠ D.host.g j := by
-  apply Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.level_prime_ne_type_prime <;> assumption
-
-theorem level_places_prime_to_type (A : AtTTied u) (v : (D.mem u).A.vT) : (A.eV v).1 ∉ badG D := by
-  have hT := (A.eV v).2
-  have hTp := (D.mem u).A.T_prime
-  have key : ∀ j : Fin 2, (D.host.g j : 𝓞 D.host.F) ∉ (A.eV v).1.asIdeal := by
-    intro j hj
-    have hcop : Nat.Coprime (D.mem u).A.T (D.host.g j) :=
-      (Nat.coprime_primes hTp (D.host.g_prime j)).2 (level_prime_ne_type_prime' A j)
-    obtain ⟨a, b, hab⟩ := Nat.isCoprime_iff_coprime.2 hcop
-    have h1 : ((a * (D.mem u).A.T + b * D.host.g j : ℤ) : 𝓞 D.host.F) ∈ (A.eV v).1.asIdeal := by
-      push_cast
-      exact Ideal.add_mem _ (Ideal.mul_mem_left _ _ hT) (Ideal.mul_mem_left _ _ hj)
-    rw [hab, Int.cast_one] at h1
-    exact (A.eV v).1.isPrime.ne_top ((Ideal.eq_top_iff_one _).2 h1)
-  rintro (h | h)
-  · exact key 0 h
-  · exact key 1 h
-
 theorem rank_zero_le_type_level : D.R.N 0 ≤ aOf D.R 0 := by
   have := D.R.two_le_m
   unfold aOf Ranks.N
@@ -503,7 +478,7 @@ theorem diamond_free_on_classes (Tf : Forms0 D u) (hS : Formalism.MainNotions.pr
     ∀ v, (k v : (D.mem u).A.Fv v) = 1 := by
   have hT := (D.mem u).A.T_prime
   have hbad : ∀ w ∈ badG D, bc (prV (E := D.host.E) w) δ.1 = 1 := fun w hw =>
-    hδ.1 w (fun v e => level_places_prime_to_type Tf.atT v (by subst e; exact hw))
+    hδ.1 w (fun v e => Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.level_places_not_bad Tf.atT v (by subst e; exact hw))
   haveI : Fact (D.mem u).A.T.Prime := ⟨hT⟩
   have hkT : ∀ v, ((D.mem u).A.T : ℤ) ∣ (k ^ ((D.mem u).A.T - 1)) v - 1 := by
     intro v
@@ -531,8 +506,8 @@ theorem dilation_commute_distinct (Tf : Forms0 D u) (v v' : (D.mem u).A.vT) (hvv
     (D.fm u).dil 0 v a ((D.fm u).dil 0 v' b c) = (D.fm u).dil 0 v' b ((D.fm u).dil 0 v a c) := by
   have W := Tf.val 0 (Nat.zero_le _) rfl
   have hne : (Tf.atT.eV v).1 ≠ (Tf.atT.eV v').1 := fun e => hvv (Tf.atT.eV.injective (Subtype.ext e))
-  have h1 := class_mul_right_of_normalises _ _ _ _ δa (fun κ hκ => diamond_conj_mem_level' _ _ _ ha ⟨κ, hκ⟩) (W.dil v' b kb hkb c δb hb)
-  have h2 := class_mul_right_of_normalises _ _ _ _ δb (fun κ hκ => diamond_conj_mem_level' _ _ _ hb ⟨κ, hκ⟩) (W.dil v a ka hka c δa ha)
+  have h1 := class_mul_right_of_normalises _ _ _ _ δa (fun κ hκ => Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.diamond_conj_mem_level _ _ _ ha ⟨κ, hκ⟩) (W.dil v' b kb hkb c δb hb)
+  have h2 := class_mul_right_of_normalises _ _ _ _ δb (fun κ hκ => Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.diamond_conj_mem_level _ _ _ hb ⟨κ, hκ⟩) (W.dil v a ka hka c δa ha)
 
   have hU : ((δb * δa)⁻¹ * (δa * δb)).1 ∈ (Tf.cls 0 (Nat.zero_le _) rfl).lev.U := by
     rw [(Tf.cls 0 (Nat.zero_le _) rfl).lev.U_eq]
@@ -556,8 +531,9 @@ end
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL6.DiagonalSlopes.GroupActionMulSingleEqDilation
+@[expose] public section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL6.DiagonalSlopes.GroupActionMulSingleEqDilation
 
+noncomputable section
 
 namespace Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.S0
 
@@ -734,8 +710,6 @@ theorem zero_of_group_action_zero [Fact (D.mem u).A.T.Prime] (Tf : Forms0 D u) (
     rw [group_action_mulSingle_eq_dilation]
     exact (LinearEquiv.map_eq_zero_iff _).1 hv
 
-
-
 theorem multi_diamond_of_group_elem [Fact (D.mem u).A.T.Prime] (Tf : Forms0 D u) (hE : DiamondElementsExist Tf)
     (g : (D.mem u).A.vT → (ZMod (D.mem u).A.T)ˣ) : ∃ (k : (D.mem u).A.vT → ℤ)
       (δ : UPts (sigD D) (gramN D 0 (Nat.zero_le _)) (FiniteAdeleRing (𝓞 D.host.F) D.host.F)),
@@ -871,6 +845,7 @@ theorem level_zero_values_ne_bot (Tf : Forms0 D u) : ∃ w ∈ levelZeroValues T
 
 end Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.S0
 
+end
 
 -- clump-header: {"m": "Formalism.LocalToGlobal.GlobalTheory.GL6.DiagonalSlopes.EqOneOfCoprimeTorsionTwoPrimes", "h": "module\n\nimport Formalism.LocalToGlobal.GlobalTheory.GL6.AdelicFunctionRightTranslateDiamond\npublic import Formalism.LocalToGlobal.GroupLattices.DownNaturalLevelZero\npublic import Formalism.SharpRestriction.GlobalSchurBounds.ProductFirstZerothParts\npublic import Formalism.LocalToGlobal.GroupLattices.TrivialTransfer.OneAddPowOfSq\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Int\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 -- clump-header: {"m": "Formalism.LocalToGlobal.GlobalTheory.GL6.DiagonalSlopes.GroupActionMulSingleEqDilation", "h": "module\n\npublic import Formalism.LocalToGlobal.GlobalTheory.GL6.DiagonalSlopes.EqOneOfCoprimeTorsionTwoPrimes\npublic import Formalism.LocalToGlobal.GlobalTheory.GL6.DiagonalSlopes.LocalDiamondOfSplitIdempotent\npublic import Formalism.LocalToGlobal.GlobalTheory.GL6.RamifiedRankEqFinrank\npublic import Formalism.LocalToGlobal.Columns.PolyFnLemmas\npublic import Formalism.LocalToGlobal.GlobalTheory.GL6.CoordMapInjective\npublic import Formalism.LocalToGlobal.GlobalTheory.GL6.DiagonalSlopes.ComplexSpanBlockActionStable\npublic import Formalism.LocalToGlobal.GlobalTheory.GL6.DiagonalSlopes.DiamondCommDistinctPlaces\npublic import Formalism.LocalToGlobal.GlobalTheory.GL6.ValuationClassTranslateMem\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Etale.Weakly\nimport Mathlib.RingTheory.Finiteness.ModuleFinitePresentation\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.TotallySplit\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\npublic import Formalism.LocalToGlobal.Columns.PolyFn\n\n"}

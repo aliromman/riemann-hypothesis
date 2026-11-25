@@ -1204,7 +1204,8 @@ theorem VarietyProjectionMass.proof (hG : ComplexSets.GenericProjectionFinite.St
 end GroundTheory.Heights₂.Heights
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PZeroSetOpenMass
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PZeroSetOpenMass
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -1212,6 +1213,7 @@ namespace GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.ComplexSets
 
 open MvPolynomial MeasureTheory Filter Topology
 
+noncomputable section
 
 theorem exists_eval_ne_zero_of_isOpen {d : ℕ} {P : MvPolynomial (Fin d) ℂ} (hP : P ≠ 0)
     {S : Set (Fin d → ℂ)} (hS : IsOpen S) (hne : S.Nonempty) : ∃ y ∈ S, eval y P ≠ 0 := by
@@ -1230,10 +1232,6 @@ theorem eval_linPoly {n d : ℕ} (A : Matrix (Fin d) (Fin n) ℂ) (z : Fin n →
     (fun i => eval z (GroundTheory.Heights₂.Heights.ComplexSets.linPoly A i)) = A.mulVec z := by
   ext i
   simp [GroundTheory.Heights₂.Heights.ComplexSets.linPoly, Matrix.mulVec, dotProduct]
-
-theorem finrank_real_fin_complex (d : ℕ) : Module.finrank ℝ (Fin d → ℂ) = 2 * d := by
-  rw [Module.finrank_pi_fintype, Finset.sum_const, Finset.card_univ, Fintype.card_fin,
-    Complex.finrank_real_complex, smul_eq_mul, mul_comm]
 
 theorem ZeroSetOpenMass.proof
     (hG : GroundTheory.Heights₂.Heights.ComplexSets.GenericProjectionFinite.Statement)
@@ -1267,7 +1265,7 @@ theorem ZeroSetOpenMass.proof
   obtain ⟨K, hK⟩ : ∃ K, LipschitzWith K (fun z : Fin n → ℂ => A.mulVec z) :=
     ⟨_, (LinearMap.toContinuousLinearMap (Matrix.mulVecLin A)).lipschitz⟩
   have hpos : 0 < μH[((2 * d : ℕ) : ℝ)] U' := by
-    rw [← finrank_real_fin_complex d]
+    rw [← GroundTheory.Heights₂.Heights.SheetOnlyNull.finrank_real_fin_complex d]
     exact hU'.measure_pos _ ⟨_, hzU'⟩
   have hle := hK.hausdorffMeasure_image_le (by positivity : (0 : ℝ) ≤ ((2 * d : ℕ) : ℝ)) (g '' U')
   rw [himg] at hle
@@ -1276,8 +1274,10 @@ theorem ZeroSetOpenMass.proof
   rw [h0, mul_zero] at hle
   exact hpos.ne' (nonpos_iff_eq_zero.mp hle)
 
+end
 
 end GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.ComplexSets
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.Assembly

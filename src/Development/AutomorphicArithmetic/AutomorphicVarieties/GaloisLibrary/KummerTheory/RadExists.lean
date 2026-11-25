@@ -25,11 +25,11 @@ import ReciprocityTheory.GaloisValuations.GlobalA
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.HilbertNinety
 
 @[reducible] noncomputable def UpperTheory.Reformulated.B.HilbertNinetyCapelliIdentities.G.{u_1, u_2} :
-    (F : Type u_1) → (Ω : Type u_2) → [inst : Field F] → [inst_1 : Field Ω] → [Algebra F Ω] → Type u_2 :=
+    (F : Type u_1) → (Ω : Type u_2) → [Field F] → [Field Ω] → [Algebra F Ω] → Type u_2 :=
     fun (F : Type u_1) (Ω : Type u_2) [Field F] [Field Ω] [Algebra F Ω] ↦ Gal(Ω/F)
 
 theorem UpperTheory.Reformulated.B.HilbertNinetyCapelliIdentities.h90 :
-    ∀ (K Ω : Type) [inst : Field K] [NumberField K] [inst_2 : Field Ω] [inst_3 : Algebra K Ω] [IsAlgClosure K Ω]
+    ∀ (K Ω : Type) [Field K] [NumberField K] [Field Ω] [Algebra K Ω] [IsAlgClosure K Ω]
       (f : UpperTheory.Reformulated.B.HilbertNinetyCapelliIdentities.G K Ω → Ω),
       IsLocallyConstant f →
         (∀ (g : UpperTheory.Reformulated.B.HilbertNinetyCapelliIdentities.G K Ω), f g ≠ (0 : Ω)) →

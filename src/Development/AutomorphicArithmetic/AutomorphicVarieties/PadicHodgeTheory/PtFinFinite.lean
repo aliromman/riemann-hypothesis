@@ -17,8 +17,8 @@ import ReciprocityTheory.GaloisValuations.GlobalA
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.PointFinitePower
 
 theorem UpperTheory.Reformulated.B.PointFinitePower.ptFin_pow :
-    ∀ {O S : Type} [inst : CommRing O] [inst_1 : CommRing S]
-    [inst_2 : Algebra O S] [IsNoetherianRing S] (m : Ideal S),
+    ∀ {O S : Type} [CommRing O] [CommRing S]
+    [Algebra O S] [IsNoetherianRing S] (m : Ideal S),
     (∀ (x : S), ∃ (a : O), x - (Algebra.algebraMap O S : O → S) a ∈ m) →
       ∀ (n : ℕ), ∃ (N : Submodule O S), N.FG ∧ ∀ (x : S), ∃ y ∈ N, x - y ∈ m ^ n := by
   intro O S _ _ _ _ m hm n

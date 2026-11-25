@@ -143,15 +143,11 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IteratedLevelPatternToFramePlacesStatement
 
-theorem _root_.GlobalTheory.T.iteratedLevelPattern_to_framePlaces : ∀ (F : Type) [Zero F] [One F] (κ ρ s τ j : ℕ) (R : ℕ → ℕ → F), (∀ (a b : Ix (Fin κ ⊕ Fin (s + 1)) (Fin τ) j), ¬ FreeIx ρ a b → R (zPos a) (zPos b) = if a = b then 1 else 0) → ((∀ p', p' < κ + s + 1 → R p' p' = 1 ∧ ∀ p, p < κ + s + 1 + j * τ → p ≠ p' →
-        (κ + s + 1 ≤ p ∨ symIdx κ ρ p' < symIdx κ ρ p ∨ (p' = κ + ρ ∧ p < κ)) → R p p' = 0) ∧
-      (∀ p p', κ + s + 1 ≤ p' → p' < κ + s + 1 + j * τ → p < κ + s + 1 + j * τ →
-        (p' - (κ + s + 1)) / τ < (p - (κ + s + 1)) / τ → R p p' = 0)) := by
-  first | exact @GlobalTheory.PatPlaces.pattern_to_places
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SymLevelTestFunctionsAgreeRationalPoints
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SymLevelTestFunctionsAgreeRationalPoints
 
+noncomputable section
 namespace GlobalTheory.SymBridge.PhiAgreeProof
 
 theorem places_iff_pattern : ∀ (F : Type) [Zero F] [One F] (κ ρ s τ j : ℕ) (R : ℕ → ℕ → F),
@@ -161,7 +157,7 @@ theorem places_iff_pattern : ∀ (F : Type) [Zero F] [One F] (κ ρ s τ j : ℕ
       (∀ p p', κ + s + 1 ≤ p' → p' < κ + s + 1 + j * τ → p < κ + s + 1 + j * τ →
         (p' - (κ + s + 1)) / τ < (p - (κ + s + 1)) / τ → R p p' = 0)) := by
   intro F _ _ κ ρ s τ j R
-  exact ⟨GlobalTheory.T.iteratedLevelPattern_to_framePlaces F κ ρ s τ j R, _root_.GlobalTheory.patOfPlaces F κ ρ s τ j R⟩
+  exact ⟨GlobalTheory.PatPlaces.pattern_to_places F κ ρ s τ j R, _root_.GlobalTheory.patOfPlaces F κ ρ s τ j R⟩
 
 theorem zPos_equiv : ∀ (κ l τ j : ℕ), ∃ eqv : Ix (Fin κ ⊕ Fin l) (Fin τ) j ≃ Fin (κ + l + j * τ), ∀ a, (eqv a : ℕ) = zPos a := by
   intro κ l τ j

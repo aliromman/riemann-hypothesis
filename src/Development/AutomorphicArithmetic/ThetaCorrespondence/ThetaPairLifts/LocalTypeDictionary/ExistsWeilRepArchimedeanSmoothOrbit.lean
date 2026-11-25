@@ -74,7 +74,6 @@ namespace GlobalTheory.ArchUniq
 
 open GlobalTheory.RealWeil
 
-
 alias symplMatrix := _root_.GlobalTheory.exists_symplecticGroup_of_sympl
 
 end GlobalTheory.ArchUniq
@@ -141,7 +140,9 @@ end GlobalTheory.ArchimedeanLineL2
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ArchimedeanWeilOperatorIntertwinesSchroedinger
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ArchimedeanWeilOperatorIntertwinesSchroedinger
+
+noncomputable section
 
 namespace GlobalTheory.ArchHeis
 
@@ -165,9 +166,6 @@ theorem intFin_mem (κ : Type) [Fintype κ] : intFin (F := F) κ ∈ SB (κ → 
     simp only [intFin, ← hB, Set.indicator_of_notMem hy, Set.indicator_of_notMem hx]
 
 def refFin (κ : Type) (x : κ → AF F) : ℂ := intFin κ (fun i => (x i).2)
-
-theorem fst_eq_zero_of_ev {a : AF F} (h : evI F a = 0) : a.1 = 0 :=
-  (InfiniteAdeleRing.ringEquiv_mixedSpace F).map_eq_zero_iff.mp h
 
 theorem snd_eq_zero_of_at {κ : Type} {z : κ → AF F} (hz : At (evI F) z) (i : κ) : (z i).2 = 0 := by
   have h0 : evI F ((0, 1) : AF F) = 0 := map_zero (InfiniteAdeleRing.ringEquiv_mixedSpace F)
@@ -238,7 +236,7 @@ theorem schr_tens {κ : Type} [Fintype κ] (ψ : AddChar (AF F) ℂ) (hψ : IsSt
     intro c hc
     refine Prod.ext ?_ ?_
     · change c.1 * z.1 = 0
-      rw [fst_eq_zero_of_ev hc, zero_mul]
+      rw [GlobalTheory.FinTrig.fst_eq_zero hc, zero_mul]
     · change c.2 * finH z = 0
       rw [hfin, mul_zero]
   have htr : Algebra.trace ℝ (mixedEmbedding.mixedSpace F) (evI F z) =
@@ -281,7 +279,7 @@ theorem archOp_schrF : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [Num
         funext i
         refine Prod.ext ?_ ?_
         · change c.1 * _ = 0
-          rw [fst_eq_zero_of_ev hc, zero_mul]
+          rw [GlobalTheory.FinTrig.fst_eq_zero hc, zero_mul]
         · change c.2 * 0 = 0
           rw [mul_zero]
       rw [hu, ← LinearEquiv.map_smul, Prod.smul_mk, hl, hl, Prod.mk_zero_zero, LinearEquiv.map_zero]
@@ -317,8 +315,11 @@ theorem archOp_schrF : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [Num
 
 end GlobalTheory.ArchHeis
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ArchimedeanWeilOperatorsLinearOneMul
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ArchimedeanWeilOperatorsLinearOneMul
+
+noncomputable section
 
 namespace GlobalTheory.ArchLine.Laws
 
@@ -416,7 +417,6 @@ end GlobalTheory.ArchLine.Laws
 
 namespace GlobalTheory.ArchLine
 
-
 open GlobalTheory.ArchLine.Laws in
 theorem archOp_laws : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E} {n d : ℕ}
     {X : Spc F E n} {W : Spc F E d} (M : Model σ X W) (ψ : AddChar (AF F) ℂ) (χX χW : Chr F E) (om : Rep σ X W),
@@ -456,17 +456,17 @@ theorem archOp_laws : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [Numb
 
 end GlobalTheory.ArchLine
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ContinuousOneParameterArchimedeanWeilOperator
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ContinuousOneParameterArchimedeanWeilOperator
+
+noncomputable section
 
 namespace GlobalTheory.ArchLine.OpCont
 
-theorem evI_fin {F : Type} [Field F] [NumberField F] : evI F ((0, 1) : AF F) = 0 :=
-  map_zero (InfiniteAdeleRing.ringEquiv_mixedSpace F)
-
 theorem snd_eq_zero_of_at {F : Type} [Field F] [NumberField F] {κ : Type} {z : κ → AF F} (hz : At (evI F) z) (i : κ) :
     (z i).2 = 0 := by
-  have := congrArg Prod.snd (congrFun (hz (0, 1) evI_fin) i)
+  have := congrArg Prod.snd (congrFun (hz (0, 1) GlobalTheory.ArchLocality.evI_fin) i)
   change (((0, 1) : InfiniteAdeleRing F × FiniteAdeleRing (𝓞 F) F).2 * (z i).2) = (0 : AF F).2 at this
   rw [one_mul] at this
   exact this
@@ -553,6 +553,7 @@ theorem archOp_apply_continuous : ∀ {F E : Type} [Field F] [NumberField F] [Fi
   simp only [tens, h1, h2, mul_one]
 
 end GlobalTheory.ArchLine
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ContinuousOneParameterUnitaryCoordinateAction

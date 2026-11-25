@@ -381,7 +381,6 @@ end -- clump:auto
 
 namespace GlobalTheory.GapConstant
 
-
 theorem gap_thresholds (k r : ℕ) (hk : 1 ≤ k) :
     Formalism.FourierDecayAlt.ThreeDimData.GapOK k r (1000 * ((2 * r + 2 : ℕ) : ℝ) ^ ((9 : ℝ) / 2) *
               (((3 * (r + 1) : ℕ) : ℝ) * ((2 * r + k + 1 : ℕ) : ℝ) ^ 2 + ((2 * r + k + 1 : ℕ) : ℝ) ^ 3)) ∧
@@ -679,18 +678,11 @@ open Formalism.FourierDecayAlt.P.TwoByOneBlock Formalism.FourierDecayAlt.P.BigCe
 
 variable {k r : ℕ}
 
-theorem hb_mul_self : Hb k * Hb k = 1 := by
-  unfold Hb
-  rw [Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_one]
-  congr 1
-  funext j
-  split_ifs <;> norm_num
-
 theorem isUnit_det_of_hb {μ : Matrix (Fin (k + 1)) (Fin (k + 1)) ℂ} (h : μᴴ * Hb k * μ = Hb k) :
     IsUnit μ.det := by
   apply Matrix.isUnit_det_of_left_inverse (B := Hb k * μᴴ * Hb k)
   calc Hb k * μᴴ * Hb k * μ = Hb k * (μᴴ * Hb k * μ) := by simp only [Matrix.mul_assoc]
-    _ = 1 := by rw [h, hb_mul_self]
+    _ = 1 := by rw [h, Formalism.FourierDecayAlt.P.TwoByOneBlock.Hb_sq]
 
 theorem conj_mem_of_levi (A B n : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ)
     (hAB : A * B = 1) (hA : A ∈ UH (Hpk k r)) (hB : B ∈ UH (Hpk k r))
@@ -798,12 +790,12 @@ theorem levi_conj_mem_iff : ∀ (k r : ℕ) (c : Fin r → ℂ) (μ₁ μ : Matr
 end GlobalTheory.BigConvLevi
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.IntegrableBesselPairMajorantMulRight
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.IntegrableBesselPairMajorantMulRight
 open Formalism.BasicNotions Formalism.QuantumDeterminants Formalism.MainNotions.S BranchingSupport GlobalTheory.CellAmp
 
+noncomputable section
 
 namespace GlobalTheory.CellMajTransfer
-
 
 open Formalism.FourierDecayAlt in
 theorem pt_bound {k r : ℕ} (L : LocBessel k r) {γ₁ a : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ}
@@ -868,7 +860,6 @@ end GlobalTheory.CellMajTransfer
 
 namespace GlobalTheory.CellMajTransfer
 
-
 open Formalism.FourierDecayAlt in
 theorem inner_eq {k r : ℕ} (L : LocBessel k r) (a : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ) {C : ℝ≥0∞}
     (hmap : L.μN.map (conjM a) = C • L.μN) {f : PairSp k r → ℝ≥0∞} (hfm : Measurable f) (x : Mt k r × Mt k r) :
@@ -897,7 +888,6 @@ theorem inner_eq {k r : ℕ} (L : LocBessel k r) (a : Matrix (Fin (2 * r + k + 1
   have hs := lintegral_lintegral_swap (μ := L.μW') (ν := L.μN) (f := fun h'' n' => f (x, (h'', n')))
     hH'.aemeasurable
   rw [hs, mul_one]
-
 
 open Formalism.FourierDecayAlt in
 theorem integrable_mul_right : ∀ (k r : ℕ) (L : Formalism.MainNotions.S.LocBessel k r) (γ₁ a : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ) (b : ℝ) (C : ℝ≥0∞), 0 < L.κN → L.κN ≠ ⊤ → 0 ≤ b → γ₁ ∈ Formalism.QuantumDeterminants.UH (Formalism.QuantumDeterminants.Hpk k r) → a ∈ Formalism.QuantumDeterminants.UH (Formalism.QuantumDeterminants.Hpk k r) → C ≠ ⊤ → L.μN.map (Formalism.QuantumDeterminants.conjM a) = C • L.μN → MeasureTheory.Integrable (GlobalTheory.CellAmp.pairMaj γ₁ b) (Formalism.MainNotions.S.pairMeas L) → MeasureTheory.Integrable (GlobalTheory.CellAmp.pairMaj (γ₁ * a) b) (Formalism.MainNotions.S.pairMeas L) := by
@@ -949,6 +939,7 @@ theorem integrable_mul_right : ∀ (k r : ℕ) (L : Formalism.MainNotions.S.LocB
     _ < ⊤ := ENNReal.mul_lt_top ENNReal.ofReal_lt_top (ENNReal.mul_lt_top hC.lt_top hfin)
 
 end GlobalTheory.CellMajTransfer
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.MapConjUnipotentHaarEqSmul
@@ -1002,7 +993,6 @@ theorem good_point (k r : ℕ) (L : Formalism.MainNotions.S.LocBessel k r) (hk :
   rw [hlast, ← hP, Complex.normSq_mul]
   have h1 : 0 < Complex.normSq P := Complex.normSq_pos.2 hP0
   nlinarith
-
 
 open Formalism.FourierDecayAlt in
 theorem conv_good (k r : ℕ) (L : Formalism.MainNotions.S.LocBessel k r) (h : ℝ) (hok : Formalism.FourierDecayAlt.ThreeDimData.GapOK k r h)

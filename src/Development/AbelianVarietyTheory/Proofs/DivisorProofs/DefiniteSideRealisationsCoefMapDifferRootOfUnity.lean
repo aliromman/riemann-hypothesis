@@ -562,28 +562,22 @@ end GlobalTheory.RatDenseEnd
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CommutesAllOfCommutesRationalUnitaryPointsStatement
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CommutesAllOfCommutesRationalUnitaryPointsStatement
 
+noncomputable section
 open NumberField Formalism.BasicNotions Formalism.L2.DIV Formalism.L2.Theta Formalism.IndefR
 
-
-theorem _root_.GlobalTheory.T.commutes_all_of_commutes_rationalUnitaryPoints : ∀ (D : D7) (V : Formalism.BasicNotions.TH.HSp D) (tauL : D.what₂.Tau → (D.host.E →+* D.what₂.LL)),
-    (∀ τ, D.what₂.embLL.comp (tauL τ) = Formalism.BasicNotions.TH.tauE D τ) →
-    ∀ (lam : D.what₂.Tau → DomWeight V.rank) (g : Module.End D.what₂.LL (VV D.what₂.LL lam)),
-    (∀ (γ : GQ V) (γE : GL (Fin V.rank) D.host.E), Bridge.IsRatMat V γ γE →
-      ∀ v, g (rhoVr tauL lam γE v) = rhoVr tauL lam γE (g v)) →
-    ∀ (h : D.what₂.Tau → GL (Fin V.rank) D.what₂.LL) v, g (rhoK lam h v) = rhoK lam h (g v) := by
-  first | exact @GlobalTheory.RatDenseEnd.comm_all
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DefiniteSideRealisationsCoefMapDifferRootOfUnity
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DefiniteSideRealisationsCoefMapDifferRootOfUnity
 
+noncomputable section
 open NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.DIV.Cons Formalism.L2.Pj Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Indef.Tree Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx
 open Formalism.IndefR.FWT GlobalTheory.BigTop GlobalTheory.OntoChain GlobalTheory.RealIndexBound GlobalTheory.OnTies GlobalTheory.SeriesTie
 open GlobalTheory.BigOn GlobalTheory.BigOn.Exp Formalism.L2.Theta GlobalTheory.ExportSeries
 open scoped TensorProduct
-
 
 namespace GlobalTheory.CoefRoot
 
@@ -616,7 +610,7 @@ theorem coef_root : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type}
     intro γ γE hγ v
     apply hinj
     rw [← hcg, (h'.mapL i).1 γ γE hγ, hcg, (h.mapL i).1 γ γE hγ]
-  obtain ⟨a, ha⟩ := _root_.GlobalTheory.CoefSchur.endo_scalar D.what₂.LL (lamL i) g (GlobalTheory.T.commutes_all_of_commutes_rationalUnitaryPoints D _ tauL h.tauL_ok (lamL i) g hcomm)
+  obtain ⟨a, ha⟩ := _root_.GlobalTheory.CoefSchur.endo_scalar D.what₂.LL (lamL i) g (GlobalTheory.RatDenseEnd.comm_all D _ tauL h.tauL_ok (lamL i) g hcomm)
   have hea : ∀ x, e x = a • e₂ x := fun x => by
     have h1 := ha (e₂ x)
     simpa [g] using h1

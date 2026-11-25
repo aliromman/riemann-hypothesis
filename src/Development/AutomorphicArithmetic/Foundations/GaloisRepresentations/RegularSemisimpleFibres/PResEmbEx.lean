@@ -22,7 +22,7 @@ import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.Regul
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ResAlgClosed
 
 theorem UpperTheory.Reformulated.B.Qk69.res_algClosed :
-    ∀ {Ω : Type} [inst : Field Ω] [IsAlgClosed Ω]
+    ∀ {Ω : Type} [Field Ω] [IsAlgClosed Ω]
     (A : ValuationSubring Ω), IsAlgClosed (IsLocalRing.ResidueField ↥A) := by
   intro Ω _ _ A
   refine IsAlgClosed.of_exists_root _ fun p hp hirr => ?_

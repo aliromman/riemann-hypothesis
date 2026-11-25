@@ -16,8 +16,8 @@ import Mathlib.Tactic.Linter.HaveILetI
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.RingSec
 
 theorem UpperTheory.Reformulated.B.Qh66.ring_sec :
-    ∀ (Ω C : Type) [inst : Field Ω] [IsAlgClosed Ω]
-    [inst_2 : CommRing C] [Nontrivial C] (φ : Ω →+* C), φ.FiniteType → ∃ (ρ : C →+* Ω), ρ.comp φ = RingHom.id Ω := by
+    ∀ (Ω C : Type) [Field Ω] [IsAlgClosed Ω]
+    [CommRing C] [Nontrivial C] (φ : Ω →+* C), φ.FiniteType → ∃ (ρ : C →+* Ω), ρ.comp φ = RingHom.id Ω := by
   intro Ω C _ _ _ _ φ hφ
   letI : Algebra Ω C := φ.toAlgebra
   haveI : Algebra.FiniteType Ω C := hφ

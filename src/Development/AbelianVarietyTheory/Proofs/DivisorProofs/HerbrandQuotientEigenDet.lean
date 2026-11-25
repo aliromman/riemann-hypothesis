@@ -592,8 +592,9 @@ theorem relLen_chain_add : ∀ (C : Type) [Field C] (v : AddValuation C (WithTop
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HerbrandLengthIdentitiesOfRelativeLength
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HerbrandLengthIdentitiesOfRelativeLength
 
+noncomputable section
 namespace GlobalTheory.HerbLen
 
 theorem relLen_nonneg {C : Type} [Field C] {v : AddValuation C (WithTop ℝ)} {M : Type}
@@ -610,7 +611,6 @@ theorem addVal_prod {C : Type} [Field C] (v : AddValuation C (WithTop ℝ)) {ι 
   induction s using Finset.induction_on with
   | empty => simp
   | insert i s hi ih => rw [Finset.prod_insert hi, Finset.sum_insert hi, v.map_mul, ih]
-
 
 theorem herbrand_lengthIdentities_auxiliary_bound (C : Type) [Field C] (v : AddValuation C (WithTop ℝ)) (S : Type)
     [Fintype S] [DecidableEq S] (a : S → Int0 v) (ha : Function.Injective a) (N : ℕ)
@@ -877,11 +877,8 @@ theorem herbrand_lengthIdentities_auxiliary_bound (C : Type) [Field C] (v : AddV
     · exact WithTop.coe_le_coe.2 (by linarith)
     · exact WithTop.coe_le_coe.2 (by linarith)
 
-theorem lengthIdentities_of_relLen : ∀ (C : Type) [Field C] (v : AddValuation C (WithTop ℝ)) (S : Type) [Fintype S] [DecidableEq S] (a : S → Int0 v), Function.Injective a → ∀ (N : ℕ) (Fil : Submodule (RS a) (Fin N → RS a)), (∀ (c : Int0 v) (x : Fin N → RS a), c ≠ 0 → c • x ∈ Fil → x ∈ Fil) → ∀ τ : S, ∀ r : ℝ, (r : WithTop ℝ) = yExp v a Fil τ → RelLen v ((eigSub a τ (Fin N → RS a)).map (comp a N τ)) ((preEig a Fil τ).map (comp a N τ)) r → LengthIdentities v a Fil τ :=
-  fun C _ v S _ _ a ha N Fil hsat τ r hr hlen =>
-    herbrand_lengthIdentities_auxiliary_bound C v S a ha N Fil hsat τ r hr hlen
-
 end GlobalTheory.HerbLen
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelLengthFiltrationInterKerCofactorLinearFactor
@@ -1297,7 +1294,7 @@ theorem herbrandDet : HerbrandDet := by
   intro C _ v S _ _ a ha N Fil hF τ
   obtain ⟨r, hr, hR⟩ := core C v S a ha N Fil hF τ
   exact ⟨_root_.GlobalTheory.HerbDet.detIdentity_of_relLen C v S a ha N Fil hF τ r hr hR, kerId C v S a ha N Fil hF τ,
-    _root_.GlobalTheory.HerbLen.lengthIdentities_of_relLen C v S a ha N Fil hF τ r hr hR⟩
+    _root_.GlobalTheory.HerbLen.herbrand_lengthIdentities_auxiliary_bound C v S a ha N Fil hF τ r hr hR⟩
 
 end GlobalTheory.HerbrandAlg
 

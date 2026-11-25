@@ -90,11 +90,12 @@ import Mathlib.Tactic.Basify
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.CompactUnitaryAverageFockPolynomialJetFunctional, Development.AbelianVarietyTheory.Proofs.TwistedOperators.FockComponentTransportedPointsEqJetOperator, Development.AbelianVarietyTheory.Proofs.TwistedOperators.RealPointsTopNodeOntoUnitaryHaarUnique, Development.AbelianVarietyTheory.Proofs.TwistedOperators.DenseOfPolynomialStdGaussianMemSchwartz, Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsThetaFunOFockMovedVecTop, Development.AbelianVarietyTheory.Proofs.TwistedOperators.LastColumnArrowRealAverageFunctional, Development.AbelianVarietyTheory.Proofs.TwistedOperators.RealActionOnVertexWeightContinuous, Development.AutomorphicArithmetic.LocalEmbeddings.JetsGrid
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.CompactUnitaryAverageFockPolynomialJetFunctional
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.CompactUnitaryAverageFockPolynomialJetFunctional
 
 open Formalism.BasicNotions Formalism.L2.DIV MeasureTheory
 open scoped Matrix
 
+noncomputable section
 open MvPolynomial GlobalTheory.KJInf
 
 namespace GlobalTheory.AvgJet
@@ -166,7 +167,6 @@ theorem integrable_term {a b : ℕ} {K : Type} [Group K] [TopologicalSpace K] [I
   exact GlobalTheory.KJAvg.integrable_avg_term ν hr p y F
 
 end GlobalTheory.AvgJet
-
 
 open GlobalTheory.AvgJet in
 theorem GlobalTheory.AvgJet.avg_jet : ∀ (ι : Type) [Fintype ι] (a b : ℕ), a ≤ b → 0 < a → ∀ (lam : ι → DomWeight a) (lam' : ι → DomWeight b)
@@ -266,6 +266,7 @@ theorem GlobalTheory.AvgJet.avg_jet : ∀ (ι : Type) [Fintype ι] (a b : ℕ), 
   rw [Finset.mul_sum, Finset.mul_sum, Finset.mul_sum]
   refine Finset.sum_congr rfl fun j _ => ?_
   ring
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens
@@ -534,7 +535,7 @@ theorem ker_fock_moved_fin : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Const
   have hn := DefPair.nodes hp
   have hom := W.om_is (.chi i D.R.m) (by
     simp only [DefPair, DefNode] at hp hn; simp only [Pair.InRange, Node.InRange]; omega)
-  obtain ⟨h1, -⟩ := GlobalTheory.T.gridFiniteDatumVector_theta_fockVacuum W S.Z hp d hd
+  obtain ⟨h1, -⟩ := GlobalTheory.FockRealVec.vec_theta_fock W S.Z hp d hd
   have m1 : (G.toPair (.chi i D.R.m) (S.N.u (.grid i D.R.m)).1 (S.N.u (.grid (i + 1) D.R.m)).1).1 ∈
       GfC (G.pS (.chi i D.R.m : Pair T)) := negGA_mem_GfC _ (S.N.u _).2
   have m2 : (G.toPair (.chi i D.R.m) (S.N.u (.grid i D.R.m)).1 (S.N.u (.grid (i + 1) D.R.m)).1).2 ∈

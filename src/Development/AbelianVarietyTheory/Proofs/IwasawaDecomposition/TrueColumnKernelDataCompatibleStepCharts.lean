@@ -105,15 +105,14 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions F
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ChartReadsAtClassGLStatement
 
-theorem _root_.GlobalTheory.T.chart_reads_at_class_GL : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC.Pins B X → ∀ (l : I.Laws) (Z : TC.Later B (I.cols l)) (u : B.Word) (a : I.ι) (i : ℕ) (hi : i ≤ B.R.m) (bad : Set (HeightOneSpectrum (𝓞 (I.rec7 l Z).host.F))) (Ch : Type) (chOf : (I.stp u a i).Cl → Ch) (K : Charts I l Z u a i hi bad chOf) (k : Ch → GA B (B.R.N i)), ReadsAt I l Z K k → ∀ (c : (I.stp u a i).Cl) (fb : SBof I a → GL (Fin ((I.rec7 l Z).R.N i)) (I.rec7 l Z).host.E), FrNear I l Z a (k (chOf c)) fb → ∀ P : SBof I a, GlobalTheory.TwU.NearAt (GlobalTheory.TwU.seamP (sm I l Z) P.1) ((I.cst a).D P) (((K (chOf c)).y ⟨c, rfl⟩).1 * GlobalTheory.TwU.ratA (I.rec7 l Z).host.F (fb P)) (GlobalTheory.TwU.seamGL (sm I l Z) (frsF I.sel (I.tup a) ((I.stp u a i).rep c).1.1 P)) := by
-  first | exact @GlobalTheory.Mem.Col2.AdT.FrameMove.frame_near
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CongruentAutomorphismsLiftStepGroupElements
+section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CongruentAutomorphismsLiftStepGroupElements
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.Mem.Col2.AdT
-
 
 private theorem mem_GLint_and_exists_liftsInv_of_congE : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → ∀ (u : B.Word) (a : I.ι) (i : ℕ) (hi : i < B.R.m)
     (b : (I.stp u a i).β) (P : SBof I a) (g : Sp B.fields.E (B.R.N i) ≃ₗ[B.fields.E] Sp B.fields.E (B.R.N i)) (z : B.fields.K),
@@ -208,7 +207,6 @@ private theorem mem_GLint_and_exists_liftsInv_of_congE : ∀ {B : Base} {X : Pre
       rw [dite_eq_right hne, inv_one]
       all_goals rfl
 
-
 open Classical in
 theorem midAt_lifts : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → ∀ (u : B.Word) (a : I.ι) (i : ℕ) (hi : i < B.R.m)
     (b : (I.stp u a i).β) (P : SBof I a) (g : Sp B.fields.E (B.R.N i) ≃ₗ[B.fields.E] Sp B.fields.E (B.R.N i)) (z : B.fields.K),
@@ -218,6 +216,8 @@ theorem midAt_lifts : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → �
 
 end GlobalTheory.Mem.Col2.AdT
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CongruentAutomorphismsLiftStepGroupElementsStatement
@@ -228,16 +228,14 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CouplingCosetInFramesPreimageUnderLiftStatement
 
-theorem _root_.GlobalTheory.T.couplingCosetInFrames_preimage_under_lift : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → ∀ (u : B.Word) (a : I.ι) (i : ℕ) (b : (I.stp u a i).β) (κ : (I.stp u a i).G b) (p : (I.stp u a i).D b) (P : SBof I a) (g : Sp B.fields.E (B.R.N i) ≃ₗ[B.fields.E] Sp B.fields.E (B.R.N i)), (I.stp u a i).gam b κ = 1 → LiftsInv I κ P g → ∀ z, z ∈ cosetIn ((I.stp u a i).act b κ p) P ↔ g z ∈ cosetIn p P := by
-  first | exact @GlobalTheory.Mem.Col2.AdT.cosetIn_act_of_liftsInv
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsStepGroupElementOfChartLevel
+section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsStepGroupElementOfChartLevel
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.Mem.Col2.AdT
-
-
 
 theorem exists_stepElt_of_level : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC.Pins B X → ∀ (l : I.Laws) (Z : TC.Later B (I.cols l)) (u : B.Word) (a : I.ι) (i : ℕ) (hi : i ≤ B.R.m) (bad : Set (HeightOneSpectrum (𝓞 (I.rec7 l Z).host.F))) (Ch : Type) (chOf : (I.stp u a i).Cl → Ch) (K : Charts I l Z u a i hi bad chOf) (k : Ch → GA B (B.R.N i)), ReadsAt I l Z K k → ∀ (c : (I.stp u a i).Cl) (fb : SBof I a → GL (Fin ((I.rec7 l Z).R.N i)) (I.rec7 l Z).host.E), FrNear I l Z a (k (chOf c)) fb → ChiFin I l Z (K (chOf c)).lev → ∀ κ : (K (chOf c)).lev.U, ∃ κ' : (I.stp u a i).G c.1, Keeps I κ' ((I.stp u a i).rep c) ∧ (((K (chOf c)).lev.chi κ : ℂˣ) : ℂ) = B.embLL (((I.stp u a i).chr c.1 κ' : B.LLˣ) : B.LL) ∧ ∀ (P : SBof I a) (g : Sp B.fields.E (B.R.N i) ≃ₗ[B.fields.E] Sp B.fields.E (B.R.N i)), LiftsInv I κ' P g → GlobalTheory.TwU.InFrame (i := i) (sm I l Z) fb (I.cst a).D P κ.1 g := by
   intro B X I hOk hPins l Z u a i hi bad Ch chOf K k hR c fb hfb hchi κ
@@ -259,6 +257,8 @@ theorem exists_stepElt_of_level : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X)
 
 end GlobalTheory.Mem.Col2.AdT
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsStepGroupElementOfChartLevelStatement
@@ -1033,7 +1033,6 @@ end GlobalTheory.Mem.Col2.FunMv
 
 end
 
-
 theorem GlobalTheory.Mem.Col2.TC.funMoved_charts : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC.Pins B X → ∀ (l : I.Laws) (Z : TC.Later B (I.cols l)) (u : B.Word) (a : I.ι) (i : ℕ) (hi : i ≤ B.R.m) (bad : Set (HeightOneSpectrum (𝓞 (I.rec7 l Z).host.F))) (Ch : Type) (chOf : (I.stp u a i).Cl → Ch) (K : Charts I l Z u a i hi bad chOf) (k : Ch → GA B (B.R.N i)), ReadsAt I l Z K k → ∀ β : Ch, FunKilled (K β).lev (X.piT u) → ∀ (P : (B.primes X).vT u) (v : HeightOneSpectrum (𝓞 (I.rec7 l Z).host.F)) (h : ((B.T u : ℕ) : 𝓞 (I.rec7 l Z).host.F) ∈ v.asIdeal), Formalism.L2.Col.IsOver v (GlobalTheory.TwU.seamP (sm I l Z) P.1) → ∃ ι : (K β).lev.fM v h →+ 𝓞 B.fields.E ⧸ P.1.asIdeal, ∀ c, chOf c = β → GlobalTheory.TwU.FunMoved (sm I l Z) (K β).lev P v h ι ((K (chOf c)).y ⟨c, rfl⟩).1 ((I.stp u a i).rep c).1.1.deco.1 := by
   intro B X I hI hPins l Z u a i hi bad Ch chOf K k hR β hkill P v h hov
   classical
@@ -1080,7 +1079,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LocalConstantWeilCharacterValuesIsIntegral
 
 namespace GlobalTheory.Mem.Col2.AdT
-
 
 open Classical in
 theorem addChar_isIntegral {A : Type} [AddCommGroup A] [Finite A] {K : Type} [Field K] (ψ : AddChar A K) (y : A) :
@@ -1141,7 +1139,6 @@ end -- clump:auto
 
 namespace GlobalTheory.Mem.Col2.AdT
 
-
 open Formalism.HermitianLatticesTheory GlobalTheory.ThetaMove in
 theorem inverseHalfDifferent_local_trivial_at_prime_norm {R : Ranks} (H : Host R) (P : HeightOneSpectrum (𝓞 H.E)) (hp : (Ideal.absNorm P.asIdeal).Prime)
     (h2 : ((Ideal.absNorm P.asIdeal : ℕ) : 𝓞 H.E) ∉ P.asIdeal ^ 2) :
@@ -1199,14 +1196,11 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.RepresentativeLatticeEqCompanionOfAdelicRepStatement
 
-theorem _root_.GlobalTheory.T.representativeLattice_eq_companion_of_adelicRep : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC.Pins B X → ∀ (l : I.Laws) (Z : TC.Later B (I.cols l)) (u : B.Word) (a : I.ι) (i : ℕ) (hi : i ≤ B.R.m) (bad : Set (HeightOneSpectrum (𝓞 (I.rec7 l Z).host.F))) (Ch : Type) (chOf : (I.stp u a i).Cl → Ch) (K : Charts I l Z u a i hi bad chOf) (k : Ch → GA B (B.R.N i)), ReadsAt I l Z K k → ∀ c : (I.stp u a i).Cl, ((I.stp u a i).rep c).1.1.deco.1.N = GlobalTheory.TwU.latCo (I.rec7 l Z).sp (gramN (I.rec7 l Z) i hi) 1 (B.fields.conjO (X.piT u)) ((K (chOf c)).y ⟨c, rfl⟩).1 (K (chOf c)).lev.Lb := by
-  first | exact @GlobalTheory.Mem.Col2.AdT.lat_rep_eq_latCo
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TrueColumnKernelDataCompatibleStepCharts
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.TrueColumnKernelDataCompatibleStepCharts
 
-
-
+noncomputable section
 namespace GlobalTheory.Mem.Col2.AdT
 
 section Lev
@@ -1215,7 +1209,6 @@ variable {B : Base} {X : PreX B.toPre} {I : TC B X} (hOk : I.Ok) (hP : TC.Pins B
   (hR : ReadsAt I l Z K k) (c : (I.stp u a i).Cl) {fb : SBof I a → GL (Fin ((I.rec7 l Z).R.N i)) (I.rec7 l Z).host.E} (hfb : FrNear I l Z a (k (chOf c)) fb)
   (hfin : ChiFin I l Z (K (chOf c)).lev)
   {dep : SBof I a → ℕ} {Rel : SBof I a → (Sp B.fields.E (B.R.N i) ≃ₗ[B.fields.E] Sp B.fields.E (B.R.N i)) → B.fields.K → Prop}
-
 
 include hOk hP hR hfb hfin in
 theorem locLe_of (hd : ∀ P, dep P ≤ (I.cst a).D P)
@@ -1226,7 +1219,6 @@ theorem locLe_of (hd : ∀ P, dep P ≤ (I.cst a).D P)
   obtain ⟨κ', hk, -, hin⟩ := _root_.GlobalTheory.Mem.Col2.AdT.exists_stepElt_of_level I hOk hP l Z u a i hi bad Ch chOf K k hR c fb hfb hfin ⟨x, hx⟩
   obtain ⟨g, g', z, hg, hl, hc⟩ := h κ' hk P
   exact ⟨g, z, hg, hxκ fb dep g (_root_.GlobalTheory.Mem.Col2.AdT.NearCong.main I hOk l Z a i fb _ dep P x g' g hl.1 (hd P) (hin P g' hl) hc)⟩
-
 
 include hOk hP hR hfb hfin in
 theorem chiIs_of (hd : ∀ P, 1 ≤ dep P ∧ dep P ≤ (I.cst a).D P)
@@ -1242,7 +1234,6 @@ theorem chiIs_of (hd : ∀ P, 1 ≤ dep P ∧ dep P ≤ (I.cst a).D P)
   rw [hχ]
   exact (map_mul B.embLL _ _).symm.trans ((congrArg B.embLL e).trans (map_one _))
 
-
 include hOk hP hR hfb hfin in
 theorem lev_mid (hm : i < B.R.m) (y0 : SBof I a → Sp B.fields.E (B.R.N i))
     (hy0 : i + 1 = B.R.m → ∀ P, y0 P ∈ cosetIn ((I.stp u a i).rep c) P)
@@ -1253,7 +1244,7 @@ theorem lev_mid (hm : i < B.R.m) (y0 : SBof I a → Sp B.fields.E (B.R.N i))
     chiIs_of hOk hP hR c hfb hfin (fun P => ⟨(hOk.idx_ok a).cst_ok.D_pos P, le_rfl⟩) (fun κ P => ?_) fun κ g g' z h => ?_⟩
   · obtain ⟨g, z, hg, hl⟩ := GlobalTheory.T.exists_middleStep_level_inverse_lifts I hOk u a i hm c.1 κ P
     refine ⟨g, g, z, (hRel P g z).2 ⟨hg, fun h1 => ?_⟩, hl, congE_refl _ _ _⟩
-    have h2 := (GlobalTheory.T.couplingCosetInFrames_preimage_under_lift I hOk u a i c.1 κ _ P g hκ.1 hl (y0 P)).1 (by rw [hκ.2]; exact hy0 h1 P)
+    have h2 := (GlobalTheory.Mem.Col2.AdT.cosetIn_act_of_liftsInv I hOk u a i c.1 κ _ P g hκ.1 hl (y0 P)).1 (by rw [hκ.2]; exact hy0 h1 P)
     exact ((((GlobalTheory.T.couplingCosetInFrames_shape_at_bad_prime I hOk u a i _ P).2 h1).2.2 _ (hy0 h1 P)).1 _).1 h2
   · rintro P v hv κ hκ ⟨g, z, hg, hin⟩
     obtain ⟨hg1, hg2⟩ := (hRel P g z).1 hg
@@ -1263,16 +1254,15 @@ theorem lev_mid (hm : i < B.R.m) (y0 : SBof I a → Sp B.fields.E (B.R.N i))
     refine ⟨κ', ⟨e1, funext fun P' => Set.ext fun z' => ?_⟩, e2, e3⟩
     by_cases hPP : P' = P
     · subst hPP
-      rw [GlobalTheory.T.couplingCosetInFrames_preimage_under_lift I hOk u a i c.1 κ' _ P' g' e1 e2 z']
+      rw [GlobalTheory.Mem.Col2.AdT.cosetIn_act_of_liftsInv I hOk u a i c.1 κ' _ P' g' e1 e2 z']
       by_cases h1 : i + 1 = B.R.m
       · exact (((GlobalTheory.T.couplingCosetInFrames_shape_at_bad_prime I hOk u a i _ P').2 h1).2.2 _ (hy0 h1 P')).2 g g' hg' hgg (hg2 h1) z'
       · rw [(GlobalTheory.T.couplingCosetInFrames_shape_at_bad_prime I hOk u a i _ P').1 h1]
         exact Iff.rfl
-    · exact GlobalTheory.T.couplingCosetInFrames_preimage_under_lift I hOk u a i c.1 κ' _ P' 1 e1 (e3 P' hPP) z'
+    · exact GlobalTheory.Mem.Col2.AdT.cosetIn_act_of_liftsInv I hOk u a i c.1 κ' _ P' 1 e1 (e3 P' hPP) z'
   · obtain ⟨g, z, -, hl⟩ := GlobalTheory.T.exists_middleStep_level_inverse_lifts I hOk u a i hm c.1 κ P
     exact ⟨g, hl⟩
   · exact _root_.GlobalTheory.Mem.Col2.AdT.chr_mul_prod_midAt I hOk u a i hm c.1 κ g g' z fun P => ⟨((hRel P _ _).1 (h P).1).1, (h P).2⟩
-
 
 include hOk hP hR hfb hfin in
 theorem lev_top (hm : i = B.R.m) :
@@ -1290,8 +1280,6 @@ theorem lev_top (hm : i = B.R.m) :
   exact ⟨g', hl⟩
 
 end Lev
-
-
 
 theorem adTie_true : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC.Pins B X → ∀ (l : I.Laws) (Z : TC.Later B (I.cols l)), ∀ (L : SizeData₂ (I.rec7 l Z)) (hT : GatTies (I.rec7 l Z)) (Gi : G.Inst (I.rec7 l Z) L) (Gl : G.LatInst (I.rec7 l Z)) (K : G.Consts) (Y : DivX (I.rec7 l Z)) (cX : ExtraC) (ex : Extra (I.rec7 l Z) L hT Gi Gl K Y cX) (t : KerEntTied ex) (u : B.Word) (a : I.ι) (bad : Set (HeightOneSpectrum (𝓞 (I.rec7 l Z).host.F))) (Ch : ∀ i, i ≤ B.R.m → Type) (chOf : ∀ i hi, (I.stp u a i).Cl → Ch i hi) (eY : ∀ i (hi : i ≤ B.R.m), (I.chain l u a).Y i ≃ Formalism.L2.Forms.Fr (I.rec7 l Z) i hi) (Kc : ∀ i hi (β : Ch i hi), LevelChart (I.rec7 l Z) (B.T u) bad i hi (fun c : {c // chOf i hi c = β} => (I.chain l u a).stab i c.1) (fun c => latCrd (I.rec7 l Z) i hi (I.latAt u a i c.1))) (dt : Formalism.L2.Herm.unitaryOneFiniteAdeles (I.rec7 l Z).sp.cm →* (I.rec7 l Z).Dt), I.IsTw → I.StdKer l Z t → GlobalTheory.Pdv.StdRd I l Z t → (∀ (u : B.Word) (a : I.ι) (i : ℕ) (c : ((I.rec7 l Z).chTw u a).cls i), (t.rd u a).pin i c ↔ (i + 1 ≤ B.R.m ∨ ∃ d, OverRow (Pr := B.primes X) (R := B.R) I.sel (I.tup a) u d ((I.stp u a i).rep c).1.1)) → ex.errX.piT = X.piT → I.StdDt l Z dt → (∀ v ∈ bad, v ∈ badG (I.rec7 l Z) ∨ I.UnderQ a v) → (∀ i hi, I.ReadsK l Z u a i hi (chOf i hi) (Kc i hi) ∧ I.IdY l Z u a i hi (eY i hi)) → (∀ i hi β, FunKilled (Kc i hi β).lev (X.piT u)) → (∀ i hi β, ∃ n : ℕ, 0 < n ∧ ∀ κ : (Kc i hi β).lev.U, (∀ v ∈ badG (I.rec7 l Z), bc (prV (E := (I.rec7 l Z).host.E) v) κ.1 = 1) → (Kc i hi β).lev.chi κ ^ n = 1) → (a ≠ I.mu0 → ∀ i hi c (y : Formalism.L2.Herm.unitaryOneFiniteAdeles (I.rec7 l Z).sp.cm), Matrix.GeneralLinearGroup.det y.1 = Matrix.GeneralLinearGroup.det ((Kc i hi (chOf i hi c)).y ⟨c, rfl⟩).1 → detPt B.host I.SQ ((I.stp u a i).rep c).1.1 = dt y) → ∃ A : GlobalTheory.TwU.AdData t u a (fun i hi => ⟨B.T u, bad, eY i hi, Ch i hi, chOf i hi, fun c => latCrd (I.rec7 l Z) i hi (I.latAt u a i c), Kc i hi⟩), GlobalTheory.TwU.AdPins A dt ∧ GlobalTheory.TwU.AdTie A dt (B.fields.conjO (X.piT u)) := by
   intro B X I hOk hP l Z L hT Gi Gl K Y cX ex t u a bad Ch chOf eY Kc dt hTw hSK hRd hPin hX hDt hbad hRK hFun hFin hDet
@@ -1396,8 +1384,8 @@ theorem adTie_true : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC
     · refine (hXi (B.R.m - 2 + 1) (by omega) c c' x).trans ?_
       rw [xiAt_last I.Ch I.sel (I.tup a) (I.cst a) (I.idx a) (by omega : B.R.m - 2 + 1 + 1 = B.R.m), xiOver_eq_topG]
       rfl
-    · exact (seamOf_lat _ _ _ _ _ _ _ _).trans ((hN i c).trans (GlobalTheory.T.representativeLattice_eq_companion_of_adelicRep I hOk hP l Z u a i hi bad _ _ _ _ (hk i hi) c))
-    · have h := GlobalTheory.T.chart_reads_at_class_GL I hOk hP l Z u a i hi bad _ _ _ _ (hk i hi) c _ (hfb i hi _) P
+    · exact (seamOf_lat _ _ _ _ _ _ _ _).trans ((hN i c).trans (GlobalTheory.Mem.Col2.AdT.lat_rep_eq_latCo I hOk hP l Z u a i hi bad _ _ _ _ (hk i hi) c))
+    · have h := GlobalTheory.Mem.Col2.AdT.FrameMove.frame_near I hOk hP l Z u a i hi bad _ _ _ _ (hk i hi) c _ (hfb i hi _) P
       rw [← hmov ((Kc i hi (chOf i hi c)).y ⟨c, rfl⟩).1] at h
       exact h
     · obtain ⟨ι, hι⟩ := GlobalTheory.T.levelPrimeFunctionals_eq_moved_level_functionals I hOk hP l Z u a i hi bad _ _ _ _ (hk i hi) β (hFun i hi β) P v h hv
@@ -1433,6 +1421,7 @@ theorem adTie_true : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC
 
 end GlobalTheory.Mem.Col2.AdT
 
+end
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ChartReadsAtClassGLStatement", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LiftsInvOne\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ChartReadsAtClassGL\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CongruentAutomorphismsLiftStepGroupElements", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LiftsInvOne\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LevQOfCongE\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}

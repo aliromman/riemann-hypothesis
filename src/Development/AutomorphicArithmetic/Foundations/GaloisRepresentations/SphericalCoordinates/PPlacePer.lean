@@ -14,8 +14,8 @@ import Mathlib.Tactic.Linter.Style
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.FinrankOfPlace
 
 theorem UpperTheory.Reformulated.B.FinrankIntEqFinrankRat.finrank_eq_of_place :
-    ∀ {M V : Type} [inst : AddCommGroup M]
-    [Module.Free ℤ M] [Module.Finite ℤ M] [inst_3 : AddCommGroup V] [inst_4 : _root_.Module ℚ V] (j : M →+ V),
+    ∀ {M V : Type} [AddCommGroup M]
+    [Module.Free ℤ M] [Module.Finite ℤ M] [AddCommGroup V] [_root_.Module ℚ V] (j : M →+ V),
     Function.Injective (⇑j : M → V) →
       (∀ (w : V), ∃ (m : ℕ) (u : M), m ≠ (0 : ℕ) ∧ m • w = (j : M → V) u) → Module.finrank ℤ M = Module.finrank ℚ V := by
   intro M V _ _ _ _ _ j hj hs

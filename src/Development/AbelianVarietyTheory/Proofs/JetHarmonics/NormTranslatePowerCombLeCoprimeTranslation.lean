@@ -63,12 +63,10 @@ import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ConstantCoeffSubstEq
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.JetHarmonics.CpSeriesBoundedOneTorsionTranslateCmTheta, Development.AbelianVarietyTheory.Proofs.JetHarmonics.TranslateCoprimeOrderNotIncreaseThetaCombNorm, Development.AbelianVarietyTheory.Proofs.JetHarmonics.NormTranslatePowerCombLeCoprimeTranslation
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.CpSeriesBoundedOneTorsionTranslateCmTheta
 
 open PowerSeries GlobalTheory.MomOne
 open scoped ComplexConjugate BigOperators Topology
-
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.CpSeriesBoundedOneTorsionTranslateCmTheta
 
 namespace GlobalTheory.MomOne.TranslateNorm
 
@@ -226,7 +224,11 @@ theorem bd_translate : ∀ (d q : ℕ) [Fact q.Prime] (M : Mdl q) (ω : ℂ_[q])
 end GlobalTheory.MomOne.TranslateNorm
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.TranslateCoprimeOrderNotIncreaseThetaCombNorm
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.TranslateCoprimeOrderNotIncreaseThetaCombNorm
+
+noncomputable section
+open PowerSeries GlobalTheory.MomOne
+open scoped ComplexConjugate BigOperators Topology
 
 namespace GlobalTheory.MomOne.TranslNorm
 
@@ -259,9 +261,6 @@ lemma differentiable_U1 (d : ℕ) (x : ℂ) {F : ℂ → ℂ} (hF : Differentiab
   fun_prop
 
 variable {q : ℕ} [Fact q.Prime]
-
-lemma bd_pow {f : ℂ_[q]⟦X⟧} (hf : Bd 1 f) (a : ℕ) : Bd 1 (f ^ a) := by
-  apply _root_.GlobalTheory.MomOne.FeUniq.intSer_pow <;> assumption
 
 lemma hat_comb (ι : ℂ ≃+* ℂ_[q]) {ℓ : ℂ_[q]⟦X⟧} (hl : constantCoeff ℓ = 0) {κ : Type} (T : Finset κ)
     (c : κ → ℂ_[q]) (F : κ → ℂ → ℂ) (hF : ∀ j, AnalyticAt ℂ (F j) 0) (a : ℕ) :
@@ -344,7 +343,7 @@ theorem translate_bd : ∀ (d q : ℕ) [Fact q.Prime] (M : Mdl q) (ω : ℂ_[q])
       _root_.GlobalTheory.MomOne.ChartXY.hat_mul M.ι hl (hθS.fun_pow a) hφ0, _root_.GlobalTheory.MomOne.ChartXY.hat_pow M.ι hl hθS] at hB
     have h1 : Bd 1 (hat M.ι (C ω * logS) (fun z => θ ((S : ℂ) * z))) :=
       (bd_scale_iff M.ι ω hSq (hθd.analyticAt 0) 1).mpr (_root_.GlobalTheory.MomOne.theta_series_integral d q M ω θ hd hd16 hsp hL hM hθ)
-    refine (GlobalTheory.MomOne.sup_norm_laws q).2.2.2.2.2 _ _ 0 B (bd_pow h1 a) ?_ (by rwa [pow_zero, one_mul])
+    refine (GlobalTheory.MomOne.sup_norm_laws q).2.2.2.2.2 _ _ 0 B (GlobalTheory.MomOne.FeUniq.intSer_pow h1 a) ?_ (by rwa [pow_zero, one_mul])
     rw [map_pow, (GlobalTheory.MomOne.TaylorRead.hat_laws q M.ι _ hl).2.2.2.1]
     simp [hθ.2.1]
 
@@ -399,13 +398,17 @@ theorem translate_bd : ∀ (d q : ℕ) [Fact q.Prime] (M : Mdl q) (ω : ℂ_[q])
     _root_.GlobalTheory.MomOne.ChartXY.hat_mul M.ι hl (hUtS.fun_pow a) hφt0, _root_.GlobalTheory.MomOne.ChartXY.hat_pow M.ι hl hUtS]
   have h1 : Bd 1 (hat M.ι (C ω * logS) (fun z => U1 d t θ ((S : ℂ) * z))) :=
     (bd_scale_iff M.ι ω hSq (hUt.analyticAt 0) 1).mpr (_root_.GlobalTheory.MomOne.TranslateNorm.bd_translate d q M ω θ hd hd16 hsp hL hM hθ t ht ht2)
-  have := ((GlobalTheory.MomOne.sup_norm_laws q).1 _ _ _ _ (bd_pow h1 a) hBφt).2
+  have := ((GlobalTheory.MomOne.sup_norm_laws q).1 _ _ _ _ (GlobalTheory.MomOne.FeUniq.intSer_pow h1 a) hBφt).2
   rwa [one_mul] at this
 
 end GlobalTheory.MomOne.TranslNorm
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.NormTranslatePowerCombLeCoprimeTranslation
+
+open PowerSeries GlobalTheory.MomOne
+open scoped ComplexConjugate BigOperators Topology
 
 namespace GlobalTheory.MomOne.TranslNorm
 

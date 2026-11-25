@@ -61,7 +61,10 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsSublatticeLiftsModuloFixingUnipotent, Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsSublatticeLiftsModuloFixingUnipotentStatement, Development.AbelianVarietyTheory.Proofs.FlagMeasures.CardExactGramIntegralFrameClassesLe, Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsExactGramFrameInTermClass, Development.AbelianVarietyTheory.Proofs.FlagMeasures.FrameTermCountSublatticeBound, Development.AbelianVarietyTheory.Proofs.FlagMeasures.FrameTermCountSublatticeBoundStatement
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsSublatticeLiftsModuloFixingUnipotent
+section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsSublatticeLiftsModuloFixingUnipotent
+@[expose] public section
+
+noncomputable section
 
 open NumberField Module Matrix Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.Cnt GlobalTheory.LoopC
 open scoped ENNReal Classical nonZeroDivisors
@@ -182,11 +185,6 @@ theorem hT_zero_symm {E : Type} [Field E] [NumberField E] [StarRing E] (S : HSpa
   have := S.herm.eq x y
   rw [h] at this
   simpa using this.symm
-
-theorem ddS_ne_zero : ddS D ≠ 0 := by
-  rw [ddS, FractionalIdeal.coeIdeal_ne_zero, Ne,
-    Ideal.map_eq_bot_iff_of_injective (RingOfIntegers.algebraMap.injective _ _)]
-  exact differentIdeal_ne_bot
 
 theorem hyp_fe (a b : Fin D.R.rS) : (hS D).hT (D.sp.hypF a) (D.sp.hypE b) = if a = b then 1 else 0 := by
   have h1 := (D.sp.Y 0).herm.eq (D.sp.hypE b) (D.sp.hypF a)
@@ -329,7 +327,6 @@ theorem fun_reps {u u' : D.what₂.Word} {F0 : Fb D u} {Λ : LatV D} (hSt : Stan
     simp only [LinearMap.sub_apply, LinearMap.add_apply, LinearMap.comp_apply, LinearEquiv.coe_coe]
     ring
 
-
 variable (D) in
 abbrev coefI (a : Fin D.R.rS) : FractionalIdeal (𝓞 D.host.E)⁰ D.host.E :=
   ddS D ^ (-((D.R.rS : ℤ) - (a : ℕ)))
@@ -420,7 +417,7 @@ theorem main : ∀ (D : D7) (u u' : D.what₂.Word) (F0 : Fb D u) (Λ : LatV D),
       neg_mem' := by
         rintro a ⟨v, hv, e⟩
         exact ⟨-v, Submodule.neg_mem _ hv, fun p => by simp [e]⟩ }
-  have hI := fun a => ideal_reps (coefI D a) (zpow_ne_zero _ (ddS_ne_zero D)) B S hS₀
+  have hI := fun a => ideal_reps (coefI D a) (zpow_ne_zero _ (GlobalTheory.LoopC.RowSplit.ddS_ne_zero D)) B S hS₀
   choose c hcI hgen using hI
   let j : Fin D.R.rS → ((P →ₗ[𝓞 D.host.E] D.host.E) →ₗ[𝓞 D.host.E] (P →ₗ[𝓞 D.host.E] (hS D).V)) := fun a =>
     LinearMap.llcomp (𝓞 D.host.E) P D.host.E (hS D).V
@@ -477,6 +474,8 @@ end Record
 
 end GlobalTheory.LoopC.Lifts
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsSublatticeLiftsModuloFixingUnipotentStatement
@@ -1119,14 +1118,9 @@ theorem mem_Hp_iff {T' : E} {G : LFlag S r T'} (hF : F.zt = F.fl.z) (hG : G.zt =
 
 end Gen
 
-theorem ddS_ne_zero (D : D7) : ddS D ≠ 0 := by
-  unfold ddS
-  rw [FractionalIdeal.coeIdeal_ne_zero, Ne, Ideal.map_eq_bot_iff_of_injective (FaithfulSMul.algebraMap_injective _ _)]
-  exact differentIdeal_ne_bot
-
 theorem ddS_anti (D : D7) {m n : ℤ} (h : m ≤ n) : ddS D ^ n ≤ ddS D ^ m := by
   obtain ⟨k, rfl⟩ := Int.le.dest h
-  rw [zpow_add₀ (ddS_ne_zero D), zpow_natCast]
+  rw [zpow_add₀ (GlobalTheory.LoopC.RowSplit.ddS_ne_zero D), zpow_natCast]
   have : ddS D ^ k ≤ 1 := by
     unfold ddS
     rw [← FractionalIdeal.coeIdeal_pow]
@@ -1156,7 +1150,7 @@ theorem exists_exact_frame : ∀ (D : D7) (u u' : D.what₂.Word) (F0 : Fb D u) 
   have hst0 : st 0 = 0 := RingOfIntegers.ext (by rw [hst]; simp)
   have hst1 : st 1 = 1 := RingOfIntegers.ext (by rw [hst]; simp)
   obtain ⟨m, hm, hmf⟩ := exists_frame_op (F := lf D F0) θ hθ' hlat hΛ hT
-    (fun j => ddS D ^ (-((D.R.rS : ℤ) - (j : ℕ)))) (fun j => zpow_ne_zero _ (ddS_ne_zero D))
+    (fun j => ddS D ^ (-((D.R.rS : ℤ) - (j : ℕ)))) (fun j => zpow_ne_zero _ (GlobalTheory.LoopC.RowSplit.ddS_ne_zero D))
     (fun a b hab => ddS_anti D (by have : a.val ≤ b.val := hab; omega))
     (coord_iff _ (by simp) hlift.1 hprim hX) (fun a b => st (A b a))
     (fun a b h => by rw [hA1 b a h, hst0]) (fun a => by rw [hA2, hst1])

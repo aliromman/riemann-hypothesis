@@ -70,20 +70,19 @@ import Mathlib.Tactic.ReduceModChar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsStageTrivialTwist, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HeckeCharValueSplitPrimeNotRootOfUnity, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HeckeCharValueSplitPrimeNotRootOfUnityStatement, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HeckeCharQuotientNeOneCompletelySplitPrime, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HeckeCharQuotientNeOneCompletelySplitPrimeStatement, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SmallEntriesAndStringsAvoidExcludedNormPowers, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SmallEntriesAndStringsAvoidExcludedNormPowersStatement, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ChainEachStepSplitPlaceWithoutExcludedParams, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.TwistedThetaChainStepAdjointScalar, Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.TwistedThetaChainStepAdjointScalarStatement
 
-section -- clump: shared namespace opens
+section -- clump member: Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsStageTrivialTwist
+@[expose] public section
+
+noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum
 open scoped TensorProduct InnerProductSpace ComplexConjugate
 open GlobalTheory.ChainOnto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsStageTrivialTwist
-
 namespace GlobalTheory.ChainTw.Check
 
 variable {D : D7}
-
-
 
 theorem one_lt_norm (PP : Pl D.host.E) : (1 : ℝ) < (Ideal.absNorm PP.asIdeal : ℝ) := by
   exact_mod_cast GlobalTheory.LFun.one_lt_absNorm PP
@@ -132,7 +131,16 @@ theorem const_eq {c : Com D} {s s' : PiLocalization₂ D} (w : Twist D) (k : ℕ
 
 end GlobalTheory.ChainTw.Check
 
+end
 end -- clump:auto
+end -- clump:auto
+
+section -- clump: shared namespace opens
+
+open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
+open Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum
+open scoped TensorProduct InnerProductSpace ComplexConjugate
+open GlobalTheory.ChainOnto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HeckeCharValueSplitPrimeNotRootOfUnity
 
@@ -150,7 +158,6 @@ end GlobalTheory.SplitValueAdelic
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HeckeCharValueSplitPrimeNotRootOfUnityStatement
-
 
 end -- clump:auto
 
@@ -181,7 +188,6 @@ end GlobalTheory.ChainOnto.QuotVal
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HeckeCharQuotientNeOneCompletelySplitPrimeStatement
-
 
 end -- clump:auto
 
@@ -252,9 +258,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SmallEntriesAndStringsAvoidExcludedNormPowersStatement
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-
-theorem _root_.GlobalTheory.T.small_entries_and_strings_avoid_excluded_norm_powers : ∀ (K : Type) [Field K] [NumberField K] (w : HeightOneSpectrum (𝓞 K)) (r t : ℕ), r + 2 ≤ t → ∀ k ∈ ({(t : ℤ) - 1, 1 - (t : ℤ), (t : ℤ) + 1, -((t : ℤ) + 1)} : Set ℤ), (∀ β : ℂ, β ≠ 0 → ‖β‖ ≤ ((Ideal.absNorm w.asIdeal : ℕ) : ℝ) ^ ((r : ℝ) / 2) → ‖β⁻¹‖ ≤ ((Ideal.absNorm w.asIdeal : ℕ) : ℝ) ^ ((r : ℝ) / 2) → β ≠ GlobalTheory.LFun.npow w ((k : ℂ) / 2)) ∧ ∀ x : ℂˣ, ‖(x : ℂ)‖ = 1 → x ≠ 1 → ∀ β ∈ GlobalTheory.LFun.seg w x t, (β : ℂ) ≠ GlobalTheory.LFun.npow w ((k : ℂ) / 2) := by
-  first | exact @GlobalTheory.RkNs.small_entries_and_strings_avoid_excluded
 end -- clump:auto
 
 end -- clump: shared namespace opens
@@ -292,7 +295,7 @@ theorem chainNS_holds : ∀ D : D7, ChainNS D := by
     exact Multiset.mem_map_of_mem _ hβ
   rw [chainPar_twist_chT] at hmem
   have key : ((x⁻¹ * β : ℂˣ) : ℂ) ≠ GlobalTheory.LFun.npow w ((k' : ℂ) / 2) := by
-    have hN := GlobalTheory.T.small_entries_and_strings_avoid_excluded_norm_powers D.host.E w D.R.r D.R.t hrt k' hk'
+    have hN := GlobalTheory.RkNs.small_entries_and_strings_avoid_excluded D.host.E w D.R.r D.R.t hrt k' hk'
     simp only [Pi.add_apply, Finset.sum_apply, Multiset.mem_add, Multiset.mem_sum] at hmem
     rcases hmem with h | ⟨i, hi, h⟩
     · simp only [GlobalTheory.LFun.twist, Pi.inv_apply] at h

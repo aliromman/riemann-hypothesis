@@ -174,16 +174,15 @@ theorem twist_front_inputs : PoitouTateDuality → LocalFiniteness → LocalTate
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.ExistenceTori.HalfDepthValuations
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.BlockTheory.ExistenceTori.HalfDepthValuations
 
+noncomputable section
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.HalfDepthValuations
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj Formalism.MainNotions.DIV.Cons
 
 variable {D : D7}
-
-
 
 section Rec
 
@@ -196,6 +195,7 @@ theorem bar_eq_barE (Q : Par D) (a : 𝓞 D.host.E) : Q.H.bar a = barE D a := by
   exact Q.H.bar_eq a
 
 end GlobalTheory.IndefiniteRowSideFullHecke.HalfDepthValuations
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.CardStableLatticeSubgroupsEqGaussianBinomial
@@ -437,9 +437,10 @@ theorem card_latCount : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {
 end GlobalTheory.LatCountGauss
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SplitPlaceHeckeDoubleCosetCardGaussBinom
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SplitPlaceHeckeDoubleCosetCardGaussBinom
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.FWT Formalism.L2.Pj
+noncomputable section
 open NumberField
 
 namespace GlobalTheory.SplitCosetCount
@@ -521,8 +522,6 @@ namespace GlobalTheory.SplitCosetCount
 
 open Classical
 open Formalism.IndefR.Lev GlobalTheory.HeckeParts Formalism.L2.NTheta
-
-
 
 theorem card_cosets : ∀ (D : D7) {G : Type} [Group G] [Fintype G] {Pl0 T0 : Type} {A : FamIn D.what₂.LL G Pl0 T0 D.R.m}
     {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks),
@@ -607,6 +606,7 @@ theorem card_cosets : ∀ (D : D7) {G : Type} [Group G] [Fintype G] {Pl0 T0 : Ty
   rw [card_eq_of_isDC hRc hdc, card_image_section ψ hψ, hc0, gaussBinom_eq, hq, rank_Wc]
 
 end GlobalTheory.SplitCosetCount
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.CardHeckeCosetsEqCardSubmodulesSplitPlace
@@ -701,7 +701,8 @@ section -- clump: shared namespace opens
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.FWT Formalism.L2.Pj
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeckeKernelEqOfUnipotentFrameChange
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeckeKernelEqOfUnipotentFrameChange
+noncomputable section
 open NumberField
 
 set_option autoImplicit false
@@ -793,8 +794,6 @@ namespace GlobalTheory.HeckeInj
 open AlgebraicGeometry CategoryTheory Limits ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
   ReciprocityTheory.ChartRestriction.G.FD GlobalTheory.HeckeEx MonoidalCategory CartesianMonoidalCategory MonObj
 
-
-
 theorem eq_of_hkRelFr_frBor : ∀ {E : Type} [Field E] [NumberField E] [NumberField.IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E}
     {Dw : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Datum H} {l : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Level H} (Xo : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Moduli Dw l)
     (c : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Coeff l) (σ : c.F →+* ℂ) (r : ℕ) (U : Unf Xo c σ r), IsUnf U →
@@ -878,6 +877,7 @@ theorem eq_of_hkRelFr_frBor : ∀ {E : Type} [Field E] [NumberField E] [NumberFi
   exact Subtype.ext (hker hhh)
 
 end GlobalTheory.HeckeInj
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeckeKernelEqOfUnipotentFrameChangeStatement
@@ -1147,8 +1147,9 @@ theorem _root_.GlobalTheory.T.heckeReading_kernels_match_cosets_through_frame : 
   first | exact @GlobalTheory.HeckeTerm.heckeTerm
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeckeReadTie
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.HeckeReadTie
 
+noncomputable section
 
 set_option autoImplicit false
 
@@ -1178,7 +1179,7 @@ theorem heckeReadTie (hSL : ∀ D, GlobalTheory.IndefiniteRowSideFullHecke.Split
   haveI : IsAlgClosed (CAt σ) := inferInstanceAs (IsAlgClosed ℂ)
   have hgood : GoodEmb T.Q.c σ := hσ ▸ T.toCore.good_σ₀
   obtain ⟨hx, -, -⟩ := exists_witness T i σ hV ht.laws.toLawsM hgood h
-  obtain ⟨e, he⟩ := GlobalTheory.T.heckeReading_kernels_match_cosets_through_frame D GlobalTheory.HeckePointLaw.heckePointLaws (hSL D) (hVF D) G Pl0 T0 A T R F κ v₀ hlev hgrp hfam
+  obtain ⟨e, he⟩ := GlobalTheory.T.heckeReading_kernels_match_cosets_through_frame D GlobalTheory.ThetaTransport.heckePointLaws (hSL D) (hVF D) G Pl0 T0 A T R F κ v₀ hlev hgrp hfam
     hmod hthP ht i σ hσ hV hpin P p k α Rc hs h hx
   have hfin : Finite (hkKer (Xo := T.Q.Xo ((i : ℕ) + 1)) P.asIdeal p k (CAt σ)
       ((T.U ((i : ℕ) + 1) σ).un (dictW T i σ hV h).1 ⟨(dictW T i σ hV h).2, hx⟩)) := Finite.of_equiv _ e.symm
@@ -1218,6 +1219,7 @@ theorem heckeReadTie (hSL : ∀ D, GlobalTheory.IndefiniteRowSideFullHecke.Split
 
 end GlobalTheory.HeckeReadProof
 end -- clump:auto
+end -- clump:auto
 
 end -- clump: shared namespace opens
 
@@ -1237,8 +1239,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ArchimedeanLocalLanglandsCompatibility
 @[expose] public section
-
-
 
 section
 section
@@ -1262,8 +1262,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LocalGlobalAboveEllOfCusp
 @[expose] public section
 
-
-
 section
 section
 namespace GlobalTheory.GalOfCusp
@@ -1276,8 +1274,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LocalLanglandsOfHyp
-
-
 
 end -- clump:auto
 
@@ -1303,8 +1299,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.PublishedInputsCombined
 @[expose] public section
-
-
 
 section
 section
@@ -1336,8 +1330,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LocalLanglandsGLAndPurityAtMember
 @[expose] public section
-
-
 
 section
 section
@@ -1371,8 +1363,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ThetaLiftHypothesesOfNonvanishing
-
-
 
 section
 section

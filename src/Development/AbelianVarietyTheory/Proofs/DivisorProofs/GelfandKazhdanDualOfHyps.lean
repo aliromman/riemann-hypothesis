@@ -158,17 +158,13 @@ theorem exists_conj_cuspSub : ∀ (E : Type) [Field E] [NumberField E] [_root_.N
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SatakeParameterGLOfConjLinearIntertwiner
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SatakeParameterGLOfConjLinearIntertwiner
+
+noncomputable section
 
 namespace GlobalTheory.LFun.SatConj
 
 open ComplexConjugate
-
-theorem esymm_map_conj (s : Multiset ℂ) (j : ℕ) : (s.map (starRingEnd ℂ)).esymm j = conj (s.esymm j) := by
-  simp only [Multiset.esymm, Multiset.powersetCard_map, Multiset.map_map, map_multiset_sum]
-  congr 1
-  refine Multiset.map_congr rfl fun t _ => ?_
-  simp [map_multiset_prod]
 
 theorem conj_satEig (q n : ℕ) (B : Multiset ℂˣ) (j : ℕ) :
     conj (GlobalTheory.LFun.satEig q n B j) = GlobalTheory.LFun.satEig q n (B.map star) j := by
@@ -184,7 +180,7 @@ theorem conj_satEig (q n : ℕ) (B : Multiset ℂˣ) (j : ℕ) :
     simp only [Multiset.map_map]
     refine Multiset.map_congr rfl fun b _ => ?_
     simp [Units.coe_star]
-  rw [GlobalTheory.LFun.satEig, GlobalTheory.LFun.satEig, map_mul, hp, hm, esymm_map_conj]
+  rw [GlobalTheory.LFun.satEig, GlobalTheory.LFun.satEig, map_mul, hp, hm, GlobalTheory.LFun.UnitaryParam.esymm_map_conj]
 
 theorem conj_Tj {L : Type} [Field L] (n : ℕ) (O : Subring L) (ϖ : L) (j : ℕ) (g : GL (Fin n) L) :
     conj (Formalism.UG.Tj ℂ n O ϖ j g) = Formalism.UG.Tj ℂ n O ϖ j g := by
@@ -214,7 +210,6 @@ theorem isSatVecGL_conj (J : V ≃ₗ⋆[ℂ] W) (hJ : ∀ g x, ρ' g (J x) = J 
 
 end GlobalTheory.LFun.SatConj
 
-
 open GlobalTheory.LFun.SatConj in
 theorem GlobalTheory.LFun.hasSatGL_of_conjIntertwiner : ∀ (E : Type) [Field E] [NumberField E] (w : HeightOneSpectrum (𝓞 E)) (n : ℕ) (V W : Type) [AddCommGroup V] [Module ℂ V] [AddCommGroup W] [Module ℂ W] (ρ : Representation ℂ (GL (Fin n) (w.adicCompletion E)) V) (ρ' : Representation ℂ (GL (Fin n) (w.adicCompletion E)) W) (J : V ≃ₗ⋆[ℂ] W), (∀ g x, ρ' g (J x) = J (ρ g x)) → ∀ B : Multiset ℂˣ, GlobalTheory.LFun.HasSatGL w ρ B → GlobalTheory.LFun.HasSatGL w ρ' (B.map star) := by
   intro E _ _ w n V W _ _ _ _ ρ ρ' J hJ B hB
@@ -228,6 +223,7 @@ theorem GlobalTheory.LFun.hasSatGL_of_conjIntertwiner : ∀ (E : Type) [Field E]
     rw [hJs, GlobalTheory.LGrp.mem_fixed.1 hy k hk]
   have := isSatVecGL_conj J hJ (hB.2 _ hy' fun e => h0 (by simpa using congrArg J e))
   rwa [LinearEquiv.apply_symm_apply] at this
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryCuspidalSatakeParameterStarEqInv

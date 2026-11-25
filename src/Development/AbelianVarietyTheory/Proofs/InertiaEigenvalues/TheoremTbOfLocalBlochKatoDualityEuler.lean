@@ -256,7 +256,7 @@ end -- clump:auto
 
 noncomputable section
 
-open Formalism Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N Formalism.MainNotions.LocalSituation GlobalTheory.Cyc GlobalTheory.Cyc.TwistKill GlobalTheory.BdRQuot
+open Formalism Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N Formalism.MainNotions.LocalSituation GlobalTheory.Cyc GlobalTheory.Cyc.LogClass GlobalTheory.BdRQuot
 open scoped Formalism.Per
 
 namespace GlobalTheory.Cyc.ExpBound

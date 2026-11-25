@@ -237,13 +237,13 @@ theorem hasDerivAt_integral_compact {n : ℕ} [MeasurableSpace (G n)] [BorelSpac
 end GlobalTheory.CompanionTheory.WaveSpd.IntDeriv
 end -- clump:auto
 
--- clump: shared namespace opens
+section -- clump: shared namespace opens
 
 open MeasureTheory Matrix Finset
 open scoped ContDiff ComplexConjugate InnerProductSpace
+open PositivityTheory.RgBcC GlobalTheory.CompanionTheory.WaveSpd
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EnergyDensityPointwiseEstimate
-open PositivityTheory.RgBcC GlobalTheory.CompanionTheory.WaveSpd
 open PositivityTheory.RgTw (Mat G)
 
 namespace GlobalTheory.CompanionTheory.WaveSpd
@@ -321,14 +321,20 @@ end GlobalTheory.CompanionTheory.WaveSpd
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EnergyDensityPointwiseEstimateStatement
-open PositivityTheory.RgBcC GlobalTheory.CompanionTheory.WaveSpd
 open PositivityTheory.RgTw (Mat G)
 
 theorem _root_.GlobalTheory.T.energy_density_pointwise_estimate : ∀ {W ι : Type} [NormedAddCommGroup W] [InnerProductSpace ℝ W] [Fintype ι] (w v : W) (Y : ι → W) (L : ι → ℝ) (A : W →L[ℝ] W) (C₁ C c φ : ℝ), 0 ≤ C₁ → C₁ * (1 + Fintype.card ι) ≤ C → c ≤ 0 → 0 ≤ φ → (∀ p, |L p| ≤ C₁) → c * C * (‖w‖ ^ 2 + (1 / 4) * ∑ p, ‖Y p‖ ^ 2 + ‖v‖ ^ 2) + φ * (2 * ⟪A v, w⟫_ℝ + 2 * ⟪w, v⟫_ℝ) - (1 / 2) * ∑ p, c * L p * ⟪Y p, w⟫_ℝ ≤ (‖A‖ + 1) * (φ * (‖w‖ ^ 2 + (1 / 4) * ∑ p, ‖Y p‖ ^ 2 + ‖v‖ ^ 2)) := by
   first | exact @GlobalTheory.CompanionTheory.WaveSpd.pointwise_energy_ineq
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EnergyDensitySmooth
+end -- clump: shared namespace opens
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EnergyDensitySmooth
+
+noncomputable section
+
+open MeasureTheory Matrix Finset
+open scoped ContDiff ComplexConjugate InnerProductSpace
 
 namespace GlobalTheory.CompanionTheory.WaveSpd
 
@@ -370,15 +376,21 @@ theorem sm_dens_inner {n : ℕ} {W : Type} [NormedAddCommGroup W] [InnerProductS
     (u : ℝ → Mat n → W) (hu : Sm u) :
     Sm (dens u) ∧ ∀ (X : Mat n) (v : ℝ → Mat n → W), Sm v →
       Sm fun s y => ⟪Rt X u s y, v s y⟫_ℝ := by
-  obtain ⟨hdt, hRt, -⟩ := GlobalTheory.T.smooth_time_right_derivatives_commute u hu
+  obtain ⟨hdt, hRt, -⟩ := GlobalTheory.CompanionTheory.WaveSpd.sm_calculus u hu
   refine ⟨?_, fun X v hv => (hRt X).inner hv⟩
   exact (hdt.normSq.add (Sm.const_mul _ (Sm.sum _ fun p _ => (hRt (hm p)).normSq))).add hu.normSq
 
 end GlobalTheory.CompanionTheory.WaveSpd
 end -- clump:auto
+end -- clump:auto
+
+section -- clump: shared namespace opens
+
+open MeasureTheory Matrix Finset
+open scoped ContDiff ComplexConjugate InnerProductSpace
+open PositivityTheory.RgBcC GlobalTheory.CompanionTheory.WaveSpd
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EnergyDensityTimeDerivative
-open PositivityTheory.RgBcC GlobalTheory.CompanionTheory.WaveSpd
 open PositivityTheory.RgTw (Mat G)
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
@@ -510,7 +522,6 @@ end Mat
 
 end GlobalTheory.CompanionTheory.WaveSpd.DensDeriv
 
-
 open GlobalTheory.CompanionTheory.WaveSpd.DensDeriv in
 theorem GlobalTheory.CompanionTheory.WaveSpd.hasDerivAt_dens {n : ℕ} {W : Type} [NormedAddCommGroup W]
     [InnerProductSpace ℝ W] (u : ℝ → Mat n → W) (hu : Sm u) (s : ℝ) (y : Mat n)
@@ -535,7 +546,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EnergyEstimateOfLengthFunction
-open PositivityTheory.RgBcC GlobalTheory.CompanionTheory.WaveSpd
 open PositivityTheory.RgTw (Mat G)
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
@@ -617,12 +627,12 @@ theorem pt_bound {ℓ : Mat n → ℝ} (hℓ : ContDiffOn ℝ ∞ ℓ (GLs n)) {
         (1 / 2) * ∑ p : Ix n,
           Rr (hm p) (fun y' => cw ℓ χ C r s y' * ⟪Rt (hm p) u s y', dt u s y'⟫_ℝ) y ≤
       (‖A‖ + 1) * (cw ℓ χ C r s y * dens u s y) := by
-  have hdu := (GlobalTheory.T.smooth_time_right_derivatives_commute u hu).1
-  have hRt := (GlobalTheory.T.smooth_time_right_derivatives_commute u hu).2.1
+  have hdu := (GlobalTheory.CompanionTheory.WaveSpd.sm_calculus u hu).1
+  have hRt := (GlobalTheory.CompanionTheory.WaveSpd.sm_calculus u hu).2.1
   have hℓd := diffAt_of_sm hℓ hy
-  have hw : DifferentiableAt ℝ (dt u s) y := diffAt_of_sm ((GlobalTheory.T.smooth_time_right_derivatives_commute _ hdu).2.2.1 s) hy
+  have hw : DifferentiableAt ℝ (dt u s) y := diffAt_of_sm ((GlobalTheory.CompanionTheory.WaveSpd.sm_calculus _ hdu).2.2.1 s) hy
   have hY : ∀ p : Ix n, DifferentiableAt ℝ (Rt (hm p) u s) y :=
-    fun p => diffAt_of_sm ((GlobalTheory.T.smooth_time_right_derivatives_commute _ (hRt _)).2.2.1 s) hy
+    fun p => diffAt_of_sm ((GlobalTheory.CompanionTheory.WaveSpd.sm_calculus _ (hRt _)).2.2.1 s) hy
   have hpt := GlobalTheory.T.energy_density_pointwise_estimate (dt u s y) (u s y) (fun p : Ix n => Rt (hm p) u s y)
     (fun p => fderiv ℝ ℓ y (y * hm p)) A C₁ C (deriv χ (ℓ y + C * s - r)) (cw ℓ χ C r s y)
     hC₁ hC (hχ' _) (hχ0 _) (fun p => hL y hy p)
@@ -657,7 +667,7 @@ theorem energy_diff_ineq : ∀ {n : ℕ} {W : Type} [NormedAddCommGroup W] [Inne
   intro n W _ _ _ _ μ _ ℓ hℓ hcpt C₁ hC₁ hL hIBP χ hχ hχ' hχ0 hχ1 u hu A hwave C hC r
   refine ⟨‖A‖ + 1, fun s => ?_⟩
   have hC0 : 0 ≤ C := le_trans (mul_nonneg hC₁ (by positivity)) hC
-  have hdu := (GlobalTheory.T.smooth_time_right_derivatives_commute u hu).1
+  have hdu := (GlobalTheory.CompanionTheory.WaveSpd.sm_calculus u hu).1
   have hcw := sm_cw C r hℓ hχ
   let ρ : ℝ → Mat n → ℝ := fun s y => cw ℓ χ C r s y * dens u s y
   have hρ : Sm ρ := sm_mul hcw (_root_.GlobalTheory.CompanionTheory.WaveSpd.sm_dens_inner u hu).1
@@ -686,8 +696,8 @@ theorem energy_diff_ineq : ∀ {n : ℕ} {W : Type} [NormedAddCommGroup W] [Inne
     show deriv (fun r' => ρ r' y.val) s = 0
     rw [h1.deriv_eq]; simp
   have I_dt := integrable_of_val μ
-    ((GlobalTheory.T.smooth_time_right_derivatives_commute _ (GlobalTheory.T.smooth_time_right_derivatives_commute _ hρ).1).2.2.1 s).continuousOn hK hdtvan
-  have I_ρ := integrable_of_val μ ((GlobalTheory.T.smooth_time_right_derivatives_commute _ hρ).2.2.1 s).continuousOn hK
+    ((GlobalTheory.CompanionTheory.WaveSpd.sm_calculus _ (GlobalTheory.CompanionTheory.WaveSpd.sm_calculus _ hρ).1).2.2.1 s).continuousOn hK hdtvan
+  have I_ρ := integrable_of_val μ ((GlobalTheory.CompanionTheory.WaveSpd.sm_calculus _ hρ).2.2.1 s).continuousOn hK
     (hvan s (Metric.mem_ball_self one_pos))
   have hRs : r + 1 - C * s ≤ R := by
     have h1 := neg_abs_le s
@@ -706,10 +716,10 @@ theorem energy_diff_ineq : ∀ {n : ℕ} {W : Type} [NormedAddCommGroup W] [Inne
     rw [h1.fderiv_eq]; simp
   have I_rr : ∀ p : Ix n, Integrable (fun y : G n => Rr (hm p) (Ψ p s) y.val) μ := fun p =>
     integrable_of_val μ
-      ((GlobalTheory.T.smooth_time_right_derivatives_commute _ ((GlobalTheory.T.smooth_time_right_derivatives_commute _ (hΨ p)).2.1 (hm p))).2.2.1 s).continuousOn hK
+      ((GlobalTheory.CompanionTheory.WaveSpd.sm_calculus _ ((GlobalTheory.CompanionTheory.WaveSpd.sm_calculus _ (hΨ p)).2.1 (hm p))).2.2.1 s).continuousOn hK
       (hrrvan p)
   have hZ : ∀ p : Ix n, ∫ y : G n, Rr (hm p) (Ψ p s) y.val ∂μ = 0 := fun p =>
-    hIBP (Ψ p s) ((GlobalTheory.T.smooth_time_right_derivatives_commute _ (hΨ p)).2.2.1 s)
+    hIBP (Ψ p s) ((GlobalTheory.CompanionTheory.WaveSpd.sm_calculus _ (hΨ p)).2.2.1 s)
       ⟨r + 1 - C * s, fun y _ hy => by
         have h4 : 1 ≤ ℓ y + C * s - r := by linarith
         simp only [Ψ, cw, hχ1 _ h4, zero_mul]⟩ (hm p)
@@ -730,7 +740,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EqZeroOfDerivLeMul
-open PositivityTheory.RgBcC GlobalTheory.CompanionTheory.WaveSpd
 open PositivityTheory.RgTw (Mat G)
 
 namespace GlobalTheory.CompanionTheory.WaveSpd.GronwallZero
@@ -766,7 +775,6 @@ end GlobalTheory.CompanionTheory.WaveSpd.GronwallZero
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EnergyIdentityOfLengthFunction
-open PositivityTheory.RgBcC GlobalTheory.CompanionTheory.WaveSpd
 open PositivityTheory.RgTw (Mat G)
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
@@ -874,7 +882,6 @@ end GlobalTheory.CompanionTheory.WaveSpd.Vanish
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EnergyIdentityOfLengthFunctionStatement
-open PositivityTheory.RgBcC GlobalTheory.CompanionTheory.WaveSpd
 open PositivityTheory.RgTw (Mat G)
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
@@ -883,7 +890,6 @@ theorem _root_.GlobalTheory.T.energy_identity_of_length_function : ∀ {n : ℕ}
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralRrEqZero
-open PositivityTheory.RgBcC GlobalTheory.CompanionTheory.WaveSpd
 open PositivityTheory.RgTw (Mat G)
 
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
@@ -918,7 +924,6 @@ end GlobalTheory.CompanionTheory.WaveSpd
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmoothMonotoneCutoffExists
-open PositivityTheory.RgBcC GlobalTheory.CompanionTheory.WaveSpd
 open PositivityTheory.RgTw (Mat G)
 
 namespace GlobalTheory.CompanionTheory.SmoothCut
@@ -944,7 +949,6 @@ end GlobalTheory.CompanionTheory.SmoothCut
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TranslatedLengthBoundedDerivative
-open PositivityTheory.RgBcC GlobalTheory.CompanionTheory.WaveSpd
 open PositivityTheory.RgTw (Mat G)
 
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
@@ -1022,7 +1026,12 @@ theorem lg_left_facts : LgFacts → ∀ n : ℕ, ∃ C : ℝ, 0 ≤ C ∧ ∀ x 
 end GlobalTheory.CompanionTheory.WaveSpd
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FinitePropagationSpeedHolds
+
+open MeasureTheory Matrix Finset
+open scoped ContDiff ComplexConjugate InnerProductSpace
 
 namespace GlobalTheory.CompanionTheory.WaveSpd
 

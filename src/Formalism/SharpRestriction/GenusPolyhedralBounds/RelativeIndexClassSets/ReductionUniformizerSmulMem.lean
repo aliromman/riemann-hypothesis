@@ -14,18 +14,15 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HasseOrderBound.AddPreservesExpCongruence, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HasseOrderBound.OrthogonalSplitPolarizationVanishes, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.HasseOrdBd, Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.ReductionUniformizerSmulMem
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HasseOrderBound.AddPreservesExpCongruence
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HasseOrderBound.AddPreservesExpCongruence
 
+noncomputable section
 
 open Formalism.MainNotions Formalism.MainNotions.WeightAlgebra Formalism.BasicNotions NumberField IsDedekindDomain Module Formalism.MainNotions.Gaps.EtaleWeightGaps
 
 namespace PI.HasseOrdBdW
 
 variable {D : D7} {B : WeightFamilies.Prov D} {P : ModuliIntegralCharts.Prov D} {j : ℕ} {X : PJ D B P j} {ka wL wF : WeightFamilies.Wt D j}
-
-theorem kp_charZero (la : HeightOneSpectrum (𝓞 B.KO)) (N : ℕ) : CharZero (Kp X la N) := by
-  have := Kl_charZero X la
-  exact charZero_of_injective_algebraMap (algebraMap (X.Kl la) (Kp X la N)).injective
 
 theorem isUnif_unifO (G : GlobalFamilyData X ka wL wF) (la : HeightOneSpectrum (𝓞 B.KO))
     (hfd : FiniteDimensional (Kp X la G.N) (OsK X la G.w)) :
@@ -37,7 +34,7 @@ theorem isUnif_unifO (G : GlobalFamilyData X ka wL wF) (la : HeightOneSpectrum (
 theorem isDVRAt_pt (G : GlobalFamilyData X ka wL wF) (la : HeightOneSpectrum (𝓞 B.KO)) (hP : PublishedIntClos)
     (hfd : FiniteDimensional (Kp X la G.N) (OsK X la G.w)) (hred : IsReduced (OsK X la G.w))
     (ζ : PtsG G la) : IsDVRAt ζ := by
-  have := kp_charZero (X := X) la G.N
+  have := Formalism.MainNotions.Gaps.EtaleWeightGaps.Kp_charZero (X := X) la G.N
   exact (hP (Op X la G.N) (Kp X la G.N) (OsK X la G.w)).2 ζ
 
 theorem addPreservesExpCongruence : S3 := by
@@ -81,6 +78,7 @@ theorem expCongruenceExtendsToSum : S4 := by
       nlinarith
 
 end PI.HasseOrdBdW
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HasseOrderBound.OrthogonalSplitPolarizationVanishes

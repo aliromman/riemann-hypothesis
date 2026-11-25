@@ -99,7 +99,6 @@ theorem delta_zero_eq_twisted_delta (hinj : Function.Injective (algebraMap O Kf)
 
 variable (g : ∀ v, Matrix (Fin (P.m + 1)) (Fin (P.m + 1)) (P.Qq v)) (hg : ∀ v, IsUnit (g v).det)
 
-
 include hg in
 theorem htupW_le (hinj : Function.Injective (algebraMap O Kf)) (T : Submodule O P.Xsp)
     (hT : ∀ F : GlobalTheory P → MvPolynomial (Fin (P.m + 1) × Fin (P.m + 1)) Kf,
@@ -172,7 +171,6 @@ theorem htupW_le (hinj : Function.Injective (algebraMap O Kf)) (T : Submodule O 
     rw [← hHG v s]
   rw [e]
   exact hT (fun b => H b.1 b.2) (fun b => hH b.1 b.2)
-
 
 include hg in
 theorem mem_htupW (hinj : Function.Injective (algebraMap O Kf)) (F : GlobalTheory P → MvPolynomial (Fin (P.m + 1) × Fin (P.m + 1)) Kf)
@@ -360,10 +358,6 @@ section Rule
 
 variable {p : ℕ} [Fact p.Prime] (X : Sys p) (Kc : Type) [Field Kc] [Algebra X.G.Kf Kc] (j : ℕ)
 
-theorem NJ_pos : 0 < NJ X j := by
-  unfold NJ NN
-  omega
-
 theorem hvE_congr {A : Type*} [CommRing A] {n : ℕ} (x : Fin n → ℕ → A) (y : Matrix (Fin n) (Fin n) A) (c : ℕ) (h h' : Fin c → ℕ)
     (hh : ∀ k, h k ≤ n) (hh' : ∀ k, h' k ≤ n) (e : h = h') : hvE x y c h hh = hvE x y c h' hh' := by
   subst e
@@ -445,7 +439,7 @@ theorem xA_of (hS : XShape) : XA := by
     beta_reduce
     rw [hc1, hc2]
   · have hf := highest_vector_full_holds (DA X Kc j) (NJ X j) (muX X j (NJ X j) ⟨v, s⟩) (hanti _) (cX X j ⟨v, s⟩) (eX X j ⟨v, s⟩)
-      (hle _) he1 he2 (XAAux.NJ_pos X j) (fun a i => algebraMap X.G.Kf (DA X Kc j) (x ⟨v, s⟩ a i)) (dyMat X Kc j v s)
+      (hle _) he1 he2 (Formalism.L2.PairingIndexBounds.Ent.MiddleFrameLemmas.NJ_pos X j) (fun a i => algebraMap X.G.Kf (DA X Kc j) (x ⟨v, s⟩ a i)) (dyMat X Kc j v s)
     have hnu : nuS X j ⟨v, s⟩ = fun t => muX X j (NJ X j) ⟨v, s⟩ t - eX X j ⟨v, s⟩ := ite_eq_right ho
     have hdet : (Matrix.of fun a i : Fin (NJ X j) => algebraMap X.G.Kf (DA X Kc j) (x ⟨v, s⟩ a i.val)).det =
         algebraMap X.G.Kf (DA X Kc j) (Matrix.of fun a i : Fin (NJ X j) => x ⟨v, s⟩ a i.val).det := by
@@ -753,7 +747,6 @@ theorem sim_mF (hO : ∀ o : X.G.O, algebraMap X.G.Kf Kc (algebraMap X.G.O X.G.K
 end Blocks
 
 end FrameUnitLemmas
-
 
 open FrameUnitLemmas in
 theorem xUnit_of (hS : XShape) : XUnit := by
@@ -1286,8 +1279,9 @@ end Formalism.L2.PairingIndexBounds.Ent
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.PairingIndexBounds.RowActionCoefficients.AdmissibleInterpolation.TgtBidet
+@[expose] public section -- clump member: Formalism.LocalToGlobal.PairingIndexBounds.RowActionCoefficients.AdmissibleInterpolation.TgtBidet
 
+noncomputable section
 
 namespace Formalism.L2.PairingIndexBounds.Ent
 
@@ -1311,7 +1305,6 @@ theorem toK_bidet {r n K' : ℕ} (sz : Fin K' → ℕ) (hsz : ∀ k, sz k ≤ n)
   congr 1
   ext a b
   simp
-
 
 include hem hν hh hM in
 theorem tgt_bidet (hDB : DualBases) (hFP : FockProd) (hRe : Reorder) (c : B → ℕ) (sz : ∀ b, Fin (c b) → ℕ)
@@ -1358,6 +1351,7 @@ theorem tgt_bidet (hDB : DualBases) (hFP : FockProd) (hRe : Reorder) (c : B → 
     rfl
 
 end Formalism.L2.PairingIndexBounds.Ent
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.PairingIndexBounds.RowActionCoefficients.AdmissibleInterpolation.AdmissibleGeneralLatticeTuple

@@ -11,8 +11,8 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.WeilGroupCh
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.LocConstOfKer
 
 theorem UpperTheory.Reformulated.B.LocallyConstantOfKernelCapelliIdentities.locConst_of_ker :
-    ∀ {G M : Type} [inst : Group G]
-    [inst_1 : TopologicalSpace G] [IsTopologicalGroup G] [inst_3 : Group M] (χ : G →* M),
+    ∀ {G M : Type} [Group G]
+    [TopologicalSpace G] [IsTopologicalGroup G] [Group M] (χ : G →* M),
     IsOpen (↑χ.ker : Set G) → IsLocallyConstant (⇑χ : G → M) := by
   intro G M _ _ _ _ χ h
   rw [IsLocallyConstant.iff_exists_open]

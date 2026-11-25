@@ -758,8 +758,10 @@ end -- clump:auto
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ZarhinTrickBundleUniqueOfOrderLinearIso
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ZarhinTrickBundleUniqueOfOrderLinearIso
 open GlobalTheory.AbDual GlobalTheory.CechPic
+
+noncomputable section
 
 namespace GlobalTheory.ZarhinUniqBundle
 
@@ -821,7 +823,6 @@ theorem natCast_eq_sum (d : ℕ) : ((d : ℕ) : ord d) = ∑ k, colU d k * idem 
 end GlobalTheory.ZarhinUniqBundle
 
 namespace GlobalTheory.ZarhinUniqBundle
-
 
 open ReciprocityTheory.ChartRestriction.G.Out in
 theorem cancel_pow : ∀ (S : Scheme.{0}) (A B : Over S) [GrpObj A] [GrpObj B], IsAbelianScheme A → ∀ d : ℕ, 0 < d →
@@ -887,10 +888,6 @@ theorem act_natCast (hr : IsRAct A act) (n : ℕ) : act (n : O) = 𝟙 A ^ n := 
   induction n with
   | zero => rw [Nat.cast_zero, act_zero hr, pow_zero]
   | succ n ih => rw [Nat.cast_succ, hr.2.2.2, ih, hr.2.1, pow_succ]
-
-theorem act_sum (hr : IsRAct A act) {κ : Type} (s : Finset κ) (f : κ → O) :
-    act (∑ i ∈ s, f i) = ∏ i ∈ s, act (f i) := by
-  apply _root_.GlobalTheory.ZarhinUniqIso.act_sum' <;> assumption
 
 end Act
 
@@ -995,7 +992,7 @@ theorem lbIso_of_ordLinear : ∀ (h M d : ℕ), 0 < d → ∀ (S : Scheme.{0}) (
     exact hw
   have hψ1 : ψ = 𝟙 c.A := cancel_pow S c.A c.A c.ab d hd ψ (𝟙 _) hψd
   have hincu' : inc₁ ≫ u = inc₁ := by rw [hincu, hψ1, Category.id_comp]
-  have hsum := act_sum hr₁ Finset.univ (fun k ↦ colU d k * idem d * rowU d k)
+  have hsum := GlobalTheory.ZarhinUniqIso.act_sum' hr₁ Finset.univ (fun k ↦ colU d k * idem d * rowU d k)
   rw [← natCast_eq_sum, act_natCast hr₁] at hsum
   have key : (𝟙 z₁.A ^ d) ≫ u = (𝟙 z₁.A ^ d) ≫ 𝟙 _ := by
     rw [hsum, prod_comp, Category.comp_id]
@@ -1009,6 +1006,7 @@ theorem lbIso_of_ordLinear : ∀ (h M d : ℕ), 0 < d → ∀ (S : Scheme.{0}) (
   exact (cls_eq_iff hL₁ hP').1 cc.symm
 
 end GlobalTheory.ZarhinUniqBundle
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ZarhinTrickBundleUniqueOfOrderLinearIsoStatement

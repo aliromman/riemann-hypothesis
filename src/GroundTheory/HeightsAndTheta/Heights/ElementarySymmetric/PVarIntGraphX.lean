@@ -55,16 +55,6 @@ end -- clump:auto
 
 set_option maxSynthPendingDepth 1
 
-namespace GroundTheory.Heights₂.Heights
-
-theorem IntegralIndep.closed : IntegralIndep.Statement :=
-  IntegralIndep.proof
-    (PosPartIndep.proof
-      (SheetOnlyNull.proof IndefiniteRowSideFullHecke.ComplexSets.FiniteMapOpen.proof
-        IndefiniteRowSideFullHecke.ComplexSets.CriticalImageNull.proof)
-      PosPartLocal.proof PosPartSplit.proof)
-
-end GroundTheory.Heights₂.Heights
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PLelongPolyLimit
@@ -95,10 +85,11 @@ theorem linEval_single_last {n : ℕ} (x : Fin (n + 1) → ℂ) :
 end GroundTheory.Heights₂.Heights.Targets
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PVarIntGraph
+@[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PVarIntGraph
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 namespace GroundTheory.Heights₂.Heights.Targets
 
@@ -276,7 +267,6 @@ theorem chartAbsDens_congr_zeroSet {m : ℕ} {K : Ideal (MvPolynomial (Fin m) �
 
 end VarIntGraph
 
-
 open VarIntGraph in
 theorem VarIntGraphInt.proof (hI : IntegralIndep.Statement) : VarIntGraphInt.Statement := by
   classical
@@ -311,11 +301,13 @@ theorem VarIntGraphInt.proof (hI : IntegralIndep.Statement) : VarIntGraphInt.Sta
 
 end GroundTheory.Heights₂.Heights.Targets
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.PVarIntGraphX
+@[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.PVarIntGraphX
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 namespace GroundTheory.Heights₂.Heights.Targets
 
@@ -325,7 +317,7 @@ open GroundTheory.Heights₂.Heights (varInt SmoothNear localMult linEval linFor
 open GroundTheory.Heights₂.Heights.ComplexSets (zeroSet)
 
 theorem VarIntGraphInt.closed : VarIntGraphInt.Statement :=
-  VarIntGraphInt.proof GroundTheory.Heights₂.Heights.IntegralIndep.closed
+  VarIntGraphInt.proof GroundTheory.Heights₂.Heights.IntegralIndep.full
 
 theorem VarIntGraphCompact.proof (hI : VarIntGraphInt.Statement)
     (hM : GroundTheory.Heights₂.Heights.ChartMassCompact.Statement) : VarIntGraphCompact.Statement := by

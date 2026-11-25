@@ -29,14 +29,6 @@ namespace GlobalTheory.HilbertThetaSeries.LatBasis
 section Emb
 variable {F : Type} [Field F] [NumberField F] [IsTotallyReal F]
 
-theorem rhom_eq (v : InfinitePlace F) (x : F) : rhom x v = reAt v x := by
-  show InfinitePlace.embedding_of_isReal (IsTotallyReal.isReal v) x = (v.embedding x).re
-  rw [← InfinitePlace.embedding_of_isReal_apply (IsTotallyReal.isReal v) x, Complex.ofReal_re]
-
-theorem coe_reAt (v : InfinitePlace F) (x : F) : ((reAt v x : ℝ) : ℂ) = v.embedding x := by
-  rw [← rhom_eq]
-  exact InfinitePlace.embedding_of_isReal_apply (IsTotallyReal.isReal v) x
-
 theorem emb_bij : Function.Bijective (fun v : InfinitePlace F => RingHom.equivRatAlgHom F ℂ v.embedding) := by
   refine (RingHom.equivRatAlgHom F ℂ).bijective.comp
     ⟨fun v w h => InfinitePlace.embedding_injective F h, fun φ => ?_⟩
@@ -98,7 +90,7 @@ variable {F : Type} [Field F] [NumberField F] [IsTotallyReal F] {κ : Type} [Fin
 
 noncomputable def em (v : InfinitePlace F) : F →+* ℝ := InfinitePlace.embedding_of_isReal (IsTotallyReal.isReal v)
 
-theorem reAt_eq (v : InfinitePlace F) (x : F) : reAt v x = em v x := (rhom_eq v x).symm
+theorem reAt_eq (v : InfinitePlace F) (x : F) : reAt v x = em v x := (GlobalTheory.HilbertThetaSeries.RatSlash.rhom_apply v x).symm
 
 noncomputable def eM (R : Matrix κ κ ℝ) : (κ → F) →+ (InfinitePlace F × κ → ℝ) where
   toFun x p := ∑ j, R p.2 j * em p.1 (x j)
@@ -147,7 +139,7 @@ theorem det_aM_one (ω : Module.Basis (InfinitePlace F) ℚ F) : (aM ω 1).det ^
     simp only [Algebra.embeddingsMatrixReindex, Algebra.embeddingsMatrix, Matrix.reindex_apply,
       Matrix.submatrix_apply, Matrix.of_apply, Equiv.refl_symm, Equiv.coe_refl, id,
       Equiv.symm_symm, Matrix.map_apply, Matrix.transpose_apply, aM, one_mul]
-    rw [← reAt_eq, coe_reAt]
+    rw [← reAt_eq, GlobalTheory.HilbertThetaSeries.RatSlash.ofReal_reAt]
     rfl
   have hdet : (((aM ω 1)ᵀ).map (fun r : ℝ => (r : ℂ))).det = (((aM ω 1).det : ℝ) : ℂ) := by
     have h3 := RingHom.map_det Complex.ofRealHom (aM ω 1)ᵀ
@@ -426,7 +418,6 @@ theorem lattice_matrix : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal
 
 end GlobalTheory.HilbertThetaSeries.LatBasis
 
-
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.GaussSumFiltrations.PoissonSummationGaussianConstantOnEvenBlocks
@@ -686,7 +677,6 @@ theorem wcos : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (κ : 
 
 end GlobalTheory.WCos
 
-
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.GaussSumFiltrations.HilbertThetaSeriesPeriodicInversionFormula
@@ -784,7 +774,6 @@ theorem thetaSeries_periodic_slash_frickeMatrix : ∀ (F : Type) [Field F] [Numb
   ring
 
 end GlobalTheory.HilbertThetaSeries
-
 
 
 -- clump-header: {"m": "Development.AutomorphicArithmetic.AutomorphicVarieties.GaussSumFiltrations.ExistsRealMatrixForLatticeAndDualWithDet", "h": "module\n\npublic import Development.AutomorphicArithmetic.AutomorphicVarieties.GaussSumFiltrations.EvenPos\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Ring.IsFormallyReal\nimport Mathlib.Analysis.Matrix.PosDef\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.PiTensorProduct\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.ConstSmall\n\n"}

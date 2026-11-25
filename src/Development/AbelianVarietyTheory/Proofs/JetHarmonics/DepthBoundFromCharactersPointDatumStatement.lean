@@ -806,14 +806,12 @@ theorem germ_exists_unique_linear : Laws → Laws4 → TwistBCSpanStatement → 
 end GlobalTheory.FamGermExist
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.SumProdConstMul
 
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.DVR ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.H1
 open GlobalTheory GlobalTheory.FamGerm
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.SumProdConstMul
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ (PS FB ev Dof)
 open ReciprocityTheory.ChartRestriction.G.TB (colM dAct)
 
@@ -832,7 +830,13 @@ theorem sum_prod_const_mul {k Λ : Type} [CommRing k] [Fintype Λ] {n : ℕ} (S 
 end GlobalTheory.DepthBound
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.ValueAtZeroLinearCombinationIntegralSections
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.ValueAtZeroLinearCombinationIntegralSections
+
+noncomputable section
+
+open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.DVR ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.H1
+open GlobalTheory GlobalTheory.FamGerm
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ (PS ev)
 
 namespace GlobalTheory.GermValuation
@@ -862,18 +866,6 @@ theorem constantCoeff_of_isSer1 (halg : JetSer.JetAlgSt) (hrep : JetSer.RepSt) {
     rfl
   rw [e₃, MvPowerSeries.constantCoeff_C] at e₂
   exact e₂.symm
-
-section Generic
-
-variable {X Y Y₁ Z : Scheme.{0}} {L : LB X} {K K' : Type} [Fintype K] [Fintype K']
-
-theorem sval_of_secLin {φ₁ : K' → (Y₁ ⟶ X)} {ε₁ : K' → ℤ} {s₁ : LB.Sec (LB.LinComb L φ₁ ε₁)} {φ : K → (Y ⟶ X)}
-    {ε : K → ℤ} {n : ℕ} {s : Fin n → LB.Sec (LB.LinComb L φ ε)} {h : Y₁ ⟶ Y} {c : Fin n → Γ(Y₁, ⊤)}
-    (H : GeneratorPullback.SecLin L φ₁ ε₁ s₁ φ ε s h c) (r : Z ⟶ Y₁) (z : Z) {J} (hJ : Good L z J) :
-    sval s₁ r z J = ∑ i, gs r z ⊤ (c i) * sval (s i) (r ≫ h) z J := by
-  apply _root_.GlobalTheory.PullExpField.secLin_val <;> assumption
-
-end Generic
 
 section Value
 
@@ -918,7 +910,7 @@ theorem valueAtZero_linearCombination_integral_sections {k : ℕ} {α : D.toPre.
   have hz : (DegPre.zF D.toPre F).left ≫ (DegPre.prB D.toPre F).left =
       (jFK (R := V) F ≫ jK V) ≫ eSec D.toPre.P.A := GC.zF_prB D.toPre F
   have hK : (toUnit (TK V)).left = jK V := GC.toUnit_TK_left
-  rw [sval_of_secLin hs _ z hJ, ExpansionValueZero.cst_sum, Finset.sum_mul]
+  rw [GlobalTheory.PullExpField.secLin_val hs _ z hJ, ExpansionValueZero.cst_sum, Finset.sum_mul]
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [hz, ha i _ _ z J hJ, H1.cst_mul, _root_.mul_assoc]
   refine congrArg₂ (· * ·) ?_ (congrArg₂ (· * ·)
@@ -1062,8 +1054,7 @@ theorem main : Laws → Laws4 → TwistBCSpanStatement → JetSer.JetAlgSt → J
 
 end GlobalTheory.GermValuation
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.DepthBoundFromCharactersPointDatum
 

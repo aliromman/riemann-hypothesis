@@ -63,8 +63,10 @@ import Mathlib.RingTheory.SimpleRing.Principal
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreDelta, Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreGraph, Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreProj, Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreNonv
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreDelta
+section -- clump member: Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreDelta
+@[expose] public section
 
+noncomputable section
 
 open ReciprocityTheory.ThetaSummability.Real ReciprocityTheory.ChartRestriction.G.ThK.Real FockH1Action MvPolynomial Matrix
 open scoped InnerProductSpace TensorProduct
@@ -257,23 +259,11 @@ variable (b : Pol p q r 0 →ₗ[ℂ] Pol p q 0 s →ₗ[ℂ] ℂ)
 
 theorem sumL {ι : Type} [Fintype ι] (F : ι → Module.End ℂ (Pol p q r 0)) (t : Pol p q r 0 ⊗[ℂ] Pol p q 0 s) :
     (∑ i, F i).rTensor (Pol p q 0 s) t = ∑ i, (F i).rTensor (Pol p q 0 s) t := by
-  classical
-  have key : ∀ S : Finset ι, (∑ i ∈ S, F i).rTensor (Pol p q 0 s) t = ∑ i ∈ S, (F i).rTensor (Pol p q 0 s) t := by
-    intro S
-    induction S using Finset.induction_on with
-    | empty => simp
-    | insert j S hj ih => rw [Finset.sum_insert hj, Finset.sum_insert hj, LinearMap.rTensor_add, LinearMap.add_apply, ih]
-  exact key Finset.univ
+  simp only [← LinearMap.coe_rTensorHom, map_sum, LinearMap.sum_apply]
 
 theorem sumR {ι : Type} [Fintype ι] (F : ι → Module.End ℂ (Pol p q 0 s)) (t : Pol p q r 0 ⊗[ℂ] Pol p q 0 s) :
     (∑ i, F i).lTensor (Pol p q r 0) t = ∑ i, (F i).lTensor (Pol p q r 0) t := by
-  classical
-  have key : ∀ S : Finset ι, (∑ i ∈ S, F i).lTensor (Pol p q r 0) t = ∑ i ∈ S, (F i).lTensor (Pol p q r 0) t := by
-    intro S
-    induction S using Finset.induction_on with
-    | empty => simp
-    | insert j S hj ih => rw [Finset.sum_insert hj, Finset.sum_insert hj, LinearMap.lTensor_add, LinearMap.add_apply, ih]
-  exact key Finset.univ
+  simp only [← LinearMap.coe_lTensorHom, map_sum, LinearMap.sum_apply]
 
 end Form
 
@@ -358,6 +348,8 @@ theorem nontrivial_of_form {p q r s : ℕ} (c : ℂ) (b : Pol p q r 0 →ₗ[ℂ
 
 end PositivityTheory.KReal
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.CoreGraph

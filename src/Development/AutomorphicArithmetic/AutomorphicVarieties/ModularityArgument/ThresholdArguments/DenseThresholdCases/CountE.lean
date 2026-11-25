@@ -144,8 +144,6 @@ open UpperTheory.V.Z.Desc.V0
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
-
-
 namespace UpperTheory.V.Z.Desc.V0.InertiaSectionNorm
 
 private theorem Kc_conj {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] {n : ℕ}
@@ -159,18 +157,12 @@ private theorem Kc_conj {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace 
 variable {l : ℕ} [Fact l.Prime] {L Ω : Type} [Field L] [NumberField L] [IsCMField L] [Field Ω] [Algebra L Ω]
   [IsAlgClosure L Ω] {n : ℕ}
 
-private theorem cmp_of {w : Plc L} (h : ((l : ℕ) : 𝓞 L) ∉ w.asIdeal) (x : UA L n) :
-    cmp n w ((away l L n).rangeRestrict x) = cLoc w x := by
-  unfold CaseU.cmp
-  rw [dite_eq_left h]
-  rfl
-
 private theorem ext_cmp {x y : Ga l L n} (h : ∀ w, cmp n w x = cmp n w y) : x = y := by
   obtain ⟨x, rfl⟩ := (away l L n).rangeRestrict_surjective x
   obtain ⟨y, rfl⟩ := (away l L n).rangeRestrict_surjective y
   refine Subtype.ext (funext fun w => ?_)
   have e := h w.1
-  rwa [cmp_of w.2, cmp_of w.2] at e
+  rwa [UpperTheory.V.Hi.Pu.cmp_of w.2, UpperTheory.V.Hi.Pu.cmp_of w.2] at e
 
 private theorem comm_of {a b : Ga l L n} (h : ∀ w, cmp n w a = 1 ∨ cmp n w b = 1) : Commute a b := by
   refine ext_cmp fun w => ?_
@@ -369,8 +361,9 @@ theorem UpperTheory.V.Z.Desc.V0.kirMove :
     rwa [← hτ, mul_inv_cancel_left] at this
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.CuspidalDescent.GLDenseRanges.InertiaPartMaps.MapMemIsotypicInvariants
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.CuspidalDescent.GLDenseRanges.InertiaPartMaps.MapMemIsotypicInvariants
 
+noncomputable section
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N Polynomial ValuativeRel IsLocalRing Filter
 open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.LocGL GlobalTheory.GalOfCusp GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.UnitaryBC
@@ -382,8 +375,6 @@ open UpperTheory.V.Z.J.D
 open scoped Matrix TensorProduct
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
-
 
 namespace UpperTheory.V.Z.Desc.V0
 
@@ -445,6 +436,7 @@ theorem invEq1 : InvEq1 := by
 
 end UpperTheory.V.Z.Desc.V0
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.CuspidalDescent.GLDenseRanges.InertiaPartMaps.RankEqOneOfInj
 
@@ -490,8 +482,9 @@ theorem UpperTheory.V.Z.Desc.V0.locE :
   simp
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.LinkedUnramifiedChains.TeichmullerParts.SubalgebraIntegrality.CompsEx
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.LinkedUnramifiedChains.TeichmullerParts.SubalgebraIntegrality.CompsEx
 
+noncomputable section
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N Polynomial ValuativeRel IsLocalRing Filter
 open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.LocGL GlobalTheory.GalOfCusp GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.UnitaryBC
@@ -502,8 +495,6 @@ open UpperTheory.V.Z.Mult (Cp At IsDec CompOf Mult)
 open scoped Matrix TensorProduct
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
-
 
 namespace UpperTheory.V.Z.J.D
 
@@ -526,9 +517,11 @@ theorem compsEx : CompsEx := by
 
 end UpperTheory.V.Z.J.D
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.LinkedUnramifiedChains.TeichmullerParts.SubalgebraIntegrality.EquivOfChar
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.LinkedUnramifiedChains.TeichmullerParts.SubalgebraIntegrality.EquivOfChar
 
+noncomputable section
 
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.LocGL ValuativeRel
 
@@ -649,7 +642,6 @@ private theorem sB_apply (χ : Fin n → kˣ →* ℂˣ) (p : parab k (points (F
 
 end Loc
 
-
 open GlobalTheory.SmGL.PrinProd in
 theorem psRes : PsRes := by
   intro k _ _ _ _ n ω ω' _ _ h
@@ -672,6 +664,7 @@ theorem psRes : PsRes := by
     ring
 
 end UpperTheory.V.Z.J.D
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.StabilizerSubgroup
@@ -834,8 +827,6 @@ open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.
 open UpperTheory.V.HV (Coef)
 open UpperTheory.V.Z.J.D
 
-
-
 private theorem norm_le_of_isIntegral {l : ℕ} [Fact l.Prime] {A B : Type} [CommRing A] [CommRing B] [Algebra A B]
     (x : B →+* PadicAlgCl l) (h : ∀ a, ‖x (algebraMap A B a)‖ ≤ 1) {t : B} (ht : IsIntegral A t) : ‖x t‖ ≤ 1 := by
   obtain ⟨p, hm, hp⟩ := ht
@@ -898,9 +889,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.BcOf
 @[expose] public section
-
-
-
 
 section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions GlobalTheory.CuspRep GlobalTheory.UnitaryBC UpperTheory.V UpperTheory.V.Af UpperTheory.V.Z.Desc.P
@@ -1004,9 +992,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.ResEq2
 @[expose] public section
 
-
-
-
 section
 noncomputable section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N Polynomial ValuativeRel IsLocalRing Filter
@@ -1052,9 +1037,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TAtSame
 @[expose] public section
-
-
-
 
 section
 noncomputable section
@@ -1151,9 +1133,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TCountE
 @[expose] public section
-
-
-
 
 section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Polynomial ValuativeRel IsLocalRing Filter GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.LocLanglands GlobalTheory.LocGL GlobalTheory.GalOfCusp GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.UnitaryBC UpperTheory.V UpperTheory.V.Hi UpperTheory.V.Hi.CaseU
@@ -1522,9 +1501,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TPartRep
 @[expose] public section
 
-
-
-
 section
 noncomputable section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N Polynomial ValuativeRel IsLocalRing Filter
@@ -1613,9 +1589,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TSphSame
 @[expose] public section
 
-
-
-
 section
 noncomputable section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N Polynomial ValuativeRel IsLocalRing Filter
@@ -1700,9 +1673,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TZEqDimE
 @[expose] public section
-
-
-
 
 section
 noncomputable section
@@ -1819,9 +1789,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.CountE
-
-
-
 
 section
 open UpperTheory.V.Z.J.D

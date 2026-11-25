@@ -17,7 +17,7 @@ import Mathlib.Tactic.Linter.Style
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.DiagonalMultiplication
 
 theorem UpperTheory.Reformulated.B.UpperTriangularThreeDiagonalOfMul.diag_mul :
-    ∀ {R : Type} [inst : CommRing R]
+    ∀ {R : Type} [CommRing R]
     (X Y : Matrix (Fin (3 : ℕ)) (Fin (3 : ℕ)) R),
     (∀ (i j : Fin (3 : ℕ)), j < i → X i j = (0 : R)) →
       (∀ (i j : Fin (3 : ℕ)), j < i → Y i j = (0 : R)) → ∀ (a : Fin (3 : ℕ)), (X * Y) a a = X a a * Y a a := by

@@ -114,18 +114,15 @@ import Mathlib.Algebra.Ring.IsFormallyReal
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IndexIdealMulConjEqGramDetSelfDual, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ColonOneSpanImageEqMap, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ColonPowMulCancelFgFractional, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeDeterminantIndexIdealMapInjectiveEqColon, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeDeterminantSpanSpanEqGeneratorDets, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LinearIndependentImagesOfRankOneLattice, Development.AbelianVarietyTheory.Proofs.DivisorProofs.RankOneFgLatticeEqFractionalIdealSmulVector, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SpanScaledMappedRowDetsEqPowMulSpan, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IndexIdealRankOneTensorImageEqMap, Development.AbelianVarietyTheory.Proofs.DivisorProofs.CmDefiniteLieIndexIdealEqNormIdeal, Development.AbelianVarietyTheory.Proofs.DivisorProofs.CmDifferentFromIdeal, Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelIndexISupMapEqPow, Development.AbelianVarietyTheory.Proofs.DivisorProofs.DegISupMapRankOneLatticeOfGram, Development.AbelianVarietyTheory.Proofs.DivisorProofs.MeanLogNormEmbeddingsRingHom, Development.AbelianVarietyTheory.Proofs.DivisorProofs.DegreeImagesEigenLinesCmUnitaryShimuraObject, Development.AbelianVarietyTheory.Proofs.DivisorProofs.CmObjectDefiniteLieEigenLatticeDegreeDifference
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IndexIdealMulConjEqGramDetSelfDual
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IndexIdealMulConjEqGramDetSelfDual
 
+noncomputable section
 
 open NumberField
 
 namespace GlobalTheory.SelfDualIndex
 
 variable {E : Type} [Field E] [NumberField E] {p : ℕ}
-
-theorem bdd_of_fg {Λ : Submodule (𝓞 E) (Fin p → E)} (h : Λ.FG) : GlobalTheory.BetaEx.Bdd Λ := by
-  apply _root_.GlobalTheory.LatIndexDeg.bdd_of_fg <;> assumption
-
 
 omit [NumberField E] in
 theorem ιMulti_single_ne_zero :
@@ -138,7 +135,6 @@ theorem ιMulti_single_ne_zero :
   rw [show (Matrix.of fun j : Fin p => (Pi.single j (1 : E) : Fin p → E)) = 1 from by
     ext i j; simp [Matrix.one_apply, Pi.single_apply, eq_comm], Matrix.det_one] at this
   exact one_ne_zero this
-
 
 omit [NumberField E] in
 theorem idx_eq (Λ : Submodule (𝓞 E) (Fin p → E)) (J : Ideal (𝓞 E)) (hJ : J • GlobalTheory.BetaEx.detSpan Λ = 1) :
@@ -239,7 +235,7 @@ theorem idx_mul_map_bar_eq : ∀ (E : Type) [Field E] [NumberField E] (bar : �
     convert hO b using 1
     funext a
     exact (hb a).symm
-  obtain ⟨J, -, hJ, -⟩ := GlobalTheory.BetaEx.exists_index_ideal _ Λ hstd (bdd_of_fg hfg)
+  obtain ⟨J, -, hJ, -⟩ := GlobalTheory.BetaEx.exists_index_ideal _ Λ hstd (GlobalTheory.LatIndexDeg.bdd_of_fg hfg)
     (fun m _ => GlobalTheory.BetaEx.exists_smul_std m)
   rw [GlobalTheory.DetIdeal.detSpan_std] at hJ
   have hJ1 : J • GlobalTheory.BetaEx.detSpan Λ = 1 := hJ.symm
@@ -283,7 +279,7 @@ theorem idx_mul_map_bar_eq : ∀ (E : Type) [Field E] [NumberField E] (bar : �
         simp [hbd, smul_eq_mul]
       rw [this, Matrix.mulVec_smul, hw, smul_zero, zero_dotProduct]
       simp
-    obtain ⟨k, hk0, hk⟩ := bdd_of_fg hfg
+    obtain ⟨k, hk0, hk⟩ := GlobalTheory.LatIndexDeg.bdd_of_fg hfg
     obtain ⟨i, hi⟩ : ∃ i, w i ≠ 0 := by
       by_contra! hne
       exact hw0 (funext hne)
@@ -423,6 +419,7 @@ theorem idx_mul_map_bar_eq : ∀ (E : Type) [Field E] [NumberField E] (bar : �
 
 end GlobalTheory.SelfDualIndex
 end -- clump:auto
+end -- clump:auto
 
 section -- clump: shared namespace opens
 
@@ -462,7 +459,6 @@ private theorem one_mem_colon_one_smul_of_fg {E : Type} [Field E] [NumberField E
     exact hinv s hs
   rw [mul_comm, ← Algebra.smul_def]
   exact Submodule.smul_mem_smul hi ha
-
 
 open NumberField in
 open scoped nonZeroDivisors in
@@ -1369,7 +1365,6 @@ section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.D
 
 noncomputable section
 namespace GlobalTheory.FlatCM.ImageDeg
-
 
 open GlobalTheory.HermHom in
 theorem form_diff_eq_pair : ThetaUnifAV → Out.Laws → ∀ (K : Type) [Field K] [NumberField K] (P : Out.PolAV (Sp (𝓞 K))) (F : GenFib P)

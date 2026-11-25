@@ -36,7 +36,6 @@ namespace UpperTheory.HilbertEisensteinWeightOne.EisensteinIntegrability
 
 variable {F : Type} [Field F] [NumberField F] [IsTotallyReal F]
 
-
 variable (F) in
 def gauss : 𝓢(NumberField.mixedEmbedding.mixedSpace F, ℂ) :=
   SchwartzMap.compCLMOfContinuousLinearEquiv ℂ (mixedToEuclidean F)
@@ -46,7 +45,6 @@ def gJ (J : (FractionalIdeal (𝓞 F)⁰ F)ˣ) : Ad F → ℂ := schwartzBruhatT
 
 theorem gJ_mem (J : (FractionalIdeal (𝓞 F)⁰ F)ˣ) : gJ J ∈ schwartzBruhat F :=
   schwartzBruhatTensor_mem _ (cosetIndicator_mem_finiteSchwartzBruhat J 0)
-
 
 variable (F) in
 def invN (N : ℕ) : IdeleGroup F :=
@@ -143,7 +141,6 @@ private theorem sq_lin_le {a b p q H : ℝ} (hp : |p| ≤ H) (hq : |q| ≤ H) :
   nlinarith [sq_nonneg (a * p - b * q), mul_le_mul_of_nonneg_left hp2 (sq_nonneg a),
     mul_le_mul_of_nonneg_left hq2 (sq_nonneg b)]
 
-
 open Classical in
 theorem dom_gen {Kc : Set (Matrix (Fin 2) (Fin 2) (Ad F))} (hK : IsCompact Kc) {L : Set (Af F)} (hL : IsCompact L) :
     ∃ (J : (FractionalIdeal (𝓞 F)⁰ F)ˣ) (N : ℕ), ∀ A ∈ Kc, ∀ y : Fin 2 → Ad F,
@@ -231,8 +228,9 @@ end UpperTheory.HilbertEisensteinWeightOne.EisensteinIntegrability
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.ContinuousPInfCoord
+@[expose] public section -- clump member: PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.ContinuousPInfCoord
 
+noncomputable section
 
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N Polynomial
 open GlobalTheory.CuspRep GlobalTheory.HeckeGal GlobalTheory.GalOfCusp UpperTheory.V.Af UpperTheory.V.Base
@@ -257,7 +255,6 @@ theorem finite_dd : {w : HeightOneSpectrum (𝓞 F) | dd w ≠ 0}.Finite := by
   refine (Ideal.finite_factors h0).subset fun w hw => ?_
   simp only [Set.mem_ofPred_eq, dd, ordI, Nat.cast_ne_zero] at hw ⊢
   exact (Associates.count_ne_zero_iff_dvd h0 w.irreducible).1 hw
-
 
 variable (F) in
 def idealOf (e : HeightOneSpectrum (𝓞 F) → ℤ) : (FractionalIdeal (𝓞 F)⁰ F)ˣ := ∏ᶠ w, primeIdealUnit w ^ e w
@@ -307,21 +304,14 @@ theorem norm_phiH_le {ω : HChar F} {c : HeightOneSpectrum (𝓞 F) → ℕ} (H 
     positivity
   · simp
 
-private theorem continuous_pInf_coord (v : InfinitePlace F) :
-    Continuous fun x : Ad F => UpperTheory.V.TR.pInf F x v := by
-  have h : (fun x : Ad F => UpperTheory.V.TR.pInf F x v) =
-      fun x => (homeomorphMixedSpace F x.1).1 ⟨v, IsTotallyReal.isReal v⟩ := funext fun x => pInf_apply_eq x v
-  rw [h]
-  exact (continuous_apply _).comp (continuous_fst.comp ((homeomorphMixedSpace F).continuous.comp continuous_fst))
-
 private theorem continuous_arch_comp {X : Type*} [TopologicalSpace X] {a b : X → Ad F} (ha : Continuous a)
     (hb : Continuous b) : Continuous fun p => arch (UpperTheory.V.TR.pInf F (a p)) (UpperTheory.V.TR.pInf F (b p)) := by
   unfold arch
   refine continuous_finsetProd _ fun v _ => ?_
   have h1 : Continuous fun p => ((UpperTheory.V.TR.pInf F (a p) v : ℝ) : ℂ) :=
-    Complex.continuous_ofReal.comp ((continuous_pInf_coord v).comp ha)
+    Complex.continuous_ofReal.comp ((UpperTheory.HilbertEisensteinWeightOne.EisensteinIntegrability.continuous_pInf_apply v).comp ha)
   have h2 : Continuous fun p => ((UpperTheory.V.TR.pInf F (b p) v : ℝ) : ℂ) :=
-    Complex.continuous_ofReal.comp ((continuous_pInf_coord v).comp hb)
+    Complex.continuous_ofReal.comp ((UpperTheory.HilbertEisensteinWeightOne.EisensteinIntegrability.continuous_pInf_apply v).comp hb)
   exact (h1.add (continuous_const.mul h2)).mul
     (Complex.continuous_exp.comp (continuous_const.mul ((h1.pow 2).add (h2.pow 2))))
 
@@ -378,6 +368,7 @@ theorem measurable_eisInt {ω : HChar F} {c : HeightOneSpectrum (𝓞 F) → ℕ
   exact ((hθ.mul hω.measurable).mul ht.measurable).mul measurable_const
 
 end UpperTheory.HilbertEisensteinWeightOne.EisensteinIntegrability
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: PositivityTheory.AutomorphicForms.PublishedInputs.HilbertEisenstein.IdeleModuleSectionMul

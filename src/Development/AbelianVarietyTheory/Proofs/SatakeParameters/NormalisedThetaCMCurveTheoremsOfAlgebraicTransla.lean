@@ -39,8 +39,9 @@ import Formalism.LocalToGlobal.TorsionIntegrality.SecondCoefficientNorms.CurveSe
 -- Members: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ExistsUnitConjugateNormTwoPowerTwoAdic, Development.AbelianVarietyTheory.Proofs.SatakeParameters.GoodOrdinaryModelAtTwoCmLatticeSevenModEight, Development.AbelianVarietyTheory.Proofs.SatakeParameters.IntSExpMulTranslate, Development.AbelianVarietyTheory.Proofs.SatakeParameters.LocJetsAll, Development.AbelianVarietyTheory.Proofs.SatakeParameters.NormalisedThetaCMCurveTheoremsOfAlgebraicTransla
 
 section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ExistsUnitConjugateNormTwoPowerTwoAdic
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 open scoped ComplexConjugate
 open Filter Topology
 
@@ -48,13 +49,10 @@ namespace GlobalTheory.ThLoc.GoodTwo
 
 open PI.GoodTwo
 
-theorem isIntegral_jInv : Formalism.L2.Th1.CM.JInvariantIntegrality := by
-  apply GlobalTheory.ThLoc.cm1
-
 theorem norm_jInv_le_one (d : ℕ) (L : PeriodPair) (hsq : Squarefree d) (hmod : d % 4 = 3) (hcm : Formalism.L2.Th1.CM.HasCMBy d L)
     (p : ℕ) [Fact p.Prime] (ι : ℂ ≃+* ℂ_[p]) : ‖ι (Formalism.L2.Th1.CM.jInv L)‖ ≤ 1 :=
   GlobalTheory.MomOne.model_norm_le_one_of_isIntegral
-    ((isIntegral_jInv d L hsq hmod hcm).map_of_comp_eq (RingHom.id ℤ) (ι : ℂ →+* ℂ_[p]) (RingHom.ext_int _ _))
+    ((GlobalTheory.ThLoc.cm1 d L hsq hmod hcm).map_of_comp_eq (RingHom.id ℤ) (ι : ℂ →+* ℂ_[p]) (RingHom.ext_int _ _))
 
 section
 
@@ -654,6 +652,7 @@ end
 theorem goodModelTwo : Formalism.L2.Th1.Top.GoodModelTwo := full_of_normPow isPrincipal_pow_prime_over_two
 
 end GlobalTheory.ThLoc.GoodTwo
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 

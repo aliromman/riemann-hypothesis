@@ -455,8 +455,9 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.LieImageCompatibleWithBaseChange
 
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
@@ -464,13 +465,7 @@ open GlobalTheory.ThetaTrace GlobalTheory.HeckeFrCompare GlobalTheory.PlaceInt
 open scoped CategoryTheory.Obj
 open GlobalTheory.HkIntegral
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.LieImageCompatibleWithBaseChange
-
 namespace GlobalTheory.LieImageBC
-
-theorem sp_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
-    spMap g ≫ spMap f = spMap (g.comp f) :=
-  (Spec.map_comp (CommRingCat.ofHom f) (CommRingCat.ofHom g)).symm
 
 theorem epi_of_local {A B : Type} [CommRing A] [CommRing B] [IsLocalRing A] [IsLocalRing B] (d : A →+* B)
     [IsLocalHom d] (hd : Function.Injective d) : Epi (spMap d) := by
@@ -507,7 +502,7 @@ theorem epi_dualMap {K L : Type} [Field K] [Field L] (φ : K →+* L) : Epi (spM
 
 theorem dual_eps {S T : Type} [CommRing S] [CommRing T] (ψ : S →+* T) (a : S) :
     spMap (dualMap ψ) ≫ spMap (epsMul a) = spMap (epsMul (ψ a)) ≫ spMap (dualMap ψ) := by
-  rw [sp_comp, sp_comp]
+  rw [GlobalTheory.spMap_comp_ring, GlobalTheory.spMap_comp_ring]
   congr 1
   ext s <;> simp [dualMap, epsMul, TrivSqZeroExt.algebraMap_eq_inl]
 
@@ -556,8 +551,16 @@ theorem isLieImageH_baseChange : ∀ (E : Type) [Field E] [NumberField E] [IsCMF
 
 end GlobalTheory.LieImageBC
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.LieLatticeOnto
+
+
+open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsDedekindDomain
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
+open GlobalTheory.ThetaTrace GlobalTheory.HeckeFrCompare GlobalTheory.PlaceInt
+open scoped CategoryTheory.Obj
+open GlobalTheory.HkIntegral
 
 namespace GlobalTheory.HkLie
 
@@ -692,8 +695,6 @@ theorem lie_lattice_onto : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E
 
 end GlobalTheory.HkLie
 end -- clump:auto
-
-end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.LieLatticeOntoStatement
 

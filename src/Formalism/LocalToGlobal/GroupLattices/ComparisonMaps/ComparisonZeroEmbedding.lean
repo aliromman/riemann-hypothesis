@@ -56,8 +56,9 @@ end Formalism.L2.G.Cmp
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GroupLattices.ComparisonMaps.ComparisonZeroEmbedding
+@[expose] public section -- clump member: Formalism.LocalToGlobal.GroupLattices.ComparisonMaps.ComparisonZeroEmbedding
 
+noncomputable section
 
 namespace Formalism.L2.G.Cmp
 
@@ -74,34 +75,17 @@ def cmpSl : ((D.fm u).lat 0).V →ₛₗ[c.embW u w h] (D.gat u w h).Fn where
 def cmpZero : ((Tw.fm u (D.what₂.muAt w)).lat 0).V →ₛₗ[c.embW u w h] (D.gat u w h).Fn :=
   (cmpSl c u w h).comp (Tw.e0 u (D.what₂.muAt w)).symm.toLinearMap
 
-private theorem semilinear_apply_mem_span_image_basis {K L V W κ : Type*} [Field K] [Field L] {σ : K →+* L} [AddCommGroup V]
-    [Module K V] [AddCommGroup W] [Module L W] (B : Module.Basis κ K V) (φ : V →ₛₗ[σ] W) (x : V) :
-    φ x ∈ Submodule.span L (Set.range (φ ∘ B)) := by
-  have hx : x ∈ Submodule.span K (Set.range B) := by
-    rw [B.span_eq]; trivial
-  induction hx using Submodule.span_induction with
-  | mem y hy =>
-    obtain ⟨i, rfl⟩ := hy
-    exact Submodule.subset_span ⟨i, rfl⟩
-  | zero => simp
-  | add y z _ _ hy hz =>
-    rw [map_add]; exact add_mem hy hz
-  | smul r y _ hy =>
-    rw [map_smulₛₗ]; exact Submodule.smul_mem _ _ hy
-
 private theorem linearIndependent_semilinear_basis_of_basis {K L V W κ κ' : Type*} [Field K] [Field L] {σ : K →+* L} [AddCommGroup V]
     [Module K V] [AddCommGroup W] [Module L W] [Fintype κ] [Fintype κ'] (B : Module.Basis κ K V)
     (B' : Module.Basis κ' K V) (φ : V →ₛₗ[σ] W) (hB : LinearIndependent L (φ ∘ B)) :
     LinearIndependent L (φ ∘ B') := by
   rw [linearIndependent_iff_card_eq_finrank_span] at hB ⊢
   have hs : Submodule.span L (Set.range (φ ∘ B')) = Submodule.span L (Set.range (φ ∘ B)) := by
-    apply le_antisymm
-    · rw [Submodule.span_le]
-      rintro _ ⟨a, rfl⟩
-      exact semilinear_apply_mem_span_image_basis B φ (B' a)
-    · rw [Submodule.span_le]
-      rintro _ ⟨a, rfl⟩
-      exact semilinear_apply_mem_span_image_basis B' φ (B a)
+    refine le_antisymm ?_ ?_ <;> rw [Submodule.span_le, Set.range_comp, Set.range_comp]
+    · exact (Set.image_mono fun x _ => by rw [SetLike.mem_coe, B.span_eq]; trivial).trans
+        (Submodule.image_span_subset_span φ _)
+    · exact (Set.image_mono fun x _ => by rw [SetLike.mem_coe, B'.span_eq]; trivial).trans
+        (Submodule.image_span_subset_span φ _)
   unfold Set.finrank at hB ⊢
   rw [hs, ← hB]
   exact Fintype.card_congr (B'.indexEquiv B)
@@ -206,6 +190,7 @@ def kerAll {D : D7} (hT : GatTies D) (c : LatCmp D) (Tw : TwForms D) (Y : LatIns
 
 end Formalism.L2.G.Cmp
 
+end
 
 -- clump-header: {"m": "Formalism.LocalToGlobal.GroupLattices.ComparisonMaps.ChainFirstChainK", "h": "module\n\npublic import Formalism.LocalRingCardinality.DataKerP\npublic import Formalism.LocalToGlobal.GroupLattices.ComparisonMaps.IsComplRatCompl\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 -- clump-header: {"m": "Formalism.LocalToGlobal.GroupLattices.ComparisonMaps.ComparisonZeroEmbedding", "h": "module\n\npublic import Formalism.LocalToGlobal.GroupLattices.ComparisonMaps.ChainFirstChainK\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Sheaves.Init\n\n"}

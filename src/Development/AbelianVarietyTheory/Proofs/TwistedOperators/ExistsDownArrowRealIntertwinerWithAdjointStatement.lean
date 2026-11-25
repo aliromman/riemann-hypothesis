@@ -879,7 +879,7 @@ theorem exists_adj_glue {V W : HSp D} {S S' : D.what₂.Tau → SPar} (M : DSMod
   have part : ∀ τ a, ∃ B : LPol W.rank V.rank →ₗ[ℂ] M'.sm τ →ₗ[ℂ] M.H τ, LocW M M' τ (aS τ) (aT τ) B ∧
       ∀ x, Fn (Function.update a τ x) = ⟪x.2.2, B x.1 x.2.1⟫_ℂ := by
     intro τ a
-    obtain ⟨A, hA, hA'⟩ := GlobalTheory.T.exists_realIntertwiner_contraction_one_place D V W _ _ M M' θ ψ ω f τ _ _ It hθ (hv τ).2.1 (hv τ).2.2 hI
+    obtain ⟨A, hA, hA'⟩ := GlobalTheory.Chain.RealLine.Semi.exists_semiW D V W _ _ M M' θ ψ ω f τ _ _ It hθ (hv τ).2.1 (hv τ).2.2 hI
       (fun ρ => (a ρ).2.1) (fun ρ => (a ρ).2.2)
     obtain ⟨j, hj⟩ := exists_ins (fun ρ => (a ρ).1) τ
     refine ⟨A ∘ₗ j, locW_of_semiW hA hj, fun x => ?_⟩
@@ -1079,14 +1079,15 @@ theorem _root_.GlobalTheory.T.realIntertwiner_adjoint_smoothValues : ∀ {D : D7
   first | exact @GlobalTheory.AdjSmooth.adjoint_smooth
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsNonzeroFockVacuumConjUnitVacuumNegSpace
+section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsNonzeroFockVacuumConjUnitVacuumNegSpace
+@[expose] public section
 open GlobalTheory.Chain GlobalTheory.ChainFr GlobalTheory.Chain.RealIt GlobalTheory.PairLift
 
+noncomputable section
 
 namespace GlobalTheory.VacCjNeg
 
 variable {D : D7}
-
 
 open GlobalTheory.IndefiniteRowSideFullHecke.ConjugateAdjointDagger in
 theorem dRho_cj {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsStdChar D ψ (-1)) (S T : HSp D) (θ : InfFam D)
@@ -1137,11 +1138,15 @@ theorem isVacVec_cj_of_isVac_neg : ∀ {D : D7} (S T : GlobalTheory.Grid.Node D)
 
 end GlobalTheory.VacCjNeg
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.RealIntertwinerDownArrowTransportAdjoint
+section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.RealIntertwinerDownArrowTransportAdjoint
+@[expose] public section
 open GlobalTheory.Chain GlobalTheory.ChainFr GlobalTheory.Chain.RealIt GlobalTheory.PairLift
 
+noncomputable section
 
 namespace GlobalTheory.AdjTr
 
@@ -1172,7 +1177,6 @@ theorem isIntw_transport {V W : HSp D} {S S' : D.what₂.Tau → SPar} {X Y P P'
   · intro τ Y hY φ φ' v v' hd hv
     exact h.invg τ Y hY (e φ) (e φ') v v' (fun z => by
       simpa only [hpt, hω, Function.comp_apply] using hd (b z)) hv
-
 
 open GlobalTheory.FockAdjoint in
 theorem ptOf_dag {ψ : AddChar (AF D.host.F) ℂ} {θ : InfFam D} (hψ : IsStdChar D ψ (-1)) (hθ : IsInfFam θ)
@@ -1213,7 +1217,6 @@ theorem dag_cj {S T : HSp D} (F : WO S T → ℂ) : dag S T (GlobalTheory.Indefi
 
 end GlobalTheory.AdjTr
 
-
 open GlobalTheory.AdjTr in
 theorem GlobalTheory.AdjTr.downArrow_transport : ∀ {D : D7} (S T : GlobalTheory.Grid.Node D) (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFam D) (χ : (AE D)ˣ →* Circle)
     (ω : GlobalTheory.Grid.WRep S.V T.V) (f : WO S.V T.V → ℂ), IsInfFam θ → GlobalTheory.Grid.IsWeil ψ true S.V T.V χ χ ω →
@@ -1252,6 +1255,8 @@ theorem GlobalTheory.AdjTr.downArrow_transport : ∀ {D : D7} (S T : GlobalTheor
       funext y
       simp only [Function.comp_apply, GlobalTheory.AdjLawPf.adj_invol]
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsDownArrowRealIntertwinerWithAdjoint

@@ -762,8 +762,10 @@ theorem UpperTheory.V.Z.Mult.Pi.volIdx_pf :
   exact haar_measure_rel_index μ K K' hK' hK hle
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.MultiplicityOne.HeckeIntegrability.PiTermAOf
+section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.MultiplicityOne.HeckeIntegrability.PiTermAOf
+@[expose] public section
 
+noncomputable section
 
 open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology
 open GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host GlobalTheory.BCT GlobalTheory.LFun
@@ -803,7 +805,7 @@ theorem piTermA_of (h1 : GlobalTwistedTraceBound) (hθ : ThetaFixOf) (h2 : WtEx)
       HasInfCharGL π.V (ComplexEmbedding.conjugate w.embedding) (Multiset.map (infOf (l w).w false) Finset.univ.val) := fun w => ⟨by
     rw [map_infOf_true]
     exact hl w, by
-    rw [map_infOf_false, ← GlobalTheory.T.infChar_conjEmbedding_neg_of_invariant_pairing E n π π hd w.embedding _ _ (hl w) (hlam _)]
+    rw [map_infOf_false, ← GlobalTheory.CapPair.infChar_conj_of_paired E n π π hd w.embedding _ _ (hl w) (hlam _)]
     exact hlam _⟩
   have level : ∀ N : ∀ w : Pl E, Subgroup (GLw n w), Good Z N → (∃ ψ ∈ π.V, ψ ≠ 0 ∧ ∀ k ∈ Lev S N, finRep E n k ψ = ψ) →
       (∃ φ : ∀ w : Pl E, LF n 0 w, (∀ w ∈ Z, ∀ N' ≤ N w, ∀ b, IsHecke N' (two φ φ w b)) ∧
@@ -874,6 +876,8 @@ theorem kf_top (h0 : SlotBasic) (h3 : LevTop) (hP : UpperTheory.V.Z.Tf.GlobalTra
 
 end UpperTheory.V.Z.Mult.Pi
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.MultiplicityOne.HeckeIntegrability.SeenTrA

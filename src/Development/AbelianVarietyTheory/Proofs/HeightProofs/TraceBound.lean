@@ -342,7 +342,6 @@ end GlobalTheory.TypeSum.CasBasis.Expand
 
 namespace GlobalTheory.TypeSum.CasBasis
 
-
 open Expand in
 theorem lieSet_expand_bases : ∀ (n : ℕ) (ε : Fin n → Bool), ∀ U ∈ lieSet ε,
     U = ∑ b, (trace (U * pB ε b)).re • pB ε b - ∑ i, (trace (U * kB ε i)).re • kB ε i := by
@@ -735,12 +734,10 @@ end GlobalTheory.TypeSum.CasBasis
 
 end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.CasimirUnitaryGroupActsByScalarSmoothVectors
 
 open Matrix Formalism.REAL Formalism.MainNotions.S Formalism.L2.Theta GlobalTheory.SmoothGlob GlobalTheory.TypeSum GlobalTheory.TypeSum.CasBasis GlobalTheory.LowTypeDetermined
 open scoped InnerProductSpace
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.CasimirUnitaryGroupActsByScalarSmoothVectors
 
 namespace GlobalTheory.TypeSum.CasBasis
 
@@ -772,14 +769,19 @@ end GlobalTheory.TypeSum.CasBasis
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.EllipticEstimateWordLeOnePlusLaplacianPow
+section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.EllipticEstimateWordLeOnePlusLaplacianPow
+@[expose] public section
+
+noncomputable section
+
+open Matrix Formalism.REAL Formalism.MainNotions.S Formalism.L2.Theta GlobalTheory.SmoothGlob GlobalTheory.TypeSum GlobalTheory.TypeSum.CasBasis GlobalTheory.LowTypeDetermined
+open scoped InnerProductSpace
 
 namespace GlobalTheory.TypeSum.Elliptic
 
 section Abstract
 
 variable {V : Type} [NormedAddCommGroup V] [InnerProductSpace ℂ V] {ι : Type} [Fintype ι]
-
 
 open Classical in
 def words (D : ι → Module.End ℂ V) (m : ℕ) : Finset (Module.End ℂ V) :=
@@ -968,15 +970,9 @@ theorem mem_pairs {ε : Fin n → Bool} {s : Bool} {p : Fin n × Fin n} :
   obtain ⟨a, b⟩ := p
   simp [pairs]
 
-theorem mem_lie_iff {ε : Fin n → Bool} {X : Mx n} : X ∈ lieSet ε ↔
-    ∀ a b, star (X b a) * (if ε b then 1 else -1) + (if ε a then 1 else -1) * X a b = 0 := by
-  show Xᴴ * Jm ε + Jm ε * X = 0 ↔ _
-  rw [← Matrix.ext_iff]
-  simp [Jm, Matrix.mul_diagonal, Matrix.diagonal_mul]
-
 theorem basis_mem (ε : Fin n → Bool) : ∀ Z ∈ kList ε ++ pList ε, Z ∈ lieSet ε := by
   intro Z hZ
-  rw [mem_lie_iff]
+  rw [GlobalTheory.TypeSum.CasBasis.mem_lieSet_iff_entry]
   intro a b
   simp only [kList, pList, List.mem_append, List.mem_map, List.mem_flatMap, mem_pairs, List.mem_cons,
     List.not_mem_nil, or_false] at hZ
@@ -1001,7 +997,7 @@ theorem basis_mem (ε : Fin n → Bool) : ∀ Z ∈ kList ε ++ pList ε, Z ∈ 
 
 theorem mem_span_basis (ε : Fin n → Bool) {X : Mx n} (hX : X ∈ lieSet ε) :
     X ∈ Submodule.span ℝ {Z | Z ∈ kList ε ++ pList ε} := by
-  rw [mem_lie_iff] at hX
+  rw [GlobalTheory.TypeSum.CasBasis.mem_lieSet_iff_entry] at hX
   set S := Submodule.span ℝ {Z | Z ∈ kList ε ++ pList ε} with hS
   have hs : ((Real.sqrt 2 : ℝ) : ℂ) ≠ 0 := by simp
   have lt : ∀ a b, a < b → Matrix.single a b (X a b) + Matrix.single b a (X b a) ∈ S := by
@@ -1128,7 +1124,14 @@ theorem word_le_lapOne : ∀ (n : ℕ) (ε : Fin n → Bool) (H : Type) [NormedA
 
 end GlobalTheory.TypeSum.Elliptic
 
+end
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+open Matrix Formalism.REAL Formalism.MainNotions.S Formalism.L2.Theta GlobalTheory.SmoothGlob GlobalTheory.TypeSum GlobalTheory.TypeSum.CasBasis GlobalTheory.LowTypeDetermined
+open scoped InnerProductSpace
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.IndefiniteUnitaryLieOrthonormalBasesProps
 
@@ -1257,7 +1260,6 @@ lemma mem_pairs {ε : Fin n → Bool} {same : Bool} {a b : Fin n} (h : (a, b) �
   cases same <;> cases hx : ε a <;> cases hy : ε b <;> simp_all
 
 end GlobalTheory.TypeSum.CasBasisFacts
-
 
 open GlobalTheory.TypeSum.CasBasisFacts in
 theorem GlobalTheory.TypeSum.CasBasis.bases_mem_lie : ∀ (n : ℕ) (ε : Fin n → Bool),

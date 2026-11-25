@@ -12,8 +12,9 @@ import Mathlib.Algebra.Order.Star.Int
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.ResAlgOfTheta, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.ResAlgOfSpan
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.ResAlgOfTheta
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.ResAlgOfTheta
 
+noncomputable section
 
 namespace PI.OmLocU.Red
 
@@ -42,11 +43,6 @@ theorem inclR_alg' (a : F) :
     inclR (F := F) (Fv F v) (algebraMap F E a) = sc (E := E) v (algebraMap F (Fv F v) a) := by
   rw [sc_eq', ← IsScalarTower.algebraMap_apply]
   exact (Algebra.TensorProduct.includeRight : E →ₐ[F] Fv F v ⊗[F] E).commutes a
-
-theorem sigR_sc (c : Fv F v) : sigR (Fv F v) σ (sc (E := E) v c) = sc (E := E) v c := by
-  show Algebra.TensorProduct.map (AlgHom.id F (Fv F v)) σ (c ⊗ₜ (1 : E)) = c ⊗ₜ (1 : E)
-  rw [Algebra.TensorProduct.map_tmul, map_one]
-  rfl
 
 def ThetaBas : Prop :=
   StdHyp σ J ψ → UnramAt (E := E) v → ∃ θ : 𝓞 E,
@@ -203,6 +199,7 @@ theorem resAlg_of_theta (hT : ThetaBas σ J ψ v) (hE : EtaLink σ J ψ v) : Res
   resAlg_of' σ J ψ v (resQ_of σ J ψ v hT) hE
 
 end PI.OmLocU.Red
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalUnitaryOrbits.ResAlgOfSpan

@@ -450,7 +450,6 @@ theorem exists_sum_sq (τ : A →ₗ[ℚ] ℚ) (h1 : ∀ a, a ≠ 0 → 0 < τ (
 
 end Alg
 
-
 open scoped MatrixOrder in
 theorem exists_diag {n : ℕ} (T B : Matrix (Fin n) (Fin n) ℝ) (hB : B.PosDef)
     (hT : (B * T).PosDef) :
@@ -849,14 +848,6 @@ theorem nsmul_aeval_mem_lattice_of_intMatrix_basis (g n : ℕ) (Λ : Submodule �
   rw [← this]
   ring
 
-theorem nsmul_aeval_mem_lattice_of_intMatrix : ∀ (g n : ℕ) (Λ : Submodule ℤ (Fin g → ℂ)) (e : Module.Basis (Fin n) ℝ (Fin g → ℂ)),
-    (∀ x, x ∈ Λ ↔ ∀ k, ∃ m : ℤ, e.repr x k = m) →
-    ∀ (γ : (Fin g → ℂ) →ₗ[ℂ] (Fin g → ℂ)) (Tq : Matrix (Fin n) (Fin n) ℚ),
-    Tq.map (Rat.cast : ℚ → ℝ) = LinearMap.toMatrix e e (γ.restrictScalars ℝ) →
-    ∀ (p : Polynomial ℚ) (D : ℕ), (∀ k l, ∃ m : ℤ, (D : ℚ) * Polynomial.aeval Tq p k l = m) →
-    ∀ x ∈ Λ, (D • Polynomial.aeval γ p) x ∈ Λ :=
-  fun g n Λ e hΛ γ Tq hT p D hD => nsmul_aeval_mem_lattice_of_intMatrix_basis g n Λ e hΛ γ Tq hT p D hD
-
 end GlobalTheory
 end -- clump:auto
 
@@ -1076,7 +1067,7 @@ theorem main : ∀ (g : ℕ) (Λ : Submodule ℤ (Fin g → ℂ)), DiscreteTopol
   · exact even_two_mul _
   · rw [mul_assoc]; exact even_two_mul _
   · exact fun i => even_two_mul _
-  · exact fun i => _root_.GlobalTheory.nsmul_aeval_mem_lattice_of_intMatrix g n Λ e he γ Tq hT (p i) D (hM i)
+  · exact fun i => _root_.GlobalTheory.nsmul_aeval_mem_lattice_of_intMatrix_basis g n Λ e he γ Tq hT (p i) D (hM i)
   · intro z w
     have hm₀' : ((m₀.toNat : ℕ) : ℂ) = (D : ℂ) * (c₀ : ℂ) := by
       have : ((m₀.toNat : ℤ) : ℚ) = (D : ℚ) * c₀ := by rw [Int.toNat_of_nonneg hm₀p.le, hm₀]
@@ -1329,7 +1320,9 @@ theorem sqDec_baseChange : ∀ (k R S : Type) [Field k] [CommRing R] [CommRing S
 end GlobalTheory.SqDecBC
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SquareDecompositionDescendsToFinitelyGenerated
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SquareDecompositionDescendsToFinitelyGenerated
+
+noncomputable section
 
 namespace GlobalTheory.SqDecSpread
 
@@ -1390,7 +1383,6 @@ theorem fam_comm {R S : Type} [CommRing R] [CommRing S] [Algebra k R] [Algebra k
 
 end GlobalTheory.SqDecSpread
 
-
 open GlobalTheory.Spread GlobalTheory.HomDescent GlobalTheory.SqDecSpread in
 theorem GlobalTheory.SqDecSpread.sqDec_fg : ∀ (k Ω : Type) [Field k] [Field Ω] [Algebra k Ω] (A₀ : Over (Sp k)) [GrpObj A₀],
     IsAbelianScheme A₀ → ∀ (L M : LB A₀.left), L.IsLB → M.IsLB →
@@ -1432,6 +1424,7 @@ theorem GlobalTheory.SqDecSpread.sqDec_fg : ∀ (k Ω : Type) [Field k] [Field �
     (LBIso.trans (pull_isLB (isLB_lbPow hL₁ N) _) (pull_isLB (LB.isLB_linComb hM₁ _ _) _) (LB.isLB_linComb hMR _ _) H₂
       (lbIso_linComb_bc A₀ (Subalgebra.inclusion hR) hM (fam A₀ δ) (fam A₀ gam) ε
         (fam_comm A₀ (Subalgebra.inclusion hR) δ gam fun i => (hδeq i).symm)).symm)
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SquareDecompositionDescendsToFiniteExtension

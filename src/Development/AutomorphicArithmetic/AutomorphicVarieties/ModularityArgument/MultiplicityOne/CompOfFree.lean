@@ -779,27 +779,23 @@ section Split
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {n : ℕ} {w : Pl E}
 
-private theorem mem_UL_split (hw : IsSplitAt w) (g : GLw n w) : g ∈ UL n w := by
-  rw [UL, ite_eq_left hw]
-  trivial
-
 private noncomputable def toUL (hw : IsSplitAt w) (τ : SmIrr (GLw n w)) : SmIrr (UL n w) where
   V := τ.V
   ρ := τ.ρ.comp (UL n w).subtype
   smooth v := (τ.smooth v).preimage continuous_subtype_val
   irred := by
     obtain ⟨h0, h⟩ := (GlobalTheory.CuspRep.isIrreducible_iff _).1 τ.irred
-    exact (GlobalTheory.CuspRep.isIrreducible_iff _).2 ⟨h0, fun W hW => h W fun g x hx => hW ⟨g, mem_UL_split hw g⟩ x hx⟩
+    exact (GlobalTheory.CuspRep.isIrreducible_iff _).2 ⟨h0, fun W hW => h W fun g x hx => hW ⟨g, GlobalTheory.BCT.CtLevel.mem_UL_of_split hw g⟩ x hx⟩
 
 private theorem isCompU_toUL (hw : IsSplitAt w) {σ : Submodule ℂ (UA E n → ℂ)} {τ : SmIrr (GLw n w)} (h : Cp σ w τ) :
     IsCompU σ w (toUL hw τ) := by
   obtain ⟨-, F, hF0, hFσ, hF⟩ := h
-  refine ⟨{ toFun := fun x => ⟨cLoc w x.1, mem_UL_split hw _⟩
+  refine ⟨{ toFun := fun x => ⟨cLoc w x.1, GlobalTheory.BCT.CtLevel.mem_UL_of_split hw _⟩
             map_one' := Subtype.ext (by simp)
             map_mul' := fun a b => Subtype.ext (by simp) }, fun _ => rfl, (toUL hw τ).irred, F, hF0, hFσ, fun x v => hF x v⟩
 
 private noncomputable def equivOfUL (hw : IsSplitAt w) {τ τ' : SmIrr (GLw n w)} (e : (toUL hw τ).ρ.Equiv (toUL hw τ').ρ) : τ.ρ.Equiv τ'.ρ :=
-  Representation.Equiv.mk e.toLinearEquiv fun g => e.isIntertwining' ⟨g, mem_UL_split hw g⟩
+  Representation.Equiv.mk e.toLinearEquiv fun g => e.isIntertwining' ⟨g, GlobalTheory.BCT.CtLevel.mem_UL_of_split hw g⟩
 
 end Split
 
@@ -1614,8 +1610,9 @@ theorem UpperTheory.V.Z.Mult.levTr :
       (fun k hk x => (hF k (hUle hk) x).2))
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.MultiplicityOne.StableGA
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.MultiplicityOne.StableGA
 
+noncomputable section
 
 open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology
 open GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host GlobalTheory.BCT GlobalTheory.LFun
@@ -1625,8 +1622,6 @@ open PositivityTheory.Rg.BcB.SpectralAccumulation (Hf TypeB TypeH)
 open UpperTheory.V.Z.Tf.GlobalTraceComparison
 open UpperTheory.V.Af.Bc (cPl)
 open scoped Classical
-
-
 
 namespace UpperTheory.Zero.ConvolutionTheory.EB
 
@@ -1666,7 +1661,6 @@ end UpperTheory.Zero.ConvolutionTheory.EB
 open UpperTheory.Zero.ConvolutionTheory.EB
 
 attribute [local instance] borelG borelF borelA borelH
-
 
 theorem UpperTheory.V.Z.Mult.stableGA :
     PiFin → PiAdm → GrowthPiJ → CmbPiA → CuspReadI → UpperTheory.V.Z.Mult.StableBlockGA := by
@@ -1729,6 +1723,7 @@ theorem UpperTheory.V.Z.Mult.stableGA :
   have hf := final_bd κ _ _ hκ C _ _ ‖U‖ ρ N k hρ (norm_nonneg _) (norm_nonneg _) (norm_nonneg _) (p2 k).2 (pow_norm_le U k) hb'
   refine le_of_eq_of_le (congrArg norm ?_) hf
   ring
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.MultiplicityOne.StableSA

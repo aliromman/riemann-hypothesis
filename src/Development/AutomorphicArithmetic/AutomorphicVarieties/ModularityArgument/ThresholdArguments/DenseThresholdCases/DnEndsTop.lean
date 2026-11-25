@@ -238,9 +238,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.BrRepEig
 @[expose] public section
 
-
-
-
 section
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspRep UpperTheory.V UpperTheory.V.Af UpperTheory.V.Af.Nf UpperTheory.V.Sd
   UpperTheory.V.Br CongruenceSubgroup
@@ -367,9 +364,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.SVRCharEq
 @[expose] public section
 
-
-
-
 section
 attribute [local instance] UpperTheory.V.QbarInst.charZero UpperTheory.V.QbarInst.torsionFree UpperTheory.V.QbarInst.algClosure
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Polynomial UpperTheory.V.Af UpperTheory.V.Af.Nf UpperTheory.V.Sd
@@ -458,9 +452,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.BrRepNewAE
 @[expose] public section
 
-
-
-
 section
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual Polynomial GlobalTheory.CuspRep UpperTheory.V UpperTheory.V.Sd UpperTheory.V.Af UpperTheory.V.Af.Nf
 private theorem tend : Filter.Tendsto (fun w : Pl ℚ => normV w) Filter.cofinite Filter.cofinite :=
@@ -526,9 +517,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.BrAutNew
 @[expose] public section
 
-
-
-
 section
 open NumberField GlobalTheory.CuspRep UpperTheory.V UpperTheory.V.Af
 theorem UpperTheory.V.Br.autNewformA_of_printsH (P : _root_.UpperTheory.V.Af.HypothesesH') : _root_.UpperTheory.V.Z.Win.RR.AutNewformA :=
@@ -539,9 +527,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.DnDown
 @[expose] public section
-
-
-
 
 section
 open UpperTheory.GalN.V UpperTheory.V.Af
@@ -595,9 +580,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.DnHost
 @[expose] public section
-
-
-
 
 section
 open NumberField IsLocalRing Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.GalOfCusp UpperTheory.V.HV UpperTheory.V.U3 UpperTheory.V.Aut UpperTheory.V.Pr UpperTheory.V UpperTheory.V.Z.Win
@@ -669,9 +651,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.PolGL2
 @[expose] public section
 
-
-
-
 section
 noncomputable section
 open NumberField Matrix Neutral.B1 GlobalTheory.CuspRep Formalism.L2.Host
@@ -728,9 +707,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.DownQuadS
 @[expose] public section
 
-
-
-
 section
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.MainNotions.N Polynomial GlobalTheory.CuspRep GlobalTheory.HeckeGal GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.Published UpperTheory.V.Af.Bc UpperTheory.V.Af.Sol UpperTheory.V.Z.Bc
 private theorem cusp_unique {F : Type} [Field F] [NumberField F] {n : ℕ} {sat : HeightOneSpectrum (𝓞 F) → Multiset ℂˣ → Prop}
@@ -738,9 +714,6 @@ private theorem cusp_unique {F : Type} [Field F] [NumberField F] {n : ℕ} {sat 
   rcases h with ⟨_, π, rfl, -⟩ | ⟨_, π, rfl, -⟩
   · exact fun _ _ _ h h' => h.unique h'
   · exact fun _ _ _ h h' => h.unique h'
-private theorem not_both (F : Type) [Field F] [NumberField F] (h : IsTotallyReal F) (h' : IsTotallyComplex F) : False := by
-  obtain ⟨v⟩ : Nonempty (InfinitePlace F) := inferInstance
-  exact (InfinitePlace.not_isReal_iff_isComplex.2 (h'.isComplex v)) (h.isReal v)
 private theorem isoOfFrobOne (F Ω : Type) [Field F] [NumberField F] [Field Ω] [Algebra F Ω] [IsAlgClosure F Ω]
     (l : ℕ) [Fact l.Prime] (ι : Qbar l ≃+* ℂ) (n : ℕ) (r r' : G F Ω →* GL (Fin n) (Qbar l)) (hr : Continuous r)
     (hr' : Continuous r') (hs : IsSSRep r) (hs' : IsSSRep r')
@@ -790,7 +763,7 @@ theorem UpperTheory.V.Z.Bc.automorphic_rank_two_of_automorphic_restrict_of_finit
       obtain ⟨m, hm, h⟩ := hreg' τ
       rw [CG.HasInfChar.infChar_eq (π := CG.mk P) hm]
       exact h
-    · exact (not_both M hR' inferInstance).elim
+    · exact (UpperTheory.CBC.SmoothnessOfSatakeParameters.not_both M hR' inferInstance).elim
   obtain ⟨sat, inf, hc, hbc, hinf⟩ := hdown sat' inf' hc' hreg' hgap (UpperTheory.satake_invariant_of_frobConj_of_eigenvalue_basic UpperTheory.frobenius_conj_of_galois_conjugate_places UpperTheory.hecke_eigenvalue_basic_properties ℚ M Ω l ι 2 r sat' hatt')
   have hreg : RegInf 2 inf := fun τ => by
     obtain ⟨m, hm, h⟩ := hreg' (ComplexEmbedding.lift M τ)
@@ -799,7 +772,7 @@ theorem UpperTheory.V.Z.Bc.automorphic_rank_two_of_automorphic_restrict_of_finit
     exact ⟨m, this, h⟩
   obtain ⟨r₁, hr₁, hatt₁⟩ := (show ∃ r₁ : G ℚ Ω →* GL (Fin 2) (Qbar l), Continuous r₁ ∧ AttachedSys ι r₁ sat by
     rcases hc with ⟨hC, -⟩ | ⟨hR', π, rfl, rfl⟩
-    · exact (not_both ℚ hK hC).elim
+    · exact (UpperTheory.CBC.SmoothnessOfSatakeParameters.not_both ℚ hK hC).elim
     · obtain ⟨ω, hω, -⟩ := _root_.UpperTheory.V.Sd.Wc.centChar_alt H.toClassicalTheorems ℚ π
       refine hR ℚ Ω l ι π ω (fun v => ?_) ⟨fun v v' => by rw [Subsingleton.elim v v'], _root_.UpperTheory.V.Sd.Wc.polGL2_alt H.toClassicalTheorems ℚ π ω hω⟩
       have := hreg v.embedding
@@ -831,9 +804,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.ExistsResidualRepQuadratic
 @[expose] public section
 
-
-
-
 section
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.MainNotions.N Polynomial GlobalTheory.CuspRep GlobalTheory.HeckeGal GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.Published UpperTheory.V.Af.Bc UpperTheory.V.Af.Sol
 namespace UpperTheory.V.Z.Bc
@@ -847,9 +817,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.RankTwoDescentSplit
 @[expose] public section
-
-
-
 
 section
 noncomputable section
@@ -910,9 +877,6 @@ private theorem pairing2 {F Ω k : Type} [Field F] [Field Ω] [Algebra F Ω] [Fi
   simp only [Matrix.mul_assoc, e']
 private alias tf := _root_.GlobalTheory.GalChar.isTorsionFree_field
 attribute [local instance] tf
-private theorem algClosure_up (L Ω : Type) [Field L] [CharZero L] [Field Ω] [CharZero Ω] [IsAlgClosure ℚ Ω] [Algebra L Ω] :
-    IsAlgClosure L Ω :=
-  ⟨IsAlgClosure.isAlgClosed ℚ, Algebra.IsAlgebraic.tower_top (K := ℚ) L⟩
 open UpperTheory.V UpperTheory.V.Af in
 private theorem via (P : _root_.UpperTheory.V.Af.HypothesesH') (cyc : Z.Bc.CycC) (cyc2 : Z.Bc.DescS) (hG : Z.Bc.GapTwo) (K L Ω : Type) [Field K] [NumberField K] [Field L] [NumberField L]
     [Field Ω] [CharZero Ω] [IsAlgClosure ℚ Ω] [Algebra K L] [Algebra K Ω] [Algebra L Ω] [IsScalarTower K L Ω] [IsAbelianGalois ℚ L]
@@ -920,8 +884,8 @@ private theorem via (P : _root_.UpperTheory.V.Af.HypothesesH') (cyc : Z.Bc.CycC)
     (W : G ℚ Ω →* GL (Fin 2) (Qbar l)) (hW : Continuous W) (hirr : IsIrr (W.comp (resG ℚ L Ω))) (hpol : Sol.Pol ι W)
     (hfin : ∃ N : ℕ, 0 < N ∧ ∀ s, Matrix.GeneralLinearGroup.det (W s) ^ N = 1)
     (haut : IsAut ι (W.comp (resG ℚ L Ω))) : IsAut ι W := by
-  have : IsAlgClosure K Ω := algClosure_up K Ω
-  have : IsAlgClosure L Ω := algClosure_up L Ω
+  have : IsAlgClosure K Ω := UpperTheory.V.Th.End3.algClo K Ω
+  have : IsAlgClosure L Ω := UpperTheory.V.Th.End3.algClo L Ω
   have a : IsAbelianGalois K L := IsAbelianGalois.tower_top ℚ K L
   have e : (W.comp (resG ℚ K Ω)).comp (resG K L Ω) = W.comp (resG ℚ L Ω) := MonoidHom.ext fun _ => rfl
   rw [← e] at hirr haut
@@ -936,7 +900,7 @@ theorem UpperTheory.V.Z.Bc.isAutR_of_isAutC_comp_galEmb_of_odd_quadratic_char (P
     (∃ (η : G ℚ Ω →* ℤˣ) (σ : G ℚ Ω), Sd.IsCC σ ∧ η σ = -1 ∧ ∀ s : G L Ω, η (galEmb ℚ L Ω s) = 1) →
     Sd.IsAutC ι (W.comp (galEmb ℚ L Ω)) → IsAutR ι W := by
   intro L Ω _ _ _ _ _ _ _ _ l _ ι W hW hdet hirr ⟨η, σ, hσ, hησ, hηL⟩ haut
-  have : IsAlgClosure L Ω := algClosure_up L Ω
+  have : IsAlgClosure L Ω := UpperTheory.V.Th.End3.algClo L Ω
   obtain ⟨M, χ, hM, hχ, hθ⟩ := hdet
   rw [zpow_zero, one_mul] at hθ
   have hcont : Continuous (Matrix.GeneralLinearGroup.det.comp W) :=
@@ -963,9 +927,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TGapTwo
 @[expose] public section
-
-
-
 
 section
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.MainNotions.N Polynomial GlobalTheory.CuspRep GlobalTheory.HeckeGal GlobalTheory.GalOfCusp
@@ -1087,9 +1048,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.GalRepDescentAlongQuadraticExtension
 @[expose] public section
-
-
-
 
 section
 theorem UpperTheory.V.Af.rankTwoAutomorphyDescends_of_printsH :
@@ -1465,9 +1423,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.SymmetricCubeTheoremOfEndomorphisms
 @[expose] public section
 
-
-
-
 section
 open NumberField IsLocalRing Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.GalOfCusp UpperTheory.V.HV UpperTheory.V.U3 UpperTheory.V.Aut UpperTheory.V.Pr UpperTheory.V
 private theorem totDisc_quot {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [CompactSpace G]
@@ -1595,9 +1550,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.DnEnds
 @[expose] public section
 
-
-
-
 section
 namespace UpperTheory.V.Z.Win.Dn
 open UpperTheory.V.Lit UpperTheory.V.W UpperTheory.V.HV UpperTheory.V.Z.Sym.Pl
@@ -1618,9 +1570,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.LinkedUnlEHolds
 @[expose] public section
 
-
-
-
 section
 open Formalism.GaloisCohomology UpperTheory.Top GlobalTheory.Mem.LiteralAutomorphy
 namespace UpperTheory.V.Z.J
@@ -1637,9 +1586,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.DnEndsTop
-
-
-
 
 section
 namespace UpperTheory.V.Z.Win.Dn

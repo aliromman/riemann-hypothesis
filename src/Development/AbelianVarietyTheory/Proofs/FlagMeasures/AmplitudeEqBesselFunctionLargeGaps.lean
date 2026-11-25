@@ -153,16 +153,6 @@ theorem rootCoords_eq (z : Fin (2 * r + k + 1) → ℂ) (p : Point ℂ (r + 1)) 
   simp only [rootCoords, flagMat, Bm, Matrix.of_apply, dite_eq_left hq]
   rfl
 
-theorem measurable_rootCoords (z : Fin (2 * r + k + 1) → ℂ) (p : Point ℂ (r + 1)) :
-    Measurable (rootCoords k r z p) := by
-  refine Continuous.measurable (continuous_pi fun q => ?_)
-  unfold rootCoords flagMat
-  split_ifs
-  · exact (continuous_apply (eI k r _)).comp
-      ((continuous_id (X := MatKR k r)).matrix_mulVec (continuous_const (y := fvec k r z q.1.2)))
-  · exact continuous_const
-  · exact continuous_const
-
 theorem root_conj {z z' : Fin (2 * r + k + 1) → ℂ} (hz : inWb k r z) (hz' : inWb k r z') {g : MatKR k r}
     (hg : g ∈ UH (Hpk k r)) {p : Point ℂ (r + 1)} (hZ : ZhatO k r z z' g = ptMat p) {μ : Measure (Mt k r)}
     (hμ : B.IsHaarOn (C6.Rset g⁻¹) μ) {c : ℝ≥0∞} (h : μ.map (rootCoords k r z' p) = c • volume) :
@@ -218,7 +208,6 @@ theorem root_conj {z z' : Fin (2 * r + k + 1) → ℂ} (hz : inWb k r z) (hz' : 
 
 end jacobian
 
-
 open BranchingSupport GlobalTheory.CellAmp GlobalTheory.Amp Formalism.BasicNotions GlobalTheory.CellRed in
 theorem amp_at_root (D : D7) τ w w' θ (W : LocW D.R.k D.R.rS) (hW : GoodW D τ w w' θ W)
     (lam : Fin (2 * D.R.rS + D.R.k + 1) → ℝ) (A : LocS W) (hA : GoodS D lam A) (hT : 0 < Tr D w) (hT' : 0 < Tr D w')
@@ -250,7 +239,7 @@ theorem amp_at_root (D : D7) τ w w' θ (W : LocW D.R.k D.R.rS) (hW : GoodW D τ
     rw [e, gInv _ _ _ _ hz hz' _ (P.Dx2.Rad.N_sub_S W.z hn) _ (P.Dx2.Rad.N_sub_S W.z' hn')] at hG0
     obtain ⟨μ, h1, -, h3⟩ := GlobalTheory.Amp.RootQuot.exists_root_haar hk hz hz' hTz hTz' p hg hZ hG0
     refine (_root_.GlobalTheory.SnMass.RootUniq.rootMeas_unique D W.z W.z' γ p q _ μ' hz hz' hTz hTz' hγ hGf hka
-      ⟨n, hn, n', hn', g, e, hZ, ENNReal.ofReal _ • μ, ?_, by rw [Measure.map_smul _ (measurable_rootCoords _ _).aemeasurable, h3], rfl⟩ hroot).1
+      ⟨n, hn, n', hn', g, e, hZ, ENNReal.ofReal _ • μ, ?_, by rw [Measure.map_smul _ (GlobalTheory.Amp.RootMove.measurable_rootCoords _ _).aemeasurable, h3], rfl⟩ hroot).1
     rw [Measure.smul_apply, h1.2.2.1, smul_zero]
   obtain ⟨n, hn, n', hn', g, rfl, hZ, μ₀, h0, h1, rfl⟩ := hroot
   have hg : g ∈ UH (Hpk D.R.k D.R.rS) := by
@@ -418,16 +407,15 @@ theorem isOrbQuot_smul {L : LocBessel k r} {g : MatKR k r} {μR : Measure (Mt k 
 
 end coefficient
 
-
-
 end GlobalTheory.AmpBessel
 
 end
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.AmplitudeEqBesselFunctionLargeGaps
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.AmplitudeEqBesselFunctionLargeGaps
 
+noncomputable section
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.S
 open Formalism.FourierDecayAlt Formalism.QuantumDeterminants Matrix MeasureTheory
@@ -463,7 +451,6 @@ theorem exists_bessel_scale (hH : GlobalTheory.GapIn.Hyp) {k r : ℕ} {Wp : Type
   exact hl.1
 
 end scale
-
 
 open BranchingSupport GlobalTheory.CellAmp GlobalTheory.Amp Formalism.BasicNotions in
 theorem exists_coef (hH : GlobalTheory.GapIn.Hyp) {Cg cb Cu cT CT C0 Cn : ℝ} (D : D7) (large₂ : SizeData₂ D) {C' Cl : ℝ}
@@ -541,7 +528,6 @@ theorem exists_coef (hH : GlobalTheory.GapIn.Hyp) {Cg cb Cu cT CT C0 Cn : ℝ} (
   rw [inner_smul_right]
   field_simp
 
-
 open Formalism.BasicNotions Formalism.MainNotions GlobalTheory.Amp in
 theorem ampIsBessel : GlobalTheory.GapIn.Hyp → ∀ Cg cb Cu cT CT C0 C1 : ℝ, ∃ Ca : ℝ, 0 ≤ Ca ∧ ∀ Cn : ℝ, ∃ m₀ : ℝ, ∀ (D : D7) (large₂ : SizeData₂ D) (C' Cl : ℝ), 1000 ≤ Cl → D.host.rdE ≤ large₂.sc.b → m₀ ≤ D.R.m → cdScaleTie D → Bridge.AmpIsBessel D large₂ C' Cl Cg cb Cu cT CT C0 Cn C1 Ca := by
   intro hH Cg cb Cu cT CT C0 C1
@@ -600,6 +586,7 @@ theorem ampIsBessel : GlobalTheory.GapIn.Hyp → ∀ Cg cb Cu cT CT C0 C1 : ℝ,
 
 end GlobalTheory.AmpBesselGap
 
+end
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.FlagMeasures.MeasurableRootCoords", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.OnePlaceKF\npublic import Development.AbelianVarietyTheory.Proofs.FlagMeasures.OrbitalSquareEqHilbertSchmidtNormalisedVector\npublic import Formalism.HermitianCurvature.HermitianCurvatureProofs.ComponentFamilySettingOfSetting\npublic import Formalism.SharpRestriction.CuspSpanNormBounds.NormalizedLocalScale\npublic import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.CellDataExists\npublic import Development.AbelianVarietyTheory.Proofs.FlagMeasures.AmplitudesRelevantCellMonomialRep\npublic import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.MatrixOfBesselTwoSidedAction\npublic import Development.AbelianVarietyTheory.Proofs.FlagMeasures.BesselRootMeasureIndependentOfChoices\npublic import Development.AbelianVarietyTheory.Proofs.FlagMeasures.CellRep\npublic import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsRootHaar\npublic import Development.AbelianVarietyTheory.Proofs.FlagMeasures.UniformBesselConstant\npublic import Mathlib.Analysis.Complex.Isometry\nimport Development.AbelianVarietyTheory.Proofs.FlagMeasures.CutoffComputesBesselQuotientIntegral\nimport Formalism.FormalDegreeBessel.FinalBF\nimport Formalism.FormalDegreeBessel.FinalG\nimport Formalism.FormalDegreeBessel.FormalDegreeRatio.UnitaryWeylNormalHolds\nimport Formalism.HermitianCurvature.HermitianCurvatureProofs.BigCellHermitian\nimport Formalism.HermitianCurvature.HermitianCurvatureProofs.CompactGroupHaarExists\nimport Formalism.HermitianCurvature.HermitianCurvatureProofs.ConjugationContinuousOnInvertible\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.CategoryTheory.Countable\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.FlagMeasures.AmplitudeEqBesselFunctionLargeGaps", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.UniqGapOfUniq\npublic import Formalism.SharpRestriction.CuspSpanNormBounds.SBridge\npublic import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.DegVand\npublic import CompanionTheory.AutomorphicTheory.PieriRules.ThetaBesselIsometries.IsDSOfIsDG\npublic import CompanionTheory.AutomorphicTheory.PieriRules.ThetaBesselIsometries.BesselGapExistsFunctional\npublic import Development.AbelianVarietyTheory.Proofs.FlagMeasures.AmplitudeEqKFiniteOrbitalIntegralGap\npublic import Development.AbelianVarietyTheory.Proofs.FlagMeasures.AmplitudeEqSmulNormalisedAmplitudeLargeGapStatement\npublic import Development.AbelianVarietyTheory.Proofs.FlagMeasures.AmplitudePieriRelevantCellLargeGap\npublic import Development.AbelianVarietyTheory.Proofs.FlagMeasures.CellConv\npublic import Development.AbelianVarietyTheory.Proofs.FlagMeasures.DatumDegreeEqMulFormalDegreeGap\npublic import Development.AbelianVarietyTheory.Proofs.FlagMeasures.LocalDataBothAmplitudeSidesStatement\npublic import Development.AbelianVarietyTheory.Proofs.FlagMeasures.MeasurableRootCoords\npublic import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.OnePlaceKF\npublic import Development.AbelianVarietyTheory.Proofs.FlagMeasures.MomentPieriNumericsOfSizeHyps\npublic import Development.AbelianVarietyTheory.Proofs.FlagMeasures.OpenCellAmplitudeNormEqConstDivDegreeLargeGap\nimport Development.AbelianVarietyTheory.Proofs.FlagMeasures.CapParamOfIsHCTypeW\nimport Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsUnitaryTorusScaleBesselCharacter\nimport Development.AbelianVarietyTheory.Proofs.FlagMeasures.NormalizedBesselMapsAnyScalePieriConstants\nimport Development.AbelianVarietyTheory.Proofs.FlagMeasures.UniformBesselConstant\nimport Development.AbelianVarietyTheory.Proofs.JetHarmonics.HcParamSubIntegral\nimport Development.AbelianVarietyTheory.Proofs.JetHarmonics.NumericalFamilyShapeGaps\nimport Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HighestWeightUniqueness.HpkMulMulHpkApply\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Algebra.Order.Star.Real\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

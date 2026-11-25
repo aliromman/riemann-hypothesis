@@ -149,17 +149,13 @@ end -- clump:auto
 
 namespace GlobalTheory.CMTypeNorm
 
-theorem place_bijective {K : Type} [Field K] [NumberField K] {I : Type} {φ : I → K →+* ℂ} (h : GlobalTheory.CMVal.IsCMType φ) :
-    Function.Bijective fun i => InfinitePlace.mk (φ i) := by
-  apply GlobalTheory.CMVal.Model.IsCMType.bijective <;> assumption
-
 theorem prod_norm_sq_eq_absNorm :
     ∀ (K : Type) [Field K] [NumberField K] [NumberField.IsTotallyComplex K] (I : Type) [Fintype I] (φ : I → K →+* ℂ),
       GlobalTheory.CMVal.IsCMType φ → ∀ α : 𝓞 K,
         ∏ i, ‖φ i (α : K)‖ ^ 2 = ((Ideal.absNorm (Ideal.span {α}) : ℕ) : ℝ) := by
   intro K _ _ _ I _ φ h α
   have h1 : ∏ i, ‖φ i (α : K)‖ ^ 2 = ∏ w : InfinitePlace K, w (α : K) ^ w.mult := by
-    refine Fintype.prod_bijective _ (place_bijective h) _ _ fun i => ?_
+    refine Fintype.prod_bijective _ (GlobalTheory.CMVal.Model.IsCMType.bijective h) _ _ fun i => ?_
     rw [InfinitePlace.apply, IsTotallyComplex.mult_eq]
   rw [h1, InfinitePlace.prod_eq_abs_norm, Ideal.absNorm_span_singleton, ← Algebra.coe_norm_int, Nat.cast_natAbs]
   push_cast
@@ -711,8 +707,10 @@ theorem archFactor_mul_pSeries_eq_integral : ∀ (K : Type) [Field K] [NumberFie
 end GlobalTheory.HeckeMellin
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsMeasurablePartitionOfUnityUnitLogTranslate
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsMeasurablePartitionOfUnityUnitLogTranslate
 open scoped ContDiff
+
+noncomputable section
 
 namespace GlobalTheory
 namespace UnitLogPartition
@@ -809,7 +807,6 @@ theorem continuous_proj (hφ : GlobalTheory.CMVal.IsCMType φ) : Continuous (pro
 
 end UnitLogPartition
 
-
 open NumberField.Units NumberField.Units.dirichletUnitTheorem NumberField.InfinitePlace UnitLogPartition in
 theorem exists_measurable_nonneg_hasSum_ulog_translates : ∀ (K : Type) [Field K] [NumberField K]
     [NumberField.IsTotallyComplex K] (I : Type) [Fintype I] (φ : I → K →+* ℂ), GlobalTheory.CMVal.IsCMType φ →
@@ -864,6 +861,7 @@ theorem exists_measurable_nonneg_hasSum_ulog_translates : ∀ (K : Type) [Field 
     linarith [le_abs_self (d v), neg_abs_le (d v'), hall v, hall v']
 
 end GlobalTheory
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LaplaceIntegralEntireBoundedInVerticalStrips
@@ -1046,7 +1044,6 @@ theorem embHom_injective {φ : I → K →+* ℂ} (hφ : GlobalTheory.CMVal.IsCM
   rw [this, norm_zero] at hi
   exact absurd hi (by norm_num)
 
-
 omit [Fintype I] in
 theorem summable_exp_neg_mul_norm_sq {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     (L : Submodule ℤ E) [DiscreteTopology L] {a : ℝ} (ha : 0 < a) :
@@ -1198,7 +1195,6 @@ open NumberField
 open scoped nonZeroDivisors
 
 namespace GlobalTheory.HeckeStrip
-
 
 open Classical in
 theorem tsum_ideal_eq_sum_classGroup_of_summable {K : Type} [Field K] [NumberField K]

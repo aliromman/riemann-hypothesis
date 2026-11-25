@@ -353,13 +353,15 @@ end Formalism.FourierDecayAlt.P.CutMP.JA.SSn.Geom
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJASSnGeomUBL
+section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJASSnGeomUBL
+@[expose] public section
 
 namespace Formalism.FourierDecayAlt.P.CutMP.JA.SSn.Geom
 
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt.B Formalism.FourierDecayAlt.P.BetaSesquilinearity PI.UnitaryCorollaryDerivatives.CRH Formalism.FourierDecayAlt.P.AdmissibleLieWords Formalism.FourierDecayAlt.P.PartialDerivativeAlgebra
 open scoped ContDiff Matrix ComplexConjugate
 
+noncomputable section
 
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
@@ -499,7 +501,7 @@ theorem prW_sq {z ξ : Fin (2 * r + k + 1) → ℂ} (hz : C2.StdZ k r z) (hX : �
   have e2 : herm (Hpk k r) ξ z = herm (Hpk k r) w z := by
     conv_lhs => rw [hξ]
     rw [PI.UnitaryGroupMassFormula.GsFr.hm_add_l, PI.UnitaryGroupMassFormula.GsFr.herm_X_gen hx (PI.UnitaryGroupMassFormula.GsFr.wb_hi hz.1), add_zero]
-  have hzw : herm (Hpk k r) z w = star (herm (Hpk k r) w z) := PI.UnitaryGroupMassFormula.GsFr.hm_symm _ _root_.Formalism.FourierDecayAlt.P.Ux1.hpk_herm w z
+  have hzw : herm (Hpk k r) z w = star (herm (Hpk k r) w z) := Formalism.FourierDecayAlt.P.TwoByOneBlock.herm_symm _ _root_.Formalism.FourierDecayAlt.P.Ux1.hpk_herm w z
   have hpr : PI.UnitaryGroupMassFormula.GsFr.prW k r z ξ = w + (herm (Hpk k r) w z / (Tz k r z : ℂ)) • z := by
     rw [hwdef]; rfl
   have hzz : herm (Hpk k r) z z = -((Tz k r z : ℝ) : ℂ) := Formalism.FourierDecayAlt.P.TwoByOneBlock.herm_self_eq z
@@ -691,11 +693,14 @@ namespace S7
 
 end S7
 
+end
 
 end Formalism.FourierDecayAlt.P.CutMP.JA.SSn.Geom
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.EmbeddingMulVecFactorization
+section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.EmbeddingMulVecFactorization
+@[expose] public section
 
 namespace Formalism.FourierDecayAlt.P.CutMP.JA.SSn.Geom
 
@@ -703,6 +708,7 @@ open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt.B Fo
 open PI.UnitaryGroupMassFormula.GsFr PI.UnitaryGroupMassFormula.DLm.Gram
 open Matrix
 
+noncomputable section
 
 namespace S5
 
@@ -848,7 +854,7 @@ lemma Pp_facts {z z' : Fin (2 * r + k + 1) → ℂ} (hz' : C2.StdZ k r z') (g : 
   have huν : herm (Hpk k r) u (nuG' z z' g) = 0 := by
     rw [hu, hm_sub_l, hm_smul_l, hνν, mul_one, sub_self]
   have hνu : herm (Hpk k r) (nuG' z z' g) u = 0 := by
-    rw [hm_symm _ hH, huν, star_zero]
+    rw [Formalism.FourierDecayAlt.P.TwoByOneBlock.herm_symm _ hH, huν, star_zero]
   refine ⟨(nz_orth ht u).1 huν, ?_⟩
   have hpu : p = u + c • nuG' z z' g := by rw [hu, sub_add_cancel]
   have e : herm (Hpk k r) p p = herm (Hpk k r) u u + c * star c := by
@@ -923,8 +929,10 @@ theorem geometry_boundedness_at_zero : GeomBd0 := by
     have := hν' g
     linarith
 
+end
 
 end Formalism.FourierDecayAlt.P.CutMP.JA.SSn.Geom
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.GeometryEquivarianceEmbedding

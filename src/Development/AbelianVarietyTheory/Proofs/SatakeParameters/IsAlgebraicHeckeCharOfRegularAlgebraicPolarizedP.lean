@@ -32,18 +32,21 @@ import ReciprocityTheory.NeutralLocalFields.Reciprocity
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.SatakeParameters.CmFieldProdEmbeddingsRegroupMaximalRealStatement, Development.AbelianVarietyTheory.Proofs.SatakeParameters.HeckeCharRealSubfieldAlgebraicOfCompNormIntegral, Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsAlgebraicHeckeCharOfRegularAlgebraicPolarizedP
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.CmFieldProdEmbeddingsRegroupMaximalRealStatement
 
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N
 open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp
 open GlobalTheory.Published GlobalTheory.ContraPair
-
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.CmFieldProdEmbeddingsRegroupMaximalRealStatement
 open GlobalTheory.CuspRep.InfType GlobalTheory.CuspRep.AlgExpo
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.HeckeCharRealSubfieldAlgebraicOfCompNormIntegral
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.HeckeCharRealSubfieldAlgebraicOfCompNormIntegral
+
+noncomputable section
+open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N
+open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp
+open GlobalTheory.Published GlobalTheory.ContraPair
 open GlobalTheory.CuspRep.InfType GlobalTheory.CuspRep.AlgExpo
 
 namespace GlobalTheory.CMRealAlg
@@ -53,7 +56,7 @@ theorem isAlgPos_of_compNorm : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
   intro E _ _ _ χ h
   choose k hk using h
   have hkc : ∀ τ, k (ComplexEmbedding.conjugate τ) = k τ := fun τ => by
-    have := (hk _).symm.trans ((GlobalTheory.T.exponent_heckeChar_compNorm_conjEmbedding E χ τ).trans (hk τ))
+    have := (hk _).symm.trans ((GlobalTheory.NormExpo.expo_compNorm_conjugate E χ τ).trans (hk τ))
     exact_mod_cast this
   obtain ⟨n, hn⟩ := _root_.GlobalTheory.cm_prod_regroup_maximalReal E k hkc
   refine ⟨n, fun x hx => ?_⟩
@@ -104,9 +107,15 @@ theorem isAlgPos_of_compNorm : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
 
 end GlobalTheory.CMRealAlg
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsAlgebraicHeckeCharOfRegularAlgebraicPolarizedP
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.IsAlgebraicHeckeCharOfRegularAlgebraicPolarizedP
 
+open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N
+open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp
+open GlobalTheory.Published GlobalTheory.ContraPair
+
+noncomputable section
 
 namespace GlobalTheory.RegAlgCharAlg
 
@@ -138,7 +147,7 @@ theorem isAlgPos_of_polarizedPair : ∀ (E : Type) [Field E] [NumberField E] [Is
     GlobalTheory.CuspRep.hasInfChar_infChar_of_commute E a hcomm (CG.mk π) σ
   set ψ := GlobalTheory.GalOfCusp.compNorm E χ
   have h1 := (hm τ).twist ψ⁻¹
-  have key := GlobalTheory.T.infChar_conjEmbedding_neg_of_invariant_pairing E a (π.twist ψ⁻¹) π hpol.dual τ _ _ h1 (hm (NumberField.ComplexEmbedding.conjugate τ))
+  have key := GlobalTheory.CapPair.infChar_conj_of_paired E a (π.twist ψ⁻¹) π hpol.dual τ _ _ h1 (hm (NumberField.ComplexEmbedding.conjugate τ))
   obtain ⟨z, hz⟩ : ∃ z, z ∈ (CG.mk π).infChar τ :=
     Multiset.card_pos_iff_exists_mem.1 (by rw [(hm τ).1]; omega)
   obtain ⟨n, hn⟩ := (hreg τ).2 z hz

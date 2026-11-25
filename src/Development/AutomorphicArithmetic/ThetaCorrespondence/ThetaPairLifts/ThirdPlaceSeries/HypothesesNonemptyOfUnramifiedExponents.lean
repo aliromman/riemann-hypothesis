@@ -608,8 +608,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.GenericScalarClassTermsFormFamilyStatement
 
-theorem _root_.GlobalTheory.T.genericScalarClassTerms_formFamily : GlobalTheory.SnFam.FamGen := by
-  first | exact @GlobalTheory.SnFamGenAll.famGen
 end -- clump:auto
 
 end -- clump: shared namespace opens
@@ -624,7 +622,7 @@ theorem stepFamG_of_SWXS (hSW : PI.VolStabS.MassDataS.SWXS) :
     Formalism.L2.SG.Pf.MainEqFam.StepFamG :=
   _root_.GlobalTheory.SnFam.Gen.stepFamG_of_fam
     (fun D h => GlobalTheory.localMass_le_genericMass_nine _ _ h)
-    _root_.GlobalTheory.HTieLeaf.main GlobalTheory.T.genericScalarClassTerms_formFamily _root_.GlobalTheory.SnFam.familyRowWeightSumUnfoldingIdentity_proof (GlobalTheory.T.familyGenericMassPositiveBounded_proof hSW) _root_.GlobalTheory.FamilyNormRational.familyGroupSumFactorsRowWeightAmplitude _root_.GlobalTheory.SnFam.existFam
+    _root_.GlobalTheory.HTieLeaf.main GlobalTheory.SnFamGenAll.famGen _root_.GlobalTheory.SnFam.familyRowWeightSumUnfoldingIdentity_proof (GlobalTheory.WeightsFamPf.weightsFam_of hSW) _root_.GlobalTheory.FamilyNormRational.familyGroupSumFactorsRowWeightAmplitude _root_.GlobalTheory.SnFam.existFam
 
 end GlobalTheory.SnFamTop
 end -- clump:auto
@@ -690,8 +688,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.MainTyzTer
 @[expose] public section
 
-
-
 section
 noncomputable section
 namespace GlobalTheory.NLink.Final
@@ -703,8 +699,9 @@ end
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.HeckeGaloisCriteria.FactsOfPre
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.HeckeGaloisCriteria.FactsOfPre
 
+noncomputable section
 
 namespace UpperTheory.GalC
 
@@ -712,10 +709,7 @@ open Formalism Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotion
 
 variable {D : D7}
 
-
-
 @[reducible] def nchCut (c : CutD D) (x : NChoice D) : NChoice (cut D c) := { x with }
-
 
 theorem nct_cut (c : CutD D) {x : NChoice D} (h : NChTie D x) : NChTie (cut D c) (nchCut c x) :=
   { h with
@@ -725,6 +719,7 @@ theorem nct_cut (c : CutD D) {x : NChoice D} (h : NChTie D x) : NChTie (cut D c)
     psi_eq := h.psi_eq.imp fun _ k => ⟨k.1, k.2.1, fun a => k.2.2 a.1⟩ }
 
 end UpperTheory.GalC
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ResidualRankPartExistsOfJointCondition
@@ -744,8 +739,9 @@ theorem rbEx_of_jointCond_rho : ∀ D : D7, GlobalDatumResidualRepCondition D �
 end GlobalTheory.StringRepresentationDecomposition
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.HeckeGaloisCriteria.CompatibilityTiesEigenRestriction
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.HeckeGaloisCriteria.CompatibilityTiesEigenRestriction
 
+noncomputable section
 
 namespace UpperTheory.GalC
 
@@ -777,8 +773,6 @@ def zCut (Q : PairedCharacterCondition.Pend D) (i : D.nd.Loc) (S : Set (D.nd.X i
     ↥(Subalgebra.center (D.nd.O i) (MonoidAlgebra (D.nd.O i) (G0g D.nd))) →ₐ[D.nd.O i]
       Module.End (D.nd.O i) (cutM (D.nd.T i) (D.nd.act i) S) :=
   descHom (D.nd.T i) (D.nd.act i) S (Q.zO i) (Q.zO_comm i)
-
-
 
 def pendCut (Q : PairedCharacterCondition.Pend D) : PairedCharacterCondition.Pend (cut D c) where
   lz := Q.lz
@@ -834,6 +828,7 @@ theorem compatibilityTies_eigenRestriction (h : Tie4 D) : Tie4 (cut D c) := by
 
 end UpperTheory.GalC
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.TypeConditions.GaloisAdmissibleOfRestrictedCmDatum
 
@@ -855,8 +850,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.NoG4Restrict
 @[expose] public section
 
-
-
 section
 namespace UpperTheory.GalC.Tr
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N
@@ -869,8 +862,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.AdmissibleSevenRestrict
 @[expose] public section
-
-
 
 section
 noncomputable section
@@ -1088,8 +1079,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ExistsGood
 @[expose] public section
 
-
-
 section
 noncomputable section
 open NumberField IsDedekindDomain Formalism Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions Formalism.MainNotions.N Formalism.WeaklyAdmissibleFiltrations Polynomial
@@ -1144,8 +1133,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.CFacts
 @[expose] public section
-
-
 
 section
 noncomputable section
@@ -1202,8 +1189,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.CFinal
 @[expose] public section
 
-
-
 section
 noncomputable section
 namespace UpperTheory.GalC
@@ -1218,8 +1203,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.HypothesesNonemptyOfUnramifiedExponents
-
-
 
 section
 section

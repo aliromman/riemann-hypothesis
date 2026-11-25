@@ -20,8 +20,9 @@ import Mathlib.Algebra.Order.Star.Rat
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.FinrankEqOneOfBijectiveBis, Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.GammaLiftAlongArc, Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ExistsPartitionOfLPowLevels, Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.SectionInIdealOfLevels, Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.LetterWindowBoundedBelow, Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.SmulPowDifferenceIdentity, Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.ArcStructuresThreeHold
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.FinrankEqOneOfBijectiveBis
+@[expose] public section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.FinrankEqOneOfBijectiveBis
 
+noncomputable section
 
 open Classical TensorProduct
 
@@ -70,17 +71,12 @@ variable {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : Type} [Field Qp]
     {LL O : Type} [Field LL] [Algebra Qp LL] [TopologicalSpace LL] [CommRing O] [Algebra O LL]
     {v : AddValuation LL (WithTop ℚ)} {n : ℕ} (W : LocWach PD LL O v n)
 
-theorem exists_horizontal_solutions (hH : Formalism.MainNotions.LiftingTheory.coreH W) (hA : Formalism.MainNotions.LiftingTheory.CaseA W) (T : LocLat G Qp LL O)
-    (hT : IsCrys PD T.ρ) (i : ZMod n) {d : ℕ} (b : Fin d → W.DD T)
-    (hb : Formalism.MainNotions.LiftingTheory.IsFrameΔ W T i b) : ∃ sol, IsHor W T i b sol :=
-  by apply _root_.Formalism.MainNotions.UnusedSlot80.UnivF.hor_exists <;> assumption
-
 theorem horizontal_frame_structure (hH : Formalism.MainNotions.LiftingTheory.coreH W) (hP9 : Formalism.MainNotions.DeltaInvariantLattices.P9W W) :
     Formalism.MainNotions.N.FrobeniusPowerSeries.HorFrameCore W := by
   intro hCA _ A _ T hT c
   have hmod := ((hP9 T hT.1 hCA.2.1 hCA.2.2).2.2 (_root_.Formalism.MainNotions.UnusedSlot80.SatW.finrank_one_of_bij' hCA.1)).2
   obtain ⟨d, b, hb⟩ := Formalism.MainNotions.UnusedSlot80.Relay2.frame_exists W T c hmod
-  obtain ⟨sol, hsol⟩ := exists_horizontal_solutions W hH hCA T hT.1 c b hb
+  obtain ⟨sol, hsol⟩ := Formalism.MainNotions.UnusedSlot80.UnivF.hor_exists W hH hCA T hT.1 c b hb
   exact ⟨d, b, sol, hsol⟩
 
 theorem exists_algHom_over_of_bijective_algebraMap (hbij : Function.Bijective (algebraMap K₀ K)) (c : ZMod n) :
@@ -188,6 +184,7 @@ theorem arc_filtration_low : Formalism.MainNotions.N.FrobeniusPowerSeries.ArcFil
 end Cores
 
 end Formalism.MainNotions.N.Ln17
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.RepresentationCongruences.GammaLiftAlongArc

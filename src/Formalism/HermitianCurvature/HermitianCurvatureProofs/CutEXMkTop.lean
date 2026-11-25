@@ -399,8 +399,9 @@ end Formalism.FourierDecayAlt.P.CutEXMT
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutEXMkTopBump
+@[expose] public section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutEXMkTopBump
 
+noncomputable section
 
 open Matrix MeasureTheory Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt
 open scoped ContDiff
@@ -464,11 +465,8 @@ theorem bump_two {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteD
 local instance bsS {p : ℕ} : BorelSpace ((G.UT p → ℂ) × (Fin p → ℝ)) := Prod.borelSpace
 local instance bsRC {k p ρ : ℕ} : BorelSpace (U.RC k p ρ) := Prod.borelSpace
 
-theorem piHaar {n p : ℕ} : (volume : Measure (Fin n → Fin p → ℂ)).IsAddHaarMeasure :=
-  Measure.pi.isAddHaarMeasure (fun _ => volume)
-
 theorem rcHaar {k p ρ : ℕ} : (volume : Measure (U.RC k p ρ)).IsAddHaarMeasure := by
-  have := @piHaar (2 * ρ + k + 1) p
+  have := @Formalism.FourierDecayAlt.P.Ux6.isAddHaarMeasure_matrix_volume (2 * ρ + k + 1) p
   rw [Measure.volume_eq_prod]
   exact Measure.prod.instIsAddHaarMeasure _ _
 
@@ -490,6 +488,7 @@ theorem bump_exists {k p ρ : ℕ} (z z' : Fin (2 * ρ + k + 1) → ℂ) (hz : i
   exact bump_two volume _ _ hc hc' h0 h0'
 
 end Formalism.FourierDecayAlt.P.CutEX.MkTopBump
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutMKTop
@@ -585,8 +584,6 @@ section right
 
 variable {k p ρ : ℕ} {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [NormedAddCommGroup Wq]
   [InnerProductSpace ℂ Wq]
-
-
 
 theorem krI_pt (Bj : B.RealPlaceData k ρ Wp Wq) (B0 : B.RealPlaceData k (p + ρ) Wp Wq)
     (hz' : B0.z' = liftVec k p ρ Bj.z') (hπ' : ∀ y : B.Mat k ρ, Bj.π' y = B0.π' (U.embG k p ρ y))

@@ -71,8 +71,10 @@ import Mathlib.Algebra.AffineMonoid.UniqueSums
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.AddDbl, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.MulDefs, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.IncAdjInclusion, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.StAddRight, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.WpOnto, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.TorsValsFinite
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.AddDbl
+section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.AddDbl
+@[expose] public section
 
+noncomputable section
 
 namespace PI.GalTorsConj.W
 
@@ -168,7 +170,6 @@ lemma dblB (L : PeriodPair) {z : ℂ} (hz : z ∉ L.lattice) (h2 : 2 * z ∉ L.l
 
 end ZetaDoubling
 
-
 open OriginCoordinatesAdd ZetaDoubling in
 theorem dblLaw : DblLaw := by
   intro L z hz h2
@@ -192,6 +193,8 @@ theorem dblLaw : DblLaw := by
 
 end PI.GalTorsConj.W
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.MulDefs
@@ -287,16 +290,11 @@ theorem neg_pair (L : PeriodPair) {s r : ℂ} (h : s + r ∈ L.lattice) :
     PeriodPair.derivWeierstrassP_neg]
   exact ⟨rfl, rfl⟩
 
-theorem pInj (L : PeriodPair) {z w : ℂ} (hz : z ∉ L.lattice) (hw : w ∉ L.lattice)
-    (hx : L.weierstrassP z = L.weierstrassP w) (hy : L.derivWeierstrassP z = L.derivWeierstrassP w) :
-    z - w ∈ L.lattice := by
-  apply _root_.GlobalTheory.sub_mem_lattice_of_weierstrassP_eq <;> assumption
-
 theorem pNeg (L : PeriodPair) {z w : ℂ} (hz : z ∉ L.lattice) (hw : w ∉ L.lattice)
     (hx : L.weierstrassP z = L.weierstrassP w) (hy : L.derivWeierstrassP z = -L.derivWeierstrassP w) :
     z + w ∈ L.lattice := by
   have hw' : -w ∉ L.lattice := fun h => hw (by simpa using L.lattice.neg_mem h)
-  have h := pInj L hz hw' (by rw [PeriodPair.weierstrassP_neg, hx])
+  have h := GlobalTheory.sub_mem_lattice_of_weierstrassP_eq L hz hw' (by rw [PeriodPair.weierstrassP_neg, hx])
     (by rw [PeriodPair.derivWeierstrassP_neg, hy])
   simpa using h
 
@@ -345,7 +343,7 @@ theorem st_unique {t t₁ t₂ : ℂ} (h1 : St L L' M ρ t t₁) (h2 : St L L' M
     · exact absurd a1 a2
   · rcases h2 with ⟨a2, _⟩ | ⟨a2, b2, hx2, hy2, e2, f2⟩
     · exact absurd a2 a1
-    · exact pInj L' b1 b2 (by rw [e1, e2]) (by rw [f1, f2])
+    · exact GlobalTheory.sub_mem_lattice_of_weierstrassP_eq L' b1 b2 (by rw [e1, e2]) (by rw [f1, f2])
 
 theorem st_inj {t u s : ℂ} (h1 : St L L' M ρ t s) (h2 : St L L' M ρ u s) :
     t - u ∈ L.lattice := by
@@ -357,7 +355,7 @@ theorem st_inj {t u s : ℂ} (h1 : St L L' M ρ t s) (h2 : St L L' M ρ u s) :
     · exact absurd b2 b1
     · have gx := rho_inj (e1.symm.trans e2)
       have gy := rho_inj (f1.symm.trans f2)
-      exact pInj L a1 a2 (congrArg Subtype.val gx) (congrArg Subtype.val gy)
+      exact GlobalTheory.sub_mem_lattice_of_weierstrassP_eq L a1 a2 (congrArg Subtype.val gx) (congrArg Subtype.val gy)
 
 theorem st_add (hA : AddLaw) (hD : DblLaw) (hg2 : L.g₂ ∈ M) (hg2' : L'.g₂ = ρ ⟨_, hg2⟩)
     {t t' u u' : ℂ} (ht : St L L' M ρ t t') (hu : St L L' M ρ u u') :
@@ -502,19 +500,18 @@ end
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.WpOnto
+section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.WpOnto
+@[expose] public section
 
+noncomputable section
 
 namespace PI.GalTorsConj.W
 
 open PI.GalTorsConj Filter Topology
 
-theorem wp_onto (L : PeriodPair) (x : ℂ) : ∃ z, z ∉ L.lattice ∧ L.weierstrassP z = x := by
-  apply GlobalTheory.exists_weierstrassP_eq
-
 theorem pOnto : POnto := by
   intro L x y hxy
-  obtain ⟨z, hz, hzx⟩ := wp_onto L x
+  obtain ⟨z, hz, hzx⟩ := GlobalTheory.exists_weierstrassP_eq L x
   have hsq := L.derivWeierstrassP_sq z hz
   rw [hzx, ← hxy] at hsq
   rcases sq_eq_sq_iff_eq_or_eq_neg.1 hsq with h | h
@@ -525,6 +522,8 @@ theorem pOnto : POnto := by
 
 end PI.GalTorsConj.W
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.GaloisTorsionConjugacy.TorsValsFinite

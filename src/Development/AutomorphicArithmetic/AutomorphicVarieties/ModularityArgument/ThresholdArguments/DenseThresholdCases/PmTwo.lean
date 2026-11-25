@@ -125,9 +125,6 @@ import Mathlib.RingTheory.Valuation.LocalSubring
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.AuKap
 @[expose] public section
 
-
-
-
 section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual Formalism.HC ReciprocityTheory.Gal IsLocalRing Polynomial UpperTheory.V UpperTheory.V.Base UpperTheory.V.Alg UpperTheory.V.HV UpperTheory.V.GradeZeroInterpolatingElement UpperTheory.V.Ws GlobalTheory.GalOfCusp
 theorem UpperTheory.V.Ws.isAlgChar_pushCh_link_kappa :
@@ -232,9 +229,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TAcross
 @[expose] public section
 
-
-
-
 section
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.MainNotions.N GlobalTheory.CuspRep GlobalTheory.HeckeGal GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.Af.Bc UpperTheory.V.Z.Bc
 open scoped Matrix
@@ -307,9 +301,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.VWOfOne
 @[expose] public section
 
-
-
-
 section
 open UpperTheory.GalN.V
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.MainNotions.N GlobalTheory.CuspRep GlobalTheory.HeckeGal GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.Af.Bc UpperTheory.V.Z.Bc
@@ -331,9 +322,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.AutomorphyDescentSolvableCMToImaginaryQuadraticA
 @[expose] public section
-
-
-
 
 section
 open UpperTheory.GalN.V
@@ -762,7 +750,14 @@ theorem UpperTheory.V.Keep.upTri :
   exact key _ i j rfl hji
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.UpperTriangularPlaces.NormalValuationBounds.ValLtOneIff
+end -- clump: shared namespace opens
+
+section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.UpperTriangularPlaces.NormalValuationBounds.ValLtOneIff
+@[expose] public section
+
+noncomputable section
+
+open NumberField IsDedekindDomain Formalism.ConjugateSelfDual Formalism.HC ReciprocityTheory.Gal IsLocalRing Polynomial UpperTheory.V UpperTheory.V.Base UpperTheory.V.Alg UpperTheory.V.HV UpperTheory.V.GradeZeroInterpolatingElement UpperTheory.V.Ws GlobalTheory.GalOfCusp UpperTheory.V.Z.Win
 open scoped Pointwise
 
 namespace UpperTheory.V.Keep
@@ -812,15 +807,6 @@ end Place
 
 section Mat
 
-private theorem up_diag {K : Type} [CommRing K] {X Y : M4 K} (hX : IsUp X) (hY : IsUp Y) (i : Fin 4) :
-    (X * Y) i i = X i i * Y i i := by
-  rw [Matrix.mul_apply, Finset.sum_eq_single i]
-  · intro b _ hb
-    rcases lt_or_gt_of_ne hb with h | h
-    · rw [hX i b h, zero_mul]
-    · rw [hY b i h, mul_zero]
-  · exact fun h => absurd (Finset.mem_univ i) h
-
 private theorem adj_map {R R' : Type} [CommRing R] [CommRing R'] (f : R →+* R') (X : M4 R) :
     adj (X.map f) = (adj X).map f := by
   ext i j
@@ -856,7 +842,7 @@ private theorem flag_abs {Γ K ι : Type} [Group Γ] [Field K] (ρ : Γ →* GL 
           simp only [Subgroup.coe_mul, map_mul]
           group
         simp only [Matrix.diag_apply]
-        rw [e, up_diag (hup a) (hup b)] }
+        rw [e, UpperTheory.V.Ws.Pp.IsUp_diag (hup a) (hup b)] }
   refine ⟨fun i => (d i).toHomUnits, ⟨u, fun s => ?_⟩, fun i s => rfl⟩
   have e := hu (s : Γ)
   refine ⟨fun i j hij => ?_, fun i => ?_⟩
@@ -943,9 +929,9 @@ theorem flagF : FlagF := by
 
 end UpperTheory.V.Keep
 
+end
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.UpperTriangularPlaces.PtLaws
 
@@ -955,9 +941,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.DnPmDown
 @[expose] public section
-
-
-
 
 section
 open UpperTheory.GalN.V
@@ -1261,9 +1244,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.LinkTwo
 @[expose] public section
 
-
-
-
 section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual Formalism.HC ReciprocityTheory.Gal IsLocalRing Polynomial UpperTheory.V UpperTheory.V.Base UpperTheory.V.Alg UpperTheory.V.HV UpperTheory.V.GradeZeroInterpolatingElement UpperTheory.V.Ws GlobalTheory.GalOfCusp UpperTheory.V.Ws.Lk
 theorem UpperTheory.Gal.projectedFormsSystemPart.exists_two_links_same_kappa_not_dvd_of_fit_deep :
@@ -1375,9 +1355,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.PmAutO
 @[expose] public section
 
-
-
-
 section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual Formalism.HC ReciprocityTheory.Gal IsLocalRing Polynomial UpperTheory.V UpperTheory.V.Base UpperTheory.V.Alg UpperTheory.V.HV UpperTheory.V.GradeZeroInterpolatingElement UpperTheory.V.Ws GlobalTheory.GalOfCusp
 theorem UpperTheory.Gal.projectedFormsSystemPart.pmAutO_alt :
@@ -1410,9 +1387,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TPmFin
 @[expose] public section
-
-
-
 
 section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual Formalism.HC ReciprocityTheory.Gal IsLocalRing Polynomial UpperTheory.V UpperTheory.V.Base UpperTheory.V.Alg UpperTheory.V.HV UpperTheory.V.GradeZeroInterpolatingElement UpperTheory.V.Ws GlobalTheory.GalOfCusp
@@ -1585,9 +1559,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.PmTwo
-
-
-
 
 section
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual Formalism.HC ReciprocityTheory.Gal IsLocalRing Polynomial UpperTheory.V UpperTheory.V.Base UpperTheory.V.Alg UpperTheory.V.HV UpperTheory.V.GradeZeroInterpolatingElement UpperTheory.V.Ws GlobalTheory.GalOfCusp

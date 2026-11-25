@@ -658,7 +658,13 @@ theorem gmMeas_compact_lt_top (K : Set (Fin N → Fin N → ℂ)) (hK : IsCompac
 end ReciprocityTheory.ChartRestriction.DS
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.HaarVolumes.TriUniq
+end -- clump: shared namespace opens
+
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.HaarVolumes.TriUniq
+
+noncomputable section
+
+open Finset Matrix MeasureTheory
 
 namespace ReciprocityTheory.ChartRestriction.DS
 
@@ -712,12 +718,8 @@ theorem continuous_triCoOf : Continuous (triCoOf : Matrix (Fin N) (Fin N) ℂ �
   · exact Complex.continuous_re.comp ((continuous_apply j).comp (continuous_apply j))
   · exact (continuous_apply _).comp (continuous_apply _)
 
-theorem det_upMat (t : TriCo N) : (upMat t).det = ∏ j, ((t.1 j : ℝ) : ℂ) := by
-  rw [det_of_isUpperTriangular (upMat_up t)]
-  simp [_root_.ReciprocityTheory.ChartRestriction.DS.UpperTriangularMatrices.upMat_diag]
-
 theorem det_upMat_ne (t : TriCo N) (ht : t ∈ triPos N) : IsUnit (upMat t).det := by
-  rw [det_upMat, isUnit_iff_ne_zero, Finset.prod_ne_zero_iff]
+  rw [ReciprocityTheory.ChartRestriction.DS.qrA_upMat_det, isUnit_iff_ne_zero, Finset.prod_ne_zero_iff]
   intro j _
   exact Complex.ofReal_ne_zero.mpr (ht j).ne'
 
@@ -903,8 +905,13 @@ theorem triMeas_unique (κ : Measure (TriCo N)) (hκ0 : κ (triPos N)ᶜ = 0)
 
 end ReciprocityTheory.ChartRestriction.DS
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.HaarVolumes.QRHaarA
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.HaarVolumes.QRHaarA
+
+noncomputable section
+
+open Finset Matrix MeasureTheory
 
 namespace ReciprocityTheory.ChartRestriction.DS.QRH
 
@@ -1168,14 +1175,18 @@ theorem d_qrMap (k : UNgrp N) (t : TriCo N) (ht : t ∈ triPos N) :
   congr 2
   have : Matrix.of (qrMap (k, t)) = toM k * upMat t := by
     exact Matrix.of.apply_symm_apply _
-  rw [this, Matrix.det_mul, norm_mul, norm_det_toM, one_mul, _root_.ReciprocityTheory.ChartRestriction.DS.PositiveTriangularSet.det_upMat, norm_prod]
+  rw [this, Matrix.det_mul, norm_mul, norm_det_toM, one_mul, _root_.ReciprocityTheory.ChartRestriction.DS.qrA_upMat_det, norm_prod]
   refine Finset.prod_congr rfl fun j _ => ?_
   rw [Complex.norm_real, Real.norm_of_nonneg (ht j).le]
 
 end ReciprocityTheory.ChartRestriction.DS.QRH
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.HaarVolumes.QRHaar
+
+
+open Finset Matrix MeasureTheory
 
 namespace ReciprocityTheory.ChartRestriction.DS
 
@@ -1269,8 +1280,6 @@ theorem qr_lintegral (μ : Measure (UNgrp N)) [μ.IsHaarMeasure] [IsProbabilityM
 
 end ReciprocityTheory.ChartRestriction.DS
 end -- clump:auto
-
-end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.FormalDegree.HaarVolumes.VolUDensity
 

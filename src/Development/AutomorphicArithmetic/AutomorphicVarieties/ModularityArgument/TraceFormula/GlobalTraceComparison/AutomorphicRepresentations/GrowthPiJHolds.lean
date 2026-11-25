@@ -969,8 +969,10 @@ theorem UpperTheory.V.Z.Tf.GlobalTraceComparison.Pi.rangeW_pf :
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.AutomorphicRepresentations.PSizes
+section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.AutomorphicRepresentations.PSizes
+@[expose] public section
 
+noncomputable section
 
 open NumberField IsDedekindDomain Matrix MeasureTheory
 open PositivityTheory.Rg.Rs
@@ -992,10 +994,6 @@ private theorem logSize_centre (τ : ℝ) :
   have h : ‖(fun _ : Fin n => τ)‖ ≤ |τ| :=
     (pi_norm_le_iff_of_nonneg (abs_nonneg τ)).2 fun _ => by simp
   gcongr
-
-private theorem logSize_inv' (g : GA E n) : logSize (g⁻¹) = logSize g := by
-  unfold logSize
-  rw [inv_inv, add_comm]
 
 private theorem deg_top (g : GA E n) : deg g ⊤ = deg (1 : GA E n) ⊤ + logAbs g.val.det := by
   have e : (((1 : Matrix (Fin n) (Fin n) E)ᵀ : Matrix (Fin n) (Fin n) E) : Fin n → Fin n → E) =
@@ -1073,6 +1071,8 @@ theorem sizes_of_basic : Basic → Sizes := fun _ => sizes'
 
 end UpperTheory.V.Z.Tf.GlobalTraceComparison.Pi
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.AutomorphicRepresentations.PTailInt

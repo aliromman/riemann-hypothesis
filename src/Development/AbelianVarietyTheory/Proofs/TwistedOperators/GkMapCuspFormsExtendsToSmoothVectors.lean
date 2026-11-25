@@ -48,8 +48,6 @@ import Development.AbelianVarietyTheory.Proofs.TwistedOperators.MemKFinOfMemLowT
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum MeasureTheory NumberField Matrix
 
-theorem _root_.GlobalTheory.T.gKModuleMapCuspForms_extends_multiplicitySpace : GlobalTheory.Published.HarishChandraModules → GlobalTheory.Published.CasselmanWallach → ∀ D : D7, GlobalTheory.IndefiniteRowSideFullHecke.KTypeExtension.ExtExists D := by
-  first | exact @GlobalTheory.GKExt.extExists
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.GkMapCuspFormsExtendsToSmoothVectors
@@ -61,7 +59,7 @@ namespace GlobalTheory.GKExtensionToSmoothVectors
 
 theorem gkExtension :
     GlobalTheory.Published.HarishChandraModules → GlobalTheory.Published.CasselmanWallach → ∀ D : D7, GlobalTheory.IndefiniteRowSideFullHecke.KTypeExtension.GKExtension D :=
-  fun h₁ h₂ D => ⟨GlobalTheory.T.gKModuleMapCuspForms_extends_multiplicitySpace h₁ h₂ D, GlobalTheory.KFiniteDetermined.restrInj D⟩
+  fun h₁ h₂ D => ⟨GlobalTheory.GKExt.extExists h₁ h₂ D, GlobalTheory.KFiniteDetermined.restrInj D⟩
 
 end GlobalTheory.GKExtensionToSmoothVectors
 

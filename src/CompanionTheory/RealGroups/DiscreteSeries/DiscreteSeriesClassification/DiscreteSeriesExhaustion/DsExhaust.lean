@@ -395,7 +395,7 @@ variable {n : ℕ}
 theorem locFin_tens (ε : Fin n → Bool) (X : GMod n) (h : LocFin ε X.E) : LocFin ε (tens X).E := by
   intro u
   choose S hSfd hSst hSmem using fun i => h (u i)
-  haveI : ∀ i, FiniteDimensional ℂ (S i) := hSfd
+  have : ∀ i, FiniteDimensional ℂ (S i) := hSfd
   have hTst : ∀ a b, ε a = ε b → ∀ x ∈ ⨆ i, S i, X.E a b x ∈ ⨆ i, S i := by
     intro a b hab x hx
     refine Submodule.iSup_induction S (motive := fun y => X.E a b y ∈ ⨆ i, S i) hx
@@ -433,7 +433,7 @@ theorem locFin_sub (ε : Fin n → Bool) (X : GMod n) (S : Submodule ℂ X.V)
     (h : ∀ a b, ∀ x ∈ S, X.E a b x ∈ S) (hX : LocFin ε X.E) : LocFin ε (X.sub S h).E := by
   intro x
   obtain ⟨F, hF, hst, hx⟩ := hX x.1
-  haveI := hF
+  have := hF
   refine ⟨F.comap S.subtype, finiteDimensional_comap_subtype S F, ?_, hx⟩
   intro a b hab v hv
   exact hst a b hab v.1 hv
@@ -488,8 +488,9 @@ end GlobalTheory.CompanionTheory.RgSteps
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.HasCharOfScalChar
+@[expose] public section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.HasCharOfScalChar
 
+noncomputable section
 
 open Finset
 
@@ -540,7 +541,7 @@ theorem finish : StartMod → PathFin → PathExists → PathEndNat → SimpleDi
     IsoFacts → CharOfAlgDS → AlgUniq → DataUniq → DSOfArr → DSOfData → KModOf → ArrCount → Finish := by
   intro hSM hPF hPE hPN hSD hSc hUn hI hCh hU hDU hDA hDD hKM hAC hS hH hDec hFR n ε H _ _ σ hσ
   obtain ⟨hcpl, hnt, hur, hir, hsq⟩ := id hσ
-  haveI := hcpl
+  have := hcpl
   obtain ⟨D, E, hK⟩ := hKM n ε H σ hur hir
   obtain ⟨hsim, ⟨χ, hχ⟩, hiw⟩ := hSM n ε H σ hur hir hnt D E hK
   obtain ⟨B, hB⟩ := hDec n
@@ -611,7 +612,7 @@ theorem finish : StartMod → PathFin → PathExists → PathEndNat → SimpleDi
       exact ⟨⟨D', E', hK'.gl⟩, e, fun _ => ⟨(hA' e).2 ⟨hce, hoe, τe, hτe⟩, s1, hasChar_of_scalChar hsc, hse', he,
         hAlg, hCone⟩⟩
     · exact ⟨triv n, d, fun h => absurd h hd⟩
-  haveI : Nonempty (GMod n) := ⟨triv n⟩
+  have : Nonempty (GMod n) := ⟨triv n⟩
   choose! M e hMe using per
   have hmaps : Set.MapsTo e (A : Set _) (A' : Set _) := fun d hd => (hMe d hd).1
   have hinjA : Set.InjOn e (A : Set _) := by
@@ -636,9 +637,11 @@ theorem finish : StartMod → PathFin → PathExists → PathEndNat → SimpleDi
 
 end GlobalTheory.CompanionTheory.RgExhFin
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.IsWeightOfIntertwine
+@[expose] public section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.IsWeightOfIntertwine
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.RgIso
 
@@ -719,7 +722,7 @@ theorem hasChar_of_iso {X Y : GMod n} (h : Iso X Y) (χ : Fin n → ℂ) (hX : H
 theorem isSimple_of_iso {X Y : GMod n} (h : Iso X Y) (hX : IsSimple X) : IsSimple Y := by
   obtain ⟨e, he⟩ := h
   refine ⟨?_, fun S hS => ?_⟩
-  · haveI := hX.1
+  · have := hX.1
     exact e.symm.toEquiv.nontrivial
   · have hS' : ∀ a b, ∀ x ∈ S.comap (e : X.V →ₗ[ℂ] Y.V), X.E a b x ∈ S.comap (e : X.V →ₗ[ℂ] Y.V) := by
       intro a b x hx
@@ -747,7 +750,7 @@ theorem locFin_of_iso {X Y : GMod n} (ε : Fin n → Bool) (h : Iso X Y) (hX : L
   intro y
   obtain ⟨S, hfd, hst, hx⟩ := hX (e.symm y)
   refine ⟨S.map (e : X.V →ₗ[ℂ] Y.V), ?_, ?_, ?_⟩
-  · haveI := hfd
+  · have := hfd
     exact Module.Finite.map S _
   · intro a b hab v hv
     obtain ⟨x, hxS, rfl⟩ := Submodule.mem_map.mp hv
@@ -805,6 +808,7 @@ theorem isoFacts : CompanionTheory.RgExh.Fin.IsoFacts := by
     fun h s mu => ⟨coneDS_of_iso ε h s mu, coneDS_of_iso ε (iso_symm h) s mu⟩⟩
 
 end GlobalTheory.CompanionTheory.RgIso
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.KHighestOfPerm
@@ -1011,8 +1015,9 @@ theorem pathEndNat (n : ℕ) (χ : _root_.Fin n → ℂ) (ss : List (_root_.Fin 
 end GlobalTheory.CompanionTheory.RgPath
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.ScalarOfCommute
+@[expose] public section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.ScalarOfCommute
 
+noncomputable section
 
 open Polynomial
 
@@ -1128,7 +1133,7 @@ theorem scalar_of_commute [Nontrivial H] (hσ : Formalism.MainNotions.S.IsURepOn
   obtain ⟨ι, hι, hKF, hc⟩ := exists_emb hσ hirr hK
   let P : Submodule ℂ (ReciprocityTheory.ChartRestriction.DS.smD ε σ) := Submodule.span ℂ
     {w | w ∈ CompanionTheory.D.gk.HC.KF ε σ ∧ ReciprocityTheory.ChartRestriction.DS.IsKHWVec ε (ReciprocityTheory.ChartRestriction.DS.smE ε σ) μ w}
-  haveI hP : FiniteDimensional ℂ P :=
+  have hP : FiniteDimensional ℂ P :=
     (CompanionTheory.D.gk.HC.uAdm_of CompanionTheory.D.gk.HC.K_finite_smooth_vectors) n ε H σ hσ hirr μ
   let S : Submodule ℂ D := Submodule.span ℂ {x | KHighest ε E μ x}
   have hSP : ∀ x ∈ S, ι x ∈ P := fun x hx => by
@@ -1136,7 +1141,7 @@ theorem scalar_of_commute [Nontrivial H] (hσ : Formalism.MainNotions.S.IsURepOn
       ⟨hKF y, fun a => by rw [hc, hy.1 a, map_smul],
         fun a b hab he => by rw [hc, hy.2 a b hab he, map_zero]⟩
     exact this hx
-  haveI : FiniteDimensional ℂ S :=
+  have : FiniteDimensional ℂ S :=
     FiniteDimensional.of_injective (ι.restrict hSP) fun x y h =>
       Subtype.ext (hι (congrArg Subtype.val h))
   have hTS : ∀ x ∈ S, T x ∈ S := fun x hx => by
@@ -1144,7 +1149,7 @@ theorem scalar_of_commute [Nontrivial H] (hσ : Formalism.MainNotions.S.IsURepOn
       ⟨fun a => by rw [← hTa, hy.1 a, map_smul],
         fun a b hab he => by rw [← hTa, hy.2 a b hab he, map_zero]⟩
     exact this hx
-  haveI : Nontrivial S := Submodule.nontrivial_iff_ne_bot.2 fun h => hv0 (by
+  have : Nontrivial S := Submodule.nontrivial_iff_ne_bot.2 fun h => hv0 (by
     have : v ∈ S := Submodule.subset_span hv
     simpa [h] using this)
   obtain ⟨c, hcE⟩ := Module.End.exists_eigenvalue (T.restrict hTS)
@@ -1198,13 +1203,14 @@ theorem startMod : CompanionTheory.RgExh.Fin.StartMod := by
   intro n ε H _ _ _ σ hσ hirr hH D E hK
   obtain ⟨μ, S₀, hS₀⟩ := exists_kType hσ
   obtain ⟨v, hv0, -, -⟩ := hK.hw μ S₀ hS₀
-  haveI : Nontrivial D := ⟨⟨v, 0, hv0⟩⟩
+  have : Nontrivial D := ⟨⟨v, 0, hv0⟩⟩
   refine ⟨⟨inferInstanceAs (Nontrivial D), GlobalTheory.KFinIrr.kMod_irred n ε H σ D E inferInstance hσ hirr hK⟩, ?_,
     intWt hσ hirr hK⟩
   exact exists_char E fun u => scalar_of_commute hσ hirr hK _ fun a b =>
     Formalism.REAL.qDetCentral _ n E hK.gl u a b
 
 end GlobalTheory.CompanionTheory.RgStart
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.ScalarOfSeparatingSmoothL2Maps

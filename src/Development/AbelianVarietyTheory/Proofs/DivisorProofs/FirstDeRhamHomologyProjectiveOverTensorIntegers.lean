@@ -114,14 +114,13 @@ open scoped TensorProduct
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DeRhamCohomologyProjectiveModule
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DeRhamCohomologyProjectiveModule
 
+noncomputable section
 
 namespace GlobalTheory.HdRDescent
 
 universe u v
-
-
 
 theorem baseChange_equiv :
     ∀ (K L O : Type) [Field K] [Field L] [Algebra K L] [CommRing O] (M : Type u) [AddCommGroup M]
@@ -394,6 +393,7 @@ theorem projective_of_algebraicClosure :
 
 end GlobalTheory.HdRDescent
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DeRhamCohomologyProjectiveModuleStatement
 
@@ -581,8 +581,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AnnihilatorLiftOfMulEqPStatement
 
-theorem _root_.GlobalTheory.T.annihilator_lift_of_mul_eq_p_alt : ∀ (p : ℕ) (O : Type) [CommRing O] (Λ : Type) [CommRing Λ] (k : Type) [Field k] (π : Λ →+* k), (p : k) = 0 → (p : Λ) ^ 2 = 0 → ∀ (M : Type 1) [AddCommGroup M] [Module Λ M] [Module (Λ ⊗[ℤ] O) M] [IsScalarTower Λ (Λ ⊗[ℤ] O) M], (∀ m : M, (p : Λ) • m = 0 → m ∈ Ideal.span {(p : Λ)} • (⊤ : Submodule Λ M)) → ∀ (N : Type 1) [AddCommGroup N] [Module (k ⊗[ℤ] O) N] (f : M →ₛₗ[(Algebra.TensorProduct.map π.toIntAlgHom (AlgHom.id ℤ O)).toRingHom] N), Function.Surjective f → (∀ m, f m = 0 → m ∈ Ideal.span {(p : Λ)} • (⊤ : Submodule Λ M)) → ∀ ϖ z : O, ϖ * z - (p : O) ∈ Ideal.span {(p : O) ^ 2} → ∀ n : N, ((1 : k) ⊗ₜ[ℤ] ϖ) • n = 0 → n ∈ Ideal.span {a : k ⊗[ℤ] O | ((1 : k) ⊗ₜ[ℤ] ϖ) * a = 0} • (⊤ : Submodule (k ⊗[ℤ] O) N) := by
-  first | (exact @GlobalTheory.annihilator_lift_of_mul_eq_p)
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGlobalUniformiserAbovePrime
@@ -957,7 +955,7 @@ theorem projective_reduction_of_flat_lift : ∀ (p : ℕ) [Fact p.Prime] (F : Ty
     exact Finite.of_surjective _ (Ideal.Quotient.factor_surjective
       (Ideal.span_mono (by simp : ({(p : 𝓞 F)} : Set (𝓞 F)) ⊆ {(p : 𝓞 F), ϖ})))
   have hredD := _root_.GlobalTheory.reduced_quot_tensor_of_reduced_modp (𝓞 F) k p ϖ hpk (_root_.GlobalTheory.FinRedTensor.isReduced_field_tensor_finite _ k)
-  have hannN := GlobalTheory.T.annihilator_lift_of_mul_eq_p_alt p (𝓞 F) Λ k π hpk hp2 M hkerp N f hf hkerf' ϖ z hϖz
+  have hannN := GlobalTheory.annihilator_lift_of_mul_eq_p p (𝓞 F) Λ k π hpk hp2 M hkerp N f hf hkerf' ϖ z hϖz
   exact projective_of_nilpotent_of_reduced_quotient _ _ hnil hredD N hannN
 
 end GlobalTheory.FlatLift

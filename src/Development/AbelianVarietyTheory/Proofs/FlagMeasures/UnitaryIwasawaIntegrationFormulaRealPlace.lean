@@ -1162,8 +1162,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.SlabMeasureSqueezeStatement
 
-theorem _root_.GlobalTheory.T.slab_measure_squeeze' : ∀ (n : ℕ) (ε : Fin n → Bool) (a : ℕ) (j : Fin a → ℕ) (W : Fin (a + 1) → Submodule ℂ (Fin n → ℂ)), IsIsoFlag ε j W → ∀ (d : ℕ) (E : Fin d → Matrix (Fin n) (Fin n) ℂ), IsCut ε (maxK ε ∩ flagM ε W) E → (∀ i, (E i)ᴴ = -E i) → ∀ ν : Measure (Formalism.REAL.UJ ε), ν (maxK ε ∩ flagM ε W)ᶜ = 0 → (∀ l ∈ maxK ε ∩ flagM ε W, ν.map (fun g => g * l) = ν) → ∀ ρ η : ℝ, 0 < ρ → ρ ≤ 1 / 8 → 0 < η → ∀ᶠ r in (nhdsWithin (0 : ℝ) (Set.Ioi 0)), ∀ u ∈ flagN ε W, ∀ m ∈ flagM ε W, ∀ k ∈ maxK ε, u * m * k ∈ hsBall ε r → ν (hsBall ε (r / (1 + η))) ≤ ν {l | l * k ∈ slab ε E ρ r} ∧ ν {l | l * k ∈ slab ε E ρ r} ≤ ν (hsBall ε ((1 + η) * r)) := by
-  first | exact @GlobalTheory.IwConst.slab_measure_squeeze
 end -- clump:auto
 
 end -- clump: shared namespace opens
@@ -1172,8 +1170,9 @@ end -- clump: shared namespace opens
 
 open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S GlobalTheory.Count GlobalTheory.FlagMeas
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.IwasawaIntegrationFormulaConstant
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.IwasawaIntegrationFormulaConstant
 
+noncomputable section
 
 namespace GlobalTheory.IwConst
 
@@ -1378,7 +1377,7 @@ theorem iwasawa_constant : ∀ (n : ℕ) (ε : Fin n → Bool) (p q : ℕ), (uni
       νL (hsBall ε (r / (1 + η))) * Fp r ≤ νL Set.univ * Sp r ∧
         νL Set.univ * Sp r ≤ νL (hsBall ε ((1 + η) * r)) * Fp r := by
     intro η hη
-    filter_upwards [GlobalTheory.T.slab_measure_squeeze' n ε a j W hW _ EL cL hrel.2.2.2.2.2.1 νL hνL'.1 rL ρ η hρ
+    filter_upwards [GlobalTheory.IwConst.slab_measure_squeeze n ε a j W hW _ EL cL hrel.2.2.2.2.2.1 νL hνL'.1 rL ρ η hρ
       (min_le_right _ _) hη] with r hr
     have hswap := _root_.GlobalTheory.IwConst.iwasawa_unfold_lintegral (Formalism.REAL.UJ ε) (flagM ε W) (maxK ε ∩ flagM ε W) μN μM μ0 νL (dlt j W)
       ((hsBall ε r).indicator 1) ((slab ε EL ρ r).indicator 1) hδ.1
@@ -1515,6 +1514,7 @@ theorem iwasawa_constant : ∀ (n : ℕ) (ε : Fin n → Bool) (p q : ℕ), (uni
   exact (ENNReal.mul_left_inj hne0 hnet).mp (heq2.trans hcIw.symm)
 
 end GlobalTheory.IwConst
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.UnitaryIwasawaIntegrationFormulaRealPlace

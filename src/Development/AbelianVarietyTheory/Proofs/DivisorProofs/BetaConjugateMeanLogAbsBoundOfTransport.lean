@@ -50,8 +50,9 @@ theorem classMean_log_norm_disc : ∀ (D : Formalism.BasicNotions.D7) {K : Type}
 end GlobalTheory.ClassMeanDisc
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsConjugateCmValueCharacterPermutedWeight
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsConjugateCmValueCharacterPermutedWeight
 
+noncomputable section
 
 open NumberField IsDedekindDomain Neutral.B1 ReciprocityTheory.Neutral.Bridge.HCFR Formalism.L2.Host GlobalTheory.CMVal
 
@@ -207,7 +208,7 @@ theorem injective_of_isCMType {φ : I → E →+* ℂ} (h : IsCMType φ) : Funct
 
 theorem bijective_of_isCMType {φ : I → E →+* ℂ} (h : IsCMType φ) :
     Function.Bijective fun i => InfinitePlace.mk (φ i) := by
-  apply _root_.GlobalTheory.CMTypeNorm.place_bijective <;> assumption
+  apply _root_.GlobalTheory.CMVal.Model.IsCMType.bijective <;> assumption
 
 theorem exists_perm {K : Type} [Field K] [Algebra K E] {φK : K →+* ℂ} {φ : I → E →+* ℂ} {σ : ℂ ≃+* ℂ}
     (hφ : IsCMType φ) (hK : ∀ i, (φ i).comp (algebraMap K E) = φK) (hc : (starRingEnd ℂ).comp φK ≠ φK)
@@ -418,6 +419,7 @@ theorem exists_conj_valChar : ∀ {K E : Type} [Field K] [NumberField K] [Field 
     rfl
 
 end GlobalTheory.ConjValChar
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsImagQuadraticSubfieldOfToricCMFieldData
@@ -809,7 +811,6 @@ theorem exists_field {K : Type} [Field K] [NumberField K] (φK : K →+* ℂ) (a
   refine ⟨_, inferInstance, {}, fun x => hle (hR ⟨x, rfl⟩), hle (hA (IntermediateField.subset_adjoin ℚ _ (by simp))),
     hle (hA (IntermediateField.subset_adjoin ℚ _ (by simp)))⟩
 
-
 open IntermediateField in
 theorem sum_log_emb (L : IntermediateField ℚ ℂ) [FiniteDimensional ℚ L] [NumberField L] (β : ℂ) (hβ : β ∈ L)
     (h0 : β ≠ 0) :
@@ -853,7 +854,6 @@ theorem emb_two {K : Type} [Field K] [NumberField K] (φK : K →+* ℂ) (hK2 : 
   rw [h3, NumberField.Embeddings.card, hK2] at this
   omega
 
-
 open Classical in
 theorem sum_halve {K : Type} [Field K] [NumberField K] (φK : K →+* ℂ) (hK2 : Module.finrank ℚ K = 2)
     (hc : (starRingEnd ℂ).comp φK ≠ φK) (L : IntermediateField ℚ ℂ) [NumberField L] (hK : ∀ x : K, φK x ∈ L)
@@ -886,7 +886,6 @@ theorem sum_halve {K : Type} [Field K] [NumberField K] (φK : K →+* ℂ) (hK2 
   · intro a _; exact hcc a
   · intro a _; exact hcc a
   · intro a _; exact (hf a).symm
-
 
 open Classical in
 theorem cover {K : Type} [Field K] [NumberField K] (φK : K →+* ℂ) (j₀ : ℂ)
@@ -1037,8 +1036,9 @@ theorem galmean : ∀ {K : Type} [Field K] [NumberField K] (φK : K →+* ℂ) (
 end GlobalTheory.GalMean
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.BetaConjugateMeanLogAbsBoundOfTransport
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.BetaConjugateMeanLogAbsBoundOfTransport
 
+noncomputable section
 open NumberField IsDedekindDomain GlobalTheory.CMVal GlobalTheory.IndefiniteRowSideFullHecke.LatticeNormTransport GlobalTheory.SqTop GlobalTheory.FunObj.SqNum
 open scoped nonZeroDivisors
 
@@ -1063,7 +1063,6 @@ theorem condQ_empty {E : Type} [Field E] [NumberField E] (𝔣 : Ideal (OF E)) :
 end GlobalTheory.BetaArchPf
 
 namespace GlobalTheory.SqTop
-
 
 open GlobalTheory.BetaArchPf in
 theorem betaArch_of_transport : GlobalTheory.IndefiniteRowSideFullHecke.LatticeNormTransport.Transport → FieldDat → LBound → TorEx → BetaArch := by
@@ -1171,6 +1170,7 @@ theorem betaArch_of_transport : GlobalTheory.IndefiniteRowSideFullHecke.LatticeN
 
 end GlobalTheory.SqTop
 
+end
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ClassMeanLogNormDiscChowlaSelberg", "h": "module\n\npublic import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.LatticeNormTransport\npublic import Formalism.LocalRingCardinality.DataParams₂\npublic import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.DedekindZetaEqSumRealEisenstein\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsConjugateCmValueCharacterPermutedWeight", "h": "module\n\npublic import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.LatticeNormTransport\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContinuousOfTameLoc\npublic import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContinuousInfIdele\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNatHeckeCharacterTrivialCongruentUnits\nimport Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.UnitOpenAndCongrOpen\npublic import Development.AbelianVarietyTheory.Proofs.SatakeParameters.HeckeCharFiniteOrderUnitIdele\npublic import Formalism.LocalToGlobal.UnitaryNorms.CharExGen\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Algebra.Group.Units\nimport Mathlib.Topology.Sheaves.Init\n\n"}

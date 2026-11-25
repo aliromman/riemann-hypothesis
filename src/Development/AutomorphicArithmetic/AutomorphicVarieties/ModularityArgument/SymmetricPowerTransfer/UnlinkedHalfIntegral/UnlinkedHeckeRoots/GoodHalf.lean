@@ -223,8 +223,10 @@ theorem UpperTheory.V.Z.Sym.Unl.halfAlg :
   exact UpperTheory.V.Z.Sym.Unl.abs_ratio_ne_of_sqrt_flip p m a x α β σ hp hx hσx hσ ha hσa hsum hprod
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HeckeProjectionEigenform
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HeckeProjectionEigenform
+@[expose] public section
 
+noncomputable section
 open NumberField IsDedekindDomain MeasureTheory Matrix Filter Topology
 open GroundTheory.Global GroundTheory.LocalField GroundTheory.Automorphic GroundTheory.Automorphic.AutomorphicForm
 open GroundTheory.Automorphic.GodementSection (localChar adeleAt glAt restrictedTensor2 godementSection archSection partialLFunction modPow)
@@ -289,16 +291,8 @@ theorem cdet_dia (c : HeckeCharacter ℚ) (γ : GL (Fin 2) ℚ) : cdet c (dia2 �
     exact (RingHom.map_det (algebraMap ℚ 𝔸[ℚ]) (γ : Matrix (Fin 2) (Fin 2) ℚ)).symm
   simp [cdet, this]
 
-theorem det_diagonal_two (z : Jd) : GeneralLinearGroup.det (dg2 z z : G2) = z * z := by
-  ext1
-  simp [dg2, Matrix.det_fin_two]
-
 theorem cdet_scal (c : HeckeCharacter ℚ) (z : Jd) : cdet c (dg2 z z) = (c.toIdele z : ℂ) * c.toIdele z := by
-  simp [cdet, det_diagonal_two, map_mul]
-
-theorem central_diagonal_commute (z : Jd) (g : G2) : dg2 z z * g = g * dg2 z z := by
-  ext i j
-  fin_cases i <;> fin_cases j <;> simp [dg2, Matrix.mul_apply, Fin.sum_univ_two, mul_comm]
+  simp [cdet, GlobalTheory.CompanionTheory.RS.det_diagonal_two, map_mul]
 
 def Fn (φ : G2 → ℂ) (c : HeckeCharacter ℚ) (u u' g : G2) : ℂ := φ (g * u) * conj (φ (g * u')) * cdet c g
 
@@ -365,7 +359,7 @@ theorem Pr_scal (hcen : ∀ (z : Jd) g, φ (dg2 z z * g) = (ω.toIdele z : ℂ) 
   rw [← integral_const_mul]
   refine integral_congr_ae (Eventually.of_forall fun g => ?_)
   simp only [Fn]
-  have e : g * (dg2 z z * u') = dg2 z z * (g * u') := by rw [← mul_assoc, ← central_diagonal_commute, mul_assoc]
+  have e : g * (dg2 z z * u') = dg2 z z * (g * u') := by rw [← mul_assoc, ← GlobalTheory.CompanionTheory.RS.central_diagonal_commute, mul_assoc]
   rw [e, hcen, map_mul]
   ring
 
@@ -429,7 +423,6 @@ theorem isLoc2_comm {v : Pl} {x : GL (Fin 2) (Qv v)} {k h : G2}
   · subst e; rw [hv, mul_one, one_mul]
   · rw [hx.2.1 v' e, one_mul, mul_one]
 
-
 open GroundTheory.Automorphic.Reduction in
 theorem det_eq_of_comps {h h' : G2}
     (hf : ∀ v : Pl, GeneralLinearGroup.det (finAt v h) = GeneralLinearGroup.det (finAt v h'))
@@ -491,7 +484,6 @@ theorem ord_det_of_mem {x : GL (Fin 2) F} (hx : x ∈ integralGL F 2) :
   GroundTheory.Automorphic.GodementJacquet.ordDet_of_mem_integralGL hx
 
 end Key
-
 
 open GroundTheory.Automorphic.Reduction in
 theorem eig_relation {φ : G2 → ℂ} {ω c : HeckeCharacter ℚ} {μ : Measure G2} {𝓕 : Set G2} {C : ℝ}
@@ -578,6 +570,8 @@ theorem eig_relation {φ : G2 → ℂ} {ω c : HeckeCharacter ℚ} {μ : Measure
 
 end GlobalTheory.CompanionTheory.RankinSelbergHeckeProjection
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.UnlinkedHalfIntegral.UnlinkedHeckeRoots.SelfAdj

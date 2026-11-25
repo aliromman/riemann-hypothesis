@@ -121,11 +121,9 @@ theorem powMonomial_isMultiHomog (e : K → ℕ) (i : ∀ k, ι k) :
   rw [key] at h
   exact h
 
-
 omit [Fintype K] [DecidableEq K] in
 theorem liftForm_C_eq {J : Type} (a : R) : liftForm (ι := ι) (J := J) (C a : MRing ι R) = C a := by
   simp [liftForm]
-
 
 omit [Fintype K] [DecidableEq K] in
 theorem cycEval_congr_on_support {n n' : Ideal (MRing ι R) → ℤ} (Z : Ideal (MRing ι R) → ℤ)
@@ -135,7 +133,6 @@ theorem cycEval_congr_on_support {n n' : Ideal (MRing ι R) → ℤ} (Z : Ideal 
   by_cases hW : Z W = 0
   · rw [hW, zero_mul, zero_mul]
   · rw [h W hW]
-
 
 open scoped Classical in
 omit [Fintype K] [DecidableEq K] in
@@ -150,7 +147,6 @@ theorem cycEval_ite (p : Ideal (MRing ι R) → Prop) (A B : Ideal (MRing ι R) 
   refine finsum_congr fun W => ?_
   dsimp only
   split_ifs <;> ring
-
 
 omit [Fintype K] [DecidableEq K] in
 theorem vecCons_liftMDeg {d : ℕ} (c : K → ℕ) (L : Fin d → K → ℤ) :
@@ -806,15 +802,6 @@ noncomputable section
 
 universe u
 
-private theorem lt_natCast_of_add_one_le' {x : WithBot ℕ∞} {n : ℕ} (h : x + 1 ≤ (n : WithBot ℕ∞)) :
-    x < (n : WithBot ℕ∞) := by
-  induction x with
-  | bot => exact WithBot.bot_lt_coe _
-  | coe e =>
-    have h' : e + 1 ≤ (n : ℕ∞) := by exact_mod_cast h
-    have h'' : e < (n : ℕ∞) := (ENat.add_one_le_iff' (ENat.natCast_ne_top n)).mp h'
-    exact_mod_cast h''
-
 theorem TautologicalCase.proof (h3 : IntNumAddFirst.Statement.{u}) (h5 : MinimalPrimeMultiHomog.Statement.{u})
     (h6 : SupSpanMultiHomog.Statement.{u}) (h7 : SpecialQuotDim.Statement.{u})
     (h8 : SpecialIdealCorresp.Statement.{u}) (h9 : SpecialIdealMultiHomog.Statement.{u})
@@ -859,7 +846,7 @@ theorem TautologicalCase.proof (h3 : IntNumAddFirst.Statement.{u}) (h5 : Minimal
     have hdim : ringKrullDim (MRing ι (IsLocalRing.ResidueField O) ⧸ specialIdeal W) <
         ((d + 2 + Fintype.card K : ℕ) : WithBot ℕ∞) := by
       rw [h7 O ϖ hϖ K ι W hϖW]
-      exact lt_natCast_of_add_one_le' hdrop
+      exact GroundTheory.Heights₂.Heights.NumbersDVR.withBotENat_lt_of_add_one_le hdrop
     have key := h3 (IsLocalRing.ResidueField O) K ι d (specialIdeal W)
       (h8 O ϖ hϖ K ι P W hWp hϖW).1 (h9 O K ι W hWm) hdim b (fun k => (cg k : ℤ)) L
     rw [show b + (fun k => (cg k : ℤ)) = fun k => (cf k : ℤ) by rw [← hb]; funext k; simp] at key
@@ -997,7 +984,8 @@ theorem DivisorIdealCycle.proof : DivisorIdealCycle.Statement.{u} := by
 end GroundTheory.Heights₂.Heights.NumbersDVR
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PFlagBundleCut
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PFlagBundleCut
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -1005,6 +993,7 @@ namespace GroundTheory.Heights₂.Heights.NumbersDVR
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo
 
+noncomputable section
 
 namespace FlagBundleCutProof
 
@@ -1030,7 +1019,6 @@ theorem cycEval_single {K : Type} {ι : K → Type} {F : Type} [Field F]
 
 end FlagBundleCutProof
 
-
 open FlagBundleCutProof in
 theorem FlagBundleCut.proof (hDim : FlagBundleDim.Statement)
     (hForms : FlagBundleSectionForms.Statement) (hDiv : FlagBundleSectionDiv.Statement)
@@ -1051,11 +1039,14 @@ theorem FlagBundleCut.proof (hDim : FlagBundleDim.Statement)
   classical
   convert cycEval_single (fun W => intNum F W L.get) (projIdeal F y w φ (truncCoord t i))
 
+end
 
 end GroundTheory.Heights₂.Heights.NumbersDVR
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PFlagBundleLineBase
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PFlagBundleLineBase
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -1063,6 +1054,7 @@ namespace GroundTheory.Heights₂.Heights.NumbersDVR
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo
 
+noncomputable section
 
 namespace FlagBundleLineBaseProof
 
@@ -1158,7 +1150,6 @@ theorem replace_zeta {K : Type} [Fintype K] [DecidableEq K] {ι' : Option K → 
 
 end FlagBundleLineBaseProof
 
-
 open FlagBundleLineBaseProof in
 theorem FlagBundleLineBase.proof (hdim : FlagBundleDim.Statement)
     (hsec : FlagLineSection.Statement) (hdeg : FlagLineDegree.Statement)
@@ -1194,8 +1185,10 @@ theorem FlagBundleLineBase.proof (hdim : FlagBundleDim.Statement)
   rw [hmap] at h
   exact h
 
+end
 
 end GroundTheory.Heights₂.Heights.NumbersDVR
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PVNumCut

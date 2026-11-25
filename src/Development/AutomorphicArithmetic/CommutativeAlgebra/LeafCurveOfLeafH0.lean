@@ -19,7 +19,7 @@ import Mathlib.Tactic.Linter.HaveILetI
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ExistsLocalGenerator
 
 theorem UpperTheory.Reformulated.B.ExistsLocalGenerator.exists_local_generator :
-    ∀ {B : Type} [inst : CommRing B] [IsDedekindDomain B] (I p : Ideal B) [hp : p.IsPrime],
+    ∀ {B : Type} [CommRing B] [IsDedekindDomain B] (I p : Ideal B) [p.IsPrime],
       ∃ π ∈ I, ∃ s ∉ p, ∀ x ∈ I, s * x ∈ Ideal.span {π} := by
   intro B _ _ I p hp
   by_cases hI : I = ⊥

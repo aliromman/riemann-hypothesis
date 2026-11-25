@@ -21,12 +21,10 @@ import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NilpotentOfNot
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BreuilKisinQuotientEisensteinEquiv, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsBreuilKisinEvalTeichmullerTilt, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.EisensteinMinpolyUniformizerWittTotallyRamified, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsUniformiserEisensteinNotInXPow, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsWittResidueFieldInRingOfIntegers, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.RingOfIntegersFiniteExtIsDVRFiniteUnitIff, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SpanEqKerThetaOfDistinguishedAinf, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NonemptyBreuilKisinDatum
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BreuilKisinQuotientEisensteinEquiv
 
 open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations TensorProduct PowerSeries GlobalTheory.Prism GlobalTheory.BKReal GlobalTheory.Per GlobalTheory.BSP
 open scoped Formalism.Per NNReal
-
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BreuilKisinQuotientEisensteinEquiv
 
 namespace GlobalTheory
 
@@ -34,7 +32,7 @@ theorem bkStr_quotient_equiv : ∀ (l : ℕ) [Fact l.Prime] (a : ℕ) [NeZero a]
   intro l _ a _ O _ _ π Ep hE hπ
   obtain ⟨hmon, -, hdvd, -⟩ := hE
   obtain ⟨h0, hsurj, hker⟩ := hπ
-  haveI : IsAdicComplete (Ideal.span {(l : Wq l a)}) (Wq l a) := WittVector.isAdicCompleteIdealSpanP
+  have : IsAdicComplete (Ideal.span {(l : Wq l a)}) (Wq l a) := WittVector.isAdicCompleteIdealSpanP
   have H : Ep.IsDistinguishedAt (Ideal.span {(l : Wq l a)}) :=
     { mem := fun hn => Ideal.mem_span_singleton.2 (hdvd _ hn)
       monic := hmon }
@@ -60,7 +58,12 @@ theorem bkStr_quotient_equiv : ∀ (l : ℕ) [Fact l.Prime] (a : ℕ) [NeZero a]
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsBreuilKisinEvalTeichmullerTilt
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsBreuilKisinEvalTeichmullerTilt
+
+noncomputable section
+
+open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations TensorProduct PowerSeries GlobalTheory.Prism GlobalTheory.BKReal GlobalTheory.Per GlobalTheory.BSP
+open scoped Formalism.Per NNReal
 
 namespace GlobalTheory.BKReal.Roots
 
@@ -113,7 +116,7 @@ theorem exists_ev_of_root : ∀ (l : ℕ) [Fact l.Prime] (a : ℕ) [NeZero a] (�
   have hc : IsAdicComplete (Ideal.span {t}) (Ainf l) := (GlobalTheory.Per.AinfComplete.main l _ htu).2
   have hsep : ∀ x : Ainf l, (∀ n, t ^ n ∣ x) → x = 0 := fun x h =>
     GlobalTheory.Per.AinfComplete.eq_zero_of_haus _ x fun n => Ideal.mem_span_singleton.2 (h n)
-  letI : Algebra (Wq l a) (Ainf l) := (wA l a).toRingHom.toAlgebra
+  let : Algebra (Wq l a) (Ainf l) := (wA l a).toRingHom.toAlgebra
   obtain ⟨f, hfX⟩ := GlobalTheory.Cyc.IoMap.algHom_exists (R := Wq l a) t
     (GlobalTheory.Per.AinfComplete.summ_of_precomplete _) hsep
   have hfC : ∀ w, f.toRingHom (C w) = wA l a w := f.commutes
@@ -132,6 +135,12 @@ theorem exists_ev_of_root : ∀ (l : ℕ) [Fact l.Prime] (a : ℕ) [NeZero a] (�
 
 end GlobalTheory.BKReal
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations TensorProduct PowerSeries GlobalTheory.Prism GlobalTheory.BKReal GlobalTheory.Per GlobalTheory.BSP
+open scoped Formalism.Per NNReal
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.EisensteinMinpolyUniformizerWittTotallyRamified
 
@@ -400,7 +409,7 @@ theorem exists_uniformiser : ∀ (l : ℕ) [Fact l.Prime] (a : ℕ) [NeZero a] (
   by_cases h : ∃ i, ¬ l ∣ i ∧ E.coeff i ≠ 0
   · exact ⟨π, E, hπ, ⟨hm, hpos, hd, w, h0⟩, h, hr, hs, hmin⟩
   push Not at h
-  haveI : CharZero (Wq l a) := by
+  have : CharZero (Wq l a) := by
     refine charZero_of_inj_zero fun n hn => ?_
     by_contra hn0
     have hx : (n : ℤ_[l]) ≠ 0 := Nat.cast_ne_zero.2 hn0
@@ -640,11 +649,11 @@ theorem nonempty_bk_of_finExt : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l), Non
   intro l hl K
   obtain ⟨hdvr, hfin, hunit⟩ := _root_.GlobalTheory.IntDvr.main l K
   obtain ⟨a, ha, w, hK, hw, hres⟩ := _root_.GlobalTheory.BSP.Res.exists_witt_residue l K
-  letI : Algebra (Wq l a) ↥(OL K) := w.toRingHom.toAlgebra
+  let : Algebra (Wq l a) ↥(OL K) := w.toRingHom.toAlgebra
   have halg : ∀ c, algebraMap (Wq l a) ↥(OL K) c = w c := fun _ => rfl
-  haveI : IsScalarTower ℤ_[l] (Wq l a) ↥(OL K) :=
+  have : IsScalarTower ℤ_[l] (Wq l a) ↥(OL K) :=
     IsScalarTower.of_algebraMap_eq fun z => (w.commutes z).symm
-  haveI : Module.Finite (Wq l a) ↥(OL K) := Module.Finite.of_restrictScalars_finite ℤ_[l] _ _
+  have : Module.Finite (Wq l a) ↥(OL K) := Module.Finite.of_restrictScalars_finite ℤ_[l] _ _
   obtain ⟨π, Ep, hπ, hE, hne, hmin⟩ :=
     _root_.GlobalTheory.EisShift.exists_uniformiser l a ↥(OL K) (wq_map_injective _) hres
   obtain ⟨str, hstr⟩ := _root_.GlobalTheory.bkStr_quotient_equiv l a ↥(OL K) π Ep hE hmin

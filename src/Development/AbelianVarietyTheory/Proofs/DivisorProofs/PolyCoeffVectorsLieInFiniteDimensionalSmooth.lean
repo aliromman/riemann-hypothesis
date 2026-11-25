@@ -184,8 +184,9 @@ end GlobalTheory.PsCo.PolyAvg
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsReproducingPolynomialValueAtOneMaxCompact
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsReproducingPolynomialValueAtOneMaxCompact
 
+noncomputable section
 
 open MeasureTheory MvPolynomial
 open Formalism.REAL (UJ KG toM toMK muK)
@@ -198,14 +199,11 @@ variable {n : ℕ} (ε : Fin n → Bool)
 def pt (k : KG ε) : ((Fin n × Fin n) ⊕ (Fin n × Fin n)) → ℂ :=
   Sum.elim (fun x => toMK k x.1 x.2) (fun x => star (toMK k x.1 x.2))
 
-theorem continuous_toMK : Continuous fun k : KG ε => toMK k :=
-  Units.continuous_val.comp (continuous_subtype_val.comp continuous_subtype_val)
-
 theorem continuous_pt : Continuous (pt ε) := by
   refine continuous_pi fun v => ?_
   rcases v with x | x
-  · exact (continuous_apply x.2).comp ((continuous_apply x.1).comp (continuous_toMK ε))
-  · exact continuous_star.comp ((continuous_apply x.2).comp ((continuous_apply x.1).comp (continuous_toMK ε)))
+  · exact (continuous_apply x.2).comp ((continuous_apply x.1).comp (GlobalTheory.PsCo.PolyAvg.continuous_toMK ε))
+  · exact continuous_star.comp ((continuous_apply x.2).comp ((continuous_apply x.1).comp (GlobalTheory.PsCo.PolyAvg.continuous_toMK ε)))
 
 def evL : Poly n →ₗ[ℂ] (KG ε → ℂ) where
   toFun P k := eval (pt ε k) P
@@ -308,12 +306,10 @@ alias fock_reproducing_formula := _root_.GlobalTheory.PsCo.Pc3.ReproPf.fock_repr
 
 end GlobalTheory.PsCo.Pc3
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsReproducingPolynomialValueAtOneMaxCompactStatement
 
-
-theorem _root_.GlobalTheory.T.exists_reproducingPolynomial_valueAtOne_maxCompact : GlobalTheory.PsCo.Pc3.Repro := by
-  first | exact @GlobalTheory.PsCo.Pc3.fock_reproducing_formula
 end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UniformFinitenessOfReproducingPolynomialAveragin
@@ -609,7 +605,7 @@ end -- clump:auto
 
 namespace GlobalTheory.PsCo.Pc3
 
-theorem uFin : UFin := _root_.GlobalTheory.PsCo.Pc3.uFin_of' GlobalTheory.T.exists_reproducingPolynomial_valueAtOne_maxCompact _root_.GlobalTheory.PsCo.PolyAvg.polyAvg
+theorem uFin : UFin := _root_.GlobalTheory.PsCo.Pc3.uFin_of' GlobalTheory.PsCo.Pc3.ReproPf.fock_reproducing_formula _root_.GlobalTheory.PsCo.PolyAvg.polyAvg
 
 end GlobalTheory.PsCo.Pc3
 
