@@ -17,9 +17,9 @@ The project source graph contains 59,763 compiled module targets and 367,146 pro
 
 ## Ordinary compiler results
 
-Stock Lake completed 2 groups with 170 distinct project modules on this revision. An independent read of each candidate and community compiler output compared 6,368 declaration occurrences, including private proof values, and 428 normalized warnings. Each group also passed a second Lake invocation with compilation disabled. The workload includes 67 edited modules. Some outputs came from valid compiler caches. [Per-module results](ordinary-progress/rows.jsonl.gz) · [Lake invocations](ordinary-progress/lake-invocations.json)
+Stock Lake completed 10 groups with 938 distinct project modules on this revision. An independent read of each candidate and community compiler output compared 22,156 declaration occurrences, including private proof values, and 2,302 normalized warnings. Each group also passed a second Lake invocation with compilation disabled. The workload includes 624 edited modules. Some outputs came from valid compiler caches. [Per-module results](ordinary-progress/rows.jsonl.gz) · [Lake invocations](ordinary-progress/lake-invocations.json)
 
-Generated C in this workload went from 5,492,787 to 4,475,058 bytes. Direct Mathlib initializer calls went from 8,460 to 4,644. The signed change in private compiler file size was +14,656 bytes. These figures cover the listed modules. Whole-project time remains unmeasured. [Measurements for all five compiler facets](ordinary-progress/summary.json)
+Generated C in this workload went from 27,715,905 to 18,270,061 bytes. Direct Mathlib initializer calls went from 66,524 to 31,108. The signed change in private compiler file size was +114,056 bytes. These figures cover the listed modules. Whole-project time remains unmeasured. [Measurements for all five compiler facets](ordinary-progress/summary.json)
 
 The edited modules own 866,681 declaration occurrences in the community build. The index gives their Lean names and kinds by module. [Declaration ownership](declaration-owners/manifest.json) [Directory review commits](directory-review.md)
 
@@ -28,3 +28,17 @@ The edited modules own 866,681 declaration occurrences in the community build. T
 Lean compiled the revised `BlockSymApply` source against authenticated compiler inputs for this revision. All 2 declarations, their proof terms and the compiler warnings matched the community version. [Source comparison](current-initial-native.json)
 
 The current WeilBound commit edits 2,858 files. The complete upstream source of `PureTypeLatticesOrthogonal.lean` is present on both sides of the diff. Of the remaining paths, 2,778 retain both source blobs from the reviewer's earlier commit and 80 have updated sources. [Reviewer audit](https://github.com/leanprover-community/riemann-hypothesis/pull/879#issuecomment-7150958950) · [Source changes since the review](weilbound-review-transition.json) · [Directory commits](directory-review.md)
+
+## Five final claims
+
+The updated ClaimStrip and MainConclusion providers and Main were compiled from the published revision. Their fifteen compiler files match the community originals. Lean accepted the five final proof terms and rejected a replacement proof of `True`. All five axiom sets contain only `propext`, `Quot.sound` and `Classical.choice`. The two independent frozen statement exports also reproduce the community CI hashes. [Proof terms and negative control](projected-input-five-theorems/roots/replay.log) · [Axioms](projected-input-five-theorems/roots/axioms.log) · [Frozen statement exports](frozen-statements.json)
+
+This endpoint check used expected compiled public inputs for 58,897 project modules. Actual ordinary Lake output matched the expected public and IR files for the 458 modules available when the archive was sealed. A complete build must still establish the remaining inputs at this revision. The standard Linux Comparator with its independent checker remains outstanding. [Input coverage](projected-input-five-theorems/latest-native-evidence.json) · [Reproduce the endpoint comparison](projected-input-five-theorems/REVIEW-projected-Main.md) · [Root compiler files and logs](projected-input-five-theorems/projected-inputs-darwin-five-roots-fc7da07ee956d37af90da7e0bf4bae68dc5795a9.zip)
+
+The archive records source-compilation evidence for 5,765 of 38,910 edited modules. The transfer audit checks both the Git source and the effective compiled inputs for each earlier result. A second kernel invocation opened Main from the sealed archive, authenticated the 58,897 loaded project images and reproduced the accepted and rejected proofs. [Source transfer audit](module-comparison/verified.json) · [Per-source results](module-comparison/reused-native-source-rows.jsonl.gz) · [Independent archive replay](projected-input-five-theorems/independent-archive-replay.json)
+
+## WeilBound review
+
+All 80 updated sources in the WeilBound review commit compiled on Apple silicon. The checks covered 3,795 declarations, including private proof values, and 642 warnings. The six files identified in the Windows audit all passed. [Per-file results](weilbound-updated-sources/README.md)
+
+Across the project, the community compiler files contain 1,826,577 direct Mathlib import entries. Reading those headers with Lean's serializer and applying the proposed edits gives 813,600. The per-module counts agree with the source diff. [Compiled import arrays and method](projected-compiled-imports.json)
