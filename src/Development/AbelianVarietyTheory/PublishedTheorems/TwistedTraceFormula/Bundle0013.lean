@@ -14,6 +14,7 @@ public import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries
 
 -- bundled from Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.ExistsFactorisationCuspidal
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta MeasureTheory IsDedekindDomain NumberField Filter

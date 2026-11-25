@@ -53,6 +53,7 @@ end
 
 -- bundled from Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.UnramifiedWhittaker.BasisSet
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace PositivityTheory.SiegelWeilFormula.Gunr
@@ -118,6 +119,7 @@ end
 
 -- bundled from Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.UnramifiedWhittaker.PsiFEqOne
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace PositivityTheory.SiegelWeilFormula.Gunr

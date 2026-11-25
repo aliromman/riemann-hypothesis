@@ -41,6 +41,7 @@ end I195MixedCoordinates_4dbac5b45bba9ccd847c7fca
 
 @[expose] public section
 
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix GlobalTheory.SplitWeil.matrixMeasurableSpace
 attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 
 noncomputable section

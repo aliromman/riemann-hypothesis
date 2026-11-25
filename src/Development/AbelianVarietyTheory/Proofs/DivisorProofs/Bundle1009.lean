@@ -194,7 +194,7 @@ theorem range_w0C_type : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 I0 T
   have hI := (_root_.GlobalTheory.Hk3.eH_laws R.toRealDat F.lv2 hC hX i).1
   have hs : ∀ a, cj (twAt D.what₂.embLL A3.A.v0) (A3.A.fam.v0.embedding a) = sg0 D A3.A a := fun a => by
     show cj _ (A3.A.v0.embedding a) = _
-    rw [emb_eq D.what₂.embLL A3.A.v0 a, cj_cj]
+    rw [emb_eq D.what₂.embLL A3.A.v0 a, Formalism.IndefR.Links.cj_cj]
   rw [_root_.GlobalTheory.LevelRange.range_w0C_eq R F hOk hW hU false i]
   ext x
   have hw := GlobalTheory.WatType.wat_iff_type R.toRealDat F.lv2 hOk.ok2 hC false i (Tw.out x)

@@ -9,6 +9,7 @@ public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.Bund
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.IndefiniteRowSideFullHecke.UnipotentLatticeMembership.finiteLevelGroupFintype
 noncomputable section
 
 namespace GlobalTheory.TwInputs

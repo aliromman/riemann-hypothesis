@@ -56,24 +56,24 @@ theorem comb_eig {P : Type} [CommRing P] (act : OAct P G) (σ : P →+* F) {n : 
 
 theorem comb_base {F' : Type} [Field F'] (f : F →+* F') {x' : Sp F' ⟶ S} (hx : spMap f ≫ x = x') {n : ℕ}
     {v : Fin n → (epsAt x ⟶ G)} {cf : Fin n → F} {w : epsAt x ⟶ G} {v' : Fin n → (epsAt x' ⟶ G)}
-    {w' : epsAt x' ⟶ G} (hv : ∀ i, (v' i).left = spMap (GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ (v i).left)
-    (hw : w'.left = spMap (GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ w.left) (h : IsComb cf v w) :
+    {w' : epsAt x' ⟶ G} (hv : ∀ i, (v' i).left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ (v i).left)
+    (hw : w'.left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ w.left) (h : IsComb cf v w) :
     IsComb (fun i => f (cf i)) v' w' := by
   obtain ⟨u, hu, e⟩ := h
   let g := LieCarrier.epsHom f x x' hx
   have hw' : w' = g ≫ w := Over.OverMorphism.ext hw
   refine ⟨fun i => g ≫ u i, fun i => ?_, ?_⟩
-  · have hscale : spMap (GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ spMap (epsMul (cf i)) =
-        spMap (epsMul (f (cf i))) ≫ spMap (GlobalTheory.CompanionTheory.Ar.dualMap f) := by
+  · have hscale : spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ spMap (epsMul (cf i)) =
+        spMap (epsMul (f (cf i))) ≫ spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f) := by
       simp only [spMap, ← Spec.map_comp, ← CommRingCat.ofHom_comp, LieCarrier.dualMap_epsMul]
-    change spMap (GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ (u i).left = _
+    change spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ (u i).left = _
     rw [hu i, ← Category.assoc, hscale, Category.assoc, hv i]
   · rw [hw', e, CombBase.comp_list_prod, List.map_ofFn]
     rfl
 
 theorem eigFrame_base [Smooth G.hom] {P : Type} [CommRing P] (act : OAct P G) (σ : P →+* F) {F' : Type} [Field F']
     (f : F →+* F') {x' : Sp F' ⟶ S} (hx : spMap f ≫ x = x') {n : ℕ} {v : Fin n → (epsAt x ⟶ G)}
-    {v' : Fin n → (epsAt x' ⟶ G)} (hv : ∀ i, (v' i).left = spMap (GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ (v i).left)
+    {v' : Fin n → (epsAt x' ⟶ G)} (hv : ∀ i, (v' i).left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ (v i).left)
     (h : IsEigFrame act x σ v) : IsEigFrame act x' (f.comp σ) v' := by
   let _ : Algebra F F' := f.toAlgebra
   subst x'
@@ -108,14 +108,14 @@ theorem valFam_comb (Z : CptOver Y U) {F : Type} [Field F] {y : Sp F ⟶ Xo.XF c
 
 theorem valFam_base (Z : CptOver Y U) {F F' : Type} [Field F] [Field F'] (f : F →+* F') {y : Sp F ⟶ Xo.XF c}
     {y' : Sp F' ⟶ Xo.XF c} (hy : y' = spMap f ≫ y) {n : ℕ} {b : Fin n → Z.V} {v : Vecs y n} {v' : Vecs y' n}
-    (hv : ∀ i, (v' i).left = spMap (GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ (v i).left)
+    (hv : ∀ i, (v' i).left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ (v i).left)
     (h : IsValFam Z y b v) : IsValFam Z y' b v' := by
   subst y'
   intro i
   obtain ⟨u, ⟨hc, t, ht, hu⟩, s, hs, hsv, hsu⟩ := h i
   have hzz : spMap f ≫ (y ≫ Y.j) = (spMap f ≫ y) ≫ Y.j := (Category.assoc _ _ _).symm
   let g := LieCarrier.epsHom f (y ≫ Y.j) ((spMap f ≫ y) ≫ Y.j) hzz
-  refine ⟨g ≫ u, ?_, spMap (GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ s, ?_, ?_, ?_⟩
+  refine ⟨g ≫ u, ?_, spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ s, ?_, ?_, ?_⟩
   · have hval (z' : Sp F' ⟶ Y.X) (hz : spMap f ≫ (y ≫ Y.j) = z') :
         Z.M.ValAt z' (b i) (LieCarrier.epsHom f (y ≫ Y.j) z' hz ≫ u) := by
       subst z'
@@ -469,8 +469,8 @@ theorem exists_isGen {F : Type} [Field F] {βF : c.F →+* F} {y : Sp F ⟶ Xo.X
 omit hβ hτ hg in
 theorem rat_base {F F' : Type} [Field F] [Field F'] (f : F →+* F') {y : Sp F ⟶ Xo.XF c}
     {v : Vecs y D.p} {w : Vecs y D.q} {v' : Vecs (spMap f ≫ y) D.p} {w' : Vecs (spMap f ≫ y) D.q} {r : F}
-    (hv' : ∀ i, (v' i).left = spMap (GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ (v i).left)
-    (hw' : ∀ i, (w' i).left = spMap (GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ (w i).left)
+    (hv' : ∀ i, (v' i).left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ (v i).left)
+    (hw' : ∀ i, (w' i).left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ (w i).left)
     (h : IsRat Z τ a b y v w r) :
     IsRat Z τ a b (spMap f ≫ y) v' w' (f r) := by
   obtain ⟨βF, b₁, b₂, α, κ, hfr, ea, eb, hv, hw, hr⟩ := h
@@ -492,17 +492,17 @@ theorem rat_base {F F' : Type} [Field F] [Field F'] (f : F →+* F') {y : Sp F �
 omit hβ hτ hg in
 theorem isGen_base {F F' : Type} [Field F] [Field F'] (f : F →+* F') {y : Sp F ⟶ Xo.XF c}
     {v : Vecs y D.p} {w : Vecs y D.q} {v' : Vecs (spMap f ≫ y) D.p} {w' : Vecs (spMap f ≫ y) D.q} {r : F}
-    (hv' : ∀ i, (v' i).left = spMap (GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ (v i).left)
-    (hw' : ∀ i, (w' i).left = spMap (GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ (w i).left)
+    (hv' : ∀ i, (v' i).left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ (v i).left)
+    (hw' : ∀ i, (w' i).left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ (w i).left)
     (h : IsGen Z τ a b y v w r) :
     IsGen Z τ a b (spMap f ≫ y) v' w' (f r) := by
   obtain ⟨v₀, w₀, r₀, A, B, hR, hA, hB, hd, e⟩ := h
   have hx : spMap f ≫ under y = under (spMap f ≫ y) := (Category.assoc _ _ _).symm
   let g := LieCarrier.epsHom f (under y) (under (spMap f ≫ y)) hx
   have p₁ : ∀ i, (g ≫ v₀ i).left =
-    spMap (GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ (v₀ i).left := fun _ => rfl
+    spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ (v₀ i).left := fun _ => rfl
   have p₂ : ∀ i, (g ≫ w₀ i).left =
-    spMap (GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ (w₀ i).left := fun _ => rfl
+    spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ (w₀ i).left := fun _ => rfl
   refine ⟨fun i => g ≫ v₀ i, fun i => g ≫ w₀ i, f r₀, f.mapMatrix A,
     f.mapMatrix B, rat_base f p₁ p₂ hR, fun i => comb_base f hx p₁ (hv' i) (hA i),
     fun i => comb_base f hx p₂ (hw' i) (hB i), ?_, ?_⟩

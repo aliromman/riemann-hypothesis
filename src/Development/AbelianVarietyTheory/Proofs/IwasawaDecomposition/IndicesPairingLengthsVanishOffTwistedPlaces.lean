@@ -19,7 +19,9 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Bundl
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.StableIffCarrierEq
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
+attribute [-instance] GlobalTheory.IndefiniteRowSideFullHecke.UnipotentLatticeMembership.finiteLevelGroupFintype
 noncomputable section
 
 section WithoutEta
@@ -282,7 +284,7 @@ theorem thG_eq_zero_of_orth_noEta : ∀ (D : D7) (G : Type) [Group G] [Fintype G
         R.gW i (sg0 D A3.A) g (Tw.out (s := (twAt D.what₂.embLL A3.A.v0)) (E := (R.HW i (sg0 D A3.A)).H) y) =
       RealDat.eC (A := A3.A) (sg0 D A3.A) g •
         R.gW i (sg0 D A3.A) g (Tw.out (s := (twAt D.what₂.embLL A3.A.v0)) (E := (R.HW i (sg0 D A3.A)).H) y)
-    rw [Formalism.IndefR.Links.emb_eq D.what₂.embLL A3.A.v0, cj_cj]
+    rw [Formalism.IndefR.Links.emb_eq D.what₂.embLL A3.A.v0, Formalism.IndefR.Links.cj_cj]
     rfl
   have hθ : ∀ (u : (R.toCx3 F).FLC i t),
       Tw.out (s := (twAt D.what₂.embLL A3.A.v0)) (E := (R.HW i (sg0 D A3.A)).H) ((R.toCx3 F).θ' i t u) =

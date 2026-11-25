@@ -54,6 +54,7 @@ public import Formalism.SharpRestriction.GlobalSchurBounds.GlobalRankLatticeProo
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FlagMeasures.CardMiddleLatticesOverGenusLattice
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open NumberField Module Matrix Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.Cnt GlobalTheory.LoopC
@@ -445,6 +446,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FlagMeasures.MassIntegralLatticesDiscriminantOrderLeStatement
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField Matrix GlobalTheory.Mass Formalism.HermitianLatticesTheory
 open scoped ENNReal Classical
 set_option maxHeartbeats 1000000 in

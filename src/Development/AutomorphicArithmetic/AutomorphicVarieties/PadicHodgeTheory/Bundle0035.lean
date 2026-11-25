@@ -12,6 +12,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThre
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.FinrankLocalCocyclesAdjointUnitaryThreeEqTwelve
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 open Formalism.BasicNotions Formalism.BasicNotions.Loc ReciprocityTheory.Gal Module UpperTheory.V.Loc UpperTheory.V.U3 UpperTheory.V.Alg IsLocalRing Polynomial
 
 private theorem wt_cases (a b : Fin 3) : ∃ j : Fin 5, wt a b = ((j : ℕ) : ℤ) - 2 := by
@@ -71,6 +72,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.LaWDUnr
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc GlobalTheory.WeilDeligne GlobalTheory.GalOfCusp GlobalTheory.HeckeGal GlobalTheory.LocLanglands GlobalTheory.Published UpperTheory.V.W
 open GlobalTheory.Pst GlobalTheory.TripleGal Module
 set_option synthInstance.maxHeartbeats 400000

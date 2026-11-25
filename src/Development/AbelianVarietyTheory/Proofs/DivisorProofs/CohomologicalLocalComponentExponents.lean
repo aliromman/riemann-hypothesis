@@ -13,6 +13,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjugateSym
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ExpoConjOfIsCsd
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

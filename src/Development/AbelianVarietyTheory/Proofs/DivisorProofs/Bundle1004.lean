@@ -46,6 +46,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.LevAgreesOfIsLift
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open AlgebraicGeometry CategoryTheory NumberField Matrix MeasureTheory
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.FD GlobalTheory.ThFr GlobalTheory.Dict
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor hiding Level Host

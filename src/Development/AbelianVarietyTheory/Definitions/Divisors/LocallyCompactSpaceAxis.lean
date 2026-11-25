@@ -23,6 +23,7 @@ public import GroundTheory.GlobalFields.IdeleGroups.IdeleNorms.BaseChange
 public import GroundTheory.GlobalFields.Adele.Bundle0001
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

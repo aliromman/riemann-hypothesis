@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.Bundl
 public import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.ExistsUniqueWeilIs
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 set_option autoImplicit false
 

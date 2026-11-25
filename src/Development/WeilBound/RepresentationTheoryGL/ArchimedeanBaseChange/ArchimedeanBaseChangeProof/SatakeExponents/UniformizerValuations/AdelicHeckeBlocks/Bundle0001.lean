@@ -188,6 +188,8 @@ theorem assoc1 {A B' C : Hf E a b → ℂ} (hA : Continuous A ∧ HasCompactSupp
     (hA.2.isCompact.mul hB.2.isCompact).prod hA.2.isCompact
   set_option synthInstance.maxHeartbeats 100000 in
     refine integral_integral_swap (f := fun h k => A k * B' (k⁻¹ * h) * C (h⁻¹ * g)) ?_
+  have : R1Space (Hf E a b × Hf E a b) :=
+    @T2Space.r1Space _ _ Prod.t2Space
   set_option synthInstance.maxHeartbeats 100000 in
     refine hcont.integrable_of_hasCompactSupport (HasCompactSupport.intro hK fun p hp => ?_)
   by_contra hne

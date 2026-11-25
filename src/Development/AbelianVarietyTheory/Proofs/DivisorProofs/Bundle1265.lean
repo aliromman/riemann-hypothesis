@@ -29,6 +29,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.Bundle0034
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCommonFiniteExtensionGaloisRepsCharacters
 section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 open NumberField GlobalTheory.ExpFrame Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N ReciprocityTheory.Gal Formalism.ConjugateSelfDual Polynomial
 
 noncomputable section

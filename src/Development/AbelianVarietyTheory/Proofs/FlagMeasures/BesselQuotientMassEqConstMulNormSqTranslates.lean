@@ -21,7 +21,9 @@ public import Development.AbelianVarietyTheory.Proofs.JetHarmonics.BesselSubgrou
 public import Formalism.HermitianCurvature.HermitianCurvatureProofs.Bundle0039
 
 @[expose] public section
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix GlobalTheory.SplitWeil.matrixMeasurableSpace
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
 namespace GlobalTheory.BesselIsometry

@@ -258,6 +258,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.FiniteEtaleModels.MOne
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField GlobalTheory.UPel.HT
 
 theorem UpperTheory.Gal.FiniteEtaleModels.O.mOne :

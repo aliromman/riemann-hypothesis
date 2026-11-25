@@ -31,6 +31,8 @@ public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.Bun
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
+attribute [-instance] GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 noncomputable section
 attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open scoped Matrix NNReal ENNReal TensorProduct Pointwise

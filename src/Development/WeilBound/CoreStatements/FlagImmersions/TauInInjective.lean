@@ -21,6 +21,7 @@ public import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.Bir
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.Bundle0037
 
 @[expose] public section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 noncomputable section
 

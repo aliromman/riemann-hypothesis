@@ -4,6 +4,7 @@ public import Mathlib
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ReferenceCharactersFactorTame
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

@@ -354,6 +354,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.HeightProofs.WeberInvariantTorsionValuesSubsetOfContainsRayFi
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 set_option autoImplicit false
 
 open NumberField IsDedekindDomain GlobalTheory.FieldSize

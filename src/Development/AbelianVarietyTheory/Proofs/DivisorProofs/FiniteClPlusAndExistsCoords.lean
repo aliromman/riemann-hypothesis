@@ -6,6 +6,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.Bundle0039
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.MeasureToRealEqMass
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

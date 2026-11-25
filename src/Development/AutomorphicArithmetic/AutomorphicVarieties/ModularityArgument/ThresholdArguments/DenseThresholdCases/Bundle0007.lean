@@ -18,6 +18,7 @@ public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentation
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.LocOrdFlag
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 set_option maxHeartbeats 800000
 set_option synthInstance.maxHeartbeats 200000
 
@@ -209,6 +210,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.PrDesc
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 set_option maxHeartbeats 800000
 set_option synthInstance.maxHeartbeats 200000
 

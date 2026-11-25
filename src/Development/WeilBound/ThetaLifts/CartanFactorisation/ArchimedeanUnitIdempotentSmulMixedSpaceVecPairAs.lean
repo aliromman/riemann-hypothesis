@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.Bun
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 open IsDedekindDomain NumberField MeasureTheory
 open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels Matrix ENNReal Classical

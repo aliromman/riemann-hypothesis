@@ -10,6 +10,7 @@ public import Formalism.HermitianCurvature.HermitianCurvatureProofs.ContinuousMu
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S Formalism.FourierDecayAlt Formalism.FourierDecayAlt.P
 open scoped ENNReal InnerProductSpace
 

@@ -10,6 +10,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1174
 
 -- bundled from Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ScalarCommutation.CuspIdeal
 section
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 set_option autoImplicit false
 
 noncomputable section

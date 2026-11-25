@@ -261,6 +261,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.TwistedOperators.TypeIdempotentConstantTermVanish
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 open MeasureTheory ValuativeRel GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.IndefiniteRowSideFullHecke.StandardMaximalParabolic
 
 noncomputable section

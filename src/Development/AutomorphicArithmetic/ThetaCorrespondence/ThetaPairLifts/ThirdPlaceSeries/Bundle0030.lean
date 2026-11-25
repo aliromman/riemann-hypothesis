@@ -49,6 +49,7 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Hecke
 
 -- bundled from Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.BuiltFiniteAndMemStatement
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 set_option synthInstance.maxHeartbeats 200000
 
 section
@@ -67,6 +68,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ChiEqOfExtStatement
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 set_option synthInstance.maxHeartbeats 200000
 
 section
@@ -79,6 +81,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ChiMuUnrFrob
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 set_option synthInstance.maxHeartbeats 200000
 
 section
@@ -102,6 +105,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ChiOneTameGenStatement
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 set_option synthInstance.maxHeartbeats 200000
 
 section
@@ -151,6 +155,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ExtRingStatement
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 set_option synthInstance.maxHeartbeats 200000
 
 section
@@ -212,6 +217,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.HeckePolMapEqFrobPol
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 set_option synthInstance.maxHeartbeats 200000
 
 section

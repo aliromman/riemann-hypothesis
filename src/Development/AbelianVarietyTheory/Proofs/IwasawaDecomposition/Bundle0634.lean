@@ -250,6 +250,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FlagMapChernRootsPointPoly
 section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 open MvPolynomial NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open Classical
 

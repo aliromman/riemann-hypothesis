@@ -11,6 +11,7 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.Bundle0
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.IndefiniteRowSideFullHecke.UnipotentLatticeMembership.finiteLevelGroupFintype
 noncomputable section
 
 attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot

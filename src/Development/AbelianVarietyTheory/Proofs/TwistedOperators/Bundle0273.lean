@@ -41,6 +41,7 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForm
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsCentralizerMeasuresFromUnitaryTorus
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open MeasureTheory Set Filter Polynomial NumberField IsDedekindDomain
 open GlobalTheory.AdelicU GlobalTheory.Orb GlobalTheory.AutomorphicL2Unitary Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
@@ -88,7 +89,7 @@ theorem isHaarProd_map_all {X X' W V : Type} {Ya Ya' : W → Type} {Yf Yf' : V �
     rw [← h4.2 S (fun v hv => (hS v fun h' => hv (hs h')).1) _ _
       (fun w => (map_continuous (ea w)).measurable (hA w)) fun v hv => (map_continuous (ef v)).measurable (hB v hv)]
     refine congrArg ν (Set.ext fun x => ?_)
-    simp only [mem_preimage, mem_cyl, ha, hf]
+    simp only [mem_preimage, GlobalTheory.RestrMeas.mem_cyl, ha, hf]
     exact and_congr_right fun _ => and_congr_right fun _ => forall₂_congr fun v hv =>
       (hS v fun h' => hv (hs h')).2 _
 

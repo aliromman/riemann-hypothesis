@@ -70,6 +70,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1831
 
 -- bundled from Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.BcPrVMemUlocOff
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 set_option synthInstance.maxHeartbeats 200000
 
 section

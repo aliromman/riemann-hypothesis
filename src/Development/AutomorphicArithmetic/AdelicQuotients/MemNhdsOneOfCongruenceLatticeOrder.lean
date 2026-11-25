@@ -6,6 +6,7 @@ public import Development.WeilBound.CoreStatements.LocalThetaKernels.ExistsSmall
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open scoped Matrix
 open NumberField IsDedekindDomain Filter Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels UpperTheory.TP.BA
 

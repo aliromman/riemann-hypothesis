@@ -5,6 +5,7 @@ public import CompanionTheory.SpectralGeometry.CountingDefinitions.AdelicEulerPr
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix GlobalTheory.SplitWeil.matrixMeasurableSpace
 noncomputable section
 
 open HeckeCharacterZeroLocus.SiegelWeilU NumberField IsDedekindDomain MeasureTheory Topology

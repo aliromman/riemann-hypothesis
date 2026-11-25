@@ -22,6 +22,7 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.
 public import Formalism.LocalToGlobal.ProjectiveLattices.CurveLoc
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.WeightAlgebra Formalism.MainNotions.Gaps.EtaleWeightGaps Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped TensorProduct

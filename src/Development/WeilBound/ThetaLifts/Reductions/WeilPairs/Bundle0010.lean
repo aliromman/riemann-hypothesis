@@ -195,6 +195,7 @@ end
 
 -- bundled from Development.WeilBound.ThetaLifts.Reductions.WeilPairs.FinIdemSmulOfReal
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open scoped TensorProduct Matrix Topology Kronecker ComplexOrder Classical
@@ -281,6 +282,7 @@ end
 
 -- bundled from Development.WeilBound.ThetaLifts.Reductions.WeilPairs.LatRepB
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open scoped TensorProduct Matrix Topology

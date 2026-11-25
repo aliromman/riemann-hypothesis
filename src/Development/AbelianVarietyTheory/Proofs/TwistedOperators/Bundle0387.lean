@@ -218,6 +218,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.TwistedOperators.RealPairingSpaceResultOfSchrodingerCoordinates
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 open GlobalTheory.ArchUniq GlobalTheory.RealWeil MeasureTheory
 open scoped SchwartzMap RealInnerProductSpace
 

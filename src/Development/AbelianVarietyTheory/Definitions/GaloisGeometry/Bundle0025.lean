@@ -97,6 +97,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.GaloisGeometry.TwistEmptyOfChartsEx
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace GlobalTheory.TwU.WildChar

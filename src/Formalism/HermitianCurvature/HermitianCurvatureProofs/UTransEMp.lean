@@ -5,6 +5,7 @@ public import Formalism.HermitianCurvature.HermitianCurvatureProofs.MulVecBvecAp
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 open Matrix MeasureTheory Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.U
 
 noncomputable section

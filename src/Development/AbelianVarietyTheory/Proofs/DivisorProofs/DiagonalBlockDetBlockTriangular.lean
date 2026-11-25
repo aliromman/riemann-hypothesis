@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemHatMxHomL
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0291
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

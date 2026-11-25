@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Statements.CuspFrameWeights.Bundl
 public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.Bundle0012
 
 @[expose] public section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S GlobalTheory.Count GlobalTheory.FlagMeas GlobalTheory.GaussMean GlobalTheory.StabUnfold
 open scoped TensorProduct

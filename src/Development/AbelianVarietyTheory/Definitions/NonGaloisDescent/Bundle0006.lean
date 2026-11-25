@@ -260,6 +260,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.LayersOfExists
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 namespace GlobalTheory.HWL.Back

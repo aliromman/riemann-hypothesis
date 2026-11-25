@@ -19,6 +19,7 @@ public import Formalism.HermitianCurvature.HermitianCurvatureProofs.AeNeZeroComp
 
 -- bundled from Formalism.HermitianCurvature.HermitianCurvatureProofs.CutEX2
 section
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 noncomputable section
 
 open Matrix MeasureTheory Filter Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt

@@ -50,6 +50,7 @@ end
 
 -- bundled from Development.WeilBound.ThetaLifts.TowerModels.PlaneMain
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace PositivityTheory.ThKG.Tow.Pln

@@ -11,6 +11,7 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.Bundle0
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BreuilKisinDescentFiniteFreeInvertPrime
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
 open PowerSeries GlobalTheory.BK
 open scoped NormedField Valued
 

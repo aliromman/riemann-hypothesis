@@ -6,6 +6,7 @@ public import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisi
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 open Classical
 

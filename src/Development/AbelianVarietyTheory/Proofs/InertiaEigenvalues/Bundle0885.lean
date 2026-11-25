@@ -155,6 +155,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CoefficientMapCommutesFieldAutomorphism
 section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 set_option autoImplicit false
 
 noncomputable section

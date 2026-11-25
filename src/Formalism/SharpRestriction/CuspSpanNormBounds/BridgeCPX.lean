@@ -11,6 +11,7 @@ public import Formalism.SharpRestriction.CuspSpanNormBounds.Bundle0006
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open MeasureTheory Matrix Filter Topology
 open scoped InnerProductSpace ContDiff Convolution
 

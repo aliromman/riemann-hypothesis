@@ -202,6 +202,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ValuationMinpolyCoeffZeroGeOfPowMulIntegral
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField Polynomial IsDedekindDomain
 open Formalism.DivisionValues (vw lw)
 
@@ -329,7 +330,8 @@ theorem GlobalTheory.ArchDecay.word_action_square_integrable : ∀ (F E : Type) 
       show dD F v f = (1 : ℂ) • (dD F v f + c • mM F ((T : (Fin n × Fin d → mixedEmbedding.mixedSpace F) →L[ℝ] _) 0) f)
       rw [map_zero, mM_zero, smul_zero, add_zero, one_smul]
     | inr l =>
-      show mM F l f = c⁻¹ • (dD F 0 f + c • mM F ((T : (Fin n × Fin d → mixedEmbedding.mixedSpace F) →L[ℝ] _) (T.symm l)) f)
+      show mM F l f = c⁻¹ • (dD F 0 f + c • mM F (κ := Fin n × Fin d)
+        ((T : (Fin n × Fin d → mixedEmbedding.mixedSpace F) →L[ℝ] _) (T.symm l)) f)
       rw [dD_zero, zero_add, ContinuousLinearEquiv.coe_coe, ContinuousLinearEquiv.apply_symm_apply, smul_smul,
         inv_mul_cancel₀ hc0, one_smul]
   set C0 : ℝ := max 1 ‖(T.symm : ((Fin n × Fin d → mixedEmbedding.mixedSpace F) →L[ℝ] ℝ) →L[ℝ]

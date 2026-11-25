@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle043
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Bundle0187
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

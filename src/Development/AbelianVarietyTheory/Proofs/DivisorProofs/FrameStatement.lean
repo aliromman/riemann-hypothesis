@@ -16,6 +16,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1831
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ReadsAtSmallPlace
 
 @[expose] public section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 
 set_option autoImplicit false
 

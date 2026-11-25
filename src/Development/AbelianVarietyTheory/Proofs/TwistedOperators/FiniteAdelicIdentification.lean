@@ -15,6 +15,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsIde
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.OpFullImp
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

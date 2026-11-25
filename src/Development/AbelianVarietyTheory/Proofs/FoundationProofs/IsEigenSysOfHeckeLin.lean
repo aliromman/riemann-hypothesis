@@ -11,6 +11,7 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsDua
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle0310
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

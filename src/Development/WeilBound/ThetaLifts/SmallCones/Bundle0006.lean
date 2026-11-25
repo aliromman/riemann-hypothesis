@@ -110,6 +110,7 @@ end
 
 -- bundled from Development.WeilBound.ThetaLifts.SmallCones.SplitLatMap
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace PositivityTheory.ThKCT

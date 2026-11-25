@@ -193,6 +193,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FlagMeasures.InnerRepK
 section
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open MeasureTheory Matrix Finset Formalism.MainNotions.S Formalism.REAL Formalism.QuantumDeterminants GlobalTheory.Count GlobalTheory.Dec
 open scoped InnerProductSpace ComplexOrder
 

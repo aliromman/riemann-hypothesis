@@ -43,6 +43,9 @@ public import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.CmHostIdempotentTraceEqOne
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField Matrix Complex
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.FD GlobalTheory GlobalTheory.ThFr
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor hiding Level
@@ -456,7 +459,7 @@ namespace GlobalTheory.Dict
 theorem shortInCusp_cusp : Formalism.MainNotions.ModuliIntegralCharts.H1.ChartIndepSt2 → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Geo.Tor.Level H) (Xo : Moduli Dw l) (c : Coeff l) (n : ℕ) (d : DeltaDat Xo c n) (r : ℕ) (U : ∀ σ : c.F →+* ℂ, Formalism.L2.PjFree.Unf Xo c σ r), 1 ≤ r → (∀ σ, Formalism.L2.PjFree.GoodEmb c σ → Formalism.L2.PjFree.IsUnf (U σ)) → d.IsLev → (∃ _ : StarRing (𝓞 E), IsNab d.Xo₂ d.c₂ d.nab₂) → UnitC d → (Dw.p + Dw.q ≤ n → ∃ ph ψ x₀, d.PhiPin ph ψ x₀) → ∀ (nab : NabV Xo c) (bad nV : ℕ) (a : (E →+* ℂ) × ℕ → ℕ), ShortInCusp Xo c nab bad nV (Formalism.L2.PjFree.cusp Xo c U) a n d := by
   intro hci E _ _ _ H Dw l Xo c n d r U hr1 hU hlev hnab hunit hpin nab bad nV a hD hL f hf
   obtain ⟨hsec, Λ, N, x0, P, hun, -, htr, hN, hx0, hP, hrule⟩ := hf
-  refine (mem_cusp Xo c U a n f).2 ⟨hsec, fun σ hσ => Formalism.L2.PjFree.holCusp_mem_holSub _ _ fun k => ?_⟩
+  refine (Formalism.L2.PjFree.mem_cusp Xo c U a n f).2 ⟨hsec, fun σ hσ => Formalism.L2.PjFree.holCusp_mem_holSub _ _ fun k => ?_⟩
   have hu := hU σ hσ
   obtain ⟨W⟩ := nonempty_uw hu
   have hsd := (GlobalTheory.Dict.uw_lattice E H Dw l Xo c σ r (U σ) hσ hu hr1 W k).2.1

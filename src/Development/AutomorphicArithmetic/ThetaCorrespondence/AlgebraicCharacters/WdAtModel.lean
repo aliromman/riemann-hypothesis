@@ -9,6 +9,7 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometryâ
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.CrystallineBaseChange.Bundle0001
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 
 open UpperTheory.Lit.CharWD GlobalTheory.Published

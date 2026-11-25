@@ -4,6 +4,7 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.TwistedL
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 open ValuativeRel Matrix
 
 namespace UpperTheory.V.Z.Tf.L4

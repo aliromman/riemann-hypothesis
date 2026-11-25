@@ -6,6 +6,7 @@ public import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.IsAddFun
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.Bundle0015
 
 @[expose] public section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S GlobalTheory.Count GlobalTheory.FlagMeas GlobalTheory.FlagBase
 open scoped nonZeroDivisors

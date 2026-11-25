@@ -13,6 +13,7 @@ public import Development.AbelianVarietyTheory.BlockTheory.DivisorBase.ToricSymb
 public import Development.AbelianVarietyTheory.Definitions.Foundations.NormSumPairRankZeroOfCurveCoordNorm
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

@@ -14,6 +14,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.PublishedTh
 public import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.DualIsConjByOne
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

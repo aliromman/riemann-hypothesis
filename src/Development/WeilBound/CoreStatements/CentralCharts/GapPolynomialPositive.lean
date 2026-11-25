@@ -25,6 +25,7 @@ public import Development.WeilBound.CoreStatements.FlagImmersions.Imports
 public import Development.WeilBound.CoreStatements.CentralCharts.FlagImmersion
 
 @[expose] public section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 noncomputable section
 

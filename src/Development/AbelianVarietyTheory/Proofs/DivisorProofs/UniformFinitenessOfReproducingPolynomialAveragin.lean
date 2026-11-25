@@ -11,6 +11,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCompac
 
 @[expose] public section
 
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix
 noncomputable section
 
 open MeasureTheory ReciprocityTheory.ChartRestriction.DS

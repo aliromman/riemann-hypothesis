@@ -59,7 +59,7 @@ open NumberField IsDedekindDomain GlobalTheory.NT GlobalTheory.Mem.Fld GlobalThe
 theorem GlobalTheory.Published.GlobalArtinReciprocity.principalIdealSt (H : GlobalArtinReciprocity) : PrincipalIdealSt := by
   intro K L _ _ _ _ _ _ h 𝔞
   have hKL := h.1
-  have : IsTotallyComplex L := isTotallyComplex_of_algebra K L
+  have : IsTotallyComplex L := _root_.NumberField.isTotallyComplex_of_algebra K L
   obtain ⟨N, _, _, _, hN⟩ := rayField_iff.1 H.rayClassFieldSt L ⊤ top_ne_bot
   let : Algebra K N := ((algebraMap L N).comp (algebraMap K L)).toAlgebra
   have : IsScalarTower K L N := IsScalarTower.of_algebraMap_eq fun _ => rfl

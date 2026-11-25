@@ -62,6 +62,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsFlatHermHodgeCptConst
 section
+attribute [-instance] Formalism.L2.Pj.rulesCommRing Formalism.L2.Pj.rulesAlgebra Formalism.L2.Pj.rulesModule Formalism.L2.Pj.rulesSMul Formalism.L2.Pj.rulesAlgebraInt Formalism.L2.Pj.rulesModuleInt Formalism.L2.Pj.rulesTower
 open AlgebraicGeometry CategoryTheory Limits NumberField IsDedekindDomain MvPolynomial ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Flat
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat
@@ -292,6 +293,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.GeometryProofs.PointOverNumberFieldValue
 section
+attribute [-instance] Formalism.L2.Pj.rulesCommRing Formalism.L2.Pj.rulesAlgebra Formalism.L2.Pj.rulesModule Formalism.L2.Pj.rulesSMul Formalism.L2.Pj.rulesAlgebraInt Formalism.L2.Pj.rulesModuleInt Formalism.L2.Pj.rulesTower
 open AlgebraicGeometry CategoryTheory Limits NumberField IsDedekindDomain MvPolynomial
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl
 open scoped ComplexOrder

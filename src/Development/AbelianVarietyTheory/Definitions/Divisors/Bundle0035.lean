@@ -363,6 +363,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.Divisors.KerDatTuple
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 set_option autoImplicit false
 
 noncomputable section

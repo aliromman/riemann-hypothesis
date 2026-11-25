@@ -15,6 +15,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.LatticeFa
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.Bundle0782
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 set_option autoImplicit false
 

@@ -4,6 +4,7 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.SiegelWeil₂.S
 
 @[expose] public section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 open scoped Matrix NNReal ComplexConjugate TensorProduct
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory

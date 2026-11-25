@@ -166,6 +166,7 @@ end
 
 -- bundled from Development.WeilBound.CoreStatements.MultihomogeneousSquares.GoodTowerAntisymmetryOf
 section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 noncomputable section
 
 namespace SquareStatements

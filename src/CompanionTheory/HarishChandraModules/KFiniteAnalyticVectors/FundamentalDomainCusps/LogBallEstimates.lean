@@ -7,6 +7,7 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CoveringRadius.C
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 open Matrix NumberField Topology
 open scoped ComplexConjugate InnerProductSpace
 

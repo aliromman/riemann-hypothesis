@@ -13,6 +13,7 @@ public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentation
 
 -- bundled from Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.JacobianTraceQuotients.CasTrace
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 open MeasureTheory NumberField IsDedekindDomain Filter ValuativeRel
 open GroundTheory.Global GroundTheory.Global.SemiLocal
 open UpperTheory.ConvolutionTheory UpperTheory.ConvolutionTheory.C UpperTheory.ConvolutionTheory.Loc GlobalTheory.PRep GlobalTheory.CuspRep GlobalTheory.SmGL GlobalTheory.IndefiniteRowSideFullHecke.IwahoriDoubleCosets

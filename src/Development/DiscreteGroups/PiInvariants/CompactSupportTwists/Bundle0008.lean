@@ -111,6 +111,7 @@ theorem avgInt_holds : AvgInt := by
   intro E _ _ _ n hn D L hL hLc hLi w hwc hws hw1
   haveI := borelSpace_H (E := E) (n := n)
   haveI := sigmaFinite_nu hn D
+  have : SFinite D.ν := MeasureTheory.instSFiniteOfSigmaFinite
   obtain ⟨c, hc_eq⟩ : ∃ c, c = ldet (aS E n 1) := ⟨_, rfl⟩
   have hc : 0 < c := by rw [hc_eq]; exact lg_e_pos hn
   have hwi : Integrable w := hwc.integrable_of_hasCompactSupport hws

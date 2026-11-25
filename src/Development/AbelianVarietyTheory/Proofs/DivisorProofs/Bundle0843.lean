@@ -22,6 +22,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.ToricPeriodB
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdelicCongruenceSelfDualOfPrincipalLattice
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2 Formalism.L2.Theta Formalism.L2.Pj
 open scoped TensorProduct Matrix
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.Bundl
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 open Formalism.FourierDecayAlt Formalism.MainNotions.S GlobalTheory.ThA Formalism.QuantumDeterminants MeasureTheory Matrix
 open Formalism.FourierDecayAlt.P.Dx2.OrbJ
 

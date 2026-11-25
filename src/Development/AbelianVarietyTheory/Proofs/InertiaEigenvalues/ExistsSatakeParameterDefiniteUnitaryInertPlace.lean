@@ -9,6 +9,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle020
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsUniqueIsConjAt
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

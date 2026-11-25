@@ -11,6 +11,7 @@ public import Development.EtaleCohomology.CyclotomicDiscriminants.Bundle0002
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ClassCounting.SelmerOrderCounts.CardEQ
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain UpperTheory.V UpperTheory.V.ZK UpperTheory.V.ZK.Ct
 
 private theorem card_prod (E : Type) [AddCommGroup E] (δ : Module.End ℤ E) (m : ℕ) :

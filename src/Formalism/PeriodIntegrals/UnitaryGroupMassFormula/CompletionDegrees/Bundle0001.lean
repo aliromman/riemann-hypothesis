@@ -81,6 +81,7 @@ end
 
 -- bundled from Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CompletionDegrees.NormLeOneOfInteger
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 namespace PI.CompDegEF
 
 open IsDedekindDomain NumberField Module Formalism.BasicNotions Formalism.BasicNotions.Loc

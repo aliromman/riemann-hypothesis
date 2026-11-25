@@ -337,6 +337,7 @@ end GlobalTheory.MixSwap
 
 end
 end
+end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.WittSourceMixedCoordHeisenbergRestriction
 section
@@ -485,6 +486,7 @@ theorem heis_bridge : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S S₀ T : 
 
 end GlobalTheory.Bridge
 
+end
 end
 end
 

@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsIsS
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace GlobalTheory.ThK.Dbl.Split

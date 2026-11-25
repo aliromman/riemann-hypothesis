@@ -8,6 +8,7 @@ public import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeil
 
 -- bundled from Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.HeightLattices.EvLatLatO
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open scoped TensorProduct NNReal Matrix

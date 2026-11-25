@@ -132,6 +132,7 @@ end
 
 -- bundled from Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ValuationLocalVolumes.BaseLatticeLeSecondIsotropic
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace Formalism.L2.SG.Pf.NcVal.OmVSt.OmX
@@ -241,9 +242,9 @@ theorem pair_mem (v : PlX X) (s : Fv X.B.I.F v) (w : (VS D).V) (l : Fin X.B.I.n 
   rw [hR_smulE_right]
   have h1 : hR (Fv X.B.I.F v) X.B.I.cm.sig X.B.I.J (ratV (F := X.B.I.F) (Fv X.B.I.F v) (crdOf X.B.I X.ιE X.bas y))
       (ratV (F := X.B.I.F) (Fv X.B.I.F v) (crdOf X.B.I X.ιE X.bas w)) =
-      inclR (F := X.B.I.F) (Fv X.B.I.F v) (hE X.B.I.cm.sig X.B.I.J (crdOf X.B.I X.ιE X.bas y) (crdOf X.B.I X.ιE X.bas w)) :=
+      inclR (F := X.B.I.F) (Fv X.B.I.F v) (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE X.B.I.cm.sig X.B.I.J (crdOf X.B.I X.ιE X.bas y) (crdOf X.B.I X.ιE X.bas w)) :=
     hR_ratTup (Fv X.B.I.F v) X.B.I.cm.sig X.B.I.J ![crdOf X.B.I X.ιE X.bas y, crdOf X.B.I X.ιE X.bas w] 0 1
-  have h2 : hE X.B.I.cm.sig X.B.I.J (crdOf X.B.I X.ιE X.bas y) (crdOf X.B.I X.ιE X.bas w) =
+  have h2 : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.hE X.B.I.cm.sig X.B.I.J (crdOf X.B.I X.ιE X.bas y) (crdOf X.B.I X.ιE X.bas w) =
       X.B.I.cm.sig (X.ιE.symm ((VS D).hT w y)) := by
     rw [← hE_crdOf]
     exact (hform_star X _ _).symm

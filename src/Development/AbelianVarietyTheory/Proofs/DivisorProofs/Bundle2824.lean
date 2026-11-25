@@ -62,6 +62,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle2178
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.IteratedDerivativeSubmoduleStable
 section
+attribute [-instance] GlobalTheory.IndefiniteRowSideFullHecke.UnipotentLatticeMembership.finiteLevelGroupFintype
 set_option autoImplicit false
 noncomputable section
 open NumberField IsDedekindDomain

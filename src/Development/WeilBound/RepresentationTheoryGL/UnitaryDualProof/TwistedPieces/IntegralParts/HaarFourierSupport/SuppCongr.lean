@@ -19,8 +19,10 @@ variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchim
 theorem supp_congr' {C : Set (Sp k n)} {ξ : (Sp k n → ℂ) →ₗ[ℂ] ℂ} (h : Supp ξ C) {f g : Sp k n → ℂ}
     (hf : f ∈ supportedIn (Set.univ : Set (Sp k n))) (hg : g ∈ supportedIn (Set.univ : Set (Sp k n)))
     (e : ∀ p ∈ C, f p = g p) : ξ f = ξ g := by
-  have := h (f - g) ((supportedIn Set.univ).sub_mem hf hg) fun p hp => by simp [e p hp]
-  rwa [map_sub, sub_eq_zero] at this
+  have hz : ξ (f - g) = 0 := by
+    refine h (f - g) ?_ fun p hp => sub_eq_zero.mpr (e p hp)
+    exact Submodule.sub_mem _ hf hg
+  rwa [map_sub, sub_eq_zero] at hz
 
 def homH (t : kˣ) : Sp k n ≃ₜ Sp k n where
   toFun := PositivityTheory.RgUd.TP.Nil.hom t

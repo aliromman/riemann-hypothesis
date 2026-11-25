@@ -5,6 +5,7 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Value
 public import Formalism.LocalToGlobal.Columns.RecLevelTop
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

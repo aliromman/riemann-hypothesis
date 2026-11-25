@@ -31,6 +31,7 @@ public import Development.AbelianVarietyTheory.Proofs.GenericRegularity.Bundle00
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.Bundle0111
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

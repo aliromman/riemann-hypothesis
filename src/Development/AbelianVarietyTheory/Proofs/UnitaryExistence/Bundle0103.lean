@@ -115,6 +115,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsRatFinCongOfMarks
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Pj GlobalTheory.Member
 open scoped TensorProduct Matrix
 open GlobalTheory.CompRat
@@ -198,6 +199,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.UnitaryExistence.MarkingAtConjugateSplitPointTransportedTwisted
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.PureType GlobalTheory.CompRat
 open scoped CategoryTheory.Obj

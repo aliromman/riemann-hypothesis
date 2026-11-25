@@ -59,6 +59,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.IdeleLatticeFacts.ExistsLatticeIndexOfInjectiveEndomorphism
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 open scoped TensorProduct Matrix Topology Kronecker ComplexOrder Classical
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Matrix
 open GlobalTheory.WeilM GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels

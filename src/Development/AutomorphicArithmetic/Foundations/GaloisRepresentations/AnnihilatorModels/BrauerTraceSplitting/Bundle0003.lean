@@ -28,6 +28,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AnnihilatorModels.BrauerTraceSplitting.HeckeCl
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 set_option backward.isDefEq.respectTransparency false
 

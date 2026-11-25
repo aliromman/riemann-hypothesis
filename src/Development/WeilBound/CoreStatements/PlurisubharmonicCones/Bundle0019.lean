@@ -45,6 +45,7 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticInt
 
 -- bundled from Development.WeilBound.CoreStatements.PlurisubharmonicCones.PullCst
 section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField Matrix Filter Topology
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi
 open GroundTheory.Heights₂.Heights.LowerBoundFree GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Cusp
@@ -263,6 +264,7 @@ end
 
 -- bundled from Development.WeilBound.CoreStatements.PlurisubharmonicCones.PullDegSum
 section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 open AlgebraicGeometry CategoryTheory Limits NumberField Matrix
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Cusp

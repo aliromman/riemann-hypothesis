@@ -5,6 +5,7 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForm
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 noncomputable section
 
 open NumberField GlobalTheory.CuspRep MeasureTheory

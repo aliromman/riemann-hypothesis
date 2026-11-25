@@ -29,6 +29,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle025
 
 @[expose] public section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 
 noncomputable section

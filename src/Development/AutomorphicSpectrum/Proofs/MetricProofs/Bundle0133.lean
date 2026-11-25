@@ -302,6 +302,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.MetricProofs.LintegralFibreLogNormFinite
 section
+attribute [-instance] Formalism.L2.Pj.rulesCommRing Formalism.L2.Pj.rulesAlgebra Formalism.L2.Pj.rulesModule Formalism.L2.Pj.rulesSMul Formalism.L2.Pj.rulesAlgebraInt Formalism.L2.Pj.rulesModuleInt Formalism.L2.Pj.rulesTower
 open MvPolynomial MeasureTheory ReciprocityTheory.ChartRestriction.G.Geo GlobalTheory.CompanionTheory.Ar.Pub.CxInt GlobalTheory.CompanionTheory.Ar.Pub.CxComp Filter Topology
 open ReciprocityTheory.AnForm.R (conePts)
 open GlobalTheory.CompanionTheory.Ar.Pub.CxChart (chartSet chartComponents chartSection domCell absLogNorm)

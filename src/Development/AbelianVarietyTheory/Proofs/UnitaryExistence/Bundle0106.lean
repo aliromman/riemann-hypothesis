@@ -31,6 +31,7 @@ public import Development.AbelianVarietyTheory.Proofs.DegenerationProofs.Bundle0
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.UnitaryExistence.AutConjTranslatesDetCharacterMarkings
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 namespace GlobalTheory.DetTranslate
 
 section Adelic

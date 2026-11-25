@@ -42,6 +42,7 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Bundl
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FlagMapChernRootsX
 section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 noncomputable section
 
 open MvPolynomial NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.GoodMetric

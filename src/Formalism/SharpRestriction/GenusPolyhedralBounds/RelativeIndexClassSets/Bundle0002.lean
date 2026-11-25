@@ -9,6 +9,7 @@ public import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClas
 
 -- bundled from Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.FinitePtsOfCurve
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 open Formalism.MainNotions.WeightAlgebra Formalism.BasicNotions NumberField IsDedekindDomain Module

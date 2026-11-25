@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Definitions.LatticeFrames.Bundle0
 public import Development.AbelianVarietyTheory.Definitions.LatticeFrames.Bundle0013
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 

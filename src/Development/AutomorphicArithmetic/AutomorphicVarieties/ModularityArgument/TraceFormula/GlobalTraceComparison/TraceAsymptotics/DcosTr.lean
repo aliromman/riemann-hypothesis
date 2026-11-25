@@ -250,8 +250,10 @@ theorem UpperTheory.V.Z.Tf.GlobalTraceComparison.Asm.dcosTr :
   intro E _ _ _ n w ϖ hϖ τ hτ
   let I := iwGL n w
   have hI : iwC (w.adicCompletion E) n ⊤ = I := (memIwC (w.adicCompletion E) n ⊤).2.1
-  have hIo : IsOpen (I : Set (GLw n w)) := GroundTheory.Automorphic.GLnLocal.isOpen_iwahori _ _
-  have hIc : IsCompact (I : Set (GLw n w)) := GroundTheory.Automorphic.GLnLocal.isCompact_iwahori _ _
+  have hIo : IsOpen (I : Set (GlobalTheory.BCT.GLw n w)) :=
+    GroundTheory.Automorphic.GLnLocal.isOpen_iwahori _ _
+  have hIc : IsCompact (I : Set (GlobalTheory.BCT.GLw n w)) :=
+    GroundTheory.Automorphic.GLnLocal.isCompact_iwahori _ _
   obtain ⟨hKo, hKc⟩ := GlobalTheory.LFun.SatCompare.isOpen_isCompact_KGL (E := E) w n
   have hIK : I ≤ KGL w n := GlobalTheory.CompanionTheory.IwLevels.iwGL_le_KGL w n
   have hfd : FiniteDimensional ℂ (fixed τ.ρ I) :=

@@ -12,6 +12,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle046
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle0448
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

@@ -206,6 +206,7 @@ theorem disint_finPart : ∀ (D : D7) (X : Formalism.L2.SG.HidaSetting.HidaSetti
           rw [lintegral_const_mul _ (measurable_one.indicator hmeas), lintegral_indicator_one hmeas]
       _ = φ (s * x * k) := by
           rw [hset, measure_preimage_mul, hνH, mul_one]
+  have : SFinite ν := MeasureTheory.instSFiniteOfSigmaFinite
   calc ∫⁻ g, φ g ∂X.B.μf = ∫⁻ g, ∫⁻ t, F t g ∂ν ∂X.B.μf := lintegral_congr fun g => (hC' g).symm
     _ = ∫⁻ t, ∫⁻ g, F t g ∂X.B.μf ∂ν := (lintegral_lintegral_swap hF.aemeasurable).symm
     _ = ∫⁻ t, ∫⁻ k in K, φ ((t : G) * x * k) ∂X.B.μf ∂ν := lintegral_congr fun t => hA t
@@ -400,6 +401,7 @@ theorem mixedTarget : ∀ D : D7, GlobalTheory.IndefiniteRowSideFullHecke.SkewGr
 
 end GlobalTheory.MixTargetProof
 
+end
 end
 end
 

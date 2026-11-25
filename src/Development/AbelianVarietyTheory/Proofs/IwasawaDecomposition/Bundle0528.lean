@@ -17,6 +17,7 @@ public import Formalism.LocalToGlobal.ProjectiveLattices.Bundle0010
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HeckeGeoOfLevels
 section
+attribute [-instance] GlobalTheory.IndefiniteRowSideFullHecke.UnipotentLatticeMembership.finiteLevelGroupFintype
 attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 set_option autoImplicit false
 

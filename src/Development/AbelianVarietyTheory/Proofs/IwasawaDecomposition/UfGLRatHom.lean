@@ -17,6 +17,7 @@ public import Formalism.LocalToGlobal.HermitianForms.Bundle0003
 public import Formalism.LocalToGlobal.GlobalTheory.GL6.Bundle0003
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

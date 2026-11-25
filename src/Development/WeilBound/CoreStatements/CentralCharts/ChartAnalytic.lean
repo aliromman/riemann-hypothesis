@@ -21,6 +21,7 @@ public import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FrameDefiniti
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsGrpPullback
 
 @[expose] public section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 noncomputable section
 

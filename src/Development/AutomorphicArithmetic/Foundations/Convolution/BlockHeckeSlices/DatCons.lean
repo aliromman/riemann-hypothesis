@@ -146,7 +146,7 @@ theorem Umg.add {φ ψ : Sm E n} (h : Umg φ) (h' : Umg ψ) : Umg (φ + ψ) := (
 
 theorem Umg.smul {φ : Sm E n} (h : Umg φ) (c : ℂ) : Umg (c • φ) := ((umgOps E n).2 φ h).2.2.1 c
 
-theorem Umg.uc {φ : Sm E n} (h : Umg φ) (u : UC E n) : Umg (uC E n u φ) := ((umgOps E n).2 φ h).2.2.2.1 u
+theorem Umg.uc {φ : Sm E n} (h : Umg φ) (u : UpperTheory.V.Cm.UC E n) : Umg (uC E n u φ) := ((umgOps E n).2 φ h).2.2.2.1 u
 
 theorem Umg.tr {φ : Sm E n} (h : Umg φ) (g : GA E n) : Umg (rt E n g φ) := ((umgOps E n).2 φ h).2.2.2.2.1 g
 

@@ -20,6 +20,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1694
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1684
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

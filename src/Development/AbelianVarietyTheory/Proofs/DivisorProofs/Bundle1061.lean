@@ -16,6 +16,7 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomolog
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLinearLift
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 noncomputable section
 

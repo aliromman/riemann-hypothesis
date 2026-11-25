@@ -21,6 +21,7 @@ public import Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.Slic
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsHermRingRat
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 set_option linter.unusedSectionVars false
 

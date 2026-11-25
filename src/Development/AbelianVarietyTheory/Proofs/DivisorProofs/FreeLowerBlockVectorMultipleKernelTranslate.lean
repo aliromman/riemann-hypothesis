@@ -19,6 +19,7 @@ public import Formalism.LocalToGlobal.UnitaryNorms.Bundle0002
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle0426
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 400000

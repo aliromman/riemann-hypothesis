@@ -21,6 +21,8 @@ public import Development.AutomorphicSpectrum.Proofs.GlobalProofs.ContinuousComp
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CuspidalDecompositionOfCompact
 section
+attribute [-instance] GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
@@ -131,6 +133,8 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CuspidalOfL2CuspidalMem
 section
+attribute [-instance] GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 open NumberField MeasureTheory Topology Matrix GlobalTheory.AutomorphicL2Unitary GlobalTheory.DiscreteSum GlobalTheory.OpTrace GlobalTheory.UnitaryBC GlobalTheory.DiscSpec GlobalTheory.CuspRep GlobalTheory.CuspRep.CuspidalL2GL
 open scoped ENNReal Pointwise
 
@@ -199,6 +203,8 @@ theorem lintegral_constTerm_le [_root_.NumberField.IsTotallyComplex E] (μ : Mea
   haveI := GlobalTheory.AdelicUnitaryTop.secondCountable_adele E
   haveI : IsFiniteMeasure (ν.restrict 𝓕) := isFiniteMeasure_restrict.2 hν𝓕
   haveI : IsFiniteMeasure (μ.restrict C) := isFiniteMeasure_restrict.2 hC.measure_lt_top.ne
+  have : SigmaFinite (μ.restrict C) := IsFiniteMeasure.toSigmaFinite _
+  have : SFinite (μ.restrict C) := MeasureTheory.instSFiniteOfSigmaFinite
   have hC' : IsCompact ((unip '' K) * C) := (hK.image continuous_unip).mul hC
   have hb : ∀ x, ∫⁻ g in C, ‖u (unip x * g)‖ₑ ∂μ ≤ ∫⁻ g in (unip '' K) * C, ‖u g‖ₑ ∂μ := fun x => by
     obtain ⟨k, hk, e⟩ := exists_mem_apply_unip_eq hl hcov x

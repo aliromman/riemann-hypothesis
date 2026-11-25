@@ -59,6 +59,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0326
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsBruhatFunctionLocalBesselIntegralEqL2Mass
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 open scoped Classical ENNReal
 open Matrix MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.PackageTie2 Formalism.L2.SG.LocWSOf
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

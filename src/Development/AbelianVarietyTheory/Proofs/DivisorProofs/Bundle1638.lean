@@ -59,6 +59,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1598
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.SelfDualSkewIdealLatticeIsSelfDual
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open Formalism.BasicNotions Formalism.IndefR.Links IsDedekindDomain NumberField Polynomial
 open scoped Pointwise nonZeroDivisors
 open Formalism.L2.Host (HChar embTau)

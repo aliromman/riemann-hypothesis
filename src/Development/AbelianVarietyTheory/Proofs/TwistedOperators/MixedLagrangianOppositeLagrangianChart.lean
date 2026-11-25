@@ -296,7 +296,7 @@ theorem chartOpp_isMixChart : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Cons
   have hX : ∀ u, (coX (Bs.τ v) (Γ.V'.bas v) (Γ.W.bas v) u).map jj =
       (Bp⁻¹).val * u.map (fun a => cpt w (toEAf D a)) * ((C⁻¹).val)ᵀ := fun u => by
     unfold coX
-    rw [map_mul_equiv, map_mul_equiv, Matrix.transpose_map, Matrix.map_map]
+    rw [_root_.GlobalTheory.FlipMatch.ChartOpp.map_mul_equiv, _root_.GlobalTheory.FlipMatch.ChartOpp.map_mul_equiv, Matrix.transpose_map, Matrix.map_map]
     have : u.map (⇑jj ∘ ⇑(piW (Bs.τ v))) = u.map (fun a => cpt w (toEAf D a)) := Matrix.ext fun _ _ => hjj _
     rw [this, hBp, hC]
     rfl
@@ -314,7 +314,7 @@ theorem chartOpp_isMixChart : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Cons
       -(Bp.valᵀ * (-((spW₁ G i j).gram.map κ)) * u.map (fun a => cpt w (toEAf D (cA D a))) *
         (xiAt w • GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.blk e ((spV G i j).gram.map κ) ((spV₁ G i j).gram.map κ)) * C.val) := fun u => by
     unfold coY
-    rw [Matrix.map_neg _ (map_neg jj), map_mul_equiv, map_mul_equiv, map_mul_equiv, map_mul_equiv, hJ1, hJ2,
+    rw [Matrix.map_neg _ (map_neg jj), _root_.GlobalTheory.FlipMatch.ChartOpp.map_mul_equiv, _root_.GlobalTheory.FlipMatch.ChartOpp.map_mul_equiv, _root_.GlobalTheory.FlipMatch.ChartOpp.map_mul_equiv, _root_.GlobalTheory.FlipMatch.ChartOpp.map_mul_equiv, hJ1, hJ2,
       Matrix.map_map]
     have : u.map (⇑jj ∘ ⇑(piW ((Bs.τ v).comp D.sp.cm.sig))) = u.map (fun a => cpt w (toEAf D (cA D a))) :=
       Matrix.ext fun _ _ => hcA _

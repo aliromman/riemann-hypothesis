@@ -47,6 +47,7 @@ public import Formalism.LocalToGlobal.LatticeGeometry.GeoTiedP
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.BlowPolSt
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits NumberField IsLocalRing TopologicalSpace

@@ -7,6 +7,7 @@ public import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PGen
 public import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.Bundle0012
 
 @[expose] public section
+attribute [-instance] Formalism.L2.Pj.rulesCommRing Formalism.L2.Pj.rulesAlgebra Formalism.L2.Pj.rulesModule Formalism.L2.Pj.rulesSMul Formalism.L2.Pj.rulesAlgebraInt Formalism.L2.Pj.rulesModuleInt Formalism.L2.Pj.rulesTower
 
 noncomputable section
 

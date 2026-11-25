@@ -4,6 +4,7 @@ public import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open NumberField IsDedekindDomain GlobalTheory.UnitaryBC

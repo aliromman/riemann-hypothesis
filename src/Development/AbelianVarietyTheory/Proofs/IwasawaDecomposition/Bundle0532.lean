@@ -269,6 +269,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SysExOfPol
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits NumberField IsLocalRing TopologicalSpace

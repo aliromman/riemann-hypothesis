@@ -15,6 +15,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle016
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.Bundle0149
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

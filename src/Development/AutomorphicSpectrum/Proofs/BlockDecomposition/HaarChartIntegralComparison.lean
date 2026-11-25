@@ -6,6 +6,7 @@ public import GroundTheory.AutomorphicForms.RealGroupsHaar
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 open MeasureTheory Matrix Finset
 open scoped ContDiff
 open PositivityTheory.RgTw (Mat G)

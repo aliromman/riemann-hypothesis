@@ -7,6 +7,7 @@ public import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GlobalTraceComparison.AutomorphicRepresentations.OrthZero
 section
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 noncomputable section
 
 open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology

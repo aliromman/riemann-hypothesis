@@ -450,6 +450,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OrdUniformizerEqOne
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open Ad3 (Pl Qv pOf)
 open NumberField IsDedekindDomain GroundTheory.Global GroundTheory.LocalField
 open GroundTheory.Automorphic.GodementSection (localChar coe_localChar)

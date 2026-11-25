@@ -5,6 +5,7 @@ public import Development.WeilBound.CoreStatements.FlagImmersions.Bundle0021
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.EmbedsGeneric
 
 @[expose] public section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 noncomputable section
 

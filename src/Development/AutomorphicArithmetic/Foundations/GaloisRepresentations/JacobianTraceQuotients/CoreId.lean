@@ -10,6 +10,7 @@ public import Development.WeilBound.CoreStatements.AutomorphicKernels.LanglandsE
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 open MeasureTheory NumberField IsDedekindDomain Filter ValuativeRel
 open GroundTheory.Global GroundTheory.Global.SemiLocal
 open UpperTheory.ConvolutionTheory UpperTheory.ConvolutionTheory.C UpperTheory.ConvolutionTheory.Loc GlobalTheory.PRep GlobalTheory.CuspRep GlobalTheory.SmGL GlobalTheory.IndefiniteRowSideFullHecke.IwahoriDoubleCosets

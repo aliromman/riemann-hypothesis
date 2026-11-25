@@ -17,6 +17,7 @@ public import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.TwistedOperators.PrimitiveLatticeGluedFromIntersection
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open Formalism.BasicNotions Formalism.BasicNotions.TH NumberField IsDedekindDomain Matrix
 open Formalism.L2.DIV (Pl)
 open Formalism.IndefR.Lev (EAf)

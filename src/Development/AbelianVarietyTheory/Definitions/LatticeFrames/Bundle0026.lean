@@ -271,10 +271,12 @@ theorem finAf_localIdele {e : AfE F E} {P : HeightOneSpectrum (𝓞 E)} (he : e 
     rw [map_add (f := _), map_mul, map_sub, map_one, afIso_tmul_one]; rfl
   rw [e1, GlobalTheory.Mem.ReadTwist.afIso_finAf_apply]
   by_cases hQ : Q = P
-  · subst hQ
-    rw [GlobalTheory.Mem.LocTriv.ev_local_self, h1, one_mul, add_sub_cancel]
+  · subst Q
+    change (Neutral.B1.localIdele E P (atFin P k) : AdeleRing (𝓞 E) E).2 P = _
+    rw [Neutral.B1.localIdele_snd_self, h1, one_mul, add_sub_cancel]
     rfl
-  · rw [GlobalTheory.Mem.LocTriv.ev_local_ne hQ, h0 Q hQ, zero_mul, add_zero]
+  · change (Neutral.B1.localIdele E P (atFin P k) : AdeleRing (𝓞 E) E).2 Q = _
+    rw [(Neutral.B1.localIdele_isSupportedAt E P (atFin P k)).2 Q hQ, h0 Q hQ, zero_mul, add_zero]
 
 open Formalism.BasicNotions Formalism.MainNotions _root_.Formalism.L2
 

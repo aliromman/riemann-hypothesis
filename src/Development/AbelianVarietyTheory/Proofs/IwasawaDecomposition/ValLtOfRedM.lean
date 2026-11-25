@@ -11,6 +11,7 @@ public import Formalism.SatakeDualWeyl.AdelicIwasawaHecke.Bundle0005
 public import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.Bundle0006
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

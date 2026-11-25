@@ -11,6 +11,7 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.Bundle025
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain Formalism.L2.DIV Formalism.UG
 open scoped TensorProduct
 

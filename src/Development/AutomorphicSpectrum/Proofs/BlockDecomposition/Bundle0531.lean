@@ -28,6 +28,8 @@ public import Development.WeilBound.RepresentationTheoryGL.RegularisedSiegelWeil
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DiscreteTopologyProdMap
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
@@ -131,6 +133,13 @@ theorem unfold2_of (hM : Mahler) : Unfold2 := by
   haveI := CuspidalL2GL.secondCountableTopology_GA E b
   haveI : SigmaFinite μ₁ := sigmaFinite_of_locallyFinite
   haveI : SigmaFinite μ₂ := sigmaFinite_of_locallyFinite
+  haveI : SigmaCompactSpace (GA E a) := sigmaCompactSpace_of_locallyCompact_secondCountable
+  haveI : SigmaCompactSpace (GA E b) := sigmaCompactSpace_of_locallyCompact_secondCountable
+  haveI : SFinite μ₁ := MeasureTheory.instSFiniteOfSigmaFinite
+  haveI : SFinite μ₂ := MeasureTheory.instSFiniteOfSigmaFinite
+  haveI : (μ₁.prod μ₂).IsMulLeftInvariant := Measure.prod.instIsMulLeftInvariant
+  haveI : SigmaFinite (μ₁.prod μ₂) := Measure.prod.instSigmaFinite
+  haveI : SFinite (μ₁.prod μ₂) := MeasureTheory.instSFiniteOfSigmaFinite
   obtain ⟨hc₁, hi₁, C₁, hC₁, hs₁⟩ := hM E a τ
   obtain ⟨hc₂, hi₂, C₂, hC₂, hs₂⟩ := hM E b τ
   let ι : GL (Fin a) E × GL (Fin b) E →* GA E a × GA E b := (ratGL E a).prodMap (ratGL E b)
@@ -209,6 +218,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EisensteinCoefficientBlockUnfolding
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix GlobalTheory.SplitWeil.matrixMeasurableSpace
 noncomputable section
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory

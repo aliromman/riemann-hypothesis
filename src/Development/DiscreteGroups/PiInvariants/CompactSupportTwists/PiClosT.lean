@@ -4,6 +4,7 @@ public import Development.DiscreteGroups.PiInvariants.CompactSupportTwists.PiClo
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 
@@ -90,6 +91,8 @@ theorem lintegral_nu (D : Dom E n 0) (Φ : GA E n → ℝ≥0∞) (hΦ : ∀ γ 
   let eM : GA E n ≃ᵐ H E n 0 := (eH (E := E) (n := n)).toHomeomorph.toMeasurableEquiv
   have hm : (muG D).map eM = D.μ := (mp_eH D).map_eq
   rw [Dom.ν, ← hm, eM.restrict_map, lintegral_map_equiv]
+  have : SMulInvariantMeasure (ratGL E n).range (GA E n) (muG D) :=
+    ⟨fun γ s _ => measure_preimage_mul (muG D) (γ : GA E n) s⟩
   refine (isFundamentalDomain_pre D).setLIntegral_eq (isFundamentalDomain_stdDom _ _) (fun g => Φ g) fun γ g => ?_
   rw [Subgroup.smul_def, smul_eq_mul]
   exact hΦ γ γ.2 g

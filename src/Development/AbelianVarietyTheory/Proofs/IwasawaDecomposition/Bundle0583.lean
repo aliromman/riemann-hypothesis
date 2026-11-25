@@ -418,8 +418,8 @@ theorem lbIso_detLie_pull (ha : ∀ (U : Z.X.Opens) (U' : Z'.X.Opens), IsAffineO
   have hq3 := le_preimage_map p' (le' b.2) hq2
   have hp4 := le_preimage_mono (inf_le_inf (le a.1) (le' a.2)) hp
   have hq4 := le_preimage_mono (inf_le_inf (le b.1) (le' b.2)) hq
-  have g := ev_pull_g (detLie Z) p z a.1 b.1 (_root_.GlobalTheory.FlagMod.le_preimage_inf hp1 hq1) (_root_.GlobalTheory.FlagMod.le_preimage_inf hp0 hq0)
-  have g' := ev_pull_g (detLie Z') p' z a.2 b.2 (_root_.GlobalTheory.FlagMod.le_preimage_inf hp2 hq2) (_root_.GlobalTheory.FlagMod.le_preimage_inf hp3 hq3)
+  have g := _root_.GlobalTheory.PolFin.ev_pull_g (detLie Z) p z a.1 b.1 (_root_.GlobalTheory.FlagMod.le_preimage_inf hp1 hq1) (_root_.GlobalTheory.FlagMod.le_preimage_inf hp0 hq0)
+  have g' := _root_.GlobalTheory.PolFin.ev_pull_g (detLie Z') p' z a.2 b.2 (_root_.GlobalTheory.FlagMod.le_preimage_inf hp2 hq2) (_root_.GlobalTheory.FlagMod.le_preimage_inf hp3 hq3)
   refine (map_mul (ev z _ hz) _ _).trans (Eq.trans ?_ (map_mul (ev z _ hz) _ _).symm)
   refine (congrArg₂ (· * ·) ((ev_res z _ hz hp _).trans ((ev_res z _ hp hp4 _).trans
     (ev_twoDet h' h _ _ _ z hp0 hp3 hp4)))

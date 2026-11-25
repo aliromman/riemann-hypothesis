@@ -20,6 +20,7 @@ public import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.Bundl
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitBlockCosetThetaVectorMemThetaFunctions
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open scoped Pointwise

@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.Fin
 public import Formalism.LocalToGlobal.IndefiniteReal.DoubleCosetOperators.HkSplit
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

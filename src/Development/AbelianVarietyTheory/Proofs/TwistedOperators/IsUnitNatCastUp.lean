@@ -396,7 +396,7 @@ theorem heckeValueInt (cls : PtClass Xo c) (h : HeckeFrameInt Xo c cls) : HeckeV
     exact_mod_cast h0
   have e₁ := (GlobalTheory.Frames.algebraic_laws GlobalTheory.lawsFieldsSeparately.2.1 E H Dw l Xo c).2.2.2.2.2.2 Ω inferInstance
     a m f hf _ w' z hb
-  have e₂ : evR Xo c f w' = j (algebraMap T'.V T'.Fr b) := (evR_frMap hf.1 hw').trans (congrArg j hb'.symm)
+  have e₂ : evR Xo c f w' = j (algebraMap T'.V T'.Fr b) := (_root_.GlobalTheory.FlagTan.evR_frMap hf.1 hw').trans (congrArg j hb'.symm)
   have e₃ : evR Xo c f z = j (algebraMap T'.V T'.Fr (wchar (ex Dw a m) u * b)) := by
     rw [e₁, e₂, map_mul, map_mul]
     congr 1

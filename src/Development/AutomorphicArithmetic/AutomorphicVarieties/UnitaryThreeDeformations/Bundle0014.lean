@@ -29,6 +29,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibra
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeDeformations.AbstractCount
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
 open Matrix IsLocalRing ReciprocityTheory.Gal UpperTheory.V.HV UpperTheory.V.U3 UpperTheory.V.Alg UpperTheory.V.UnitaryThreeInertia
 
 private theorem conjBy_one' {R : Type} [CommRing R] {D : Type} [Group D] (r : D →* GG (m := 3) (R := R)) :

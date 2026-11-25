@@ -8,6 +8,7 @@ public import Development.AutomorphicSpectrum.Definitions.MetricPeriods.IsNormEm
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 noncomputable section
 
 open MeasureTheory Matrix Finset

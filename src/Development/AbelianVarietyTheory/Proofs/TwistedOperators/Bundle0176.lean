@@ -245,7 +245,7 @@ theorem sum_idem_gEx (R : RealDat3 D A3 Ks) (F : Face3 D A3) (hC : GlobalTheory.
     intro g
     have hc : cj (twAt D.what₂.embLL A3.A.v0) (A3.A.v0.embedding ((idemOf A3.A.X).coeff g)) =
         D.what₂.embLL ((idemOf A3.A.X).coeff g) := by
-      rw [R.emb0, cj_cj]
+      rw [R.emb0, Formalism.IndefR.Links.cj_cj]
     exact congrArg (fun z : ℂ => z • R.gE g (Tw.out (s := twAt D.what₂.embLL A3.A.v0) (E := R.HE.H) x)) hc
   exact (Finset.sum_congr rfl fun g _ => e g).trans h
 
@@ -290,7 +290,7 @@ theorem tw_eq_zero {s : Bool} {E E' : Type} [NormedAddCommGroup E] [InnerProduct
     rw [LinearMap.adjoint_inner_right, inner_zero_right]
     have h3 : cj s ⟪f y, Tw.out v⟫_ℂ = 0 := h1 (Tw.mk s y)
     have h4 := congrArg (cj s) h3
-    rwa [cj_cj, map_zero] at h4
+    rwa [Formalism.IndefR.Links.cj_cj, map_zero] at h4
   exact hf (h5.trans (map_zero _).symm)
 
 theorem surj_of_upInj (R : RealDat3 D A3 Ks) (F : Face3 D A3) (hUp : UpInj R.toRealDat) (x : (R.toCx3 F).EE) :

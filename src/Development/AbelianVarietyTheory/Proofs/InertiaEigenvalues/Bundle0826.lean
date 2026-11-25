@@ -34,6 +34,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0846
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LevelCharactersTypePlacesEqLocalComponents
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.N Formalism.MainNotions.StandardLattice Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.L2 Formalism.L2.Host Formalism.L2.DIV Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.NX GlobalTheory.HeightCounting GlobalTheory.TwInputs GlobalTheory.SeriesTie GlobalTheory.ExportSeries NumberField IsDedekindDomain
@@ -227,6 +228,8 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MeasurableCompInfGLProd
 section
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix GlobalTheory.SplitWeil.matrixMeasurableSpace
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 open NumberField Matrix MeasureTheory Filter Topology GlobalTheory.CuspRep GlobalTheory.UnitaryBC GroundTheory.Global.IdeleGroup Formalism.L2.Host GlobalTheory.Published GlobalTheory.CuspRep.CuspidalL2GL GlobalTheory.AutomorphicL2Unitary GlobalTheory.Petersson
 open scoped nonZeroDivisors ComplexConjugate
@@ -323,6 +326,8 @@ theorem pet_kerInf_left (hω : ω.IsUnitary) {X : Type} [MeasurableSpace X] {ν 
       ((norm_nonneg _).trans (hC 1))) (norm_nonneg _)
   rw [(pet_eq_setIntegral hω (kerInf_mem_bddForms hk h) h' hD).2]
   simp only [← integral_mul_const]
+  have : SFinite (μ.restrict (stdDom (latticeGL E a))) :=
+    @instSFiniteOfSigmaFinite _ _ _ (IsFiniteMeasure.toSigmaFinite _)
   rw [integral_integral_swap hi]
   refine integral_congr_ae (.of_forall fun x => ?_)
   simp only [(pet_eq_setIntegral hω (mul_right_mem_bddForms h _) h' hD).2, ← integral_const_mul, mul_assoc]

@@ -13,6 +13,7 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Bundle05
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Bundle0562
 
 @[expose] public section
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix
 
 noncomputable section
 

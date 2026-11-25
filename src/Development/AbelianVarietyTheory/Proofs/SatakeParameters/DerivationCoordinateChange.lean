@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Proofs.JetHarmonics.Bundle0002
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 open NumberField MvPowerSeries
 
 noncomputable section

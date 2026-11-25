@@ -8,6 +8,7 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.Integrab
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 open MeasureTheory MeasureTheory.Measure NumberField
 open GroundTheory.Automorphic GroundTheory.Automorphic.AutomorphicForm UpperTheory.ConvolutionTheory UpperTheory.ConvolutionTheory.L1 UpperTheory.ConvolutionTheory.C PositivityTheory.Rg.Tf.Geo
 

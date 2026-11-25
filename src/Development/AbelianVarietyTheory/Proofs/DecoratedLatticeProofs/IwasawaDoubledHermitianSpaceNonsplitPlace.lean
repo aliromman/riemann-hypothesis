@@ -11,6 +11,7 @@ public import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.Bundle0015
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace GlobalTheory.InertIwasawa

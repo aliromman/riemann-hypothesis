@@ -9,6 +9,7 @@ public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.Bun
 
 @[expose] public section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.L2.DIV
 open IsDedekindDomain NumberField MeasureTheory GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.Grow
 open GlobalTheory.IndefiniteRowSideFullHecke.LevelPlusSubgroup (coefPlus Cols SizeRows)
@@ -40,7 +41,8 @@ theorem haar_prod {Y : HSp D} {S' : D.what₂.Tau → SPar} (M₀ : DSModel Y S'
     rw [hth]
     exact (GlobalTheory.HaarReal.ofFr_eqv M₀ g τ).symm
   let μP : Measure (∀ τ, Formalism.REAL.UJ (M₀.ε τ)) := Measure.pi fun τ => Formalism.REAL.muG (M₀.ε τ)
-  have hmapE : m.map e = Measure.haarScalarFactor (m.map e) μP • μP := Measure.isMulLeftInvariant_eq_smul_of_regular (Measure.map (⇑e) m) μP
+  have hmapE : m.map e = Measure.haarScalarFactor (m.map e) μP • μP :=
+    Measure.isMulLeftInvariant_eq_smul (m.map e) μP
   have hmapM : m.map eM = Measure.haarScalarFactor (m.map e) μP • μP := hmapE
   refine ⟨(Measure.haarScalarFactor (m.map e) μP : ℝ), by exact_mod_cast Measure.haarScalarFactor_pos_of_isHaarMeasure _ _, ?_⟩
   intro 𝕜 _ F

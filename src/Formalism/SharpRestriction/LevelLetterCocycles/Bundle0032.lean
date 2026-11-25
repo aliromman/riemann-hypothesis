@@ -180,6 +180,7 @@ end
 
 -- bundled from Formalism.SharpRestriction.LevelLetterCocycles.FirstLiftOfHypotheses
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 namespace Formalism.MainNotions.RamifiedCoefficientChains.S9.ExtensionLemmaAlt

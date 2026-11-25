@@ -6,6 +6,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.PublishedTh
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open NumberField IsDedekindDomain Topology Matrix Formalism.L2.Host UpperTheory.V.TR

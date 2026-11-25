@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsRoo
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0086
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 set_option autoImplicit false
 

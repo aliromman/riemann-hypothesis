@@ -28,6 +28,7 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsAnt
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FoundationProofs.BcParamEqOfSatUEq
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace GlobalTheory.LFun
@@ -177,6 +178,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FoundationProofs.DoublingNormDetSplitPlaceLatticeIntersectionStatement
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open scoped TensorProduct NNReal Matrix
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.IndefiniteRowSideFullHecke.GraphHeightLattice
 open Formalism.UG (GLint)

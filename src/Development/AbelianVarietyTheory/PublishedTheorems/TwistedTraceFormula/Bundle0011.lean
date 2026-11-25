@@ -237,6 +237,7 @@ end GlobalTheory.Published
 
 end
 end
+end
 
 -- bundled from Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.SiegelWeilAnisotropicUnitary
 section

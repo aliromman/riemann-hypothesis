@@ -118,7 +118,7 @@ theorem core (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : Sp Ω ⟶ X) (K : Typ
     (hF₁ : IsSubFibre M (flagStep Ω b₀ (i + 1)) z MB F₁) (c₀ : (k : K) → J k) (hc₀ : ∀ k, w ⟨k, c₀ k⟩ ≠ 0)
     (φ : F₁ →ₗ[𝓞 L] L)
     (hφ : ∀ (x : F₁) (e : Li) (v : epsAt (spMap (algebraMap (𝓞 L) L) ≫ z) ⟶ G) (t : Ω) (u : L),
-          e ∈ flagStep Ω b₀ (i + 1) → M.ValAt _ e v → (v.left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap (𝓞 L) L)) ≫ (MB.pt (x : B.carrier)).left) →
+          e ∈ flagStep Ω b₀ (i + 1) → M.ValAt _ e v → (v.left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap (𝓞 L) L)) ≫ (MB.pt (x : B.carrier)).left) →
           IsCls b₀ i e t → ValAt ξ (spMap (algebraMap (𝓞 L) L) ≫ z) (t / gen y a e₀ c₀) u → φ x = u)
     (v : FinitePlace L) (𝔭 : Ideal (𝓞 L)) [𝔭.IsPrime] (A : Type) [CommRing A] [IsLocalRing A]
     [Algebra (𝓞 L) A] [IsLocalization.AtPrime A 𝔭] [Algebra A L] [IsScalarTower (𝓞 L) A L]
@@ -168,7 +168,7 @@ theorem core (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : Sp Ω ⟶ X) (K : Typ
   set C : L := (m : L)⁻¹ * algebraMap A L kA * τ with hC
   have hvalm : ValAt ξ (spMap (algebraMap (𝓞 L) L) ≫ z) (m : Ω)⁻¹ (m : L)⁻¹ := val_inv₀ (val_natCast (hgen _) m) hmL
   have key : ∀ (x' : B.carrier) (hx' : x' ∈ F₁) (e : Li) (vv : epsAt (spMap (algebraMap (𝓞 L) L) ≫ z) ⟶ G),
-      e ∈ flagStep Ω b₀ (i + 1) → M.ValAt _ e vv → (vv.left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap (𝓞 L) L)) ≫ (MB.pt x').left) →
+      e ∈ flagStep Ω b₀ (i + 1) → M.ValAt _ e vv → (vv.left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap (𝓞 L) L)) ≫ (MB.pt x').left) →
       φ ⟨x', hx'⟩ = C * algebraMap A L (g x') := by
     intro x' hx' e vv hU hv' hl
     obtain ⟨h', he⟩ := (LieModel.exists_valAt_iff M _ e).1 ⟨vv, hv'⟩
@@ -194,7 +194,7 @@ theorem core (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : Sp Ω ⟶ X) (K : Typ
     rintro ⟨x, hx⟩
     obtain ⟨a₁, ha₁, hsp⟩ := (hF₁ x).1 hx
     have hind : ∀ y' ∈ Submodule.span (𝓞 L) {x' | ∃ e ∈ flagStep Ω b₀ (i + 1), ∃ v : epsAt (spMap (algebraMap (𝓞 L) L) ≫ z) ⟶ G,
-        M.ValAt (spMap (algebraMap (𝓞 L) L) ≫ z) e v ∧ (v.left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap (𝓞 L) L)) ≫ (MB.pt x').left)},
+        M.ValAt (spMap (algebraMap (𝓞 L) L) ≫ z) e v ∧ (v.left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap (𝓞 L) L)) ≫ (MB.pt x').left)},
         ∃ hy : y' ∈ F₁, D ⟨y', hy⟩ = 0 := by
       intro y' hy'
       induction hy' using Submodule.span_induction with
@@ -305,7 +305,7 @@ theorem coord_size : ∀ (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : Sp Ω ⟶
       (F₀ F₁ : Submodule (𝓞 L) B.carrier), IsSubFibre M (flagStep Ω b₀ i) z MB F₀ →
       IsSubFibre M (flagStep Ω b₀ (i + 1)) z MB F₁ → ∀ c₀ : (k : K) → J k, (∀ k, w ⟨k, c₀ k⟩ ≠ 0) →
       ∀ φ : F₁ →ₗ[𝓞 L] L, (∀ (x : F₁) (e : Li) (v : epsAt (spMap (algebraMap (𝓞 L) L) ≫ z) ⟶ G) (t : Ω) (u : L),
-          e ∈ flagStep Ω b₀ (i + 1) → M.ValAt _ e v → (v.left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap (𝓞 L) L)) ≫ (MB.pt (x : B.carrier)).left) →
+          e ∈ flagStep Ω b₀ (i + 1) → M.ValAt _ e v → (v.left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap (𝓞 L) L)) ≫ (MB.pt (x : B.carrier)).left) →
           IsCls b₀ i e t → ValAt ξ (spMap (algebraMap (𝓞 L) L) ≫ z) (t / gen y a e₀ c₀) u → φ x = u) →
         ∀ v : FinitePlace L, (∀ x, v (φ x) ≤ (v (m : L))⁻¹ * locRatio a w c₀ v) ∧
           ∃ x, v (m : L) * locRatio a w c₀ v ≤ v (φ x) := by

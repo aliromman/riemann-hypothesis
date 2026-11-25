@@ -9,6 +9,7 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.Bundle012
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace GlobalTheory.VolAt

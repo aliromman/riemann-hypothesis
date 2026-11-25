@@ -220,6 +220,8 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.JacobianTraceQuotients.DcosVol
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 open MeasureTheory NumberField IsDedekindDomain Filter ValuativeRel
 open GroundTheory.Global GroundTheory.Global.SemiLocal

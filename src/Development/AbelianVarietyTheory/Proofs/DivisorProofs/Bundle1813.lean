@@ -81,6 +81,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdelicPointIntegralRelativeLocalBasis
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 set_option autoImplicit false
 
 noncomputable section

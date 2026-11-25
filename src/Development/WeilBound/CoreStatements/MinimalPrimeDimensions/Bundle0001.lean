@@ -8,6 +8,7 @@ public import Development.WeilBound.CoreStatements.HomogeneousNonvanishing.Bundl
 
 -- bundled from Development.WeilBound.CoreStatements.MinimalPrimeDimensions.DescEval
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 set_option autoImplicit false
 
 noncomputable section

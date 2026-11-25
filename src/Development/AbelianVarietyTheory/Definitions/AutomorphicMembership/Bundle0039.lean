@@ -123,6 +123,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.FinrankEqZeroIff
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits NumberField TopologicalSpace IsLocalRing
@@ -156,6 +157,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.NotIsBettiZero
 section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 set_option autoImplicit false
 
 noncomputable section

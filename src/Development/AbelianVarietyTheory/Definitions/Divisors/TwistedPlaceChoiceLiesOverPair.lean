@@ -23,7 +23,9 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0566
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Bundle0105
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 noncomputable section
 
 open Formalism.BasicNotions Formalism.MainNotions NumberField IsDedekindDomain

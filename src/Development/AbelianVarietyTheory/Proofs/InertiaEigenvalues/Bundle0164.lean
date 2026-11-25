@@ -26,6 +26,7 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HighestWeightCon
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CardH2LevelRepOneLe
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
 open ReciprocityTheory.Gal
 
 noncomputable section
@@ -133,6 +134,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DualLatFiniteFree
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
 open Formalism.RepresentationBoundsCohomology.LOC
 
 namespace GlobalTheory

@@ -8,6 +8,8 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNatMul
 
 -- bundled from Development.WeilBound.ThetaLifts.LatticeBasics.ThConstAn
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 noncomputable section
 
 namespace GlobalTheory.ThK.Dbl.TC

@@ -5,6 +5,7 @@ public import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.Bundle
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Col Formalism.L2.Ker Formalism.L2.DIV GlobalTheory.TwU GlobalTheory.TwV
 open Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

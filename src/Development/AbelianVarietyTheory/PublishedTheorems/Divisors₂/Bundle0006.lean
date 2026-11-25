@@ -10,6 +10,7 @@ public import Formalism.SharpRestriction.GlobalSchurBounds.Bundle0001
 
 -- bundled from Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.CrysToDRBijective
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
 set_option autoImplicit false
 
 noncomputable section

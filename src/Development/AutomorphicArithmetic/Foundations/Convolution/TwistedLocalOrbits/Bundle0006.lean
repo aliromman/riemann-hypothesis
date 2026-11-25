@@ -11,6 +11,7 @@ public import Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.Whit
 
 -- bundled from Development.AutomorphicArithmetic.Foundations.Convolution.TwistedLocalOrbits.PlaceUp
 section
+attribute [-instance] GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 open MeasureTheory NumberField IsDedekindDomain ValuativeRel GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.IndefiniteRowSideFullHecke.IwahoriDoubleCosets PositivityTheory.Rg.Tf.Loc UpperTheory.ConvolutionTheory.Loc GroundTheory.Global GroundTheory.Global.SemiLocal

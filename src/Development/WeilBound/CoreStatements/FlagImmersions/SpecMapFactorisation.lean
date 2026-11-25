@@ -20,6 +20,7 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.Bundle0151
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits NumberField IsDedekindDomain MvPolynomial

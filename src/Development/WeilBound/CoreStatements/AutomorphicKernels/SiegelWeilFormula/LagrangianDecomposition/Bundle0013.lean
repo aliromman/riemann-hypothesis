@@ -14,6 +14,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1246
 
 -- bundled from Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.LagrangianDecomposition.HaarLc
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix
 noncomputable section
 
 open scoped TensorProduct NNReal ENNReal Matrix Classical

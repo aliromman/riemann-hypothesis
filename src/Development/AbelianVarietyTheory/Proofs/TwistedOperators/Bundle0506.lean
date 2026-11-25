@@ -458,6 +458,7 @@ end GlobalTheory.TorusMixedSum
 
 end
 end
+end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.TwistedOperators.VacuumFixedOfFixesPureTensorsVacuaOutsideStatement
 section

@@ -37,6 +37,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle018
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.TwistedOperators.NormSatakeLeOfUnitarySphericalGL
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.UG GlobalTheory.PRep GlobalTheory.AdelicU GlobalTheory.LFun
 
 namespace GlobalTheory.LFun.SatBoundGL

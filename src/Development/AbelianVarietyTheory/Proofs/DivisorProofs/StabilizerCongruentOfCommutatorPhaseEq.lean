@@ -22,6 +22,7 @@ public import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.Exists
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.CmThetaTaylorCoeffAlgebraicAndConjugate
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open scoped Pointwise nonZeroDivisors
 open Formalism.BasicNotions Formalism.IndefR.Links IsDedekindDomain NumberField

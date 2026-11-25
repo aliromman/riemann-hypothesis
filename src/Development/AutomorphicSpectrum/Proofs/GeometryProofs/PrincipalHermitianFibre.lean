@@ -22,6 +22,8 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeInnerPr
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsHodgeLine
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
 
 attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 
@@ -94,7 +96,7 @@ theorem exists_fibre_equiv {S : Scheme.{0}} (G : Over S) [GrpObj G] [Smooth G.ho
     (x : Sp (𝓞 L) ⟶ S) {V : Type} [AddCommGroup V] [Module (𝓞 L) V] (M : LieModel G x V) (σ : L →+* ℂ)
     {W : Type} [AddCommGroup W] [Module ℂ W] (Mσ : LieModel G (spMap (σ.comp (algebraMap (𝓞 L) L)) ≫ x) W)
     (j : V →ₛₗ[σ.comp (algebraMap (𝓞 L) L)] W)
-    (hj : ∀ a, ((Mσ.pt (j a)).left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (GlobalTheory.CompanionTheory.Ar.dualMap (σ.comp (algebraMap (𝓞 L) L))) ≫ (M.pt a).left)) :
+    (hj : ∀ a, ((Mσ.pt (j a)).left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (σ.comp (algebraMap (𝓞 L) L))) ≫ (M.pt a).left)) :
     ∃ e : Fibre σ V ≃ₗ[ℂ] W, ∀ a, e ((1 : ComplexAt σ) ⊗ₜ a) = j a := by
   letI i₀ : Algebra (𝓞 L) ℂ := (σ.comp (algebraMap (𝓞 L) L)).toAlgebra
   letI i₂ : Module (𝓞 L) W := Module.compHom W (algebraMap (𝓞 L) ℂ)
@@ -134,7 +136,7 @@ theorem dualMap_comp_alt {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (
 
 theorem lifts_left {S : Scheme.{0}} {G : Over S} [GrpObj G] {R R' : Type} [CommRing R] [CommRing R'] {x : Sp R ⟶ S}
     {V : Type} [AddCommGroup V] [Module R V] (M : LieModel G x V) {c : R →+* R'} {x' : Sp R' ⟶ S} {a : V}
-    {v : epsAt x' ⟶ G} (h : (v.left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (GlobalTheory.CompanionTheory.Ar.dualMap c) ≫ (M.pt a).left)) : v.left = spMap (GlobalTheory.CompanionTheory.Ar.dualMap c) ≫ (M.pt a).left :=
+    {v : epsAt x' ⟶ G} (h : (v.left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap c) ≫ (M.pt a).left)) : v.left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap c) ≫ (M.pt a).left :=
   (Category.comp_id _).symm.trans h
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E}
@@ -194,7 +196,7 @@ theorem exists_hermitianBundle : ∀ (E : Type) [Field E] [NumberField E] [IsCMF
     exact ((hI _ _ _ _).1 (hodgeInnerProduct_conj_of_eq t (hz σ) (hl σ x) (hl σ y) ((hI σ _ _ _).2 rfl))).symm
   refine ⟨{ carrier := V, metric := mt }, M, fun σ x x' v v' hv hv' => ?_⟩
   have key : ∀ (a : V) (u : epsAt (spMap (σ.comp (algebraMap (𝓞 L) L)) ≫ 𝟙 _) ⟶ t.G),
-      (u.left ≫ (𝟙 t.G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (GlobalTheory.CompanionTheory.Ar.dualMap (σ.comp (algebraMap (𝓞 L) L))) ≫ (M.pt a).left) → u = (Mσ σ).pt (j σ a) := fun a u ha => by
+      (u.left ≫ (𝟙 t.G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (σ.comp (algebraMap (𝓞 L) L))) ≫ (M.pt a).left) → u = (Mσ σ).pt (j σ a) := fun a u ha => by
     exact Over.OverMorphism.ext ((lifts_left M ha).trans (lifts_left M (hj σ a)).symm)
   obtain rfl := key x v hv
   obtain rfl := key x' v' hv'

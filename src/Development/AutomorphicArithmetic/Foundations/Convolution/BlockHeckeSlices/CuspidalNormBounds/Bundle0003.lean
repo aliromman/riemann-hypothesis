@@ -121,7 +121,7 @@ private theorem lie_comm (X : Lie E n) (g : GA E n) :
   have h := lie_right_translate_comm X (Matrix.GeneralLinearGroup.map (pInf E) g) (Matrix.GeneralLinearGroup.map (pFin E) g)
   rwa [infGL_mul_finGL] at h
 
-private def itw (g : GA E n) : Subalgebra ℂ (UC E n) where
+private def itw (g : GA E n) : Subalgebra ℂ (UpperTheory.V.Cm.UC E n) where
   carrier := {u | ∃ u', uC E n u * rt E n g = rt E n g * uC E n u'}
   mul_mem' := by
     rintro a b ⟨a', ha⟩ ⟨b', hb⟩
@@ -139,9 +139,9 @@ private theorem genC_mem (g : GA E n) (τ : E →+* ℂ) (i j : Fin n) : genC τ
   rw [genC, UpperTheory.V.AlgRepEndIrreducible.eL]
   exact (itw g).smul_mem ((itw g).sub_mem (ιC_mem g _) ((itw g).smul_mem (ιC_mem g _) _)) _
 
-private theorem exists_comm (g : GA E n) (u : UC E n) :
+private theorem exists_comm (g : GA E n) (u : UpperTheory.V.Cm.UC E n) :
     ∃ u', uC E n u * rt E n g = rt E n g * uC E n u' := by
-  have h : Algebra.adjoin ℂ {x : UC E n | ∃ τ i j, x = genC τ i j} ≤ itw g :=
+  have h : Algebra.adjoin ℂ {x : UpperTheory.V.Cm.UC E n | ∃ τ i j, x = genC τ i j} ≤ itw g :=
     Algebra.adjoin_le (by rintro _ ⟨τ, i, j, rfl⟩; exact genC_mem g τ i j)
   exact h (adjoin_genC (E := E) (a := n) ▸ Algebra.mem_top)
 
@@ -151,7 +151,7 @@ private theorem zop_comm_rt (P : MvPolynomial ((E →+* ℂ) × Fin n) ℂ) (g :
   rw [Zalg_eq_map]
   exact ⟨_, (evZ E n P).2, rfl⟩
 
-private theorem zop_comm_uC (P : MvPolynomial ((E →+* ℂ) × Fin n) ℂ) (v : UC E n) :
+private theorem zop_comm_uC (P : MvPolynomial ((E →+* ℂ) × Fin n) ℂ) (v : UpperTheory.V.Cm.UC E n) :
     zop P * uC E n v = uC E n v * zop P := by
   have h := Subalgebra.mem_center_iff.1 (evZ E n P).2 v
   unfold zop
@@ -197,7 +197,7 @@ private theorem band_smul {C : ℝ} {φ : Sm E n} (h : Band C φ) (c : ℂ) : Ba
   rw [← mul_assoc]
   exact hB α g
 
-private theorem band_uC {C : ℝ} {φ : Sm E n} (h : Band C φ) (v : UC E n) : Band C (uC E n v φ) := by
+private theorem band_uC {C : ℝ} {φ : Sm E n} (h : Band C φ) (v : UpperTheory.V.Cm.UC E n) : Band C (uC E n v φ) := by
   refine { toUmg := (((umgOps E) n).2 φ h.toUmg).2.2.2.1 v, band := ?_ }
   obtain ⟨N, hN⟩ := h.band
   refine ⟨N, fun u => ?_⟩
@@ -295,7 +295,7 @@ private theorem trInv {R : Type} [CommRing R] {r : ℕ} (X Y Z : Matrix (Fin r) 
 
 variable {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] {r : ℕ}
 
-private theorem cenScalar (z : UC E r) (hz : z ∈ Subalgebra.center ℂ (UC E r)) :
+private theorem cenScalar (z : UpperTheory.V.Cm.UC E r) (hz : z ∈ Subalgebra.center ℂ (UpperTheory.V.Cm.UC E r)) :
     ∃ κ : ((E →+* ℂ) → Fin r → ℂ) → ℂ, Continuous κ ∧ ∀ (f : Sm E r) Λ, (∀ τ u, cap τ u f = (∏ i, (u + Λ τ i)) • f) →
       uC E r z f = κ Λ • f := by
   rw [center_UC] at hz
@@ -379,7 +379,7 @@ private theorem finSpace (ρ : Typ E r) (B : ℝ) : ∃ W : Submodule ℂ (cuspF
     rw [hB, hB, C.trForm, C.trForm, ← map_neg]
     congr 1
     exact trInv (R := mixedEmbedding.mixedSpace E) (X : ArchMatrix E r) (Y : ArchMatrix E r) (Z : ArchMatrix E r)
-  have hc' : ((1 : ℂ) ⊗ₜ[ℝ] casimir e ε : UC E r) ∈ Subalgebra.center ℂ (UC E r) := by
+  have hc' : ((1 : ℂ) ⊗ₜ[ℝ] casimir e ε : UpperTheory.V.Cm.UC E r) ∈ Subalgebra.center ℂ (UpperTheory.V.Cm.UC E r) := by
     rw [Subalgebra.mem_center_iff]
     intro w
     induction w using TensorProduct.induction_on with

@@ -8,6 +8,7 @@ public import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.C
 
 @[expose] public section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
 set_option linter.unusedSectionVars false

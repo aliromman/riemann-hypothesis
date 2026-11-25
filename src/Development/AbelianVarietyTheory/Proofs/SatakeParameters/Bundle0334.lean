@@ -344,7 +344,7 @@ theorem exists_normal_prime_index (Γ : Type) [Group Γ] [Finite Γ] [Nontrivial
 theorem isCMField_of_ringEquiv {A B : Type} [Field A] [NumberField A] [Field B] [NumberField B] [IsCMField A]
     (e : A ≃+* B) : IsCMField B := by
   letI : Algebra A B := e.toRingHom.toAlgebra
-  haveI : IsTotallyComplex B := isTotallyComplex_of_algebra A B
+  haveI : IsTotallyComplex B := _root_.NumberField.isTotallyComplex_of_algebra A B
   letI : Algebra (maximalRealSubfield A) B :=
     ((e : A →+* B).comp (algebraMap (maximalRealSubfield A) A)).toAlgebra
   let f : A ≃ₐ[maximalRealSubfield A] B := { e with commutes' := fun _ => rfl }

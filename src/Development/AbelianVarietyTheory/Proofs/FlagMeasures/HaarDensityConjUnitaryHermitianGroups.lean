@@ -10,6 +10,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.DensityInChar
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 noncomputable section
 
 open MeasureTheory Matrix Filter Topology Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp

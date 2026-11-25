@@ -38,6 +38,7 @@ public import Development.AbelianVarietyTheory.Definitions.ThetaValues.Generic
 public import Formalism.LocalToGlobal.ProjectiveLattices.Bundle0031
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.WeightAlgebra Formalism.MainNotions.DIV.Cons Formalism.MainNotions.Gaps Formalism.MainNotions.Gaps.EtaleWeightGaps Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.RunJoin
 open GlobalTheory.RunIn GlobalTheory.BlockTh

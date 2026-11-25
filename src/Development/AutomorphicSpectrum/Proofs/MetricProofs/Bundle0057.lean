@@ -381,6 +381,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.MetricProofs.LogSineMongeAmpereNormalizedStatement
 section
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open MvPolynomial MeasureTheory Filter Topology Matrix ReciprocityTheory.AnForm ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.P GlobalTheory.CompanionTheory.Ar.PB GroundTheory.Heights₂.Heights
 open scoped ComplexOrder
 set_option maxHeartbeats 1000000 in

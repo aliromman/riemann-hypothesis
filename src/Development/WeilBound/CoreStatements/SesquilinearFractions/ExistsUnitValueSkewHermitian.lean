@@ -6,6 +6,7 @@ public import Development.AbelianVarietyTheory.Statements.PlaceShiftStatements.B
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField Matrix GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl
 open scoped ComplexOrder
 

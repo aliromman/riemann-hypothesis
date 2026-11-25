@@ -31,6 +31,7 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle022
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.Bundle0220
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum
 open scoped BigOperators

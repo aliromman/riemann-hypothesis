@@ -11,6 +11,7 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometryâ
 
 -- bundled from Development.WeilBound.ThetaLifts.SphericalLattices.ExistsFrameLag
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace PositivityTheory.Sph.M2

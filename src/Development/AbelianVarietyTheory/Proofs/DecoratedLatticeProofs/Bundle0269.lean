@@ -53,6 +53,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.BaseTermNormCoords
 section
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR.Datum MeasureTheory IsDedekindDomain NumberField Matrix
 open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow
 open scoped TensorProduct
@@ -414,6 +415,7 @@ theorem evalAt_zero_equivariant : ∀ (D : D7), Descent D → ∀ (ψ : AddChar 
 
 end GlobalTheory.Unf.FB
 
+end
 end
 end
 

@@ -6,6 +6,7 @@ public import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsCombA
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 set_option genSizeOfSpec false
 set_option genInjectivity false
 

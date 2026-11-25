@@ -102,19 +102,18 @@ theorem finPart_eq_one : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] 
   · intro P
     by_cases hP : P = w'.under (𝓞 (maximalRealSubfield E))
     · subst hP
-      rw [GlobalTheory.HeckeProduct.localIdele_snd_self]
+      rw [GlobalTheory.Mem.Chr.Model.localIdele_snd_self]
       exact hxu
-    · rw [GlobalTheory.HeckeProduct.localIdele_snd_ne (maximalRealSubfield E) _ _ hP]
+    · rw [GlobalTheory.Mem.Chr.Model.localIdele_snd_ne (maximalRealSubfield E) _ _ hP]
       exact map_one _
   · intro w
-    rw [GlobalTheory.HeckeProduct.localIdele_fst]
     rfl
   · intro P
     by_cases hP : P = w'.under (𝓞 (maximalRealSubfield E))
     · subst hP
-      rw [GlobalTheory.HeckeProduct.localIdele_snd_self]
+      rw [GlobalTheory.Mem.Chr.Model.localIdele_snd_self]
       exact hxc
-    · rw [GlobalTheory.HeckeProduct.localIdele_snd_ne (maximalRealSubfield E) _ _ hP, sub_self, map_zero]
+    · rw [GlobalTheory.Mem.Chr.Model.localIdele_snd_ne (maximalRealSubfield E) _ _ hP, sub_self, map_zero]
       exact zero_le
 
 end GlobalTheory.HeckeFinTriv
@@ -295,6 +294,8 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.SatakeParameters.TuplesLocalModelsOfOtherDivisionLatticesHeights
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.Inhab Formalism.L2.Ker Formalism.L2.Forms GlobalTheory.EX GlobalTheory.EX.OB GlobalTheory.Mem GlobalTheory.Mem.Col2 GlobalTheory.Mem.Top GlobalTheory.Mem.Top.Bl GlobalTheory.Fc GlobalTheory.Svd NumberField IsDedekindDomain
 
 namespace GlobalTheory.Svd

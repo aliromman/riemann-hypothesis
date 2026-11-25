@@ -108,6 +108,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LiftReductionZeroOfMaximal
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 set_option autoImplicit false
 
 noncomputable section

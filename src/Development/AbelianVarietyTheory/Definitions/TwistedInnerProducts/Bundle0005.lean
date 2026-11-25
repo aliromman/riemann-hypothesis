@@ -15,6 +15,7 @@ public import Development.AutomorphicArithmetic.CyclotomicBounds.RamifiedDiscrim
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ChainParSucc
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 noncomputable section
 

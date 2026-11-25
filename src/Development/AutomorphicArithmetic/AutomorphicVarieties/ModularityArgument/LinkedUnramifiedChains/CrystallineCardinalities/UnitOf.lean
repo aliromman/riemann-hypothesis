@@ -14,6 +14,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebr
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.Bundle0007
 
 @[expose] public section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 
 attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 open NumberField Formalism.ConjugateSelfDual Formalism.WeaklyAdmissibleFiltrations Formalism.MainNotions.N Formalism.BasicNotions Formalism.BasicNotions.Loc ReciprocityTheory.Gal GlobalTheory.GalOfCusp IsLocalRing Topology UpperTheory.V UpperTheory.V.HV UpperTheory.V.U3 UpperTheory.V.Base UpperTheory.V.Af UpperTheory.V.Alg UpperTheory.V.W UpperTheory.V.Pr UpperTheory.V.Z.J UpperTheory.V.Loc

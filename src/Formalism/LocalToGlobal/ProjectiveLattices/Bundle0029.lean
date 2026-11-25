@@ -13,6 +13,7 @@ public import Formalism.LocalToGlobal.ProjectiveLattices.PlaceBelow
 
 -- bundled from Formalism.LocalToGlobal.ProjectiveLattices.LocFrLoc
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
 noncomputable section
 
 namespace Formalism.L2.Pj

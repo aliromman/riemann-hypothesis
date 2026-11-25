@@ -333,6 +333,7 @@ theorem UpperTheory.V.Pa.ooEx :
     show rF (ψ (algebraMap _ (CplAt (PowerSeries O) p) cx)) * (rF (ψ ↑u))⁻¹ = _
     rw [hu, hkey, hkey, hcx, hcy, div_eq_mul_inv]
 end
+end
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.SelmerScaling.PrAdd
 section

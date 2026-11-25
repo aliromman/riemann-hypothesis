@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForm
 
 @[expose] public section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual Polynomial MeasureTheory

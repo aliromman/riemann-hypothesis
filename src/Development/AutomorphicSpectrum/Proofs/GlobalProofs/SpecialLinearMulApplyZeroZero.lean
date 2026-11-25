@@ -6,6 +6,7 @@ public import CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.Admiss
 
 @[expose] public section
 
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix
 open Matrix Formalism.REAL Formalism.MainNotions.S Formalism.L2.Theta GlobalTheory.LinRed GlobalTheory.FlagMeas GlobalTheory.RealInd GlobalTheory.CompanionTheory.Hypotheses₂ GlobalTheory.CompanionTheory.Hypotheses₂.HCA
 open scoped InnerProductSpace ContDiff
 open MeasureTheory Topology Set Filter CompanionTheory.D.gk.admitted.Gard

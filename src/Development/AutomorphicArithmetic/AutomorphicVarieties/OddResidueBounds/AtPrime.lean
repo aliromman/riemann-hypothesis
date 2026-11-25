@@ -10,6 +10,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueB
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.GaloisCohomology UpperTheory.V UpperTheory.V.LDataCardLeFinrank UpperTheory.V.Base UpperTheory.V.Kum UpperTheory.V.Bern UpperTheory.V.B4 UpperTheory.V.B5 UpperTheory.V.Odd
 
 private theorem divE {ι : Type} (T : Finset ι) (m r : ℕ∞) (f : ι → ℕ∞) (g : ι → ℝ) (L : ℝ) (hL : 0 ≤ L)

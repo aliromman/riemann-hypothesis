@@ -175,7 +175,7 @@ variable {X X' : Scheme.{0}} {Ω Ω' : Type} [Field Ω] [Field Ω'] {ξ : Sp Ω 
   {x : Sp A ⟶ X} {x' : Sp A' ⟶ X'}
 
 theorem ext_up (hG : IsGrpPullback G' G f φ)
-    (hj : ∀ e, (M'.pt (j e)).left ≫ φ = Spec.map (CommRingCat.ofHom (GlobalTheory.CompanionTheory.Ar.dualMap i)) ≫ (M.pt e).left)
+    (hj : ∀ e, (M'.pt (j e)).left ≫ φ = Spec.map (CommRingCat.ofHom (_root_.GlobalTheory.CompanionTheory.Ar.dualMap i)) ≫ (M.pt e).left)
     (hρ : Spec.map (CommRingCat.ofHom ρ) ≫ x = x' ≫ f) (hρ' : g'.comp ρ = i.comp g)
     (hx' : Spec.map (CommRingCat.ofHom g') ≫ x' = ξ') {e : V} {v : epsAt x ⟶ G} (hv : Ext g x M e v) :
     ∃ v' : epsAt x' ⟶ G', Ext g' x' M' (j e) v' ∧
@@ -197,7 +197,7 @@ theorem ext_up (hG : IsGrpPullback G' G f φ)
     exact w₁.trans w₂.symm
 
 theorem core [IsLocalRing A] (hs : Smooth G.hom) (hG : IsGrpPullback G' G f φ)
-    (hj : ∀ e, (M'.pt (j e)).left ≫ φ = Spec.map (CommRingCat.ofHom (GlobalTheory.CompanionTheory.Ar.dualMap i)) ≫ (M.pt e).left)
+    (hj : ∀ e, (M'.pt (j e)).left ≫ φ = Spec.map (CommRingCat.ofHom (_root_.GlobalTheory.CompanionTheory.Ar.dualMap i)) ≫ (M.pt e).left)
     (hg : Function.Injective g) (hg' : Function.Injective g')
     (hρ : Spec.map (CommRingCat.ofHom ρ) ≫ x = x' ≫ f) (hρ' : g'.comp ρ = i.comp g)
     (hx : Spec.map (CommRingCat.ofHom g) ≫ x = ξ) (hx' : Spec.map (CommRingCat.ofHom g') ≫ x' = ξ')

@@ -201,6 +201,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.FibreFamilyHermitianQuadraticFormAtUnitProps
 section
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open NumberField IsDedekindDomain MeasureTheory Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.GaugeEx
 open scoped TensorProduct NNReal ENNReal
 

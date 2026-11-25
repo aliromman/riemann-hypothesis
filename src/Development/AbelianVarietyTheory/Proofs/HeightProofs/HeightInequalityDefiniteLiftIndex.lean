@@ -29,6 +29,7 @@ public import Development.AbelianVarietyTheory.Proofs.HeightProofs.Bundle0078
 public import Development.AbelianVarietyTheory.Proofs.HeightProofs.Bundle0067
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 set_option synthInstance.maxHeartbeats 400000
 set_option maxHeartbeats 4000000

@@ -320,7 +320,7 @@ theorem coordExt_li {K V : Type} (F : Type) [Field K] [Field F] [Algebra K F] [A
 
 theorem slopeMax_sq_span_le : ∀ (K K' V V' : Type) [Field K] [NumberField K] [_root_.NumberField.IsTotallyComplex K] [Field K'] [NumberField K'] [Algebra K K'] [AddCommGroup V] [Module K V] [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V] [AddCommGroup V'] [Module K' V'] [Module (𝓞 K') V'] [IsScalarTower (𝓞 K') K' V'] (N : (K →+* ℂ) → V → ℝ) (N' : (K' →+* ℂ) → V' → ℝ) (ι : V →ₛₗ[algebraMap K K'] V') (L : Submodule (𝓞 K) V) (c : (K' →+* ℂ) → ℝ) (B : ℝ), HasGram N → HasGram N' → (∀ σ x, N ((starRingEnd ℂ).comp σ) x = N σ x) → (∀ (n : ℕ) (b : Fin n → V), LinearIndependent K b → LinearIndependent K' (fun k => ι (b k))) → L.FG → L ≠ ⊥ → (∀ σ', 0 < c σ' ∧ |Real.log (c σ')| ≤ B) → (∀ σ' x, N' σ' (ι x) = c σ' * N (σ'.comp (algebraMap K K')) x) → slopeMax_sq N' (Submodule.span (𝓞 K') (ι '' (L : Set V))) ≤ slopeMax_sq N L + 2 * B := by
   intro K K' V V' _ _ _ _ _ _ _ _ _ _ _ _ _ _ N N' ι L c B hN hN' hc hli hL h0 hcB hι
-  haveI : IsTotallyComplex K' := isTotallyComplex_of_algebra K K'
+  haveI : IsTotallyComplex K' := _root_.NumberField.isTotallyComplex_of_algebra K K'
   haveI : Module.Finite K K' := Module.Finite.of_restrictScalars_finite ℚ K K'
   haveI : IsAlgClosure K (AlgebraicClosure K') := ⟨inferInstance, Algebra.IsAlgebraic.trans K K' _⟩
   let F : Type := IntermediateField.normalClosure K K' (AlgebraicClosure K')

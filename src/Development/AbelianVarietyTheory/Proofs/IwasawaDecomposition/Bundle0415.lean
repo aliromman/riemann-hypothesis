@@ -29,6 +29,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1127
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.VvCastBVVRepr
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open NumberField Formalism.BasicNotions Formalism.L2.DIV GlobalTheory.Mem.R3

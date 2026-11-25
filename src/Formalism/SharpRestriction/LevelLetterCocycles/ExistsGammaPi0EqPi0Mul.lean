@@ -5,6 +5,7 @@ public import Formalism.SharpRestriction.LevelLetterCocycles.PsCoprimeOf
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 namespace Formalism.MainNotions.UnusedSlot80.KWP

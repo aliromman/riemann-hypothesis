@@ -9,6 +9,7 @@ public import Development.WeilBound.ThetaLifts.Reductions.WeilPairs.AutTraceA
 
 -- bundled from Development.WeilBound.ThetaLifts.Reductions.WeilPairs.AutSubst
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open scoped TensorProduct Matrix Topology Kronecker ComplexOrder Classical
@@ -99,6 +100,7 @@ end
 
 -- bundled from Development.WeilBound.ThetaLifts.Reductions.WeilPairs.AutTrace
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open scoped TensorProduct Matrix Topology Kronecker ComplexOrder Classical

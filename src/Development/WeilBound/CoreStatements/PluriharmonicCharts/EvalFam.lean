@@ -6,6 +6,7 @@ public import Development.WeilBound.CoreStatements.PluriharmonicCharts.Bundle001
 public import Development.WeilBound.CoreStatements.PluriharmonicCharts.HoloOnLocMono
 
 @[expose] public section
+attribute [-instance] Formalism.L2.Pj.rulesCommRing Formalism.L2.Pj.rulesAlgebra Formalism.L2.Pj.rulesModule Formalism.L2.Pj.rulesSMul Formalism.L2.Pj.rulesAlgebraInt Formalism.L2.Pj.rulesModuleInt Formalism.L2.Pj.rulesTower
 
 namespace PositivityTheory.Xgp.c_bm_exists_boundary
 

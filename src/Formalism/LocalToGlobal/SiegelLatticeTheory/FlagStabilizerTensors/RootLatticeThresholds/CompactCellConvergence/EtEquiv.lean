@@ -4,6 +4,7 @@ public import Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 open MeasureTheory Matrix
 open scoped ENNReal
 

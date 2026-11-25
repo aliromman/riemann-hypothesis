@@ -184,6 +184,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HuaDeterminantIntegrableOfLt
 section
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 noncomputable section
 namespace GlobalTheory.CompanionTheory.SiegelND.Integ.Arch.HuaInt
 open MeasureTheory Matrix

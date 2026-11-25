@@ -23,6 +23,7 @@ public import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PCoordConeArith
 public import GroundTheory.HeightsAndTheta.Heights.WeightedHomogeneous.Assembly
 
 @[expose] public section
+attribute [-instance] Formalism.L2.Pj.rulesCommRing Formalism.L2.Pj.rulesAlgebra Formalism.L2.Pj.rulesModule Formalism.L2.Pj.rulesSMul Formalism.L2.Pj.rulesAlgebraInt Formalism.L2.Pj.rulesModuleInt Formalism.L2.Pj.rulesTower
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField TensorProduct Filter Topology Matrix
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.QuotUnif Metric
@@ -169,7 +170,7 @@ theorem exists_form_off {X : Scheme.{0}} (ξ : Spec (CommRingCat.of Ω) ⟶ X) (
   obtain ⟨s, hsV, hsη⟩ := hU.exists_basicOpen_le (V := V) ⟨genPt ξ, hV⟩ hη
   have ha0 : ev ξ U hη s ≠ 0 :=
     (((Scheme.mem_basicOpen X s _ hη).1 hsη).map (Scheme.stalkClosedPointTo ξ).hom).ne_zero
-  obtain ⟨g₀, hg₀⟩ := ratMap_surjective y c ⟨ev ξ U hη s, (hreg _).2 fun q hq => ⟨_, genMap_germ hη q hq s⟩⟩
+  obtain ⟨g₀, hg₀⟩ := ratMap_surjective y c ⟨ev ξ U hη s, (hreg _).2 fun q hq => ⟨_, _root_.GlobalTheory.CompanionTheory.Ar.Flat.CptIn.Intr.genMap_germ hη q hq s⟩⟩
   obtain ⟨m, G₀, hG₀, eG⟩ := exists_form c g₀
   have hy₀ : aeval (fun p : Σ k, J k => y p / y ⟨p.1, c p.1⟩) g₀ = ev ξ U hη s := by
     rw [← ratMap_coe, hg₀]

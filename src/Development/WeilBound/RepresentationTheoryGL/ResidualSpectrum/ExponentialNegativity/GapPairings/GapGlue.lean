@@ -6,6 +6,7 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Bundle04
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open NumberField IsDedekindDomain MeasureTheory

@@ -35,6 +35,7 @@ public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.Mem
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.TwistedOperators.SmoothWeilOrbitRealPassesToHeisenbergDerivatives
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 open scoped Matrix
 open scoped Classical

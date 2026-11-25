@@ -27,6 +27,7 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Bundle05
 public import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.Bundle0012
 
 @[expose] public section
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix
 
 attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct

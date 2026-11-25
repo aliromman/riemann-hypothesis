@@ -8,6 +8,7 @@ public import Formalism.RealPlaceAnalysis.InstMeasurableSpaceUJ
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 noncomputable section
 
 open MeasureTheory Matrix

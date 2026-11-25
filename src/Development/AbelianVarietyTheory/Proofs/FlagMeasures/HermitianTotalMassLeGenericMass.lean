@@ -28,6 +28,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0089
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0052
 
 @[expose] public section
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 open ValuativeRel Formalism.MainNotions.S Formalism.MainNotions.S.Loc GlobalTheory.HL
 open scoped Pointwise ENNReal Classical

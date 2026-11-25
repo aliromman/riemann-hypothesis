@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.Bun
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 open Matrix Formalism.UG Formalism.L2.DIV GlobalTheory.LevNorm
 
 namespace GlobalTheory.ScalInt

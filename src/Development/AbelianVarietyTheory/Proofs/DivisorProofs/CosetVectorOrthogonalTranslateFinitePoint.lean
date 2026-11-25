@@ -18,6 +18,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle2898
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle2879
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open NumberField MeasureTheory IsDedekindDomain UniqueFactorizationMonoid
 open scoped Classical Pointwise

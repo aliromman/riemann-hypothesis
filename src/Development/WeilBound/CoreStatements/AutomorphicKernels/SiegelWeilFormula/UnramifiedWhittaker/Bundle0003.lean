@@ -6,6 +6,7 @@ public import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeil
 
 -- bundled from Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.UnramifiedWhittaker.LocCAsm
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace PositivityTheory.SiegelWeilFormula.Gunr
@@ -126,6 +127,7 @@ end
 
 -- bundled from Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.UnramifiedWhittaker.NormLeOneIffMem
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace PositivityTheory.SiegelWeilFormula.Gunr
@@ -214,6 +216,7 @@ end
 
 -- bundled from Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.UnramifiedWhittaker.QuadAtOf
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace PositivityTheory.SiegelWeilFormula.Gunr

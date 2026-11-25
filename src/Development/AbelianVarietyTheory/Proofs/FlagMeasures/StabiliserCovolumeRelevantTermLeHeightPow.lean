@@ -12,6 +12,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0193
 public import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.TermDef
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

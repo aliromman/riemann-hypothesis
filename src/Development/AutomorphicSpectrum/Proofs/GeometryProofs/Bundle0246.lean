@@ -269,6 +269,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeCptGoodReductionDegree
 section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.GenFlag
@@ -393,6 +394,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeCptLabelBasesStatement
 section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar
 set_option maxHeartbeats 1000000 in

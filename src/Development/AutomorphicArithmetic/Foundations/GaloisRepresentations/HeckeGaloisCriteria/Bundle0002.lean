@@ -24,6 +24,7 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.Bundle004
 
 -- bundled from Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.HeckeGaloisCriteria.CompatibilityTiesEigenRestriction
 section
+attribute [-instance] GlobalTheory.IndefiniteRowSideFullHecke.UnipotentLatticeMembership.finiteLevelGroupFintype
 noncomputable section
 
 namespace UpperTheory.GalC

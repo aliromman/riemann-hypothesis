@@ -11,6 +11,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.FirstStan
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Bundle0198
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 namespace GlobalTheory.StdSndSB
 

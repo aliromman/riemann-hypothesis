@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.CmHostImagin
 
 @[expose] public section
 
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix
 attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 
 noncomputable section

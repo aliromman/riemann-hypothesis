@@ -444,6 +444,7 @@ end
 
 -- bundled from CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.QuotientProbabilityMeasure
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 noncomputable section
 namespace GlobalTheory.CompanionTheory.SW.BB
 

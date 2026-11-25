@@ -11,6 +11,7 @@ public import Development.AutomorphicArithmetic.PrimeDiscriminants.Bundle0002
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.IndefiniteRowSideFullHecke.UnipotentLatticeMembership.finiteLevelGroupFintype
 noncomputable section
 namespace GlobalTheory.TwInputs.JoinModel
 open Formalism.BasicNotions Formalism.MainNotions _root_.Formalism.L2 Formalism.L2.Host Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.NX ReciprocityTheory.Gal

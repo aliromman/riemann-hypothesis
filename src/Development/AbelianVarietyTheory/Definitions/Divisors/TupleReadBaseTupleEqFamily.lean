@@ -52,6 +52,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DimPartsAtIf
 public import Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.Bundle0018
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 attribute [-instance] GlobalTheory.IndefiniteRowSideFullHecke.UnipotentLatticeMembership.finiteLevelGroupFintype
 

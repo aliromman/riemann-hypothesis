@@ -12,6 +12,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1044
 
 -- bundled from Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.EisensteinResidueLine
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open NumberField MeasureTheory Matrix Filter Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet GlobalTheory.UAut

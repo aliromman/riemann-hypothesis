@@ -405,6 +405,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIsBasisNear
 section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 set_option autoImplicit false
 
 noncomputable section

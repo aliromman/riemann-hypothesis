@@ -5,6 +5,7 @@ public import Development.AbelianVarietyTheory.Proofs.JetHarmonics.HarmonicValue
 public import Development.AbelianVarietyTheory.Proofs.JetHarmonics.NormalizedPullbackConjugateTranslateEqTranslateL
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 set_option autoImplicit false
 noncomputable section

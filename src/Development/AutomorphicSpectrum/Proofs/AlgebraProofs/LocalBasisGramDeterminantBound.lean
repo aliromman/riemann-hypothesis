@@ -12,6 +12,7 @@ public import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.SesqSesquilin
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Fl.LocR

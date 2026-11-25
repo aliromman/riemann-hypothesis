@@ -35,6 +35,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1243
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsThetaAtOfVac
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR.Datum Formalism.IndefR.Links
@@ -194,6 +195,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsOrthogonalIdempotentDivisibleCongruent
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open scoped Pointwise
 open Formalism.BasicNotions Formalism.IndefR.Links IsDedekindDomain NumberField
 open Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3

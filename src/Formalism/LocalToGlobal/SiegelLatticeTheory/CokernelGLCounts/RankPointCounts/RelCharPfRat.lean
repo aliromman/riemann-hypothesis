@@ -10,6 +10,7 @@ public import Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 noncomputable section
 
 open scoped Classical ComplexConjugate
@@ -132,9 +133,9 @@ theorem lieN_of_coord (w : D.what₂.Word) (W : Matrix (Kap X) (Kap X) X.B.I.E) 
     (hW : InPat (lvk X) 1 W) (hWs : Wᴴ * JB X = -(JB X * W)) (hZ : ∀ y, X.crd (Z y) = (Bm X * W * Bm' X) *ᵥ X.crd y) :
     Z ∈ (X.Fu w).LieN := by
   set A := Bm X * W * Bm' X with hA
-  have hdot : ∀ p q : Fin X.B.I.n → X.B.I.E, hE X p q = star p ⬝ᵥ (X.B.I.J *ᵥ q) := by
+  have hdot : ∀ p q : Fin X.B.I.n → X.B.I.E, Formalism.L2.SG.Pf.Level.hE X p q = star p ⬝ᵥ (X.B.I.J *ᵥ q) := by
     intro p q
-    simp only [hE, Formalism.UG.hform, dotProduct, Matrix.mulVec, Finset.mul_sum, mul_assoc]
+    simp only [Formalism.L2.SG.Pf.Level.hE, Formalism.UG.hform, dotProduct, Matrix.mulVec, Finset.mul_sum, mul_assoc]
     rfl
   have hJB : (Bm X)ᴴ * X.B.I.J = JB X * Bm' X := by
     rw [JB_eq, Matrix.mul_assoc, Bm_mul_Bm', Matrix.mul_one]
@@ -147,7 +148,7 @@ theorem lieN_of_coord (w : D.what₂.Word) (W : Matrix (Kap X) (Kap X) X.B.I.E) 
       _ = -(((Bm' X)ᴴ * (Bm X)ᴴ) * X.B.I.J * (Bm X * W * Bm' X)) := by
           rw [JB_eq]; simp only [Matrix.mul_assoc]
       _ = -(X.B.I.J * A) := by rw [h1, Matrix.one_mul]
-  have hskew : ∀ p q, hE X (A *ᵥ p) q + hE X p (A *ᵥ q) = 0 := by
+  have hskew : ∀ p q, Formalism.L2.SG.Pf.Level.hE X (A *ᵥ p) q + Formalism.L2.SG.Pf.Level.hE X p (A *ᵥ q) = 0 := by
     intro p q
     rw [hdot, hdot, Matrix.star_mulVec, ← Matrix.dotProduct_mulVec, Matrix.mulVec_mulVec, hAs,
       Matrix.neg_mulVec, dotProduct_neg, Matrix.mulVec_mulVec]
@@ -188,7 +189,7 @@ theorem lieN_of_coord (w : D.what₂.Word) (W : Matrix (Kap X) (Kap X) X.B.I.E) 
     | zero => simp
     | add y z _ _ hy hz => rw [map_add]; exact add_mem hy hz
     | smul c y _ hy => rw [map_smul]; exact Submodule.smul_mem _ _ hy
-  · have hx0 : ∀ a, hE X (X.eR a) (X.crd x) = 0 := by
+  · have hx0 : ∀ a, Formalism.L2.SG.Pf.Level.hE X (X.eR a) (X.crd x) = 0 := by
       intro a
       have hmem : X.eX a ∈ (X.Fu w).X := by
         rw [hXs]; exact Submodule.subset_span ⟨a, Set.mem_univ _, rfl⟩
@@ -206,7 +207,7 @@ theorem lieN_of_coord (w : D.what₂.Word) (W : Matrix (Kap X) (Kap X) X.B.I.E) 
     rcases j with b | i | b
     · rw [hW k _ (by rw [lvk_inl]; have := b.2; omega), zero_mul]
     · rw [hW k _ (by rw [lvk_w]; omega), zero_mul]
-    · rw [show cE X (X.crd x) (Sum.inr (Sum.inr b)) = hE X (X.eR b) (X.crd x) from rfl, hx0 b, mul_zero]
+    · rw [show cE X (X.crd x) (Sum.inr (Sum.inr b)) = Formalism.L2.SG.Pf.Level.hE X (X.eR b) (X.crd x) from rfl, hx0 b, mul_zero]
 
 theorem ell_coord (w : D.what₂.Word) (W : Matrix (Kap X) (Kap X) X.B.I.E) (Z : (VS D).V →ₗ[D.host.E] (VS D).V)
     (hZ : ∀ y, X.crd (Z y) = (Bm X * W * Bm' X) *ᵥ X.crd y) (v : InfinitePlace X.B.I.F) :

@@ -448,6 +448,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ProductHuaDeterminantIntegrable
 section
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open MeasureTheory
 open GlobalTheory.CompanionTheory.SiegelND.Integ.Arch
 

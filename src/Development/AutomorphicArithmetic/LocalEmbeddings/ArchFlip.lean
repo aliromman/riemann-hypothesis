@@ -11,7 +11,10 @@ public import Development.AutomorphicArithmetic.DivisorFrames.Bundle0016
 
 @[expose] public section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+attribute [local instance 2000] _root_.Units.instTopologicalSpaceUnits _root_.Units.instMeasurableSpace
+  _root_.GlobalTheory.SplitWeil.matrixMeasurableSpace _root_.GlobalTheory.SplitFlip.borel_GL
 
 noncomputable section
 

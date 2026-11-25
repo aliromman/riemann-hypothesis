@@ -5,6 +5,7 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Bundle03
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 open NumberField IsDedekindDomain Matrix MeasureTheory
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Tf.Loc PositivityTheory.Rg.BcB
 open scoped Pointwise

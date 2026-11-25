@@ -13,6 +13,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0279
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0300
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 open scoped Classical ENNReal

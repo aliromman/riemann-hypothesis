@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.GramUnipotent
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsCoveringSetExpLieLatticeRootGroup
 
 @[expose] public section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 open NumberField Module Matrix Formalism.MainNotions.S GlobalTheory.LoopV
 open scoped ENNReal Classical

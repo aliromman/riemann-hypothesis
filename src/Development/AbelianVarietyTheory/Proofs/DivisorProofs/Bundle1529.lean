@@ -22,6 +22,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0082
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.IndexStandardInfSkewThetaLatticeEqAbsNormPow
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open scoped Pointwise
 open Formalism.BasicNotions Formalism.IndefR.Links IsDedekindDomain NumberField
 open Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3

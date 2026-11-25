@@ -15,6 +15,7 @@ public import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 namespace Formalism.MainNotions.LatticeGluingRadicals

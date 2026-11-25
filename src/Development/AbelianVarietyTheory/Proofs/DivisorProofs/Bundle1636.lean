@@ -107,6 +107,8 @@ end
 section
 attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+attribute [local instance 2000] Units.instTopologicalSpaceUnits Units.instMeasurableSpace
+  GlobalTheory.SplitWeil.matrixMeasurableSpace GlobalTheory.SplitFlip.borel_GL
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.DIV
 open IsDedekindDomain NumberField MeasureTheory Matrix
 open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
@@ -155,7 +157,8 @@ theorem fFun_mul_left {a : ℕ} {A' C : Type} [Fintype A'] [DecidableEq A'] [Fin
     (ν : kˣ →* ℂˣ) (Ψ : Matrix A' C k → ℂ) (g : GL (Fin a) k) (h : GL C k) :
     fFun μ σ ν Ψ (g.val * (X0 k σ * (invT h).val)) * (ν (gdet g) : ℂ) * apow (gdet g) ((Fintype.card C : ℂ) / 2) =
       fFun μ σ ν Ψ (X0 k σ * (invT h).val) := by
-  exact _root_.GlobalTheory.fFun_mul_left k a A' C μ σ ν Ψ g h
+  exact @_root_.GlobalTheory.fFun_mul_left k _ _ _ _ _ _ a A' C _ _ _ _ μ
+    ‹μ.IsHaarMeasure› σ ν Ψ g h
 
 theorem exists_primFrame {a : ℕ} {C : Type} [Fintype C] [DecidableEq C] (d : C → kˣ)
     (X : Matrix (Fin a) C k) (hX : X.rank = a) : ∃ g₀ : GL (Fin a) k, IsPrimFrame (diagLat d) (g₀.val * X) := by

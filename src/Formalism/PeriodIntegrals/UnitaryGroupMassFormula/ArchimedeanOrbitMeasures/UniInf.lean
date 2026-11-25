@@ -5,6 +5,7 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbit
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 noncomputable section
 
 namespace PI.AprimeInfW

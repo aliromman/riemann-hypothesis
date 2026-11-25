@@ -32,6 +32,7 @@ public import Formalism.LocalToGlobal.IndefiniteReal.LiftGoodPartComplexEqRangeF
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.BaseLevelRowSideTransport
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH NumberField IsDedekindDomain Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.IndefR Formalism.IndefR.Links

@@ -7,6 +7,8 @@ public import Development.AbelianVarietyTheory.Definitions.Foundations.Bundle000
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.FrobeniusHodgeTateLaws.ExistsFiniteExtEisensteinUnitFunctionalMem
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 noncomputable section
 
 open Formalism.ConjugateSelfDual UpperTheory.V.HV GlobalTheory.Ord2 GlobalTheory.KZ GlobalTheory.EisM

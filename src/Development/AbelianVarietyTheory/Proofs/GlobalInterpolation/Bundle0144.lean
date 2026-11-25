@@ -29,6 +29,7 @@ public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ChThOkOfColIn
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain
 
 noncomputable section
@@ -183,6 +184,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.CoP
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 noncomputable section
 
 namespace GlobalTheory.PerQ.Co

@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.Bundle001
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.Bundle0074
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open NumberField
 

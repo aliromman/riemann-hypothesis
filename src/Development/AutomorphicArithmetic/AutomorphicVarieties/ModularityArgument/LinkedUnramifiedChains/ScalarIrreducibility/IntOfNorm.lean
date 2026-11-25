@@ -8,6 +8,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.FrobeniusSm
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 set_option linter.overlappingInstances false
 set_option synthInstance.maxHeartbeats 200000
 

@@ -4,6 +4,7 @@ public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentat
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 open Finset MeasureTheory Matrix

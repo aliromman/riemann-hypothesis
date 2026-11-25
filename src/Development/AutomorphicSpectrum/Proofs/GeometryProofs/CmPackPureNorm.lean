@@ -20,6 +20,8 @@ public import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Fl.GFin
@@ -241,12 +243,12 @@ theorem intFrames_fin : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
   obtain ⟨T, m'', uV, htan, hbas, hlink⟩ := _root_.GlobalTheory.CompanionTheory.Relay.cm_pack_product_frame E H D l Xo c g ty FU i Z P hP X N
     (fun k => bI (e k)) (fun k => aI (e k)) V hN0 hspan' hOK' hNu
   have hlink1 : ∀ k, ∃ s : Sp (DualNumber X.K) ⟶ X.t.G.left, s ≫ X.m.φ = (M.pt (fam (e k))).left ∧
-      s ≫ m''.φ = spMap (GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap V X.K)) ≫ (uV k).left := fun k => by
+      s ≫ m''.φ = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap V X.K)) ≫ (uV k).left := fun k => by
     rw [← hfam]
     exact hlink k _ ((hIm _ _ _).2 rfl)
   have hlink2 : ∀ k, ∃ s : Sp (DualNumber X.K) ⟶ X.t.G.left,
       s ≫ X.m.φ = (M.pt (fam' ((e.trans (Equiv.sumComm _ _)) k))).left ∧
-      s ≫ m''.φ = spMap (GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap V X.K)) ≫ (uV k).left := fun k => by
+      s ≫ m''.φ = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap V X.K)) ≫ (uV k).left := fun k => by
     rw [Equiv.trans_apply, hswap]
     exact hlink1 k
   have hint : ∀ (φ : E →+* X.K) (a : 𝓞 E), φ (a : E) ∈ V := fun φ a =>

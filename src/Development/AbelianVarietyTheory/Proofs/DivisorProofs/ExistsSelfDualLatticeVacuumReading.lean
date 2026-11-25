@@ -15,6 +15,7 @@ public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.Bun
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle0459
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open NumberField MeasureTheory IsDedekindDomain UniqueFactorizationMonoid
 open scoped Classical Pointwise

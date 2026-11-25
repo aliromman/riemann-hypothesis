@@ -7,6 +7,8 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle004
 
 @[expose] public section
 
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 
 open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.SplitFlip GlobalTheory.KSplit
@@ -43,6 +45,7 @@ theorem integrableOn_shell : ∀ (k : Type) [Field k] [ValuativeRel k] [Topologi
     have h := (hφ.1.continuous.comp Units.continuous_val).mul hχc
     refine h.congr fun g => ?_
     simp [χ, mul_assoc]
+  have : BorelSpace (GL (Fin a) k) := GlobalTheory.SplitFlip.borel_GL
   exact hcont.continuousOn.integrableOn_compact hcomp
 
 end GlobalTheory.ShellInt

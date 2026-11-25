@@ -20,6 +20,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.HeightAndVa
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.CuspidalTwists.FiniteOrderCongruences.ExistsRibetLatticeOfEisensteinRep
 section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 noncomputable section
 
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N IsLocalRing Polynomial
@@ -249,6 +250,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.CuspidalTwists.FiniteOrderCongruences.ExistsWeightFourAuxiliaryCharacters
 section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 noncomputable section
 

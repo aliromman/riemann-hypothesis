@@ -10,6 +10,7 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.RealGrou
 
 -- bundled from Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.ReductionDomains.BorHaar
 section
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
 open GroundTheory.Global GroundTheory.Automorphic GroundTheory.Automorphic.GJMatrix
 open scoped Classical ENNReal NNReal Pointwise

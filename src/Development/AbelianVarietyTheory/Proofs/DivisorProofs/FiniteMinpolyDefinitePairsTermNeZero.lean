@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0944
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 open Matrix NumberField GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKCount GlobalTheory.LKCx
 open scoped TensorProduct Classical
 

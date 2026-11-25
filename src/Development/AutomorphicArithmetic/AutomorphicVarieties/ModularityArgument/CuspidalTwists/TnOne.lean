@@ -5,6 +5,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenera
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.Bundle0009
 
 @[expose] public section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 
 noncomputable section
 

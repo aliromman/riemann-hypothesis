@@ -320,6 +320,7 @@ end GlobalTheory.FlatProdValue
 
 end
 end
+end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.TwistedOperators.GWEqChiSmul
 section

@@ -138,6 +138,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsSiegelHProjArchEq
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace GlobalTheory.Doubling
@@ -252,6 +253,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsSplitChartSplitChart
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace GlobalTheory.LFun.SplitTie

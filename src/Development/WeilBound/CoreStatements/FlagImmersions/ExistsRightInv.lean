@@ -5,6 +5,7 @@ public import Development.WeilBound.CoreStatements.VolumeEquality.BaseUnifVec
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace RootFieldNumerics

@@ -27,6 +27,7 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFor
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsHaarSpecialUnitaryLyingOverFlagDomain
 section
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 open NumberField MeasureTheory Matrix GlobalTheory.SUVol ReciprocityTheory.ChartRestriction.G.FD ReciprocityTheory.ChartRestriction.G.AR.Inst ReciprocityTheory.ChartRestriction.G.AR.Up ReciprocityTheory.L2DbarEstimates Topology
 open scoped ENNReal

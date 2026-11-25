@@ -14,6 +14,7 @@ public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCoh
 
 -- bundled from Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.LevelChainValuations.GaloisCupProducts.BMapIncl
 section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 set_option backward.isDefEq.respectTransparency false
 set_option autoImplicit false
 
@@ -61,6 +62,7 @@ end
 
 -- bundled from Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.LevelChainValuations.GaloisCupProducts.HomGalGoodRHof
 section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 set_option backward.isDefEq.respectTransparency false
 set_option autoImplicit false
 

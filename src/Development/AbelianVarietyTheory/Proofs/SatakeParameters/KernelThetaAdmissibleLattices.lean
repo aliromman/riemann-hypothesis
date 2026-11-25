@@ -13,6 +13,7 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.Bundle021
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace GlobalTheory.TwU.KerMove

@@ -54,6 +54,7 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CommuteR
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RightTranslateIsometryStatement
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 open scoped Classical InnerProductSpace ComplexConjugate
 open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology

@@ -60,6 +60,7 @@ end
 
 -- bundled from Formalism.AdmissibleDesigns.SelmerInequalityOfInputs
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core] [hH0Fin : Fact Formalism.MainNotions.N.K.H0.FinCore]
 
 noncomputable section

@@ -158,9 +158,11 @@ theorem hand_hom : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (σ : ℕ) (B :
 
 end GlobalTheory.HandHom
 end
+end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HeisenbergDerivativeDiagonalHalfEqSchrodingerDer
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 namespace I195MixedCoordinates_bf5641df9836f7a59c2c5fdd
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH
@@ -285,6 +287,7 @@ theorem sch_dRho_diag : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar
   rfl
 
 end GlobalTheory.StdUnn.DiagDeriv
+end
 end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.HolomorphicContinuationValueNnrealPowFactor

@@ -10,6 +10,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibra
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual Formalism.HC ReciprocityTheory.Gal IsLocalRing Polynomial Matrix UpperTheory.V UpperTheory.V.Base UpperTheory.V.Alg UpperTheory.V.HV UpperTheory.V.GradeZeroInterpolatingElement UpperTheory.V.Ws UpperTheory.V.Ws.Eb GlobalTheory.GalOfCusp
 
 private theorem rank_le_res {O A B K : Type} [CommRing O] [CommRing A] [Algebra O A] [CommRing B] [Algebra O B]

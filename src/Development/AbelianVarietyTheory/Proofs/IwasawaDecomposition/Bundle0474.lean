@@ -211,7 +211,7 @@ theorem baseLevelComplexPoints_injective_of_independent (R : RealDat3 D A3 Ks) (
   refine (injective_iff_map_eq_zero _).2 fun c hc => funext fun l => ?_
   have h1 := Fintype.linearIndependent_iff.1 (hU _ _ hb) _ ((Formalism.IndefR.FWT.principal_form_tensor_expansion R F b i c).symm.trans hc) l
   have h2 := congrArg (Links.cj (twAt D.what₂.embLL A3.A.v0)) h1
-  rwa [cj_cj, map_zero] at h2
+  rwa [Formalism.IndefR.Links.cj_cj, map_zero] at h2
 
 end Conc
 

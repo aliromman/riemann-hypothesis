@@ -14,6 +14,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.RelIndexM
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.OmEqSumLattice
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

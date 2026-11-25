@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.Bundle006
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 open PositivityTheory.RgJS UpperTheory.V.Z.Tf.GOne UpperTheory.V.Z.Tf.SR
 open NumberField IsDedekindDomain GlobalTheory.CuspRep Formalism.L2.Host GlobalTheory.BCT GlobalTheory.UnitaryBC
 

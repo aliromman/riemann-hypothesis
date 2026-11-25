@@ -5,6 +5,7 @@ public import Mathlib.NumberTheory.NumberField.Units.DirichletTheorem
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain UpperTheory.V UpperTheory.V.ZK UpperTheory.V.ZK.Ct
 
 section

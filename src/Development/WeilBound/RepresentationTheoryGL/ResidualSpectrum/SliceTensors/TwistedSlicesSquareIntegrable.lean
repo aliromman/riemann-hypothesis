@@ -4,6 +4,7 @@ public import Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.Slic
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open NumberField IsDedekindDomain MeasureTheory Formalism.L2.Host

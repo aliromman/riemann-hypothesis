@@ -132,6 +132,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.L2InnerProductHermitianForm
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 open Matrix Finset MeasureTheory
 open scoped ContDiff ComplexConjugate InnerProductSpace
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD

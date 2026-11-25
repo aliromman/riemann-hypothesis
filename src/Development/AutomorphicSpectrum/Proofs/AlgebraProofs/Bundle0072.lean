@@ -104,6 +104,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.AlgebraProofs.CroftonFormulaFibreSum
 section
+attribute [-instance] Formalism.L2.Pj.rulesCommRing Formalism.L2.Pj.rulesAlgebra Formalism.L2.Pj.rulesModule Formalism.L2.Pj.rulesSMul Formalism.L2.Pj.rulesAlgebraInt Formalism.L2.Pj.rulesModuleInt Formalism.L2.Pj.rulesTower
 set_option maxSynthPendingDepth 1
 open GroundTheory.Heights₂.Heights MeasureTheory MvPolynomial Matrix GlobalTheory.CompanionTheory.Ar.Short.Crofton
 open scoped ENNReal
@@ -208,6 +209,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.AlgebraProofs.GramDeterminantLogDifferent
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Fl.GramDet

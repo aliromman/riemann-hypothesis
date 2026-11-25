@@ -8,6 +8,7 @@ public import Formalism.HermitianCurvature.HermitianCurvatureProofs.OrbitalInteg
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 noncomputable section
 
 open MeasureTheory Filter Topology

@@ -9,6 +9,7 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.Bundle017
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain GlobalTheory.CompanionTheory.Ar.Fl
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat

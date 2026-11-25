@@ -21,6 +21,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityA
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.AutomorphyLifting.PrimeIndexConstruction.AutOf4W
 section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 noncomputable section
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal IsLocalRing

@@ -5,6 +5,8 @@ public import Development.WeilBound.ThetaLifts.CartanFactorisation.Bundle0001
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
 set_option linter.unusedSectionVars false

@@ -7,6 +7,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibra
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
 open IsLocalRing UpperTheory.V.AlgebraTools.AnnihilatorQuotientFinite UpperTheory.V.HV UpperTheory.V.Alg
 
 section SlopeTestRemainingChoices

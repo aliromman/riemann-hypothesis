@@ -262,7 +262,7 @@ theorem veryAmpleBy_of_sval {R : Type} [CommRing R] {X Y Z : Scheme.{0}} {L : LB
     choose J hJ using fun χ : Z ⟶ X => exists_chart hL (χ z)
     refine ⟨LB.wchart L φ' (fun k => J (𝟙 Z ≫ φ' k)) ⊓ g ⁻¹ᵁ LB.wchart L φ (fun k => J (g ≫ φ k)),
       ⟨Good.mem hJ φ' (𝟙 Z), Good.mem hJ φ g⟩, fun k => J (g ≫ φ k), inf_le_right, fun k => J (𝟙 Z ≫ φ' k),
-      inf_le_left, fun j => fn_ext fun y hy => ?_⟩
+      inf_le_left, fun j => _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.fn_ext fun y hy => ?_⟩
     obtain ⟨J', hJ', e⟩ := exists_good L hL y (Sum.elim (fun k => 𝟙 Z ≫ φ' k) (fun k => g ≫ φ k))
       (fun a => J (Sum.elim (fun k => 𝟙 Z ≫ φ' k) (fun k => g ≫ φ k) a)) (fun a b e => congrArg J e) (by
         rintro (a | a)

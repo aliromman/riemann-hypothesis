@@ -118,6 +118,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.ToroidalChartsForFan
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open AlgebraicGeometry CategoryTheory NumberField IsLocalRing

@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LastColsVal
 
 @[expose] public section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
 open MeasureTheory GlobalTheory.SplitFlip ValuativeRel

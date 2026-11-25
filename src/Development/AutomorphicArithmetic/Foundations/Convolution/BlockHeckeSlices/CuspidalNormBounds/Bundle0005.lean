@@ -63,11 +63,11 @@ private def pas (r : ℕ) : Subalgebra ℂ (Module.End ℂ (Sm E n)) where
     change c • F.1 g = constantTerm r (c • φ.1) g
     rw [hF, constantTerm_smul]⟩
 
-private theorem of_lie (S : Subalgebra ℂ (Module.End ℂ (Sm E n))) (h : ∀ X, lie E n X ∈ S) (u : UC E n) :
+private theorem of_lie (S : Subalgebra ℂ (Module.End ℂ (Sm E n))) (h : ∀ X, lie E n X ∈ S) (u : UpperTheory.V.Cm.UC E n) :
     uC E n u ∈ S := by
   have hι : ∀ X, ιC E n X ∈ S.comap (uC E n) := fun X => by
     rw [Subalgebra.mem_comap, uC_ιC]; exact h X
-  have h : Algebra.adjoin ℂ {x : UC E n | ∃ τ i j, x = genC τ i j} ≤ S.comap (uC E n) :=
+  have h : Algebra.adjoin ℂ {x : UpperTheory.V.Cm.UC E n | ∃ τ i j, x = genC τ i j} ≤ S.comap (uC E n) :=
     Algebra.adjoin_le (by
       rintro _ ⟨τ, i, j, rfl⟩
       rw [genC, UpperTheory.V.AlgRepEndIrreducible.eL]
@@ -112,6 +112,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.Foundations.Convolution.BlockHeckeSlices.CuspidalNormBounds.SliceBound
 section
+attribute [-instance] GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 open MeasureTheory NumberField IsDedekindDomain GlobalTheory.CuspRep GlobalTheory.CompanionTheory.CTFin
 open GroundTheory.Automorphic GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.RightCosetSpace
 open GroundTheory.Automorphic.AutomorphicForm

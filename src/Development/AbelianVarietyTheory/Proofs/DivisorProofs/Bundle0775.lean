@@ -35,6 +35,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0730
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsIntegralCoeIff
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Col Formalism.L2.Ker
 open GlobalTheory.IndefiniteRowSideFullHecke GlobalTheory.ColumnNormCompare

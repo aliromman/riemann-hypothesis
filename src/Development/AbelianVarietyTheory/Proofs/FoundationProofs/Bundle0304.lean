@@ -22,6 +22,7 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ApplyMemT
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FoundationProofs.FiniteAndMass
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 noncomputable section
 
@@ -338,6 +339,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FoundationProofs.MemLatHatIffOfSupport
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.NTheta IsDedekindDomain NumberField GlobalTheory.SplitHecke
 open scoped TensorProduct Matrix
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

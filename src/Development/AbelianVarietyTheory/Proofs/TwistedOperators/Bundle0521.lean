@@ -76,6 +76,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.DiagonalF
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.TwistedOperators.ColumnMemLatticeIffIdeal
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links IsDedekindDomain NumberField Matrix
 open GlobalTheory.MixModel GlobalTheory.ChiGrid
 open scoped TensorProduct nonZeroDivisors

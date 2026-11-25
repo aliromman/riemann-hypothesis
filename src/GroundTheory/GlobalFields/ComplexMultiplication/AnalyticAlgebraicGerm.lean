@@ -131,7 +131,7 @@ theorem germ_eq_zero_iff {f : ℂ → ℂ} (hf : Meromorphic f) : germ f = 0 ↔
 
 theorem germ_add {f g : ℂ → ℂ} (hf : Meromorphic f) (hg : Meromorphic g) :
     germ (f + g) = germ f + germ g := by
-  rw [germ_of hf, germ_of hg, germ_of (hf.add hg), ← map_add (f := _)]
+  rw [germ_of hf, germ_of hg, germ_of (hf.add hg), ← (Ideal.Quotient.mk meroNull).map_add]
   rfl
 
 theorem germ_mul {f g : ℂ → ℂ} (hf : Meromorphic f) (hg : Meromorphic g) :
@@ -140,7 +140,7 @@ theorem germ_mul {f g : ℂ → ℂ} (hf : Meromorphic f) (hg : Meromorphic g) :
   rfl
 
 theorem germ_neg {f : ℂ → ℂ} (hf : Meromorphic f) : germ (-f) = -germ f := by
-  rw [germ_of hf, germ_of hf.neg, ← map_neg]
+  rw [germ_of hf, germ_of hf.neg, ← (Ideal.Quotient.mk meroNull).map_neg]
   rfl
 
 theorem germ_sub {f g : ℂ → ℂ} (hf : Meromorphic f) (hg : Meromorphic g) :

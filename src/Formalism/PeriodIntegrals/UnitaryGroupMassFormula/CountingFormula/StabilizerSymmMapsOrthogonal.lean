@@ -5,6 +5,7 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField Module Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.BasicNotions Formalism.L2.SG.CntLocal
 open Classical
 

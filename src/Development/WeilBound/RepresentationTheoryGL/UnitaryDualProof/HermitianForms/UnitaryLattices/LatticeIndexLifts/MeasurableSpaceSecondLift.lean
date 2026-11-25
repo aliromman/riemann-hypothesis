@@ -14,6 +14,7 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Bundle00
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix
 noncomputable section
 
 open Matrix MeasureTheory GlobalTheory.SplitWeil GlobalTheory.BZMir Filter

@@ -201,6 +201,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.CenLocOfCenReal
 section
+attribute [-instance] GlobalTheory.IndefiniteRowSideFullHecke.UnipotentLatticeMembership.finiteLevelGroupFintype
 noncomputable section
 
 namespace GlobalTheory.HeightCounting.Up

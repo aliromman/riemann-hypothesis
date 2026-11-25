@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.IntegralUnipo
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0236
 
 @[expose] public section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 noncomputable section
 

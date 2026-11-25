@@ -11,6 +11,7 @@ public import Formalism.HermitianCurvature.HermitianCurvatureProofs.RestrictionI
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 noncomputable section
 
 open Matrix MeasureTheory Filter Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt

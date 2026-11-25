@@ -329,6 +329,7 @@ end
 
 -- bundled from Formalism.SharpRestriction.CuspSpanNormBounds.BruhatCellsKronecker.LretrCancel
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 namespace Formalism.MainNotions.BridgeLemma

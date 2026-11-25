@@ -15,6 +15,7 @@ public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.Bundle003
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.Bundle0053
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open NumberField Matrix
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompRat GlobalTheory.HermModel

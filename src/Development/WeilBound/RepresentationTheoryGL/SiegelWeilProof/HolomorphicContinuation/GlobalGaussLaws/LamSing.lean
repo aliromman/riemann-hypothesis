@@ -6,6 +6,7 @@ public import Formalism.LocalToGlobal.IndefiniteReal.SobolevIteration.FdSetInteg
 
 @[expose] public section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 noncomputable section
 
@@ -317,7 +318,7 @@ theorem gLsing_core (hFZ : FourierZeroN) (hTS : TwoSided) (hD : DenseTau) (hCD :
       intro x
       have hp : InG (nU (herm x) * M) := by
         have h2 : InG (mR (nb' x * toGR M hM)) := (nb' x * toGR M hM).2
-        rwa [mR_mul, hnb', mR_toGR] at h2
+        rwa [_root_.PositivityTheory.Rg.Sw.Glob.LamSingH.mR_mul, hnb', mR_toGR] at h2
       rw [hFam _ _ hp]
       have e2 : toGR (nU (herm x) * M) hp = nb' x * toGR M hM := by
         apply Subtype.ext; apply Units.ext
@@ -339,11 +340,11 @@ theorem gLsing_core (hFZ : FourierZeroN) (hTS : TwoSided) (hD : DenseTau) (hCD :
     intro x
     have hp : InG (mR (y * a) * nU (herm x) * mR (b * y⁻¹)) := by
       have h2 : InG (mR (y * a * nb' x * (b * y⁻¹))) := (y * a * nb' x * (b * y⁻¹)).2
-      rwa [mR_mul, mR_mul, mR_mul, hnb'] at h2
+      rwa [_root_.PositivityTheory.Rg.Sw.Glob.LamSingH.mR_mul, _root_.PositivityTheory.Rg.Sw.Glob.LamSingH.mR_mul, _root_.PositivityTheory.Rg.Sw.Glob.LamSingH.mR_mul, hnb'] at h2
     have e3 : toGR (mR (y * a) * nU (herm x) * mR (b * y⁻¹)) hp = y * (a * nb' x * b) * y⁻¹ := by
       apply Subtype.ext; apply Units.ext
       show mR (y * a) * nU (herm x) * mR (b * y⁻¹) = mR (y * (a * nb' x * b) * y⁻¹)
-      simp only [mR_mul, hnb', Matrix.mul_assoc]
+      simp only [_root_.PositivityTheory.Rg.Sw.Glob.LamSingH.mR_mul, hnb', Matrix.mul_assoc]
     rw [hFam _ _ hp, key, e3]
   simp_rw [e]
   exact hB g _ _ (y * a).2 (b * y⁻¹).2

@@ -165,7 +165,7 @@ theorem sysL_cj (R : RealDat3 D A3 Ks) (j : Fin D.R.m) (p : A3.fam3.base3.Ix) (x
   · refine fun h => Exists.elim h fun y hy => ⟨y, hy.1, funext fun i => ?_⟩
     have e : cj (twAt D.what₂.embLL A3.A.v0) (x i) = A3.A.v0.embedding (y i) := congrFun hy.2 i
     rw [R.toRealDat.emb0] at e
-    rw [← cj_cj (twAt D.what₂.embLL A3.A.v0) (x i), e, cj_cj]
+    rw [← Formalism.IndefR.Links.cj_cj (twAt D.what₂.embLL A3.A.v0) (x i), e, Formalism.IndefR.Links.cj_cj]
   · refine fun h => Exists.elim h fun y hy => ⟨y, hy.1, funext fun i => ?_⟩
     have e : x i = D.what₂.embLL (y i) := congrFun hy.2 i
     show cj (twAt D.what₂.embLL A3.A.v0) (x i) = A3.A.v0.embedding (y i)
@@ -177,9 +177,9 @@ def unE (s : Bool) {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℂ E] (
   map_smul' c v := by
     have e : (Tw.mk s (c • v) : Tw s E) = cj s c • Tw.mk s v := by
       show c • v = cj s (cj s c) • v
-      rw [cj_cj]
+      rw [Formalism.IndefR.Links.cj_cj]
     show Tw.out (h (Tw.mk s (c • v))) = c • Tw.out (h (Tw.mk s v))
-    rw [e, map_smul, Tw.out_smul, cj_cj]
+    rw [e, map_smul, Tw.out_smul, Formalism.IndefR.Links.cj_cj]
 
 theorem twE_commute (j : Fin D.R.m) (a b : Module.End ℂ (R.HW j (sg0 D A3.A)).H) :
     Commute (twE R F j a) (twE R F j b) ↔ Commute a b :=
@@ -246,6 +246,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.SatakeParameters.HomLatticeVolumeCompletionSplitPlace
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace GlobalTheory.VolAt

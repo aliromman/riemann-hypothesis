@@ -21,6 +21,7 @@ public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.NCoor
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FlagMeasures.BlockProjectionBessel
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 open BranchingSupport GlobalTheory.CellAmp Formalism.BasicNotions Formalism.MainNotions.S Formalism.QuantumDeterminants Matrix MeasureTheory Finset
 open scoped InnerProductSpace ENNReal
 
@@ -485,6 +486,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FlagMeasures.UnipotentModelProductActionMeasurePreservingStatement
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 open NumberField IsDedekindDomain MeasureTheory Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgAlg GlobalTheory.SgGlob GlobalTheory.SnMass GlobalTheory.SnMass.VolN
 open scoped TensorProduct ENNReal nonZeroDivisors
 set_option maxHeartbeats 1000000 in

@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsLimitOf
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.EventuallyBallSubset
 
 @[expose] public section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S Formalism.REAL Formalism.QuantumDeterminants GlobalTheory.Count GlobalTheory.Dec

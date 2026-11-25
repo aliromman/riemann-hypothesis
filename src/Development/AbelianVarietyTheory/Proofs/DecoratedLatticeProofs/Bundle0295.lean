@@ -346,6 +346,7 @@ end GlobalTheory.FlatLin
 
 end
 end
+end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.BesselWittDecomposition
 section

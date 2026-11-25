@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsCon
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.LatSelfDualOfUnimod
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

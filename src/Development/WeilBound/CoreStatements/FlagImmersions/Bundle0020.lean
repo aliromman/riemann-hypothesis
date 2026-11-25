@@ -12,6 +12,8 @@ public import Development.WeilBound.CoreStatements.FlagImmersions.Bundle0019
 
 -- bundled from Development.WeilBound.CoreStatements.FlagImmersions.CountableBall
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 noncomputable section
 
 namespace RootFieldNumerics
@@ -187,6 +189,7 @@ end
 
 -- bundled from Development.WeilBound.CoreStatements.FlagImmersions.FlagImmersion
 section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 noncomputable section
 
 namespace RootFieldNumerics.Un

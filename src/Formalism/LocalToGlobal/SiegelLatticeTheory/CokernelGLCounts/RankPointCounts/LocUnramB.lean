@@ -7,6 +7,7 @@ public import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.Gaug
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 noncomputable section
 
 namespace Formalism.L2.SG.Pf.LocUnramB

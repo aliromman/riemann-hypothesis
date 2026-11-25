@@ -6,6 +6,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1636
 
 @[expose] public section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 open scoped TensorProduct NNReal Matrix
 open NumberField IsDedekindDomain MeasureTheory Filter Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes ValuativeRel
@@ -15,6 +16,8 @@ open GlobalTheory.Doubling (absE)
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+attribute [local instance 2000] _root_.Units.instTopologicalSpaceUnits _root_.Units.instMeasurableSpace
+  _root_.GlobalTheory.SplitWeil.matrixMeasurableSpace _root_.GlobalTheory.SplitFlip.borel_GL
 namespace GlobalTheory.StdPairLoc
 open GlobalTheory.SplitFlip GlobalTheory.SplitWeil
 

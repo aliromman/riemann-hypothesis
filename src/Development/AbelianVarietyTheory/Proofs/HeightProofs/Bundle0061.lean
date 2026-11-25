@@ -48,6 +48,7 @@ public import Formalism.LocalToGlobal.ProjectiveLattices.Bundle0032
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.HeightProofs.ExistsImagQuadraticHost
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj GlobalTheory.Mem GlobalTheory.FinalJoin GlobalTheory.FinalJoin2 GlobalTheory.FieldSize
 open scoped IntermediateField
 
@@ -296,6 +297,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.HeightProofs.HostXiOrderBounds
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 set_option autoImplicit false
 

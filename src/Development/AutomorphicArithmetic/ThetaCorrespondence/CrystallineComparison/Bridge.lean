@@ -7,6 +7,7 @@ public import Development.AutomorphicArithmetic.ThetaCorrespondence.CrystallineC
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 namespace Formalism.BasicNotions.CmpTie.Incl

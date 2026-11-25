@@ -16,6 +16,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1748
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1752
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open NumberField MeasureTheory IsDedekindDomain
 open scoped Classical

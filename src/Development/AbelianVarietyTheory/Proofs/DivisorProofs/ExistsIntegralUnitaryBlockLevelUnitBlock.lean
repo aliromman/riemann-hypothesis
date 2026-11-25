@@ -12,6 +12,7 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle023
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1576
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open scoped Pointwise
 open Formalism.BasicNotions Formalism.IndefR.Links IsDedekindDomain NumberField

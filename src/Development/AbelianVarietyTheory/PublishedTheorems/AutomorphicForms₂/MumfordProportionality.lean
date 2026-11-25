@@ -9,6 +9,7 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForm
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 noncomputable section
 
 namespace GlobalTheory.Published

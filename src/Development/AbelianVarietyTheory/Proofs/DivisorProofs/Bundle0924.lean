@@ -28,6 +28,7 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle030
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.LMLatOfLIntegral
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open NumberField IsDedekindDomain Module

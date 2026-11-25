@@ -10,6 +10,7 @@ public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentat
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 noncomputable section
 
 open Finset Matrix MeasureTheory

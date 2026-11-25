@@ -9,6 +9,7 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomolog
 public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.ConclusionAbsPow
 
 @[expose] public section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 
 set_option autoImplicit false
 

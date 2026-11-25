@@ -321,7 +321,7 @@ variable {L' : Type} [AddCommGroup L'] [Module (TrivSqZeroExt R V) L'] [Module R
 
 theorem cMor_pt (M : LieModel G x L) (M' : LieModel G (xB x V) L')
     (hj : ∀ y, (M'.pt (β y)).left =
-      Spec.map (CommRingCat.ofHom (GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap R (TrivSqZeroExt R V)))) ≫ (M.pt y).left)
+      Spec.map (CommRingCat.ofHom (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap R (TrivSqZeroExt R V)))) ≫ (M.pt y).left)
     (q : V) (y : L) :
     cMor x V ≫ hom x (LinearMap.toSpanSingleton R V q) ≫ M.pt y =
       M'.pt ((TrivSqZeroExt.inr q : TrivSqZeroExt R V) • β y) := by
@@ -330,7 +330,7 @@ theorem cMor_pt (M : LieModel G x L) (M' : LieModel G (xB x V) L')
 
 theorem dMor_pt (M : LieModel G x L) (M' : LieModel G (xB x V) L')
     (hj : ∀ y, (M'.pt (β y)).left =
-      Spec.map (CommRingCat.ofHom (GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap R (TrivSqZeroExt R V)))) ≫ (M.pt y).left)
+      Spec.map (CommRingCat.ofHom (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap R (TrivSqZeroExt R V)))) ≫ (M.pt y).left)
     (b : TrivSqZeroExt R V) (y : L) :
     dMor x V ≫ M'.pt (b • β y) = M.pt (b.fst • y) := by
   ext1
@@ -340,7 +340,7 @@ theorem dMor_pt (M : LieModel G x L) (M' : LieModel G (xB x V) L')
 
 theorem cMor_hom_univ (M : LieModel G x L) (M' : LieModel G (xB x V) L')
     (hj : ∀ y, (M'.pt (β y)).left =
-      Spec.map (CommRingCat.ofHom (GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap R (TrivSqZeroExt R V)))) ≫ (M.pt y).left)
+      Spec.map (CommRingCat.ofHom (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap R (TrivSqZeroExt R V)))) ≫ (M.pt y).left)
     (e : J → L) (w : J → Module.Dual R L) (φ : Module.Dual R L →ₗ[R] V) :
     cMor x V ≫ hom x φ ≫ univ M e w =
       M'.pt (∑ k, (TrivSqZeroExt.inr (φ (w k)) : TrivSqZeroExt R V) • β (e k)) := by
@@ -363,7 +363,7 @@ theorem hom_zero_tan {v : ob x V ⟶ G} (hv : zsec x ≫ v = 1) : hom x (0 : V �
 
 theorem exists_form (M : LieModel G x L) (M' : LieModel G (xB x V) L')
     (hj : ∀ y, (M'.pt (β y)).left =
-      Spec.map (CommRingCat.ofHom (GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap R (TrivSqZeroExt R V)))) ≫ (M.pt y).left)
+      Spec.map (CommRingCat.ofHom (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap R (TrivSqZeroExt R V)))) ≫ (M.pt y).left)
     (hβ : IsBaseChange (TrivSqZeroExt R V) β) {e : J → L} {w : J → Module.Dual R L}
     (he : ∀ y, ∑ k, w k y • e k = y) {v : ob x V ⟶ G} (hv : zsec x ≫ v = 1) :
     ∃ φ : Module.Dual R L →ₗ[R] V, hom x φ ≫ univ M e w = v := by
@@ -391,7 +391,7 @@ theorem exists_form (M : LieModel G x L) (M' : LieModel G (xB x V) L')
 
 theorem form_unique (M : LieModel G x L) (M' : LieModel G (xB x V) L')
     (hj : ∀ y, (M'.pt (β y)).left =
-      Spec.map (CommRingCat.ofHom (GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap R (TrivSqZeroExt R V)))) ≫ (M.pt y).left)
+      Spec.map (CommRingCat.ofHom (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap R (TrivSqZeroExt R V)))) ≫ (M.pt y).left)
     (hβ : IsBaseChange (TrivSqZeroExt R V) β) {e : J → L} {w : J → Module.Dual R L}
     (he : ∀ y, ∑ k, w k y • e k = y) {φ φ' : Module.Dual R L →ₗ[R] V}
     (h : hom x φ ≫ univ M e w = hom x φ' ≫ univ M e w) : φ = φ' := by

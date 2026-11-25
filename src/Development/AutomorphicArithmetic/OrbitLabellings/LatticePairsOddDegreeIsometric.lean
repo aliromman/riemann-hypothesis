@@ -14,6 +14,7 @@ public import Development.AutomorphicArithmetic.OrbitLabellings.StdSeriesOrbitCo
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.G Formalism.MainNotions.TaylorLogMetric GlobalTheory.KerStd UpperTheory.G2 Classical
 open Formalism.L2.Th1.CM (MaximalUnramifiedExtension)
 open Formalism.L2.Th1.D (F1 F2 OwOK TrDual phFF)

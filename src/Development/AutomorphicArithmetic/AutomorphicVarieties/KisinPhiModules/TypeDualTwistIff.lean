@@ -5,6 +5,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeT
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 open Formalism.BasicNotions Formalism.BasicNotions.Loc UpperTheory.V.Loc UpperTheory.V.Lit
 
 section

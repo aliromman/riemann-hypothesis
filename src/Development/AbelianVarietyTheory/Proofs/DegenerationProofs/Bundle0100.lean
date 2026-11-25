@@ -330,11 +330,11 @@ theorem LevelIso.exists_expansion (hG : GlobalFnsSt) (hR : AdmBase R I) {U : Uni
   obtain ⟨s', ⟨r', hr', σ', f', h₁', h₂', h₃'⟩, -⟩ := (U'.expand k hk).2 F'
   have e₁ : SecOps.secScale (scal G.hom r') σ = SecOps.secScale (scal G.hom (r' * r)) τ :=
     SecOps.sec_ext (scale_of_restrict _ hs h₁ r')
-  have e₂ := expansion_eq hR U.toUnifPre (fun e => e₁ ▸ expandsAt_scale _ (h₃ e) r')
-    (fun e => expandsAt_scale _ (hE e) (r' * r))
+  have e₂ := expansion_eq hR U.toUnifPre (fun e => e₁ ▸ _root_.GlobalTheory.RigidSections.expandsAt_scale _ (h₃ e) r')
+    (fun e => _root_.GlobalTheory.RigidSections.expandsAt_scale _ (hE e) (r' * r))
   have hp := fun x => congrFun e₂ (hD.xe x) ▸ integral_rel hD _ hF h₂ h₂' x
-  exact ⟨r' * r, _, _, mul_ne_zero hr' hr, fun e => expandsAt_scale _ (h₃' e) r,
-    hj.agreeAll (fun e => expandsAt_scale _ (hE e) _) (fun e => expandsAt_scale _ (h₃' e) _) hp, hp⟩
+  exact ⟨r' * r, _, _, mul_ne_zero hr' hr, fun e => _root_.GlobalTheory.RigidSections.expandsAt_scale _ (h₃' e) r,
+    hj.agreeAll (fun e => _root_.GlobalTheory.RigidSections.expandsAt_scale _ (hE e) _) (fun e => _root_.GlobalTheory.RigidSections.expandsAt_scale _ (h₃' e) _) hp, hp⟩
 
 end GlobalTheory.GenericIso
 

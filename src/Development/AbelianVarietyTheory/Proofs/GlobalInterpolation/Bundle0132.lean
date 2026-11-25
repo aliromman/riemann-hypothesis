@@ -18,6 +18,7 @@ public import Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.IntPu
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.TotallyDefiniteMass
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace GlobalTheory.Proof.TotallyDefiniteMass
@@ -251,6 +252,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.UnitaryPairPullbackLatticesTranslates
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open NumberField Formalism.BasicNotions Classical Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.L2.Ker GlobalTheory.MomN

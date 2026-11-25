@@ -5,6 +5,7 @@ public import Development.WeilBound.CoreStatements.CrystallinePeriodRings.Bundle
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 namespace PositivityTheory.LocInh

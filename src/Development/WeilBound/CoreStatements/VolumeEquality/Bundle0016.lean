@@ -67,6 +67,7 @@ end
 
 -- bundled from Development.WeilBound.CoreStatements.VolumeEquality.VolEqOf
 section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 noncomputable section
 
 namespace SheetDecomposition

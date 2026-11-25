@@ -19,6 +19,7 @@ public import Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.LieLatt
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsGaussVacuumNondegenerateGaussianDualPair
 section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 open scoped TensorProduct NNReal Matrix
 open NumberField IsDedekindDomain MeasureTheory Filter Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 open GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.ThK

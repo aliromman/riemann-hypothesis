@@ -7,6 +7,7 @@ public import Formalism.LocalToGlobal.SiegelLatticeTheory.HaarTransversals.Unita
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 noncomputable section
 
 open MeasureTheory Filter Topology Matrix

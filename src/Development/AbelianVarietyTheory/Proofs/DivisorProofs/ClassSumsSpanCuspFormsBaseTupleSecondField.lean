@@ -20,6 +20,7 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsRep
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Bundle0106
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 400000

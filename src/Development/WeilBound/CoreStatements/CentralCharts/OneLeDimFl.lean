@@ -20,6 +20,7 @@ public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.Potenti
 public import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsFinsetOfMemNhds
 
 @[expose] public section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 noncomputable section
 

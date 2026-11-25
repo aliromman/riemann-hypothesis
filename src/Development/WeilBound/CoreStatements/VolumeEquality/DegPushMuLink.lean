@@ -18,6 +18,7 @@ public import Development.WeilBound.CoreStatements.PlurisubharmonicCones.Bundle0
 public import Development.WeilBound.CoreStatements.PlurisubharmonicCones.Bundle0017
 
 @[expose] public section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 noncomputable section
 

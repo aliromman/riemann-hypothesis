@@ -24,6 +24,7 @@ public import Development.WeilBound.CoreStatements.CentralCharts.PotLoc
 
 -- bundled from Development.WeilBound.CoreStatements.MultihomogeneousSquares.ChooseTwoAdd
 section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 noncomputable section
 
 namespace SquareStatements

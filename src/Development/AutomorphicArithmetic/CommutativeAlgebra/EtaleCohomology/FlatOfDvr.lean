@@ -6,6 +6,7 @@ public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentation
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 open CategoryTheory AlgebraicGeometry
 
 private lemma flat_of_dvr {O O' : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] [CommRing O'] [IsDomain O']

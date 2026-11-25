@@ -9,6 +9,7 @@ public import Formalism.WachLatticeTwists.CupProductVanishing.Imports
 
 -- bundled from Formalism.WachLatticeTwists.RealClassMaps.RealClassMapProofs.ClsRowVOfMem
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
 
 open Formalism.NG Formalism.RepresentationBoundsCohomology.BR Formalism.RepresentationBoundsCohomology.JT Formalism.RepresentationBoundsCohomology.LocallyConstantCohomology

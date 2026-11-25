@@ -13,6 +13,7 @@ public import Formalism.SharpRestriction.CuspSpanNormBounds.NonemptyParameterMod
 
 -- bundled from Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.CarrierEnergyNF
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S

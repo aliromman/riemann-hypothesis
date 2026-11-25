@@ -13,6 +13,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1004
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.TwistedOperators.RationalMapColumnsMemLatGIffMovedFinitePart
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.FWT Formalism.L2.Pj Formalism.IndefR.Datum ReciprocityTheory.ChartRestriction.G.PullbackSections ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open NumberField Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

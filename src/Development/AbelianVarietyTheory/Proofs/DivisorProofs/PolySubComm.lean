@@ -5,6 +5,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsRootSe
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 open Matrix GlobalTheory.LKRes

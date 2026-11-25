@@ -10,6 +10,7 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.VacuumUnd
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle0224
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

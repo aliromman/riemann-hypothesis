@@ -91,7 +91,8 @@ theorem cap_mem_span_coeffs (τ : E →+* ℂ) (u : ℂ) :
     Polynomial.sum]
   refine Submodule.sum_mem _ fun k hk => ?_
   rw [RingHom.id_apply, ← map_pow, ← Algebra.commutes, ← Algebra.smul_def]
-  exact Submodule.smul_mem _ _ (Submodule.subset_span (coeff_mem_coeffs (by simpa using hk)))
+  exact Submodule.smul_mem _ _
+    (Submodule.subset_span (Polynomial.coeff_mem_coeffs (Polynomial.mem_support_iff.mp hk)))
 
 theorem exists_finite_subset_span_cap :
     ∃ b : Set (Module.End ℂ (Sm E n)), b.Finite ∧ b ⊆ {z | ∃ τ u, z = cap (a := n) τ u} ∧

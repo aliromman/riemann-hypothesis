@@ -25,6 +25,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsMulRigh
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsGenReadsOfUnitAt
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open AlgebraicGeometry NumberField Matrix Complex
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.FD ReciprocityTheory.ChartRestriction.G.PullbackSections GlobalTheory GlobalTheory.ThFr GlobalTheory.Dict GlobalTheory.AdTh

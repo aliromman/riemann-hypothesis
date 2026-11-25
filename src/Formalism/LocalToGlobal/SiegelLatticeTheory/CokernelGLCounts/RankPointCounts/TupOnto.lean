@@ -7,6 +7,7 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.IdentityCellTrac
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open scoped Classical

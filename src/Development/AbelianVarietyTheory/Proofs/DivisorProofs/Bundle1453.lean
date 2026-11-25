@@ -407,6 +407,8 @@ theorem rational_proj_section_of_span : ∀ (F : Type) [Field F] [NumberField F]
   let f : T →ₗ[F] (κ → F) := LinearMap.fst F _ _ ∘ₗ T.subtype
   let L₁ := LinearMap.range f
   obtain ⟨C, hC⟩ := Submodule.exists_isCompl L₁
+  have : Module.Free F (LinearMap.range f) := Module.Free.of_divisionRing F _
+  have : Module.Projective F (LinearMap.range f) := Module.Projective.of_free
   obtain ⟨g, hg⟩ := LinearMap.exists_rightInverse_of_surjective f.rangeRestrict (LinearMap.range_rangeRestrict f)
   let π : (κ → F) →ₗ[F] (κ → F) := C.subtype ∘ₗ Submodule.linearProjOfIsCompl C L₁ hC.symm
   let q : (κ → F) →ₗ[F] (κ → F) := LinearMap.snd F _ _ ∘ₗ T.subtype ∘ₗ g ∘ₗ Submodule.linearProjOfIsCompl L₁ C hC

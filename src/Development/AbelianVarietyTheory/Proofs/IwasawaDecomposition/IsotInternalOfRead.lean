@@ -13,6 +13,7 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Inner
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.IndefiniteRowSideFullHecke.UnipotentLatticeMembership.finiteLevelGroupFintype
 noncomputable section
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum Formalism.IndefR.Cx
@@ -219,7 +220,7 @@ theorem span_all : GlobalTheory.Published.WeilRepresentationUnitaryPair → Glob
     show cj (twAt D.what₂.embLL A3.A.v0) (A3.A.v0.embedding (y k)) •
       ((((Real.sqrt (RealDat.nP F.lv2 false) : ℝ) : ℂ)) • ((((Real.sqrt (RealDat.nP F.lv2 false))⁻¹ : ℝ) : ℂ) •
         (R.FW i).j (sg0 D A3.A) (R.toRealDat.bL F.lv2 false i k))) = _
-    rw [smul_smul (((Real.sqrt (RealDat.nP F.lv2 false) : ℝ) : ℂ)), hn, one_smul, R.toRealDat.emb0, cj_cj]
+    rw [smul_smul (((Real.sqrt (RealDat.nP F.lv2 false) : ℝ) : ℂ)), hn, one_smul, R.toRealDat.emb0, Formalism.IndefR.Links.cj_cj]
     congr 1
     exact (DFunLike.congr_fun hs (y k)).symm
   have hnP : 0 < RealDat.nP F.lv2 false := RealDat.nP_pos (F := F.lv2) false

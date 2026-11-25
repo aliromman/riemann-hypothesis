@@ -267,6 +267,7 @@ end
 
 -- bundled from Development.WeilBound.RepresentationTheoryGL.LimitMultiplicityWeights.RegularClassIntegrals.PIdentOne
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 open MeasureTheory Set GlobalTheory.AutomorphicL2Unitary GlobalTheory.Orb Matrix
 open scoped ContDiff ComplexConjugate
 

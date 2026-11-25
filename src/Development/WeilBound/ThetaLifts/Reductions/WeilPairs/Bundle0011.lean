@@ -20,6 +20,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsWeilRe
 
 -- bundled from Development.WeilBound.ThetaLifts.Reductions.WeilPairs.AutEta
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open scoped TensorProduct Matrix Topology Kronecker ComplexOrder Classical
@@ -51,6 +52,7 @@ end
 
 -- bundled from Development.WeilBound.ThetaLifts.Reductions.WeilPairs.AutReal
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open scoped TensorProduct Matrix Topology Kronecker ComplexOrder Classical
@@ -92,6 +94,7 @@ end
 
 -- bundled from Development.WeilBound.ThetaLifts.Reductions.WeilPairs.LatRep
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open scoped TensorProduct Matrix Topology

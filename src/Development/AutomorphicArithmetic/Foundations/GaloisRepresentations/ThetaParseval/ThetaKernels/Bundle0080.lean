@@ -240,6 +240,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.SiegelWeilKfpPsiPf
 section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 set_option synthInstance.maxHeartbeats 200000
 
 section

@@ -4,6 +4,7 @@ public import Formalism.SharpRestriction.GrowthBounds.PathWeight.PhProdShift
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 open MvPolynomial Finset Classical

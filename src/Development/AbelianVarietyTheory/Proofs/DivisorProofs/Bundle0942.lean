@@ -34,6 +34,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsRootSe
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjMapMemMult
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 noncomputable section
 
@@ -454,6 +455,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.DescentEqualizerDegreeZero
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
 attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 open scoped TensorProduct

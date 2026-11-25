@@ -39,6 +39,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.Bundle0036
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjSmulConjSmul
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open Formalism.BasicNotions Formalism.IndefR.Links IsDedekindDomain NumberField Polynomial
 open scoped Pointwise nonZeroDivisors
 open Formalism.L2.Host (HChar embTau)
@@ -335,6 +336,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.CosetVecMemThetaSpace
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open Formalism.BasicNotions Formalism.IndefR.Links IsDedekindDomain NumberField Polynomial

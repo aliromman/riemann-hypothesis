@@ -190,7 +190,7 @@ theorem UpperTheory.V.Z.Win.compatTOf :
   · obtain ⟨rc, hrc⟩ := UpperTheory.Zero.LLC.recTExists F Ω A w h
     obtain ⟨g1, g2⟩ := gd_of H hn hrc hσ (plain_all hn hσ hT)
     obtain ⟨k1, -, k3, -⟩ := (P.above (Loc.PP l) _ (Loc.tiedP l) w A h O Bw hj).nice σ hσ rc hrc (Or.inr g1) g2
-    obtain ⟨_root_.ReciprocityTheory.Gal.d1, -, -, d4⟩ := GlobalTheory.ConjLocal.local_conj l (Loc.PP l) F Ω O _ Bw n (R.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype)
+    obtain ⟨d1, -, -, d4⟩ := GlobalTheory.ConjLocal.local_conj l (Loc.PP l) F Ω O _ Bw n (R.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype)
       (r.comp (ReciprocityTheory.Gal.Dec (F := F) A).subtype) p fun g => hp g.1
     exact ⟨d1 k1, fun τ LL' τ' hi => d4 τ _ (k3 τ LL' τ' hi)⟩
 

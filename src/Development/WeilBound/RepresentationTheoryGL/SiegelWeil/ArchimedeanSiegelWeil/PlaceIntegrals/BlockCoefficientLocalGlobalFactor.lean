@@ -18,6 +18,7 @@ public import Development.WeilBound.RepresentationTheoryGL.SiegelWeil.Archimedea
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct

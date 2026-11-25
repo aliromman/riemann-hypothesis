@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.Bundle
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0931
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

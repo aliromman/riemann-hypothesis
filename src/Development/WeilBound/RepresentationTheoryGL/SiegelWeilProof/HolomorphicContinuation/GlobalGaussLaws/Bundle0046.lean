@@ -16,6 +16,7 @@ public import Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.Holom
 
 -- bundled from Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.WittEq
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open scoped Matrix ComplexConjugate nonZeroDivisors

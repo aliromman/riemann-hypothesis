@@ -15,6 +15,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0146
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0276
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 

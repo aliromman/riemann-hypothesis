@@ -18,6 +18,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle015
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.LatticeFrames.JointSmooth
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 set_option genSizeOfSpec false
 set_option genInjectivity false
 
@@ -423,6 +424,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.LatticeFrames.TransferOn
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix

@@ -35,6 +35,7 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsUni
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ThetaSeriesSchwartzBruhatContinuousSchrodinger
 section
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix
 namespace I195MixedCoordinates_b252ee61f962e28100fad012
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH
@@ -219,6 +220,7 @@ theorem theta_series_sch : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdC
 
 end GlobalTheory.Core.Rk.ThetaOf
 
+end
 end
 end
 

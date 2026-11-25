@@ -227,6 +227,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeightZeroConstFrameValueMemCoeffRange
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 noncomputable section
 
 namespace GlobalTheory.FlatLine
@@ -241,6 +242,8 @@ theorem mem_range_of_embeddings_const {K Ω : Type} [Field K] [CharZero K] [Fiel
   haveI : FiniteDimensional K K⟮b⟯ := adjoin.finiteDimensional hb
   have key : ∀ ψ : K⟮b⟯ →ₐ[K] ℂ, ψ (AdjoinSimple.gen K b) = a := fun ψ => by
     letI : Algebra K⟮b⟯ ℂ := ψ.toRingHom.toAlgebra
+    haveI : FaithfulSMul K⟮b⟯ ℂ :=
+      (faithfulSMul_iff_algebraMap_injective K⟮b⟯ ℂ).mpr (algebraMap K⟮b⟯ ℂ).injective
     obtain ⟨Q⟩ := GlobalTheory.nonempty_algHom_complex_of_countable K⟮b⟯ Ω
     let P : Ω →ₐ[K] ℂ := { Q.toRingHom with
       commutes' := fun k => (Q.commutes (algebraMap K K⟮b⟯ k)).trans (ψ.commutes k) }

@@ -12,6 +12,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1783
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1797
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta
 open IsDedekindDomain NumberField

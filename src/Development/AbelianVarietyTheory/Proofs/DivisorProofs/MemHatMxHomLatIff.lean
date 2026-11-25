@@ -5,6 +5,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsGivenS
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsLatticeOfAdelicPoint
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

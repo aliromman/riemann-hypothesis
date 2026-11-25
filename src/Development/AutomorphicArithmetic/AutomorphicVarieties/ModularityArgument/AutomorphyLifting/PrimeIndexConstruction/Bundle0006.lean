@@ -37,6 +37,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsRe
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.AutomorphyLifting.PrimeIndexConstruction.ContDelta
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 open UpperTheory.GalN.V UpperTheory.V.Z.Win.Birth UpperTheory.V
 
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N IsLocalRing Polynomial

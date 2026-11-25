@@ -14,6 +14,7 @@ public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.Bundle
 public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.Bundle0151
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Forms
 

@@ -14,6 +14,7 @@ public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ThetaN
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsInvariantForm
 
 @[expose] public section
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 

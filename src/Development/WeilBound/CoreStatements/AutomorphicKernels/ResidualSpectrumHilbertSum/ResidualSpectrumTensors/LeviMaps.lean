@@ -5,6 +5,7 @@ public import Development.WeilBound.CoreStatements.AutomorphicKernels.ResidualSp
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open NumberField IsDedekindDomain

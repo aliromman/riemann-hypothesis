@@ -8,6 +8,7 @@ public import Formalism.SharpRestriction.CuspSpanNormBounds.LowestKTypeMultiplic
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 noncomputable section
 
 open MeasureTheory Matrix

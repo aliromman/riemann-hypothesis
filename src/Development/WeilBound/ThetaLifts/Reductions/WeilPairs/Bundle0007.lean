@@ -152,6 +152,7 @@ end
 
 -- bundled from Development.WeilBound.ThetaLifts.Reductions.WeilPairs.AutGen
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open scoped TensorProduct Matrix Topology Kronecker ComplexOrder Classical

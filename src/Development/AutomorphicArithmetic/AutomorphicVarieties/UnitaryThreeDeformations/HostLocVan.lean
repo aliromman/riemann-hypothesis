@@ -9,6 +9,7 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomolog
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
 open Matrix IsLocalRing ReciprocityTheory.Gal UpperTheory.V.HV UpperTheory.V.U3 UpperTheory.V.Alg UpperTheory.V.UnitaryThreeInertia
 
 attribute [local instance 1100] DivisionSemiring.to_moduleIsTorsionFree

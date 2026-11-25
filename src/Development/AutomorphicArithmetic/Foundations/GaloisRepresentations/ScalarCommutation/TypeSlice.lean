@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.Bundle0045
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 set_option autoImplicit false
 
 noncomputable section

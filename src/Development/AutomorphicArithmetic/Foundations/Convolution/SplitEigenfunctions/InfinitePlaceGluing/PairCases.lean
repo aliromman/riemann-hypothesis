@@ -285,7 +285,7 @@ theorem UpperTheory.ConvolutionTheory.RankTwoDescent.asEx_of :
     have := (Classical.choose_spec (den_inv hE hs (hc' v) h.choose_spec)).1
     rw [← den_unique hE h.choose_spec hd]
     exact this
-  have tvM : ∀ v, MultiplicativeMajorants.Maj (Tv v) (4 * normV v) := by
+  have tvM : ∀ v, ∀ k : ℕ, ‖PowerSeries.coeff k (Tv v)‖ ≤ (4 * (normV v : ℝ)) ^ k := by
     intro v
     have q1 : (1 : ℝ) ≤ 4 * normV v := by
       have : (1 : ℝ) ≤ normV v := by exact_mod_cast (nv_prime v).one_le
@@ -315,7 +315,7 @@ theorem UpperTheory.ConvolutionTheory.RankTwoDescent.asEx_of :
     · simp
     · exact tv0 _
     · simp
-  have hM : ∀ p : ℕ, p.Prime → MultiplicativeMajorants.Maj (T p) (4 * p) := by
+  have hM : ∀ p : ℕ, p.Prime → ∀ k : ℕ, ‖PowerSeries.coeff k (T p)‖ ≤ (4 * (p : ℝ)) ^ k := by
     intro p pp
     have q1 : (1 : ℝ) ≤ 4 * p := by
       have : (1 : ℝ) ≤ p := by exact_mod_cast pp.one_le

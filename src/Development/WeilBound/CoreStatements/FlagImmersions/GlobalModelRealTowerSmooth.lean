@@ -30,6 +30,7 @@ public import ReciprocityTheory.AnalyticForms.PotentialTheory.Bundle0003
 public import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.Bundle0061
 
 @[expose] public section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 noncomputable section
 

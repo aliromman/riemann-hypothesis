@@ -204,6 +204,7 @@ end
 
 -- bundled from ReciprocityTheory.ReductiveGroups.DiscreteSeries.TensorRepresentations.TraceFormulaG
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 open Finset MeasureTheory

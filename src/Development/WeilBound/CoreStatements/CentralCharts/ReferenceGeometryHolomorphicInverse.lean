@@ -8,6 +8,7 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeCptFlag
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsHodgeLine
 
 @[expose] public section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 noncomputable section
 

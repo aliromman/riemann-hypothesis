@@ -6,6 +6,7 @@ public import Formalism.LocalToGlobal.Divisibility.RowLatLemmas
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open Module NumberField IsDedekindDomain

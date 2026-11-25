@@ -7,6 +7,8 @@ public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.AnalyticVectors.B
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 noncomputable section
 
 open Finset MeasureTheory Matrix

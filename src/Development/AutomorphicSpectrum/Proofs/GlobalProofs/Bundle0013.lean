@@ -63,6 +63,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.GlobalProofs.IntegrandEqOnPiece
 section
+attribute [-instance] GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 open MeasureTheory Matrix GlobalTheory.CompanionTheory.QL
 open scoped ComplexConjugate ValuativeRel
 

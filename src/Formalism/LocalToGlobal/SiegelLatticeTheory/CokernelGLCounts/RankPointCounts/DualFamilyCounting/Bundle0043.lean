@@ -11,6 +11,7 @@ public import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExi
 
 -- bundled from Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.NormUnits
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField Module Matrix
 
 noncomputable section

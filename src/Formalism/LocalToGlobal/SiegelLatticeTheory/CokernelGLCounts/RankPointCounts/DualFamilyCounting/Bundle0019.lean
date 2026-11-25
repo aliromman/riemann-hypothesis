@@ -13,6 +13,7 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume
 
 -- bundled from Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.LeDualFOfGram
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField Module Matrix
 
 noncomputable section

@@ -11,6 +11,7 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.Bundle009
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.Bundle0110
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

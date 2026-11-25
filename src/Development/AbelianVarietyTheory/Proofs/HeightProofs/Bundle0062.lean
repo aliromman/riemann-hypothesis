@@ -46,6 +46,7 @@ public import Development.AbelianVarietyTheory.Proofs.HeightProofs.Bundle0052
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.HeightProofs.IsAbelianSchemeOfIsPrincipal
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 set_option autoImplicit false
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField

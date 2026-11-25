@@ -104,7 +104,7 @@ theorem UpperTheory.V.Z.Kato.Nb.sTopT :
         Nat.Coprime.mul_right (Nat.Coprime.mul_right hcN (Nat.Coprime.pow_right _ hcl)) hpc.symm,
         Nat.Coprime.mul_right (Nat.Coprime.mul_right hdN (Nat.Coprime.pow_right _ hdl)) hpd.symm⟩
     have hdvdl : l ∣ N * l ^ (r + n) * p := Dvd.dvd.mul_right (Dvd.dvd.mul_left (dvd_pow_self l hL0) N) p
-    have hbp : ((bar l (r + n) N p : ℤ) : ZMod l) * (p : ZMod l) = 1 := bar_mul l (r + n) N p hL0 hpNL
+    have hbp : ((bar l (r + n) N p : ℤ) : ZMod l) * (p : ZMod l) = 1 := _root_.bar_mul l (r + n) N p hL0 hpNL
     have hlL : ((l : ZMod l)) ^ (r + n) = 0 := by
       rw [ZMod.natCast_self]
       exact zero_pow hL0

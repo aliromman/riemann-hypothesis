@@ -182,7 +182,7 @@ theorem soEv_of (hL : LinEx) (hLow : Low) : SoEv := by
   have hcomm : ∀ (b : AF F) (ε : AE F E) p q, form σ W.J H'.x q = 0 → ∀ Φ,
       M.co.rho B.ψ s₀ (M.co.rho B.ψ (b • ε • incM F (vecMulVec p q)) Φ) =
         M.co.rho B.ψ (b • ε • incM F (vecMulVec p q)) (M.co.rho B.ψ s₀ Φ) := fun b ε p q hq Φ => by
-    rw [rho_comm, ← smul_assoc, symp, hTens_vec, hq]
+    rw [rho_comm, ← smul_assoc, symp, PositivityTheory.ThKCT.So.hTens_vec, hq]
     simp
   refine so_kill M hL hB hX hW hM t L {b | (b.1 = H.x ∧ (b.2.1 = H'.x ∨ ∃ q, b.2.1 = H'.ι *ᵥ q) ∧ b.2.2 = 0) ∨
     (∃ p, b = (H.ι *ᵥ p, H'.x, 0)) ∨ ∃ p q, b = (H.ι *ᵥ p, H'.ι *ᵥ q, (fun i => t (p i)) ⬝ᵥ C₀ *ᵥ fun j => t (q j))} ?_

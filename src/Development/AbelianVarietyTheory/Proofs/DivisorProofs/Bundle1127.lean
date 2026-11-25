@@ -92,6 +92,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ValuationDetBlocks
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.Doubling GlobalTheory.GLDoubling GlobalTheory.IndefiniteRowSideFullHecke.VolumeFlatSection
 open GlobalTheory.SplitFlip (omA omB invT IsUnif mem_KO_iff isOpen_KO)
 open GlobalTheory.StdLocZeta (StdSupp stdDatum)

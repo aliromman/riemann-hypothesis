@@ -6,6 +6,7 @@ public import Development.AutomorphicArithmetic.CommutativeAlgebra.Bundle0043
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 
 namespace UpperTheory.IntegralColim

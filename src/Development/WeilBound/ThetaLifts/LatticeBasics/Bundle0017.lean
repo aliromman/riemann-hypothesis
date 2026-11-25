@@ -75,6 +75,7 @@ end
 
 -- bundled from Development.WeilBound.ThetaLifts.LatticeBasics.LocUnr
 section
+attribute [-instance] GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 noncomputable section
 
 namespace GlobalTheory.ThK.Dbl

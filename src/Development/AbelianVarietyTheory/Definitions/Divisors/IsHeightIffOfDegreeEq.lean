@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.Bundle0029
 public import Development.AbelianVarietyTheory.Definitions.Divisors.IrreducibleOfIrreducibleMap
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 set_option autoImplicit false
 

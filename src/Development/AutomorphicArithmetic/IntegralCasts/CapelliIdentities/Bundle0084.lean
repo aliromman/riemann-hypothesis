@@ -45,6 +45,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.LiftNabStdMemLatN
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 open MvPolynomial in
 private theorem mem_dw_iff {R : Type} [CommRing R] (r n : ℕ) (ν : Fin n → ℕ) (f : MvPolynomial (Fin r × Fin n) R) :
     f ∈ Formalism.GradedWeylDivisibility.dualWeyl R r n ν ↔ IsWeightedHomogeneous (Formalism.GradedWeylDivisibility.colW r n) f ν ∧

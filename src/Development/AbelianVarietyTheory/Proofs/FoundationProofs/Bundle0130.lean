@@ -13,6 +13,7 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle006
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FoundationProofs.Sha1TorsionLevelFiltration
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.GaloisCohomology
 
 namespace GlobalTheory

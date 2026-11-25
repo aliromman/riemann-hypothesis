@@ -8,6 +8,7 @@ public import Formalism.PolynomialDimension.Bundle0004
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 open MvPolynomial Finset Classical

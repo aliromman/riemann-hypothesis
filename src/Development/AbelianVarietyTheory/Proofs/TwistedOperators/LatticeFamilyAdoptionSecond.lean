@@ -13,6 +13,7 @@ public import Formalism.LocalRingCardinality.DataIdx
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle0008
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 namespace GroupAverageFixedPoints

@@ -21,6 +21,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1504
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 noncomputable section
 open NumberField Polynomial IsDedekindDomain
 open Formalism.DivisionValues (vw lw)

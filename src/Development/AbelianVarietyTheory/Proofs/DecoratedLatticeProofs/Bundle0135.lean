@@ -391,9 +391,11 @@ theorem GlobalTheory.MixValues.mixed_values : ∀ D : D7, GlobalTheory.Indefinit
   rw [hsw] at h2
   exact ((hcd S T₀).2.2.1 _).1 h2
 end
+end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.NormMuInvDetZeroOrOne
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Col Formalism.L2.Ker GlobalTheory.IndefiniteRowSideFullHecke.PlaceLogThetaBounds GlobalTheory.ColNorms
 open GlobalTheory.Core.Ht2
 open scoped ComplexOrder

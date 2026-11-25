@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry NumberField IsDedekindDomain

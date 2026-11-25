@@ -7,6 +7,8 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle004
 
 @[expose] public section
 
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 
 open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.SplitFlip GlobalTheory.KSplit
@@ -115,6 +117,7 @@ theorem GlobalTheory.ShellPiece.setIntegral_coset_eq_zero : ∀ (k : Type) [Fiel
     rw [hv, hφ _ _ (hZ y hyK), gdet_mul, hdetk0, map_mul, Units.val_mul, apow_mul,
       apow_of_valuation_eq_one hu]
     ring
+  have : BorelSpace (GL (Fin a) k) := GlobalTheory.SplitFlip.borel_GL
   have hSm : MeasurableSet S :=
     (isOpen_KO.preimage (continuous_const.mul continuous_id)).measurableSet
   have h := (measurePreserving_mul_left μ k0).setIntegral_preimage_emb (measurableEmbedding_mulLeft k0)

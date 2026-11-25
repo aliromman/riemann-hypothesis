@@ -35,6 +35,7 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.Bundle0123
 public import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.Bundle0071
 
 @[expose] public section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar GroundTheory.Heights₂.Heights.LowerBoundFree

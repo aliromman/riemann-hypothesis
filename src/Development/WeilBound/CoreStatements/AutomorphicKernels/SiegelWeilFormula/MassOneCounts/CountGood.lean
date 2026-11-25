@@ -22,6 +22,7 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Bundle00
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace PositivityTheory.SiegelWeilFormula.MOne

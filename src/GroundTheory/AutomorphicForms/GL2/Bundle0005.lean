@@ -101,6 +101,7 @@ end
 
 -- bundled from GroundTheory.AutomorphicForms.GL2.GJStandardLUnramified
 section
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix
 open MeasureTheory Filter Set Topology Metric
 open scoped ValuativeRel
 

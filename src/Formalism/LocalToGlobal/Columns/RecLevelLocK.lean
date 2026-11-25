@@ -4,6 +4,7 @@ public import Formalism.LocalToGlobal.Columns.RecLevelLocT
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 open NumberField IsDedekindDomain Matrix
 open scoped TensorProduct
 

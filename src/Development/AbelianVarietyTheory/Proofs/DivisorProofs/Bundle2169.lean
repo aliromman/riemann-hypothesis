@@ -28,6 +28,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.Bundle0061
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPrimitiveRat
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain GlobalTheory.CMVal GlobalTheory.LatVal UpperHalfPlane ReciprocityTheory.ChartRestriction.L1
 open scoped UpperHalfPlane
 

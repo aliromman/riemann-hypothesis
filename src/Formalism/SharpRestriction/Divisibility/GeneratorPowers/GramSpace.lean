@@ -6,6 +6,7 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomolo
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 set_option autoImplicit false
 
 noncomputable section

@@ -24,6 +24,7 @@ public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.Bundle
 public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.Bundle0109
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

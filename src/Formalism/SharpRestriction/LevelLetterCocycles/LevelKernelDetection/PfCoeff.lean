@@ -4,6 +4,7 @@ public import Formalism.SharpRestriction.LevelLetterCocycles.CoordStepsOf
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 namespace Formalism.MainNotions.N.Ln03.Pf

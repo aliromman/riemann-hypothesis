@@ -36,6 +36,7 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForm
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsNatSmulMemLattice
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 namespace GlobalTheory.NatSmulMemLattice
 
 open NumberField

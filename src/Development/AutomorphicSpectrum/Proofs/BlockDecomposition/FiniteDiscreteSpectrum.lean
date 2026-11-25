@@ -9,6 +9,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0841
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open NumberField IsDedekindDomain Matrix

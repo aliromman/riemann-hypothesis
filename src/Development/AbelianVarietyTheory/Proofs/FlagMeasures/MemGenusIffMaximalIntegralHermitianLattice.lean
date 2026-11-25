@@ -13,6 +13,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0380
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0084
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open NumberField Matrix GlobalTheory.Mass Formalism.HermitianLatticesTheory IsDedekindDomain
 open scoped ENNReal Classical

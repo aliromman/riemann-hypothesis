@@ -9,6 +9,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1520
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace GlobalTheory.ThK.Dbl.Hgt

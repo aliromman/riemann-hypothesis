@@ -7,6 +7,7 @@ public import Formalism.HermitianCurvature.HermitianCurvatureProofs.Bundle0033
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S Formalism.MainNotions.FrameBoundFromBesselTorus Formalism.FourierDecayAlt.P
 open scoped InnerProductSpace ENNReal
 

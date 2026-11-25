@@ -6,6 +6,8 @@ public import Development.WeilBound.CoreStatements.EulerCharacteristicCounts.Bun
 
 -- bundled from Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohCmp
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 open CategoryTheory GroundTheory.ProfCoh ReciprocityTheory.Gal ValuativeRel
 
 namespace PositivityTheory.LocalTateOrthogonality.Gcoh

@@ -255,6 +255,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsNumberFieldPointOfGeneric
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open UpperTheory.Gal.Int.Geo
 open NumberField
 

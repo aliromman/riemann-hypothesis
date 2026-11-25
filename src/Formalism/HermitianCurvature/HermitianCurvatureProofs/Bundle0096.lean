@@ -194,6 +194,7 @@ end
 
 -- bundled from Formalism.HermitianCurvature.HermitianCurvatureProofs.MeasMOfCont
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 namespace Formalism.FourierDecayAlt.P.StabilizerDisintegration.MM
 
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.FourierDecayAlt

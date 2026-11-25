@@ -6,6 +6,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.IsProperToro
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.Bundle0007
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

@@ -14,6 +14,7 @@ public import Development.AbelianVarietyTheory.Proofs.SiegelThetaTransformation.
 public import Development.AbelianVarietyTheory.Proofs.HeightProofs.IsTopologicalRingAE
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open NumberField MeasureTheory IsDedekindDomain UniqueFactorizationMonoid
 open scoped Classical Pointwise

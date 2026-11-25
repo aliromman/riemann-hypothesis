@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.FixedFramesPe
 public import Formalism.HermitianLattices.FinalNeighbourConstruct
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

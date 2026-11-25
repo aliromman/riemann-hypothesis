@@ -18,6 +18,7 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle030
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.Bundle0064
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 namespace GlobalTheory.ClassScalarValue
 

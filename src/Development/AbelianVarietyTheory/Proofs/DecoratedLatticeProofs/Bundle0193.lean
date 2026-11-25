@@ -257,6 +257,7 @@ theorem avg_mixS_ne_zero : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdC
 
 end GlobalTheory.HalfNonvan
 end
+end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SymplecticFormInertSupportedPointsAntidiagonal
 section

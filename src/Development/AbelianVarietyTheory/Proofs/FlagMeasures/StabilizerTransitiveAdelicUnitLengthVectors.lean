@@ -9,6 +9,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0380
 public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.Bundle0009
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S GlobalTheory.Count GlobalTheory.FlagMeas GlobalTheory.GaussMean GlobalTheory.StabUnfold
 open scoped TensorProduct

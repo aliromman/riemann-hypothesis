@@ -240,6 +240,7 @@ end
 
 -- bundled from Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.TorusPowerExponential
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter

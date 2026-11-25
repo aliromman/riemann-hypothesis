@@ -5,6 +5,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.AevalEqZeroO
 public import Development.AbelianVarietyTheory.Definitions.Divisors.IsoOverOfIsOpenImmersion
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 set_option autoImplicit false
 

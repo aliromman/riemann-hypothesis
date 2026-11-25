@@ -213,7 +213,7 @@ theorem UpperTheory.V.Hi.decompU :
       change Matrix.GeneralLinearGroup.map (pLoc L w) (Matrix.GeneralLinearGroup.map (pFin L) x.1) = 1
       rw [h2, map_one]
     exact Prod.ext (Subtype.ext (funext fun w => h1 _)) (funext fun v => h1 _)
-  have hRfin : ∀ k ∈ finU (E := L) (n := n), infRep (V := V) ι lam k = 1 := fun k hk => by
+  have hRfin : ∀ k ∈ _root_.GlobalTheory.UnitaryBC.finU (E := L) (n := n), infRep (V := V) ι lam k = 1 := fun k hk => by
     have h1 : ∀ τ, cEmb τ k = 1 := fun τ => by
       change Matrix.GeneralLinearGroup.map (coord τ) (cInf k) = 1
       rw [MonoidHom.mem_ker.1 hk, map_one]
@@ -226,7 +226,7 @@ theorem UpperTheory.V.Hi.decompU :
     rw [MonoidHom.comp_apply, h2, map_one]
   refine core2 (hset Q τ₀).X ξ ((hset Q τ₀).τC ι) (hset Q τ₀).UQ ((hset Q τ₀).lev K) ((hset Q τ₀).X.I.I1 b) J tf
     (fun x ℓ => ℓ ∘ₗ infRep ι lam x⁻¹) hJinf (fun k hk ℓ => ?_) hinj haut htr hsurj hsur ?_ F hF hK hb
-  · rw [hRfin _ ((finU (E := L) (n := n)).inv_mem hk)]
+  · rw [hRfin _ ((_root_.GlobalTheory.UnitaryBC.finU (E := L) (n := n)).inv_mem hk)]
     rfl
   · filter_upwards [UpperTheory.eventually_mem_heckeLevel_and_iwahoriCongruence l L Ω s n hn V Q c m τ₀ hτ K b] with k ⟨⟨u, hu, huk, hu1⟩, hk⟩
     refine ⟨⟨u, hu, huk, ?_⟩, hk⟩

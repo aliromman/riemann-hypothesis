@@ -9,6 +9,7 @@ public import Development.AbelianVarietyTheory.Definitions.LatticeFrames.Bundle0
 
 @[expose] public section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
 open Formalism.BasicNotions Formalism.L2.Forms Matrix MeasureTheory MvPolynomial

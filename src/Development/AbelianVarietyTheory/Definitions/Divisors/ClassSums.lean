@@ -5,6 +5,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.IsUnimodMod
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 open IsLocalRing GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan

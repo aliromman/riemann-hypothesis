@@ -4,6 +4,7 @@ public import Formalism.SharpRestriction.CuspSpanNormBounds.FrobeniusCoefficient
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 noncomputable section
 
 open MeasureTheory Matrix

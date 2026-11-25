@@ -163,6 +163,7 @@ theorem mixS_dblDec_zero (A B : HSp D) (ψ : AddChar (AF D.host.F) ℂ) (ν : Me
 end GlobalTheory.Core.Rk.SWLaw
 end
 end
+end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ModelIdentificationRespectsRealAndFinite
 section

@@ -18,6 +18,7 @@ end
 
 -- bundled from Development.EtaleCohomology.CyclotomicDiscriminants.SLayerCut
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open NumberField NumberField.InfinitePlace Polynomial UpperTheory.V UpperTheory.V.LDataCardLeFinrank UpperTheory.V.Tower

@@ -20,6 +20,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsLocally
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FlipUSymmCont
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum

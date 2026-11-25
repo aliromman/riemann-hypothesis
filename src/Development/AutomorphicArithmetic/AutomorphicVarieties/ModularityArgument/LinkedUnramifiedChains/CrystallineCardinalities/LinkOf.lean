@@ -8,6 +8,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingMod
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 open NumberField Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.GalOfCusp IsLocalRing UpperTheory.V UpperTheory.V.HV UpperTheory.V.U3 UpperTheory.V.Base UpperTheory.V.Af UpperTheory.V.Alg UpperTheory.V.W UpperTheory.V.Pr UpperTheory.V.Z.J
 open IsDedekindDomain
 open scoped Pointwise

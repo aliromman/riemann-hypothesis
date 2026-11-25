@@ -71,6 +71,7 @@ theorem conv_mulM (D : Dom E a b) {ι : Type} [Fintype ι] (Φ₁ Φ₂ : Matrix
   have := haar_of_dom D
   haveI : SigmaCompactSpace (H E a b) := sigmaCompactSpace_of_locallyCompact_secondCountable
   haveI : SigmaFinite D.μ := SigmaFinite.of_isFiniteMeasureOnCompacts D.μ
+  have : SFinite D.μ := MeasureTheory.instSFiniteOfSigmaFinite
   funext i x
   have hg : ∀ j, Continuous fun y => f j (x * y) := fun j => (hf j).comp (continuous_const.mul continuous_id)
   have hI : ∀ j k, Integrable (fun p : H E a b × H E a b => Φ₁ i k p.1 * Φ₂ k j (p.1⁻¹ * p.2) * f j (x * p.2))

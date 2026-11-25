@@ -334,6 +334,7 @@ end
 
 -- bundled from Formalism.AdmissibleDesigns.MemUnramifiedOfCoboundary
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
 
 noncomputable section

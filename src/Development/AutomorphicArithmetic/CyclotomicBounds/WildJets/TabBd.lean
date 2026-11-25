@@ -10,6 +10,7 @@ public import Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.Bundle
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum
 open scoped BigOperators
 

@@ -4,6 +4,7 @@ public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.B
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 open Matrix MeasureTheory
 open scoped InnerProductSpace ENNReal ComplexConjugate
 

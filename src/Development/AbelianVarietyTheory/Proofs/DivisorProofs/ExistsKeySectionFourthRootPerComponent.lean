@@ -141,7 +141,7 @@ theorem exists_keySec_pow_four : ∀ (κ : GlobalTheory.KeyCl.Rule), GlobalTheor
     hcc him hφ
   have T : ∀ k, ThetaData e₀ F M k := fun k => (_root_.GlobalTheory.FrameUnif.nonempty_thetaData E H Dw l Xo c σ g₀ e₀ F _ M hσ hM hξ k).some
   choose un hun using fun k => _root_.GlobalTheory.FrameUnif.exists_isNormUn hT E H Dw l Xo c σ g₀ e₀ F _ M k (T k)
-  have hok : FramesOK e₀ F M un :=
+  have hok : _root_.GlobalTheory.FrameUnif.FramesOK e₀ F M un :=
     ⟨fun k => _root_.GlobalTheory.NormFrame.frameOK_of_isNormUn hT E H Dw l Xo c σ g₀ e₀ F _ M k (T k) (un k) hσ hM hξ (hun k),
       fun k => _root_.GlobalTheory.NormUnBor.normUn_bor hT E H Dw l Xo c σ g₀ e₀ F _ M un k (T k) hσ hM hξ (hun k),
       fun k => _root_.GlobalTheory.FrameUnif.normUn_gamma hT E H Dw l Xo c σ g₀ e₀ F _ M un k (T k) hσ hM hξ (hun k),
@@ -178,7 +178,7 @@ theorem exists_keySec_pow_four : ∀ (κ : GlobalTheory.KeyCl.Rule), GlobalTheor
     haveI := C.sm
     haveI := GlobalTheory.GeomConn.isDomain_tensor C.R.val Subtype.val_injective (hF C.Z) ℂ
     choose z hz using fun ψ : C.R →ₐ[c.F] CAt σ => hL.bc _ _ ψ C.y
-    have hex : ∀ ψ, ∃ w, RootVal (unfOf e₀ F M un) (z ψ) w := fun ψ => by
+    have hex : ∀ ψ, ∃ w, RootVal (_root_.GlobalTheory.FrameUnif.unfOf e₀ F M un) (z ψ) w := fun ψ => by
       obtain ⟨k, x, t, ht⟩ := hU₀.2.2.1 (z ψ)
       exact ⟨_, k, x, t, ht, rfl⟩
     choose ρ hρ using hex

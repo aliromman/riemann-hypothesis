@@ -10,6 +10,7 @@ public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCoh
 public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.SplittingFieldLattices.BcOnFalse
 
 @[expose] public section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 
 set_option backward.isDefEq.respectTransparency false
 set_option autoImplicit false

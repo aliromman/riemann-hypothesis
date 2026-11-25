@@ -13,6 +13,8 @@ public import Development.AutomorphicSpectrum.Statements.GeometryStatements.Bund
 public import Development.AutomorphicSpectrum.Proofs.MetricProofs.Bundle0014
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 noncomputable section
 

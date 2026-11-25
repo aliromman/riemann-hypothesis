@@ -195,6 +195,7 @@ end GlobalTheory.IndefiniteRowSideFullHecke.TransvectionAction
 
 end
 end
+end
 
 -- bundled from Development.AbelianVarietyTheory.BlockTheory.TwistedDiscreteSeries.VacuumFockVectors
 section

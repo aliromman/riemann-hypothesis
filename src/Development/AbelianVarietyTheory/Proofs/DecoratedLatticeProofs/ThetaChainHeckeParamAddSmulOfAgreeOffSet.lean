@@ -9,6 +9,7 @@ public import Development.AbelianVarietyTheory.Definitions.Foundations.NotIsSpli
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace GlobalTheory.LFun.ParLin

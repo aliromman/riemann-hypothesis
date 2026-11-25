@@ -34,6 +34,7 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle032
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FlagMeasures.HermitianVolumeDependsOnlyOnFieldSignature
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S GlobalTheory.Count GlobalTheory.FlagMeas
 
 noncomputable section

@@ -14,6 +14,7 @@ public import Formalism.HermitianCurvature.Bundle0008
 
 -- bundled from Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.AmpOrbPf
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 set_option linter.unusedVariables false
 
 open MeasureTheory Matrix

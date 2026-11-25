@@ -12,6 +12,9 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle004
 
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 
+-- Match the measurable space used by the local-field quotient integrals and GL Haar instances.
+attribute [local instance 2000] GlobalTheory.SplitWeil.matrixMeasurableSpace
+
 open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.RootEx
 open GlobalTheory.IndefiniteRowSideFullHecke.FourierJacobiAverage (app HasTensorVal opEFJ IsQuotIntFJ)
 

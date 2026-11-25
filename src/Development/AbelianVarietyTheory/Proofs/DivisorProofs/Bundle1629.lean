@@ -33,6 +33,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.HasSignat
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaussianGrowthConjTorsionTranslatesVacuum
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 namespace GlobalTheory.ConjGrowth
 
 section SlopeTestRemainingChoices

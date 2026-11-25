@@ -28,6 +28,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.Bundle0067
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompatibleFormsCocycleFormEqConnectionForm
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 set_option autoImplicit false
 
 noncomputable section

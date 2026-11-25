@@ -14,7 +14,10 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle011
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PadicIsNonarchimedeanLocalField
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 
 noncomputable section
@@ -229,6 +232,8 @@ theorem placeModel_isometry : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ 
   haveI := GlobalTheory.LocalData.isLocalField v
   haveI : BorelSpace (Fv D.host.F v) := ⟨rfl⟩
   haveI := GlobalTheory.SplitWeil.secondCountable (Fv D.host.F v)
+  letI : MeasurableSpace (Matrix (Fin m) (Fin n) (Fv D.host.F v)) :=
+    GlobalTheory.SplitWeil.matrixMeasurableSpace
   haveI : BorelSpace (Matrix (Fin m) (Fin n) (Fv D.host.F v)) :=
     inferInstanceAs (BorelSpace (Fin m → Fin n → Fv D.host.F v))
   haveI : (GlobalTheory.SplitWeil.volM ν (Fin m) (Fin n)).IsAddHaarMeasure := Measure.pi.isAddHaarMeasure _
@@ -262,6 +267,7 @@ theorem placeModel_isometry : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ 
   have int : ∀ Ψ ∈ Submodule.span ℂ W, ∀ Ψ' ∈ Submodule.span ℂ W,
       Integrable (fun z => Ψ (σ z) * (starRingEnd ℂ) (Ψ' (σ z))) (GlobalTheory.SplitWeil.volM ν (Fin m) (Fin n)) :=
     fun Ψ h Ψ' h' => Continuous.integrable_of_hasCompactSupport
+      (μ := GlobalTheory.SplitWeil.volM ν (Fin m) (Fin n))
       ((good Ψ h).2.1.continuous.mul (Complex.continuous_conj.comp (good Ψ' h').2.1.continuous))
       (HasCompactSupport.mul_right (good Ψ h).2.2)
   have main : ∀ Ψ ∈ Submodule.span ℂ W, ∀ Ψ' ∈ Submodule.span ℂ W,
@@ -274,7 +280,8 @@ theorem placeModel_isometry : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ 
       obtain ⟨x', y', hx', hy', rfl⟩ := h'
       rw [(w1 x y hx hy).2 f₀ Tm hTm, (w1 x' y' hx' hy').2 f₀ Tm hTm,
         ipO_translates hψ hS hT ha hμ (base_theta hB) hB.2.2.2.2.2.lat (restrictedTensorBasePoint_norm_sq hB hμ) hx hx' hy hy']
-      exact (integral_waves hψ hS hT ha _ h1 h2 h3 h4 hκ.2.2.1.measurableSet hx hx' hy hy').symm
+      exact (integral_waves hψ hS hT ha (GlobalTheory.SplitWeil.volM ν (Fin m) (Fin n))
+        h1 h2 h3 h4 hκ.2.2.1.measurableSet hx hx' hy hy').symm
     | zero_left => simp [ipO]
     | zero_right => simp [ipO]
     | add_left x y z hx hy hz p q =>

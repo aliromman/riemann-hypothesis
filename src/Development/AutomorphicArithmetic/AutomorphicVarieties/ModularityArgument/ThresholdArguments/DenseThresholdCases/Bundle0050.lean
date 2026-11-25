@@ -260,6 +260,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.SeedOf4P
 section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 set_option maxHeartbeats 800000
 set_option synthInstance.maxHeartbeats 200000
 

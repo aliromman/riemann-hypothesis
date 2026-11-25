@@ -129,6 +129,7 @@ end GlobalTheory.FlatIndep
 
 end
 end
+end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ThetaLiftChainStepExactInnerProduct
 section

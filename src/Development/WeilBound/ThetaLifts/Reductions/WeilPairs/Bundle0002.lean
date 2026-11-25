@@ -11,6 +11,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0188
 
 -- bundled from Development.WeilBound.ThetaLifts.Reductions.WeilPairs.GoodLat
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open scoped TensorProduct Matrix Topology
@@ -65,6 +66,7 @@ end
 
 -- bundled from Development.WeilBound.ThetaLifts.Reductions.WeilPairs.SumFourEqTrace
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open scoped TensorProduct Matrix Topology

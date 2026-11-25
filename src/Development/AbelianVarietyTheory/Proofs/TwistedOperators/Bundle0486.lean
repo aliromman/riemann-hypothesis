@@ -250,6 +250,7 @@ theorem mixS_support_integral : ∀ {D : D7} (ψ : AddChar (AF D.host.F) ℂ), I
 end GlobalTheory.MixSupport
 end
 end
+end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.TwistedOperators.OtherInstanceFormFlagPairingIntegralOnFrameLatti
 section

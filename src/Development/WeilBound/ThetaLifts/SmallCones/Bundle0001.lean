@@ -111,6 +111,7 @@ end
 
 -- bundled from Development.WeilBound.ThetaLifts.SmallCones.HodgeTateFromSandwich
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 noncomputable section
 
 namespace PositivityTheory.ThKCT
@@ -236,6 +237,7 @@ end
 
 -- bundled from Development.WeilBound.ThetaLifts.SmallCones.SchInt
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 noncomputable section
 
 namespace PositivityTheory.ThKCT

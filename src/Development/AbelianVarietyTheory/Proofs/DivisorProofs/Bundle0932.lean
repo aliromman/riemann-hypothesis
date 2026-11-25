@@ -82,6 +82,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.SigResIterateEqSelf
 section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 open ReciprocityTheory.DiscreteGroups.LocalClassField Matrix GlobalTheory.LKRes
 
 namespace GlobalTheory.LKRes
@@ -108,6 +109,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.SimilitudeFactorFormGroupBoundedOfTestSupport
 section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open Matrix NumberField GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKCount GlobalTheory.LKCx
 open scoped TensorProduct Classical

@@ -5,6 +5,7 @@ public import Formalism.LocalToGlobal.Columns.Bundle0008
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 open NumberField IsDedekindDomain Matrix
 open scoped TensorProduct
 

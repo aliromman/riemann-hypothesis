@@ -24,6 +24,7 @@ public import Development.AbelianVarietyTheory.Definitions.LatticeFrames.Bundle0
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.QuantitativeMahlerCriterionUnitaryGroup
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 open NumberField Matrix Formalism.MainNotions.S GlobalTheory.CuspGeo GlobalTheory.ClassFin
 open scoped Topology
 

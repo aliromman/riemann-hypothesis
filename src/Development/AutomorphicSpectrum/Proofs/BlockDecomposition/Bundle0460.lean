@@ -312,6 +312,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ClosedUnipotentCompactExhaustion
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.LocGL GlobalTheory.BZMir.Leib GlobalTheory.CompanionTheory.Rodier
 open scoped TensorProduct
 

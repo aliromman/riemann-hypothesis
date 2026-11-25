@@ -12,6 +12,7 @@ public import Formalism.LocalToGlobal.IndefiniteForms.IndefiniteTree.RealCubicMe
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 open NumberField IsDedekindDomain MvPolynomial Formalism.BasicNotions Formalism.L2.DIV Formalism.DivisionValues GlobalTheory.TestLat Formalism.L2.Indef.Tree.ArchimedeanLeafBounds.Cuts
 open scoped Matrix ComplexOrder
 

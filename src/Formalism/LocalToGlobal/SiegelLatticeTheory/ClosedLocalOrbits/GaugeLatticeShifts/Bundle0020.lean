@@ -111,6 +111,7 @@ end
 
 -- bundled from Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.JacConstWbGlue
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 set_option linter.unusedVariables false
 
 noncomputable section

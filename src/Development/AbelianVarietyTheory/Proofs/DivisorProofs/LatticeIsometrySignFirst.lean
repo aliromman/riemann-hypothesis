@@ -14,6 +14,7 @@ public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.Bundle
 public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.Bundle0062
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

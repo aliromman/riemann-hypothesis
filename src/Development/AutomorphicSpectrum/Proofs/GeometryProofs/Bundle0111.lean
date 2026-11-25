@@ -60,7 +60,7 @@ theorem exists_block_ne {z w : (Σ k, J k) → ℂ} (hw : ∀ c : K → ℂ, w �
 
 theorem levi_fsMulti_pos {z w : (Σ k, J k) → ℂ} (hz : ∀ k, ∃ i, z ⟨k, i⟩ ≠ 0)
     (hw : ∀ c : K → ℂ, w ≠ torusSmul c z) :
-    0 < ReciprocityTheory.ChartRestriction.G.Geo.leviForm (fun y => Real.log ((fsMulti J).h y)) z w := by
+    0 < _root_.ReciprocityTheory.ChartRestriction.G.Geo.leviForm («ι» := Σ k, J k) (fun y => Real.log ((fsMulti J).h y)) z w := by
   classical
   obtain ⟨k₀, hk₀⟩ := exists_block_ne hw
   set F : K → ((Σ k, J k) → ℂ) → ℝ :=
@@ -89,7 +89,7 @@ theorem levi_fsMulti_pos {z w : (Σ k, J k) → ℂ} (hz : ∀ k, ∃ i, z ⟨k,
   have hFk : ∀ k, F k = (fun u => Real.log ((fsMetric («ι» := J k)).ρ u)) ∘ blockProj J k := fun k => rfl
   have hC : ∀ k, ContDiffAt ℝ 2 (F k) z := fun k =>
     hFk k ▸ (hφ k).comp z ((blockProj J k).restrictScalars ℝ).contDiff.contDiffAt
-  have hL : ∀ k v, ReciprocityTheory.AnForm.levi (F k) z v = ReciprocityTheory.ChartRestriction.G.Geo.leviForm (fun u => Real.log ((fsMetric («ι» := J k)).ρ u))
+  have hL : ∀ k v, ReciprocityTheory.AnForm.levi (F k) z v = _root_.ReciprocityTheory.ChartRestriction.G.Geo.leviForm («ι» := J k) (fun u => Real.log ((fsMetric («ι» := J k)).ρ u))
       (fun i => z ⟨k, i⟩) (fun i => v ⟨k, i⟩) := fun k v => by
     rw [hFk, ReciprocityTheory.AnForm.levi_comp v ((blockProj J k).analyticAt z) (hφ k), (blockProj J k).fderiv]
     rfl
@@ -207,6 +207,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeCompDescentFourth
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar
 open ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.P GlobalTheory.CompanionTheory.Ar.PB GlobalTheory.CompanionTheory.Ar.Chg
@@ -347,6 +348,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeCompDescentThird
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar
 open ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.P GlobalTheory.CompanionTheory.Ar.PB GlobalTheory.CompanionTheory.Ar.Chg

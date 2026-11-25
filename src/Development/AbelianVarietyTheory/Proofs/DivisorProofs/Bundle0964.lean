@@ -238,7 +238,7 @@ theorem eel_eq_typeSp3 : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 I0 T
     rw [LinearMap.smul_apply, LinearMap.id_apply]
     have e : cj (twAt D.what₂.embLL A3.A.v0) (A3.A.v0.embedding ((ψ g : D.what₂.LLˣ) : D.what₂.LL)) =
         D.what₂.embLL ((ψ g : D.what₂.LLˣ) : D.what₂.LL) := by
-      simp only [R.emb0, cj_cj]
+      simp only [R.emb0, Formalism.IndefR.Links.cj_cj]
     have e' : A3.A.fam.v0.embedding ((ψ g : D.what₂.LLˣ) : D.what₂.LL) • x =
         Tw.mk (twAt D.what₂.embLL A3.A.v0) (D.what₂.embLL ((ψ g : D.what₂.LLˣ) : D.what₂.LL) • Tw.out (s := twAt D.what₂.embLL A3.A.v0) (E := R.HE.H) x) := by
       rw [← e]

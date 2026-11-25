@@ -6,6 +6,8 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.Bundle009
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1056
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix
 
 noncomputable section
 

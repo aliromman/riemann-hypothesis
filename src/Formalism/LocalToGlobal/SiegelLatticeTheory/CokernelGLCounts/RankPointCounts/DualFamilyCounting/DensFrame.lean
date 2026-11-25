@@ -14,6 +14,7 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.PairCorankPositi
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField Module Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.CntLocal
 open Classical ValuativeRel
 

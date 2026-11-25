@@ -116,14 +116,14 @@ theorem LevelIso.enough (hj : LevelIso U U' hD j) (hG : GlobalFnsSt) (hU : ∀ k
     obtain ⟨F', hF⟩ := exists_pull hD _ hG k F
     obtain ⟨s', ⟨r', hr', σ', f', h₁', h₂', h₃'⟩, -⟩ := (hU' k hk).2 F'
     exact ⟨r' * r, _, _, mul_ne_zero hr' hr, scale_of_restrict _ hs h₁ r', hj.agreeAll
-      (fun e => expandsAt_scale _ (h₃ e) _) (fun e => expandsAt_scale _ (h₃' e) _) (integral_rel hD _ hF h₂ h₂')⟩
+      (fun e => _root_.GlobalTheory.RigidSections.expandsAt_scale _ (h₃ e) _) (fun e => _root_.GlobalTheory.RigidSections.expandsAt_scale _ (h₃' e) _) (integral_rel hD _ hF h₂ h₂')⟩
   · intro σ₀
     obtain ⟨s', hs⟩ := exists_restrict U' k σ₀
     obtain ⟨F', ⟨r', hr', σ', f', h₁', h₂', h₃'⟩, -⟩ := (hU' k hk).1 s'
     obtain ⟨F, hF⟩ := exists_push hD _ hG k F'
     obtain ⟨s, ⟨r, hr, σ, f, h₁, h₂, h₃⟩, -⟩ := (hU k hk).2 F
     exact ⟨r * r', _, _, mul_ne_zero hr hr', scale_of_restrict _ hs h₁' r, hj.agreeAll
-      (fun e => expandsAt_scale _ (h₃ e) _) (fun e => expandsAt_scale _ (h₃' e) _) (integral_rel hD _ hF h₂ h₂')⟩
+      (fun e => _root_.GlobalTheory.RigidSections.expandsAt_scale _ (h₃ e) _) (fun e => _root_.GlobalTheory.RigidSections.expandsAt_scale _ (h₃' e) _) (integral_rel hD _ hF h₂ h₂')⟩
 
 
 open LinearUnifIso in

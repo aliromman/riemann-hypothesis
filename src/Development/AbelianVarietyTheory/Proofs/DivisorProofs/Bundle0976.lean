@@ -27,6 +27,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0836
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitarySimilitudeIntegralSubgroupCommensuratedFr
 section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 open Matrix NumberField GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKCount
 open scoped TensorProduct Classical
 

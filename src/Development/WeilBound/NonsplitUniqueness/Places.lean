@@ -7,6 +7,7 @@ public import GroundTheory.GlobalFields.TateThesis.DegreeOneDensity
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open NumberField IsDedekindDomain Filter Module GroundTheory.Global GroundTheory.Global.SemiLocal Topology

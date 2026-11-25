@@ -53,6 +53,7 @@ end
 
 -- bundled from Formalism.LocalToGlobal.IndefiniteReal.CoreTExist
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 open NumberField IsDedekindDomain Matrix MeasureTheory

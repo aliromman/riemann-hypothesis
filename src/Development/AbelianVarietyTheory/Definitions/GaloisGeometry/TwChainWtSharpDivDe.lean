@@ -13,6 +13,7 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.Bundle007
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.DatumPeriodicMulLatticeFinal
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

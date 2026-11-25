@@ -27,6 +27,7 @@ public import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.Bund
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootLinesWeightBoundOfFree
 section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 open CategoryTheory AlgebraicGeometry NumberField MvPolynomial GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.HT ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.NumbersDVR.Bundles
 
 namespace GlobalTheory.CompanionTheory.Ar.HT

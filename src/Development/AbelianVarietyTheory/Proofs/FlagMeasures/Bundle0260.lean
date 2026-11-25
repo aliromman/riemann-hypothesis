@@ -27,6 +27,7 @@ public import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.Bundle0006
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FlagMeasures.CellDataSupport
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 open BranchingSupport GlobalTheory.CellAmp Formalism.BasicNotions Formalism.MainNotions.S Formalism.QuantumDeterminants Matrix MeasureTheory Finset
 open scoped InnerProductSpace ENNReal
 

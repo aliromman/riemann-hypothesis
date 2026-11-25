@@ -79,6 +79,7 @@ end
 
 -- bundled from Formalism.LocalToGlobal.IndefiniteReal.RealSeparation.ParabSt
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 noncomputable section
 

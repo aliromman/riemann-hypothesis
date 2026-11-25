@@ -268,7 +268,7 @@ variable {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 I0 T : Type} {A3 : FamIn
 theorem toCx3_liftTestB (b : Bool) :
     LiftTestB (R.toCx3 F) b ↔ LiftTestB (cxPhase R.toRealDat F.lv2 fun j => cj (twAt D.what₂.embLL A3.A.v0) (R.phs j)) b := by
   rw [cxPhase_eq]
-  simp only [cj_cj]
+  simp only [Formalism.IndefR.Links.cj_cj]
   exact Iff.rfl
 
 end ArchimedeanLeafBounds

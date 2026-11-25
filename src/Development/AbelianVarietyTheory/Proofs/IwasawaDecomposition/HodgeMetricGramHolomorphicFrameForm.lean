@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Exist
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 set_option autoImplicit false
 
 noncomputable section

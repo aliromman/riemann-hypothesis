@@ -17,6 +17,7 @@ public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits NumberField IsDedekindDomain

@@ -4,6 +4,7 @@ public import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange
 
 @[expose] public section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
 open MeasureTheory Matrix

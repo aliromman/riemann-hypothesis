@@ -51,6 +51,7 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Bundle05
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DenominatorIndexBound
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace GlobalTheory.CompanionTheory.SiegelND.Integ.Hua.IdxGe

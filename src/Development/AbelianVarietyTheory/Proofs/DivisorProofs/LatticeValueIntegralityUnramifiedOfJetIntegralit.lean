@@ -6,6 +6,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0566
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Bundle0138
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

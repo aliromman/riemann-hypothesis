@@ -410,6 +410,7 @@ theorem sch_continuous_integrable : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ
 
 end GlobalTheory.Core.Rk.SchInt
 end
+end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsBadPrimeOverChartBadPlace
 section

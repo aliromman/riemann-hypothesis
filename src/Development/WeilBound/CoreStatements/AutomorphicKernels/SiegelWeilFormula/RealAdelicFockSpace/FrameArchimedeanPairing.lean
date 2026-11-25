@@ -8,6 +8,7 @@ public import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeil
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 noncomputable section
 
 open scoped TensorProduct NNReal Matrix SchwartzMap Classical InnerProductSpace

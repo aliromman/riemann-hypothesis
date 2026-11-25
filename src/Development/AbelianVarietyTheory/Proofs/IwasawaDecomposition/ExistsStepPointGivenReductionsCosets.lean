@@ -5,6 +5,7 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MemCu
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Bundle0380
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

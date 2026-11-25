@@ -15,6 +15,8 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.Bundle0158
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.Bundle0074
 
 @[expose] public section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 

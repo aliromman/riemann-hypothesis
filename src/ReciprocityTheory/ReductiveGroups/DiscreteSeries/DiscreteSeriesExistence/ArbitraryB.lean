@@ -4,6 +4,7 @@ public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExi
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 noncomputable section
 
 open Finset Matrix MeasureTheory

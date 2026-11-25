@@ -29,6 +29,7 @@ public import Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.B
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LatticeMarkingAdmissible
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.FWT Formalism.L2.Pj
 open MeasureTheory IsDedekindDomain NumberField Matrix
@@ -341,11 +342,11 @@ theorem finrank_twSub (s : Bool) {E : Type} [NormedAddCommGroup E] [InnerProduct
       right_inv := fun _ => rfl
       map_add' := fun _ _ => rfl }
   have hi : Function.Bijective (cj s) :=
-    ⟨fun a b h => by simpa [cj_cj] using congrArg (cj s) h, fun z => ⟨cj s z, cj_cj s z⟩⟩
+    ⟨fun a b h => by simpa [Formalism.IndefR.Links.cj_cj] using congrArg (cj s) h, fun z => ⟨cj s z, cj_cj s z⟩⟩
   have h := rank_eq_of_equiv_equiv (cj s) j hi (fun r m => by
     apply Subtype.ext
     show r • (m : E) = cj s (cj s r) • (m : E)
-    rw [cj_cj])
+    rw [Formalism.IndefR.Links.cj_cj])
   unfold Module.finrank
   rw [h]
 
@@ -409,6 +410,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MinpolyIrreducibleLocalEmbedding
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain ValuativeRel Matrix MeasureTheory TensorProduct Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.LocGL GlobalTheory.Whittaker GlobalTheory.WeilDeligne GlobalTheory.LocLanglands GlobalTheory.LocDict
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 

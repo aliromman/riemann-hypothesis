@@ -38,6 +38,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1585
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.IdealExtendConjMulEqAbsNorm
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField
 
 open scoped Pointwise

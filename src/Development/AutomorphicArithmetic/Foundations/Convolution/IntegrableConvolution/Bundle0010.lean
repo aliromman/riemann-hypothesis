@@ -10,6 +10,8 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.Integrab
 
 -- bundled from Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.LocHeckeSplit
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 noncomputable section
 
 open MeasureTheory NumberField IsDedekindDomain

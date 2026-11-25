@@ -5,6 +5,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0522
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 open Classical MeasureTheory
 
 noncomputable section

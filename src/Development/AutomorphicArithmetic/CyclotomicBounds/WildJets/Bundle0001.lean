@@ -11,6 +11,7 @@ public import Formalism.PairingDivisors.StatementH
 
 -- bundled from Development.AutomorphicArithmetic.CyclotomicBounds.WildJets.CmbIop
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum
 open scoped BigOperators
 

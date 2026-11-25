@@ -349,6 +349,8 @@ theorem unfold_of_mahler (hM : Mahler) : Unfold := by
     haveI : DiscreteTopology (ratCent δ) :=
       DiscreteTopology.of_subset (s := ((ratGL E n).range : Set (GA E n)))
         GlobalTheory.CompanionTheory.KerTwFin.discreteTopology_range (fun _ ⟨t, _, e⟩ => ⟨t, e⟩)
+    haveI : SigmaFinite μ := SigmaFinite.of_isFiniteMeasureOnCompacts μ
+    haveI : SFinite μ := MeasureTheory.instSFiniteOfSigmaFinite
     exact GlobalTheory.CompanionTheory.QuotUnfold.quotIntegral_unfold (Γ := (ratGL E n).range) (Γ₀ := ratCent δ)
       (fun _ ⟨t, _, e⟩ => ⟨t, e⟩) hF (hHm δ) (hinvH δ) hfin
 

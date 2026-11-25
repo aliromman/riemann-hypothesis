@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsExactGr
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsFrameFixingIsometrySplitRowLattice
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

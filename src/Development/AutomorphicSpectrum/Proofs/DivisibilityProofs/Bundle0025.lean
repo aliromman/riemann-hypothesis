@@ -25,6 +25,8 @@ public import Development.WeilBound.CoreStatements.FlagImmersions.TowerNefGeneri
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.ChartLatticePowerSection
 section
+attribute [-instance] Formalism.L2.Pj.rulesCommRing Formalism.L2.Pj.rulesAlgebra Formalism.L2.Pj.rulesModule Formalism.L2.Pj.rulesSMul Formalism.L2.Pj.rulesAlgebraInt Formalism.L2.Pj.rulesModuleInt Formalism.L2.Pj.rulesTower
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo Filter Topology GlobalTheory.CompanionTheory.Ar.Top
 
 namespace GlobalTheory.CompanionTheory.Ar.Top.EffNm

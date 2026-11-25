@@ -26,6 +26,7 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NVNeZ
 import all Mathlib.RingTheory.DedekindDomain.AdicValuation.Valuation -- unfold `HeightOneSpectrum.valuation` in `frames_enl`
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 attribute [-instance] GlobalTheory.IndefiniteRowSideFullHecke.UnipotentLatticeMembership.finiteLevelGroupFintype

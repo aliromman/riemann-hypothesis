@@ -49,13 +49,13 @@ theorem ct_rt {n : ℕ} (r : ℕ) (φ : Sm E n) (h g : GA E n) :
 
 def IsCt (r s : ℕ) (F : Sm E (r + s)) : Prop := ∃ φ : Sm E (r + s), Umg φ ∧ F.1 = AutomorphicForm.constantTerm r φ.1
 
-theorem ct_uC {φ F : Sm E (r + s)} (hφ : Umg φ) (hF : F.1 = AutomorphicForm.constantTerm r φ.1) (u : UC E (r + s)) :
+theorem ct_uC {φ F : Sm E (r + s)} (hφ : Umg φ) (hF : F.1 = AutomorphicForm.constantTerm r φ.1) (u : UpperTheory.V.Cm.UC E (r + s)) :
     (uC E (r + s) u F).1 = AutomorphicForm.constantTerm r (uC E (r + s) u φ).1 := by
   obtain ⟨F', hF', -, -, hu⟩ := ctOps E r s φ hφ
   obtain rfl : F = F' := Subtype.ext (hF.trans hF'.symm)
   exact hu u
 
-theorem IsCt.uC {F : Sm E (r + s)} (h : IsCt r s F) (u : UC E (r + s)) : IsCt r s (uC E (r + s) u F) := by
+theorem IsCt.uC {F : Sm E (r + s)} (h : IsCt r s F) (u : UpperTheory.V.Cm.UC E (r + s)) : IsCt r s (uC E (r + s) u F) := by
   obtain ⟨φ, hφ, hF⟩ := h
   exact ⟨_, ((umgOps E (r + s)).2 φ hφ).2.2.2.1 u, ct_uC hφ hF u⟩
 
@@ -169,7 +169,7 @@ theorem big_mem_Sm (b : Blo S r) (t : ℝ) {φ : Sm E (r + s)} (hφ : Umg φ) : 
   rw [big, ← hF]
   exact (cls b s t).mem_Sm ⟨φ, hφ, hF⟩
 
-private def passAlg (b : Blo S r) (s : ℕ) (t : ℝ) : Subalgebra ℂ (UC E (r + s)) where
+private def passAlg (b : Blo S r) (s : ℕ) (t : ℝ) : Subalgebra ℂ (UpperTheory.V.Cm.UC E (r + s)) where
   carrier := {u | ∀ F G : Sm E (r + s), IsCt r s F → G.1 = avg (nu E r) (pt r s t) (wt b.f.1) F.1 →
     (uC E (r + s) u G).1 = avg (nu E r) (pt r s t) (wt b.f.1) (uC E (r + s) u F).1}
   mul_mem' {u v} hu hv F G hF hG := by
@@ -189,14 +189,14 @@ private def passAlg (b : Blo S r) (s : ℕ) (t : ℝ) : Subalgebra ℂ (UC E (r 
     rw [hG, avg, avg, ← integral_const_mul]
     exact integral_congr_ae (.of_forall fun y => (mul_assoc _ _ _).symm)
 
-theorem uC_big (b : Blo S r) (t : ℝ) {φ : Sm E (r + s)} (hφ : Umg φ) (u : UC E (r + s)) :
+theorem uC_big (b : Blo S r) (t : ℝ) {φ : Sm E (r + s)} (hφ : Umg φ) (u : UpperTheory.V.Cm.UC E (r + s)) :
     (uC E (r + s) u ⟨_, big_mem_Sm b t hφ⟩).1 = big s b.f.1 t (uC E (r + s) u φ).1 := by
   obtain ⟨F, hF, -, -, hu⟩ := ctOps E r s φ hφ
   have h : ∀ X, ιC E (r + s) X ∈ passAlg b s t := fun X F G hF hG => by
     funext g
     rw [uC_ιC, lie_apply, hG]
     exact (cls b s t).lieD_avg hF X g
-  have hT : (⊤ : Subalgebra ℂ (UC E (r + s))) ≤ passAlg b s t := by
+  have hT : (⊤ : Subalgebra ℂ (UpperTheory.V.Cm.UC E (r + s))) ≤ passAlg b s t := by
     rw [← adjoin_genC]
     refine Algebra.adjoin_le ?_
     rintro _ ⟨τ, i, j, rfl⟩

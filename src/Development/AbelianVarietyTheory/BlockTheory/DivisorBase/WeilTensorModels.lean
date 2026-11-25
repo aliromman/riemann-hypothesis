@@ -9,6 +9,7 @@ public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.Bundle006
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 noncomputable section
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels

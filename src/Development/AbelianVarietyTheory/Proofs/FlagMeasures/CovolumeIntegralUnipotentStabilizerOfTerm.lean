@@ -11,6 +11,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.CongruenceSta
 public import Formalism.FlagUnipotentLattices.Bundle0004
 
 @[expose] public section
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 open NumberField Module Matrix Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.Cnt GlobalTheory.LoopC
 open scoped ENNReal Classical

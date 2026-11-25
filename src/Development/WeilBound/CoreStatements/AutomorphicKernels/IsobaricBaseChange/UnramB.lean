@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.HasSumHec
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open NumberField IsDedekindDomain Matrix

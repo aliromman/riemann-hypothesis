@@ -199,6 +199,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FoundationProofs.IdemAtEqOneIff
 section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 noncomputable section
 
 namespace GlobalTheory.FlatLine.Definite

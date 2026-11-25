@@ -396,6 +396,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.HeightProofs.IInfLeOfCombBound
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 set_option autoImplicit false
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

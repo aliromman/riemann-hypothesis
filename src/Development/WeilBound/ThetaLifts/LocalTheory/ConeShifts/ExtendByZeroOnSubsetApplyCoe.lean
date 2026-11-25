@@ -5,6 +5,8 @@ public import Development.WeilBound.ThetaLifts.LocalTheory.ConeShifts.FubGen
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 noncomputable section
 
 namespace PositivityTheory.ThKG.Loc.Cone

@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Definitions.LatticeFrames.Bundle0
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 
 noncomputable section

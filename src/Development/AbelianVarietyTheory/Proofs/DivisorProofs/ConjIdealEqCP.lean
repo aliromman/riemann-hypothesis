@@ -13,6 +13,7 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.Supported
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsOfStarEq
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 set_option autoImplicit false
 noncomputable section

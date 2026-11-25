@@ -37,6 +37,8 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFor
 section
 attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+attribute [local instance 2000] Units.instTopologicalSpaceUnits Units.instMeasurableSpace
+  GlobalTheory.SplitWeil.matrixMeasurableSpace GlobalTheory.SplitFlip.borel_GL
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.DIV
 open IsDedekindDomain NumberField MeasureTheory Matrix
 open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
@@ -450,6 +452,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeisenbergLatticeVacuumUniqueUpToScalarStatement
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR.Datum Formalism.IndefR.Links
 open IsDedekindDomain NumberField MeasureTheory Matrix
 open scoped TensorProduct

@@ -8,6 +8,7 @@ public import Formalism.RealPlaceAnalysis.FinalF
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0164
 
 @[expose] public section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S Formalism.REAL Formalism.QuantumDeterminants GlobalTheory.Count GlobalTheory.Dec GlobalTheory.DSId
 open scoped InnerProductSpace ComplexOrder ContDiff

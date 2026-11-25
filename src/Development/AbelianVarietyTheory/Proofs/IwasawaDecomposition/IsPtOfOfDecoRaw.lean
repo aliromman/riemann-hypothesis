@@ -9,6 +9,7 @@ public import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.Bundle0006
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Bundle0109
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

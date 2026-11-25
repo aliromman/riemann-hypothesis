@@ -63,6 +63,7 @@ public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.Bundle006
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.UnitaryExistence.FrMoveTransfer
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open AlgebraicGeometry CategoryTheory Limits NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.L2.Pj
 

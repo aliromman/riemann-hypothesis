@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle014
 
 @[expose] public section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitFlip GlobalTheory.SplitWeil
 open scoped Matrix Topology
 

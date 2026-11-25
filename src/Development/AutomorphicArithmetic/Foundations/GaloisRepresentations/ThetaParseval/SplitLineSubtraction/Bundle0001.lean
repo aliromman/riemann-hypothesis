@@ -31,7 +31,7 @@ theorem UpperTheory.Gal.TP.Sub.clTw_holds :
   intro hF hL hJ hP hW hC E Ω _ _ _ _ _ l _ ι a s μ hs hμ w S c J m h1 h2
   refine ⟨fun hw => (hF E Ω l ι a w S c μ (h1.1 hw)).2 s (h2.1 hw), ?_⟩
   intro P AI hT A h O _ _ _ Bw hj
-  obtain ⟨c1, _root_.ReciprocityTheory.Gal.d1, j1, p1⟩ := h1.2 P AI hT A h O Bw hj
+  obtain ⟨c1, d1, j1, p1⟩ := h1.2 P AI hT A h O Bw hj
   obtain ⟨c2, d2, j2, p2⟩ := h2.2 P AI hT A h O Bw hj
   have e1 : (rk1 μ).comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype = rk1 (μ.comp (ReciprocityTheory.Gal.Dec (F := E) A).subtype) := by
     ext g i j

@@ -22,6 +22,7 @@ public import Development.WeilBound.CoreStatements.PlurisubharmonicCones.Bundle0
 
 -- bundled from Development.WeilBound.CoreStatements.PlurisubharmonicCones.FinrankOfLieMult
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Fl

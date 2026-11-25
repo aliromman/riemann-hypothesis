@@ -24,6 +24,7 @@ public import Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.Bundle004
 public import Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.CuspReadingsSpanModelFormsShiftedWeights
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 set_option autoImplicit false
 

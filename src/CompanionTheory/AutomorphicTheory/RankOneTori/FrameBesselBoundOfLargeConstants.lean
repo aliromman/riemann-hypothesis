@@ -9,6 +9,7 @@ public import Formalism.SharpRestriction.CuspSpanNormBounds.Bundle0018
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S Formalism.MainNotions.S.Pv.AmpDDPf Formalism.FourierDecayAlt Formalism.MainNotions.FrameBoundFromBesselTorus Formalism.L2.SG.Pf.OBT Formalism.BasicNotions
 open scoped ENNReal InnerProductSpace
 

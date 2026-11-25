@@ -11,6 +11,7 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.Bun
 
 -- bundled from Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.ExistsRationalDblCoord
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 noncomputable section
 
 open scoped TensorProduct NNReal Matrix

@@ -5,6 +5,7 @@ public import Formalism.HermitianCurvature.HermitianCurvatureProofs.LevelFormSes
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
 open Formalism.FourierDecayAlt Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt.B Matrix
 
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace

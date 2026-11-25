@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle001
 public import Formalism.SharpRestriction.GlobalSchurBounds.StandardLattice
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

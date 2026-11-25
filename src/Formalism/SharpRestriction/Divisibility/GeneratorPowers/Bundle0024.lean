@@ -187,6 +187,7 @@ end
 
 -- bundled from Formalism.SharpRestriction.Divisibility.GeneratorPowers.PhiCMinR
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 set_option autoImplicit false
 
 noncomputable section
@@ -327,6 +328,7 @@ end
 
 -- bundled from Formalism.SharpRestriction.Divisibility.GeneratorPowers.PhiCSpan
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 set_option autoImplicit false
 
 noncomputable section

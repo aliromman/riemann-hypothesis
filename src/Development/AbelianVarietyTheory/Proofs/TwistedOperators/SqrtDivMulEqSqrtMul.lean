@@ -14,6 +14,7 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.Involutio
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0784
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

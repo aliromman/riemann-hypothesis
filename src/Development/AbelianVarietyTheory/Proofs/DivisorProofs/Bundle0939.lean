@@ -35,6 +35,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0903
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdicIntegralTensorBasisIffExistsIntegralMultiple
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open Matrix NumberField IsDedekindDomain GlobalTheory.AdicSpan
 open scoped TensorProduct Classical
 

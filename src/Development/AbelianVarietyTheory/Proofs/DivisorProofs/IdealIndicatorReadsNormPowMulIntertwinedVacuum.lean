@@ -4,6 +4,7 @@ public import Mathlib
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsSelfDualCOfSd
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open NumberField IsDedekindDomain
 open scoped Classical Pointwise

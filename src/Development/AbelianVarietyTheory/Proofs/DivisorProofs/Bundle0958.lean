@@ -38,6 +38,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0920
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertClassFieldLatticeTransport
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain GlobalTheory.CMVal GlobalTheory.LatVal GlobalTheory.IndefiniteRowSideFullHecke.LatticeNormTransport
 open GlobalTheory.ToricTransport (coordIn coordIn_div)
 open scoped nonZeroDivisors

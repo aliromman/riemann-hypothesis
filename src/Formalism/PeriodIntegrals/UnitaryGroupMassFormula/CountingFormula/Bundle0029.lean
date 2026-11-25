@@ -9,6 +9,7 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.
 
 -- bundled from Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.JordanDecompositionExists
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField Module
 
 noncomputable section

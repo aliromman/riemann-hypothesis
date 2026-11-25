@@ -21,6 +21,7 @@ public import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.Bundle00
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.HermitianLatticesTheory Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Col Formalism.L2.Ker GlobalTheory.AtG
 open GlobalTheory.IndefiniteRowSideFullHecke.BadPrimesPeriodBound (recFields recPrimes recSeam HostTie AnTie badS)
 open GlobalTheory.IndefiniteRowSideFullHecke.JetSumTable (jetSum RatIdx)

@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.Bundle002
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 set_option autoImplicit false
 
 noncomputable section

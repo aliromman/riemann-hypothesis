@@ -150,6 +150,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.JetHarmonics.QuotientMeasureRightInvariant
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 open BranchingSupport Formalism.FourierDecayAlt Formalism.FourierDecayAlt.ThreeDimData Matrix MeasureTheory Finset
 open scoped InnerProductSpace ENNReal
 

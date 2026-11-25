@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Definitions.LatticeFrames.Bundle0
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.Bundle0010
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR.Datum MeasureTheory IsDedekindDomain NumberField Matrix

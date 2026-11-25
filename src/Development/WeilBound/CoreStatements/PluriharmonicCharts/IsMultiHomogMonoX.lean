@@ -14,6 +14,11 @@ noncomputable section
 
 set_option linter.unusedSectionVars false
 
+-- The bundled imports bring in `Formalism.L2.Pj.rules*` (`priority := high` instances on the Pi type
+-- `Rules pts`), which the original module never saw. They divert instance searches on function types
+-- such as the degree sums `K → ℕ` below and make `exists_rel` time out at `whnf`.
+attribute [-instance] Formalism.L2.Pj.rulesCommRing Formalism.L2.Pj.rulesAlgebra Formalism.L2.Pj.rulesModule Formalism.L2.Pj.rulesSMul Formalism.L2.Pj.rulesAlgebraInt Formalism.L2.Pj.rulesModuleInt Formalism.L2.Pj.rulesTower
+
 namespace PositivityTheory.Xgp.W
 
 local instance (priority := 2000) intAlg5 {Φ : Type} [Field Φ] : Algebra ℤ (RatFunc Φ) := Ring.toIntAlgebra _

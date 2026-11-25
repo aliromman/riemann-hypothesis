@@ -146,6 +146,7 @@ end
 
 -- bundled from Development.WeilBound.CoreStatements.FlagImmersions.HasPerConj
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace RootFieldNumerics

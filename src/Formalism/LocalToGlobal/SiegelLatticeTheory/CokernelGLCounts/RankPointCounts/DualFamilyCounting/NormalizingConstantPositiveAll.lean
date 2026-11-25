@@ -14,6 +14,7 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CovolumeFrames.B
 public import Formalism.PeriodIntegrals.OrbitalBoundsConclusion.Bundle0005
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

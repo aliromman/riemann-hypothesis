@@ -14,6 +14,7 @@ public import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.Bundle
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Bundle0187
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open NumberField Matrix Complex MeasureTheory IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.FD GlobalTheory GlobalTheory.ThFr GlobalTheory.Dict GlobalTheory.AdTh

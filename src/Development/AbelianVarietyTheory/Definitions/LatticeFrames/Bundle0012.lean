@@ -22,6 +22,7 @@ public import Development.AbelianVarietyTheory.Definitions.LatticeFrames.Bundle0
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.LatticeFrames.ColMatchAll
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 noncomputable section
 
 namespace GlobalTheory.Core.Ht2
@@ -73,6 +74,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.LatticeFrames.ContinuesConst
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open scoped NNReal
@@ -112,6 +114,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.LatticeFrames.MiPinnedWithFinIff
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 set_option genSizeOfSpec false
 set_option genInjectivity false
 

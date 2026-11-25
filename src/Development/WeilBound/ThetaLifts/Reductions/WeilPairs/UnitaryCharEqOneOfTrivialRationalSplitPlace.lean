@@ -7,6 +7,7 @@ public import Development.WeilBound.ThetaLifts.Reductions.WeilPairs.WeilPairData
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 set_option linter.unusedSectionVars false
 
 noncomputable section

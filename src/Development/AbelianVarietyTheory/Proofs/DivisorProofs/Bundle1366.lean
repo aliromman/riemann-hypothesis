@@ -17,6 +17,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1291
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilRepLatticeStabilizerVacuumEqDetCharSmul
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace GlobalTheory.VacStab

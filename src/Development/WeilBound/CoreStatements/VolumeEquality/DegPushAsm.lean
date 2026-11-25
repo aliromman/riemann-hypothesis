@@ -24,6 +24,7 @@ public import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.Bundle00
 public import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.GoodOrigin
 
 @[expose] public section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 noncomputable section
 

@@ -34,6 +34,7 @@ public import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ValueDo
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.LatticeFrames.CorankOneIsEquivalenceOnRow
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open scoped Classical

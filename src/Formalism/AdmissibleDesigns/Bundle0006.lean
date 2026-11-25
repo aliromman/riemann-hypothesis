@@ -9,6 +9,7 @@ public import Formalism.AdmissibleDesigns.Bundle0004
 
 -- bundled from Formalism.AdmissibleDesigns.MultVZeroOfSubsingleton
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
 
 noncomputable section

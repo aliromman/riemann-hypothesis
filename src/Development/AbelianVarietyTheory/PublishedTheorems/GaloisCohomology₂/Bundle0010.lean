@@ -202,6 +202,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.IsSquareIntegrable
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 noncomputable section
 

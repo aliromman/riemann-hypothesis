@@ -9,6 +9,7 @@ public import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.SingleLe
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.G Formalism.MainNotions.TaylorLogMetric GlobalTheory.KerStd UpperTheory.G2 Classical
 open Formalism.L2.Th1.CM (MaximalUnramifiedExtension)
 open Formalism.L2.Th1.D (OwOK TrDual)

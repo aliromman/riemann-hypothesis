@@ -9,6 +9,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqOneOfConjM
 public import Formalism.LocalToGlobal.Columns.CoefColLemmas
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 namespace TestFunctionNorms
 section

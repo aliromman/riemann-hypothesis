@@ -233,7 +233,7 @@ theorem UpperTheory.V.Z.Sym.Pl.lemTWM : GlobalTheory.Published.GlobalArtinRecipr
     obtain ⟨x, hx, e⟩ := GlobalTheory.GalChar.exists_unit haL hA hs
     rw [h6 _ s e]
     exact h5 w x hx
-  exact ⟨κ, hκ, verArt_of resOpen verGroup conjPlace unrAE locProd frobSplit frobInert F L Ω _ h2 art artL ha haL κ ν hκ hν (by
+  exact ⟨κ, hκ, verArt_of resOpen verGroup conjPlace _root_.UpperTheory.V.Af.Tw.unrAE locProd frobSplit frobInert F L Ω _ h2 art artL ha haL κ ν hκ hν (by
     filter_upwards [GlobalTheory.GalChar.away_ae (E := F) M hl0] with v hv w A hw hA s hs
     exact (h7 w A hA s hs).1 fun h => hv (hw ▸ (nat_mem_under M w).2 h))
     (fun a σ τ e e' => by rw [h6 _ τ e', h1, hNv a σ e]), k, hk, h7⟩

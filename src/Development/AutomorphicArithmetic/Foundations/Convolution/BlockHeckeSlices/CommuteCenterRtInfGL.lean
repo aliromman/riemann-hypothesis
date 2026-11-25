@@ -70,8 +70,8 @@ private theorem ofFn_rel {M A : Type} [AddCommGroup M] [Module ℂ M] {V : Submo
 
 variable {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] {n : ℕ} {S : Set (Pl E)}
 
-theorem commute_uC_finRep (u : UC E n) (k : GL (Fin n) (Af E)) : Commute (uC E n u) (finRep E n k) := by
-  have hu : u ∈ Algebra.adjoin ℂ {x : UC E n | ∃ τ i j, x = genC τ i j} := by rw [adjoin_genC]; trivial
+theorem commute_uC_finRep (u : UpperTheory.V.Cm.UC E n) (k : GL (Fin n) (Af E)) : Commute (uC E n u) (finRep E n k) := by
+  have hu : u ∈ Algebra.adjoin ℂ {x : UpperTheory.V.Cm.UC E n | ∃ τ i j, x = genC τ i j} := by rw [adjoin_genC]; trivial
   refine Algebra.adjoin_induction (p := fun x _ => Commute (uC E n x) (finRep E n k)) ?_
     (fun r => by rw [AlgHom.commutes]; exact Algebra.commutes r _)
     (fun _ _ _ _ hx hy => by rw [map_add (f := _)]; exact hx.add_left hy)
@@ -81,7 +81,7 @@ theorem commute_uC_finRep (u : UC E n) (k : GL (Fin n) (Af E)) : Commute (uC E n
   rw [uC_genC]
   exact ((h i j _).sub_left ((h i j _).smul_left _)).smul_left _
 
-theorem commute_center_rt_infGL {u : UC E n} (hu : u ∈ Subalgebra.center ℂ (UC E n)) (y : GL (Fin n) (Cinf E)) :
+theorem commute_center_rt_infGL {u : UpperTheory.V.Cm.UC E n} (hu : u ∈ Subalgebra.center ℂ (UpperTheory.V.Cm.UC E n)) (y : GL (Fin n) (Cinf E)) :
     Commute (uC E n u) (rt E n (infGL E n y)) := by
   rw [center_UC] at hu
   refine Algebra.adjoin_induction (p := fun x _ => Commute (uC E n x) (rt E n (infGL E n y))) ?_
@@ -126,7 +126,7 @@ def Dat.hEP (d : Dat S n) (k : Pl E × Fin n) : EP (Fin d.len) :=
       (MvPolynomial.C (∏ l, ((d.sat l k.1).map fun x : ℂˣ => (x : ℂ)).esymm (a l) * qc k.1 ^ (-(d.rho l : ℂ) * a l)))
 
 private def ops (d : Dat S n) : Set (Module.End ℂ (Sm E n)) :=
-  {x | (∃ u ∈ Subalgebra.center ℂ (UC E n), x = uC E n u) ∨ (∃ j, x = d.J j) ∨ (∃ v, x = rt E n (d.tr v)) ∨
+  {x | (∃ u ∈ Subalgebra.center ℂ (UpperTheory.V.Cm.UC E n), x = uC E n u) ∨ (∃ j, x = d.J j) ∨ (∃ v, x = rt E n (d.tr v)) ∨
     ∃ w ∉ S, ∃ j, x = hk n w j}
 
 private theorem ops_mem (d : Dat S n) {C : ℝ} (hC : 0 ≤ C) : ∀ x ∈ ops d, ∀ v ∈ bsp S n hC, x v ∈ bsp S n hC := by
@@ -147,12 +147,12 @@ private theorem ops_mem (d : Dat S n) {C : ℝ} (hC : 0 ≤ C) : ∀ x ∈ ops d
 private theorem ops_comm (d : Dat S n) {C : ℝ} (hC : 0 ≤ C) :
     ∀ x ∈ ops d, ∀ y ∈ ops d, ∀ v ∈ bsp S n hC, x (y v) = y (x v) := by
   obtain ⟨-, -, -, -, -, hadd, hinf, hJJ, hJt, hJ⟩ := (datBasics E).2 S n d
-  have zu : ∀ u ∈ Subalgebra.center ℂ (UC E n), ∀ u', Commute (uC E n u) (uC E n u') := fun u hu u' =>
+  have zu : ∀ u ∈ Subalgebra.center ℂ (UpperTheory.V.Cm.UC E n), ∀ u', Commute (uC E n u) (uC E n u') := fun u hu u' =>
     (show Commute u u' from (Subalgebra.mem_center_iff.1 hu u').symm).map (uC E n)
-  have zJ : ∀ u ∈ Subalgebra.center ℂ (UC E n), ∀ j, Commute (uC E n u) (d.J j) := fun u hu j => by
+  have zJ : ∀ u ∈ Subalgebra.center ℂ (UpperTheory.V.Cm.UC E n), ∀ j, Commute (uC E n u) (d.J j) := fun u hu j => by
     obtain ⟨u', h⟩ := hJ j
     rw [h]; exact zu u hu u'
-  have zt : ∀ u ∈ Subalgebra.center ℂ (UC E n), ∀ v, Commute (uC E n u) (rt E n (d.tr v)) := fun u hu v => by
+  have zt : ∀ u ∈ Subalgebra.center ℂ (UpperTheory.V.Cm.UC E n), ∀ v, Commute (uC E n u) (rt E n (d.tr v)) := fun u hu v => by
     obtain ⟨y, h⟩ := hinf v
     rw [h]; exact commute_center_rt_infGL hu y
   have Jh : ∀ j w i, Commute (d.J j) (hk n w i) := fun j w i => by

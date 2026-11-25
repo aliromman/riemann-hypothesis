@@ -4,6 +4,7 @@ public import Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Twis
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 
 noncomputable section

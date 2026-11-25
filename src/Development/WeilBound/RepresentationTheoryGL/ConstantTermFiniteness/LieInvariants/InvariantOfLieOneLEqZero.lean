@@ -29,6 +29,8 @@ public import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
+
 open NumberField GlobalTheory.CuspRep MeasureTheory PositivityTheory.Affgl GroundTheory.Global GroundTheory.Automorphic GroundTheory.Automorphic.Reduction
 
 namespace PositivityTheory.Rg.HF.GL
@@ -49,6 +51,7 @@ variable {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyCompl
 
 theorem cuspFin_zero : CuspFin E 0 := by
   intro L hL W _ _ _ ρ hρ J hJ
+  haveI : Subsingleton (GA E 0) := ⟨fun a b => Units.ext (Matrix.ext fun i => Fin.elim0 i)⟩
   haveI : Finite (GA E 0) := Finite.of_subsingleton
   haveI : FiniteDimensional ℂ (GA E 0 → ℂ) := inferInstance
   infer_instance

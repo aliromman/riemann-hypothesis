@@ -5,6 +5,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.Bundle0040
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle0130
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open MeasureTheory Set Filter NumberField IsDedekindDomain
 open GlobalTheory.AdelicU GlobalTheory.OpTrace GlobalTheory.Orb GlobalTheory.AutomorphicL2Unitary GlobalTheory.AutMult Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes

@@ -3,6 +3,7 @@ module
 public import Development.WeilBound.CoreStatements.VolumeEquality.Pieces
 
 @[expose] public section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 noncomputable section
 

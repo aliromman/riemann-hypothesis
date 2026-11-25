@@ -15,6 +15,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle041
 public import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.NatCastKPZero
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 
@@ -49,8 +50,7 @@ theorem redFn_col {β : GL (Fin n) (E ⊗[F] Formalism.L2.Herm.Af F)} {Λ : Subm
   rw [← e1, hadd _ hmem.1 _ hw, hwr, Matrix.mulVec_single_one] at e2
   have e3 := congrFun e2 q
   have h0 : redV β PP ((M.val - 1) *ᵥ w) q = 0 := by
-    have := (Submodule.mem_pi.1 hmem.2) q hq
-    simpa using this
+    exact (Submodule.mem_bot (kP PP)).1 ((Submodule.mem_pi.1 hmem.2) q hq)
   rw [Pi.add_apply, h0, zero_add, Pi.single_apply] at e3
   exact e3.symm
 

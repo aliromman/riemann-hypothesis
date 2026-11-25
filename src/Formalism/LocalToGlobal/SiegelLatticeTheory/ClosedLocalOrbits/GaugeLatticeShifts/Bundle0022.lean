@@ -16,6 +16,7 @@ public import Formalism.RealPlaceAnalysis.FinalF
 
 -- bundled from Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.GaugeLatticeShifts.JUMeasurableEmbedding
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 noncomputable section
 
 open MeasureTheory Matrix Topology

@@ -22,6 +22,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityA
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.TPmFin
 section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 set_option maxHeartbeats 800000
 set_option synthInstance.maxHeartbeats 200000

@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.Exists
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 open AlgebraicGeometry CategoryTheory NumberField Matrix Complex
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.FD GlobalTheory GlobalTheory.ThFr
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor hiding Level

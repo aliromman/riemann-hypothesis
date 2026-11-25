@@ -40,6 +40,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0302
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FlagMeasures.CovolumeIntegralUnipotentRadicalRealPoints
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 noncomputable section
 
 open NumberField IsDedekindDomain MeasureTheory Matrix

@@ -14,6 +14,7 @@ public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.Bu
 
 -- bundled from Development.WeilBound.RepresentationTheoryGL.FormalDegree.FormalDegreeHilbert.DegreeGapNorms.FdModel
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 noncomputable section
 
 open Finset MeasureTheory Matrix
@@ -78,6 +79,7 @@ end
 
 -- bundled from Development.WeilBound.RepresentationTheoryGL.FormalDegree.FormalDegreeHilbert.DegreeGapNorms.GapNorm
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 noncomputable section
 
 open Finset MeasureTheory Matrix

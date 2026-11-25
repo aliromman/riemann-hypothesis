@@ -48,6 +48,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.KummerTheory.ResInfKer
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.GaloisCohomology UpperTheory.V UpperTheory.V.LDataCardLeFinrank UpperTheory.V.Base UpperTheory.V.Kum
 
 section Index
@@ -68,6 +69,8 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.KummerTheory.ResInfOnto
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.GaloisCohomology UpperTheory.V UpperTheory.V.LDataCardLeFinrank UpperTheory.V.Base UpperTheory.V.Kum
 
 private theorem UpperTheory.V.Kum.decCob {F Ω : Type} [Field F] [NumberField F] [Field Ω] [Algebra F Ω] [IsAlgClosure F Ω]
@@ -185,7 +188,7 @@ theorem UpperTheory.V.Kum.resInfOnto :
   have hz' : z ∈ Z1 ((qzTw D e).comp (toGS Ω (D.S : Set (HeightOneSpectrum (𝓞 F))))) := by
     rw [qzTw_comp_toGS]
     exact hz
-  have hsha := shaInfl F Ω D.S D.A D.hA ℤ_[l] (QZ l) (qzTw D e) (contTw F Ω l D e).1
+  have hsha := shaInfl F Ω D.S D.A D.hA ℤ_[l] (QZ l) (qzTw D e) (_root_.UpperTheory.V.LDataCardLeFinrank.contTw F Ω l D e).1
   have hmk : (Submodule.Quotient.mk ⟨z, hz'⟩ : H1 ((qzTw D e).comp (toGS Ω (D.S : Set (HeightOneSpectrum (𝓞 F)))))) ∈
       ShaAbs ((qzTw D e).comp (toGS Ω (D.S : Set (HeightOneSpectrum (𝓞 F))))) (D.S : Set (HeightOneSpectrum (𝓞 F))) := by
     rw [mk_mem_ShaAbs]

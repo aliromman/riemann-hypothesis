@@ -11,6 +11,7 @@ public import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 open scoped BigOperators ComplexConjugate
 open NumberField Formalism.BasicNotions Classical

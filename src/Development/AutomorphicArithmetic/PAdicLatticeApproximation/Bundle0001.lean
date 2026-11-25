@@ -10,6 +10,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.HasDivPlace
 
 -- bundled from Development.AutomorphicArithmetic.PAdicLatticeApproximation.ExistsRationalEquivOfRank
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField GlobalTheory.LKTrip GlobalTheory.LKMid GlobalTheory.LKGeo GlobalTheory.PELU GlobalTheory.UPel.HT
 open scoped Matrix TensorProduct Classical
 

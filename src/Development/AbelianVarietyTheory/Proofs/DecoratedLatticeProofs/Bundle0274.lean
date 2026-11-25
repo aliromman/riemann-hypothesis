@@ -30,6 +30,7 @@ public import Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.Bundle
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.CocRZeroLeft
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain Formalism.L2.Ker
 
 noncomputable section

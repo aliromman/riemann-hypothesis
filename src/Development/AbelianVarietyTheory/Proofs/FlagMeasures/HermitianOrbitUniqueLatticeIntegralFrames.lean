@@ -24,6 +24,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0225
 public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.Bundle0013
 
 @[expose] public section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 open ValuativeRel Formalism.MainNotions.S Formalism.MainNotions.S.Loc GlobalTheory.HL
 open scoped Pointwise ENNReal Classical

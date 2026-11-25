@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Geometric
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0765
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 set_option autoImplicit false
 

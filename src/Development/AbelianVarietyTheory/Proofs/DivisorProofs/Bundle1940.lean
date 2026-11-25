@@ -19,6 +19,7 @@ public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.Bundle000
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedLevelPointsOfLattice
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open AlgebraicGeometry CategoryTheory Limits NumberField IsLocalRing TopologicalSpace
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
 open ReciprocityTheory.ChartRestriction.G.DVR

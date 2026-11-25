@@ -34,6 +34,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1559
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemLocalLatticeIdealMapSmulIffGenerator
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.ThK GlobalTheory.KSplit
 open scoped Matrix TensorProduct
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
@@ -168,7 +169,7 @@ theorem fFun_mul_left : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSp
     (σ : Fin a ⊕ A' ≃ C) (ν : kˣ →* ℂˣ) (Ψ : Matrix A' C k → ℂ) (g : GL (Fin a) k) (h : GL C k),
     fFun μ σ ν Ψ (g.val * (X0 k σ * (invT h).val)) * (ν (gdet g) : ℂ) * apow (gdet g) ((Fintype.card C : ℂ) / 2) =
       fFun μ σ ν Ψ (X0 k σ * (invT h).val) := by
-  intro k _ _ _ _ _ _ a A' C _ _ _ _ μ _ σ ν Ψ g h
+  intro k _ _ _ _ _ _ a A' C _ _ _ _ μ hμ σ ν Ψ g h
   let f : Matrix (Fin a) (Fin a) k →* Matrix C C k :=
     { toFun := fun M => (Matrix.fromBlocks M (0 : Matrix (Fin a) A' k) 0 (1 : Matrix A' A' k)).submatrix σ.symm σ.symm
       map_one' := by rw [Matrix.fromBlocks_one, Matrix.submatrix_one_equiv]
@@ -192,7 +193,8 @@ theorem fFun_mul_left : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSp
   have h2 : Y0 k σ * (invT E * h).val = Y0 k σ * h.val := by
     rw [Units.val_mul, ← Matrix.mul_assoc, hY]
   have h3 : gdet (invT E * h) = (gdet g)⁻¹ * gdet h := by rw [gdet_mul, gdet_invT, hdet]
-  rw [h1, splitTheta_fFun_frameFirstBlock_mul μ σ ν Ψ, splitTheta_fFun_frameFirstBlock_mul μ σ ν Ψ, h2, h3, map_mul, map_inv, apow_mul, apow_inv, apow_neg,
+  have hf := @splitTheta_fFun_frameFirstBlock_mul k _ _ _ _ (Fin a) A' C _ _ _ _ _ _ _ _ μ hμ σ ν Ψ
+  rw [h1, hf, hf, h2, h3, map_mul, map_inv, apow_mul, apow_inv, apow_neg,
     Units.val_mul, Units.val_inv_eq_inv_val]
   have hν : ((ν (gdet g) : ℂˣ) : ℂ) ≠ 0 := Units.ne_zero _
   have ha : apow (gdet g) ((Fintype.card C : ℂ) / 2) ≠ 0 := apow_ne_zero _ _

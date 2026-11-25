@@ -13,6 +13,9 @@ public import Development.WeilBound.CoreStatements.CrystallinePeriodRings.TiedAI
 
 @[expose] public section
 
+attribute [-instance] Formalism.L2.Pj.rulesCommRing Formalism.L2.Pj.rulesAlgebra Formalism.L2.Pj.rulesModule Formalism.L2.Pj.rulesSMul Formalism.L2.Pj.rulesAlgebraInt Formalism.L2.Pj.rulesModuleInt Formalism.L2.Pj.rulesTower
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
+attribute [-instance] GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 noncomputable section
 open NumberField IsDedekindDomain Neutral.B1 Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.L2.Host Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations
 open GlobalTheory.HeckeGal GlobalTheory.Pst GlobalTheory.TripleGal GlobalTheory.CompanionTheory.LTHodge
@@ -214,6 +217,7 @@ theorem genCoord_law (ψ : ↥(GK K) →* (↥LL.1)ˣ) {σ₀ : ↥LL.1 →ₐ[�
     rw [genCoord, dif_neg h2, genCoord, dif_neg hσ, map_zero, mul_zero]
 
 
+attribute [local instance 1100] TensorProduct.leftHasSMul in
 set_option maxHeartbeats 1600000 in
 set_option synthInstance.maxHeartbeats 200000 in
 theorem component_line {AI : LocAinf l P} (T : LocTied6 l P AI) (ψ : ↥(GK K) →* (↥LL.1)ˣ)

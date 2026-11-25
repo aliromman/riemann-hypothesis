@@ -164,6 +164,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.CurveDVRSpecialization.ExistsFrameFactorizationOfTrivialOnInertia
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 open NumberField Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.GalOfCusp IsLocalRing UpperTheory.V UpperTheory.V.HV UpperTheory.V.U3 UpperTheory.V.Base UpperTheory.V.Af UpperTheory.V.Pr
 open scoped Matrix
 set_option linter.overlappingInstances false

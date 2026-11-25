@@ -159,7 +159,7 @@ theorem tan_eq (hφ : IsGrpPullback G' G f φ) {a b : V'}
   exact (Over.w (M'.pt a)).trans (Over.w (M'.pt b)).symm
 
 theorem j_comm (hφ : IsGrpPullback G' G f φ) (hk : ∀ r, k' (algebraMap R R' r) = i (k r))
-    (hj : ∀ e, (M'.pt (j e)).left ≫ φ = Spec.map (CommRingCat.ofHom (GlobalTheory.CompanionTheory.Ar.dualMap i)) ≫ (M.pt e).left)
+    (hj : ∀ e, (M'.pt (j e)).left ≫ φ = Spec.map (CommRingCat.ofHom (_root_.GlobalTheory.CompanionTheory.Ar.dualMap i)) ≫ (M.pt e).left)
     {L L' : Type} [AddCommGroup L] [Module R L] [AddCommGroup L'] [Module R' L']
     {M₀ : LieModel G x L} {M₀' : LieModel G' x' L'} {β : L →+ L'}
     (hβ : ∀ e, (M₀'.pt (β e)).left ≫ φ = Spec.map (CommRingCat.ofHom (dualMap (algebraMap R R'))) ≫ (M₀.pt e).left)
@@ -192,7 +192,7 @@ theorem forward (hs : Function.Injective (algebraMap R R'))
     (hx : x' ≫ f = Spec.map (CommRingCat.ofHom (algebraMap R R')) ≫ x)
     (hφ : IsGrpPullback G' G f φ) (hsm : Smooth G.hom)
     (hk : ∀ r, k' (algebraMap R R' r) = i (k r)) (hξ' : ξ' = Spec.map (CommRingCat.ofHom k') ≫ x')
-    (hj : ∀ e, (M'.pt (j e)).left ≫ φ = Spec.map (CommRingCat.ofHom (GlobalTheory.CompanionTheory.Ar.dualMap i)) ≫ (M.pt e).left)
+    (hj : ∀ e, (M'.pt (j e)).left ≫ φ = Spec.map (CommRingCat.ofHom (_root_.GlobalTheory.CompanionTheory.Ar.dualMap i)) ≫ (M.pt e).left)
     {N : ℕ} {w : Module.Dual Ω V} {w' : Module.Dual Ω' V'} (hww : ∀ e, w' (j e) = i (w e))
     (H : M.IsHTFormOver N x k w) : M'.IsHTFormOver N x' k' w' := by
   have hsm' : Smooth G'.hom := MorphismProperty.of_isPullback hφ.1 hsm
@@ -222,7 +222,7 @@ theorem backward [IsIntegrallyClosed R] [IsNoetherianRing R] (hs : Function.Inje
     (hφ : IsGrpPullback G' G f φ) (hsm : Smooth G.hom)
     (hk : ∀ r, k' (algebraMap R R' r) = i (k r)) (hξ : ξ = Spec.map (CommRingCat.ofHom k) ≫ x)
     (hξ' : ξ' = Spec.map (CommRingCat.ofHom k') ≫ x')
-    (hj : ∀ e, (M'.pt (j e)).left ≫ φ = Spec.map (CommRingCat.ofHom (GlobalTheory.CompanionTheory.Ar.dualMap i)) ≫ (M.pt e).left)
+    (hj : ∀ e, (M'.pt (j e)).left ≫ φ = Spec.map (CommRingCat.ofHom (_root_.GlobalTheory.CompanionTheory.Ar.dualMap i)) ≫ (M.pt e).left)
     {N : ℕ} (hN : 0 < N) (hN0 : (N : R') ≠ 0) {z : R} (hz : IsPrimitiveRoot z N)
     (h0 : M.IsHTFormOver N x k 0)
     (jd : Module.Dual Ω V →+ Module.Dual Ω' V') (hjd : ∀ w e, jd w (j e) = i (w e))

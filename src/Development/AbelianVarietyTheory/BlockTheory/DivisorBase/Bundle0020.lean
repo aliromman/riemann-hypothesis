@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.HodgeTateLat
 
 -- bundled from Development.AbelianVarietyTheory.BlockTheory.DivisorBase.GradedDifferentComparison
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 set_option autoImplicit false
 
 noncomputable section

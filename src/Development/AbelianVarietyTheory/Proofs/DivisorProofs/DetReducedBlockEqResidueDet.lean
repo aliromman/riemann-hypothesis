@@ -11,6 +11,7 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle029
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IdempotentMulEqZeroOfOrthogonal
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 section
 open NumberField IsDedekindDomain GlobalTheory.AdLat GlobalTheory.AdLat.RootNear

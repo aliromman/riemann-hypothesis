@@ -38,10 +38,10 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {D : Da
 theorem tied_pull (Y : Model Xo c β) {B F : Type} [CommRing B] [CommRing F] (ψ : B →+* F)
     {y : Sp B ⟶ Xo.XF c} {y' : Sp F ⟶ Xo.XF c} (hy : y' = spMap ψ ≫ y)
     {V : Sp (DualNumber B) ⟶ Xo.univ.t.G.left} {V' : Sp (DualNumber B) ⟶ Y.t.G.left} (h : Tied Y y V V') :
-    Tied Y y' (spMap (GlobalTheory.CompanionTheory.Ar.dualMap ψ) ≫ V) (spMap (GlobalTheory.CompanionTheory.Ar.dualMap ψ) ≫ V') := by
+    Tied Y y' (spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap ψ) ≫ V) (spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap ψ) ≫ V') := by
   subst hy
   obtain ⟨u, h1, h2, h3⟩ := h
-  refine ⟨spMap (GlobalTheory.CompanionTheory.Ar.dualMap ψ) ≫ u, ?_, ?_, ?_⟩
+  refine ⟨spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap ψ) ≫ u, ?_, ?_, ?_⟩
   · rw [Category.assoc, h1, ← Category.assoc, ← Category.assoc]
     congr 1
     exact spec_dual_alg ψ
@@ -58,14 +58,14 @@ theorem tied_over (Y : Model Xo c β) {B : Type} [CommRing B] {y : Sp B ⟶ Xo.X
 theorem isCombAt_pull {B F : Type} [CommRing B] [CommRing F] (ψ : B →+* F) {x : Sp B ⟶ Xo.X} {x' : Sp F ⟶ Xo.X}
     (hx : spMap ψ ≫ x = x') {m : ℕ} {vs : Fin m → (Sp (DualNumber B) ⟶ Xo.univ.t.G.left)} {cf : Fin m → B}
     {w : Sp (DualNumber B) ⟶ Xo.univ.t.G.left} (h : Formalism.L2.Pj.IsCombAt x vs cf w) :
-    Formalism.L2.Pj.IsCombAt x' (fun k => spMap (GlobalTheory.CompanionTheory.Ar.dualMap ψ) ≫ vs k) (fun k => ψ (cf k))
-      (spMap (GlobalTheory.CompanionTheory.Ar.dualMap ψ) ≫ w) := by
+    Formalism.L2.Pj.IsCombAt x' (fun k => spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap ψ) ≫ vs k) (fun k => ψ (cf k))
+      (spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap ψ) ≫ w) := by
   obtain ⟨u, hu, rfl⟩ := h
   let P : Formalism.L2.Pj.tEps x' ⟶ Formalism.L2.Pj.tEps x := epsBase ψ hx
   let Q : (Formalism.L2.Pj.tEps x ⟶ Xo.univ.t.G) →* (Formalism.L2.Pj.tEps x' ⟶ Xo.univ.t.G) :=
     { toFun := fun f => P ≫ f, map_one' := comp_one _, map_mul' := fun a b => comp_mul _ _ _ }
   refine ⟨fun i => P ≫ u i, fun i => ?_, ?_⟩
-  · change spMap (GlobalTheory.CompanionTheory.Ar.dualMap ψ) ≫ (u i).left = _
+  · change spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap ψ) ≫ (u i).left = _
     rw [hu i, ← GlobalTheory.CompanionTheory.Ar.FrameEig.epsMul_eq, ← GlobalTheory.CompanionTheory.Ar.FrameEig.epsMul_eq, ← Category.assoc, ← Category.assoc]
     congr 1
     exact spec_dual_eps ψ (cf i)
@@ -79,15 +79,15 @@ theorem isCombAt_pull {B F : Type} [CommRing B] [CommRing F] (ψ : B →+* F) {x
 theorem exists_pulled (Y : Model Xo c β) {B F : Type} [CommRing B] [Field F] (ψ : B →+* F) (yB : Sp B ⟶ Xo.XF c)
     (y : Sp F ⟶ Xo.XF c) (hy : y = spMap ψ ≫ yB) (x₀ : Sp B ⟶ Xo.X) (hx₀ : x₀ = under yB) {n : ℕ} (v : Vecs y n)
     (vs : Fin n → (Sp (DualNumber B) ⟶ Xo.univ.t.G.left))
-    (hv : ∀ k, (v k).left = spMap (GlobalTheory.CompanionTheory.Ar.dualMap ψ) ≫ vs k) (C : Matrix (Fin n) (Fin n) B)
+    (hv : ∀ k, (v k).left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap ψ) ≫ vs k) (C : Matrix (Fin n) (Fin n) B)
     (ee : Fin n → (Sp (DualNumber B) ⟶ Y.t.G.left))
     (hV : ∀ i, ∃ V : Sp (DualNumber B) ⟶ Xo.univ.t.G.left, Tied Y yB V (ee i) ∧
       Formalism.L2.Pj.IsCombAt x₀ vs (C i) V) :
     ∃ v₀ : Vecs y n, (∀ i, IsComb ((ψ.mapMatrix C) i) v (v₀ i)) ∧
-      ∀ i, Tied Y y (v₀ i).left (spMap (GlobalTheory.CompanionTheory.Ar.dualMap ψ) ≫ ee i) := by
+      ∀ i, Tied Y y (v₀ i).left (spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap ψ) ≫ ee i) := by
   choose V hT hC using hV
   have hT' := fun i => tied_pull Y ψ hy (hT i)
-  refine ⟨fun i => Over.homMk (spMap (GlobalTheory.CompanionTheory.Ar.dualMap ψ) ≫ V i) (tied_over Y (hT' i)), fun i => ?_, hT'⟩
+  refine ⟨fun i => Over.homMk (spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap ψ) ≫ V i) (tied_over Y (hT' i)), fun i => ?_, hT'⟩
   rw [GlobalTheory.CompanionTheory.Ar.FrameEig.isComb_iff]
   have hx : spMap ψ ≫ x₀ = under y := by
     rw [hx₀, hy]
@@ -140,8 +140,8 @@ theorem valAt_of_chart (Y : Model Xo c β) {U : Set (Xo.XF c)} (Z : CptOver Y U)
     (h₁ : spMap θ' ≫ x = Y.X.fromSpecStalk (centre (y ≫ Y.j)))
     (h₂ : (genMap (Z.ξ₀ ≫ Y.j) ⟨centre (y ≫ Y.j), h⟩).comp θ' = φ₂)
     (h₃ : (Scheme.stalkClosedPointTo (y ≫ Y.j)).hom.comp θ' = θF) (b : Z.V) (e : epsAt x ⟶ Y.t.G)
-    (ht : GlobalTheory.CompanionTheory.Ar.IsTanAt Y.t.G x e) (hb : (Z.M.pt b).left = spMap (GlobalTheory.CompanionTheory.Ar.dualMap φ₂) ≫ e.left)
-    (v' : epsAt (y ≫ Y.j) ⟶ Y.t.G) (hv' : v'.left = spMap (GlobalTheory.CompanionTheory.Ar.dualMap θF) ≫ e.left) :
+    (ht : GlobalTheory.CompanionTheory.Ar.IsTanAt Y.t.G x e) (hb : (Z.M.pt b).left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap φ₂) ≫ e.left)
+    (v' : epsAt (y ≫ Y.j) ⟶ Y.t.G) (hv' : v'.left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap θF) ≫ e.left) :
     Z.M.ValAt (y ≫ Y.j) b v' := by
   refine ⟨h, epsBase θ' h₁ ≫ e, ⟨isTanAt_base _ _ ht, ?_⟩, ?_⟩
   · rw [hb, ← h₂, ← spMap_dual_comp]
@@ -157,7 +157,7 @@ theorem sameVec_of_tied (Y : Model Xo c β) {F : Type} [Field F] {y : Sp F ⟶ X
 
 end GlobalTheory.CompanionTheory.Ar.LocFn.FieldStage
 
-theorem GlobalTheory.CompanionTheory.Ar.LocFn.function_of_frames_at_field_point : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (U : Set (Xo.XF c)) (τ : E →+* ℂ) (O : Type) [CommRing O] (β : O →+* c.F) (Y : Model Xo c β) (Z : CptOver Y U) (φ : FrameFn Xo c) (a : ⋀[Z.Ω]^D.p Z.V) (b : ⋀[Z.Ω]^D.q Z.V) (S : Type) [CommRing S] [Algebra c.F S] (z : Formalism.L2.Pj.FrPt Xo c S) (hp : D.mult τ = D.p) (hq : D.mult (ComplexEmbedding.conjugate τ) = D.q) (R : Type) [CommRing R] (x : Sp R ⟶ Y.X) [IsOpenImmersion x] (φ₂ : R →+* Z.Ω) (e₁ : Fin D.p → (epsAt x ⟶ Y.t.G)) (e₂ : Fin D.q → (epsAt x ⟶ Y.t.G)) (f : R) (b₁ : Fin D.p → Z.V) (b₂ : Fin D.q → Z.V) (α κ : Z.Ω) (B : Type) [CommRing B] [Algebra S B] (θ : R →+* B) (C₁ : Matrix (Fin D.p) (Fin D.p) B) (C₂ : Matrix (Fin D.q) (Fin D.q) B), IsLineFn U τ φ → Represents Y U τ Z.M a b φ → spMap φ₂ ≫ x = Z.ξ₀ ≫ Y.j → a = α • exteriorPower.ιMulti Z.Ω D.p b₁ → b = κ • exteriorPower.ιMulti Z.Ω D.q b₂ → φ₂ f = α / κ → (∀ i, GlobalTheory.CompanionTheory.Ar.IsTanAt Y.t.G x (e₁ i)) → (∀ i, GlobalTheory.CompanionTheory.Ar.IsTanAt Y.t.G x (e₂ i)) → (∀ i, (Z.M.pt (b₁ i)).left = spMap (GlobalTheory.CompanionTheory.Ar.dualMap φ₂) ≫ (e₁ i).left) → (∀ i, (Z.M.pt (b₂ i)).left = spMap (GlobalTheory.CompanionTheory.Ar.dualMap φ₂) ≫ (e₂ i).left) → spMap θ ≫ x = spMap (algebraMap S B) ≫ zPt z ≫ Y.j → IsUnit C₁.det → IsUnit C₂.det → (∀ i, ∃ V : Sp (DualNumber B) ⟶ Xo.univ.t.G.left, Tied Y (spMap (algebraMap S B) ≫ zPt z) V (spMap (Formalism.L2.Pj.dualMap θ) ≫ (e₁ i).left) ∧ Formalism.L2.Pj.IsCombAt (spMap (algebraMap S B) ≫ z.x) (fun k => spMap (Formalism.L2.Pj.dualMap (algebraMap S B)) ≫ z.u τ (k.cast hp.symm)) (C₁ i) V) → (∀ i, ∃ V : Sp (DualNumber B) ⟶ Xo.univ.t.G.left, Tied Y (spMap (algebraMap S B) ≫ zPt z) V (spMap (Formalism.L2.Pj.dualMap θ) ≫ (e₂ i).left) ∧ Formalism.L2.Pj.IsCombAt (spMap (algebraMap S B) ≫ z.x) (fun k => spMap (Formalism.L2.Pj.dualMap (algebraMap S B)) ≫ z.u (ComplexEmbedding.conjugate τ) (k.cast hq.symm)) (C₂ i) V) → ∀ (F : Type) [Field F] (ψ : B →+* F) (y : Sp F ⟶ Xo.XF c), y = spMap ψ ≫ spMap (algebraMap S B) ≫ zPt z → Set.range y ⊆ U → ∀ (v : Vecs y D.p) (w : Vecs y D.q), (∀ i, (v i).left = spMap (Formalism.L2.Pj.dualMap (ψ.comp (algebraMap S B))) ≫ z.u τ (i.cast hp.symm)) → (∀ j, (w j).left = spMap (Formalism.L2.Pj.dualMap (ψ.comp (algebraMap S B))) ≫ z.u (ComplexEmbedding.conjugate τ) (j.cast hq.symm)) → φ F y v w * ψ C₂.det = ψ (θ f) * ψ C₁.det := by
+theorem GlobalTheory.CompanionTheory.Ar.LocFn.function_of_frames_at_field_point : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (U : Set (Xo.XF c)) (τ : E →+* ℂ) (O : Type) [CommRing O] (β : O →+* c.F) (Y : Model Xo c β) (Z : CptOver Y U) (φ : FrameFn Xo c) (a : ⋀[Z.Ω]^D.p Z.V) (b : ⋀[Z.Ω]^D.q Z.V) (S : Type) [CommRing S] [Algebra c.F S] (z : Formalism.L2.Pj.FrPt Xo c S) (hp : D.mult τ = D.p) (hq : D.mult (ComplexEmbedding.conjugate τ) = D.q) (R : Type) [CommRing R] (x : Sp R ⟶ Y.X) [IsOpenImmersion x] (φ₂ : R →+* Z.Ω) (e₁ : Fin D.p → (epsAt x ⟶ Y.t.G)) (e₂ : Fin D.q → (epsAt x ⟶ Y.t.G)) (f : R) (b₁ : Fin D.p → Z.V) (b₂ : Fin D.q → Z.V) (α κ : Z.Ω) (B : Type) [CommRing B] [Algebra S B] (θ : R →+* B) (C₁ : Matrix (Fin D.p) (Fin D.p) B) (C₂ : Matrix (Fin D.q) (Fin D.q) B), IsLineFn U τ φ → Represents Y U τ Z.M a b φ → spMap φ₂ ≫ x = Z.ξ₀ ≫ Y.j → a = α • exteriorPower.ιMulti Z.Ω D.p b₁ → b = κ • exteriorPower.ιMulti Z.Ω D.q b₂ → φ₂ f = α / κ → (∀ i, GlobalTheory.CompanionTheory.Ar.IsTanAt Y.t.G x (e₁ i)) → (∀ i, GlobalTheory.CompanionTheory.Ar.IsTanAt Y.t.G x (e₂ i)) → (∀ i, (Z.M.pt (b₁ i)).left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap φ₂) ≫ (e₁ i).left) → (∀ i, (Z.M.pt (b₂ i)).left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap φ₂) ≫ (e₂ i).left) → spMap θ ≫ x = spMap (algebraMap S B) ≫ zPt z ≫ Y.j → IsUnit C₁.det → IsUnit C₂.det → (∀ i, ∃ V : Sp (DualNumber B) ⟶ Xo.univ.t.G.left, Tied Y (spMap (algebraMap S B) ≫ zPt z) V (spMap (Formalism.L2.Pj.dualMap θ) ≫ (e₁ i).left) ∧ Formalism.L2.Pj.IsCombAt (spMap (algebraMap S B) ≫ z.x) (fun k => spMap (Formalism.L2.Pj.dualMap (algebraMap S B)) ≫ z.u τ (k.cast hp.symm)) (C₁ i) V) → (∀ i, ∃ V : Sp (DualNumber B) ⟶ Xo.univ.t.G.left, Tied Y (spMap (algebraMap S B) ≫ zPt z) V (spMap (Formalism.L2.Pj.dualMap θ) ≫ (e₂ i).left) ∧ Formalism.L2.Pj.IsCombAt (spMap (algebraMap S B) ≫ z.x) (fun k => spMap (Formalism.L2.Pj.dualMap (algebraMap S B)) ≫ z.u (ComplexEmbedding.conjugate τ) (k.cast hq.symm)) (C₂ i) V) → ∀ (F : Type) [Field F] (ψ : B →+* F) (y : Sp F ⟶ Xo.XF c), y = spMap ψ ≫ spMap (algebraMap S B) ≫ zPt z → Set.range y ⊆ U → ∀ (v : Vecs y D.p) (w : Vecs y D.q), (∀ i, (v i).left = spMap (Formalism.L2.Pj.dualMap (ψ.comp (algebraMap S B))) ≫ z.u τ (i.cast hp.symm)) → (∀ j, (w j).left = spMap (Formalism.L2.Pj.dualMap (ψ.comp (algebraMap S B))) ≫ z.u (ComplexEmbedding.conjugate τ) (j.cast hq.symm)) → φ F y v w * ψ C₂.det = ψ (θ f) * ψ C₁.det := by
   intro E _ _ _ H D l Xo c U τ O _ β Y Z φ a b S _ _ z hp hq R _ x _ φ₂ e₁ e₂ f b₁ b₂ α κ B _ _ θ C₁ C₂ hφ hrep hξ ha hb
     hf ht₁ ht₂ hb₁ hb₂ hθ hC₁ hC₂ hV₁ hV₂ F _ ψ y hy hU v w hv hw
   have e0 : ∀ {A : Type} [CommRing A] (g : A →+* B), spMap (ψ.comp g) = spMap ψ ≫ spMap g := fun g => by
@@ -178,11 +178,11 @@ theorem GlobalTheory.CompanionTheory.Ar.LocFn.function_of_frames_at_field_point 
   have hF := hfr U hU
   have hzx : spMap (algebraMap S B) ≫ z.x = under (spMap (algebraMap S B) ≫ zPt z) := by
     simp only [under, Category.assoc, zPt_fst]
-  have hvv : ∀ k, (v k).left = spMap (GlobalTheory.CompanionTheory.Ar.dualMap ψ) ≫
+  have hvv : ∀ k, (v k).left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap ψ) ≫
       (spMap (Formalism.L2.Pj.dualMap (algebraMap S B)) ≫ z.u τ (k.cast hp.symm)) := fun k => by
     rw [hv k, ← Category.assoc]
     exact congrArg (· ≫ _) (GlobalTheory.CompanionTheory.Ar.LieVB.spMap_dual_comp (algebraMap S B) ψ).symm
-  have hww : ∀ k, (w k).left = spMap (GlobalTheory.CompanionTheory.Ar.dualMap ψ) ≫
+  have hww : ∀ k, (w k).left = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap ψ) ≫
       (spMap (Formalism.L2.Pj.dualMap (algebraMap S B)) ≫ z.u (ComplexEmbedding.conjugate τ) (k.cast hq.symm)) := fun k => by
     rw [hw k, ← Category.assoc]
     exact congrArg (· ≫ _) (GlobalTheory.CompanionTheory.Ar.LieVB.spMap_dual_comp (algebraMap S B) ψ).symm

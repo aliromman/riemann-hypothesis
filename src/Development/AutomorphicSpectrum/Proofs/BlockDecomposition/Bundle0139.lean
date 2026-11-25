@@ -16,6 +16,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0418
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FirstCohomologyInclusionTensorInjective
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
 set_option autoImplicit false
 
 noncomputable section

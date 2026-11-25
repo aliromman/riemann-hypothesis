@@ -7,6 +7,7 @@ public import Formalism.LocalToGlobal.ProjectiveLattices.Bundle0027
 public import Development.AbelianVarietyTheory.Proofs.CuspFormEvaluations.Bundle0074
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 
 noncomputable section
 

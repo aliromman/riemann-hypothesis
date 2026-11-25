@@ -17,6 +17,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1743
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1766
 
 @[expose] public section
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix
 
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 

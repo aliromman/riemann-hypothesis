@@ -21,18 +21,18 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {X0 : S
 
 def tanModel {S : Type} [CommRing S] (x : Sp S ⟶ X0) : GlobalTheory.CompanionTheory.Ar.LieModel t.G x (TanM x t.G) where
   pt := tv
-  tan e := (GlobalTheory.FrameTangent.isTanAtG_of _ (tv_zero' e)).2
+  tan e := (_root_.GlobalTheory.FrameTangent.isTanAtG_of _ (tv_zero' e)).2
   inj := tv_injective
-  onto v hv := ⟨mkT (GlobalTheory.FrameTangent.ovT (t := t) ⟨Over.w v, hv⟩) (GlobalTheory.FrameTangent.smT_zero_ovT _), rfl⟩
+  onto v hv := ⟨mkT (_root_.GlobalTheory.FrameTangent.ovT (t := t) ⟨Over.w v, hv⟩) (_root_.GlobalTheory.FrameTangent.smT_zero_ovT _), rfl⟩
   add := tv_add
   smul _ _ := rfl
 
 theorem tanBasis_of_basis {S : Type} [CommRing S] (x : Sp S ⟶ X0) {n : ℕ} (b : Module.Basis (Fin n) S (TanM x t.G)) :
     IsTanBasisG t x fun k => (tv (b k)).left := by
-  refine ⟨fun k => GlobalTheory.FrameTangent.isTanAtG_of _ (tv_zero' _), fun w hw => ?_⟩
+  refine ⟨fun k => _root_.GlobalTheory.FrameTangent.isTanAtG_of _ (tv_zero' _), fun w hw => ?_⟩
   have key : ∀ a : Fin n → S, IsCombAtG t x (m := Fintype.card (Fin n))
       (fun i => (tv (b ((Fintype.equivFin (Fin n)).symm i))).left) (fun i => a ((Fintype.equivFin (Fin n)).symm i)) w ↔
-      b.equivFun.symm a = mkT (GlobalTheory.FrameTangent.ovT hw) (GlobalTheory.FrameTangent.smT_zero_ovT hw) := fun a => by
+      b.equivFun.symm a = mkT (_root_.GlobalTheory.FrameTangent.ovT hw) (_root_.GlobalTheory.FrameTangent.smT_zero_ovT hw) := fun a => by
     rw [comb_iff_sum t x (Fintype.equivFin (Fin n)).symm b a, b.equivFun_symm_apply]
     exact ⟨fun h => tv_injective (Over.OverMorphism.ext h), fun h => by rw [h]; rfl⟩
   exact (existsUnique_congr key).2 (b.equivFun.symm.bijective.existsUnique _)

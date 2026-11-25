@@ -12,6 +12,7 @@ public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.CasimirCoefficien
 
 -- bundled from Development.WeilBound.RepresentationTheoryGL.FormalDegree.FormalDegreeHilbert.OperatorNormSigns.ExplicitFunctionSquareIntegrable
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 noncomputable section
 
 open Finset MeasureTheory Matrix
@@ -72,6 +73,7 @@ end
 
 -- bundled from Development.WeilBound.RepresentationTheoryGL.FormalDegree.FormalDegreeHilbert.OperatorNormSigns.NormDef
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 noncomputable section
 
 open Finset MeasureTheory Matrix

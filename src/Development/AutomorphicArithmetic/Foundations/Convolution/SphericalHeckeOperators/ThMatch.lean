@@ -7,6 +7,7 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.Spherica
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 open MeasureTheory GroundTheory.Automorphic GroundTheory.Automorphic.Spherical GroundTheory.Automorphic.GLnLocal GroundTheory.Automorphic.Iwasawa UpperTheory.ConvolutionTheory.H
 
 private theorem quot_smul {G : Type*} [Group G] [MeasurableSpace G] (μ : Measure G) (H : Subgroup G) (ν : Measure H)

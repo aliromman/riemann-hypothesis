@@ -7,7 +7,9 @@ public import Development.WeilBound.CoreStatements.PublishedTheorems.GlobalEuler
 public import Development.WeilBound.CoreStatements.PublishedTheorems.GlobalFiniteness.Transport
 
 @[expose] public section
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 open NumberField IsDedekindDomain CategoryTheory GroundTheory.ProfCoh GroundTheory.Global
 
 namespace PositivityTheory.Lit1.GEN.W_dictfwd_b

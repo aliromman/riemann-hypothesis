@@ -23,6 +23,7 @@ public import Formalism.LocalRingCardinality.RhoDetPrimeEqMuTildeMulChiPow
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FlagMeasures.MassPairingClassBounds
 section
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open ValuativeRel Formalism.MainNotions.S Formalism.MainNotions.S.Loc GlobalTheory.HL
 open scoped Pointwise ENNReal Classical
 

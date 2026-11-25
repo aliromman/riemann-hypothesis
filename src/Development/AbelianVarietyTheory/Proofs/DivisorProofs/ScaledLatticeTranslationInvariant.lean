@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1673
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1566
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 open scoped Matrix TensorProduct Classical

@@ -43,7 +43,7 @@ theorem UpperTheory.Gal.TP.Sub.clSub_holds :
   intro hF hD hP hW E Ω _ _ _ _ _ l _ ι a s μ hs hμ w S c J m hc hsum
   refine ⟨fun hl => (hF E Ω l ι a w S c μ (hc.1 hl)).1 s (hsum.1 hl), ?_⟩
   intro P AI hT A h O _ _ _ Bw hj
-  obtain ⟨-, _root_.ReciprocityTheory.Gal.d1, j1, p1⟩ := hc.2 P AI hT A h O Bw hj
+  obtain ⟨-, d1, j1, p1⟩ := hc.2 P AI hT A h O Bw hj
   obtain ⟨c2, d2, j2, p2⟩ := hsum.2 P AI hT A h O Bw hj
   have ci : Continuous (ReciprocityTheory.Gal.Dec (F := E) A).subtype := continuous_subtype_val
   have cμ : Continuous (rk1 μ) := (contLeft_holds (G E Ω) (Qbar l) a 1).2.2.2 μ hμ

@@ -9,6 +9,7 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle022
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle0230
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

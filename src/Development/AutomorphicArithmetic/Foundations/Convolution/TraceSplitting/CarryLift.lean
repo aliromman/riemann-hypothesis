@@ -17,6 +17,7 @@ public import PositivityTheory.AutomorphicForms.PublishedInputs.CyclicBaseChange
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 open MeasureTheory NumberField IsDedekindDomain Filter
 open GroundTheory.Automorphic GroundTheory.Automorphic.Reduction PositivityTheory.Rg.Tf.Core PositivityTheory.Rg.Tf.Geo UpperTheory.ConvolutionTheory UpperTheory.ConvolutionTheory.C UpperTheory.ConvolutionTheory.T UpperTheory.ConvolutionTheory.Dp
 open GlobalTheory.CuspRep Formalism.ConjugateSelfDual Formalism.L2.Host UpperTheory.V.Published UpperTheory.CBC

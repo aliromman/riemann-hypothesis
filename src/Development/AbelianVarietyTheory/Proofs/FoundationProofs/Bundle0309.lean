@@ -17,6 +17,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EOpEqAsAlgeb
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FoundationProofs.DoublingNormDetInertPlaceLatticeLength
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace GlobalTheory.InertLatLength

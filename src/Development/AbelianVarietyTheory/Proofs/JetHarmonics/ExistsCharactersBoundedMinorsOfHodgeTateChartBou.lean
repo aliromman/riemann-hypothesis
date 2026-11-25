@@ -21,6 +21,7 @@ public import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.Bundl
 public import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.Bundle0132
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 set_option autoImplicit false
 noncomputable section

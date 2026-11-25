@@ -8,6 +8,7 @@ public import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.CrystallineCocycles
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
 noncomputable section
 
 namespace GlobalTheory.HyodoDef

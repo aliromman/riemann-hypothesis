@@ -13,6 +13,7 @@ public import ReciprocityTheory.AnalyticForms.RegularLocalRings.JacChart
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.MetricProofs.SncChartMultihomogOrderAtPoint
 section
+attribute [-instance] Formalism.L2.Pj.rulesCommRing Formalism.L2.Pj.rulesAlgebra Formalism.L2.Pj.rulesModule Formalism.L2.Pj.rulesSMul Formalism.L2.Pj.rulesAlgebraInt Formalism.L2.Pj.rulesModuleInt Formalism.L2.Pj.rulesTower
 noncomputable section
 
 open MvPolynomial ReciprocityTheory.AnForm.R GlobalTheory.CompanionTheory.Ar.Cmp

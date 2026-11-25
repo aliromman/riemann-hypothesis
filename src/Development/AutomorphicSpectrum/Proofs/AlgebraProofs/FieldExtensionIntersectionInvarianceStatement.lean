@@ -9,6 +9,7 @@ public import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.Stat
 public import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.Bundle0025
 
 @[expose] public section
+attribute [-instance] Formalism.L2.Pj.rulesCommRing Formalism.L2.Pj.rulesAlgebra Formalism.L2.Pj.rulesModule Formalism.L2.Pj.rulesSMul Formalism.L2.Pj.rulesAlgebraInt Formalism.L2.Pj.rulesModuleInt Formalism.L2.Pj.rulesTower
 
 open MvPolynomial GlobalTheory.CompanionTheory.Ar.Num GroundTheory.Heights₂.Heights.NumbersDVR
 open ReciprocityTheory.ChartRestriction.G.Geo (ChartBundle chartRing)

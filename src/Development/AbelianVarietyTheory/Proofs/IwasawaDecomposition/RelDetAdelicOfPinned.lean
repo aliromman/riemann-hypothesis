@@ -16,6 +16,7 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.Bundle011
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Bundle0019
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

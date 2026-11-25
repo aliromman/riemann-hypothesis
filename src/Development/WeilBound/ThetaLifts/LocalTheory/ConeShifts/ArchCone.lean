@@ -5,6 +5,7 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Ramificat
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 noncomputable section
 
 namespace PositivityTheory.ThKG.Loc.Cone

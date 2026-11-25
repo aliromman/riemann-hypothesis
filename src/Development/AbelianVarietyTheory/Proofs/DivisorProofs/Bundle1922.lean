@@ -39,6 +39,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1875
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.HarmonicPolynomialLattices
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 set_option autoImplicit false
 
 noncomputable section

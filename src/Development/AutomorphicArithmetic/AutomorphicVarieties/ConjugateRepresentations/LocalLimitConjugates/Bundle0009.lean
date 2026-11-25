@@ -294,7 +294,7 @@ theorem UpperTheory.V.Cj.H.zigLim :
     UpperTheory.V.Cj.H.ZigLim := by
   intro Γ V S _ _ _ _ d G hconv hne
   obtain ⟨p, hp⟩ := hne
-  have hincl := inclFacts Γ V S d G hconv ⟨p, hp⟩
+  have hincl := _root_.UpperTheory.V.Lit.Dr.inclFacts Γ V S d G hconv ⟨p, hp⟩
   have main : ∀ (q k : ℕ) (u : ℕ → List Γ → G.Om q), (∀ j, HCoc (G.act q) k (u j)) →
       (∀ j (x : List Γ), x.length = k + 1 → G.dOm q (u j x) = 0) →
       (∀ x : List Γ, x.length = k + 1 → FLim G fun j => u j x) →

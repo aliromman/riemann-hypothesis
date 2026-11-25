@@ -6,6 +6,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.GramUnipotent
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.TranslatedLatticeAtInfinityFullCovolumeDual
 
 @[expose] public section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 open NumberField Module Matrix Formalism.MainNotions.S GlobalTheory.LoopV MeasureTheory
 open scoped ENNReal Classical

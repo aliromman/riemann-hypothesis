@@ -12,6 +12,7 @@ public import Formalism.AdmissibleDesigns.YtTarget
 
 -- bundled from Formalism.AdmissibleDesigns.LenComapSurj
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
 
 noncomputable section

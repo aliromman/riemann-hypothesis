@@ -6,6 +6,7 @@ public import Formalism.HarderNarasimhan.ShiftInvariance
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0112
 
 @[expose] public section
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 open GlobalTheory.Count Formalism.MainNotions.S Formalism.HN Formalism.REAL Matrix NumberField MeasureTheory Finset
 open scoped InnerProductSpace

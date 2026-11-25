@@ -7,6 +7,8 @@ public import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.
 
 @[expose] public section
 
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
 open scoped Matrix NNReal ENNReal ComplexConjugate TensorProduct

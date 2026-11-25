@@ -24,6 +24,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0250
 public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.Bundle0006
 
 @[expose] public section
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 open BranchingSupport GlobalTheory.CellAmp Formalism.BasicNotions Formalism.MainNotions.S Formalism.QuantumDeterminants Matrix MeasureTheory Finset
 open scoped InnerProductSpace ENNReal

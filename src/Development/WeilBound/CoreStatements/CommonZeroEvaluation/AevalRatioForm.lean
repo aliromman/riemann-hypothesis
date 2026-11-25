@@ -5,6 +5,7 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.Bundle0184
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.Bundle0242
 
 @[expose] public section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 
 open NumberField IsDedekindDomain
 open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo

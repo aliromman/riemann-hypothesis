@@ -16,6 +16,7 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.PhiMapsAn
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open Formalism.BasicNotions Formalism.HermitianLatticesTheory Formalism.L2.DIV Formalism.L2.Col NumberField IsDedekindDomain Classical GlobalTheory.QNormal
 
 noncomputable section

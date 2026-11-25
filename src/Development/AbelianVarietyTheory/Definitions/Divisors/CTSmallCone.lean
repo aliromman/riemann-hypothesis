@@ -6,6 +6,7 @@ public import Development.AbelianVarietyTheory.Definitions.Foundations.T2SpaceAd
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 noncomputable section
 
 namespace GlobalTheory.ThK

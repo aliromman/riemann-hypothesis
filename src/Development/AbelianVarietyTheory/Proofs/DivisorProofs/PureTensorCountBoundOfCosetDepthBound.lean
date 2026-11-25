@@ -8,6 +8,7 @@ public import Formalism.SharpRestriction.CuspSpanNormBounds.BridgeLevelGenB
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1146
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

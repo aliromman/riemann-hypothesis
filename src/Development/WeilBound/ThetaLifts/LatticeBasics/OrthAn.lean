@@ -6,6 +6,7 @@ public import Development.WeilBound.ThetaLifts.EigenvalueEndgame.OrthogonalDecom
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 noncomputable section
 
 namespace GlobalTheory.ThK.Dbl

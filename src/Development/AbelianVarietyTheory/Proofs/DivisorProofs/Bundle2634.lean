@@ -33,6 +33,7 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.Bun
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.CardBoundedHomogeneousIntFormFamilies
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 open Filter Topology MvPolynomial GlobalTheory.HSAmp
 
 namespace GlobalTheory.HSAmp.Count

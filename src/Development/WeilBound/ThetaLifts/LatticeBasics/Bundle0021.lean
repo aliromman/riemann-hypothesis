@@ -223,6 +223,7 @@ end
 
 -- bundled from Development.WeilBound.ThetaLifts.LatticeBasics.ConvOfCpt
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 noncomputable section
 
 namespace GlobalTheory.ThK.Dbl

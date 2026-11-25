@@ -90,7 +90,7 @@ private theorem tw_li (s : Bool) {ι : Type} {v : ι → E}
     simp only [← Tw.mk_smul]
     exact hg
   have := congrArg (cj s) (h u (fun i => cj s (g i)) h1 i hi)
-  rwa [cj_cj, map_zero] at this
+  rwa [Formalism.IndefR.Links.cj_cj, map_zero] at this
 
 end Twist
 

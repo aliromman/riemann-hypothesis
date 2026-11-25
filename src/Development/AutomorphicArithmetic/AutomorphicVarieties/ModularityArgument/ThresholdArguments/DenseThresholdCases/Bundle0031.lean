@@ -434,6 +434,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.PmAutO
 section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 set_option maxHeartbeats 800000
 set_option synthInstance.maxHeartbeats 200000

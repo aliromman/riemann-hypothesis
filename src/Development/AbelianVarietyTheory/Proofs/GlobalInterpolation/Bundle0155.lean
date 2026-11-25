@@ -29,6 +29,7 @@ public import Formalism.LocalToGlobal.GlobalTheory.GL5.PClassDecomp
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.UnitPeriodTranslatesMomentsFinite
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField Formalism.BasicNotions Classical Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.L2.Ker GlobalTheory.MomN
 
 namespace GlobalTheory.MomFin

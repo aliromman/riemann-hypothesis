@@ -8,6 +8,7 @@ public import Formalism.SharpRestriction.CuspSpanNormBounds.FrobeniusCoefficient
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S Formalism.MainNotions.S.Pv.AmpDDPf Formalism.MainNotions.S.Pv.AmpDDPf.CC Formalism.FourierDecayAlt
 open scoped ENNReal
 

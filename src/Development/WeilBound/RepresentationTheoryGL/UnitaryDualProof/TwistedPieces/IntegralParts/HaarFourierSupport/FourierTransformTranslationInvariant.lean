@@ -4,6 +4,7 @@ public import Development.WeilBound.RepresentationTheoryGL.UnitaryDualProof.Twis
 
 @[expose] public section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
 set_option linter.unusedSectionVars false

@@ -13,6 +13,8 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeT
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.PadicHodgeTheory.SpBorLift
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 open Formalism.BasicNotions Formalism.BasicNotions.Loc ReciprocityTheory.Gal Module UpperTheory.V.Loc Topology
 
 theorem UpperTheory.V.Loc.cocLift (hP : LocalPublishedTheorems) {v l : ℕ} [Fact v.Prime] [Fact l.Prime] {G : Type} [Group G]

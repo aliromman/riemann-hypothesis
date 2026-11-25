@@ -6,6 +6,7 @@ public import Formalism.HermitianCurvature.HermitianCurvatureProofs.HermitianFor
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 namespace Formalism.FourierDecayAlt.P.StabilizerDisintegration.OF
 
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.P.StabilizerDisintegration.OD Formalism.FourierDecayAlt.P.StabilizerDisintegration.MM

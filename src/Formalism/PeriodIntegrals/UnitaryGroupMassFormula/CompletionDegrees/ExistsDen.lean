@@ -4,6 +4,7 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CompletionDegree
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 namespace PI.CompDegEF
 
 open IsDedekindDomain NumberField Module Formalism.BasicNotions Formalism.BasicNotions.Loc

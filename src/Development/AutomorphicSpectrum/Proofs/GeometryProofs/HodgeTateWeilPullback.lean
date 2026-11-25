@@ -89,7 +89,7 @@ theorem om_pull {X X' : Scheme.{0}} {Ω Ω' : Type} [Field Ω] [Field Ω'] {ξ :
     [IsCommMonObj G'] {φ : G'.left ⟶ G.left} (hp : IsGrpPullback G' G f φ) (hs : Smooth G.hom)
     {E : Type} [AddCommGroup E] [Module Ω E] (M : LieModel G ξ E) {E' : Type} [AddCommGroup E'] [Module Ω' E']
     (M' : LieModel G' ξ' E') (j : E →+ E') (jd : Module.Dual Ω E →+ Module.Dual Ω' E')
-    (hj : ∀ v, (M'.pt (j v)).left ≫ φ = spMap (GlobalTheory.CompanionTheory.Ar.dualMap i) ≫ (M.pt v).left)
+    (hj : ∀ v, (M'.pt (j v)).left ≫ φ = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap i) ≫ (M.pt v).left)
     (hjd : ∀ w v, jd w (j v) = i (w v)) : M'.omLat = M.omLat.pull ξ' f jd := by
   funext q'
   obtain ⟨r, B, B', v, v', hBB, hl, hl', hv, hv', hvv⟩ :=
@@ -162,7 +162,7 @@ theorem ht_pull {X X' : Scheme.{0}} {Ω Ω' : Type} [Field Ω] [Field Ω'] {ξ :
     (t2 : ∀ (g' : Over.mk ξ' ⟶ G'), g' ^ n = 1 → ∃ g : Over.mk ξ ⟶ G, g ^ n = 1 ∧ g'.left ≫ φ = spMap i ≫ g.left)
     {E : Type} [AddCommGroup E] [Module Ω E] (M : LieModel G ξ E) {E' : Type} [AddCommGroup E'] [Module Ω' E']
     (M' : LieModel G' ξ' E') (j : E →+ E') (jd : Module.Dual Ω E →+ Module.Dual Ω' E')
-    (hj : ∀ v, (M'.pt (j v)).left ≫ φ = spMap (GlobalTheory.CompanionTheory.Ar.dualMap i) ≫ (M.pt v).left)
+    (hj : ∀ v, (M'.pt (j v)).left ≫ φ = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap i) ≫ (M.pt v).left)
     (hjd : ∀ w v, jd w (j v) = i (w v)) (q' : Cpt ξ') {y : Over.mk ξ ⟶ G} {y' : Over.mk ξ' ⟶ G'}
     (hy : y ^ n = 1) (hy' : y' ^ n = 1)
     (hc : ∀ (g : Over.mk ξ ⟶ G) (g' : Over.mk ξ' ⟶ G'), g ^ n = 1 → g' ^ n = 1 → g'.left ≫ φ = spMap i ≫ g.left →

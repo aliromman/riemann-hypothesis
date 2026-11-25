@@ -166,7 +166,7 @@ theorem fields_ok : B.fields.Ok := by
       show _ = B.host.emb (g * B.R.cc * B.R.cc)
       rw [mul_assoc, hcc, mul_one]
   · letI : Algebra B.host.E B.LL := B.embE.toAlgebra
-    exact isTotallyComplex_of_algebra B.host.E B.LL
+    exact _root_.NumberField.isTotallyComplex_of_algebra B.host.E B.LL
   · let e : B.fields.Kq ≃+* B.host.K :=
       RingEquiv.subringCongr (s := B.fields.Kq.toSubring) (t := B.host.K.toSubfield.toSubring)
         (Subring.ext fun x => mem_Kq_iff B x)

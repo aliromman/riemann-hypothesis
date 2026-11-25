@@ -12,6 +12,7 @@ public import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.AddMonoi
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.Bundle0005
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open NumberField IsDedekindDomain Polynomial GlobalTheory.FieldSize
 open scoped IntermediateField

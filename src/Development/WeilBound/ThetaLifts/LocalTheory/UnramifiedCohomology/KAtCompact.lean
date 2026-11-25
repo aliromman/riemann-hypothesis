@@ -8,6 +8,7 @@ public import Development.WeilBound.CoreStatements.CompactAveragingSplitting.Eig
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 noncomputable section
 
 namespace PositivityTheory.ThKG.Loc.KInv

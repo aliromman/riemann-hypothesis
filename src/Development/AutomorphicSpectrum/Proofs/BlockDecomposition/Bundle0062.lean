@@ -297,6 +297,7 @@ end GlobalTheory.CompanionTheory.Jp.Iw
 
 end
 end
+end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeFirstProperty
 section

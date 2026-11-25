@@ -258,8 +258,10 @@ theorem value_part (hPr : Pr.Ok) (hsel : IsSel X sel) (hS : ∀ i, Pr.g i ∈ S)
   have h1 : ∀ P : rowSG Pr sel mu, Valued.v (evP X.F P.1 (y : AfE X.F X.E) - algebraMap X.E _ (e P)) < 1 := fun P => by
     have e1 : evP X.F P.1 (y : AfE X.F X.E) * evP X.F P.1 ((y⁻¹ : (AfE X.F X.E)ˣ) : AfE X.F X.E) = 1 := by
       rw [← map_mul, Units.mul_inv, map_one]
-    have e2 : evP X.F P.1 (y : AfE X.F X.E) - algebraMap X.E _ (e P) = -(evP X.F P.1 (y : AfE X.F X.E) *
-        (evP X.F P.1 ((y⁻¹ : (AfE X.F X.E)ˣ) : AfE X.F X.E) * algebraMap X.E _ (e P) - 1)) := by
+    have e2 : evP X.F P.1 (y : AfE X.F X.E) - algebraMap X.E _ (e P) =
+        -(GlobalTheory.Mem.ReadEx.evP X.F P.1 (y : AfE X.F X.E) *
+          (GlobalTheory.Mem.ReadEx.evP X.F P.1 ((y⁻¹ : (AfE X.F X.E)ˣ) : AfE X.F X.E) *
+            algebraMap X.E _ (e P) - 1)) := by
       linear_combination (algebraMap X.E (P.1.adicCompletion X.E) (e P)) * e1
     rw [e2, Valuation.map_neg, map_mul, hyv, one_mul]
     exact he P

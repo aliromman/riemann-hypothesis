@@ -6,6 +6,7 @@ public import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeil
 
 -- bundled from Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.UnramifiedWhittaker.AlmostGoodOf
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace PositivityTheory.SiegelWeilFormula.Gunr

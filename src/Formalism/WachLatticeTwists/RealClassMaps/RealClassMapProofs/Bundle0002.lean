@@ -38,6 +38,7 @@ public import Formalism.CharacterColumnKernels.IdempotentNormalForms.Bundle0001
 
 -- bundled from Formalism.WachLatticeTwists.RealClassMaps.RealClassMapProofs.InRowRealOf
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
 
 open Formalism.NG Formalism.RepresentationBoundsCohomology.BR Formalism.RepresentationBoundsCohomology.JT Formalism.RepresentationBoundsCohomology.LocallyConstantCohomology

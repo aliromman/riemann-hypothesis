@@ -4,6 +4,7 @@ public import Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShal
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 
 noncomputable section

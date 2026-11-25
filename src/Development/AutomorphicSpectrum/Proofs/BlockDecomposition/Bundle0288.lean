@@ -368,6 +368,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralCompMulVec
 section
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 open NumberField Matrix MeasureTheory Filter Topology
 open scoped NumberField.AdeleRing

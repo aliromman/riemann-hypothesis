@@ -16,6 +16,8 @@ public import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.Bundle0016
 
 @[expose] public section
 
+attribute [-instance] Formalism.L2.Pj.rulesCommRing Formalism.L2.Pj.rulesAlgebra Formalism.L2.Pj.rulesModule Formalism.L2.Pj.rulesSMul Formalism.L2.Pj.rulesAlgebraInt Formalism.L2.Pj.rulesModuleInt Formalism.L2.Pj.rulesTower
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl
 open scoped CategoryTheory.Obj
@@ -36,7 +38,6 @@ variable {O : Type} [CommRing O] {J : Type} [Fintype J] (b : Basis J ℤ O)
 
 abbrev eigSpan : Submodule K V := ⨆ a : O, LinearMap.range (ρ a - χ a • LinearMap.id)
 
-attribute [-instance] Formalism.L2.Pj.rulesSMul in
 theorem exists_quot_basis {r : ℕ} (x : Fin r → V)
     (hli : LinearIndependent K fun q : Fin r × J => ρ (b q.2) (x q.1))
     (hsp : Submodule.span K (Set.range fun q : Fin r × J => ρ (b q.2) (x q.1)) = ⊤) :

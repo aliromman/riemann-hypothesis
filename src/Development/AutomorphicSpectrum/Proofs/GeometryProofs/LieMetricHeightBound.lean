@@ -176,7 +176,7 @@ theorem local_bound (𝔐 : HodgeCpt Y S y) (h : LieMetric 𝔐.M y) (hpq : 1 �
     obtain ⟨mK, hmK⟩ := GlobalTheory.ObjMaps.exists_sab_cancel m P.m
     let P' : AbPart C.t (spMap (C.ψ u)) := ⟨P.tK, mK, P.τ, P.tB, P.e, P.e_hom, P.act, P.pp⟩
     obtain ⟨Mz, hMz⟩ := _root_.GlobalTheory.CompanionTheory.Ar.QuotUnif.frame_lieModel_fibre E H D l Xo _ n a₀ C u
-    have hsingle : ∀ i, (Mz.pt (Pi.single i 1)).left ≫ (𝟙 _) = spMap (GlobalTheory.CompanionTheory.Ar.dualMap (C.ψ u)) ≫ (C.M.pt (Pi.single i 1)).left := fun i => by
+    have hsingle : ∀ i, (Mz.pt (Pi.single i 1)).left ≫ (𝟙 _) = spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (C.ψ u)) ≫ (C.M.pt (Pi.single i 1)).left := fun i => by
       have := hMz (Pi.single i 1)
       have e : (fun j => C.ψ u ((Pi.single i 1 : Fin C.g → C.R) j)) = Pi.single i 1 := by
         funext j

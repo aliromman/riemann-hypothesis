@@ -4,6 +4,7 @@ public import Development.AbelianVarietyTheory.Definitions.Foundations.Continuou
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 open MeasureTheory Set GlobalTheory.AutomorphicL2Unitary GlobalTheory.Orb Matrix
 open scoped ContDiff ComplexConjugate
 

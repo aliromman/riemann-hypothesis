@@ -5,6 +5,7 @@ public import Formalism.WeaklyAdmissibleFiltrations.PhtGalois
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
 
 noncomputable section

@@ -87,6 +87,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.MetricProofs.LogSineMongeAmpereNormalized
 section
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open MvPolynomial MeasureTheory Filter Topology Matrix ReciprocityTheory.AnForm ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.P GlobalTheory.CompanionTheory.Ar.PB GroundTheory.Heights₂.Heights
 open scoped ComplexOrder
 open ReciprocityTheory.ChartRestriction.G.AI GroundTheory.Heights₂.Heights.Inter

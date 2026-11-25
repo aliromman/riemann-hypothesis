@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1519
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 noncomputable section
 
 namespace PositivityTheory.ThKEst.Sq

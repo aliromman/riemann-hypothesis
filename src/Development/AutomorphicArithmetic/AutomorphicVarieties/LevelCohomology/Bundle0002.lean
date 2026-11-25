@@ -204,6 +204,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoCoefOf
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.GaloisCohomology IsLocalRing UpperTheory.V UpperTheory.V.Base UpperTheory.V.X
 
 private theorem int_iff_norm {l : ℕ} [Fact l.Prime] {K : Type} [Field K]
@@ -373,6 +374,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.SoScal
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.GaloisCohomology IsLocalRing UpperTheory.V UpperTheory.V.Base UpperTheory.V.X
 
 private def subEq {R R' X : Type} [CommRing R] [CommRing R'] [AddCommGroup X] [Module R X] [Module R' X]

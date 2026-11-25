@@ -232,7 +232,7 @@ private theorem continuous_gl' : Continuous (gl : G1 ℚ → GL (Fin 2) (A ℚ))
   exact continuous_subtype_val.comp (continuous_inv : Continuous fun g : G1 ℚ => g⁻¹)
 
 private theorem dM_inv' (t : (A ℚ)ˣ) : (dM t)⁻¹ = dM t⁻¹ := by
-  rw [inv_eq_iff_mul_eq_one, ← dM_mul, mul_inv_cancel]
+  rw [inv_eq_iff_mul_eq_one, ← UpperTheory.ConvolutionTheory.RankTwoDescent.Cp.Fb.dM_mul, mul_inv_cancel]
   apply Units.ext
   change !![1, 0; 0, ((1 : (A ℚ)ˣ) : A ℚ)] = 1
   ext i j

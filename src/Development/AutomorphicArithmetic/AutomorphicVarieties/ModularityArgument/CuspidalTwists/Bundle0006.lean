@@ -8,6 +8,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenera
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.CuspidalTwists.HyperbolicOrthogonalEntrySqSubSqEqOne
 section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 attribute [-instance] UpperTheory.V.Pr.IsCD.toIsDomain UpperTheory.V.Pr.IsCD.toIsDiscreteValuationRing
 noncomputable section
 

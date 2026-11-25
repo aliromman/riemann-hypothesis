@@ -13,6 +13,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1106
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open NumberField IsDedekindDomain Filter Topology

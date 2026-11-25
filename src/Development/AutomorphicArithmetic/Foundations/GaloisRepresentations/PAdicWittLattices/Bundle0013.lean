@@ -141,11 +141,8 @@ theorem UpperTheory.Gal.G3.jJumpOfHT2 :
     simp only [MonoidHom.comp_apply, r₁, this]
     rfl
   have hD := GlobalTheory.Pst.BridgeInd.finrank_DdR_conj P hρ hK
-  have hdR₁ : Module.finrank ↥LL'.1 ↥(DdR (P.PD K₁) (LL := ↥LL'.1) (V := Fin d → ↥LL'.1)
-      (((Matrix.toLinAlgEquiv' : Matrix (Fin d) (Fin d) ↥LL'.1 ≃ₐ[↥LL'.1] _) : _ →* _).comp
-        ((Units.coeHom _).comp r₁))) = Module.finrank ℚ_[l] ↥K₁.1 * d := by
-    rw [← hD, ← GlobalTheory.Pst.BridgeInd.finrank_eq_of_mem_iff_field hK]
-    exact hdR
+  have hdR₁ := hD.symm.trans (hdR.trans
+    (congrArg (· * d) (GlobalTheory.Pst.BridgeInd.finrank_eq_of_mem_iff_field hK)))
   let τ₂ : ↥K₁.1 →ₐ[ℚ_[l]] ↥LL'.1 := IntermediateField.inclusion hK₁LL
   have hτ₂ : ∀ x : ↥K₁.1, ((τ₂ x : ↥LL'.1) : Om l) = (x : Om l) := fun x => rfl
   have hM : ∀ n, multV (P.PD Bw.Kw) (Bw.repE LL' r') τ' n = multV (P.PD K₁) _ τ₂ n :=

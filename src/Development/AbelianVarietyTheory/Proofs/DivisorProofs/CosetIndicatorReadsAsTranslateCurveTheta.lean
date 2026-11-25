@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Definitions.Foundations.NormSumPa
 public import Formalism.PairingDivisors.StatementH
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open NumberField IsDedekindDomain
 open scoped Classical Pointwise

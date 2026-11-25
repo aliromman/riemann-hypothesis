@@ -7,6 +7,7 @@ public import Formalism.RealPlaceAnalysis.RealPlaceTaylor.Bundle0005
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 noncomputable section
 
 open MeasureTheory Matrix

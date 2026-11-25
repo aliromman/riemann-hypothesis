@@ -114,7 +114,7 @@ theorem exists_int_pow : GlobalTheory.UT.LL → ∀ (o Ω : Type) [CommRing o] [
   have hθ : ∀ v, θ v ∈ K₀ := fun v => show θ v ∈ (K₀ : Set _) from hr ▸ ⟨v, rfl⟩
   have ha : u.toG a ≫ u.G.hom = spMap (θ.comp α) := by
     have := Over.w a
-    rw [← spMap_comp_spMap, ThetaSys.Real.UTest.toG, Category.assoc, pullback.condition, ← Category.assoc]
+    rw [← _root_.GlobalTheory.ZH.MultInt.spMap_comp_spMap, ThetaSys.Real.UTest.toG, Category.assoc, pullback.condition, ← Category.assoc]
     exact congrArg (· ≫ spMap α) this
   obtain ⟨K, hK, hfd, x, hx⟩ := exists_finite_factor u.G.hom (θ.comp α) K₀ (fun v => hθ _) (u.toG a) ha
   let β : FractionRing u.V →+* K := θ.codRestrict K fun v => hK (hθ v)
@@ -126,10 +126,10 @@ theorem exists_int_pow : GlobalTheory.UT.LL → ∀ (o Ω : Type) [CommRing o] [
     obtain ⟨δ, hδ⟩ := Spec.map_surjective (x ≫ u.G.hom)
     have h1 : spMap K.val.toRingHom ≫ spMap δ.hom = spMap (θ.comp α) := by
       rw [← ha, ← hx, Category.assoc, ← hδ]; rfl
-    rw [spMap_comp_spMap] at h1
+    rw [_root_.GlobalTheory.ZH.MultInt.spMap_comp_spMap] at h1
     have h2 := congrArg CommRingCat.Hom.hom (Spec.map_injective h1)
     have h3 : δ.hom = χ.comp ψ := RingHom.ext fun v => Subtype.ext (RingHom.congr_fun h2 v)
-    rw [spMap_comp_spMap, ← h3, ← hδ]; rfl
+    rw [_root_.GlobalTheory.ZH.MultInt.spMap_comp_spMap, ← h3, ← hδ]; rfl
   have hp : IsProjOver (pullback.snd u.G.hom (spMap α)) := by
     have : IsIso u.U.gen.inv.left := ((Over.forget _).mapIso u.U.gen).isIso_inv
     refine ProjSpace.isProjOver_of_isIso_comp (Y := pullback u.G.hom (spMap α)) u.U.gen.inv.left ?_
@@ -146,15 +146,15 @@ theorem exists_int_pow : GlobalTheory.UT.LL → ∀ (o Ω : Type) [CommRing o] [
     ((Category.id_comp _).trans (pullback.lift_fst _ _ _).symm) k
   have e₂ := pow_left_pullback (jK u.V) u.G (spMap K.val.toRingHom)
     (show spMap K.val.toRingHom ≫ spMap χ ≫ spMap ψ = spMap θ ≫ spMap α by
-      simp only [spMap_comp_spMap]; rfl) a a₀ hx k
+      simp only [_root_.GlobalTheory.ZH.MultInt.spMap_comp_spMap]; rfl) a a₀ hx k
   have hgw : g.left ≫ pullback.snd u.G.hom (spMap ψ) = 𝟙 _ := Over.w g
   have hg' : spMap χ ≫ g.left = (a' ^ k).left := by
     rw [← hg]; rfl
   refine ⟨k, hk, spMap (integralClosureToPadicAlgClIntegers K) ≫ g.left ≫ pullback.fst u.G.hom (spMap ψ), ?_, ?_⟩
-  · rw [Category.assoc, Category.assoc, pullback.condition, reassoc_of% hgw, spMap_comp_spMap]
+  · rw [Category.assoc, Category.assoc, pullback.condition, reassoc_of% hgw, _root_.GlobalTheory.ZH.MultInt.spMap_comp_spMap]
     rfl
   · have e₃ : gPt p ≫ spMap (integralClosureToPadicAlgClIntegers K) = spMap K.val.toRingHom ≫ spMap χ := by
-      rw [spMap_comp_spMap, spMap_comp_spMap]; rfl
+      rw [_root_.GlobalTheory.ZH.MultInt.spMap_comp_spMap, _root_.GlobalTheory.ZH.MultInt.spMap_comp_spMap]; rfl
     rw [reassoc_of% e₃, reassoc_of% hg']
     refine Eq.trans ?_ e₂
     exact congrArg _ (e₁.symm.trans (Category.id_comp _))

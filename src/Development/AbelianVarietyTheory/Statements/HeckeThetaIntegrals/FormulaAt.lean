@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.Bundle
 public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.MemHalfCosetSelf
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

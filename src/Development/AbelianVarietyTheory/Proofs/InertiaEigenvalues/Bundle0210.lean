@@ -19,6 +19,7 @@ public import Formalism.GaloisCohomology.StatementLoc
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PowMulEqZeroOfMul
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 open ReciprocityTheory.Gal
 
 noncomputable section
@@ -274,6 +275,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SpanOfLocalCohomologyShape
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 open ReciprocityTheory.Gal Formalism.RepresentationBoundsCohomology.LOC
 
 namespace GlobalTheory.ContCocycleDualLattice

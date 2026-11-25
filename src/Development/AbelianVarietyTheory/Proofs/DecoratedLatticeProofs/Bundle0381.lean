@@ -424,6 +424,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.FullOfSpanEqTop
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 namespace GlobalTheory.FullLatticeOfSpan
 
 open NumberField

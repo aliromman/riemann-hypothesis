@@ -6,6 +6,7 @@ public import Formalism.SharpRestriction.GrowthBounds.RootWeights.Bundle0023
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 open Finset

@@ -63,6 +63,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TypePlacesDa
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExpansionOfNumericsModel
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Pj GlobalTheory.BigTop GlobalTheory.BigOn GlobalTheory.ExpTie Formalism.CohomologicalDescent.LogSmallConstantBounds Formalism.CohomologicalDescent.ShortWeightBounds
 
 set_option autoImplicit false

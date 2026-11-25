@@ -6,6 +6,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ValuationLeO
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnderMemAndPlaceAboveEqOfMem
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

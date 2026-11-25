@@ -30,6 +30,7 @@ public import Formalism.RealPlaceAnalysis.Bundle0002
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.Divisors.FormalDegreeUpperC
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 noncomputable section
 

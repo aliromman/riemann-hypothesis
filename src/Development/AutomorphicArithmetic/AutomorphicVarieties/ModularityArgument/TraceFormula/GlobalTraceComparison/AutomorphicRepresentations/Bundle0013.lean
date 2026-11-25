@@ -58,6 +58,8 @@ theorem UpperTheory.V.Z.Tf.GlobalTraceComparison.Pi.halfTerm_pf :
   haveI : IsTopologicalGroup (H E n 0) := (ctx ratProper_holds s.D).tg
   haveI : BorelSpace (H E n 0) := ⟨rfl⟩
   haveI : IsLocallyFiniteMeasure s.D.μ := s.D.haar.2.2.2
+  haveI : SigmaFinite s.D.μ := sigmaFinite_of_locallyFinite
+  haveI : SFinite s.D.μ := instSFiniteOfSigmaFinite
   haveI : SFinite s.D.ν := by unfold Dom.ν; infer_instance
   obtain ⟨hlac, hlmul, -, -, -, hacc, -, -, -, -, hlc, hthc⟩ := hB E n s.pos
   have hφ : IsTestH m.φ := test_trM s.D m.t s.M

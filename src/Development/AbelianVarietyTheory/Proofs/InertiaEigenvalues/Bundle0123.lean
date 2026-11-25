@@ -135,6 +135,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.OrbitalIntegralDescendedEqUnitary
 section
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open GlobalTheory.JR Matrix MeasureTheory Filter Topology
 
 noncomputable section

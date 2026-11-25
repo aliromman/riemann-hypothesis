@@ -29,6 +29,7 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Bundle07
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 noncomputable section
 
 attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot

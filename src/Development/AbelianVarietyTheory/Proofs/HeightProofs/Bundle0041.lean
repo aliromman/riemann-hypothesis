@@ -249,6 +249,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.HeightProofs.FrobeniusFixesOfSplitsCompletelyIntermediateStatement
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain GlobalTheory.FieldSize
 open scoped IntermediateField
 set_option maxHeartbeats 1000000 in

@@ -25,8 +25,8 @@ private theorem iota_eq (m : GA E s) : CapRes.iota (eS r s) m = lev (Ad E) r s (
 
 private theorem eS_inl (i : Fin s) : eS r s (.inl i) = Fin.natAdd r i := Fin.ext (by simp)
 
-private theorem ex_rel (r : ℕ) (u : UC E s) : ∃ u' : UC E (r + s), (uC E s u, uC E (r + s) u') ∈ CapRes.relAlg (eS r s) := by
-  have hu : u ∈ Algebra.adjoin ℂ {x : UC E s | ∃ τ i j, x = genC τ i j} := by rw [adjoin_genC]; trivial
+private theorem ex_rel (r : ℕ) (u : UpperTheory.V.Cm.UC E s) : ∃ u' : UpperTheory.V.Cm.UC E (r + s), (uC E s u, uC E (r + s) u') ∈ CapRes.relAlg (eS r s) := by
+  have hu : u ∈ Algebra.adjoin ℂ {x : UpperTheory.V.Cm.UC E s | ∃ τ i j, x = genC τ i j} := by rw [adjoin_genC]; trivial
   induction hu using Algebra.adjoin_induction with
   | mem x hx =>
     obtain ⟨τ, i, j, rfl⟩ := hx

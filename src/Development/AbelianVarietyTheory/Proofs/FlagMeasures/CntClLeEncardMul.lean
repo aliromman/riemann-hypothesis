@@ -18,6 +18,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0215
 public import Formalism.FlagUnipotentLattices.Bundle0004
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 namespace GlobalTheory.LoopC.GenericMean
 

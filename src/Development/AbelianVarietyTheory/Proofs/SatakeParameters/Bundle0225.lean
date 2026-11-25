@@ -27,6 +27,7 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SplitPl
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.SatakeParameters.ShapeNormalisedThetaCombinationsDualBasesAtD
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Ker Formalism.L2.Col Classical
 open Formalism.L2.Th1.H (cmL CmOK matH IsIsom taylorMv)
 open Formalism.L2.Th1.GD (LocNorm InMul frameM thetaLin)

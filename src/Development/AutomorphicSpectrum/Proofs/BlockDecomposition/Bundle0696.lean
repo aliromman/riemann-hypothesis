@@ -184,6 +184,9 @@ theorem continuous_coeff (A : Submodule ℂ (Sm E M)) [FiniteDimensional ℂ A]
       have h2 : ∀ g, v.1.1 g = 0 := fun g => hv _ (Submodule.subset_span ⟨g, rfl⟩)
       rw [Submodule.mem_bot]
       exact Subtype.ext (Subtype.ext (funext h2))
+    haveI : FiniteDimensional ℂ (Module.Dual ℂ A) := Subspace.instModuleDualFiniteDimensional
+    haveI : FiniteDimensional ℂ (Submodule.span ℂ (Set.range ev)) :=
+      FiniteDimensional.finiteDimensional_submodule _
     rw [← Subspace.dualCoannihilator_dualAnnihilator_eq (W := Submodule.span ℂ (Set.range ev)), h0,
       Submodule.dualAnnihilator_bot]
   have key : ∀ ξ ∈ Submodule.span ℂ (Set.range ev),
@@ -296,6 +299,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsInvariantProjection
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 open scoped Classical InnerProductSpace ComplexConjugate
 open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology

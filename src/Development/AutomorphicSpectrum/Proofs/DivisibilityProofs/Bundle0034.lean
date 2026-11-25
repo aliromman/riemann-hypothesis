@@ -30,6 +30,7 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.Bundle0071
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.GoodTowerM2
 section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 open AlgebraicGeometry CategoryTheory NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Top
 open GroundTheory.Heights₂.Heights.LowerBoundFree (ComponentData ComponentSetting degMu ArLimExists slX)
 
@@ -181,6 +182,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.TowerOriginVectorBundle
 section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 open MvPolynomial AlgebraicGeometry CategoryTheory NumberField Filter Topology ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Cmp
 open ReciprocityTheory.ChartRestriction.G.AI.I1 (IsBlockMap pullDeg)
 open ReciprocityTheory.ChartRestriction.G.AI.I4 (IsPullHerm imageZ blockFnField)

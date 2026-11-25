@@ -21,6 +21,7 @@ public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.Contin
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.GeoLevelActionIffGeoAct
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 set_option autoImplicit false
 
 noncomputable section
@@ -197,6 +198,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.GramHspOf
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta

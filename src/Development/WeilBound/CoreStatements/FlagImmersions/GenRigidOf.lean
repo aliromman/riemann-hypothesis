@@ -18,6 +18,7 @@ public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.Potenti
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.GlobalSectionsRankAlgClosed
 
 @[expose] public section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 noncomputable section
 

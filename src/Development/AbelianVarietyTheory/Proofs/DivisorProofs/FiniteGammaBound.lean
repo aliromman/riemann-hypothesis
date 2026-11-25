@@ -13,6 +13,7 @@ public import Formalism.MirabolicMackeyTheory.MirabolicMackeyProofs.RamBasic
 public import Formalism.LocalToGlobal.Divisibility.LinkDef
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open NumberField
 

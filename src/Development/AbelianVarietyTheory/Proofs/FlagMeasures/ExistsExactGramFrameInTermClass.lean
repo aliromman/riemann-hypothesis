@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0338
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0193
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

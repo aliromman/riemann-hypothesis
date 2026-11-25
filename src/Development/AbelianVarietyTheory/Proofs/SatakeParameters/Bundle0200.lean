@@ -225,7 +225,7 @@ def mulB : ((Fin 1 → ↥L.1) ⊗[ℚ_[l]] Bst P) →ₗ[ℚ_[l]] End ℚ_[l] (
     (LinearMap.mul ℚ_[l] (Bst P)))
 
 @[simp] theorem mulB_tmul (v' : Fin 1 → ↥L.1) (b' : Bst P) (v : V) (b : Bst P) :
-    GlobalTheory.Pst.TwistLetters.mulB P V (v' ⊗ₜ b') (v ⊗ₜ b) = (v' 0 • v) ⊗ₜ (b' * b) := by
+    GlobalTheory.Pst.TwistLetters.mulB (L := L) P V (v' ⊗ₜ b') (v ⊗ₜ b) = (v' 0 • v) ⊗ₜ (b' * b) := by
   simp [GlobalTheory.Pst.TwistLetters.mulB, smulEnd]
 
 variable {P V}

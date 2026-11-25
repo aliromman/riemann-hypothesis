@@ -261,6 +261,7 @@ end GlobalTheory.TorusMixedDecay
 
 end
 end
+end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.TransportedWeilDatumIsUnitaryAdelicSchwartz
 section

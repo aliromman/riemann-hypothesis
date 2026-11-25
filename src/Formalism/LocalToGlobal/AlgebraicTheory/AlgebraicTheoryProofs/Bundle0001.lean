@@ -8,6 +8,7 @@ public import Formalism.LocalToGlobal.TorsionIntegrality.QuadraticSemicharacters
 
 -- bundled from Formalism.LocalToGlobal.AlgebraicTheory.AlgebraicTheoryProofs.EigenFrameDualOf
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 open scoped BigOperators
 open NumberField

@@ -28,6 +28,7 @@ public import Formalism.HermitianCurvature.HermitianCurvatureProofs.Bundle0257
 
 -- bundled from Formalism.HermitianCurvature.HermitianCurvatureProofs.CutEXPbSuppOrbit
 section
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open Matrix MeasureTheory Filter Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt
 
 noncomputable section

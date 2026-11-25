@@ -7,6 +7,7 @@ public import Development.WeilBound.ThetaLifts.SmallCones.IdeleTop
 
 @[expose] public section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
 open scoped TensorProduct NNReal Matrix SchwartzMap Classical

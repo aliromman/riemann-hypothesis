@@ -244,7 +244,7 @@ private theorem gtCoord_point_ext' {e : ℕ} {G : Over (Spec (CommRingCat.of R))
     exact (mul_eq_right.mp e1.symm).trans (mul_eq_right.mp e0.symm).symm
   have hc' : ∀ χ : D.X, τ.left.appTop.hom (charUnit _ D.X χ).val =
       (1 : Z ⟶ WeightPf.Te D I e).left.appTop.hom (charUnit _ D.X χ).val := fun χ =>
-    appTop_eq_of_gm _ _ _ (hc χ)
+    _root_.GlobalTheory.TorusCoord.appTop_eq_of_gm _ _ _ (hc χ)
   have hτ1 : τ = 1 := by
     ext1
     apply pullback.hom_ext
@@ -253,7 +253,7 @@ private theorem gtCoord_point_ext' {e : ℕ} {G : Over (Spec (CommRingCat.of R))
           ((1 : Z ⟶ WeightPf.Te D I e).left ≫ pullback.fst _ _).appTop.hom
             ((Scheme.ΓSpecIso (torusRing ZU D.X)).inv.hom (AddMonoidAlgebra.single χ 1)) := by
         intro χ
-        have hz := appTop_eq_of_gm (τ.left ≫ pullback.fst _ _) ((1 : Z ⟶ WeightPf.Te D I e).left ≫ pullback.fst _ _)
+        have hz := _root_.GlobalTheory.TorusCoord.appTop_eq_of_gm (τ.left ≫ pullback.fst _ _) ((1 : Z ⟶ WeightPf.Te D I e).left ≫ pullback.fst _ _)
           (Units.map (Scheme.ΓSpecIso (torusRing ZU D.X)).inv.hom.toMonoidHom
             (Units.map (AddMonoidAlgebra.of ZU D.X) (toUnits (Multiplicative.ofAdd χ)))) (fun z => by
             have h := hc χ z

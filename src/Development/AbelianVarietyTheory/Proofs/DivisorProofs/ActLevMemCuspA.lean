@@ -63,6 +63,7 @@ theorem actLev_integral (h : LawsM T) (hj : InR D j) (hL : ActLev (Xo := T.Q.Xo 
   rw [e1]
   exact h0
 
+attribute [local instance 2000] Submodule.module in
 def levRep (h : LawsM T) (hj : InR D j) (hL : ActLev (Xo := T.Q.Xo j) T.Q.c lev) (w : WeightFamilies.Wt D j) :
     G →* (T.cuspA j (wtA w) w.n →ₗ[T.Q.c.F] T.cuspA j (wtA w) w.n) where
   toFun g := (actLev (Xo := T.Q.Xo j) T.Q.c lev g).restrict fun _ hf => actLev_mem_cuspA h hj hL w g hf

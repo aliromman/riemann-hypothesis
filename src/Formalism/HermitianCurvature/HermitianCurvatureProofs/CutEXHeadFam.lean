@@ -8,6 +8,7 @@ public import Formalism.HermitianCurvature.HermitianCurvatureProofs.Block3MulBlo
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 noncomputable section
 
 open Matrix Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt

@@ -60,6 +60,7 @@ end
 
 -- bundled from Formalism.SharpRestriction.CuspSpanNormBounds.FrobeniusCoefficientMemLp.SigmaFiniteAmplitudes.RStabInv
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 open MeasureTheory Matrix
 
 noncomputable section

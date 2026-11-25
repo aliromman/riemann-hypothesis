@@ -103,6 +103,7 @@ end GlobalTheory.Unf
 
 end
 end
+end
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.LatticeFrames.LinkSimil
 section

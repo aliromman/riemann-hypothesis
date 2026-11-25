@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle031
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle0309
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 open scoped TensorProduct NNReal Matrix

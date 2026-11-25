@@ -22,6 +22,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0273
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FlagMeasures.DerivativesCoefficientsConvolutionFixedVector
 section
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S Formalism.REAL Formalism.QuantumDeterminants GlobalTheory.Count GlobalTheory.Dec
 open scoped InnerProductSpace ComplexOrder ContDiff Topology Pointwise
 

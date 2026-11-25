@@ -18,6 +18,8 @@ public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.Bundle0
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsMulEquiv
 section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 open NumberField IsDedekindDomain CategoryTheory GroundTheory.ProfCoh Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.GaloisCohomology
 
 noncomputable section

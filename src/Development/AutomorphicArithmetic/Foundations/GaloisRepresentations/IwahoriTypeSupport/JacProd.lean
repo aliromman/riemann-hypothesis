@@ -8,6 +8,7 @@ public import PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.Bun
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 open scoped Classical

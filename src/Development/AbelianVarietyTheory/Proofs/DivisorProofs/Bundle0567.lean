@@ -22,6 +22,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0551
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeCorrespondenceTorsionRelationProperties
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 open scoped UpperHalfPlane MatrixGroups Matrix ModularForm ComplexConjugate
 open NumberField GlobalTheory.QFam GlobalTheory.WpFam GlobalTheory.LatVal ReciprocityTheory.ChartRestriction.L1 Formalism.L2.Th1.F
 open GlobalTheory.CMVal GlobalTheory.HeckeGal

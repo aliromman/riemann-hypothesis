@@ -403,8 +403,10 @@ theorem periodFun_le (hL : LastMapNorm) {X : Fields} (hX : X.Ok) {Pr : Primes X}
   refine h.trans (mul_le_mul_of_nonneg_right (mul_le_mul_of_nonneg_right ?_ ?_) ?_)
   · rw [lastLog, Real.exp_add, mul_comm (-_ : ℝ), ← Real.rpow_def_of_pos hT, ← Int.cast_neg, Real.rpow_intCast]
     exact mul_le_mul_of_nonneg_left (Real.le_exp_log _) (by positivity)
-  · exact Finset.sum_nonneg fun c _ => mul_nonneg (by positivity) (sqAt_nonneg _ _ _)
-  · exact Finset.sum_nonneg fun c _ => mul_nonneg (by positivity) (sqAt_nonneg _ _ _)
+  · exact Finset.sum_nonneg fun c _ =>
+      mul_nonneg (by positivity) (GlobalTheory.LastPeriod.sqAt_nonneg _ _ _)
+  · exact Finset.sum_nonneg fun c _ =>
+      mul_nonneg (by positivity) (GlobalTheory.LastPeriod.sqAt_nonneg _ _ _)
 
 theorem period_le (hL : GlobalTheory.IndefiniteRowSideFullHecke.OrthogonalNormSquareSum.LastMapNorm) {X : Fields} (hX : X.Ok) {Pr : Primes X} (hPr : Pr.Ok) {R : Ranks}
     (W : Wts X Pr.Word R) (Ch : Chars X Pr R.m)

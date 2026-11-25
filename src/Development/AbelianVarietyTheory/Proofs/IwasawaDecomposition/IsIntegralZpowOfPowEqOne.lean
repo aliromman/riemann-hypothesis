@@ -23,6 +23,7 @@ public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.Bundle003
 public import Development.AbelianVarietyTheory.Proofs.ModuliProofs.Bundle0140
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 set_option autoImplicit false
 

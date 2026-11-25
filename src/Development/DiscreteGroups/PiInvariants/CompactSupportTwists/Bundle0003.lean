@@ -80,6 +80,7 @@ end
 
 -- bundled from Development.DiscreteGroups.PiInvariants.CompactSupportTwists.DomOneMeasure
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 noncomputable section
 
@@ -123,6 +124,10 @@ theorem domOne : DomOne := by
   have := GlobalTheory.CompanionTheory.PairDom.isMulRightInvariant_GA E 0 μ₂
   have : SigmaFinite μ₁ := sigmaFinite_of_locallyFinite
   have : SigmaFinite μ₂ := sigmaFinite_of_locallyFinite
+  haveI : SigmaCompactSpace (GA E n) := sigmaCompactSpace_of_locallyCompact_secondCountable
+  haveI : SigmaCompactSpace (GA E 0) := sigmaCompactSpace_of_locallyCompact_secondCountable
+  haveI : SFinite μ₁ := MeasureTheory.instSFiniteOfSigmaFinite
+  haveI : SFinite μ₂ := MeasureTheory.instSFiniteOfSigmaFinite
   obtain ⟨μ, hh, hf, hi, hc⟩ := domOne_measure μ₁ μ₂ (ratH E n 0) (F₁ ×ˢ F₂)
     (GlobalTheory.CompanionTheory.PairDom.isFundamentalDomain_range_prodMap μ₁ μ₂ (ratGL E n) (ratGL E 0) F₁ F₂ h₁ h₂) (borelH E n 0)
     Prod.borelSpace.measurable_eq
@@ -228,6 +233,7 @@ end
 
 -- bundled from Development.DiscreteGroups.PiInvariants.CompactSupportTwists.NoPiHk
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open NumberField IsDedekindDomain Matrix MeasureTheory
@@ -265,6 +271,7 @@ end
 
 -- bundled from Development.DiscreteGroups.PiInvariants.CompactSupportTwists.TwtrContOfMem
 section
+attribute [-instance] GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 noncomputable section
 
 open NumberField IsDedekindDomain Matrix MeasureTheory

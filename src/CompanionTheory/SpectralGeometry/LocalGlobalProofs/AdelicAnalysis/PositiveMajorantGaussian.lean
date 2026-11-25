@@ -5,6 +5,7 @@ public import CompanionTheory.AutomorphicTheory.ThetaDilations.BoundedA
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain MeasureTheory Matrix
 open scoped ENNReal NNReal
 

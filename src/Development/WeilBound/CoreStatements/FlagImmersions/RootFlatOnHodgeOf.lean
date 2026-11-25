@@ -18,6 +18,7 @@ public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.NumberF
 public import Development.AutomorphicSpectrum.Definitions.MetricPeriods.Bundle0002
 
 @[expose] public section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 noncomputable section
 

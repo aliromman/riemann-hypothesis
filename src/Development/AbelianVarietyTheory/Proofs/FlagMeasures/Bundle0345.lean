@@ -76,7 +76,7 @@ theorem lsub_eq {F : LFlag (D.sp.Y 0) D.R.rS T} {M : LV D} {A h : GV D} (hA : A 
   · rintro ⟨hy, hy'⟩
     obtain ⟨l, hl, ξ, hξ, e⟩ := Submodule.mem_sup.1 hy
     have hy2 : y ∈ orth (VS D) (Xsp F) := by
-      have := mem_of_map_eq (adapt_orth hh) hy'
+      have := _root_.GlobalTheory.StabCnt.mem_of_map_eq (adapt_orth hh) hy'
       rwa [LinearEquiv.apply_symm_apply] at this
     refine ⟨?_, hy2⟩
     have e2 : y = A l + ((h l - A l) + h ξ) := by
@@ -84,7 +84,7 @@ theorem lsub_eq {F : LFlag (D.sp.Y 0) D.R.rS T} {M : LV D} {A h : GV D} (hA : A 
       rw [this, map_add (f := _)]; abel
     rw [e2]
     exact Submodule.add_mem_sup ((aut_lrep hA l).2 hl)
-      (show _ ∈ Xsp F from add_mem (hc l hl.2) (mem_of_map_eq (adapt_xsp hh) hξ))
+      (show _ ∈ Xsp F from add_mem (hc l hl.2) (_root_.GlobalTheory.StabCnt.mem_of_map_eq (adapt_xsp hh) hξ))
   · rintro ⟨hy, hy'⟩
     obtain ⟨l, hl, ξ, hξ, e⟩ := Submodule.mem_sup.1 hy
     refine ⟨?_, symm_mem_of_map_eq (adapt_orth hh) hy'⟩
@@ -229,6 +229,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FlagMeasures.PairIsometryUniqueOnOrthModIsotropic
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField Module Matrix Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.Cnt GlobalTheory.LoopC
 open scoped ENNReal Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

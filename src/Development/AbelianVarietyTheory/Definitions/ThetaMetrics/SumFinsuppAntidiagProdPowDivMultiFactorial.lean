@@ -255,6 +255,24 @@ theorem card_support_le_choose {R : Type*} [CommSemiring R] {P : MvPolynomial σ
   exact card_monomialsLE σ d ▸ card_le_card (support_subset_monomialsLE.mpr h)
 
 
+/-- Homogeneity restricts the support to exact degree `d`, including the case of no variables. -/
+theorem support_subset_finsuppAntidiag_of_isHomogeneous {R : Type*} [CommSemiring R]
+    {P : MvPolynomial σ R} {d : ℕ} (h : P.IsHomogeneous d) :
+    P.support ⊆ (univ : Finset σ).finsuppAntidiag d := by
+  classical
+  intro α hα
+  refine mem_finsuppAntidiag'.mpr ⟨?_, subset_univ _⟩
+  simpa [Finsupp.weight_apply] using h (mem_support_iff.mp hα)
+
+omit [DecidableEq σ] in
+theorem card_support_le_multichoose_of_isHomogeneous {R : Type*} [CommSemiring R]
+    {P : MvPolynomial σ R} {d : ℕ} (h : P.IsHomogeneous d) :
+    #P.support ≤ (Fintype.card σ).multichoose d := by
+  classical
+  simpa only [card_finsuppAntidiag_nat_eq_multichoose, card_univ] using
+    card_le_card (support_subset_finsuppAntidiag_of_isHomogeneous h)
+
+
 omit [DecidableEq σ] in
 theorem ncard_setOf_degree_le (d : ℕ) :
     {α : σ →₀ ℕ | α.degree ≤ d}.ncard = (Fintype.card σ + d).choose d := by
@@ -316,6 +334,14 @@ theorem l1Norm_le_sqrt_choose_mul_l2Norm [Fintype σ] {P : MvPolynomial σ K} {d
     (h : P.totalDegree ≤ d) : l1Norm P ≤ √((Fintype.card σ + d).choose d) * l2Norm P :=
   (l1Norm_le_sqrt_card_mul_l2Norm P).trans <| mul_le_mul_of_nonneg_right
     (Real.sqrt_le_sqrt (by exact_mod_cast card_support_le_choose h)) (l2Norm_nonneg P)
+
+/-- Exact-degree monomial counting sharpens the L1/L2 bound for homogeneous polynomials. -/
+theorem l1Norm_le_sqrt_multichoose_mul_l2Norm_of_isHomogeneous [Fintype σ]
+    {P : MvPolynomial σ K} {d : ℕ} (h : P.IsHomogeneous d) :
+    l1Norm P ≤ √((Fintype.card σ).multichoose d) * l2Norm P :=
+  (l1Norm_le_sqrt_card_mul_l2Norm P).trans <| mul_le_mul_of_nonneg_right
+    (Real.sqrt_le_sqrt (by exact_mod_cast card_support_le_multichoose_of_isHomogeneous h))
+    (l2Norm_nonneg P)
 
 theorem supCoeff_nonneg (P : MvPolynomial σ K) : 0 ≤ supCoeff P := NNReal.coe_nonneg _
 
@@ -381,6 +407,27 @@ theorem l2Norm_sq_le_fockNormSq (P : MvPolynomial σ K) : l2Norm P ^ 2 ≤ fockN
   rw [fubiniStudy_l2Norm_sq_eq]
   exact sum_le_sum fun α _ ↦ le_mul_of_one_le_left (sq_nonneg _)
     (by exact_mod_cast multiFactorial_pos α)
+
+theorem l1Norm_sq_le_choose_mul_fockNormSq [Fintype σ] {P : MvPolynomial σ K} {d : ℕ}
+    (h : P.totalDegree ≤ d) : l1Norm P ^ 2 ≤ ((Fintype.card σ + d).choose d : ℝ) * fockNormSq P := by
+  calc
+    l1Norm P ^ 2 ≤ (√((Fintype.card σ + d).choose d) * l2Norm P) ^ 2 :=
+      pow_le_pow_left₀ (l1Norm_nonneg P) (l1Norm_le_sqrt_choose_mul_l2Norm h) 2
+    _ = ((Fintype.card σ + d).choose d : ℝ) * l2Norm P ^ 2 := by
+      rw [mul_pow, Real.sq_sqrt (Nat.cast_nonneg _)]
+    _ ≤ _ := mul_le_mul_of_nonneg_left (l2Norm_sq_le_fockNormSq P) (Nat.cast_nonneg _)
+
+/-- The homogeneous Fock estimate counts only monomials of degree `d`. -/
+theorem l1Norm_sq_le_multichoose_mul_fockNormSq_of_isHomogeneous [Fintype σ]
+    {P : MvPolynomial σ K} {d : ℕ} (h : P.IsHomogeneous d) :
+    l1Norm P ^ 2 ≤ ((Fintype.card σ).multichoose d : ℝ) * fockNormSq P := by
+  calc
+    l1Norm P ^ 2 ≤ (√((Fintype.card σ).multichoose d) * l2Norm P) ^ 2 :=
+      pow_le_pow_left₀ (l1Norm_nonneg P)
+        (l1Norm_le_sqrt_multichoose_mul_l2Norm_of_isHomogeneous h) 2
+    _ = ((Fintype.card σ).multichoose d : ℝ) * l2Norm P ^ 2 := by
+      rw [mul_pow, Real.sq_sqrt (Nat.cast_nonneg _)]
+    _ ≤ _ := mul_le_mul_of_nonneg_left (l2Norm_sq_le_fockNormSq P) (Nat.cast_nonneg _)
 
 @[simp] theorem fockNormSq_eq_zero {P : MvPolynomial σ K} : fockNormSq P = 0 ↔ P = 0 := by
   refine ⟨fun h ↦ l2Norm_eq_zero.mp ?_, fun h ↦ h ▸ fockNormSq_zero⟩

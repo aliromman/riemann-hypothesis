@@ -5,10 +5,8 @@ public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentation
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0737
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0485
 
-@[expose] public section
-
 -- bundled from Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.GeometricFlagBases.PFlagEx
-section
+@[expose] public section
 open CategoryTheory Limits AlgebraicGeometry NumberField GlobalTheory.EtC GlobalTheory.Et TensorProduct Polynomial
 open GlobalTheory.GalV (HTower Htot hop galV galTot)
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -79,7 +77,7 @@ theorem UpperTheory.Gal.Int.Geo.flagEx_of :
 end
 
 -- bundled from Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.GeometricFlagBases.PFlagMove
-section
+@[expose] public section
 open CategoryTheory Limits AlgebraicGeometry NumberField GlobalTheory.EtC GlobalTheory.Et TensorProduct Polynomial
 open GlobalTheory.GalV (HTower Htot hop galV galTot)
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -138,7 +136,7 @@ theorem UpperTheory.Gal.Int.Geo.flagMove_of :
 end
 
 -- bundled from Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.GeometricFlagBases.PGrHom
-section
+@[expose] public section
 open CategoryTheory Limits AlgebraicGeometry NumberField GlobalTheory.EtC GlobalTheory.Et TensorProduct Polynomial
 open GlobalTheory.GalV (HTower Htot hop galV galTot)
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -436,9 +434,10 @@ theorem UpperTheory.Gal.Int.Geo.htDesc_of :
   exact ⟨L.unop.1, L.unop.2, z, hz⟩
 end
 end
+end
 
 -- bundled from Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.GeometricFlagBases.PHtotFin
-section
+@[expose] public section
 open CategoryTheory Limits AlgebraicGeometry NumberField GlobalTheory.EtC GlobalTheory.Et TensorProduct Polynomial
 open GlobalTheory.GalV (HTower Htot hop galV galTot)
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor

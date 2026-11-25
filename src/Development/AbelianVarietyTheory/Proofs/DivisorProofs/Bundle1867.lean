@@ -36,6 +36,7 @@ public import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.ExistsSe
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.DualWeylLatticeBaseChangeSpanProof
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain Formalism.L2.DIV Formalism.BasicNotions MvPolynomial
 open scoped Matrix
 

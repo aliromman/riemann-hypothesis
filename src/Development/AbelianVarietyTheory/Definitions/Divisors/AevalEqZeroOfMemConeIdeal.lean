@@ -7,6 +7,7 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.IrreducibleO
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0889
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 set_option autoImplicit false
 

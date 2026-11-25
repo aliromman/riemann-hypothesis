@@ -11,6 +11,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.CyclicDiscrim
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Bundle0200
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open NumberField Matrix GlobalTheory.Mass Formalism.HermitianLatticesTheory Formalism.BasicNotions Formalism.MainNotions.S
 open scoped ENNReal Classical nonZeroDivisors

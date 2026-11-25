@@ -24,6 +24,7 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.Bundle0096
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
 attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 
 noncomputable section
@@ -39,7 +40,7 @@ theorem gram_eq {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Sp Ω ⟶ X} {K : 
     (h : LieMetric M y) {L : Type} [Field L] [NumberField L] {z : Sp (𝓞 L) ⟶ X} {B : HermitianBundle.{0} L}
     {MB : LieModel G z B.carrier} (hfib : IsFibre (fun z v w c => c = h.ip z v w) z B MB) (σ : L →+* ℂ) {n : ℕ}
     (g : Fin n → B.carrier) (v : Fin n → (epsAt (spMap (σ.comp (algebraMap (𝓞 L) L)) ≫ z) ⟶ G))
-    (hl : ∀ a, ((v a).left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (GlobalTheory.CompanionTheory.Ar.dualMap (σ.comp (algebraMap (𝓞 L) L))) ≫ (MB.pt (g a)).left)) :
+    (hl : ∀ a, ((v a).left ≫ (𝟙 G.left) = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (σ.comp (algebraMap (𝓞 L) L))) ≫ (MB.pt (g a)).left)) :
     B.gramDet σ g = (gramAt h _ v).det := by
   unfold HermitianBundle.gramDet gramAt
   congr 1

@@ -12,6 +12,7 @@ public import Development.WeilBound.RepresentationTheoryGL.TwistedFactors.Galois
 
 -- bundled from Development.AutomorphicArithmetic.Foundations.Convolution.NormCharacterPowers.CoverEx
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open UpperTheory.ConvolutionTheory.R
 open NumberField IsDedekindDomain Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspRep UpperTheory.V.Published PositivityTheory.RgJS
 

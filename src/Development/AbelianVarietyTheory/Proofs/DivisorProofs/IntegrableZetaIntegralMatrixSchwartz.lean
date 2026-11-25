@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegrableDe
 
 @[expose] public section
 
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix
 open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.SplitFlip GlobalTheory.KSplit
 
 noncomputable section

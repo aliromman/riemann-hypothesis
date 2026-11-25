@@ -7,6 +7,7 @@ public import Development.WeilBound.ThetaLifts.CartanFactorisation.CartanConj
 
 @[expose] public section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
 namespace GlobalTheory.ThK.Dbl

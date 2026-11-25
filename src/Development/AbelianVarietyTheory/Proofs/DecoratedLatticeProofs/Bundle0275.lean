@@ -70,6 +70,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LatticeVacuumHeckeIdentitySplitPlaceChartsStatement
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum
 open scoped TensorProduct InnerProductSpace ComplexConjugate
@@ -132,6 +133,7 @@ theorem lintegral_besGrp_eq : ∀ (D : D7) (X : Formalism.L2.SG.HidaSetting.Hida
   intro D X h u ψ A B μSf hSf hσf hS
   haveI := hSf
   haveI := hσf
+  haveI : SFinite μSf := @MeasureTheory.instSFiniteOfSigmaFinite _ _ μSf hσf
   have hR := Formalism.L2.SG.Pf.foldReady_holds X.B.I
   haveI : BorelSpace X.B.I.GA := hR.2.2.2.1
   haveI : SecondCountableTopology X.B.I.GA := hR.2.1

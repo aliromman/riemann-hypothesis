@@ -176,6 +176,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Definitions.LatticeFrames.XiEqXiOffMul
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 set_option genSizeOfSpec false
 set_option genInjectivity false
 

@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.IsTe
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open GlobalTheory.JR Matrix MeasureTheory Filter Topology
 
 namespace GlobalTheory.JR.TorusCutOff

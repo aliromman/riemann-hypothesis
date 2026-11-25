@@ -278,6 +278,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.TwistedOperators.LocalLatticeEqIffIdempotentComponentsOver
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open Formalism.BasicNotions Formalism.BasicNotions.TH NumberField IsDedekindDomain Matrix
 open Formalism.L2.DIV (Pl)
 open Formalism.IndefR.Lev (EAf)

@@ -20,6 +20,7 @@ public import CompanionTheory.AutomorphicTheory.ThetaDilations.HfSubSmul
 
 -- bundled from CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.LocalDensityBlockOneSum
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 namespace GlobalTheory.CompanionTheory.SW.PiLocalization₂
 
 open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology

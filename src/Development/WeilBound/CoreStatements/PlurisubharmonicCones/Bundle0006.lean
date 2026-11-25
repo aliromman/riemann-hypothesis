@@ -20,6 +20,7 @@ public import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.Bundle0047
 
 -- bundled from Development.WeilBound.CoreStatements.PlurisubharmonicCones.CuspsLocallyFiniteFamily
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modO Formalism.BasicNotions.LocLat.towO Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun Formalism.BasicNotions.LocLat.modT
 open NumberField Matrix Filter Topology GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Cusp GroundTheory.Heights₂.Heights.LowerBoundFree GroundTheory.Heights₂.Heights.Regular
 
 namespace LevelTowerAlt.LocFin

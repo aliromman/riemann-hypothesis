@@ -281,7 +281,7 @@ theorem GlobalTheory.MiTop.exists_linear_isometry_colForm_rTrans_of_pin : ∀ {D
   rw [hmv]
   have h4 : d.B.toH (g * d.a⁻¹) * (1, δ) = d.B.toH g :=
     (congrArg (fun y => d.B.toH (g * d.a⁻¹) * y) hta.symm).trans
-      ((toH_mul d.B _ _).symm.trans (congrArg d.B.toH (inv_mul_cancel_right g d.a)))
+      ((_root_.GlobalTheory.Core.Mi.CenAct.toH_mul d.B _ _).symm.trans (congrArg d.B.toH (inv_mul_cancel_right g d.a)))
   exact (congrArg ((col φ).1 ξ) h4).symm
 end
 end

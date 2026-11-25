@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.
 
 -- bundled from Development.WeilBound.ThetaLifts.TowerModels.ExistsHaarOfIsCompact
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 noncomputable section
 namespace PositivityTheory.ThKG.Tow.Stab
 open scoped TensorProduct Matrix

@@ -22,6 +22,7 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle023
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle0255
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open NumberField Classical Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 GlobalTheory.NormSum GlobalTheory.RatEqui GlobalTheory.InertParity
 open scoped BigOperators Pointwise

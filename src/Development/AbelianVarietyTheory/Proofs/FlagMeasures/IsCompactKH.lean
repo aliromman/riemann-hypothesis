@@ -9,6 +9,7 @@ public import Development.AbelianVarietyTheory.Proofs.CovolumeBounds.IntegralCon
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 open MeasureTheory Matrix Filter Topology
 
 noncomputable section

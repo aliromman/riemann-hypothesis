@@ -102,6 +102,7 @@ end
 
 -- bundled from Formalism.AdmissibleDesigns.RealDisplayAllK
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
 
 open Finset Classical

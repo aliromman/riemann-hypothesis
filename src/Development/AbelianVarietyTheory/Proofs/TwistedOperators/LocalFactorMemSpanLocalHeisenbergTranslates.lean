@@ -22,6 +22,7 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle023
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0845
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

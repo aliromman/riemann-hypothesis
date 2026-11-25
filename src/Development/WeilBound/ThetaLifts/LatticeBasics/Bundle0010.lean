@@ -103,6 +103,7 @@ end
 
 -- bundled from Development.WeilBound.ThetaLifts.LatticeBasics.EulerProd
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 noncomputable section
 
 namespace GlobalTheory.ThK.Dbl.Euler
@@ -426,6 +427,7 @@ end
 
 -- bundled from Development.WeilBound.ThetaLifts.LatticeBasics.HypothesesS
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 noncomputable section
 
 namespace GlobalTheory.ThK.Dbl

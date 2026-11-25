@@ -10,6 +10,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.StandardBaseF
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField Module
 
 noncomputable section

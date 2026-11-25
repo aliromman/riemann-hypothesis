@@ -16,6 +16,7 @@ public import Formalism.LocalToGlobal.Columns.Bundle0012
 public import Formalism.LocalToGlobal.Columns.AtTLemmas
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.HermitianLatticesTheory Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Col Formalism.L2.Ker GlobalTheory.KerT
 open scoped Matrix

@@ -8,6 +8,7 @@ public import Formalism.LocalToGlobal.IndefiniteReal.Bundle0031
 public import Lean
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

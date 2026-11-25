@@ -17,6 +17,7 @@ public import Formalism.HermitianCurvature.HermitianCurvatureProofs.Bundle0037
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 noncomputable section
 
 namespace Formalism.MainNotions.BigCellDensity

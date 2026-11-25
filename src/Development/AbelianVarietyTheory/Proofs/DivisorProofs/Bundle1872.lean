@@ -42,6 +42,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1234
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPolarizationFormIsotropicFiltration
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 set_option autoImplicit false
 noncomputable section
 open Module

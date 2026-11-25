@@ -9,6 +9,7 @@ public import ReciprocityTheory.ReductiveGroups.DiscreteSeries.HighestWeights.Bu
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 noncomputable section
 
 open MeasureTheory

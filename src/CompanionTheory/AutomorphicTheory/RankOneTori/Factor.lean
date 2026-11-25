@@ -4,6 +4,7 @@ public import CompanionTheory.AutomorphicTheory.RankOneTori.MatGroupOf
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.MainNotions.S Formalism.MainNotions.S.Pv.AmpDDPf Formalism.FourierDecayAlt
 open scoped ENNReal InnerProductSpace
 

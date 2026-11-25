@@ -36,6 +36,7 @@ public import Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.Bundle004
 public import Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.ChosenFormsRestrictBasisFunctionField
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 set_option synthInstance.maxHeartbeats 400000
 set_option maxHeartbeats 4000000

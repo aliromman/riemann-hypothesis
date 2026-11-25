@@ -8,7 +8,10 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Bundle06
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Bundle0694
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix
 
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology Filter PositivityTheory.Rg.Base1 GroundTheory.Global GlobalTheory.CompanionTheory.SW.RankOneSiegelWeil
 open scoped TensorProduct ENNReal NNReal Matrix Classical

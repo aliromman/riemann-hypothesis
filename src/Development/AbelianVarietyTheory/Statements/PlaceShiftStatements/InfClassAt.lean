@@ -4,6 +4,7 @@ public import Mathlib
 public import Development.AbelianVarietyTheory.Statements.HeckeThetaIntegrals.FormulaAt
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

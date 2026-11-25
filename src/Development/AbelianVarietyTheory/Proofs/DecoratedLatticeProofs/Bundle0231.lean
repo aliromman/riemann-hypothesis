@@ -27,6 +27,7 @@ public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.Ade
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsCommonLevelSobolevBoundWeilCompact
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 open scoped ComplexConjugate Matrix NNReal ENNReal TensorProduct Classical
 open MeasureTheory NumberField IsDedekindDomain Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum
 open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.Eis GlobalTheory.MixModel GlobalTheory.RegSW GlobalTheory.RegSch
@@ -118,12 +119,12 @@ theorem word_om_le {ψ : AddChar (AF D.host.F) ℂ} {θ : InfFam D} {S T : HSp D
     {μ : Measure (WO S T)} {𝓕 : Set (WO S T)} (hμ : IsCovolOne (ratL T S) μ 𝓕) {K : Set (GA D S × GA D T)}
     (B : ℝ≥0) (hB : ∀ x ∈ K, dirSize θ S T x ≤ B) (k : ℕ) :
     ∃ C : ℝ≥0, ∀ l : List (D.what₂.Tau × Fin T.rank × Fin S.rank × Bool), l.length = k → ∀ x ∈ K,
-      ∀ g, IsThetaFunO ψ S T g → l2O μ 𝓕 (wordAct (heisDer ψ θ) l (om x g)) ≤ C * sobO ψ θ μ 𝓕 k g := by
+      ∀ g, IsThetaFunO ψ S T g → l2O μ 𝓕 (wordAct (heisDer ψ θ) l (om x g)) ≤ C * _root_.GlobalTheory.Size.sobO ψ θ μ 𝓕 k g := by
   induction k with
   | zero =>
     refine ⟨1, fun l hl x _ g hg => ?_⟩
     obtain rfl : l = [] := List.eq_nil_of_length_eq_zero hl
-    rw [wordAct_nil, l2O_om_apply_eq_of_isThetaFunO hom hμ.1 hμ.2.1 hg, sobO_zero, ENNReal.coe_one, one_mul]
+    rw [wordAct_nil, l2O_om_apply_eq_of_isThetaFunO hom hμ.1 hμ.2.1 hg, _root_.GlobalTheory.Size.sobO_zero, ENNReal.coe_one, one_mul]
   | succ k ih =>
     obtain ⟨C, hC⟩ := ih
     refine ⟨C * B, fun l hl x hx g hg => ?_⟩
@@ -151,18 +152,18 @@ theorem word_om_le {ψ : AddChar (AF D.host.F) ℂ} {θ : InfFam D} {S T : HSp D
          |((compAt θ a.1 (Formalism.L2.Theta.mt T h1⁻¹) * Matrix.single a.2.1 a.2.2.1 (if a.2.2.2 then Complex.I else 1) *
           compAt θ a.1 (Formalism.L2.Theta.mt S g1)) i j).im|))
         (fun b _ => by positivity) (Finset.mem_univ a)
-    calc _ ≤ (C : ℝ≥0∞) * sobO ψ θ μ 𝓕 k _ := hC _ (by simp [hl]) _ hx _ hg'
-      _ ≤ C * (ENNReal.ofReal _ * sobO ψ θ μ 𝓕 (k + 1) g) := by
+    calc _ ≤ (C : ℝ≥0∞) * _root_.GlobalTheory.Size.sobO ψ θ μ 𝓕 k _ := hC _ (by simp [hl]) _ hx _ hg'
+      _ ≤ C * (ENNReal.ofReal _ * _root_.GlobalTheory.Size.sobO ψ θ μ 𝓕 (k + 1) g) := by
           gcongr
-          exact sobO_dRho_le hom.std hθ hg a.1 _ k
-      _ ≤ C * (B * sobO ψ θ μ 𝓕 (k + 1) g) := by gcongr
-      _ = ((C * B : ℝ≥0) : ℝ≥0∞) * sobO ψ θ μ 𝓕 (k + 1) g := by push_cast; ring
+          exact _root_.GlobalTheory.Size.sobO_dRho_le hom.std hθ hg a.1 _ k
+      _ ≤ C * (B * _root_.GlobalTheory.Size.sobO ψ θ μ 𝓕 (k + 1) g) := by gcongr
+      _ = ((C * B : ℝ≥0) : ℝ≥0∞) * _root_.GlobalTheory.Size.sobO ψ θ μ 𝓕 (k + 1) g := by push_cast; ring
 
 end GlobalTheory.ThetaDens.WeilCompact
 
 
 open GlobalTheory.ThetaDens.WeilCompact GlobalTheory.Size in
-theorem GlobalTheory.ThetaDens.om_compact_sobCont : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (χS χT : (AE D)ˣ →* Circle) (om : GA D S × GA D T →* Module.End ℂ (WO S T → ℂ)), IsWeilDatumO ψ S T χS χT om → ∀ θ : InfFam D, IsInfFam θ → ∀ (μ : Measure (WO S T)) (𝓕 : Set (WO S T)), IsCovolOne (ratL T S) μ 𝓕 → ∀ K : Set (GA D S × GA D T), IsCompact K → ∀ U : AddSubgroup (WO S T), IsOpen (U : Set (WO S T)) → ∃ U' : AddSubgroup (WO S T), IsOpen (U' : Set (WO S T)) ∧ (∀ f ∈ GlobalTheory.Size.thetaLevel ψ S T U, ∀ x ∈ K, om x f ∈ GlobalTheory.Size.thetaLevel ψ S T U') ∧ ∀ d : ℕ, ∃ (d' : ℕ) (C : ℝ≥0), ∀ f ∈ GlobalTheory.Size.thetaLevel ψ S T U, ∀ x ∈ K, sobO ψ θ μ 𝓕 d (om x f) ≤ C * sobO ψ θ μ 𝓕 d' f := by
+theorem GlobalTheory.ThetaDens.om_compact_sobCont : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S T : HSp D) (χS χT : (AE D)ˣ →* Circle) (om : GA D S × GA D T →* Module.End ℂ (WO S T → ℂ)), IsWeilDatumO ψ S T χS χT om → ∀ θ : InfFam D, IsInfFam θ → ∀ (μ : Measure (WO S T)) (𝓕 : Set (WO S T)), IsCovolOne (ratL T S) μ 𝓕 → ∀ K : Set (GA D S × GA D T), IsCompact K → ∀ U : AddSubgroup (WO S T), IsOpen (U : Set (WO S T)) → ∃ U' : AddSubgroup (WO S T), IsOpen (U' : Set (WO S T)) ∧ (∀ f ∈ _root_.GlobalTheory.Size.thetaLevel ψ S T U, ∀ x ∈ K, om x f ∈ _root_.GlobalTheory.Size.thetaLevel ψ S T U') ∧ ∀ d : ℕ, ∃ (d' : ℕ) (C : ℝ≥0), ∀ f ∈ _root_.GlobalTheory.Size.thetaLevel ψ S T U, ∀ x ∈ K, _root_.GlobalTheory.Size.sobO ψ θ μ 𝓕 d (om x f) ≤ C * _root_.GlobalTheory.Size.sobO ψ θ μ 𝓕 d' f := by
   intro D ψ S T χS χT om hom θ hθ μ 𝓕 hμ K hK U hU
   let U' : AddSubgroup (WO S T) :=
     { carrier := {u | ∀ x ∈ K, Formalism.IndefR.Datum.actO S T x.1⁻¹ x.2⁻¹ u ∈ U}
@@ -210,10 +211,10 @@ theorem GlobalTheory.ThetaDens.om_compact_sobCont : ∀ (D : D7) (ψ : AddChar (
     refine Finset.sum_le_sum fun k hk => ?_
     rw [ENNReal.ofNNReal_finsetSum, Finset.sum_mul]
     refine Finset.sum_le_sum fun a _ => ?_
-    calc _ ≤ (C k : ℝ≥0∞) * sobO ψ θ μ 𝓕 k f := hC k _ (List.length_ofFn) x hx f hf.1
-      _ ≤ C k * sobO ψ θ μ 𝓕 d f := by
+    calc _ ≤ (C k : ℝ≥0∞) * _root_.GlobalTheory.Size.sobO ψ θ μ 𝓕 k f := hC k _ (List.length_ofFn) x hx f hf.1
+      _ ≤ C k * _root_.GlobalTheory.Size.sobO ψ θ μ 𝓕 d f := by
           gcongr
-          exact sobO_mono (Nat.lt_succ_iff.1 (Finset.mem_range.1 hk))
+          exact _root_.GlobalTheory.Size.sobO_mono (Nat.lt_succ_iff.1 (Finset.mem_range.1 hk))
 
 end
 end

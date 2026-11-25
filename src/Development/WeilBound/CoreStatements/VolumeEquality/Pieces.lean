@@ -24,6 +24,7 @@ public import GroundTheory.HeightsAndTheta.Heights.CountingLowerBound.Assembly
 public import Development.AutomorphicSpectrum.Proofs.MetricProofs.Bundle0136
 
 @[expose] public section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 noncomputable section
 

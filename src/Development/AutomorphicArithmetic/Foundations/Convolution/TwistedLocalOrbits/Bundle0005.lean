@@ -18,6 +18,7 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.TwistedL
 
 -- bundled from Development.AutomorphicArithmetic.Foundations.Convolution.TwistedLocalOrbits.NearUp
 section
+attribute [-instance] GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 open MeasureTheory ValuativeRel GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.IndefiniteRowSideFullHecke.IwahoriDoubleCosets PositivityTheory.Rg.Tf.Loc UpperTheory.ConvolutionTheory.Loc
 
 namespace UpperTheory.ConvolutionTheory.Loc.NearIdentityAscent
@@ -211,6 +212,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.Foundations.Convolution.TwistedLocalOrbits.PlaceDown
 section
+attribute [-instance] GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 open MeasureTheory NumberField IsDedekindDomain ValuativeRel GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.IndefiniteRowSideFullHecke.IwahoriDoubleCosets PositivityTheory.Rg.Tf.Loc UpperTheory.ConvolutionTheory.Loc GroundTheory.Global GroundTheory.Global.SemiLocal
 open PositivityTheory.Rg.Tf.Geo (mapGL incFin galFin)
 

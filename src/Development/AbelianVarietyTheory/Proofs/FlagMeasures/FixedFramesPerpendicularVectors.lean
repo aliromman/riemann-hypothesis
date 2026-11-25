@@ -7,6 +7,7 @@ public import Formalism.FlagUnipotentLattices.Bundle0004
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0008
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open NumberField Module Matrix Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.Cnt GlobalTheory.LoopC
 open scoped ENNReal Classical

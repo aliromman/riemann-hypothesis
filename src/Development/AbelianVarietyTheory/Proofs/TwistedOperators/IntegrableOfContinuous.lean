@@ -9,6 +9,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothVector
 
 @[expose] public section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
 open Formalism.MainNotions.S Formalism.L2.Theta Formalism.QuantumDeterminants Matrix GlobalTheory.SmVec GlobalTheory.SmVec.WordCont MeasureTheory Filter Asymptotics

@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1558
 
 @[expose] public section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 set_option linter.unusedSectionVars false
 
 noncomputable section

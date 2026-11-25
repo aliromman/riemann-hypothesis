@@ -9,6 +9,7 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsBas
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Bundle0368
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

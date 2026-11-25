@@ -205,7 +205,7 @@ theorem exists_quot_at {O K : Type} [CommRing O] [IsDedekindDomain O] [Field K] 
     (i : splitTorus (Sp K) X ⟶ GK) [IsMonHom i] [Mono i]
     (MT : LieModel (splitTorus (Sp K) X) (𝟙 _) (X →+ K)) (hMT : IsCocharLie MT)
     {E : Type} [AddCommGroup E] [Module O E] (M : LieModel G (𝟙 _) E) (e : E) (δ : X →+ O)
-    (he : ((MT.pt ((algebraMap O K).toAddMonoidHom.comp δ) ≫ i).left ≫ φ = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap O K)) ≫ (M.pt e).left))
+    (he : ((MT.pt ((algebraMap O K).toAddMonoidHom.comp δ) ≫ i).left ≫ φ = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap O K)) ≫ (M.pt e).left))
     (a : O) (ha : a ≠ 0) (y : E) (hy : a • y = e) (P : Ideal O) (hPm : P.IsMaximal) (χ : X) :
     ∃ s n : O, s ∉ P ∧ a * n = s * δ χ := by
   have hP : P ≠ ⊥ := Ring.ne_bot_of_isMaximal_of_not_isField hPm hO
@@ -235,7 +235,7 @@ theorem exists_quot_at {O K : Type} [CommRing O] [IsDedekindDomain O] [Field K] 
   refine ⟨s, n, s.2, hinj ?_⟩
   rw [map_mul, map_mul, ← hs, ← _root_.mul_assoc, hδT χ, mul_comm]
 
-theorem saturated : ∀ (O K : Type) [CommRing O] [IsDedekindDomain O] [Field K] [Algebra O K] [IsFractionRing O K] (G : Over (Sp O)) [GrpObj G] (GK : Over (Sp K)) [GrpObj GK] (φ : GK.left ⟶ G.left), IsSemiAbelian G → IsGrpPullback GK G (spMap (algebraMap O K)) φ → ∀ (X : Type) [AddCommGroup X] [Module.Free ℤ X] [Module.Finite ℤ X] (i : splitTorus (Sp K) X ⟶ GK) [IsMonHom i] [Mono i] (MT : LieModel (splitTorus (Sp K) X) (𝟙 _) (X →+ K)), IsCocharLie MT → ∀ (E : Type) [AddCommGroup E] [Module O E] (M : LieModel G (𝟙 _) E), ∃ io : (X →+ O) →ₗ[O] E, (∀ δ, ((MT.pt ((algebraMap O K).toAddMonoidHom.comp δ) ≫ i).left ≫ φ = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap O K)) ≫ (M.pt (io δ)).left)) ∧ Function.Injective io ∧ ∀ (a : O) (y : E), a ≠ 0 → a • y ∈ LinearMap.range io → y ∈ LinearMap.range io := by
+theorem saturated : ∀ (O K : Type) [CommRing O] [IsDedekindDomain O] [Field K] [Algebra O K] [IsFractionRing O K] (G : Over (Sp O)) [GrpObj G] (GK : Over (Sp K)) [GrpObj GK] (φ : GK.left ⟶ G.left), IsSemiAbelian G → IsGrpPullback GK G (spMap (algebraMap O K)) φ → ∀ (X : Type) [AddCommGroup X] [Module.Free ℤ X] [Module.Finite ℤ X] (i : splitTorus (Sp K) X ⟶ GK) [IsMonHom i] [Mono i] (MT : LieModel (splitTorus (Sp K) X) (𝟙 _) (X →+ K)), IsCocharLie MT → ∀ (E : Type) [AddCommGroup E] [Module O E] (M : LieModel G (𝟙 _) E), ∃ io : (X →+ O) →ₗ[O] E, (∀ δ, ((MT.pt ((algebraMap O K).toAddMonoidHom.comp δ) ≫ i).left ≫ φ = ReciprocityTheory.ChartRestriction.G.Geo.Tor.spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (algebraMap O K)) ≫ (M.pt (io δ)).left)) ∧ Function.Injective io ∧ ∀ (a : O) (y : E), a ≠ 0 → a • y ∈ LinearMap.range io → y ∈ LinearMap.range io := by
   intro O K _ _ _ _ _ G _ GK _ φ hG h X _ _ _ i _ _ MT hMT E _ _ M
   have := hG.comm
   have := hG.separated

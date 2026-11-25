@@ -7,6 +7,7 @@ public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.
 public import CompanionTheory.SpectralGeometry.CountingDefinitions.AdelicEulerProducts.IsEulerProd
 
 @[expose] public section
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix
 
 attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology
@@ -31,7 +32,6 @@ def utEquiv (n : ℕ) : Fin n ⊕ UT n ≃ UT (n + 1) :=
       · rintro (j | ⟨⟨a, b⟩, h⟩) (j' | ⟨⟨a', b'⟩, h'⟩) hh
         · simpa using hh
         · simp at hh
-          exact absurd hh.1.symm (Fin.succ_ne_zero _)
         · simp at hh
         · simp at hh
           simp [hh.1, hh.2]

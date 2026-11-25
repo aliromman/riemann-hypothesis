@@ -136,6 +136,7 @@ end GlobalTheory.Unf
 
 end
 end
+end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.OrthDecSumLatticeSelfDual
 section

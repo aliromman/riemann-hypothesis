@@ -4,6 +4,7 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.RealGrou
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter

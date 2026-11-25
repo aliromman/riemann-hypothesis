@@ -49,6 +49,7 @@ public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.Bun
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LeviFactorCharactersSplitPlace
 section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 namespace I195MixedCoordinates_a6b848dc850707252261af49
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH
@@ -187,6 +188,7 @@ theorem levi_chars_split : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (S S₀
     exact eq_inv_of_mul_eq_one_left hu
 
 end GlobalTheory.LeviSplitChar
+end
 end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LiftPairPositiveDefiniteWittIndexZeroCartan

@@ -5,6 +5,7 @@ public import Formalism.SharpRestriction.CuspSpanNormBounds.LocalOrbitGerms
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 noncomputable section
 
 namespace Formalism.L2.SG.Pf.Coef

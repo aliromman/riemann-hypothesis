@@ -27,6 +27,7 @@ public import Formalism.SharpRestriction.CuspSpanNormBounds.IsTermOver
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsIntegerOneModGAtPlaceZeroElsewhere
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.TermLoc GlobalTheory.LocOver
 open scoped Classical
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

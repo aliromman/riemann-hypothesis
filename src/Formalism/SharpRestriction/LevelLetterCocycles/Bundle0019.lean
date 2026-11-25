@@ -107,6 +107,7 @@ end
 
 -- bundled from Formalism.SharpRestriction.LevelLetterCocycles.BcAtDesc
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 open Classical TensorProduct

@@ -7,6 +7,7 @@ public import GroundTheory.AutomorphicForms.Bundle0010
 
 @[expose] public section
 
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix
 open MeasureTheory
 
 namespace GroundTheory.Automorphic

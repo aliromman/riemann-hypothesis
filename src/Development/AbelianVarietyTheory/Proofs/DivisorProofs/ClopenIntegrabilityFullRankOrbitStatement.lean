@@ -8,6 +8,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LastColsVal
 
 @[expose] public section
 
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix
 open MeasureTheory GlobalTheory.SplitFlip ValuativeRel
 open scoped Matrix
 attribute [-instance] Formalism.DoubleCosetMeasures.instMeasGL

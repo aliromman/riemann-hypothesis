@@ -13,6 +13,7 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.CentreSp
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 set_option synthInstance.maxHeartbeats 400000
 
 open MeasureTheory NumberField IsDedekindDomain MvPolynomial Filter Topology

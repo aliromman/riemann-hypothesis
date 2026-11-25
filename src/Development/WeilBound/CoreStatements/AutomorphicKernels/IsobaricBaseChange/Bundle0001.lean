@@ -9,6 +9,7 @@ public import Development.WeilBound.CoreStatements.AutomorphicKernels.IsobaricBa
 
 -- bundled from Development.WeilBound.CoreStatements.AutomorphicKernels.IsobaricBaseChange.InertR
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open NumberField IsDedekindDomain Matrix

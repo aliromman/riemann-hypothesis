@@ -8,6 +8,7 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaUniqueness.G
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open scoped Classical

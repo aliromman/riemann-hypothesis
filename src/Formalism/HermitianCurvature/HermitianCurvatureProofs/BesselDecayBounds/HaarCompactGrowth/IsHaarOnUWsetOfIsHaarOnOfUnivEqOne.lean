@@ -15,6 +15,7 @@ public import Formalism.PeriodIntegrals.Bundle0011
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 open MeasureTheory Matrix
 open scoped ENNReal NNReal
 

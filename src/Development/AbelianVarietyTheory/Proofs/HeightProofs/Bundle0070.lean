@@ -42,6 +42,7 @@ public import Development.AbelianVarietyTheory.Proofs.FormalGroupCharts.Bundle00
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.HeightProofs.AuxiliaryCuspFormConstantMonotone
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.WeightAlgebra Formalism.MainNotions.DIV.Cons Formalism.MainNotions.Gaps Formalism.MainNotions.Gaps.EtaleWeightGaps Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.RunJoin
 
 namespace GlobalTheory.RunPrimeData

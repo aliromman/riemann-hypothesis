@@ -9,6 +9,7 @@ public import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.B
 
 -- bundled from Development.WeilBound.ThetaLifts.EigenvalueEndgame.OrthogonalDecomposition.RapidBound
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 noncomputable section
 
 namespace PositivityTheory.ThKEnd.Orth

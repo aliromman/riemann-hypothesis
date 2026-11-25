@@ -9,6 +9,7 @@ public import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClas
 public import Formalism.LocalToGlobal.Divisibility.DefGroupLemmas
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

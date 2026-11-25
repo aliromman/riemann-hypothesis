@@ -469,6 +469,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.EigenvalueIntegralNormBound
 section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 open Matrix NumberField GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKCount GlobalTheory.StabFin
 open scoped TensorProduct Classical
 set_option maxHeartbeats 1000000 in

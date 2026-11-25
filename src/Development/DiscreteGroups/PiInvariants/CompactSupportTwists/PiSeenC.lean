@@ -4,6 +4,7 @@ public import Development.DiscreteGroups.PiInvariants.CompactSupportTwists.PiSee
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 set_option linter.all false
 
 noncomputable section

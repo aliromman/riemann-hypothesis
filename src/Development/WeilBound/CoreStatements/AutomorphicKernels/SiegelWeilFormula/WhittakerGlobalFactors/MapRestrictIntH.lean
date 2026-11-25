@@ -4,6 +4,7 @@ public import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeil
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 namespace PositivityTheory.SiegelWeilFormula.GFac.HS

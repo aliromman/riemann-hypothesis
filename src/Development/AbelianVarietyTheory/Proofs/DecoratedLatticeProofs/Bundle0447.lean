@@ -345,6 +345,7 @@ end GlobalTheory.FlatLawsDuality
 theorem GlobalTheory.FinPl.flatLaws_all : ∀ D : D7, GlobalTheory.FinPl.FlatLaws D := GlobalTheory.FlatLawsDuality.flatLaws_all
 end
 end
+end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.FourierJacobiNormalFrameIsotropicColumnsPairing
 section

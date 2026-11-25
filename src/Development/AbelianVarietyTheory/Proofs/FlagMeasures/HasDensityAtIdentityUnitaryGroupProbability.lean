@@ -13,6 +13,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.HaarUnitaryLa
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 open MeasureTheory Matrix Filter Topology Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp
 open scoped InnerProductSpace ENNReal
 

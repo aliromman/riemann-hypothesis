@@ -127,7 +127,7 @@ theorem prod_ofReal_zpow {ι : Type} (s : Finset ι) {q : ℝ} (hq : 0 < q) (e :
 
 theorem sFinite_nuD (d : ℕ) : SFinite (nuD E k d) := by
   induction d with
-  | zero => change SFinite (Measure.dirac _); infer_instance
+  | zero => change SFinite (Measure.dirac _); exact MeasureTheory.instSFiniteOfSigmaFinite
   | succ d ih => change SFinite (Measure.map _ _); infer_instance
 
 theorem measurable_blkMul (j : ℕ) : Measurable (fun p : (UnipotentBlockColumnIndex k j j → Ad E) × GA E k => blkU p.1 * p.2) :=
@@ -264,6 +264,9 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalInvariantCupKummer
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 set_option maxSynthPendingDepth 1
 
 open NumberField IsDedekindDomain Representation Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.Published GlobalTheory.Published.PoitouTate

@@ -4,6 +4,7 @@ public import Development.AbelianVarietyTheory.Definitions.ThetaValues.LetAct
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 set_option autoImplicit false
 
 noncomputable section

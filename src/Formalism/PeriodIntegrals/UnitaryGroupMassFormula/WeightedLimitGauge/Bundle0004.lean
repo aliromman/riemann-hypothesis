@@ -222,6 +222,7 @@ theorem hypLocal_of (hJ : ChartJac) (hC : HypChart) (hD : PhiDiff) : HypLocal :=
 end PI.RhsWLim.W
 end
 end
+end
 
 -- bundled from Formalism.PeriodIntegrals.UnitaryGroupMassFormula.WeightedLimitGauge.RhsWInv
 section

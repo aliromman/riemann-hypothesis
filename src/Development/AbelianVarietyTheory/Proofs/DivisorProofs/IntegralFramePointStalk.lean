@@ -10,6 +10,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaKeySect
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle2665
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 
 set_option autoImplicit false
 

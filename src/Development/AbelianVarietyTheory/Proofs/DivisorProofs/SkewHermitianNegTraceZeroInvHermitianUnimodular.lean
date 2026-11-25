@@ -8,6 +8,7 @@ public import Formalism.LocalToGlobal.IndefiniteReal.FinitePlaces.FactPrincipalD
 public import Formalism.LocalToGlobal.IndefiniteReal.Bundle0013
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta
 open IsDedekindDomain NumberField

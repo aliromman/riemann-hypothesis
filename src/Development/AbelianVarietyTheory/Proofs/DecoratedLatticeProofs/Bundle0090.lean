@@ -390,6 +390,7 @@ end GlobalTheory.Unf.EvalCont
 
 end
 end
+end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.EqOfSplitPartAgreeSupportedAtSplitPlace
 section

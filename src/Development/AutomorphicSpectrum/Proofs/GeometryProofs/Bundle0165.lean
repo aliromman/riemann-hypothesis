@@ -359,7 +359,7 @@ theorem valAt_up (e : X' ≅ X) {G : Over X} [GrpObj G] {G' : Over X'} [GrpObj G
       simp [Hom.one_def]
     have k2 : Spec.map (CommRingCat.ofHom (TrivSqZeroExt.fstHom (X'.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z))
         (X'.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z)) (X'.presheaf.stalk (_root_.GlobalTheory.CompanionTheory.Ar.centre z))).toRingHom) ≫
-        Spec.map (CommRingCat.ofHom (GlobalTheory.CompanionTheory.Ar.dualMap (e.hom.stalkMap (_root_.GlobalTheory.CompanionTheory.Ar.centre z)).hom)) =
+        Spec.map (CommRingCat.ofHom (_root_.GlobalTheory.CompanionTheory.Ar.dualMap (e.hom.stalkMap (_root_.GlobalTheory.CompanionTheory.Ar.centre z)).hom)) =
         Spec.map (e.hom.stalkMap (_root_.GlobalTheory.CompanionTheory.Ar.centre z)) ≫ Spec.map (CommRingCat.ofHom (TrivSqZeroExt.fstHom
         (X.presheaf.stalk (e.hom (_root_.GlobalTheory.CompanionTheory.Ar.centre z))) (X.presheaf.stalk (e.hom (_root_.GlobalTheory.CompanionTheory.Ar.centre z)))
         (X.presheaf.stalk (e.hom (_root_.GlobalTheory.CompanionTheory.Ar.centre z)))).toRingHom) := by

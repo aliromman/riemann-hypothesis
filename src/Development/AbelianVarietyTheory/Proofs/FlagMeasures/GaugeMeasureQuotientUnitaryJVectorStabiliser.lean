@@ -27,6 +27,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0253
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0258
 
 @[expose] public section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GlobalTheory.SplitWeil.matrixMeasurableSpace
 
 noncomputable section
 

@@ -13,6 +13,7 @@ public import Development.AbelianVarietyTheory.Proofs.HeightProofs.Bundle0042
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.HeightProofs.CompleteSplittingCompositumDegreeOnePrime
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain GlobalTheory.FieldSize
 open scoped IntermediateField
 

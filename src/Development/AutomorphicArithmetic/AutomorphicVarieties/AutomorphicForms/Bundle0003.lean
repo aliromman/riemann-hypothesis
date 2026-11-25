@@ -203,6 +203,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.RInv2
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 noncomputable section
 
 open NumberField IsDedekindDomain Topology Matrix MeasureTheory GlobalTheory.CuspRep

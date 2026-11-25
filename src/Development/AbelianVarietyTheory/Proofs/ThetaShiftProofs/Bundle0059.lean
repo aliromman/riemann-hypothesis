@@ -331,7 +331,7 @@ theorem exists_move (hσ : Formalism.L2.PjFree.GoodEmb c σ) (U : Formalism.L2.P
         h₀ *ᵥ fun j => perFr (U.X k) x v (Formalism.L2.PjFree.relab c σ (e j).1) (e j).2) ∧
       (∀ j j', h₀⁻¹ j j' ≠ 0 → (e j).1 = (e j').1 ∧ ((e j).2 : ℕ) ≤ (e j').2) ∧
       ∀ (a : (E →+* ℂ) × ℕ → ℕ) (n : ℕ),
-        ∏ j, h₀⁻¹ j j ^ (a ((e j).1, (e j).2) + n / 2) = bchar (laU U a n k) b := by
+        ∏ j, h₀⁻¹ j j ^ (a ((e j).1, (e j).2) + n / 2) = bchar (Formalism.L2.PjFree.laU U a n k) b := by
   obtain ⟨idx, hi, hper⟩ := exists_idx hσ (U.X k) hr hp0 hty e
   obtain ⟨hbij, -, -, -⟩ := GlobalTheory.Relab.relab_good E H l c σ hσ
   have hinj : ∀ j j', (e j).1 = (e j').1 → ((e j).2 : ℕ) = (e j').2 → j = j' := by
@@ -365,7 +365,7 @@ theorem exists_move (hσ : Formalism.L2.PjFree.GoodEmb c σ) (U : Formalism.L2.P
   · exact PerBor.moveMat_mulVec _ idx hb (U.X k).Gm x v _ _ (fun j => hper _ _ j) (fun j => hper _ _ j)
   · unfold bchar
     refine Eq.trans ?_ (Fintype.prod_prod_type'
-      (fun (τ : (U.X k).Ψ) (i : Fin r) => b τ i i ^ laU U a n k τ i))
+      (fun (τ : (U.X k).Ψ) (i : Fin r) => b τ i i ^ Formalism.L2.PjFree.laU U a n k τ i))
     rw [← idx.prod_comp]
     refine Finset.prod_congr rfl fun j _ => ?_
     rw [PerBor.inv_diag _ _ hinj _ hu hs, hdiag]
@@ -386,8 +386,8 @@ theorem exists_frBor (hσ : Formalism.L2.PjFree.GoodEmb c σ) (U : Formalism.L2.
     (x : (U.X k).dom) (b : Frame (U.X k).Ψ r) (hb : b ∈ Bor (U.X k).Ψ r) (h : rmul x.1 b ∈ (U.X k).dom) :
     ∃ (t : Ix Dw → (CAt σ)ˣ) (G : ∀ τ : E →+* ℂ, Matrix (Fin (Dw.mult τ)) (Fin (Dw.mult τ)) (CAt σ)),
       FrBor t (U.un k x) (U.un k ⟨_, h⟩) ∧ FrChg G (t none : CAt σ) (U.un k x) (U.un k ⟨_, h⟩) ∧
-      ∀ a n, Formalism.L2.PjFree.toC (wchar (ex Dw a n) t) * bchar (laU U 0 n k) b =
-        Formalism.L2.PjFree.toC (t none : CAt σ) ^ n * bchar (laU U a n k) b := by
+      ∀ a n, Formalism.L2.PjFree.toC (wchar (ex Dw a n) t) * bchar (Formalism.L2.PjFree.laU U 0 n k) b =
+        Formalism.L2.PjFree.toC (t none : CAt σ) ^ n * bchar (Formalism.L2.PjFree.laU U a n k) b := by
   obtain ⟨h₀, hP, htri, hw⟩ := exists_move hσ U k hr hp0 hty Uw.e x.1 b hb
   have hp := Uw.period k x
   have hp' := Uw.period k ⟨_, h⟩

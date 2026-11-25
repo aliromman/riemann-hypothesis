@@ -106,7 +106,7 @@ theorem slope_sq_sub_le_of_different_smul {K K' V V' : Type} [Field K] [NumberFi
   classical
   letI : StarRing K := starRingOfComm
   letI : StarRing K' := starRingOfComm
-  haveI : IsTotallyComplex K' := isTotallyComplex_of_algebra K K'
+  haveI : IsTotallyComplex K' := _root_.NumberField.isTotallyComplex_of_algebra K K'
   haveI : Module.Finite K V := Module.Finite.of_basis b
   haveI : Module.Finite K' V' := Module.Finite.of_basis b'
   haveI : Module.Finite K K' := Module.Finite.of_restrictScalars_finite ℚ K K'

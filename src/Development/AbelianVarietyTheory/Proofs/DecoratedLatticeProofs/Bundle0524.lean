@@ -51,6 +51,7 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.T2SpaceIs
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SiegelHeightFinitePlaceDoublingEmbeddingLeOne
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open scoped TensorProduct NNReal Matrix
 
 namespace GlobalTheory.Core.Rk.HgtFin

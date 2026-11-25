@@ -8,6 +8,7 @@ public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCoh
 public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.BocksteinBaseChange.LimitBilinearCup.OmCup
 
 @[expose] public section
+attribute [-instance] GroundTheory.PAdicHodge.subfield_valuativeRel
 
 set_option backward.isDefEq.respectTransparency false
 set_option autoImplicit false

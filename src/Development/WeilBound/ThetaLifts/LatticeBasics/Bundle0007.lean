@@ -12,6 +12,7 @@ public import Development.WeilBound.ThetaLifts.EigenvalueEndgame.PlaneRemovalCon
 
 -- bundled from Development.WeilBound.ThetaLifts.LatticeBasics.BoxSecX
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 noncomputable section
 
 namespace GlobalTheory.ThK.Dbl
@@ -211,6 +212,7 @@ end
 
 -- bundled from Development.WeilBound.ThetaLifts.LatticeBasics.HodgeTateFromSandwich
 section
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL
 noncomputable section
 
 namespace GlobalTheory.ThK.Dbl

@@ -27,6 +27,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle0928
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ComplexPointsBaseLevelLiftReadAtBaseEmbedding
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Rows Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Lev Formalism.IndefR.Cx Formalism.IndefR.RecTie
 open scoped TensorProduct InnerProductSpace ComplexOrder
@@ -191,7 +192,7 @@ theorem complexPoints_baseLevelLift_readAtBaseEmbedding {D : D7} {G : Type} [Gro
   rw [Submodule.coe_smul, map_smulₛₗ, smul_comm]
   have he : cj s (cpt A3.fam3.base3.v0.embedding y k) = sg0 D A3.A (y k) := by
     show cj s (A3.A.v0.embedding (y k)) = _
-    rw [emb_eq D.what₂.embLL A3.A.v0 (y k), cj_cj]
+    rw [emb_eq D.what₂.embLL A3.A.v0 (y k), Formalism.IndefR.Links.cj_cj]
   rw [he]
   congr 1
   show ((Real.sqrt (RealDat.nP F.lv2 false) : ℝ) : ℂ) • ((((Real.sqrt (RealDat.nP F.lv2 false))⁻¹ : ℝ) : ℂ) • (R.FW i).j (sg0 D A3.A) (R.toRealDat.bL F.lv2 false i k)) = _
@@ -431,6 +432,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LevelActionsOnLiftRulesExtendedData
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Rows Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Lev Formalism.IndefR.Cx Formalism.IndefR.RecTie
 open scoped TensorProduct InnerProductSpace ComplexOrder

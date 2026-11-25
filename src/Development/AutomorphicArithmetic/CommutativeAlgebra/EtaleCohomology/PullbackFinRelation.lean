@@ -7,6 +7,7 @@ public import GroundTheory.PAdicHodge.BCrisEigenWitt
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 set_option maxSynthPendingDepth 1
 set_option maxHeartbeats 1600000
 set_option synthInstance.maxHeartbeats 400000

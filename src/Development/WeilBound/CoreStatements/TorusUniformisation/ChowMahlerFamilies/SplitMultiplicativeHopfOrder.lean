@@ -51,6 +51,7 @@ public import Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahle
 public import Development.WeilBound.CoreStatements.HodgeTatePoints.HcptgenGen
 
 @[expose] public section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 

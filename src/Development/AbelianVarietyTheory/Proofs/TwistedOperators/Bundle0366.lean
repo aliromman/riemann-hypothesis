@@ -14,6 +14,7 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.Bundle1263
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.TwistedOperators.FockRealPointTransportContinuousIntegral
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links MeasureTheory IsDedekindDomain NumberField Matrix
 open scoped TensorProduct ComplexConjugate
 attribute [local instance] Formalism.BasicNotions.Host.cmStar

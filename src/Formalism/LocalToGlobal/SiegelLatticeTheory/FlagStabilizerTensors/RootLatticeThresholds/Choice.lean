@@ -14,6 +14,7 @@ public import Formalism.SharpRestriction.CuspSpanNormBounds.NonemptyParameterMod
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 noncomputable section
 
 open MeasureTheory Matrix Formalism.QuantumDeterminants

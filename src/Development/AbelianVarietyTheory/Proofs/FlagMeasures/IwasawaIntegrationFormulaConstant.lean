@@ -21,6 +21,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0303
 
 @[expose] public section
 
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S GlobalTheory.Count GlobalTheory.FlagMeas
 
 noncomputable section

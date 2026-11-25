@@ -10,6 +10,7 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Finra
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.IndefiniteRowSideFullHecke.UnipotentLatticeMembership.finiteLevelGroupFintype
 noncomputable section
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum Formalism.IndefR.Cx
@@ -250,7 +251,7 @@ theorem inner_theta_rat_eq_lam : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (
     rw [← hN, ← hL, hA, hmaj, hv, hU]
     rfl
   have h2 := congrArg (cj (twAt D.what₂.embLL A3.A.v0)) h1
-  rw [cj_cj, map_mul, cj_ofReal, cj_cj] at h2
+  rw [Formalism.IndefR.Links.cj_cj, map_mul, cj_ofReal, Formalism.IndefR.Links.cj_cj] at h2
   have hnp : ((RealDat.nP F.lv2 false : ℝ) : ℂ) ≠ 0 := by exact_mod_cast (RealDat.nP_pos (F := F.lv2) false).ne'
   apply mul_left_cancel₀ hnp
   rw [h2]

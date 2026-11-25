@@ -12,6 +12,7 @@ public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Idemp
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Bundle0198
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

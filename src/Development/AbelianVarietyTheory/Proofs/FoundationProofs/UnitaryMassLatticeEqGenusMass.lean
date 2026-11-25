@@ -11,6 +11,7 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.EpsMemLat
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 open NumberField IsDedekindDomain Formalism.UG Formalism.UG.P Formalism.UG.CS

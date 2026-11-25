@@ -450,6 +450,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SplitWeilPhiInnerProduct
 section
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum
 open scoped TensorProduct InnerProductSpace ComplexConjugate
@@ -473,11 +474,17 @@ theorem phiQ_ip : ∀ (D : D7) (PP : Pl D.host.E) (v : FinPl D) (φ : SplitProj 
   obtain ⟨e1, e2⟩ := GlobalTheory.T.twistPlaceChainStepDatumSupport_eq_valuative D v a b r
   have h4 := _root_.GlobalTheory.RectBlockVolume.vol_topBlock_KO (Fv D.host.F v) ν hν a b r hra hrb
   rw [← e1, ← e2, (GlobalTheory.PlaceProjAt.under_resCard D v φ PP hP).2] at h4
-  unfold GlobalTheory.SplitWeil.ip
-  simp_rw [h1]
-  rw [integral_indicator_const (μ := GlobalTheory.SplitWeil.volM ν (Fin b) (Fin a)) (1 : ℂ) h3,
-    Measure.real, h4, zinv]
-  simp
+  let νmat := GlobalTheory.SplitWeil.volM ν (Fin b) (Fin a)
+  let S : Set (Matrix (Fin b) (Fin a) (Fv D.host.F v)) := GlobalTheory.NrmVol.suppQ v r
+  calc
+    _ = ∫ x, S.indicator (fun _ => (1 : ℂ)) x ∂νmat :=
+      integral_congr_ae (Filter.Eventually.of_forall h1)
+    _ = νmat.real S • (1 : ℂ) :=
+      integral_indicator_const (μ := νmat) (1 : ℂ) h3
+    _ = _ := by
+      dsimp only [νmat, S, Measure.real]
+      rw [h4, zinv]
+      simp
 
 end GlobalTheory.NrmVol
 end

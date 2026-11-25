@@ -43,6 +43,7 @@ public import Development.AutomorphicSpectrum.PublishedTheorems.PublishedGlobalR
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeTateFreeTrivialFlagMod
 section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 open CategoryTheory AlgebraicGeometry NumberField MvPolynomial GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.HT ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.NumbersDVR.Bundles
 
 namespace GlobalTheory.CompanionTheory.Ar.HT
@@ -120,6 +121,7 @@ end
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.GeometryProofs.LocalSystemSplitFibres
 section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 open CategoryTheory AlgebraicGeometry NumberField GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.HT GlobalTheory.CompanionTheory.Ar.Flat ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat

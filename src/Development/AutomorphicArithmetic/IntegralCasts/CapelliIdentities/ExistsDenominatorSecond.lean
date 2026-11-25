@@ -34,6 +34,7 @@ public import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.Gaug
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 private lemma den_coprime_of_mul_eq {K V : Type*} [Field K] [NumberField K] [AddCommGroup V] [Module K V]
     [Module (NumberField.RingOfIntegers K) V] [IsScalarTower (NumberField.RingOfIntegers K) K V]
     (M : Submodule (NumberField.RingOfIntegers K) V) (h : Submodule.span K (M : Set V) = ⊤) (x : V) :

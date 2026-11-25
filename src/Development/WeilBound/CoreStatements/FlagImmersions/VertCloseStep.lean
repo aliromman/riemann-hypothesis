@@ -15,6 +15,7 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.FlagLabelBas
 public import GroundTheory.HeightsAndTheta.Heights.HeightComparison.Bundle0003
 
 @[expose] public section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 noncomputable section
 

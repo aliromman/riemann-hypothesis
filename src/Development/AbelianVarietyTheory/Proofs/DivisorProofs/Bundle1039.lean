@@ -173,6 +173,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.LintegralBoundLtTop
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open scoped TensorProduct NNReal
 open NumberField IsDedekindDomain MeasureTheory Filter Topology
 open Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes (AF Af Ainf)

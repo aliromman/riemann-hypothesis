@@ -37,6 +37,7 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.Bundle0174
 
 -- bundled from Development.AutomorphicSpectrum.Proofs.GeometryProofs.PairLatticeDegreeBound
 section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 namespace GlobalTheory.CompanionTheory.Ar
 
 open AlgebraicGeometry CategoryTheory _root_.CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField

@@ -39,6 +39,7 @@ public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.Bundle0351
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.FlagMeasures.DsigWSubAvg
 section
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix GlobalTheory.SplitWeil.matrixMeasurableSpace
 open MeasureTheory Matrix Filter Topology
 
 noncomputable section

@@ -14,6 +14,7 @@ public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.LevelHype
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 set_option synthInstance.maxHeartbeats 400000
 set_option maxHeartbeats 1000000
 

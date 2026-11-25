@@ -74,6 +74,7 @@ end
 
 -- bundled from Development.WeilBound.CoreStatements.HomogeneousNonvanishing.OAlgover
 section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 open MvPolynomial AlgebraicGeometry CategoryTheory NumberField Filter Topology ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Cmp
 open ReciprocityTheory.ChartRestriction.G.AI.I1 (IsBlockMap pullDeg)
 open ReciprocityTheory.ChartRestriction.G.AI.I4 (IsPullHerm imageZ blockFnField)

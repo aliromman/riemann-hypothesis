@@ -7,6 +7,7 @@ public import Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory
 
 -- bundled from Formalism.LocalToGlobal.SiegelLatticeTheory.CasimirReductionTheory.OneParameterDerivatives.TauReduction.BlockGramReduction.BlockDiagonalMulVecApply
 section
+attribute [-instance] GlobalTheory.SplitWeil.matrixMeasurableSpace
 set_option autoImplicit false
 
 noncomputable section

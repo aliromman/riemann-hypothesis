@@ -58,6 +58,8 @@ public import Formalism.SharpRestriction.LevelLetterCocycles.RelayGeneralCaseOfA
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LintegralUniformizerTorusTranslateUnipotentQuoti
 section
+attribute [-instance] GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
+attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL Formalism.DoubleCosetMeasures.instMeasGL Formalism.DoubleCosetMeasures.instBorelGL
 attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 noncomputable section
 
@@ -140,7 +142,8 @@ theorem lintegral_tl_inv_mul : ∀ (E : Type) [Field E] [NumberField E] (n : ℕ
   haveI : LocallyCompactSpace (GA E n) := locallyCompact_GA_chv
   haveI : SecondCountableTopology (GA E n) := secondCountable_GA_chv
   haveI : SigmaCompactSpace (GA E n) := sigmaCompactSpace_of_locallyCompact_secondCountable
-  haveI : SFinite μ := inferInstance
+  haveI : SFinite μ :=
+    @MeasureTheory.instSFiniteOfSigmaFinite _ _ μ (Measure.IsHaarMeasure.sigmaFinite μ)
   haveI : MeasurableMul₂ (GA E n) := inferInstance
   haveI : MeasurableInv (GA E n) := inferInstance
   haveI : LocallyCompactSpace (NA E n) := isClosed_NA.isClosedEmbedding_subtypeVal.locallyCompactSpace

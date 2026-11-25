@@ -11,6 +11,7 @@ public import Formalism.LocalToGlobal.ProjectiveLattices.HostInt
 public import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExistsGenerators
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR.Datum Formalism.IndefR.Links
 open IsDedekindDomain NumberField MeasureTheory Matrix

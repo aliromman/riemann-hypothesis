@@ -240,6 +240,7 @@ end
 
 -- bundled from Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelQPfB
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 namespace Formalism.MainNotions.N.Ln34.MQ

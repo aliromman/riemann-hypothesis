@@ -157,6 +157,7 @@ end
 
 -- bundled from Formalism.SharpRestriction.Divisibility.GeneratorPowers.PhiCMinima
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 set_option autoImplicit false
 
 noncomputable section

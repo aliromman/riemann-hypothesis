@@ -13,6 +13,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.PublishedTh
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.H1cZero
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Module UpperTheory.V UpperTheory.V.X
 
 theorem UpperTheory.V.X.h1cZero :
@@ -73,6 +74,7 @@ end
 
 -- bundled from Development.AutomorphicArithmetic.AutomorphicVarieties.LevelCohomology.HcGalTail
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Module UpperTheory.V UpperTheory.V.X
 
 theorem UpperTheory.V.X.galTail :

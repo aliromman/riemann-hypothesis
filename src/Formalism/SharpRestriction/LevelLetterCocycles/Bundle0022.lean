@@ -160,6 +160,7 @@ end
 
 -- bundled from Formalism.SharpRestriction.LevelLetterCocycles.DerivativeProdSubEval
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 namespace Formalism.MainNotions.RamifiedCoefficientChains.S9

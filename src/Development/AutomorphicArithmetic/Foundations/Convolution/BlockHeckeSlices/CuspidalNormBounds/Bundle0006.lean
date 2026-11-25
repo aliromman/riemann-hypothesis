@@ -146,7 +146,7 @@ private theorem part1 (S : Set (Pl E)) (n : ℕ) : ∀ (ρ : Typ E n) (φ : Sm E
   refine Subtype.ext (funext fun g => ?_)
   rcases Nat.eq_zero_or_pos n with rfl | hn
   · have := congrFun (H 1 Dat.nil trivial) (fun _ => 0)
-    rw [Subsingleton.elim g 1]
+    rw [show g = 1 from Units.ext (Matrix.ext fun i _ => Fin.elim0 i)]
     simp only [Dat.comp, Subgroup.coe_one, map_one] at this
     exact this
   · have := step ih ρ φ hU hK hS n le_rfl (fun k d hd _ => H k d hd) n hn le_rfl g

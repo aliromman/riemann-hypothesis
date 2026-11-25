@@ -14,6 +14,7 @@ public import Development.DiscreteGroups.GlobalIrreducibility.LocTypeOfSerParamL
 
 -- bundled from Development.DiscreteGroups.GlobalIrreducibility.LConvAltA
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 open GlobalTheory.PRep
@@ -203,6 +204,7 @@ end
 
 -- bundled from Development.DiscreteGroups.GlobalIrreducibility.LConvDens
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 open scoped InnerProductSpace
 
 noncomputable section
@@ -364,6 +366,7 @@ end
 
 -- bundled from Development.DiscreteGroups.GlobalIrreducibility.LConvSepI
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 open MeasureTheory Topology ValuativeRel GlobalTheory.LocLanglands GlobalTheory.LocLanglands.InvInt

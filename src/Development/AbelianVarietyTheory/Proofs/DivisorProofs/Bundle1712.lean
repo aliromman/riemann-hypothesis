@@ -389,6 +389,8 @@ end
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsNatDatumSquareFlip
 section
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
+attribute [local instance 2000] Units.instTopologicalSpaceUnits Units.instMeasurableSpace
+  GlobalTheory.SplitWeil.matrixMeasurableSpace GlobalTheory.SplitFlip.borel_GL
 noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR.Datum Formalism.IndefR.Links

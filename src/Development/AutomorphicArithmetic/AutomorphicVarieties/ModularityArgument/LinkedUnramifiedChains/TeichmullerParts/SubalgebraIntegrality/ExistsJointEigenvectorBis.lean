@@ -8,6 +8,7 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibra
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 open UpperTheory.V.Z.J.D UpperTheory.V UpperTheory.V.Hi IsLocalRing
 
 private theorem exists_joint_eigenvector_bis {E J : Type} [AddCommGroup E] [Module ℂ E] (W : Submodule ℂ E) [FiniteDimensional ℂ W]

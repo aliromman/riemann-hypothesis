@@ -361,6 +361,7 @@ end GlobalTheory.HeisTarget
 
 end
 end
+end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.I0M
 section

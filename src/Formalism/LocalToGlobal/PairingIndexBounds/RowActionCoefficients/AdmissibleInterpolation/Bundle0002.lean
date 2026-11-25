@@ -8,6 +8,7 @@ public import Mathlib
 
 -- bundled from Formalism.LocalToGlobal.PairingIndexBounds.RowActionCoefficients.AdmissibleInterpolation.PolyKTorsionFree
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 open MvPolynomial
 
 noncomputable section

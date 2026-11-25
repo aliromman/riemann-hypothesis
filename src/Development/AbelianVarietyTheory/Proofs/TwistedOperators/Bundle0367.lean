@@ -40,12 +40,27 @@ def relIndEquiv {α β : Type} [Fintype α] [Fintype β] [LinearOrder β] {m : �
     [∀ i, Fintype (m i)] [∀ i, DecidableEq (m i)] {c : α → β → Type} [∀ i j, Fintype (c i j)]
     [∀ i j, DecidableEq (c i j)] (f : ∀ i, (Σ j, c i j) ≃ m i) {V W : Type} [AddCommGroup V]
     [Module ℂ V] [AddCommGroup W] [Module ℂ W] {ρ : Representation ℂ (∀ i, Levi k (c i)) V}
-    {σ : Representation ℂ (∀ i, Levi k (c i)) W} (φ : ρ.Equiv σ) : (relInd f ρ).Equiv (relInd f σ) :=
-  GlobalTheory.LocGL.equivOfBijective (smIndMap (compMap (twistMap φ.toIntertwiningMap _) _))
-    (Function.bijective_iff_has_inverse.2
-      ⟨smIndMap (compMap (twistMap φ.symm.toIntertwiningMap (relDeltaHalf k c)) (relProj k f)),
-        fun F => Subtype.ext (Subtype.ext (funext fun x => φ.symm_apply_apply (F.1.1 x))),
-        fun F => Subtype.ext (Subtype.ext (funext fun x => φ.apply_symm_apply (F.1.1 x)))⟩)
+    {σ : Representation ℂ (∀ i, Levi k (c i)) W} (φ : ρ.Equiv σ) : (relInd f ρ).Equiv (relInd f σ) := by
+  let toMap : (relInd f ρ).IntertwiningMap (relInd f σ) :=
+    _root_.GlobalTheory.SmGL.smIndMap (_root_.GlobalTheory.SmGL.compMap
+      (_root_.GlobalTheory.SmGL.twistMap φ.toIntertwiningMap (relDeltaHalf k c)) (relProj k f))
+  let invMap : (relInd f σ).IntertwiningMap (relInd f ρ) :=
+    _root_.GlobalTheory.SmGL.smIndMap (_root_.GlobalTheory.SmGL.compMap
+      (_root_.GlobalTheory.SmGL.twistMap φ.symm.toIntertwiningMap (relDeltaHalf k c)) (relProj k f))
+  refine GlobalTheory.LocGL.equivOfBijective toMap ?_
+  refine Function.bijective_iff_has_inverse.2 ⟨invMap, ?_, ?_⟩
+  · intro F
+    apply Subtype.ext
+    apply Subtype.ext
+    funext x
+    change φ.symm (φ (F.1.1 x)) = F.1.1 x
+    exact φ.symm_apply_apply (F.1.1 x)
+  · intro F
+    apply Subtype.ext
+    apply Subtype.ext
+    funext x
+    change φ (φ.symm (F.1.1 x)) = F.1.1 x
+    exact φ.apply_symm_apply (F.1.1 x)
 
 theorem jhMult_relInd_of_subsingleton {α β : Type} [Fintype α] [Fintype β] [LinearOrder β]
     {m : α → Type} [∀ i, Fintype (m i)] [∀ i, DecidableEq (m i)] {c : α → β → Type}

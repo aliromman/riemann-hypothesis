@@ -315,6 +315,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaloisConjQExpansionFamilyDiagOneUnit
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open NumberField UpperHalfPlane GlobalTheory.HilbFam GlobalTheory.QFam
 open GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization (Emb Frac latM qPow upperHalf cK omegaFactor IsPartialZeta HasExpansion)
 open GlobalTheory.IndefiniteRowSideFullHecke.DefiningCoordinates (iterD partialD)

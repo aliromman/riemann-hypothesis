@@ -53,6 +53,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Bundle044
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.TwistedOperators.LevelInductionFromPairs
 section
+attribute [-instance] PI.WSF.instMeasurableSpaceMat PI.WSF.instBorelSpaceMat
 attribute [-instance] GlobalTheory.CompanionTheory.QL.instMeasGL GlobalTheory.CompanionTheory.QL.instBorelGL
 noncomputable section
 

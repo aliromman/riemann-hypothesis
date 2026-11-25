@@ -20,6 +20,7 @@ public import Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates
 
 @[expose] public section
 
+attribute [-instance] GroundTheory.Automorphic.GJMatrix.measurableSpace_matrix GroundTheory.Automorphic.GJMatrix.borelSpace_matrix GlobalTheory.SplitWeil.matrixMeasurableSpace
 set_option linter.dupNamespace false
 
 open MeasureTheory Matrix

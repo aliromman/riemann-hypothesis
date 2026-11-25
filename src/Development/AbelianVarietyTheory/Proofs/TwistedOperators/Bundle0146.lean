@@ -19,6 +19,7 @@ public import Development.AbelianVarietyTheory.Proofs.CharacterTheory.Bundle0004
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsDetInt
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot
 noncomputable section
 

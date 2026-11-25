@@ -13,6 +13,7 @@ public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.Bundle007
 public import Formalism.LocalToGlobal.Columns.RowFormsGood
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

@@ -203,6 +203,7 @@ end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.DegenerationProofs.LiftValuationIntegralNormStatement
 section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField
 open scoped CategoryTheory.Obj BigOperators
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor

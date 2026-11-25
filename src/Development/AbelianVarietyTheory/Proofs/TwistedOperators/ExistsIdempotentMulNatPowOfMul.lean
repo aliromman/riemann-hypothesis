@@ -13,6 +13,7 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SquarePairGluing
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsUnitaryPart
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

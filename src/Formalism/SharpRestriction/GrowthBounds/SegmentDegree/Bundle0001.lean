@@ -7,6 +7,7 @@ public import Lemmata.ComplementLifts.ComplLift
 
 -- bundled from Formalism.SharpRestriction.GrowthBounds.SegmentDegree.Coarse
 section
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 open MvPolynomial

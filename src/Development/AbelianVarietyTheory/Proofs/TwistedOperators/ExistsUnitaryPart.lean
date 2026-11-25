@@ -12,6 +12,7 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.Parahoric
 public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SquarePairGluing.ExistsDenLe
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AllWt.subRulesModuleInt GlobalTheory.AllWt.subRulesTower
 
 noncomputable section
 

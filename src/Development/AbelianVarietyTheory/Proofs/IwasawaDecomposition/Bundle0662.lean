@@ -47,6 +47,7 @@ public import Formalism.SharpRestriction.GrowthBounds.BaseLevels.LvSite
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CompactDualLinearFormFlagDegreePointClass
 section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 namespace GlobalTheory.GrassTop
 open MvPolynomial NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.GoodMetric GlobalTheory.LieBase
 open Classical

@@ -17,6 +17,7 @@ public import Formalism.LocalToGlobal.IndefiniteReal.LinksChar
 public import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.Bundle0452
 
 @[expose] public section
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
 
 noncomputable section
 

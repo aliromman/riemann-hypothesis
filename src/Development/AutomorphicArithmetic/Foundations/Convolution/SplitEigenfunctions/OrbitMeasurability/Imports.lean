@@ -8,6 +8,7 @@ public import Development.AutomorphicArithmetic.AdelicSL2.IsFundamentalDomainIma
 
 @[expose] public section
 
+attribute [-instance] GlobalTheory.LGrp.locallyCompact_GL GlobalTheory.SplitFlip.locallyCompact_GL GlobalTheory.SplitFlip.secondCountable_GL GlobalTheory.SplitFlip.t2Space_general_linear_group
 noncomputable section
 
 open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter

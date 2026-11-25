@@ -28,6 +28,7 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticInt
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.Bundle0087
 
 @[expose] public section
+attribute [-instance] GlobalTheory.CompHt.fintypePsi
 
 open AlgebraicGeometry CategoryTheory NumberField ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Top
 open MvPolynomial Filter Topology

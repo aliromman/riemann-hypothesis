@@ -249,7 +249,7 @@ theorem pointSum_eq_pointSide_of_commensurable : ∀ {Γ G₁ G₂ : Type} [Grou
       have h := hu _ hmem
       rw [hCp, prod_map_conj, vol_prod] at h
       dsimp only at h
-      rwa [map_conj_one, vol_self, mul_one] at h
+      rwa [GlobalTheory.LKCountPoint.map_conj_one, vol_self, mul_one] at h
     have hu2 : ∀ t ∈ GlobalTheory.BCT.twCent θ δ, vol (GlobalTheory.BCT.twCent θ δ ⊓ K₂)
         ((GlobalTheory.BCT.twCent θ δ ⊓ K₂).map (MulAut.conj t).toMonoidHom) = 1 := by
       intro t ht
@@ -258,7 +258,7 @@ theorem pointSum_eq_pointSide_of_commensurable : ∀ {Γ G₁ G₂ : Type} [Grou
       have h := hu _ hmem
       rw [hCp, prod_map_conj, vol_prod] at h
       dsimp only at h
-      rwa [map_conj_one, vol_self, one_mul] at h
+      rwa [GlobalTheory.LKCountPoint.map_conj_one, vol_self, one_mul] at h
     have hprod := orbK_prod_of_commensurable (MonoidHom.id G₁) θ K₁ K₂ γ δ f₁ φ hK₁ hK₂
       (fun k hk y => hf₁ k hk y) hφ hu1 hu2
     rw [hPS, hcore.1]

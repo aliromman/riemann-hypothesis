@@ -10,6 +10,7 @@ public import Development.AbelianVarietyTheory.Proofs.JetHarmonics.Bundle0047
 
 @[expose] public section
 
+attribute [-instance] Formalism.DoubleCosetMeasures.instMeasMat
 open BranchingSupport Formalism.FourierDecayAlt Formalism.FourierDecayAlt.ThreeDimData Matrix MeasureTheory Finset
 open scoped InnerProductSpace ENNReal
 

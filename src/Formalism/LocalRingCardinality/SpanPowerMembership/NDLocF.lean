@@ -4,6 +4,7 @@ public import Formalism.LocalRingCardinality.SpanPowerMembership.NDLocE
 
 @[expose] public section
 
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 namespace Formalism.BasicNotions.Examples₂.LB

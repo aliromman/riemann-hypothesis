@@ -6,6 +6,9 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.Bundle029
 
 @[expose] public section
 
+attribute [-instance] Formalism.L2.Pj.rulesCommRing Formalism.L2.Pj.rulesAlgebra Formalism.L2.Pj.rulesModule Formalism.L2.Pj.rulesSMul Formalism.L2.Pj.rulesAlgebraInt Formalism.L2.Pj.rulesModuleInt Formalism.L2.Pj.rulesTower
+attribute [-instance] GlobalTheory.AdmLoc.modTens GlobalTheory.AdmLoc.modFun GlobalTheory.AdmLoc.modProd GlobalTheory.AdmLoc.modQuot GlobalTheory.AdmLoc.twistedModuleH1 GlobalTheory.AdmLoc.twistedSubmoduleH1 GlobalTheory.AdmLoc.moduleH1Alt
+attribute [-instance] Formalism.BasicNotions.LocLat.modFun Formalism.BasicNotions.LocLat.modSubFun
 noncomputable section
 
 namespace GlobalTheory.AdelicU
@@ -133,9 +136,24 @@ theorem isRestrProd_empty_iff {G κ : Type} {P : κ → Type} [Group G] [∀ k, 
       (∀ k, (μf k).IsHaarMeasure) ∧ (∀ᶠ k in cofinite, μf k (K k) = 1) ∧ μ.IsHaarMeasure ∧
       ∀ S : Finset κ, (∀ k ∉ S, μf k (K k) = 1) → ∀ B : ∀ k, Set (P k), (∀ k ∈ S, MeasurableSet (B k)) →
         μ {g | (∀ k ∈ S, q k g ∈ B k) ∧ ∀ k ∉ S, q k g ∈ K k} = ∏ k ∈ S, μf k (B k) := by
-  exact ⟨fun h => ⟨h.2, h.3, h.4, fun S hS B hB => by
-      simpa [cyl] using h.5 S hS (fun _ => Set.univ) B (fun e => e.elim) hB⟩,
-    fun h => ⟨fun e => e.elim, h.1, h.2.1, h.2.2.1, fun S hS A B _ hB => by simpa [cyl] using h.2.2.2 S hS B hB⟩⟩
+  have hcyl (S : Finset κ) (A : Empty → Set Unit) (B : ∀ k, Set (P k)) :
+      cyl (fun _ : Empty => (1 : G →* Unit)) q K S A B =
+        {g | (∀ k ∈ S, q k g ∈ B k) ∧ ∀ k ∉ S, q k g ∈ K k} :=
+    Set.ext fun _ => ⟨fun h => h.2, fun h => ⟨fun i => i.elim, h⟩⟩
+  have hprod (f : Empty → ℝ≥0∞) : (∏ i, f i) = 1 :=
+    Finset.prod_eq_one fun i _ => i.elim
+  constructor
+  · intro h
+    refine ⟨h.2, h.3, h.4, ?_⟩
+    intro S hS B hB
+    have hMeasure := h.5 S hS (fun _ => Set.univ) B (fun e => e.elim) hB
+    rw [hcyl, hprod, one_mul] at hMeasure
+    exact hMeasure
+  · intro h
+    refine ⟨fun e => e.elim, h.1, h.2.1, h.2.2.1, ?_⟩
+    intro S hS A B _ hB
+    rw [hcyl, hprod, one_mul]
+    exact h.2.2.2 S hS B hB
 
 theorem isProdMeasureFin_iff {μf : ∀ v, Measure (GLoc σ J v)} {μ : Measure (GFin σ J)} :
     IsProdMeasureFin σ J L μf μ ↔ (∀ v, (μf v).IsHaarMeasure) ∧

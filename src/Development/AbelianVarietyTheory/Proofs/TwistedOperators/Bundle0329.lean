@@ -267,6 +267,7 @@ end GlobalTheory.MixWeight
 
 end
 end
+end
 
 -- bundled from Development.AbelianVarietyTheory.Proofs.TwistedOperators.ModulusInfConjLeSpanTypePrimesProduct
 section

@@ -92,7 +92,7 @@ theorem main : lemmaBSt.{0} → ∀ (V : Type) [CommRing V] [IsDomain V] [IsDisc
     rw [Category.id_comp, Category.assoc]
     exact (Over.w (fst (TF (R := V) (FractionRing V)) D.toPre.P.A)).symm
   rw [e₃] at e₂'
-  exact (IsUnit.mul_right_inj (isUnit_cst _ y hr')).1 ((IsUnit.mul_right_inj (isUnit_cst _ y hr)).1 e₂')
+  exact (IsUnit.mul_right_inj (_root_.GlobalTheory.ExpInt.isUnit_cst _ y hr')).1 ((IsUnit.mul_right_inj (_root_.GlobalTheory.ExpInt.isUnit_cst _ y hr)).1 e₂')
 
 end GlobalTheory.ExpFun
 end
