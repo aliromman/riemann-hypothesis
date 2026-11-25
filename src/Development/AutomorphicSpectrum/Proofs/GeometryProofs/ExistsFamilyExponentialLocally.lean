@@ -20,27 +20,8 @@ public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.IsHolToOf
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LocalHolomorphicExponentialChart
 public import Mathlib.Analysis.Calculus.FDeriv.OfCompLeft
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.HolomorphicFamilies.HolPairA
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
 import Mathlib.Tactic.Linter.Style
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.HopfAlgebra.Basic
-import Mathlib.Topology.Sheaves.Presheaf
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsLinearEquivLift
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
-import Mathlib.Analysis.Calculus.InverseFunctionTheorem.ContDiff
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsHodgeGram
 
 -- This file was produced by scripts/clump.py from the modules listed below.

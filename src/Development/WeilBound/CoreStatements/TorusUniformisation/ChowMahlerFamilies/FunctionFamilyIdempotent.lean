@@ -4,25 +4,7 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsLatFamilyC
 public import Development.AutomorphicSpectrum.Statements.GeometryStatements.NonemptyEquivOfCardHom
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LemmaBTHolds
 public import Mathlib.LinearAlgebra.FreeModule.IdealQuotient
-import Mathlib.AlgebraicGeometry.Morphisms.SchemeTheoreticallyDominant
-import Mathlib.AlgebraicGeometry.Morphisms.WeaklyEtale
-import Mathlib.AlgebraicGeometry.Sites.Fpqc
-import Mathlib.CategoryTheory.ExtremalEpi
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.CompactGapsGE
 
 @[expose] public section

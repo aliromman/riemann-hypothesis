@@ -23,26 +23,9 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitaryJ
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitarySwapReduction
 public import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.EigInert
 public import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.IwahoriFactorisation.StrictDominance.JointGeneralisedEigenvectors.JacquetLemma
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Linter.Style
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.Lemma
 import Formalism.SatakeDualWeyl.KpqSubgroupCompact
-import Mathlib.LinearAlgebra.Eigenspace.Pi
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DominantHeckeOperatorsCommute, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitaryChamberDecomposition, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitaryCharacterFacts, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitaryEquivariantForm, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitaryFrobeniusReciprocity, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ImportsRestBis, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemIwGLOfDiag, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitaryJacquetEigenvectorExists, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.IwahoriFactorisation.StrictDominance.UnitaryExtremality.ExtremeU, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.InertEigenvalues.AbsEigB

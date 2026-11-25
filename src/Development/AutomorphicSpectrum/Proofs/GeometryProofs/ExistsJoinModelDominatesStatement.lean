@@ -7,18 +7,7 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ProjectiveMo
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.RegAtChartLocalization
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsCptGen
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.RegAtLocalOrderFraction
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
 import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.WeilBound.CoreStatements.HodgeTatePoints.MbLJoinExists
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -32,9 +21,6 @@ section -- clump:auto
 open AlgebraicGeometry CategoryTheory GlobalTheory.CompanionTheory.Ar NumberField
 
 namespace GlobalTheory.CompanionTheory.Ar
-
-theorem join_points_charts : ∀ (o : Type) [CommRing o] (Ω : Type) [Field Ω] [Algebra o Ω] (κ κ' : Type) (x : κ → Ω) (Ω' : Type) [Field Ω'] [Algebra o Ω'] (i : Ω →+* Ω') (w : κ' → Ω') (M' : PModel o (joinCo i x w)), (∀ a : o, i (algebraMap o Ω a) = algebraMap o Ω' a) → ∀ p' : Cpt M'.ξ, p' ∈ ctrSet o x i M'.ξ ∧ ∃ l, InChart M'.ξ w l p' :=
-  @PositivityTheory.HtPt.Mb.join_charts
 
 end GlobalTheory.CompanionTheory.Ar
 end -- clump:auto

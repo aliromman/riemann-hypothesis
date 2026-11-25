@@ -247,7 +247,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.LevelStructureAutomorphisms (LevelA
 open GlobalTheory.BadCount
 open scoped TensorProduct
 noncomputable section
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 namespace GlobalTheory.FrameBerg
 end GlobalTheory.FrameBerg
 open scoped GlobalTheory.CompHt
@@ -1084,7 +1083,6 @@ open GlobalTheory.BadCount
 open scoped TensorProduct
 
 noncomputable section
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 open scoped GlobalTheory.CompHt
 namespace GlobalTheory.CovTop.ShortSpanUnitCover
@@ -1218,7 +1216,6 @@ open GlobalTheory.BadCount
 open scoped TensorProduct
 
 noncomputable section
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 namespace GlobalTheory.CovTop.ShortSpanUnitCover
 end GlobalTheory.CovTop.ShortSpanUnitCover
 namespace GlobalTheory.CovTop.ShortSpanUnitCover

@@ -23,31 +23,12 @@ public import Development.WeilBound.CoreStatements.HodgeTatePoints.Famproj
 public import Development.WeilBound.CoreStatements.HodgeTatePoints.FinrankDualEqOfProjective
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeTateFreeFlagLatticeLower
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.PointHTOfFarguesHodgeTate
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.TranslateMemIndOrder
-import Mathlib.Topology.Sheaves.Presheaf
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
 import Mathlib.Tactic.Linter.Style
-import Mathlib.RingTheory.RegularLocalRing.Defs
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
-import Mathlib.Algebra.Module.StablyFree.Basic
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.RingTheory.Henselian
 import Development.WeilBound.CoreStatements.HodgeTatePoints.GaSurj
 import Development.WeilBound.CoreStatements.HodgeTatePoints.Hcptgen
 

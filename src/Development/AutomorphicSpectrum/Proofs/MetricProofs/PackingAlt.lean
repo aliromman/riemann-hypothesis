@@ -36,26 +36,7 @@ public import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PSegreArith
 public import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PSmallPacking
 public import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PSmallSectionsSeparated
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ArithmeticHilbertSamuelLowerBound
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.Algebra.Ring.IsFormallyReal
-import Mathlib.LinearAlgebra.Charpoly.BaseChange
-import Mathlib.RingTheory.Polynomial.IsIntegral
-import Mathlib.RingTheory.Valuation.AlgebraInstances
-import Mathlib.RingTheory.Valuation.LocalSubring
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PFibreRepresentatives
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PPullConeDegree
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PPullConeNull

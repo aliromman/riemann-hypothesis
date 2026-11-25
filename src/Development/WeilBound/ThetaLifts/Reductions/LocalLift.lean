@@ -7,28 +7,10 @@ public import Mathlib.Analysis.CStarAlgebra.Matrix
 public import Mathlib.Analysis.Calculus.Deriv.Abs
 public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 import CompanionTheory.ThickeningEstimates.LieGroupReduction.IsoOfIntegral
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.WeilBound.ThetaLifts.CartanFactorisation.EqOfInner
 import CompanionTheory.ThickeningEstimates.LieGroupReduction.HasDerivAtSchwartzToL2
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Analysis.Calculus.Deriv.Prod
-import Mathlib.Tactic.Monotonicity.Lemmas
-import Mathlib.Topology.Sheaves.Presheaf
 import CompanionTheory.ThickeningEstimates.LieGroupReduction.NormExpSubLe
 import CompanionTheory.ThickeningEstimates.LieGroupReduction.LocalLift
-import Mathlib.Algebra.Order.Archimedean.Real.Hom
-import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 

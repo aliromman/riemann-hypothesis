@@ -10,21 +10,7 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeo
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsLieModel
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelFiniteProjective
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelIsBaseChange
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -36,9 +22,6 @@ noncomputable section
 namespace GlobalTheory.CompanionTheory.Ar.LieRank
 
 variable {S : Scheme.{0}}
-
-theorem dualMap_apply {R R' : Type} [CommRing R] [CommRing R'] (c : R →+* R') (a : DualNumber R) :
-    dualMap c a = TrivSqZeroExt.inl (c a.fst) + TrivSqZeroExt.inr (c a.snd) := rfl
 
 def epsPull {R R' : Type} [CommRing R] [CommRing R'] (c : R →+* R') (x : Sp R ⟶ S) :
     epsAt (spMap c ≫ x) ⟶ epsAt x :=

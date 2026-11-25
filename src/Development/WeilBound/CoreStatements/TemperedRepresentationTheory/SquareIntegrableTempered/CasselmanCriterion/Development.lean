@@ -38,19 +38,6 @@ public import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.None
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PiTensorIrreducibleNontrivial
 public import GroundTheory.AutomorphicForms.JacquetAdmissible
 import Development.AbelianVarietyTheory.Definitions.Divisors.T2SpaceGeneralLinearGroup
-import Mathlib.Algebra.Module.StablyFree.Basic
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NonemptyEquivOfRangeEq
 import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.LeviEmbMemNormalizerLower
 import GroundTheory.AutomorphicForms.AdmissibleInduction
@@ -58,11 +45,7 @@ import GroundTheory.AutomorphicForms.CuspidalAdmissible
 import Mathlib.Tactic.Linter.Style
 import Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.RingTheory.Henselian
-import Mathlib.Tactic.TypeStar
 import GroundTheory.AutomorphicForms.LocallyProfinite
-import Mathlib.Topology.Algebra.Group.Units
-import Mathlib.Algebra.Order.Star.Real
 import Mathlib.Tactic.Linter.HaveILetI
 
 -- This file was produced by scripts/clump.py from the modules listed below.

@@ -21,22 +21,8 @@ public import Mathlib.MeasureTheory.Integral.Bochner.Basic
 public import Mathlib.MeasureTheory.Integral.IntegrableOn
 public import Development.AutomorphicSpectrum.Proofs.MetricProofs.ConvergenceStatementHoldsStatement
 public import GroundTheory.HeightsAndTheta.Heights.AnalyticLimit.OfListTailLog
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Algebra.Order.Star.Real
 import ReciprocityTheory.AnalyticForms.LeviForms.TailBoundA
 import ReciprocityTheory.AnalyticForms.LeviForms.TailCut
 import ReciprocityTheory.AnalyticForms.PotentialTheory.IntegrableOnTargetOfTsupport
@@ -45,7 +31,6 @@ import ReciprocityTheory.AnalyticForms.PotentialTheory.MaMeasure
 import ReciprocityTheory.AnalyticForms.MaIntEmpty
 import ReciprocityTheory.AnalyticForms.PotentialTheory.IsPotentialOfFun
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.TailBoundStatementHolds
-import Mathlib.Topology.Separation.Connected
 import ReciprocityTheory.AnalyticForms.PotentialTheory.AnalyticSubsetChartLocal
 import Std.Tactic.BVDecide.Normalize.Prop
 

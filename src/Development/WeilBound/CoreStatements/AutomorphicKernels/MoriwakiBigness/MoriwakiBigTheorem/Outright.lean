@@ -198,18 +198,6 @@ import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PGraphChangeOfModel
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PGraphIsometric
 import GroundTheory.HeightsAndTheta.Heights.Intersections.PConsequences
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.ChangeOfModel
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.StatementsKleimanScheme
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovGeometry.ProjDefs
 import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.Assembly
@@ -223,12 +211,9 @@ import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.IsMultiProjPrimeMId
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.IsMultiProjPrimeSegreLift
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.RelDimMIdealOverEqTrdeg
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ZpowMemSubalgebraOfInvMem
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.Algebra.Order.Star.Rat
 import Mathlib.Tactic.Linter.Style
 import GroundTheory.HeightsAndTheta.Heights.FieldsOfNumbers.PCutRegular
 import GroundTheory.HeightsAndTheta.Heights.HeightComparison.IsMultiHomogIdealIff
-import Mathlib.Algebra.Order.Star.Real
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.ArithModel
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PVocabMultiHomog
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.PVocabMultiHomogIdeal
@@ -277,7 +262,6 @@ import GroundTheory.HeightsAndTheta.Heights.HeightComparison.POrbitDegree
 import GroundTheory.HeightsAndTheta.Heights.HeightComparison.POrbitDivVertical
 import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.HeightsSetAll
 import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.MemMCoordIdealIffOfIsWeightedHomogeneous
-import Mathlib.Algebra.Ring.IsFormallyReal
 import Mathlib.Tactic.Linter.HaveILetI
 
 -- This file was produced by scripts/clump.py from the modules listed below.

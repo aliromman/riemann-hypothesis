@@ -19,22 +19,8 @@ public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.Exponen
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsFamilyExponentialLocally
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsLogPeriodFamily
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.FamilyExponentialConjugate
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Proofs.AbelianSchemeLawProofs.PolBaseChangeOfRelAmpleLocal
 import Development.AbelianVarietyTheory.Proofs.ToricGeometry.TangentBijectionOfValues
-import Mathlib.Analysis.Calculus.FDeriv.Star
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.BCTools
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ChartPullbacks.TangentLinearity.ConstPullback
 import Mathlib.Tactic.Linter.HaveILetI

@@ -20,26 +20,10 @@ public import Mathlib.Algebra.Field.Defs
 public import Mathlib.Algebra.GroupWithZero.Units.Basic
 public import Mathlib.Algebra.Ring.Subring.Defs
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GrGenOfIsFlagVBOn
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsVBOnDualAndBidual
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LatRestrictComapSpan
-import Mathlib.Algebra.Module.StablyFree.Basic
-import Mathlib.Tactic.TypeStar
 import Lemmata.GeneralBFact.Imports
 import Mathlib.Tactic.Linter.Style
 

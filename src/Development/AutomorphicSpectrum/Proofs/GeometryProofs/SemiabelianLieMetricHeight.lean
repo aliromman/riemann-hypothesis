@@ -40,39 +40,13 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelValu
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.SemiabelianFiniteCoverTorus
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsExcisionNbhdAway
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.CoordsAtSmul
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.AlgebraicGeometry.QuasiAffine
-import Mathlib.Order.CompletePartialOrder
-import Mathlib.AlgebraicGeometry.PullbackCarrier
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.CompactGapsGE
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
-import Mathlib.Tactic.TypeStar
-import Mathlib.CategoryTheory.Monoidal.Cartesian.Basic
-import Mathlib.CategoryTheory.Monoidal.Category
-import Mathlib.CategoryTheory.Monoidal.Mon
-import Mathlib.Topology.Sheaves.Presheaf
-import Mathlib.AlgebraicGeometry.Noetherian
-import Mathlib.Analysis.CStarAlgebra.Module.Constructions
 import Std.Tactic.BVDecide.Normalize.Prop
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.PrecompleteBases.PsaRos
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Algebra.Ring.IsFormallyReal
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.SabPull
-import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.TorusUniformizationCompact, Development.AutomorphicSpectrum.Proofs.GeometryProofs.AnalyticPointsFiniteCompact, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.CoordinateMapFiniteType, Development.AutomorphicSpectrum.Proofs.GeometryProofs.CoordsFiniteTypeOverIntegers, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.FiniteSurjectivePointLift, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FiniteSurjectiveLiftsPoints, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.HermitianNormSquareFormula, Development.AutomorphicSpectrum.Proofs.GeometryProofs.HermitianSquareNormGram, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.ExistsIntegralClosedSubscheme, Development.AutomorphicSpectrum.Proofs.GeometryProofs.IrreducibleClosedIntegralSubscheme, Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieMetricTorusPullback, Development.AutomorphicSpectrum.Proofs.GeometryProofs.TorusInjectiveOnOpen, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.TorusUniformizationCompare, Development.AutomorphicSpectrum.Proofs.GeometryProofs.TorusSplitPullbackGeneric, Development.AutomorphicSpectrum.Proofs.MetricProofs.IsCompactSphere, Development.AutomorphicSpectrum.Proofs.GeometryProofs.SemiabelianLieMetricHeight

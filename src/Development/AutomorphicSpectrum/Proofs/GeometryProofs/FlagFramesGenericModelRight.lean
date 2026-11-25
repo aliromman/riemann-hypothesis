@@ -18,28 +18,9 @@ public import Mathlib.RingTheory.RingHom.Smooth
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.CoordsAt
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.RegAtIffChartLocalization
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.PieceLocalizationAtElement
-import Mathlib.Algebra.MvPolynomial.Nilpotent
-import Mathlib.RingTheory.LocalProperties.Reduced
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
-import Mathlib.RingTheory.Henselian
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.CoordTieCompEquiv
-import Mathlib.Topology.Sheaves.Presheaf
-import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
-import Mathlib.RingTheory.TotallySplit
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsChartBundle
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.RegAtIsLocalRingIsFractionRingStalk
 

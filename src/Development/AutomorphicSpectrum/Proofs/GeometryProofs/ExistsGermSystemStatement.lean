@@ -28,22 +28,9 @@ public import Formalism.SharpRestriction.Divisibility.GeneratorPowers.FBMapPf
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.ThetaSwapFirstTwo
 public import Development.WeilBound.CoreStatements.HodgeTatePoints.IsPullbackWhisker
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CubicalLawRight
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.LBPull
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.PullFEPf
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.IsSplitGaussChars
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.FBIdJet
 import Development.AutomorphicSpectrum.Definitions.AdelicLattices.FactPrimes

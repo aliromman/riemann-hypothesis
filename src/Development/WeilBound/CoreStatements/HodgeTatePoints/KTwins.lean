@@ -38,22 +38,6 @@ public import Development.WeilBound.CoreStatements.HodgeTatePoints.A28
 public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ExistsNeZeroOfIsSubvar
 public import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.ExistsNeZeroOfIsSubvarAlt
 public import GroundTheory.HeightsAndTheta.Heights.SemipositiveHeights.KleimanNefF
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.Algebra.Order.Star.Rat
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.WeilBound.CoreStatements.HodgeTatePoints.Imports
 import GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.PRestrictQuotX
 import GroundTheory.HeightsAndTheta.Heights.KleimanAmpleness.PCutZeroNotLe

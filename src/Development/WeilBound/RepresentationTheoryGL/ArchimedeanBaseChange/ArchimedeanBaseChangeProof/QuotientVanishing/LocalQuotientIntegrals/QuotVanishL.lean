@@ -16,27 +16,10 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EqZeroOf
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsIsometryFlagOfEquiv
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsMulRightInvariantOfCenter
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.IsotropicMahlerBounds.VeryCuspZero
-import Mathlib.Tactic.TypeStar
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwCentPreservesFlag
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.HopfAlgebra.Basic
-import Mathlib.RingTheory.PiTensorProduct
 import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.Objects
-import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocVanishOf, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HaarQK, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MapWithDensityEqOfScale, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralEqSmulIntegralAvg, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MulVecMemUniRad, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NilradicalChangeOfVariables, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.QuotientVanishing.LocalQuotientIntegrals.QuotVanishL

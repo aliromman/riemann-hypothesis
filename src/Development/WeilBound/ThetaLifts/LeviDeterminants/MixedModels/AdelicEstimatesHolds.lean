@@ -12,27 +12,8 @@ public import Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.Real
 public import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.ExistsNhdsInvariant
 public import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.IndicatorMem
 public import Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.MCPure
-import Mathlib.RingTheory.Etale.Weakly
-import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
-import Mathlib.RingTheory.TotallySplit
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts
-import Mathlib.RingTheory.PiTensorProduct
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.Algebra.Order.Archimedean.Real.Hom
-import Mathlib.Algebra.Ring.IsFormallyReal
-import Mathlib.Algebra.Module.Torsion.Prod
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.FiniteAdelicEstimatesHolds, Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.MCGlue, Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.MCReal, Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.TraceNondeg, Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.AdelicEstimatesHolds

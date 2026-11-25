@@ -481,8 +481,6 @@ section -- clump:auto
 
 open ValuativeRel Matrix
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
 private theorem UpperTheory.Reformulated.B.DoubleCosetSeparation.mem_iw {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k]
     [IsNonarchimedeanLocalField k] {n : ℕ} (g : GL (Fin n) k) :
     g ∈ GlobalTheory.SmGL.iwahori k (Fin n) ↔
@@ -608,8 +606,6 @@ noncomputable section
 
 open NumberField IsDedekindDomain Matrix Polynomial GlobalTheory.BCT GlobalTheory.UnitaryBC Formalism.UG
 open scoped Classical
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace UpperTheory.V.Z.Tf.GlobalTraceComparison.Asm
 
@@ -932,7 +928,6 @@ noncomputable section
 open GlobalTheory.PRep GlobalTheory.BCT UpperTheory.V.Hi UpperTheory.V.AlgebraTools
 
 open NumberField IsDedekindDomain Formalism.UG
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace UpperTheory.V.Z.Tf.GlobalTraceComparison.Asm
 

@@ -19,35 +19,15 @@ public import Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWa
 public import Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.PageTheorem
 public import Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.TendstoPiZero
 public import Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.ZetaClassicalZeroFreeRegion
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Linter.Style
 import CompanionTheory.HarishChandraModules.KFiniteAnalyticVectors.AnalyticIntertwiners.SubquotientNontrivial
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.SmoothA
 import Std.Tactic.BVDecide.Normalize.Prop
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.AnalyticVectors.Unitary
 import Formalism.RealPlaceAnalysis.RealPlaceTaylor.CompactHaarRightInvariantInst
-import Mathlib.Algebra.Ring.IsFormallyReal
-import Mathlib.Analysis.LocallyConvex.HahnBanach
-import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.Tactic.Linter.HaveILetI
 import Formalism.RealPlaceAnalysis.RealPlaceTaylor.ComplexificationHolds
-import Mathlib.Tactic.TypeStar
 import Development.WeilBound.HeckeVectors.SmoothVectors.SobolevApproximation.SobApproxHolds
-import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.HopfAlgebra.Basic
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.C3C, Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.C7, Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.CasimirNonnegative, Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.CasimirNonnegativeSymmetric, Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.D5, Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.DerivativeContinuity, Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.DerivativeRepresentation, Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.E3D, Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.EigenOrthogonalForm, Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.EigenspacesOrthogonal, Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.ExistsFunctional, Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.ExistsNormingFunctional, Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.ExponentialKSet, Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.HighestWeightKernel, Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.HilbertSchmidtSqEq, Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.Imports, Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.MatrixActionAdditive, Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.MatrixActionLinear, Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.SeminormApproximation, Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.SlopeLimitConstant, Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.ZeroOnDense, Development.WeilBound.CoreStatements.PublishedTheorems.CasselmanWallach.CwOf

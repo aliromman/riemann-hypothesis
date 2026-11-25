@@ -93,21 +93,7 @@ public import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.TestPoly
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.CuspIntersectionHeight
 public import Development.AutomorphicSpectrum.Proofs.MetricProofs.HeightComparisonBetweenModelsStatement
 public import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.StatementsMuMeasureLimit
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicSpectrum.Definitions.MetricPeriods.ExistsIntSmulIsAdicIntegralInTensorBasis
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
 import ReciprocityTheory.AnalyticForms.LeviForms.TailBoundA
@@ -119,17 +105,13 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.Glo
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsGenericWeilPairing
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.TwoWeightEqOneAddRoot
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.WeilPairingPullbackIff
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IntersectionSystemHodgeDegree
-import Mathlib.LinearAlgebra.ExteriorPower.Basic
-import Mathlib.LinearAlgebra.PiTensorProduct.Basic
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.TensorWedgeDetChange
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FrameDefinitions.Metric
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.UnitValueFrameDomain
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ValAtIffValueAt
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.PVertFactorPos
-import Mathlib.Algebra.Order.Star.Real
 import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.PshExt
 import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.PshMollA
 import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.PshMollB
@@ -139,15 +121,12 @@ import ReciprocityTheory.AnalyticForms.PotentialTheory.IntegrableOnTargetOfTsupp
 import ReciprocityTheory.AnalyticForms.PotentialTheory.MaMeasureB
 import ReciprocityTheory.AnalyticForms.PotentialTheory.PshShiftA
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.Algebra.Order.Star.Int
 import ReciprocityTheory.AnalyticForms.PotentialTheory.PotentialContDiffAt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterBridgeA
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.LineIsomorphismDefectFunction
-import Mathlib.Tactic.Monotonicity.Lemmas
 import GroundTheory.HeightsAndTheta.Heights.Intersections.TableDegreeThreeBase
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.ProjectionFormulaOfArithSystem
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.RegularizedHodgeMetricSmooth
-import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.MetricProofs.ProjectionOfChartAnalytic, Development.WeilBound.CoreStatements.PlurisubharmonicCones.HoloMapProj, Development.WeilBound.CoreStatements.PlurisubharmonicCones.LvExtCancel, Development.WeilBound.CoreStatements.PlurisubharmonicCones.MhChange, Development.WeilBound.CoreStatements.PlurisubharmonicCones.MolliLeOfLe, Development.WeilBound.CoreStatements.PlurisubharmonicCones.LeviShift, Development.WeilBound.CoreStatements.PlurisubharmonicCones.OneSlot, Development.WeilBound.CoreStatements.PlurisubharmonicCones.SmoothLogSub, Development.WeilBound.CoreStatements.PlurisubharmonicCones.GoodOriginTowerHeight, Development.AutomorphicSpectrum.Proofs.GeometryProofs.GoodOriginIntersectionRelay, Development.AutomorphicSpectrum.Proofs.GeometryProofs.PtsIntegralFibreAppendEqMulImage, Development.AutomorphicSpectrum.Proofs.GeometryProofs.StokesLimitIffPosOfResK, Development.AutomorphicSpectrum.Proofs.GeometryProofs.GoodOriginIntersectionTower

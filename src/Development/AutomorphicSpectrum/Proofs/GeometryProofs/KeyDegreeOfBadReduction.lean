@@ -40,29 +40,9 @@ public import Mathlib.MeasureTheory.Measure.Haar.OfBasis
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.NonvanishingSectionFieldExt
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ThetaMultiplierQuadraticCharacter
 public import Development.AutomorphicSpectrum.Proofs.AdelicProofs.GramMat
-import Mathlib.Algebra.Module.StablyFree.Basic
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Algebra.Ring.IsFormallyReal
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.RingTheory.TotallySplit
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
-import Mathlib.Topology.Separation.CompletelyRegular
 import Std.Tactic.BVDecide.Normalize.Prop
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.BCTools
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
 import Mathlib.Tactic.Linter.Style
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.AmplePt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CocycleIdentityIso
@@ -74,11 +54,9 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.
 import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.DenseLift
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsIsLieBasisBaseChange
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.ThetaCore
-import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.OneArc
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FrameDefinitions.PermFinTwoUniv
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.PolarizedDataFieldExtension
-import Mathlib.RingTheory.RegularLocalRing.Defs
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GeometryProofs.FundamentalDomainRiemannForm, Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeMetricFrameInner, Development.AutomorphicSpectrum.Proofs.GeometryProofs.KeyDegreePpData, Development.AutomorphicSpectrum.Statements.GeometryStatements.KeyPBOfKeyOver, Development.AutomorphicSpectrum.Proofs.GeometryProofs.KeyInputFromPpData, Development.WeilBound.CoreStatements.HodgeTatePoints.QacInt, Development.AutomorphicSpectrum.Proofs.GeometryProofs.KeyOverLieBasisDegree, Development.AutomorphicSpectrum.Proofs.GeometryProofs.NormalizedDegreeGramDet, Development.AutomorphicSpectrum.Proofs.GeometryProofs.KeyDegreeOfBadReduction

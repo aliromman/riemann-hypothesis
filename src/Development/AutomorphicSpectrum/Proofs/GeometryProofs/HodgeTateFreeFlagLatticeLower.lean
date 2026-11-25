@@ -23,24 +23,8 @@ public import Development.WeilBound.CoreStatements.HodgeTatePoints.HtatPol
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsLieModel
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelExistsUniqueAct
 import Development.WeilBound.CoreStatements.HodgeTatePoints.HtatLie
-import Mathlib.GroupTheory.FiniteAbelian.Basic
-import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.AlgebraicGeometry.Morphisms.SchemeTheoreticallyDominant
-import Mathlib.AlgebraicGeometry.Morphisms.WeaklyEtale
 import Development.WeilBound.CoreStatements.HodgeTatePoints.HtatLev
 import Development.WeilBound.CoreStatements.HodgeTatePoints.TwhopfSec
 

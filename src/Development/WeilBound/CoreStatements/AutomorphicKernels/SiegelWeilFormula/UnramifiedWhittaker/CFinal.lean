@@ -24,27 +24,10 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelJoi
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MultiplicityLevelFormula
 public import Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.WhitGenOf
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnramifiedFormulaPolynomialGen
-import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.Tactic.Linter.HaveILetI
 import Aesop.Main
-import Mathlib.Topology.Connected.Separation
-import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
-import Mathlib.Tactic.TypeStar
-import Mathlib.Algebra.Order.Star.Int
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CharacterLevelFormula, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ClassLevelFormula, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CosetIntegralUnramified, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CosetIntegralUnramifiedStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CosetMeasureFormula, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralHermitianInvariance, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralHermitianVolumeOne, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelExhaustion, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MultiplicityBoundUnramified, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MultiplicityPowerFormula, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TsumExhaustionUnramified, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermitianMatricesCard, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CardFibreGramDifferential, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnimodularHermitianRepsCountSucc, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnramifiedLocalFormula, Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.UnramifiedWhittaker.LocCAsm, Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.UnramifiedWhittaker.LocCMain, Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.UnramifiedWhittaker.CFinal

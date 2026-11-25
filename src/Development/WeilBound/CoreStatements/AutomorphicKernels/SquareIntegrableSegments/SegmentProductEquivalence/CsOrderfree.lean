@@ -5,19 +5,6 @@ public import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.
 public import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.IrreducibleAdmissibleGL
 public import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.ZelevinskyJacquet.ZelevinskyCosocles.LUnlinkedComm
 public import Development.WeilBound.CoreStatements.AutomorphicKernels.SquareIntegrableSegments.SegmentProductEquivalence.CsReorderord
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
 
 @[expose] public section
 
@@ -46,19 +33,8 @@ theorem irrGL_eq_of_isLSeg_same {Δ : Segment k} {x y : IrrGL (k := k)} (hx : Is
   exact key
 
 theorem perm_of_univ_map_eq {α : Type*} {l : ℕ} {x y : Fin l → α}
-    (h : Finset.univ.val.map y = Finset.univ.val.map x) : ∃ e : Equiv.Perm (Fin l), ∀ a, y a = x (e a) := by
-  classical
-  have hc : ∀ b : α, Fintype.card {a // y a = b} = Fintype.card {a // x a = b} := by
-    intro b
-    have hb := congrArg (Multiset.count b) h
-    rw [Multiset.count_map, Multiset.count_map] at hb
-    rw [Fintype.card_subtype, Fintype.card_subtype, Finset.card_def, Finset.card_def,
-      Finset.filter_val, Finset.filter_val]
-    have e1 : (fun a => b = y a) = (fun a => y a = b) := funext fun a => propext eq_comm
-    have e2 : (fun a => b = x a) = (fun a => x a = b) := funext fun a => propext eq_comm
-    convert hb using 3 <;> simp [eq_comm]
-  refine ⟨Equiv.ofFiberEquiv (fun b => Fintype.equivOfCardEq (hc b)), fun a => ?_⟩
-  exact (Equiv.ofFiberEquiv_map _ a).symm
+    (h : Finset.univ.val.map y = Finset.univ.val.map x) : ∃ e : Equiv.Perm (Fin l), ∀ a, y a = x (e a) :=
+  by apply _root_.CompanionTheory.PfEss.Zc2.perm_of_univ_map_eq; assumption
 
 end OrderFree
 

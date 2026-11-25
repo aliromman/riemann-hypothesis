@@ -28,19 +28,6 @@ public import Development.AutomorphicSpectrum.Statements.GeometryStatements.Nine
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeIPOfFibreLatVec
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.CuspIntersectionPositive
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.PotentialsBoundedRegSettingEqReference
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FrameDefinitions.PermFinTwoUniv
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.SiegelOfRiemann
@@ -48,12 +35,9 @@ import GroundTheory.HeightsAndTheta.Heights.Regularisation.Assembly
 import GroundTheory.HeightsAndTheta.Heights.Regularisation.PLogCoverDescent
 import GroundTheory.HeightsAndTheta.Heights.Regularisation.PPuncturedExpOrder
 import GroundTheory.HeightsAndTheta.Heights.Regularisation.PRiemannExtensionSlices
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.IsotropicSublatticeCovolumePositive
 import Mathlib.Tactic.Linter.Style
-import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.PlurisubharmonicCones.PshLogGrowthBounded, Development.AutomorphicSpectrum.Proofs.MetricProofs.PshLogGrowthBoundedNearPuncture, Development.AutomorphicSpectrum.Proofs.MetricProofs.RiemannFormLowerBoundNearCusp, Development.WeilBound.CoreStatements.PlurisubharmonicCones.ExistsPhiNormSq, Development.AutomorphicSpectrum.Proofs.GeometryProofs.CuspIntersectionLimit

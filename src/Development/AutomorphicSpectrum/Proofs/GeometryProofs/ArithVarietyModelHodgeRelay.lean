@@ -60,31 +60,9 @@ public import Development.WeilBound.CoreStatements.HodgeTatePoints.MiTors
 public import Development.WeilBound.CoreStatements.HodgeTatePoints.StightBad
 public import Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.IsIntegrallyClosedOfDenom
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.BCRing
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.Etale.Weakly
-import Mathlib.RingTheory.HopfAlgebra.Basic
-import Mathlib.RingTheory.TotallySplit
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.CategoryTheory.Monoidal.Cartesian.Basic
-import Mathlib.CategoryTheory.Monoidal.Category
-import Mathlib.CategoryTheory.Monoidal.Mon
-import Mathlib.Topology.Sheaves.Presheaf
 import Development.WeilBound.CoreStatements.HomogeneousNonvanishing.BtExistsBc
-import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
 import Development.WeilBound.CoreStatements.HodgeTatePoints.TwhopfFin
 import Development.WeilBound.CoreStatements.HodgeTatePoints.TwhopfSec
 import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.ExistsUniqueFactorCompletedStalkOfMap
@@ -94,13 +72,6 @@ import Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsCubica
 import Development.WeilBound.CoreStatements.HodgeTatePoints.ExistsDenOfOpen
 import Development.WeilBound.CoreStatements.HodgeTatePoints.ExtTensor
 import Development.WeilBound.CoreStatements.HodgeTatePoints.ReBase
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.AlgebraicGeometry.Morphisms.WeaklyEtale
-import Mathlib.GroupTheory.FiniteAbelian.Basic
-import Mathlib.RingTheory.AdicCompletion.LocalRing
-import Mathlib.RingTheory.Coalgebra.CoassocSimps
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.RingTheory.PicardGroup
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.Splits
 import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.CompactGapsGE
 

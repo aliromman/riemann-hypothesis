@@ -16,38 +16,14 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeo
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsFFCurve
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LocalComponentsSurjective
 public import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.AssemblyBase
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.HopfAlgebra.Basic
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.Order.CompletePartialOrder
-import Mathlib.RingTheory.Finiteness.Quotient
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.GapCondExample
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.GermComp1ZeroPointLeft
-import Mathlib.Topology.Sheaves.Presheaf
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CocycleRightZeroThd
 import Development.AutomorphicSpectrum.Statements.GeometryStatements.ExistsAlgPtOff
 import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.PCurveVertPointResidue
-import Mathlib.Algebra.MvPolynomial.Nilpotent
-import Mathlib.RingTheory.LocalProperties.Reduced
-import Mathlib.Tactic.TypeStar
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterDivSupp
 import GroundTheory.HeightsAndTheta.Heights.Intersections.PrimeComplMapLeNonZeroDivisorsQuot
 import GroundTheory.HeightsAndTheta.Heights.Intersections.AvoidRing

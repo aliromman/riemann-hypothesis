@@ -75,7 +75,6 @@ open Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.Ind
 open GlobalTheory.Grid GlobalTheory.Doubling GlobalTheory.ChainFr GlobalTheory.IndefiniteRowSideFullHecke.MatchingAdjoints
 open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.SquareComm GlobalTheory.SquareAgree
 open scoped ComplexConjugate
 
@@ -195,7 +194,6 @@ open Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.Ind
 open GlobalTheory.Grid GlobalTheory.Doubling GlobalTheory.ChainFr GlobalTheory.IndefiniteRowSideFullHecke.MatchingAdjoints
 open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.SquareComm GlobalTheory.SquareAgree
 noncomputable section
 namespace GlobalTheory.SquareAgree.KFinAlg
@@ -363,7 +361,6 @@ open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.DivisionVa
 open Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum
 open GlobalTheory.Grid GlobalTheory.Doubling GlobalTheory.ChainFr GlobalTheory.IndefiniteRowSideFullHecke.MatchingAdjoints
 open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.SquareComm GlobalTheory.SquareAgree
 noncomputable section
 namespace GlobalTheory.SquareAgree.KFinAlg
@@ -619,7 +616,6 @@ open Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.Ind
 open GlobalTheory.Grid GlobalTheory.Doubling GlobalTheory.ChainFr GlobalTheory.IndefiniteRowSideFullHecke.MatchingAdjoints
 open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.SquareComm GlobalTheory.SquareAgree
 open scoped ComplexConjugate
 
@@ -628,11 +624,6 @@ noncomputable section
 namespace GlobalTheory.KInfLines
 
 variable {D : D7}
-
-theorem exists_log_of_cartan {n : ℕ} {G C g : Matrix (Fin n) (Fin n) ℂ} (hG : Gᴴ = G)
-    (hC : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.IsCartan Gᵀ C) (hg : gᴴ * G * g = G) (hgC : Commute g C) :
-    ∃ Z : Matrix (Fin n) (Fin n) ℂ, Zᴴ * G + G * Z = 0 ∧ Commute Z C ∧ NormedSpace.exp Z = g :=
-  _root_.GlobalTheory.ExpCartan.exists_exp_eq_of_commute_cartan hG hC hg hgC
 
 theorem emb_cases (t : D.what₂.Tau) (e : GlobalTheory.AdelicU.EmbOver D.host.E (GlobalTheory.AdelicU.placeOf D t)) :
     e.1 = tauE D t ∨ e.1 = (starRingEnd ℂ).comp (tauE D t) := by
@@ -963,7 +954,6 @@ open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.DivisionVa
 open Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum
 open GlobalTheory.Grid GlobalTheory.Doubling GlobalTheory.ChainFr GlobalTheory.IndefiniteRowSideFullHecke.MatchingAdjoints
 open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.SquareComm GlobalTheory.SquareAgree
 open scoped ComplexConjugate
 noncomputable section
@@ -1011,7 +1001,6 @@ open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.DivisionVa
 open Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.Datum
 open GlobalTheory.Grid GlobalTheory.Doubling GlobalTheory.ChainFr GlobalTheory.IndefiniteRowSideFullHecke.MatchingAdjoints
 open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.SquareComm GlobalTheory.SquareAgree
 open scoped ComplexConjugate
 noncomputable section

@@ -23,24 +23,8 @@ public import GroundTheory.HeightsAndTheta.Heights.IntegralModels.Statements
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelFiniteProjective
 public import GroundTheory.HeightsAndTheta.Heights.IntegralModels.PHeightOneIntersection
 public import GroundTheory.HeightsAndTheta.Heights.IntegralModels.PLatticesAgree
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
-import Mathlib.Algebra.GroupWithZero.Submonoid.CancelMulZero
-import Mathlib.RingTheory.PicardGroup
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HeightOnePrimeDvrStalk, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.NormalLatticeRange, Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieLatticeRangeOfStalk, Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelDescendsBaseChange, Development.AutomorphicSpectrum.Proofs.GeometryProofs.RegularLocalRingFractionField, Development.AutomorphicSpectrum.Proofs.GeometryProofs.SemiabelianLieLatticeEq, Development.AutomorphicSpectrum.Proofs.GeometryProofs.SemiabelianLieLatticeAgree

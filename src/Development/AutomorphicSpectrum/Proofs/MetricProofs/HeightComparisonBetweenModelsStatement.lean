@@ -23,29 +23,10 @@ public import Development.AutomorphicSpectrum.Proofs.MetricProofs.RegularizedWei
 public import Development.AutomorphicSpectrum.Proofs.MetricProofs.VerticalHodgeMetricLogFormula
 public import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.GoodOrigin
 public import Development.AutomorphicSpectrum.Proofs.MetricProofs.FubiniStudyMetricSmooth
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicSpectrum.Definitions.MetricPeriods.ExistsIntSmulIsAdicIntegralInTensorBasis
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
-import Mathlib.Analysis.SpecialFunctions.Complex.Analytic
-import Mathlib.Order.CompletePartialOrder
 import Mathlib.Tactic.Linter.Style
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.CategoryTheory.Monoidal.Cartesian.Basic
-import Mathlib.CategoryTheory.Monoidal.Category
-import Mathlib.CategoryTheory.Monoidal.Mon
-import Mathlib.Topology.Sheaves.Presheaf
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.RegularizedWeightUniformOnCompact
 import Development.AutomorphicSpectrum.Definitions.MetricPeriods.PairRelationOfScaledRatio
@@ -54,7 +35,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersecti
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterGoodD
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.LocalHolomorphicSectionOfPotential
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.TypeStar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.MetricProofs.ExistsContinuousMetricRatio, Development.AutomorphicSpectrum.Proofs.MetricProofs.RegularizedHodgeHeightLimit, Development.AutomorphicSpectrum.Proofs.MetricProofs.RegularizedWeightTendstoUniformly, Development.AutomorphicSpectrum.Proofs.MetricProofs.SmoothOnAtlasContinuous, Development.AutomorphicSpectrum.Proofs.MetricProofs.HeightComparisonBetweenModels, Development.AutomorphicSpectrum.Proofs.MetricProofs.HeightComparisonBetweenModelsStatement

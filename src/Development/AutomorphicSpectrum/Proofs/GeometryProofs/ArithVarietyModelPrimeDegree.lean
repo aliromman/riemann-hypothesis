@@ -53,34 +53,18 @@ public import Development.WeilBound.CoreStatements.HodgeTatePoints.GdChartFin
 public import Development.WeilBound.CoreStatements.HodgeTatePoints.GdSplit
 public import Development.WeilBound.CoreStatements.HodgeTatePoints.FinrankDualEqOfProjective
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.PointHTOfFarguesHodgeTate
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.NatCastSmulMemHtLat
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.TorsionPointsDefinedGeneric
 import Development.WeilBound.CoreStatements.HodgeTatePoints.HcptgenRing
-import Mathlib.RingTheory.PicardGroup
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.OneArc
 import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.CompactGapsGE
-import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.Tactic.Linter.Style
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.FlagMinor
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsStalkFractionOfGeneric
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IntegralElementRegular
-import Mathlib.Algebra.Module.StablyFree.Basic
 import Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.ExistsCmTypeEmbedding
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.Objects
-import Mathlib.RingTheory.RegularLocalRing.Defs
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.HodgeTatePoints.PointHTOfFargues, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.SequenceTestFunction, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ArithVarietyModelPrimeRelay, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.SequenceCoordinatesExist, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ArithVarietyPrimeHodgeCount, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ArithVarietyPrimeHodgeDegree, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ArithVarietyPrimeHodgeHeight, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.MemOfIsIntegralLoc, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ArithVarietyPrimeHodgeRelay, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.SequenceProjectionExists, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ArithVarietyPrimeHodgeValue, Development.AutomorphicSpectrum.Proofs.GeometryProofs.CmEmbeddingConjugateCompat, Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeChartDualRankBound, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ArithVarietyModelPrimeDegree

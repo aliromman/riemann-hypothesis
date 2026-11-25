@@ -2,18 +2,6 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.Divisors.IsUnifAt
 public import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.IsotropicMahlerBounds.OnlyIsotropic
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -48,8 +36,6 @@ def IsTestP (φ : ∀ w : Pl E, GLw a w × GLw b w → ℂ) : Prop :=
   ∃ (K₁ : ∀ w : Pl E, Subgroup (GLw a w)) (K₂ : ∀ w : Pl E, Subgroup (GLw b w)),
     IsLevelFam (thL a) (fun w : Pl E => GlobalTheory.LFun.KGL w (n := a)) K₁ ∧ IsLevelFam (thL b) (fun w : Pl E => GlobalTheory.LFun.KGL w (n := b)) K₂ ∧
       GlobalTheory.BCT.IsTest (K2 a b) (fun w : Pl E => (K₁ w).prod (K₂ w)) φ
-
-def G1 : Prop := USide
 
 def G2 : Prop := ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], GlobalTheory.BCT.Unr E → ∀ n : ℕ, 1 ≤ n → ∀ (μ : HChar E) (e : InfinitePlace E → ℤ), IsMu μ e →
   ∀ lam : InfinitePlace E → DomWeight n, ∃ (ι : Type) (_ : Fintype ι) (a : ι → ℕ) (l₁ : ∀ i, InfinitePlace E → DomWeight (a i))

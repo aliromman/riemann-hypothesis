@@ -45,28 +45,11 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelExis
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelFiniteProjective
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieOmegaLatticeVectorBundle
-import Mathlib.RingTheory.Valuation.LocalSubring
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.GermComp1ZeroPointLeft
-import Mathlib.Topology.Sheaves.Presheaf
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CocycleRightZeroThd
 import Mathlib.Tactic.Linter.HaveILetI
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.RingTheory.LocalProperties.Reduced
-import Mathlib.RingTheory.PicardGroup
-import Mathlib.RingTheory.TotallySplit
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.HodgeTatePoints.InhConj, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.FunctionFieldCurveExists, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.SplitCharactersUnramified, Development.WeilBound.CoreStatements.HodgeTatePoints.ChIsDeg, Development.AutomorphicSpectrum.Proofs.GeometryProofs.CurveDegreeUnique, Development.WeilBound.CoreStatements.HodgeTatePoints.CiIsDeg, Development.AutomorphicSpectrum.Proofs.GeometryProofs.CurveLatticeDegreeFormula, Development.AutomorphicSpectrum.Proofs.GeometryProofs.CurveLieEigenDecomposition, Development.WeilBound.CoreStatements.HodgeTatePoints.CiGrAlg, Development.WeilBound.CoreStatements.HodgeTatePoints.LieValAtBase, Development.WeilBound.CoreStatements.HodgeTatePoints.CiGrDeg, Development.AutomorphicSpectrum.Proofs.GeometryProofs.CurveLieLatticeDegree, Development.WeilBound.CoreStatements.HodgeTatePoints.CiCurveIn, Development.AutomorphicSpectrum.Proofs.GeometryProofs.CurveThroughCoordinates, Development.WeilBound.CoreStatements.HodgeTatePoints.CiField, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FunctionFieldModelExists, Development.AutomorphicSpectrum.Proofs.MetricProofs.NefThresholdGapCondition, Development.AutomorphicSpectrum.Proofs.GeometryProofs.M2ModelOfCurveBound

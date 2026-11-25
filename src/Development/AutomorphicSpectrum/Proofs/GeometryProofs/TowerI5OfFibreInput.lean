@@ -28,33 +28,10 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.JoinModelPoi
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LineHeightInvariantScaling
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootHeightDifferenceBound
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LocalRatioProductFormula
-import Mathlib.Algebra.Ring.IsFormallyReal
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Topology.Sheaves.Presheaf
 import Std.Tactic.BVDecide.Normalize.Prop
 import GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.PBoundedSectionTransfer
-import Mathlib.RingTheory.Etale.Weakly
-import Mathlib.RingTheory.TotallySplit
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Analysis.CStarAlgebra.Classes
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.RingTheory.PiTensorProduct
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AmpleHeightBounds, Development.AutomorphicSpectrum.Proofs.GeometryProofs.LineHeightBoundedUnit, Development.AutomorphicSpectrum.Proofs.MetricProofs.LocalNormOutsideFiniteSet, Development.AutomorphicSpectrum.Proofs.MetricProofs.OrthogonalFlagDegreeComparison, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.CentralizerCmFieldInvolution, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.FibrePowerMapOfTotalSpacesIsPullback, Development.AutomorphicSpectrum.Proofs.MetricProofs.NormDegreeStepZero, Development.AutomorphicSpectrum.Proofs.MetricProofs.NormalizedDegreeLeRankMulSlope, Development.AutomorphicSpectrum.Proofs.MetricProofs.WeightedFlagDegreeLowerBound, Development.AutomorphicSpectrum.Proofs.GeometryProofs.RefLowerOfFibreInput, Development.AutomorphicSpectrum.Proofs.GeometryProofs.TowerI5OfReference, Development.AutomorphicSpectrum.Proofs.GeometryProofs.TowerI5OfFibreInput

@@ -50,19 +50,6 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GoodPointOrC
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.PrincipalNearBoundary
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.SncChartLocalNormalForm
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Algebra.Order.Star.Real
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.MemOfAevalEqZero
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ValuationCoordsComplexPoint
@@ -70,9 +57,6 @@ import GroundTheory.HeightsAndTheta.Heights.HeightKernels.PCoordConeArithVar
 import GroundTheory.HeightsAndTheta.Heights.WeightedHomogeneous.Assembly
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.AbProj
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LocalRingPointsExistsUnique
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.RegularLocalRing.Defs
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.BCRing
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.PullbackSections.HolomorphicFamilies.UnLocal
 import Std.Tactic.BVDecide.Normalize.Prop

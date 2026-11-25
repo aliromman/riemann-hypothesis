@@ -2,20 +2,6 @@ module
 
 public import Development.AutomorphicArithmetic.Foundations.IwahoriReduction.LangPolynomials.FixedIntegersIsUnitOfNotMemPrimeSpan
 public import Development.AutomorphicArithmetic.Foundations.IwahoriReduction.LangPolynomials.WdVal
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -122,7 +108,6 @@ private theorem rs_cg {l : ℕ} [Fact l.Prime] {c : Coef l} (β : Bas c) (he : �
   · rw [norm_mul]
     calc _ ≤ ‖(l : PadicAlgCl l) ^ n‖ * 1 := mul_le_mul_of_nonneg_left (rs_sum_le _ he _) (norm_nonneg _)
       _ = _ := mul_one _
-
 
 private theorem rs_kum {Ω : Type} [Field Ω] [Algebra ℚ Ω] {l : ℕ} [Fact l.Prime] {n : ℕ} {z : Ω} (hz : z ^ l ^ n = 1)
     (s : G ℚ Ω) {ι : Type} [Fintype ι] (u : ι → Ω) (x : ι → ZMod (l ^ n)) (hx : ∀ k, KumVal n z (u k) s (x k)) (a : ι → ℕ) :

@@ -91,14 +91,6 @@ theorem pjSys_val_mk (la : HeightOneSpectrum (𝓞 c.F)) {T : CDVR} {io : c.F �
     (f : Rul Xo c) :
     (pjSys Xo c).val (show PtU Xo c la from PtV.mk la ho y hy t ht) f = nval T.V e (evI y f) := rfl
 
-theorem phiC_nonneg {E : Type} [Field E] [NumberField E] (cj : E → E) {Y : Type} [AddCommGroup Y] [Module (𝓞 E) Y]
-    (b : SymB cj Y) (hb : ∀ a, 0 ≤ (b : Y →ₗ[ℤ] Y →ₗ[ℤ] ℝ) a a) : 0 ≤ phiC cj b := by
-  refine Real.sInf_nonneg ?_
-  rintro _ ⟨l, -, h, rfl⟩
-  by_cases h0 : b = 0
-  · simp [h0]
-  · exact (h b hb h0).le
-
 
 end Basic
 

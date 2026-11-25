@@ -4,25 +4,8 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureR
 public import Mathlib.Algebra.MvPolynomial.Degrees
 public import Mathlib.CategoryTheory.Category.Basic
 public import Mathlib.LinearAlgebra.Matrix.Hermitian
-import Mathlib.Algebra.Module.StablyFree.Basic
-import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.Analysis.Matrix.Spectrum
 public import Mathlib.Combinatorics.Nullstellensatz
-import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 public import Mathlib.Algebra.MvPolynomial.Funext
 public import Mathlib.Algebra.Polynomial.Roots

@@ -30,39 +30,16 @@ public import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange
 public import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.HeckeFubiniCompatibility.PCompat
 public import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.HeckeFubiniCompatibility.PGrowth
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import GroundTheory.AutomorphicForms.RealGroups
 import GroundTheory.AutomorphicForms.RealIwasawaIntegration
 import GroundTheory.AutomorphicForms.ReductionMeasure
 import GroundTheory.GlobalFields.Adele.Topology
 import GroundTheory.GlobalFields.TateThesis.IdeleMeasure
-import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.HopfAlgebra.Basic
-import Mathlib.RingTheory.PicardGroup
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.CapelliOfGelfand
 import Formalism.RealPlaceAnalysis.StatementE
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.QdetPolyMapMonic
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ArchimedeanGelfandKernels.InfinitesimalCharacterGL.NatDegreeDefectGelf
-import Mathlib.Algebra.Module.StablyFree.Basic
-import Mathlib.RingTheory.Etale.Weakly
-import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
-import Mathlib.RingTheory.TotallySplit
 import Aesop.Main
-import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WaveKernelUniqueness
 import GroundTheory.GlobalFields.Adele.Approximation
 

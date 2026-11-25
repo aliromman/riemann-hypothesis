@@ -22,25 +22,11 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsSmoothHerm
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PLocalRep
 import GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PSectionOrderAtPoint
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.CoordinateIdeals.MemMCoordIdealOfAevalEqZero
-import Mathlib.RingTheory.Henselian
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MultihomogeneousIdeals.MemDivSuppOfDivCycleNeZero
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.FlagLabelBasesExist
 import GroundTheory.HeightsAndTheta.Heights.HeightComparison.IsMultiHomogIdealIff
-import Mathlib.Algebra.Order.Star.Int
 import Mathlib.Tactic.Linter.HaveILetI
 
 -- This file was produced by scripts/clump.py from the modules listed below.

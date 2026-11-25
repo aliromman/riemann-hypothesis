@@ -106,8 +106,6 @@ noncomputable section
 open NumberField IsDedekindDomain ValuativeRel Matrix Polynomial Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.WeilDeligne GlobalTheory.LocGL GlobalTheory.LocLanglands GlobalTheory.GLq
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
 namespace UpperTheory.Zero.LLC
 
 section Abs
@@ -891,8 +889,6 @@ noncomputable section
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Polynomial GlobalTheory.WeilDeligne GlobalTheory.LocGL GlobalTheory.LocLanglands GlobalTheory.GLq
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
 namespace UpperTheory.Zero.LLC
 
 private theorem exists_frobAut (K : Type) [Field K] [Finite K] (q n : ℕ) (hq : 1 < q) (hn : 0 < n)
@@ -1425,8 +1421,6 @@ end UpperTheory.Zero.LLC.ParameterDuality
 open NumberField IsDedekindDomain ValuativeRel Matrix Polynomial Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.WeilDeligne GlobalTheory.LocGL GlobalTheory.LocLanglands GlobalTheory.GLq
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
 namespace UpperTheory.Zero.LLC.ParameterDuality
 
 private theorem inflates_dual {E : Type} [Field E] [NumberField E] {w : HeightOneSpectrum (𝓞 E)} {g : ℕ} [Fact g.Prime]
@@ -1528,8 +1522,6 @@ open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.
 
 namespace DiscreteGroups.sglob.DzType
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
 def LDepth : Prop :=
   ∀ (E : Type) [Field E] [NumberField E] (w : HeightOneSpectrum (𝓞 E)) (g : ℕ) [Fact g.Prime]
     (i : ℚ_[g] ≃+* w.adicCompletion E), Continuous i →
@@ -1554,8 +1546,6 @@ noncomputable section
 open NumberField IsDedekindDomain GlobalTheory.GLp GlobalTheory.GLq GlobalTheory.PRep GlobalTheory.SplitWeil GlobalTheory.LocGL GlobalTheory.LocLanglands
 
 namespace DiscreteGroups.sglob.DzType
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem lDepth : LDepth := by
   intro E _ _ w g _ i hi n τ σ hs
@@ -1594,8 +1584,6 @@ noncomputable section
 
 open NumberField IsDedekindDomain ValuativeRel Matrix Polynomial Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.WeilDeligne GlobalTheory.LocGL GlobalTheory.LocLanglands GlobalTheory.GLq
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace UpperTheory.Zero.LLC
 

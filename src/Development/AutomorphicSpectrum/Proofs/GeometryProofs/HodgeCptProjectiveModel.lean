@@ -27,33 +27,16 @@ public import Mathlib.AlgebraicGeometry.Properties
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.RegAtNoetherianModelNoetherian
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.SegreRefineLineBundles
 public import Mathlib.LinearAlgebra.Eigenspace.Pi
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsGenericWeilPairing
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeTateOmegaCoherent
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LabelEmbeddingInjective
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.EtaleLocalizationAtPrimeTensorOfLowHeight
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LieModel
-import Mathlib.Order.CompletePartialOrder
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LatticeEigenVectorBundle
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelExistsUniqueAct
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelPullbackEquivalence
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.EigLat
-import Mathlib.AlgebraicGeometry.Morphisms.Smooth
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieOmegaLatticeVectorBundle
-import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
-import Mathlib.RingTheory.TotallySplit
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.SabPull

@@ -22,26 +22,6 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.CmLieModelAc
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.CmPackProductFrame
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.CmPackPureFrame
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.PeriodsSpanPureDecomposition
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Geometry.Manifold.StructureGroupoid
-import Mathlib.Algebra.Module.StablyFree.Basic
-import Mathlib.Algebra.Order.Star.Rat
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.PicardGroup
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.Valuation.Integral
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Std.Tactic.BVDecide.Normalize.Prop

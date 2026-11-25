@@ -16,32 +16,8 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KCoinvOf
 public import Development.WeilBound.CoreStatements.CompactAveragingSplitting.EigenvectorLifting.PfDict
 public import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.PfDict
 public import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.BernsteinNarrowness.BernsteinClosure.RamifiedMultiplicityOne
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.Etale.Weakly
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.HopfAlgebra.Basic
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.RingTheory.TotallySplit
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Order.CompletePartialOrder
-import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.HaveILetI
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.Algebra.GroupWithZero.Submonoid.CancelMulZero
-import Mathlib.RingTheory.Coalgebra.CoassocSimps
-import Mathlib.RingTheory.PicardGroup
 import Mathlib.Tactic.Linter.Style
 import GroundTheory.LocalFields.PadicLogSeries
 import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.LocConstChar

@@ -427,7 +427,6 @@ end General
 section Main
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem modularCharacterFun_GL_adele : ∀ (D : D7) (r : ℕ) [LocallyCompactSpace (GL (Fin r) (AE D))]
     (a : GL (Fin r) (AE D)), Measure.modularCharacterFun a = 1 := by
@@ -475,7 +474,6 @@ open scoped Matrix NNReal ENNReal TensorProduct
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum MeasureTheory Filter
 open GlobalTheory.AutomorphicL2Unitary GlobalTheory.AdelicU GlobalTheory.Doubling GlobalTheory.Cont GlobalTheory.MixModel
 open GlobalTheory.CompanionTheory.QKAvg
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 noncomputable section
 

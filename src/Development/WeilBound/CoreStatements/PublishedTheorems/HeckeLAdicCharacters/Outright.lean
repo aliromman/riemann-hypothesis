@@ -23,21 +23,6 @@ public import GroundTheory.PAdicHodge.ExistsGalFixCyclotomicLayerCycloCharNeOne
 public import GroundTheory.PAdicHodge.AInfGalois
 public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.HeckeLAdicCharacterDeRham
 public import Development.WeilBound.CoreStatements.HeckeCharacterDeRham.DeRhamHeckeResults.LAdicHeckeDeRham.LAdicHeckeFields.FieldOfLeaves
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.LocalPrimeGaloisActionPeriodT
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.TripleAtt
 import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.ExistsUniqueHcharOfFiniteOrder
@@ -48,14 +33,9 @@ import ReciprocityTheory.GaloisValuations.GlobalA
 import ReciprocityTheory.NeutralLocalFields.Reciprocity
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.TypeStar
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Topology.Connected.Separation
-import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ValuationLtOneOfEq
 import GroundTheory.PAdicHodge.BdRTGalois
 import GroundTheory.LocalFields.PadicLogSeries
-import Mathlib.NumberTheory.Padics.LocalField
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsGaloisExtensionOfEmbedding, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteFieldEmbeddingsDifferFrobenius, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LubinTateSequenceNormBounds, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LubinTateTeichmullerSequenceCompatibility, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TeichmullerCharacterEqResidueLift, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TeichmullerCompatibleSequenceApproximation, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TeichmullerFixedPointApproximation, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TeichmullerResidueCongruence, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UniformizerDividesFrobeniusDifference, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UniformizerResidueFieldFinitePower, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FrobPowRead, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaloisActionPeriodProduct, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HodgeTateCharacterWeight, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PeriodProductFiltrationLevels, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SenPeriodFiniteExtension, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SenUnramifiedCharacterPeriod, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LubinTatePeriodNotFiltered, Development.WeilBound.CoreStatements.PublishedTheorems.HeckeLAdicCharacters.Outright

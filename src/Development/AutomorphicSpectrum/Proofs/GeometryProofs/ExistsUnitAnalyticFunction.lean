@@ -30,35 +30,10 @@ public import Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.Holomorph
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.DifferentiableOnExponentialFrameMatrix
 public import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.IsCombAtIffIsDerivAt0
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.PeriodHermitianTypeCompatibility
-import Mathlib.Analysis.Complex.Order
-import Mathlib.Data.Matrix.ColumnRowPartitioned
-import Mathlib.LinearAlgebra.Matrix.PosDef
-import Mathlib.LinearAlgebra.Matrix.Rank
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.RiemannFormPeriodDeterminantBound
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Algebra.Module.StablyFree.Basic
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.Tactic.TypeStar
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.HopfAlgebra.Basic
-import Mathlib.RingTheory.TotallySplit
-import Mathlib.Algebra.Order.Star.Real
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AutomorphicSpectrum.Definitions.AdelicLattices.FactPrimes
-import Mathlib.RingTheory.PiTensorProduct
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GeometryProofs.UniformisedEigenFrameTwo, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.DetMulMapDetEqOneOfSesq, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.DetOneAddCompCommField, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PowEqOneOfIsIntegralOfMulComplexConjEqOne, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ZarhinBundleKernelSecondCoordEquations, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.RootMulComplexConjEqOne, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.KahlerFormsOverSubalgebraClosureProperties, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.AnalyticTypeDefinition, Development.AutomorphicSpectrum.Proofs.GeometryProofs.UniformisedEigenFramesAll, Development.AutomorphicSpectrum.Proofs.MetricProofs.FcHoloDetDifferentiableAt, Development.AutomorphicSpectrum.Proofs.GeometryProofs.UniformisedEigenFramesTwo, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsUnitAnalyticFunction

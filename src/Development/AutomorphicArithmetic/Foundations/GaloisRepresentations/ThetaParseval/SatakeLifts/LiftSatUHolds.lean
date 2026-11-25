@@ -61,7 +61,6 @@ section -- clump:auto
 @[expose] public section
 
 open NumberField IsDedekindDomain ValuativeRel Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.CuspRep UpperTheory.Gal.TP.Loc
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem UpperTheory.Gal.TP.Loc.compUnit :
     UpperTheory.Gal.TP.Loc.CompUnit := by
@@ -118,7 +117,6 @@ section -- clump:auto
 @[expose] public section
 
 open NumberField IsDedekindDomain ValuativeRel GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.ThetaGL UpperTheory.Gal.TP.Loc
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem UpperTheory.Gal.TP.Loc.contraIrr :
     UpperTheory.Gal.TP.Loc.ContraIrr := by
@@ -256,8 +254,6 @@ theorem liftIso_of (hP : PairOfLift) (hS : SrcGood) (hI : ContraIrr) (hU : Contr
     (hI k n V _ a1 a2).1 (hU k n V _ a1 a2 a3).1 (isSmooth_contra _) (hI k _ W π hs' hi').1
     (hP k n (n + t) ν b V W σ π sν sb hs' hL)
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
 theorem liftSat_of (hL : LiftIso) (hS : SrcGood) (hI : ContraIrr) (hU : ContraUnit) (hC : SatContra) (hT : SatTwist)
     (hV : SatInvT) (hD : SatDet) (hP : SatProd) (hG : SegInv) : LiftSat := by
   intro K _ _ w n d ν b V _ _ W _ _ σ π hd nν uν nb ub hs hi hu hs' hi' hl ϖ hϖ B hB
@@ -298,7 +294,6 @@ section -- clump:auto
 @[expose] public section
 
 open NumberField IsDedekindDomain ValuativeRel GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.ThetaGL UpperTheory.Gal.TP.Loc
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 private def mulHomeo {k : Type} [Field k] [TopologicalSpace k] [IsTopologicalRing k] {n d : ℕ}
     (a : (Matrix (Fin n) (Fin n) k)ˣ) (c : (Matrix (Fin d) (Fin d) k)ˣ) :
@@ -351,7 +346,6 @@ section -- clump:auto
 @[expose] public section
 
 open NumberField IsDedekindDomain ValuativeRel GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.ThetaGL UpperTheory.Gal.TP.Loc
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem UpperTheory.Gal.TP.Loc.leftSmooth :
     UpperTheory.Gal.TP.Loc.LeftSmooth := by
@@ -394,7 +388,6 @@ section -- clump:auto
 @[expose] public section
 
 open NumberField IsDedekindDomain ValuativeRel Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.CuspRep UpperTheory.Gal.TP.Loc
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem UpperTheory.Gal.TP.Loc.liftSatU :
     UpperTheory.Gal.TP.Loc.PairSat → UpperTheory.Gal.TP.Loc.CompUnit → UpperTheory.Gal.TP.Loc.LiftSatU := by
@@ -419,7 +412,6 @@ section -- clump:auto
 @[expose] public section
 
 open NumberField IsDedekindDomain ValuativeRel GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.ThetaGL UpperTheory.Gal.TP.Loc
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem UpperTheory.Gal.TP.Loc.modelDict :
     UpperTheory.Gal.TP.Loc.ModelDict := by
@@ -451,7 +443,6 @@ section -- clump:auto
 @[expose] public section
 
 open NumberField IsDedekindDomain ValuativeRel GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.ThetaGL UpperTheory.Gal.TP.Loc
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 private theorem lift_key (hK : UpperTheory.Gal.TP.Loc.KeepsSB) (hD : UpperTheory.Gal.TP.Loc.ModelDict)
     {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] {n d : ℕ}
@@ -580,7 +571,6 @@ section -- clump:auto
 @[expose] public section
 
 open NumberField IsDedekindDomain ValuativeRel Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.CuspRep UpperTheory.Gal.TP.Loc
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 private theorem isLift_of_conj {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
     {n d : ℕ} {V V' W : Type} [AddCommGroup V] [Module ℂ V] [AddCommGroup V'] [Module ℂ V'] [AddCommGroup W] [Module ℂ W]
@@ -693,7 +683,6 @@ section -- clump:auto
 @[expose] public section
 
 open NumberField IsDedekindDomain ValuativeRel Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.CuspRep UpperTheory.Gal.TP.Loc
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 private theorem map_surj {k k' : Type} [Field k] [Field k'] (c : k →+* k') (hs : Function.Surjective c) (n : ℕ) :
     Function.Surjective (Matrix.GeneralLinearGroup.map (n := Fin n) c) := by
@@ -713,18 +702,10 @@ private theorem map_cont {k k' : Type} [Field k] [TopologicalSpace k] [IsTopolog
     Continuous.matrix_map continuous_id hc
   exact Continuous.units_map (RingHom.mapMatrix (m := Fin n) c : Matrix (Fin n) (Fin n) k →+* Matrix (Fin n) (Fin n) k').toMonoidHom h
 
-private theorem irr_comp {H H' X : Type} [Group H] [Group H'] [AddCommGroup X] [Module ℂ X]
-    (ρ : Representation ℂ H X) (φ : H' →* H) (hφ : Function.Surjective φ) (h : ρ.IsIrreducible) :
-    Representation.IsIrreducible (ρ.comp φ) := by
-  obtain ⟨h0, h1⟩ := (GlobalTheory.CuspRep.isIrreducible_iff _).1 h
-  refine (GlobalTheory.CuspRep.isIrreducible_iff _).2 ⟨h0, fun W hW => h1 W fun g v hv => ?_⟩
-  obtain ⟨g', rfl⟩ := hφ g
-  exact hW g' v hv
-
 theorem UpperTheory.Gal.TP.Loc.pullGood :
     UpperTheory.Gal.TP.Loc.PullGood := by
   intro k k' _ _ _ _ _ _ c hc hs n V _ _ ρ
-  refine ⟨fun h => isSmooth_comp h _ (map_cont c hc n), fun h => irr_comp ρ _ (map_surj c hs n) h, ?_⟩
+  refine ⟨fun h => isSmooth_comp h _ (map_cont c hc n), fun h => GlobalTheory.FinGL.Transport.isIrreducible_comp ρ _ (map_surj c hs n) h, ?_⟩
   rintro ⟨B, h1, h2, h3⟩
   exact ⟨B, h1, h2, fun g v w => h3 _ v w⟩
 end -- clump:auto
@@ -737,7 +718,6 @@ section -- clump:auto
 @[expose] public section
 
 open NumberField IsDedekindDomain ValuativeRel GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.ThetaGL UpperTheory.Gal.TP.Loc
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem UpperTheory.Gal.TP.Loc.satContra :
     UpperTheory.Gal.TP.Loc.ContraUnit → UpperTheory.Gal.TP.Loc.SatContra := by
@@ -763,7 +743,6 @@ section -- clump:auto
 @[expose] public section
 
 open NumberField IsDedekindDomain ValuativeRel GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.ThetaGL UpperTheory.Gal.TP.Loc
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 private theorem range_map_eq {α : Type} (t : ℕ) (F : ℕ → α) :
     (Finset.univ : Finset (Fin t)).val.map (fun i : Fin t => F (i : ℕ)) = (Finset.range t).val.map F := by
@@ -832,7 +811,6 @@ section -- clump:auto
 @[expose] public section
 
 open NumberField IsDedekindDomain ValuativeRel GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.ThetaGL UpperTheory.Gal.TP.Loc
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 private theorem tprod_ne_zero' {ι : Type} [Fintype ι] {X : ι → Type} [∀ i, AddCommGroup (X i)] [∀ i, Module ℂ (X i)]
     (x : ∀ i, X i) (hx : ∀ i, x i ≠ 0) : PiTensorProduct.tprod ℂ x ≠ 0 := by
@@ -910,8 +888,6 @@ open NumberField IsDedekindDomain ValuativeRel Formalism.UG GlobalTheory.PRep Gl
 
 namespace UpperTheory.Gal.TP.Loc
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
 section SlopeTestRemainingChoices
 
 variable {K : Type} [Field K] [NumberField K] {w : HeightOneSpectrum (𝓞 K)}
@@ -981,7 +957,6 @@ section -- clump:auto
 @[expose] public section
 
 open NumberField IsDedekindDomain ValuativeRel GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.ThetaGL UpperTheory.Gal.TP.Loc
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 private theorem range_val_map_rev (t : ℕ) :
     (Finset.range t).val.map (fun i : ℕ => t - 1 - i) = (Finset.range t).val := by
@@ -1086,7 +1061,6 @@ section -- clump:auto
 @[expose] public section
 
 open NumberField IsDedekindDomain ValuativeRel GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.ThetaGL UpperTheory.Gal.TP.Loc
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem UpperTheory.Gal.TP.Loc.srcGood :
     UpperTheory.Gal.TP.Loc.SrcGood := by

@@ -1382,7 +1382,7 @@ theorem reads_datum_eq_thC : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ :
     rw [h, Matrix.toLin'_toMatrix']
   let K : VV D.what₂.Tau a b × VV D.what₂.Tau a b → ℂ := fun p =>
     ((SA.card : ℂ))⁻¹ * ∑ s ∈ SA, onV (tauE D) δ Ξ (s - p.1) * (brk (HV sc) p.2 s)⁻¹
-  have hF := GlobalTheory.T.finite_fourier_expansion_half_split_places D ψ θ S T a b hS hT δ sc hP e SS hE N N' c hc hcP h2 hLa hdS hdT Φ Ξ hSB hΦ hΞ1 hΞ2 SX SA SB hRX hRA hRB px py hpx' hpy'
+  have hF := _root_.GlobalTheory.AdForm.DatumFour.four_expand D ψ θ S T a b hS hT δ sc hP e SS hE N N' c hc hcP h2 hLa hdS hdT Φ Ξ hSB hΦ hΞ1 hΞ2 SX SA SB hRX hRA hRB px py hpx' hpy'
   have hee : e * e = e := GlobalTheory.PlaceDatum.idemSum_mul_self hE
   have hf1 : f = ∑ p ∈ SX ×ˢ SB, K p • heisO ψ S T ((mt (px p.1)).map fun r => e * incA D r)
       (heisO ψ S T ((mt (py p.2)).map fun r => cA D e * incA D r) f₀) := by

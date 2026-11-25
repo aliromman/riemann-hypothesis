@@ -582,7 +582,7 @@ theorem valOne_all : ∀ D : D7, ValOne D := by
     have r : rTrans (h₂ * Q.gl₂ y) f = (τ y F).1 := by
       rw [hτ]; funext z; simp only [rTrans, hFdef]; rw [mul_assoc z (Q.gl₂ y) h₂, cm₂ y h₂ hh₂]
     rw [m1, m2, r, Module.End.mul_apply, Module.End.mul_apply]
-    exact GlobalTheory.T.doubleStep_local_weil_action_line_characters_cancel D ψ hψ σ S Q _ _ hT₁' hT₂' c₁ c₂ φ _ a x y Q.Φ₁ (Φa a x) Q.Φ₂ (Φb x y) rfl rfl
+    exact _root_.GlobalTheory.QPl.LineCancel.val_om_loc D ψ hψ σ S Q _ _ hT₁' hT₂' c₁ c₂ φ _ a x y Q.Φ₁ (Φa a x) Q.Φ₂ (Φb x y) rfl rfl
   haveI i1 : Q.m₁.IsHaarMeasure := Q.haar₁
   haveI i2 : Q.m₂.IsHaarMeasure := Q.haar₂
   have t1 : Q.m₁.IsHaarMeasure := inferInstance
@@ -894,8 +894,6 @@ open scoped TensorProduct
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.QVal GlobalTheory.FinPl
 
-theorem _root_.GlobalTheory.T.iteratedInnerIntegral_at_first_of_splitPlaces : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar D ψ (-1) → ∀ (σ : ℕ) (S : Dbl2 ψ σ) (r : ℕ) (Q : Fin (r + 1) → QStep S), Function.Injective (fun i => (Q i).q.v) → ∀ m₁ s₁ m₂ s₂, LocNorm (Q 0) m₁ s₁ m₂ s₂ → ∀ c₁ c₂ f₁ f₂ φ f g h₁ h₂, Hyps Q c₁ c₂ f₁ f₂ φ f g h₁ h₂ → ∀ x ∈ grpAt S.J.W (places fun i => Q i.succ), ∀ y ∈ grpAt S.B'.V (places fun i => Q i.succ), Iter2 s₁ m₁ s₂ m₂ (fun x₀ y₀ => integrand Q c₁ c₂ f₁ f₂ φ f g h₁ h₂ (x * (Q 0).gl₁ x₀) (y * (Q 0).gl₂ y₀)) (innerVal Q c₁ c₂ f₁ f₂ φ f g h₁ h₂ x y) := by
-  first | exact @GlobalTheory.QValInner.innerVal_iter2
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.IteratedInnerIntegralAtFirstOfSplitPlacesStatement =====

@@ -111,7 +111,6 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HoweDualityR
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ImportsTailTer
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.JoinOutOfFive
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.KawamataViehwegOfNadelVanishingPair
-public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.KudlaSplittingSplitUnitary
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LoceulerHolds
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocfinHolds
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SemiAbelianHomExtensionHolds
@@ -149,7 +148,6 @@ public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLif
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.SOneRow
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.SiegelEisensteinSecondTermHypotheses
 public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.TopCovolSlim2Use
-public import Development.AutomorphicSpectrum.Proofs.GlobalProofs.AdmissibleOfIwasawaDecomposition
 public import Development.WeilBound.CoreStatements.AbelianHeightsDuality.PublishedTheoremStatements.BridgesAut
 public import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.SiegelKlingenDeligneRibet
 public import Development.WeilBound.CoreStatements.AutomorphicKernels.DeligneRibet.NotDvdAbsNorm
@@ -180,11 +178,7 @@ public import Development.WeilBound.ThetaLifts.Reductions.FiniteClosure.TheoremK
 public import Development.WeilBound.CoreStatements.AbelianHeightsDuality.GelfandKazhdanDuality.GelfandKazhdanDualOfHyp
 public import CompanionTheory.RealGroups.UnitaryAdmissibility.ArchimedeanUnitaryDual.StSandwich
 public import CompanionTheory.RealGroups.UnitaryAdmissibility.ArchimedeanUnitaryDual.ArchimedeanDenseStabilizers.DenseRangeOfNotIsReal
-public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.SignFrameUnitaryIso
-public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.DecompositionOfFrameWittTorus
-public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.IwahoriStatement
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemOfIrreducible
-public import CompanionTheory.SpectralGeometry.LocalGlobalProofs.StableLattices.SplittingOfSandwichAndPairing
 import Mathlib.Algebra.Order.Floor.Extended
 import Mathlib.Algebra.Order.Floor.Semifield
 import Mathlib.Algebra.Order.Interval.Basic
@@ -297,10 +291,6 @@ end -- clump:auto
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.DixmierMalliavinFactorisationFromLibrary", "h": "module\n\npublic import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.IsClosedEmbeddingOfLocallyCompact\npublic import CompanionTheory.AutomorphicTheory.PadicUnitaryWeights.DixmierMalliavin.DixmierMalliavinFactorisationHolds\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 section -- clump:auto
 @[expose] public section
-
-namespace GlobalTheory
-
-end GlobalTheory
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DixmierMalliavinFactorisationFromLibrary =====
@@ -709,32 +699,9 @@ namespace PositivityTheory.Resplug.ResolutionBlowup
 
 def TopRes : Prop := FunctorialResolution.FunctorialResolutionCharZero.{0}
 
-theorem blowup_top_of_iso {X Y : Scheme.{0}} (e : Y ≅ X) :
-    ReciprocityTheory.AnForm.R.FinalTheorems.Blowup e.hom (⊤ : X.IdealSheafData) := by
-  refine ⟨?_, fun W g _ => ⟨g ≫ e.inv, by simp, fun h hh => by rw [← hh]; simp⟩⟩
-  rw [Scheme.IdealSheafData.comap_top]
-  intro y
-  obtain ⟨U, hU, hyU, -⟩ := exists_isAffineOpen_mem_and_subset (x := y) (U := ⊤) trivial
-  exact ⟨⟨U, hU⟩, 1, hyU, one_mem _, by simp⟩
-
-theorem structMap_zero {X : Scheme.{0}} (s : FunctorialResolution.BlowupSequence X) :
-    s.structMap 0 = s.isoZero.hom := by
-  simp [FunctorialResolution.BlowupSequence.structMap, FunctorialResolution.BlowupSequence.down]
-
-theorem isBlowupSeq_structMap {X : Scheme.{0}} (s : FunctorialResolution.BlowupSequence X) :
-    ∀ i, i ≤ s.length → GlobalTheory.CompanionTheory.Hypotheses₂.Resolution.IsBlowupSeq (s.structMap i)
-  | 0, _ => by
-      rw [structMap_zero]
-      exact GlobalTheory.CompanionTheory.Hypotheses₂.Resolution.IsBlowupSeq.single ⊤ _ (blowup_top_of_iso _)
-  | i + 1, hi => by
-      have hlt : i < s.length := hi
-      rw [← s.structMap_down (Nat.le_succ i)]
-      exact GlobalTheory.CompanionTheory.Hypotheses₂.Resolution.IsBlowupSeq.step (s.center i) (s.down (Nat.le_succ i))
-        (isBlowupSeq_structMap s i hlt.le) (s.isBlowup i hlt)
-
 theorem isBlowupSeq_topMap {X : Scheme.{0}} (s : FunctorialResolution.BlowupSequence X) :
     GlobalTheory.CompanionTheory.Hypotheses₂.Resolution.IsBlowupSeq s.topMap :=
-  isBlowupSeq_structMap s s.length le_rfl
+  PositivityTheory.ResPlug.FromRes.isBlowupSeq_structMap s s.length le_rfl
 
 theorem resolutionCharZero_of_top (h : TopRes) : GlobalTheory.CompanionTheory.Hypotheses₂.ResolutionCharZero := by
   obtain ⟨R, hR, -⟩ := h

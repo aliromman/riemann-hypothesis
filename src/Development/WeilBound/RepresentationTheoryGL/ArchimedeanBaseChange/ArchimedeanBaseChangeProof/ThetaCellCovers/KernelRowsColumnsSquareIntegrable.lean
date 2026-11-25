@@ -9,27 +9,8 @@ public import Mathlib.MeasureTheory.Integral.Prod
 public import Mathlib.MeasureTheory.Group.Integral
 public import Mathlib.MeasureTheory.Integral.DominatedConvergence
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EqZeroOfLeSmall
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.Order.CompletePartialOrder
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Topology.Compactness.Paracompact
-import Mathlib.Topology.Separation.CompletelyRegular
-import Mathlib.Dynamics.Ergodic.Action.Regular
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.TypeStar
-import Mathlib.Algebra.Order.Star.Real
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BumpEx, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CellSumOfCntBasic, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CntBasicOfKerBasic, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.ImportsTailRest, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoeFnSumAe, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ColOp, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ColSqOfKerBasic, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CompKey, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousAtOfSqBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CvAdjEqAvg, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteOfCompact, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InnerEqIntegralConjMul, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegrableReflect, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KerClose, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KerLinOfKerBasic, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KerMulOfKerBasicOfCvTest, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KernelRowsColumnsSquareIntegrable, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LintegralEnormRpowTwoNeTop, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LintegralWeightedSqLe, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RowIntOfKerBasic, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SchurOpOfSchurL, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwoUnif, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.VecCloseOfKerBasicColSq, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.VecInnerOfKerBasic, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.VecLimOf, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.VecNormOfVecClose, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.KernelRowsColumnsSquareIntegrable

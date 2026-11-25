@@ -3,18 +3,6 @@ module
 public import Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.KTypeData
 public import Mathlib.CategoryTheory.Category.Basic
 public import Mathlib.MeasureTheory.Function.L1Space.Integrable
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 public import Mathlib.MeasureTheory.Function.LocallyIntegrable
 public import Mathlib.Topology.Instances.Matrix
 
@@ -52,11 +40,8 @@ theorem exists_half (bar : ι → ι) (h1 : ∀ τ, bar (bar τ) = τ) (h2 : ∀
 
 variable {bar : ι → ι} {κ : ι → Γ → Matrix (Fin n) (Fin n) ℂ}
 
-theorem det_ne (hK : IsKD bar κ) (τ : ι) (γ : Γ) : (κ τ γ).det ≠ 0 := by
-  intro h
-  have := congrArg Matrix.det (hK.unit τ γ)
-  rw [Matrix.det_mul, h, zero_mul, Matrix.det_one] at this
-  exact zero_ne_one this
+theorem det_ne (hK : IsKD bar κ) (τ : ι) (γ : Γ) : (κ τ γ).det ≠ 0 :=
+  Matrix.det_ne_zero_of_right_inverse (hK.unit τ γ)
 
 theorem mono_cont (hK : IsKD bar κ) {m : ℕ} (lab : Fin m → ι) (c : ι → ℤ) (I K : Fin m → Fin n) :
     Continuous (mono κ lab c I K) := by

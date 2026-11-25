@@ -3,8 +3,6 @@ module
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.FirstMinimumAndCuspWeightBounds
 public import Development.AutomorphicSpectrum.Definitions.MetricPeriods.GroupDict
 public import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.PMahlerCompactness
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.Algebra.Order.Star.Real
 public import Mathlib.Analysis.Real.Pi.Bounds
 public import Mathlib.Data.Matrix.ColumnRowPartitioned
 public import Mathlib.MeasureTheory.Constructions.Polish.EmbeddingReal
@@ -12,20 +10,6 @@ public import Mathlib.MeasureTheory.Function.Floor
 public import Mathlib.MeasureTheory.Function.SpecialFunctions.Arctan
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
-import Mathlib.Topology.Separation.CompletelyRegular
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.ExhaustStatementPfA
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
 

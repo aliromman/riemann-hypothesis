@@ -86,21 +86,7 @@ public import GroundTheory.HeightsAndTheta.Heights.Intersections.PPFVert
 public import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.ArithSystem
 public import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.ContractMixed
 public import GroundTheory.HeightsAndTheta.Heights.OrbitLimits.ContractMixedField
-import Mathlib.Algebra.Order.Star.Int
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterPCProof
 import GroundTheory.HeightsAndTheta.Heights.Intersections.PGeoNumCut
 import GroundTheory.HeightsAndTheta.Heights.LocalFiniteness.NumbersDVRC3ResidualContractionComponent

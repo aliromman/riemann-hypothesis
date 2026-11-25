@@ -23,40 +23,15 @@ public import Mathlib.Analysis.InnerProductSpace.Basic
 public import Mathlib.Topology.MetricSpace.HausdorffDistance
 public import GroundTheory.HeightsAndTheta.Heights.HeightKernels.AssemblyAnalytic
 public import GroundTheory.HeightsAndTheta.Heights.HeightKernels.CoordSiegel
-import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicSpectrum.Definitions.MetricPeriods.PairRelationOfScaledRatio
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FrameDefinitions.PermFinTwoUniv
-import Mathlib.Tactic.TypeStar
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.Algebra.Ring.IsFormallyReal
 import ReciprocityTheory.ThetaQuasiPeriods.Transl
 import GroundTheory.HeightsAndTheta.Heights.FactorialBounds.PTorsionEquidistribution
-import Mathlib.AlgebraicTopology.FundamentalGroupoid.SimplyConnected
-import Mathlib.Analysis.Convex.Contractible
-import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
-import Mathlib.Topology.Algebra.ProperAction.Basic
-import Mathlib.Topology.Separation.CompletelyRegular
-import Mathlib.CategoryTheory.Monoidal.Cartesian.Basic
-import Mathlib.CategoryTheory.Monoidal.Category
-import Mathlib.CategoryTheory.Monoidal.Mon
-import Mathlib.Topology.Sheaves.Presheaf
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterGoodD
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
-import Mathlib.Algebra.Order.Star.Real
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.MetricProofs.ExistsSymplecticBasisPrincipalPolarization, Development.AutomorphicSpectrum.Proofs.MetricProofs.HermitianFormPeriodMatrixNormalForm, Development.AutomorphicSpectrum.Proofs.MetricProofs.RealPartGramInSymplecticGroup, Development.AutomorphicSpectrum.Proofs.MetricProofs.SemicharacterThetaCharacteristic, Development.AutomorphicSpectrum.Proofs.MetricProofs.ThetaFunctionCanonicalForm, Development.AutomorphicSpectrum.Proofs.MetricProofs.ThetaFunctionCanonicalMultiplier, Development.AutomorphicSpectrum.Proofs.MetricProofs.ThetaNormInPeriodCoordinates, Development.AutomorphicSpectrum.Proofs.MetricProofs.ThetaZeroDivisorJetBound, Development.AutomorphicSpectrum.Proofs.MetricProofs.ThetaFunctionEvenBound

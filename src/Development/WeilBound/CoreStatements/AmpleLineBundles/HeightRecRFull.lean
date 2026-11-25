@@ -31,18 +31,6 @@ public import GroundTheory.HeightsAndTheta.Heights.HeightComparison.POrbitLocalS
 public import GroundTheory.HeightsAndTheta.Heights.HeightComparison.PPlaceCentredSum
 public import GroundTheory.HeightsAndTheta.Heights.HeightComparison.PPlacesRingQuot
 import GroundTheory.HeightsAndTheta.Heights.HeightComparison.PSubringPrimeMaximal
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 public import GroundTheory.HeightsAndTheta.Heights.HeightComparison.HeightOrbitCenterMemIff
 public import GroundTheory.HeightsAndTheta.Heights.HeightComparison.HeightOrbitChartMax
 public import GroundTheory.HeightsAndTheta.Heights.HeightComparison.HeightOrbitChartQuot

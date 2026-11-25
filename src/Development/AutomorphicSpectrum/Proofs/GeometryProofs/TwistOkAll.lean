@@ -1,20 +1,7 @@
 module
 
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.AdelicGroupAlgebraActionInjective
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Algebra.Order.Star.Int
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.HomogeneousNonvanishing.TwLiemult, Development.WeilBound.CoreStatements.HomogeneousNonvanishing.TwDet, Development.WeilBound.CoreStatements.HomogeneousNonvanishing.TwMb, Development.WeilBound.CoreStatements.HomogeneousNonvanishing.TwSub, Development.WeilBound.CoreStatements.HomogeneousNonvanishing.TwTate, Development.WeilBound.CoreStatements.HomogeneousNonvanishing.TwOk, Development.AutomorphicSpectrum.Proofs.GeometryProofs.TwistOkAll

@@ -40,39 +40,18 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ArithVariety
 public import Development.WeilBound.CoreStatements.HodgeTatePoints.ValCastSub
 public import Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.KernelMem
 public import Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.TestOrderSections
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.StalkLoc
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.Tactic.Linter.HaveILetI
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.CompactGapsGE
 import Mathlib.Tactic.Linter.Style
-import Mathlib.LinearAlgebra.BilinearForm.Orthogonal
-import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IntegralClosureHeightEqOneOfLiesOver
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeTateFreeIntegralModels
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.NatCastSmulMemHtLat
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.TwoWeightEqOneAddRoot
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.TorsionPointsDefinedGeneric
 import Development.WeilBound.CoreStatements.HodgeTatePoints.TwhopfFin
-import Mathlib.RingTheory.PicardGroup
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.OneArc
-import Mathlib.RingTheory.HopfAlgebra.Basic
-import Mathlib.Algebra.Order.Star.Real
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.XPtAfType, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PtAfTypeMain, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.ExistsDualFamily, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.IsUnitOfVal, Development.WeilBound.CoreStatements.HodgeTatePoints.FreeOfFg, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.ChartMatrices, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.ReducesAtOfWithE, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.Typed, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.TestGroupPointExists, Development.AutomorphicSpectrum.Proofs.GeometryProofs.OrdinaryCurveModelRelay, Development.AutomorphicSpectrum.Proofs.GeometryProofs.OrdinaryCurveModelRelayStatement

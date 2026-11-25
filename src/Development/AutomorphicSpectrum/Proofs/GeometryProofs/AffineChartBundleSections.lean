@@ -26,33 +26,10 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelEige
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.VectorsAtComplexPoint
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LieModelOfIsLieBasis
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GenMapFromSpecStalk
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Analysis.Real.Pi.Bounds
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.TypeStar
-import Mathlib.Analysis.Matrix.Order
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.Monotonicity.Lemmas
-import Mathlib.Topology.Sheaves.Presheaf
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeGramPullbackIff
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
-import Mathlib.AlgebraicGeometry.Morphisms.Smooth
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelBaseChangeMap
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelPullbackCorrespondence
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.BCRing

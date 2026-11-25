@@ -177,7 +177,6 @@ section -- clump:auto
 @[expose] public section
 
 open NumberField IsDedekindDomain ValuativeRel Matrix Polynomial Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.LocGL GlobalTheory.WeilDeligne GlobalTheory.LocLanglands GlobalTheory.Published
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 noncomputable section
 
@@ -388,8 +387,6 @@ open NumberField IsDedekindDomain GlobalTheory.PRep GlobalTheory.SmGL GlobalTheo
 
 namespace PositivityTheory.SphericalProduct
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
 def SatBridge : Prop :=
   ∀ (E : Type) [Field E] [NumberField E] (w : HeightOneSpectrum (𝓞 E)) (n : ℕ) (V : Type) [AddCommGroup V]
     [Module ℂ V] (ρ : Representation ℂ (GL (Fin n) (w.adicCompletion E)) V), IsSmooth ρ → ρ.IsIrreducible →
@@ -412,8 +409,6 @@ noncomputable section
 open NumberField IsDedekindDomain GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.LFun
 
 namespace GlobalTheory.CompanionTheory.SatakeBridge
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem satBridge : PositivityTheory.SphericalProduct.SatBridge := by
   intro E _ _ w n V _ _ ρ hs hi α
@@ -582,8 +577,6 @@ noncomputable section
 
 open NumberField IsDedekindDomain Matrix
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil ValuativeRel GlobalTheory.CuspRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC GlobalTheory.IndefiniteRowSideFullHecke.IwahoriDoubleCosets
-
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 namespace GlobalTheory.CompanionTheory.ExpProd
 

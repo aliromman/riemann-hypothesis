@@ -9,20 +9,6 @@ import Formalism.RealPlaceAnalysis.StatementE
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.QdetAddOneSubEqSumQminor
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.QdetPolyMapMonic
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.TracedQminorComatrixTruncatedInverse
-import Mathlib.Algebra.Module.StablyFree.Basic
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -32,12 +18,6 @@ noncomputable section
 open NumberField Polynomial Finset Formalism.REAL
 
 namespace PositivityTheory.RgBcC.Bridge
-
-theorem epow_eq_pow {A : Type} [Ring A] {n : ℕ} (M : Fin n → Fin n → A) (k : ℕ) (i j : Fin n) :
-    epow M k i j = ((Matrix.of M) ^ k) i j := by
-  induction k generalizing i j with
-  | zero => simp [epow, Matrix.one_apply]
-  | succ k ih => simp only [epow, pow_succ, Matrix.mul_apply, ih, Matrix.of_apply]
 
 theorem defect_sub (t : ℕ → ℂ) (m N : ℕ) (P Q : ℂ[X]) (z : ℂ) :
     defect t m N (Q - C z * P) = defect t m N Q - C z * defect t m N P := by

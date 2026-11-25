@@ -69,36 +69,19 @@ public import GroundTheory.HeightsAndTheta.Heights.Intersections.PPtsAbsIntegrab
 public import GroundTheory.HeightsAndTheta.Heights.Intersections.PPtsAbsMeasurable
 public import GroundTheory.HeightsAndTheta.Heights.SemipositiveHeights.PtsIntegrable
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Topology.Separation.CompletelyRegular
 import ReciprocityTheory.AnalyticForms.PotentialTheory.LocDens
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.RegularChartDataProperties
 import GroundTheory.HeightsAndTheta.Heights.ElementarySymmetric.PNbarLeviChartReg
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.PNbarSmooth
-import Mathlib.Algebra.Ring.IsFormallyReal
-import Mathlib.Analysis.SpecialFunctions.Complex.Analytic
 import Mathlib.Tactic.Linter.HaveILetI
 import ReciprocityTheory.AnalyticForms.PotentialTheory.PshShiftA
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterBridgeB
 import Std.Tactic.BVDecide.Normalize.Prop
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FrameDefinitions.PermFinTwoUniv
-import Mathlib.Order.CompletePartialOrder
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.IsSemipositiveOn
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.PHermExtend
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.PHoloInjDerivInj
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.PProjSmoothAlong
-import Mathlib.Tactic.TypeStar
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PCriticalFlatNotInjective
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PHolomorphicKernelFibre
 import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PInjectiveHolomorphicInverse

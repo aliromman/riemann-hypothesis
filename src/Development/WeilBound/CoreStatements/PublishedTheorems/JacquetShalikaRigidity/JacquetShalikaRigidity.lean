@@ -24,26 +24,7 @@ public import Mathlib.Analysis.Normed.Group.Tannery
 public import Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaBound.JacquetShalikaBound
 public import Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.RsPoleOfInputs
 public import Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.ConvergenceEntriesGeneralLinearHolds
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Data.Finset.Functor
-import Mathlib.Topology.Separation.CompletelyRegular
-import Mathlib.Algebra.AffineMonoid.UniqueSums
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.Order.Interval.Finset.Box
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Algebra.Ring.IsFormallyReal
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.RepresentationTheoryGL.JacquetShalikaBounds.AbsoluteRigidity.AbsoluteRigidityLemma.AbsoluteRigidityOfCommon, Development.WeilBound.RepresentationTheoryGL.JacquetShalikaBounds.AbsoluteRigidity.AbsRigClosed, Development.WeilBound.RepresentationTheoryGL.JacquetShalikaBounds.AbsoluteRigidity.CauchyLocalisation.PolyMulGaussianLeConst, Development.WeilBound.RepresentationTheoryGL.JacquetShalikaBounds.CauchyIdentity.AlternantEvaluation.SchurJacobiTrudiOfAlternating, Development.WeilBound.RepresentationTheoryGL.JacquetShalikaBounds.CauchyIdentity.BetaGenerators.BetaGeneratingOfSumBound, Development.WeilBound.RepresentationTheoryGL.JacquetShalikaBounds.CauchyIdentity.CauchyFormula.CauchyOfBetaBounds, Development.WeilBound.RepresentationTheoryGL.JacquetShalikaBounds.CauchyIdentity.ContinuityOfH.BetaAllOfGenerating, Development.WeilBound.RepresentationTheoryGL.JacquetShalikaBounds.CauchyIdentity.HGenerators.CompleteHomogeneousGenerating, Development.WeilBound.RepresentationTheoryGL.JacquetShalikaBounds.CauchyIdentity.JacobiTrudiPadding.JacobiTrudiPadding, Development.WeilBound.RepresentationTheoryGL.JacquetShalikaBounds.CauchyIdentity.PaddingMonotonicity.CauchyLocalOfCauchy, Development.WeilBound.RepresentationTheoryGL.JacquetShalikaBounds.CauchyIdentity.PolynomialGeometricSums.HomogeneousSumBound, Development.WeilBound.RepresentationTheoryGL.JacquetShalikaBounds.CauchyIdentity.CauchyVariationInequality, Development.WeilBound.RepresentationTheoryGL.JacquetShalikaBounds.AbsoluteRigidity.CauchyAll, Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaRigidity.JacquetShalikaRigidity

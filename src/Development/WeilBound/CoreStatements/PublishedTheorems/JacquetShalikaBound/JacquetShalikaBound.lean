@@ -20,29 +20,12 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Minuscul
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SymmetricFunctionAbsoluteValues
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TendstoZeroOfSumSqLe
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnipCMemIntegralGL
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
 import Std.Tactic.BVDecide.Normalize.Prop
 import GroundTheory.LocalFields.LocalFourierHaar
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Algebra.Order.Star.Real
 import Mathlib.Tactic.Linter.Style
 import GroundTheory.AutomorphicForms.MacdonaldRecursion
 import GroundTheory.AutomorphicForms.AffineBruhat
-import Mathlib.Algebra.Module.StablyFree.Basic
-import Mathlib.Order.CompletePartialOrder
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CMEqZeroOfNe, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoeffEqPowOfMulOneSub, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ColumnAverageHermitianPositive, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousOfTrivialInteger, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsPowMulMemInteger, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsTranslateNeZero, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsUnitForm, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FinalFormBesselBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.JacquetShalikaBoundOfSteps, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemCongruenceSubgroupOfDiv, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ModulusEqOneOfIntegral, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OrthogonalityOfLatticeCharacter, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SecondCountableField, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SumRangeEsymmLMulSchur, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistedColumnAverageExists, Development.WeilBound.CoreStatements.PublishedTheorems.JacquetShalikaBound.JacquetShalikaBound

@@ -18,28 +18,9 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.SncChartOfSm
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ConjugateHermitianLineIsometries
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.StandardSmoothChartOfNonzero
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ZarhinBundleKernelFirstCoordEquations
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.ThetaMetrics.TwistingSheafOneChartEqPreimageStandardChart
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.CategoryTheory.EffectiveEpi.Comp
-import Mathlib.CategoryTheory.ExtremalEpi
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Algebra.Ring.IsFormallyReal
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GeometryProofs.LiftGenericPointOverIsoOpen, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ProjectivePointCoordsExist, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ProjectivePointImageReduced, Development.AutomorphicSpectrum.Proofs.GeometryProofs.SegreProductAffineChart, Development.AutomorphicSpectrum.Proofs.GeometryProofs.StandardSmoothBasicOpen, Development.AutomorphicSpectrum.Proofs.GeometryProofs.AdjoinCoordsArithVar

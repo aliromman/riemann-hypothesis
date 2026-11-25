@@ -1,18 +1,6 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.Foundations.LiftSL
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Foundations.Mdl
 
 @[expose] public section
@@ -28,7 +16,6 @@ variable {Ω : Type} [Field Ω] [Algebra ℚ Ω] {ε : Ω →+* ℂ}
 
 def InvMod (X : Tower Ω ε) (M m : ℕ) (a : X.Kˣ) : Prop :=
   ∀ γ ∈ CongruenceSubgroup.Gamma M, ∃ h : X.Kˣ, X.sl (ofSL γ) (a : X.K) = a * (h : X.K) ^ m
-
 
 open Classical in
 def img (Γ : Subgroup SL(2, ℤ)) (M : ℕ) [NeZero M] : Finset SL(2, ZMod M) :=

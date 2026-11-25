@@ -4,23 +4,8 @@ public import Development.AutomorphicSpectrum.Proofs.MetricProofs.ExistsIsChart
 public import Mathlib.Data.Matrix.Mul
 public import Development.AutomorphicSpectrum.Proofs.MetricProofs.ExistsIntPreimageOfOrthogonalKernel
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ExistsAdaptedUnimodular
-import Mathlib.Analysis.Complex.Norm
-import Mathlib.LinearAlgebra.Matrix.PosDef
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.RiemannFormHermitianLattice
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.ImLowerOnKernel
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.CoordinateIdeals.FubiniLevi
 
 @[expose] public section

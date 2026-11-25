@@ -127,7 +127,7 @@ private theorem isUnit_OK_iff {l : ℕ} [Fact l.Prime] {K : IntermediateField �
     have h2 := hle u
     have h3 := hle (↑u⁻¹ : ↥(OK l K))
     have h4 := norm_nonneg (((u : ↥(OK l K)) : ↥K) : PadicAlgCl l)
-    nlinarith
+    nlinarith only [h, h2, h3, h4]
   · intro h
     have hy0 : (y : ↥K) ≠ 0 := fun h0 => by
       rw [h0] at h
@@ -186,7 +186,7 @@ theorem intMap : IntMap := by
       rw [h4] at h3
       have h5 := hν1 (↑u⁻¹ : Ow w)
       have h6 := norm_nonneg t
-      nlinarith
+      nlinarith only [hpos, hy, h1, h2, h3, h5]
     have hmax : ξ ∈ Ideal.span {ϖ} := by
       rw [← (IsDiscreteValuationRing.irreducible_iff_uniformizer ϖ).1 hϖ]
       exact (IsLocalRing.mem_maximalIdeal ξ).2 hnu
@@ -195,7 +195,7 @@ theorem intMap : IntMap := by
     have h4 := hν1 c
     have h5 : ‖t‖ ≤ ν ϖ := by
       rw [← hξ, h3]
-      nlinarith
+      nlinarith only [hϖp, h4]
     exact h2.trans h5
   set φ := ((kOf Bw).comp (algebraMap (Ow w) E)).codRestrict (OK l Bw.Kw.1) hφ with hφdef
   have hMϖ : M (φ ϖ) = ν ϖ := rfl
@@ -223,6 +223,6 @@ theorem intMap : IntMap := by
     have h1 := hbound a ha1 hap
     have h2 := hbound b hb1 hbp
     have h3 : M a * M b ≤ ν ϖ * ν ϖ := mul_le_mul h1 h2 hb0 hϖp.le
-    nlinarith
+    nlinarith only [hϖ1, hϖp, hprod, h3]
 
 end UpperTheory.Gal.Seam

@@ -9,26 +9,12 @@ public import Formalism.GradedWeylDivisibility.StatementD
 public import Development.AbelianVarietyTheory.PublishedTheorems.PublishedFoundations.FiniteIntertwining
 public import Formalism.GradedWeylDivisibility.FockSpaceTableaux.NablaLKBasis
 public import Formalism.GradedWeylDivisibility.FockSpaceTableaux.NablaLTwist
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.Tactic.Linter.Style
 import Formalism.GradedWeylDivisibility.DualWeylDominanceOf
 import Formalism.GradedWeylDivisibility.FinalC
 import Formalism.GradedWeylDivisibility.FinalD
 import Formalism.GradedWeylDivisibility.FockSpaceTableaux.LDlatLemmas
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.RingTheory.PiTensorProduct
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.BideterminantAntidiagEvalWeightUnitSupport, Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.BideterminantRowWeightDominance, Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.SqBasis

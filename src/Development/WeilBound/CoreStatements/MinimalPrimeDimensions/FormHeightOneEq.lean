@@ -19,38 +19,14 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsImageHeigh
 public import Mathlib.Algebra.MvPolynomial.NoZeroDivisors
 public import Mathlib.Algebra.MvPolynomial.Nilpotent
 public import Development.WeilBound.CoreStatements.MinimalPrimeDimensions.GenIdeal
-import Mathlib.MeasureTheory.Measure.RegularityCompacts
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.HopfAlgebra.Basic
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
-import Mathlib.Topology.UniformSpace.Uniformizable
 import Std.Tactic.BVDecide.Normalize.Prop
 import ReciprocityTheory.SemistableReduction.DetGramEqProdGramSchmidt
-import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
-import Mathlib.Algebra.Ring.IsFormallyReal
 import ReciprocityTheory.SemistableReduction.SphereTorusC
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LinSubstLinSubst
 import ReciprocityTheory.SemistableReduction.LagrangeIdealLiftsFact
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
 import Development.AbelianVarietyTheory.Definitions.Divisors.AevalEqZeroOfMemConeIdeal
-import Mathlib.Algebra.Order.Star.Real
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.SphereMeanEqMahler, Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaussianFirstCoordsMeasurePreserving, Development.AbelianVarietyTheory.Proofs.DivisorProofs.BlockSphereProbZeroSetEqZero, Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaussianRadialLawProbabilityLogIntegrableMean, Development.AbelianVarietyTheory.Proofs.DivisorProofs.MeasurePreservingPolarGaussianProbabilityComplex, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsMultiHomogeneousRenameCastLE, Development.WeilBound.CoreStatements.HomogeneousNonvanishing.FormHeightGen, Development.WeilBound.CoreStatements.HomogeneousNonvanishing.TotalDegreeLinSubstLe, Development.WeilBound.CoreStatements.MinimalPrimeDimensions.FormHeightOneEq

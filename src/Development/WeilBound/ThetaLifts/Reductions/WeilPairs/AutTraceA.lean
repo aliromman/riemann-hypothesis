@@ -10,23 +10,10 @@ public import Mathlib.MeasureTheory.Integral.Bochner.Basic
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnfoldPoincareSeriesLatticeFourier
 public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.SumOpTransversal
 public import Development.WeilBound.ThetaLifts.Reductions.WeilPairs.AutLat
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HeisenbergCMRealLineAddNoPhase
 import Development.WeilBound.ThetaLifts.Reductions.WeilPairs.ContinuousTheta
 import Development.WeilBound.ThetaLifts.Reductions.WeilPairs.FinIdemSmulOfReal
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Topology.Separation.CompletelyRegular
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaDistributionInvariantRationalTarget
 
 -- This file was produced by scripts/clump.py from the modules listed below.

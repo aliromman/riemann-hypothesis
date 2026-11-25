@@ -33,34 +33,17 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.Intersection
 public import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.GoodOrigin
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IntersectionSystemWeightRight
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LocalRatioProductFormula
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.CoordinateIdeals.MemMCoordIdealOfAevalEqZero
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.IsCompactRWSublevel
 import GroundTheory.HeightsAndTheta.Heights.Regularisation.StRiemannSlices
-import Mathlib.Topology.Sheaves.Presheaf
 import ReciprocityTheory.AnalyticForms.LeviForms.IsRegFamilyInhabitStatement
 import ReciprocityTheory.AnalyticForms.PlurisubharmonicFunctions.LogIntSt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GrGenOfIsFlagVBOn
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsExcisionNbhdAway
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Algebra.Ring.IsFormallyReal
-import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianPartIntegralPointAltBis, Development.AutomorphicSpectrum.Proofs.GeometryProofs.StalkClosedPointToToStalk, Development.AutomorphicSpectrum.Statements.GeometryStatements.ExistsRingHomComplex, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ComponentDataAbelianPartBound, Development.AutomorphicSpectrum.Proofs.GeometryProofs.TensorLatticeCoordDegree, Development.AutomorphicSpectrum.Proofs.GeometryProofs.CuspIntersectionHeight

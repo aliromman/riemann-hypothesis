@@ -141,24 +141,13 @@ open Formalism.BasicNotions Formalism.BasicNotions.DV Formalism.MainNotions Numb
 
 namespace GlobalTheory
 
-theorem scale_one_le_a (s : Scale) : 1 ≤ s.a := by
-  have hx : 1 < s.x := s.one_lt_alt
-  have hL : 0 ≤ s.L := by
-    unfold Scale.L
-    exact Real.rpow_nonneg (by linarith) _
-  have hb : 1 ≤ s.b := by
-    unfold Scale.b
-    exact Real.one_le_exp hL
-  unfold Scale.a
-  exact one_le_mul_of_one_le_of_one_le hx.le hb
-
 theorem famP_La_nonneg : ∀ (eps : ℝ) (Fm : FamP eps), ∀ x, Fm.x1 < x → ∀ i : Fm.Ix x,
     0 ≤ (Fm.L x i).La := by
   intro eps Fm x hx i
   obtain ⟨-, -, -, -, -, -, hQD, -⟩ := Fm.sizes x hx i
   obtain ⟨-, -, -, -, -, -, hrd, -⟩ := hQD
   unfold SizeData₂.La
-  exact Real.log_nonneg (one_le_mul_of_one_le_of_one_le (scale_one_le_a _) hrd)
+  exact Real.log_nonneg (one_le_mul_of_one_le_of_one_le (Formalism.L2.GlobalTheoryTheory.Loss.pd_one_le_a _) hrd)
 
 end GlobalTheory
 end -- clump:auto
@@ -228,7 +217,6 @@ section -- clump:auto
 @[expose] public section
 
 open NumberField MeasureTheory Formalism.BasicNotions Formalism.MainNotions.StandardLattice Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.GlobalTheoryTheory.GenusMassVolumes
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.Glob
 
@@ -268,7 +256,6 @@ section -- clump:auto
 @[expose] public section
 
 open NumberField MeasureTheory Formalism.BasicNotions Formalism.MainNotions.StandardLattice Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.GlobalTheoryTheory.GenusMassVolumes
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.WeightedDoubleCoset
 
@@ -325,16 +312,15 @@ section -- clump:auto
 @[expose] public section
 
 open NumberField MeasureTheory Formalism.BasicNotions Formalism.MainNotions.StandardLattice Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.GlobalTheoryTheory.GenusMassVolumes
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.ClassNumberMass
 
 theorem classFin_and_classMass : ∀ D : D7, ClassFin D ∧ ClassMass D := by
   intro D
   refine ⟨fun W hW hsig => ?_, fun W hW hsig n g hcov hdisj => ?_⟩
-  · obtain ⟨n, g, hcov, hdisj, _⟩ := GlobalTheory.T.lattice_stabilizer_doubleCosets_classRest_mass D W hW hsig
+  · obtain ⟨n, g, hcov, hdisj, _⟩ := _root_.GlobalTheory.ClassRestObj.defClassRest D W hW hsig
     exact ⟨n, g, hcov, hdisj⟩
-  · obtain ⟨m, g', hcov', hdisj', hsum⟩ := GlobalTheory.T.lattice_stabilizer_doubleCosets_classRest_mass D W hW hsig
+  · obtain ⟨m, g', hcov', hdisj', hsum⟩ := _root_.GlobalTheory.ClassRestObj.defClassRest D W hW hsig
     rw [← hsum]
     exact GlobalTheory.WeightedDoubleCoset.sum_inv_card_stab_eq _ _ _ n m g g' hcov hdisj hcov' hdisj'
 
@@ -363,7 +349,6 @@ section -- clump:auto
 @[expose] public section
 
 open NumberField MeasureTheory Formalism.BasicNotions Formalism.MainNotions.StandardLattice Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.GlobalTheoryTheory.GenusMassVolumes
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory
 
@@ -410,7 +395,6 @@ section -- clump:auto
 @[expose] public section
 
 open NumberField MeasureTheory Formalism.BasicNotions Formalism.MainNotions.StandardLattice Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.GlobalTheoryTheory.GenusMassVolumes
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.Glob
 
@@ -440,7 +424,6 @@ section -- clump:auto
 @[expose] public section
 
 open NumberField MeasureTheory Formalism.BasicNotions Formalism.MainNotions.StandardLattice Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.GlobalTheoryTheory.GenusMassVolumes
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 end -- clump:auto
 end -- clump:auto
@@ -890,7 +873,6 @@ section
 noncomputable section
 open Formalism.BasicNotions Formalism.MainNotions GlobalTheory.EX GlobalTheory.EX.OB GlobalTheory.Mem.Top GlobalTheory.Fc
 namespace GlobalTheory.Fc.R1
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 theorem row_hRB_univ_alt : GlobalTheory.Published.DiscreteSeriesCover → GlobalTheory.Published.HarishChandraModules → GlobalTheory.Published.CuspRapidDecay →
     GlobalTheory.Published.CasselmanWallach → ∀ (Q : V4.Slot) (Lk : LkT _root_.GlobalTheory.Fc.BundleCondition), _root_.GlobalTheory.Fc.R1.SlotRowBoundCondition Q Lk := by
   intro hDS hHC hRD hCW Q Lk
@@ -1107,8 +1089,6 @@ section -- clump:auto
 @[expose] public section
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.RT GlobalTheory.EX GlobalTheory.EX.OB GlobalTheory.Mem GlobalTheory.Mem.Top GlobalTheory.Mem.Top.Bl GlobalTheory.Fc
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.Fc.StageZeroRow
 
@@ -1381,7 +1361,6 @@ noncomputable section
 
 open Formalism.BasicNotions Formalism.L2.Indef Formalism.L2.DIV Formalism.IndefR.Cx Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.IndefR.AutomorphicEvaluation Formalism.IndefR.Lev Formalism.L2.Theta NumberField MeasureTheory GlobalTheory.Mem.SJ Formalism.L2.SG.HidaSetting Formalism.L2.SG.PoincareInHH.PoincareSetting Formalism.L2.SG.RowDict Formalism.L2.SG.ColDict
 open scoped InnerProductSpace
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.Mem.SJ.RowIso
 
@@ -1459,7 +1438,6 @@ section -- clump:auto
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.S Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.IndefR.Cx Formalism.IndefR.Links Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.AutomorphicEvaluation Formalism.L2.SG.RowDict Formalism.L2.SG.RowsJoinPinned Formalism.L2.SG.RowLevelMatch Formalism.L2.SG.PoincareInHH.PoincareSetting MeasureTheory NumberField IsDedekindDomain
 open scoped InnerProductSpace
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 noncomputable section
 
@@ -1565,7 +1543,6 @@ section -- clump:auto
 
 section
 open Formalism.BasicNotions Formalism.MainNotions NumberField IsDedekindDomain Formalism.L2 Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Rows Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx Formalism.L2.Pj Formalism.IndefR.FWT
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 namespace GlobalTheory.Div.SeeIsoClose
 theorem seeIso_of_seeEx_alt : ∀ (D : D7) (L : SizeData₂ D) (hT : GatTies D) (Gi : Formalism.MainNotions.G.Inst D L) (Gl : Formalism.MainNotions.G.LatInst D) (K : Formalism.MainNotions.G.Consts) (Y : DivX D) (cX : ExtraC) (ex : Extra D L hT Gi Gl K Y cX) (Rc : _root_.Formalism.L2.RecTAlt ex) (P : RowSideFamily ex) (Dcf : ∀ Zs : DefSub P.A3.fam3.amb3, DefCols (P.A3.side3 P.Ps P.ψs Zs)) (Spf : ∀ Zs : DefSub P.A3.fam3.amb3, SPer (Dcf Zs)) (Zscf : DefSub P.A3.fam3.amb3 → IndefScale P.A3.fam3.base3) (S : _root_.Formalism.L2.SG.SpectralTiesReal.STiesRAlt Rc) (Ks : Type) [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (Q : _root_.Formalism.IndefR.IndefiniteRealisation Rc P Dcf Spf Zscf S Ks), _root_.Formalism.IndefR.IndefiniteRealisationExtends Q → (Q.Rl.toCx3 Q.F).SEEIso Q.sEE := by
   intro D L hT Gi Gl K Y cX ex Rc P Dcf Spf Zscf S Ks _ _ _ Q hSee
@@ -1598,7 +1575,6 @@ section -- clump:auto
 
 section
 open Formalism.BasicNotions Formalism.MainNotions GlobalTheory.EX GlobalTheory.EX.OB GlobalTheory.Fc GlobalTheory.Fc.Ind
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 namespace GlobalTheory.Fc.Ind
 theorem small_along_alt : ∀ (𝒜 : FamClass) (σ : RawSel _root_.GlobalTheory.Fc.Ind.PointSummands 𝒜), AtAll _root_.GlobalTheory.Fc.Ind.VisibleExamplePointSummands 𝒜 σ → AtAll _root_.GlobalTheory.Fc.Ind.summandPrimitive 𝒜 σ → EvWC (fun _ => True) _root_.GlobalTheory.Fc.Ind.SmallPointSummands 𝒜 σ := by
   intro 𝒜 σ hS hP

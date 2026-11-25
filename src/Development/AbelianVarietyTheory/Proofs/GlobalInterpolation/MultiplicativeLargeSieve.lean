@@ -4,10 +4,10 @@ public import Mathlib.Analysis.SpecialFunctions.Complex.CircleAddChar
 public import Mathlib.NumberTheory.DirichletCharacter.Orthogonality
 public import Mathlib.NumberTheory.GaussSum
 public import Mathlib.RingTheory.SimpleRing.Principal
-public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.GaussSumMulGaussSumInvOfIsPrimitive
 public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.SumIntervalIntegralLeOfSpaced
 import Mathlib.Algebra.Order.Star.Real
 import Mathlib.NumberTheory.DirichletCharacter.GaussSum
+import Mathlib.NumberTheory.LSeries.Nonvanishing
 import Mathlib.Tactic.NormNum.Irrational
 import Mathlib.Tactic.NormNum.IsCoprime
 import Mathlib.Tactic.NormNum.IsSquare
@@ -27,14 +27,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 open Complex DirichletCharacter ArithmeticFunction MeasureTheory
 
 namespace GlobalTheory.MultSieve
-
-theorem norm_sq_gaussSum {q : ℕ} [NeZero q] {χ : DirichletCharacter ℂ q} (hχ : χ.IsPrimitive) :
-    ‖gaussSum χ (ZMod.stdAddChar (N := q))‖ ^ 2 = q := by
-  have h := GlobalTheory.GaussInt.gaussSum_mul_gaussSum_inv_of_isPrimitive hχ (ZMod.isPrimitive_stdAddChar q)
-  rw [← star_gaussSum_eq] at h
-  apply Complex.ofReal_injective
-  rw [Complex.ofReal_pow, ← Complex.mul_conj']
-  simpa using h
 
 theorem sum_norm_sq_char {q : ℕ} [NeZero q] (F : ZMod q → ℂ) :
     ∑ χ : DirichletCharacter ℂ q, ‖∑ b : ZMod q, χ⁻¹ b * F b‖ ^ 2
@@ -78,14 +70,12 @@ theorem sum_primitive_le {q : ℕ} [NeZero q] (s : Finset ℕ) (a : ℕ → ℂ)
   have h1 : ∀ χ : DirichletCharacter ℂ q, χ.IsPrimitive →
       q * ‖∑ n ∈ s, a n * χ (n : ZMod q)‖ ^ 2 = ‖∑ b : ZMod q, χ⁻¹ b * F b‖ ^ 2 := by
     intro χ hχ
-    have hχ' : (χ⁻¹).IsPrimitive := by
-      rw [DirichletCharacter.isPrimitive_def, DirichletCharacter.conductor_inv]; exact hχ
-    rw [← norm_sq_gaussSum hχ', ← mul_pow, ← norm_mul]
+    rw [← Real.sq_sqrt hq.le, ← norm_gaussSum_stdAddChar hχ.inv, ← mul_pow, ← norm_mul]
     congr 2
     simp only [hF, Finset.mul_sum]
     rw [Finset.sum_comm]
     refine Finset.sum_congr rfl fun n _ => ?_
-    have h := gaussSum_mulShift_of_isPrimitive (ZMod.stdAddChar (N := q)) hχ' (n : ZMod q)
+    have h := gaussSum_mulShift_of_isPrimitive (ZMod.stdAddChar (N := q)) hχ.inv (n : ZMod q)
     rw [inv_inv] at h
     rw [mul_left_comm, mul_comm (gaussSum _ _), ← h, gaussSum, Finset.mul_sum]
     refine Finset.sum_congr rfl fun b _ => ?_

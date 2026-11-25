@@ -16,24 +16,6 @@ import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.IsSmoothMo
 import Development.WeilBound.ThetaLifts.CartanFactorisation.Unimod
 import Development.WeilBound.ThetaLifts.EigenvalueEndgame.CuspidalAverages.StageB
 import Development.WeilBound.ThetaLifts.EigenvalueEndgame.UnipotentGroups.ContinuousExpG
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.Etale.Weakly
-import Mathlib.RingTheory.HopfAlgebra.Basic
-import Mathlib.RingTheory.TotallySplit
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Order.CompletePartialOrder
-import Mathlib.Topology.Compactness.Paracompact
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ColumnWhittakerTransformKeepsLaterLaw
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsFundamentalDomainMassOneCocompactLattice
 import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SetIntegralFundamentalDomainEqMassMulAverage
@@ -41,7 +23,6 @@ import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.WhittakerLawUp
 import Development.WeilBound.ThetaLifts.TowerModels.LeviAd
 import Formalism.LocalRingCardinality.SpanPowerMembership.LocAtA
 import Formalism.LocalToGlobal.IndefiniteReal.PHeisFC
-import Mathlib.CategoryTheory.Countable
 import Mathlib.Tactic.Linter.HaveILetI
 import Std.Tactic.BVDecide.Normalize.Prop
 

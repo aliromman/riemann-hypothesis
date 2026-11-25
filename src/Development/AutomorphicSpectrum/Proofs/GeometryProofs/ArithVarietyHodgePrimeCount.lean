@@ -26,30 +26,13 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsExcisionNb
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LemmaBTHolds
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieOmegaLatticeVectorBundle
 public import Mathlib.LinearAlgebra.FreeModule.IdealQuotient
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.CompactGapsGE
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.FlagMinor
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.Objects
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LatticeEigenVectorBundle
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelFiniteBaseChange
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.PiTensorProduct
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ChartPointInChartDominated, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.ExistsFunctionOnChart, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ChartRingNoetherianNormalFraction, Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsDerAtOneCompEndo, Development.AutomorphicSpectrum.Proofs.GeometryProofs.MulMemSqOfSmulEqZero, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.StalkPointFactorization, Development.AutomorphicSpectrum.Proofs.GeometryProofs.SpMapEqFromSpecStalk, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ArithVarietyHodgePrimeCount

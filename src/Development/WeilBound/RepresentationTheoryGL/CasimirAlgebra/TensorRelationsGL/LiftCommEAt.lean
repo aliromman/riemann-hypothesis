@@ -1,18 +1,6 @@
 module
 
 public import Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.QdetFacts
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -93,6 +81,54 @@ theorem actT_apply {ι Γ : Type} (lab : P → ι) (κ : ι → Γ → Matrix (F
 
 theorem curF_apply {m k : ℕ} (f : TV n M (Fin (m + k))) (J : Fin k → Fin n) (I : Fin m → Fin n) :
     curF n M m k f J I = f (Fin.append I J) := rfl
+
+section SharedAlg
+
+theorem liftA_apply {n : ℕ} {M P : Type} [AddCommGroup M] [Module ℂ M] (B : Module.End ℂ M) :
+    liftA n M P B = lift B := rfl
+
+theorem lift_alg {n : ℕ} {M P : Type} [AddCommGroup M] [Module ℂ M] (c : ℂ) :
+    (lift (algebraMap ℂ (Module.End ℂ M) c) : Module.End ℂ (TV n M P)) = algebraMap ℂ _ c :=
+  (liftA n M P).commutes c
+
+theorem qdet_map {A B : Type*} [Ring A] [Algebra ℂ A] [Ring B] [Algebra ℂ B] {m : ℕ} (φ : A →ₐ[ℂ] B)
+    (E : Fin m → Fin m → A) (u : ℂ) : φ (qdet E u) = qdet (fun a b => φ (E a b)) u := by
+  simp [qdet, qminor, Tm, map_list_prod, List.map_ofFn, Function.comp_def, apply_ite φ]
+
+theorem glRel_map {A B : Type*} [Ring A] [Algebra ℂ A] [Ring B] [Algebra ℂ B] {m : ℕ} (φ : A →ₐ[ℂ] B)
+    {E : Fin m → Fin m → A} (h : GlRel E) : GlRel fun a b => φ (E a b) := by
+  intro a b c d
+  have := congrArg φ (h a b c d)
+  simpa only [map_sub, map_mul, apply_ite φ, map_zero] using this
+
+theorem qdet_commute {A : Type*} [Ring A] [Algebra ℂ A] {m : ℕ} (E : Fin m → Fin m → A) (u : ℂ) (Z : A)
+    (h : ∀ a b, Commute (E a b) Z) : Commute (qdet E u) Z := by
+  unfold qdet qminor
+  refine Commute.sum_left _ _ _ fun σ _ =>
+    Commute.mul_left (Int.cast_commute _ _) (Commute.list_prod_left _ _ fun x hx => ?_)
+  obtain ⟨k, rfl⟩ := List.mem_ofFn.mp hx
+  unfold Tm
+  refine Commute.add_left ?_ (h _ _)
+  split_ifs
+  · exact Algebra.commute_algebraMap_left _ _
+  · exact Commute.zero_left _
+
+theorem pm_single {n : ℕ} {M P : Type} [AddCommGroup M] [Module ℂ M] [Fintype P] [DecidableEq P]
+    (σ : Equiv.Perm P) (I : P → Fin n) (v : M) :
+    pm σ (Pi.single I v : TV n M P) = Pi.single (I ∘ σ.symm) v := by
+  funext J
+  rw [pm_apply]
+  simp only [Pi.single_apply, Equiv.eq_comp_symm]
+
+theorem eAt_comm {n : ℕ} {M P : Type} [AddCommGroup M] [Module ℂ M] [DecidableEq P]
+    {p q : P} (h : p ≠ q) (a b c d : Fin n) :
+    Commute (eAt p a b : Module.End ℂ (TV n M P)) (eAt q c d) := by
+  refine LinearMap.ext fun f => funext fun I => ?_
+  simp only [mul_apply_eq_comp, eAt_apply, Function.update_of_ne h, Function.update_of_ne h.symm,
+    Function.update_comm h b d I]
+  split_ifs <;> rfl
+
+end SharedAlg
 
 end PositivityTheory.Rg.Cz
 

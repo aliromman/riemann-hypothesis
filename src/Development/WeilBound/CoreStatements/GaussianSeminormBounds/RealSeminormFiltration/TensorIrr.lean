@@ -4,18 +4,6 @@ public import Formalism.LocalToGlobal.ThetaOperatorCommutation.RealTh
 public import ReciprocityTheory.ThetaSummability.RealCoinvariants.Numbers
 public import Mathlib.LinearAlgebra.PiTensorProduct.Basic
 public import Development.WeilBound.CoreStatements.GaussianSeminormBounds.RealSeminormFiltration.FockAct1FockAct2Commute
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 

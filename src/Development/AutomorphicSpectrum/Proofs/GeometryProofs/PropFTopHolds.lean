@@ -25,30 +25,9 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.Intersection
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.RationalSections.ThmISt
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.NumberField
 public import Development.AutomorphicSpectrum.Statements.GeometryStatements.PropFTop
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Algebra.Ring.IsFormallyReal
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterGoodD
-import Mathlib.Tactic.TypeStar
-import Mathlib.Algebra.Order.Archimedean.Real.Hom
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.Style
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.Topology.Sheaves.Presheaf
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.SumLogDivNSqLeTwo, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.SumPrimeLogDivLe, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.SumLogDivPredLe, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.SumLogPrimeDivPredBound, Development.AutomorphicSpectrum.Proofs.GeometryProofs.EpInert, Development.AutomorphicSpectrum.Proofs.GeometryProofs.EpSplit, Development.AutomorphicSpectrum.RootSurvey.GeometrySurvey.ExistsTopDegreeCoefficientFormAndEqOnTopForms, Development.AutomorphicSpectrum.Proofs.GeometryProofs.DeltaTermLogDegreeBound, Development.AutomorphicSpectrum.Proofs.GeometryProofs.HBBound, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ArMonoAddSingle, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsEqMulMultOfUnits, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FlatHermUnitConstant, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.IntegralOverPlaceDensity, Development.AutomorphicSpectrum.Proofs.GeometryProofs.GreenCurrentIntegralFormula, Development.AutomorphicSpectrum.Proofs.GeometryProofs.IntersectionFamilyPlaceWeight, Development.AutomorphicSpectrum.Proofs.GeometryProofs.IntersectionFamilyFlatHerm, Development.AutomorphicSpectrum.Proofs.GeometryProofs.IntersectionFamilyMultilinear, Development.AutomorphicSpectrum.Proofs.GeometryProofs.MonoLinesLineSmooth, Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootFlatPushforwardGeoFun, Development.AutomorphicSpectrum.Proofs.GeometryProofs.PropFTopHolds

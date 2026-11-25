@@ -35,30 +35,12 @@ public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsSncMo
 public import Development.AutomorphicSpectrum.Proofs.MetricProofs.IsArithVarOfSncModel
 public import Development.AutomorphicSpectrum.Proofs.MetricProofs.IsClosedSectionBoundary
 public import Development.AutomorphicSpectrum.Proofs.MetricProofs.LowerBoundHeightOnBoundary
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
-import Mathlib.RingTheory.Etale.Weakly
-import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
-import Mathlib.RingTheory.TotallySplit
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsHolPeriods
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HolomorphicCoordsOfGenericPoint
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HolomorphicDiscOverNumberFieldRing
 import Development.WeilBound.CoreStatements.PluriharmonicCharts.PeriodGramConj
-import Mathlib.Analysis.Calculus.FDeriv.Star
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeCptInteriorGeneric
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LocalRingPointsExistsUnique
 import Development.WeilBound.CoreStatements.VolumeEquality.CoverRootsSch
@@ -66,9 +48,6 @@ import Development.AutomorphicSpectrum.Proofs.MetricProofs.AevalNeZeroOfNotMem
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.BlockDiagonalMinorVanishing
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.CoordinateIdeals.MemMCoordIdealOfAevalEqZero
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FrameDefinitions.Values
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.Algebra.Module.StablyFree.Basic
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.MetricProofs.BlockGBlockDiagPosDef, Development.WeilBound.CoreStatements.PluriharmonicCharts.XCBmExistsBounds, Development.AutomorphicSpectrum.Proofs.MetricProofs.ExistsFiniteFrameCover, Development.WeilBound.CoreStatements.PluriharmonicCharts.XCBmExistsPeriod, Development.AutomorphicSpectrum.Proofs.MetricProofs.ExistsLocalHoloIsPeriodGramBlockGBaseGram, Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagModelFrameHeightComparison, Development.WeilBound.CoreStatements.PluriharmonicCharts.XCBmExistsImmersion, Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagModelHeightLowerEstimate, Development.WeilBound.CoreStatements.PluriharmonicCharts.IsValueAtZpow, Development.WeilBound.CoreStatements.PluriharmonicCharts.RefNorm, Development.WeilBound.CoreStatements.PluriharmonicCharts.XCBmExistsHom, Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagModelResolutionIntegrability, Development.AutomorphicSpectrum.Proofs.MetricProofs.BaseMetricExistsOfGiven

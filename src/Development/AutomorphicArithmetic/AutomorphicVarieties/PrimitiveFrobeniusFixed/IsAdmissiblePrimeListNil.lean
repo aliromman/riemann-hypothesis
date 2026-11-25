@@ -2,19 +2,6 @@ module
 
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.OddResidueBounds.ZeroMemUnrHom
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.StickelbergerTheorem.StickelbergerAt
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
 
@@ -114,7 +101,6 @@ structure NuSys (l M F r : ℕ) (β : G ℚ Ω →* Oˣ) (A₀ : ValuationSubrin
 
 def IsCoc (α : G ℚ Ω →* Oˣ) (c : G ℚ Ω → W) : Prop :=
   IsLocallyConstant c ∧ ∀ g h, c (g * h) = c g + (α g : O) • c h
-
 
 variable (W) in
 def ShT (α : G ℚ Ω →* Oˣ) (δ : G ℚ Ω) (F : ℕ) (a : O) : Submodule O (G ℚ Ω → W) where

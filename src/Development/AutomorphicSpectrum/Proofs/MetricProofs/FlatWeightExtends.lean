@@ -20,28 +20,7 @@ public import Development.AutomorphicSpectrum.Proofs.MetricProofs.SectionBoundar
 public import Mathlib.Geometry.Manifold.IsManifold.Basic
 public import Development.AutomorphicSpectrum.Proofs.MetricProofs.SingularPotentialLogGrowthPsh
 public import ReciprocityTheory.AnalyticForms.PotentialTheory.ContDiffAtOfIsPotential
-import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
-import Mathlib.Order.CompletePartialOrder
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Analysis.InnerProductSpace.OfNorm
-import Mathlib.Tactic.Monotonicity.Lemmas
-import Mathlib.Topology.Sheaves.Presheaf
-import Mathlib.MeasureTheory.Measure.RegularityCompacts
-import Mathlib.Tactic.TypeStar
-import Mathlib.Topology.UniformSpace.Uniformizable
-import Mathlib.Algebra.Ring.IsFormallyReal
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.SncBoundaryCoordinateChart
 import GroundTheory.HeightsAndTheta.Heights.Antisymmetric.Statements
 

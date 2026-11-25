@@ -50,28 +50,9 @@ public import Development.AutomorphicSpectrum.Proofs.MetricProofs.SingularWeight
 public import Development.AutomorphicSpectrum.Proofs.MetricProofs.SmoothFunctionAsDegreeZeroMetric
 public import Development.AutomorphicSpectrum.Proofs.MetricProofs.SncAdaptedAtlasProjection
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import GroundTheory.HeightsAndTheta.Heights.Intersections.IsSmoothHermFubiniStudyO1
 import Development.WeilBound.CoreStatements.CentralCharts.TraceMulReNonneg
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
-import Mathlib.Analysis.Matrix.PosDef
-import Mathlib.RingTheory.Etale.Weakly
-import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
-import Mathlib.RingTheory.TotallySplit
 import Development.AutomorphicSpectrum.Definitions.MetricPeriods.InFlagDomainOne
-import Mathlib.Tactic.TypeStar
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.IsValueAtOfTorus
 import Development.WeilBound.CoreStatements.PluriharmonicCharts.XCGradAtlas
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.MixedFieldContraction.GenericFibreKerTarget
@@ -79,7 +60,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersecti
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.IsSemipositiveOn
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.LogResolutionFunctorialHolomorphic
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.SamePotBlock
-import Mathlib.Topology.OpenPartialHomeomorph.Composition
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.

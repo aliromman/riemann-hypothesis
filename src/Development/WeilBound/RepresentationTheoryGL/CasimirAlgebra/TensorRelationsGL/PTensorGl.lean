@@ -2,20 +2,6 @@ module
 
 public import Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.StepFormula
 public import Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.TensorRelationsGL.LiftCommEAt
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
 
 @[expose] public section
 
@@ -97,13 +83,6 @@ theorem eAt_mul (p : P) (a b c d : Fin n) :
     simp [eAt_apply, Function.update_idem]
   · simp [eAt_apply, hbc]
 
-theorem eAt_comm {p q : P} (h : p ≠ q) (a b c d : Fin n) :
-    (eAt p a b * eAt q c d : Module.End ℂ (TV n M P)) = eAt q c d * eAt p a b := by
-  refine LinearMap.ext fun f => funext fun I => ?_
-  simp only [Module.End.mul_apply, eAt_apply, Function.update_of_ne h, Function.update_of_ne (Ne.symm h),
-    Function.update_comm h]
-  split_ifs <;> rfl
-
 theorem pm_eAt (σ : Equiv.Perm P) (p : P) (a b : Fin n) :
     (pm σ * eAt p a b : Module.End ℂ (TV n M P)) = eAt (σ p) a b * pm σ := by
   refine LinearMap.ext fun f => funext fun I => ?_
@@ -128,7 +107,7 @@ theorem tensorGl_holds : TensorGl := by
   · exact glSum S _ _ (glLift E hE) (fun p a b c d => lift_comm_eAt _ _ _ _) fun p q a b c d => by
       by_cases hpq : p = q
       · subst hpq; rw [if_pos rfl, eAt_mul, eAt_mul]
-      · rw [if_neg hpq, eAt_comm hpq, sub_self]
+      · rw [if_neg hpq, (eAt_comm hpq _ _ _ _).eq, sub_self]
   · intro p hp a b
     have hsplit : tE S E a b = (lift (E a b) + eAt p a b) + ∑ q ∈ S.erase p, eAt q a b := by
       rw [tE, add_assoc]; congr 1; exact (Finset.add_sum_erase S (fun q => eAt q a b) hp).symm

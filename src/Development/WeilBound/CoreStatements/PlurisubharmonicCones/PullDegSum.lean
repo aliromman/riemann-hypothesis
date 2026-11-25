@@ -34,32 +34,15 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.CompactDatum
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeCptMultihomogForm
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IntersectionDatumDegreeSum
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GenOfUnit
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicSpectrum.Definitions.MetricPeriods.ExistsIntSmulIsAdicIntegralInTensorBasis
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeCptInteriorFlag
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeInnerProductPullbackUnique
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.EigLat
-import Mathlib.AlgebraicGeometry.Morphisms.Smooth
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieLatticeEvalAtLocalRing
-import Mathlib.Algebra.Order.Star.Real
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.StalkSpecializesBijective
 import Development.AutomorphicSpectrum.Proofs.MetricProofs.SectionNormIsomorphicLines
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeComponentTwistAutomorphism
-import Mathlib.NumberTheory.NumberField.Discriminant.Defs
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeCptFieldExtension
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.PullCub
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.SabComp

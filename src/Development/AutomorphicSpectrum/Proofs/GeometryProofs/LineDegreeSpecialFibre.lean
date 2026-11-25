@@ -16,32 +16,11 @@ public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ExistsG
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LevelSectionsExactKernelLocusOpen
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsRegularSectionGenerator
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GenMapGermEqGenMapGerm
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.Order.CompletePartialOrder
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.InjectiveOfIsCptGen
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ProjectiveLinePlaceTrivialOnConstants
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
-import Mathlib.RingTheory.KrullDimension.Field
-import Mathlib.RingTheory.Valuation.AlgebraInstances
-import Mathlib.RingTheory.Valuation.LocalSubring
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Algebra.Order.Star.Int
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.StalkClosedPointToGermTop
-import Mathlib.AlgebraicGeometry.QuasiAffine
-import Mathlib.SetTheory.ZFC.PSet
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.ExistsPrimeDimOneAvoiding, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.ExistsCurveThroughSpecialPoint, Development.AutomorphicSpectrum.Proofs.GeometryProofs.SpecialFibreClosedSpecialization, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.DegreeZeroCurvePositive, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.NormalProperLineOrder, Development.AutomorphicSpectrum.Proofs.GeometryProofs.LineDegreeSpecialFibre

@@ -48,27 +48,12 @@ public import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PMinimalPrim
 public import GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.PSectionOrderAlgClosed
 import GroundTheory.HeightsAndTheta.Heights.ChowForms.Assembly
 import GroundTheory.HeightsAndTheta.Heights.ChowForms.PChowFormMultiHomog
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.EventuallySubsingletonCohTwistZOfIsProjOver
 import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.ExistsLinearMapMultilinearMapBaseChange
 import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.IsFiniteLengthOfIsArtinianRingAnnihilator
-import Mathlib.Algebra.Order.Star.Int
 import Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.RingKrullDimQuotientEqOfMemMinimalPrimes
-import Mathlib.RingTheory.KrullDimension.Field
 import Mathlib.Tactic.Linter.Style
 import GroundTheory.HeightsAndTheta.Heights.VerticalDivisors.Assembly
-import Mathlib.RingTheory.KrullDimension.Polynomial
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ChartResidueDegreeAlgClosedClosed, Development.WeilBound.CoreStatements.MinimalPrimeDimensions.RangeOfMemSupportPush, Development.WeilBound.CoreStatements.MinimalPrimeDimensions.DimClosureAddOneLe, Development.WeilBound.CoreStatements.MinimalPrimeDimensions.ChowDegreeSection

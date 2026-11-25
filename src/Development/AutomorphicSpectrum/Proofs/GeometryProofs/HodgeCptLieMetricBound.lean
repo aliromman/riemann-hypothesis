@@ -43,26 +43,12 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSc
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.SemiAbelianPullbackTorusExtension
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.SemiabelianLieMetricHeight
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeInnerProductPullbackUnique
 import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.FiniteSupportHeight
 import GroundTheory.HeightsAndTheta.Heights.HeightsOfSets.LinearIndependentSumElimOfExact
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.TypeStar
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.SabComp
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianPartMapsCompatibleLeft, Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianPartMapsCompatibleRight, Development.AutomorphicSpectrum.Proofs.MetricProofs.NormalizedDegreeBoundedMap, Development.WeilBound.CoreStatements.AmpleLineBundles.StandardHermitianBundleSemistable, Development.WeilBound.CoreStatements.AmpleLineBundles.SlopeMaxLeOfComparableMetric, Development.AutomorphicSpectrum.Proofs.MetricProofs.SlopeBoundComparableMetric, Development.AutomorphicSpectrum.Proofs.MetricProofs.HermitianBundleQuotientDegreeBound, Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeCptLieMetricBound

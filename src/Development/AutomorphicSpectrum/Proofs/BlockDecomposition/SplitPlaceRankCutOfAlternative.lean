@@ -77,8 +77,6 @@ open IsDedekindDomain NumberField
 open PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L
 open GlobalTheory.CompanionTheory.Jp
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 namespace GlobalTheory.CompanionTheory.Jp.SplitPair
 
 section gen
@@ -209,7 +207,6 @@ open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory
 open IsDedekindDomain NumberField
 open PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L
 open GlobalTheory.CompanionTheory.Jp
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 noncomputable section
 
@@ -307,7 +304,6 @@ open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory
 open IsDedekindDomain NumberField
 open PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L
 open GlobalTheory.CompanionTheory.Jp
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.T.exists_global_hermitian_local_approximation : ∀ (D : D7) (n : ℕ) (v : Pl D) (τ : D.host.E →ₐ[D.host.F] Fv D.host.F v) (X : Matrix (Fin n) (Fin n) (Fv D.host.F v)), ∃ x : hermA D n, (∀ w i j, compInf D.host.F D.host.E w (x.1 i j) = 0) ∧ (∀ v' ≠ v, ∀ i j, cv D v' (x.1 i j) = 0) ∧ tauC τ x.1 = X ∧ ((∀ i j, X i j ∈ v.adicCompletionIntegers D.host.F) → ∀ i j, cv D v (x.1 i j) ∈ intLoc D.host.F D.host.E v) := by
   first | exact @GlobalTheory.CompanionTheory.Jp.exists_herm_at
@@ -328,7 +324,6 @@ open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory
 open IsDedekindDomain NumberField
 open PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L
 open GlobalTheory.CompanionTheory.Jp
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 noncomputable section
 
@@ -449,7 +444,6 @@ open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory
 open IsDedekindDomain NumberField
 open PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L
 open GlobalTheory.CompanionTheory.Jp
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.Jp.DualInt
 
@@ -552,7 +546,6 @@ open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory
 open IsDedekindDomain NumberField
 open PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L
 open GlobalTheory.CompanionTheory.Jp
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.Jp
 
@@ -612,7 +605,6 @@ open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory
 open IsDedekindDomain NumberField
 open PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L
 open GlobalTheory.CompanionTheory.Jp
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 end -- clump:auto
 end -- clump:auto
@@ -633,8 +625,6 @@ open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory
 open IsDedekindDomain NumberField
 open PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L
 open GlobalTheory.CompanionTheory.Jp
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.Jp.UpTri
 
@@ -738,7 +728,6 @@ open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory
 open IsDedekindDomain NumberField
 open PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L
 open GlobalTheory.CompanionTheory.Jp
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 end -- clump:auto
 end -- clump:auto
@@ -757,7 +746,6 @@ open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory
 open IsDedekindDomain NumberField
 open PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L
 open GlobalTheory.CompanionTheory.Jp
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.Jp
 
@@ -887,8 +875,6 @@ open IsDedekindDomain NumberField
 open PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L
 open GlobalTheory.CompanionTheory.Jp
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 namespace GlobalTheory.CompanionTheory.Jp
 
 theorem coY_sum_mul_eq_zero : ∀ (k : Type) [Field k] [Fintype k] (n : ℕ) (ψ₀ : AddChar k ℂ), ψ₀ ≠ 1 →
@@ -964,7 +950,6 @@ open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory
 open IsDedekindDomain NumberField
 open PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L
 open GlobalTheory.CompanionTheory.Jp
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 noncomputable section
 
@@ -1112,7 +1097,6 @@ open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory
 open IsDedekindDomain NumberField
 open PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L
 open GlobalTheory.CompanionTheory.Jp
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 end -- clump:auto
 end -- clump:auto
@@ -1132,8 +1116,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
 open GlobalTheory.StdUnn PositivityTheory.GramSchwartzFunctions PositivityTheory.GramSchwartzFunctions.BC PositivityTheory.PfSWUS
 open IsDedekindDomain NumberField
 open PositivityTheory.Rg.Rsw PositivityTheory.Rg.Rsw.L
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.Jp
 

@@ -12,31 +12,13 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscrim
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsSubMemEigW
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.GermSys
 public import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.FormalIsomorphismTransport
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
-import Mathlib.AlgebraicGeometry.Morphisms.FinitePresentation
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.HopfAlgebra.Basic
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ExistsGenOfIsVBOne
 import Mathlib.Tactic.Linter.Style
 import Development.AutomorphicSpectrum.Definitions.AdelicLattices.FactPrimes
-import Mathlib.Topology.Sheaves.Presheaf
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.TaylorDiscriminants.WickVanishing.LogChain
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ProjectiveLinePlaceTrivialOnConstants
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.FormalGermBaseChangeStatement
-import Mathlib.Algebra.CharP.Subring
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.ExistsCurveInFibreDegree, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FibreCurveDegreeCompare, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FibrePowerFreeConjInjective, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FibrePowerFreeConjInjectiveStatement, Development.AutomorphicSpectrum.Proofs.GeometryProofs.IntersectionHiddenFirst, Development.AutomorphicSpectrum.Proofs.GeometryProofs.IntersectionHiddenFirstStatement, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FibreCurveGermPowers, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FibreCurveGermPowersStatement

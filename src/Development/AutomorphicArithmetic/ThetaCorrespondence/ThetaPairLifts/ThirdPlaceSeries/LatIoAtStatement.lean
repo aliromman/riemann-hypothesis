@@ -64,8 +64,6 @@ open Formalism.L2.Host (embLL0)
 open scoped TensorProduct
 
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 namespace GlobalTheory.BigOn.Exp.SerBase
 
 section BaseChange
@@ -160,7 +158,6 @@ open Formalism.L2.Host (embLL0)
 open scoped TensorProduct
 
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 namespace GlobalTheory.BigOn.Exp.SerBase
 section BaseChange
 variable {E K₀ K ι : Type} [Field E] [NumberField E] [Field K₀] [NumberField K₀] [Field K] [NumberField K] [Fintype ι]

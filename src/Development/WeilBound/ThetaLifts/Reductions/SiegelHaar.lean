@@ -8,25 +8,10 @@ public import Mathlib.Tactic.ReduceModChar
 public import Mathlib.MeasureTheory.Constructions.Polish.Basic
 public import Mathlib.MeasureTheory.Group.LIntegral
 public import Mathlib.MeasureTheory.Measure.Haar.Basic
-import Mathlib.Tactic.Lemma
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
 import Mathlib.Tactic.Linter.HaveILetI
 import Std.Tactic.BVDecide.Normalize.Prop
 import Batteries.Tactic.Lint.Basic
 import Batteries.Tactic.Lint.Misc
-import Mathlib.Topology.Compactness.Paracompact
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.SmulNn, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HaarProductClosedCompactHolds, Development.WeilBound.ThetaLifts.Reductions.SiegelHaar

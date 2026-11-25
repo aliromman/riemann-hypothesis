@@ -279,8 +279,8 @@ lemma gN_ge_one {k r : ℕ} {g : Mat k r} (hg : g ∈ GV k r) : 1 ≤ gN g := by
   rw [gN_eq_frob]
   by_contra hlt
   push_neg at hlt
-  have h3 : ‖g‖ * ‖g‖ < 1 := by nlinarith [norm_nonneg g]
-  nlinarith [mul_pos (sub_pos.mpr h3) hn]
+  have h3 : ‖g‖ * ‖g‖ < 1 := by nlinarith only [hlt, norm_nonneg g]
+  linarith only [hn, h2, h3, mul_pos (sub_pos.mpr h3) hn]
 
 end Frob
 
@@ -935,7 +935,7 @@ lemma CC_bdd {A : ℝ} (hA : 0 ≤ A) {f : Mat k r → E} {c : ℝ} (hf : CCle A
   have h2 : 1 ≤ gN g ^ A := Real.one_le_rpow (gN_ge_one hg) hA
   have h3 : dLR [] [] f g = f g := rfl
   rw [h3] at h1
-  nlinarith [mul_nonneg (sub_nonneg.mpr h2) (norm_nonneg (f g))]
+  linarith only [h1, h2, mul_nonneg (sub_nonneg.mpr h2) (norm_nonneg (f g))]
 
 end gen
 

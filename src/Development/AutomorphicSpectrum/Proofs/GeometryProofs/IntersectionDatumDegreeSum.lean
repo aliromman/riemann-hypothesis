@@ -11,22 +11,8 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.NotInFibreOf
 public import Development.WeilBound.CoreStatements.PlurisubharmonicCones.ComponentDataHeightIdentity
 public import Development.WeilBound.CoreStatements.PlurisubharmonicCones.DeterminantLatticeGenerator
 public import Development.WeilBound.CoreStatements.PlurisubharmonicCones.DeterminantLatticeGradedTensor
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicSpectrum.Definitions.MetricPeriods.ExistsIntSmulIsAdicIntegralInTensorBasis
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsHodgeLine
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.PairLatticeSumComap
@@ -34,8 +20,6 @@ import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.CoordinateIdeals
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.SegreChartBundle
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FrameDefinitions.IsFrameOverLine
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.SumLatticeWedgeComap
-import Mathlib.LinearAlgebra.ExteriorPower.Basic
-import Mathlib.LinearAlgebra.PiTensorProduct.Basic
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.TensorWedgeDetChange
 
 -- This file was produced by scripts/clump.py from the modules listed below.

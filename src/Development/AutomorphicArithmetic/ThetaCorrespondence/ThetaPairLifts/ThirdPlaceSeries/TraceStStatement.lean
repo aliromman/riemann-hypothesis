@@ -46,8 +46,6 @@ open GlobalTheory.ConjTwist (BaseOf)
 
 
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 namespace GlobalTheory.TraceFlatLevel
 
 open GlobalTheory.TraceLevelPf
@@ -140,7 +138,6 @@ open GlobalTheory.BigOn GlobalTheory.BigOn.Exp
 open GlobalTheory.ConjTwist (BaseOf)
 
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 namespace GlobalTheory.TraceFlatLevel
 open GlobalTheory.TraceLevelPf
 variable {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T0 : Type} {A : FamIn D.what₂.LL G Pl0 T0 D.R.m}

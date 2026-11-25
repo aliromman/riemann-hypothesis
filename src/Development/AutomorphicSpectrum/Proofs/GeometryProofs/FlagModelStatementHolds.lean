@@ -11,23 +11,7 @@ public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ExistsG
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.FlagModelCommonRefinement
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsCptGen
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.RegAtLocalOrderFraction
-import Mathlib.Algebra.Module.StablyFree.Basic
-import Mathlib.LinearAlgebra.Dimension.OrzechProperty
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GenMapStalkMap
 

@@ -27,28 +27,11 @@ public import Mathlib.AlgebraicGeometry.Noetherian
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LatticeGlueOverPrimes
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.NotInFibreOfIsUnit
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.LawsProved
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
-import Mathlib.Algebra.Module.StablyFree.Basic
 import Mathlib.Tactic.Linter.Style
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.EigLat
-import Mathlib.AlgebraicGeometry.Morphisms.Smooth
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieOmegaLatticeVectorBundle
-import Mathlib.NumberTheory.NumberField.Discriminant.Different
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GeometryProofs.IdealSaturatedVectorBundle, Development.AutomorphicSpectrum.Proofs.GeometryProofs.PredualVectorBundle, Development.AutomorphicSpectrum.Proofs.GeometryProofs.EigenLatticeDedekindTwist

@@ -27,29 +27,11 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ChartDThSqId
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.OrdinaryCurveModelRelayStatement
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.CharacterLatticeKernelLocallyFree
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PolarisedAugmentationTheorem
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.SymplecticPeriodMatrixIntegrality
-import Mathlib.Algebra.Order.Star.Real
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.CompactGapsGE
 import Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.XGraphRestrictBc
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.LinearAlgebra.FreeModule.IdealQuotient
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.XPtSeqLin, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.HodgeKernelImageLattice, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.MemFlagSubIff, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.MemFirstLatticeIff, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.TestLeafLattice, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ArithVarietyModelPrimeTotal, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ArithVarietyPrimeGlobalRelay, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.TestLiftExists, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ArithVarietyPrimeHodgeTotal, Development.AutomorphicSpectrum.Proofs.GeometryProofs.OrdinaryCurveHodgePrime

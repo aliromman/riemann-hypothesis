@@ -178,7 +178,6 @@ open GlobalTheory.TripleGal (rk1)
 open UpperTheory.V.Af (FrobEig algSat RepIso)
 open UpperTheory.Gal.TP.Sub (Cl Above unrPol)
 open UpperTheory.Gal.crystallineComparison (GenericMul rootPol)
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open GlobalTheory.BlockSum (blockRep)
 open PositivityTheory.AutomorphicGaloisHodgeTate.Div (DivWCoreLac SenWLac HTLac IsSSMat)
 open UpperTheory.Gal.Int.Div
@@ -329,7 +328,6 @@ open GlobalTheory.TripleGal (rk1)
 open UpperTheory.V.Af (FrobEig algSat RepIso)
 open UpperTheory.Gal.TP.Sub (Cl Above unrPol)
 open UpperTheory.Gal.crystallineComparison (GenericMul rootPol)
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open GlobalTheory.PRep Formalism.UG GlobalTheory.DefU
 open UpperTheory.Gal.Int.Div
 
@@ -397,7 +395,6 @@ open GlobalTheory.TripleGal (rk1)
 open UpperTheory.V.Af (FrobEig algSat RepIso)
 open UpperTheory.Gal.TP.Sub (Cl Above unrPol)
 open UpperTheory.Gal.crystallineComparison (GenericMul rootPol)
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open GlobalTheory.PRep Formalism.UG GlobalTheory.DefU
 open UpperTheory.Gal.Int.Div
 
@@ -554,7 +551,6 @@ open GlobalTheory.TripleGal (rk1)
 open UpperTheory.V.Af (FrobEig algSat RepIso)
 open UpperTheory.Gal.TP.Sub (Cl Above unrPol)
 open UpperTheory.Gal.crystallineComparison (GenericMul rootPol)
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open GlobalTheory.PRep Formalism.UG GlobalTheory.DefU
 open UpperTheory.Gal.Int.Div
 
@@ -678,7 +674,6 @@ open GlobalTheory.TripleGal (rk1)
 open UpperTheory.V.Af (FrobEig algSat RepIso)
 open UpperTheory.Gal.TP.Sub (Cl Above unrPol)
 open UpperTheory.Gal.crystallineComparison (GenericMul rootPol)
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open GlobalTheory.PRep Formalism.UG GlobalTheory.DefU
 open UpperTheory.Gal.Int.Div
 
@@ -727,7 +722,6 @@ open GlobalTheory.TripleGal (rk1)
 open UpperTheory.V.Af (FrobEig algSat RepIso)
 open UpperTheory.Gal.TP.Sub (Cl Above unrPol)
 open UpperTheory.Gal.crystallineComparison (GenericMul rootPol)
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open GlobalTheory.PRep Formalism.UG GlobalTheory.DefU
 open UpperTheory.Gal.Int.Div
 
@@ -805,7 +799,6 @@ open GlobalTheory.TripleGal (rk1)
 open UpperTheory.V.Af (FrobEig algSat RepIso)
 open UpperTheory.Gal.TP.Sub (Cl Above unrPol)
 open UpperTheory.Gal.crystallineComparison (GenericMul rootPol)
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open UpperTheory.Gal.Int.Geo (GeoOne)
 
 namespace UpperTheory.Gal.Int.Div
@@ -980,7 +973,6 @@ section -- clump:auto
 
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N
 open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open GlobalTheory.GalCut GlobalTheory.UnitaryBC GlobalTheory.Cong GlobalTheory.Published GlobalTheory.AboveL
 
 namespace GlobalTheory.Cong.OffTLimit
@@ -1033,7 +1025,6 @@ section -- clump:auto
 
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N
 open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open GlobalTheory.GalCut GlobalTheory.UnitaryBC GlobalTheory.Cong GlobalTheory.CongL
 namespace GlobalTheory.CongL.SatConj
 
@@ -1124,7 +1115,6 @@ noncomputable section
 
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N
 open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open GlobalTheory.GalCut GlobalTheory.UnitaryBC GlobalTheory.Cong GlobalTheory.Published GlobalTheory.AboveL
 
 namespace GlobalTheory.FrobOps
@@ -1163,7 +1153,6 @@ section -- clump:auto
 
 open NumberField IsDedekindDomain Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N
 open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open GlobalTheory.GalCut GlobalTheory.UnitaryBC GlobalTheory.Cong GlobalTheory.Published GlobalTheory.AboveL GlobalTheory.CongL
 
 noncomputable section
@@ -1260,7 +1249,6 @@ section -- clump:auto
 
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N
 open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open GlobalTheory.GalCut GlobalTheory.UnitaryBC GlobalTheory.Cong GlobalTheory.Published GlobalTheory.AboveL GlobalTheory.CongL
 
 namespace GlobalTheory.CongL
@@ -1294,7 +1282,6 @@ section -- clump:auto
 
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N
 open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open GlobalTheory.GalCut GlobalTheory.UnitaryBC GlobalTheory.Cong GlobalTheory.Published GlobalTheory.AboveL GlobalTheory.CongL
 
 open Filter Topology
@@ -1469,7 +1456,6 @@ section -- clump:auto
 
 open NumberField IsDedekindDomain Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N
 open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open GlobalTheory.GalCut GlobalTheory.UnitaryBC GlobalTheory.Cong GlobalTheory.Published GlobalTheory.AboveL GlobalTheory.CongL
 open Polynomial
 
@@ -1591,7 +1577,6 @@ section -- clump:auto
 
 open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N
 open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 open GlobalTheory.GalCut GlobalTheory.UnitaryBC GlobalTheory.Cong GlobalTheory.Published GlobalTheory.AboveL GlobalTheory.CongL
 
 namespace UpperTheory.Gal.Lim

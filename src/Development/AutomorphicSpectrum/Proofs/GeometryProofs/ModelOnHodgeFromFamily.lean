@@ -46,20 +46,7 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ArithVariety
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.FlagPairChartBundleCompat
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ModelDescentIntegralClosure
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ModelDescentValuationFibre
-import Mathlib.Algebra.Order.Star.Real
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.AssemblyCN
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.OfSteps
 import Mathlib.Tactic.Linter.Style
@@ -67,19 +54,11 @@ import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.Objects
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.CompactGapsGE
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.IsSemipositiveOn
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.FlagMinor
-import Mathlib.Topology.Sheaves.Presheaf
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.LocalLengthAdditivityTorsionFree
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.RingTheory.Etale.Weakly
-import Mathlib.RingTheory.TotallySplit
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeCptInteriorGeneric
-import Mathlib.Algebra.AffineMonoid.Basic
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.MemSpanOverOfMem
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ModelOverDvrExtension
 import GroundTheory.HeightsAndTheta.Heights.DiscreteValuationNumbers.ClassListMapDomainPerm

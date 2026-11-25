@@ -9,21 +9,8 @@ public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeo
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelFiniteProjective
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsCocharLie
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsExcisionNbhdAway
-import Mathlib.RingTheory.TensorProduct.IsBaseChangeFree
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicSpectrum.Definitions.AdelicLattices.FactPrimes
 
 @[expose] public section

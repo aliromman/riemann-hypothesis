@@ -7,26 +7,9 @@ public import Mathlib.LinearAlgebra.FreeModule.IdealQuotient
 public import Formalism.LocalToGlobal.KernelLattices.ThDistC
 public import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.RelIndexMulVec
 public import Development.AutomorphicSpectrum.Definitions.MetricPeriods.ExistsIntSmulIsAdicIntegralInTensorBasis
-import Mathlib.Analysis.CStarAlgebra.Classes
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.Algebra.Order.Star.Real
 import Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.StandardRankOneLatticeOfLocal
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.IsValues
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FrameDefinitions.PermFinTwoUniv
@@ -34,7 +17,6 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersecti
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.InterGoodD
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.IsCompletedStrictHens
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
-import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GeometryProofs.GlobalIndexFrameLogNorm, Development.AutomorphicSpectrum.Proofs.GeometryProofs.GluedLatticeFiniteIndex, Development.AutomorphicSpectrum.Proofs.GeometryProofs.GluedLatticeLocalization, Development.AutomorphicSpectrum.Proofs.GeometryProofs.LocalIndexAtSinglePlace, Development.AutomorphicSpectrum.Proofs.GeometryProofs.LocalIndexFrameLogDet, Development.AutomorphicSpectrum.Proofs.GeometryProofs.GluedLatticeFromLocalMatrices

@@ -57,30 +57,11 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LatticeTenso
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieLatticeStableUnderAction
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ProjectiveModelOverBase
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.SncModelBoundaryCoords
-import Mathlib.RingTheory.Etale.Weakly
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.RingTheory.TotallySplit
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
-import Mathlib.Order.CompletePartialOrder
 import Mathlib.Tactic.Linter.Style
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.FrameDefinitions.PermFinTwoUniv
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.DominatesOfCoordsRegular
-import Mathlib.AlgebraicGeometry.Morphisms.Proper
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsProperIntegralModel
-import Mathlib.AlgebraicGeometry.Noetherian
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GenericFibreProjectiveEmbedding
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GenericPointGenericFibre
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GenericPointLiftAlongIso
@@ -88,16 +69,13 @@ import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GenericPointMemDens
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeCptInteriorGeneric
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LabelEmbeddingInjective
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LieModel
-import Mathlib.NumberTheory.NumberField.Discriminant.Defs
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LatticeEigenVectorBundle
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LatticeGlueOverPrimes
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.EigLat
-import Mathlib.AlgebraicGeometry.Morphisms.Smooth
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieOmegaLatticeVectorBundle
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.NormalCptIffNormalScheme
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.NotInFibreOfIsUnit
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ProjectiveOverCoordsExist
-import Mathlib.AlgebraicGeometry.Properties
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.RegAtNoetherianModelNoetherian
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.RegularRingDeterminesComponent
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.RegularRingsEqualImagesEqual

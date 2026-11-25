@@ -4,22 +4,7 @@ public import Mathlib.Algebra.Polynomial.Derivative
 public import Mathlib.Basic.NNReal.Defs
 public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
 public import Mathlib.RingTheory.Valuation.Basic
-import Mathlib.Algebra.Order.Star.Real
 public import Mathlib.RingTheory.RootsOfUnity.Lemmas
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.Lemma
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 public import Mathlib.RingTheory.Valuation.Integers
 
 @[expose] public section

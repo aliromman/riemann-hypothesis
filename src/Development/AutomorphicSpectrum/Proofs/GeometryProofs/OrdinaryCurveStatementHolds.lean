@@ -21,23 +21,8 @@ public import Development.AutomorphicSpectrum.Statements.AlgebraStatements.Polar
 public import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PolarisedAugmentationTheorem
 public import Mathlib.RingTheory.AdicCompletion.RingHom
 public import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PtEqOneOfGZero
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.IsTight
 import ReciprocityTheory.DualLattices.CotangentSurjective
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.CategoryTheory.Action.Concrete
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import ReciprocityTheory.DualLattices.CharTableIsUnit
@@ -45,8 +30,6 @@ import ReciprocityTheory.DualLattices.FourierMapSmulLambdaWeight
 import ReciprocityTheory.DualLattices.IsUnitDetOfSpanEq
 import ReciprocityTheory.DualLattices.PrimeHopfOrderOfAddEquiv
 import ReciprocityTheory.DualLattices.VIntCastLtOneOfDvd
-import Mathlib.Algebra.AffineMonoid.UniqueSums
-import Mathlib.Algebra.Order.Star.Int
 import ReciprocityTheory.DualLattices.IsLocalOfIntegers
 import ReciprocityTheory.DualLattices.MemAugIdeal
 import ReciprocityTheory.DualLattices.ProdDvdOfIso

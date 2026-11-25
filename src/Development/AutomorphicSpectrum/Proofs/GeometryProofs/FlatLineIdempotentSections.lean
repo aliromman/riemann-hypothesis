@@ -33,29 +33,12 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.StableEigenA
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.StableEigenTangentsPullback
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsConstMul
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.FrameBorelChangeVectors
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicSpectrum.Definitions.AdelicLattices.FactPrimes
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsTangentModuleUniversalGroup
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.RingTheory.Henselian
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Order.CompletePartialOrder
-import Mathlib.Algebra.Order.Star.Real
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExteriorCoeffRatioRegular, Development.AutomorphicSpectrum.Proofs.GeometryProofs.EigenFrameOfUnitDetChange, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FrameFunctionExteriorValue, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FramePointMultiplicityCompat, Development.AutomorphicSpectrum.Proofs.GeometryProofs.NumberFieldMapsLocalRingUnique, Development.AutomorphicSpectrum.Proofs.GeometryProofs.LocalPointSpecializesComponent, Development.AutomorphicSpectrum.Proofs.GeometryProofs.TangentVectorsSpreadFromStalk, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FlatModelTorusRing, Development.AutomorphicSpectrum.Proofs.GeometryProofs.FlatLineIdempotentSections

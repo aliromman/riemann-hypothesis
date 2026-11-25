@@ -43,19 +43,6 @@ public import Mathlib.AlgebraicGeometry.Morphisms.Preimmersion
 public import Mathlib.Combinatorics.Quiver.ReflQuiver
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.StalkSurjectiveOpenImmersion
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.WedgeLatticeGenerator
-import Mathlib.AlgebraicGeometry.Modules.Sheaf
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicSpectrum.Definitions.AdelicLattices.FactPrimes
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GenMapFromSpecStalk
@@ -63,18 +50,13 @@ import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieLatticeVectorBun
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsHodgeGram
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelEigenvectorsAction
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieModelExistsUniqueAct
-import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Algebra.GroupWithZero.Submonoid.CancelMulZero
-import Mathlib.RingTheory.PicardGroup
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.AbProj
 import Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.HodgeComponentFlagDegree
 import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.InjectiveOfIsCptGen
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GenMapStalkMap
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.VectorsAtComplexPoint
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LieLatticeEvalAtLocalRing
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.LatticeBasisPullbackDominant
 

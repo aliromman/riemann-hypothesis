@@ -1,18 +1,6 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.MonodromyZeroOfWeilDeligneRepClassIff
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.LocalPrimeGaloisActionPeriodT
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.NonemptyEquivOfRangeEq
 import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.HasExponentZeroIff
@@ -40,10 +28,6 @@ inductive Sub : Subgroup ↥(Weil h) → Prop
       IsOpen {s : ↥(Ine (F := E) A) | ineIncl h s ∈ U} → Sub U
 
 def Triv (y : WD h) (g : ↥(Weil h)) : Prop := y.charPol g = (X - 1) ^ y.lpDim
-
-def Rel (x y : WD h) : Prop :=
-  x.lpDim = y.lpDim ∧ (x.mono0 ↔ y.mono0) ∧ ∀ U : Subgroup ↥(Weil h), Sub U → (∀ g ∈ ⁅U, U⁆, Triv y g) →
-    ∀ g ∈ U, x.charPol g = y.charPol g
 
 end Defs
 

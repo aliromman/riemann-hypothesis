@@ -13,23 +13,9 @@ public import Mathlib.Analysis.Calculus.Deriv.Slope
 public import Mathlib.Analysis.Calculus.MeanValue
 public import Mathlib.MeasureTheory.Integral.DominatedConvergence
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContinuousOfIsOpenStab
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.DualIsConjByOne
-import Mathlib.Tactic.TypeStar
-import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.RealMetaplecticRepresentation
 import Mathlib.Analysis.InnerProductSpace.Calculus
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.DualIsConjByOne
+import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.RealMetaplecticRepresentation
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.AbelianHeightsDuality.GelfandKazhdanDuality.PairingL2, Development.AutomorphicSpectrum.Proofs.GlobalProofs.HasDerivAtLpOfDominated, Development.WeilBound.CoreStatements.AbelianHeightsDuality.GelfandKazhdanDuality.LieSkew

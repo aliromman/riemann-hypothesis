@@ -43,23 +43,9 @@ public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.RegAtNoether
 public import Development.AutomorphicSpectrum.Definitions.DivisibilityTowers.Birational
 public import Mathlib.NumberTheory.NumberField.Discriminant.Defs
 public import Development.AutomorphicSpectrum.Proofs.GeometryProofs.GlobalModelPowerFreeStatement
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ShortExactFirstTermBundle
-import Mathlib.Algebra.Order.Star.Int
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.DualLatticeDegreeNeg
-import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 import Development.AutomorphicSpectrum.Proofs.AlgebraProofs.FormalIsomorphismTransport
 import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsLieModel
 import Mathlib.Tactic.Linter.Style

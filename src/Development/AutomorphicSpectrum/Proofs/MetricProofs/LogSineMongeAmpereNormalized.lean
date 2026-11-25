@@ -27,34 +27,14 @@ public import Mathlib.Analysis.Calculus.ContDiff.Operations
 public import Mathlib.Analysis.Calculus.Deriv.Inv
 public import Mathlib.Analysis.Calculus.FDeriv.Mul
 public import Mathlib.Analysis.SpecialFunctions.Log.Deriv
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import GroundTheory.HeightsAndTheta.Heights.Antisymmetric.Statements
 import ReciprocityTheory.AnalyticForms.LeviForms.IsRegFamilyInhabitStatement
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArithmeticIntersection.CompRightEqZero
-import Mathlib.Tactic.Lemma
 import ReciprocityTheory.AnalyticForms.PotentialTheory.IsPotentialOfFun
-import Mathlib.Tactic.TypeStar
 import Mathlib.Tactic.Linter.Style
 import Std.Tactic.BVDecide.Normalize.Prop
 import GroundTheory.HeightsAndTheta.Heights.Intersections.PFibreLocal
-import Mathlib.Topology.Algebra.MvPolynomial
 import Aesop.Main
-import Mathlib.Algebra.Order.Archimedean.Real.Hom
-import Mathlib.MeasureTheory.Measure.RegularityCompacts
-import Mathlib.Topology.UniformSpace.Uniformizable
-import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
-import Mathlib.Order.CompletePartialOrder
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.MetricProofs.ComplexHessianBlockCombination, Development.AutomorphicSpectrum.Proofs.MetricProofs.ComplexHessianTwoPointCombination, Development.AutomorphicSpectrum.Proofs.MetricProofs.MixedDiscriminantLinearFunctional, Development.AutomorphicSpectrum.Proofs.MetricProofs.MixedDiscriminantOneRowExpansion, Development.AutomorphicSpectrum.Proofs.MetricProofs.MixedDiscriminantTwoRowExpansion, Development.AutomorphicSpectrum.Proofs.MetricProofs.RowProductFirstDerivative, Development.AutomorphicSpectrum.Proofs.MetricProofs.SphereMomentPower, Development.AutomorphicSpectrum.Proofs.MetricProofs.SpherePairLogSineMoment, Development.AutomorphicSpectrum.Proofs.MetricProofs.WordCoefficientSecondDerivative, Development.WeilBound.CoreStatements.PluriharmonicCharts.SecondDerivativeOfEventuallyEq, Development.WeilBound.CoreStatements.PluriharmonicCharts.XFibHess, Development.AutomorphicSpectrum.Proofs.MetricProofs.XiPotentialHessianDecomposition, Development.AutomorphicSpectrum.Proofs.MetricProofs.LogSineMongeAmpereNormalized

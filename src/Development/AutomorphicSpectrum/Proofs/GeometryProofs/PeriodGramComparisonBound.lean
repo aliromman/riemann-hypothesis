@@ -17,24 +17,9 @@ import GroundTheory.HeightsAndTheta.Heights.Regularisation.PHodgeDerivative
 import GroundTheory.HeightsAndTheta.Heights.Regularisation.PLogCoverDescent
 import GroundTheory.HeightsAndTheta.Heights.Regularisation.PPuncturedExpOrder
 import GroundTheory.HeightsAndTheta.Heights.Regularisation.PRiemannExtensionSlices
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AutomorphicSpectrum.Definitions.MetricPeriods.ExistsIntSmulIsAdicIntegralInTensorBasis
 import GroundTheory.HeightsAndTheta.Heights.HodgeLowerBound.CoordinateIdeals.FubiniLevi
-import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.MetricProofs.LogBoundEventuallyBounds, Development.AutomorphicSpectrum.Proofs.GeometryProofs.PeriodGramComparisonBound

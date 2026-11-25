@@ -3,24 +3,7 @@ module
 public import Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.PlaneGen
 public import Development.WeilBound.ThetaLifts.SmallCones.ThetaUniq
 public import Development.WeilBound.ThetaLifts.LeviDeterminants.MixedModels.PlaneAd
-import Mathlib.Algebra.Module.StablyFree.Basic
-import Mathlib.RingTheory.Coalgebra.IsFrobenius
-import Mathlib.RingTheory.HopfAlgebra.Basic
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.RingTheory.TotallySplit
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts
 import Development.WeilBound.ThetaLifts.CTKernel
 import Development.WeilBound.ThetaLifts.TowerModels.PlaneHerm
