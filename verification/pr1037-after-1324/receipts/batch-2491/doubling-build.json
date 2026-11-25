@@ -1,0 +1,60 @@
+{
+  "base": "ef451fc356cbc66861df031531aaafd2843797ac",
+  "merge": "0e33c950c14ed48833fa38e401c9db04c4be5567",
+  "modules": 795,
+  "targets": [
+    "Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.HostPins",
+    "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+    "Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.IsAdicCompleteAndCardQuotientAdicCompletionInteg",
+    "Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.MeasureRealValuedLeExp",
+    "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CardGLFiniteFieldEqPowMulProd",
+    "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HaarModulusProductFormulaTotallyReal",
+    "Formalism.DoubleCosetMeasures.LatticeCoset",
+    "Formalism.DoubleCosetMeasures.LowerUnipotentOrbits.IsClosedLowUni",
+    "Formalism.DoubleCosetMeasures.LowerUnipotentOrbits.LemmaU",
+    "Formalism.DoubleCosetMeasures.StatementV",
+    "Formalism.DoubleCosetMeasures.StatementZ",
+    "Formalism.LocalRingCardinality.SpanPowerMembership.Adelic",
+    "Formalism.LocalToGlobal.Divisibility.QLocTied",
+    "Formalism.LocalToGlobal.UnitaryNorms.CharDiv",
+    "Formalism.LocalToGlobal.UnitaryNorms.CharUniq",
+    "Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.TopoAF",
+    "Formalism.SharpRestriction.Divisibility.ZetaProductPairs",
+    "ReciprocityTheory.GeneralLinearIntegers.AlgebraMapIntMemOint"
+  ],
+  "local_archives": 794,
+  "runs": {
+    "main-build": {
+      "exit": 0,
+      "completion": [
+        "Build completed successfully (11901 jobs)."
+      ],
+      "fresh": 0,
+      "log_sha256": "767fa5aeb1fa3909dd3db0a63cb7f8d1e8b3240da550e16e910c93e732fd58bc"
+    },
+    "main-check": {
+      "exit": 0,
+      "completion": [
+        "All targets up-to-date (11901 jobs)."
+      ],
+      "fresh": 0,
+      "log_sha256": "cd142d59b0c5253dbfcaf9c608f45d86a5763fd806a2562433069d9d2c0fc99f"
+    },
+    "candidate-build": {
+      "exit": 0,
+      "completion": [
+        "Build completed successfully (11903 jobs)."
+      ],
+      "fresh": 9,
+      "log_sha256": "31086b128cb0a4dc153d33cced3125bc8a134325746bcb0e1e454929cdb8d71b"
+    },
+    "candidate-check": {
+      "exit": 0,
+      "completion": [
+        "All targets up-to-date (11903 jobs)."
+      ],
+      "fresh": 0,
+      "log_sha256": "8233325172531c916493a39a12b87aeb3da02f4b3118c212a3c95153bc2d89fe"
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "merge": "0e33c950c14ed48833fa38e401c9db04c4be5567",
+  "head": "ef7b2af7f6017c9e6875d4d8803907ac0cd8804b",
+  "base": "ef451fc356cbc66861df031531aaafd2843797ac",
+  "tree": "5aaf227d22e4db7fc59dd9ae4d279fed43eecfa6",
+  "source_tree": "031b16e750c9cad90ece13f043fe84741d677883",
+  "lean": "Lean (version 4.37.0-rc1, arm64-apple-darwin24.6.0, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)",
+  "targets": [
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.IndepDomK",
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.SiegelWeilKfpDefs"
+  ],
+  "closure": 2590,
+  "affected_in_closure": 466,
+  "cache_manifest": "6e1593fd13c4821b16ccbe036158ef4d676b3506b14e1d01d7ba12ef767486de",
+  "cache_donor": "4104e35eefad89ac76324cf2f83072cf4c3a1f14",
+  "jobs": 4,
+  "rehash": true,
+  "started": "2026-11-25T09:19:33.918972+00:00",
+  "runs": [
+    {
+      "command": [
+        "lake",
+        "--no-cache",
+        "--rehash",
+        "build",
+        "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.IndepDomK",
+        "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.SiegelWeilKfpDefs"
+      ],
+      "exit": 0,
+      "log_sha256": "96fb2e03bf63222e917065955f8be4533fc9775e3470a3876547b40ccdb7bbd3",
+      "errors": [],
+      "finished": "2026-11-25T09:25:08.201163+00:00"
+    },
+    {
+      "command": [
+        "lake",
+        "--no-cache",
+        "--rehash",
+        "build",
+        "--no-build",
+        "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.IndepDomK",
+        "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.SiegelWeilKfpDefs"
+      ],
+      "exit": 0,
+      "log_sha256": "a903ca2596f90e2a9c1646a57c197b0e2c859ab76a586f507f851bfbf21f9db1",
+      "errors": [],
+      "finished": "2026-11-25T09:25:23.327843+00:00"
+    }
+  ],
+  "target_oleans": {
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.IndepDomK": {
+      "bytes": 483304,
+      "sha256": "11ef69699278b16326b23d038b827a162db93fe34a3a27c066783ede5020ef81"
+    },
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.SiegelWeilKfpDefs": {
+      "bytes": 549680,
+      "sha256": "9982a4cd8bc36acc5506c8b9b00cc272a23940fc36c7aecb6de8e25358a2e932"
+    }
+  },
+  "completed": "2026-11-25T09:25:23.944970+00:00"
+}

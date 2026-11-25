@@ -1,0 +1,50 @@
+{
+  "base": "ef451fc356cbc66861df031531aaafd2843797ac",
+  "head": "ef7b2af7f6017c9e6875d4d8803907ac0cd8804b",
+  "proposed_merge": "0e33c950c14ed48833fa38e401c9db04c4be5567",
+  "tree": "5aaf227d22e4db7fc59dd9ae4d279fed43eecfa6",
+  "src": "031b16e750c9cad90ece13f043fe84741d677883",
+  "files": [
+    "src/Development/AbelianVarietyTheory/Definitions/Foundations/MatrixMeasurableSpace.lean",
+    "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/ThetaParseval/ThetaKernels/IndepDomK.lean",
+    "src/Formalism/DoubleCosetMeasures/StatementZ.lean",
+    "src/GroundTheory/AutomorphicForms/GL2/GJMatrixCoord.lean"
+  ],
+  "protected": {
+    "src/Challenge.lean": "9677ace64b3a5e8b1a571d82d52ee13c53b08026",
+    "src/Main.lean": "eb95ca808793dd61984cc853ab5630f54a74490c",
+    "src/Statements.lean": "23b01f745b80075e377c415abae96ece3570d0b0",
+    "comparator.json": "e989bcf90ff0c487a7146319a026e661a5bad47c",
+    "export-targets.txt": "e2d4c02bac8a1411eae85af0376c1aad3b6b5294",
+    "lean-toolchain": "0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+    "lake-manifest.json": "8a747b58a34565cc6cb5341b86544aa5d3a20a2d",
+    "lakefile.toml": "43b9f74431077a10cc1edecbc15239fe38d92591",
+    "comparator": "a14c3e84eee63917486fb7369cc8a4cfbb8c35d4"
+  },
+  "comparator": {
+    "challenge_module": "Challenge",
+    "solution_module": "Main",
+    "theorem_names": [
+      "riemannHypothesis",
+      "riemannZeta_eq_zero_re",
+      "LFunction_ne_zero_of_half_lt_re",
+      "LFunction_eq_zero_re",
+      "LFunction_eq_zero_re_of_isPrimitive"
+    ],
+    "permitted_axioms": [
+      "propext",
+      "Quot.sound",
+      "Classical.choice"
+    ],
+    "external_kernels": {
+      "Lean paranoid": [
+        "leanchecker-paranoid",
+        "--silent",
+        "--from-export"
+      ],
+      "nanoda": [
+        "nanoda_bin"
+      ]
+    }
+  }
+}

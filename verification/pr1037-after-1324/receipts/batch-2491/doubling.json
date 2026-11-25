@@ -1,0 +1,141 @@
+{
+  "archive": "cb4dc6e23a6187db392c96664295415c55b6b01e",
+  "module": "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.SingleBlockDoublingIntegralValue",
+  "lean": "Lean (version 4.37.0-rc1, arm64-apple-darwin24.6.0, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)",
+  "archived_source_sha256": "47443cd611cbe42477381fb1621eb12d910d6f78b39a33403c11e12d3c89617d",
+  "historical_support": [
+    "HistoricalQLoc",
+    "HistoricalGLOpen",
+    "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CardResidueRingCompletionChosenUniformiser",
+    "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsAddHaarCompletionIntegralMatricesVolOne",
+    "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsIsNrm",
+    "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsLocalAtCompletionIntegersChosenUniformiser",
+    "Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsHaarGLCompletionIntegersVolOne"
+  ],
+  "results": {
+    "before": {
+      "HistoricalQLoc": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "8a375ddd5de220b50063232dde10eb997db4e406ed746722c2d3dc9cc73c50d1"
+      },
+      "HistoricalGLOpen": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "eefe2d5d5f80abfa7edc6cbda69e5394f0b15bd04fba035dfb68570e4afd07b0"
+      },
+      "CardResidueRingCompletionChosenUniformiser": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "373cb9de21877739bcfe6e75d3a9c8417923caaf0a933d786d70ed52ca332b57"
+      },
+      "ExistsAddHaarCompletionIntegralMatricesVolOne": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "295ca3466194fe30ca46ea2ebd95c041564c720c7e1194cdee95308a3600df8f"
+      },
+      "ExistsIsNrm": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "a568cf60b219d992e06c24c810061d2d2c061d13f66388681d1b54b62f40ab9c"
+      },
+      "IsLocalAtCompletionIntegersChosenUniformiser": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "d073e11d9b3949e83afe488af1b61aee338ea0bc308ba621b20de3830dae8160"
+      },
+      "ExistsHaarGLCompletionIntegersVolOne": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "96fa79be0f9546720a4412e2bf91114ebeac59da1a5546d070b78587111886b5"
+      },
+      "localZ_map-foundation-first": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "dd0db579926126add1714b099db16172e2644e635051de3840e5c1cd1128af39"
+      },
+      "whole-foundation-first": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "dbd4cb94ee6bd85007952e210984bc8e44df3c4ac5a512a0bd7053fbf8c4278d"
+      },
+      "localZ_map-double-first": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "b93931d0abddee230ba7c4a43d4d868223151ea7be56e0b5dc700c5dc8470b39"
+      },
+      "whole-double-first": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "b3548fdf4c00291d48b07c9367caaaca82ff83c29ac8890c8751ad4cba944e58"
+      },
+      "whole-original-widening": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "4363cb512e62e993bd5361342ed7717832bb4d16367e396d7df92f5437a27f55"
+      }
+    },
+    "after": {
+      "HistoricalQLoc": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "8a375ddd5de220b50063232dde10eb997db4e406ed746722c2d3dc9cc73c50d1"
+      },
+      "HistoricalGLOpen": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "eefe2d5d5f80abfa7edc6cbda69e5394f0b15bd04fba035dfb68570e4afd07b0"
+      },
+      "CardResidueRingCompletionChosenUniformiser": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "373cb9de21877739bcfe6e75d3a9c8417923caaf0a933d786d70ed52ca332b57"
+      },
+      "ExistsAddHaarCompletionIntegralMatricesVolOne": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "295ca3466194fe30ca46ea2ebd95c041564c720c7e1194cdee95308a3600df8f"
+      },
+      "ExistsIsNrm": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "a568cf60b219d992e06c24c810061d2d2c061d13f66388681d1b54b62f40ab9c"
+      },
+      "IsLocalAtCompletionIntegersChosenUniformiser": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "d073e11d9b3949e83afe488af1b61aee338ea0bc308ba621b20de3830dae8160"
+      },
+      "ExistsHaarGLCompletionIntegersVolOne": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "96fa79be0f9546720a4412e2bf91114ebeac59da1a5546d070b78587111886b5"
+      },
+      "localZ_map-foundation-first": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "dd0db579926126add1714b099db16172e2644e635051de3840e5c1cd1128af39"
+      },
+      "whole-foundation-first": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "dbd4cb94ee6bd85007952e210984bc8e44df3c4ac5a512a0bd7053fbf8c4278d"
+      },
+      "localZ_map-double-first": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "b93931d0abddee230ba7c4a43d4d868223151ea7be56e0b5dc700c5dc8470b39"
+      },
+      "whole-double-first": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "b3548fdf4c00291d48b07c9367caaaca82ff83c29ac8890c8751ad4cba944e58"
+      },
+      "whole-original-widening": {
+        "exit": 0,
+        "errors": [],
+        "source_sha256": "4363cb512e62e993bd5361342ed7717832bb4d16367e396d7df92f5437a27f55"
+      }
+    }
+  }
+}

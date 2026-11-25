@@ -62,6 +62,23 @@ def main():
             "module\n", "module\npublic import " + owner + "\n", 1)
         for n, text in restored.items():
             supports[n] = text.replace("module\n", "module\npublic import " + fixture + "\n", 1)
+        gl_owner = "Formalism.DoubleCosetMeasures.LowerUnipotentOrbits.IsClosedLowUni"
+        gl_path = Path("src") / path(gl_owner)
+        gl_open = "\ntheorem glR_open "
+        has_gl_open = [gl_open in (project / gl_path).read_text() for project in (before, after)]
+        if has_gl_open[0] != has_gl_open[1]:
+            raise ValueError("The two controls have different historical GL interfaces.")
+        if not has_gl_open[0]:
+            # Restore the archived forwarding theorem for the retired Haar proof.
+            gl = source(gl_owner)
+            supports["HistoricalGLOpen"] = (
+                "module\npublic import " + gl_owner + "\n\n" + PUBLIC + "\n\n"
+                + gl[gl.index("namespace Formalism.DoubleCosetMeasures.P"):gl.index("section Alg")]
+                + gl[gl.index("section Top"):gl.index("\ntheorem glR_compact ")]
+                + "\nend Top\nend GeneralLinearIntegersOpenCompact\nend Formalism.DoubleCosetMeasures.P\n"
+            )
+            haar = PREFIX + "ExistsHaarGLCompletionIntegersVolOne"
+            supports[haar] = supports[haar].replace("module\n", "module\npublic import HistoricalGLOpen\n", 1)
     order = list(TopologicalSorter({n: sorted(supports.keys() & set(IMPORT.findall(text)))
                                    for n, text in supports.items()}).static_order())
     system = dict(os.environ, PATH=str(binary) + os.pathsep + os.environ["PATH"], LEAN_NUM_THREADS="2")
