@@ -1,0 +1,67 @@
+{
+  "base": "c40250a50104b7e02e7d74f658d00fa7b1f4827c",
+  "merged_batch": 1853,
+  "observed_state": {
+    "headRefOid": "77916dea364269ca66b1f6f05987dd1c7b6ef0d9",
+    "mergeCommit": {
+      "oid": "fcb6eac7534875d32d68030967e2deae6d686151"
+    },
+    "mergedAt": "2026-11-25T02:41:16Z",
+    "state": "MERGED"
+  },
+  "peer_head": "fcb6eac7534875d32d68030967e2deae6d686151",
+  "heads": {
+    "879": "f390b4d81f818a3174ffc7fc0154c0d7369c08f2",
+    "977": "c0d14da69d2c6b5f0335680d7c3b6541acc95c29"
+  },
+  "unique_shared_sources": 519,
+  "by_proposal": {
+    "879": {
+      "shared": 448,
+      "all": {
+        "reconstructed": 415,
+        "deleted_by_peer": 11,
+        "already_in_community": 22
+      },
+      "textual_conflicts": {
+        "deleted_by_peer": 11,
+        "already_in_community": 22,
+        "reconstructed": 3
+      },
+      "requires_review": []
+    },
+    "977": {
+      "shared": 176,
+      "all": {
+        "reconstructed": 170,
+        "deleted_by_peer": 6
+      },
+      "textual_conflicts": {
+        "reconstructed": 9,
+        "deleted_by_peer": 6
+      },
+      "requires_review": []
+    }
+  },
+  "shared_tooling": {
+    "879": [],
+    "977": []
+  },
+  "exact_source_preview": {
+    "879": {
+      "unresolved_modules_excluded_from_estimate": 0,
+      "retained_owners": 38910,
+      "net_nonblank_lean_lines": 1012977,
+      "net_lean_code_commands": 1012977
+    },
+    "977": {
+      "unresolved_modules_excluded_from_estimate": 0,
+      "retained_owners": 11521,
+      "net_nonblank_lean_lines": 382519,
+      "net_lean_code_commands": 251813,
+      "net_code_less_added_python": 251365
+    }
+  },
+  "status": "Source reconstruction against the actual main tree after merged PR 1853. Native and stock build checks are separate.",
+  "rows_sha256": "6d9f405731455636b59596fba7dbd2be64fca86c9866b7491e96dff46f1e3fab"
+}

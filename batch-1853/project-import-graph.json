@@ -1,0 +1,14 @@
+{
+  "base": "fcb6eac7534875d32d68030967e2deae6d686151",
+  "src": "e20380313d2e00c1aa48bec660810db7af7dd37e",
+  "sha256": "2b44b15c4435af37340acf93c635e27b54aa4ff19cd5191cd0025121804e1afc",
+  "compressed_sha256": "9ed78ae4ce6c99d1abd6dde854abea1831128dc583486c6279ba7e1d7a837adc",
+  "graph_delta_sha256": "8440c9ed2d502f477147b81638b39a87df9bc57c8becaa87e6d4e783f138fc07",
+  "changed_edge_lists": 45,
+  "removed_edge_lists": 26,
+  "modules": 59763,
+  "edges": 367146,
+  "deep": 5,
+  "meta": 0,
+  "seconds": 6.03
+}

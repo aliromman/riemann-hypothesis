@@ -1,0 +1,58 @@
+{
+  "fcb6eac7534875d32d68030967e2deae6d686151": {
+    "src": {
+      "modules": 59764,
+      "bytes": 1040474062,
+      "lines": 15656672,
+      "nonblank": 13954393
+    },
+    "other_lean": {
+      "modules": 9,
+      "bytes": 34242,
+      "lines": 718,
+      "nonblank": 635
+    }
+  },
+  "fc7da07ee956d37af90da7e0bf4bae68dc5795a9": {
+    "src": {
+      "modules": 59764,
+      "bytes": 990596665,
+      "lines": 14643695,
+      "nonblank": 12941416
+    },
+    "other_lean": {
+      "modules": 9,
+      "bytes": 34242,
+      "lines": 718,
+      "nonblank": 635
+    }
+  },
+  "88ac64dbb08e96f5bae2181b1c65cd84474fe5b5": {
+    "src": {
+      "modules": 59764,
+      "bytes": 1019634539,
+      "lines": 15263124,
+      "nonblank": 13571874
+    },
+    "other_lean": {
+      "modules": 9,
+      "bytes": 34242,
+      "lines": 718,
+      "nonblank": 635
+    }
+  },
+  "ea3778ca2ede7597014826a3f205b34ef863e714": {
+    "src": {
+      "modules": 59764,
+      "bytes": 969757142,
+      "lines": 14250147,
+      "nonblank": 12558897
+    },
+    "other_lean": {
+      "modules": 9,
+      "bytes": 34242,
+      "lines": 718,
+      "nonblank": 635
+    }
+  }
+}
