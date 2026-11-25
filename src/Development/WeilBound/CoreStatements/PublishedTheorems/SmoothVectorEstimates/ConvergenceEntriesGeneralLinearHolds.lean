@@ -215,9 +215,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.AlmostEverywhereSphericalOfG1
 
-namespace PositivityTheory.jumpWindows
-
-end PositivityTheory.jumpWindows
 end -- clump:auto
 
 section -- clump: shared namespace opens
@@ -454,14 +451,9 @@ theorem cLoc_eq (w : Pl E) (x : GA E a) :
     cLoc w x = GeneralLinearGroup.map (pLoc E w) (GeneralLinearGroup.map (pFin E) x) :=
   glmap_comp _ _ x
 
-theorem gf_ext {g h : GL (Fin a) (Af E)}
-    (H : ∀ w, GeneralLinearGroup.map (pLoc E w) g = GeneralLinearGroup.map (pLoc E w) h) : g = h := by
-  refine Units.ext (Matrix.ext fun i j => FiniteAdeleRing.ext _ fun w => ?_)
-  exact congrArg (fun x : GL (Fin a) (w.adicCompletion E) => x i j) (H w)
-
 theorem locGL_mul_comm {v : Pl E} (h : GL (Fin a) (v.adicCompletion E)) {k : GL (Fin a) (Af E)}
     (hk : GeneralLinearGroup.map (pLoc E v) k = 1) : locGL E a v h * k = k * locGL E a v h := by
-  refine gf_ext fun w => ?_
+  refine GlobalTheory.CuspRep.LocUniq.gl_ext fun w => ?_
   rw [map_mul, map_mul]
   by_cases hw : w = v
   · subst hw
@@ -520,7 +512,7 @@ theorem standard_stabiliser_bound : G0 := by
   · rw [cLoc_eq, pFin_infGL, map_one]
   · rw [cLoc_eq, fl, MonoidHom.comp_apply, pFin_finGL, pLoc_locGL]
   · rw [cLoc_eq, fl, MonoidHom.comp_apply, pFin_finGL, pLoc_locGL_of_ne hvw]
-  · exact ga_ext h1 (gf_ext fun w => by rw [← cLoc_eq, ← cLoc_eq]; exact h2 w)
+  · exact ga_ext h1 (GlobalTheory.CuspRep.LocUniq.gl_ext fun w => by rw [← cLoc_eq, ← cLoc_eq]; exact h2 w)
   · have hg' : GeneralLinearGroup.map (pInf E) g = 1 := hg
     exact ga_ext (by rw [map_mul, map_mul, hg', pInf_infGL, one_mul, mul_one])
       (by rw [map_mul, map_mul, pFin_infGL, one_mul, mul_one])
@@ -785,9 +777,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.HeckeOperatorOfAutomorphic
 
-namespace PositivityTheory.jumpWindows
-
-end PositivityTheory.jumpWindows
 end -- clump:auto
 
 section -- clump: shared namespace opens
@@ -1055,9 +1044,6 @@ end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.MeetOf
 
-namespace PositivityTheory.jumpWindows
-
-end PositivityTheory.jumpWindows
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.MirrorMap
@@ -1457,9 +1443,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.SmoothVectorsRegularRepresentation
 
-namespace PositivityTheory.jumpWindows
-
-end PositivityTheory.jumpWindows
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.SmoothVectorEstimates.WhittakerFunctional

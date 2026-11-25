@@ -218,25 +218,6 @@ theorem nlo_entries {N : ℕ} {g : GL (Fin N) k} (hg : g ∈ PositivityTheory.Lb
   · have := h2 i (zeroOne N i) (zeroOne N i)
     rwa [_root_.GlobalTheory.CompanionTheory.LbElem.TorComm.stdBlocks_ones_eq, Matrix.one_apply_eq] at this
 
-theorem mem_Nup_of' {N : ℕ} (g : GL (Fin N) k)
-    (h0 : ∀ i j : Fin N, j < i → (g : Matrix (Fin N) (Fin N) k) i j = 0)
-    (h1 : ∀ i, (g : Matrix (Fin N) (Fin N) k) i i = 1) : g ∈ PositivityTheory.Lbc.Nup k N := by
-  refine mem_unipRad.2 ⟨mem_parab_iff.2 fun a b i j hab => ?_, fun a i j => ?_⟩
-  · rw [_root_.GlobalTheory.CompanionTheory.LbElem.TorComm.stdBlocks_ones_eq, _root_.GlobalTheory.CompanionTheory.LbElem.TorComm.stdBlocks_ones_eq]
-    exact h0 a b hab
-  · have hij : i = j := Fin.ext (by have := i.2; have := j.2; simp only [PositivityTheory.Lbc.ones] at *; omega)
-    subst hij
-    rw [_root_.GlobalTheory.CompanionTheory.LbElem.TorComm.stdBlocks_ones_eq, h1, Matrix.one_apply_eq]
-
-theorem mem_Nlo_of' {N : ℕ} (g : GL (Fin N) k)
-    (h0 : ∀ i j : Fin N, i < j → (g : Matrix (Fin N) (Fin N) k) i j = 0)
-    (h1 : ∀ i, (g : Matrix (Fin N) (Fin N) k) i i = 1) : g ∈ PositivityTheory.Lbc.Nlo k N := by
-  refine (mem_unipRadLower k).2 ⟨(mem_parabLower_iff k).2 fun a b i j hab => ?_, fun a i j => ?_⟩
-  · rw [_root_.GlobalTheory.CompanionTheory.LbElem.TorComm.stdBlocks_ones_eq, _root_.GlobalTheory.CompanionTheory.LbElem.TorComm.stdBlocks_ones_eq]
-    exact h0 a b hab
-  · have hij : i = j := Fin.ext (by have := i.2; have := j.2; simp only [PositivityTheory.Lbc.ones] at *; omega)
-    subst hij
-    rw [_root_.GlobalTheory.CompanionTheory.LbElem.TorComm.stdBlocks_ones_eq, h1, Matrix.one_apply_eq]
 
 end Entries
 
@@ -263,7 +244,7 @@ theorem thL_mem_iwGL (w : Pl E) (hw : ¬ IsSplitAt w) (n : ℕ) {g : GLw n w} (h
 theorem thL_mem_Nup (w : Pl E) (hw : ¬ IsSplitAt w) (n : ℕ) {g : GLw n w}
     (hg : g ∈ PositivityTheory.Lbc.Nup (w.adicCompletion E) n) : thL n w g ∈ PositivityTheory.Lbc.Nup (w.adicCompletion E) n := by
   obtain ⟨h0, h1⟩ := nup_entries (inv_mem hg)
-  refine mem_Nup_of' _ (fun i j hij => ?_) (fun i => ?_)
+  refine GlobalTheory.CompanionTheory.LbElem.IwahoriLDU.mem_Nup_of _ (fun i j hij => ?_) (fun i => ?_)
   · show (thL n w g).val i j = 0
     rw [thL_apply w hw, h0 _ _ (Fin.rev_lt_rev.2 hij), map_zero, mul_zero]
   · show (thL n w g).val i i = 1
@@ -272,7 +253,7 @@ theorem thL_mem_Nup (w : Pl E) (hw : ¬ IsSplitAt w) (n : ℕ) {g : GLw n w}
 theorem thL_mem_Nlo (w : Pl E) (hw : ¬ IsSplitAt w) (n : ℕ) {g : GLw n w}
     (hg : g ∈ PositivityTheory.Lbc.Nlo (w.adicCompletion E) n) : thL n w g ∈ PositivityTheory.Lbc.Nlo (w.adicCompletion E) n := by
   obtain ⟨h0, h1⟩ := nlo_entries (inv_mem hg)
-  refine mem_Nlo_of' _ (fun i j hij => ?_) (fun i => ?_)
+  refine GlobalTheory.CompanionTheory.LbElem.IwahoriLDU.mem_Nlo_of _ (fun i j hij => ?_) (fun i => ?_)
   · show (thL n w g).val i j = 0
     rw [thL_apply w hw, h0 _ _ (Fin.rev_lt_rev.2 hij), map_zero, mul_zero]
   · show (thL n w g).val i i = 1
@@ -465,9 +446,6 @@ end -- clump:auto
 
 attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
-namespace PositivityTheory.Rg.Bc.ArchbcB.B.M4
-
-end PositivityTheory.Rg.Bc.ArchbcB.B.M4
 
 -- clump-header: {"m": "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DiagonalTorusCommutative", "h": "module\n\nimport Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MonomialOfConjTorus\npublic import Development.WeilBound.RepresentationTheoryGL.TwistedFactors.LocalBaseChange.ElementaryCosets.CosetMap\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Henselian\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.RegularLocalRing.Defs\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\n\n"}
 -- clump-header: {"m": "Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.IwahoriFactorisation.TwistedConjugationNorms.HilbertNinetyNorms.ThetaFacts", "h": "module\n\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.IsUnifAt\npublic import Development.WeilBound.RepresentationTheoryGL.TwistedFactors.LocalBaseChange.ElementaryCosets.CosetMap\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalConjugationInvolutiveValuationPreservingStatement\npublic import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsNormalisedThetaSub\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DiagonalTorusCommutative\npublic import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IwahoriAndMaximalCompactCriteriaStatement\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\n\n"}
