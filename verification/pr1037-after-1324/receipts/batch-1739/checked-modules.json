@@ -1,0 +1,33 @@
+{
+  "parent": "4a5b4a2d2a5177a2b6cb876425f0cb4cb6b85061",
+  "candidate": "0c252f795aa6a96b7dd3c21896114f0611428594",
+  "source_tree": "170c9f4d04faf7a2042cc2d1c580b6e800bf842e",
+  "targets": 36,
+  "project_modules": 3341,
+  "all_outside_main": [
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalMatrixMomentSurjectiveConjStatement",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalMomentMatrixTransformStatement",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.SymplecticFormUnitaryInvariantStatement",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaPairLocalSchwartzActionStatement",
+    "Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology\u2082.PstAndWdAtOfIsRegAlg",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.ExistsOrdinaryCharactersHeckeAlgebra",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.HeckeDeterminantReductionEqResidual",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.HeckeDeterminantSatisfiesDeformationRelations",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.LevelUR2OrdPt",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.ShortLatticeUnitarize.CompactBoxLattices.CentChar",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.TheoremsMuLinked.GaloisRepresentationTypes.CoreOf",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.TheoremsMuLinked.OrdVan2",
+    "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.NzOfTypeData"
+  ],
+  "independently_summed": {
+    "public": 85126,
+    "axiomRecords": 85126,
+    "rawTypes": 85126,
+    "theorems": 47426,
+    "rawProofs": 47426,
+    "definitions": 34020,
+    "rawDefinitions": 34017
+  },
+  "kernel_replays": 8,
+  "provider_conversions": 6
+}

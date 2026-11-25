@@ -14,7 +14,13 @@ Lean 4.37.0-rc1 can select three project instances for the measurable space on m
 | Proposed GitHub merge of these two revisions | `5446ee0fd9a7c0a2301ccd1a3b476b482896df14` |
 | Fork cleanup updated on top of #1037 | `63e4077100de67259780b159cc7c528e9046ab29` |
 
-Community batch #1739 has since advanced main to `4a5b4a2d2a51`. The current three-file #1037 head is `41596f52921c` and its GitHub merge is `0c252f795aa6`. Both have tree `170c9f4d04faf7a2042cc2d1c580b6e800bf842e`. The patch and seven protected blobs match the previous integration. The figures for `5446ee0fd9a7` below apply to that earlier revision. [Updated runner handoff](https://github.com/leanprover-community/riemann-hypothesis/issues/599#issuecomment-7149979729).
+## Community batch #1739
+
+Community main `4a5b4a2d2a5177a2b6cb876425f0cb4cb6b85061` and the #1037 head `41596f52921c716692c643accdcb210ef1e470d0` produce merge `0c252f795aa6a96b7dd3c21896114f0611428594`. The head and merge have the same tree, `170c9f4d04faf7a2042cc2d1c580b6e800bf842e`. Both sides have 59,807 Lean files under `src/`. Run the commands in **Reproduce** with this parent and merge. The 36 target names and all current results are in `receipts/batch-1739/`.
+
+The parent and merge passed all 36 targets over 3,341 project modules. The native import graph gives 14,405 affected modules, including 13 outside `Main`. The 36 targets cover all 13. All 85,126 public types and axiom records and all 47,426 theorem proofs matched. Of 34,020 definition bodies, 34,017 matched structurally. Lean accepted each of the three provider changes in both kernels. Eight selected candidate modules passed kernel replay. Both revisions selected the two scoped GL instances by name.
+
+The complete twisted-operator proof gave two errors on the parent and zero on the merge in each import order, with the GL scope open and closed. The archived doubling proof passed both orders on both sides. This confirms Daniel Ang’s scope fix on the new base. The five-statement `Challenge` exports from the two revisions each had 363,237,517 bytes and SHA-256 `bb37c4bb518fe68a13f12aa3929dd62dfecb663f0c063ad8c338e39601f28a60`. Roy7 accepted this merge for the complete `Main` build and upstream Comparator. [Runner confirmation](https://github.com/leanprover-community/riemann-hypothesis/issues/599#issuecomment-7150027119)
 
 ## Results
 

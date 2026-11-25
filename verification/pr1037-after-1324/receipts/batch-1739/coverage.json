@@ -1,0 +1,40 @@
+{
+  "revision": "4a5b4a2d2a5177a2b6cb876425f0cb4cb6b85061",
+  "source_tree": "d3a833ab773a1be76c77a6fd77a2888820a71a96",
+  "toolchain": "4.37.0-rc1",
+  "project_modules": 59807,
+  "main_closure": 59764,
+  "affected": 14405,
+  "inside_main": 14392,
+  "outside_main": [
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalMatrixMomentSurjectiveConjStatement",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalMomentMatrixTransformStatement",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.SymplecticFormUnitaryInvariantStatement",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaPairLocalSchwartzActionStatement",
+    "Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology\u2082.PstAndWdAtOfIsRegAlg",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.ExistsOrdinaryCharactersHeckeAlgebra",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.HeckeDeterminantReductionEqResidual",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.HeckeDeterminantSatisfiesDeformationRelations",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.LevelUR2OrdPt",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.ShortLatticeUnitarize.CompactBoxLattices.CentChar",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.TheoremsMuLinked.GaloisRepresentationTypes.CoreOf",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.TheoremsMuLinked.OrdVan2",
+    "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.NzOfTypeData"
+  ],
+  "targets": [
+    "Main",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalMatrixMomentSurjectiveConjStatement",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalMomentMatrixTransformStatement",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.SymplecticFormUnitaryInvariantStatement",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaPairLocalSchwartzActionStatement",
+    "Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology\u2082.PstAndWdAtOfIsRegAlg",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.ExistsOrdinaryCharactersHeckeAlgebra",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.HeckeDeterminantReductionEqResidual",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.HeckeDeterminantSatisfiesDeformationRelations",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.LevelUR2OrdPt",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.IdeleGenerators.ShortLatticeUnitarize.CompactBoxLattices.CentChar",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.TheoremsMuLinked.GaloisRepresentationTypes.CoreOf",
+    "PositivityTheory.AutomorphicForms.PublishedInputs.NonzeroTypes.NzOfTypeData"
+  ],
+  "affected_list_sha256": "6f90cb9560ea047fd087426d3f6f57dadb11b3610ba89ccb7c6aa7c2727f4783"
+}

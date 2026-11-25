@@ -1,0 +1,45 @@
+{
+  "revisions": {
+    "base": "4a5b4a2d2a5177a2b6cb876425f0cb4cb6b85061",
+    "merge": "0c252f795aa6a96b7dd3c21896114f0611428594"
+  },
+  "lean": "Lean (version 4.37.0-rc1, arm64-apple-darwin24.6.0, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)",
+  "theorem_names": [
+    "riemannHypothesis",
+    "riemannZeta_eq_zero_re",
+    "LFunction_ne_zero_of_half_lt_re",
+    "LFunction_eq_zero_re",
+    "LFunction_eq_zero_re_of_isPrimitive"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "source_sha256": {
+    "lean-toolchain": "f11739c25d1640e2b3fda8a98af6d64e97d7b2b1c99840535587a9079b3afee7",
+    "lakefile.toml": "b96a1a0b45e250d91bbf78d3490b79a317678bf13b823227b731cb87e3fd5ce5",
+    "lake-manifest.json": "6b5ad855ab2f8544071569928d1b84e8e6be14636e7b2809e7ccabb3937934ee",
+    "comparator.json": "8ea890e6ccda9cf3983ada343af18a41d12542036875a3936e7925ed5b1582ff",
+    "export-targets.txt": "9eeb2e5e55be4a78f6e4983fc950dba915b45ad8aeb7a02a32341927a89e05e8",
+    "src/Main.lean": "8747f40b178740867ed8aa53b5a6f6f32a23b7b8bc4fcbca898fe72fbf0fcdf6",
+    "src/Challenge.lean": "a3cebbf30be6b9268a0ed413c9bbc256dfa9f4bfa04f1a75f144d135da5e21a5",
+    "comparator/FormalConjecturesChallenge.lean": "34d4339b5a6cd3076f2d1353e73606d8076c26d708e3c30f0778a6f8a6d800df",
+    "comparator/formal-conjectures.json": "5f69aa656a5fd3767ddb3ec5521abf4e1046a4e3025b36858be1b4aad594b7ed",
+    "comparator/formal-conjectures-export-targets.txt": "14e21e9ec1bb9578fe9b53bc6532b23e368b66f88916efcf02be3aa1cbdb2711"
+  },
+  "results": {
+    "base": {
+      "build_exit": 0,
+      "export_exit": 0,
+      "bytes": 363237517,
+      "sha256": "bb37c4bb518fe68a13f12aa3929dd62dfecb663f0c063ad8c338e39601f28a60"
+    },
+    "merge": {
+      "build_exit": 0,
+      "export_exit": 0,
+      "bytes": 363237517,
+      "sha256": "bb37c4bb518fe68a13f12aa3929dd62dfecb663f0c063ad8c338e39601f28a60"
+    }
+  }
+}
