@@ -1,0 +1,16 @@
+{
+  "base": "756a70250dcba9162b99d4ea35c186558434c17e",
+  "heads": {
+    "879": "da7ab2bd48e5ae859fbf9ca72594962e1246b98f",
+    "977": "11eaccf3b76338b88b78ddf299f341ba1d1ecea2"
+  },
+  "lean_modules": 58947,
+  "branch_different_blobs_read_on_both": 14054,
+  "edges": 364905,
+  "uncompressed_sha256": "e4a14f17b0ebcfd67c1cae0da675e28ad93d3b26d2484bbd337922728f436389",
+  "parser": "Pinned Lean --deps-json --stdin. Project imports and their flags agree on every differing Lean source file across the two branches.",
+  "multiline_example": [
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ChartPullbacks.BaseChangeKernels.TransPull",
+    "ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.PrecompleteBases.PsbLb"
+  ]
+}

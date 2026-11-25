@@ -1,0 +1,77 @@
+{
+  "base": "756a70250dcba9162b99d4ea35c186558434c17e",
+  "head": "11eaccf3b76338b88b78ddf299f341ba1d1ecea2",
+  "counts": {
+    "with_markers": 12020,
+    "readable": 12004,
+    "members": 63694,
+    "unedited": 715,
+    "edited": 11289
+  },
+  "inherited_reader_errors": [
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/CartierSectionsFlatBaseChangeLinearlyDisjoint.lean",
+      "error": "AssertionError"
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsGaloisAutConjugateFieldPointsCoverStatement.lean",
+      "error": "AssertionError"
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/HeatOperatorConnectionClosedFibreStatement.lean",
+      "error": "AssertionError"
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/LatticeClassSumsOfTermsPrescribedNormsStatement.lean",
+      "error": "AssertionError"
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/LogDerivativesCoboundaryCoeffsMemMaximalIdeal.lean",
+      "error": "AssertionError"
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ThetaConstantsTorusTranslatesTwistedSumsStatement.lean",
+      "error": "AssertionError"
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ThetaConstantsTranslateEqTwistedSumsStatement.lean",
+      "error": "AssertionError"
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/TorusExtensionTranslateLiesOverProductTorsionFra.lean",
+      "error": "AssertionError"
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/DefectTorsionSecondCohomologyKernel.lean",
+      "error": "JSONDecodeError"
+    },
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/SmoothGrpSchemeDescendsToFgSubring.lean",
+      "error": "JSONDecodeError"
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/RigSp4.lean",
+      "error": "JSONDecodeError"
+    },
+    {
+      "path": "src/Development/AutomorphicArithmetic/Foundations/Convolution/TraceSplitting/FdFixed.lean",
+      "error": "JSONDecodeError"
+    },
+    {
+      "path": "src/Formalism/LocalToGlobal/KernelLattices/ColumnData/ColumnDataEquations/SecondConstantHolds.lean",
+      "error": "JSONDecodeError"
+    },
+    {
+      "path": "src/Formalism/LocalToGlobal/KernelLattices/KernelLocalFactors/RkVolLaHyp.lean",
+      "error": "JSONDecodeError"
+    },
+    {
+      "path": "src/Formalism/PeriodIntegrals/UnitaryGroupMassFormula/CountingFormula/JordanDecompositionExists.lean",
+      "error": "JSONDecodeError"
+    },
+    {
+      "path": "src/Formalism/SharpRestriction/GrowthBounds/TwistedSubstitution/TwistedMonomialFiltration/MaxTwistDegreePderivLeAddOne.lean",
+      "error": "JSONDecodeError"
+    }
+  ]
+}

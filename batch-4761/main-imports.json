@@ -1,0 +1,34 @@
+{
+  "base": "756a70250dcba9162b99d4ea35c186558434c17e",
+  "compiled_direct_imports_read_from": {
+    "879": 58935,
+    "977": 4,
+    "community archive": 1
+  },
+  "current_edited_modules_in_closure": {
+    "879": 3417,
+    "977": 11288
+  },
+  "edited_modules_outside_main": {
+    "879": [],
+    "977": [
+      "Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.RankOneBaseWeightEqCmTheta"
+    ]
+  },
+  "heads": {
+    "879": "da7ab2bd48e5ae859fbf9ca72594962e1246b98f",
+    "977": "11eaccf3b76338b88b78ddf299f341ba1d1ecea2"
+  },
+  "method": "Walk project imports from Main in compiled Lean IDE data. Check project edges against both current source trees using pinned Lean --deps-json.",
+  "project_manifest_modules": 58946,
+  "project_modules_in_main_import_closure": 58940,
+  "project_modules_outside_main": [
+    "Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.RankOneBaseWeightEqCmTheta",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSeparatingInertPassageCarriedByFormsStatement",
+    "Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry\u2082.CaraianiLocalGlobal",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.BuildingsResidueChars.HodgeTateWeightsOfLocalGlobal",
+    "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.SiegelWeilActions.FirstChernHodgeTateFacts",
+    "Formalism.LocalToGlobal.IndefiniteReal.LevelTypeEquivalence.SobDer"
+  ],
+  "sorted_names_sha256": "2dd855279a6453a3dc3631859156685c079b403cd552af1dca3b6dae6b0e5fdc"
+}

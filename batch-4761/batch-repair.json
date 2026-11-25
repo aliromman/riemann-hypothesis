@@ -1,0 +1,12 @@
+{
+  "base": "756a70250dcba9162b99d4ea35c186558434c17e",
+  "head": "11eaccf3b76338b88b78ddf299f341ba1d1ecea2",
+  "verified_repairs": [
+    {
+      "path": "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/AlgebraicVectorsCorrespondSchrodingerThetaMapStatement.lean",
+      "members_sha256": {
+        "Development.AbelianVarietyTheory.Proofs.TwistedOperators.SchrodingerDerivRelationOfHeisenbergDeriv": "c8d28c3afafb7e8812eaa5c9d319aa6688cbd9c5de290cf1ce57ce03c94a8efb"
+      }
+    }
+  ]
+}

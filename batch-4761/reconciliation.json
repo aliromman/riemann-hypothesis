@@ -1,0 +1,14 @@
+{
+  "pr": "977",
+  "previous_base": "ce1560fba43e59629abdf3c27a279218fad9f77a",
+  "previous_proposal": "2bde80b40b7e487f5dbb37762298bd2444cb88d1",
+  "community": "756a70250dcba9162b99d4ea35c186558434c17e",
+  "head": "11eaccf3b76338b88b78ddf299f341ba1d1ecea2",
+  "tree": "4c141aab37ddecce241f86393d2f73edd58cc803",
+  "edited_paths": 11292,
+  "actions": {
+    "apply original edit": 9516,
+    "recovered current members": 1776,
+    "removed upstream": 8
+  }
+}
