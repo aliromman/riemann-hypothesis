@@ -1,0 +1,22 @@
+{
+  "879": {
+    "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/DualLatticeBasisExtension.lean": {
+      "sha256": "504cc498fc58ab62b5f68f38979e0a100c6a4d6506307bb34686f3c7b9a117ef",
+      "reason": "Upstream pruned the old insertion anchor and kept two different providers. Keep its complete header."
+    },
+    "src/Development/AutomorphicSpectrum/Proofs/GeometryProofs/LatticeFlagFieldExtension.lean": {
+      "sha256": "3c29b156deb74f798c4dde6e12e245e2e5c924f6972d4398e47cd6f696193d0a",
+      "reason": "Upstream pruned the old insertion anchor and kept two different providers. Keep its complete header."
+    }
+  },
+  "977": {
+    "src/Development/AutomorphicArithmetic/AutomorphicVarieties/CommutativeAlgebra/LemmaP.lean": {
+      "sha256": "3d7e052b29bdf97fdad9fcb257ac0bf3d0e5c42bc07fae330ff43eb5a1b2844c",
+      "reason": "Upstream switched the archive to CRLF. Retain its complete Git blob."
+    },
+    "src/GroundTheory/AutomorphicForms/GL2/GJStandardLEuler.lean": {
+      "sha256": "f1d840170945a94615aa05d1f33a3c89dc8300bef78711c170e9d303bf730454",
+      "reason": "Upstream switched the archive to CRLF. Retain its complete Git blob."
+    }
+  }
+}

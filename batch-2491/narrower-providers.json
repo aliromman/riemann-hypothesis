@@ -1,0 +1,1016 @@
+{
+  "src/Development/AbelianVarietyTheory/BlockTheory/NonGaloisCusps/LocalRingStructure.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Counterexamples/JetSurvey/LowKAddStrictAnti.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Definitions/AutomorphicMembership/EqOfPowEqOneOfNormSubLt.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AbelianVarietyTheory/Definitions/AutomorphicMembership/IsSemisimpleOfISupEigenspace.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Definitions/AutomorphicMembership/LocalPrimeGaloisActionPeriodT.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Definitions/Degenerations/NormNatCastPadicAlgClOfCoprime.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Definitions/Divisors/ComparisonMemCechHodgeFiltration.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AbelianVarietyTheory/Definitions/Divisors/RankEqCardIffExistsFrameMatrixFirstColumnBlock.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Definitions/Foundations/ExistsBaseTwoWords.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AbelianVarietyTheory/Definitions/Foundations/MemPuncturedRingIffPowerSeriesPart.lean": [
+    "Mathlib.LinearAlgebra.Complex.FiniteDimensional"
+  ],
+  "src/Development/AbelianVarietyTheory/Definitions/NonGaloisDescent/ValIrreducible.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Definitions/ShimuraVarieties/OpensRangeChartYSupOpensRangeChartZ.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AbelianVarietyTheory/Definitions/ThetaMetrics/ExistsEventuallyNormRiemannThetaTermLe.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Definitions/TwistedInnerProducts/ExistsGlOfEquiv.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Definitions/TwistedInnerProducts/NotInSupportOfSubsingleton.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/AdelicLatticeProofs/ExistsRatOfForallComplexRingEquivFixed.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/AdelicLatticeProofs/ExistsTensorStabiliserClosedSLOrbit.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/AdelicLatticeProofs/LinearIndependentWave.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/AdelicLatticeProofs/UnitsLocalKummerNormsEqTopOfPow.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CharacterTheory/ExistsCharacterEigenvectorOfCommutingRepresentat.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CharacterTheory/ExistsTeichmullerMapAlgebraicClosureFiniteField.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CharacterTheory/FiniteGroupFunctionPairingAddNatPosSymm.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CharacterTheory/FiniteGroupFunctionPairingEqZeroOfDistinctIrredu.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CharacterTheory/IrreducibleCharacterLinearOrInducedAbelianByPrim.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CharacterTheory/IsCharTraceMulIdempotent.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CharacterTheory/IsCharacterEsymmRootsCharpoly.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CharacterTheory/IsCharacterOverSubfieldInducedClassFunction.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CharacterTheory/IsCharacterOverSubfieldOfRepresentation.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CharacterTheory/PrimitiveClassFunctionExpansionRootSums.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CoherentCohomologyProofs/LengthBaseChangeQuotientOfMapMaximalIdeal.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CoherentCohomologyProofs/MemRangeOfForallHeightEqOneOfIsReflexive.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CoherentCohomologyProofs/NatCardAlgHomEqFinrankOfIsReducedOfIsFractionRin.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CovolumeBounds/DiscreteTopologySpanOfLinearIndependent.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CovolumeBounds/EqZeroOfEvalGridEqZeroOfTotalDegreeLe.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CovolumeBounds/FderivIntegralApplyOfHolomorphicOfDominated.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CubicalLineBundles/ExistsConstOfSqMulTendstoZero.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CubicalLineBundles/FamilyUniformisationFibreTheta.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CubicalLineBundles/LatticeDeterminedByInvariants.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CubicalLineBundles/SurjectiveOfComplexPointsLiftOfUniversallyClosed.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CuspFormEvaluations/DeterminantBlockProductRenameTorusPolynomial.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CuspFormEvaluations/ExistsGeneratorsLattice.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CuspFormEvaluations/ExistsIsotropicGroupLatticeClassRepresentatives.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CuspFormEvaluations/ExistsNatCastSmulCoeffIsIntegral.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CuspFormEvaluations/IsLocalizedModuleSubtype.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CuspFormEvaluations/LevelTupleSumEqRational.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/CuspFormEvaluations/ModNSqIffExistsGenLatSum.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DegenerationProofs/ClassicalPointsAndLocalRegularity.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DegenerationProofs/ExistsBundleOnAdmissibleModel.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DegenerationProofs/ExistsNormalModelThetaTupleMaximalMinors.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DegenerationProofs/ExistsRingEquivPowerSeriesOfComplete.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DegenerationProofs/FourierExtractionTsumClass.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DegenerationProofs/GeometricallyConnectedOfIsPullbackOfSurjective.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DegenerationProofs/GlueModelsOverSubfield.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DegenerationProofs/GroupSchemeMorphismDescends.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DegenerationProofs/HomDescendsToSubfieldContainingFinset.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DegenerationProofs/QuadraticMapNonnegOfTendstoCofinite.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DegenerationProofs/SpanRowsClassZeroEqInvariantStatement.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DegenerationProofs/TxCosetCriterion.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/AbsNormMapRingOfIntegersHom.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/CentralizerAlgO.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ClosedImmersionOfBaseChangeFieldExt.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/CoeffMemSubmoduleOfComplexPolyValuesMem.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ComapMapEqSelfOfInjectiveFiniteHopf.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/DegreeZeroSectionClassProperties.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/DetEqOneUnitaryPrincipalCongruenceLevelThree.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/DixmierSchurOfRankLeAleph0.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsCompatibleSimilitudeLevelTowerStatement.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsIntegralInvariantDerivationLog.lean": [
+    "Mathlib.Topology.GDelta.MetrizableSpace"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsIsAlgClosedEmbeddingsOfFamilyStatement.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsIsConnIsEtSplitting.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsLagrangianLiftLieSquareZeroHarrisTaylor.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsLaurentConstantTermFormFunctionFieldStatement.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsNeZeroForallComplexPointExtend.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsOscillatorActionOfGaussianPairings.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ExistsQuotientPDivGroupClosedSubgroupPTorsion.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/FiniteDimensionalOfCommutingFiniteAlgebraJointEi.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/FinrankEqMulOfRankAtStalk.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/FinrankFiberEqCardSectionsMulLength.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/FinrankFrobeniusKernelHopfLePowCotangent.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/FinrankJointEigenspaceAddConjEqMul.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/GaloisTwistedNormGLBasicProperties.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/HarrisTaylorOrderFaithfulLattice.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/HasPAdicPowerSeriesValueSubMemPdIdeal.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/InjectiveOfMapPderivEqAndMapOneNeZero.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/IsCocommOfSurjective.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/IsRootMapMinpolyIffExistsRingHomExtension.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/IsSMulRegularOfEtalePuncturedOfDepthPos.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/KerIdealFinrankEqPowOfIdempotent.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/MemSpanHeisenbergTranslatesOfVacuum.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ProdArgRealUnitEqOne.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/RelIndexUpLatEqSq.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ScalarOfIntertwinesUpToScalar.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/SchwartzSeminormL2Bound.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/SchwartzVanishingDecomposition.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/SectionComponentsPreimageOfIsPullback.lean": [
+    "Mathlib.RingTheory.HopkinsLevitzki"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/ShintaniLiftHarishChandraInductionEqTwistedStatement.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/UnitRealOfCongrOne.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/FlagMeasures/ExistsPowSmulMemOfIsLat.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/FlagMeasures/GlobalHermitianFramesTermsOrbitsLocal.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/FlagMeasures/HermitianAmplitudeMassProductStructure.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/FlagMeasures/NumberFieldLatticeDeterminedByLocalLattices.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/FlagMeasures/PackingGeometricMeanSeparated.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/FlagMeasures/RegulatorLeSumSmallIdealsInClass.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/FlagMeasures/RootDiscrGeThreeHalvesOfIsTotallyComplex.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/CharacterEigenspaceIsComplPrincipalSeriesTwisted.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/CuspFunctionalValueModPrimePowUniqueOddWeightStatement.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/EvalSeriesAndDerivUniqueOfCoefficients.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/ExistsDecompositionGroupCyclotomicCharacterZpowN.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/ExistsUniqueNormalizedCyclotomicTrace.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/ExistsWeilRepresentationHeisenberg.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/InclWFrobIter.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/IsAlgZpMapOfAlgebraic.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/IsDiscreteValuationRingStalkGeneric.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/KroneckerCongruenceModularFunctionTowerLevel.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/LatticeExtensionAlongFieldEmbeddingDuals.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/LaurentSeriesPadicExistsPthPowerCombination.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/LinearIndependentOfJointEigenvectors.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/ModularFunctionFractionFieldSaturation.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/ModularTowerUnitsFiniteModPowersAtLevel.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/PieceUnitSetEqSmoothingMulPieceRaw.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/SumLeProdOfTwoLeNat.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/FoundationProofs/SumOpTransversal.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/GenericRegularity/InjectiveAlgebraMapOfDvrOfIsIntegral.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/GenericRegularity/RankOfQuasiIdem.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/GlobalInterpolation/JacobiTripleProductTwoVariableTheta.lean": [
+    "Mathlib.LinearAlgebra.Complex.FiniteDimensional"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/GlobalInterpolation/QuotientSpanRange.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/GlobalInterpolation/TendstoCoeffZero.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/HeightProofs/ExistsMvPolynomialSubMapMem.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/HermitianTraceForms/ExistsOrthogonalBasisDotProductApplyEq.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/HomogeneousIdeals/EqZeroOfForallLTensorEqZero.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/HomogeneousIdeals/FormallyUnramifiedOfTangentMapInjective.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/HomogeneousIdeals/FormallyUnramifiedRingOfIntegers.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/HomogeneousIdeals/HomLieEquivScalarTmul.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/HomogeneousIdeals/IsIsoNormalizationPullbackOfToIntegralClosure.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/AlternatingDifferenceTermWindow.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/BreuilKisinZetaFineBoundSecondBasis.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/CardQuotPowSmulBoundsDvrFgModule.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/CharpolyDvdPowOfAevalEqZero.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/CoeffZeroEqZeroIff.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/CyclotomicExistsIff.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/DeRhamDieudonneSpansTensorDeRhamPeriods.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/ExistsFinExtEmbeddingSplitting.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/ExistsIntegralRetractionFiniteExtensionQl.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/ExistsInvertibleDeRhamPeriodMatrixOfIsDR.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/ExistsIrreducibleSubrepFixedOfUnitary.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/ExistsPowMemSpanCoeffPeriodPow.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/ExistsSmallDualLattices.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/ExistsUnitSigmaEqMulHilbert90InvAlg.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/FiniteNormedAlgebraEqModuleTopology.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/FinrankSpanImageEqCard.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/FourierEtaleKEqIntegralPartialFourier.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/GramDetEqNormMulGramDetOne.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/HyperbolicPartialFourierTwiceEqReflection.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/ISupIndepDdRE.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/InjectiveTensorLiftEquivariantMapsOfIrreducible.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/IntegralClosureFgFiniteEtaleDvr.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/IsCompactIntMatrix.lean": [
+    "Mathlib.Analysis.Normed.Group.Ultra"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/IsCrysLatOfTrivial.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/IsUniformizerIdempotentFrameProd.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/JacquetRallisInvKRegularIffIsUnit.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/KirillovVanishingOfLimit.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/LetterSandwichOfFrobMatrices.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/LiftingTheoremPhiModulesExactTriple.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/MemAdjoinOfMulEqOne.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/MemUnramifiedOfFrobeniusIterateFixedFil.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/NabBijectiveWindow.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/NonemptyLinearEquivOfCharpolyEq.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/NonemptyMeasAndReps.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/PhiGammaModuleSaturationTheorem.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/RieszEigenvectorSesquilinearFunctionSpace.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/SchurEquivariantMapsProportional.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/SelfDualHermitianLatticeBasisExists.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/SelfDualIffLatticeVolumeAndPlancherel.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/SeriesTransport.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/SpanEqTopOfIrreducibleOverAlgClosed.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/InertiaEigenvalues/WachDeltaInvariantCoboundaries.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/IwasawaDecomposition/AssociatedPrimeLocalizationDvr.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/IwasawaDecomposition/MemClosureMulVOfFinrankEq.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/JetHarmonics/CapelliComatrixLastRowInvertsCasimir.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/JetHarmonics/CardFilterFinBounds.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/JetHarmonics/CasimirScalarOfCapelliDeterminantEigenvalue.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/JetHarmonics/ExistsAlgHomValuationSubring.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/JetHarmonics/ExistsLinearEquivOfIrreducibleIsHW.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/JetHarmonics/ExistsRingEquivApplyEqMulOfTranscendental.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/JetHarmonics/ExistsStableSubmoduleTopWeightLine.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/JetHarmonics/HermitianDatumDirectPower.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/JetHarmonics/IsWtOnIffOfTorus.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/JetHarmonics/PowEqOneOfMultilinear.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/JetHarmonics/SumStarProjectionEigenspaceEqSelfOfEigenvaluesLi.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/CmTypeEigenMultiplicityOfDensePrimes.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/EntireAntilinearLatticePeriodsConst.lean": [
+    "Mathlib.LinearAlgebra.Complex.FiniteDimensional"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/ExistsCompatOfLocal.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/ExistsFiniteEtaleSurjectiveLevelMap.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/ExistsRingHomComplexCompEqOfCountable.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/ExistsSabMapExtendingOfIso.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/ExistsSimTrivialOfMult.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/ExistsSmoothPeriodicPartitionOfUnity.lean": [
+    "Mathlib.LinearAlgebra.Complex.FiniteDimensional"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/ExistsTateIsoOfPeriods.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/GrpObjDescendsToLargeSubfield.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/IsIsoOfDensePartOfIsIntegral.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/IsOpenPosDefOfContinuous.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/LineBundleGlobalSectionsFunctionFieldIff.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/SmoothOfRelativeDimensionOfDimOfFinrankDerivatio.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/TateIsometryOfFiniteLevelIsometries.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ModuliProofs/UnimodularSymplecticCoordinatesAndLatticeRank.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/RingsOfIntegers/ExistsRepresentativesModNsmul.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/SiegelThetaTransformation/CycOfPrime.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/SiegelThetaTransformation/ExistsUnitaryExt.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/SiegelThetaTransformation/FinsumQuotientOfLe.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/SiegelThetaTransformation/FoldrHolDEqIteratedFDeriv.lean": [
+    "Mathlib.LinearAlgebra.Complex.FiniteDimensional"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/SiegelThetaTransformation/NeBotOfNorm.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ThetaFamilyOrigin/ExistsBasisOfIsField.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ThetaFamilyOrigin/ExistsMulMemAdjoinOfMemPowRange.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ThetaFamilyOrigin/NonemptyGradedAlgebraSubGrading.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ThetaLawProofs/EntireEqZeroOrEqZeroOfMulEqZero.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ThetaLawProofs/ExistsCompleteDiscreteValuationRingWithResidues.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ThetaLawProofs/ExistsIsUnitField.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ThetaLawProofs/ExistsNormalisingUnitSimilitudeOrigin.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ThetaLawProofs/GeomIntegralBaseChangeAndLocalization.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ThetaShiftProofs/ExistsInvariantNatLengthLattice.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ThetaShiftProofs/ExistsUniqueFamOfReps.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ThetaShiftProofs/SmulPeriodMapMkZeroFstEqNegForm.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ToricGeometry/ExistsTestFunctionsSubsetOfMemNhds.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ToricGeometry/ExistsUniqueHomOfLocallyRegular.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ToricGeometry/IntegralAndRationalOfPolynomialGrowth.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ToricGeometry/IsConnectedAndDenseComplHypersurface.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ToricGeometry/IsConnectedUnramifiedCoverOfIrreducible.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ToricGeometry/IsIntegralAndRationalTheta.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ToricGeometry/IsUnitOfComplexPoints.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ToricGeometry/MemPeriodLatticeOfThetaTranslateEqUnitMul.lean": [
+    "Mathlib.LinearAlgebra.Complex.FiniteDimensional"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ToricGeometry/NodupRootsOfDerivativeNeZero.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/ToricGeometry/RelAmpleThetaBundleProjectiveModel.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/TorusHaarMeasure/BasePsiLeviLowerBound.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/TorusHaarMeasure/BorelDiagNeZero.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/TorusHaarMeasure/ExistsCompactOfDefinite.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/TorusHaarMeasure/HeightRpowNegDistortionContraction.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/TorusHaarMeasure/NormLeOfDet.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/TorusHaarMeasure/WeightedHeightSupDriftOrthonormalFrames.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/IsAlgebraicIntegral.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/IsClopenIsCompactQLat.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/IsLocallyConstantOrbit.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/TwistedOperators/NewtonRecursionPolyUnique.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/UniformizationProofs/CardQuotientKTorsionPairs.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/UniformizationProofs/CubTrivDeltaAndEvenUnique.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/UniformizationProofs/EvenCubicUnitEqOne.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/UniformizationProofs/ExistsPrimGenerator.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/UniformizationProofs/IntegralFamilyPrescribedTermUnitAtPrime.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/UniformizationProofs/ProportionalRaw.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/UnitaryExistence/ExistsFundamentalDomainMeanNormSqThetaChar.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/UnitaryExistence/ExistsSplitLatticeDatumEverySignature.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/UnitaryExistence/FamilyUnifFibreLatticeEqOfPullback.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/UnitaryExistence/FiniteOfIsClosedTorusExtensionOfPowEqOne.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/UnitaryExistence/SignatureHermitianModelOfDatum.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/UnramifiedDepth/EigenspaceDimAddSplitExactTranspose.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/UnramifiedDepth/ExistsIntegralCombinationOfMemHaO.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/UnramifiedDepth/FinEtaleFormallyUnramified.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/UnramifiedDepth/FormalGroupActionLimitsIntegralEndomorphisms.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AbelianVarietyTheory/Proofs/UnramifiedDepth/TateBasisMatrix.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AbelianVarietyTheory/Statements/HyperbolicHypotheses/HypothesesInhabitedHyperbolic.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/AlgebraTools/CaCotExtend.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/AlgebraTools/LagNeZero.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/CommutativeAlgebra/KillLoc.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/CommutativeAlgebraHeight/ExistsSemisimpleRepOfDetLawOfIsAlgClosed.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ConvexNerveComplexes/AcycSimp.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/FrobeniusSmoothVectors/NontrivTr.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/FrobeniusSmoothVectors/PrCount.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/FrobeniusSmoothVectors/ResEqOf.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/GaloisLibrary/MemIsotypicOfInjective.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/GaloisLibrary/SelmerTransport/DecInf.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/GaloisLibrary/SelmerTransport/KerResAb.lean": [
+    "Mathlib.Topology.GDelta.MetrizableSpace"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ArchimedeanSchwartz/ArchimedeanDerivatives/ExpIndep.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/GammaLaurentFactors/LocalEmbeddingNorms/SecDiff.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/KatoQuadraticCharacters/SymmetricPowerSymbols/ExistsAlgebraicClosureLift.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/SymmetricPowerTransfer/LocalHermitianForms/SplitUnitElements/Snd.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/SymmetricPowerTransfer/TraceFormulaEigenvalues/TraceFibreCardinality/ResidualAutomorphyOfLinkedEnds.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/SymmetricPowerTransfer/WeightTraceProducts/RepGApply.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/PadicHodgeTheory/IotaSpec.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/PatchingModules/DeterminantPadicFree/AcConst.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/PatchingModules/DeterminantPadicFree/DetAsm.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/PatchingModules/SelmerScaling/AlCSmul.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/PatchingModules/SelmerScaling/TpDual.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/TheoremsMuLinked/HidaOrdinaryHecke/EigKill.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/WeakShimuraTheory/StabilizerIndexBounds/ExistsSignTwistCharpolyOfNotIrreducibleRestricti.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/WeakShimuraTheory/StabilizerIndexBounds/ExistsStabilizerIndexDvdOfNotIrreducibleRestrict.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/WeilGroupCharacters/ExistsAlgebraicPointOfGroupDeterminant.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/AutomorphicVarieties/WeilGroupCharacters/LamFree.lean": [
+    "Mathlib.Topology.GDelta.MetrizableSpace"
+  ],
+  "src/Development/AutomorphicArithmetic/CommutativeAlgebra/ExistsNearRootOfUnityProductDecomposition.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AutomorphicArithmetic/CommutativeAlgebra/IsCurvePullbackOfIsCurveBaseChange.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/CommutativeAlgebra/SpecializationTensorRingHomProperties.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/CyclotomicBounds/ClassNumberBounds/HeckeCharacterChoice/ExtAlg.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AutomorphicArithmetic/CyclotomicBounds/ClassNumberBounds/TotallyRealRoots/FinrankAdjoinRootsEqRootDeg.lean": [
+    "Mathlib.RingTheory.Flat.FaithfullyFlat.Algebra"
+  ],
+  "src/Development/AutomorphicArithmetic/DivisorFrames/ExistsIrreducibleSubrepHeckeEigenOfInvariantForm.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/Foundations/Convolution/PolynomialCoefficientBounds/ExistsFinMap.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AutomorphicArithmetic/Foundations/Convolution/SphericalHeckeOperators/SandPS.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/AnnihilatorModels/PAnnExt.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/AnnihilatorModels/PCountOut.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/LocalMaximality/DeRhamRestrictionTraceDegreeOne.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/LocalMaximality/KoszulExactWeaklyRegular.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/LocalMaximality/PRYBasic.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/LocalMaximality/PTrVal.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/LocalMaximality/PWdBasic.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/SchurDeterminants/SchurYOffClrHolds.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/SphericalCoordinates/AlgebraEquivSetup/PAvgK.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/SphericalCoordinates/HSepOf.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/TranscendenceTraces/PFinSec.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/TranscendenceTraces/PGalTrans.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/TranscendenceTraces/PStalkSum.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/CoerciveOfPositiveDefinite.lean": [
+    "Mathlib.Topology.GDelta.MetrizableSpace"
+  ],
+  "src/Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/DetSqEqOneOfPreservesBilin.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/GenericGradient.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/HasStrictFDerivAtEval.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/ImportsMoreRest.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/IsSmooth.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/IntegralCasts/CapelliIdentities/NonemptyNormalModelOfPresentation.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AutomorphicArithmetic/ThetaCorrespondence/FockModels/MingZel.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicArithmetic/ThickFrames/topsGroup.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AutomorphicArithmetic/TwistedTraces/LinearFormEqMulTraceOfTwistedInvariant.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/CellFunctorNonscalarOffdiag.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/CompactnessStatement.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/ContourShiftGaussianDecay.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/CuspidalOfUnipotentSumsVanish.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/EdgeUnique.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/FiniteDimensionalFixedTensor.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/GradedSplittingOverField.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/HeckeCharacterExistsUnique.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/IntegralRingAdicCompletePrimeRegular.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/LocalFrameTaylorClassEq.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/MemTwKerIffAverage.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/MirabolicFourierExpansion.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/NormFibreCardZero.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/RealizationFunctorial.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/RealizationUnique.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/TaylorDifferentialRepresentative.lean": [
+    "Mathlib.Algebra.Order.Ring.Star"
+  ],
+  "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/TensorEigen.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/AutomorphicSpectrum/Proofs/BlockDecomposition/TensorEigenReal.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ],
+  "src/Development/ResolutionOfSingularities/EmbeddedResolution/StrictTransformCharts/BlowupFlatBaseChange.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/WeilBound/CoreStatements/CompactAveragingSplitting/EigenvectorLifting/VaceigenAlg.lean": [
+    "Mathlib.RingTheory.Flat.TorsionFree"
+  ],
+  "src/Development/WeilBound/CoreStatements/GaussianSeminormBounds/RealSeminormFiltration/Tensor.lean": [
+    "Mathlib.Analysis.Complex.Polynomial.Basic"
+  ]
+}

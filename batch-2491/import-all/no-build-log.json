@@ -1,0 +1,8 @@
+{
+  "pr": "879",
+  "head": "db11a315e4d96e853ad594f992370b6de767b9ba",
+  "scope": "private import consumers and providers, the repaired flat-base-change module and its direct consumers",
+  "exit": 0,
+  "last_line": "All targets up-to-date (11028 jobs).",
+  "full_log_sha256": "f50d061acfe7e78e0d214c9d8ee5003fac2651a7d042c25891295d43dfe7dae2"
+}

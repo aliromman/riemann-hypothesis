@@ -1,0 +1,20 @@
+{
+  "head": "db11a315e4d96e853ad594f992370b6de767b9ba",
+  "base": "ef451fc356cbc66861df031531aaafd2843797ac",
+  "entries": {
+    "src/Challenge.lean": "100644 blob 9677ace64b3a5e8b1a571d82d52ee13c53b08026",
+    "comparator.json": "100644 blob e989bcf90ff0c487a7146319a026e661a5bad47c",
+    "export-targets.txt": "100644 blob e2d4c02bac8a1411eae85af0376c1aad3b6b5294",
+    "comparator/FormalConjecturesChallenge.lean": "100644 blob 290a2c6270f8da3852c7051d7da0f30032a70421",
+    "comparator/formal-conjectures.json": "100644 blob e3afddc98129d1d1183ff217d434165fd893a0fe",
+    "comparator/formal-conjectures-export-targets.txt": "100644 blob 80bbbf91461783bb8e7f0bb8061b792668d4140a",
+    "src/Main.lean": "100644 blob eb95ca808793dd61984cc853ab5630f54a74490c",
+    "src/Statements.lean": "100644 blob 23b01f745b80075e377c415abae96ece3570d0b0",
+    "src/Development/AutomorphicArithmetic/CharacterBoxes/ClaimStrip.lean": "100644 blob 7b013e7d2561c91247fceddd0c6b5a39c0eb9a2f",
+    "src/Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean": "100644 blob 06c2154a1813ba89d1e48f940fb0a9a93dc9f681",
+    "lean-toolchain": "100644 blob 0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+    "lake-manifest.json": "100644 blob 8a747b58a34565cc6cb5341b86544aa5d3a20a2d",
+    "lakefile.toml": "100644 blob 43b9f74431077a10cc1edecbc15239fe38d92591",
+    ".github/workflows": "040000 tree 3dfcc379c8c3dfda0fc5488a423dc3f755d97f90"
+  }
+}

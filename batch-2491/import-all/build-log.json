@@ -1,0 +1,8 @@
+{
+  "pr": "879",
+  "head": "db11a315e4d96e853ad594f992370b6de767b9ba",
+  "scope": "private import consumers and providers, the repaired flat-base-change module and its direct consumers",
+  "exit": 0,
+  "last_line": "Build completed successfully (11028 jobs).",
+  "full_log_sha256": "1a3ea9aa62b1bfc06ebe0ff06247827d82a387f170e712f5fbb57f792f9b1739"
+}

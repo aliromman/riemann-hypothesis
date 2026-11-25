@@ -1,0 +1,330 @@
+{
+  "head": "db11a315e4d96e853ad594f992370b6de767b9ba",
+  "parent": "ef451fc356cbc66861df031531aaafd2843797ac",
+  "owner": "Development.ResolutionOfSingularities.EmbeddedResolution.StrictTransformCharts.BlowupFlatBaseChange",
+  "direct_importers": [
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.EtaleCharts.PolynomialChartSpans.BlowUpChart2",
+    "Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedOrderReduction.MapToEarlierScheme",
+    "Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MonomialCase.MonomialPrincipalizationBaseChange",
+    "Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.BlowupSequenceDescentDatum",
+    "Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.BlowupSequenceFlatBaseChange",
+    "Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.ChartFlatBaseChange",
+    "Development.ResolutionOfSingularities.EmbeddedResolution.StrictTransformCharts.BlowupChart"
+  ],
+  "rows": [
+    {
+      "module": "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.EtaleCharts.PolynomialChartSpans.BlowUpChart2",
+      "kernel_check": {
+        "candidateNames": 12,
+        "different": 0,
+        "examples": [],
+        "kernelImage": true,
+        "parentNames": 12,
+        "proofChanges": 0,
+        "publicImage": true,
+        "publicImports": true
+      },
+      "edited": true,
+      "raw_reference": "authenticated community parent",
+      "route": "ordinary and official declarations compared directly",
+      "declarations": 12,
+      "raw_differences_from_native_or_original": [
+        ".olean",
+        ".olean.server",
+        ".olean.private",
+        ".ir"
+      ],
+      "ordinary_sha256": {
+        ".olean": "075bfe80c85f84bc1a80a848bf7328fb08aa728c9eab751d22e7a784daaa42f8",
+        ".olean.server": "ec82c48cff725b49e8a2fd8dd10a9ffa77e168f0b876a20f93522f69f6d38431",
+        ".olean.private": "878abd6076a66f733f6a703d95d77ca00c560a59582559aec2324d9244e60330",
+        ".ir.sig": "27463859ec46b7c5fa12725c0a1590ef7d09cac8b69560b3600fd0f3fbbf1afa",
+        ".ir": "9faf9d93a27174379e0021dcca2cdc49987849960def304d0c1cf8531160b5bb"
+      },
+      "trace_sha256": "ab006d9968dac632c88e70575733b83bc7ce19dea60d3d62482d811a4562612b",
+      "warnings": 10,
+      "warning_messages_sha256": "eb3900028c14db9244a34eda593747078dee7a20cf8158c79d202a1d8a3e8b4a",
+      "parent_c": [
+        37641,
+        "c63fe19988fb604bfc23a8beeca77228907293374ffe8512c32d5a7a42dd047a",
+        106
+      ],
+      "candidate_c": [
+        21263,
+        "eebb43b6cc3ae752310eca9e2676d96d2e27f70e6db90d7b5d067e2dde62b555",
+        44
+      ]
+    },
+    {
+      "module": "Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MarkedOrderReduction.MapToEarlierScheme",
+      "kernel_check": {
+        "candidateNames": 31,
+        "different": 0,
+        "examples": [],
+        "kernelImage": true,
+        "parentNames": 31,
+        "proofChanges": 0,
+        "publicImage": true,
+        "publicImports": true
+      },
+      "edited": false,
+      "raw_reference": "authenticated community parent",
+      "route": "ordinary and official declarations compared directly",
+      "declarations": 31,
+      "raw_differences_from_native_or_original": [],
+      "ordinary_sha256": {
+        ".olean": "b208300d22cc5e224e8c57e2c67abf9c66bcf4696e6740abf808f3d6b246cdfa",
+        ".olean.server": "4f75a7e13d0e62772f75814baec76cc2682a3671445578c1906e31c5fd31353c",
+        ".olean.private": "27807a1c9d3a7ac66635168ecd4746f5f0bd5371b7b016728fac9ca6ff2fec89",
+        ".ir.sig": "f49ddc8139a9c77a7fe4ec7b5e35a3c9f41c2604d5b38c3e2e1864ea1847c033",
+        ".ir": "5adc75ee337aa3beece642316ccbd193bb73d8554670645c8899e9efdc9026c1"
+      },
+      "trace_sha256": "0732dca4c7e3a016db1afa466ebbda28e0e610d7ad13b63f5bab3d4467ea53e4",
+      "warnings": 0,
+      "warning_messages_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "parent_c": [
+        25883,
+        "04e8186175f36ecc36f27ec30b9751d99e42b1afb7d8eef8685c8ed3c4d5cbb4",
+        0
+      ],
+      "candidate_c": [
+        25883,
+        "04e8186175f36ecc36f27ec30b9751d99e42b1afb7d8eef8685c8ed3c4d5cbb4",
+        0
+      ]
+    },
+    {
+      "module": "Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.MonomialCase.MonomialPrincipalizationBaseChange",
+      "kernel_check": {
+        "candidateNames": 27,
+        "different": 0,
+        "examples": [],
+        "kernelImage": true,
+        "parentNames": 27,
+        "proofChanges": 0,
+        "publicImage": true,
+        "publicImports": true
+      },
+      "edited": false,
+      "raw_reference": "authenticated community parent",
+      "route": "ordinary and official declarations compared directly",
+      "declarations": 27,
+      "raw_differences_from_native_or_original": [],
+      "ordinary_sha256": {
+        ".olean": "307e770be5229e184f0828b8374b10393a223cdcbc1dbc33e399fe078632950b",
+        ".olean.server": "63bcdee4c853ddf235673353b54ce152ec4f41ddeba2d3337fc8fec71882725a",
+        ".olean.private": "8490c2cadd282c2fb8a2d334d090dfc690bb580df0b00f13d1f4a81c8467d723",
+        ".ir.sig": "21201e9baae526d7a429bd8715da6289f07b53a598c0d4369d1cd86b5dfd7565",
+        ".ir": "3cfee6f653346ed7b9741fa7ca0faf3a38633ed624c5c587acd6f41b5fb1cca5"
+      },
+      "trace_sha256": "c8adc0691afb498a43145becda87a1f7fe84cc84b7aa9b5b57e699f1a0a0e18a",
+      "warnings": 0,
+      "warning_messages_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "parent_c": [
+        15692,
+        "3e60c19e2562200821af98f568cbbc212397d639f046305847fb7897ed4ba24a",
+        2
+      ],
+      "candidate_c": [
+        15692,
+        "3e60c19e2562200821af98f568cbbc212397d639f046305847fb7897ed4ba24a",
+        2
+      ]
+    },
+    {
+      "module": "Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.BlowupSequenceDescentDatum",
+      "kernel_check": {
+        "candidateNames": 144,
+        "different": 0,
+        "examples": [],
+        "kernelImage": true,
+        "parentNames": 144,
+        "proofChanges": 0,
+        "publicImage": true,
+        "publicImports": true
+      },
+      "edited": false,
+      "raw_reference": "authenticated community parent",
+      "route": "ordinary and official declarations compared directly",
+      "declarations": 144,
+      "raw_differences_from_native_or_original": [],
+      "ordinary_sha256": {
+        ".olean": "cf7d812318a79164400bd94532c184bf22aca7c57bfe1b10b873647e80a5bb7f",
+        ".olean.server": "345e8652e88530649ce2b6cddd22cd612aeba44247e3046c017b28f8db79fc33",
+        ".olean.private": "16ee92ae0379b473aee572020684c2adef55f0eb69b3b77935f609124b75a3ba",
+        ".ir.sig": "b518440d1b0277b157d673bc378466babd8da35d10aa60e5add83f0837d66f34",
+        ".ir": "9b08661f3df7cb13d2ad18c5691f6a3e6434122b3a93db54478e5eae7cb3248e"
+      },
+      "trace_sha256": "244f9a849e71ad759a36d5f4e7c9c7e47cf2d45f91178e44a382024a3b57c710",
+      "warnings": 0,
+      "warning_messages_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "parent_c": [
+        14790,
+        "3f18bde70a68aa6e641ce0004571d2478ad0da54c69040862add02ac8d87aae3",
+        4
+      ],
+      "candidate_c": [
+        14790,
+        "3f18bde70a68aa6e641ce0004571d2478ad0da54c69040862add02ac8d87aae3",
+        4
+      ]
+    },
+    {
+      "module": "Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.BlowupSequenceFlatBaseChange",
+      "kernel_check": {
+        "candidateNames": 25,
+        "different": 0,
+        "examples": [],
+        "kernelImage": true,
+        "parentNames": 25,
+        "proofChanges": 0,
+        "publicImage": true,
+        "publicImports": true
+      },
+      "edited": false,
+      "raw_reference": "authenticated community parent",
+      "route": "ordinary and official declarations compared directly",
+      "declarations": 25,
+      "raw_differences_from_native_or_original": [],
+      "ordinary_sha256": {
+        ".olean": "d9dea9679230804ca72acf01b61af1d9e2832cd4ab5689ec28a4700848c9da8d",
+        ".olean.server": "8dbb970b23103ee41518e996cc439946d8cdbaa0d6814d40c40a47289f088806",
+        ".olean.private": "12918ec292bba8fd0d8a11374b46e59a9f82ec950a84af537e032a0bc4487073",
+        ".ir.sig": "2106854e1edd9276fbeb35c3cd7aa45fdcd9124648eac9d820a6e982ee60940c",
+        ".ir": "2358029b2e6fbdfd815fcdbfae5ccfc3e1e32b6c74a4a9ddd88d5ea0a1fcc44f"
+      },
+      "trace_sha256": "611c8f2b7d6d518d77200b135aa399046b46d311bee278145f7d2682c4308341",
+      "warnings": 0,
+      "warning_messages_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "parent_c": [
+        5748,
+        "d274e4df14fbdb07a93c301359651752d36894e98a9b8538cc383f7dc5b84874",
+        2
+      ],
+      "candidate_c": [
+        5748,
+        "d274e4df14fbdb07a93c301359651752d36894e98a9b8538cc383f7dc5b84874",
+        2
+      ]
+    },
+    {
+      "module": "Development.ResolutionOfSingularities.EmbeddedResolution.ResolutionDescent.ChartFlatBaseChange",
+      "kernel_check": {
+        "candidateNames": 82,
+        "different": 0,
+        "examples": [],
+        "kernelImage": true,
+        "parentNames": 82,
+        "proofChanges": 0,
+        "publicImage": true,
+        "publicImports": true
+      },
+      "edited": false,
+      "raw_reference": "authenticated community parent",
+      "route": "ordinary and official declarations compared directly",
+      "declarations": 82,
+      "raw_differences_from_native_or_original": [],
+      "ordinary_sha256": {
+        ".olean": "3f6863a321e872afa74cbd5864cad4a9d2577c98ce1c16831372778cd388a950",
+        ".olean.server": "7d6a5e9a1485136d2918af565b8286501e74dce898cd240507a729686c17f5a1",
+        ".olean.private": "a787ba01b3ee7f7db342ee102116d29d612997ff8a1856db948f9b2e6dcc4bac",
+        ".ir.sig": "cdb2162eb905b3501a9ddddae391e8203a0367b2bc521e93306fc4d8a939507b",
+        ".ir": "89df1c048e4ce7e0c159c1f4005ef3055f3b26430bcd920a1c5fe631c1914a41"
+      },
+      "trace_sha256": "19a12a6a9b6835a8f9e5177af6234d754f6870caf2c66cb33c764ece98569c4f",
+      "warnings": 0,
+      "warning_messages_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "parent_c": [
+        11667,
+        "e8fd4ac673556afcebb60cb61d96ac861526202b4a42bb8347eb1b951da123b6",
+        4
+      ],
+      "candidate_c": [
+        11667,
+        "e8fd4ac673556afcebb60cb61d96ac861526202b4a42bb8347eb1b951da123b6",
+        4
+      ]
+    },
+    {
+      "module": "Development.ResolutionOfSingularities.EmbeddedResolution.StrictTransformCharts.BlowupChart",
+      "kernel_check": {
+        "candidateNames": 25,
+        "different": 0,
+        "examples": [],
+        "kernelImage": true,
+        "parentNames": 25,
+        "proofChanges": 0,
+        "publicImage": true,
+        "publicImports": true
+      },
+      "edited": false,
+      "raw_reference": "authenticated community parent",
+      "route": "ordinary and official declarations compared directly",
+      "declarations": 25,
+      "raw_differences_from_native_or_original": [],
+      "ordinary_sha256": {
+        ".olean": "bbd96d9bfb51ef7de0e13c651663d9cb92bbf13c4fe44386a774ee82f8a5a931",
+        ".olean.server": "a5b2419cc3299c43ba8ef7f712d6bf3462aaaad4006447f3cf4406d5f043ef06",
+        ".olean.private": "5587a376f9e6bcd1d2d87afdd1e20789099d32f1a1cbb1c0606d94f75b110452",
+        ".ir.sig": "4cccd76fc40850d57aac4fb3522e1f7d75f31f9b83df56383b74664d2a6b4b14",
+        ".ir": "a30545ff9fcd2b6232bb6fb4734e5c064cabe9aa2e6baec84c526fa93bdac060"
+      },
+      "trace_sha256": "bcc335674c44dea3190dbc38b0438fcbce60e0a2adb07fef4fa613e9f0b9b759",
+      "warnings": 0,
+      "warning_messages_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "parent_c": [
+        5965,
+        "869b6149f01f8b3852418aacd079a966c54490ddce38526859982bc5e187d939",
+        0
+      ],
+      "candidate_c": [
+        5965,
+        "869b6149f01f8b3852418aacd079a966c54490ddce38526859982bc5e187d939",
+        0
+      ]
+    },
+    {
+      "module": "Development.ResolutionOfSingularities.EmbeddedResolution.StrictTransformCharts.BlowupFlatBaseChange",
+      "kernel_check": {
+        "candidateNames": 4,
+        "different": 0,
+        "examples": [],
+        "kernelImage": true,
+        "parentNames": 4,
+        "proofChanges": 0,
+        "publicImage": true,
+        "publicImports": true
+      },
+      "edited": true,
+      "raw_reference": "authenticated community parent",
+      "route": "ordinary and official declarations compared directly",
+      "declarations": 4,
+      "raw_differences_from_native_or_original": [
+        ".olean",
+        ".olean.server",
+        ".olean.private",
+        ".ir"
+      ],
+      "ordinary_sha256": {
+        ".olean": "f0c9c5d7f118c46a2339ef2c45acfe67cc1df7556b26c0c0188565604759d36e",
+        ".olean.server": "792c4b4484f5b2e9771f420ffe3249d42bd71cca144fa95312b9b213737b3b9c",
+        ".olean.private": "72ee64f66966bfd6ba68818b7fbef25df1d494d1bf6fa820ed004f299486b02e",
+        ".ir.sig": "76c80b4d6e1a95651d0573f1654e2ad92567fe8fb55ffb559f506be983a885a1",
+        ".ir": "1d4695ef1e87b9473930bf78e2a5036f22105fc24957ba216f0ae2b0f2c17518"
+      },
+      "trace_sha256": "3ffa6ad80f8f67855324055621e0526a2a757c5690223fdec68518d5d9db5a90",
+      "warnings": 0,
+      "warning_messages_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "parent_c": [
+        6401,
+        "8bc10b58a6055c74d642866a7e70db46448300ad7d4df966dee1d3858f7b1d83",
+        6
+      ],
+      "candidate_c": [
+        6381,
+        "0ce8ad115412f2182ebf2b1e00cda63644f6191222ea409f5dbf084e5168bc45",
+        6
+      ]
+    }
+  ]
+}
