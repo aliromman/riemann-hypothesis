@@ -1,0 +1,33 @@
+{
+  "source": {
+    "head": "f498439153b72cf74f39a892245141c1b0849e61",
+    "parent": "a18a350c3e5aad997766cff2670b292313e46574",
+    "src": "b819bcb083fe32c8e8c4f46797548fe825eb914f"
+  },
+  "groups": {
+    "completed": {
+      "modules": 56,
+      "edited": 56,
+      "warnings": 487,
+      "declaration_occurrences_counted": 2952,
+      "ordinary and official declarations compared directly": 56
+    },
+    "import-all": {
+      "modules": 470,
+      "edited": 54,
+      "warnings": 1023,
+      "declaration_occurrences_counted": 21461,
+      "ordinary and official declarations compared directly": 470
+    }
+  },
+  "distinct_union": {
+    "modules": 525,
+    "edited_modules": 109,
+    "declaration_occurrences": 24322,
+    "warnings": 1505
+  },
+  "full_build": "pending at this checkpoint",
+  "whole_project_module_comparison": "pending at this checkpoint",
+  "five_theorem_kernel_replay_on_full_build": "pending at this checkpoint",
+  "sandboxed_linux_comparator": "requested from upstream operator"
+}

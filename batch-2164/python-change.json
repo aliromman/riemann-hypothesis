@@ -1,0 +1,42 @@
+{
+  "refs": [
+    "a18a350c3e5aad997766cff2670b292313e46574",
+    "f498439153b72cf74f39a892245141c1b0849e61"
+  ],
+  "files": {
+    "scripts/clump.py": {
+      "parent": {
+        "physical": 448,
+        "nonblank": 386,
+        "with_python_tokens": 368
+      },
+      "candidate": {
+        "physical": 718,
+        "nonblank": 630,
+        "with_python_tokens": 606
+      }
+    },
+    "scripts/tests/test_clump_scopes.py": {
+      "parent": {
+        "physical": 0,
+        "nonblank": 0,
+        "with_python_tokens": 0
+      },
+      "candidate": {
+        "physical": 178,
+        "nonblank": 155,
+        "with_python_tokens": 155
+      }
+    }
+  },
+  "net_added": {
+    "physical": 448,
+    "nonblank": 399,
+    "with_python_tokens": 393
+  },
+  "method": "Token-bearing physical lines exclude whitespace and standalone comments. A multi-line string counts on each nonblank line. The conservative net deduction charges the full physical line increase.",
+  "identical_to_preceding_source_pair": [
+    "27b55787485ac2a5b5b3ed2dffc697e0ae6a2f59",
+    "3924557838221f35ec31576ded2a06d7e11dbbac"
+  ]
+}
