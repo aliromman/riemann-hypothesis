@@ -6,7 +6,6 @@ import Mathlib.Algebra.Order.Star.Real
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 public import Mathlib.LinearAlgebra.FreeModule.PID
 

@@ -4,10 +4,7 @@ public import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.Fla
 public import Mathlib.RingTheory.IsTensorProduct
 import Mathlib.RingTheory.SimpleRing.Principal
 public import Mathlib.RingTheory.TensorProduct.IsBaseChangeFree
-import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 
 @[expose] public section
