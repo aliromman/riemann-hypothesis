@@ -232,8 +232,6 @@ instance : NormedAlgebra K (AlgCl K) := spectralNorm.normedAlgebra K (AlgCl K)
 
 end AlgCl
 
-abbrev GalK : Type u := AlgCl K ≃ₐ[K] AlgCl K
-
 abbrev CK : Type u := UniformSpace.Completion (AlgCl K)
 
 namespace CK
@@ -247,8 +245,6 @@ instance : NontriviallyNormedField (CK K) where
 instance : IsUltrametricDist (CK K) := IsUltrametricDist.of_normedAlgebra K
 
 end CK
-
-abbrev OCK : ValuationSubring (CK K) := unitBall (CK K)
 
 end CK
 
