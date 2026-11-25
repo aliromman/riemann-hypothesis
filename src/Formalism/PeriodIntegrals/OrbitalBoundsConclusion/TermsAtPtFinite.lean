@@ -265,8 +265,6 @@ namespace PI.TermsAtPtFiniteW
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.TermDef PI.TermsAtPtFiniteW.HeisW
   PI.TermsAtPtFiniteW.LeviW PI.TermsAtPtFiniteW.FrameW
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 theorem frameOp_holds : FrameOp := by
   intro D u
   refine ⟨1, Nat.one_pos, ?_⟩
@@ -281,8 +279,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.OrbitalBoundsConclusion.TermsAtPtFinite
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem terms_at_point_finite (D : Formalism.BasicNotions.D7) (u u' : D.what₂.Word) : Formalism.L2.SG.TermDef.TermsAtFinite D u u' :=
   PI.TermsAtPtFiniteW.termsAtFinite_of_frameOp_shortFin PI.TermsAtPtFiniteW.frameOp_holds PI.TermsAtPtFiniteW.shortFin_holds D u u'

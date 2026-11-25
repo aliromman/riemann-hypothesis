@@ -375,8 +375,9 @@ theorem mk_le_of_dense {A X : Type} [MetricSpace X] (f : A → X) (hf : DenseRan
 end GlobalTheory.RatNorm
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCExtComplex
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCExtComplex
 
+noncomputable section
 namespace GlobalTheory.UMin.KeySmall
 
 theorem norm_toF_unit {V : Type} [CommRing V] [IsDomain V] {I : Ideal V} {C : Type} [NormedField C]
@@ -386,10 +387,6 @@ theorem norm_toF_unit {V : Type} [CommRing V] [IsDomain V] {I : Ideal V} {C : Ty
   have h3 : toF V C u * toF V C ↑u⁻¹ = 1 := by rw [← map_mul, Units.mul_inv, map_one]
   have h4 : ‖toF V C u‖ * ‖toF V C ↑u⁻¹‖ = 1 := by rw [← norm_mul, h3, norm_one]
   nlinarith [norm_nonneg (toF V C u), norm_nonneg (toF V C ↑u⁻¹)]
-
-theorem jc_smul : ∀ {R : Type} [CommRing R] [IsDomain R] {D : DegPre R} {F : Type} [Field F] [Algebra (FractionRing R) F]
-    {N : NumD F} (ν : NumOf D F N) {k : ℕ} (s : Fam D F k) (a : F) (gm : GtPt D (TE R F)) (α : N.X),
-    jc ν (a • s) gm α = TrivSqZeroExt.inl a * jc ν s gm α := GlobalTheory.T.torusExtDualNumberTermValue_smul
 
 end GlobalTheory.UMin.KeySmall
 
@@ -704,6 +701,7 @@ theorem key_unit_trait (κ : Rule) (hR : Rule4 κ) (V : Type) [CommRing V] [IsDo
   · exact _root_.GlobalTheory.secMaps_secPull_of_pointwise θ.hom.left φ _ hθφ x.P.L L.L U.LG.L L.isLB ψ e' w₀ hPW x.th σ σ' hTh hσ'
 
 end GlobalTheory.UMin.KeySmall
+end -- clump:auto
 end -- clump:auto
 
 end -- clump: shared namespace opens

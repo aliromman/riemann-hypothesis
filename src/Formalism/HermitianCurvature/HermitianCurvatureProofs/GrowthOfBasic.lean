@@ -1119,7 +1119,3 @@ theorem t_PairBoundFromLocal : PairBoundFromLocal := by
 end From
 
 end Formalism.FourierDecayAlt.P.GrowthPolynomialOperator
-
-namespace Formalism.FourierDecayAlt.P
-
-end Formalism.FourierDecayAlt.P

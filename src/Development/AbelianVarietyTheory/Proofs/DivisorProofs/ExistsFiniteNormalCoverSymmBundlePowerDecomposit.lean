@@ -129,7 +129,7 @@ theorem exists_finite_normal_cover_of_finiteDimensional : ∀ (R : Type) [CommRi
   haveI : IsScalarTower R C R' := IsScalarTower.of_algebraMap_eq (fun r => (RingHom.congr_fun hσρ r).symm)
   haveI : Algebra.IsIntegral R C := Algebra.IsIntegral.of_finite R C
   have hσ : Function.Injective σ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro c hc
     have hker : RingHom.ker σ = ⊥ := by
       apply Ideal.eq_bot_of_comap_eq_bot (R := R)

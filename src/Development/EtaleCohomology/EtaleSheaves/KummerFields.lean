@@ -483,8 +483,9 @@ theorem LeafKumMuMap_of : LateralTheory.E.H2CurveOrder.LeafKumMuUnitsPf.LeafKumM
 end LateralTheory.E.H2CurveOrder.LeafKumMuMapPf
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleSheaves.KummerSequence.LeafKumMuSurjPowPf
+@[expose] public section -- clump member: Development.EtaleCohomology.EtaleSheaves.KummerSequence.LeafKumMuSurjPowPf
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC LateralTheory.E.E4 LateralTheory.E.H2CurveOrder.LeafKumMuSurjPf
 
 namespace LateralTheory.E.H2CurveOrder.LeafKumMuSurjPowPf
@@ -496,7 +497,6 @@ theorem powCof_mul {A : Type*} [CommRing A] (u v : A) (q : ℕ) : powCof u v q *
 
 theorem powCof_map {A B : Type*} [CommRing A] [CommRing B] (φ : A →+* B) (u v : A) (q : ℕ) :
     φ (powCof u v q) = powCof (φ u) (φ v) q := by
-  set_option synthInstance.maxHeartbeats 100000 in
     simp [powCof, map_sum, map_mul, map_pow]
 
 theorem powCof_self {A : Type*} [CommRing A] (v : A) (q : ℕ) : powCof v v q = (q : A) * v ^ (q - 1) := by
@@ -578,6 +578,7 @@ theorem pow_pf : LeafKumMuSurjPow := by
   exact hunit
 
 end LateralTheory.E.H2CurveOrder.LeafKumMuSurjPowPf
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleSheaves.KummerSequence.LeafKumMuSurjPrimPf

@@ -22,8 +22,6 @@ namespace PI.TermsAtPtFiniteW
 
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.TermDef
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 def ZhatIntegral : Prop :=
   ∀ (D : D7) (u u' : D.what₂.Word) (F0 : FlagG (VS D) D.R.rS ((Tu D u : ℕ) : D.host.E))
     (Λ : Submodule (𝓞 D.host.E) (VS D).V), IsRowLat D F0 Λ →
@@ -161,16 +159,15 @@ end PI.TermsAtPtFiniteW
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.TermsFiniteAtPoint.ZhatIntegralHolds
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.TermsFiniteAtPoint.ZhatIntegralHolds
 
+noncomputable section
 
 open scoped Classical
 
 namespace PI.TermsAtPtFiniteW
 
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.TermDef
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem carrierRow_holds : CarrierRow := by
   intro D u u' F0 Λ hΛ F' hPD

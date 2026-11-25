@@ -643,11 +643,9 @@ theorem injAbs : UpperTheory.Ru.crystallineComparison.InjAbs := by
 end UpperTheory.Ru.crystallineComparison
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.EqZeroOfCoord
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.EqZeroOfCoord
 
-set_option synthInstance.maxHeartbeats 200000
-set_option maxHeartbeats 1000000
-
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry GroundTheory.PAdicHodge CrystallineSemistableComparison TensorProduct
 
@@ -695,7 +693,6 @@ theorem UpperTheory.Ru.crystallineComparison.injOf :
     UpperTheory.Ru.crystallineComparison.InjOf := by
   intro l _ K B₀ ι hι hc hq G Amp hF hE hL e e' hB hP hcomp M hM j κ _ v c u hu
   refine (hL.ch M hM).elim fun a => ?_
-  set_option synthInstance.maxHeartbeats 2000000 in
   have h0 : (per l K).t ^ u • ∑ k, (show (per l K).A from c k) • e'.e a j (v k) = 0 :=
     UpperTheory.Ru.crystallineComparison.submodule_pi_smul_sum_eq_zero (S := (M.MS j).lim)
       (UpperTheory.Ru.crystallineComparison.tA l ^ u) c (fun k => e'.e a j (v k))
@@ -707,6 +704,7 @@ theorem UpperTheory.Ru.crystallineComparison.injOf :
     exact UpperTheory.Ru.crystallineComparison.lid_rTensor_sum_eq_zero ι hι B₀.c (per l K).i hc
       (per l K).q hq (fun k => M.toV j (v k)) c
       (Ring.inverse (B₀.c (UpperTheory.Ru.crystallineComparison.tA l))) f (h1 f)
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.GalAwayCongr
@@ -833,12 +831,11 @@ theorem UpperTheory.Ru.crystallineComparison.pbIota :
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.PullbackFinRelation
-@[expose] public noncomputable section
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
-set_option maxHeartbeats 1600000
-set_option synthInstance.maxHeartbeats 400000
 
+noncomputable section
 
 open CrystallineSemistableComparison UpperTheory.Ru.crystallineComparison GroundTheory.PAdicHodge
 
@@ -1200,6 +1197,7 @@ end UpperTheory.Ru.crystallineComparison.PBI
 theorem UpperTheory.Ru.crystallineComparison.pbInv :
     ∀ (l : ℕ) [Fact l.Prime] (K : IntermediateField ℚ_[l] (PadicAlgCl l)) [FiniteDimensional ℚ_[l] K] (B₀ : PB l K) (r : Res l K), InvC B₀ r :=
   fun _ _ _ _ B₀ r => UpperTheory.Ru.crystallineComparison.PBI.mainC B₀ r
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 

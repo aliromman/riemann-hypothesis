@@ -43,11 +43,11 @@ theorem exists_injectiveSequence_lift {X Y : TopCat.{0}} (f : X ⟶ Y) {G : AbSh
 end GlobalTheory.CompanionTheory.CechLift
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.CoverRefinementHodge.CechHStepPull
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.CoverRefinementHodge.CechHStepPull
 
-set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Opposite Limits
 
@@ -101,11 +101,11 @@ theorem cechHStep_pull' : ∀ {X Y : TopCat.{0}} (f : X ⟶ Y) {κ ι : Type} (V
 
 end CrystallineSemistableComparison.Om.Nt2
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.CoverRefinementHodge.ZeroOne
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.CoverRefinementHodge.ZeroOne
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Opposite Limits
 
@@ -251,11 +251,11 @@ theorem cechHOne_pull' : ∀ {X Y : TopCat.{0}} (f : X ⟶ Y) {κ ι : Type} (V 
 
 end CrystallineSemistableComparison.Om.Nt2
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.CoverRefinementHodge.LerayClean
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.CoverRefinementHodge.LerayClean
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Opposite Limits
 
@@ -297,11 +297,11 @@ theorem cechHEquiv_pull_compat {X Y : TopCat.{0}} (f : X ⟶ Y) {BY : Opens Y �
 
 end CrystallineSemistableComparison.Om.Nt2
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.CoverRefinementHodge.PfPullC
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.CoverRefinementHodge.PfPullC
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Opposite Limits
 

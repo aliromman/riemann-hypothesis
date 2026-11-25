@@ -1136,8 +1136,9 @@ theorem _root_.GlobalTheory.T.mem_adelicLatticeAtFinitePlace_iff_inert : ∀ {F 
   first | exact @GlobalTheory.InertSphLat.mem_latAt_iff
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.InertPlaceBigCellStabiliserOfLocalRingBigCellLem
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.InertPlaceBigCellStabiliserOfLocalRingBigCellLem
 
+noncomputable section
 
 namespace GlobalTheory.InertBigCell
 
@@ -1254,7 +1255,6 @@ theorem exists_bigCell : (∀ {O : Type} [CommRing O] [IsLocalRing O] (c : O →
     exact hP0U
   let p : GlobalTheory.DblVac.UD σ W := ⟨u, hu⟩
   have hp : GlobalTheory.DblVac.matD p = glueW hw P0 := rfl
-  have hp' : GlobalTheory.DblVac.matD p⁻¹ = glueW hw P0' := rfl
   have hmul : ∀ a c : GlobalTheory.DblVac.UD σ W, GlobalTheory.DblVac.matD (a * c) = GlobalTheory.DblVac.matD a * GlobalTheory.DblVac.matD c :=
     fun _ _ => rfl
   have hpl : ∀ z ∈ GlobalTheory.DblVac.latD W v, GlobalTheory.DblVac.matD p *ᵥ z ∈ GlobalTheory.DblVac.latD W v :=
@@ -1290,6 +1290,7 @@ theorem exists_bigCell : (∀ {O : Type} [CommRing O] [IsLocalRing O] (c : O →
       exact (hvec _).2 (hNlat x ((hb x).1 hx))
 
 end GlobalTheory.InertBigCell
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDiagonalStabiliserMulMemBigCellInert

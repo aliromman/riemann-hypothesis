@@ -943,8 +943,9 @@ end -- clump:auto
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.WeightSectionComponentValue
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.WeightSectionComponentValue
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Plug.FinTr.Approx
 
@@ -965,7 +966,7 @@ theorem exists_loc {R K L : Type} [CommRing R] [IsDomain R] [Field K] [Field L] 
     obtain ⟨⟨a, ⟨s, k, rfl⟩⟩, h⟩ := IsLocalization.surj (Submonoid.powers g) x
     exact ⟨a, k, by simpa using h⟩
   have hinj : Function.Injective Φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨a, k, h⟩ := hsurj x
     have h1 := congrArg Φ h
@@ -1204,6 +1205,7 @@ theorem approx_main : Top.Given → ∀ (E : Type) [Field E] [NumberField E] [Is
   · exact hReg A hAr hg₀A T'.Fr io' ev ψ₂ (fun r => (hevχ r).symm) z'' y'.1 t' hz'' hb'
 
 end GlobalTheory.CompanionTheory.Ar.Plug.FinTr.Approx
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.WeightSectionComponentValueStatement

@@ -45,8 +45,9 @@ theorem UpperTheory.Reformulated.B.Yhd2.main :
   rw [this, map_mul, Module.End.mul_apply, hdU]
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CuspidalSatakeAlmostAll
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CuspidalSatakeAlmostAll
 
+noncomputable section
 
 open NumberField IsDedekindDomain Matrix Formalism.L2.Host GlobalTheory.CuspRep
 open Formalism.UG GlobalTheory.PRep GlobalTheory.LFun GlobalTheory.LGrp GlobalTheory.LFun.SatCompare GlobalTheory.LocGL GlobalTheory.WeylGL
@@ -200,8 +201,7 @@ theorem heckeVec_dosetInd_eq_idem (hs : IsSmooth π) (hc : IsCompact (K : Set G)
   · refine Nat.cast_ne_zero.2 (Finset.card_ne_zero.2 ⟨(g : G ⧸ K), (hS _).2 ?_⟩)
     obtain ⟨k, hk⟩ := QuotientGroup.mk_out_eq_mul K g
     exact DoubleCoset.mem_doubleCoset.2 ⟨1, K.one_mem, k, k.2, by rw [hk, one_mul]⟩
-  · set_option synthInstance.maxHeartbeats 100000 in
-      rw [← idem_of_mem hs hc (heckeVec_mem_fixed hK hm hz), heckeVec,
+  · rw [← idem_of_mem hs hc (heckeVec_mem_fixed hK hm hz), heckeVec,
       finsum_eq_sum_of_support_subset (s := hfin.toFinset), map_sum, Nat.cast_smul_eq_nsmul, ← Finset.sum_const]
     · refine Finset.sum_congr rfl fun c hcS => ?_
       have h1 := (hS c).1 hcS

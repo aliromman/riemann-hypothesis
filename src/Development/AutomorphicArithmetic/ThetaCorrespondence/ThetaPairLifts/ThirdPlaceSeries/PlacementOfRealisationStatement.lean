@@ -598,8 +598,11 @@ section -- clump: shared namespace opens
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.S Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR.Links Formalism.IndefR.Lev Formalism.IndefR.Mult Formalism.IndefR.AutomorphicEvaluation Formalism.L2.SG.RowDict Formalism.L2.SG.RowsJoinPinned Formalism.L2.SG.RowLevelMatch Formalism.L2.SG.PoincareInHH.PoincareSetting MeasureTheory NumberField IsDedekindDomain
 open scoped InnerProductSpace
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.IntertwinerContinuousRepresentativePowerBound
+section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.IntertwinerContinuousRepresentativePowerBound
+@[expose] public section
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
+
+noncomputable section
 
 namespace GlobalTheory.ConjRepBound
 
@@ -668,14 +671,14 @@ theorem contRep_bound : GlobalTheory.Published.DiscreteSeriesClassification → 
         fun s => star (GlobalTheory.ConjRowMult.conjMap X (MP R) c Φ h t u ((iotaX X h).toMulEquiv.symm
           (y * iotaX X h t * iotaX X h (oneP R.θ (D.sp.Y 0) τ Y s)))) := by
       funext s
-      erw [GlobalTheory.ConjRowMult.conjMap_apply X (MP R) c Φ h t]
+      rw [GlobalTheory.ConjRowMult.conjMap_apply X (MP R) c Φ h t]
       rw [star_star, ← hone s, hfdef]
       erw [map_mul, map_inv, hsymm]
       rw [mul_assoc y, hcomm _ (h2s s), ← mul_assoc, mul_inv_cancel_right]
     have hval : f (Function.update u τ (GlobalTheory.RepSmooth.der u τ hY)) y =
         star (GlobalTheory.ConjRowMult.conjMap X (MP R) c Φ h t (Function.update u τ (GlobalTheory.RepSmooth.der u τ hY))
           ((iotaX X h).toMulEquiv.symm (y * iotaX X h t))) := by
-      erw [GlobalTheory.ConjRowMult.conjMap_apply X (MP R) c Φ h t]
+      rw [GlobalTheory.ConjRowMult.conjMap_apply X (MP R) c Φ h t]
       rw [star_star]
       erw [map_mul, map_inv, hsymm]
       rw [mul_inv_cancel_right, hfdef]
@@ -688,6 +691,8 @@ theorem contRep_bound : GlobalTheory.Published.DiscreteSeriesClassification → 
 
 end GlobalTheory.ConjRepBound
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.RealPointIdentificationLeastSizeLinearGrowth

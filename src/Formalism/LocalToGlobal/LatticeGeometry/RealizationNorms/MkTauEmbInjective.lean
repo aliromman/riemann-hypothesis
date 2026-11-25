@@ -9,20 +9,11 @@ public import Formalism.SharpRestriction.Divisibility.WeightFamilies
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.LatticeGeometry.RealizationNorms.SumUliftFinsetFinTwoExpand, Formalism.LocalToGlobal.LatticeGeometry.RealizationNorms.MkTauEmbInjective
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.LatticeGeometry.RealizationNorms.SumUliftFinsetFinTwoExpand
+@[expose] public section -- clump member: Formalism.LocalToGlobal.LatticeGeometry.RealizationNorms.SumUliftFinsetFinTwoExpand
 
 open NumberField NumberField.InfinitePlace Module Matrix
 
-
-namespace Formalism.L2.Geo.Rec.DualLatticeEmbeddings
-
-variable {K : Type} [Field K] [NumberField K] {n : ℕ}
-
-variable [StarRing K]
-
-variable [_root_.NumberField.IsTotallyComplex K]
-
-end Formalism.L2.Geo.Rec.DualLatticeEmbeddings
+noncomputable section
 
 
 noncomputable section
@@ -48,6 +39,7 @@ namespace Formalism.L2.Geo.Rec.DualLatticeEmbeddings
 variable {K : Type} [Field K] [NumberField K] {n : ℕ} [StarRing K] [_root_.NumberField.IsTotallyComplex K]
 
 end Formalism.L2.Geo.Rec.DualLatticeEmbeddings
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

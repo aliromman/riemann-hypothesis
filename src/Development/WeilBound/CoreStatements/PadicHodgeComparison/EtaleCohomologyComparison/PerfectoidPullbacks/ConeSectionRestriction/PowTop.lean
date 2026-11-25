@@ -80,10 +80,10 @@ import Mathlib.RingTheory.SimpleRing.Principal
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.LocExactA, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.LocExactC, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.LocExactB, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.LocExact, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.ResidChartPf, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.InfinityCoordAlgebraicIndependent, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.ResidResPf, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.ResidStmt, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.PowTop
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.LocExactA
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.LocExactA
 
-set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
@@ -289,11 +289,12 @@ theorem liftA_yx_quot {A : Type} [CommRing A] (z : Spec (CommRingCat.of A) ⟶ P
 
 end CrystallineSemistableComparison.Pb.LX
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.LocExactC
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.LocExactC
 
-set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.LogCris ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory.CompanionTheory.ConeZcls (ub ub_mul ub_nat ub_isUnit exists_unit_lift pt_map)
@@ -534,11 +535,12 @@ end E
 
 end CrystallineSemistableComparison.Pb.LX
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.LocExactB
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.LocExactB
 
-set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris DividedPowers
 
@@ -690,11 +692,12 @@ theorem bE_sub [CharZero K] (Λ : CLiftK g D) (v v' : ∀ c, (g.obj c).Bˣ) (e s
 
 end CrystallineSemistableComparison.Pb.LX
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.LocExact
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.LocExact
 
-set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
@@ -813,11 +816,12 @@ theorem firstChern_local_exact [CharZero K] (q : X ⟶ Spec (CommRingCat.of K)) 
 
 end CrystallineSemistableComparison.Pb
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.ResidChartPf
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.ResidChartPf
 
-set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 namespace CrystallineSemistableComparison.Pb
 
@@ -956,11 +960,11 @@ theorem chart_ext_pf (A T B0 Bu : Subalgebra K R) (hAT : A ≤ T) (hAB0 : A ≤ 
 
 end CrystallineSemistableComparison.Pb
 end -- clump:auto
+end -- clump:auto
 
 section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.InfinityCoordAlgebraicIndependent
 @[expose] public section
 
-set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -1039,11 +1043,6 @@ theorem jacobian_infinityDerivation (t : Fin (n + 1) → Rˣ) (D : Fin (n + 1) �
 
 section torus
 
-theorem tpow_single {d : ℕ} (t : Fin d → Rˣ) (k : Fin d) (z : ℤ) : tpow t (Pi.single k z) = ((t k ^ z : Rˣ) : R) := by
-  unfold tpow
-  rw [Fintype.prod_eq_single k (fun j hj => by simp [Pi.single_apply, hj])]
-  simp
-
 theorem tpow_mem {d : ℕ} (t : Fin d → Rˣ) (S : Finset (Fin (d + 1))) {m : Fin d → ℤ} (hm : m ∈ expS S) :
     tpow t m ∈ torusS K t S :=
   Algebra.subset_adjoin ⟨m, hm, rfl⟩
@@ -1115,7 +1114,7 @@ theorem infinityCoord_mem_torus (t : Fin (n + 1) → Rˣ) (j : Fin (n + 1)) :
 theorem infinityCoord_inv_mem (t : Fin (n + 1) → Rˣ) (j : Fin n) :
     (((u0 t j.succ)⁻¹ : Rˣ) : R) ∈ torusS K t (Finset.univ.erase 0) := by
   have h : (((u0 t j.succ)⁻¹ : Rˣ) : R) = tpow t (Pi.single 0 1 + Pi.single j.succ (-1)) := by
-    rw [CrystallineSemistableComparison.Pb.ra_tpow_add, tpow_single, tpow_single, ← Units.val_mul]
+    rw [CrystallineSemistableComparison.Pb.ra_tpow_add, CrystallineSemistableComparison.Pb.ra_tpow_single, CrystallineSemistableComparison.Pb.ra_tpow_single, ← Units.val_mul]
     congr 1
     simp [u0, mul_comm]
   rw [h]
@@ -1124,7 +1123,7 @@ theorem infinityCoord_inv_mem (t : Fin (n + 1) → Rˣ) (j : Fin n) :
 theorem infinityCoord_algebraicIndependent (t : Fin (n + 1) → Rˣ) (ht : AlgebraicIndependent K fun k => (t k : R)) :
     Function.Injective (MvPolynomial.aeval fun k => (u0 t k : R) : MvPolynomial (Fin (n + 1)) K →ₐ[K] R) := by
   classical
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro f hf
   set N := f.totalDegree
   let deg : (Fin (n + 1) →₀ ℕ) → ℕ := fun α => ∑ i, α i
@@ -1259,7 +1258,7 @@ theorem infinityCoord_span_residue (t : Fin (n + 1) → Rˣ) :
       Submodule.span K (tpow t '' {m | ∑ k, m k < -((n : ℤ) + 1)}) := by
   intro a ha
   have hc : (((t 0)⁻¹ : Rˣ) : R) ^ (n + 2) = tpow t (Pi.single 0 (-((n : ℤ) + 2))) := by
-    rw [tpow_single, ← Units.val_pow_eq_pow_val]
+    rw [CrystallineSemistableComparison.Pb.ra_tpow_single, ← Units.val_pow_eq_pow_val]
     congr 1
   have key : Submodule.span K (tpow t '' expS (Finset.univ.erase (0 : Fin (n + 2)))) ≤
       (Submodule.span K (tpow t '' {m | ∑ k, m k < -((n : ℤ) + 1)})).comap
@@ -1290,7 +1289,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.ResidResPf
 
-set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -1460,10 +1458,10 @@ end CrystallineSemistableComparison.Pb
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.ResidStmt
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.ResidStmt
 
-set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 namespace CrystallineSemistableComparison.Pb
 
@@ -1579,11 +1577,12 @@ theorem resid_alg : ∀ (K : Type) [Field K] [CharZero K] (n : ℕ) (R : Type) [
 
 end CrystallineSemistableComparison.Pb
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.PowTop
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.PowTop
 
-set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry
 

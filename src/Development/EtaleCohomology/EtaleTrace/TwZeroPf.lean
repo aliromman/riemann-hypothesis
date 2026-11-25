@@ -6,11 +6,10 @@ public import Development.EtaleCohomology.TateTwists.StrictHenselianAcyclic
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.EtaleCohomology.EtaleTrace.TwZeroPfGlue, Development.EtaleCohomology.EtaleTrace.TwZeroPf
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.EtaleCohomology.EtaleTrace.TwZeroPfGlue
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.EtC Opposite
-
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleTrace.TwZeroPfGlue
 
 namespace LateralTheory.EtaleTrace
 
@@ -28,7 +27,7 @@ theorem tz_twGen_eq_of_pow {q : ℕ} {U : Scheme.{0}} (ζ ξ : Prim q Γ(U, ⊤)
   rfl
 
 def PrimLoc : Prop := ∀ (q : ℕ) [NeZero q] (U : Scheme.{0}) (ζ ξ : Prim q Γ(U, ⊤)),
-  Loc U fun V g => ∃ a : (ZMod q)ˣ, (ξ.map g.appTop.hom).1 = (ζ.map g.appTop.hom).1 ^ (a : ZMod q).val
+  Loc U fun _ g => ∃ a : (ZMod q)ˣ, (ξ.map g.appTop.hom).1 = (ζ.map g.appTop.hom).1 ^ (a : ZMod q).val
 
 theorem TwZero_of_primLoc (hTw : LateralTheory.EtaleFoundations.CongruenceLocalDecomposition.TwLoc) (hP : PrimLoc) : TwZero := by
   intro q _ U ζ ξ
@@ -42,8 +41,12 @@ theorem TwZero_of_primLoc (hTw : LateralTheory.EtaleFoundations.CongruenceLocalD
 
 end LateralTheory.EtaleTrace
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleTrace.TwZeroPf
+@[expose] public section -- clump member: Development.EtaleCohomology.EtaleTrace.TwZeroPf
+
+noncomputable section
+open CategoryTheory Limits AlgebraicGeometry GlobalTheory.EtC Opposite
 
 namespace LateralTheory.EtaleTrace
 
@@ -51,7 +54,7 @@ def PrimSplit : Prop := ∀ (q : ℕ) [NeZero q] (A : Type) [CommRing A] (ζ ξ 
   (∀ i, IsIdempotentElem (e i)) ∧ ∑ i, e i = 1 ∧ (∀ i, e i * ξ.1 = e i * ζ.1 ^ (i : ℕ)) ∧ (∀ i : Fin q, ¬ Nat.Coprime (i : ℕ) q → e i = 0)
 
 def SplitLoc : Prop := ∀ (U : Scheme.{0}) (n : ℕ) (e : Fin n → Γ(U, ⊤)), (∀ i, IsIdempotentElem (e i)) → ∑ i, e i = 1 →
-  Loc U fun V g => ∃ i, g.appTop.hom (e i) = 1
+  Loc U fun _ g => ∃ i, g.appTop.hom (e i) = 1
 
 theorem primLoc_of (hS : PrimSplit) (hL : SplitLoc) : PrimLoc := by
   intro q _ U ζ ξ

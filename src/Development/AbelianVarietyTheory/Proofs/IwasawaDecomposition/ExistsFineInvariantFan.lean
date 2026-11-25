@@ -72,8 +72,9 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DominatesLinearFormsOnBalancedFormsCm, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PolyhedralPolarisationFaceCutIsCell, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsInvariantCarrierDimPolyFan, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PolFanCarrierDimensionBounded, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsInvariantSimplicialLabelledFanRefinement, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsInvariantSmoothRefinementPolyFan, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsInvariantSmoothProjectiveRefinementPolyFan, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LinearOnIsFineOfLinearOnPolarisationBaseFunction, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PolFanExtensionConeTransfer, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsFineInvariantFan
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DominatesLinearFormsOnBalancedFormsCm
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.DominatesLinearFormsOnBalancedFormsCm
 
+noncomputable section
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan Matrix Polynomial
 namespace GlobalTheory.DomBal
 
@@ -431,9 +432,6 @@ theorem main_matrix {n : ℕ} (G : Matrix (Fin n) (Fin n) ℤ) (hGs : Gᵀ = G)
       _ ≤ (⌈K / c⌉₊ : ℝ) * (L B : ℝ) := by gcongr; exact Nat.le_ceil _
   exact_mod_cast hfin
 
-private theorem coe_bar_eq_complexConj {E : Type} [Field E] [NumberField E] [IsCMField E] (H : Host E) (a : 𝓞 E) :
-    ((H.bar a : 𝓞 E) : E) = IsCMField.complexConj E (a : E) := H.bar_eq a
-
 theorem trace_mul_bar_pos {E : Type} [Field E] [NumberField E] [IsCMField E] (H : Host E) (z : 𝓞 E) (hz : z ≠ 0) :
     0 < Algebra.trace ℤ (𝓞 E) (z * H.bar z) := by
   classical
@@ -441,7 +439,7 @@ theorem trace_mul_bar_pos {E : Type} [Field E] [NumberField E] [IsCMField E] (H 
   have h1 : ((Algebra.trace ℤ (𝓞 E) (z * H.bar z) : ℤ) : ℚ) =
       Algebra.trace ℚ E ((z : E) * IsCMField.complexConj E (z : E)) := by
     rw [Algebra.coe_trace_int]
-    push_cast [coe_bar_eq_complexConj]
+    push_cast [ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host.bar_eq]
     rfl
   have h2 := _root_.trace_eq_sum_embeddings (K := ℚ) (L := E) (E := ℂ)
     (x := (z : E) * IsCMField.complexConj E (z : E))
@@ -629,6 +627,7 @@ theorem dominates : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : 
   simpa [Lm, Mm, B, Matrix.toBilin_toMatrix] using hfin
 
 end GlobalTheory.DomBal
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PolyhedralPolarisationFaceCutIsCell
@@ -935,11 +934,9 @@ theorem resolution : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H :
 end GlobalTheory.PolFan
 end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsInvariantSmoothProjectiveRefinementPolyFan
 
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan
-
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsInvariantSmoothProjectiveRefinementPolyFan
 
 theorem GlobalTheory.PolFan.exists_smooth_refinement : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (q : ℕ) (ψ : InvFun (𝓞 E)), (∀ (X : Type) [AddCommGroup X] [Module (𝓞 E) X] [Module.Finite (𝓞 E) X] [Module.Projective (𝓞 E) X], Dominates H.bar X) → IsPolyFan H.bar q ψ → IsTwInv H ψ → ∃ φ' : InvFun (𝓞 E), IsPolFan H.bar q φ' ∧ NoSelfInt H.bar q φ' ∧ IsTwInv H φ' ∧ ∀ (X : Type) [AddCommGroup X] [Module (𝓞 E) X] [Module.Finite (𝓞 E) X] [Module.Projective (𝓞 E) X], Module.finrank (𝓞 E) X ≤ q → ∀ (m : ℕ) (γ : Fin m → LinearMap.BilinForm ℤ X), IsCone H.bar φ' γ → ψ.LinearOn γ := by
   intro E _ _ _ H q ψ hD hψ hT
@@ -948,11 +945,13 @@ theorem GlobalTheory.PolFan.exists_smooth_refinement : ∀ (E : Type) [Field E] 
   exact ⟨φ', h1, h2, h3, fun X _ _ _ _ hX m γ hγ => (hsub'.trans hsub).linearOn hX hγ.isCell⟩
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LinearOnIsFineOfLinearOnPolarisationBaseFunction
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LinearOnIsFineOfLinearOnPolarisationBaseFunction
+
+noncomputable section
+
+open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan
 
 namespace GlobalTheory.PolFan.LinOn
-
-alias finrank_int_eq' := _root_.GlobalTheory.ToricRank.finrank_int_eq
 
 variable {X : Type} [AddCommGroup X] {m : ℕ}
 
@@ -1135,7 +1134,7 @@ theorem GlobalTheory.PolFan.linearOn_and_isFine_of_linearOn_baseFun (E : Type) [
     exact Module.Projective.of_split (h.restrictScalars ℤ) (r.restrictScalars ℤ)
       (LinearMap.ext fun x => LinearMap.congr_fun hh x)
   have hrank : Module.finrank ℤ X ≤ g := by
-    rw [finrank_int_eq' E X]
+    rw [GlobalTheory.ToricRank.finrank_int_eq E X]
     exact (Nat.mul_le_mul_left _ hX).trans hq
   have hpol : IsPolFanOn (id : ℤ → ℤ) φs X := hφ X hrank
   have h1 : ∀ i, γ i ∈ balForms (id : ℤ → ℤ) X := fun i => mem_balForms_int.2 (hb i).1
@@ -1178,6 +1177,11 @@ theorem GlobalTheory.PolFan.linearOn_and_isFine_of_linearOn_baseFun (E : Type) [
     exact (hsplit c hc).1
   · exact isFine_of_additive M hp ((hsplit (fun _ => 1) fun _ => zero_le_one).2 M hM)
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.TorRef GlobalTheory.PolFan
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.PolFanExtensionConeTransfer
 

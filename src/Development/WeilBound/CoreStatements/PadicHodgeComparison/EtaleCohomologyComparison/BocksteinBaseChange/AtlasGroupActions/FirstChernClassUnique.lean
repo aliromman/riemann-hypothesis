@@ -7,10 +7,9 @@ public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCoh
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.BocksteinBaseChange.AtlasGroupActions.ActSmul, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.BocksteinBaseChange.AtlasGroupActions.FirstChernClassUnique
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.BocksteinBaseChange.AtlasGroupActions.ActSmul
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.BocksteinBaseChange.AtlasGroupActions.ActSmul
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 namespace CrystallineSemistableComparison
 
@@ -56,11 +55,11 @@ end GlueLim
 
 end CrystallineSemistableComparison
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.BocksteinBaseChange.AtlasGroupActions.FirstChernClassUnique
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.BocksteinBaseChange.AtlasGroupActions.FirstChernClassUnique
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry TensorProduct
 open GroundTheory.PAdicHodge

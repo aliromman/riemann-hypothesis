@@ -369,11 +369,12 @@ end GlobalTheory.DatumOfPeriodsGap
 end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.TrivialWedgeDecompositionDiscreteSeriesLargeGaps
-@[expose] public noncomputable section
+@[expose] public section
 
 open BranchingSupport Formalism.FourierDecayAlt Formalism.FourierDecayAlt.ThreeDimData Matrix MeasureTheory Finset
 open scoped InnerProductSpace ENNReal
 
+noncomputable section
 
 namespace GlobalTheory.TrivWedge
 
@@ -595,12 +596,6 @@ theorem lOneNorm_add_single_unit_le {n : ℕ} (x : Fin n → ℤ) (a : Fin n) (z
         Finset.sum_le_sum fun i _ => h1 i
     _ = ∑ i, (x i).natAbs + 1 := by rw [Finset.sum_add_distrib, h2]
 
-theorem lOneNorm_sub_single_one_le {n : ℕ} (x : Fin n → ℤ) (a : Fin n) : n1 (x - Pi.single a 1) ≤ n1 x + 1 := by
-  have e : x - Pi.single a 1 = x + Pi.single a (-1) := by
-    rw [sub_eq_add_neg, Pi.single_neg]
-  rw [e]
-  exact lOneNorm_add_single_unit_le x a (-1) rfl
-
 end GlobalTheory.TrivWedge
 
 namespace GlobalTheory.TrivWedge
@@ -613,7 +608,7 @@ theorem tensH_trivial : BranchingSupport.HypsG → ∀ (k r : ℕ) (lam : Fin (2
     have := lOneNorm_add_single_unit_le ν a 1 rfl
     omega
   have hμs : ∀ s, n1 (ν + Pi.single a 1 - Pi.single s 1) ≤ q0 := fun s => by
-    have := lOneNorm_sub_single_one_le (ν + Pi.single a 1) s
+    have := Gp91.GlobalTheory.DualStepBound.lOneNorm_sub_single_one_le (ν + Pi.single a 1) s
     omega
   have hG2 : IsFamG lam q0 (Function.update F ν (F' ν)) := by
     intro x hx
@@ -651,6 +646,7 @@ theorem tensH_trivial : BranchingSupport.HypsG → ∀ (k r : ℕ) (lam : Fin (2
   exact tensH_of_equiv (F ν) _ U hU'
 
 end GlobalTheory.TrivWedge
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 

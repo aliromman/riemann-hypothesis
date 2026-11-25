@@ -118,10 +118,10 @@ theorem exists_ext_translate : ∀ (R : Type) [CommRing R] [IsDomain R] (G : Ove
 end GlobalTheory.Mum
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GeometricallyIntegralOpen
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GeometricallyIntegralOpen
 
+noncomputable section
 
-set_option backward.isDefEq.respectTransparency false
 
 namespace GlobalTheory.Mum.Spread
 

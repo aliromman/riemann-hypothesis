@@ -267,12 +267,9 @@ end -- clump:auto
 
 open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex GlobalTheory.EtC
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PrismChainComplexBoundaryIdentities
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PrismChainComplexBoundaryIdentities
 
-
-namespace GlobalTheory.EtC.PrCx
-
-end GlobalTheory.EtC.PrCx
+noncomputable section
 
 namespace GlobalTheory.EtC.PrCx
 
@@ -527,6 +524,7 @@ theorem pr_complex :
     fun _ c => bd_bd c, fun _ c => d_bd c, fun N => ⟨deg_aw N, deg_wa N⟩⟩
 
 end GlobalTheory.EtC.PrCx
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.StandardSimplexFacePairsAcyclicPositiveDegree

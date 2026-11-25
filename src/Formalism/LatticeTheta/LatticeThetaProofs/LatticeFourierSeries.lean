@@ -1,21 +1,154 @@
 module
 
-public import Formalism.LatticeTheta.LatticeThetaProofs.InnerDualVecBasis
-public import Formalism.LatticeTheta.LatticeThetaProofs.FundamentalDomainEqPreimage
 public import Mathlib.Analysis.Fourier.AddCircleMulti
 public import Formalism.LatticeTheta.LatticeSummableDecay
 import Mathlib.Tactic.Linter.Style
+public import Mathlib.Algebra.Module.ZLattice.Basic
+public import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
+import Mathlib.Tactic.TypeStar
+public import Mathlib.MeasureTheory.Measure.Haar.Unique
+public import Formalism.LatticeTheta.Statement
+public import Mathlib.CategoryTheory.Category.Basic
+import Mathlib.Algebra.Order.Archimedean.Real.Hom
+import Mathlib.Algebra.Ring.IsFormallyReal
+
+section
+@[expose] public section
+
+open MeasureTheory Filter Complex
+open scoped RealInnerProductSpace
+
+noncomputable section
+
+namespace Formalism.H
+
+variable {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V] [FiniteDimensional ℝ V]
+
+theorem innerₗ_nondegenerate : (innerₗ V : LinearMap.BilinForm ℝ V).Nondegenerate := by
+  constructor <;> intro m hm <;> simpa using hm m
+
+variable {ι : Type*} [Fintype ι] [DecidableEq ι]
+
+abbrev dualB (e : Module.Basis ι ℝ V) : Module.Basis ι ℝ V :=
+  LinearMap.BilinForm.dualBasis (innerₗ V) innerₗ_nondegenerate e
+
+theorem inner_dualB (e : Module.Basis ι ℝ V) (i j : ι) :
+    ⟪dualB e i, e j⟫ = if j = i then 1 else 0 := by
+  have h := LinearMap.BilinForm.apply_dualBasis_left (innerₗ_nondegenerate (V := V)) e i j
+  simpa using h
+
+def dualVec (e : Module.Basis ι ℝ V) (m : ι → ℤ) : V := ∑ i, m i • dualB e i
+
+theorem dualVec_eq (e : Module.Basis ι ℝ V) (m : ι → ℤ) :
+    dualVec e m = ∑ i, (m i : ℝ) • dualB e i := by
+  unfold dualVec
+  exact Finset.sum_congr rfl fun i _ => (Int.cast_smul_eq_zsmul ℝ (m i) _).symm
+
+theorem inner_dualVec_basis (e : Module.Basis ι ℝ V) (m : ι → ℤ) (j : ι) :
+    ⟪dualVec e m, e j⟫ = m j := by
+  rw [dualVec_eq, sum_inner]
+  simp_rw [real_inner_smul_left, inner_dualB]
+  simp
+
+theorem dual_span_eq (e : Module.Basis ι ℝ V) :
+    dual (Submodule.span ℤ (Set.range e)) = Submodule.span ℤ (Set.range (dualB e)) := by
+  exact LinearMap.BilinForm.dualSubmodule_span_of_basis (innerₗ V) innerₗ_nondegenerate e
+
+theorem dualVec_mem (e : Module.Basis ι ℝ V) (m : ι → ℤ) :
+    dualVec e m ∈ dual (Submodule.span ℤ (Set.range e)) := by
+  rw [dual_span_eq]
+  exact Submodule.sum_mem _ fun i _ => Submodule.smul_mem _ _ (Submodule.subset_span ⟨i, rfl⟩)
+
+theorem dualVec_injective (e : Module.Basis ι ℝ V) : Function.Injective (dualVec e) := by
+  intro m n h
+  funext j
+  have h1 := congrArg (fun x => ⟪x, e j⟫) h
+  simp only [inner_dualVec_basis] at h1
+  exact_mod_cast h1
+
+theorem dualVec_surjective (e : Module.Basis ι ℝ V) (μ : V)
+    (hμ : μ ∈ dual (Submodule.span ℤ (Set.range e))) : ∃ m, dualVec e m = μ := by
+  rw [dual_span_eq] at hμ
+  obtain ⟨c, hc⟩ := (Submodule.mem_span_range_iff_exists_fun ℤ).mp hμ
+  exact ⟨c, hc⟩
+
+def dualEquiv (e : Module.Basis ι ℝ V) : (ι → ℤ) ≃ dual (Submodule.span ℤ (Set.range e)) :=
+  Equiv.ofBijective (fun m => ⟨dualVec e m, dualVec_mem e m⟩)
+    ⟨fun m n h => dualVec_injective e (congrArg Subtype.val h),
+     fun μ => by
+      obtain ⟨m, hm⟩ := dualVec_surjective e μ μ.2
+      exact ⟨m, Subtype.ext hm⟩⟩
+
+end Formalism.H
+end
+end
+end
+
+
+section
+@[expose] public section
+
+open MeasureTheory Set
+open scoped NNReal ENNReal
+
+noncomputable section
+
+namespace Formalism.H
+
+variable {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V] [FiniteDimensional ℝ V]
+  [MeasurableSpace V] [BorelSpace V]
+variable {ι : Type*} [Fintype ι]
+
+abbrev boxIco (ι : Type*) : Set (ι → ℝ) := Set.univ.pi fun _ => Set.Ico (0 : ℝ) 1
+
+theorem volume_boxIco : volume (boxIco ι) = 1 := by
+  rw [volume_pi_pi]
+  simp [Real.volume_Ico]
+
+theorem fundamentalDomain_eq_preimage (e : Module.Basis ι ℝ V) :
+    ZSpan.fundamentalDomain e = e.equivFunL ⁻¹' boxIco ι := by
+  ext x
+  simp [ZSpan.mem_fundamentalDomain, boxIco, Set.mem_pi]
+
+theorem integral_fundamentalDomain_eq (e : Module.Basis ι ℝ V) (H : V → ℂ) :
+    ∫ y in ZSpan.fundamentalDomain e, H y =
+      (volume.real (ZSpan.fundamentalDomain e) : ℂ) * ∫ t in boxIco ι, H (e.equivFunL.symm t) := by
+  let ψ : V ≃ᵐ (ι → ℝ) := e.equivFunL.toHomeomorph.toMeasurableEquiv
+  have hψ : (ψ : V → ι → ℝ) = e.equivFunL := rfl
+  set ν : Measure (ι → ℝ) := Measure.map ψ (volume : Measure V) with hνdef
+  haveI : ν.IsAddHaarMeasure := by
+    rw [hνdef, hψ]; exact e.equivFunL.isAddHaarMeasure_map volume
+  have hν : ν = ν.addHaarScalarFactor volume • volume := Measure.isAddLeftInvariant_eq_smul ν volume
+  have hbox : ν (boxIco ι) = volume (ZSpan.fundamentalDomain e) := by
+    rw [hνdef, MeasurableEquiv.map_apply, hψ, fundamentalDomain_eq_preimage]
+  have hc : ((ν.addHaarScalarFactor volume : ℝ≥0) : ℝ≥0∞) = volume (ZSpan.fundamentalDomain e) := by
+    rw [← hbox]
+    conv_rhs => rw [hν]
+    simp [volume_boxIco]
+  have hint : ∫ y in ZSpan.fundamentalDomain e, H y = ∫ t in boxIco ι, H (e.equivFunL.symm t) ∂ν := by
+    rw [hνdef, MeasurableEquiv.restrict_map, integral_map_equiv, fundamentalDomain_eq_preimage]
+    simp only [hψ, ContinuousLinearEquiv.symm_apply_apply]
+  rw [hint, hν, Measure.restrict_smul, integral_smul_nnreal_measure, measureReal_def, ← hc,
+    ENNReal.coe_toReal, NNReal.smul_def, Complex.real_smul]
+
+end Formalism.H
+end
+end
+end
+
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LatticeTheta.LatticeThetaProofs.TorusProjIsOpenQuotientMap, Formalism.LatticeTheta.LatticeThetaProofs.LatticeFourierSeries
 
--- clump: shared namespace opens
+-- ===== clump member: Formalism.LatticeTheta.LatticeThetaProofs.TorusProjIsOpenQuotientMap =====
+-- clump-header: {"m": "Formalism.LatticeTheta.LatticeThetaProofs.TorusProjIsOpenQuotientMap", "h": "module\n\npublic import Formalism.LatticeTheta.LatticeThetaProofs.InnerDualVecBasis\npublic import Formalism.LatticeTheta.LatticeThetaProofs.FundamentalDomainEqPreimage\npublic import Mathlib.Analysis.Fourier.AddCircleMulti\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Separation.CompletelyRegular\nimport Mathlib.Topology.Sheaves.Init\n\n"}
+section -- clump:auto
+@[expose] public section
 
 open MeasureTheory Set Complex
 open scoped RealInnerProductSpace
 
-@[expose] public noncomputable section -- clump member: Formalism.LatticeTheta.LatticeThetaProofs.TorusProjIsOpenQuotientMap
-
+noncomputable section
 
 namespace Formalism.H
 
@@ -157,9 +290,19 @@ theorem mFourierCoeff_torusFunC (e : Module.Basis ι ℝ V) (G : V → ℂ) (hG 
 
 end Formalism.H
 end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.LatticeTheta.LatticeThetaProofs.TorusProjIsOpenQuotientMap =====
 
-@[expose] public noncomputable section -- clump member: Formalism.LatticeTheta.LatticeThetaProofs.LatticeFourierSeries
+-- ===== clump member: Formalism.LatticeTheta.LatticeThetaProofs.LatticeFourierSeries =====
+-- clump-header: {"m": "Formalism.LatticeTheta.LatticeThetaProofs.LatticeFourierSeries", "h": "module\n\npublic import Formalism.LatticeTheta.LatticeSummableDecay\npublic import Formalism.LatticeTheta.LatticeThetaProofs.TorusProjIsOpenQuotientMap\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Dynamics.Ergodic.Action.Regular\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Sheaves.Init\npublic import Formalism.LatticeTheta.LatticeThetaProofs.FundamentalDomainEqPreimage\npublic import Formalism.LatticeTheta.LatticeThetaProofs.InnerDualVecBasis\n\n"}
+section -- clump:auto
+@[expose] public section
 
+open MeasureTheory Set Complex
+open scoped RealInnerProductSpace
+
+noncomputable section
 
 namespace Formalism.H
 
@@ -241,6 +384,7 @@ theorem lattice_fourier_series (V : Type*) [NormedAddCommGroup V] [InnerProductS
     hcoef, ← mul_assoc, inv_mul_cancel₀ hcov0, one_mul]
 
 end Formalism.H
-
--- clump-header: {"m": "Formalism.LatticeTheta.LatticeThetaProofs.TorusProjIsOpenQuotientMap", "h": "module\n\npublic import Formalism.LatticeTheta.LatticeThetaProofs.InnerDualVecBasis\npublic import Formalism.LatticeTheta.LatticeThetaProofs.FundamentalDomainEqPreimage\npublic import Mathlib.Analysis.Fourier.AddCircleMulti\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Separation.CompletelyRegular\nimport Mathlib.Topology.Sheaves.Init\n\n"}
--- clump-header: {"m": "Formalism.LatticeTheta.LatticeThetaProofs.LatticeFourierSeries", "h": "module\n\npublic import Formalism.LatticeTheta.LatticeSummableDecay\npublic import Formalism.LatticeTheta.LatticeThetaProofs.TorusProjIsOpenQuotientMap\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Dynamics.Ergodic.Action.Regular\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.TypeStar\nimport Mathlib.Topology.Sheaves.Init\npublic import Formalism.LatticeTheta.LatticeThetaProofs.FundamentalDomainEqPreimage\npublic import Formalism.LatticeTheta.LatticeThetaProofs.InnerDualVecBasis\n\n"}
+end -- clump:auto
+end -- clump:auto
+end -- clump:auto
+-- ===== end clump member: Formalism.LatticeTheta.LatticeThetaProofs.LatticeFourierSeries =====

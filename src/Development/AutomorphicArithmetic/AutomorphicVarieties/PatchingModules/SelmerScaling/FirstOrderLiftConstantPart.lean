@@ -873,8 +873,9 @@ theorem UpperTheory.V.Pa.localInvariants_eq_zero :
     exact sub_eq_zero.1 z
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.SelmerScaling.FirstOrderMatrixMemSquareZero
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.SelmerScaling.FirstOrderMatrixMemSquareZero
 
+noncomputable section
 
 namespace UpperTheory.V.Pa.Lift1
 
@@ -884,15 +885,6 @@ private def hA : DD X g →+ X := ⟨⟨fun u => u.a, rfl⟩, fun _ _ => rfl⟩
 private def hE (j : Fin g) : DD X g →+ X := ⟨⟨fun u => u.ep j, rfl⟩, fun _ _ => rfl⟩
 private def hE' (j : Fin g) : DD X g →+ X := ⟨⟨fun u => u.ep' j, rfl⟩, fun _ _ => rfl⟩
 private def hH : DD X g →+ X := ⟨⟨fun u => u.eta, rfl⟩, fun _ _ => rfl⟩
-
-private theorem sum_a {ι : Type} (s : Finset ι) (f : ι → DD X g) : (∑ i ∈ s, f i).a = ∑ i ∈ s, (f i).a :=
-  map_sum hA f s
-private theorem sum_ep {ι : Type} (s : Finset ι) (f : ι → DD X g) (j) : (∑ i ∈ s, f i).ep j = ∑ i ∈ s, (f i).ep j :=
-  map_sum (hE j) f s
-private theorem sum_ep' {ι : Type} (s : Finset ι) (f : ι → DD X g) (j) : (∑ i ∈ s, f i).ep' j = ∑ i ∈ s, (f i).ep' j :=
-  map_sum (hE' j) f s
-private theorem sum_eta {ι : Type} (s : Finset ι) (f : ι → DD X g) : (∑ i ∈ s, f i).eta = ∑ i ∈ s, (f i).eta :=
-  map_sum hH f s
 
 private def pi1 : DD X g →+* DD X g where
   toFun u := ⟨u.a, u.ep, 0, 0⟩
@@ -928,7 +920,7 @@ private theorem pM_apply (k : Fin g) (M : Matrix (Fin n) (Fin n) (DD X g)) (i j)
 private theorem pM_mul (k : Fin g) (M N : Matrix (Fin n) (Fin n) (DD X g)) :
     pM k (M * N) = aM M * pM k N + pM k M * aM N := by
   ext i j
-  simp [pM_apply, aM_apply, Matrix.mul_apply, sum_ep', Finset.sum_add_distrib]
+  simp [pM_apply, aM_apply, Matrix.mul_apply, dd_ep'_finset_sum, Finset.sum_add_distrib]
 
 private theorem pM_SM (k : Fin g) {M : Matrix (Fin n) (Fin n) (DD X g)} (hM : M ∈ SM X g n) : pM k M = 0 := by
   ext i j
@@ -964,10 +956,10 @@ private theorem second_order_part_of_matrix (k) (Q : Fin g → Matrix (Fin n) (F
 
 private theorem conjugate_second_order_matrix (P R : Matrix (Fin n) (Fin n) X) (Q : Fin g → Matrix (Fin n) (Fin n) X) :
     P.map DD.C * mk2 Q * R.map DD.C = mk2 fun k => P * Q k * R := by
-  ext i j <;> simp [mk2, Matrix.mul_apply, sum_a, sum_ep, sum_ep', sum_eta]
+  ext i j <;> simp [mk2, Matrix.mul_apply, ep_component_add, dd_ep_finset_sum, dd_ep'_finset_sum, dd_eta_finset_sum]
 
 private theorem epM_sq (Y : Fin g → Matrix (Fin n) (Fin n) X) : DD.epM Y * DD.epM Y = 0 := by
-  ext i j <;> simp [DD.epM, Matrix.mul_apply, sum_a, sum_ep, sum_ep', sum_eta]
+  ext i j <;> simp [DD.epM, Matrix.mul_apply, ep_component_add, dd_ep_finset_sum, dd_ep'_finset_sum, dd_eta_finset_sum]
 
 private theorem epM_SM (Y : Fin g → Matrix (Fin n) (Fin n) X) : DD.epM Y ∈ SM X g n :=
   mem_SM.2 fun _ _ => ⟨rfl, rfl⟩
@@ -1255,6 +1247,7 @@ theorem UpperTheory.V.Pa.lift1 :
   · exact (bndOps x.K G.G₀).1 0
   · exact (bndOps x.K G.G₀).1 0
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.SelmerScaling.InvEv
 
@@ -1357,13 +1350,6 @@ private def epH (X : Type) [CommRing X] {g : ℕ} (j : Fin g) : DD X g →+ X wh
   map_zero' := rfl
   map_add' _ _ := rfl
 
-private theorem sum_a {ι : Type} (s : Finset ι) (f : ι → DD X g) : (∑ i ∈ s, f i).a = ∑ i ∈ s, (f i).a :=
-  map_sum (aH X g) f s
-
-private theorem sum_ep {ι : Type} (s : Finset ι) (f : ι → DD X g) (m : Fin g) :
-    (∑ i ∈ s, f i).ep m = ∑ i ∈ s, (f i).ep m :=
-  map_sum (epH X m) f s
-
 private theorem sub_a (u v : DD X g) : (u - v).a = u.a - v.a := by
   rfl
 
@@ -1384,14 +1370,14 @@ private theorem smul_ep (c : X) (u : DD X g) (m : Fin g) : (c • u).ep m = c * 
 private theorem mul_mapa (P Q : Matrix (Fin n) (Fin n) (DD X g)) :
     (P * Q).map (fun u => u.a) = P.map (fun u => u.a) * Q.map (fun u => u.a) := by
   ext i j
-  simp only [Matrix.map_apply, Matrix.mul_apply, sum_a]
+  simp only [Matrix.map_apply, Matrix.mul_apply, ep_component_add]
   rfl
 
 private theorem mul_mapep (P Q : Matrix (Fin n) (Fin n) (DD X g)) (m : Fin g) :
     (P * Q).map (fun u => u.ep m) =
       P.map (fun u => u.a) * Q.map (fun u => u.ep m) + P.map (fun u => u.ep m) * Q.map (fun u => u.a) := by
   ext i j
-  simp only [Matrix.map_apply, Matrix.mul_apply, Matrix.add_apply, sum_ep, ← Finset.sum_add_distrib]
+  simp only [Matrix.map_apply, Matrix.mul_apply, Matrix.add_apply, dd_ep_finset_sum, ← Finset.sum_add_distrib]
   rfl
 
 private theorem sub_mapa (P Q : Matrix (Fin n) (Fin n) (DD X g)) :
@@ -1502,7 +1488,7 @@ theorem UpperTheory.V.Pa.claim1 :
       rw [← e1]
       ext a b
       simp only [Finset.sum_apply, Pi.smul_apply, Pi.add_apply, Matrix.map_apply, Matrix.add_apply,
-        Matrix.sum_apply, Matrix.smul_apply, dd_a_add_of_commRing, sum_a, smul_a, hy4, hw0, smul_eq_mul, mul_zero,
+        Matrix.sum_apply, Matrix.smul_apply, dd_a_add_of_commRing, ep_component_add, smul_a, hy4, hw0, smul_eq_mul, mul_zero,
         Finset.sum_const_zero, add_zero]
     have hnegA : ∀ u : DD S.x.Fr S.k.g, (-u).a = -u.a := fun u => map_neg (aH S.x.Fr S.k.g) u
     have hTA : (Y.map (fun u => u.a))ᵀ = -(Y.map (fun u => u.a)) := by
@@ -1543,7 +1529,7 @@ theorem UpperTheory.V.Pa.claim1 :
       rw [← e1]
       ext a b
       simp only [Finset.sum_apply, Pi.smul_apply, Pi.add_apply, Matrix.map_apply, Matrix.add_apply,
-        Matrix.sum_apply, Matrix.smul_apply, dd_ep_add_apply, sum_ep, smul_ep, hc1, zero_mul,
+        Matrix.sum_apply, Matrix.smul_apply, dd_ep_add_apply, dd_ep_finset_sum, smul_ep, hc1, zero_mul,
         Finset.sum_const_zero, zero_add, smul_eq_mul]
       rw [Fintype.sum_prod_type]
       refine Finset.sum_congr rfl (fun i _ => ?_)

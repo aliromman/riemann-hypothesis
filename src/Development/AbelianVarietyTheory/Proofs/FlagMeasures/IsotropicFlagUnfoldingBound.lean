@@ -632,27 +632,24 @@ theorem exists_isSatFlag : ∀ (I : AutInst) (a : ℕ) (j : Fin a → ℕ) (B : 
 end GlobalTheory.FlagSat
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.SemilocalFrames.ExistsIsSatFlagOne
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.SemilocalFrames.ExistsIsSatFlagOne
 
 open MeasureTheory NumberField Matrix Finset
 
+noncomputable section
 
 namespace GlobalTheory.FlagMeas.SatModel
 
 open Formalism.MainNotions.S GlobalTheory.Count
 
-theorem volU_pos (i : ℕ) : 0 < volU i := by
-  unfold volU sphV
-  have := Real.pi_pos
-  refine mul_pos (Finset.prod_pos fun l _ => by positivity) (by positivity)
-
 theorem cIw_pos (p q : ℕ) {a : ℕ} (j : Fin a → ℕ) : 0 < cIw p q j := by
   unfold cIw
-  have := volU_pos
+  have := GlobalTheory.UnitaryVolume.volU_pos
   refine div_pos (mul_pos (by positivity) (mul_pos (this _) (this _)))
     (mul_pos (mul_pos (Finset.prod_pos fun i _ => mul_pos (this _) (by positivity)) (this _)) (this _))
 
 end GlobalTheory.FlagMeas.SatModel
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsMeasurableCosetSection

@@ -740,15 +740,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.OrderOfEqMaxTwoOfSignNegImplicit
 
-namespace GlobalTheory
-
-theorem orderOf_moving (fr : Formalism.HC.Frame) (φ : fr.GG) (h : φ.1.2 = -1) : orderOf φ = Nat.lcm 2 (orderOf φ.2) :=
-  UpperTheory.KStar.Words.orderOf_moving φ h
-
-theorem orderOf_moving_stmt : ∀ {fr : Formalism.HC.Frame} (φ : fr.GG), φ.1.2 = -1 → orderOf φ = Nat.lcm 2 (orderOf φ.2) :=
-  fun {fr} φ h => orderOf_moving fr φ h
-
-end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.InertPrimeNonthickLetterNoThreeThick
@@ -761,7 +752,7 @@ theorem inert_nothree_nonthick : ∀ {R : Ranks} (H : Host R) (τ φ : R.GG), 3 
       ∃ i : ZMod (orderOf φ), ¬ Thick H (letter τ φ i) := by
   intro R H τ φ hL hφ hnot
   have h2 : 2 ≤ orderOf φ := by
-    rw [_root_.GlobalTheory.orderOf_moving_stmt φ hφ]
+    rw [_root_.UpperTheory.KStar.Words.orderOf_moving φ hφ]
     exact Nat.le_of_dvd (Nat.lcm_pos two_pos (orderOf_pos _)) (Nat.dvd_lcm_left _ _)
   by_cases hc : φ = R.cc
   · have hτ : ¬ Thick H τ := fun h => hnot ⟨hc, h⟩
@@ -1126,8 +1117,6 @@ end GlobalTheory.InertNotType
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.FamJointBCDClosed
-
-
 
 section
 open NumberField IsDedekindDomain Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions Formalism.MainNotions.N Formalism.WeaklyAdmissibleFiltrations Formalism.ConjugateSelfDual ReciprocityTheory.Gal

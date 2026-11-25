@@ -143,8 +143,9 @@ theorem thmELiftAt_bc (ι : LL →ₐ[Qp] LL') (v' : AddValuation LL' (WithTop �
 end Formalism.MainNotions.WachCoordinates.Br
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.LocalCorollaryOfDeRham
+@[expose] public section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.LocalCorollaryOfDeRham
 
+noncomputable section
 
 namespace Formalism.MainNotions.N.Ln03
 
@@ -181,16 +182,9 @@ theorem caseA_richLL (K LL : FinExt l) (m : ℕ) (hK : K.1 ≤ MaximalUnramified
     (le_sup_left : (bigLL K LL).1 ≤ (richLL K LL m).1)
       ((le_sup_right : _ ≤ (bigLL K LL).1) (τ.fieldRange_le_normalClosure ⟨x, rfl⟩))⟩
 
-theorem exists_prim_Om (m : ℕ) : ∃ x : Om l, IsPrimitiveRoot x (l ^ m) := by
-  have hpos : 0 < l ^ m := pow_pos (Fact.out : l.Prime).pos m
-  have : NeZero ((l ^ m : ℕ) : Om l) := ⟨by exact_mod_cast hpos.ne'⟩
-  obtain ⟨x, hx⟩ := IsAlgClosed.exists_root (Polynomial.cyclotomic (l ^ m) (Om l))
-    (Polynomial.degree_cyclotomic_pos (l ^ m) (Om l) hpos).ne'
-  exact ⟨x, (Polynomial.isRoot_cyclotomic_iff).mp hx⟩
-
 theorem prim_richLL (K LL : FinExt l) (m : ℕ) :
     ∃ ζ : ↥(richLL K LL m).1, IsPrimitiveRoot ζ (l ^ m) := by
-  obtain ⟨x, hx⟩ := exists_prim_Om (l := l) m
+  obtain ⟨x, hx⟩ := GlobalTheory.Cyc.exists_primRoot_pow (l := l) m
   have hmem : x ∈ (richLL K LL m).1 :=
     (le_sup_right : _ ≤ (richLL K LL m).1) (IntermediateField.subset_adjoin _ _ hx.pow_eq_one)
   exact ⟨⟨x, hmem⟩, IsPrimitiveRoot.coe_submonoidClass_iff.mp hx⟩
@@ -258,6 +252,7 @@ theorem local_theorem_of_cyclotomic_lift (Th : LocTheory) (N : ℕ → ℕ)
   ⟨lift_of_caseA_rich Th N Wf hLift hBC, thmEBound_holds⟩
 
 end Formalism.MainNotions.N.Ln03
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.CyclotomicPowerSeries.ExpRescaleCoeff
@@ -542,8 +537,9 @@ theorem realised2_pf (Lb : LevB W) (hR : Ring9 W) (e : W.DD W.one) (uZ : ℤ_[PD
 end Formalism.MainNotions.N.Ln03
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.LocalTheoremOfInputs
+@[expose] public section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.LocalTheoremOfInputs
 
+noncomputable section
 
 namespace Formalism.MainNotions.N.Ln03
 
@@ -556,8 +552,6 @@ def levBOfSit {l : ℕ} [Fact l.Prime] {P : LocPrime l} {AI : LocAinf l P} {K : 
   levB := S.tie.levB
   mem := S.tie.levB_mem
   supp := S.tie.levB_supp
-
-
 
 theorem local_theorem_of_inputs (D : D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW)
     (Cm : CmpOf D.loc D.locA HW F) (C : ℝ)
@@ -668,6 +662,7 @@ theorem corollary_local_exists_constant : ∃ C₀ : ℝ, ∀ (D : D7) (HW : HWO
   exact hA' τ hτ a ((h14 l K LL).1 T₁ T₂ F h1 h2 hF τ a ha)
 
 end Formalism.MainNotions.N.Ln03
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.LocalCorollaryConstant

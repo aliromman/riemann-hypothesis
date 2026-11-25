@@ -27,8 +27,9 @@ end Gen
 end PI.VolSemiDirect.W
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SemidirectVolume.ProjHA
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.SemidirectVolume.ProjHA
 
+noncomputable section
 
 namespace PI.VolSemiDirect.W
 
@@ -134,7 +135,7 @@ private theorem hform_single_single_semidirect_volume {A : Type} [CommRing A] {n
     Formalism.UG.hform σA N (Pi.single i 1) (Pi.single j 1) = N i j := by
   unfold Formalism.UG.hform
   rw [Finset.sum_eq_single i (fun b _ hb => by simp [Pi.single_apply, hb]) (by simp)]
-  rw [Finset.sum_eq_single j (fun b _ hb => by simp [Pi.single_apply, hb]) (by simp)]
+  rw [Finset.sum_eq_single j (fun b _ hb => by simp [hb]) (by simp)]
   simp
 
 theorem uj_of_uni {A : Type} [CommRing A] {n : Type} [Fintype n] [DecidableEq n] (σA : A →+* A)

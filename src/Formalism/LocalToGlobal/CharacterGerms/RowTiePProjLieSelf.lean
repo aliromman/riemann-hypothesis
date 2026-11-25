@@ -20,8 +20,9 @@ import Mathlib.RingTheory.TotallySplit
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyDelta, Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyGlue, Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyRes2, Formalism.LocalToGlobal.CharacterGerms.RowTiePSplitLA, Formalism.LocalToGlobal.CharacterGerms.RowTiePProjLieSelf
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyDelta
+@[expose] public section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyDelta
 
+noncomputable section
 
 namespace Formalism.L2.FormalSeriesBounds
 
@@ -33,23 +34,10 @@ section Val
 
 variable {C : Type} [Field C] {V : VF C}
 
-theorem mm_exists {a : C} (h : V.MM a) : ∃ r : ℝ, 0 < r ∧ V.Ge r a := by
-  unfold VF.MM at h
-  unfold VF.Ge
-  cases hva : V.v a with
-  | top => exact ⟨1, one_pos, le_top⟩
-  | coe x =>
-    rw [hva] at h
-    exact ⟨x, by exact_mod_cast h, le_rfl⟩
-
 theorem mm_of_ge {a : C} {r : ℝ} (hr : 0 < r) (h : V.Ge r a) : V.MM a := by
   unfold VF.MM
   unfold VF.Ge at h
   exact lt_of_lt_of_le (by exact_mod_cast hr) h
-
-theorem mm_add {a b : C} (ha : V.MM a) (hb : V.MM b) : V.MM (a + b) := by
-  unfold VF.MM at ha hb ⊢
-  exact lt_of_lt_of_le (lt_min ha hb) (AddValuation.map_add _ a b)
 
 theorem mm_neg {a : C} (ha : V.MM a) : V.MM (-a) := by
   unfold VF.MM at ha ⊢
@@ -160,7 +148,7 @@ private lemma mm_pow_l_pow_sub_of_mm_sub {C : Type} [Field C] {V : VF C} {s t : 
   rcases Nat.eq_zero_or_pos k with rfl | hk
   · simp only [pow_zero, pow_one]
     exact h
-  · obtain ⟨r, hr, hge⟩ := mm_exists h
+  · obtain ⟨r, hr, hge⟩ := Formalism.L2.FormalSeriesBounds.IndAr.exists_ge_of_mm h
     exact mm_of_ge (add_pos_of_pos_of_nonneg hr (le_min zero_le_one hr.le))
       (pow_lk_close hs ht hr.le hge k hk)
 
@@ -177,7 +165,7 @@ private lemma mm_em_add_sub_em_pow_l_pow {C : Type} [Field C] {V : VF C} {O : Ty
     have h1 := K.6 (a + k) y
     have h2 := mm_pow_l_pow_sub_of_mm_sub (K.5 (a + k) y) (ge_zero_pow_of_ge_zero (K.5 a y) _) ih 1
     simp only [pow_one] at h2
-    have h3 := mm_add h1 h2
+    have h3 := Formalism.L2.FormalSeriesBounds.IndAr.mm_add' h1 h2
     rw [sub_add_sub_cancel] at h3
     rw [Nat.cast_succ, ← add_assoc, pow_succ, pow_mul]
     exact h3
@@ -186,7 +174,7 @@ theorem keyDelta_holds : KeyDeltaSt := by
   intro C _ _ V O _ n d _ K χ c hχ hcong
   have hunit : V.v (χ K.7) = 0 := by
     apply v_unit
-    have h := mm_add (hcong K.7) (K.9 c)
+    have h := Formalism.L2.FormalSeriesBounds.IndAr.mm_add' (hcong K.7) (K.9 c)
     rwa [sub_add_sub_cancel] at h
   have hunit' : V.v ((K.em c) K.7) = 0 := v_unit (K.9 c)
   have hrad : ∀ x : O, (∀ a, V.MM ((K.em a) x)) → ∀ r : ℝ, (∀ w, V.Ge r (χ w - (K.em c) w)) →
@@ -298,6 +286,7 @@ end Main
 end RowTiePKey
 
 end Formalism.L2.FormalSeriesBounds
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTiePKeyGlue
@@ -903,8 +892,9 @@ end RowTiePSplit
 end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTiePProjLieSelf
+@[expose] public section -- clump member: Formalism.LocalToGlobal.CharacterGerms.RowTiePProjLieSelf
 
+noncomputable section
 
 open MvPowerSeries ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ
 
@@ -936,7 +926,6 @@ theorem keySelf (hE : KeyEigSt) {C : Type} [Field C] [CharZero C] {V : VF C} {O 
   exact keyLA_of hE RowTiePKeyRes.keyRes_holds keyDelta_holds C V Y.algClosed Y.cpl O dd d K x
 
 end ProjLieSelf
-
 
 open PartialDerivEval RowTiePE0 RowTiePProj RowTiePLSmall RowTiePLie RowTiePSplit RowTiePKey in
 theorem projLieSelf_of (hE : KeyEigSt) : ProjLieSelfSt := by

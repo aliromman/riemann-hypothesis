@@ -12,49 +12,8 @@ public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.Fou
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.GluedLatticeFiniteExpansionsLocalFieldStatement
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SourceLiftAtGluedPlaceProof
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SplitPlaceLineComponentsContraction
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
 import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
-import Mathlib.Topology.Sheaves.Init
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Data.Nat.Choose.Multinomial
 import Development.AbelianVarietyTheory.Definitions.LatticeFrames.IsSumFrame
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SplitPlaceBaseVacuumDatumExistsUniqueStatement
 import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SplitPlaceLinearModelLatticeVacuumBase
@@ -396,8 +355,6 @@ section Local
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
   {n : Type} [Fintype n] [DecidableEq n]
 
-alias charInd_mem' := _root_.GlobalTheory.FinPl.SBFacts.charInd_mem
-
 theorem inDual_vecMul {L : Submodule 𝒪[k] (n → k)} {g : GL n k} (hg : g • L = L) (η : n → k) :
     InDual L (η ᵥ* g.val) ↔ InDual L η := by
   have h1 : ∀ y, y ∈ L → g • y ∈ L := fun y hy => by
@@ -573,7 +530,7 @@ theorem vertexGlued (D : D7) : VertexGlued D := by
       rwa [val_FFStar'] at this
     let v' : caSub B.A := ⟨_, hFF P₁⟩
     let x : Pair k n → SB (Matrix n (n' ⊕ Fin 1) k) := fun Q' =>
-      col (phiOne P₁ Q') (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem P₁ Q') (charInd (resChar χ hχ q) Q') (charInd_mem' _ Q')
+      col (phiOne P₁ Q') (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem P₁ Q') (charInd (resChar χ hχ q) Q') (GlobalTheory.FinPl.SBFacts.charInd_mem _ Q')
     let xv : Pair k n' → Pair k n → SB (Matrix n (n' ⊕ Fin 1) k) := fun A Q' =>
       col (phiOne A Q') (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem A Q') (vecInd Q.lat) hvec
     let yd : Pair k n → SB (Matrix (n'' ⊕ Fin 1) n k) := fun Q'' =>
@@ -596,7 +553,7 @@ theorem vertexGlued (D : D7) : VertexGlued D := by
 
     have t0 : ∀ Q' ∈ withLat Q.lat, (Θ v' (x Q') y₀).1 = 0 := fun Q' hQ' => by
       have := key v' (phiOne P₁ Q') (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem P₁ Q') (latInd Q.lat R.ker) (latInd_mem_SB _ _)
-        (charInd (resChar χ hχ q) Q') (vecInd Q.lat) (dualInd Q.lat) (dualInd Q.lat) (charInd_mem' _ Q') hvec hdual hdual
+        (charInd (resChar χ hχ q) Q') (vecInd Q.lat) (dualInd Q.lat) (dualInd Q.lat) (GlobalTheory.FinPl.SBFacts.charInd_mem _ Q') hvec hdual hdual
       have hf := _root_.GlobalTheory.FinPl.Comm.fpair_charInd_dualInd k n q χ hχ e he μ Q'
       rw [mem_withLat.1 hQ'] at hf
       rw [hf, zero_smul] at this
@@ -610,14 +567,14 @@ theorem vertexGlued (D : D7) : VertexGlued D := by
       rw [Finset.sum_eq_single_of_mem (ε • Q') hmem]
       · have := key v' (phiOne P₁ Q') (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem P₁ Q') (phiOne (ε • Q') R)
           (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem _ R) (charInd (resChar χ hχ q) Q') (vecInd Q.lat)
-          (cosetInd q (ε • Q').lat (ε • Q').red) (dualInd Q.lat) (charInd_mem' _ Q') hvec (_root_.GlobalTheory.FinPl.CosetSB.cosetInd_mem_SB k n q _ _) hdual
+          (cosetInd q (ε • Q').lat (ε • Q').red) (dualInd Q.lat) (GlobalTheory.FinPl.SBFacts.charInd_mem _ Q') hvec (_root_.GlobalTheory.FinPl.CosetSB.cosetInd_mem_SB k n q _ _) hdual
         rw [(_root_.GlobalTheory.FinPl.CosetPairing.fpair_charInd_cosetInd k n q χ hχ e ε hεe μ Q' (ε • Q') (by rw [Pair.dia_lat])).1 rfl, hQ'l] at this
         exact smul_right_injective _ I0 this
       · intro Q'' hQ'' hne
         have hQ''l : Q''.lat = Q.lat := mem_withLat.1 hQ''
         have := key v' (phiOne P₁ Q') (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem P₁ Q') (phiOne Q'' R)
           (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem _ R) (charInd (resChar χ hχ q) Q') (vecInd Q.lat)
-          (cosetInd q Q''.lat Q''.red) (dualInd Q.lat) (charInd_mem' _ Q') hvec (_root_.GlobalTheory.FinPl.CosetSB.cosetInd_mem_SB k n q _ _) hdual
+          (cosetInd q Q''.lat Q''.red) (dualInd Q.lat) (GlobalTheory.FinPl.SBFacts.charInd_mem _ Q') hvec (_root_.GlobalTheory.FinPl.CosetSB.cosetInd_mem_SB k n q _ _) hdual
         rw [(_root_.GlobalTheory.FinPl.CosetPairing.fpair_charInd_cosetInd k n q χ hχ e ε hεe μ Q' Q'' (hQ''l.trans hQ'l.symm)).2 hne, zero_smul] at this
         exact (smul_eq_zero.1 this).resolve_left I0
 
@@ -771,7 +728,7 @@ theorem vertexGlued (D : D7) : VertexGlued D := by
         rwa [val_FFStar'] at this
       let v' : caSub B.A := ⟨_, hFF⟩
       let x : Pair k n → SB (Matrix n (n' ⊕ Fin 1) k) := fun Q' =>
-        col (phiOne P₁ Q') (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem P₁ Q') (charInd (resChar χ hχ q) Q') (charInd_mem' _ Q')
+        col (phiOne P₁ Q') (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem P₁ Q') (charInd (resChar χ hχ q) Q') (GlobalTheory.FinPl.SBFacts.charInd_mem _ Q')
       let yK : SB (Matrix (n'' ⊕ Fin 1) n k) := row (latInd Q.lat Λ) hL (dualInd Q.lat) hdual
       have h2 : hand0 s₁ s₂ l vL (φ P) Ξ₁ Ξ₂ = c₀ • hand0 s₁ s₂ l vL (FFStar q (resChar χ hχ q) φ P₁)
           (U₁ (∑ Q' ∈ withLat Q.lat, x Q')) Ξ₂ :=
@@ -784,7 +741,7 @@ theorem vertexGlued (D : D7) : VertexGlued D := by
         rw [map_sum, LinearMap.sum_apply, Submodule.coe_sum]
       have t0 : ∀ Q' ∈ withLat Q.lat, (Θ v' (x Q') yK).1 = 0 := fun Q' hQ' => by
         have := key v' (phiOne P₁ Q') (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem P₁ Q') (latInd Q.lat Λ) hL
-          (charInd (resChar χ hχ q) Q') (vecInd Q.lat) (dualInd Q.lat) (dualInd Q.lat) (charInd_mem' _ Q') hvec hdual hdual
+          (charInd (resChar χ hχ q) Q') (vecInd Q.lat) (dualInd Q.lat) (dualInd Q.lat) (GlobalTheory.FinPl.SBFacts.charInd_mem _ Q') hvec hdual hdual
         have hf := _root_.GlobalTheory.FinPl.Comm.fpair_charInd_dualInd k n q χ hχ e he μ Q'
         rw [mem_withLat.1 hQ'] at hf
         rw [hf, zero_smul] at this
@@ -820,7 +777,7 @@ theorem vertexGlued (D : D7) : VertexGlued D := by
       let x₀ : SB (Matrix n (n' ⊕ Fin 1) k) := col (latInd P.ker Q.lat) (latInd_mem_SB _ _) (vecInd Q.lat) hvec
       let xm : Pair k n → SB (Matrix n (n' ⊕ Fin 1) k) := fun Q' =>
         col (latInd P.ker Q'.ker + mainDatum q (resChar χ hχ q) 1 P Q') (hM Q') (charInd (resChar χ hχ q) Q')
-          (charInd_mem' _ Q')
+          (GlobalTheory.FinPl.SBFacts.charInd_mem _ Q')
       let xmv : Pair k n → SB (Matrix n (n' ⊕ Fin 1) k) := fun Q' =>
         col (latInd P.ker Q'.ker + mainDatum q (resChar χ hχ q) 1 P Q') (hM Q') (vecInd Q.lat) hvec
       let xL : SB (Matrix n (n' ⊕ Fin 1) k) := col (latInd P.lat Q.lat) (latInd_mem_SB _ _) (vecInd Q.lat) hvec
@@ -845,7 +802,7 @@ theorem vertexGlued (D : D7) : VertexGlued D := by
       have hm : ∀ Q' ∈ withLat Q.lat, (Θ vP (xm Q') yP).1 = (Θ vP (xmv Q') yP).1 := by
         intro Q' hQ'
         have := key vP _ (hM Q') (latInd Q.lat Λ) hL (charInd (resChar χ hχ q) Q') (vecInd Q.lat) btot btot
-          (charInd_mem' _ Q') hvec hbtot hbtot
+          (GlobalTheory.FinPl.SBFacts.charInd_mem _ Q') hvec hbtot hbtot
         have f4 := _root_.GlobalTheory.FinPl.Comm.DualCosets.fpair_charInd_dualInd_add_cosets k n q χ hχ e he μ Q'
         have f3 := _root_.GlobalTheory.FinPl.Comm.fpair_vecInd_dualInd_add_cosets k n q χ hχ e he μ Q.lat
         rw [mem_withLat.1 hQ', ← hbdef] at f4

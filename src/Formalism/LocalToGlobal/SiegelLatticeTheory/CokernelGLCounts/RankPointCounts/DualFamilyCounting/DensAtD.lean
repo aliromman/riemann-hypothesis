@@ -37,11 +37,12 @@ theorem densInputAt_of_loc {D : Formalism.BasicNotions.D7} (hL : DensLocBound D)
 end Formalism.L2.SG.DataCut
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.DensAtD
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.DensAtD
 
 open NumberField Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.CntLocal
 open Classical ValuativeRel
 
+noncomputable section
 
 namespace Formalism.L2.SG.Pf.Cnt
 
@@ -180,7 +181,7 @@ theorem densLocBound_of_tied {D : Formalism.BasicNotions.D7} (hL : Formalism.L2.
 
 def DensInputT : Prop := ∀ D : Formalism.BasicNotions.D7, Formalism.L2.SG.Pf.LocCP.LocTied D → Formalism.L2.SG.DataInst.DensInputAt D
 
-theorem densInputT_holds : DensInputT := fun D hL => Formalism.L2.SG.DataCut.densInputAt_of_loc (densLocBound_of_tied hL)
+theorem densInputT_holds : DensInputT := fun _ hL => Formalism.L2.SG.DataCut.densInputAt_of_loc (densLocBound_of_tied hL)
 
 end Formalism.L2.SG.Pf.Cnt
 

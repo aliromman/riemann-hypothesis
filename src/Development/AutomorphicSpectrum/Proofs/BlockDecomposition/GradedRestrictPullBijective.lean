@@ -12,10 +12,11 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HodgeFiltration
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictPullBijectiveOfForall, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GradedRestrictPullBijective
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictPullBijectiveOfForall
+-- clump: shared namespace opens
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictPullBijectiveOfForall
 
 namespace GlobalTheory.CompanionTheory.OmRes
 
@@ -23,9 +24,6 @@ end GlobalTheory.CompanionTheory.OmRes
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GradedRestrictPullBijective
-
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison
 
 namespace GlobalTheory.CompanionTheory.OmLoc
 

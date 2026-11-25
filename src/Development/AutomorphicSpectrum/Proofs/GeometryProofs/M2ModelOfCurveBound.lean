@@ -777,9 +777,9 @@ theorem frame_lat [IsCommMonObj G] (hξ : IsCptGen ξ) (hs : Smooth G.hom) (M : 
 end PositivityTheory.HtPt.Ci
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.CiGrDeg
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.CiGrDeg
 
-set_option backward.isDefEq.respectTransparency false
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj
@@ -945,10 +945,11 @@ theorem gr_deg : ∀ (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : Spec (CommRin
 
 end PositivityTheory.HtPt.Ci
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.CiCurveIn
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.CiCurveIn
 
-set_option backward.isDefEq.respectTransparency false
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Crv GlobalTheory.CompanionTheory.Ar.Conj
@@ -1185,6 +1186,7 @@ theorem curve_in_cpt : ∀ (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : Spec (C
     exact h2.symm
 
 end PositivityTheory.HtPt.Ci
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.CiField

@@ -78,7 +78,10 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemClosureRationalPointsUnitaryGroup, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ContinuousOneAddLowRankEmbeddingQuaternionMatrix, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsQuaternionMatrixEqOfUnitaryDetOne, Development.AbelianVarietyTheory.Proofs.DivisorProofs.MatrixFixesLowRankProjectorOfFixesRationalKernel, Development.AbelianVarietyTheory.Proofs.DivisorProofs.NegInvRatioIsNormOfNegRatioIsNorm, Development.AbelianVarietyTheory.Proofs.DivisorProofs.OrthogonalAnisotropicPairPlaneMatricesFacts, Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryFixingKernelEqOneAddLowRankOfUnitary, Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryFixingKernelEqOneAddLowRankOfUnitaryStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SpecialUnitaryFixingPlaneComplementMemClosure, Development.AbelianVarietyTheory.Proofs.DivisorProofs.QuasiReflectionPairTruncationMemClosure, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SpecialUnitaryEqProdQuasiReflectionPairs, Development.AbelianVarietyTheory.Proofs.DivisorProofs.TruncationSpecialUnitaryMemClosureStrongApprox, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ImportsTailTer
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemClosureRationalPointsUnitaryGroup
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemClosureRationalPointsUnitaryGroup
+@[expose] public section
+
+noncomputable section
 
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.Published
 open scoped TensorProduct
@@ -123,7 +126,7 @@ theorem exists_aniso {K : Type} [Field K] (c : K →+* K) (hne : ∃ z, c z ≠ 
     rw [map_one] at h1
     have : (z - c z) * J i j = 0 := by linear_combination h2 - c z * h1
     exact (mul_eq_zero.1 this).resolve_left (sub_ne_zero.2 hz.symm)
-  haveI : Nonempty (Fin n) := ⟨⟨0, hn⟩⟩
+  have : Nonempty (Fin n) := ⟨⟨0, hn⟩⟩
   exact hdet (by rw [hJ, det_zero])
 
 theorem exists_proj {K : Type} [Field K] (c : K →+* K) (hc : ∀ x, c (c x) = x) (hne : ∃ z, c z ≠ z) {n : ℕ}
@@ -221,14 +224,14 @@ theorem sigR_sigR (R : Type) [CommRing R] [Algebra F R] (σ : E →ₐ[F] E) (hc
 
 theorem continuous_sigR (R : Type) [CommRing R] [Algebra F R] [TopologicalSpace R] [IsTopologicalRing R]
     (σ : E →ₐ[F] E) : Continuous (sigR R σ) := by
-  haveI : IsModuleTopology R (R ⊗[F] E) := ⟨rfl⟩
-  haveI : ContinuousAdd (R ⊗[F] E) := IsModuleTopology.toContinuousAdd R _
+  have : IsModuleTopology R (R ⊗[F] E) := ⟨rfl⟩
+  have : ContinuousAdd (R ⊗[F] E) := IsModuleTopology.toContinuousAdd R _
   exact IsModuleTopology.continuous_of_linearMap (Algebra.TensorProduct.map (AlgHom.id R R) σ).toLinearMap
 
 theorem denseRange_inclR (R : Type) [CommRing R] [Algebra F R] [TopologicalSpace R] [IsTopologicalRing R]
     [FiniteDimensional F E] (hd : DenseRange (algebraMap F R)) : DenseRange (inclR (F := F) (E := E) R) := by
-  haveI : IsModuleTopology R (R ⊗[F] E) := ⟨rfl⟩
-  haveI : IsTopologicalRing (R ⊗[F] E) := IsModuleTopology.isTopologicalRing R _
+  have : IsModuleTopology R (R ⊗[F] E) := ⟨rfl⟩
+  have : IsTopologicalRing (R ⊗[F] E) := IsModuleTopology.isTopologicalRing R _
   intro y
   let S : AddSubgroup (R ⊗[F] E) := (inclR (F := F) (E := E) R).toAddMonoidHom.range.topologicalClosure
   have hS : IsClosed (S : Set (R ⊗[F] E)) := AddSubgroup.isClosed_topologicalClosure _
@@ -261,11 +264,11 @@ theorem mem_closure_trunc [CharZero E] [FiniteDimensional F E] (A B : Type) [Com
     g ∈ closure {m | ∃ γ : Matrix (Fin n) (Fin n) E, cT (σ : E →+* E) γ * J * γ = J ∧ γ.det = 1 ∧
       m = 1 + algebraMap A (A ⊗[F] E) η • (γ.map (inclR (F := F) A) - 1)} := by
   classical
-  haveI : IsModuleTopology A (A ⊗[F] E) := ⟨rfl⟩
-  haveI : IsTopologicalRing (A ⊗[F] E) := IsModuleTopology.isTopologicalRing A _
-  haveI : IsModuleTopology B (B ⊗[F] E) := ⟨rfl⟩
-  haveI : IsTopologicalRing (B ⊗[F] E) := IsModuleTopology.isTopologicalRing B _
-  haveI : IsArtinianRing (B ⊗[F] E) := IsArtinianRing.of_finite B _
+  have : IsModuleTopology A (A ⊗[F] E) := ⟨rfl⟩
+  have : IsTopologicalRing (A ⊗[F] E) := IsModuleTopology.isTopologicalRing A _
+  have : IsModuleTopology B (B ⊗[F] E) := ⟨rfl⟩
+  have : IsTopologicalRing (B ⊗[F] E) := IsModuleTopology.isTopologicalRing B _
+  have : IsArtinianRing (B ⊗[F] E) := IsArtinianRing.of_finite B _
   let b := Module.finBasis F E
   let bA := Algebra.TensorProduct.basis A b
   let bB := Algebra.TensorProduct.basis B b
@@ -394,8 +397,8 @@ theorem weak_approx_SU : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [N
   have key := mem_closure_trunc (AF F) B π _ (GlobalTheory.PlaceApprox.continuous_locAdele T₁ T₂) η hπ
     (GroundTheory.Global.denseRange_algebraMap_prod_pi (K := F) T₂ T₁) a1 a2 σ hc hne J hJ' hJ.2
     (GlobalTheory.SUSuppSub.mv σ J h) (show HR (AF F) σ J from h).2 (StrongApprox.mem_SUAdelic.1 hh1) hh2
-  haveI : IsModuleTopology (AF F) (AF F ⊗[F] E) := ⟨rfl⟩
-  haveI : IsTopologicalRing (AF F ⊗[F] E) := IsModuleTopology.isTopologicalRing (AF F) _
+  have : IsModuleTopology (AF F) (AF F ⊗[F] E) := ⟨rfl⟩
+  have : IsTopologicalRing (AF F ⊗[F] E) := IsModuleTopology.isTopologicalRing (AF F) _
   have hu : IsUnit (JR (F := F) (AF F) J).det := by
     unfold JR
     rw [← RingHom.mapMatrix_apply, ← RingHom.map_det]
@@ -430,6 +433,8 @@ end Main
 
 end GlobalTheory.SUWeakApprox
 
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens
@@ -443,8 +448,8 @@ namespace GlobalTheory
 
 theorem emb_qm_continuous : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Algebra F E] (a b : F) (M : ℕ) (A : Matrix (Fin M) (Fin 2) (AF F ⊗[F] E)) (B : Matrix (Fin 2) (Fin M) (AF F ⊗[F] E)) (θ : AF F ⊗[F] E), Continuous fun x : DA F a b => emb A B (qm (algebraMap (AF F) (AF F ⊗[F] E)) θ x) := by
   intro F E _ _ _ _ a b M A B θ
-  haveI : IsModuleTopology (AF F) (AF F ⊗[F] E) := ⟨rfl⟩
-  haveI : IsTopologicalAddGroup (AF F ⊗[F] E) := IsModuleTopology.topologicalAddGroup (AF F) _
+  have : IsModuleTopology (AF F) (AF F ⊗[F] E) := ⟨rfl⟩
+  have : IsTopologicalAddGroup (AF F ⊗[F] E) := IsModuleTopology.topologicalAddGroup (AF F) _
   have hL : ∀ c : AF F ⊗[F] E, Continuous (fun y : AF F ⊗[F] E => c * y) := fun c =>
     IsModuleTopology.continuous_of_linearMap (LinearMap.mulLeft (AF F) c)
   have hR : ∀ c : AF F ⊗[F] E, Continuous (fun y : AF F ⊗[F] E => y * c) := fun c =>
@@ -804,7 +809,15 @@ theorem _root_.GlobalTheory.T.unitary_fixing_kernel_eq_oneAddLowRank_of_unitary 
   first | exact @GlobalTheory.PlaneSU.eq_emb_of_fix
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SpecialUnitaryFixingPlaneComplementMemClosure
+end -- clump: shared namespace opens
+
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SpecialUnitaryFixingPlaneComplementMemClosure
+@[expose] public section
+
+noncomputable section
+
+open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.Published GlobalTheory.QSA GlobalTheory.PlaneSU
+open scoped TensorProduct Quaternion
 
 namespace GlobalTheory.PlaneSU
 
@@ -895,8 +908,6 @@ theorem plane_closure : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Nu
   let Φ : {y : DA F δ (-(f₂ / f₁)) // nrm y = 1} → HA (AF F) σ J := fun y =>
     (⟨Matrix.GeneralLinearGroup.mk'' (emb A B (qm ι θ y.1)) (by rw [hdet y.1 y.2]; exact isUnit_one),
       hunit y.1 y.2⟩ : HR (AF F) σ J)
-  have hΦmat : ∀ y, ((HA.mat (AF F) σ J (Φ y)).1 : Matrix (Fin M) (Fin M) (AF F ⊗[F] E)) = emb A B (qm ι θ y.1) :=
-    fun y => rfl
 
   have hco : ∀ i, Continuous fun y : DA F δ (-(f₂ / f₁)) => coords y i := fun i =>
     (continuous_apply i).comp continuous_induced_dom
@@ -997,15 +1008,13 @@ theorem plane_closure : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Nu
 
 end GlobalTheory.PlaneSU
 
+end
+end -- clump:auto
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.QuasiReflectionPairTruncationMemClosure
 
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.Published
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.QuasiReflectionPairTruncationMemClosure
 open scoped TensorProduct
 
 namespace GlobalTheory.SUPair
@@ -1207,6 +1216,8 @@ end GlobalTheory.SUPair
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SpecialUnitaryEqProdQuasiReflectionPairs
+
+open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.Published
 open scoped TensorProduct Matrix
 
 namespace GlobalTheory.SUGenPairs
@@ -1351,7 +1362,12 @@ theorem GlobalTheory.SUGenPairs.eq_prod_pairs : ∀ (F E : Type) [Field F] [Numb
     rfl
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TruncationSpecialUnitaryMemClosureStrongApprox
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TruncationSpecialUnitaryMemClosureStrongApprox
+@[expose] public section
+
+noncomputable section
+
+open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.Published
 open scoped TensorProduct
 
 namespace GlobalTheory.SUAssemble
@@ -1403,7 +1419,7 @@ theorem assemble : (∀ (F E : Type) [Field F] [NumberField F] [Field E] [Number
   have hdet : (g0 : Matrix (Fin M) (Fin M) E).det = 1 := by
     have h := StrongApprox.mem_SUAdelic.1 hγa
     rw [hmat, ← RingHom.map_det] at h
-    haveI : Nontrivial (AF F) := inferInstanceAs (Nontrivial (InfiniteAdeleRing F × FiniteAdeleRing (𝓞 F) F))
+    have : Nontrivial (AF F) := inferInstanceAs (Nontrivial (InfiniteAdeleRing F × FiniteAdeleRing (𝓞 F) F))
     have hinj : Function.Injective (inclR (F := F) (E := E) (AF F)) :=
       Algebra.TensorProduct.includeRight_injective (algebraMap F (AF F)).injective
     exact hinj (h.trans (map_one _).symm)
@@ -1423,9 +1439,13 @@ theorem assemble : (∀ (F E : Type) [Field F] [NumberField F] [Field E] [Number
 
 end GlobalTheory.SUAssemble
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ImportsTailTer
+
+open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.Published
 open scoped TensorProduct
 
 namespace GlobalTheory.StrongApproxSUProof

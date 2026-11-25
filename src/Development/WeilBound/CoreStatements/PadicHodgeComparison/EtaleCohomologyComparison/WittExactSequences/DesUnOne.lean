@@ -13,10 +13,9 @@ import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomology
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.FlagDomainConjHostXiEqNeg, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.MulQExact, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.DesUnOne
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.FlagDomainConjHostXiEqNeg
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.FlagDomainConjHostXiEqNeg
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory TensorProduct GroundTheory.PAdicHodge
 
@@ -105,11 +104,11 @@ theorem tau1_smul (a : Ainf l) (x : A.Un 1) :
 
 end CrystallineSemistableComparison.D
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.MulQExact
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.MulQExact
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 namespace CrystallineSemistableComparison.D
 
@@ -157,11 +156,11 @@ end SlopeTestRemainingChoices
 
 end CrystallineSemistableComparison.D
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.DesUnOne
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.DesUnOne
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory TensorProduct GroundTheory.PAdicHodge CrystallineSemistableComparison.CH
 

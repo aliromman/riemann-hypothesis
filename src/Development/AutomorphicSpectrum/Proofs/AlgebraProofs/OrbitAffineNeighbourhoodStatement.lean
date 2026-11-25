@@ -177,7 +177,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.FiniteSetBasicOpenAffineStatement
 
-
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.MemOrbitSelf
@@ -205,7 +204,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.NormNotMemPrimeIff
 
 namespace GlobalTheory.CompanionTheory.NormPrime
-
 
 open TensorProduct in
 theorem norm_one_tmul {A B K : Type} [CommRing A] [CommRing B] [Algebra A B] [Module.Free A B]
@@ -236,7 +234,6 @@ theorem norm_mem_comap {A B : Type} [CommRing A] [CommRing B] [Algebra A B] [Mod
     exact q.neg_mem (q.mul_mem_left _ he)
   rw [Algebra.norm_apply, LinearMap.det_eq_sign_charpoly_coeff]
   exact Ideal.mul_mem_left _ _ (Ideal.mem_comap.2 h4)
-
 
 open TensorProduct in
 theorem norm_notMem_iff {A B : Type} [CommRing A] [CommRing B] [Algebra A B] [Module.Free A B]
@@ -277,9 +274,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.NormNotMemPrimeIffStatement
 
-
-theorem _root_.GlobalTheory.T.norm_not_mem_prime_iff : ∀ {A B : Type} [CommRing A] [CommRing B] [Algebra A B] [Module.Free A B] [Module.Finite A B] (e : B) (p : Ideal A), p.IsPrime → (Algebra.norm A e ∉ p ↔ ∀ q : Ideal B, q.IsPrime → q.comap (algebraMap A B) = p → e ∉ q) := by
-  first | exact @GlobalTheory.CompanionTheory.NormPrime.norm_notMem_iff
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.OrbitTrans
@@ -382,8 +376,9 @@ theorem exists_iso_swap_action_snd : ∀ {S : Scheme.{0}} (G X : Over S) [GrpObj
 end GlobalTheory.CompanionTheory.FreeQuotProof
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.OrbitAffineNeighbourhood
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.OrbitAffineNeighbourhood
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.FreeQuotProof.Nbhd
 
 variable {S : Scheme.{0}} (G X : Over S) [GrpObj G] [ModObj G X]
@@ -457,7 +452,7 @@ theorem exists_norm {P D : Scheme.{0}} [IsAffine P] [IsAffine D] (v : P ⟶ D)
   have h1 : Module.Free Γ(D, ⊤) Γ(P, ⊤) := hv.1
   have h2 : Module.Finite Γ(D, ⊤) Γ(P, ⊤) := hv.2
   refine ⟨Algebra.norm Γ(D, ⊤) e, _root_.GlobalTheory.CompanionTheory.PrimesToPts.primes_to_pts v _ e fun p => ?_⟩
-  rw [GlobalTheory.T.norm_not_mem_prime_iff e p.asIdeal p.isPrime]
+  rw [GlobalTheory.CompanionTheory.NormPrime.norm_notMem_iff e p.asIdeal p.isPrime]
   constructor
   · intro h q hq
     exact h q.asIdeal q.isPrime hq
@@ -528,6 +523,7 @@ theorem exists_stable_affine_nbhd : ∀ {S : Scheme.{0}} (G X : Over S) [GrpObj 
     exact ((hVmem y).1 hy).2 (_root_.GlobalTheory.CompanionTheory.FreeQuotProof.Nbhd.orbit_trans G X y w t hw ht)
 
 end GlobalTheory.CompanionTheory.FreeQuotProof.Nbhd
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.OrbitAffineNeighbourhoodStatement

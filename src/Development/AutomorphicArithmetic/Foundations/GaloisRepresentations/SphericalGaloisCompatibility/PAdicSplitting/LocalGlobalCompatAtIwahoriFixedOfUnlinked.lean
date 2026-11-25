@@ -225,12 +225,12 @@ open GlobalTheory.AboveL
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.ExistsNormVEqNormVUnderPowStatement
 
-theorem _root_.GlobalTheory.T.exists_normV_eq_normV_under_pow : ∀ (K M : Type) [Field K] [NumberField K] [Field M] [NumberField M] [Algebra K M] (w : HeightOneSpectrum (𝓞 M)), ∃ f : ℕ, normV w = normV (w.under (𝓞 K)) ^ f := by
-  first | exact @GlobalTheory.AboveL.ResDeg.normV_eq_under_pow
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.HeckeCharNormDescent
+section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.HeckeCharNormDescent
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.RealNormChar
 
@@ -276,7 +276,6 @@ theorem normChar_locInf {K L : Type} [Field K] [NumberField K] [Field L] [Number
   have := GroundTheory.Global.extensionEmbeddingOfIsReal_normUnits (K := K) u hu (-1)
   rw [this]
   simp
-
 
 open scoped GroundTheory.Global.AdeleBaseChange in
 open GlobalTheory.UnitaryHeckeBaseChange in
@@ -329,6 +328,8 @@ theorem main : ∀ (K M : Type) [Field K] [NumberField K] [IsCMField K] [Field M
 
 end GlobalTheory.RealNormChar
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.HeckeCharNormDescentStatement
@@ -378,8 +379,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.UnramifiedAtValueHeckeCharCompIdeleNormStatement
 
-theorem _root_.GlobalTheory.T.unramifiedAt_value_heckeChar_comp_ideleNorm : ∀ (K M : Type) [Field K] [NumberField K] [Field M] [NumberField M] [Algebra K M] (ψ : HChar K) (ψ' : HChar M), (∀ x : Ideles M, ψ'.1 x = ψ.1 (GroundTheory.Global.ideleNorm K M x)) → ∀ (w : HeightOneSpectrum (𝓞 M)) (f : ℕ), normV w = normV (w.under (𝓞 K)) ^ f → ψ.UnrAt (w.under (𝓞 K)) → ψ'.UnrAt w ∧ ψ'.val w = ψ.val (w.under (𝓞 K)) ^ f := by
-  first | exact @GlobalTheory.NormValGen.unrAt_val_of_comp_norm
 end -- clump:auto
 
 end -- clump: shared namespace opens
@@ -408,8 +407,8 @@ private theorem pol_norm (hjs : GlobalTheory.Published.JacquetShalikaRigidity) (
   have hT' := (HeightOneSpectrum.tendsto_under_cofinite K M).eventually (hT.and hU)
   have hbc' := (conjSrc_injective (IsCMField.complexConj M).toRingEquiv).tendsto_cofinite.eventually hbc
   filter_upwards [hT', hbc, hbc'] with w ⟨hTw, hUw⟩ hw hcw
-  obtain ⟨f, hf⟩ := GlobalTheory.T.exists_normV_eq_normV_under_pow K M w
-  obtain ⟨hu', hval⟩ := GlobalTheory.T.unramifiedAt_value_heckeChar_comp_ideleNorm K M (compNorm K χ) (compNorm M χ') hN w f hf hUw
+  obtain ⟨f, hf⟩ := GlobalTheory.AboveL.ResDeg.normV_eq_under_pow K M w
+  obtain ⟨hu', hval⟩ := GlobalTheory.NormValGen.unrAt_val_of_comp_norm K M (compNorm K χ) (compNorm M χ') hN w f hf hUw
   refine ⟨hu', ?_⟩
   obtain ⟨B, hB1, hB2⟩ := hw f hf
   have hcu := GlobalTheory.T.under_conjugatePlace_eq_conjugatePlace_under K M w
@@ -646,15 +645,10 @@ theorem UpperTheory.Gal.ToralGalois.R2.infLifts :
     rw [hS Y.K Z.K hP n hn Y.π Z.π hW τ, ih (τ.comp (algebraMap Y.K Z.K)), RingHom.comp_assoc, hcomp]
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.FiniteOrderTwists
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.FiniteOrderTwists
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.GalCut GlobalTheory.RoadU GlobalTheory.AboveL
 
-
-namespace GlobalTheory.RoadU.FinTwist
-
-open GlobalTheory.ContraPair GlobalTheory.HeightCounting.Blocks
-
-end GlobalTheory.RoadU.FinTwist
+noncomputable section
 
 namespace GlobalTheory.RoadU.FinTwist
 
@@ -676,6 +670,7 @@ theorem infChar_twist {K : Type} [Field K] [NumberField K] [_root_.NumberField.I
   simp
 
 end GlobalTheory.RoadU.FinTwist
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalGaloisCompatibility.PAdicSplitting.PInfStep

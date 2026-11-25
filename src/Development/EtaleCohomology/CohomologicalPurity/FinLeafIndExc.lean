@@ -27,11 +27,9 @@ import Development.EtaleCohomology.CohomologicalPurity.LeafFreeCokPfSurj
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.EtaleCohomology.CohomologicalPurity.EtalePurityContinuityOffClosedOfLocalAndChase, Development.EtaleCohomology.CohomologicalPurity.LeafHsContPfFive, Development.EtaleCohomology.CohomologicalPurity.LeafNbhdExcPf, Development.EtaleCohomology.CohomologicalPurity.OffContBasicPfR, Development.EtaleCohomology.CohomologicalPurity.OffContLocKnxPf, Development.EtaleCohomology.CohomologicalPurity.OffChaseGeoOf, Development.EtaleCohomology.CohomologicalPurity.ResLECompIsoOpenInfPreimageHomNaturality, Development.EtaleCohomology.CohomologicalPurity.FixLeafIndExc, Development.EtaleCohomology.CohomologicalPurity.FinLeafIndExc
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.CohomologicalPurity.EtalePurityContinuityOffClosedOfLocalAndChase
 
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
-
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.CohomologicalPurity.EtalePurityContinuityOffClosedOfLocalAndChase
 
 namespace LateralTheory.CohomologicalPurity
 
@@ -101,6 +99,8 @@ end LateralTheory.CohomologicalPurity
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.EtaleCohomology.CohomologicalPurity.LeafHsContPfFive
+
+open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 
 namespace LateralTheory.CohomologicalPurity
 
@@ -225,6 +225,8 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.EtaleCohomology.CohomologicalPurity.LeafNbhdExcPf
 
+open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
+
 namespace LateralTheory.CohomologicalPurity
 
 def nbhdRet {A B : Type} [CommRing A] [CommRing B] (φ : A →+* B) (I : Ideal A) (hb : Function.Bijective
@@ -305,10 +307,12 @@ end LateralTheory.CohomologicalPurity
 end -- clump:auto
 
 section -- clump member: Development.EtaleCohomology.CohomologicalPurity.OffContBasicPfR
-@[expose] public noncomputable section
+@[expose] public section
+
+noncomputable section
+open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 
 namespace LateralTheory.CohomologicalPurity
-
 
 set_option backward.isDefEq.respectTransparency.types false in
 def opIso {R : CommRingCat.{0}} (g : R) (U : (Spec R).Opens)
@@ -542,8 +546,11 @@ theorem offContBasic_of : OffContBasic := by
 end LateralTheory.CohomologicalPurity
 end -- clump:auto
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.EtaleCohomology.CohomologicalPurity.OffContLocKnxPf
+
+open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 
 namespace LateralTheory.CohomologicalPurity
 
@@ -561,6 +568,8 @@ end LateralTheory.CohomologicalPurity
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.EtaleCohomology.CohomologicalPurity.OffChaseGeoOf
+
+open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 
 namespace LateralTheory.CohomologicalPurity
 
@@ -802,6 +811,8 @@ end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.EtaleCohomology.CohomologicalPurity.ResLECompIsoOpenInfPreimageHomNaturality
 
+open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
+
 namespace LateralTheory.CohomologicalPurity
 
 theorem ht_transport (q : ℕ) {J : Type} [SmallCategory J] (X Y : J → Spc) (X0 Y0 : Spc) (a : ∀ j, X0 ⟶ X j)
@@ -933,8 +944,6 @@ theorem OffChaseGeo_full : OffChaseGeo := OffChaseGeo_of ocg_AL ocg_BL ocg_BR
 end LateralTheory.CohomologicalPurity
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
 @[expose] public section -- clump member: Development.EtaleCohomology.CohomologicalPurity.FixLeafIndExc
 
 namespace LateralTheory.Fix.LeafIndExc
@@ -962,8 +971,6 @@ end -- clump:auto
 namespace LateralTheory.Fin.LeafIndExc
 theorem etale_boundary_monomorphism_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Bd.LeafMono := by
   apply LateralTheory.CohomologicalPurity.Bd.LeafMono_of
-theorem etale_relative_boundary_pushout_property_holds : LateralTheory.CohomologicalPurity.Bd.LeafPush := by
-  apply LateralTheory.CohomologicalPurity.Bd.LeafPush_of
 theorem etale_boundary_good_pair_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Bd.LeafGood := by
   apply LateralTheory.CohomologicalPurity.Bd.LeafGood_of
 theorem etale_boundary_connecting_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Bd.LeafDelta := by
@@ -977,7 +984,7 @@ theorem etale_boundary_image_hom_of_thom_isomorphism : LateralTheory.Cohomologic
 theorem etale_boundary_image_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Bd.LeafImg := by
   apply LateralTheory.CohomologicalPurity.Bd.LeafImg_of <;> first | exact etale_boundary_image_hom_of_thom_isomorphism
 theorem etale_boundary_map_of_thom_isomorphism : LateralTheory.CohomologicalPurity.LeafBd := by
-  apply LateralTheory.CohomologicalPurity.Bd.goal_of <;> first | exact etale_boundary_monomorphism_of_thom_isomorphism | exact etale_relative_boundary_pushout_property_holds | exact etale_boundary_good_pair_of_thom_isomorphism | exact etale_boundary_connecting_of_thom_isomorphism | exact etale_boundary_exact_of_thom_isomorphism | exact etale_boundary_generator_of_thom_isomorphism | exact etale_boundary_image_hom_of_thom_isomorphism | exact etale_boundary_image_of_thom_isomorphism
+  apply LateralTheory.CohomologicalPurity.Bd.goal_of <;> first | exact etale_boundary_monomorphism_of_thom_isomorphism | exact LateralTheory.CohomologicalPurity.Bd.LeafPush_of | exact etale_boundary_good_pair_of_thom_isomorphism | exact etale_boundary_connecting_of_thom_isomorphism | exact etale_boundary_exact_of_thom_isomorphism | exact etale_boundary_generator_of_thom_isomorphism | exact etale_boundary_image_hom_of_thom_isomorphism | exact etale_boundary_image_of_thom_isomorphism
 alias intersectionNumber_baseChange := _root_.LateralTheory.Fix.LeafIndExc.intersectionNumber_baseChange
 end LateralTheory.Fin.LeafIndExc
 

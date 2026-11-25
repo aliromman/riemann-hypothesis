@@ -8,8 +8,9 @@ import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.LocallyOfFinite
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Definitions.Divisors.ToBidualDualMapEigenImageInclusion, Development.AbelianVarietyTheory.Definitions.Divisors.IsIsoQuotToImOmegaLieOfSplit
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.ToBidualDualMapEigenImageInclusion
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.ToBidualDualMapEigenImageInclusion
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Opposite Limits
 open scoped TensorProduct
@@ -35,15 +36,6 @@ theorem mono_toBidual_of_mono (i : G ⟶ F) [Mono i] [Mono (cartierDualToBidual 
 
 def IsRegularFn (D : Γ(X, ⊤)) : Prop :=
   ∀ (V : X.Opens) (a : Γ(X, V)), resG X (le_top : V ≤ ⊤) D * a = 0 → a = 0
-
-theorem isRegularFn_of_ne_zero [IsIntegral X] {D : Γ(X, ⊤)} (h : D ≠ 0) : IsRegularFn D := by
-  intro V a e
-  rcases eq_or_ne V ⊥ with rfl | hV
-  · exact Subsingleton.elim _ _
-  · obtain ⟨x, hx⟩ := (Opens.ne_bot_iff_nonempty _).1 hV
-    have : Nonempty V := ⟨⟨x, hx⟩⟩
-    refine (mul_eq_zero.1 e).resolve_left fun h0 => h ?_
-    exact map_injective_of_isIntegral X (homOfLE le_top) (h0.trans (map_zero _).symm)
 
 section Im
 
@@ -178,9 +170,11 @@ end Examples₂
 
 end GlobalTheory.LieVB
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.IsIsoQuotToImOmegaLieOfSplit
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.IsIsoQuotToImOmegaLieOfSplit
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Opposite Limits MonoidalCategory
   CartesianMonoidalCategory MonObj
@@ -417,12 +411,6 @@ theorem isVB_omega_of_isGrpPullback (h : IsGrpPullback G' G f φ) {g : ℕ} (hg 
 
 end Base
 
-section DualIm
-
-variable {O : Type} [CommRing O] {F : S.Modules} (ρ : O →+* End F) (σ : O →+* Γ(S, ⊤)) {g r : ℕ}
-
-end DualIm
-
 section Act
 
 variable {O : Type} [CommRing O] {G H : Over S} [GrpObj G] [GrpObj H] [QuasiSeparated G.hom]
@@ -600,12 +588,6 @@ variable (S) (X Y : Type) [AddCommGroup X] [AddCommGroup Y]
 variable {X} {κ : Type} [Fintype κ] (b : Module.Basis κ ℤ X)
 
 end Torus
-
-section Examples
-
-variable {G : Over S} [GrpObj G] [QuasiSeparated G.hom]
-
-end Examples
 
 end GlobalTheory.LieVB
 

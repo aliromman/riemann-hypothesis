@@ -13,8 +13,9 @@ import Mathlib.MeasureTheory.Measure.HasOuterApproxClosedProd
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.AutomorphicForms.Induction, GroundTheory.AutomorphicForms.InductionParabolicLocal, GroundTheory.AutomorphicForms.InductionParabolic
 
-@[expose] public noncomputable section -- clump member: GroundTheory.AutomorphicForms.Induction
+@[expose] public section -- clump member: GroundTheory.AutomorphicForms.Induction
 
+noncomputable section
 
 namespace GroundTheory.Automorphic
 
@@ -140,7 +141,7 @@ def frobeniusInv (hπ : IsSmooth π) (φ : Representation.IntertwiningMap (π.co
   map_add' v w := Subtype.ext (funext fun g => by simp)
   map_smul' c v := Subtype.ext (funext fun g => by simp)
   isIntertwining' g := LinearMap.ext fun v => Subtype.ext (funext fun x => by
-    simp [map_mul, Module.End.mul_apply])
+    simp [map_mul])
 
 @[simp]
 theorem frobeniusInv_apply (hπ : IsSmooth π)
@@ -170,6 +171,7 @@ end Frobenius
 end Induced
 
 end GroundTheory.Automorphic
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.AutomorphicForms.InductionParabolicLocal

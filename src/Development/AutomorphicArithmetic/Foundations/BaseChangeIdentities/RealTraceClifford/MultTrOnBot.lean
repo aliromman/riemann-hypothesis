@@ -13,13 +13,12 @@ import Development.AutomorphicArithmetic.Foundations.BaseChangeIdentities.RealTr
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.Foundations.BaseChangeIdentities.RealTraceClifford.IsoSplit, Development.AutomorphicArithmetic.Foundations.BaseChangeIdentities.RealTraceClifford.MultTrOnBot
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.BaseChangeIdentities.RealTraceClifford.IsoSplit
 
+noncomputable section
 
 open Matrix Finset
 open scoped InnerProductSpace ComplexConjugate
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.BaseChangeIdentities.RealTraceClifford.IsoSplit
 open PositivityTheory.RgTw (Mat)
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD UpperTheory.RealTr
 open Formalism.REAL (GlRel IsWeight KHighest Cas)
@@ -62,7 +61,7 @@ private theorem isoPart_map (F : Fin n → Fin n → Module.End ℂ V) (T : Set 
 
 private theorem isoPart_stb (F : Fin n → Fin n → Module.End ℂ V) (T : Set (Wt n)) (S : Submodule ℂ V) :
     Stb F (Formalism.REAL.isoPart (fun _ => true) F T S) := fun a b =>
-  isoPart_map F T S (F a b) _ fun y hy μ hμ hk z hz =>
+  isoPart_map F T S (F a b) _ fun y hy _ hμ hk _ hz =>
     le_isoPart F hy hμ hk (kSpan_stb F y a b hz)
 
 private theorem isoPart_cm (F : Fin n → Fin n → Module.End ℂ V) (T : Set (Wt n)) (S : Submodule ℂ V)
@@ -174,8 +173,13 @@ theorem UpperTheory.RealTr.isoSplit :
         exact Submodule.add_mem_sup (Submodule.mem_inf.mpr ⟨k1, h₁⟩) (Submodule.mem_inf.mpr ⟨k2, h₂⟩)
       · exact sup_le (inf_le_inf_left _ h1S) (inf_le_inf_left _ h2S)
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.BaseChangeIdentities.RealTraceClifford.MultTrOnBot
+
+
+open Matrix Finset
+open scoped InnerProductSpace ComplexConjugate
 open PositivityTheory.RgTw (Mat)
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD UpperTheory.RealTr
 open Formalism.REAL (GlRel IsWeight KHighest Cas)

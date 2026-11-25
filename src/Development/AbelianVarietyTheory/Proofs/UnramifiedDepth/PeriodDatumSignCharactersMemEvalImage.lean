@@ -91,11 +91,9 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ChartFirstOrderMemSpan, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ChartPSmulLiftEqBt, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.CoeffDecomp, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.CoeffDvdOfAevalAddSqZero, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.EvImgIsLatSubring, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.FAddNsmulFEqEvalPolyFrob, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.HtDualExists, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.IsLocalRingTensorProductOfFiniteOfPoints, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.NsmulFAddSqZeroEq, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.PSerFrobOfInvariance, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.PairingNsmulRight, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.PointsEqTangent, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ValNatCastSmul, Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.PeriodDatumSignCharactersMemEvalImage
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ChartFirstOrderMemSpan
 
 open TensorProduct IsLocalRing Matrix ReciprocityTheory.PGsh ReciprocityTheory.PGsh.Up ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Be2
-
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ChartFirstOrderMemSpan
 
 namespace GlobalTheory
 
@@ -196,7 +194,11 @@ end GlobalTheory
 end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ChartPSmulLiftEqBt
-@[expose] public noncomputable section
+@[expose] public section
+
+noncomputable section
+
+open TensorProduct IsLocalRing Matrix ReciprocityTheory.PGsh ReciprocityTheory.PGsh.Up ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Be2
 
 namespace GlobalTheory
 
@@ -306,14 +308,12 @@ theorem chart_p_smul_lift_eq_bt :
     rw [B.tg_nat (Tw.π 1) D.wd.πW (Tw.sqZero 1) hsq, ← hpth, smul_comm p, ← map_nsmul,
       smul_smul, pow_two]
   refine ⟨∑ i, n i • B.map D.wd.ψ (p • th i), ?_, ?_⟩
-  · set_option synthInstance.maxHeartbeats 100000 in
-      simp only [ptOf, map_sum, map_nsmul]
+  · simp only [ptOf, map_sum, map_nsmul]
     refine Finset.sum_congr rfl fun i _ => ?_
     rw [← B.map_comp, hc1, B.map_comp, hth, ← B.map_comp, hc2, D.L.τ_compat i 0, map_nsmul]
   · refine ⟨hpt ▸ map_tg_ker B _ _ hsq _ D.wd.ρW_eq v, fun k => ?_⟩
     refine ⟨∑ i, n i • D.wd.ψ.1 (btTanCrd D.ch.gb _ k (w i)), ?_, ?_⟩
-    · set_option synthInstance.maxHeartbeats 100000 in
-        simp only [map_sum, map_nsmul, Matrix.mulVec, dotProduct, map_mul, Function.comp_apply]
+    · simp only [map_sum, map_nsmul, Matrix.mulVec, dotProduct, map_mul, Function.comp_apply]
       refine Finset.sum_congr rfl fun i _ => ?_
       have h1 := congrArg (btTanCrd D.ch.gb _ k) (hw i)
       rw [btTanCrd_nat, btTanCrd_nat] at h1
@@ -346,8 +346,11 @@ theorem chart_p_smul_lift_eq_bt :
 end GlobalTheory
 end -- clump:auto
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.CoeffDecomp
+
+open TensorProduct IsLocalRing Matrix ReciprocityTheory.PGsh ReciprocityTheory.PGsh.Up ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Be2
 
 namespace GlobalTheory.WFrob
 
@@ -506,6 +509,8 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.CoeffDvdOfAevalAddSqZero
 
+open TensorProduct IsLocalRing Matrix ReciprocityTheory.PGsh ReciprocityTheory.PGsh.Up ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Be2
+
 namespace GlobalTheory
 
 private lemma polCoef_taylor {R₀ A : Type} [CommRing R₀] [CommRing A] [Algebra R₀ A] {g : ℕ}
@@ -627,7 +632,11 @@ end GlobalTheory
 end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.EvImgIsLatSubring
-@[expose] public noncomputable section
+@[expose] public section
+
+noncomputable section
+
+open TensorProduct IsLocalRing Matrix ReciprocityTheory.PGsh ReciprocityTheory.PGsh.Up ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Be2
 
 namespace GlobalTheory
 
@@ -669,7 +678,7 @@ theorem _root_.GlobalTheory.evImg_isLat_subring :
     change Submodule.span _ (Set.range ⇑f) = _
     rw [← LinearMap.coe_range, Submodule.span_eq]
   have hinjΨ : Function.Injective Ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro F hF
     funext i
     apply D.fin.sep i
@@ -733,6 +742,11 @@ theorem _root_.GlobalTheory.evImg_isLat_subring :
 end GlobalTheory
 end -- clump:auto
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+open TensorProduct IsLocalRing Matrix ReciprocityTheory.PGsh ReciprocityTheory.PGsh.Up ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Be2
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.FAddNsmulFEqEvalPolyFrob
 
@@ -769,7 +783,6 @@ private lemma btPoly_map_tEval {R₀ : Type} [CommRing R₀] {ι : Type} [Fintyp
     (N : ℕ) (f : MvPowerSeries ι R₀) {S S' : Type} [CommRing S] [Algebra R₀ S] [CommRing S']
     [Algebra R₀ S'] (φ : S →ₐ[R₀] S') (a : ι → S) :
     φ (tEval N f a) = tEval N f (fun i => φ (a i)) := by
-  set_option synthInstance.maxHeartbeats 100000 in
     simp [tEval, map_sum, map_prod]
 
 private lemma btPoly_unif {ι S : Type} [Fintype ι] [CommRing S] (a : ι → S)

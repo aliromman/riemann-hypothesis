@@ -201,14 +201,11 @@ theorem UpperTheory.exists_cotangent_map_localization_away :
         rw [map_smul, ← algebraMap_smul S (b i), smul_comm]
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.FiniteFiberOfFiniteTypeParameterRing
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.FiniteFiberOfFiniteTypeParameterRing
 
 open GlobalTheory GlobalTheory.PD
 
-
-namespace UpperTheory
-
-end UpperTheory
+noncomputable section
 
 theorem UpperTheory.finite_fiber_of_finiteType_parameter_ring :
     ∀ (F K : Type) [Field F] [Field K] [Algebra ℂ F] [Algebra ℂ K] [Algebra F K] [IsScalarTower ℂ F K]
@@ -280,6 +277,7 @@ theorem UpperTheory.finite_fiber_of_finiteType_parameter_ring :
   intro t ht
   have := congrFun h ⟨t, ht⟩
   exact congrArg Subtype.val this
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.ExistsUnitMulMemSpanOfReducedIsolatedZero
@@ -1162,8 +1160,7 @@ theorem UpperTheory.etaleCorrespondence_local_parameters_statement :
     refine ⟨c * p, q, ?_, ?_⟩
     · rw [← hy0W, map_mul, map_mul, hy0W, hy0W]
       exact mul_ne_zero hc hp
-    · set_option synthInstance.maxHeartbeats 100000 in
-        rw [map_mul, mul_assoc, ← hap, ← map_mul, hcq, map_sum, ht]
+    · rw [map_mul, mul_assoc, ← hap, ← map_mul, hcq, map_sum, ht]
       simp only [map_mul]
   obtain ⟨ψ, p1, p2, p3⟩ := pdW
   obtain ⟨φ, q1, q2, q3, q4⟩ := UpperTheory.exists_cotangent_map_dual_basis_of_parameters (evA hW) t ψ (fun b ω => by rw [p1, evA_apply]) p2 evt

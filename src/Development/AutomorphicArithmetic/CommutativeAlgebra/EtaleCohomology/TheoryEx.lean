@@ -526,11 +526,11 @@ theorem UpperTheory.exists_coefficient_equiv_cohomology_of_elements :
   exact cmp_pull u F j y
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.EtaleIdempotents.ExistsCohomologyZeroEquivSectionsNatural
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.EtaleIdempotents.ExistsCohomologyZeroEquivSectionsNatural
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory CrystallineSemistableComparison CrystallineSemistableComparison.CH UpperTheory.Ru.crystallineComparison UpperTheory.Ru.crystallineComparison.Th
 
+noncomputable section
 
 namespace UpperTheory.Ru.crystallineComparison.Th.Deg0
 
@@ -617,6 +617,7 @@ theorem UpperTheory.exists_cohomology_zero_equiv_sections_natural :
   · intro P F G α x A y
     obtain ⟨f, rfl⟩ := Submodule.Quotient.mk_surjective _ x
     exact congrArg (α.app A).hom (val_eq f.1 _)
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.TheoryEx

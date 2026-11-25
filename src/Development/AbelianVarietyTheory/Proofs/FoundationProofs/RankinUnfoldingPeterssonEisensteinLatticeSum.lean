@@ -753,12 +753,6 @@ end -- clump:auto
 
 namespace GlobalTheory.EisM
 
-private theorem im_ofComplex_pt (x y : ℝ) (hy : 0 < y) :
-    (ofComplex ((x : ℂ) + (y : ℂ) * Complex.I)).im = y := by
-  have h : 0 < ((x : ℂ) + (y : ℂ) * Complex.I).im := by simpa using hy
-  rw [ofComplex_apply_of_im_pos h]
-  simp [UpperHalfPlane.im]
-
 theorem strip_eq_LSeries : ∀ (h b : ℕ → ℂ) (w : ℝ), 0 < w → PolyB h → PolyB b → h 0 = 0 →
     LSeriesSummable (fun n => conj (h n) * b n) w →
     IntegrableOn (fun τ : ℍ => conj (qs h τ) * qs b τ * ((τ.im ^ (w + 1) : ℝ) : ℂ)) strip →
@@ -776,7 +770,7 @@ theorem strip_eq_LSeries : ∀ (h b : ℕ → ℂ) (w : ℝ), 0 < w → PolyB h 
     refine setIntegral_congr_fun measurableSet_Ioi (fun y hy => ?_)
     have hy : 0 < y := hy
     have hy' : (y : ℂ) ≠ 0 := by exact_mod_cast hy.ne'
-    simp only [im_ofComplex_pt _ _ hy, hPd, smul_eq_mul]
+    simp only [GlobalTheory.EisM.im_ofComplex_xy _ _ hy, hPd, smul_eq_mul]
     rw [intervalIntegral.integral_mul_const]
     have e : ((y : ℂ) ^ ((w : ℂ) - 1)) = ((y ^ (w + 1) : ℝ) : ℂ) / (y : ℂ) ^ 2 := by
       have e1 : (w : ℂ) - 1 = ((w - 1 : ℝ) : ℂ) := by push_cast; ring

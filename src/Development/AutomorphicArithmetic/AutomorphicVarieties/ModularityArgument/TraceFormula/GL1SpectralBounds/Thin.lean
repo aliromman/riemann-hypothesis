@@ -72,8 +72,9 @@ end PositivityTheory.Rg.BcB.Desc
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.RealDescent.LyingOverPrimes.InertThin
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.RealDescent.LyingOverPrimes.InertThin
 
+noncomputable section
 
 open NumberField IsDedekindDomain GlobalTheory.UnitaryBC
 
@@ -96,8 +97,7 @@ lemma exists_prime_mem (P : HeightOneSpectrum (𝓞 K)) : ∃ p : ℕ, p.Prime �
   exact ⟨q, Nat.prime_of_mem_primeFactorsList hq, hxP⟩
 
 lemma span_max {p : ℕ} (hp : p.Prime) : (Ideal.span {(p : ℤ)}).IsMaximal := by
-  haveI := Fact.mk hp
-  exact Int.ideal_span_isMaximal_of_prime p
+  exact Formalism.BasicNotions.span_prime_isMaximal p hp
 
 lemma span_eq (P : HeightOneSpectrum (𝓞 K)) {p : ℕ} (hp : p.Prime) (hm : (p : 𝓞 K) ∈ P.asIdeal) :
     Ideal.span {(p : ℤ)} = P.asIdeal.comap (algebraMap ℤ (𝓞 K)) := by
@@ -313,6 +313,7 @@ theorem inertThin_holds : InertThin := by
           exact hS.sum_le_tsum _ (fun k _ => by positivity)
 
 end PositivityTheory.Rg.BcB.Desc
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GL1SpectralBounds.Thin

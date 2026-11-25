@@ -43,16 +43,10 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.FockKSmulRight, Formalism.SharpRestriction.GrowthBounds.FockGramWindow.RestWinOfLvl, Formalism.SharpRestriction.GrowthBounds.FockGramWindow.InitialPointNumericBound, Formalism.SharpRestriction.GrowthBounds.FockGramWindow.GramWindow2Proved, Formalism.SharpRestriction.GrowthBounds.FockGramWindow.LettersAtUPos, Formalism.PolynomialDimension.MultinomialDepth.SegmentBoundThreeHolds, Formalism.PolynomialDimension.ChangeLatticeGoodRank, Formalism.SharpRestriction.GrowthBounds.FockGramWindow.BinMatNatDegreeLe, Formalism.SharpRestriction.GrowthBounds.FockGramWindow.NeglogPowMul, Formalism.SharpRestriction.GrowthBounds.FockGramWindow.NormFockLe, Formalism.SharpRestriction.GrowthBounds.FockGramWindow.WinLvl, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.DiagonalRank.DetOneSubPNe, Formalism.PeriodIntegrals.LatMin, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MinimalLatticeNorm.NormTwoEqOne, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.LatMin, Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.OrthSplitOfMin, Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.ClosedOfOrthogonalSplitting, Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.ClosedOfSplittingMatrix, Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.ClosedOfMinimalVector, Formalism.SharpRestriction.GrowthBounds.FockGramWindow
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.FockKSmulRight
+section -- clump member: Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.FockKSmulRight
+@[expose] public section
 
-
-namespace Formalism.MainNotions.G.SymmetricFormBlocks
-
-open MvPolynomial Finset Formalism.MainNotions.G Formalism.MainNotions.flipOneThree Formalism.MainNotions.G.CountingStatementReduction
-
-variable (C0 CE1 CE2 : ℝ) (X : flipOneThree.Inst)
-
-end Formalism.MainNotions.G.SymmetricFormBlocks
+noncomputable section
 
 namespace Formalism.MainNotions.G.SymmetricFormBlocks
 
@@ -67,6 +61,8 @@ variable {C0 CE1 CE2 : ℝ} {X : flipOneThree.Inst}
 
 end Formalism.MainNotions.G.SymmetricFormBlocks
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.FockGramWindow.RestWinOfLvl
@@ -1416,9 +1412,6 @@ theorem main (hp2 : p ≠ 2) (B : V → V → ℚ_[p]) (L : Submodule ℤ_[p] V)
 
 end PI.LatMinWork
 
-namespace PI
-
-end PI
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.OrbitalBoundsConclusion.LatMin

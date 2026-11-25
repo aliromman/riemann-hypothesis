@@ -18,12 +18,13 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DualMatrixMetricMeans, Development.AbelianVarietyTheory.Counterexamples.RotationExamples.LeafIPOfTwoConstants, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LambdaLowGivesFirstIdentity, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.IpbOfLamLow, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.IpbOfLamLowStatement
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DualMatrixMetricMeans
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DualMatrixMetricMeans
 
 open Module NumberField IsDedekindDomain
 open scoped Matrix MatrixOrder ComplexOrder
 open Formalism.L2.Indef Formalism.L2.Indef.Tree Formalism.DivisionValues Formalism.PairingDivisionLocalBalance Formalism.HN
 
+noncomputable section
 
 namespace GlobalTheory.Proof.DualMatrixMetricMeans
 
@@ -53,8 +54,8 @@ theorem meanInf_const [_root_.NumberField.IsTotallyComplex K] (c : ℝ) : meanIn
   change 1 / (nPl K : ℝ) * ((nPl K : ℝ) * c) = c
   field_simp
 
-
 end GlobalTheory.Proof.DualMatrixMetricMeans
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Counterexamples.RotationExamples.LeafIPOfTwoConstants
@@ -87,20 +88,16 @@ theorem clauseB_of_lifts [_root_.NumberField.IsTotallyComplex K] {Df' : DefSide 
 end GlobalTheory.InfinitePlacesProbe
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LambdaLowGivesFirstIdentity
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LambdaLowGivesFirstIdentity
+@[expose] public section
 
 open Formalism.BasicNotions Formalism.MainNotions NumberField Formalism.L2.Indef Formalism.L2.Indef.Tree GlobalTheory.BigTop GlobalTheory.BigTop.Fun
 
+noncomputable section
 
 namespace GlobalTheory.BigTop.Fun.IPbProof
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-theorem one_le_b {D : D7} (L : SizeData₂ D) : 1 ≤ L.sc.b := by
-  have hx := L.sc.one_lt_alt
-  have h0 : 0 ≤ L.sc.L := Real.rpow_nonneg (by linarith) _
-  unfold Scale.b
-  exact Real.one_le_exp h0
 
 theorem La_le_three {D : D7} (L : SizeData₂ D) (hS : SizesAt L) : L.La ≤ 3 * L.sc.L := by
   obtain ⟨hN, -, -, -, hT, hC, hQ, -⟩ := hS
@@ -112,7 +109,7 @@ theorem La_le_three {D : D7} (L : SizeData₂ D) (hS : SizesAt L) : L.La ≤ 3 *
   have hq : (1 : ℝ) ≤ (D.host.q : ℝ) := by exact_mod_cast D.host.hyp.1.one_le
   have hd : (1 : ℝ) ≤ (D.host.d : ℝ) := by exact_mod_cast D.host.hyp.2.1.one_le
   have hqd : (1 : ℝ) ≤ (D.host.q : ℝ) * D.host.d := by nlinarith
-  have hb := one_le_b L
+  have hb := Formalism.MainNotions.BridgeLemma.sza_b_ge_one L
   have hnc : (D.R.n : ℝ) ≤ szCond L := by
     have h := D.host.four_ord_le_condN
     have h' : D.R.n ≤ D.host.QS * D.host.q * D.host.d := by rw [D.R.n_eq_ord]; omega
@@ -147,18 +144,12 @@ theorem La_le_three {D : D7} (L : SizeData₂ D) (hS : SizesAt L) : L.La ≤ 3 *
 
 end GlobalTheory.BigTop.Fun.IPbProof
 
-namespace GlobalTheory.BigTop.Fun
-
-open GlobalTheory.BigTop.Fun.IPbProof
-
-end GlobalTheory.BigTop.Fun
-
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.IpbOfLamLow
 @[expose] public section
-
-
 
 section
 open Formalism.BasicNotions Formalism.MainNotions NumberField Formalism.L2.Indef Formalism.L2.Indef.Tree GlobalTheory.BigTop GlobalTheory.BigTop.Fun
@@ -177,7 +168,7 @@ theorem ipb_of_lamLow_alt : _root_.GlobalTheory.BigTop.LambdaLowerBound₂ → _
   have h6 := hx0 x hx (le_of_max_le_left hle) i p hp C
   have hC0 : 0 ≤ C := (le_max_left _ _).trans hC
   have hC1 : max Fm.Csz 0 * (3 + 2 * Fm.CYL + (max Fm.Ct 5 + 3)) ≤ C := (le_max_right _ _).trans hC
-  have hb : 1 ≤ p.Z.b := one_le_b (Fm.L x i)
+  have hb : 1 ≤ p.Z.b := Formalism.MainNotions.BridgeLemma.sza_b_ge_one (Fm.L x i)
   have hlb : Real.log p.Z.b = (Fm.L x i).sc.L := Real.log_exp _
   have hL0 : 0 ≤ (Fm.L x i).sc.L := by rw [← hlb]; exact Real.log_nonneg hb
   set P5 := Fm.params x hx i
@@ -242,8 +233,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.IpbOfLamLowStatement
-
-
 
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.DualMatrixMetricMeans", "h": "module\n\npublic import Formalism.PairingDivisors.StatementH\npublic import Formalism.HarderNarasimhan.HarderNarasimhanProofs.TwistFinrankEq\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Henselian\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.RegularLocalRing.Defs\nimport Mathlib.RingTheory.SimpleRing.Principal\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\npublic import Formalism.LocalToGlobal.IndefiniteForms.IndefSide\nimport Formalism.LocalToGlobal.IndefiniteForms.IndefiniteTree.FunctionalLowerBoundOfConditionsNumeric\nimport Mathlib.Analysis.Matrix.Order\n\n"}

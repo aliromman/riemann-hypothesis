@@ -1032,8 +1032,9 @@ end Main
 end GlobalTheory.TorusOrbitLat
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UUEqSumOverTorusOrbits
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UUEqSumOverTorusOrbits
 
+noncomputable section
 
 namespace GlobalTheory.UnitLemma
 
@@ -1043,23 +1044,13 @@ namespace InvAlg
 
 variable {K : UQ} (B : InvAlg K)
 
-theorem torusOrb_mem_mulLat_unit (u : B.Aˣ) (L : Submodule K.O B.A) (y : B.A) :
-    y ∈ mulLat K.O (u : B.A) L ↔ ((u⁻¹ : B.Aˣ) : B.A) * y ∈ L := by
-  unfold mulLat
-  rw [Submodule.mem_map]
-  constructor
-  · rintro ⟨z, hz, rfl⟩
-    simpa [LinearMap.mulLeft_apply, ← mul_assoc] using hz
-  · intro h
-    exact ⟨_, h, by simp [LinearMap.mulLeft_apply, ← mul_assoc]⟩
-
 theorem torusOrb_mulLat_one (L : Submodule K.O B.A) : mulLat K.O (1 : B.A) L = L := by
-  ext y; simpa using torusOrb_mem_mulLat_unit B 1 L y
+  ext y; simpa using GlobalTheory.UnitLemma.TorusAction.mem_mulLat_unit B 1 L y
 
 theorem torusOrb_mulLat_mul (s t : B.Aˣ) (L : Submodule K.O B.A) :
     mulLat K.O ((s : B.A)) (mulLat K.O (t : B.A) L) = mulLat K.O ((s * t : B.Aˣ) : B.A) L := by
   ext y
-  rw [torusOrb_mem_mulLat_unit, torusOrb_mem_mulLat_unit, torusOrb_mem_mulLat_unit, mul_inv_rev, Units.val_mul, mul_assoc]
+  rw [GlobalTheory.UnitLemma.TorusAction.mem_mulLat_unit, GlobalTheory.UnitLemma.TorusAction.mem_mulLat_unit, GlobalTheory.UnitLemma.TorusAction.mem_mulLat_unit, mul_inv_rev, Units.val_mul, mul_assoc]
 
 theorem torusOrb_mulLat_inv (t : B.Aˣ) (L : Submodule K.O B.A) :
     mulLat K.O ((t⁻¹ : B.Aˣ) : B.A) (mulLat K.O (t : B.A) L) = L := by
@@ -1133,6 +1124,7 @@ theorem UU_eq_sum_orbits : ∀ (K : UQ) (B : InvAlg K) (x w : B.A), Finite (Orb 
   fun _ B x w h1 h2 => B.torusOrb_UU_eq_finsum x w h1 h2
 
 end GlobalTheory.UnitLemma
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnitaryLatticeCountRatioTendsto

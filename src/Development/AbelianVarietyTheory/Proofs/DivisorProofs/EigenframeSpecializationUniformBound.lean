@@ -817,8 +817,9 @@ theorem strip_growth : ∀ (g m : ℕ) (lam : ℂ → Fin m → Fin g → ℂ) (
 end GlobalTheory.StripGrowth
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsContinuousPeriodBasisAlongArcStatement
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsContinuousPeriodBasisAlongArcStatement
 
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits NumberField ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.BasicNotions Formalism.L2.Pj GlobalTheory.Toroidal GlobalTheory.Cartier GlobalTheory.ShFam GlobalTheory.ShFam.BdArc Filter Topology
 open ReciprocityTheory.ChartRestriction.G.FD (Data Frame Bor rmul lact mat col dmin Wt)
@@ -924,7 +925,6 @@ theorem _root_.GlobalTheory.T.exists_continuous_period_basis_along_arc : ∀ (E 
         rw [hsre']
         refine (abs_sub _ _).trans ?_
         rw [abs_neg, abs_of_pos (by positivity)]
-      have h4 : 0 ≤ w.im - 1 := by linarith
       have h5 : 0 ≤ |Real.log ρ₀| + 2 * Real.pi * |R| + 1 := by positivity
       nlinarith [Real.pi_pos]
     have hpow : (1 + ‖sOf w‖) ^ k ≤ D ^ k * w.im ^ k := by
@@ -940,6 +940,7 @@ theorem _root_.GlobalTheory.T.exists_continuous_period_basis_along_arc : ∀ (E 
       _ ≤ Ch * (max C' 0 * (D ^ k * w.im ^ k)) := mul_le_mul_of_nonneg_left hlamn hCh0
       _ = Ch * max C' 0 * D ^ k * w.im ^ k := by ring
 
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PeriodsPolynomialGrowthLatticeVectorArc

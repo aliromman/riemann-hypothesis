@@ -13,8 +13,9 @@ import Formalism.FormalGroupLog.FormalGroupLogProofs.ConstantCoeffSubstOfZero
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.TorsionNormIteration.InverseIntegralClasses.MapSubtypeInjective, Formalism.TorsionNormIteration.LubinTateExample
 
-@[expose] public noncomputable section -- clump member: Formalism.TorsionNormIteration.InverseIntegralClasses.MapSubtypeInjective
+@[expose] public section -- clump member: Formalism.TorsionNormIteration.InverseIntegralClasses.MapSubtypeInjective
 
+noncomputable section
 
 open PowerSeries
 
@@ -131,9 +132,7 @@ theorem FunEqHom_of' (h1 : SolveExists.{u, 0}) (h2 : InvIntegralOfClass.{u, 0})
 
 end Formalism.LT.Asm
 
-namespace Formalism.LT
-
-end Formalism.LT
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.TorsionNormIteration.LubinTateExample

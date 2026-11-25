@@ -101,12 +101,14 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FundamentalDomains.M
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.CoeffEqZeroOfHasSumZero, Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.ExistsFrBor, Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.LaurentCoeffSectionValueArcEqFourierJacobi
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.CoeffEqZeroOfHasSumZero
+section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaShiftProofs.CoeffEqZeroOfHasSumZero
+@[expose] public section
 
 namespace GlobalTheory.LaurentFJ
 
 open Complex ReciprocityTheory.ChartRestriction.G.FD
 
+noncomputable section
 
 theorem coeff_eq_zero_of_hasSum_zero (d : ℤ → ℂ)
     (h : ∀ t : ℝ, HasSum (fun k : ℤ => d k * cexp (2 * Real.pi * I * t) ^ k) 0) (j : ℤ) :
@@ -187,11 +189,6 @@ theorem hasSum_fiber_of_hasSum_line {ι : Type*} (c : ι → ℂ) (n : ι → �
 
 variable {E : Type} [Field E] [NumberField E] [NumberField.IsCMField E] {r : ℕ}
 
-theorem flow_mem_dom_of_im_nonneg (X : Data E r) {ξ : Fin r → E} (hξ : X.IsIso ξ)
-    {x : Frame X.Ψ r} (hx : x ∈ X.dom) (s : X.Ψ → ℂ) (hs : ∀ τ, 0 ≤ (s τ).im) :
-    X.flow ξ s x ∈ X.dom := by
-  apply GlobalTheory.ArcShift.flow_mem_of_im <;> assumption
-
 theorem hasSum_fj_of_line (X : Data E r) {la : Wt X.Ψ r} {P : Frame X.Ψ r → ℂ}
     (hP : X.IsSec la P) {ξ : Fin r → E} (hξ : X.IsIso ξ) {x : Frame X.Ψ r} (hx : x ∈ X.dom)
     (sb : X.Ψ → ℝ)
@@ -254,7 +251,7 @@ theorem hasSum_fj (X : Data E r) {la : Wt X.Ψ r} {P : Frame X.Ψ r → ℂ}
       (a j * u₁ ^ j) := by
   refine hasSum_fj_of_line X hP hξ hx sb hint κ u₁ a (max T 0 + 1) (fun w hw => ?_)
     (fun w hw => ha w (by rw [hw]; linarith [le_max_left T 0])) j
-  refine flow_mem_dom_of_im_nonneg X hξ hx _ fun τ => ?_
+  refine GlobalTheory.ArcShift.flow_mem_of_im X hξ hx _ fun τ => ?_
   simp only [mul_im, ofReal_re, ofReal_im, mul_zero, zero_add, hw]
   exact mul_nonneg (by linarith [le_max_right T 0]) (hsb τ)
 
@@ -275,8 +272,10 @@ theorem coeff_mul_zpow_eq_mul_fj (X : Data E r) {la : Wt X.Ψ r} {P : Frame X.Ψ
   · simp [h0]
   · exact absurd (Subtype.ext (huniq ν h0 ν.2)) hν
 
+end
 
 end GlobalTheory.LaurentFJ
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

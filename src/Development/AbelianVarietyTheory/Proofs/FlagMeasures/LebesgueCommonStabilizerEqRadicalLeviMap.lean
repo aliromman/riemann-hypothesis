@@ -258,8 +258,9 @@ theorem cont_parAct (k r : ℕ) : Continuous fun q : (UT r → ℂ) × PPar k r 
 end GlobalTheory.Amp.Swap
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.LebesgueCommonStabilizerEqRadicalLeviMap
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.LebesgueCommonStabilizerEqRadicalLeviMap
 
+noncomputable section
 
 open NumberField MeasureTheory Matrix Formalism.HermitianLatticeCounting.S6 GlobalTheory.HermLat GlobalTheory.DegCnt Formalism.QuantumDeterminants Formalism.MainNotions.S GlobalTheory.SgInf GlobalTheory.Amp GlobalTheory.DegVol
 open scoped Pointwise ENNReal Classical
@@ -543,7 +544,6 @@ theorem range_eq_and_injective_parabolic_unipotent_product : ∀ (k r j : ℕ) (
   · rintro rfl
     haveI s3 : SFinite (volume : Measure ((UT r → ℂ) × (Fin r → ℝ))) := Measure.prod.instSFinite
     haveI s4 : SFinite (volume : Measure (PPar k r)) := Measure.prod.instSFinite
-    set_option synthInstance.maxHeartbeats 200000 in
     have hΦ : MeasurePreserving (fun q : (UTin β → ℂ) × PTop k r 0 =>
         ((extZ (fun p : UT r => β p.1.1 = β p.1.2) ℂ q.1, (extR k r 0 q.2.1, extS r 0 q.2.2)) : (UT r → ℂ) × PPar k r))
         volume volume :=

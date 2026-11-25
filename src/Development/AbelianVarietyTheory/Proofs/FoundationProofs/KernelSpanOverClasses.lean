@@ -59,17 +59,11 @@ import Mathlib.Tactic.Linter.HaveILetI
 -- Members: Development.AbelianVarietyTheory.Proofs.FoundationProofs.DualFrLatticeHolds, Development.AbelianVarietyTheory.Proofs.FoundationProofs.KernelSpanOverClasses
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.DualFrLatticeHolds
-
-namespace GlobalTheory
-
-theorem dualFrLattice_holds : Formalism.L2.DIV.DualFrLattice :=
-  GlobalTheory.DualLat.dualFr_lattice_and_hdual.1
-
-end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.KernelSpanOverClasses
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.KernelSpanOverClasses
 
+noncomputable section
 
 namespace GlobalTheory.TraceClassRank
 
@@ -188,7 +182,7 @@ theorem nabAtr_hLat_fg (g : Bridge.Gf (Vc D i)) : (nabAtr (labLL D) (lamV D i) (
     rw [SetLike.coe_injective ((GlobalTheory.RepsCompare.coe_hLat (Vc D i) g).trans hΛ.symm)]
     letI : Submodule.IsLattice D.host.E Λ := Submodule.IsLattice.of_fg D.host.E h1
     exact { span_eq_top := h2 }
-  exact (GlobalTheory.TransLattice.nabDelLattice _ _ _ _ _ fun τ => (GlobalTheory.dualFrLattice_holds D.what₂.LL _ 1 _ (by simp)
+  exact (GlobalTheory.TransLattice.nabDelLattice _ _ _ _ _ fun τ => (Formalism.L2.DIV.dualFrameLattice_holds D.what₂.LL _ 1 _ (by simp)
     (GlobalTheory.TauLat.tauLatLattice _ _ _ _ (labLL D) τ _ hLat)).1).1.fg
 
 theorem coefTie_class {V : HSp D} {C : Bridge.CoefDat D V} {S : CSD D.what₂.LL} {J : Subgroup (Bridge.Gf V)} {χ : J →* ℂˣ}

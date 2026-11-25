@@ -80,8 +80,9 @@ import Formalism.LocalToGlobal.Columns.StdLatUnimodular
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIntegralAdelicCoordinatesLatticeMod, Development.AbelianVarietyTheory.Proofs.DivisorProofs.GeoLevelActionIffGeoAct, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLatticeAutomorphismModHalfLevel, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LevelGroupLiftExists, Development.AbelianVarietyTheory.Proofs.DivisorProofs.MulEqOneOfCovolumeIdentity, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnitaryPart
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIntegralAdelicCoordinatesLatticeMod
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIntegralAdelicCoordinatesLatticeMod
 
+noncomputable section
 
 namespace GlobalTheory.GeoActCompare
 
@@ -279,7 +280,6 @@ theorem coord_frame {O K R' R : Type} [CommRing O] [Field K] [Algebra O K] [Comm
     { toFun := fun v i => j (v i)
       map_zero' := by funext a; simp
       map_add' := fun x y => by funext a; simp }
-  have hjv : ∀ v, jv v = fun i => j (v i) := fun _ => rfl
   let φ : La →+ (Fin n → R) := ψ.comp (jv.comp ι.toAddMonoidHom)
   have hφ : ∀ a, φ a = ψ (fun i => j (ι a i)) := fun _ => rfl
   have hMu : σ (j (M : K)⁻¹) * (M : R) = 1 := by
@@ -432,6 +432,7 @@ theorem exists_lattice_coord : ∀ (D : D7) (V : HSp D) (r : ℕ) (hr : V.rank =
   rfl
 
 end GlobalTheory.GeoActCompare
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GeoLevelActionIffGeoAct

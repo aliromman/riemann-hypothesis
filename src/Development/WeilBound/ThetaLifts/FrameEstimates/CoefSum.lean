@@ -33,8 +33,10 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.ThetaLifts.FrameEstimates.CoefSumA, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsUnitDom, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IndicatorMemSBOfIsClopen, Development.WeilBound.ThetaLifts.FrameEstimates.CoefSumB, Development.WeilBound.ThetaLifts.FrameEstimates.CoefSum
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.ThetaLifts.FrameEstimates.CoefSumA
+section -- clump member: Development.WeilBound.ThetaLifts.FrameEstimates.CoefSumA
+@[expose] public section
 
+noncomputable section
 
 open MeasureTheory Topology Filter
 open scoped ENNReal ComplexConjugate Pointwise
@@ -221,7 +223,7 @@ theorem Dual.fin (h : Dual r e) (hD : IsAddFundamentalDomain r.range D μ) : μ 
   obtain ⟨ξ, hξ⟩ := hKc u
   refine le_trans ?_ (ENNReal.le_tsum (-ξ))
   have : r (-ξ) + u ∈ closure K := subset_closure (by rwa [map_neg, neg_add_eq_sub])
-  simp [Set.indicator_of_mem this, ← map_neg, -map_neg]
+  simp [Set.indicator_of_mem this, -map_neg]
 
 theorem Dual.intOn (h : Dual r e) (hD : IsAddFundamentalDomain r.range D μ) {g : G → ℂ} (hg : Continuous g)
     (hp : ∀ ξ u, g (r ξ + u) = g u) : IntegrableOn g D μ := by
@@ -411,6 +413,8 @@ theorem Dual.poisson_le [LocallyCompactSpace G] (h : Dual r e) (hD : IsAddFundam
 
 end PositivityTheory.ThKEst.CS
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsUnitDom

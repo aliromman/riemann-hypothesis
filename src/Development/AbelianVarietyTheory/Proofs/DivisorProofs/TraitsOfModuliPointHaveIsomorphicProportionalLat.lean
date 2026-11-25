@@ -61,18 +61,16 @@ open GlobalTheory.UPoinc Formalism.L2.Pj
 open GlobalTheory
 open Classical
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCommonSemiAbelianPullbackTwoUnitaryTraits
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCommonSemiAbelianPullbackTwoUnitaryTraits
 attribute [local instance] Over.cartesianMonoidalCategory
+
+noncomputable section
 
 namespace GlobalTheory.UPoinc.TraitUniq
 
 theorem jK_comp_spMap {V W : Type} [CommRing V] [IsDomain V] [CommRing W] [IsDomain W] (f : V →+* W)
     (fK : FractionRing V →+* FractionRing W) (hK : ∀ a, fK (algebraMap V _ a) = algebraMap W _ (f a)) :
-    spMap fK ≫ jK V = jK W ≫ spMap f := by
-  rw [← Spec.map_comp, ← Spec.map_comp]
-  congr 1
-  ext a
-  exact hK a
+    spMap fK ≫ jK V = jK W ≫ spMap f := GlobalTheory.LN.ArcExtends.spMap_jK hK
 
 theorem exists_common_pull : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Geo.Tor.Level H) (Xo : Moduli Dw l)
     (c : Coeff l) (T T' : UTrait Xo c) (W : Type) [CommRing W] [IsDomain W] [IsLocalRing W] (f : T.V →+* W)
@@ -99,6 +97,7 @@ theorem exists_common_pull : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
   exact ⟨tW, ⟨mW⟩, GlobalTheory.TraitOrder.comp (Category.id_comp _) mW' ψ⟩
 
 end GlobalTheory.UPoinc.TraitUniq
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LinearUniformisationsCharacterIsoAssociatedCoord

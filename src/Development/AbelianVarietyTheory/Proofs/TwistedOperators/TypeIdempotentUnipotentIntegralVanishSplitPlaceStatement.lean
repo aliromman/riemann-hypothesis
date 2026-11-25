@@ -471,8 +471,9 @@ theorem GlobalTheory.SplitFlag.isParabRad_parAt : ∀ (D : D7) (V : HSp D) (v : 
     rw [hmap, _root_.GlobalTheory.SplitFlag.mem_unip_iff_flagChain D.sp.cm s.cm s.herm s.emb 𝔉, key, hconj, hN]
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.TypeIdempotentUnipotentIntegralVanishSplitPlace
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.TypeIdempotentUnipotentIntegralVanishSplitPlace
 
+noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.IndefR.Mult Formalism.MainNotions.S
 open MeasureTheory IsDedekindDomain NumberField GlobalTheory.AdelicU GlobalTheory.Cusp GlobalTheory.Orb
@@ -658,9 +659,9 @@ theorem mem_map_iff (e : G ≃ₜ* H) (N : Subgroup G) (u : H) : u ∈ N.map (e 
 def mapSubgroupEquiv (e : G ≃ₜ* H) (N : Subgroup G) : N ≃ₜ* N.map (e : G →* H) where
   toFun := fun n => ⟨e n, Subgroup.mem_map_of_mem _ n.2⟩
   invFun := fun u => ⟨e.symm u, (mem_map_iff e N u).1 u.2⟩
-  left_inv n := Subtype.ext (e.symm_apply_apply _)
-  right_inv u := Subtype.ext (e.apply_symm_apply _)
-  map_mul' m n := Subtype.ext (map_mul e _ _)
+  left_inv _ := Subtype.ext (e.symm_apply_apply _)
+  right_inv _ := Subtype.ext (e.apply_symm_apply _)
+  map_mul' _ _ := Subtype.ext (map_mul e _ _)
   continuous_toFun := (e.continuous.comp continuous_subtype_val).subtype_mk _
   continuous_invFun := (e.symm.continuous.comp continuous_subtype_val).subtype_mk _
 
@@ -745,6 +746,7 @@ theorem unip_integral_vanish : ∀ (D : D7) (V : HSp D) (T : TypeDataG V) (v : T
   unip_integral_vanish_of _root_.GlobalTheory.TypeConstTerm.typeConstTermVanish _root_.GlobalTheory.SplitFlag.isParabRad_parAt
 
 end GlobalTheory.LocConst
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.TypeIdempotentUnipotentIntegralVanishSplitPlaceStatement

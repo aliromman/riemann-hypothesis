@@ -246,10 +246,11 @@ theorem inv_entry_smul_eigen_split : ∀ (k r : ℕ) (Wp Wq : Type) [NormedAddCo
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.BesselJUnitaryEquivariant
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.BesselJUnitaryEquivariant
 
 open Matrix MeasureTheory Formalism.QuantumDeterminants
 
+noncomputable section
 
 namespace GlobalTheory.BesselUnitary
 
@@ -268,11 +269,7 @@ lemma gram_sq (k r : ℕ) : Hpk k r * Hpk k r = 1 := by
 
 end GlobalTheory.BesselUnitary
 
-namespace GlobalTheory
-
-open BesselUnitary
-
-end GlobalTheory
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.UnitaryConjEntryAndInvEntryLinear

@@ -351,7 +351,13 @@ theorem weight_preserved (K : Type) [Field K] [CharZero K] {ι : Type} [Fintype 
 end GlobalTheory.CoefTorusWeight
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeylTensorCoefSpaceLeSpanPureTensors
+end -- clump: shared namespace opens
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeylTensorCoefSpaceLeSpanPureTensors
+
+noncomputable section
+open MvPolynomial Formalism.BasicNotions Formalism.L2.DIV
+open scoped Matrix
 
 namespace GlobalTheory
 
@@ -407,7 +413,6 @@ theorem coefSpace_le_span_pure_tensors (K : Type) [Field K] {ι : Type} [Fintype
       (MvPolynomial (ι × Fin n × Fin n) K) :=
     (MultilinearMap.mkPiAlgebra K ι (MvPolynomial (ι × Fin n × Fin n) K)).compLinearMap
       (fun τ => (Formalism.GradedWeylDivisibility.blockEmb K τ).toLinearMap)
-  have hm : ∀ f, m f = ten f := fun f => rfl
   unfold VV Formalism.GradedWeylDivisibility.tensorLat
   rw [Submodule.span_le]
   rintro P ⟨F, hF, rfl⟩
@@ -415,8 +420,7 @@ theorem coefSpace_le_span_pure_tensors (K : Type) [Field K] {ι : Type} [Fintype
 
 end GlobalTheory
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoefficientSpaceEndomorphismScalarSchur
 

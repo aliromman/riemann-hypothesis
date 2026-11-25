@@ -517,7 +517,8 @@ end GlobalTheory.UnipMean
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsotropicTermMeanInvariantUnipotentRadical
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsotropicTermMeanInvariantUnipotentRadical
+noncomputable section
 namespace GlobalTheory.IsoTermMean
 variable {D : D7}
 
@@ -621,9 +622,6 @@ theorem symplO_iso (S T : HSp D) {s : ℕ} (L : Matrix (Fin T.rank) (Fin s) D.ho
     symplO S T ((L.map (incA D) : Matrix (Fin T.rank) (Fin s) (AE D)) * α) ((L.map (incA D) : Matrix (Fin T.rank) (Fin s) (AE D)) * β) = 0 := by
   rw [symplO, hO_iso S T L hL, mul_zero, map_zero]
 
-end GlobalTheory.IsoTermMean
-
-namespace GlobalTheory.IsoTermMean
 end GlobalTheory.IsoTermMean
 
 namespace GlobalTheory.IsoTermMean
@@ -811,6 +809,7 @@ theorem mean_isoTerm_invariant : ∀ (D : D7) (V V' W : HSp D) (r : ℕ) (C C' :
           (L.map (incA D)) rfl ((m * adj D C' * V.gram).map (incA D)) rfl
 
 end GlobalTheory.IsoTermMean
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsotropicTermMeanInvariantUnipotentRadicalStatement

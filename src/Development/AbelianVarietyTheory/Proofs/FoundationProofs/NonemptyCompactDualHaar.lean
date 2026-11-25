@@ -85,18 +85,11 @@ theorem compactSpace_UpqT_zero_right : ∀ N : ℕ, CompactSpace (UpqT N 0) :=
 end GlobalTheory
 end -- clump:auto
 
-section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsPosFiniteDensityOfAlmostTranslationInvaria
-@[expose] public section
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsPosFiniteDensityOfAlmostTranslationInvaria
 
 open MeasureTheory Filter Topology Metric Set
 
 namespace GlobalTheory
-
-section
-variable {V : Type} [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
-  [MeasurableSpace V] [BorelSpace V]
-
-end
 
 open MeasureTheory Filter Topology Metric Set in
 variable {V : Type} [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
@@ -346,7 +339,6 @@ theorem _root_.GlobalTheory.exists_pos_finite_density_of_almost_translation_inva
   exact (ENNReal.div_lt_top (measure_ne_top ν _) (measure_ball_pos lam 0 hr).ne').ne
 
 end GlobalTheory
-end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ReImMapSurjective

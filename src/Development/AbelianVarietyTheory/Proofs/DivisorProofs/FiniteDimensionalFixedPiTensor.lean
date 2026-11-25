@@ -150,21 +150,12 @@ theorem finiteDimensional_fixed_piTensor : ∀ {α : Type} [Finite α] {Γ X : �
 end GlobalTheory.PiTensorFixed
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteDimensionalFixedPiTensor
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteDimensionalFixedPiTensor
 
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.LocGL GlobalTheory.LocLanglands GlobalTheory.JHMult
 open scoped TensorProduct
 
-
-namespace GlobalTheory.ContraProd
-
-section General
-
-variable {G V W : Type} [Group G] [AddCommGroup V] [Module ℂ V] [AddCommGroup W] [Module ℂ W]
-
-end General
-
-end GlobalTheory.ContraProd
+noncomputable section
 
 noncomputable section
 

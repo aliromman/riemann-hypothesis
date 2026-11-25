@@ -58,8 +58,6 @@ open GlobalTheory GlobalTheory.HTLat GlobalTheory.Published.AbVarRed GlobalTheor
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianVarietyFiniteHomKernelKilledByNatStatement
 
-theorem _root_.GlobalTheory.T.abelianVariety_finiteHom_kernel_killed_by_nat : ∀ (K : Type) [Field K] (A B : AbVar K) (f : A ⟶ B), IsFinite f.hom.left → ∃ n : ℕ, 0 < n ∧ ∀ (T : Over (Sp K)) (x : T ⟶ A.X), x ≫ f.hom = 1 → x ^ n = 1 := by
-  first | exact @GlobalTheory.AV.KerKill.kernel_killed
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsQuasiInverseIsogeny
@@ -69,8 +67,8 @@ namespace GlobalTheory.AV.AbVar
 theorem exists_quasiInverse_isogeny : ∀ (K : Type) [Field K] (A B : AbVar K) (f : A ⟶ B), IsIsogeny f →
     ∃ (n : ℕ) (g : B ⟶ A), 0 < n ∧ IsIsogeny g ∧ f ≫ g = n • 𝟙 A ∧ g ≫ f = n • 𝟙 B := by
   intro K _ A B f hf
-  obtain ⟨hdim, -, -, -⟩ := GlobalTheory.T.dim_eq_flat_finrank_eq_deg_of_isIsogeny K A B f hf
-  obtain ⟨n, hn, hker⟩ := GlobalTheory.T.abelianVariety_finiteHom_kernel_killed_by_nat K A B f hf.1
+  obtain ⟨hdim, -, -, -⟩ := GlobalTheory.AV.AbVar.isogeny_flat_finrank K A B f hf
+  obtain ⟨n, hn, hker⟩ := GlobalTheory.AV.KerKill.kernel_killed K A B f hf.1
   have hB := B.smooth
   have hA := A.smooth
   rw [hdim] at hA
@@ -88,7 +86,7 @@ theorem exists_quasiInverse_isogeny : ∀ (K : Type) [Field K] (A B : AbVar K) (
   refine ⟨n, g, hn, ?_, e1, e2⟩
   have hm : IsIsogeny ((n : ℤ) • 𝟙 B) := (GlobalTheory.T.abelianVariety_intCast_smul_isogeny_degree K B n (by exact_mod_cast hn.ne')).1
   rw [natCast_zsmul, ← e2] at hm
-  exact (((GlobalTheory.T.isIsogeny_comp_iff_and_degree_mul K B A B g f hdim.symm hdim).1).mp hm).1
+  exact (((GlobalTheory.AV.AbVar.isIsogeny_comp_iff_and_deg_comp K B A B g f hdim.symm hdim).1).mp hm).1
 
 end GlobalTheory.AV.AbVar
 

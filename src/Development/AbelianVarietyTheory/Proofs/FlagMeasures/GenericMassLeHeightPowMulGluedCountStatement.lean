@@ -111,11 +111,6 @@ section Mat
 
 variable {K : Type} [CommRing K] {n : ℕ}
 
-theorem uni_det {X : Matrix (Fin n) (Fin n) K} (h : Uni X) : X.det = 1 := by
-  have hM : X.BlockTriangular id := fun ⦃i j⦄ hij => h.1 i j hij
-  rw [Matrix.det_of_isUpperTriangular hM]
-  simp [h.2]
-
 theorem uni_mul {X Y : Matrix (Fin n) (Fin n) K} (hX : Uni X) (hY : Uni Y) : Uni (X * Y) := by
   unfold Uni at *
   refine ⟨fun a b hab => ?_, fun a => ?_⟩
@@ -133,7 +128,7 @@ theorem uni_mul {X Y : Matrix (Fin n) (Fin n) K} (hX : Uni X) (hY : Uni Y) : Uni
     · intro h; exact absurd (Finset.mem_univ a) h
 
 theorem uni_inv {X : Matrix (Fin n) (Fin n) K} (h : Uni X) : Uni X⁻¹ := by
-  have hdet : IsUnit X.det := by rw [uni_det h]; exact isUnit_one
+  have hdet : IsUnit X.det := by rw [GlobalTheory.GenMass.det_uni_eq_one h]; exact isUnit_one
   have : Invertible X := Matrix.invertibleOfIsUnitDet X hdet
   have hlow : ∀ a b, b < a → X⁻¹ a b = 0 := fun a b hab =>
     (Matrix.blockTriangular_inv_of_blockTriangular (b := id) (fun ⦃i j⦄ hij => h.1 i j hij)) hab
@@ -283,7 +278,7 @@ theorem one_flag (Z : LocDat D) {T : D.host.E} (hT : T ≠ 0) (F : LFlag (D.sp.Y
       exact ⟨B, hBu, fun _ => hBc, fun h => absurd hp h⟩
     · exact ⟨1, uni_one, fun h => absurd h hp, fun _ => rfl⟩
   choose B hBu hBc hB1 using hB
-  have hdet : ∀ p, IsUnit (B p).det := fun p => by rw [uni_det (hBu p)]; exact isUnit_one
+  have hdet : ∀ p, IsUnit (B p).det := fun p => by rw [GlobalTheory.GenMass.det_uni_eq_one (hBu p)]; exact isUnit_one
   have hsU : ∀ p : PlF D, Uni (Matrix.diagonal (frFac Z.δ p) * B p * Matrix.diagonal (fun a => Ring.inverse (frFac Z.δ p a))) :=
     fun p => uni_conj (hBu p) (frFac Z.δ p) (fun a => Ring.inverse (frFac Z.δ p a)) (hφψ p)
   obtain ⟨c, hcP, hcN⟩ : ∃ c : ∀ p : PlF D, ((D.s.atP p).Fp)ˣ,
@@ -497,11 +492,12 @@ theorem GlobalTheory.LocOver.gval_uni_change : ∀ (D : D7) {T T' : D.host.E} (F
   rw [k1, k2]
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.GlueUnimodularLatticeRepsMoveIsometryFrames
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.GlueUnimodularLatticeRepsMoveIsometryFrames
 
 open NumberField MeasureTheory Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.TermLoc Formalism.L2.SG.RowsConc Formalism.L2.SG.NGCut Formalism.L2.SG.NGAnalytic Formalism.FourierDecayAlt GlobalTheory.Unfold GlobalTheory.LocOver GlobalTheory.GenMass
 open scoped Classical ENNReal
 
+noncomputable section
 
 namespace GlobalTheory.GlueMove
 
@@ -545,11 +541,6 @@ theorem locP_gmap (n : V ≃ₗ[K] V) (p : Ideal (𝓞 K)) [p.IsPrime] (L : Subm
   rw [_root_.Formalism.HermitianLattices.Ext.L3.RankOne.mem_gmap]
   show (∃ s ∈ p.primeCompl, s • x ∈ Formalism.HermitianLatticesTheory.gmap n L) ↔ ∃ s ∈ p.primeCompl, s • n.symm x ∈ L
   simp only [_root_.Formalism.HermitianLattices.Ext.L3.RankOne.mem_gmap, linearEquiv_map_smul_ringOfIntegers]
-
-theorem mem_dual (h : V →ₗ⋆[K] V →ₗ[K] K) (L : Submodule (𝓞 K) V) (x : V) :
-    x ∈ Formalism.HermitianLatticesTheory.dual h L ↔ ∀ y ∈ L, h y x ∈ (1 : Submodule (𝓞 K) K) := by
-  simp only [Formalism.HermitianLatticesTheory.dual, Formalism.E.hdual, Submodule.mem_iInf, Submodule.mem_comap,
-    LinearMap.coe_restrictScalars]
 
 theorem dual_gmap (h : V →ₗ⋆[K] V →ₗ[K] K) (n : V ≃ₗ[K] V) (hn : n ∈ Formalism.HermitianLatticesTheory.isom h)
     (L : Submodule (𝓞 K) V) :
@@ -792,6 +783,7 @@ theorem glue_move : ∀ (D : D7) (T T' : D.host.E) (F G : LFlag (D.sp.Y 0) D.R.r
     rw [upair_move F G F' G' n hG hG', card_stabFix_move _ n hn]
 
 end GlobalTheory.GlueMove
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.LocalPairingClassStableUnitriangularChange

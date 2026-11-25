@@ -14,17 +14,13 @@ public import Formalism.QuotientMetricDivisors.HermitianTwistDivisors.TwistedLat
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.QuotientMetricDivisors.HermitianTwistDivisors.WeightedPlaceLogSum, Formalism.QuotientMetricDivisors.HermitianTwistDivisors.YoungDiagramTopExact, Formalism.QuotientMetricDivisors.FinalW
 
-section -- clump member: Formalism.QuotientMetricDivisors.HermitianTwistDivisors.WeightedPlaceLogSum
-@[expose] public noncomputable section
+@[expose] public section -- clump member: Formalism.QuotientMetricDivisors.HermitianTwistDivisors.WeightedPlaceLogSum
 
 open Finset NumberField IsDedekindDomain
 
+noncomputable section
 
 namespace Formalism.DivisionValues
-
-namespace place_log_sum
-
-end place_log_sum
 
 theorem prime_log_sum_bound : PrimeLogSum := by
   intro Y hY s hs
@@ -42,14 +38,6 @@ theorem prime_log_sum_bound : PrimeLogSum := by
     _ ≤ Real.log Y + Real.log 4 := by
         have := Real.log_le_log hnR hfl
         linarith
-
-namespace place_log_sum
-
-end place_log_sum
-
-namespace place_log_sum
-
-end place_log_sum
 
 end Formalism.DivisionValues
 end -- clump:auto

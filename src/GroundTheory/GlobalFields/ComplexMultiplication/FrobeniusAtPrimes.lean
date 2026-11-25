@@ -29,10 +29,11 @@ import GroundTheory.GlobalFields.ComplexMultiplication.JInvariantSurjective
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.GlobalFields.ComplexMultiplication.AlgebraicityDescent, GroundTheory.GlobalFields.ComplexMultiplication.FrobeniusAtPrimesLocal, GroundTheory.GlobalFields.ComplexMultiplication.FrobeniusAtPrimes
 
-@[expose] public noncomputable section -- clump member: GroundTheory.GlobalFields.ComplexMultiplication.AlgebraicityDescent
+@[expose] public section -- clump member: GroundTheory.GlobalFields.ComplexMultiplication.AlgebraicityDescent
 
 open NumberField Module WeierstrassCurve GroundTheory.Arith.Abelian IntermediateField Polynomial
 
+noncomputable section
 
 namespace GroundTheory.Global
 
@@ -132,15 +133,8 @@ theorem _root_.GroundTheory.Arith.Abelian.Isogeny.invConst_conj (g : ℂ ≃ₐ[
 
 end Descent
 
-namespace Elliptic
-
-variable {K : Type} [Field K] [NumberField K] [Algebra K ℂ] (hK : finrank ℚ K = 2)
-  [_root_.NumberField.IsTotallyComplex K]
-include hK
-
-end Elliptic
-
 end GroundTheory.Global
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.GlobalFields.ComplexMultiplication.FrobeniusAtPrimesLocal

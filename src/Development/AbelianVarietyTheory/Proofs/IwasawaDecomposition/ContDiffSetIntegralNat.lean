@@ -78,8 +78,9 @@ theorem contDiff_setIntegral {X P E : Type} [TopologicalSpace X] [T2Space X]
 end GlobalTheory.SetIntegralSmoothness
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContDiffSetIntegralNat
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ContDiffSetIntegralNat
 
+noncomputable section
 
 open MeasureTheory Matrix
 open scoped ContDiff Topology
@@ -258,8 +259,6 @@ theorem exists_smoothVec {n : ℕ} {ε : Fin n → Bool} {H : Type} [NormedAddCo
 end
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Mult
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem sm_ne_bot (D : D7) (V : HSp D) (S : D.what₂.Tau → SPar) (M : DSModel V S) (τ : D.what₂.Tau) :
     M.sm τ ≠ ⊥ := by

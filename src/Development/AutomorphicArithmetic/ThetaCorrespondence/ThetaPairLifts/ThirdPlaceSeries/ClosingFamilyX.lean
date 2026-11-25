@@ -57,8 +57,9 @@ import Mathlib.RingTheory.HopfAlgebra.Basic
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.SatakeParameters.LocalH1fFiniteDimensional, Development.AbelianVarietyTheory.Proofs.SatakeParameters.LengthIntegralCocyclesRationalCoboundariesLe, Development.AbelianVarietyTheory.Proofs.SatakeParameters.LengthLeOfForallFgSubmoduleLengthLe, Development.AbelianVarietyTheory.Proofs.SatakeParameters.LengthQuotientScalarMul, Development.AbelianVarietyTheory.Proofs.SatakeParameters.LengthQuotientSmulLeFinrankOfEmbedding, Development.AbelianVarietyTheory.Proofs.SatakeParameters.LengthQuotientSmulSupLeIntermediate, Development.AbelianVarietyTheory.Proofs.SatakeParameters.PeriodDataCrystallineAdmissible, Development.AbelianVarietyTheory.Proofs.SatakeParameters.AmbientH1fOfLocalFiniteness, Development.AbelianVarietyTheory.Proofs.SatakeParameters.JumpWindowBlockExponentConditionOfJumpWindow, Development.AbelianVarietyTheory.Proofs.SatakeParameters.JointCondTBAtRange, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ClosingFamilyX
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.LocalH1fFiniteDimensional
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.LocalH1fFiniteDimensional
 
+noncomputable section
 
 open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations Formalism.MainNotions.N
 
@@ -99,13 +100,13 @@ theorem finite_H1fV_matRep : Formalism.GaloisCohomology.LocalFinitenessK → ∀
     Module.Finite ↥LL.1 (FiniteCohomology (P.PD K) (matRep M)) := by
   intro hK l _ P K LL k M hM hi
   have h1 := finite_continuous_cocycles_matRep hK K LL M hM hi
-  set_option synthInstance.maxHeartbeats 200000 in
   have h2 : Module.Finite ↥LL.1 (finiteCocycles (P.PD K) (matRep M)) :=
     Module.Finite.of_injective (Submodule.inclusion (fun _ hx => hx.1 :
       finiteCocycles (P.PD K) (matRep M) ≤ continuousCocycles (matRep M))) (Submodule.inclusion_injective _)
   exact Module.Finite.quotient _ _
 
 end GlobalTheory.LocalH1Finiteness
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.LengthIntegralCocyclesRationalCoboundariesLe

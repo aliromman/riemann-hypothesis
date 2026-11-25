@@ -35,9 +35,10 @@ end Final
 end Formalism.L2.DIV
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GroupLattices.JointServices
+@[expose] public section -- clump member: Formalism.LocalToGlobal.GroupLattices.JointServices
 open Formalism.BasicNotions Formalism.BasicNotions.DV Formalism.MainNotions.G Formalism.MainNotions.WeilJacquetShalikaLaw Formalism.L2.DIV Formalism.L2.Indef
 
+noncomputable section
 
 namespace Formalism.L2.G.ServJoint
 
@@ -94,10 +95,6 @@ def CutUp (D : D7) (μ : D.what₂.Tup) : Prop :=
       (s : Set (D.what₂.Amb μ)) ⊆ (D.what₂.Mtilde μ).carrier ∩ (D.what₂.V0 μ : Set (D.what₂.Amb μ)) ∧
       x = ∑ y ∈ s, D.what₂.embLL (c y : D.what₂.LL) • y
 
-def NPc {D : D7} {L : SizeData₂ D} (B : ColBr D) (X : Inst D L) (Y : LatInst D) (K : Consts) (c : LatCmp D) (u : D.what₂.Word)
-    (w : D.what₂.places.Pl) : Submodule (𝓞 D.what₂.LL) (Fin (B.Dc.a (B.I.wU u)) → D.what₂.LL) :=
-  Submodule.span (𝓞 D.what₂.LL) {x | InNP X Y K c u w (D.nuIn u (B.I.eNu u x))}
-
 def PerToVal2 : Prop :=
   ∀ (D : D7) (B : ColBr D), B.Tied → ∀ (u : D.what₂.Word) (t : B.T), CutUp D (B.I.tup t) →
     ∀ (z : HeightOneSpectrum (𝓞 D.what₂.LL)) (s : ℝ) (N : Set (Fin (B.Dc.a (B.I.wU u)) → D.what₂.LL)),
@@ -105,14 +102,6 @@ def PerToVal2 : Prop :=
       ∃ y : D.what₂.LL, D.what₂.embLL y = D.what₂.perCol u (B.I.tup t) (D.jN u (B.I.eNu u x)) F ∧
         (y = 0 ∨ s ≤ (vAdd z y : ℝ))) →
     LocalValuationBoundAt B.Dc (B.I.wU u) t (Submodule.span (𝓞 D.what₂.LL) N) z s
-
-def SecondLevelValuationAt : Prop :=
-  ∀ (D : D7) (L : SizeData₂ D) (B : ColBr D), B.Tied → (∀ μ, DV.Used D μ → CutUp D μ) → Formalism.MainNotions.LocalQuadraticParts.UnroundedValuationBound D L →
-    ∀ (u : D.what₂.Word) (Nu : Submodule (𝓞 D.what₂.LL) (Fin (B.Dc.a (B.I.wU u)) → D.what₂.LL))
-      (sg : HeightOneSpectrum (𝓞 D.what₂.LL) → ℝ),
-      (∀ x ∈ Nu, B.I.eNu u x ∈ L.NuLat u) → (∀ w : D.what₂.places.Pl, sg (D.plEq w) ≤ ur D w (L.sg u w)) →
-      ∀ z, ∀ φ ∈ Nu, ∀ F ∈ (B.A.side B.Ps B.ψs B.Zs).Mt (B.S1.μ z),
-        B.Dc.Pt (B.I.wU u) (B.S1.μ z) φ F = 0 ∨ sg z ≤ (Formalism.DivisionValues.vw z (B.Dc.Pt (B.I.wU u) (B.S1.μ z) φ F) : ℝ)
 
 def SecondLevelValuationAtRestricted : Prop :=
   ∀ (D : D7) (L : SizeData₂ D) (B : ColBr D), B.Tied → (∀ μ, DV.Used D μ → CutUp D μ) → Formalism.MainNotions.LocalQuadraticParts.adm2 D L →
@@ -125,6 +114,7 @@ def SecondLevelValuationAtRestricted : Prop :=
 
 end Formalism.L2.G.ServJoint
 
+end
 
 -- clump-header: {"m": "Formalism.LocalToGlobal.Divisibility.JetBounds.Statement", "h": "module\n\npublic import Formalism.LocalToGlobal.IndefiniteForms.IndefSide\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Formalism.GaussJetBounds.OneLetterGaussJets.OddLevelGainSum\nimport Formalism.GaussJetBounds.StatementH\n\n"}
 -- clump-header: {"m": "Formalism.LocalToGlobal.GroupLattices.JointServices", "h": "module\n\npublic import Formalism.SharpRestriction.GrowthBounds.WeilJacquetShalikaLaw\npublic import Formalism.SharpRestriction.Divisibility.LocalQuadraticParts\npublic import Formalism.LocalToGlobal.Divisibility.JetBounds.Statement\npublic import Formalism.LocalToGlobal.Divisibility.RowSideTie\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

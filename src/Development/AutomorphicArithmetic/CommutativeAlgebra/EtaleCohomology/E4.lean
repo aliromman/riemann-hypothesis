@@ -876,14 +876,14 @@ theorem LeafPt_of (h0 : H0TwistOverClosedField) : LeafPt := by
 end LateralTheory.E.E4
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleSheaves.LeafSHPtOf
+@[expose] public section -- clump member: Development.EtaleCohomology.EtaleSheaves.LeafSHPtOf
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 
 namespace LateralTheory.E.StrictHenselianPoint
 open LateralTheory.E.E4 LateralTheory.E.LeafDegCut LateralTheory.E.LeafSHPtPf
 
-set_option backward.isDefEq.respectTransparency.types false in
 set_option backward.isDefEq.respectTransparency false in
 theorem leafSHTop : LeafSHTop := by
   intro B U x J _ _ D c V a e t ht hcof
@@ -914,6 +914,7 @@ theorem LeafSHPt_of (hN : LateralTheory.E.LeafSHPtPf.LeafSHNb) : LateralTheory.E
   LateralTheory.E.LeafSHPtPf.LeafSHPt_of hN leafSHTop
 
 end LateralTheory.E.StrictHenselianPoint
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleSheaves.LeafSHSievePf
@@ -1053,7 +1054,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.EtaleCohomology.EtaleSheaves.LeafSpreadLQFMapVtuPfG
 
 namespace LateralTheory.E.LeafSpreadLQFMap_vtuPfG
-
 
 open LateralTheory.E.SpreadingOutLocallyQuasiFinite in
 theorem LeafSpreadLQFMap_of (hD : LeafQFAtDescend) (hO : LeafOpenSpread) :
@@ -1434,19 +1434,17 @@ theorem LeafShIso_of (hL : EtaleDerivedDegreeZeroHomologyLocallyLifts) (hK : Eta
 end LateralTheory.E.LeafShIsoPf.Glue
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleSheaves.SpreadingOutQuasiFinitenessBaseChange
+section -- clump member: Development.EtaleCohomology.EtaleSheaves.SpreadingOutQuasiFinitenessBaseChange
+@[expose] public section
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite LateralTheory.E.E4 LateralTheory.E.LeafDescendVCut
 
 namespace LateralTheory.E.SpreadingOutQuasiFinitenessBaseChange
 
-theorem toR_incl {k Ω : Type} [Field k] [Field Ω] [Algebra k Ω] {R R' : Subalgebra k Ω} (hR : R ≤ R') :
-    toR R' ≫ incl hR = toR R := by
-  rw [← Spec.map_comp]; rfl
-
 theorem sq {k Ω : Type} [Field k] [Field Ω] [Algebra k Ω] {R R' : Subalgebra k Ω} (hR : R ≤ R')
     {C D : Scheme.{0}} {c : C ⟶ Sp Ω} {q : D ⟶ Sp R} {v : C ⟶ D} (hv : IsPullback v c q (toR R)) :
-    IsPullback (pullback.lift v (c ≫ toR R') (by rw [Category.assoc, toR_incl]; exact hv.w)) c
+    IsPullback (pullback.lift v (c ≫ toR R') (by rw [Category.assoc, LateralTheory.E.LeafPairFPPf.toR_incl]; exact hv.w)) c
       (pullback.snd q (incl hR)) (toR R') := by
   refine IsPullback.of_right ?_ (pullback.lift_snd _ _ _) (IsPullback.of_hasPullback q (incl hR))
   rw [pullback.lift_fst, _root_.LateralTheory.E.LeafPropsDescendPf.BaseChange.toR_incl]; exact hv
@@ -1485,6 +1483,8 @@ theorem LeafSpreadQF_of (hSep : LateralTheory.E.LeafSpreadProperPf.LeafSpreadSep
 
 end LateralTheory.E.SpreadingOutQuasiFinitenessBaseChange
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleSheaves.StalkVanishing

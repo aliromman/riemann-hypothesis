@@ -33,10 +33,9 @@ import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ExistsCoordsAt
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.JacobiBlockDeterminants.ExistsColFrame, Development.WeilBound.CoreStatements.JacobiBlockDeterminants.DetInvNe, Development.WeilBound.CoreStatements.JacobiBlockDeterminants.JacobiBlocks, Development.WeilBound.CoreStatements.JacobiBlockDeterminants.ValDetFac, Development.WeilBound.CoreStatements.MultihomogeneousSquares.BlockDiagMinorNeZero, Development.WeilBound.CoreStatements.MultihomogeneousSquares.IsValueAtValAtOfRegAt, Development.WeilBound.CoreStatements.MultihomogeneousSquares.SameOrbitTrans, Development.WeilBound.CoreStatements.JacobiBlockDeterminants.StSing
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.JacobiBlockDeterminants.ExistsColFrame
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.JacobiBlockDeterminants.ExistsColFrame
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 namespace HeightCancellation.G
 
@@ -271,11 +270,11 @@ end Gram
 
 end HeightCancellation.G
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.JacobiBlockDeterminants.DetInvNe
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.JacobiBlockDeterminants.DetInvNe
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 namespace HeightCancellation.G
 
@@ -530,6 +529,7 @@ theorem c1 : C1 := by
     · exact vU a b
 
 end HeightCancellation.G
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.JacobiBlockDeterminants.JacobiBlocks

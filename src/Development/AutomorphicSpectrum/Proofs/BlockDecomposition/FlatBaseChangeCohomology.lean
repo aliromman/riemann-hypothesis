@@ -12,11 +12,13 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BalancedLiftTmul, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SubsingletonTensor, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MvFGExact, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FlatBaseChangeCohomology
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BalancedLiftTmul
+-- clump: shared namespace opens
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry TensorProduct GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BalancedLiftTmul
+
+noncomputable section
 
 universe w w'
 
@@ -162,12 +164,11 @@ end Pairing
 
 end GlobalTheory.CompanionTheory.CosieveBC
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SubsingletonTensor
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SubsingletonTensor
 
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory AlgebraicGeometry TensorProduct GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb
-
+noncomputable section
 
 universe w w'
 
@@ -382,11 +383,9 @@ end Cxs
 
 end GlobalTheory.CompanionTheory.CosieveBC
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MvFGExact
-
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory AlgebraicGeometry TensorProduct GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 
 noncomputable section
 
@@ -528,11 +527,9 @@ end GlobalTheory.CompanionTheory.CosieveBC
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FlatBaseChangeCohomology
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FlatBaseChangeCohomology
 
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory AlgebraicGeometry TensorProduct GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb
-
+noncomputable section
 
 universe w v u w' v' u'
 

@@ -1018,7 +1018,9 @@ end GlobalTheory.CrysPrism
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PrimeNatCastNeZeroWittOfTiltFiniteField
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PrimeNatCastNeZeroWittOfTiltFiniteField
+
+noncomputable section
 
 open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations TensorProduct PowerSeries GlobalTheory.Prism GlobalTheory.BK GlobalTheory.BKReal GlobalTheory.BKGal GlobalTheory.Per Filter
   GlobalTheory.CrysPrism
@@ -1046,7 +1048,7 @@ variable {K}
 
 theorem iota_injective (τ : ZMod a) : Function.Injective (iota t K τ) := by
   have := Fintype.ofFinite (Fq l a)
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro w hw
   by_contra h0
   obtain ⟨m, b, hb, rfl⟩ := WittVector.exists_eq_pow_p_mul w h0
@@ -1172,6 +1174,7 @@ theorem isAdicComplete_of (hsd : ∀ F ∈ Sd t K e, F ∈ SdSet t K e) :
 
 end GlobalTheory.CrysPrism.Compl
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsAdicCompleteDividedPowerSeriesSubringPrime
 
@@ -1183,7 +1186,9 @@ theorem GlobalTheory.CrysPrism.isAdicComplete_Sd : ∀ (l : ℕ) [Fact l.Prime] 
   exact GlobalTheory.CrysPrism.Compl.isAdicComplete_of t e (_root_.GlobalTheory.CrysPrism.sdSet_closed l a e O K t)
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsAdicCompleteDividedTwoVariableSubring
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.IsAdicCompleteDividedTwoVariableSubring
+
+noncomputable section
 
 open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations TensorProduct PowerSeries GlobalTheory.Prism GlobalTheory.BK GlobalTheory.BKReal GlobalTheory.BKGal GlobalTheory.Per Filter
 open scoped Formalism.Per
@@ -1207,7 +1212,7 @@ theorem emb_injective (t : Wq l a →ₐ[ℤ_[l]] O) (τ : ZMod a) :
   haveI : Nontrivial O :=
     ⟨⟨0, 1, fun h => one_ne_zero (by simpa using congrArg (algebraMap O K) h.symm : (1 : K) = 0)⟩⟩
   have ht : Function.Injective t := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     by_contra h0
     obtain ⟨m, b, rfl⟩ := WittVector.exists_eq_pow_p_mul' x h0
@@ -1346,6 +1351,7 @@ theorem GlobalTheory.CrysPrism.PPd_isAdicComplete : ∀ (l : ℕ) [Fact l.Prime]
   intro l _ a e _ _ O K _ _ _ _ _ _ _ _ _ t
   haveI : CharZero K := charZero_of_injective_algebraMap (algebraMap ℚ_[l] K).injective
   exact GlobalTheory.CrysPrism.CompPP.complete_of t e (_root_.GlobalTheory.CrysPrism.PPd_subset_PPSet l a e O K t)
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsCrystallinePrisms

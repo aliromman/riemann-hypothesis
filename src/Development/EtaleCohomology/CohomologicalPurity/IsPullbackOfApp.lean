@@ -8,11 +8,9 @@ import Mathlib.CategoryTheory.ExtremalEpi
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.EtaleCohomology.CohomologicalPurity.LeafCokIsoPf, Development.EtaleCohomology.CohomologicalPurity.IsPullbackOfApp
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.CohomologicalPurity.LeafCokIsoPf
 
 open CategoryTheory Limits Opposite GlobalTheory.EtC
-
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.CohomologicalPurity.LeafCokIsoPf
 
 namespace LateralTheory.CohomologicalPurity.Thom.ExcSp
 
@@ -85,7 +83,10 @@ theorem leafCokIso_of (hF : LeafFreePb) : LeafCokIso := by
 end LateralTheory.CohomologicalPurity.Thom.ExcSp
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.CohomologicalPurity.IsPullbackOfApp
+@[expose] public section -- clump member: Development.EtaleCohomology.CohomologicalPurity.IsPullbackOfApp
+
+noncomputable section
+open CategoryTheory Limits Opposite GlobalTheory.EtC
 
 namespace LateralTheory.CohomologicalPurity.Thom.ExcSp
 
@@ -126,7 +127,7 @@ theorem modfree_pb (R : Type) [CommRing R] {A' A B' B : Type} (t : A' ⟶ B') (l
       ((ModuleCat.free (ULift.{1} R)).map (uliftFunctor.{1}.map b)) := by
   obtain ⟨w, hinj, hex⟩ := (Types.isPullback_iff _ _ _ _).1 hpb
   have ht : Function.Injective t := fun x y h => hinj x y ⟨h, hb (by
-    have := ConcreteCategory.congr_hom w x; have h2 := ConcreteCategory.congr_hom w y; simp only [ConcreteCategory.comp_apply, types_comp_apply] at this h2
+    have := ConcreteCategory.congr_hom w x; have h2 := ConcreteCategory.congr_hom w y; simp only [ConcreteCategory.comp_apply] at this h2
     rw [← this, ← h2, h])⟩
   have hw : ∀ a : ULift.{1} A', ULift.up (r (t a.down)) = ULift.up (b (l a.down)) := fun a => by
     have := ConcreteCategory.congr_hom w a.down; simp only [ConcreteCategory.comp_apply] at this; rw [this]

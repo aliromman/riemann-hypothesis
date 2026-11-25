@@ -69,7 +69,9 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 open GlobalTheory.Mum
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ChartValueMemRangeOfAgreeTraitExtension
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ChartValueMemRangeOfAgreeTraitExtension
+
+noncomputable section
 
 namespace GlobalTheory.Mum
 
@@ -84,7 +86,6 @@ theorem specMap_appLE_top {R Ω : Type} [CommRing R] [CommRing Ω] (f : R →+* 
       (Scheme.ΓSpecIso (CommRingCat.of Ω)).inv.hom (f ((Scheme.ΓSpecIso (CommRingCat.of R)).hom.hom
         (((Sp R).presheaf.map (homOfLE hV).op).hom a))) := by
   have e1 := Scheme.Hom.map_appLE (Spec.map (CommRingCat.ofHom f)) (U := ⊤) (U' := V) (V := ⊤) (fun _ _ => trivial) (homOfLE hV).op
-  have e2 := Scheme.ΓSpecIso_inv_naturality (CommRingCat.ofHom f)
   rw [← e1]
   have e3 : (Spec.map (CommRingCat.ofHom f)).appLE ⊤ ⊤ (fun _ _ => trivial) = (Spec.map (CommRingCat.ofHom f)).appTop := by
     rw [Scheme.Hom.appTop, ← Scheme.Hom.appLE_eq_app]; rfl
@@ -177,6 +178,7 @@ theorem chartVal_mem_range_of_agree : ∀ (X S Y : Scheme.{0}) (gX : X ⟶ S) (L
   rw [← hl, ← hr, hag]
 
 end GlobalTheory.Mum
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompletedDominatingDvrClosedFibrePointIsTrait

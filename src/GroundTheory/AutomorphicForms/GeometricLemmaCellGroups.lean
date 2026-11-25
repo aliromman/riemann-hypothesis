@@ -332,10 +332,11 @@ end Parabolic
 end GroundTheory.Automorphic
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.AutomorphicForms.GeometricLemmaCellGroups
+@[expose] public section -- clump member: GroundTheory.AutomorphicForms.GeometricLemmaCellGroups
 
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 set_option linter.unusedSectionVars false
 
@@ -689,7 +690,7 @@ def cellCoinvRep : Representation ℂ (cellLeviParabolic F β γ w)
   map_one' := Representation.Coinvariants.hom_ext (LinearMap.ext fun v => by
     simp [cellCoinvAction_mk])
   map_mul' b b' := Representation.Coinvariants.hom_ext (LinearMap.ext fun v => by
-    simp [cellCoinvAction_mk, Module.End.mul_apply])
+    simp [cellCoinvAction_mk])
 
 theorem cellCoinvRep_mk (b : cellLeviParabolic F β γ w) (v : W) :
     cellCoinvRep σ b (Representation.Coinvariants.mk _ v) =

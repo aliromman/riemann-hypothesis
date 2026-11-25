@@ -78,9 +78,6 @@ noncomputable def swapMat (H : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)
 
 end GlobalTheory.FrameTrans
 
-namespace GlobalTheory
-
-end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.FrameExistsAndVectorEqSmulTranslate

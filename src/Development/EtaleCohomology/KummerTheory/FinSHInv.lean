@@ -18,8 +18,9 @@ import Mathlib.Tactic.Linter.HaveILetI
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.EtaleCohomology.KummerTheory.InsepPf, Development.EtaleCohomology.KummerTheory.SHInsepHensPf, Development.EtaleCohomology.KummerTheory.SHInsepLocPf, Development.EtaleCohomology.KummerTheory.SHInsepResPf, Development.EtaleCohomology.KummerTheory.SHInvPf, Development.EtaleCohomology.KummerTheory.FinSHInv
 
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.KummerTheory.InsepPf
+@[expose] public section -- clump member: Development.EtaleCohomology.KummerTheory.InsepPf
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex GlobalTheory.EtC
 open scoped TensorProduct
 
@@ -95,7 +96,7 @@ theorem sub_of_iso {R : Type} [CommRing R] (F : Shv R) (n : ℤ) {P : Scheme.{0}
 
 theorem bij_of_sub {G G' : Type*} [AddCommGroup G] [AddCommGroup G'] (f : G →+ G') (h : Subsingleton G)
     (h' : Subsingleton G') : Function.Bijective f :=
-  ⟨fun a b _ => Subsingleton.elim a b, fun y => ⟨0, Subsingleton.elim _ _⟩⟩
+  ⟨fun a b _ => Subsingleton.elim a b, fun _ => ⟨0, Subsingleton.elim _ _⟩⟩
 
 theorem eqv_of (hA9 : A9) (hB2 : B2) (hTw : TwSec) (q : ℕ) [NeZero q] (i : ℤ) {P Q : Scheme.{0}} (m : P ⟶ Q)
     {A B : Type} [CommRing A] [CommRing B] (hA : SH A) (hB : SH B) (hq : IsUnit (q : A))
@@ -129,6 +130,7 @@ theorem Insep_of (hSH : SHInsep) (hTw : TwSec) : Insep := by
     pullbackRightPullbackFstIso p _ s ≪≫ pullback.congrHom hsp rfl ≪≫ pullbackSpecIso κ A K
 
 end LateralTheory.KummerTheory.InsepPf
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.EtaleCohomology.KummerTheory.SHInsepHensPf
@@ -375,8 +377,9 @@ end LateralTheory.KummerTheory
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.KummerTheory.SHInvPf
+@[expose] public section -- clump member: Development.EtaleCohomology.KummerTheory.SHInvPf
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 
 namespace LateralTheory.KummerTheory
@@ -428,7 +431,7 @@ theorem SHInv_of (hAlgExt : AlgExt) (hInsep : Insep) : SHInv := by
       ((pullbackLeftPullbackSndIso pA res alg).hom ≫ (pullbackLeftPullbackSndIso p (Spec.map s) (alg ≫ res)).hom) ≫
         pullback.fst p ((alg ≫ res) ≫ Spec.map s) := by
     rw [Category.assoc, pullbackLeftPullbackSndIso_hom_fst p (Spec.map s) (alg ≫ res)]
-    erw [← Category.assoc (pullbackLeftPullbackSndIso pA res alg).hom, pullbackLeftPullbackSndIso_hom_fst pA res alg]
+    rw [← Category.assoc (pullbackLeftPullbackSndIso pA res alg).hom, pullbackLeftPullbackSndIso_hom_fst pA res alg]
     rw [Category.assoc]
   have hall : Eqv _ (sch.map (pullback.fst (pullback.snd pA res) alg) ≫ sch.map (pullback.fst pA res) ≫
       sch.map (pullback.fst p (Spec.map s))) (tw q i) := by
@@ -437,6 +440,7 @@ theorem SHInv_of (hAlgExt : AlgExt) (hInsep : Insep) : SHInv := by
   exact shinv_eqv_right h1 (shinv_eqv_right h2 hall)
 
 end LateralTheory.KummerTheory
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.EtaleCohomology.KummerTheory.FinSHInv

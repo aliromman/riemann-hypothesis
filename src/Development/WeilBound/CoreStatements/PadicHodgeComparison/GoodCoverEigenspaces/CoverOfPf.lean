@@ -15,8 +15,9 @@ import Formalism.SharpRestriction.LevelLetterCocycles.DataN
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ReductionUniformizerPoint, Development.AbelianVarietyTheory.Definitions.GaloisGeometry.GaloisActionWeightSpectralE1Apply, Development.WeilBound.CoreStatements.PadicHodgeComparison.GoodCoverEigenspaces.CoverOfPf
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ReductionUniformizerPoint
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ReductionUniformizerPoint
 
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry
 
@@ -79,24 +80,6 @@ end BaseChange
 
 end GlobalTheory.Strata
 
-namespace GlobalTheory.Strata
-
-variable {X : Scheme.{0}} {ι : Type} (I : ι → X.IdealSheafData)
-
-section FibreStr
-
-variable {O : Type} [CommRing O] (p : X ⟶ Spec (CommRingCat.of O)) (ϖ : O)
-
-end FibreStr
-
-section BaseChangeStr
-
-variable {X' : Scheme.{0}} (f : X' ⟶ X)
-
-end BaseChangeStr
-
-end GlobalTheory.Strata
-
 namespace GlobalTheory.Strata.Example
 
 open MvPolynomial
@@ -120,9 +103,11 @@ namespace GlobalTheory.Strata
 
 end GlobalTheory.Strata
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.GaloisActionWeightSpectralE1Apply
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.GaloisActionWeightSpectralE1Apply
 
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry
 
@@ -157,38 +142,7 @@ def res (t : ℕ) (n i : ℤ) : HQ l (sch.obj (Ystr J t)) n i →ₗ[ℚ_[l]] HQ
 
 end GlobalTheory.EtC.WSS
 
-namespace GlobalTheory.EtC.WSS
-
-open GlobalTheory.EtC GlobalTheory.Strata
-
-variable (l : ℕ) [Fact l.Prime] {ι : Type} [Fintype ι] [LinearOrder ι] {Z : Scheme.{0}} (J : ι → Z.IdealSheafData)
-
-end GlobalTheory.EtC.WSS
-
-namespace GlobalTheory.EtC.WSS
-
-open GlobalTheory.EtC GlobalTheory.Strata
-
-variable (l : ℕ) [Fact l.Prime] {ι : Type} [Fintype ι] [LinearOrder ι] {Z : Scheme.{0}} (J : ι → Z.IdealSheafData)
-
-end GlobalTheory.EtC.WSS
-
-namespace GlobalTheory.EtC.WSS
-
-open GlobalTheory.EtC GlobalTheory.Strata
-
-variable (l : ℕ) [Fact l.Prime] {ι : Type} [Fintype ι] [LinearOrder ι]
-
-section Galois
-
-variable {k : Type} [Field k] (Ω : Type) [Field Ω] [Algebra k Ω] {V : Scheme.{0}} (p : V ⟶ Spec (CommRingCat.of k))
-  (I : ι → V.IdealSheafData)
-
-variable (a b w : ℤ)
-
-end Galois
-
-end GlobalTheory.EtC.WSS
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.GoodCoverEigenspaces.CoverOfPf

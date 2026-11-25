@@ -201,8 +201,9 @@ end ChowFormHeightComparison₂.CF.M
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.MinimalPrimeDimensions.LeDimQuotientHorizontal
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.MinimalPrimeDimensions.LeDimQuotientHorizontal
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry TensorProduct ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.ProjVar GlobalTheory.TrueGeo GlobalTheory.ShFam.Pad
 
@@ -242,7 +243,6 @@ theorem le_dim_quotient_horizontal (A : Type) [CommRing A] [IsDomain A] [CharZer
       obtain ⟨y, rfl⟩ := hy
       exact ⟨x + y, map_add _ _ _⟩
   have : (RingHom.ker φ).IsPrime := by
-    set_option synthInstance.maxHeartbeats 200000 in
       exact RingHom.ker_isPrime _
   have hc : (RingHom.ker φ).comap (algebraMap A (ℚ ⊗[ℤ] A)) = q := by
     ext a
@@ -371,9 +371,11 @@ theorem stDim : StDim := by
 
 end ChowFormHeightComparison₂.CF
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.MinimalPrimeDimensions.IsClosedOfCoheight
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.MinimalPrimeDimensions.IsClosedOfCoheight
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry NumberField MvPolynomial IsDedekindDomain TopologicalSpace
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -392,7 +394,7 @@ theorem bijective_comp (F : Type) [Field F] [NumberField F] :
     exact IsLocalization.ringHom_ext (nonZeroDivisors (𝓞 F)) hfg
   · intro τ
     have hinj : Function.Injective τ := by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro x hx
       by_contra hne
       have h := Ideal.comap_ne_bot_of_integral_mem hne (show x ∈ RingHom.ker τ from hx)

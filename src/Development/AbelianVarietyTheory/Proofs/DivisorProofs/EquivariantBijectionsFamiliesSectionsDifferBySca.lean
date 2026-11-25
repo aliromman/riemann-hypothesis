@@ -11,13 +11,14 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqSmulOfCommute, Development.AbelianVarietyTheory.Proofs.DivisorProofs.EquivariantBijectionsFamiliesSectionsDifferBySca
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqSmulOfCommute
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqSmulOfCommute
 
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
 open GlobalTheory.UU
 
+noncomputable section
 
 namespace GlobalTheory.ThetaCommutant
 
@@ -60,7 +61,6 @@ theorem eq_smul_of_commute {S : Scheme.{0}} [IsLocallyNoetherian S] (P : PolAV S
       right_inv := fun _ => rfl
       map_add' := fun _ _ => rfl }
   have hj : ∀ (c : F) v, j (σ c • v) = c • j v := fun _ _ => rfl
-  have hσ : ∀ c : F, σ.symm (σ c) = c := σ.symm_apply_apply
   obtain ⟨c, hc⟩ := Module.End.exists_eigenvalue T
   refine ⟨c, ?_⟩
   have key := hirr (Module.End.eigenspace T c) fun θ hθ v v' hvv hv => by
@@ -82,6 +82,7 @@ theorem eq_smul_of_commute {S : Scheme.{0}} [IsLocallyNoetherian S] (P : PolAV S
     exact Module.End.mem_eigenspace_iff.1 (h ▸ Submodule.mem_top)
 
 end GlobalTheory.ThetaCommutant
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EquivariantBijectionsFamiliesSectionsDifferBySca

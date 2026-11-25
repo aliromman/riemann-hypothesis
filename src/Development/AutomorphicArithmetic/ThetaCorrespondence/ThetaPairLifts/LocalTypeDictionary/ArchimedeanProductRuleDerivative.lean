@@ -132,8 +132,9 @@ theorem slope_prod {V : Type} [NormedAddCommGroup V] [NormedSpace ℝ V] [Finite
 end GlobalTheory.ArchProdRule
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeilLineCmModelSum
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeilLineCmModelSum
 
+noncomputable section
 
 namespace GlobalTheory.ArchCont
 
@@ -152,12 +153,7 @@ theorem lintegral_of_integral {l : Type} [Fintype l] (f g : GlobalTheory.RealWei
 
 end GlobalTheory.ArchCont
 
-namespace GlobalTheory.ArchCont
-
-open scoped SchwartzMap RealInnerProductSpace
-
-end GlobalTheory.ArchCont
-
+end -- clump:auto
 end -- clump:auto
 
 end -- clump: shared namespace opens

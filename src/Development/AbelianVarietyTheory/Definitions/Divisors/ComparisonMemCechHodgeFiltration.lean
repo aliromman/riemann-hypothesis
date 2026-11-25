@@ -340,8 +340,9 @@ end GlobalTheory.CechDR
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.ComparisonMemCechHodgeFiltration
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.ComparisonMemCechHodgeFiltration
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry KaehlerDifferential Opposite
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi
@@ -744,14 +745,6 @@ theorem res_toSec ⦃U V : AffOp (Sp B)⦄ (a : U ⟶ V) (b : B) :
   (Sec.res (𝟙 (Sp B)) (leOfHom a.unop)).commutes b
 
 open Polynomial
-
-theorem dOne_line (ω : Ω[R[X]⁄R]) : dOne R R[X] ω = 0 := by
-  induction ω using ind1 with
-  | h b c =>
-    rw [dOne_smul_D, polynomial_D_apply R b, polynomial_D_apply R c]
-    simp
-  | h0 => simp
-  | ha x y hx hy => rw [map_add (f := _), hx, hy, add_zero]
 
 
 end Affine

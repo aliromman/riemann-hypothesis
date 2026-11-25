@@ -154,8 +154,10 @@ end PositivityTheory.Rg.BcB.F.Rig
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.GaloisPermutationReps.TameCongruences.LocallyConstantOneCochain
+section -- clump member: Development.WeilBound.RepresentationTheoryGL.GaloisPermutationReps.TameCongruences.LocallyConstantOneCochain
+@[expose] public section
 
+noncomputable section
 
 open NumberField IsDedekindDomain Polynomial Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.UnitaryBC
 
@@ -200,10 +202,8 @@ theorem continuous_coeff_charpoly {K : Type} [CommRing K] [TopologicalSpace K] [
 
 end PositivityTheory.Rg.DzCong.CongruenceClosure
 
-namespace PositivityTheory.Rg.DzCong
-
-end PositivityTheory.Rg.DzCong
-
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GaloisFromTraceFormula.GalWeakOfCuspU

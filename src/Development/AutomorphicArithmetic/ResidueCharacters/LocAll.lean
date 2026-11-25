@@ -48,14 +48,15 @@ import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.BoundAtTwoT
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.ResidueCharacters.InvariantsKilledOverCyclotomic, Development.AutomorphicArithmetic.ResidueCharacters.LiftKOf, Development.AutomorphicArithmetic.ResidueCharacters.TbTop, Development.AutomorphicArithmetic.ResidueCharacters.TransferMemBlochKatoCocycles, Development.AutomorphicArithmetic.ResidueCharacters.TbKOf, Development.AutomorphicArithmetic.ResidueCharacters.TwistK, Development.AutomorphicArithmetic.ResidueCharacters.LocAllOf, Development.AutomorphicArithmetic.ResidueCharacters.LocAll
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.ResidueCharacters.InvariantsKilledOverCyclotomic
+section -- clump member: Development.AutomorphicArithmetic.ResidueCharacters.InvariantsKilledOverCyclotomic
+@[expose] public section
 
+noncomputable section
 
 open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions Formalism.MainNotions.N Formalism.WeaklyAdmissibleFiltrations
 
 namespace UpperTheory.N
 
-set_option maxHeartbeats 1600000 in
 set_option synthInstance.maxHeartbeats 400000 in
 theorem invariants_killed_over_cyclotomic_subfield_of_admissible (D : D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW) (l : ℕ) [Fact l.Prime]
     (hW : ∀ (K : FinExt l) (s : ℕ) (LL : FinExt l) (h : Good K s LL),
@@ -87,6 +88,8 @@ theorem invariants_killed_over_cyclotomic_subfield_of_admissible (D : D7) (HW : 
 
 end UpperTheory.N
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.ResidueCharacters.LiftKOf

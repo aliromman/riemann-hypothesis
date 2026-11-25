@@ -305,8 +305,9 @@ end
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsRealCoords
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsRealCoords
 
+noncomputable section
 namespace GlobalTheory.MBLow.Cl
 
 section Analytic
@@ -343,8 +344,6 @@ theorem cubF_per (x y : Fin g → ℂ) (M N : Fin g → ℤ) (z : Fin g → ℂ)
   have A := autV_cube d.τ d.a d.b M N x y z
   have h1 := autV_ne d.τ d.a d.b M N (x + z)
   have h2 := autV_ne d.τ d.a d.b M N (y + z)
-  have h3 := autV_ne d.τ d.a d.b M N (x + y + z)
-  have h4 := autV_ne d.τ d.a d.b M N z
   have u1 := (d.fr (x + y + z)).ne_zero
   have u2 := (d.fr x).ne_zero
   have u3 := (d.fr y).ne_zero

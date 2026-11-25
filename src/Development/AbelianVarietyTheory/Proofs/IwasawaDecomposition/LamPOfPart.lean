@@ -431,7 +431,8 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.LambdaPrimeEqLambdaThree
+section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.LambdaPrimeEqLambdaThree
+@[expose] public section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.DivisionValues Polynomial
@@ -440,6 +441,7 @@ open scoped TensorProduct InnerProductSpace
 open GlobalTheory.LiftRows
 attribute [local instance] Formalism.IndefR.principalLevelFrame.instCMHostI
 
+noncomputable section
 
 namespace GlobalTheory.LamPrimeTransport
 
@@ -671,10 +673,8 @@ theorem adjoint_mem_base_level : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {
 
 end GlobalTheory.LamPrimeTransport
 
-namespace GlobalTheory.LamPrimeTransport
-
-end GlobalTheory.LamPrimeTransport
-
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LamPOfPart

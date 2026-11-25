@@ -67,7 +67,7 @@ theorem finsum_mem_eq_sum_of_injective {α β : Type*} [Fintype β] (s : Set α)
 end GroundTheory.Heights₂.Heights.Inter
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsBisExtra
+@[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.Intersections.ImportsBisExtra
 
 set_option maxSynthPendingDepth 1
 
@@ -75,9 +75,9 @@ namespace GroundTheory.Heights₂.Heights.Inter
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo
 
+noncomputable section
 
 
-set_option maxHeartbeats 1000000 in
 theorem RegularityLocal.proof (hO : RegularityOrder.Statement) (hE : RegularityMaximalSpectrum.Statement) :
     RegularityLocal.Statement := by
   classical
@@ -125,7 +125,6 @@ theorem RegularityLocal.proof (hO : RegularityOrder.Statement) (hE : RegularityM
   have : Finite (regRing P ⧸ I) :=
     Ideal.finiteQuotientOfFreeOfNeBot I (by rwa [hI, Ne, Ideal.span_singleton_eq_bot])
   have : Fintype (PrimeSpectrum (regRing P ⧸ I)) := by
-    set_option synthInstance.maxHeartbeats 200000 in
       exact Fintype.ofFinite _
   let m : PrimeSpectrum (regRing P ⧸ I) → MaximalSpectrum (regRing P) := fun p =>
     ⟨p.asIdeal.comap (Ideal.Quotient.mk I),
@@ -173,6 +172,7 @@ theorem RegularityLocal.proof (hO : RegularityOrder.Statement) (hE : RegularityM
   rw [log_card_eq_sum_log_card_localization (regRing P ⧸ I)]
   exact Finset.sum_congr rfl fun p _ => congrArg (fun n : ℕ => Real.log n) (hgp p)
 
+end
 
 end GroundTheory.Heights₂.Heights.Inter
 

@@ -53,10 +53,10 @@ import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.CoeEqAlgebraM
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsUnitOfBasicOpenTop, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CupH0NormalCoboundary
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsUnitOfBasicOpenTop
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsUnitOfBasicOpenTop
 
-set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
+noncomputable section
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.B CrystallineSemistableComparison.Pb DividedPowers ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
 namespace GlobalTheory.CompanionTheory.KMVan
@@ -81,6 +81,7 @@ theorem evT_nat {T T' : Thick (nlFun γ p X q κ)} (φ : T ⟶ T') (f : Γ(X, �
 
 end TAU
 end GlobalTheory.CompanionTheory.KMVan
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CupH0NormalCoboundary

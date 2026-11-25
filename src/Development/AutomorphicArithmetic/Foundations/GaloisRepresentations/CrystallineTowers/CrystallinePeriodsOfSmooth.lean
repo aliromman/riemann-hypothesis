@@ -13,10 +13,10 @@ import Formalism.LocalRingCardinality.AdicCompletionLocal.InstIsAdicCompleteOCSp
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.ThetaCorrespondence.FockModels.TiltedDrinfeld.Bridge, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.CrystallineTowers.CrystallinePeriodsOfSmooth
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.FockModels.TiltedDrinfeld.Bridge
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.FockModels.TiltedDrinfeld.Bridge
 
-set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations Formalism.MainNotions.N TensorProduct Module
 
@@ -31,11 +31,12 @@ theorem eD_alg (T : LocTied6 l P AI) (q : ℚ_[l]) : T.eD (algebraMap ℚ_[l] P.
 
 end UpperTheory.Lit.Drps
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.CrystallineTowers.CrystallinePeriodsOfSmooth
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.CrystallineTowers.CrystallinePeriodsOfSmooth
 
-set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry Formalism Formalism.BasicNotions DeRhamPotentiallySemistable.DRPst CrystallineSemistableComparison
 open scoped Formalism.Per
@@ -52,7 +53,7 @@ theorem mem_range (T : LocTied6 l P AI) {x : Per6.BdR l} (hx : x ∈ Bcr l) : T.
   have hι : ∀ y, T.eD (P.ιB (T.eB.symm y)) = PositivityTheory.LocInh.ιCD l y :=
     RingHom.congr_fun ((PositivityTheory.LocInh.isCrisDR_iff _).1 T.incl)
   have hinv : ∀ y : Per6.Bcris l, IsUnit y → (PositivityTheory.LocInh.ιCD l y)⁻¹ ∈ (PositivityTheory.LocInh.ιCD l).range := fun y hy =>
-    ⟨↑(hy.unit⁻¹), by rw [map_units_inv]; rfl⟩
+    ⟨↑(hy.unit⁻¹), map_units_inv (PositivityTheory.LocInh.ιCD l) hy.unit⟩
   have hle : Bcr l ≤ (PositivityTheory.LocInh.ιCD l).range := by
     refine Subring.closure_le.2 ?_
     rintro x (⟨a, rfl⟩ | rfl | rfl)
@@ -62,7 +63,7 @@ theorem mem_range (T : LocTied6 l P AI) {x : Per6.BdR l} (hx : x ∈ Bcr l) : T.
     · have := hinv _ (PositivityTheory.LocInh.cB_isFrac l).2.1
       rwa [PositivityTheory.LocInh.ιCD_cB] at this
   obtain ⟨y, rfl⟩ := hle hx
-  exact ⟨T.eB.symm y, by rw [← hι, RingEquiv.symm_apply_apply]⟩
+  exact ⟨T.eB.symm y, (T.eD.symm_apply_eq.2 (hι y).symm).symm⟩
 
 theorem isAdmP_of_isAdm (T : LocTied6 l P AI) {d : ℕ} {G : Subgroup (PadicAlgCl l ≃ₐ[ℚ_[l]] PadicAlgCl l)}
     {r : G → Matrix (Fin d) (Fin d) ℚ_[l]} (h : IsAdm (Bcr l) G r) : IsAdmP P G r := by

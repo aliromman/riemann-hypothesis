@@ -384,9 +384,6 @@ theorem nrat_map_Xsp {T : D.host.E} (F : LFlag (D.sp.Y 0) D.R.rS T) {n : (VS D).
   | add y y' _ _ h h' => rw [map_add]; exact add_mem h h'
   | smul c y _ h => rw [map_smul]; exact Submodule.smul_mem _ c h
 
-theorem one_mem_NRat {T : D.host.E} (F : LFlag (D.sp.Y 0) D.R.rS T) : (1 : (VS D).V ≃ₗ[D.host.E] (VS D).V) ∈ NRat F :=
-  ⟨one_mem _, fun j x _ => by simp, fun x _ => by simp⟩
-
 end NR
 
 end GlobalTheory.Unfold.RowCls
@@ -500,7 +497,7 @@ theorem clsRow_ngSet : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' : D.w
   have hlam' : t.lam' = t'.lam' := congrArg (fun r => (r.2.1 : Submodule (𝓞 D.host.E) (VS D).V)) hr
   have hmem : t'.lin ∈ nmlOf Y u u' t := by
     rw [hn]
-    exact ⟨1, one_mem_NRat _, 1, one_mem_NRat _, by simp⟩
+    exact ⟨1, GlobalTheory.HL.NmlCoset.one_mem _, 1, GlobalTheory.HL.NmlCoset.one_mem _, by simp⟩
   obtain ⟨n, hnn, n', hnn', he⟩ := hmem
   exact nonGeneric_terms_same_coset_corank_one t t' ht hlam hlam' n hnn n' hnn' he
 

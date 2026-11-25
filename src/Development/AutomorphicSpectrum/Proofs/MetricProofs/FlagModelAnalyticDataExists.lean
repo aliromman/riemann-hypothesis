@@ -126,30 +126,14 @@ theorem exists_stepLine : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, F
 end GlobalTheory.CompanionTheory.Ar.PB.FA.StepLine
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.NotMemMcPtsTop
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.NotMemMcPtsTop
 
 open MvPolynomial MeasureTheory Filter Topology Matrix ReciprocityTheory.AnForm ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.P ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.AI.I1 ReciprocityTheory.ChartRestriction.G.AI.I2 ReciprocityTheory.ChartRestriction.G.AI.I4 GlobalTheory.CompanionTheory.Ar.PB GlobalTheory.CompanionTheory.Ar.PB.FA GroundTheory.Heights₂.Heights GroundTheory.Heights₂.Heights.LowerBoundFree
 open scoped ComplexOrder Classical
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.PB.FA.StepMap
-
-theorem orbit_symm {K : Type} {ι : K → Type} {z z' : (Σ k, ι k) → ℂ} (h : SameOrbit z z') :
-    SameOrbit z' z := by
-  obtain ⟨c, hc, rfl⟩ := h
-  refine ⟨fun k => (c k)⁻¹, fun k => inv_ne_zero (hc k), ?_⟩
-  funext q
-  show z' q = (c q.1)⁻¹ * (c q.1 * z' q)
-  rw [← mul_assoc, inv_mul_cancel₀ (hc q.1), one_mul]
-
-theorem orbit_trans {K : Type} {ι : K → Type} {z z' z'' : (Σ k, ι k) → ℂ} (h : SameOrbit z z')
-    (h' : SameOrbit z' z'') : SameOrbit z z'' := by
-  obtain ⟨c, hc, rfl⟩ := h
-  obtain ⟨c', hc', rfl⟩ := h'
-  refine ⟨fun k => c k * c' k, fun k => mul_ne_zero (hc k) (hc' k), ?_⟩
-  funext q
-  show c q.1 * (c' q.1 * z'' q) = c q.1 * c' q.1 * z'' q
-  rw [mul_assoc]
 
 theorem not_mem_mcPts_top {K : Type} {ι : K → Type} [∀ k, Fintype (ι k)] (z : (Σ k, ι k) → ℂ) :
     z ∉ mcPts (⊤ : Ideal (MRing ι)) := by
@@ -181,12 +165,12 @@ theorem factor : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (�
       rw [hz1]
       exact H3 x
     exact Rb.inj _ _ (not_mem_mcPts_top _)
-      (orbit_trans (orbit_trans (orbit_symm hz2) (hb _ _ o1)) (H1 x))
+      (GlobalTheory.CompanionTheory.Ar.PB.FA.Flat.sameOrbit_trans (GlobalTheory.CompanionTheory.Ar.PB.FA.Flat.sameOrbit_trans (GlobalTheory.CompanionTheory.Ar.PB.FA.Flat.sameOrbit_symm hz2) (hb _ _ o1)) (H1 x))
   · apply Rp.inj _ _ (not_mem_mcPts_top _)
-    refine orbit_trans (H3 x) (orbit_trans ?_ (orbit_symm (H3 x')))
+    refine GlobalTheory.CompanionTheory.Ar.PB.FA.Flat.sameOrbit_trans (H3 x) (GlobalTheory.CompanionTheory.Ar.PB.FA.Flat.sameOrbit_trans ?_ (GlobalTheory.CompanionTheory.Ar.PB.FA.Flat.sameOrbit_symm (H3 x')))
     have h1' := H1 x'
     rw [← hpr] at h1'
-    obtain ⟨cb, hcb, hbeq⟩ := orbit_trans (H1 x) (orbit_symm h1')
+    obtain ⟨cb, hcb, hbeq⟩ := GlobalTheory.CompanionTheory.Ar.PB.FA.Flat.sameOrbit_trans (H1 x) (GlobalTheory.CompanionTheory.Ar.PB.FA.Flat.sameOrbit_symm h1')
     refine ⟨fun k => if hk : (∀ p', M.blk p' ≠ some k.1) then cb ⟨k.1, hk⟩
       else (hsc k.1 (k.2.resolve_left hk)).choose, fun k => ?_, ?_⟩
     · dsimp only
@@ -204,6 +188,7 @@ theorem factor : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (�
       · exact (hsc q.1.1 (q.1.2.resolve_left hk)).choose_spec q.2
 
 end GlobalTheory.CompanionTheory.Ar.PB.FA.StepMap
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.FlagGapHolomorphicPullbackFourth
@@ -1109,7 +1094,7 @@ theorem stepWeight_exists : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k,
   have hgr := _root_.GlobalTheory.CompanionTheory.Ar.PB.StepW.GradLoc.stepPh_grad_local K ι Φ y Ψ N j M n BM p Kk ιk κ v e R pr hp hc hfs
   obtain ⟨C₂, hC₂⟩ := _root_.GlobalTheory.CompanionTheory.Ar.PB.isSingWeight_of_logGrowth e R.X R.A (BM.L.pullback pr hp.1) (fun x y => BM.s (pr x) (pr y)) BM.nb BM.m
     (fun k => pr ⁻¹' BM.W k) hpot hsec hsnc hnorm _ (stepPh M BM p v R pr) C₁ hfs hsm hps hC₁
-  obtain ⟨C₃, hC₃⟩ := _root_.GlobalTheory.CompanionTheory.Ar.PB.gradBound_of_local_bounds e R.X R.A B (BM.L.pullback pr hp.1) (fun x y => BM.s (pr x) (pr y)) BM.nb BM.m
+  obtain ⟨C₃, hC₃⟩ := _root_.PositivityTheory.Xgp.t_c_grad_atlas e R.X R.A B (BM.L.pullback pr hp.1) (fun x y => BM.s (pr x) (pr y)) BM.nb BM.m
     (fun k => pr ⁻¹' BM.W k) hpot hsec hsnc hnorm had (stepPh M BM p v R pr) hsm hgr
   refine ⟨stepPh M BM p v R pr, max C₂ C₃, ?_, ?_, ?_, hC₃ _ (le_max_right _ _)⟩
   · intro x hx z hz hzv

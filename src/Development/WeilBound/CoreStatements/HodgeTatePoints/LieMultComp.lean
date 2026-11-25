@@ -1040,13 +1040,11 @@ theorem exists_pairHost {E : Type} [Field E] [NumberField E] [IsCMField E] (H : 
 end PositivityTheory.HtPt.Kftwo
 end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.KftwoModel
 
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.KftwoModel
 open GlobalTheory.IndefiniteRowSideFullHecke.FibreFramesOnModels Formalism.L2.Pj
 
 namespace PositivityTheory.HtPt.Kftwo
@@ -1152,7 +1150,12 @@ theorem key_unit {κ : KeyRule} (hκ : IsKeyRule κ) (hpq : 1 ≤ Dw.p + Dw.q) (
 end PositivityTheory.HtPt.Kftwo
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.KftwoPoint
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.KftwoPoint
+
+noncomputable section
+
+open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
 namespace PositivityTheory.HtPt.Kftwo
 
@@ -1279,7 +1282,6 @@ theorem exists_point {D : Datum H} {l : Level H} (hA : l.A = 1) (Xo : Moduli D l
           congrArg CommRingCat.Hom.hom (Spec.map_injective ((Spec.map_comp _ _).trans hx))
         obtain ⟨ψ, rfl⟩ : ∃ ψ : AlgebraicClosure K →+* k, ψ.comp i = φ := by
           letI := φ.toAlgebra
-          set_option synthInstance.maxHeartbeats 400000 in
           exact ⟨(IsAlgClosed.lift (R := K') (S := AlgebraicClosure K) (M := k)).toRingHom,
             RingHom.ext fun z => (IsAlgClosed.lift (R := K') (S := AlgebraicClosure K) (M := k)).commutes z⟩
         have hx' : spMap (ψ.comp i) = spMap ψ ≫ spMap i := Spec.map_comp (CommRingCat.ofHom i) (CommRingCat.ofHom ψ)
@@ -1307,6 +1309,13 @@ theorem exists_point {D : Datum H} {l : Level H} (hA : l.A = 1) (Xo : Moduli D l
 
 end PositivityTheory.HtPt.Kftwo
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+
+open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.HodgeTatePoints.KftwoSquare
 open GlobalTheory.IndefiniteRowSideFullHecke.FibreFramesOnModels GlobalTheory.KeyUnitModels

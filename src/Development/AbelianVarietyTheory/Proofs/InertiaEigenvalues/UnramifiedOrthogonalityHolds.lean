@@ -15,8 +15,9 @@ import Development.AutomorphicSpectrum.Proofs.GlobalProofs.ExistsPrimeMemAsIdeal
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GlobalProofs.ContinuousCompOfIsOpenKer, Development.AutomorphicSpectrum.Proofs.GlobalProofs.UnramifiedOrthogonality, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnramifiedOrthogonalityHolds
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.ContinuousCompOfIsOpenKer
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.ContinuousCompOfIsOpenKer
 
+noncomputable section
 
 open ReciprocityTheory.Gal Representation
 
@@ -36,7 +37,6 @@ theorem geo_succ (f : Module.End R M) (m : M) (k : ℕ) :
 
 theorem geo_add (f : Module.End R M) (m : M) (a b : ℕ) :
     geo f m (a + b) = geo f m a + (f ^ a) (geo f m b) := by
-  set_option synthInstance.maxHeartbeats 100000 in
     simp only [geo, Finset.sum_range_add, map_sum, pow_add, Module.End.mul_apply]
 
 theorem geo_mul (f : Module.End R M) (m : M) {N : ℕ} (hN : f ^ N = 1) (a : ℕ) :
@@ -589,6 +589,7 @@ theorem unramifiedOrthogonality_of (hF : LocalFiniteness) (hD : LocalTateDuality
     hb hb' h20 ((hE F Ω l r M A rho v hr hA hc).2 hl)
 
 end GlobalTheory.CompanionTheory.Hypotheses₂.UnrOrth
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.UnramifiedOrthogonality

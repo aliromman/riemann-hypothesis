@@ -39,8 +39,9 @@ import Development.AutomorphicSpectrum.Proofs.MetricProofs.SameOrbitRefl
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.FlagImmersions.ExistsInverse, Development.WeilBound.CoreStatements.FlagImmersions.NeZeroOfHasVal, Development.WeilBound.CoreStatements.FlagImmersions.AnalyticAtAeval, Development.WeilBound.CoreStatements.FlagImmersions.TopLeIffCentre, Development.WeilBound.CoreStatements.FlagImmersions.FlagImmersion, Development.WeilBound.CoreStatements.FlagImmersions.GlobalModelRealTower, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.GoodTowerRealAgreement
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.FlagImmersions.ExistsInverse
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.FlagImmersions.ExistsInverse
 
+noncomputable section
 
 namespace RootFieldNumerics.Bh
 
@@ -70,10 +71,6 @@ theorem surj_of_degree {e : ℕ} {X Y : Type} [TopologicalSpace X] [TopologicalS
 
 variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
 
-theorem SO_symm {z z' : (Σ k, ι k) → ℂ} (h : SameOrbit z z') : SameOrbit z' z := by
-  obtain ⟨c, hc, rfl⟩ := h
-  exact ⟨fun k => (c k)⁻¹, fun k => inv_ne_zero (hc k), funext fun p => by rw [inv_mul_cancel_left₀ (hc _)]⟩
-
 theorem SO_ne {z z' : (Σ k, ι k) → ℂ} (h : SameOrbit z z') (q : Σ k, ι k) : z q ≠ 0 ↔ z' q ≠ 0 := by
   obtain ⟨c, hc, rfl⟩ := h
   simp [hc q.1]
@@ -94,7 +91,7 @@ theorem exists_inverse {P J : Ideal (MRing ι)} {e : ℕ} (R : AnLogRes P J e) (
     obtain ⟨O, μ, -, h1, -, h2⟩ := key w₁
     have a1 := h2 w (e₀ ▸ h1)
     rw [e₀] at a1
-    refine R.inj w w₁ (fun h => ?_) (_root_.GlobalTheory.CompanionTheory.Ar.PB.Cj.sameOrbit_trans a1 (SO_symm (h2 w₁ h1)))
+    refine R.inj w w₁ (fun h => ?_) (_root_.GlobalTheory.CompanionTheory.Ar.PB.Cj.sameOrbit_trans a1 (GlobalTheory.CompanionTheory.Ar.PB.Proj.orbit_symm (h2 w₁ h1)))
     simpa using h.2 1 (hJ ▸ Submodule.mem_top)
   let ψ := Function.surjInv hs
   have r : ∀ x, π (ψ x) = x := Function.surjInv_eq hs
@@ -118,6 +115,7 @@ theorem exists_inverse {P J : Ideal (MRing ι)} {e : ℕ} (R : AnLogRes P J e) (
     exact h2 k t ⟨h1, ht.2⟩
 
 end RootFieldNumerics.Bh
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.FlagImmersions.NeZeroOfHasVal
@@ -381,7 +379,7 @@ theorem biholo_of : Descend → Biholo := by
     rw [hκ] at h1
     have h2 := left_ne_zero_of_mul h1
     have h3 := Finset.prod_ne_zero_iff.1 (right_ne_zero_of_mul h1)
-    refine SO_symm ⟨fun k => κ * ∏ k' ∈ Finset.univ.erase k, R.lift w w ⟨k', c' k'⟩,
+    refine GlobalTheory.CompanionTheory.Ar.PB.Proj.orbit_symm ⟨fun k => κ * ∏ k' ∈ Finset.univ.erase k, R.lift w w ⟨k', c' k'⟩,
       fun k => mul_ne_zero h2 (Finset.prod_ne_zero_iff.2 fun k' _ => h3 k' (Finset.mem_univ _)), funext fun q => ?_⟩
     obtain ⟨k, j⟩ := q
     show F i (c' k₀) (Function.update c' k j) (π w) = _

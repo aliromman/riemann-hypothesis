@@ -100,13 +100,13 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.Cha
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsIntegralFamiliesSpanGenerateValuationRings, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.PhiSpecialises, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.QkToAkUSpecialises, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ArcDataSpecialiseAtUniformiser
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsIntegralFamiliesSpanGenerateValuationRings
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsIntegralFamiliesSpanGenerateValuationRings
 
+noncomputable section
 
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.DVR.SectionScalarValuation
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.FamGen
 
@@ -259,6 +259,7 @@ theorem exists_span_generate : PolBaseChangeSt → GlobalFnsSt → DVR.TwistBase
 
 end GlobalTheory.FamGen
 end -- clump:auto
+end -- clump:auto
 
 -- clump: shared namespace opens
 
@@ -266,9 +267,9 @@ open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCate
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out
 open scoped CategoryTheory.Obj
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.PhiSpecialises
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.PhiSpecialises
 
+noncomputable section
 
 namespace GlobalTheory
 
@@ -723,9 +724,9 @@ theorem phi_specialises : GlobalFnsSt → ∀ (R R' : Type) [CommRing R] [IsDoma
 
 end GlobalTheory
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.QkToAkUSpecialises
-attribute [local instance] Over.cartesianMonoidalCategory
 
 noncomputable section
 
@@ -982,9 +983,9 @@ end GlobalTheory
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ArcDataSpecialiseAtUniformiser
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ArcDataSpecialiseAtUniformiser
 
+noncomputable section
 
 namespace GlobalTheory.ArcSpecialise
 

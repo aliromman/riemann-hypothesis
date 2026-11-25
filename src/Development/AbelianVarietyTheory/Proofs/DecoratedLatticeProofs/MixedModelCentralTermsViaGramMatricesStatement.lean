@@ -197,9 +197,10 @@ theorem skew_perfect : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar 
 end GlobalTheory.SkewPairing
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MixedModelCentralTermsViaGramMatrices
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MixedModelCentralTermsViaGramMatrices
 open GlobalTheory.Unf
 
+noncomputable section
 
 namespace GlobalTheory.CentralGram
 
@@ -215,7 +216,6 @@ theorem qG_sub_left {ρ : ℕ} (A A' c : Mx D ρ ρ) : qG (A - A') c = qG A c - 
   simp only [qG, Matrix.sub_mul, Matrix.trace_sub, map_sub, mul_sub]
 
 theorem trace_rat {ρ : ℕ} (M : Matrix (Fin ρ) (Fin ρ) D.host.E) : (rat M : Mx D ρ ρ).trace = incA D M.trace := by
-  set_option synthInstance.maxHeartbeats 100000 in
     simp only [Matrix.trace, Matrix.diag, rat, Matrix.map_apply, map_sum]
 
 theorem qG_rat {ρ : ℕ} (M C : Matrix (Fin ρ) (Fin ρ) D.host.E) :
@@ -280,6 +280,7 @@ theorem central : ∀ D : D7, GlobalTheory.IndefiniteRowSideFullHecke.SkewGramHa
       rw [hq, hq, h]
 
 end GlobalTheory.CentralGram
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.MixedModelCentralTermsViaGramMatricesStatement

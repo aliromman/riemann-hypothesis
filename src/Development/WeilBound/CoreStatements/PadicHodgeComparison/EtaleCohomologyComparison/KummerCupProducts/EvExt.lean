@@ -66,7 +66,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.KummerCupProducts.EvExt
 
 set_option linter.unusedVariables false
-set_option backward.isDefEq.respectTransparency false
 
 open CategoryTheory GlobalTheory.EtC
 

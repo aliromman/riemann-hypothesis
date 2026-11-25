@@ -12,8 +12,10 @@ import Mathlib.Tactic.Linter.HaveILetI
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.VanishingOrderLeWeightSize, Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.TheoremZeroSplitOfLocal
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.VanishingOrderLeWeightSize
+section -- clump member: Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.VanishingOrderLeWeightSize
+@[expose] public section
 
+noncomputable section
 
 open Formalism.MainNotions Formalism.MainNotions.WeightAlgebra Formalism.BasicNotions NumberField IsDedekindDomain Module Formalism.MainNotions.Gaps.SizeBoundsAlt
 
@@ -94,18 +96,17 @@ theorem deepPacketP (large₂ : SizeData₂ D) (X : PJ D B P j)
   rw [e] at this
   exact this
 
-theorem n_le_sizeW (ka : WeightFamilies.Wt D j) : (ka.n : ℝ) ≤ ka.size := by
-  apply GlobalTheory.RunIn.ScalSize.n_le_size
-
 theorem vanishingOrder_le_weight_size (ka : WeightFamilies.Wt D j) (T nP nW : ℕ) (hk : ka.n = nP + T * nW) (hW : 0 < nW) :
     (a0 D j T : ℝ) ≤ ka.size := by
   have h1 : a0 D j T ≤ ka.n := by
     rw [hk]
     exact (Nat.sub_le _ _).trans ((Nat.le_mul_of_pos_right T hW).trans (Nat.le_add_left _ _))
-  exact (Nat.cast_le.mpr h1).trans (n_le_sizeW ka)
+  exact (Nat.cast_le.mpr h1).trans (GlobalTheory.RunIn.ScalSize.n_le_size ka)
 
 end Formalism.MainNotions.Gaps.EtaleWeightGaps
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.TheoremZeroSplitOfLocal

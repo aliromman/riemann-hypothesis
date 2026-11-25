@@ -871,10 +871,11 @@ theorem GlobalTheory.PDivGroup.semiHom_factor_of_isConn_of_isEt :
   exact h1.symm
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDieudonneFunctorGluedConnectedEtale
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDieudonneFunctorGluedConnectedEtale
 
 open CategoryTheory GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Dieu
 
+noncomputable section
 
 namespace GlobalTheory.Dieu.Glue
 
@@ -956,12 +957,6 @@ theorem exists_katz_etDual : ∀ (p : ℕ) [Fact p.Prime] (Bc : GlobalTheory.Die
   choose G₀ G₁ i₀ q₀ i₁ q₁ hc he h₀ h₁ hs using
     fun (k : Type) [Field k] [CharP k p] [PerfectRing k p] (G : PDivGroup p k) =>
       GlobalTheory.PDivGroup.exists_isConn_isEt_splitting p k G
-  have rz : ∀ (k : Type) [Field k] [CharP k p] [PerfectRing k p] (X Y : PDivGroup p k),
-      rigExtMap (0 : X ⟶ Y) = 0 := by
-    intro k _ _ _ X Y
-    have h := (rigExtMap_add_and_natCast_smul_id p k (CharP.cast_eq_zero k p) X Y).1 0 0
-    rw [add_zero] at h
-    simpa using h
   let D : Base p (fun _ _ _ => True) :=
   { M := fun {k} _ _ _ G _ =>
       ModuleCat.of (WittVector p k) (Bc.M (G₀ k G) (hc k G) × Be.M (G₁ k G) (he k G))
@@ -1120,6 +1115,7 @@ theorem exists_katz_etDual : ∀ (p : ℕ) [Fact p.Prime] (Bc : GlobalTheory.Die
         (fun _ _ => rfl) m.2)
 
 end GlobalTheory.Dieu.Glue
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsVerschiebungOfDieudonneFunctorBase

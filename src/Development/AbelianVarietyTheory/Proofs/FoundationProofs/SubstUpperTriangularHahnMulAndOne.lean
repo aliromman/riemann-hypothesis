@@ -95,15 +95,9 @@ section Coeff
 
 variable {R : Type*} [CommRing R]
 
-alias cm_coeff := _root_.GlobalTheory.CyclotomicQExpansion.Api.coeff_cm
-
-theorem cm_mul (c : ℚ → R) (hc : ∀ r s, c (r + s) = c r * c s) (φ ψ : HahnSeries ℚ R) :
-    cm c (φ * ψ) = cm c φ * cm c ψ := by
-  apply GlobalTheory.UlCusp.cm_mul_of_char <;> assumption
-
 theorem cm_one (c : ℚ → R) (hc : c 0 = 1) : cm c (1 : HahnSeries ℚ R) = 1 := by
   ext r
-  rw [cm_coeff, HahnSeries.coeff_one]
+  rw [GlobalTheory.CyclotomicQExpansion.Api.coeff_cm, HahnSeries.coeff_one]
   split_ifs with h
   · subst h; rw [hc, mul_one]
   · rw [mul_zero]
@@ -126,7 +120,7 @@ theorem sub_mul_and_one : ∀ (Ω : Type) [Field Ω] [Algebra ℚ Ω] [IsAlgClos
     intro r s; rw [← eOm_add]; congr 1; ring
   have h0 : eOm ε (0 * b / d) = 1 := by rw [zero_mul, zero_div, eOm_zero]
   refine ⟨?_, ?_⟩
-  · simp only [sub]; rw [cm_mul _ hc, scale_mul h]
+  · simp only [sub]; rw [GlobalTheory.UlCusp.cm_mul_of_char _ hc, scale_mul h]
   · simp only [sub]; rw [cm_one _ h0, scale_one h]
 
 end GlobalTheory.CyclotomicQExpansion

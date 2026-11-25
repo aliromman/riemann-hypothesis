@@ -130,10 +130,6 @@ theorem hasQ_expo (c M a b : ℕ) (hM : 0 < M) (ha : a < M) (hadm : admitted c !
   · rw [tc_zero]
     exact unitPart_zero_ne hc hM ha (pow_ne_zero _ hζ0) hne
 
-theorem hasQ_shift {M : ℕ} {f : ℍ → ℂ} {α : ℕ → ℂ} (h : HasQ M f α) (d : ℕ) :
-    HasQ M (fun τ => f τ * ee (((d : ℂ) / M) * (τ : ℂ))) (fun n => if d ≤ n then α (n - d) else 0) := by
-  apply GlobalTheory.FracBd.shift_hasQ <;> assumption
-
 theorem exp_siegel_ord {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ Ω] (ε : Ω →+* ℂ) (T : Tower Ω ε)
     (c M a b : ℕ) (hM : 0 < M) (ha : a < M) (hadm : admitted c ![(a : ℚ) / M, (b : ℚ) / M]) :
     (T.exp (siegel T c ![(a : ℚ) / M, (b : ℚ) / M])).coeff ((expo c M a : ℚ) / M) ≠ 0 ∧
@@ -154,7 +150,7 @@ theorem exp_siegel_ord {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ
   have hke : k ≤ e := by
     by_contra! hlt
     have hd : (((k - e).toNat : ℕ) : ℤ) = k - e := Int.toNat_of_nonneg (by omega)
-    have h1 := hasQ_shift hA (k - e).toNat
+    have h1 := GlobalTheory.FracBd.shift_hasQ hA (k - e).toNat
     rw [shift k e _ hd] at h1
     have h2 := HasQ.coeff_unique hM hB h1
     have h3 := congrFun h2 0
@@ -162,7 +158,7 @@ theorem exp_siegel_ord {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ
     exact hB0 h3
   have hd : (((e - k).toNat : ℕ) : ℤ) = e - k := Int.toNat_of_nonneg (by omega)
   set d := (e - k).toNat with hdd
-  have h1 := hasQ_shift hB d
+  have h1 := GlobalTheory.FracBd.shift_hasQ hB d
   rw [shift e k _ hd] at h1
   have h2 := HasQ.coeff_unique hM hA h1
   have hAd : A d ≠ 0 := by

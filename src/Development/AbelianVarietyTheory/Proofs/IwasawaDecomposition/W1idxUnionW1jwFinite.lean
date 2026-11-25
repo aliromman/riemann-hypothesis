@@ -70,8 +70,10 @@ import Formalism.SharpRestriction.InertJacobiLevels.HostFam
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IdxVanishOffFinite, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.W1idxUnionW1jwFinite
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IdxVanishOffFinite
+section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IdxVanishOffFinite
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.Mem.IdxFin
 
@@ -117,7 +119,7 @@ theorem locLen_finite {K V : Type} [Field K] [NumberField K] [AddCommGroup V] [M
         (Formalism.HermitianLatticesTheory.localization₂ w.asIdeal C).comap (Formalism.HermitianLatticesTheory.localization₂ w.asIdeal A).subtype) :=
       LinearMap.toSpanSingleton _ _ (Submodule.Quotient.mk ⟨x, hxA⟩)
     have hφ : Function.Injective φ := by
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro r hr
       by_contra hr0
       have h1 : Submodule.Quotient.mk (p := (Formalism.HermitianLatticesTheory.localization₂ w.asIdeal C).comap (Formalism.HermitianLatticesTheory.localization₂ w.asIdeal A).subtype)
@@ -150,6 +152,8 @@ theorem lidx_finite {K V : Type} [Field K] [NumberField K] [AddCommGroup V] [Mod
 
 end GlobalTheory.Mem.IdxFin
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.W1idxUnionW1jwFinite
@@ -193,7 +197,7 @@ theorem dual_fg {K : Type} [Field K] [NumberField K] [StarRing K] {d : ℕ} (H :
         rw [hg, Submodule.coe_smul, ← algebraMap_smul K s (x : Fin d → K), map_smul]
         simp only [RingHom.id_apply, Pi.smul_apply, smul_eq_mul, map_mul, hg]) }
   have hφ : Function.Injective φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     have h0 : ∀ a ∈ S, Formalism.DivisionValues.hform H a x = 0 := by
       intro a ha

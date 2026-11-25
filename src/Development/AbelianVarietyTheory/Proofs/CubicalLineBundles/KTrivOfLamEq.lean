@@ -13,12 +13,14 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.P
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.InKSubgroupTwist, Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.KTrivOfLamEq
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.InKSubgroupTwist
+section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.InKSubgroupTwist
+@[expose] public section
 
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AbLaw GlobalTheory.UU
 open scoped CategoryTheory.Obj
 
+noncomputable section
 
 namespace GlobalTheory.UU.KTwist
 
@@ -99,10 +101,8 @@ theorem inK_of_lam [IsCommMonObj B] {O : LB B.left} (hO : O.IsLB) (hu : ∃ u : 
 
 end GlobalTheory.UU.KTwist
 
-namespace GlobalTheory.UU
-
-end GlobalTheory.UU
-
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.KTrivOfLamEq

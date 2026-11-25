@@ -36,8 +36,9 @@ open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec
 open AlgebraicGeometry CategoryTheory
 open scoped Matrix
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianMapLieModelEigenFrame
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.AbelianMapLieModelEigenFrame
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.Ar.Rec.FinRd.Roots.LieBasis
 
 open Limits MonoidalCategory CartesianMonoidalCategory MonObj
@@ -159,7 +160,7 @@ theorem GlobalTheory.CompanionTheory.Ar.Rec.FinRd.Roots.LieBasis.indep_of_frame 
   subst hr
   rw [Fintype.linearIndependent_iff]
   intro a ha
-  have comb := GlobalTheory.T.abelian_map_lie_model_field_point E H Dw l Xo c O β Y X tX f m F g EC MC y hy (Dw.mult τ) (y.u τ) (y.tan τ) u hu
+  have comb := GlobalTheory.CompanionTheory.Ar.Rec.FinRd.Roots.LieBasis.comb_val E H Dw l Xo c O β Y X tX f m F g EC MC y hy (Dw.mult τ) (y.u τ) (y.tan τ) u hu
   obtain ⟨w, hc⟩ := FinRd.Roots.LieBasis.exists_comb y.x (y.u τ) (y.tan τ) a
   obtain ⟨w₁, h1⟩ := FinRd.Roots.LieBasis.exists_comb y.x (y.u τ) (y.tan τ) (0 : Fin (Dw.mult τ) → F)
   obtain ⟨hw, ew⟩ := comb a w hc
@@ -169,6 +170,7 @@ theorem GlobalTheory.CompanionTheory.Ar.Rec.FinRd.Roots.LieBasis.indep_of_frame 
     simp)
   intro i
   exact congrFun hz i
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.EigenLieModelCompleteDvr
@@ -427,8 +429,9 @@ theorem genFibre_pullback_cover : ∀ (E : Type) [Field E] [NumberField E] [IsCM
 end GlobalTheory.CompanionTheory.Ar.Rec.FinRd.Roots.LieBasis
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginGenericFrameFinal
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginGenericFrameFinal
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Rec.FinRd.Roots.PtEq
 
@@ -437,7 +440,6 @@ set_option backward.isDefEq.respectTransparency false
 end GlobalTheory.CompanionTheory.Ar.Rec.FinRd.Roots.PtEq
 
 namespace GlobalTheory.CompanionTheory.Ar.Rec.FinRd.Roots
-
 
 open PtEq in
 
@@ -473,9 +475,9 @@ theorem ptY_eq_gen : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H :
 
 end GlobalTheory.CompanionTheory.Ar.Rec.FinRd.Roots
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginGenericFrameFinalStatement
-
 
 end -- clump:auto
 

@@ -295,10 +295,11 @@ end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.WeylCellAction
-@[expose] public noncomputable section
+@[expose] public section
 
 open MeasureTheory Matrix
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.P.PBN
 
@@ -394,11 +395,7 @@ end main
 
 end Formalism.FourierDecayAlt.P.PBN
 
-namespace Formalism.FourierDecayAlt.P
-
-open Formalism.FourierDecayAlt Formalism.FourierDecayAlt.P.PBN
-
-end Formalism.FourierDecayAlt.P
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 

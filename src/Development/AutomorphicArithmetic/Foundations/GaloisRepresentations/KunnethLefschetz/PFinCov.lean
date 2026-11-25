@@ -679,8 +679,9 @@ theorem GenOfAway_of : GenOfAway := by
 end LateralTheory.EtaleTrace.Cov.GenInPf
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleTrace.GenUseBackPf
+@[expose] public section -- clump member: Development.EtaleCohomology.EtaleTrace.GenUseBackPf
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry MvPolynomial
 attribute [local instance] MvPolynomial.gradedAlgebra
 
@@ -688,7 +689,7 @@ namespace LateralTheory.EtaleTrace.Cov
 
 lemma gub_stalk_inj {X : Scheme.{0}} [IsIntegral X] (x : X) :
     Function.Injective (algebraMap (X.presheaf.stalk x) X.functionField) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   obtain ⟨U, hxU, s, rfl⟩ := X.presheaf.exists_germ_eq a
   have : Nonempty U := ⟨⟨x, hxU⟩⟩
@@ -761,6 +762,7 @@ theorem GenUseBack_of : GenUseBack := by
   exact gub_notMem _ hXi n f hf' _ hmem
 
 end LateralTheory.EtaleTrace.Cov
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.EtaleCohomology.EtaleTrace.HomRelPf

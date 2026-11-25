@@ -679,8 +679,9 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ArchimedeanSection
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ArchimedeanSection
 
+noncomputable section
 open HeckeCharacterZeroLocus.SiegelWeilU NumberField IsDedekindDomain MeasureTheory Topology
 open scoped TensorProduct ENNReal NNReal Matrix
 
@@ -752,7 +753,7 @@ theorem exists_ring_section {A : Type} [Ring A] [TopologicalSpace A] [IsTopologi
       simp only [map_add (f := _), add_mul, mul_add])
     (by
       intro u v v'
-      simp only [map_add (f := _), add_mul, mul_add])
+      simp only [map_add (f := _), mul_add])
     (by
       have h1 : Continuous (fun p : (Fin N → ℝ) × (Fin N → ℝ) => e.symm p.1) :=
         he'.comp continuous_fst
@@ -974,6 +975,7 @@ theorem secInf : PositivityTheory.PfSWUS.SchInf.SecInf := by
     (fun S i j => S.2 i j) c hc
 
 end GlobalTheory.CompanionTheory.SecInf
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DensityIntegral

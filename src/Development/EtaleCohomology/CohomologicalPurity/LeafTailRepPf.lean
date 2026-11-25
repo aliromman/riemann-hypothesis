@@ -6,11 +6,10 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.EtaleCohomology.CohomologicalPurity.LeafTailPf, Development.EtaleCohomology.CohomologicalPurity.LeafTailRepPf
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.EtaleCohomology.CohomologicalPurity.LeafTailPf
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
-
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.CohomologicalPurity.LeafTailPf
 
 namespace LateralTheory.CohomologicalPurity.Thom
 
@@ -32,7 +31,7 @@ theorem eqv_of_iso (R : Type) [CommRing R] {E₁ E₂ E₁' E₂' : Spc} (f : E�
   exact (pull_bij_of_iso R e₁ F n).comp ((h n).comp (pull_bij_of_iso R e₂.symm F n))
 
 def LeafTailRep : Prop := ∀ (d : ℕ) (R : Type) [CommRing R] (n : SimplexCategoryᵒᵖ),
-  ∃ (A : Type) (_ : CommRing A) (I : Ideal A) (φ : R →+* A),
+  ∃ (A : Type) (_ : CommRing A) (I : Ideal A) (_ : R →+* A),
     I.FG ∧ ∃ (h : off (Polynomial A) (I.map Polynomial.C) ≤
         Spec.map (CommRingCat.ofHom (Polynomial.C : A →+* Polynomial A)) ⁻¹ᵁ off A I)
       (e₁ : disc.obj ((PR (d + 1) 1 R).obj n) ≅ sch.obj (off (Polynomial A) (I.map Polynomial.C)))
@@ -51,8 +50,11 @@ theorem LeafTail_of (hRep : LeafTailRep) (hH : LeafHtpy) : LeafTail := by
 
 end LateralTheory.CohomologicalPurity.Thom
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.EtaleCohomology.CohomologicalPurity.LeafTailRepPf
+
+open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 
 namespace LateralTheory.CohomologicalPurity.Thom
 

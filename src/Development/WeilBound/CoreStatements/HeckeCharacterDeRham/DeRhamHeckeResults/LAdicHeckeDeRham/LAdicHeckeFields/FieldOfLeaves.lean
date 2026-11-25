@@ -37,13 +37,12 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CharacterValuesIntegral, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LubinTateCommutingSeriesUnique, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LubinTateEndomorphismSeriesExists, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LubinTateIterateEventuallyZero, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LubinTateIterateLimitCongruence, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LubinTateLimitKernelZero, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LubinTateNormCyclotomic, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LubinTateScaledIterateTends, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LubinTateSeriesDeRhamPeriod, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LubinTateTorsionApproximation, Development.WeilBound.CoreStatements.HeckeCharacterDeRham.DeRhamHeckeResults.LAdicHeckeDeRham.LAdicHeckeFields.FieldOfLeaves
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CharacterValuesIntegral
 
+noncomputable section
 open NumberField IsDedekindDomain Neutral.B1 Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.L2.Host Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations
 open GlobalTheory.HeckeGal GlobalTheory.Pst GlobalTheory.TripleGal GlobalTheory.CompanionTheory.LTHodge GlobalTheory.CompanionTheory.LTPer
 open scoped Classical
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CharacterValuesIntegral
 
 namespace GlobalTheory.CompanionTheory.LTPer.IntVal
 
@@ -77,14 +76,10 @@ theorem mem_OL_of_norm_le_one (K : FinExt l) (x : ↥K.1) (h : ‖((x : ↥K.1) 
     (algebraMap ↥K.1 (Om l)).injective
   exact (isIntegral_algHom_iff _ hinj).1 (isIntegral_of_norm_le_one _ h)
 
-theorem compactSpace_GK (K : FinExt l) : CompactSpace ↥(GK K) := by
-  have := K.2
-  exact isCompact_iff_compactSpace.mp (IntermediateField.fixingSubgroup_isClosed K.1).isCompact
-
 theorem norm_le_one (K : FinExt l) (χ : ↥(GK K) →* (↥K.1)ˣ)
     (hc : Continuous (fun g => (((χ g : (↥K.1)ˣ) : ↥K.1) : Om l))) (g : ↥(GK K)) :
     ‖(((χ g : (↥K.1)ˣ) : ↥K.1) : Om l)‖ ≤ 1 := by
-  haveI := compactSpace_GK K
+  haveI := GlobalTheory.UnramifiedCrys.compactSpace_GK K
   obtain ⟨M, hM⟩ := (isCompact_range hc).isBounded.exists_norm_le
   have hpow : ∀ n : ℕ, ‖(((χ g : (↥K.1)ˣ) : ↥K.1) : Om l)‖ ^ n ≤ M := fun n => by
     have := hM _ ⟨g ^ n, rfl⟩
@@ -100,8 +95,14 @@ theorem integral_values {l : ℕ} [Fact l.Prime] (K : FinExt l) (χ : ↥(GK K) 
 
 end GlobalTheory.CompanionTheory.LTPer.IntVal
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LubinTateCommutingSeriesUnique
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LubinTateCommutingSeriesUnique
+
+noncomputable section
+open NumberField IsDedekindDomain Neutral.B1 Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.L2.Host Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations
+open GlobalTheory.HeckeGal GlobalTheory.Pst GlobalTheory.TripleGal GlobalTheory.CompanionTheory.LTHodge GlobalTheory.CompanionTheory.LTPer
+open scoped Classical
 
 namespace GlobalTheory.CompanionTheory.LTPer.QGal
 
@@ -228,11 +229,6 @@ section Main
 
 variable {B : Type} [CommRing B] {S : Subring B} {F : ℕ → Ideal B} {ϖ : B}
 
-theorem pow_mem_F (env : PerEnv S F ϖ) {x : B} (hx : x ∈ F 1) (k : ℕ) : x ^ k ∈ F k := by
-  induction k with
-  | zero => simp [env.top]
-  | succ k ih => rw [pow_succ]; exact env.mul_le k 1 (Ideal.mul_mem_mul ih hx)
-
 theorem exists_near_ideal (hϖ : ϖ ∈ S) (J : Ideal B) (m : ℕ) :
     ∃ I : Ideal S, ∀ x : S, x ∈ I ↔ Near S ϖ J m (x : B) := by
   refine ⟨Ideal.span {(⟨ϖ, hϖ⟩ : S) ^ m} ⊔ J.comap S.subtype, fun x => ⟨fun hx => ?_, ?_⟩⟩
@@ -292,7 +288,7 @@ theorem finiteRing_sq_sub_mul_sq_eq_of_card {R C : Type} [CommRing R] [CommRing 
       rw [← map_pow]
       refine hmF _ ?_
       rw [SubmonoidClass.coe_pow]
-      exact pow_mem_F env hf k
+      exact GlobalTheory.CompanionTheory.LTPer.LogGal.pow_mem_F env hf k
     have e : mk (v' 0) ^ M = mk (v' 0 ^ M - ϖ' ^ 1 * s0') + mk ϖ' * mk s0' := by
       simp only [map_sub, map_mul, map_pow, pow_one]
       ring
@@ -399,8 +395,14 @@ theorem GlobalTheory.CompanionTheory.LTPer.evalMod_sigma_of_congr : ∀ {B : Typ
     (fun x => Ideal.Quotient.eq_zero_iff_mem.trans (hI x)) h h' hh (fun _ => rfl) π hπ q hq2 s hsS hs φ h0 hc
     σ hσS hσϖ v hvS hv M s0 hs0 hf0 Q hQS hQ hE
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LubinTateEndomorphismSeriesExists
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LubinTateEndomorphismSeriesExists
+
+noncomputable section
+open NumberField IsDedekindDomain Neutral.B1 Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.L2.Host Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations
+open GlobalTheory.HeckeGal GlobalTheory.Pst GlobalTheory.TripleGal GlobalTheory.CompanionTheory.LTHodge GlobalTheory.CompanionTheory.LTPer
+open scoped Classical
 open scoped GroundTheory.PAdicHodge.LocalBridge
 set_option maxSynthPendingDepth 1
 
@@ -416,7 +418,6 @@ theorem map_subst_comm {A B : Type} [CommRing A] [CommRing B] (h : A →+* B) {F
   rw [PowerSeries.map_subst (PowerSeries.HasSubst.of_constantCoeff_zero hG),
     PowerSeries.map_subst (PowerSeries.HasSubst.of_constantCoeff_zero hF)] at h2
   exact h2
-
 
 open GlobalTheory.CompanionTheory.LTHodge.CharEx GroundTheory.LocalField GroundTheory.LocalField.FormalGroup ValuativeRel in
 theorem exists_series_comm : ∀ {l : ℕ} [Fact l.Prime] (K : FinExt l) (π : ↥(OL K)), Irreducible π → ∀ a : ↥(OL K),
@@ -451,8 +452,14 @@ theorem exists_series_comm : ∀ {l : ℕ} [Fact l.Prime] (K : FinExt l) (π : �
 
 end GlobalTheory.CompanionTheory.LTPer
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LubinTateIterateEventuallyZero
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LubinTateIterateEventuallyZero
+
+noncomputable section
+open NumberField IsDedekindDomain Neutral.B1 Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.L2.Host Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations
+open GlobalTheory.HeckeGal GlobalTheory.Pst GlobalTheory.TripleGal GlobalTheory.CompanionTheory.LTHodge GlobalTheory.CompanionTheory.LTPer
+open scoped Classical
 
 namespace GlobalTheory.CompanionTheory.LTPer.Nonv
 
@@ -619,7 +626,6 @@ end GlobalTheory.CompanionTheory.LTPer.Nonv
 
 namespace GlobalTheory.CompanionTheory.LTPer
 
-
 open GlobalTheory.CompanionTheory.LTPer.Nonv in
 theorem exists_ltIter_eq_zero_of_tends : ∀ {B : Type} [CommRing B] {S : Subring B} {F : ℕ → Ideal B} {ϖ : B} {C : Type} [NormedField C] [IsUltrametricDist C], PerEnv S F ϖ → ∀ (ϖ' : B), ϖ * ϖ' = 1 →
     ∀ (θ : B →+* C), (∀ x, θ x = 0 ↔ x ∈ F 1) → (∀ s ∈ S, ‖θ s‖ ≤ 1) → ‖θ ϖ‖ < 1 → ∀ (q : ℕ), 2 ≤ q →
@@ -639,6 +645,13 @@ theorem exists_ltIter_eq_zero_of_tends : ∀ {B : Type} [CommRing B] {S : Subrin
 
 end GlobalTheory.CompanionTheory.LTPer
 end -- clump:auto
+end -- clump:auto
+
+section -- clump: shared namespace opens
+
+open NumberField IsDedekindDomain Neutral.B1 Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.L2.Host Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations
+open GlobalTheory.HeckeGal GlobalTheory.Pst GlobalTheory.TripleGal GlobalTheory.CompanionTheory.LTHodge GlobalTheory.CompanionTheory.LTPer
+open scoped Classical
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LubinTateIterateLimitCongruence
 
@@ -891,12 +904,18 @@ theorem norm_eq_cyclo : ∀ {l : ℕ} [Fact l.Prime] (K : FinExt l) (χ : ↥(GK
 end GlobalTheory.CompanionTheory.LTNorm
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LubinTateScaledIterateTends
+end -- clump: shared namespace opens
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LubinTateScaledIterateTends
+
+noncomputable section
+open NumberField IsDedekindDomain Neutral.B1 Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.L2.Host Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations
+open GlobalTheory.HeckeGal GlobalTheory.Pst GlobalTheory.TripleGal GlobalTheory.CompanionTheory.LTHodge GlobalTheory.CompanionTheory.LTPer
+open scoped Classical
 
 namespace GlobalTheory.CompanionTheory.LTPer.LogConv
 
 variable {B : Type} [CommRing B] {S : Subring B} {ϖ : B} {J : Ideal B}
-
 
 theorem near_mul {a b : ℕ} {x y : B} (hx : Near S ϖ J a x) (hy : Near S ϖ J b y) :
     Near S ϖ J (a + b) (x * y) := by
@@ -1105,6 +1124,13 @@ theorem log_converges : ∀ {B : Type} [CommRing B] {S : Subring B} {F : ℕ →
 
 end GlobalTheory.CompanionTheory.LTPer.LogConv
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+open NumberField IsDedekindDomain Neutral.B1 Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.L2.Host Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations
+open GlobalTheory.HeckeGal GlobalTheory.Pst GlobalTheory.TripleGal GlobalTheory.CompanionTheory.LTHodge GlobalTheory.CompanionTheory.LTPer
+open scoped Classical
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LubinTateSeriesDeRhamPeriod
 

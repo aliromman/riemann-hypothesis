@@ -19,8 +19,10 @@ import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.LevelLetterCocycles.CoboundaryMemInvariantCocycles, Formalism.SharpRestriction.LevelLetterCocycles.ExistsLinearLiftOfFree, Formalism.SharpRestriction.LevelLetterCocycles.FiltrationQuotientFiniteDimensional, Formalism.SharpRestriction.LevelLetterCocycles.LevelMembershipPackage, Formalism.SharpRestriction.LevelLetterCocycles.SecondLiftAtSituation, Formalism.SharpRestriction.LevelLetterCocycles.SecondLiftOfHypotheses
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.CoboundaryMemInvariantCocycles
+section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.CoboundaryMemInvariantCocycles
+@[expose] public section
 
+noncomputable section
 
 open Classical
 
@@ -119,8 +121,7 @@ theorem sum_clK_eq_pow_smul_clK_of_level_decomposition [NeZero n] (M s σ : ℕ)
       refine (hF2 _ hw).unique ⟨?_, ?_⟩ ⟨hY2, ?_⟩
       · exact Finset.sum_induction _ _ (fun a b ha hb => Formalism.MainNotions.RamifiedCoefficientChains.S9.inPN_add W T ha hb)
           (uniformizerLattice_zero W T M) (fun c hc => (hZ c hc).1)
-      · set_option synthInstance.maxHeartbeats 100000 in
-          rw [map_sum, ← Finset.sum_sub_distrib, map_sum, ← Finset.sum_sub_distrib]
+      · rw [map_sum, ← Finset.sum_sub_distrib, map_sum, ← Finset.sum_sub_distrib]
         exact Finset.sum_congr rfl fun c hc => (hZ c hc).2
       · rw [← hY1]
         have hyz' : W.γ T (yz : W.DD T × W.DD T).1 - (yz : W.DD T × W.DD T).1 =
@@ -152,6 +153,8 @@ theorem sum_clK_eq_pow_smul_clK_of_level_decomposition [NeZero n] (M s σ : ℕ)
 
 end Formalism.MainNotions.RamifiedCoefficientChains.S9.ExtensionLemmaAlt.Step2C
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.ExistsLinearLiftOfFree

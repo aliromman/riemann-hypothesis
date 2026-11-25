@@ -530,7 +530,6 @@ theorem hsGrowth_exp_radius : ∀ (D e δ : ℕ) (N : ℕ → ℝ → ℕ) (κ t
       Real.log (N m (Real.exp (t * m))) / (m : ℝ) ^ (D + 1) := by
     filter_upwards [eventually_ge_atTop (e * M + 1)] with m hm
     have hm0' : 0 < m := Nat.lt_of_lt_of_le (Nat.succ_pos _) hm
-    have hm0 : (0 : ℝ) < m := by exact_mod_cast hm0'
     set s := m % e with hs_def
     have hse : s < e := Nat.mod_lt _ he
     have hcm : c s ≤ m / e := by
@@ -590,8 +589,6 @@ theorem hsGrowth_exp_radius : ∀ (D e δ : ℕ) (N : ℕ → ℝ → ℕ) (κ t
       ((δ * (m / e + c' (m % e) + D).choose D : ℕ) : ℝ) / (m : ℝ) ^ D *
         ((Real.log 3 + B' + P * (-Real.log κ)) / m + (t - Real.log κ / e)) := by
     filter_upwards [eventually_ge_atTop 1] with m hm
-    have hm0 : (0 : ℝ) < m := by exact_mod_cast hm
-    have he0 : (0 : ℝ) < e := by exact_mod_cast he
     set s := m % e with hs_def
     have hse : s < e := Nat.mod_lt _ he
     set q := m / e with hq
@@ -603,8 +600,6 @@ theorem hsGrowth_exp_radius : ∀ (D e δ : ℕ) (N : ℕ → ℝ → ℕ) (κ t
     rw [hmq, ← hY] at hb2
     set K := (q + c' s + D).choose D with hK
     have hlogN : Real.log (N m (Real.exp (t * m))) ≤ (δ * K : ℝ) * (Real.log 3 + |Real.log Y|) := by
-      have h0 : 0 ≤ Real.log 3 + |Real.log Y| := by
-        have := Real.log_nonneg (by norm_num : (1 : ℝ) ≤ 3); positivity
       rcases Nat.eq_zero_or_pos (N m (Real.exp (t * m))) with hN | hN
       · rw [hN, Nat.cast_zero, Real.log_zero]; positivity
       · calc Real.log (N m (Real.exp (t * m)))
@@ -764,8 +759,9 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AmpleArithHilbertSamuelOfPrincipalisation
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AmpleArithHilbertSamuelOfPrincipalisation
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Filter Topology
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -787,7 +783,6 @@ theorem ampleHS_of_principalisation : GlobalTheory.Published.Principalisation �
   have hball : ∀ (u : SmFn p) (m : ℕ) (R : ℝ), ballIn (upperParabolic P u) (P.H m 1) m 1 R = (upperParabolic P u).Bl m 1 R :=
     fun _ _ _ => rfl
   have hball' : ∀ (m : ℕ) (R : ℝ), ballIn P (P.H m 1) m 1 R = P.Bl m 1 R := fun _ _ => rfl
-  have hF : (0 : ℝ) < D.factorial := by exact_mod_cast Nat.factorial_pos D
   have hF1 : (0 : ℝ) < (D + 1).factorial := by exact_mod_cast Nat.factorial_pos _
   have he : (0 : ℝ) < e := by exact_mod_cast hx.pos
   have hLg : 0 ≤ Real.log ((D : ℝ) + 1) := Real.log_nonneg (by linarith [(Nat.cast_nonneg D : (0 : ℝ) ≤ D)])
@@ -814,7 +809,6 @@ theorem ampleHS_of_principalisation : GlobalTheory.Published.Principalisation �
     have hd := hdiff.eventually (Metric.ball_mem_nhds _ hε)
     set an := h (genericPoint X)
     set T := Real.log ((D : ℝ) + 1) / (2 * n) / e with hT
-    have hT0 : 0 ≤ T := by positivity
     have hup : g / D.factorial * (t - -(Real.log ((D : ℝ) + 1) / (2 * n)) / e) ≤ g / D.factorial * t + |g| / D.factorial * T := by
       rw [show t - -(Real.log ((D : ℝ) + 1) / (2 * n)) / e = t + T by rw [hT]; ring, mul_add]
       gcongr
@@ -837,7 +831,6 @@ theorem ampleHS_of_principalisation : GlobalTheory.Published.Principalisation �
   rw [hc]
   refine Metric.tendsto_nhds.2 fun δ hδ => ?_
   set K := |g| / D.factorial * (Real.log ((D : ℝ) + 1) / 2 / e) + |C| / (D + 1).factorial with hK
-  have hK0 : 0 ≤ K := by positivity
   obtain ⟨n, hn⟩ := exists_nat_gt (2 * K / δ)
   have hn1 : (0 : ℝ) < ((n + 1 : ℕ) : ℝ) := by positivity
   have hKn : |g| / D.factorial * (Real.log ((D : ℝ) + 1) / (2 * ((n + 1 : ℕ) : ℝ)) / e) +

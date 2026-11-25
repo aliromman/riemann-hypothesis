@@ -242,9 +242,6 @@ theorem exists_resolution_supp : GlobalTheory.Published.Principalisation → ∀
     hη ((ratPull_bijective_of_birational ℂ X W p s₁ hbij₁ n).1 (h.trans (map_zero _).symm))
   obtain ⟨K₁, hK₁⟩ := (exists_isDivOfForm_and_toPic ℂ W (s₁ ≫ p) n _ hη₁).1
   let Z : Closeds W := (pullCart s₁ G).supp ⊔ (pullCart s₁ D₀).supp ⊔ K₁.supp
-  have hZ : ∀ w, w ∉ Z → w ∉ (pullCart s₁ G).supp ∧ w ∉ (pullCart s₁ D₀).supp ∧ w ∉ K₁.supp :=
-    fun w hw => ⟨fun h => hw (Or.inl (Or.inl h)), fun h => hw (Or.inl (Or.inr h)),
-      fun h => hw (Or.inr h)⟩
   have hgZ : genericPoint W ∉ Z := by
     rintro ((h | h) | h)
     · exact (pullCart s₁ G).genericPoint_notMem_supp h

@@ -46,8 +46,10 @@ end
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL5.LevelsProGOfSplitAlgebra
+section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL5.LevelsProGOfSplitAlgebra
+@[expose] public section
 
+noncomputable section
 
 open NumberField IsDedekindDomain Matrix Formalism.UG Formalism.BasicNotions Topology Filter
 open scoped TensorProduct
@@ -535,10 +537,8 @@ end Link
 
 end Formalism.L2.GlobalTheoryTheory.GenusMassVolumes.ProGW
 
-namespace Formalism.L2.GlobalTheoryTheory.GenusMassVolumes
-
-end Formalism.L2.GlobalTheoryTheory.GenusMassVolumes
-
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.LocalEndomorphisms.AlgebraMapMemRange

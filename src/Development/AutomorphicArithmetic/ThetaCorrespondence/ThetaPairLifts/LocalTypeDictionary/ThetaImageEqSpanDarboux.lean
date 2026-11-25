@@ -164,8 +164,10 @@ end GlobalTheory.SquareComm.LineDeriv
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SeesawWeilFactorization
+section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SeesawWeilFactorization
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.DarbImage
 
@@ -238,10 +240,8 @@ end Generic
 
 end GlobalTheory.DarbImage
 
-namespace GlobalTheory.DarbImage
-
-end GlobalTheory.DarbImage
-
+end
+end -- clump:auto
 end -- clump:auto
 
 end -- clump: shared namespace opens
@@ -1031,8 +1031,6 @@ open scoped TensorProduct ComplexConjugate
 open GlobalTheory.SquareComm
 open scoped GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 noncomputable section
-namespace GlobalTheory.DarbImage
-end GlobalTheory.DarbImage
 namespace GlobalTheory.DarbImage
 theorem theta_image_darboux_basis : GlobalTheory.Published.HoweDualityReal → _root_.GlobalTheory.FunPr.ThetaLocalInputs →
     ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFam D), IsStdChar D ψ (-1) → IsInfFam θ →

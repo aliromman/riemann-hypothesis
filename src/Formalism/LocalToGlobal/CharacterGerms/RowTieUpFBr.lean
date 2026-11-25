@@ -72,9 +72,6 @@ omit [CommRing S] in
 
 end Formalism.L2.FormalSeriesBounds.MapFB
 
-namespace Formalism.L2.FormalSeriesBounds
-
-end Formalism.L2.FormalSeriesBounds
 end -- clump:auto
 end -- clump:auto
 

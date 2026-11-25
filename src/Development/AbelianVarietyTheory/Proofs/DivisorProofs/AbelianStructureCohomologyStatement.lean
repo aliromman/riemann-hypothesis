@@ -15,8 +15,9 @@ import Mathlib.Tactic.Linter.HaveILetI
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry KaehlerDifferential MonoidalCategory CartesianMonoidalCategory MonObj TensorProduct
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.AbCoh
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianSchemeStructureSheafCohomologyAnyRing
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianSchemeStructureSheafCohomologyAnyRing
 
+noncomputable section
 
 namespace GlobalTheory.AbCoh
 
@@ -78,10 +79,6 @@ theorem wedge_of_isBaseChange {S R M N M₂ N₂ : Type} [CommRing S] [CommRing 
     intro r a b
     have := iw.map_update_smul ![a, b] 1 r b
     rwa [← u1 a b (r • b), ← u1 a b b] at this
-  have zero0 : ∀ b : N, iw ![0, b] = 0 := fun b => by
-    simpa using smul0 0 0 b
-  have zero1 : ∀ a : N, iw ![a, 0] = 0 := fun a => by
-    simpa using smul1 0 a 0
   intro a b
   induction a using hφ.inductionOn with
   | add x y hx hy => simp only [iw] at add0; rw [add0, map_add (f := _), hx, hy, map_add (f := _), LinearMap.add_apply]
@@ -125,7 +122,7 @@ theorem oStr_of_noetherian : OStr := by
   obtain ⟨e2, he2⟩ := hBC2 R A.left A.hom φ hAB
   have hp1 : IsBaseChange R (semiToLin (pullHO1 hAB.w)) := IsBaseChange.of_equiv e1 he1
   have hp2 : IsBaseChange R (semiToLin (pullHO2 hAB.w)) := IsBaseChange.of_equiv e2 he2
-  have hcomp := GlobalTheory.T.structureSheafCohomology_pullback_comp_cup_id
+  have hcomp := GlobalTheory.AbCoh.pull_comp_cup_id
   refine ⟨fp_of_tensor_equiv e1 hFP, ?_, ?_, ?_⟩
   · obtain ⟨eM, heM⟩ := hW
     exact wedge_of_isBaseChange hp1 hp2 (cup _) (cup _)
@@ -152,6 +149,7 @@ theorem oStr_of_noetherian : OStr := by
         (algebraMap S R') (ψ ≫ φ) hc.w rfl (fun _ => rfl)).2.1) e2 he2 e3 he3
 
 end GlobalTheory.AbCoh
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianStructureCohomologyStatement

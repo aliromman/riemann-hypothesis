@@ -28,11 +28,12 @@ import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LocalPeriodR
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsAinfFrobeniusIterateEqXiMul, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsUnitFrobeniusIterateProductEq, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FrobXiDivPrimeUnitTendstoOne, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.FrobeniusEigenFilOneIsUnitExactDegree, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsCyclotomicPeriodLocalPrime
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsAinfFrobeniusIterateEqXiMul
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsAinfFrobeniusIterateEqXiMul
 
 open Formalism
 open scoped Formalism.Per
 
+noncomputable section
 namespace GlobalTheory.PeriodSol
 open Polynomial
 
@@ -68,7 +69,6 @@ theorem xi_bar_ne_zero (e : Per.Fl l) (he : GlobalTheory.MemLoc.IsEps e) :
     WittVector.constantCoeff (GlobalTheory.MemLoc.xi e) ≠ 0 := by
   set e' := (frobeniusEquiv (Per.Fl l) l).symm e with he'
   have hxi : WittVector.constantCoeff (GlobalTheory.MemLoc.xi e) = ∑ i ∈ Finset.range l, e' ^ i := by
-    set_option synthInstance.maxHeartbeats 100000 in
       simp [GlobalTheory.MemLoc.xi, map_sum, map_pow, WittVector.constantCoeff_apply,
       WittVector.teichmuller_coeff_zero, he']
   have hpow : e' ^ l = e := by
@@ -209,6 +209,7 @@ theorem period_solution : ∀ (l : ℕ) [Fact l.Prime] (e : Per.Fl l), GlobalThe
   · rw [hΦ]; exact sub_eq_zero.1 hFL
 
 end GlobalTheory.PeriodSol
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsUnitFrobeniusIterateProductEq

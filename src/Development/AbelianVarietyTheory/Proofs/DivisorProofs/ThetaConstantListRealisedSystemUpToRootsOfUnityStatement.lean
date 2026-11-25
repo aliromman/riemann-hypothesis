@@ -56,8 +56,9 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.ModuliProofs.ThetaValueTorsionFrame, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaConstantKthRootLabelledPointUpToRoot, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaConstantListRealisedSystemUpToRootsOfUnity, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaConstantListRealisedSystemUpToRootsOfUnityStatement
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.ThetaValueTorsionFrame
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.ThetaValueTorsionFrame
 
+noncomputable section
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open scoped CategoryTheory.Obj
@@ -125,9 +126,7 @@ theorem normalised_root_stalk {S : Scheme.{0}} (hG : GlobalFnsSt) (P : PolAV S) 
 
 end GlobalTheory.ThetaCompare
 
-namespace GlobalTheory
-
-end GlobalTheory
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

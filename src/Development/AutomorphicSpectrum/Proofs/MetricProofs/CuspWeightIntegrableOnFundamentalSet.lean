@@ -362,8 +362,9 @@ theorem exists_full_family_conjugates_le : ∀ (E : Type) [Field E] [NumberField
 end GlobalTheory.CompanionTheory.Ar.Cusp
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.FirstMinimumAttainedWithBounds
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.FirstMinimumAttainedWithBounds
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Cusp.ShortVec
 
@@ -415,7 +416,7 @@ theorem finite_short [Module.Free ℤ L] [Module.Finite ℤ L]
 
 theorem period_injective (him : ∀ x y, ((f x y : ℤ) : ℝ) = (inner ℂ (p y) (p x)).im)
     (hi : Function.Injective f) : Function.Injective p := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   apply hi
   rw [map_zero]
@@ -840,6 +841,7 @@ theorem short_vectors : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
   linarith
 
 end GlobalTheory.CompanionTheory.Ar.Cusp.ShortVec
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.FirstMinimumIntegralBound

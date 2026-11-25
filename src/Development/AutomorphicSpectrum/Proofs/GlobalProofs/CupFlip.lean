@@ -273,8 +273,9 @@ theorem coboundary_of_characters (hT : LocalTateDualityK) (l : ℕ) [Fact l.Prim
 end GlobalTheory.CompanionTheory.LocDual.TopCoh
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.NonGaloisProofs.ExistsTorRange
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.NonGaloisProofs.ExistsTorRange
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.LocDual.TI
 
@@ -296,7 +297,7 @@ theorem exists_ext_zmod {N : ℕ} [NeZero N] {A B : Type} [AddCommGroup A] [AddC
   let ι : ZMod N →+ AddCircle (1 : ℚ) := ZMod.lift N ⟨e, heN⟩
   have hι : ∀ k : ℤ, ι (k : ZMod N) = e k := fun k => ZMod.lift_coe N ⟨e, heN⟩ k
   have hinj : Function.Injective ι := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro c hc
     obtain ⟨k, rfl⟩ := ZMod.intCast_surjective c
     rw [hι, he, AddCircle.coe_eq_zero_iff] at hc
@@ -510,9 +511,11 @@ end Int
 
 end GlobalTheory.CompanionTheory.LocDual.TI
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.NonGaloisProofs.LatticeOpenCompactNhdsBasis
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.NonGaloisProofs.LatticeOpenCompactNhdsBasis
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.LatTop
 
@@ -570,7 +573,7 @@ theorem mem_of_dual_dual {V' : Type} [AddCommGroup V'] [Module LL V'] [FiniteDim
     (x : V) (hx : ∀ y ∈ M', ∃ a : O, P x y = algebraMap O LL a) : x ∈ M := by
   obtain ⟨ι, _, b, hb⟩ := exists_basis M hfg hfree hspan
   have hi : Function.Injective P.flip := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro y hy
     exact hinj y fun x => by simpa using LinearMap.congr_fun hy x
   have hs : Function.Surjective P.flip :=
@@ -678,6 +681,7 @@ theorem exists_pow_smul_mem {G : Type} [TopologicalSpace G] [CompactSpace G] (M 
 end General
 
 end GlobalTheory.CompanionTheory.LatTop
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.CupFlip

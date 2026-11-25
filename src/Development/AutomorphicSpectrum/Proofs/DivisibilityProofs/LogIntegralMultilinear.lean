@@ -18,15 +18,11 @@ import Development.AutomorphicSpectrum.Proofs.MetricProofs.SumFundCoMulSumIic
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo Filter Topology GlobalTheory.CompanionTheory.Ar.Top
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.ArithIntersectionConstantMetric
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.ArithIntersectionConstantMetric
 
+noncomputable section
 
-namespace GlobalTheory.CompanionTheory.Ar.Top
-
-theorem intersection_snoc_constWeight : ∀ II : IntersectionSystem, IsIntersectionSystem II → ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι k)] (P : Ideal (MRing ι)) (e : ℕ) (L : Fin e → HermLine ι) (c : ℝ), IsArithVar P (e + 1) → (∀ j, IsSmoothHerm (L j)) → II K ι P (e + 1) (Fin.snoc L (HermLine.ofWeight (fun _ => c) (fun _ _ _ => rfl))) = -c * ptsIntegral P (fun j z => Real.log ((L j).h z)) (fun _ => 1) :=
-  RootFieldNumerics.intersection_constant_metric_line
-
-end GlobalTheory.CompanionTheory.Ar.Top
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.IntersectionSystemDegree
@@ -40,8 +36,9 @@ theorem degreeStatement_of_intersectionSystem :
 end GlobalTheory.CompanionTheory.Ar.Top
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.LogIntegralMultilinear
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.LogIntegralMultilinear
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Top.GeoMix
 
@@ -95,7 +92,7 @@ theorem pts_eq_II (II : IntersectionSystem) (hII : IsFullIntersectionSystem II) 
     {e : ℕ} (L : Fin e → HermLine ι) (hP : IsArithVar P (e + 1)) (hL : ∀ j, IsSmoothHerm (L j)) :
     ptsIntegral P (fun k z => Real.log ((L k).h z)) (fun _ => 1) =
       II K ι P (e + 1) (Fin.snoc L (oneLine ι)) := by
-  have h := _root_.GlobalTheory.CompanionTheory.Ar.Top.intersection_snoc_constWeight II hII.1 K ι P e L (-1) hP hL
+  have h := _root_.RootFieldNumerics.intersection_constant_metric_line II hII.1 K ι P e L (-1) hP hL
   have h' : II K ι P (e + 1) (Fin.snoc L (oneLine ι)) =
       - -1 * ptsIntegral P (fun j z => Real.log ((L j).h z)) (fun _ => 1) := h
   rw [h']

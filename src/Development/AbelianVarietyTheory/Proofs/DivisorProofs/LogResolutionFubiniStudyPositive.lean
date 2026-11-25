@@ -299,11 +299,13 @@ theorem finrank_le_card_of_vanish {n : ℕ} (U : Matrix (Fin n) (Fin n) ℂ) (P 
 end GlobalTheory.SylvesterInertia
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.HopfOrderScalarExtension
+section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.HopfOrderScalarExtension
+@[expose] public section
 
 open NumberField GlobalTheory.LKTrip
 open scoped TensorProduct Matrix.Norms.L2Operator
 
+noncomputable section
 
 namespace GlobalTheory.SimSign
 
@@ -374,10 +376,8 @@ theorem sum_pos (h : Matrix (Fin n) (Fin n) ℂ) (hh : h.IsHermitian) (w : {i //
 
 end GlobalTheory.SimSign
 
-namespace GlobalTheory.HTBetti
-
-end GlobalTheory.HTBetti
-
+end
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

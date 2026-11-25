@@ -120,7 +120,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsImNeZeroOfTotallyComplex
 
 open Formalism.BasicNotions Formalism.L2.Indef Formalism.L2.DIV Formalism.IndefR.Cx Formalism.IndefR.Links NumberField GlobalTheory.Mem.SJ
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.Mem.SJ
 
@@ -201,11 +200,6 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Indef Formalism.L
 
 namespace GlobalTheory.Mem.SJ
 
-theorem sharp_iota_eq (D : D7) (μ : D.what₂.Tup) : (RowSide.sharp D).iota μ = D.what₂.iota μ := by
-  unfold RowSide.iota Rows.Data.iota
-  rw [PrimeDegreeVariant.sharp_downTo]
-  rfl
-
 theorem exists_read_of_matrix_tie (D : D7) {Bs : DefBase D.what₂.LL} {A : DefAmb Bs} (X : CxData A)
     (fc : DefSub A → DefFace Bs) (cr : Crd A fc) (μ : D.what₂.Tup) (hμ : μ = D.what₂.mu0)
     (hv : Bs.v0 = InfinitePlace.mk D.what₂.embLL) {n : ℕ}
@@ -232,7 +226,7 @@ theorem exists_read_of_matrix_tie (D : D7) {Bs : DefBase D.what₂.LL} {A : DefA
   · rw [emb_eq D.what₂.embLL Bs.v0 a, sgAt_mk D.what₂.embLL hv]
   · exact (GlobalTheory.range_op_eq_span_of_formsTie D.what₂.embLL (W := (RowSide.sharp D).Amb D.what₂.mu0) jA H E _ V hF hE).symm
   · have h := hι y
-    rw [sharp_iota_eq] at h
+    rw [Formalism.MainNotions.AbsolutelyIrreducibleSpan.sharp_iota] at h
     exact h
 
 end GlobalTheory.Mem.SJ
@@ -617,8 +611,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.JoinSubspaceRealDataLattice
-
-
 
 section
 noncomputable section

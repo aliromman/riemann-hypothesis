@@ -585,7 +585,6 @@ theorem qc_resY_X_zero (A : Type) [CommRing A] (r : ℕ) (a : Fin (r + 1 + 1)) :
 
 theorem qc_resY_X_mid (A : Type) [CommRing A] (r : ℕ) (a : Fin (r + 1 + 1)) (j : Fin r) :
     resY A r (X (a, midI r j)) = ∑ i : Fin r, X (i, j) * (if a.val = (midI r i).val then 1 else 0) := by
-  set_option synthInstance.maxHeartbeats 100000 in
     simp [resY, subY, midOf_midI, idPoint, map_sum]
 
 theorem qc_resY_X_mid_mid (A : Type) [CommRing A] (r : ℕ) (i j : Fin r) :
@@ -792,8 +791,10 @@ end
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.HermitianTensor.SubYDPsiMonomial
+section -- clump member: Formalism.SharpRestriction.GrowthBounds.HermitianTensor.SubYDPsiMonomial
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.MainNotions.flipOneThree.Pf
 
@@ -806,10 +807,6 @@ theorem midOf_zero (r : ℕ) : midOf (0 : Fin (r + 1 + 1)) = none := by
 
 theorem subY_X_zero (A : Type) [CommRing A] (r : ℕ) (a : Fin (r + 1 + 1)) : subY A r (X (a, 0)) = X (a, 0) := by
   simp only [subY, aeval_X, midOf_zero]
-
-theorem subY_X_mid (A : Type) [CommRing A] (r : ℕ) (a : Fin (r + 1 + 1)) (j : Fin r) :
-    subY A r (X (a, midI r j)) = ∑ i : Fin r, C (X (i, j)) * X (a, midI r i) := by
-  simp only [subY, aeval_X, midOf_midI]
 
 def dOneY (A : Type) [CommRing A] (r : ℕ) :
     Matrix (Fin (r + 1)) (Fin (r + 1)) (MvPolynomial (Fin (r + 1 + 1) × Fin (r + 1 + 1)) (MvPolynomial (Fin r × Fin r) A)) :=
@@ -858,7 +855,7 @@ theorem subY_covY (K : Type) [Field K] (r : ℕ) (i : Fin (r + 1 + 1)) :
         ∑ s : Fin r, map C (X (i.succAbove a, s.succ.castSucc)) * C (X (s, j))
       have e : ∀ s : Fin r, s.succ.castSucc = midI r s := fun s => (Fin.succ_castSucc s).symm
       simp only [e, map_X]
-      rw [subY_X_mid]
+      rw [Formalism.MainNotions.flipOneThree.Pf.QB.subY_X_mid]
       exact Finset.sum_congr rfl fun s _ => mul_comm _ _
   have hdet : subY K r (Matrix.det fun a b : Fin (r + 1) =>
       (X (i.succAbove a, b.castSucc) : MvPolynomial (Fin (r + 1 + 1) × Fin (r + 1 + 1)) K)) =
@@ -907,6 +904,8 @@ theorem subMuP_of (h2 : ExplicitMapOntoTwoLetters) (h5 : TwoLetterLatticeGaussIn
 
 end Formalism.MainNotions.flipOneThree.Pf
 
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Formalism.SharpRestriction.GrowthBounds.HermitianTensor.DPsiMonomialIwh
@@ -1368,18 +1367,14 @@ end Formalism.MainNotions.flipOneThree.Pf
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GrowthBounds.HermitianTensor.TwoLetterLatticeGaussInverse
+section -- clump member: Formalism.SharpRestriction.GrowthBounds.HermitianTensor.TwoLetterLatticeGaussInverse
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.MainNotions.flipOneThree.Pf
 
 open Formalism.MainNotions.G Formalism.MainNotions.flipOneThree Formalism.CountingSumsFrames Formalism.CountingSumsFrames.Har4 Formalism.GradedWeylDivisibility MvPolynomial Formalism.MainNotions.G.LatticeSystems
-
-theorem ta_last_ne (m : ℕ) (hm : 1 ≤ m) : Fin.last m ≠ 0 := by
-  intro h
-  have h2 := congrArg Fin.val h
-  simp at h2
-  omega
 
 section L
 
@@ -1392,7 +1387,7 @@ theorem ta_vec_mem (P : ℕ) (a : MvPolynomial (Fin (m + 1)) R.Kf) (ha : a.IsHom
   have := R.std.1.frac_O
   have hinj : Function.Injective (algebraMap R.O R.Kf) := IsFractionRing.injective R.O R.Kf
   refine (mem_invariant_sections_iff_integral hinj m _ (letterWt_anti m P true) g hg _).2 ?_
-  have h0 : letterWt m P true (Fin.last m) = 0 := by simp [letterWt, ta_last_ne m hm]
+  have h0 : letterWt m P true (Fin.last m) = 0 := by simp [letterWt, Formalism.MainNotions.flipOneThree.Pf.last_ne_zero'' m hm]
   rw [h0, zpow_zero, one_smul, rowAct_inv_cancel g hg]
   refine intCapP R.O R.Kf hinj (m + 1) _ _ ?_ (fun u => ta_Int_coeff (ta_Int_rename _ hI) u)
   rw [ta_nuOf_vec m P hm]
@@ -1417,7 +1412,7 @@ theorem ta_vec_of (P : ℕ) (F : MvPolynomial (Fin (m + 1) × Fin (m + 1)) R.Kf)
   have := R.std.1.frac_O
   have hinj : Function.Injective (algebraMap R.O R.Kf) := IsFractionRing.injective R.O R.Kf
   have h1 := (mem_invariant_sections_iff_integral hinj m _ (letterWt_anti m P true) g hg _).1 hF
-  have h0 : letterWt m P true (Fin.last m) = 0 := by simp [letterWt, ta_last_ne m hm]
+  have h0 : letterWt m P true (Fin.last m) = 0 := by simp [letterWt, Formalism.MainNotions.flipOneThree.Pf.last_ne_zero'' m hm]
   rw [h0, zpow_zero, one_smul] at h1
   have h2 := intO_le _ _ _ h1
   rw [ta_nuOf_vec m P hm] at h2
@@ -1515,6 +1510,8 @@ theorem two_letter_lattice_gauss_inverse : TwoLetterLatticeGaussInverse := by
 
 end Formalism.MainNotions.flipOneThree.Pf
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.SharpRestriction.GrowthBounds.HermitianTensor.ModelIdentificationHolds

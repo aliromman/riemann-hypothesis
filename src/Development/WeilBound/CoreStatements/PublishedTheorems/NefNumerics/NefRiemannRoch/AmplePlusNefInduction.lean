@@ -301,7 +301,15 @@ theorem interNum_cons_nef_ample_nonneg :
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.NefNumerics.NefRiemannRoch.AmpleNefCombinationBound
+end -- clump: shared namespace opens
+
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.NefNumerics.NefRiemannRoch.AmpleNefCombinationBound
+
+noncomputable section
+
+open CategoryTheory Limits AlgebraicGeometry TopologicalSpace Filter Asymptotics
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
+open GlobalTheory GlobalTheory.QCoh GlobalTheory.CechPic GlobalTheory.Twist
 
 namespace GlobalTheory.NefLower
 
@@ -341,7 +349,7 @@ theorem topSelf_lower : ∀ (k : Type) [Field k] [Infinite k] (X : Scheme.{0}) [
     refine Fin.cases ?_ (fun j => ?_) i
     · simp [n, Fin.sum_univ_two]
     · simp only [n, Fin.sum_univ_two, Fin.cons_succ]
-      simp only [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons, natCast_zsmul]
+      simp only [Matrix.cons_val_zero, Matrix.cons_val_one, natCast_zsmul]
       show cls L _ = _
       rw [hcls, add_comm])
   have hterm : ∀ α : Fin (d + 1) → Fin 2,
@@ -400,8 +408,7 @@ theorem topSelf_lower : ∀ (k : Type) [Field k] [Infinite k] (X : Scheme.{0}) [
 
 end GlobalTheory.NefLower
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 -- clump: shared namespace opens
 
@@ -409,8 +416,9 @@ open CategoryTheory Limits AlgebraicGeometry TopologicalSpace Filter Asymptotics
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.QCoh GlobalTheory.CechPic GlobalTheory.Twist
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.NefNumerics.NefRiemannRoch.TopIntersectionGrowthBound
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.NefNumerics.NefRiemannRoch.TopIntersectionGrowthBound
 
+noncomputable section
 
 namespace GlobalTheory.MorseNum
 
@@ -443,12 +451,12 @@ theorem morse_A_sq : ∀ (k : Type) [Field k] [Infinite k] (X : Scheme.{0}) [Alg
   have eL := DiffVanish.interNum_of_cls_eq_sum hD hLv hQL nL (by
     intro i; refine Fin.cases ?_ (fun i => ?_) i
     · simp [nL, Lv, Fin.sum_univ_two]
-    · simp only [nL, Lv, Fin.sum_univ_two, Fin.cons_succ, Fin.cons_zero]
+    · simp only [nL, Lv, Fin.sum_univ_two, Fin.cons_succ]
       simp [hLcls, natCast_zsmul, add_comm])
   have eM := DiffVanish.interNum_of_cls_eq_sum hD hLv hQM nM (by
     intro i; refine Fin.cases ?_ (fun i => ?_) i
     · simp [nM, Lv, Fin.sum_univ_two]
-    · simp only [nM, Lv, Fin.sum_univ_two, Fin.cons_succ, Fin.cons_zero]
+    · simp only [nM, Lv, Fin.sum_univ_two, Fin.cons_succ]
       simp [hMcls, natCast_zsmul, add_comm])
   have hbq : (b : ℤ) ≤ (q : ℤ) * c := by
     have : b ≤ q * c := by rw [mul_comm]; exact hbc
@@ -520,6 +528,7 @@ theorem morse_A_sq : ∀ (k : Type) [Field k] [Infinite k] (X : Scheme.{0}) [Alg
   linarith
 
 end GlobalTheory.MorseNum
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PublishedTheorems.NefNumerics.NefRiemannRoch.AmplePlusNefIntegralStep

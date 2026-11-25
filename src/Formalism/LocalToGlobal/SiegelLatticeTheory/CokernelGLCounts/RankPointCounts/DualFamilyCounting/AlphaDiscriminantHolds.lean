@@ -249,12 +249,13 @@ theorem discOnto_of_lift (hU : UDModel) (hL : LiftOnto) : DiscOnto :=
 end Formalism.L2.SG.Pf.discriminantNormShapes
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.DiagQConjTranspose
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.DiagQConjTranspose
 
 open NumberField Module Matrix
 
 open scoped Formalism.HermitianLattices.Ext.L3.idealPowerSpanBounds
 
+noncomputable section
 
 namespace Formalism.L2.SG.Pf.discriminantNormShapes
 
@@ -273,19 +274,6 @@ def SolveOnto : Prop :=
 variable {K F : Type} [Field K] [NumberField K] [StarRing K] [Field F] [NumberField F] [Algebra F K]
   [Fact (IsFixF K F)] {m : ℕ}
 
-private theorem star_algebraMap_ringOfIntegers (x : 𝓞 F) :
-    star (algebraMap (𝓞 F) (𝓞 K) x) = algebraMap (𝓞 F) (𝓞 K) x := by
-  have h := Formalism.HermitianLattices.Ext.L3.localizedQuotients.star_ι (K := K) (F := F) Fact.out x
-  exact FaithfulSMul.algebraMap_injective (𝓞 K) K h
-
-theorem diagQ_conjTranspose (𝔭 : Ideal (𝓞 F)) (k : ℕ) (a : Fin m → 𝓞 F) :
-    (diagQ K 𝔭 k a)ᴴ = diagQ K 𝔭 k a := by
-  unfold diagQ
-  rw [Matrix.diagonal_conjTranspose]
-  congr 1
-  funext i
-  rw [Pi.star_apply, star_mk, star_algebraMap_ringOfIntegers]
-
 theorem hom_shift {𝔭 : Ideal (𝓞 F)} {k : ℕ} {a : Fin m → 𝓞 F}
     {Y P : Matrix (Fin m) (Fin m) (𝓞 K ⧸ extP K 𝔭 ^ k)}
     (hPY : P * diagQ K 𝔭 k a = diagQ K 𝔭 k a * Y) (Z : Matrix (Fin m) (Fin m) (𝓞 K ⧸ extP K 𝔭 ^ k)) :
@@ -299,7 +287,7 @@ theorem form_shift {𝔭 : Ideal (𝓞 F)} {k : ℕ} {a : Fin m → 𝓞 F}
     (Z : Matrix (Fin m) (Fin m) (𝓞 K ⧸ extP K 𝔭 ^ k)) :
     (Y + Z * diagQ K 𝔭 k a)ᴴ * diagQ K 𝔭 k a * (Y + Z * diagQ K 𝔭 k a) - diagQ K 𝔭 k a =
       diagQ K 𝔭 k a * (W + Pᴴ * Z + Zᴴ * P + Zᴴ * diagQ K 𝔭 k a * Z) * diagQ K 𝔭 k a := by
-  have hH := diagQ_conjTranspose (K := K) 𝔭 k a
+  have hH := Formalism.L2.SG.Pf.LocalizedFibreSets.diagQ_herm (K := K) 𝔭 k a
   have h1 : Yᴴ * diagQ K 𝔭 k a = diagQ K 𝔭 k a * Pᴴ := by
     have h := congrArg Matrix.conjTranspose hPY
     rw [conjTranspose_mul, conjTranspose_mul, hH] at h
@@ -335,6 +323,7 @@ theorem discOnto_of_solve (hU : UDModel) (hS : SolveOnto) : DiscOnto :=
   discOnto_of_lift hU (liftOnto_of_solve hS)
 
 end Formalism.L2.SG.Pf.discriminantNormShapes
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.EntOfMapEqZero
@@ -578,13 +567,13 @@ open NumberField Module Matrix
 
 open scoped Formalism.HermitianLattices.Ext.L3.idealPowerSpanBounds
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.EQMulDiagQMulEQMem
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.EQMulDiagQMulEQMem
 
+noncomputable section
 
 namespace Formalism.L2.SG.Pf.discriminantNormShapes
 
 open Formalism.HermitianLattices.Ext.L3 Formalism.HermitianLattices.Ext.L3.idealPowerSpanBounds Formalism.HermitianLattices.Ext.L3.reductionMapsOfForms Formalism.L2.SG.Pf.Cnt Formalism.L2.SG.Pf.G5
-
 
 open Classical in
 def eQ (K : Type) {F : Type} [Field K] [Field F] [Algebra F K] {m : ℕ} (𝔭 : Ideal (𝓞 F)) (k : ℕ)
@@ -630,7 +619,7 @@ theorem solveOnto_of_norm (hN : NormOnto) : SolveOnto := by
   intro K F _ _ _ _ _ _ _ hK 𝔭 h𝔭 m a ha k hk Y
   obtain ⟨Y', P, W, Z₀, hY, hPY, hW, hWh, hEW, hEP1, hEP2, hdet⟩ := hN K F hK 𝔭 h𝔭 m a ha k hk Y
   have hEh := eQ_conjTranspose (K := K) 𝔭 k a
-  have hH := diagQ_conjTranspose (K := K) 𝔭 k a
+  have hH := Formalism.L2.SG.Pf.LocalizedFibreSets.diagQ_herm (K := K) 𝔭 k a
 
   have h2 : P * eQ K 𝔭 k a = eQ K 𝔭 k a * P := hEP2.trans hEP1.symm
   have h1 : Pᴴ * eQ K 𝔭 k a = eQ K 𝔭 k a * Pᴴ := by
@@ -661,6 +650,7 @@ theorem discOnto_of_norm (hU : UDModel) (hN : NormOnto) : DiscOnto :=
   discOnto_of_solve hU (solveOnto_of_norm hN)
 
 end Formalism.L2.SG.Pf.discriminantNormShapes
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.DiscOntoOfShape
@@ -882,7 +872,6 @@ theorem exists_inv_unit {𝔭 : Ideal (𝓞 F)} (h𝔭 : 𝔭.IsMaximal) {b : �
     rw [← map_mul, ← map_mul, eq_sub_iff_add_eq, ← map_add (f := _), ← map_add (f := _), hyi, map_one, map_one]
   rw [mul_assoc, h, ← hu, Units.inv_mul]
 
-
 open Classical in
 def gQ (K : Type) {F : Type} [Field K] [NumberField K] [StarRing K] [Field F] [NumberField F]
     [Algebra F K] [Fact (IsFixF K F)] {m : ℕ} {𝔭 : Ideal (𝓞 F)} (h𝔭 : 𝔭.IsMaximal) (k : ℕ)
@@ -922,7 +911,7 @@ theorem norm_shape_holds : NormShape := by
   have hE : Eᴴ = E := eQ_conjTranspose 𝔭 k a
   have hEE' : ∀ M : Matrix (Fin m) (Fin m) (𝓞 K ⧸ extP K 𝔭 ^ k), E * (E * M) = E * M :=
     fun M => by rw [← Matrix.mul_assoc, hEE]
-  have hHh : Hᴴ = H := diagQ_conjTranspose 𝔭 k a
+  have hHh : Hᴴ = H := Formalism.L2.SG.Pf.LocalizedFibreSets.diagQ_herm 𝔭 k a
   have hE0E : (1 - E) * E = 0 := by rw [Matrix.sub_mul, Matrix.one_mul, hEE, sub_self]
   have hEE0 : E * (1 - E) = 0 := by rw [Matrix.mul_sub, Matrix.mul_one, hEE, sub_self]
   have hE0E0 : (1 - E) * (1 - E) = 1 - E := by rw [Matrix.sub_mul, Matrix.one_mul, hEE0, sub_zero]

@@ -1295,9 +1295,11 @@ theorem torsKilledBy_devissage : ∀ (l : ℕ) [Fact l.Prime] (G : Type) [Group 
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TorsionBoundOfWeightHyp
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TorsionBoundOfWeightHyp
 
 open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N Formalism.MainNotions.LocalSituation GlobalTheory.Cyc
+
+noncomputable section
 
 namespace GlobalTheory.TorsLL
 
@@ -1314,7 +1316,7 @@ def pQ (a : ℤ) {e b : ℤ} (heb : Mxi AA ξ b ≤ Mxi AA ξ e) : Qab AA ξ a b
 
 theorem iQ_injective {a e : ℤ} (b : ℤ) (hae : Mxi AA ξ e ≤ Mxi AA ξ a) :
     Function.Injective (iQ b hae) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨y, rfl⟩ := Submodule.Quotient.mk_surjective _ x
   have hx' : (Submodule.Quotient.mk (Submodule.inclusion hae y) : Qab AA ξ a b) = 0 := hx

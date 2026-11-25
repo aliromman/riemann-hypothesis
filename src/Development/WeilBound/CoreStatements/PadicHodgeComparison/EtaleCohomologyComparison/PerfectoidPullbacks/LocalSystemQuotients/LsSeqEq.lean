@@ -58,10 +58,12 @@ import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomology
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FlatWittTowerLevel, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MkOfMemB, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LseqOfFlatTower, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LseqOfLevelIsos, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.QuotientReductionBijectiveOfFlat, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.LocalSystemQuotients.LsSeqEq
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FlatWittTowerLevel
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FlatWittTowerLevel
+@[expose] public section
 
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.Ls CrystallineSemistableComparison.Pb CrystallineSemistableComparison.Pb.LsG
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.FlatLevel
 
@@ -109,7 +111,6 @@ theorem natCast_mem_nonZeroDivisors (l : ℕ) [Fact l.Prime] (k : Type) [Field k
     (l : WittVector l k) ∈ nonZeroDivisors (WittVector l k) := by
   exact mem_nonZeroDivisors_of_ne_zero (WittVector.p_nonzero l k)
 
-set_option backward.isDefEq.respectTransparency false in
 theorem flatL_Kt : ∀ (l : ℕ) [Fact l.Prime] (k : Type) [Field k] [CharP k l] [PerfectRing k l] (O : Type) [CommRing O] (F : B.Fn O) (ρ : O →+* k) (m : ℕ), FlatL l m (Kt l F ρ m) := by
   intro l _ k _ _ _ O _ F ρ m
   show FlatL l m (CrystallineSemistableComparison.CH.cx (CrystallineSemistableComparison.CH.modF (CrystallineSemistableComparison.Pb.LsG.sW l F ρ m).A))
@@ -137,12 +138,14 @@ theorem flatL_Kt : ∀ (l : ℕ) [Fact l.Prime] (k : Type) [Field k] [CharP k l]
 
 end GlobalTheory.CompanionTheory.FlatLevel
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MkOfMemB
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MkOfMemB
+@[expose] public section
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CrystallineSemistableComparison CrystallineSemistableComparison.Tw CrystallineSemistableComparison.Ls GlobalTheory.CompanionTheory.LsRho
 
@@ -364,6 +367,8 @@ theorem ses_red {l e : ℕ} {L : Cx.{1} W} (hL : FlatL l e L) {a b c : ℕ} (hc 
 
 end GlobalTheory.CompanionTheory.TowFlat
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LseqOfFlatTower
@@ -748,10 +753,9 @@ theorem lseq_transport : ∀ (W : Type) [CommRing W] (l : ℕ) (S S' T T' : Sys.
 end GlobalTheory.CompanionTheory.TowerSeq
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.QuotientReductionBijectiveOfFlat
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.QuotientReductionBijectiveOfFlat
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.Ls CrystallineSemistableComparison.Pb CrystallineSemistableComparison.Pb.LsG
 
@@ -760,13 +764,7 @@ namespace GlobalTheory.CompanionTheory.QredFlat
 variable {W : Type} [CommRing W]
 
 theorem B_ker (D : Cx.{1} W) (n : ℕ) (v : D.X n) (hv : v ∈ D.B n) : D.d n v = 0 := by
-  cases n with
-  | zero =>
-    have h : v = 0 := hv
-    rw [h, map_zero]
-  | succ n =>
-    obtain ⟨g, rfl⟩ := hv
-    exact D.dd n g
+  exact GlobalTheory.CompanionTheory.TowFlat.d_of_B hv
 
 theorem exact_quo (D : Cx.{1} W) (l m : ℕ) (hF : FlatL l m D)
     (hE : ∀ n (x : D.X n), D.d n x = 0 → x ∈ D.B n) :
@@ -1062,6 +1060,7 @@ theorem qred_bij : ∀ (W : Type) [CommRing W] (l : ℕ) (K L : Cx.{1} W) (m : �
     exact redg_shD L h j g2
 
 end GlobalTheory.CompanionTheory.QredFlat
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.LocalSystemQuotients.LsSeqEq

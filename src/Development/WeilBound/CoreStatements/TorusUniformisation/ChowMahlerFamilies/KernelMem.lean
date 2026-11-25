@@ -142,11 +142,12 @@ end PositivityTheory.Xgn.TestGroupPoint
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.ValAtSpecMap
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.ValAtSpecMap
 
 open CategoryTheory Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj TensorProduct NumberField
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.BT GlobalTheory.CompanionTheory.Ar.Num.FamEx
 
+noncomputable section
 
 namespace PositivityTheory.Xgn.TestGroupPoint
 
@@ -315,14 +316,11 @@ theorem cotMap_apply (A : Subalgebra R (T → R)) (a : A) (f : augIdeal A) (h : 
 
 theorem cotMap_mul (A : Subalgebra R (T → R)) (a b : A) :
     cotMap A (a * b) = a.1 1 • cotMap A b + b.1 1 • cotMap A a := by
-  set_option synthInstance.maxHeartbeats 400000 in
   have mem : ∀ c : A, c - algebraMap R A (c.1 1) ∈ augIdeal A := fun c => by
     change (c - algebraMap R A (c.1 1)).1 1 = 0
     simp
-  set_option synthInstance.maxHeartbeats 400000 in
   rw [cotMap_apply A (a * b) ⟨_, mem (a * b)⟩ rfl, cotMap_apply A a ⟨_, mem a⟩ rfl,
     cotMap_apply A b ⟨_, mem b⟩ rfl]
-  set_option synthInstance.maxHeartbeats 400000 in
   have key : (⟨_, mem (a * b)⟩ : augIdeal A) =
       ((a - algebraMap R A (a.1 1)) • (⟨_, mem b⟩ : augIdeal A) : augIdeal A) +
         (algebraMap R A (a.1 1) • (⟨_, mem b⟩ : augIdeal A) : augIdeal A) +
@@ -330,7 +328,6 @@ theorem cotMap_mul (A : Subalgebra R (T → R)) (a b : A) :
     apply Subtype.ext
     simp only [Submodule.coe_add, Submodule.coe_smul, smul_eq_mul, Subalgebra.coe_mul, Pi.mul_apply, map_mul]
     ring
-  set_option synthInstance.maxHeartbeats 400000 in
   have z : (augIdeal A).toCotangent
       ((a - algebraMap R A (a.1 1)) • (⟨_, mem b⟩ : augIdeal A) : augIdeal A) = 0 := by
     rw [Ideal.toCotangent_eq_zero, Submodule.coe_smul, smul_eq_mul, pow_two]
@@ -597,6 +594,7 @@ theorem exists_bichar {E : Type} [Field E] [NumberField E] (N p n : ℕ) [NeZero
     rfl
 
 end PositivityTheory.Xgn.TestGroupPoint
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.ExistsDerGen
@@ -870,7 +868,6 @@ theorem kernel_mem [Fact p.Prime] (hpS : p ∈ S) [CharZero Ω] [IsLocallyNoethe
 
 
 set_option synthInstance.maxHeartbeats 200000 in
-set_option maxHeartbeats 800000 in
 theorem exists_der [Fact p.Prime] (hpS : p ∈ S) [CharZero Ω]
     [IsNoetherianRing (CR O y c')] [IsIntegrallyClosed (CR O y c')] [IsFractionRing (CR O y c') Ω]
     (P : ChartPack G O c') (hR : ∀ a ∈ CR O y c', algebraMap Ω C a ∈ RC) {g : ℕ}

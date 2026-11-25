@@ -105,8 +105,9 @@ import Development.EtaleCohomology.EtaleSheaves.EtStagePf
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.EtaleCohomology.EtaleSheaves.PointwisePf, Development.EtaleCohomology.EtaleSheaves.AICSHPf, Development.EtaleCohomology.EtaleSheaves.AffinePf, Development.EtaleCohomology.EtaleSheaves.BasePf, Development.EtaleCohomology.EtaleSheaves.CechYoneda, Development.EtaleCohomology.EtaleSheaves.ChainsDiscCoprodPf, Development.EtaleCohomology.EtaleSheaves.CompositionGoal, Development.EtaleCohomology.EtaleSheaves.EtAffNbhdPf, Development.EtaleCohomology.EtaleSheaves.EtAlgPf, Development.EtaleCohomology.EtaleSheaves.EtaleBaseChangePolynomialInductionOfLimit, Development.EtaleCohomology.EtaleSheaves.EtaleSpreading.SpreadOf, Development.EtaleCohomology.EtaleSheaves.FracAICPf, Development.EtaleCohomology.EtaleSheaves.FreeCoprodPf, Development.EtaleCohomology.EtaleSheaves.HKCoprodPf, Development.EtaleCohomology.EtaleSheaves.HensIntPf, Development.EtaleCohomology.EtaleSheaves.IECobPf, Development.EtaleCohomology.EtaleSheaves.IntClosPf, Development.EtaleCohomology.EtaleSheaves.LocEtPf, Development.EtaleCohomology.EtaleSheaves.PushGluePf, Development.EtaleCohomology.EtaleSheaves.SHAlgSecPf, Development.EtaleCohomology.EtaleSheaves.SepTensorPf, Development.EtaleCohomology.EtaleSheaves.SpSOfIntegralInjective, Development.EtaleCohomology.EtaleSheaves.StrictHenselColimits.EtaleLiftToStrictLocalRingUniqueOnResidueField, Development.EtaleCohomology.EtaleSheaves.StrictHenselColimits.ColimOf, Development.EtaleCohomology.EtaleSheaves.StrictLocalStalks.FracOf, Development.EtaleCohomology.EtaleSheaves.StrictLocalStalks.PolyPO, Development.EtaleCohomology.EtaleSheaves.StrictLocalStalks.ULAStalkOf, Development.EtaleCohomology.WeilConjectures.EtaleAlgebrasHaveSmallModelSet, Development.EtaleCohomology.WeilConjectures.EtaleNeighborhoodsEqualizeParallelMaps, Development.EtaleCohomology.WeilConjectures.EtaleNeighborhoodsHaveCommonRefinement, Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.N81
 
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleSheaves.PointwisePf
+@[expose] public section -- clump member: Development.EtaleCohomology.EtaleSheaves.PointwisePf
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.EtC LateralTheory.E.t_E3Cut
 
 namespace LateralTheory.E.PointwisePf
@@ -184,9 +185,7 @@ theorem pushColim : PushColim := by
 
 end LateralTheory.E.PointwisePf
 
-namespace LateralTheory.E.PointwisePf
-
-end LateralTheory.E.PointwisePf
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleSheaves.AICSHPf
@@ -740,8 +739,9 @@ theorem FreeCoprod_of : LateralTheory.E.CoprodPf.FreeCoprod := by
 end LateralTheory.E.FreeCoprodPf
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleSheaves.HKCoprodPf
+@[expose] public section -- clump member: Development.EtaleCohomology.EtaleSheaves.HKCoprodPf
 
+noncomputable section
 open CategoryTheory Limits CochainComplex CochainComplex.HomComplex GlobalTheory.EtC
 
 namespace LateralTheory.E.HKCoprodPf
@@ -813,7 +813,6 @@ theorem bij (n : ℤ) : Function.Bijective fun (x : CohomologyClass c.pt L n) (j
 
 end General
 
-
 theorem HKCoprod_of : LateralTheory.E.CoprodPf.HKCoprod := by
   intro R _ ι K c hc F n
   have h1 : HasColimitsOfSize.{1, 1} (Shv R) := IsGrothendieckAbelian.hasColimits.{1} (Shv R)
@@ -822,6 +821,7 @@ theorem HKCoprod_of : LateralTheory.E.CoprodPf.HKCoprod := by
   exact bij c (fun p => isColimitOfPreserves (HomologicalComplex.eval _ _ p) hc) n
 
 end LateralTheory.E.HKCoprodPf
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleSheaves.HensIntPf
@@ -918,12 +918,9 @@ open CategoryTheory Limits LateralTheory.E.t_E3Cut
 
 namespace LateralTheory.E.IECobPf
 
-theorem et_cobase : Et.IsStableUnderCobaseChange :=
-  (RingHom.isStableUnderCobaseChange_toMorphismProperty_iff).2 RingHom.Etale.isStableUnderBaseChange
-
 theorem IECob_of : LateralTheory.E.ULAStalkPf.IECob := by
   intro A B C D f g u v sq hf
-  have := et_cobase
+  have := LateralTheory.E.IECompPf.et_cobase
   have hI : IE.IsStableUnderCobaseChange := by
     unfold IE; infer_instance
   exact hI.of_isPushout sq.flip hf
@@ -1625,7 +1622,6 @@ theorem n80 : LateralTheory.E.ZariskiLocalCech.CechSigma := LateralTheory.E.Cech
 theorem n79 : LateralTheory.E.t_E3Cut.ZarLocal := LateralTheory.E.ZariskiLocalCech.ZarLocal_of n26 n80
 
 theorem n78 : LateralTheory.E.t_E3Cut.Global := LateralTheory.E.GlobalPf.Global_of n79 _root_.LateralTheory.E.AffinePf.Affine_of _root_.LateralTheory.E.LocEtPf.LocEt_of
-
 
 open CategoryTheory LateralTheory.E.t_E3Cut in
 theorem main (H : LateralTheory.E.t_E3Cut.Hyp) : GlobalTheory.EtC.E3 := by

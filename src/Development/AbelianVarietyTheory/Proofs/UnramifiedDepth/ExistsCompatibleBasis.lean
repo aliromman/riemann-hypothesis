@@ -176,13 +176,13 @@ alias exists_dualTower := _root_.GlobalTheory.dualTower_nonempty
 end GlobalTheory
 end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsEndDifferentialRingHom
 
 open TensorProduct IsLocalRing Matrix CategoryTheory AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj ReciprocityTheory.PGsh ReciprocityTheory.PGsh.Up ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Be2 ReciprocityTheory.ChartRestriction.G.Chart
 open scoped CategoryTheory.Obj CategoryTheory.MonObj
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsEndDifferentialRingHom
 attribute [local instance] Over.cartesianMonoidalCategory
+
+noncomputable section
 
 namespace GlobalTheory
 
@@ -237,7 +237,7 @@ private lemma endDiff_ηmap_surj {O : LAlg R₀} (Dp : DualPair O) :
 
 private lemma endDiff_ηmap_inj {O : LAlg R₀} (Dp : DualPair O) :
     Function.Injective Dp.ηmap := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro r hr
   exact Dp.free r (congrArg Subtype.val hr)
 
@@ -361,8 +361,12 @@ theorem exists_endDifferential_ringHom :
 
 end GlobalTheory
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.ExistsFormalChart
+
+open TensorProduct IsLocalRing Matrix CategoryTheory AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj ReciprocityTheory.PGsh ReciprocityTheory.PGsh.Up ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Be2 ReciprocityTheory.ChartRestriction.G.Chart
+open scoped CategoryTheory.Obj CategoryTheory.MonObj
 
 namespace GlobalTheory.FormalChartOf
 
@@ -765,7 +769,12 @@ theorem exists_formalChart :
 end GlobalTheory.FormalChartOf
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.FinOfLocalAlgebraMap
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.FinOfLocalAlgebraMap
+
+noncomputable section
+
+open TensorProduct IsLocalRing Matrix CategoryTheory AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj ReciprocityTheory.PGsh ReciprocityTheory.PGsh.Up ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Be2 ReciprocityTheory.ChartRestriction.G.Chart
+open scoped CategoryTheory.Obj CategoryTheory.MonObj
 
 namespace GlobalTheory.FinOf
 
@@ -820,7 +829,7 @@ lemma finOf_tangent (B : BX R₀) (p : ℕ) (hp : p ≠ 0) (C : Type) [Field C] 
     (by rw [map_nsmul, hv, smul_sub, hz, hz', sub_self, map_zero])
   have hinj : Function.Injective
       (p • LinearMap.id : (finOf_fst (R₀ := R₀) C).ker →ₗ[R₀] (finOf_fst (R₀ := R₀) C).ker) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     have ha' : p • (a.1 : DualNumber C) = 0 := congrArg Subtype.val ha
     apply Subtype.ext
@@ -1049,6 +1058,12 @@ theorem main :
 
 end GlobalTheory.FinOf
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+open TensorProduct IsLocalRing Matrix CategoryTheory AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj ReciprocityTheory.PGsh ReciprocityTheory.PGsh.Up ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Be2 ReciprocityTheory.ChartRestriction.G.Chart
+open scoped CategoryTheory.Obj CategoryTheory.MonObj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.FiniteAlgebraSplitLocal
 

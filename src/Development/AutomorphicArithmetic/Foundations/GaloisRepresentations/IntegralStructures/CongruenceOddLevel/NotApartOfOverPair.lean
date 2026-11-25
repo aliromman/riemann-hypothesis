@@ -305,8 +305,10 @@ open NumberField IsDedekindDomain Neutral.B1 Formalism.L2.Host Formalism.Conjuga
 open GlobalTheory.CuspRep GlobalTheory.WeilDeligne GlobalTheory.Pst GlobalTheory.LocLanglands GlobalTheory.HeckeGal GlobalTheory.LocGL GlobalTheory.GalOfCusp
 open GlobalTheory.GalCut GlobalTheory.UnitaryBC GlobalTheory.Cong GlobalTheory.Published GlobalTheory.AboveL
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.AutFormFixedByIntegralPointsAlmostAllPlaces
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.AutFormFixedByIntegralPointsAlmostAllPlaces
 open GlobalTheory.Cong.AdaptLev
+
+noncomputable section
 
 namespace GlobalTheory.Cong.AutFormFix
 
@@ -362,7 +364,7 @@ theorem fixed_intU_eventually : ∀ (E : Type) [Field E] [NumberField E] [IsCMFi
       ext k; simp
     rw [this]
     refine isClosed_biInter fun u _ => ?_
-    haveI : T2Space (GL (Fin a) (u.adicCompletion E)) := Units.isEmbedding_embedProduct.t2Space
+    have : T2Space (GL (Fin a) (u.adicCompletion E)) := Units.isEmbedding_embedProduct.t2Space
     exact isClosed_eq ((continuous_cLoc u).comp continuous_subtype_val) continuous_const
   have hst : K₀ ∩ ⋂ S, t S = ∅ := by
     refine Set.eq_empty_of_forall_notMem fun k hk => ?_
@@ -407,6 +409,7 @@ theorem fixed_intU_eventually : ∀ (E : Type) [Field E] [NumberField E] [IsCMFi
   exact (Set.disjoint_left.mp hS) this.1 this.2
 
 end GlobalTheory.Cong.AutFormFix
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.AutFormFixedByIntegralPointsAlmostAllPlacesStatement
@@ -467,7 +470,6 @@ theorem avg_of_fixed {f : UA E a → ℂ} (hf : ∀ k ∈ K, RU E a k f = f) :
   rw [avg_apply, Finset.sum_congr rfl (fun q _ => hf _ (Quotient.out q).2), Finset.sum_const,
     Finset.card_univ, ← Nat.cast_smul_eq_nsmul ℂ]
 
-set_option synthInstance.maxHeartbeats 400000 in
 set_option maxHeartbeats 1000000 in
 theorem avg_fixed {f : UA E a → ℂ} (hf : ∀ k ∈ K', RU E a ((k : K) : UA E a) f = f) (k : UA E a) (hk : k ∈ K) :
     RU E a k (avg K K' f) = avg K K' f := by
@@ -530,7 +532,7 @@ theorem mend (U : Submodule ℂ (UA E a → ℂ)) (hU : IsAutRepU U) (w : Height
     rw [← rU_mul, (hd g (r g) (hr g)).eq, mul_inv_cancel_left]
 
   have hKf : K ≤ finU (E := E) (n := a) := hKw.trans (locU_le_finU w)
-  haveI : CompactSpace K := isCompact_iff_compactSpace.1 hKc
+  have : CompactSpace K := isCompact_iff_compactSpace.1 hKc
   let K' : Subgroup K :=
     { carrier := {k | ∀ g ∈ c.support, RU E a (k : UA E a) (RU E a (r g) φ) = RU E a (r g) φ}
       mul_mem' := fun {x y} hx hy g hg => by
@@ -556,8 +558,8 @@ theorem mend (U : Submodule ℂ (UA E a → ℂ)) (hU : IsAutRepU U) (w : Height
     have hcont : Continuous fun k : K => (⟨(k : UA E a), hKf k.2⟩ : finU (E := E) (n := a)) :=
       continuous_subtype_val.subtype_mk _
     exact ho.preimage hcont
-  haveI : Finite (K ⧸ K') := Subgroup.quotient_finite_of_isOpen K' hK'o
-  letI : Fintype (K ⧸ K') := Fintype.ofFinite _
+  have : Finite (K ⧸ K') := Subgroup.quotient_finite_of_isOpen K' hK'o
+  let : Fintype (K ⧸ K') := Fintype.ofFinite _
   have hA : avg K K' φw = c.sum fun g b => b • RU E a ((r g)⁻¹ * g) (avg K K' (RU E a (r g) φ)) := by
 
     rw [← hc, Finsupp.sum, Finsupp.sum, map_sum]
@@ -649,8 +651,10 @@ end -- clump:auto
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.FixedOfFixedByLocalLevels
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.FixedOfFixedByLocalLevels
 open GlobalTheory.Cong.AdaptLev
+
+noncomputable section
 
 namespace GlobalTheory.Cong.AdaptLevFix
 
@@ -695,7 +699,7 @@ theorem isCompact_integral :
 theorem exists_finite_fix {φ : UA E a → ℂ} (hφ : IsAutFormU φ) :
     ∃ t : Finset (HeightOneSpectrum (𝓞 E)), ∀ k ∈ finU (E := E) (n := a), (∀ u, cLoc u k ∈ GlobalTheory.LFun.KGL u (n := a)) →
       (∀ u ∈ t, cLoc u k = 1) → RU E a k φ = φ := by
-  haveI : ∀ u : HeightOneSpectrum (𝓞 E), T2Space (GL (Fin a) (u.adicCompletion E)) := fun u =>
+  have : ∀ u : HeightOneSpectrum (𝓞 E), T2Space (GL (Fin a) (u.adicCompletion E)) := fun u =>
     Units.isEmbedding_embedProduct.t2Space
   have hc := (isCompact_integral (E := E) (a := a)).diff hφ.level
   have hcov : {k : finU (E := E) (n := a) | ∀ u, cLoc u k.1 ∈ GlobalTheory.LFun.KGL u (n := a)} \ {k : finU (E := E) (n := a) | RU E a k φ = φ} ⊆
@@ -789,6 +793,7 @@ theorem GlobalTheory.Cong.AdaptLev.fixed_of_levelOf : ∀ (E : Type) [Field E] [
     obtain ⟨y, hy, hyx⟩ := hxH q hq0
     exact ⟨y, hHle q hy, hfix q hq0 y hy, hyx⟩
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.FixedOfFixedByLocalLevelsStatement
 open GlobalTheory.Cong.AdaptLev
@@ -858,7 +863,7 @@ theorem exists_loc (w : HeightOneSpectrum (𝓞 E)) : ∃ f : UA E a → UA E a,
     · rw [cLoc_finGL]; exact pLoc_locGL _ _
 
 theorem isClosed_finU : IsClosed ((finU (E := E) (n := a) : Subgroup (UA E a)) : Set (UA E a)) := by
-  haveI : T2Space (GL (Fin a) (Cinf E)) := Units.isEmbedding_embedProduct.t2Space
+  have : T2Space (GL (Fin a) (Cinf E)) := Units.isEmbedding_embedProduct.t2Space
   have hc : Continuous (cInf (E := E) (n := a)) :=
     (Continuous.units_map _ (continuous_id.matrix_map continuous_pInf_ad)).comp continuous_subtype_val
   exact isClosed_eq hc continuous_const
@@ -877,9 +882,9 @@ theorem isClosed_levelOf (w₀ : HeightOneSpectrum (𝓞 E)) (H : HeightOneSpect
   rw [e]
   refine isClosed_finU.inter (IsClosed.inter (isClosed_iInter fun u => isClosed_iInter fun _ => ?_)
     (isClosed_iInter fun w => isClosed_iInter fun _ => ?_))
-  · haveI := t2GL (E := E) (a := a) u
+  · have := t2GL (E := E) (a := a) u
     exact isClosed_eq (continuous_cLoc u) continuous_const
-  · haveI := t2GL (E := E) (a := a) w
+  · have := t2GL (E := E) (a := a) w
     exact ((hc w).image (continuous_cLoc w)).isClosed.preimage (continuous_cLoc w)
 
 theorem exists_compact_of_finset (H : HeightOneSpectrum (𝓞 E) → Subgroup (UA E a)) (hle : ∀ w, H w ≤ locU a w)

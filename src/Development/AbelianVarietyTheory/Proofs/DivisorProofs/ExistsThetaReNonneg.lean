@@ -74,8 +74,9 @@ open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.Genus
 open GlobalTheory.WeilM GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 open Formalism.IndefR.DatumF
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNonnegAdelicSchwartzBumpTest
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNonnegAdelicSchwartzBumpTest
 
+noncomputable section
 
 open Topology Filter
 
@@ -88,7 +89,7 @@ theorem exists_nonneg_test : ∀ (F : Type) [Field F] [NumberField F] (κ : Type
   let e' : (κ → mixedEmbedding.mixedSpace F) × (κ → FiniteAdeleRing (𝓞 F) F) → (κ → AdeleRing (𝓞 F) F) :=
     fun p i => ((InfiniteAdeleRing.ringEquiv_mixedSpace F).symm (p.1 i), p.2 i)
   have he' : Continuous e' := continuous_pi fun i =>
-    ((GlobalTheory.Core.Rk.RapidInt.continuous_ofMixed F).comp ((continuous_apply i).comp continuous_fst)).prodMk
+    ((PositivityTheory.ThKF0.Split.continuous_ofMixed F).comp ((continuous_apply i).comp continuous_fst)).prodMk
       ((continuous_apply i).comp continuous_snd)
   have he'0 : e' (0, 0) = 0 := by
     funext i
@@ -132,7 +133,7 @@ theorem exists_nonneg_test : ∀ (F : Type) [Field F] [NumberField F] (κ : Type
       · exact ⟨Sᶜ, hSc.isOpen_compl, hx, fun y hy => by simp only [g, Set.indicator_of_notMem hy, Set.indicator_of_notMem hx]⟩
     · exact HasCompactSupport.intro (isCompact_univ_pi fun _ => hLc) fun x hx => Set.indicator_of_notMem hx _
   refine ⟨pureA F f g, Submodule.subset_span ⟨f, g, hg, rfl⟩, ?_, ?_, ?_, ?_⟩
-  · exact (f.continuous.comp (continuous_pi fun i => (GlobalTheory.Core.Rk.RapidInt.continuous_toMixed F).comp
+  · exact (f.continuous.comp (continuous_pi fun i => (PositivityTheory.ThKF0.Split.continuous_toMixed F).comp
       (continuous_fst.comp (continuous_apply i)))).mul
       (hg.1.continuous.comp (continuous_pi fun i => continuous_snd.comp (continuous_apply i)))
   · intro x hx
@@ -171,6 +172,7 @@ theorem exists_nonneg_test : ∀ (F : Type) [Field F] [NumberField F] (κ : Type
 
 end GlobalTheory.AdelicBumpTest
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsRationalProjectionSectionIsotropicSpan
 
@@ -191,7 +193,6 @@ theorem rational_proj_section_of_span : ∀ (F : Type) [Field F] [NumberField F]
   let Φ : ((κ → F) × (κ → F)) →ₗ[F] ((κ → AF F) × (κ → AF F)) :=
     LinearMap.prodMap ((Algebra.linearMap F (AF F)).compLeft κ) ((Algebra.linearMap F (AF F)).compLeft κ)
   let T : Submodule F ((κ → F) × (κ → F)) := (S.restrictScalars F).comap Φ
-  have hT : ∀ y z, (y, z) ∈ T ↔ ((fun i => ι (y i)), (fun i => ι (z i))) ∈ S := fun y z => Iff.rfl
   let f : T →ₗ[F] (κ → F) := LinearMap.fst F _ _ ∘ₗ T.subtype
   let L₁ := LinearMap.range f
   obtain ⟨C, hC⟩ := Submodule.exists_isCompl L₁

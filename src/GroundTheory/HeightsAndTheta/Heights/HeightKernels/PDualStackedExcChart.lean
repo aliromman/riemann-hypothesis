@@ -7,7 +7,8 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsDualStackedExcChartParts, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualStackedExcChart
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsDualStackedExcChartParts
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.StatementsDualStackedExcChartParts
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -15,6 +16,7 @@ namespace GroundTheory.Heights₂.Heights
 
 open ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.AI.I4 MvPolynomial NumberField Matrix
 
+noncomputable section
 
 def latCombo {K : Type} [Field K] [NumberField K] {i : ℕ} {F' : HermLattice K i} {T : Type} [Fintype T]
     (b' : Module.Basis T ℤ (dualLattice F')) (c : T → ℤ) : Fin i → K :=
@@ -70,12 +72,10 @@ def DualStackedExcChartForms.Statement : Prop :=
         ∃ W : Fin (m + 1) → excChartRing b' a v u,
           ∀ t, ∑ j, σ₀ (M t j) * W j = excChartMap b' a v u (graphSecond t)
 
-namespace DualStackedExcChartPartsExample
-
-end DualStackedExcChartPartsExample
-
+end
 
 end GroundTheory.Heights₂.Heights
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualStackedExcChart

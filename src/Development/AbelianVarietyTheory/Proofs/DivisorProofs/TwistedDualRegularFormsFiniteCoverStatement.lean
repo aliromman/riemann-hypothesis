@@ -57,8 +57,9 @@ import Mathlib.RingTheory.SimpleRing.Principal
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemRegularFormsOfWedgePairingPerfect, Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedDualRegularFormsFiniteCover, Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedDualRegularFormsFiniteCoverStatement
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemRegularFormsOfWedgePairingPerfect
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemRegularFormsOfWedgePairingPerfect
 
+noncomputable section
 
 open GlobalTheory.PD GlobalTheory.CechDR KaehlerDifferential
 
@@ -69,14 +70,7 @@ section Wedge
 variable {k K : Type} [Field k] [Field K] [Algebra k K]
 
 theorem omB_smul_mem (B : Subalgebra k K) (q : ℕ) {c : K} (hc : c ∈ B) {z : DR k K}
-    (hz : z ∈ omB k K B q) : c • z ∈ omB k K B q := by
-  induction hz using Submodule.span_induction with
-  | mem z hz =>
-    obtain ⟨b, hb, v, hv, rfl⟩ := hz
-    exact Submodule.subset_span ⟨c * b, B.mul_mem hc hb, v, hv, by rw [smul_smul]⟩
-  | zero => rw [smul_zero]; exact Submodule.zero_mem _
-  | add x y _ _ hx hy => rw [smul_add]; exact Submodule.add_mem _ hx hy
-  | smul r x _ hx => rw [smul_comm]; exact Submodule.smul_mem _ r hx
+    (hz : z ∈ omB k K B q) : c • z ∈ omB k K B q := GlobalTheory.PD.smul_mem_omB B q c hc z hz
 
 def topCoefBasis {n : ℕ} (b : Module.Basis (Fin n) K Ω[K⁄k]) : DR k K →ₗ[K] K :=
   ExteriorAlgebra.liftAlternating (fun i => if h : i = n then h ▸ b.det else 0)
@@ -219,6 +213,7 @@ theorem mem_omB_of_mul_mem_omB :
 end Wedge
 
 end GlobalTheory.PD
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

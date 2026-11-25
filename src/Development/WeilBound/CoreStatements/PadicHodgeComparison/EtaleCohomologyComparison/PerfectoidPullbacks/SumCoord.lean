@@ -170,10 +170,9 @@ theorem T_fac : ∀ {W A C₀ : Type} [CommRing W] [CommRing A] [CommRing C₀] 
 end GlobalTheory.CompanionTheory.FrobFac
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.FrobeniusWittActions.TLTensor
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.FrobeniusWittActions.TLTensor
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open TensorProduct
 
@@ -190,6 +189,7 @@ theorem T_fac {B : Type} [Field B] (ι : C₀ →+* B) (i : A →+* B) (hι : �
   _root_.GlobalTheory.CompanionTheory.FrobFac.T_fac c k hk ι i hι h hh b
 
 end CrystallineSemistableComparison.Pb.Psi
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.FrobeniusWittActions.FmapOf
@@ -312,10 +312,9 @@ theorem fmap_of (r : Res l K) (Amp : ∀ M : Model l K, E.LineData M.X → Prop)
 end CrystallineSemistableComparison.Pb
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.FrobeniusWittActions.FrobeniusNormBounds.FrobAlg
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.FrobeniusWittActions.FrobeniusNormBounds.FrobAlg
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry TensorProduct GroundTheory.PAdicHodge
 
@@ -340,10 +339,9 @@ theorem perC_hl (r : Res l K) : IsUnit (r.perC.c (l : (per l K).A)) := by
 
 end CrystallineSemistableComparison.Pb.G3
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.Pull
-
-set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -369,11 +367,11 @@ end CrystallineSemistableComparison.Pb
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.SumCoord
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.SumCoord
 
-set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry TensorProduct Limits GlobalTheory.LogCris GroundTheory.PAdicHodge
 

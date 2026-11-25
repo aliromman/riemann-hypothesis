@@ -128,8 +128,9 @@ namespace GlobalTheory.IwLevel
 end GlobalTheory.IwLevel
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KerEqOfPointsOfGerm
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KerEqOfPointsOfGerm
 
+noncomputable section
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open ReciprocityTheory.ChartRestriction.G.Out (RingAct)
@@ -299,9 +300,7 @@ theorem inK_of_inK {A B B' : Over (Sp k)} [GrpObj A] [GrpObj B] [GrpObj B'] (π 
 
 end GlobalTheory.IwLevel.KerDet
 
-namespace GlobalTheory.IwLevel
-
-end GlobalTheory.IwLevel
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AlgebraMapMemMaximalIdealIff
@@ -928,14 +927,16 @@ theorem finite_points_ker : ∀ (k : Type) [Field k] (A B : Over (Sp k)) [GrpObj
 end GlobalTheory.IwLevel
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TangentFixLine
+end -- clump: shared namespace opens
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TangentFixLine
+
+noncomputable section
+open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open ReciprocityTheory.ChartRestriction.G.Out (RingAct)
 open scoped CategoryTheory.Obj NumberField
 open GlobalTheory.IwLevel
-
-namespace GlobalTheory.HTLieFix
-
-end GlobalTheory.HTLieFix
 
 namespace GlobalTheory.HTLieFix
 
@@ -957,8 +958,7 @@ theorem prod_ofFn_eq' {G : Type} [Monoid G] {V : Type} [AddCommMonoid V] (T : V 
 
 end GlobalTheory.HTLieFix
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteKernelsPIsogeniesHarrisTaylorCharP
 

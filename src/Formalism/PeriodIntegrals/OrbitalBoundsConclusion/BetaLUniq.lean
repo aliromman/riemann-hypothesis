@@ -95,8 +95,9 @@ theorem agreeOnH : AgreeOnH := by
 end PI.UnitaryGroupMassFormula.BetaLUniq
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaUniqueness.LineReduce
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaUniqueness.LineReduce
 
+noncomputable section
 
 open NumberField Module Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat
 
@@ -168,14 +169,6 @@ theorem z_mem_orth {r : ℕ} {T : E} (F : LFlag S r T) : F.fl.z ∈ orth S (Xsp 
 theorem finrank_Xsp {r : ℕ} {T : E} (F : LFlag S r T) : finrank E (Xsp F) = r := by
   show finrank E (Submodule.span E (Set.range F.fl.e)) = r
   rw [finrank_span_eq_card F.fl.e_indep]; simp
-
-theorem Xflag_r {r : ℕ} {T : E} (F : LFlag S r T) : Xflag F r = Xsp F := by
-  show Submodule.span E (F.fl.e '' {i | i.1 < r}) = Submodule.span E (Set.range F.fl.e)
-  congr 1
-  rw [← Set.image_univ]
-  congr 1
-  ext i
-  simp
 
 theorem inf_span_eq_bot {P : Submodule E S.V} {v : S.V} (hv : v ∉ P) :
     P ⊓ Submodule.span E {v} = ⊥ := by
@@ -311,9 +304,9 @@ theorem line_reduction_holds : LineReduce' := by
       omega
 
   have hX'' : Xsp F'' = X'.map (β₁ : S.V →ₗ[E] S.V) := by
-    rw [← Xflag_r F'', ← hf1 r, Xflag_r F']
+    rw [← PI.UnitaryGroupMassFormula.BetaLUniq.EigB.Xflag_r F'', ← hf1 r, PI.UnitaryGroupMassFormula.BetaLUniq.EigB.Xflag_r F']
   have hX''2 : Xsp F'' = X'.map (β₂ : S.V →ₗ[E] S.V) := by
-    rw [← Xflag_r F'', ← hf2 r, Xflag_r F']
+    rw [← PI.UnitaryGroupMassFormula.BetaLUniq.EigB.Xflag_r F'', ← hf2 r, PI.UnitaryGroupMassFormula.BetaLUniq.EigB.Xflag_r F']
   have hγX : ∀ x ∈ X', β₁.symm (β₂ x) ∈ X' := by
     intro x hx
     have : β₂ x ∈ Xsp F'' := by rw [hX''2]; exact Submodule.mem_map_of_mem hx
@@ -388,8 +381,6 @@ section D7
 
 open PI.BetaLUniq
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 theorem betaLUniq_of' (h1 : GramNondeg) (h2 : AgreeOnH) (h3 : WAniso) (h4 : LineReduce')
     (h5 : EigenvalueLastLineOne) : PI.BetaLUniq := by
   intro D u u' Λ F F' F'' β₁ β₂ hF hT' hT'' hG' hG'' hP1 hP2 hs1 hs2
@@ -411,6 +402,7 @@ end D7
 
 end PI.UnitaryGroupMassFormula.BetaLUniq
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaUniqueness.BetaLUniqOfAnisoEigen
 
@@ -423,14 +415,13 @@ theorem betaLUniq_of_aniso_eigen (h3 : WAniso) (h5 : EigenvalueLastLineOne) : PI
 end PI.UnitaryGroupMassFormula.BetaLUniq
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaUniqueness.CMNorm
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaUniqueness.CMNorm
 
+noncomputable section
 
 open NumberField Formalism.BasicNotions
 
 namespace PI.UnitaryGroupMassFormula.BetaLUniq
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem cm_norm_eq_one (D : D7) (μ : D.host.E) (h : star μ * μ = 1) (φ : D.host.E →+* ℂ) :
     ‖φ μ‖ = 1 := by
@@ -443,9 +434,11 @@ theorem cm_norm_eq_one (D : D7) (μ : D.host.E) (h : star μ * μ = 1) (φ : D.h
 
 end PI.UnitaryGroupMassFormula.BetaLUniq
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaUniqueness.EigenvalueLastLineOne
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.BetaUniqueness.EigenvalueLastLineOne
 
+noncomputable section
 
 open NumberField Module Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat IsDedekindDomain
 open PI.UnitaryGroupMassFormula.BetaLUniq.EigA PI.UnitaryGroupMassFormula.BetaLUniq.EigB
@@ -622,8 +615,6 @@ section D7
 
 open PI.BetaLUniq
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 theorem gS_ge_three (D : D7) : 3 ≤ gS D := by
   have h0 := (D.host.g_prime 0).two_le
   have h1 := (D.host.g_prime 1).two_le
@@ -641,6 +632,7 @@ theorem eigenvalue_last_line_eq_one : EigenvalueLastLineOne := eigenvalue_one_of
 end D7
 
 end PI.UnitaryGroupMassFormula.BetaLUniq
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.OrbitalBoundsConclusion.BetaLUniq

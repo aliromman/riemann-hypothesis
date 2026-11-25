@@ -187,7 +187,7 @@ theorem omega_isDerAtOne : ∀ (R : Type) [CommRing R] [IsDomain R] [IsIntegrall
   refine ⟨θ, ⟨hsurj, pin⟩, hker, ?_⟩
   rintro χ w ⟨s, hs, hv⟩
   have hχ : (fun t => ((χ t : Rˣ) : R)) ∈ Γ.btOrder ⊤ :=
-    char_mem_hopfOrder R T _ (GlobalTheory.T.btOrder_isHopfOrder_noetherian R T Γ) χ
+    char_mem_hopfOrder R T _ (PositivityTheory.UnitarySelfGeneration.bt_hopf R T Γ) χ
   rw [OrderApi.dlogChar_of_mem _ χ hχ]
   refine (pin _ w).2 ⟨s - 1, fun t => ?_, fun e => ?_⟩
   · rw [valAt_sub_one, hs t]
@@ -205,16 +205,11 @@ end -- clump:auto
 open CategoryTheory Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj TensorProduct
 open GlobalTheory.CompanionTheory.Ar.BT ReciprocityTheory.ChartRestriction.G.Semi
 
-namespace GlobalTheory.CompanionTheory.Ar.BT
-
-theorem torsion_etale_of_isUnit : ∀ (R : Type) [CommRing R] [IsDomain R] (T : Type) [CommGroup T] [Finite T] (Γ : QFGroup R T) (S : Scheme.{0}) (G : Over S) [GrpObj G] [IsCommMonObj G] (x : Spec (CommRingCat.of R) ⟶ S) (N : ℕ) (i : Γ.G.left ⟶ G.left), Γ.IsTorsionAlong G x N i → Smooth G.hom → IsUnit (N : R) → Etale Γ.G.hom := by
-  exact @PositivityTheory.HtPt.Mi.torsion_etale
-
-end GlobalTheory.CompanionTheory.Ar.BT
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.LemmaBTHolds
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.LemmaBTHolds
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.BT
 
@@ -223,9 +218,9 @@ open CategoryTheory Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalC
 theorem lemmaBT_holds : LemmaBT := by
   unfold GlobalTheory.CompanionTheory.Ar.BT.LemmaBT
   intro R _ _ _ _ T _ _ Γ S G _ _ x N i hi hG
-  refine ⟨GlobalTheory.T.btOrder_isHopfOrder_noetherian R T Γ, ?_,
+  refine ⟨PositivityTheory.UnitarySelfGeneration.bt_hopf R T Γ, ?_,
     fun hN => _root_.GlobalTheory.CompanionTheory.Ar.BT.EtaleTop.btOrder_top_eq_top_of_etale R T Γ
-      (_root_.GlobalTheory.CompanionTheory.Ar.BT.torsion_etale_of_isUnit R T Γ S G x N i hi hG hN), ?_, ?_,
+      (_root_.PositivityTheory.HtPt.Mi.torsion_etale R T Γ S G x N i hi hG hN), ?_, ?_,
     fun L _ _ M => _root_.GlobalTheory.CompanionTheory.Ar.BT.omega_isDerAtOne R T Γ S G x N i hi hG L M⟩
   · obtain ⟨j, hj, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.BT.exists_unique_emb_btOrder_top R T Γ
     obtain ⟨hoi, htr⟩ := _root_.GlobalTheory.CompanionTheory.Ar.BT.isOpenImmersion_emb_and_translatesCover R T Γ j hj
@@ -242,7 +237,7 @@ theorem lemmaBT_holds : LemmaBT := by
     obtain ⟨hd, hΓ'⟩ :=
       _root_.GlobalTheory.CompanionTheory.Ar.BT.btOrder_baseChange R T Γ R' Γ' F hF
     obtain ⟨-, e, he⟩ := _root_.GlobalTheory.CompanionTheory.Ar.BT.ext_tensor_base_change R T R' _
-      (GlobalTheory.T.btOrder_isHopfOrder_noetherian R T Γ) hd
+      (PositivityTheory.UnitarySelfGeneration.bt_hopf R T Γ) hd
     rw [hΓ']
     exact ⟨e, he⟩
 

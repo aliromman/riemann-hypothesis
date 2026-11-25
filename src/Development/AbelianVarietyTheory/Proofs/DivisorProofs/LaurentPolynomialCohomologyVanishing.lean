@@ -404,8 +404,9 @@ theorem cech_level_acyc : ∀ (q : ℕ) [NeZero q] (A : Type) [CommRing A], SH A
 end GlobalTheory.EtC.GmStep
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LaurentKummerCupProductMapBijectiveFiniteStrictH
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LaurentKummerCupProductMapBijectiveFiniteStrictH
 
+noncomputable section
 namespace GlobalTheory.EtC.LaurentMapPullbackBijective
 
 theorem pull_bijective_of_inverse (q : ℕ) {A B : Type} [CommRing A] [CommRing B] (f : A →+* B) (g : B →+* A)
@@ -470,8 +471,6 @@ theorem gmPhi_bijective_prod (h6 : DivisorNaturality) (q : ℕ) [NeZero q] (T₁
     rw [this]
     rw [he] at hψpull
     exact hγ.comp hψpull
-  have hu₁ : IsUnit (q : T₁) := by simpa using hq.map f₁
-  have hu₂ : IsUnit (q : T₂) := by simpa using hq.map f₂
   have hcomm : β ∘ (gmPhi q (T₁ × T₂) i) =
       (Prod.map (gmPhi q T₁ i) (gmPhi q T₂ i)) ∘
         (fun x : Ht q (sp (T₁ × T₂)) 0 (i - 1) => (pull _ (spMap f₁) _ 0 x, pull _ (spMap f₂) _ 0 x)) := by
@@ -497,6 +496,7 @@ theorem GlobalTheory.EtC.GmStep.gmPhi_bijective_finite : ∀ (q : ℕ) [NeZero q
     (fun S₁ S₂ _ _ _ _ _ _ h₁ h₂ i => gmPhi_bijective_prod h6 q S₁ S₂ (hunit (S₁ × S₂)) i (h₁ i) (h₂ i))
     (fun S _ _ _ hS i => _root_.GlobalTheory.EtC.gmPhi_bijective q S hS (hunit S) i)
     T hT
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeEqOfCodimOneEq

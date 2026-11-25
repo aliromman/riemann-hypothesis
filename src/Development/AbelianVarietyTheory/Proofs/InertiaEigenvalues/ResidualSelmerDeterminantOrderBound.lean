@@ -618,7 +618,10 @@ theorem laurent_degeneration : ∀ (k : Type) [Field k], ∃ (K : Type) (_ : Fie
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MatrixComputesTwistedSelmerResidualTransfer
+section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MatrixComputesTwistedSelmerResidualTransfer
+@[expose] public section
+
+noncomputable section
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.BlochKatoReduction Formalism.MainNotions.BlochKatoReduction.Gen GlobalTheory.TwSys GlobalTheory.SelFun GlobalTheory.Published GlobalTheory.ResSel
 open GlobalTheory.ResSel.CoefMap
@@ -662,7 +665,7 @@ def tau : H1 (repOn ρ κ K) →ₛₗ[(φ : Λ →+* K)] H1 (repOn ρ (1 : Γ �
   slH1 _ _ (idVec φ hs r) continuous_of_discreteTopology (idVec_repOn φ hs ρ κ hκ)
 
 theorem tau_injective : Function.Injective (tau φ hs ρ κ hκ) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   induction x using Submodule.Quotient.induction_on with
   | H z =>
@@ -787,6 +790,8 @@ theorem computes_transfer : ∀ (D : Formalism.BasicNotions.D7) (N : NData D.R D
 
 end GlobalTheory.ResSel.Transfer
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NotXPowSuccDvdDetOfFirstOrderKernelEqZero

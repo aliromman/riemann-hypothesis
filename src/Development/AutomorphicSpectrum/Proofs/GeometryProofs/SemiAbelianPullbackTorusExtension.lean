@@ -555,10 +555,9 @@ end GlobalTheory.CompanionTheory.Ar.TsOk
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.TorusExtensionLieLattice
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.TorusExtensionLieLattice
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.ToricQuot
 
@@ -746,6 +745,7 @@ theorem lie_quot_full : ∀ (O K : Type) [CommRing O] [IsDedekindDomain O] [Fiel
     exact lifts_unique hφ' (hj' _) (hf e _ (hj e))
 
 end GlobalTheory.CompanionTheory.Ar.ToricQuot
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.SemiAbelianPullbackTorusExtension

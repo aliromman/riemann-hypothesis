@@ -521,11 +521,12 @@ end
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsSplitPlacesEmbedding
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsSplitPlacesEmbedding
 
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 open scoped TensorProduct Matrix GlobalTheory.VacAny
 
+noncomputable section
 namespace GlobalTheory.SplitSphLeft
 
 theorem vac_unique_split_left : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (B : Base F E)
@@ -574,13 +575,8 @@ theorem vac_unique_split_left : ∀ (F E : Type) [Field F] [NumberField F] [Fiel
     exact h1)
   exact ⟨⟨γ, hγ⟩, congrArg Prod.fst he⟩
 
-theorem isUnram_of_unramified' {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
-    (h : Algebra.Unramified (𝓞 F) (𝓞 E)) (v : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Pl (F := F)) : Formalism.MainNotions.SchurIrreducible.IsUnram (E := E) v := by
-  intro P hP
-  rw [Ideal.ramificationIdx_eq_one_iff]
-  infer_instance
-
 end GlobalTheory.SplitSphLeft
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens
@@ -588,17 +584,13 @@ section -- clump: shared namespace opens
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 open scoped TensorProduct Matrix
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsCmSkewElementUnitAtFinitePlace
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsCmSkewElementUnitAtFinitePlace
 
+noncomputable section
 
 namespace GlobalTheory.CMSkewUnit
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
-
-theorem cm_sigma_sigma (σ : E →ₐ[F] E) (h : IsCMExt F E σ) (x : E) : σ (σ x) = x := by
-  obtain ⟨w⟩ : Nonempty (InfinitePlace E) := inferInstance
-  apply w.embedding.injective
-  rw [h.2.2.2, h.2.2.2, star_star]
 
 theorem cm_exists_moved (σ : E →ₐ[F] E) (h : IsCMExt F E σ) : ∃ x : E, σ x ≠ x := by
   haveI : IsTotallyComplex E := h.2.1
@@ -614,7 +606,7 @@ theorem cm_exists_moved (σ : E →ₐ[F] E) (h : IsCMExt F E σ) : ∃ x : E, �
 theorem cm_exists_skew (σ : E →ₐ[F] E) (h : IsCMExt F E σ) : ∃ δ : E, δ ≠ 0 ∧ σ δ = -δ := by
   obtain ⟨x, hx⟩ := cm_exists_moved σ h
   refine ⟨x - σ x, sub_ne_zero.2 (Ne.symm hx), ?_⟩
-  rw [map_sub, cm_sigma_sigma σ h]; ring
+  rw [map_sub, GlobalTheory.SkewDetParity.sigma_sigma σ h]; ring
 
 end GlobalTheory.CMSkewUnit
 
@@ -668,9 +660,11 @@ theorem exists_skew_unit_at : ∀ {F E : Type} [Field F] [NumberField F] [Field 
 
 end GlobalTheory.CMSkewUnit
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.HermitianSelfDualLatticeSplitPlaceDictionary
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.HermitianSelfDualLatticeSplitPlaceDictionary
 
+noncomputable section
 
 namespace GlobalTheory.SplitDictHerm
 
@@ -686,15 +680,12 @@ theorem tensAt_compFin (v : Pl (F := F)) (z : _root_.GlobalTheory.IndefiniteRowS
     show atPlace v (evFin F v a) ⊗ₜ[F] x = atPlace v 1 • (a ⊗ₜ[F] x)
     rw [TensorProduct.smul_tmul', smul_eq_mul, atPlace_mul_right, one_mul]
 
-theorem at_atPlace (v : Pl (F := F)) (c : Fv F v) : At (evFin F v) (atPlace v c) := fun u hu => by
-  rw [smul_eq_mul, mul_comm, atPlace_mul_right, hu, mul_zero, map_zero]
-
 theorem at_tensAt (v : Pl (F := F)) (y : Fv F v ⊗[F] E) : At (evFin F v) (tensAt E v y) := fun u hu => by
   induction y using TensorProduct.induction_on with
   | zero => simp
   | add x y hx hy => rw [map_add (f := _), smul_add, hx, hy, add_zero]
   | tmul a x =>
-    rw [tensAt_tmul, TensorProduct.smul_tmul', at_atPlace v a u hu, TensorProduct.zero_tmul]
+    rw [tensAt_tmul, TensorProduct.smul_tmul', GlobalTheory.LatIdem.at_atPlace v a u hu, TensorProduct.zero_tmul]
 
 theorem eq_tensAt_of_at {v : Pl (F := F)} {z : _root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)} (hz : At (evFin F v) z) : z = tensAt E v (compFin F E v z) := by
   rw [tensAt_compFin]
@@ -755,7 +746,7 @@ theorem mem_latAt_iff {d : ℕ} (W : Spc F E d) (v : Pl (F := F)) (z : Fin d →
     refine latLoc_induction (p := fun Y => (fun j => tensAt E v (Y j)) ∈ GlobalTheory.InertSph.latAt W v)
       (fun c hc x hx => ?_) (by convert zero_mem (GlobalTheory.InertSph.latAt W v) using 1; funext j; simp) (fun Y Y' hY hY' => ?_)
       (fun Y hY => ?_) hl
-    · refine AddSubgroup.subset_closure ⟨atPlace v c, at_atPlace v c, by rwa [evFin_atPlace], x, hx, ?_⟩
+    · refine AddSubgroup.subset_closure ⟨atPlace v c, GlobalTheory.LatIdem.at_atPlace v c, by rwa [evFin_atPlace], x, hx, ?_⟩
       funext j
       rw [tensAt_tmul]
       show _ = atPlace v c • ((1 : AF F) ⊗ₜ[F] x j)
@@ -780,13 +771,6 @@ theorem mem_latAt_iff_bases {σ : E →ₐ[F] E} (h : IsCMExt F E σ) {d : ℕ} 
     rw [hb, Matrix.mulVec_mulVec, ← Units.val_mul, mul_inv_cancel, Units.val_one, Matrix.one_mulVec]
   rw [mem_latAt_iff, mem_latLoc_iff_split τ h, key hb₁, key hb₂]
   exact Iff.rfl
-
-theorem hE_transpose (σ : E →ₐ[F] E) {n : ℕ} (J : Matrix (Fin n) (Fin n) E) (x y : Fin n → E) :
-    hE σ Jᵀ x y = form σ J y x := by
-  simp only [hE, Formalism.UG.hform, form, dotProduct, Matrix.mulVec, Finset.mul_sum, Matrix.transpose_apply]
-  rw [Finset.sum_comm]
-  exact Finset.sum_congr rfl fun _ _ => Finset.sum_congr rfl fun _ _ =>
-    (by intro a b c; ring : ∀ a b c : E, a * b * c = c * (b * a)) _ _ _
 
 theorem split_dict_herm : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (B : Base F E)
     {d : ℕ} (V : Spc F E d) (r s : ℕ), B.IsGood σ → V.IsHerm σ B r s →
@@ -822,7 +806,7 @@ theorem split_dict_herm : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [
     refine (SelfDual.forall_isSelfDualAt_iff hdetT hV.lat).2 (fun y => ?_) v
     rw [hV.dual y]
     refine forall₂_congr fun x _ => ?_
-    rw [hE_transpose]
+    rw [GlobalTheory.HermSelfDualLoc.hE_transpose]
     exact ⟨fun hi => ⟨⟨_, hi⟩, rfl⟩, fun ⟨c, hc⟩ => hc ▸ RingOfIntegers.isIntegral_coe c⟩
   have hb₂ := IsSplitBasis.dual h hJ hL hb₁
   refine ⟨piW τ, piW (τ.comp σ), b₁, dualConj 1 (splitGram hJ τ * b₁), ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_⟩, 1, by simp, ?_⟩
@@ -849,6 +833,7 @@ theorem split_dict_herm : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [
       inv_mul_cancel, Units.val_one, Matrix.transpose_one]
 
 end GlobalTheory.SplitDictHerm
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsAdmissibleUnipotentSplitPlaceHermitian
@@ -1138,11 +1123,12 @@ end GlobalTheory.SplitVacV
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.VacuumSplitPlaceIndicatorBase
+section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.VacuumSplitPlaceIndicatorBase
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.VDblEigSplit
-
 
 open GlobalTheory.DblVacEigen in
 theorem doubled_vac_eigen_any : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (B : Base F E)
@@ -1199,7 +1185,6 @@ theorem doubled_vac_eigen_any : ∀ (F E : Type) [Field F] [NumberField F] [Fiel
     ring
   rw [hrho, hS, hc]
   exact hbox
-
 
 open GlobalTheory.DblVacTransport in
 theorem transport_any : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E) (B : Base F E)
@@ -1439,6 +1424,8 @@ theorem vdbl_eigen_of_unr : ∀ (F E : Type) [Field F] [NumberField F] [Field E]
 
 end GlobalTheory.VDblEigSplit
 
+end
+end -- clump:auto
 end -- clump:auto
 
 end -- clump: shared namespace opens
@@ -1587,7 +1574,7 @@ theorem vacuum_fixed_by_split_spherical_left : _root_.GlobalTheory.FunPr.ThetaLo
   simp only [Finset.mem_union, Set.Finite.mem_toFinset, Set.mem_setOf_eq, not_or, not_not] at hv
   obtain ⟨⟨⟨hvT, hstd⟩, hdiff⟩, h2⟩ := hv
   rcases GlobalTheory.LFun.InertChart.isSplit_or_isInertAt
-      (GlobalTheory.SplitSphLeft.isUnram_of_unramified' hTr.base.unram v) with hs | ⟨w, hw⟩
+      (GlobalTheory.SphOffFinite.isUnram_of_unramified hTr.base.unram v) with hs | ⟨w, hw⟩
   · have hψ := GlobalTheory.StdCharUnrF.psiUnr_of_not_le F B.ψ hTr.base.std v hdiff
     obtain ⟨hSB, -, θ, hθ, hvac⟩ := hTr.geo.hM.vac v
     obtain ⟨φ₁, hφ₁, hact⟩ := _root_.GlobalTheory.WeilLocalityV.locality F E σ B a a' G X om om' hTr v k hk.1 _ hSB

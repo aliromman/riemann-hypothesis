@@ -479,8 +479,6 @@ theorem lip_const_eis : ∀ (F : Type) [Field F] [NumberField F] (𝔞 : GlobalT
     exact mul_ne_zero (mul_ne_zero two_ne_zero this) Complex.I_ne_zero
   have hcov : covol (latM 𝔞) = (Real.sqrt (dF F) * nrm 𝔞)⁻¹ := by
     rw [covol, absNorm_latM, ← dF]
-    have hs : Real.sqrt (dF F) * Real.sqrt (dF F) = dF F := Real.mul_self_sqrt hd.le
-    have hs0 : 0 < Real.sqrt (dF F) := Real.sqrt_pos.2 hd
     field_simp
     rw [Real.sq_sqrt hd.le]
 
@@ -492,7 +490,6 @@ theorem lip_const_eis : ∀ (F : Type) [Field F] [NumberField F] (𝔞 : GlobalT
     have hk' : ((k : ℝ) - 1) / 2 = (1:ℝ)/2 * k - 1/2 := by ring
     rw [hk', Real.rpow_sub hd]
     have hA : 0 < dF F ^ ((1:ℝ)/2 * k) := Real.rpow_pos_of_pos hd _
-    have hB : 0 < dF F ^ ((1:ℝ)/2) := Real.rpow_pos_of_pos hd _
     obtain ⟨j, rfl⟩ : ∃ j, k = j + 1 := ⟨k - 1, by omega⟩
     simp only [Nat.add_sub_cancel]
     field_simp
@@ -652,10 +649,11 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertEisensteinNonconstantTermsHasSum
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertEisensteinNonconstantTermsHasSum
 
 open scoped nonZeroDivisors
 
+noncomputable section
 
 namespace GlobalTheory.EisNonConst
 open NumberField GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization GlobalTheory.SlopeTestRemainingChoices.EisFibre
@@ -720,7 +718,6 @@ theorem nonconst_terms : ∀ (F : Type) [Field F] [NumberField F] [NumberField.I
       (summable_norm_iff.2 (hlat y hy)).sigma
     refine Summable.of_nonneg_of_le (fun _ => tsum_nonneg fun _ => norm_nonneg _) (fun β => ?_) (hmarg.mul_left ‖C‖⁻¹)
     obtain ⟨-, hP⟩ := GlobalTheory.EisPerB.lattice_sum_eq_cone_sum F hL 𝔞 k hk2 hke (rep β) (rep_ne_zero β) y hy
-    have hfib := hqfib β
     have hT : ((∑' ν : posCone 𝔞 (rep β), ‖qTerm 𝔞 k z (ν.1, rep β)‖ : ℝ) : ℂ) =
         ∑' ν : posCone 𝔞 (rep β), qTerm 𝔞 k y (ν.1, rep β) := by
       rw [Complex.ofReal_tsum]
@@ -758,6 +755,7 @@ theorem nonconst_terms : ∀ (F : Type) [Field F] [NumberField F] [NumberField.I
   exact (e1.hasSum_iff (f := fun c : {c : Quotient (latRel 𝔞 𝔟) // c.out.1.2 ≠ 0} => eisClass 𝔞 𝔟 k 0 z c)).1 this
 
 end GlobalTheory.EisNonConst
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertEisensteinSeriesLatticeDifferentiableOn
@@ -866,8 +864,9 @@ theorem eisSum_zero_differentiableOn :
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertEisensteinExpansionOfLipschitzHeckeZeta
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertEisensteinExpansionOfLipschitzHeckeZeta
 
+noncomputable section
 
 open NumberField GlobalTheory.IndefiniteRowSideFullHecke.OmegaFactorization GlobalTheory.LatVal GlobalTheory.LatJet
 open scoped nonZeroDivisors
@@ -905,7 +904,6 @@ theorem const_eq (F : Type) [Field F] [NumberField F] (𝔞 : Frac F) (k : ℕ) 
   have hn := _root_.GlobalTheory.EisPerB.nrm_pos 𝔞
   unfold cK omegaFactor
   rw [mul_pow, mul_pow, ← Real.rpow_natCast (dF F ^ _), ← Real.rpow_mul hd.le, ← Real.rpow_natCast (dF F) k]
-  have h1 : dF F ^ ((1 : ℝ) / 2 * k) ≠ 0 := (Real.rpow_pos_of_pos hd _).ne'
   have h2 : nrm 𝔞 ^ k ≠ 0 := pow_ne_zero _ hn.ne'
   field_simp
   rw [← Real.rpow_add hd, ← Real.rpow_add hd]

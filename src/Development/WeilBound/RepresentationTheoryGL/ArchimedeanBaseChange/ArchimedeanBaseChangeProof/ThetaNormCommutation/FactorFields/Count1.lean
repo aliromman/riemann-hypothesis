@@ -157,9 +157,6 @@ noncomputable section
 open NumberField IsDedekindDomain Matrix Polynomial Filter GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host GlobalTheory.BCT PositivityTheory.Rg.BcB.G3
 open scoped Classical TensorProduct
 
-namespace PositivityTheory.Rg.BcB.G3.AbsSumP
-end PositivityTheory.Rg.BcB.G3.AbsSumP
-
 theorem PositivityTheory.Rg.BcB.G3.absSum_pf : PositivityTheory.Rg.BcB.G3.AbsSum := by
   intro V C S L A o f D loc m N hA ho hf hD hN hcard
   set T : Set V := {v | ¬ ∀ l ∈ A v, f v l = if l = o v then 1 else 0} with hTdef
@@ -1306,7 +1303,15 @@ end PositivityTheory.Rg.BcB.G3
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.FactorFields.PTensorCompl
+end -- clump: shared namespace opens
+
+section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.FactorFields.PTensorCompl
+@[expose] public section
+
+noncomputable section
+
+open NumberField IsDedekindDomain Matrix Polynomial Filter GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host GlobalTheory.BCT PositivityTheory.Rg.BcB.G3
+open scoped Classical TensorProduct
 
 namespace PositivityTheory.Rg.BcB.G3.TensorComplP
 
@@ -1350,7 +1355,7 @@ theorem map_extZ_ne {v' : HeightOneSpectrum (𝓞 F)} (h : v' ≠ v) (y : v.adic
   | add a b ha hb => simp only [map_add (f := _), ha, hb, add_zero]
 
 theorem phi_injective : Function.Injective (phi (K := K) v) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro y hy
   have h0 : GlobalTheory.LFun.finAdEquiv F K (extZ v y) = 0 := by
     have hc : ∀ w : HeightOneSpectrum (𝓞 K), GlobalTheory.LFun.finAdEquiv F K (extZ v y) w = 0 := by
@@ -1384,28 +1389,27 @@ theorem PositivityTheory.Rg.BcB.G3.tensorCompl_pf : TensorCompl := by
   show GlobalTheory.LFun.toCompl u.2 (1 ⊗ₜ[F] a) = _
   rw [GlobalTheory.LFun.toCompl_tmul, map_one, one_mul]
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.FactorFields.RelEquiv
+section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.FactorFields.RelEquiv
+@[expose] public section
+
+noncomputable section
+
+open NumberField IsDedekindDomain Matrix Polynomial Filter GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host GlobalTheory.BCT PositivityTheory.Rg.BcB.G3
+open scoped Classical TensorProduct
 
 namespace PositivityTheory.Rg.BcB.G3.Count2P
-
-theorem rel_equiv {G : Type} [Group G] (θ : G →* G) :
-    Equivalence (fun x y : G => ∃ g, y = g⁻¹ * x * θ g) := by
-  constructor
-  · exact fun x => ⟨1, by simp⟩
-  · rintro x y ⟨g, rfl⟩
-    exact ⟨g⁻¹, by rw [map_inv]; group⟩
-  · rintro x y z ⟨g, rfl⟩ ⟨h, rfl⟩
-    exact ⟨g * h, by rw [map_mul]; group⟩
 
 theorem mk_eq_iff {G : Type} [Group G] (θ : G →* G) (x z : G) :
     (Quot.mk (fun x y : G => ∃ g, y = g⁻¹ * x * θ g) x : TwCl θ) = Quot.mk _ z ↔ ∃ g, x = g⁻¹ * z * θ g := by
   constructor
   · intro h
-    exact (rel_equiv θ).symm ((rel_equiv θ).eqvGen_iff.1 (Quot.eqvGen_exact h))
+    exact (GlobalTheory.BCT.FibStable.twRel_equiv θ).symm ((GlobalTheory.BCT.FibStable.twRel_equiv θ).eqvGen_iff.1 (Quot.eqvGen_exact h))
   · intro h
-    exact (Quot.sound ((rel_equiv θ).symm h))
+    exact (Quot.sound ((GlobalTheory.BCT.FibStable.twRel_equiv θ).symm h))
 
 theorem prod_rel {G H : Type} [Group G] [Group H] (θ₁ : G →* G) (θ₂ : H →* H) (x z : G × H) :
     (∃ g : G × H, x = g⁻¹ * z * (θ₁.prodMap θ₂) g) ↔
@@ -1485,9 +1489,14 @@ theorem PositivityTheory.Rg.BcB.G3.count2_pf (h1 : Count1) : Count2 := by
   rw [Nat.card_congr eqv, Nat.card_prod, add_mul, pow_add, pow_add, ← e1, ← e2]
   ring
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.FactorFields.SuppPf
+
+open NumberField IsDedekindDomain Matrix Polynomial Filter GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host GlobalTheory.BCT PositivityTheory.Rg.BcB.G3
+open scoped Classical TensorProduct
 
 namespace PositivityTheory.Rg.BcB.G3.SuppP
 end PositivityTheory.Rg.BcB.G3.SuppP
@@ -1502,6 +1511,9 @@ theorem PositivityTheory.Rg.BcB.G3.supp_pf : PositivityTheory.Rg.BcB.G3.Supp := 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.FactorFields.TwConjOfMkEq
+
+open NumberField IsDedekindDomain Matrix Polynomial Filter GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host GlobalTheory.BCT PositivityTheory.Rg.BcB.G3
+open scoped Classical TensorProduct
 
 namespace PositivityTheory.Rg.BcB.G3.FinCl2P
 
@@ -1558,8 +1570,6 @@ theorem PositivityTheory.Rg.BcB.G3.finCl2_pf : FinCl2 := by
   · change (nrmL b w (TwCl.rep (Quot.mk _ l.rep.2 : TwCl (thL b w)))).val.charpoly = Q₂
     rw [charpoly_rep_mk hU b w, hl₂]
 end -- clump:auto
-
-end -- clump: shared namespace opens
 
 section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaNormCommutation.FactorFields.UnitPairOfSupport
 @[expose] public section

@@ -25,10 +25,13 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsGradedFormOnAffineChart, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GradedCechCohomologyFinite
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsGradedFormOnAffineChart
+-- clump: shared namespace opens
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry TensorProduct GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb
+
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsGradedFormOnAffineChart
+@[expose] public section
+noncomputable section
 namespace GlobalTheory.CompanionTheory.GrCech.Omega
 open GlobalTheory.CompanionTheory.GrForm GlobalTheory.CompanionTheory.GrVB
 
@@ -104,12 +107,11 @@ theorem basis : KH.LocGr → KH.PolyTf → ∀ {O : Type} [CommRing O] (l s : �
   exact rp_coef stAdd hu' hQW hFree hy' hx
 
 end GlobalTheory.CompanionTheory.GrCech.Omega
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GradedCechCohomologyFinite
-
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory AlgebraicGeometry TensorProduct GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 namespace GlobalTheory.CompanionTheory.GrCech
 
 theorem capO_affine {O : Type} [CommRing O] {X : Scheme.{0}} {q : X ⟶ Spec (CommRingCat.of O)} (U : Cov q) (n : ℕ)

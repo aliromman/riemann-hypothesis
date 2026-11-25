@@ -1106,10 +1106,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.AlgebraEquivSetup.PRealGen
 
-private lemma traceCM_conj {E : Type} [Field E] [NumberField E] [IsCMField E] (z : E) :
-    Algebra.trace ℚ E (IsCMField.complexConj E z) = Algebra.trace ℚ E z :=
-  Algebra.trace_eq_of_algEquiv ((IsCMField.complexConj E).restrictScalars ℚ) z
-
 private lemma conj_conj' {E : Type} [Field E] [NumberField E] [IsCMField E] (z : E) :
     IsCMField.complexConj E (IsCMField.complexConj E z) = z :=
   IsCMField.complexConj_apply_apply E z
@@ -1123,7 +1119,7 @@ private lemma inCodiff_conj {E : Type} [Field E] [NumberField E] [IsCMField E] (
   have h : IsCMField.complexConj E y * (x : E) =
       IsCMField.complexConj E (y * ((bar.symm x : 𝓞 E) : E)) := by
     rw [map_mul, ← hbar, RingEquiv.apply_symm_apply]
-  rw [h, traceCM_conj, hm]
+  rw [h, trace_cj, hm]
 
 private lemma inCodiff_mul {E : Type} [Field E] [NumberField E] {y : E} (hy : InCodiff y) (a : 𝓞 E) :
     InCodiff (y * (a : E)) := by

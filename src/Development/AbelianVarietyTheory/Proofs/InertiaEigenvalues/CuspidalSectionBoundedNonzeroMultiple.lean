@@ -886,11 +886,12 @@ theorem isIntegral_adjoin_of_forall_cdvr (K Ω : Type) [Field K] [NumberField K]
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsIntegralChartCoverCuspFormNoPole
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsIntegralChartCoverCuspFormNoPole
 
 open AlgebraicGeometry CategoryTheory NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD Formalism.L2.Pj
 
+noncomputable section
 
 namespace GlobalTheory.CuspReg
 
@@ -908,7 +909,6 @@ theorem exists_cover_noPole : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
   obtain ⟨Y, hP⟩ := hY
   obtain ⟨J, hJ, P, hC⟩ := GlobalTheory.Reg.exists_finite_pchart_cover GlobalTheory.abelianSchemeLaws_all.2.secTwist E H Dw l Xo c
     hE.bc (la.valuation c.F).valuationSubring Y hP
-  set_option synthInstance.maxHeartbeats 200000 in
   have hmem : ∀ j, ∀ e ∈ (P j).es, evR Xo c f (P j).yg ∈ (P j).R e := fun j e he => by
     rw [(hev _).1 _ ((P j).R e).val _ _ ((P j).gen e he)]
     exact (evR Xo c f ((P j).y e he)).2
@@ -936,6 +936,7 @@ theorem exists_cover_noPole : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
   exact ⟨j, hP'2 j L W hW y hj⟩
 
 end GlobalTheory.CuspReg
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CuspidalSectionBoundedNonzeroMultiple

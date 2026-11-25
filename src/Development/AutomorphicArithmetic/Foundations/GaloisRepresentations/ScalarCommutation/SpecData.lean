@@ -934,12 +934,6 @@ namespace GlobalTheory.LadicPair
 
 variable {E : Type} [Field E] [NumberField E] {l : ℕ} [Fact l.Prime]
 
-end GlobalTheory.LadicPair
-
-namespace GlobalTheory.LadicPair
-
-variable {E : Type} [Field E] [NumberField E] {l : ℕ} [Fact l.Prime]
-
 variable [IsCMField E]
 
 theorem cT_cLoc_conjSrc_mul {n : ℕ} (g : UA E n) (u : HeightOneSpectrum (𝓞 E)) :
@@ -956,15 +950,6 @@ theorem cT_cLoc_conjSrc_mul {n : ℕ} (g : UA E n) (u : HeightOneSpectrum (𝓞 
 
 end GlobalTheory.LadicPair
 
-namespace GlobalTheory.LadicPair
-
-variable {E : Type} [Field E] [NumberField E] [IsCMField E] {l : ℕ} [Fact l.Prime]
-
-end GlobalTheory.LadicPair
-
-namespace GlobalTheory.LadicPair
-
-end GlobalTheory.LadicPair
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.AlgebraEquivSetup.PSphComm

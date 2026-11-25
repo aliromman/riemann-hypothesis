@@ -36,12 +36,11 @@ import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExtendedDivided
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoordMem, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NatCastIsUnit, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsAdicCompleteOfPowEqZero, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PeriodRingUniversalProperty, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RootExtensionLift, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SubSubSmulEqZeroOfSmulEqZero, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemMapBasis
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoordMem
-
-set_option backward.isDefEq.respectTransparency false
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoordMem
 
 open CategoryTheory AlgebraicGeometry Polynomial DividedPowers GlobalTheory.LogCris GlobalTheory.PDA CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.B
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.ReesBasis
 
@@ -345,10 +344,10 @@ theorem main : ∀ {Λ : Type} [CommRing Λ] {C : Type 1} [Category.{0} C] {F : 
 
 end GlobalTheory.CompanionTheory.ReesBasis
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NatCastIsUnit
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry Polynomial DividedPowers GlobalTheory.LogCris GlobalTheory.PDA CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.B
 
 namespace GlobalTheory.CompanionTheory.RootsDivide
@@ -443,7 +442,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsAdicCompleteOfPowEqZero
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry Polynomial DividedPowers GlobalTheory.LogCris GlobalTheory.PDA CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.B
 
 namespace GlobalTheory.CompanionTheory.PerfectWittMaps
@@ -1058,7 +1056,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SubSubSmulEqZeroOfSmulEqZero
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry Polynomial DividedPowers GlobalTheory.LogCris GlobalTheory.PDA CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.B
 
 namespace GlobalTheory.CompanionTheory.TwistedUnit

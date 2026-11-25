@@ -52,10 +52,11 @@ import Mathlib.Topology.Sheaves.Init
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ConstMapInjective, Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ExistsAllLifts, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.InhabitedStage
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ConstMapInjective
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ConstMapInjective
 
 open Formalism.MainNotions.G MvPolynomial
 
+noncomputable section
 
 namespace GlobalTheory.PrescribedRank
 
@@ -144,7 +145,7 @@ def constMap (d : ℕ) : (Fin d → O) →ₗ[O] (Fin d → (noPlaces p O Kf).Tu
 
 theorem constMap_injective (d : ℕ) (hinj : Function.Injective (algebraMap O Kf)) :
     Function.Injective (constMap p O Kf d) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro c hc
   funext i
   have h : c i • (1 : (noPlaces p O Kf).Xsp) = 0 := congrFun (congrFun hc i) (fun v => isEmptyElim v)
@@ -184,6 +185,7 @@ theorem GAtP₂ : ∀ (p d : ℕ), p.Prime → ∃ G : GAtP p, G.d = d ∧ G.Fin
     fun _ => finClasses p _ _⟩
 
 end GlobalTheory.PrescribedRank
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ExistsAllLifts

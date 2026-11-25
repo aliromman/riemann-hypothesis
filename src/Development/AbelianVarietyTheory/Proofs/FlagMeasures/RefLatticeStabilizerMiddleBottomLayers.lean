@@ -658,8 +658,7 @@ theorem GlobalTheory.RowStab.middle_bottom_layers : ∀ (K V : Type) [Field K] [
         show H.B ρ (N.F'.e a.castSucc) = 0
         by_cases ha : N.j ≤ a.val
         · rw [e'_eq N a ha, map_smulₛₗ, hρX a, smul_zero]
-        · set_option synthInstance.maxHeartbeats 100000 in
-            rw [hρdef, map_sub, LinearMap.sub_apply, hdX' a (lt_of_not_ge ha), map_sum, LinearMap.sum_apply]
+        · rw [hρdef, map_sub, LinearMap.sub_apply, hdX' a (lt_of_not_ge ha), map_sum, LinearMap.sum_apply]
           simp only [map_smul, LinearMap.smul_apply, smul_eq_mul]
           rw [Finset.sum_eq_zero fun a' ha' => by rw [B_e_e' N a a' ((mem_JJ N a').mp ha'), mul_zero], sub_zero]
       · refine Submodule.span_le.mpr ?_

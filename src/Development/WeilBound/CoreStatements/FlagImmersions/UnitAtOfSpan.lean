@@ -16,10 +16,11 @@ import Development.AutomorphicSpectrum.Proofs.GeometryProofs.ComplexPointExistsU
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.FlagImmersions.ExistsUnitMetric, Development.WeilBound.CoreStatements.FlagImmersions.UnitAtOfSpan
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.FlagImmersions.ExistsUnitMetric
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.FlagImmersions.ExistsUnitMetric
 
 set_option linter.unusedSectionVars false
 
+noncomputable section
 
 open NumberField MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Flat.UnitChart
 
@@ -32,10 +33,7 @@ theorem evC_mul (w : (Σ k, J k) → ℂ) (f g : MRing J) : evC w (f * g) = evC 
 
 theorem evC_conj (w : (Σ k, J k) → ℂ) (f : MRing J) :
     evC (fun p => (starRingEnd ℂ) (w p)) f = (starRingEnd ℂ) (evC w f) := by
-  simp only [evC, MvPolynomial.eval_map]
-  rw [MvPolynomial.eval₂_eq', MvPolynomial.eval₂_eq']
-
-  simp [map_sum, map_prod, map_pow, map_mul]
+  apply GlobalTheory.CompanionTheory.Ar.Flat.evC_conj
 
 theorem contDiff_evC (f : MRing J) : ContDiff ℝ ((⊤ : ℕ∞) : WithTop ℕ∞) fun w : (Σ k, J k) → ℂ => evC w f := by
   simp only [_root_.GlobalTheory.CompanionTheory.Ar.Flat.OverUnique.evC_eq_aeval]
@@ -353,6 +351,7 @@ theorem pres_off {y : (Σ k, J k) → Ω} (hP : IsMultiHomogIdeal (mCoordIdeal y
     exact mul_ne_zero hs0 (hmonw _)
 
 end RootFieldNumerics.RF.Smooth
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.FlagImmersions.UnitAtOfSpan

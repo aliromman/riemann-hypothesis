@@ -63,10 +63,11 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.IrreducibleSpacePrimeSpectrumAway, Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.IsPrincipalIdealRingOfIsLocalization
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.IrreducibleSpacePrimeSpectrumAway
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.IrreducibleSpacePrimeSpectrumAway
 
 open PowerSeries
 
+noncomputable section
 
 namespace GlobalTheory.ChartRing
 
@@ -189,21 +190,19 @@ variable {R : Type*} [CommRing R] [IsDomain R] {f : R} (hf : f ≠ 0)
   (S : Type*) [CommRing S] [Algebra R S] [IsLocalization.Away f S]
 include hf
 
-theorem isDomain_away : IsDomain S :=
-  IsLocalization.isDomain_of_le_nonZeroDivisors (M := Submonoid.powers f) S
-    (powers_le_nonZeroDivisors_of_noZeroDivisors hf)
-
 omit hf
 
 end Away
 
 end GlobalTheory.ChartRing
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.IsPrincipalIdealRingOfIsLocalization
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.IsPrincipalIdealRingOfIsLocalization
 
 open PowerSeries IsLocalRing
 
+noncomputable section
 
 namespace GlobalTheory.ChartRing
 
@@ -247,9 +246,6 @@ theorem maximalIdeal_eq_span (hπ : Irreducible π) :
     maximalIdeal O⟦X⟧ = Ideal.span {C π, X} := by
   rw [maximalIdeal_eq_comap, ← map_C_sup_span_X, hπ.maximalIdeal_eq, Ideal.map_span,
     Set.image_singleton, Ideal.span_insert]
-
-theorem C_ne_zero (hπ : Irreducible π) : (C π : O⟦X⟧) ≠ 0 := fun h =>
-  hπ.ne_zero (by simpa using congr(constantCoeff $h))
 
 theorem eq_span_X_or_eq_maximalIdeal (P : Ideal O⟦X⟧) [hP : P.IsPrime] (hX : X ∈ P) :
     P = Ideal.span {X} ∨ P = maximalIdeal O⟦X⟧ := by
@@ -344,8 +340,6 @@ variable (hπ : Irreducible π)
 @[simp] theorem ev_X : ev hπ X = π := evalAdic_X _ _
 
 @[simp] theorem ev_C (a : O) : ev hπ (C a) = a := (ev hπ).commutes a
-
-theorem ev_surjective : Function.Surjective (ev hπ) := fun a => ⟨C a, ev_C hπ a⟩
 
 instance isLocalHom_ev : IsLocalHom (ev hπ) :=
   isLocalHom_of_X_mem _ (by rw [ev_X]; exact hπ.not_isUnit)

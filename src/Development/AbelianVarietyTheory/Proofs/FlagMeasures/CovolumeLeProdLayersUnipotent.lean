@@ -64,10 +64,11 @@ import Mathlib.Topology.Algebra.Group.Units
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsOrthonormalLieCoordinates, Development.AbelianVarietyTheory.Proofs.FlagMeasures.MeasurePreservingTriangularShear, Development.AbelianVarietyTheory.Proofs.FlagMeasures.TendstoVolumeSublevelDivPow, Development.AbelianVarietyTheory.Proofs.FlagMeasures.TraceCoordSqSumLeHilbertSchmidtUnitaryGroup, Development.AbelianVarietyTheory.Proofs.FlagMeasures.VolumeProductOverGradingLayers, Development.AbelianVarietyTheory.Proofs.FlagMeasures.CovolumeLeProdLayersUnipotent
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsOrthonormalLieCoordinates
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsOrthonormalLieCoordinates
 
 open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S GlobalTheory.Count GlobalTheory.FlagMeas Formalism.REAL
 
+noncomputable section
 
 namespace GlobalTheory.NilCovSec
 
@@ -174,7 +175,7 @@ theorem exists_continuous_section (n d m : ℕ) (ε : Fin n → Bool)
     refine Finset.sum_congr rfl fun i _ => ?_
     have := jInv_smul ε (x i) (E i)
     unfold jInv at this
-    rw [this, inv_eq_neg_of_inG (hG i).2, smul_neg]
+    rw [this, Formalism.REAL.lie_algebra_signature_conj (hG i).2, smul_neg]
   let X : (Fin d → ℝ) → Matrix (Fin n) (Fin n) ℂ := fun x => iter ε (Y x) m
   have hXc : Continuous X := (continuous_iter ε m).comp hYc
   have hfix : ∀ x, X x = Y x - (1 / 2 : ℝ) • (jInv ε (X x) * X x) := fun x => by
@@ -204,6 +205,7 @@ theorem exists_continuous_section (n d m : ℕ) (ε : Fin n → Bool)
   simp
 
 end GlobalTheory.NilCovSec
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.MeasurePreservingTriangularShear

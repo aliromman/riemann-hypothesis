@@ -1130,8 +1130,8 @@ theorem cInfAt_finset_sum {ι : Type} (s : Finset ι) {f : ι → CxPts X.str σ
 theorem exists_cInf_bump (y : CxPts X.str σ) {U : Set (CxPts X.str σ)} (hU : U ∈ 𝓝 y) :
     ∃ χ : CxPts X.str σ → ℝ, (∀ z, CInfAt χ z) ∧ (∀ z, 0 ≤ χ z) ∧ 0 < χ y ∧ tsupport χ ⊆ U := by
   classical
-  haveI := CxPts.compactSpace σ X.isProjOver
-  haveI := CxPts.t2Space_cxPts_of_isProjOver σ X.isProjOver
+  have := CxPts.compactSpace σ X.isProjOver
+  have := CxPts.t2Space_cxPts_of_isProjOver σ X.isProjOver
   obtain ⟨c, hc⟩ := AlgChart.exists_mem_source (D := X.dim) y
   obtain ⟨K, hKy, hKc, hKV⟩ :=
     exists_mem_nhds_isClosed_subset (inter_mem hU (c.e.open_source.mem_nhds hc))
@@ -1173,7 +1173,7 @@ theorem exists_cInf_bump (y : CxPts X.str σ) {U : Set (CxPts X.str σ)} (hU : U
 
 theorem exists_cInf_partition : ∀ {F : Type} [Field F] {σ : F →+* ℂ} {X : Var F} (W : CxPts X.str σ → Set (CxPts X.str σ)), (∀ y, W y ∈ 𝓝 y) → ∃ (s : Finset (CxPts X.str σ)) (ρ : s → CxPts X.str σ → ℝ), (∀ i y, CInfAt (ρ i) y) ∧ (∀ i, tsupport (ρ i) ⊆ W i) ∧ ∀ y, ∑ i, ρ i y = 1 := by
   intro F _ σ X W hW
-  haveI := CxPts.compactSpace σ X.isProjOver
+  have := CxPts.compactSpace σ X.isProjOver
   choose χ hχ h0 hpos hs using fun y => exists_cInf_bump y (hW y)
   obtain ⟨s, hcov⟩ := CompactSpace.elim_nhds_subcover (fun y => {z | 0 < χ y z})
     fun y => (hχ y y).continuousAt.eventually (lt_mem_nhds (hpos y))
@@ -1436,8 +1436,8 @@ namespace GlobalTheory.GoodTop
 theorem goodTopChernForm : GlobalTheory.Published.GoodTopChernForm := by
   intro F _ σ X m E O H H₀ hH hG hH₀ t ht
   rw [hasChernIntegral_iff] at ht ⊢
-  haveI := X.smooth_str
-  haveI : SecondCountableTopology (CxPts X.str σ) := inferInstance
+  have := X.smooth_str
+  have : SecondCountableTopology (CxPts X.str σ) := inferInstance
   have hp : ∀ y : CxPts X.str σ, ∃ e S A W c, y ∈ W ∧ GoodPatch E O H e S A W c := fun y => by
     by_cases hy : y ∈ ptsIn X.str σ O
     · exact _root_.GlobalTheory.GoodTop.exists_goodPatch_of_mem E O H hH y hy

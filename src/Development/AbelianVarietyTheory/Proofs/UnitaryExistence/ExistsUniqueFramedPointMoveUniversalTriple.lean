@@ -157,8 +157,9 @@ theorem frMove_unique {S : Type} [CommRing S] [Algebra c.F S] {ρ : Xo.X ⟶ Xo.
 end GlobalTheory.LevelMoveTest
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsUniqueFramedPointMoveUniversalTriple
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsUniqueFramedPointMoveUniversalTriple
 
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
@@ -174,7 +175,7 @@ abbrev pullOne (L : LB X) (p : Y ⟶ X) : LB Y := LB.LinComb L (K := Fin 1) (fun
 theorem mem_pullOne {p : Y ⟶ X} {y : Y} {j : L.ι} : y ∈ (pullOne L p).U (fun _ => j) ↔ p y ∈ L.U j :=
   ⟨fun h => Set.mem_iInter.1 h 0, fun h => Set.mem_iInter.2 fun _ => h⟩
 
-theorem idx_eq (J : Fin 1 → L.ι) : J = fun _ => J 0 := funext fun k => congrArg J (Subsingleton.elim _ _)
+theorem idx_eq (J : Fin 1 → L.ι) : J = fun _ => J 0 := funext fun _ => congrArg J (Subsingleton.elim _ _)
 
 theorem sec_trans_one {Z : Scheme.{0}} {p : Y ⟶ X} (s : LB.Sec (pullOne L p)) (r : Z ⟶ Y) (z : Z) {j j' : L.ι}
     (hj : p (r z) ∈ L.U j) (hj' : p (r z) ∈ L.U j') :

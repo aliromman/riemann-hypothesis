@@ -247,8 +247,9 @@ end Formalism.MainNotions.J
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.BeProp
+@[expose] public section -- clump member: Formalism.LocalToGlobal.InertKernelTheory.InertCoprimeLemmas.BeProp
 
+noncomputable section
 
 namespace Formalism.L2.KerInert
 
@@ -307,8 +308,7 @@ theorem pair_mem_W2pair {α : WW p} (hα : (Formalism.MainNotions.FormalGroupSys
   set S := ∑ i ∈ Finset.Iic n, WittVector.teichmuller p
     (((_root_.frobeniusEquiv (kb p) p).symm ^ i) (α.coeff i)) * (p : WW p) ^ i with hS
   refine ⟨pairHom p S, ?_, ?_⟩
-  · set_option synthInstance.maxHeartbeats 100000 in
-    rw [hS, map_sum]
+  · rw [hS, map_sum]
     refine Subring.sum_mem _ fun i _ => ?_
     rw [map_mul, map_pow, map_natCast]
     refine Subring.mul_mem _ (teich_mem ?_) (Subring.pow_mem _ (natCast_mem _ p) i)
@@ -450,6 +450,7 @@ theorem admissible_second_at_place : Adm2cAt := by
   exact beta_property_of_weight D cc δ p g hLT hAt h5 hin hM hB
 
 end Formalism.L2.KerInert
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.InertKernelTheory.FinalA

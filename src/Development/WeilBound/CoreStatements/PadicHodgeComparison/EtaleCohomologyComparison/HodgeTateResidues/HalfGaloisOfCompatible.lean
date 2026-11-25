@@ -15,10 +15,9 @@ public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCoh
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.Same, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.CompId, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.HalfGaloisOfCompatible
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.Same
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.Same
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open Module
 
@@ -118,11 +117,11 @@ theorem ACo.cup {W' W'' : Type 1} [AddCommGroup W'] [Module B W'] [AddCommGroup 
 
 end CrystallineSemistableComparison.HT.H2
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.CompId
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.CompId
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.LogCris DividedPowers
 
@@ -330,6 +329,7 @@ theorem c1' (D : E.LineData M.X) (hD : sSup (𝒱D D) = ⊤) (x : Y.Fam M 1 2) (
 end Hyp
 
 end CrystallineSemistableComparison.HT.H2
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.HalfGaloisOfCompatible

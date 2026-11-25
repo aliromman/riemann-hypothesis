@@ -181,12 +181,14 @@ theorem phla_laS_cpt : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (r
 end GlobalTheory.ScalarPoin
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormScalarPoincareDetRatioLactLeOne
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormScalarPoincareDetRatioLactLeOne
+@[expose] public section
 
 namespace GlobalTheory.ScalarPoin
 
 open Matrix
 
+noncomputable section
 
 theorem normSq_det_of_isUpq {p q : ℕ} {g : Matrix (Fin p ⊕ Fin q) (Fin p ⊕ Fin q) ℂ} (h : IsUpq g) :
     Complex.normSq g.det = 1 := by
@@ -247,7 +249,6 @@ theorem norm_qS_lact_le : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
   refine ⟨?_, fun h1 σ => ?_⟩
   · rw [hq]; exact Finset.prod_le_one₀ (fun τ _ => ha0 τ) (fun τ _ => ha1 τ)
   · rw [hq, ← Finset.mul_prod_erase _ _ (Finset.mem_univ σ)] at h1
-    have hP0 : 0 ≤ ∏ τ ∈ Finset.univ.erase σ, (N τ)⁻¹ := Finset.prod_nonneg fun τ _ => ha0 τ
     have hP1 : ∏ τ ∈ Finset.univ.erase σ, (N τ)⁻¹ ≤ 1 := Finset.prod_le_one₀ (fun τ _ => ha0 τ) (fun τ _ => ha1 τ)
     have hs : 1 ≤ (N σ)⁻¹ := by
       calc (1 : ℝ) = (N σ)⁻¹ * ∏ τ ∈ Finset.univ.erase σ, (N τ)⁻¹ := h1.symm
@@ -264,8 +265,10 @@ theorem norm_qS_lact_le : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
       le_antisymm (by linarith) (Complex.normSq_nonneg _)
     simpa using this
 
+end
 
 end GlobalTheory.ScalarPoin
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ScalarPoincareDetRatioPowerDifferentiableOn

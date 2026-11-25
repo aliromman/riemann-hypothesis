@@ -355,8 +355,9 @@ end Formalism.MainNotions.N.Ln03.K8
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.DetectPt
+@[expose] public section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.DetectPt
 
+noncomputable section
 
 namespace Formalism.MainNotions.N.Ln03.K8
 
@@ -420,7 +421,6 @@ theorem detect_pt {LL D : Type} [Field LL] [AddCommGroup D] [Module LL D] [Finit
             (Submodule.Quotient.mk ⟨g j, fun k _ => hg j k⟩ : GrQ F) =
             (Submodule.mkQ _) (∑ j, PowerSeries.coeff m (a j) •
               (⟨g j, fun k _ => hg j k⟩ : ↥(Submodule.pi Set.univ fun k : ℤ => F (-k)))) := by
-          set_option synthInstance.maxHeartbeats 100000 in
             simp [map_sum]
         rw [hmk, Submodule.mkQ_apply, Submodule.Quotient.mk_eq_zero, Submodule.mem_comap,
           Submodule.mem_pi]
@@ -431,6 +431,7 @@ theorem detect_pt {LL D : Type} [Field LL] [AddCommGroup D] [Module LL D] [Finit
   exact PowerSeries.X_pow_dvd_iff.mpr fun m hm => key m hm j
 
 end Formalism.MainNotions.N.Ln03.K8
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.LevelKernelDetection.GradedClassDecomposition

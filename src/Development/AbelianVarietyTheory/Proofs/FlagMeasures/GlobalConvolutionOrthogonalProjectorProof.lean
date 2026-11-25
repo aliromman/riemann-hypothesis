@@ -519,11 +519,12 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.GlobalConvolutionOrthogonalProjectorProof
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.GlobalConvolutionOrthogonalProjectorProof
 
 open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S Formalism.REAL Formalism.QuantumDeterminants GlobalTheory.Count GlobalTheory.Dec
 open scoped InnerProductSpace ComplexOrder ContDiff
 
+noncomputable section
 
 namespace GlobalTheory.GlobProj
 
@@ -655,7 +656,7 @@ theorem abstract_count {G H L : Type} [NormedAddCommGroup H] [InnerProductSpace 
       rintro ⟨y, hy⟩
       obtain ⟨z, rfl⟩ := LinearMap.mem_range.1 hy
       obtain ⟨A, ⟨hA, hAw⟩, -⟩ := hex _ (by
-        simp only [ContinuousLinearMap.coe_coe, ContinuousLinearMap.comp_apply]
+        simp only [ContinuousLinearMap.comp_apply]
         exact hQQ z)
       exact ⟨⟨A, hA⟩, Subtype.ext hAw⟩
     exact ⟨LinearEquiv.ofBijective f ⟨hinj, hsurj⟩⟩

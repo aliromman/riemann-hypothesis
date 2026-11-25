@@ -22,11 +22,13 @@ import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.LcscAdelicUnitar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CommutantClosedSubgroupCompactQuotient, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermitianFamilyAnisotropicJoint, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IdeleBoundOfJointAnisotropic, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LeviMinimalCommutesProjectionFamily, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LeviMinimalIdeleHermitianBound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LeviNormalizesUnipotentTer, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LeviParabolicIntersectionClosed, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemLeviMinimalOfCommutesProjections, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MinimalParabolicLeviDecomposition, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MinimalParabolicRationalCompact
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CommutantClosedSubgroupCompactQuotient
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CommutantClosedSubgroupCompactQuotient
+@[expose] public section
 
 set_option linter.unusedSectionVars false
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 open NumberField MeasureTheory Matrix Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet PositivityTheory.ThKR GlobalTheory.CompanionTheory.RedCov GlobalTheory.CompanionTheory.ParCocompact
 open Formalism.UG (cT)
@@ -238,7 +240,6 @@ theorem isCompact_setOf_trHom_mem (hH : IsUnit H.det) {C : Set (GL (Fin 𝒩') �
   let b := Module.finBasis K E
   set Ω : Set (unitaryPoints K E H 𝔸[K]) := {v | trHom b 𝔸[K] (v : GL ι (𝔸[K] ⊗[K] E)) ∈ C} with hΩ
   have hΩcl : IsClosed Ω := by
-    set_option synthInstance.maxHeartbeats 200000 in
     exact hC.isClosed.preimage ((continuous_trHom b 𝔸[K]).comp continuous_subtype_val)
   let Fc : Matrix (Fin 𝒩') (Fin 𝒩') 𝔸[K] → ι × ι × Fin (Module.finrank K E) → 𝔸[K] :=
     fun A p =>
@@ -432,6 +433,8 @@ theorem exists_isCompact_of_centralizer_height : ∀ (F E : Type) [Field F] [Num
 
 end GlobalTheory.CompanionTheory.ParCocompact
 
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermitianFamilyAnisotropicJoint

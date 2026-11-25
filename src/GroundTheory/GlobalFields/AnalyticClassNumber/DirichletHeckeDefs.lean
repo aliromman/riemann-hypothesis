@@ -10,13 +10,15 @@ import Mathlib.Topology.Separation.CompletelyRegular
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.GlobalFields.NormResidueSymbol.RationalContinuous, GroundTheory.GlobalFields.AnalyticClassNumber.DirichletHeckeDefs
 
-@[expose] public noncomputable section -- clump member: GroundTheory.GlobalFields.NormResidueSymbol.RationalContinuous
+section -- clump member: GroundTheory.GlobalFields.NormResidueSymbol.RationalContinuous
+@[expose] public section
 
 namespace GroundTheory.Global
 
 open IsDedekindDomain NumberField IdeleGroup IntermediateField Topology
 open scoped GroundTheory.LocalField.Abstract
 
+noncomputable section
 
 namespace RationalSymbol
 
@@ -36,12 +38,6 @@ theorem continuous_cycCharacter : Continuous cycCharacter := by
   rw [hq.continuous_iff]
   exact continuous_character.congr fun σ ↦ (cycCharacter_cycRestrict σ).symm
 
-def cycCharacterHomeomorph : Gal(maxCyclotomic/ℚ) ≃ₜ* ℤ̂ˣ where
-  toMulEquiv := cycCharacter
-  continuous_toFun := continuous_cycCharacter
-  continuous_invFun :=
-    (continuous_cycCharacter.homeoOfEquivCompactToT2 (f := cycCharacter.toEquiv)).symm.continuous
-
 def unitsPadicHomeomorph : (Π q : Nat.Primes, ℤ_[q])ˣ ≃ₜ* ℤ̂ˣ :=
   unitsContinuousMulEquiv padicEquiv.symm.toMulEquiv continuous_ofPadics continuous_toPadics
 
@@ -59,8 +55,10 @@ theorem continuous_unitPart : Continuous unitPart := by
 
 end RationalSymbol
 
+end
 
 end GroundTheory.Global
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.GlobalFields.AnalyticClassNumber.DirichletHeckeDefs

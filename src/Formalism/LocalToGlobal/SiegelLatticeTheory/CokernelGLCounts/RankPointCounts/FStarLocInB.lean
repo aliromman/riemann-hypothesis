@@ -12,8 +12,9 @@ public import Formalism.LocalToGlobal.SiegelLatticeTheory.ClosedLocalOrbits.Gaug
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarLocInA, Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarLocInB
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarLocInA
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarLocInA
 
+noncomputable section
 
 open scoped Classical
 open Formalism.MainNotions.S Formalism.L2.SG.Pf.ScalarFramePf
@@ -365,10 +366,8 @@ theorem ident_trans (φ' : H.Wb t₁.f' ≃ₗ[E] H.Wb f₂')
   have hz := locInA_zhat' H e hiso t₁ hf hf'
   have hd : ∀ l, H.Dl t₁.f f₃' l = H.Dl t₁.f f₂' l := fun l => locInA_dl' H e hiso t₁ hf hf' l
   have hom' : H.om' t₁.f f₃' = e (H.om' t₁.f f₂') := by
-    set_option synthInstance.maxHeartbeats 100000 in
       simp only [Loc.HermSp.om', hz, map_sum, map_smul, hf']
   have hom : H.om t₁.f f₃' = e (H.om t₁.f f₂') := by
-    set_option synthInstance.maxHeartbeats 100000 in
       simp only [Loc.HermSp.om, hz, map_sum, map_smul, hf]
   have h21 : ∀ y ∈ H.Xp t₁.f ⊔ H.Xp f₃', e.symm y ∈ H.Xp t₁.f ⊔ H.Xp f₂' := by
     intro y hy
@@ -471,6 +470,7 @@ theorem locSet_back {Lam₂ Lam₃ : Submodule M.L.O V} (hL : ∀ x, x ∈ Lam�
 end Move
 
 end Formalism.L2.SG.Pf.FrameGlobalPatching.FStar.LocInA
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.FStarLocInB

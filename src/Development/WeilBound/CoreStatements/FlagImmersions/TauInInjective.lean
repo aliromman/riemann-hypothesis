@@ -236,8 +236,9 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.G
 open scoped ComplexOrder
 
 section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ProperDvrModelLatticeValuation
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.PlaceOrd
 
@@ -293,14 +294,9 @@ theorem isVB_pull (hL : L.IsVB 1 ⊤) : (pullL hr L).IsVB 1 ⊤ := by
   obtain ⟨h1, h2⟩ := h (push ξ' g q) trivial hq
   exact ⟨h1, (pull_span_iff hr q _).2 h2⟩
 
-omit hr in
-theorem isIntegral_congr {A B : Subring Ω} (h : A = B) {a : Ω} (ha : IsIntegral A a) : IsIntegral B a := by
-  subst h
-  exact ha
-
 theorem normal_pull (hN : NormalCpt (ξ' ≫ g)) : NormalCpt ξ' := fun p a ha => by
   rw [hr p]
-  exact hN _ a (isIntegral_congr (hr p) ha)
+  exact hN _ a (GlobalTheory.CompanionTheory.Ar.Flat.PushLoc.isIntegral_congr (hr p) ha)
 
 theorem isGenAt_pull {p : Cpt ξ'} {t : Ω} (h : L.IsGenAt (push ξ' g p) t) : (pullL hr L).IsGenAt p t :=
   ⟨h.1, (pull_span_iff hr p _).2 h.2⟩
@@ -412,6 +408,7 @@ theorem order_at_place : ∀ (X X' : Scheme.{0}) (Ω : Type) [Field Ω] [CharZer
   exact order_back hr (H p')
 
 end GlobalTheory.CompanionTheory.Ar.Flat.PlaceOrd
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 
@@ -688,15 +685,6 @@ theorem cone_eq (y : (Σ k, ι k) → Ω) (g : MRing ι) : mConeMap y g =
   | add p q hp hq => simp only [map_add (f := _), hp, hq]
   | mul_X p i hp => rw [map_mul, map_mul, hp, aeval_X, mConeMap, aeval_X, mul_comm (C _)]
 
-theorem aeval_ne_zero {y : (Σ k, ι k) → Ω} {g : MRing ι} {d : K → ℕ} (hg : IsMultiHomog g d)
-    (hn : g ∉ mCoordIdeal y) : aeval y g ≠ 0 := by
-  intro h0
-  apply hn
-  have h := scale (S := MvPolynomial K Ω) (fun k => X k) (fun p => C (y p)) hg
-  rw [← map_aeval' (C : Ω →+* MvPolynomial K Ω) y g, h0, map_zero, mul_zero] at h
-  show mConeMap y g = 0
-  rw [cone_eq, h]
-
 theorem aeval_eq_zero {y : (Σ k, ι k) → Ω} (t : K → Ω) {f : MRing ι} (hf : f ∈ mCoordIdeal y) :
     aeval (fun p : Σ k, ι k => t p.1 * y p) f = 0 := by
   have h0 : mConeMap y f = 0 := hf
@@ -719,7 +707,7 @@ theorem PositivityTheory.Xgn.exists_point_over_nonvanishing : ∀ (K : Type) [Fi
   have hγ : aeval w g ≠ 0 := by
     rw [scale t y hg]
     exact mul_ne_zero (Finset.prod_ne_zero_iff.mpr fun k _ => pow_ne_zero _ (inv_ne_zero (hc k)))
-      (aeval_ne_zero hg hn)
+      (GlobalTheory.CompanionTheory.Ar.Flat.UnitChart.aeval_ne_zero hg hn)
   let A : Subalgebra F Ω := Algebra.adjoin F (insert (aeval w g)⁻¹ (Set.range w))
   haveI : Algebra.FiniteType F A :=
     Algebra.FiniteType.adjoin_of_finite ((Set.finite_range w).insert _)
@@ -791,8 +779,9 @@ theorem kappa_conj : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintyp
 end GlobalTheory.CompanionTheory.Ar.Flat
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.BirationalLatticeHeightFormula
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.BirationalLatticeHeightFormula
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat
 
@@ -995,7 +984,6 @@ end Model
 
 end OfAdelic
 
-
 open OfAdelic UnitChart in
 theorem exists_flatHerm_of_adelic : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι k)] (Ω : Type) [Field Ω] (F : Type) [Field F] [NumberField F] (y : (Σ k, ι k) → Ω) (φ : F →+* Ω) (X : Scheme.{0}) (ξ : Spec (CommRingCat.of Ω) ⟶ X) (E : Type) [AddCommGroup E] [Module Ω E] (L : Lat ξ E) (e₀ : E) (c₀ : Ω) (A : HermLine ι) (r : HeightOneSpectrum (𝓞 F) →₀ ℚ) (cinf : (F →+* ℂ) → ℝ), OverInt y φ → Birational y → IsConjInvariantH A → CoordTie ℤ ξ (fun c' : (k : K) → ι k => ∏ k, y ⟨k, c' k⟩) → NormalCpt ξ → L.IsDegOn Set.univ y A.a e₀ → c₀ ≠ 0 → (∀ p : Cpt ξ, ((∀ a : F, φ a ∈ regAt ξ p) ∧ OrderAt L (c₀ • e₀) 1 1 0 p) ∨ ∃ (v : HeightOneSpectrum (𝓞 F)) (π : F) (m : ℕ) (n : ℤ), (∀ a : F, v.valuation F a ≤ 1 → φ a ∈ regAt ξ p) ∧ v.valuation F π = WithZero.exp (-1 : ℤ) ∧ 0 < m ∧ (n : ℚ) = m * r v ∧ OrderAt L (c₀ • e₀) (φ π) m n p) → (∀ σ, 0 < cinf σ) → (∀ (σ : F →+* ℂ) z (g h : MRing ι) (dg dh : K → ℕ), PtOver y φ σ z → IsMultiHomog g dg → IsMultiHomog h dh → (∀ k, (dg k : ℤ) - dh k = A.a k) → aeval y g = c₀ * aeval y h → ‖evC z g‖ = cinf σ * A.h z * ‖evC z h‖) → ∃ S : FlatHerm y φ A, S.ht = ((r.sum fun v q => (q : ℝ) * Real.log (Ideal.absNorm v.asIdeal)) - ∑ σ : F →+* ℂ, Real.log (cinf σ)) / (Module.finrank ℚ F : ℝ) := by
   intro K _ ι _ Ω _ F _ _ y φ X ξ E _ _ L e₀ c₀ A r cinf hO hB hC hT hN hD hc0 hloc hcinf hnorm
@@ -1065,6 +1053,7 @@ theorem exists_flatHerm_of_adelic : ∀ (K : Type) [Fintype K] (ι : K → Type)
   ring
 
 end GlobalTheory.CompanionTheory.Ar.Flat
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsFlatHermHodgeCptConst
@@ -1503,7 +1492,6 @@ theorem div_sub_mem {L : Lat ξ Ω} {q : Cpt ξ} {w σ tp tq y : Ω} (a : ℤ) (
 
 end GlobalTheory.CompanionTheory.Ar.Flat.PropZPf
 
-
 open GlobalTheory.CompanionTheory.Ar.Flat.PropZPf in
 theorem GlobalTheory.CompanionTheory.Ar.Flat.PropZ_holds : GlobalTheory.CompanionTheory.Ar.Flat.PropZ := by
   intro X Ω _ ξ O _ _ _ _ s _ ϖ hϖ hinj hs hg hn hconn L σ hvb htriv hgen
@@ -1561,13 +1549,11 @@ theorem GlobalTheory.CompanionTheory.Ar.Flat.PropZ_holds : GlobalTheory.Companio
     rwa [inv_div] at this
 end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Statements.GeometryStatements.CompactConjugacyDomainLocal
 
 
 open AlgebraicGeometry CategoryTheory Limits NumberField IsDedekindDomain MvPolynomial
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Statements.GeometryStatements.CompactConjugacyDomainLocal
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat
 
@@ -1606,7 +1592,12 @@ end CptInputs
 end GlobalTheory.CompanionTheory.Ar.Flat
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.FlagImmersions.TauInInjective
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.FlagImmersions.TauInInjective
+
+noncomputable section
+
+open AlgebraicGeometry CategoryTheory Limits NumberField IsDedekindDomain MvPolynomial
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Flat GlobalTheory.CompanionTheory.Ar.Fl
 
 namespace RootFieldNumerics.RF
 
@@ -1618,7 +1609,6 @@ theorem tauIn_injective {l : Level H} (c : Coeff l) (τ : E →+* ℂ) : Functio
     have := congrArg (fun x : c.F => (x : ℂ)) hab
     simpa [tauIn] using this
   exact RingOfIntegers.ext (τ.injective h)
-
 
 theorem core (hSm : SmoothLine) (hLc : LocalCmp) (hNu : Numerics) (hF : HT.FarguesHodgeTate) {l : Level H}
     {Xo : Moduli D l} {c : Coeff l} [NumberField c.F] {Y : Model Xo c (algebraMap (𝓞 c.F) c.F)} {U : Set (Xo.XF c)}

@@ -12,10 +12,10 @@ import Mathlib.Tactic.Linter.HaveILetI
 
 open CrystallineSemistableComparison CrystallineSemistableComparison.Onto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InterEqBasicOpen
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InterEqBasicOpen
 
-set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.LogCris
 namespace GlobalTheory.CompanionTheory.ChartBijOf
 open CrystallineSemistableComparison.Pb CrystallineSemistableComparison.HT
@@ -280,6 +280,7 @@ theorem incl_pull {K : Type} [Field K] {W Z Y : Scheme.{0}} {q : Z ⟶ Spec (Com
 end Main
 
 end GlobalTheory.CompanionTheory.ChartBijOf
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartIsLocalizationAway

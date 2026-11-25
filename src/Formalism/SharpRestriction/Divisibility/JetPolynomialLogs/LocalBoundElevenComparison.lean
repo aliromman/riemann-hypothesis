@@ -279,8 +279,9 @@ theorem normCor7 : NormCor7 := by
 end Formalism.DworkPowerSeriesWeights.OddLevelGainBounds
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.JetPolynomialLogs.UniformBoundAllData
+@[expose] public section -- clump member: Formalism.SharpRestriction.Divisibility.JetPolynomialLogs.UniformBoundAllData
 
+noncomputable section
 
 namespace Formalism.MainNotions.DIV.Bridge.OneLetterJetKernel
 
@@ -305,11 +306,7 @@ theorem tieB : TieB := tieB_of integrality_of_letter_log
 
 end Formalism.MainNotions.DIV.Bridge.OneLetterJetKernel
 
-namespace Formalism.MainNotions.DIV.Bridge.DworkPowerSeriesWeights
-
-open Formalism.MainNotions Formalism.MainNotions.DIV.Bridge.OneLetterJetKernel
-
-end Formalism.MainNotions.DIV.Bridge.DworkPowerSeriesWeights
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.SharpRestriction.Divisibility.JetPolynomialLogs.LocalBoundElevenComparison

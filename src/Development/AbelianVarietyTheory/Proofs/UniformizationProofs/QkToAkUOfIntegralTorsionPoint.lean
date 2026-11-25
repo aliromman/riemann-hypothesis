@@ -66,7 +66,6 @@ open scoped CategoryTheory.Obj
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.QkToAkUOfIntegralTorsionPoint
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 

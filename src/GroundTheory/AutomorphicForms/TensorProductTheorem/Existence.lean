@@ -15,8 +15,9 @@ import Mathlib.RingTheory.SimpleRing.Principal
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.AutomorphicForms.TensorProductTheorem.LocalComponent, GroundTheory.AutomorphicForms.TensorProductTheorem.Existence
 
-@[expose] public noncomputable section -- clump member: GroundTheory.AutomorphicForms.TensorProductTheorem.LocalComponent
+@[expose] public section -- clump member: GroundTheory.AutomorphicForms.TensorProductTheorem.LocalComponent
 
+noncomputable section
 
 namespace GroundTheory.Automorphic
 
@@ -90,7 +91,7 @@ theorem genQuotRep_mk (g : L) (u : (genSubrep σ N).toSubmodule) :
 def genQuotMap : Representation.IntertwiningMap (genSubrep σ N).toRepresentation
     (genQuotRep hσ hKc hKo N) where
   toLinearMap := (genKernel hσ hKc hKo N).mkQ
-  isIntertwining' g := LinearMap.ext fun _ => rfl
+  isIntertwining' _ := LinearMap.ext fun _ => rfl
 
 include hσ in
 theorem isSmooth_genSubrep : IsSmooth (genSubrep σ N).toRepresentation := by
@@ -254,6 +255,7 @@ theorem genQuotForm_apply (l : Dual ℂ (fixedVectors σ K)) (hNK : N ≤ fixedV
 end RestrictedTensor
 
 end GroundTheory.Automorphic
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.AutomorphicForms.TensorProductTheorem.Existence

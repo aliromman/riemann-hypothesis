@@ -486,7 +486,7 @@ open CategoryTheory AlgebraicGeometry
 private lemma flat_of_dvr {O O' : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] [CommRing O'] [IsDomain O']
     (φ : O →+* O') (ϖ : O) (hϖ : Irreducible ϖ) (h0 : φ ϖ ≠ 0) : φ.Flat := by
   have hinj : Function.Injective φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     by_contra hne
     obtain ⟨k, u, rfl⟩ := IsDiscreteValuationRing.eq_unit_mul_pow_irreducible hne hϖ
@@ -509,10 +509,10 @@ theorem UpperTheory.Ru.crystallineComparison.ptIdBC :
     (fun a => Ideal.mem_span_singleton.2 (hq a)) Y Y' p p' g hpb T T' κ h1 h2 h3 hId
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.LevelChainValuations.ValuationChainProofs.OkDvr
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.LevelChainValuations.ValuationChainProofs.OkDvr
 
-set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 
 
@@ -540,6 +540,7 @@ theorem ok_dvr_pf [FiniteDimensional ℚ_[l] K] : IsDomain (OK l K) ∧ IsDiscre
   exact h1.trans (pow_dvd_pow_of_dvd hlm n)
 
 end CrystallineSemistableComparison.Pb.Kap
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.CardResOK
@@ -874,10 +875,10 @@ theorem annDrop : AnnDrop := by
 end UpperTheory.Gal.crystallineComparison.Br
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AnnihilatorModels.BrauerTraceSplitting.AwayEq
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AnnihilatorModels.BrauerTraceSplitting.AwayEq
 
-set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 open GroundTheory.PAdicHodge Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations CrystallineSemistableComparison UpperTheory.Ru.crystallineComparison
 
@@ -919,6 +920,7 @@ theorem actEq : ActEq := by
     exact congrArg (Formalism.Per6.cB l) (RingHom.congr_fun h z)
 
 end UpperTheory.Gal.crystallineComparison.Br
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AnnihilatorModels.BrauerTraceSplitting.LocFacts
@@ -1065,10 +1067,10 @@ theorem UpperTheory.Gal.crystallineComparison.Br.annModel :
     (M.V j) V₀ i (fun g => M.act j g) ρ hρ f (l ^ f) n N A T₀ hT₀ hN
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.HkOfPush
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.HkOfPush
 
-set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry CrystallineSemistableComparison
 
@@ -1088,6 +1090,7 @@ def HkOfPush : Prop := ∀ (l : ℕ) [Fact l.Prime] (K : IntermediateField ℚ_[
   IsHk M T hr j (t ∘ₗ Model.pullV (M := corrM M T) (N := M) T.r hr j)
 
 end UpperTheory.Ru.crystallineComparison
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.DescIsoOfPb
@@ -1223,7 +1226,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AnnihilatorModels.BrauerTraceSplitting.GenFEt
 
-set_option backward.isDefEq.respectTransparency false
 
 open CategoryTheory Limits AlgebraicGeometry UpperTheory.Gal.G3
 open UpperTheory.Gal.Int.Geo (FEt gen)
@@ -1298,10 +1300,10 @@ theorem genFEt : GenFEt := by
 end UpperTheory.Gal.crystallineComparison.Br
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AnnihilatorModels.BrauerTraceSplitting.TrPush
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AnnihilatorModels.BrauerTraceSplitting.TrPush
 
-set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.EtC GlobalTheory.GalV CrystallineSemistableComparison UpperTheory.Ru.crystallineComparison UpperTheory.Gal.G3
 
@@ -1313,11 +1315,12 @@ theorem trPush : TrPush := by
 
 end UpperTheory.Gal.crystallineComparison.Br
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AnnihilatorModels.BrauerTraceSplitting.TrTot
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AnnihilatorModels.BrauerTraceSplitting.TrTot
 
-set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.EtC GlobalTheory.GalV CrystallineSemistableComparison UpperTheory.Ru.crystallineComparison UpperTheory.Gal.G3
 
@@ -1333,6 +1336,7 @@ theorem trTot : TrTot := by
   exact htr n W r c hc J σ hσ hsp (x n)
 
 end UpperTheory.Gal.crystallineComparison.Br
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.AnnihilatorModels.BrauerTraceSplitting.HeckeCl

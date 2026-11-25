@@ -907,7 +907,6 @@ end UpperTheory.Ru.crystallineComparison.JQ
 open UpperTheory.Ru.crystallineComparison.JQ in
 theorem UpperTheory.Ru.crystallineComparison.joinQ :
     UpperTheory.Ru.crystallineComparison.JoinQ := by
-  set_option synthInstance.maxHeartbeats 200000 in
     intro l _ P AI hT E Ω _ _ _ Gw O _ _ _ Bw f q n ϑ a r₀ r _ hgr hin
     obtain ⟨V, _, _, _, ρ, T, b, hcr, hann, hb, hbg, hbT⟩ := hin
     obtain ⟨c, hc⟩ := hgr

@@ -34,20 +34,15 @@ import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.Archim
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsExpand, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.InfinitesimalCharacterLimits.LieSumDecompositions.PBlocksAlg, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.InfinitesimalCharacterLimits.LieSumDecompositions.PBlocksCapB, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.InfinitesimalCharacterLimits.LieSumDecompositions.PBlocksCapD, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.InfinitesimalCharacterLimits.LieSumDecompositions.PBlocksCapE
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsExpand
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsExpand
+@[expose] public section
 
+noncomputable section
 
 open NumberField Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.SiegelSet GlobalTheory.UAut GlobalTheory.CuspRep
 
-namespace GlobalTheory.LeviGL.ZGood
-
-variable {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] {a : ℕ}
-
-theorem zalg_commute {z z' : Module.End ℂ (Sm E a)} (hz : z ∈ Zalg E a) (hz' : z' ∈ Zalg E a) : Commute z z' :=
-  GlobalTheory.AutGrowth.KilledFin.Zalg_commute hz hz'
-
-end GlobalTheory.LeviGL.ZGood
-
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.InfinitesimalCharacterLimits.LieSumDecompositions.PBlocksAlg
@@ -538,13 +533,11 @@ end PositivityTheory.Rg.BcB.SpectralAccumulation.Cz.BlockAlgebra
 
 end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.InfinitesimalCharacterLimits.LieSumDecompositions.PBlocksCapB
 
 
 open NumberField IsDedekindDomain
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.CompanionTheory.CTFin GlobalTheory.BlockCap PositivityTheory.Rg.Rs PositivityTheory.Rg.Rs.InducedTensorMap
-
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.InfinitesimalCharacterLimits.LieSumDecompositions.PBlocksCapB
 
 namespace PositivityTheory.Rg.BcB.SpectralAccumulation.Cz.BlockCapelli
 
@@ -620,7 +613,13 @@ end PositivityTheory.Rg.BcB.SpectralAccumulation.Cz.BlockCapelli
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.InfinitesimalCharacterLimits.LieSumDecompositions.PBlocksCapD
+section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.InfinitesimalCharacterLimits.LieSumDecompositions.PBlocksCapD
+@[expose] public section
+
+noncomputable section
+
+open NumberField IsDedekindDomain
+open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.CompanionTheory.CTFin GlobalTheory.BlockCap PositivityTheory.Rg.Rs PositivityTheory.Rg.Rs.InducedTensorMap
 
 namespace PositivityTheory.Rg.BcB.SpectralAccumulation.Cz.BlockCapelli
 
@@ -670,7 +669,7 @@ theorem decomp_G (G : Sm E (r + s))
     rw [tensOp_sum, tensOp_sum, tensOp_sum, tensOp_sum]
     funext p
     refine Finset.sum_congr rfl fun i _ => ?_
-    rw [← Module.End.mul_apply, (GlobalTheory.LeviGL.ZGood.zalg_commute (haZ τ j) (haZ τ' l)).eq, Module.End.mul_apply]
+    rw [← Module.End.mul_apply, (GlobalTheory.AutGrowth.KilledFin.Zalg_commute (haZ τ j) (haZ τ' l)).eq, Module.End.mul_apply]
   have hAB : ∀ τ j τ' l, ∀ w ∈ tens2 (zspan b) (zspan q), AA τ j (BB τ' l w) = BB τ' l (AA τ j w) := by
     intro τ j τ' l w hw
     obtain ⟨n, ψ₁, ψ₂, -, -, rfl⟩ := tensor_pair_finite_sum hw
@@ -686,7 +685,7 @@ theorem decomp_G (G : Sm E (r + s))
     rw [tensOp_sum, tensOp_sum, tensOp_sum, tensOp_sum]
     funext p
     refine Finset.sum_congr rfl fun i _ => ?_
-    rw [← Module.End.mul_apply (fb τ j), (GlobalTheory.LeviGL.ZGood.zalg_commute (hbZ τ j) (hbZ τ' l)).eq, Module.End.mul_apply]
+    rw [← Module.End.mul_apply (fb τ j), (GlobalTheory.AutGrowth.KilledFin.Zalg_commute (hbZ τ j) (hbZ τ' l)).eq, Module.End.mul_apply]
   have hA1 : ∀ τ, ∀ w ∈ tens2 (zspan b) (zspan q), AA τ r w = w := by
     intro τ w hw
     obtain ⟨n, ψ₁, ψ₂, -, -, rfl⟩ := tensor_pair_finite_sum hw
@@ -749,9 +748,15 @@ theorem decomp_G (G : Sm E (r + s))
 
 end PositivityTheory.Rg.BcB.SpectralAccumulation.Cz.BlockCapelli
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.InfinitesimalCharacterLimits.LieSumDecompositions.PBlocksCapE
+
+
+open NumberField IsDedekindDomain
+open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.CompanionTheory.CTFin GlobalTheory.BlockCap PositivityTheory.Rg.Rs PositivityTheory.Rg.Rs.InducedTensorMap
 open PositivityTheory.Rg.BcB.SpectralAccumulation.Cz.BlockDerivatives
 
 namespace PositivityTheory.Rg.BcB.SpectralAccumulation.Cz.BlockCapelli

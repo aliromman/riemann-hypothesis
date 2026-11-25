@@ -123,8 +123,6 @@ end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DualLatticeRankBound
 @[expose] public section
-set_option synthInstance.maxHeartbeats 400000
-set_option maxHeartbeats 1000000
 
 noncomputable section
 

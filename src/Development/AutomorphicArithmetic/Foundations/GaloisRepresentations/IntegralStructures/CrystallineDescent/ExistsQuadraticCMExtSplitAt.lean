@@ -696,8 +696,9 @@ theorem UpperTheory.Gal.UnramifiedFromSplittingCriterion.twoPrimes :
     exact hA₂ A hA h hh hδh y
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.CrystallineDescent.ExistsQuadraticCMExtSplitAt
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IntegralStructures.CrystallineDescent.ExistsQuadraticCMExtSplitAt
 
+noncomputable section
 
 open NumberField IsDedekindDomain Formalism.L2.Host Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.N GlobalTheory.HeckeGal GlobalTheory.CuspRep GlobalTheory.GalOfCusp UpperTheory.V.Published GlobalTheory.RealGal GlobalTheory.UnitaryBC
 open GlobalTheory.GalCut GlobalTheory.Cong GlobalTheory.CongL UpperTheory.Gal.UnramifiedFromSplittingCriterion
@@ -945,7 +946,7 @@ theorem UpperTheory.Gal.Int.Core.exists_quadratic_CM_ext_split_at : UpperTheory.
     obtain ⟨hvc, hv2, hg⟩ := haux w hw A hA
     exact ⟨hvc, fun τ hτ => ⟨hIneY _ A (hunderF _ A (hunderY w A hA)) hvc τ hτ, (hS F Ω A x a hx2).2 hv2 τ hτ⟩, hg⟩
   have hS1 : Step1 T Q := by
-   refine ⟨⟨⟨x, hxQ⟩, p, hp0, hX2⟩, GlobalTheory.CMFam.even_finrank Y Ω Q, ?_, ?_, u, hu_notT, A₀, hA₀, τ₀, hτ₀,
+   refine ⟨⟨⟨x, hxQ⟩, p, hp0, hX2⟩, GlobalTheory.RealGal.QCM.even_finrank_maximalRealSubfield Y Ω Q, ?_, ?_, u, hu_notT, A₀, hA₀, τ₀, hτ₀,
      fun h => hτ₀x (h ⟨x, hxQ⟩)⟩
    · intro t ht A hA g hg
      exact hfixQ Y g (fun y => g.commutes y)

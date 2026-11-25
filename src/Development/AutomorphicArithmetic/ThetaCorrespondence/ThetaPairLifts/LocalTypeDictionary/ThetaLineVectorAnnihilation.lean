@@ -89,11 +89,12 @@ open Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult Formalism.Ind
 open GlobalTheory.Grid GlobalTheory.Doubling GlobalTheory.ChainFr GlobalTheory.IndefiniteRowSideFullHecke.MatchingAdjoints
 open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SeesawUnfoldingSwap
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.SquareComm GlobalTheory.SquareAgree
 
+section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SeesawUnfoldingSwap
+@[expose] public section
+
+noncomputable section
 namespace GlobalTheory.LineKillV
 
 theorem isDatum_list_sum {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E} {n d : ℕ}
@@ -107,13 +108,12 @@ theorem isDatum_list_sum {F E : Type} [Field F] [NumberField F] [Field E] [Numbe
 
 end GlobalTheory.LineKillV
 
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.UnitaryArchimedeanOneParamEqProdCmTypeLines
 @[expose] public section
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-open GlobalTheory.SquareComm GlobalTheory.SquareAgree
 
 noncomputable section
 
@@ -308,12 +308,6 @@ end GlobalTheory.ThetaFacInf.Fib
 
 end
 
-namespace GlobalTheory.ThetaFacInf.Fib
-
-open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.ThK
-open scoped TensorProduct
-
-end GlobalTheory.ThetaFacInf.Fib
 end -- clump:auto
 end -- clump:auto
 

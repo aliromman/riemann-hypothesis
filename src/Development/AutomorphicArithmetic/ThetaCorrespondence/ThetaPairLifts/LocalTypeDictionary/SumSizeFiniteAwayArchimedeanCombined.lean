@@ -109,20 +109,6 @@ section
 open GlobalTheory.SumSize GlobalTheory.RowClaim
 noncomputable section
 namespace GlobalTheory.CompanionTheory.VolVal
-end GlobalTheory.CompanionTheory.VolVal
-namespace GlobalTheory.CompanionTheory.VolVal
-end GlobalTheory.CompanionTheory.VolVal
-namespace GlobalTheory.CompanionTheory.VolVal
-end GlobalTheory.CompanionTheory.VolVal
-namespace GlobalTheory.CompanionTheory.VolVal
-end GlobalTheory.CompanionTheory.VolVal
-namespace GlobalTheory.CompanionTheory.VolVal
-end GlobalTheory.CompanionTheory.VolVal
-namespace GlobalTheory.CompanionTheory.VolVal
-end GlobalTheory.CompanionTheory.VolVal
-namespace GlobalTheory.CompanionTheory.VolVal
-end GlobalTheory.CompanionTheory.VolVal
-namespace GlobalTheory.CompanionTheory.VolVal
 open Formalism.BasicNotions Formalism.L2.DIV
 theorem finCoefK_alt : _root_.GlobalTheory.FunPr.ThetaLocalInputs → FinCoefK := by
   intro _
@@ -156,14 +142,8 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 
 section
 noncomputable section
-namespace GlobalTheory.ScalAA
-end GlobalTheory.ScalAA
 noncomputable section
-namespace GlobalTheory.ScalAA
-end GlobalTheory.ScalAA
 noncomputable section
-namespace GlobalTheory.ScalAA
-end GlobalTheory.ScalAA
 noncomputable section
 namespace GlobalTheory.ScalAA
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.DIV
@@ -826,8 +806,6 @@ theorem finGamAt_of {Γ : Type} [Group Γ] [Fintype Γ] {Pl0 T : Type} {A : Form
 
 end GlobalTheory.GamLoss
 
-namespace GlobalTheory.GamLoss
-end GlobalTheory.GamLoss
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.GammaFactorLossAtFinitePlaces
@@ -835,14 +813,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 
 section
 open NumberField
-namespace GlobalTheory.GamLoss
-end GlobalTheory.GamLoss
-namespace GlobalTheory.GamLoss
-end GlobalTheory.GamLoss
-namespace GlobalTheory.GamLoss
-end GlobalTheory.GamLoss
-namespace GlobalTheory.GamLoss
-end GlobalTheory.GamLoss
 namespace GlobalTheory.GamLoss
 open GlobalTheory.SumSize GlobalTheory.RowClaim
 theorem finite_place_gamma_loss_bound : _root_.GlobalTheory.FunPr.ThetaLocalInputs → FinGamK := by

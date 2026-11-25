@@ -1021,8 +1021,9 @@ theorem cayDensEx_holds : CayDensEx := by
 end PI.AprimeInfW
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.CayValId
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.CayValId
 
+noncomputable section
 
 namespace PI.AprimeInfW
 
@@ -1116,7 +1117,6 @@ theorem expDens_gen {n : ℕ} (ε : Fin n → Bool) (r₀ : ℝ) (hr₀ : 0 < r�
   obtain ⟨-, hpres⟩ := sumLPres_holds n ε m h hmh horth ι η L₀ L₁
   set Ls := sumL ε m h hmh L₀ L₁ with hLs
   have hLc : Continuous Ls := by
-    set_option synthInstance.maxHeartbeats 200000 in
       exact Ls.continuous_of_finiteDimensional
   have hL0 : Ls 0 = 0 := map_zero Ls
   have hnorm : ∀ p, ‖Ls p‖ ≤ 2 * ‖p‖ := by
@@ -1271,6 +1271,7 @@ theorem cayValId_holds : CayValId := by
   · rw [max_eq_left h] at hu; exact hu.symm
 
 end PI.AprimeInfW
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanOrbitMeasures.ExpTop

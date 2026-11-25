@@ -57,8 +57,6 @@ namespace GlobalTheory.CapelliCentral
 
 open Formalism.REAL Formalism.QuantumDeterminants
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 variable {n : ℕ} {ε : Fin n → Bool} {E : Type} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
 open Matrix in
@@ -274,9 +272,3 @@ theorem _root_.GlobalTheory.CapelliCentral.eabEnd_glRel : _root_.Formalism.REAL.
   split_ifs <;> simp [hF]
 
 end GlobalTheory.CapelliCentral
-
-namespace GlobalTheory
-
-open Formalism.REAL Formalism.QuantumDeterminants CapelliCentral
-
-end GlobalTheory

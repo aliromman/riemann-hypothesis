@@ -70,26 +70,14 @@ import Mathlib.RingTheory.HopfAlgebra.Basic
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.DilateLawPointKernelOfCoefficientKernel, Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsCoordinatesValueLatticesEqWeylLattices, Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsPointKernelRealisedModels, Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ValBOfInc, Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExtInOfValIn, Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.FormsStableOfTgtEq, Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.HeckeLawPointKernelOfCoefficientKernel, Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.IntPOfKerP, Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.LevelChainSharpColumnValuationOfStability, Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.LevelChainUOperatorCommutationOfPointPairLaw, Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.NotDvdCardStabilizerForm, Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.WtBoundsOfNonneg, Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.SharpBoundStabilityLatticeColumnChain
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.DilateLawPointKernelOfCoefficientKernel
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.DilateLawPointKernelOfCoefficientKernel
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.L2.Col Formalism.L2.DIV GlobalTheory.Mem.Col2 GlobalTheory.LvT GlobalTheory.LvT.Built
 
+noncomputable section
 namespace GlobalTheory.LvT.Built.DilPass
 
 variable {D : D7} {u : D.what₂.Word}
-
-theorem isDil_act {q : ℕ} {F : Type} [Field F] {Lc : LocF q F} {n : ℕ} {g : GL (Fin n) Lc.K} {a : F}
-    {p p' p₁ p₁' : LocF.PP Lc n} (h : LocF.PP.IsDil a p p') (h₁ : p.IsAct g p₁) (h₂ : p'.IsAct g p₁') :
-    LocF.PP.IsDil a p₁ p₁' := by
-  have hs : ∀ x : Fin n → Lc.K, ∃ y, Matrix.mulVec (g : Matrix (Fin n) (Fin n) Lc.K) y = x := fun x =>
-    ⟨Matrix.mulVec ((g⁻¹ : GL (Fin n) Lc.K) : Matrix (Fin n) (Fin n) Lc.K) x, by
-      rw [Matrix.mulVec_mulVec, ← Units.val_mul, mul_inv_cancel, Units.val_one, Matrix.one_mulVec]⟩
-  refine ⟨?_, fun x => ?_⟩
-  · ext x
-    obtain ⟨y, rfl⟩ := hs x
-    rw [(h₁ y).1, (h₂ y).1, h.1]
-  · obtain ⟨y, rfl⟩ := hs x
-    rw [(h₁ y).2, (h₂ y).2, h.2]
 
 theorem ext_ev {B : Built.Dat D u} {i : ℕ} {sp : Split (B.J.A i) B.J.T} {M : PtModel B.ch i} (R : B.Real i sp M)
     {V : Type} [AddCommGroup V] [Module ℂ V] (φ ψ : M.Val →ₗ[ℂ] V)
@@ -116,6 +104,7 @@ theorem ext_ev {B : Built.Dat D u} {i : ℕ} {sp : Split (B.J.A i) B.J.T} {M : P
   exact key y hy' hy
 
 end GlobalTheory.LvT.Built.DilPass
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsCoordinatesValueLatticesEqWeylLattices
@@ -678,8 +667,6 @@ namespace GlobalTheory.LvT.UKS
 
 variable {D : D7} {u : D.what₂.Word} {X : Ch D u}
 
-alias emb_mem_Fi := _root_.GlobalTheory.LvT.emb_mem_Fi
-
 theorem inv_natCast_mem (w : D.what₂.places.Pl) (n : ℕ) (hn : ¬ D.what₂.places.resChar w ∣ n) :
     ((n : D.what₂.LL))⁻¹ ∈ Ow D w := by
   set p := D.what₂.places.resChar w with hp
@@ -818,7 +805,7 @@ theorem ukSharp (D : D7) (u : D.what₂.Word) (X : Ch D u) (Lv : LevTie X) (Vt :
   have hC := (Vt i hi.le).2
   have hC' := (Vt (i + 1) hi).2
   have h0 : ExtIn (Vt i hi.le).1 w ∅ (X.fm.emb i x) :=
-    extIn_of_valIn hC hw (emb_mem_Fi X i x) ((hC.S_on w hw _ (emb_mem_Fi X i x)).1 ⟨x, hx, rfl⟩)
+    extIn_of_valIn hC hw (GlobalTheory.LvT.emb_mem_Fi X i x) ((hC.S_on w hw _ (GlobalTheory.LvT.emb_mem_Fi X i x)).1 ⟨x, hx, rfl⟩)
   suffices h : ExtIn (Vt (i + 1) hi).1 w ∅
       (tpow X (if X.fm.seenP w then 2 * ∑ τ, Wt X τ + D.R.f * D.R.N D.R.m else 0) •
         Uprod X (i + 1) w (KT X i (X.fm.emb i x))) from (hC'.S_on w hw _ h.mem_Fi).2 h.valIn

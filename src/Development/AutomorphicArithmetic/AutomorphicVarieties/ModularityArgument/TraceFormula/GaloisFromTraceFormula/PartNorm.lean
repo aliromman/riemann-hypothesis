@@ -71,12 +71,14 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.DiscreteGroups.PiInvariants.CompactSupportTwists.SplitAll, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.SatakeRigidity.LRCuspCsdb, Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GaloisFromTraceFormula.PartNorm
 
-@[expose] public noncomputable section -- clump member: Development.DiscreteGroups.PiInvariants.CompactSupportTwists.SplitAll
+section -- clump member: Development.DiscreteGroups.PiInvariants.CompactSupportTwists.SplitAll
+@[expose] public section
 
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
 
+noncomputable section
 
 open NumberField IsDedekindDomain Matrix
 open GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC GlobalTheory.DiscSpec PositivityTheory.Rg.Rs
@@ -87,11 +89,7 @@ namespace DiscreteGroups.T1.G
 variable {E : Type} [Field E] [NumberField E] [IsCMField E]
 
 theorem one_lt_absNorm (w : HeightOneSpectrum (𝓞 E)) : 1 < Ideal.absNorm w.asIdeal := by
-  have h0 : Ideal.absNorm w.asIdeal ≠ 0 := by simpa [Ideal.absNorm_eq_zero_iff] using w.ne_bot
-  have h1 : Ideal.absNorm w.asIdeal ≠ 1 := by
-    rw [Ne, Ideal.absNorm_eq_one_iff]
-    exact w.isPrime.ne_top
-  omega
+  apply GlobalTheory.LFun.one_lt_absNorm
 
 theorem norm_absC_val (x : ℝ) (w : HeightOneSpectrum (𝓞 E)) :
     ‖(((GlobalTheory.CuspRep.Model.absC E (x : ℂ)).val w : ℂˣ) : ℂ)‖ = ((Ideal.absNorm w.asIdeal : ℕ) : ℝ) ^ (-x) := by
@@ -104,6 +102,8 @@ theorem norm_absC_val (x : ℝ) (w : HeightOneSpectrum (𝓞 E)) :
 
 end DiscreteGroups.T1.G
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.SatakeRigidity.LRCuspCsdb

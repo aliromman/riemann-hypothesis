@@ -1354,7 +1354,6 @@ end -- clump:auto
 private theorem kugaSm_map {E : Type} [Field E] {a n : ℕ} (e : Fin n → Herm E a) {A A' : Type} [Ring A] [Module ℝ A]
     [Ring A'] [Module ℝ A'] (f : A →+* A') (L : Lie E a →ₗ[ℝ] A) (L' : Lie E a →ₗ[ℝ] A') (h : ∀ X, L' X = f (L X)) :
     cas L' e = f (cas L e) := by
-  set_option synthInstance.maxHeartbeats 100000 in
     simp only [cas, map_sum, map_sub, map_mul, h]
 
 private theorem kugaSm_A {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] {a n : ℕ} (e : Fin n → Herm E a)

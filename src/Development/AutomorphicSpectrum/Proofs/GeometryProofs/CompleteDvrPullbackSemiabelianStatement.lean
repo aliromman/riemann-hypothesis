@@ -26,7 +26,6 @@ open AlgebraicGeometry CategoryTheory
 open scoped Matrix
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CompleteDvrPullbackSemiabelian
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.Ar.Rec.FinRd.Roots.LieBasis
 
@@ -88,7 +87,6 @@ end GlobalTheory.CompanionTheory.Ar.Rec.FinRd.Roots.LieBasis
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CompleteDvrPullbackSemiabelianStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 

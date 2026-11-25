@@ -8,21 +8,19 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.SpectralGap.CayleyIndepA, ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.SpectralGap.CayleyIndep
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.SpectralGap.CayleyIndepA
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.SpectralGap.CayleyIndepA
 
 open Matrix
 open scoped InnerProductSpace
 
+noncomputable section
 
 namespace ReciprocityTheory.ChartRestriction.DS.Lap.CayleyIndepA
 
 variable {n : ℕ} {ε : Fin n → Bool}
 
 lemma kset_mul {a b : Matrix (Fin n) (Fin n) ℂ} (ha : a ∈ Formalism.REAL.Kset ε) (hb : b ∈ Formalism.REAL.Kset ε) :
-    a * b ∈ Formalism.REAL.Kset ε := by
-  simp only [Formalism.REAL.Kset, Set.mem_setOf_eq] at ha hb ⊢
-  refine ⟨Submonoid.mul_mem _ ha.1 hb.1, ?_⟩
-  rw [mul_assoc, hb.2, ← mul_assoc, ha.2, mul_assoc]
+    a * b ∈ Formalism.REAL.Kset ε := Formalism.REAL.Kset_mul ε ha hb
 
 lemma uj_mul {a b : Matrix (Fin n) (Fin n) ℂ} (ha : a ∈ Formalism.MainNotions.S.UJset ε) (hb : b ∈ Formalism.MainNotions.S.UJset ε) :
     a * b ∈ Formalism.MainNotions.S.UJset ε := by
@@ -190,6 +188,7 @@ lemma ktype_iff (μ : Fin n → ℝ) (S : Submodule ℂ H) :
 
 
 end ReciprocityTheory.ChartRestriction.DS.Lap.CayleyIndepA
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.SpectralGap.CayleyIndep

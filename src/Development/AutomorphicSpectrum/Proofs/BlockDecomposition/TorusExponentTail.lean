@@ -7,8 +7,9 @@ public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.JordanHol
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConstEqOne, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TorusExponentTail
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConstEqOne
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConstEqOne
 
+noncomputable section
 
 open GlobalTheory.SmGL ValuativeRel
 
@@ -21,7 +22,7 @@ theorem pw_add {n : ℕ} (ξ : Fin n → ℂˣ) (x y : Fin n → ℤ) :
   simp only [GlobalTheory.BCT.pw, Pi.add_apply, zpow_add, Units.val_mul, Finset.prod_mul_distrib]
 
 theorem pw_ne_zero {n : ℕ} (ξ : Fin n → ℂˣ) (x : Fin n → ℤ) : GlobalTheory.BCT.pw ξ x ≠ 0 :=
-  Finset.prod_ne_zero_iff.2 fun i _ => Units.ne_zero _
+  Finset.prod_ne_zero_iff.2 fun _ _ => Units.ne_zero _
 
 def dg {n : ℕ} (ϖ : kˣ) (e : Fin n → ℤ) : Fin n → kˣ := fun i => ϖ ^ e i
 
@@ -131,6 +132,7 @@ theorem extChar : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k]
   simp [GlobalTheory.BCT.pw, he, unrChar_apply]
 
 end GlobalTheory.CompanionTheory.ExtCharU
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TorusExponentTail

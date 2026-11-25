@@ -123,8 +123,9 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsHarrisTaylorObjectPullback, Development.AbelianVarietyTheory.Proofs.DivisorProofs.BijectiveDeRham, Development.AbelianVarietyTheory.Proofs.DivisorProofs.DeRhamHomologyClosedFibreSurjectiveKernel, Development.AbelianVarietyTheory.Proofs.DivisorProofs.DeRhamHomologyClosedFibreSurjectiveKernelStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ProjectiveTensorOfFibreProjective, Development.AbelianVarietyTheory.Proofs.DivisorProofs.CrystalProjectiveOverTensorRingOfIntegers, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCrysForm, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HarrisTaylorExistsIsotropicStableSummand, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HarrisTaylorExistsLiftSquareZeroArtinian, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HarrisTaylorExistsLiftSquareZeroArtinianStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HarrisTaylorFormallySmoothSquareZeroLift, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HarrisTaylorFormallySmoothSquareZeroLiftStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDerivationExtendingKernelFormOfLifting, Development.AbelianVarietyTheory.Proofs.DivisorProofs.InjectiveCotangentComplexBaseChangeOfFormsExtend, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LiftRingHomAffineOpenOfArtinianSchemeLift, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothOfArtinianSquareZeroLiftingNoetherianBase, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinrankKaehlerEqOfUniversalTangent, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothOfRelativeDimensionOfUniversalFirstOrderTa, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothOfRelativeDimension, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothOfRelativeDimensionStatement
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsHarrisTaylorObjectPullback
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsHarrisTaylorObjectPullback
 
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.UPel.HT
@@ -145,20 +146,6 @@ def OActN.pull {O : Type} [Ring O] {G : Over S} [GrpObj G] [IsCommMonObj G] (a :
   one := by rw [a.one, CategoryTheory.Functor.map_id]
   mul x y := by rw [a.mul, CategoryTheory.Functor.map_comp]
   add x y := by rw [a.add]; exact CategoryTheory.Functor.map_mul _ _ _
-
-theorem OActN.pull_left {O : Type} [Ring O] {G : Over S} [GrpObj G] [IsCommMonObj G] (a : OActN O G) (c : O) :
-    ((OActN.pull f a).act c).left ≫ PullbackComparison.pφ f G = PullbackComparison.pφ f G ≫ (a.act c).left :=
-  PullbackComparison.pullback_map_left_fst' f (a.act c)
-
-theorem lift_pφ₂ {G : Over S} [GrpObj G] [IsCommMonObj G] {T' : Over S'} {T : Over S} (τ : T'.left ⟶ T.left)
-    (a b : T' ⟶ (Over.pullback f).obj G) (a₀ b₀ : T ⟶ G)
-    (ha : a.left ≫ PullbackComparison.pφ f G = τ ≫ a₀.left) (hb : b.left ≫ PullbackComparison.pφ f G = τ ≫ b₀.left) :
-    (lift a b).left ≫ PullbackComparison.pφ₂ f G = τ ≫ (lift a₀ b₀).left := by
-  apply PullbackComparison.adelic_GL2_ext_of_local_components
-  · rw [Category.assoc, PullbackComparison.pφ₂_fst, ← Category.assoc, ← Over.comp_left, lift_fst, ha, Category.assoc,
-      ← Over.comp_left, lift_fst]
-  · rw [Category.assoc, PullbackComparison.pφ₂_snd, ← Category.assoc, ← Over.comp_left, lift_snd, hb, Category.assoc,
-      ← Over.comp_left, lift_snd]
 
 end SlopeTestRemainingChoices
 
@@ -188,62 +175,11 @@ def tateMoveO {p : ℕ} [Fact p.Prime] {D : Datum p} {k : Type} [Field k] {Q Q' 
     rw [Φ.apply_symm_apply, Φ.apply_symm_apply]
     exact I.isom n hn hp a b)
 
-theorem isTanScal_push {O : Type} [Ring O] {G : Over S} {G' : Over S'} [GrpObj G] [GrpObj G']
-    {φ : G'.left ⟶ G.left} (h : IsGrpPullback G' G f φ) (a : OActN O G) (a' : OActN O G')
-    (hact : ∀ c, (a'.act c).left ≫ φ = φ ≫ (a.act c).left) {R' : Type} [CommRing R'] (x : Sp R' ⟶ S')
-    (e : (epsPtR x ⟶ G') ≃* (epsPtR (x ≫ f) ⟶ G)) (he : ∀ v, (e v).left = v.left ≫ φ) (b : O) (c : R')
-    (v : epsPtR x ⟶ G') : IsTanScal a' x b c v ↔ IsTanScal a (x ≫ f) b c (e v) := by
-  intros
-  apply _root_.GlobalTheory.HTPull.isTanScal_iff <;> assumption
-
-theorem secPull_comp {G : Over S} {G' : Over S'} [GrpObj G] [GrpObj G'] {φ : G'.left ⟶ G.left}
-    (h : IsGrpPullback G' G f φ) (u : G ⟶ G) (u' : G' ⟶ G') (hu : u'.left ≫ φ = φ ≫ u.left)
-    (s : 𝟙_ (Over S) ⟶ G) : GlobalTheory.ObjPull.secPull h (s ≫ u) = GlobalTheory.ObjPull.secPull h s ≫ u' := by
-  apply Over.OverMorphism.ext
-  refine h.1.hom_ext ?_ ?_
-  · rw [GlobalTheory.ObjPull.secPull_left]
-    simp only [Over.comp_left, Category.assoc]
-    rw [hu, ← Category.assoc (Over.Hom.left _) φ, GlobalTheory.ObjPull.secPull_left, Category.assoc]
-  · rw [Over.w, Over.comp_left, Category.assoc, Over.w, Over.w]
-
 end Aux2
 
 section Ker
 
 variable {S S' : Scheme.{0}} (f : S' ⟶ S)
-
-theorem gen_ker_push {G : Over S} [GrpObj G] [IsCommMonObj G] (P : LB (G2 G).left) (T : Over S')
-    (x : T ⟶ (Over.pullback f).obj G)
-    (H : ∃ t : ((P.pull (PullbackComparison.pφ₂ f G)).pull
-      (lift (snd ((Over.pullback f).obj G) T ≫ x) (fst ((Over.pullback f).obj G) T)).left).Gen, t.IsGen) :
-    ∃ t : (P.pull (lift (snd G (Over.mk (T.hom ≫ f)) ≫ GlobalTheory.ObjPull.pushEquiv (PullbackComparison.isGrpPullback f G) T x)
-      (fst G (Over.mk (T.hom ≫ f)))).left).Gen, t.IsGen := by
-  let T₀ : Over S := Over.mk (T.hom ≫ f)
-  let Z : Over S' := Over.mk ((snd G T₀).left ≫ T.hom)
-  have hZ : (fst G T₀).left ≫ G.hom = Z.hom ≫ f :=
-    (Over.w (fst G T₀)).trans ((Over.w (snd G T₀)).symm.trans (Category.assoc _ _ _).symm)
-  let a : Z ⟶ (Over.pullback f).obj G := Over.homMk (pullback.lift (fst G T₀).left Z.hom hZ) (pullback.lift_snd _ _ _)
-  let u : Z ⟶ T := Over.homMk (snd G T₀).left rfl
-  have key : (lift (snd G T₀ ≫ GlobalTheory.ObjPull.pushEquiv (PullbackComparison.isGrpPullback f G) T x) (fst G T₀)).left =
-      (lift a u).left ≫ ((lift (snd ((Over.pullback f).obj G) T ≫ x) (fst ((Over.pullback f).obj G) T)).left ≫
-        PullbackComparison.pφ₂ f G) := by
-    apply PullbackComparison.adelic_GL2_ext_of_local_components
-    · have k1 := congrArg Over.Hom.left (show lift a u ≫ lift (snd ((Over.pullback f).obj G) T ≫ x)
-          (fst ((Over.pullback f).obj G) T) ≫ fst ((Over.pullback f).obj G) ((Over.pullback f).obj G) = u ≫ x by simp)
-      simp only [Over.comp_left] at k1
-      rw [← Over.comp_left, lift_fst, Category.assoc, Category.assoc, PullbackComparison.pφ₂_fst,
-        ← Category.assoc (Over.Hom.left (lift (snd ((Over.pullback f).obj G) T ≫ x) _)), ← Category.assoc, k1]
-      rfl
-    · have k2 := congrArg Over.Hom.left (show lift a u ≫ lift (snd ((Over.pullback f).obj G) T ≫ x)
-          (fst ((Over.pullback f).obj G) T) ≫ snd ((Over.pullback f).obj G) ((Over.pullback f).obj G) = a by simp)
-      simp only [Over.comp_left] at k2
-      rw [← Over.comp_left, lift_snd, Category.assoc, Category.assoc, PullbackComparison.pφ₂_snd,
-        ← Category.assoc (Over.Hom.left (lift (snd ((Over.pullback f).obj G) T ≫ x) _)), ← Category.assoc, k2]
-      exact (pullback.lift_fst _ _ _).symm
-  obtain ⟨t, ht⟩ := H
-  obtain ⟨t₁, ht₁⟩ := gen_chartPull (chartPullIn P (fun _ : PUnit => PullbackComparison.pφ₂ f G) (fun _ => 1)
-    (lift (snd ((Over.pullback f).obj G) T ≫ x) (fst ((Over.pullback f).obj G) T)).left) t ht
-  exact gen_chartPull (chartPullSame P _ _ (fun _ : PUnit => 1) (lift a u).left (fun _ => key)) t₁ ht₁
 
 end Ker
 
@@ -254,6 +190,7 @@ theorem exists_objMap : ∀ (p : ℕ) [Fact p.Prime] (D : GlobalTheory.UPel.HT.D
   apply _root_.GlobalTheory.UPel.HT.ES.IsogRep.exists_pull <;> assumption
 
 end GlobalTheory.UPel.HT.BaseChange
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.BijectiveDeRham
@@ -1289,7 +1226,7 @@ namespace GlobalTheory
 
 theorem injective_cotangentComplexBaseChange_of_forms_extend : ∀ (A P R K : Type) [CommRing A] [CommRing P] [CommRing R] [Field K] [Algebra A P] [Algebra A R] [Algebra P R] [IsScalarTower A P R] [Algebra R K] [Algebra P K] [IsScalarTower P R K] [Algebra A K] [IsScalarTower A P K], (∀ ℓ : RingHom.ker (algebraMap P R) →ₗ[P] K, ∃ D : Derivation A P K, ∀ i : RingHom.ker (algebraMap P R), D i = ℓ i) → Function.Injective (KaehlerDifferential.cotangentComplexBaseChange A R P K) := by
   intro A P R K _ _ _ _ _ _ _ _ _ _ _ _ _ hext
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro z hz
   refine (Module.forall_dual_apply_eq_zero_iff K z).1 fun φ => ?_
   let ℓ : RingHom.ker (algebraMap P R) →ₗ[P] K :=
@@ -1435,7 +1372,6 @@ theorem finrank_kaehler_eq_of_universal_tangent :
     have := congrArg TrivSqZeroExt.snd (RingHom.congr_fun hR r)
     simpa [TrivSqZeroExt.algebraMap_eq_inl] using this
   have hsA : ∀ (a : A) (x : k), a • x = φ a * x := fun a x => rfl
-  have hsR : ∀ (r : R) (x : k), r • x = φ (algebraMap R A r) * x := fun r x => rfl
 
   let E : Derivation R A (Fin d → k) := Derivation.mk'
     { toFun := fun a => (ψ a).snd

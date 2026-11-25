@@ -25,8 +25,9 @@ import Mathlib.Tactic.Linter.HaveILetI
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.FlagImmersions.DifferentiableAtAffCoord, Development.WeilBound.CoreStatements.FlagImmersions.PshSumPotentialsSmallParameter, Development.WeilBound.CoreStatements.FlagImmersions.RealTowerPlurisubharmonicPotential, Development.WeilBound.CoreStatements.FlagImmersions.RealTowerMeanSlopeCondition, Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.RealTowerA1
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.FlagImmersions.DifferentiableAtAffCoord
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.FlagImmersions.DifferentiableAtAffCoord
 
+noncomputable section
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo Filter Topology GlobalTheory.CompanionTheory.Ar.Cusp
 open GroundTheory.Heights₂.Heights.LowerBoundFree (torusSmul)
@@ -74,7 +75,7 @@ theorem tangent_decomp (Ω : Type) [Field Ω] [Algebra ℚ Ω] (y : (Σ k, J k) 
     refine Submodule.add_mem _ (hcone _ ?_) fun f hf => (le_tanIdeal_torusSmul hPh hzI c hf).2
     exact GroundTheory.Heights₂.Heights.HilbertSamuel.G1.isConeTangent_of_sheet le_rfl hγ hpts u
   have hinj : Function.Injective L := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     rintro ⟨u, c⟩ h
     rw [hL] at h
     have hu : u = 0 := himm u (fun k => -c k) (by
@@ -257,6 +258,7 @@ theorem levi_nonneg (Ω : Type) [Field Ω] [Algebra ℚ Ω] (y : (Σ k, J k) →
   simpa using hpsh x j hj u
 
 end RootFieldNumerics.Levi
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.FlagImmersions.PshSumPotentialsSmallParameter

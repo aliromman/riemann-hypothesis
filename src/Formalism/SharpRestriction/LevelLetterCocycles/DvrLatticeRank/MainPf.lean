@@ -197,8 +197,10 @@ end Formalism.MainNotions.N.Ln34
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.FrobeniusSpanDecomposition
+section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.FrobeniusSpanDecomposition
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.MainNotions.N.Ln34
 
@@ -280,8 +282,7 @@ theorem frobenius_span_exact_lift (W : LocWach PD LL O v n) [IsAdicComplete (Ide
   · refine Submodule.sum_mem _ fun k _ => Submodule.smul_mem _ _ ?_
     unfold Formalism.MainNotions.DeltaInvariantLattices.φspan
     exact Submodule.subset_span ⟨y k, hyNl k, rfl⟩
-  · set_option synthInstance.maxHeartbeats 100000 in
-      rw [map_sum]
+  · rw [map_sum]
     refine Finset.sum_congr rfl fun k _ => ?_
     rw [Formalism.MainNotions.LiftingTheory.wmap_map_smul, W.map_φ, hy k]
 
@@ -360,6 +361,8 @@ theorem kerlam2_pf : KerLamStep := by
 
 end Formalism.MainNotions.N.Ln34
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.GradNPf
@@ -393,13 +396,14 @@ end Formalism.MainNotions.N.Ln34
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.InvLiftPf
+section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.InvLiftPf
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.MainNotions.N.Ln34
 
 open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc Module Formalism.MainNotions.ElementDenominator Formalism.MainNotions.ElementDenominator.CongruenceModules
-
 
 set_option maxHeartbeats 1000000 in
 theorem invLiftCondition : InvLiftStep := by
@@ -476,6 +480,8 @@ theorem invLiftCondition : InvLiftStep := by
 
 end Formalism.MainNotions.N.Ln34
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.LiftPfB
@@ -757,13 +763,13 @@ end Formalism.MainNotions.N.Ln34
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelQPf
+@[expose] public section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.ModelQPf
 
+noncomputable section
 
 namespace Formalism.MainNotions.N.Ln34
 
 open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc Module Formalism.MainNotions.ElementDenominator Formalism.MainNotions.ElementDenominator.CongruenceModules
-
 
 theorem modelqlink_pf : ModelQLinkStep := by
   intro D HW F Cm CA CB CK hA hML l hpf hl K LL hG π' E hR h' hh' T hT hJ c
@@ -847,6 +853,7 @@ theorem modelqlink_pf : ModelQLinkStep := by
 
 end Formalism.MainNotions.N.Ln34
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.OneGenPf
 
@@ -884,18 +891,9 @@ variable {G : Type} [Group G] {Qp K₀ K : Type} [Field Qp] [Field K₀] [Field 
     {V : Type} [AddCommGroup V] [Module LL V] [Module Qp V] [IsScalarTower Qp LL V]
     (ρ : Representation LL G V)
 
-theorem qpf_filV_succ_le (a : ℤ) :
-    FilV PD (LL := LL) (V := V) (a + 1) ≤ FilV PD (LL := LL) (V := V) a := by
-  apply _root_.Formalism.MainNotions.N.Pv.LocalLengthBound.rk_filV_succ <;> assumption
-
-theorem qpf_fildR_succ_le (τ : K →ₐ[Qp] LL) (a : ℤ) :
-    FildR PD ρ τ (a + 1) ≤ FildR PD ρ τ a := by
-  unfold FildR
-  exact inf_le_inf_left _ (qpf_filV_succ_le PD a)
-
 theorem qpf_isJumpV_iff_pos (τ : K →ₐ[Qp] LL) (hfin : Module.Finite LL ↥(DdRE PD ρ τ)) (a : ℤ) :
     IsJumpV PD ρ τ a ↔ 0 < multV PD ρ τ a := by
-  have hle := qpf_fildR_succ_le PD ρ τ a
+  have hle := Formalism.MainNotions.N.Ln34.ExtPf.extPf_fildR_succ_le PD ρ τ a
   haveI := hfin
   haveI : Module.Finite LL ↥(FildR PD ρ τ a) :=
     Module.Finite.of_injective (Submodule.inclusion (inf_le_left : FildR PD ρ τ a ≤ DdRE PD ρ τ))
@@ -1284,8 +1282,10 @@ end Formalism.MainNotions.N.Ln34.UnivLinkPf
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.UnivLinkPf
+section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.DvrLatticeRank.UnivLinkPf
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.MainNotions.N.Ln34
 
@@ -1302,8 +1302,6 @@ theorem univLinkPf_deep_sub {up : Bool} {bτ S η h' : ℕ} (hb : η < bτ) (hS 
     · obtain ⟨h1, h2⟩ := ha
       exact ⟨by omega, by omega⟩
   · exact ⟨by omega, by omega⟩
-
-
 
 theorem univlink_pf : UnivLinkStep := by
   intro D HW Fo hA hd hR hC hH hMF hU1 hk hU2 hDn hUp hMx
@@ -1363,6 +1361,8 @@ theorem univlink_pf : UnivLinkStep := by
 
 end Formalism.MainNotions.N.Ln34
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.LocalTheoremOfLeafLemmas

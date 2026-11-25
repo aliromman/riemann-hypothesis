@@ -451,9 +451,10 @@ theorem chi_reduces (l : ℕ) [Fact l.Prime] (P : LocPrime l) (K : FinExt l) (r 
 end GlobalTheory.CycLevel
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TracePairingInjectiveEquivariantLevelMap
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TracePairingInjectiveEquivariantLevelMap
 open ReciprocityTheory.Gal
 
+noncomputable section
 
 namespace GlobalTheory.TraceLevel
 
@@ -611,7 +612,7 @@ theorem psiQ_injective : Function.Injective (psiQ h2 hlam e) := by
     apply hl0
     have h' : algebraMap ℚ_[l] LL (l : ℚ_[l]) = 0 := by rw [map_natCast]; exact h
     exact (map_eq_zero_iff _ (algebraMap ℚ_[l] LL).injective).1 h'
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro q hq
   obtain ⟨y, hyq⟩ := Submodule.Quotient.mk_surjective
     (Ideal.span {((l : ℕ) : O) ^ r} • ⊤ : Submodule O ↥LA'.T) q
@@ -752,6 +753,7 @@ theorem tracePairing_levelMap : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (K
       hI hI' rho hrho⟩
 
 end GlobalTheory
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.H1LatticeIndexGrowth

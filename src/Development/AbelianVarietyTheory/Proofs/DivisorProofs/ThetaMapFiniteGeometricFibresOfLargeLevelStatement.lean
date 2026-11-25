@@ -193,7 +193,7 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PolarizationPartBaseChange
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PolarizationPartBaseChange
 
 open CategoryTheory AlgebraicGeometry Limits NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.VB GlobalTheory.LieVB GlobalTheory.CurveRootGeometry
@@ -201,6 +201,7 @@ open Formalism.BasicNotions Formalism.MainNotions GlobalTheory.Mean4 GlobalTheor
 open MonoidalCategory CartesianMonoidalCategory MonObj
 open scoped CategoryTheory.Obj
 
+noncomputable section
 
 namespace GlobalTheory.PolPartPull
 
@@ -214,9 +215,7 @@ def oActIso {O : Type} [CommRing O] {S : Scheme.{0}} {A B : Over S} [GrpObj A] [
 
 end GlobalTheory.PolPartPull
 
-namespace GlobalTheory.PolPartPull
-
-end GlobalTheory.PolPartPull
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

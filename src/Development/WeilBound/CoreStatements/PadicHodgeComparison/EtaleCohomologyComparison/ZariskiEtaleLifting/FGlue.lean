@@ -216,7 +216,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CochainDegreeZeroSubsingleton
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory Polynomial CrystallineSemistableComparison CrystallineSemistableComparison.CH
 universe w w' v u v' u' v'' u''
 
@@ -469,7 +468,6 @@ theorem dp_zsmul {n : ℕ} (e : ℤ) (φ : Ch n → Vv N) (s : Ch (n + 1)) :
 
 theorem dp_map {n : ℕ} (g : Vv N →ₗ[R] Vv N) (φ : Ch n → Vv N) (s : Ch (n + 1)) :
     dp N (fun x => g (φ x)) s = g (dp N φ s) := by
-  set_option synthInstance.maxHeartbeats 100000 in
     simp [dp, map_sum, map_zsmul]
 
 theorem dp_zero {n : ℕ} (s : Ch (n + 1)) : dp N (fun _ : Ch n => 0) s = 0 := by
@@ -681,7 +679,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.ZariskiEtaleLifting.FBnat
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory Polynomial CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.B
 universe w w' v u v' u' v'' u''
 
@@ -692,7 +689,6 @@ end -- clump:auto
 section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.ZariskiEtaleLifting.FKstep
 @[expose] public section
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory Polynomial CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.B
 universe w w' v u v' u' v'' u''
 
@@ -943,7 +939,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.ZariskiEtaleLifting.FFible
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory Polynomial CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.B
 universe w w' v u v' u' v'' u''
 
@@ -1227,10 +1222,11 @@ theorem CrystallineSemistableComparison.B.P.gam : ∀ n : ℕ, ∃ N : ℕ, ∀ 
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.ZariskiEtaleLifting.FTors
+-- clump: shared namespace opens
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory Polynomial CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.B
+
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.ZariskiEtaleLifting.FTors
 universe w w' v u v' u' v'' u''
 
 namespace CrystallineSemistableComparison.B
@@ -1478,9 +1474,6 @@ theorem CrystallineSemistableComparison.B.P.tors : ∀ d n : ℕ, ∃ N : ℕ, �
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.ZariskiEtaleLifting.FGlue
-
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory Polynomial CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.B
 universe w w' v u v' u' v'' u''
 
 namespace CrystallineSemistableComparison.B

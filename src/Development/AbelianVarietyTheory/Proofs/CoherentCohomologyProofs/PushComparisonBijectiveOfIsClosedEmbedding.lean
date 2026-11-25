@@ -271,10 +271,11 @@ end SheafPull
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.PushComparisonBijectiveOfIsClosedEmbedding
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.PushComparisonBijectiveOfIsClosedEmbedding
 
 universe w w' w'' u
 
+noncomputable section
 
 namespace GlobalTheory
 
@@ -585,14 +586,6 @@ theorem pull_id {F G : AbSheaf X} (φ : F ⟶ G) (n : ℕ) {V W : Opens X} (i : 
       (congrArg _ (δ_naturality hF hG a n V y).symm))
 
 end Functoriality
-
-section Scheme
-
-open AlgebraicGeometry SheafLES
-
-variable {X Y : Scheme.{u}}
-
-end Scheme
 
 end SheafPull
 

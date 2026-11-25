@@ -50,17 +50,6 @@ open Formalism.BasicNotions.TH Formalism.IndefR.Datum
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-theorem gram_det_ne {D : D7} (V : HSp D) : V.gram.det ≠ 0 := by
-  apply _root_.GlobalTheory.VolHeckeCompare.gram_det_ne_zero <;> assumption
-
-end GlobalTheory.MassLinkSD
-
-namespace GlobalTheory.MassLinkSD
-
-open Formalism.BasicNotions.TH Formalism.IndefR.Datum
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 end GlobalTheory.MassLinkSD
 
 namespace GlobalTheory.MassLinkSD
@@ -75,8 +64,6 @@ noncomputable section
 
 open scoped Matrix ComplexConjugate nonZeroDivisors
 open NumberField ReciprocityTheory.ChartRestriction.G.FD Formalism.BasicNotions Formalism.BasicNotions.TH
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace PositivityTheory.Rg.Sw.Glob.WEq
 
@@ -179,13 +166,12 @@ end PositivityTheory.Rg.Sw.Glob.WEq
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.WittEq
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.WittEq
 
+noncomputable section
 
 open scoped Matrix ComplexConjugate nonZeroDivisors
 open NumberField Formalism.BasicNotions Formalism.BasicNotions.TH
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace PositivityTheory.Rg.Sw.Glob.WEq
 
@@ -274,7 +260,7 @@ theorem wittLBeq : WittLBeq := by
     simp only [hG₁, Matrix.transpose_apply, HSpace.gram, ReciprocityTheory.ChartRestriction.G.FD.cc]
     rw [← hst]
     exact this
-  have hd : G₁.det ≠ 0 := by rw [hG₁, Matrix.det_transpose]; exact GlobalTheory.MassLinkSD.gram_det_ne V
+  have hd : G₁.det ≠ 0 := by rw [hG₁, Matrix.det_transpose]; exact GlobalTheory.AutFunCounterexample.gram_det_ne V
   have key : ∀ ρ : D.what₂.Tau, ∃ Q : Matrix (Fin r) (Fin r) ℂ, Q.det ≠ 0 ∧
       (dSgn r k).map (tauE D ρ) = Qᵀ * G₁.map (tauE D ρ) * Q.map (starRingEnd ℂ) := by
     intro ρ
@@ -370,12 +356,15 @@ alias wittLBeq := _root_.PositivityTheory.Rg.Sw.Glob.WEq.wittLBeq
 
 end PositivityTheory.Rg.Sw.Glob
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.WittLtC
+section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.WittLtC
+@[expose] public section
 
 open Matrix NumberField GlobalTheory.Inertia
 open scoped ComplexConjugate
 
+noncomputable section
 
 namespace PositivityTheory.Rg.Sw.Glob.WLt
 
@@ -427,8 +416,6 @@ theorem exists_pair {n : Type} [Fintype n] [DecidableEq n] {G : Matrix n n E} (h
     rw [hf_add_left, hf_add_right, hf_add_right, hf_smul_left, hf_smul_left, hf_smul_right, hf_smul_right, hz, hw0, hzw,
       cc_neg, cc_div_two, haa, ← ha]
     ring
-
-
 
 theorem split {n : Type} [Fintype n] [DecidableEq n] {G : Matrix n n E} (hG : ∀ a b, FD.cc (G a b) = G b a)
     (hd : G.det ≠ 0) {z : n → E} (hz0 : z ≠ 0) (hz : hf G z z = 0) :
@@ -565,13 +552,17 @@ theorem split {n : Type} [Fintype n] [DecidableEq n] {G : Matrix n n E} (hG : �
 
 end PositivityTheory.Rg.Sw.Glob.WLt
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.WittLtD
+section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.WittLtD
+@[expose] public section
 
 open Matrix NumberField GlobalTheory.Inertia
 open scoped ComplexConjugate
 
+noncomputable section
 
 namespace PositivityTheory.Rg.Sw.Glob.WLt
 
@@ -644,8 +635,6 @@ private theorem posIndex_negIndex_eq_one_add_of_hyperbolic_split {n : Type} [Fin
       posIndex_fromBlocks hH1 hH2, h1]
   · rw [← negIndex_congr (G.map τ) hQ, hmap, hblk, negIndex_submatrix_equiv,
       negIndex_fromBlocks hH1 hH2, h2]
-
-
 
 theorem main_iso : ∀ (k : ℕ) {n : Type} [Fintype n] [DecidableEq n] (G : Matrix n n E),
     (∀ a b, FD.cc (G a b) = G b a) → G.det ≠ 0 → 2 * k < Fintype.card n →
@@ -725,20 +714,21 @@ theorem main_iso : ∀ (k : ℕ) {n : Type} [Fintype n] [DecidableEq n] (G : Mat
 
 end PositivityTheory.Rg.Sw.Glob.WLt
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.WittLt
+section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.WittLt
+@[expose] public section
 
+noncomputable section
 
 open scoped Matrix ComplexConjugate
 open Matrix Formalism.BasicNotions Formalism.BasicNotions.TH GlobalTheory.Inertia NumberField
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 namespace PositivityTheory.Rg.Sw.Glob
 
 open ReciprocityTheory.ChartRestriction.G
-
 
 theorem wittLBlt : WittLBlt := by
   intro D V k hk hS
@@ -810,6 +800,8 @@ theorem wittLBlt : WittLBlt := by
 
 end PositivityTheory.Rg.Sw.Glob
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.GlobalGaussLaws.SigTop

@@ -76,11 +76,12 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRin
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsGenOfIso
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
 
+section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsGenOfIso
+@[expose] public section
+
+noncomputable section
 namespace GlobalTheory.UU.Transl
 
 section General
@@ -300,12 +301,14 @@ theorem exists_translFam {T : Over (Spec (CommRingCat.of R))} (g : GtPt D T) {N 
 end Base
 
 end GlobalTheory.UU.Transl
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsLevelPoint
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.UU
+section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsLevelPoint
+@[expose] public section
 
+noncomputable section
 namespace GlobalTheory.UU.Transl
 
 theorem exp_alg {A X : Type} [CommRing A] {N : ℕ} {Wy Wxy Wx W1 cG cB vf vw : Aˣ} {σ : A} (s : Finset X) {f : X → A}
@@ -481,12 +484,14 @@ theorem expT_transl (hG : GlobalFnsSt) {x : T ⟶ G} {g : GtPt D T} (hr : U.Red 
 end Level
 
 end GlobalTheory.UU.Transl
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.TorsionTranslationActsOnExpansions
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.UU
+section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.TorsionTranslationActsOnExpansions
+@[expose] public section
 
+noncomputable section
 namespace GlobalTheory.UU.Transl
 
 section Complete
@@ -922,11 +927,11 @@ theorem main : Laws → Laws2 → (AllPre fun {V} _ _ _ {D} {A} {G} _ _ U => ∀
   exact phiRaw_of hG hp hb hw' vw h₃ hf' hr' vs
 
 end GlobalTheory.UU.Transl
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.TorusTorsionToAbelianTorsionThetaAction
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.UU
 
 noncomputable section
 namespace GlobalTheory.UU.Eqv

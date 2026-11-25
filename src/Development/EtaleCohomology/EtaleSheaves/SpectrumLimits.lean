@@ -7,11 +7,9 @@ import Development.EtaleCohomology.EtaleSheaves.CechLevels
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.EtaleCohomology.EtaleSheaves.CechLevelsGeneration.LevelsOfGen, Development.EtaleCohomology.EtaleSheaves.SpectrumLimits
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleSheaves.CechLevelsGeneration.LevelsOfGen
 
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
-
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleSheaves.CechLevelsGeneration.LevelsOfGen
 
 namespace LateralTheory.E.LevelsPf
 open LateralTheory.E.CechLevelsPf
@@ -46,7 +44,10 @@ theorem Levels_of_gen (hG : LevelsGen) : LateralTheory.E.CechLevelsPf.Levels := 
 end LateralTheory.E.LevelsPf
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleSheaves.SpectrumLimits
+@[expose] public section -- clump member: Development.EtaleCohomology.EtaleSheaves.SpectrumLimits
+
+noncomputable section
+open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 
 namespace LateralTheory.E.LevelsGenPf
 open LateralTheory.E.CechLevelsPf LateralTheory.E.LevelsPf
@@ -77,7 +78,7 @@ def SpecLim : Prop := ∀ (A A' B : Type) [CommRing A] [CommRing A'] [CommRing B
   (l : Fin (n + 1) → (A' →+* B)) (hl : ∀ i, (l i).comp φ = χ), IsCop φ χ l → Nonempty (IsLimit (coneOf φ χ l hl))
 
 def TensCop : Prop := ∀ (A A' : Type) [CommRing A] [CommRing A'] (φ : A →+* A') (n : ℕ),
-  ∃ (B : Type) (_ : CommRing B) (χ : A →+* B) (l : Fin (n + 1) → (A' →+* B)) (hl : ∀ i, (l i).comp φ = χ),
+  ∃ (B : Type) (_ : CommRing B) (χ : A →+* B) (l : Fin (n + 1) → (A' →+* B)) (_ : ∀ i, (l i).comp φ = χ),
     Subring.closure (⋃ i, Set.range (l i)) = ⊤ ∧ IsCop φ χ l
 
 def QuotCop : Prop := ∀ (A A' B : Type) [CommRing A] [CommRing A'] [CommRing B] (φ : A →+* A') (χ : A →+* B) {ι : Type}

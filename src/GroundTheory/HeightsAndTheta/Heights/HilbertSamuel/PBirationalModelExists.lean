@@ -30,7 +30,7 @@ def BirationalModelExists.Statement : Prop :=
 end GroundTheory.Heights₂.Heights.HilbertSamuel
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PBirationalModelExists
+@[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PBirationalModelExists
 
 set_option maxSynthPendingDepth 1
 
@@ -38,6 +38,7 @@ namespace GroundTheory.Heights₂.Heights.HilbertSamuel
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.ArakelovGeometry
 
+noncomputable section
 
 set_option linter.unusedSectionVars false
 
@@ -90,7 +91,6 @@ def coordClass (p : Σ k, ι k) : FractionRing (MRing ι ⧸ P) :=
 
 theorem aeval_coordClass (g : MRing ι) :
     aeval (coordClass P) g = algebraMap (MRing ι ⧸ P) (FractionRing (MRing ι ⧸ P)) (Ideal.Quotient.mk P g) := by
-  set_option synthInstance.maxHeartbeats 200000 in
   induction g using MvPolynomial.induction_on with
   | C a => simp
   | add p q hp hq =>
@@ -224,6 +224,7 @@ theorem BirationalModelExists.proof : BirationalModelExists.Statement := by
   exact ⟨BirationalModelExists.fnField P, inferInstance, BirationalModelExists.birPoint c hc,
     BirationalModelExists.mCoordIdeal_birPoint hhom c hc, BirationalModelExists.birational_birPoint c hc⟩
 
+end
 
 end GroundTheory.Heights₂.Heights.HilbertSamuel
 

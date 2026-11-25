@@ -491,9 +491,10 @@ theorem natDegree_minpoly_eq : ∀ (F C : Type) [Field F] [Ring C] [Algebra F C]
 end GlobalTheory.RegDeg
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RegularElementSeparableMinpoly
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RegularElementSeparableMinpoly
 open scoped TensorProduct Classical
 
+noncomputable section
 
 namespace GlobalTheory.LKCx
 
@@ -539,9 +540,7 @@ theorem ubc_val_eq (G : HTGroup p) (β : G.Cˣ) (x : (AfP p ⊗[ℚ] G.C)ˣ) (t 
 
 end GlobalTheory.LKCx
 
-namespace GlobalTheory.LKCx
-
-end GlobalTheory.LKCx
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SimilitudeSignatureOnePreservesPosDefForm

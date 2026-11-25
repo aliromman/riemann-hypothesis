@@ -603,8 +603,10 @@ end GlobalTheory.GtBasis
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TangentRelationAdditiveScaling
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TangentRelationAdditiveScaling
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.MBLow.TanAdd
 
@@ -665,7 +667,6 @@ theorem tanRel_mul (y y' : epsR R ⟶ G) (gm gm' gm'' : GtPt D.toPre (epsR R)) (
   intro e
   obtain ⟨ye, h₁, h₂, h₃⟩ := h e
   obtain ⟨ye', h₁', h₂', h₃'⟩ := h' e
-  have hci : IsClosedImmersion (thick R I e) := IsClosedImmersion.spec_of_surjective _ Ideal.Quotient.mk_surjective
   have hw := dual_over (Ideal.Quotient.mk (I ^ (e + 1)))
   let ρ : (Over.map (thick R I e)).obj (epsR (R ⧸ I ^ (e + 1))) ⟶ epsR R :=
     Over.homMk (spMap (dualMap (Ideal.Quotient.mk (I ^ (e + 1))))) hw
@@ -714,6 +715,8 @@ theorem tanRel_scale (c : R) (y : epsR R ⟶ G) (gm gm' : GtPt D.toPre (epsR R))
 
 end GlobalTheory.MBLow.TanAdd
 
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorusExtensionTangentPullbackComplexDualNumbers

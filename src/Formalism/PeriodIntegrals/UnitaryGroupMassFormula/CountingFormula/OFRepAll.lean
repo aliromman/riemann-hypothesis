@@ -30,15 +30,14 @@ import Formalism.HermitianLattices.HermitianLatticesProofs.UnimodularSpan
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.HTIntLeft, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.CommonMult, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.FiniteLeOfPosDef, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.DefFinWOf, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.WeightPositive, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.Stage1OfUnipotentIntegralIsGroup, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.OFRepAll
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.HTIntLeft
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.HTIntLeft
 
+noncomputable section
 
 namespace PI.UnitaryGroupMassFormula.CntFormula
 
 open NumberField Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.CntLocal
 open Classical
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem inW_add (D : Formalism.BasicNotions.D7) {x y : (VS D).V} (hx : InW D x) (hy : InW D y) : InW D (x + y) := by
   unfold InW at *
@@ -256,16 +255,16 @@ theorem tv_norm (D : Formalism.BasicNotions.D7) {T : D.host.E} (T' : D.host.E) (
 
 end PI.UnitaryGroupMassFormula.CntFormula
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.CommonMult
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.CommonMult
 
+noncomputable section
 
 namespace PI.UnitaryGroupMassFormula.CntFormula
 
 open NumberField Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.CntLocal
 open Classical
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem gen_red {M : Type*} [AddCommGroup M] (P : Submodule ℤ M) (hP : P.FG) (N : ℤ) (hN : N ≠ 0) :
     ∃ Rs : Set M, Rs.Finite ∧ ∀ x ∈ P, ∃ q ∈ P, ∃ ρ ∈ Rs, x = N • q + ρ := by
@@ -324,6 +323,7 @@ theorem common_mult (D : Formalism.BasicNotions.D7) {Λ : Submodule (𝓞 D.host
     rw [map_mul, ho, map_intCast]; push_cast; ring
 
 end PI.UnitaryGroupMassFormula.CntFormula
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.FiniteLeOfPosDef
@@ -424,15 +424,14 @@ theorem finite_le_of_posDef {V : Type*} [AddCommGroup V] [Module ℚ V] [FiniteD
 end PI.UnitaryGroupMassFormula.CntFormula
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.DefFinWOf
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.DefFinWOf
 
+noncomputable section
 
 namespace PI.UnitaryGroupMassFormula.CntFormula
 
 open NumberField Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.CntLocal
 open Classical
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 def DefFinW : Prop :=
   ∀ (D : Formalism.BasicNotions.D7) (P : Submodule ℤ (VS D).V), P.FG → ∀ c : D.host.E,
@@ -519,6 +518,7 @@ theorem defFinW_of (hW : WPos) : DefFinW := by
 
 end PI.UnitaryGroupMassFormula.CntFormula
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.WeightPositive
 
@@ -529,8 +529,6 @@ namespace PI.UnitaryGroupMassFormula.CntFormula
 open NumberField Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.CntLocal
 open Classical
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 theorem hswap (D : Formalism.BasicNotions.D7) (x y : (VS D).V) : (VS D).hT y x = star ((VS D).hT x y) := ((VS D).herm.eq x y).symm
 
 theorem hzero_swap (D : Formalism.BasicNotions.D7) {x y : (VS D).V} (h : (VS D).hT x y = 0) : (VS D).hT y x = 0 := by
@@ -540,12 +538,6 @@ theorem hFE (D : Formalism.BasicNotions.D7) (i i' : Fin D.R.rS) :
     (VS D).hT (D.sp.hypF i) (D.sp.hypE i') = if i' = i then 1 else 0 := by
   rw [hswap, D.sp.hyp_ef i' i]
   split_ifs <;> simp
-
-theorem hEz (D : Formalism.BasicNotions.D7) (i : Fin D.R.rS) : (VS D).hT (D.sp.hypE i) D.sp.zm = 0 := by
-  rw [hswap, (D.sp.hyp_orthz i).1, star_zero]
-
-theorem hFz (D : Formalism.BasicNotions.D7) (i : Fin D.R.rS) : (VS D).hT (D.sp.hypF i) D.sp.zm = 0 := by
-  rw [hswap, (D.sp.hyp_orthz i).2, star_zero]
 
 theorem real_of_emb (D : Formalism.BasicNotions.D7) (τ : D.host.E →+* ℂ) (w : (VS D).V) :
     τ ((VS D).hT w w) = ((τ ((VS D).hT w w)).re : ℂ) := by
@@ -576,7 +568,7 @@ theorem semidef (D : Formalism.BasicNotions.D7) (w : (VS D).V) (hE : ∀ a, (VS 
       simp
     · cases b'
       · simp only [wv, Sum.elim_inl, Sum.elim_inr, Bool.false_eq_true, ite_false, map_sub,
-          LinearMap.sub_apply, hEz, hFz, sub_zero]
+          LinearMap.sub_apply, PI.UnitaryGroupMassFormula.CntFormula.hEZ, PI.UnitaryGroupMassFormula.CntFormula.hFZ, sub_zero]
       · simp only [wv, Sum.elim_inl, Sum.elim_inr, ite_true, map_sub, LinearMap.sub_apply, hE, hF,
           sub_zero]
     · cases b
@@ -669,11 +661,11 @@ theorem isotropic_zero (D : Formalism.BasicNotions.D7) (w : (VS D).V) (hE : ∀ 
   have hWE : ∀ b, (VS D).hT (D.sp.hypE b) xW = 0 := by
     intro b
 
-    simp [hxW, map_sub, map_sum, map_add (f := _), map_smul, D.sp.hyp_ee, D.sp.hyp_ef, hEz]
+    simp [hxW, map_sub, map_sum, map_add (f := _), map_smul, D.sp.hyp_ee, D.sp.hyp_ef, PI.UnitaryGroupMassFormula.CntFormula.hEZ]
   have hWF : ∀ b, (VS D).hT (D.sp.hypF b) xW = 0 := by
     intro b
 
-    simp [hxW, map_sub, map_sum, map_add (f := _), map_smul, D.sp.hyp_ff, hFE, hFz]
+    simp [hxW, map_sub, map_sum, map_add (f := _), map_smul, D.sp.hyp_ff, hFE, PI.UnitaryGroupMassFormula.CntFormula.hFZ]
   have hWz : (VS D).hT D.sp.zm xW = 0 := by
 
     simp [hxW, map_sub, map_sum, map_add (f := _), map_smul, (D.sp.hyp_orthz _).1, (D.sp.hyp_orthz _).2, hzz]
@@ -719,13 +711,10 @@ namespace PI.UnitaryGroupMassFormula.CntFormula
 open NumberField Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.CntLocal
 open Classical
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 private theorem stage1_span_eq_top_of_unimodular (D : Formalism.BasicNotions.D7) {Λ : Submodule (𝓞 D.host.E) (VS D).V}
     (hL : Λ.FG) (hU : Formalism.HermitianLatticesTheory.IsUnimodular (VS D).hT Λ) :
     Submodule.span D.host.E (Λ : Set (VS D).V) = ⊤ := by
   exact Formalism.HermitianLatticesTheory.IsUnimodular.span_eq_top hU (VS D).herm hL
-
 
 theorem inW_neg (D : Formalism.BasicNotions.D7) {x : (VS D).V} (hx : InW D x) : InW D (-x) := by
   simpa using inW_smul D (-1) hx

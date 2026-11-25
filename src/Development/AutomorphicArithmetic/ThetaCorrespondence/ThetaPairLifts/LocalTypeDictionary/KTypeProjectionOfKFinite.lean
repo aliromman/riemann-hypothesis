@@ -157,7 +157,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.InMaxCompactOfModelFrameInv
 
-
 open Matrix in
 theorem GlobalTheory.CuspGK.inK_inv {D : D7} {V : HSp D} {S : D.what₂.Tau → SPar} (M : Formalism.IndefR.Mult.DSModel V S)
     (τ : D.what₂.Tau) (g : Matrix (Fin V.rank) (Fin V.rank) ℂ) (h : GlobalTheory.CuspGK.InK M τ g) :
@@ -198,8 +197,10 @@ theorem GlobalTheory.CuspGK.inK_inv {D : D7} {V : HSp D} {S : D.what₂.Tau → 
       _ = Formalism.REAL.Jm (M.ε τ) * u⁻¹ := by rw [h1, Matrix.one_mul]
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.KFiniteOfMemGKModuleGeneratedBy
+section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.KFiniteOfMemGKModuleGeneratedBy
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.GKGenKFin
 
@@ -211,10 +212,6 @@ def kGrp : Subgroup (GA D V) :=
 
 theorem kGrp_le : kGrp θ M ≤ GinfC V :=
   (Subgroup.closure_le _).2 fun _ ⟨τ, g, _, e⟩ => e ▸ GlobalTheory.FinTranslate.atTau_mem θ V τ g
-
-theorem rTr_mul (x y : GA D V) (f : GA D V → ℂ) : rTr V (x * y) f = rTr V x (rTr V y f) := by
-  funext g
-  simp only [rTr, mul_assoc]
 
 theorem rTr_inv_rTr (x : GA D V) (f : GA D V → ℂ) : rTr V x⁻¹ (rTr V x f) = f := by
   funext g
@@ -231,7 +228,7 @@ theorem rTr_mem_of_kStable {W : Submodule ℂ (GA D V → ℂ)} (hW : FiniteDime
     rw [e]
     exact hf
   · intro f hf
-    rw [rTr_mul]
+    rw [GlobalTheory.RegSch.CentreRight.rTr_mul]
     exact hx _ (hy f hf)
   · let T : W →ₗ[ℂ] W := ((GlobalTheory.KTypeProj.rTrL x).restrict (p := W) (q := W) fun f hf => hx f hf)
     have hinj : Function.Injective T := by
@@ -295,6 +292,8 @@ theorem kFinite_of_mem_gkGen : ∀ {D : D7} (θ : D.what₂.Tau → (Ainf D.host
 
 end GlobalTheory.GKGenKFin
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.TypeSpanProjectionPreservesFiniteDimInvariantSub
@@ -376,8 +375,10 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.CenterActionSmoothCommuting
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.CenterActionSmoothCommuting
+@[expose] public section
 
+noncomputable section
 
 open scoped Matrix NNReal TensorProduct Classical
 open MeasureTheory NumberField IsDedekindDomain Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.Theta Formalism.L2.Pj Formalism.IndefR.Datum
@@ -392,7 +393,6 @@ namespace GlobalTheory.CentreComm
 open GlobalTheory.Mem.AutSpace
 
 variable {D : D7} {θ : InfFam D} {V : HSp D}
-
 
 variable (θ V) in
 def CommOnSm (A B : (GA D V → ℂ) → (GA D V → ℂ)) : Prop := ∀ f ∈ SmFun θ V, A (B f) = B (A f)
@@ -438,6 +438,8 @@ theorem gelf_RderC (hθ : IsInfFam θ) (τ τ' : D.what₂.Tau) (k : ℕ) (Z : M
 
 end GlobalTheory.CentreComm
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ComplexDerivativeAdjointOfSkewForm
@@ -884,12 +886,12 @@ open IsDedekindDomain NumberField MeasureTheory GlobalTheory.ChiGrid GlobalTheor
 open scoped TensorProduct
 open Classical
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.GelfandInvariantsSymmetricOfDerivativeAdjoint
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.GelfandInvariantsSymmetricOfDerivativeAdjoint
 open scoped Matrix
 
+noncomputable section
 
 namespace GlobalTheory.GelfSymm
-
 
 open GlobalTheory.Mem.RealTranslate (derEnd)
 open GlobalTheory.RegSch (wordDer)
@@ -955,7 +957,6 @@ theorem adj_word {τ : D.what₂.Tau} {A : Submodule ℂ (GA D V → ℂ)} (hA :
 
 end GlobalTheory.GelfSymm
 
-
 open GlobalTheory.Mem.RealTranslate (derEnd) in
 open GlobalTheory.RegSch (wordDer) in
 open GlobalTheory.GelfSymm in
@@ -1007,6 +1008,7 @@ theorem GlobalTheory.GelfSymm.gelf_symm : ∀ {D : D7} (θ : D.what₂.Tau → (
 
   rw [hg y, map_sum, ← hgx, map_sum, LinearMap.sum_apply]
   exact Finset.sum_congr rfl fun idx _ => adj_word hA b hb _ x hx y hy
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.GelfandInvariantsSymmetricOfDerivativeAdjointStatement

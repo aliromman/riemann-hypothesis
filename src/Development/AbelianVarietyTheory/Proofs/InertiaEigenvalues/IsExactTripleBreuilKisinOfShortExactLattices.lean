@@ -68,8 +68,9 @@ import Mathlib.Tactic.TypeStar
 open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations TensorProduct PowerSeries GlobalTheory.Prism GlobalTheory.BK GlobalTheory.BKReal GlobalTheory.BKGal GlobalTheory.Per Matrix
 open scoped Formalism.Per
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsUnitCoeffWittTiltRelation
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsUnitCoeffWittTiltRelation
 
+noncomputable section
 
 namespace GlobalTheory.ResidueUnitCoeff
 
@@ -185,8 +186,7 @@ theorem exists_norm_coeff_eq_one : ∀ {l : ℕ} [Fact l.Prime] {a : ℕ} [NeZer
     refine IsIdempotentElem.eq_zero_of_isNilpotent ?_ ?_
     · show _ * _ = _
       rw [← map_mul, hidem.eq]
-    · set_option synthInstance.maxHeartbeats 100000 in
-      rw [hsum, map_sum]
+    · rw [hsum, map_sum]
       refine isNilpotent_sum fun s _ => ?_
       rw [map_mul]
       exact (Commute.all _ _).isNilpotent_mul_left (hnil s)
@@ -205,6 +205,7 @@ theorem exists_norm_coeff_eq_one : ∀ {l : ℕ} [Fact l.Prime] {a : ℕ} [NeZer
   exact hne0 (GlobalTheory.Per.AinfComplete.eq_zero_of_haus ((l : ℕ) : OW l O) (Φ ε) hdvd)
 
 end GlobalTheory.ResidueUnitCoeff
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PhiModuleHomShortExactSplitWittTilt

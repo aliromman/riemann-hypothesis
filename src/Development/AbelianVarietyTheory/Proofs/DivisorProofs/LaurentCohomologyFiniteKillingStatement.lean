@@ -175,8 +175,9 @@ def HX.one (X : Scheme.{0}) : HX R X (unitD R X) 0 :=
 end GlobalTheory.EtC.Rel
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.PullHXApply
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.PullHXApply
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite
 
 namespace GlobalTheory.EtC.Psi
@@ -255,22 +256,7 @@ end Functors
 
 end GlobalTheory.EtC.Psi
 
-namespace GlobalTheory.EtC.Psi
-open GlobalTheory.EtC.Rel
-
-variable (R : Type) [CommRing R]
-
-section Flat
-variable {Z Y U Z' Y' U' : Scheme.{0}}
-
-end Flat
-
-section HX
-variable {Z Z' : Scheme.{0}}
-
-end HX
-
-end GlobalTheory.EtC.Psi
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.GaloisGeometry.IsLocalRingIntegralClosure

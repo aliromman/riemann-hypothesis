@@ -156,15 +156,12 @@ theorem _root_.GlobalTheory.KeyOriginNoeth.exists_point_of_closureFiniteEtale :
 end GlobalTheory.KeyOriginNoeth
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FittingDatumBaseChangeLocalEnlargement
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FittingDatumBaseChangeLocalEnlargement
 
 open IsLocalRing Polynomial
 open scoped TensorProduct
 
-
-namespace GlobalTheory.EnlargeBaseChange
-
-end GlobalTheory.EnlargeBaseChange
+noncomputable section
 
 namespace GlobalTheory.EnlargeBaseChange
 
@@ -391,6 +388,7 @@ theorem _root_.GlobalTheory.EnlargeBaseChange.fits_baseChange : ∀ (T O : Type)
     exact tensorProduct_ringHom_ext_of_comp_eq w₁ w₂ h₁ h₂
 
 end GlobalTheory.EnlargeBaseChange
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleHomToFieldFactorsAlgClosedSubfield

@@ -112,7 +112,7 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SeesawUnfoldingConstant, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaPairCompactAction, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsFiniteDimensionalOrbitOfBoundedRankGenerat, Development.AbelianVarietyTheory.Proofs.TwistedOperators.FockVacuaSpanFiniteDimensional, Development.AbelianVarietyTheory.Proofs.TwistedOperators.GaussianCompactActionEigen, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.IsGaussianOfFockVacuumStabilizerActs, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.FockVectorsKFinite, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.KInftyExponentialLineInDerivativeSpan, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.CompactActionMemKerPolarizationProjection, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.KerPolarizationProjectionFiniteDimensional, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.KerPolarizationProjectionStabilizerFinite, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsOneParameterSubgroupMaxCompactSkewHermitia, Development.AbelianVarietyTheory.Proofs.TwistedOperators.SeesawUnfoldingLimit, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ArchimedeanMaximalCompactIntertwinesFockDerivati, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteDimensionalArchimedeanSchwartzFockOperator, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockVacuaSpanFiniteDimensionalDualPair, Development.AbelianVarietyTheory.Proofs.DivisorProofs.MaximalCompactArchOperatorPreservesFockVacua, Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaPairCompactLineAction, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.StabilizerOfKExponentialLine, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.KerPolarizationProjectionStableUnderStabilizerCo, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.ThetaSubspaceEqKerProjDerivationOfSquare
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SeesawUnfoldingConstant
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SeesawUnfoldingConstant
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.DivisionValues
@@ -122,6 +122,7 @@ open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorMode
 
 open GlobalTheory.SquareComm GlobalTheory.SquareAgree
 
+noncomputable section
 
 namespace GlobalTheory.SquareAgree.KerPCpt
 
@@ -186,15 +187,14 @@ theorem isPair_small {F E : Type} [Field F] [NumberField F] [Field E] [NumberFie
 
 end GlobalTheory.SquareAgree.KerPCpt
 
-namespace GlobalTheory.SquareAgree.KerPCpt
-
-end GlobalTheory.SquareAgree.KerPCpt
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaPairCompactAction
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaPairCompactAction
 
 open NumberField IsDedekindDomain
 
+noncomputable section
 
 namespace GlobalTheory.KExpLine
 
@@ -296,12 +296,7 @@ end Abstract
 
 end GlobalTheory.KExpLine
 
-namespace GlobalTheory.KExpLine
-
-open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
-open scoped Classical
-
-end GlobalTheory.KExpLine
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsFiniteDimensionalOrbitOfBoundedRankGenerat
@@ -555,8 +550,6 @@ section
 open NumberField IsDedekindDomain
 noncomputable section
 namespace GlobalTheory.KExpLine
-end GlobalTheory.KExpLine
-namespace GlobalTheory.KExpLine
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 open scoped Classical
 theorem sub_mem_span_kInfty_exp_derivatives : _root_.GlobalTheory.FunPr.ThetaLocalInputs → ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E]
@@ -646,8 +639,6 @@ open GlobalTheory.Grid GlobalTheory.Doubling GlobalTheory.ChainFr GlobalTheory.I
 open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 open GlobalTheory.SquareComm GlobalTheory.SquareAgree
 noncomputable section
-namespace GlobalTheory.SquareAgree.KerPCpt
-end GlobalTheory.SquareAgree.KerPCpt
 namespace GlobalTheory.SquareAgree.KerPCpt
 theorem compact_action_mem_ker_polarizationProjection : _root_.GlobalTheory.FunPr.ThetaLocalInputs → ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFam D) (W W₁ X : HSp D) (A : Fr W) (A₁ : Fr W₁)
     (B : Fr X) (α β : (AE D)ˣ →* Circle) (ν : Measure (GA D W)) (𝓕 : Set (GA D W)) (ν₁ : Measure (GA D W₁))
@@ -1133,10 +1124,12 @@ end GlobalTheory.KInfVac
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaPairCompactLineAction
+section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ThetaPairCompactLineAction
+@[expose] public section
 
 open NumberField IsDedekindDomain
 
+noncomputable section
 
 namespace GlobalTheory.KExpLineW
 
@@ -1452,12 +1445,8 @@ theorem polData_kfin : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Num
 
 end GlobalTheory.KExpLineW
 
-namespace GlobalTheory.KExpLineW
-
-open MeasureTheory Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.ThK
-
-end GlobalTheory.KExpLineW
-
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.StabilizerOfKExponentialLine
@@ -1466,12 +1455,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 section
 open NumberField IsDedekindDomain
 noncomputable section
-namespace GlobalTheory.KExpLineW
-end GlobalTheory.KExpLineW
-namespace GlobalTheory.KExpLineW
-end GlobalTheory.KExpLineW
-namespace GlobalTheory.KExpLineW
-end GlobalTheory.KExpLineW
 namespace GlobalTheory.KExpLineW
 open MeasureTheory Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.ThK
 theorem KExpLine_stabilizes_line : _root_.GlobalTheory.FunPr.ThetaLocalInputs → ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E)

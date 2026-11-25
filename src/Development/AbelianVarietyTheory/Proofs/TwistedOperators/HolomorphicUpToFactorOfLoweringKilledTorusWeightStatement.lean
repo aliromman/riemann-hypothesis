@@ -879,10 +879,11 @@ theorem detPow_mul_ne_zero_exp : ∀ (D : D7) (θ : InfFam D), IsInfFam θ → �
 end GlobalTheory.AdSpan.ConjHol
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeightedTraceConjFrameToRealLieLoweringOperator
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeightedTraceConjFrameToRealLieLoweringOperator
 open GlobalTheory.SW hiding Level
 open scoped TensorProduct ComplexConjugate Classical
 
+noncomputable section
 
 namespace GlobalTheory.AdSpan.ConjHol
 
@@ -937,7 +938,6 @@ theorem trLin_toLieC_of_trace {D : D7} {S T : HSp D} (C : Ctx S T) (R : GlobalTh
   rw [GlobalTheory.HolRead.AdExt.toLie_val, mat_conjL]
   have hN : trace ((mat W (C.m.e ρ)).map (starRingEnd ℂ)) = 0 := by
     have : trace ((mat W (C.m.e ρ)).map (starRingEnd ℂ)) = starRingEnd ℂ (trace (mat W (C.m.e ρ))) := by
-      set_option synthInstance.maxHeartbeats 100000 in
         simp [Matrix.trace, map_sum]
     rw [this, hW, map_zero]
   set N := (mat W (C.m.e ρ)).map (starRingEnd ℂ)
@@ -956,6 +956,7 @@ theorem trLin_toLieC_unitFr : ∀ (D : D7) (S T : HSp D) (C : Ctx S T) (R : Glob
     trLin_toLieC_of_trace C R B hB m Z' (fun σ => (trace_mat_eq_zero_of_add_I C ρ c d hcd hZ hZ' h σ).2), mul_zero, add_zero]
 
 end GlobalTheory.AdSpan.ConjHol
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.HolomorphicUpToFactorOfLoweringKilledTorusWeight

@@ -207,7 +207,7 @@ theorem spDualMap_apply {n : ℕ} (f : Dual ℂ (Fin n → ℂ)) (i : Fin n) :
     spDualMap n f i = (-1 : ℂ) ^ (i : ℕ) * f (Pi.single i.rev 1) := rfl
 
 theorem spDualMap_injective (n : ℕ) : Function.Injective (spDualMap n) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro f hf
   refine LinearMap.pi_ext fun j x => ?_
   have := congrFun hf j.rev
@@ -1098,8 +1098,9 @@ theorem exists_lift (i : ℚ_[g] ≃+* k) {n a : ℕ} (u : GL (Fin n) (ZMod g))
 end DiscreteGroups.sglob.DzLc
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.DiscreteGroups.GlobalIrreducibility.DzLCusp
+@[expose] public section -- clump member: Development.DiscreteGroups.GlobalIrreducibility.DzLCusp
 
+noncomputable section
 
 open GlobalTheory.GLq GlobalTheory.SmGL GlobalTheory.PRep GlobalTheory.LocGL GlobalTheory.LocLanglands
 open scoped Classical
@@ -1133,7 +1134,6 @@ theorem twKer_twoBlocks_eq_top (i : ℚ_[g] ≃+* k) (hi : Continuous i) {n a : 
     have hsum : ∑ u : GlobalTheory.FiniteGL.unipRadical (ZMod g) (GlobalTheory.FiniteGL.twoBlocks n a),
         (φ w - φ (τ.ρ (u : Gn g n) w)) =
           (Fintype.card (GlobalTheory.FiniteGL.unipRadical (ZMod g) (GlobalTheory.FiniteGL.twoBlocks n a)) : ℂ) • φ w := by
-      set_option synthInstance.maxHeartbeats 100000 in
         rw [Finset.sum_sub_distrib, ← map_sum φ (fun u : GlobalTheory.FiniteGL.unipRadical (ZMod g) (GlobalTheory.FiniteGL.twoBlocks n a) => τ.ρ (u : Gn g n) w),
         ← LinearMap.sum_apply Finset.univ
           (fun u : GlobalTheory.FiniteGL.unipRadical (ZMod g) (GlobalTheory.FiniteGL.twoBlocks n a) => τ.ρ (u : Gn g n)) w, hfin, LinearMap.zero_apply, map_zero,
@@ -1203,6 +1203,7 @@ theorem isCuspidal_of_inflates (i : ℚ_[g] ≃+* k) (hi : Continuous i) {n : �
     Module.End.one_apply] at this
 
 end DiscreteGroups.sglob.DzLc
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.LocalLanglands.LocalCentralUnits.RecTExists

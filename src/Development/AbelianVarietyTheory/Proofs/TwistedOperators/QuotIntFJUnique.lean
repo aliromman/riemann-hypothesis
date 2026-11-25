@@ -68,9 +68,10 @@ import Mathlib.Tactic.Linter.Style
 
 open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.RootEx GlobalTheory.IndefiniteRowSideFullHecke.FourierJacobiAverage
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.MemNormalizerOfTri
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.MemNormalizerOfTri
 open scoped NNReal
 
+noncomputable section
 namespace GlobalTheory.RootEx.ConjVol
 
 section Abstract
@@ -169,11 +170,7 @@ theorem colE_mem (p : ℕ) (β : n → k) :
     rw [inv_eq_of_mul_eq_one_right (QuotStep.colE_neg p β)]; exact colE_tri p _)
 
 theorem colE_add (p : ℕ) (u w : n → k) : colE c p (u + w) = colE c p u * colE c p w := by
-  apply Units.ext
-  simp only [colE, upU, Units.val_mul, fromBlocks_multiply]
-  congr 1 <;> simp
-  ext r i
-  by_cases h : i.val + 1 = p <;> simp [h, add_comm]
+  exact (GlobalTheory.RootEx.FourierJacobiGroup.colE_add p u w).symm
 
 end Alg
 
@@ -224,6 +221,7 @@ theorem integral_conj_colE : ∀ (k : Type) [Field k] [ValuativeRel k] [Topologi
   fun _ _ _ _ _ _ _ _ _ _ _ ρ _ _ ν _ β f => integral_conj_colE' ν (ρ + 1) β f
 
 end GlobalTheory.RootEx.ConjVol
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.QuotIntFJUnique

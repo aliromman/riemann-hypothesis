@@ -19,12 +19,13 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsSystemOf
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsHeckeHermitianPairing, Development.AutomorphicArithmetic.DivisorFrames.ExistsInvariantPosDefHermitianFormAutFormUnitary
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsHeckeHermitianPairing
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsHeckeHermitianPairing
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S IsDedekindDomain NumberField Formalism.L2.Theta
 open Formalism.IndefR.Mult Formalism.UG GlobalTheory.SphPar GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DefTransfer
 open scoped TensorProduct
 
+noncomputable section
 
 open MeasureTheory
 
@@ -45,10 +46,7 @@ variable (μ : Measure (GA D V)) (𝓕 : Set (GA D V)) {ι : Type} [Fintype ι] 
 
 end GlobalTheory.MultPetersson
 
-namespace GlobalTheory.MultPetersson
-
-
-end GlobalTheory.MultPetersson
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.DivisorFrames.ExistsInvariantPosDefHermitianFormAutFormUnitary
@@ -105,26 +103,26 @@ theorem UpperTheory.exists_invariant_posDef_hermitian_form_autForm_unitary :
       rw [← integral_add (hI _ (hPN x) _ (hPN y)) (hI _ (hPN x') _ (hPN y))]
       congr 1
       funext g
-      simp only [Pi.add_apply, star_add, add_mul, mul_add])
+      simp only [Pi.add_apply, star_add, add_mul])
     (fun c x y => by
       simp only [F, map_smul, Submodule.coe_smul]
       rw [smul_eq_mul, ← integral_const_mul]
       congr 1
       funext g
-      simp only [Pi.smul_apply, smul_eq_mul, star_mul, RingHom.id_apply, starRingEnd_apply]
+      simp only [Pi.smul_apply, smul_eq_mul, star_mul, starRingEnd_apply]
       ring)
     (fun x y y' => by
       simp only [F, map_add (f := _), Submodule.coe_add]
       rw [← integral_add (hI _ (hPN x) _ (hPN y)) (hI _ (hPN x) _ (hPN y'))]
       congr 1
       funext g
-      simp only [Pi.add_apply, star_add, add_mul, mul_add])
+      simp only [Pi.add_apply, mul_add])
     (fun c x y => by
       simp only [F, map_smul, Submodule.coe_smul]
       rw [smul_eq_mul, ← integral_const_mul]
       congr 1
       funext g
-      simp only [Pi.smul_apply, smul_eq_mul, star_mul, RingHom.id_apply, starRingEnd_apply]
+      simp only [Pi.smul_apply, smul_eq_mul, RingHom.id_apply]
       ring)
   have hB : ∀ x ∈ N, ∀ y ∈ N, B x y = ∫ g in 𝓕, star (x (j.symm g)) * y (j.symm g) ∂μ := by
     intro x hx y hy

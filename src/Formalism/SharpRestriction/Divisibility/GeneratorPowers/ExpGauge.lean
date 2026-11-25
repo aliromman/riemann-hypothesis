@@ -25,8 +25,9 @@ import Mathlib.Tactic.Linter.HaveILetI
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpSActPS, Formalism.SharpRestriction.Divisibility.GeneratorPowers.CocChart, Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpGJAd, Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpGOPf, Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpGUPf, Formalism.SharpRestriction.Divisibility.GeneratorPowers.PhTwoValHolds, Formalism.SharpRestriction.Divisibility.GeneratorPowers.SubstCoeRename, Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpGauge
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpSActPS
+@[expose] public section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpSActPS
 
+noncomputable section
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGK
 
@@ -34,8 +35,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
 open Formalism.MainNotions.ModuliIntegralCharts.H1.GermD Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGU Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGF Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGG Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGH
   Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGI
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Level H}
 variable {Xo : Moduli Dw l} {c : Coeff l} [StarRing (𝓞 E)]
@@ -102,9 +101,11 @@ theorem val_e (C : ChartAt Xo c y) (φ : Fin C.d → MvPowerSeries (Fin 1 × Fin
 
 end Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGK
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.CocChart
+@[expose] public section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.CocChart
 
+noncomputable section
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGL
 
@@ -112,8 +113,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
 open Formalism.MainNotions.ModuliIntegralCharts.H1.GermD Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGU Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGF Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGG Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGH
   Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGI Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGK
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Level H}
 variable {Xo : Moduli Dw l} {c : Coeff l} [StarRing (𝓞 E)]
@@ -250,17 +249,17 @@ theorem coc_chart (hP1 : ExpGJ.PhOneValSt) (hP2 : ExpGJ.PhTwoValSt) (hAd : ExpGJ
 
 end Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGL
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpGJAd
+@[expose] public section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpGJAd
 
+noncomputable section
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGJ
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
 open Formalism.MainNotions.ModuliIntegralCharts.H1.GermD Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGU Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGF Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGG Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGH
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 section Help
 
@@ -410,18 +409,16 @@ theorem adVal : AdValSt := by
 
 end Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGJ
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpGOPf
+@[expose] public section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpGOPf
 
+noncomputable section
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGO
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
-
-attribute [local instance] Over.cartesianMonoidalCategory
-
-
 
 theorem bqOrigin : BqOriginSt := by
   unfold BqOriginSt
@@ -533,6 +530,7 @@ theorem bqOrigin : BqOriginSt := by
 
 end Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGO
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpGUPf
 
@@ -640,8 +638,9 @@ theorem unitId : UnitIdSt := by
 end Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGU
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.PhTwoValHolds
+@[expose] public section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.PhTwoValHolds
 
+noncomputable section
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGJPh2
 
@@ -649,8 +648,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
 open Formalism.MainNotions.ModuliIntegralCharts.H1.GermD Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGU Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGF Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGG Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGH
 open Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGI
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Level H}
 variable {Xo : Moduli Dw l} {c : Coeff l} [StarRing (𝓞 E)]
@@ -765,9 +762,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open Formalism.MainNotions.ModuliIntegralCharts.H1.GermD Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGU Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGF Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGG Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGH
 open Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGI Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGJPh2
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
-
 theorem phTwoVal_holds : PhTwoValSt := by
   intro E _ _ _ H Dw l Xo c _ S _ _ _ y C φ hexp hx m u0 u1 u2 z J hJ
   have hφ : ∀ j, MvPowerSeries.constantCoeff (φ j) = 0 := hexp.const
@@ -822,9 +816,11 @@ theorem phTwoVal_holds : PhTwoValSt := by
 
 end Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGJ
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.SubstCoeRename
+@[expose] public section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.SubstCoeRename
 
+noncomputable section
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGJPh1
 
@@ -832,8 +828,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
 open Formalism.MainNotions.ModuliIntegralCharts.H1.GermD Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGU Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGF Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGG Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGH
   Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGI
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem subst_coe_rename {σ τ υ : Type} {R : Type} [CommRing R] [Finite σ] [Finite τ] (a : σ → MvPowerSeries υ R)
     (ha : ∀ s, MvPowerSeries.constantCoeff (a s) = 0) (ρ : τ → σ) (q : MvPolynomial τ R) :
@@ -990,6 +984,7 @@ theorem phOneVal_holds : ExpGJ.PhOneValSt := by
       _root_.mul_assoc]
 
 end Formalism.MainNotions.ModuliIntegralCharts.H1.ExpGJPh1
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.ExpGauge

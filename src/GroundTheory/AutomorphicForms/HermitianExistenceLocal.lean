@@ -12,8 +12,10 @@ import Mathlib.RingTheory.PiTensorProduct
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.AutomorphicForms.HermitianWitt, GroundTheory.AutomorphicForms.HermitianExistenceLocal
 
-@[expose] public noncomputable section -- clump member: GroundTheory.AutomorphicForms.HermitianWitt
+section -- clump member: GroundTheory.AutomorphicForms.HermitianWitt
+@[expose] public section
 
+noncomputable section
 
 namespace GroundTheory.Automorphic
 
@@ -51,12 +53,10 @@ theorem bijective_of_injective_sesq [FiniteDimensional E V]
   rw [key]
   exact congrFun hc j
 
-namespace HermitianForm
-
-end HermitianForm
-
 end GroundTheory.Automorphic
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.AutomorphicForms.HermitianExistenceLocal

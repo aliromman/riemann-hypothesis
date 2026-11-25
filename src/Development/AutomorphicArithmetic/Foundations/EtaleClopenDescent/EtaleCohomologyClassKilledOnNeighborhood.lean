@@ -141,8 +141,9 @@ theorem coneExact : LateralTheory.E.GlueRelPf.ConeExact := by
 end LateralTheory.E.GlueRelPfCone
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.RelativeCohomologyColimitOfExactOfNaturality
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.RelativeCohomologyColimitOfExactOfNaturality
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 
 namespace UpperTheory.Cb.RelativeCohomologyColimit
@@ -344,13 +345,13 @@ attribute [local instance] Sys.cat Sys.filt Sys.ring
 
 private theorem resY_id {Y B : Scheme.{0}} (p : Y ⟶ B) (U : B.Etale) : resY p (𝟙 U) = 𝟙 _ := by
   apply pullback.hom_ext
-  · erw [pullback.lift_fst]; simp
-  · erw [pullback.lift_snd]; simp; exact Category.comp_id _
+  · rw [pullback.lift_fst]; simp
+  · rw [pullback.lift_snd]; simp; exact Category.comp_id _
 
 private theorem resYW_id {Y B W : Scheme.{0}} (p : Y ⟶ B) (ι : W ⟶ B) (U : B.Etale) : resYW p ι (𝟙 U) = 𝟙 _ := by
   apply pullback.hom_ext
-  · erw [pullback.lift_fst]; simp [resY_id]
-  · erw [pullback.lift_snd]; simp
+  · rw [pullback.lift_fst]; simp [resY_id]
+  · rw [pullback.lift_snd]; simp
 
 variable {q : ℕ} {i : ℤ} {B W Y : Scheme.{0}} {p : Y ⟶ B} {ι : W ⟶ B} {U : B.Etale} {m : ℤ} {u : U.left}
 
@@ -376,7 +377,7 @@ private def fam (S : Sys q i p ι U m u) : Fam S.J where
   X := towY S
   Z := towW S
   pr j := prU p ι (S.V j)
-  prt f := (pullback.lift_fst _ _ _).symm
+  prt _ := (pullback.lift_fst _ _ _).symm
   prL := prS p ι (S.t ≫ U.hom)
   sq := S.sq
 
@@ -399,6 +400,7 @@ theorem UpperTheory.relativeCohomology_colimit_of_exact_of_naturality :
     refine ⟨S.V j, S.a j, S.mem j, ?_⟩
     rw [← S.tr_a f, rY_comp]
     exact h
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.RelativeCohomologyConnectingNaturality
@@ -442,8 +444,9 @@ alias intersectionNumber_baseChange := _root_.LateralTheory.KummerTheory.SHenCut
 end LateralTheory.Fin.StrictHenselization
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.AffineGeometricCaseOfObstructionExactNatural
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.AffineGeometricCaseOfObstructionExactNatural
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 open LateralTheory.E.E4 LateralTheory.E.Bridge_yfiPf LateralTheory.E.EtaleTopologySheaves LateralTheory.E.SecondDegreeKilling
 
@@ -464,23 +467,23 @@ private abbrev mW {S S' : Scheme.{0}} {s : S ⟶ B} {s' : S' ⟶ B} (g : S' ⟶ 
 private theorem mY_comp_pullback_fst {S S' : Scheme.{0}} {s : S ⟶ B} {s' : S' ⟶ B} (g : S' ⟶ S) (h : g ≫ s = s') :
     mY p g h ≫ pullback.fst p s = pullback.fst p s' := by
   unfold mY pullback.map
-  erw [pullback.lift_fst]
+  rw [pullback.lift_fst]
   exact Category.comp_id _
 
 private theorem mY_comp_pullback_snd {S S' : Scheme.{0}} {s : S ⟶ B} {s' : S' ⟶ B} (g : S' ⟶ S) (h : g ≫ s = s') :
     mY p g h ≫ pullback.snd p s = pullback.snd p s' ≫ g := by
   unfold mY pullback.map
-  erw [pullback.lift_snd]
+  rw [pullback.lift_snd]
 
 private theorem mW_comp_fst_eq_fst_comp_mY {S S' : Scheme.{0}} {s : S ⟶ B} {s' : S' ⟶ B} (g : S' ⟶ S) (h : g ≫ s = s') :
     mW p ι g h ≫ pullback.fst _ ι = pullback.fst _ ι ≫ mY p g h := by
   unfold mW pullback.map
-  erw [pullback.lift_fst]
+  rw [pullback.lift_fst]
 
 private theorem mW_comp_pullback_snd {S S' : Scheme.{0}} {s : S ⟶ B} {s' : S' ⟶ B} (g : S' ⟶ S) (h : g ≫ s = s') :
     mW p ι g h ≫ pullback.snd _ ι = pullback.snd _ ι := by
   unfold mW pullback.map
-  erw [pullback.lift_snd]
+  rw [pullback.lift_snd]
   exact Category.comp_id _
 
 private theorem mY_comp {S S' S'' : Scheme.{0}} {s : S ⟶ B} {s' : S' ⟶ B} {s'' : S'' ⟶ B} (g : S' ⟶ S) (h : g ≫ s = s')
@@ -588,7 +591,7 @@ private theorem equiv_hom_comp_projection {S : Scheme.{0}} (g : S ⟶ C) (s : S 
       (pullback.fst (p2 p ι π) g ≫ pullback.snd (pullback.snd p π ≫ π) ι) ≫ ι := by
   subst h
   rw [Category.assoc, Category.assoc, eY_hom_snd_assoc]
-  erw [pullback.lift_snd_assoc]
+  rw [pullback.lift_snd_assoc]
   rw [← pullback.condition (f := pullback.snd p π ≫ π) (g := ι),
     ← pullback.condition_assoc (f := p2 p ι π) (g := g)]
   simp only [Category.assoc]
@@ -634,41 +637,41 @@ private theorem eY_nat (h : g ≫ π = s) (h' : g' ≫ π = s') (k : S' ⟶ S) (
     (eY p π g' s' h').hom ≫ mY p k hk = bc (pullback.snd p π) k hg ≫ (eY p π g s h).hom := by
   apply pullback.hom_ext
   · rw [Category.assoc, mY_comp_pullback_fst, eY_hom_fst, Category.assoc, eY_hom_fst]
-    erw [pullback.lift_fst_assoc]
+    rw [pullback.lift_fst_assoc]
     rw [Category.comp_id]
   · rw [Category.assoc, mY_comp_pullback_snd, eY_hom_snd_assoc, Category.assoc, eY_hom_snd]
-    erw [pullback.lift_snd]
+    rw [pullback.lift_snd]
 
 private theorem bc_comp_pullback_fst {X : Scheme.{0}} (P : X ⟶ C) (k : S' ⟶ S) (hg : k ≫ g = g') :
     bc P k hg ≫ pullback.fst P g = pullback.fst P g' := by
   unfold bc pullback.map
-  erw [pullback.lift_fst]
+  rw [pullback.lift_fst]
   exact Category.comp_id _
 
 private theorem bc_comp_pullback_snd {X : Scheme.{0}} (P : X ⟶ C) (k : S' ⟶ S) (hg : k ≫ g = g') :
     bc P k hg ≫ pullback.snd P g = pullback.snd P g' ≫ k := by
   unfold bc pullback.map
-  erw [pullback.lift_snd]
+  rw [pullback.lift_snd]
 
 private theorem aW_comp_pullback_fst (g : S ⟶ C) :
     aW p ι π g ≫ pullback.fst _ _ = pullback.fst _ _ ≫ pullback.fst _ _ := by
   unfold aW
-  erw [pullback.lift_fst]
+  rw [pullback.lift_fst]
 
 private theorem aW_comp_pullback_snd (g : S ⟶ C) :
     aW p ι π g ≫ pullback.snd _ _ = pullback.snd _ _ := by
   unfold aW
-  erw [pullback.lift_snd]
+  rw [pullback.lift_snd]
 
 private theorem eW_hom_comp_fst_eq_aW_comp_eY (g : S ⟶ C) (h : g ≫ π = s) :
     (eW p ι π g s h).hom ≫ pullback.fst _ _ = aW p ι π g ≫ (eY p π g s h).hom := by
   unfold eW
-  erw [pullback.lift_fst]
+  rw [pullback.lift_fst]
 
 private theorem eW_hom_comp_snd (g : S ⟶ C) (h : g ≫ π = s) :
     (eW p ι π g s h).hom ≫ pullback.snd _ _ = pullback.fst _ _ ≫ pullback.snd _ _ := by
   unfold eW
-  erw [pullback.lift_snd]
+  rw [pullback.lift_snd]
 
 private theorem eW_nat (h : g ≫ π = s) (h' : g' ≫ π = s') (k : S' ⟶ S) (hk : k ≫ s = s') (hg : k ≫ g = g') :
     (eW p ι π g' s' h').hom ≫ mW p ι k hk = bc (p2 p ι π) k hg ≫ (eW p ι π g s h).hom := by
@@ -851,6 +854,7 @@ theorem UpperTheory.Cb.affineGeometricCase_of_obstructionExact_natural :
     rwa [map_natCast] at h
   exact UpperTheory.Cb.MorphismCompositionLaws.sys_of i ι p hp U R e m u hq hyps.2.1 hyps.2.2.2.2.2.2.2.2.2.2.1
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.NeighbourhoodCohomologyObstructionExact
 
@@ -917,8 +921,9 @@ theorem UpperTheory.Cb.neighbourhood_cohomology_obstruction_exact :
   exact UpperTheory.Cb.ConeExactness.cone_exact (ZMod q) _ _ m y hy
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.NeighbourhoodShrinkingOfObstructionExactNatural
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.NeighbourhoodShrinkingOfObstructionExactNatural
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 
 namespace UpperTheory.Cb.MorphismProjectionLaws
@@ -937,7 +942,7 @@ private lemma mY_snd (p : Y ⟶ B) (u : T ⟶ B) (u' : T' ⟶ B) (f : T ⟶ T') 
 private lemma mY_fst (p : Y ⟶ B) (u : T ⟶ B) (u' : T' ⟶ B) (f : T ⟶ T') (h : f ≫ u' = u) :
     mY p u u' f h ≫ pullback.fst p u' = pullback.fst p u := by
   unfold mY pullback.map
-  erw [pullback.lift_fst]
+  rw [pullback.lift_fst]
   exact Category.comp_id _
 
 private lemma mY_comp (p : Y ⟶ B) (u : T ⟶ B) (u' : T' ⟶ B) (u'' : T'' ⟶ B) (f : T ⟶ T') (g : T' ⟶ T'')
@@ -1088,6 +1093,7 @@ theorem UpperTheory.Cb.neighbourhoodShrinking_of_obstructionExact_natural :
     LateralTheory.E.NeighbourhoodKilling.ObsExact → LateralTheory.E.NeighbourhoodKilling.ObsNat → LateralTheory.E.GeoProof.Shrink := by
   intro _ _ q _ i B W Y p ι U U' a m u' S
   exact UpperTheory.Cb.MorphismProjectionLaws.shrink q i p ι U U' a m u' S
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.EtaleCohomologyClassKilledOnNeighborhood

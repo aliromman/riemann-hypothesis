@@ -168,8 +168,9 @@ theorem LeafCmp_of_Mat (hMat : LeafMat) : LeafCmp := LeafCmp_of hMat LeafCmpNb_p
 end LateralTheory.CohomologicalPurity.Cl
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.CohomologicalPurity.LeafDescOSepPf
+@[expose] public section -- clump member: Development.EtaleCohomology.CohomologicalPurity.LeafDescOSepPf
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC CochainComplex.HomComplex
 
 namespace LateralTheory.CohomologicalPurity.Cl
@@ -180,9 +181,6 @@ theorem sres_comp {R : Type} [CommRing R] {F : Shv R} {W V U : Scheme.{0}} (f : 
 
 theorem sres_zero {R : Type} [CommRing R] {F : Shv R} {V U : Scheme.{0}} (f : V ⟶ U) :
     Sec.res (F := F) f 0 = 0 := map_zero ((F.obj.map f.op).hom)
-
-theorem smap_zero {R : Type} [CommRing R] {F G : Shv R} (φ : F ⟶ G) {U : Scheme.{0}} :
-    Sec.map φ (0 : Sec F U) = 0 := map_zero ((φ.hom.app (op U)).hom)
 
 theorem smap_res {R : Type} [CommRing R] {F G : Shv R} (φ : F ⟶ G) {V U : Scheme.{0}} (f : V ⟶ U) (x : Sec F U) :
     Sec.map φ (Sec.res f x) = Sec.res f (Sec.map φ x) := by
@@ -230,7 +228,7 @@ theorem LeafDescOSep_of : LeafDescOSep := by
     · refine ⟨U, le_top, hxU, ⟨0, sres_zero _, ?_⟩⟩
       have e : rs (le_top : U ≤ ⊤) (Sec.res (⊤ : X.Opens).ι a.1) = 0 := by
         unfold rs; rw [sres_comp, Scheme.homOfLE_ι]; exact a.2.1
-      rw [e]; exact smap_zero _
+      rw [e]; exact LateralTheory.CohomologicalPurity.DictPf.smap_zero _
     · obtain ⟨V, hxV, hV0⟩ := hs x hxU
       refine ⟨V, le_top, hxV, ?_⟩
       have e : rs (le_top : V ≤ ⊤) (Sec.res (⊤ : X.Opens).ι a.1) = Sec.res V.ι a.1 := by
@@ -250,6 +248,7 @@ theorem LeafDescOSep_of : LeafDescOSep := by
   exact key.symm
 
 end LateralTheory.CohomologicalPurity.Cl
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.EtaleCohomology.CohomologicalPurity.LeafDictPfDbl
@@ -1309,11 +1308,10 @@ theorem LeafVan_of (hC : LeafChart) (hR : LeafVanRing) : LeafVan := by
 end LateralTheory.CohomologicalPurity.Cl
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.EtaleCohomology.CohomologicalPurity.LeafVanRingPf
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
-
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.CohomologicalPurity.LeafVanRingPf
 
 namespace LateralTheory.CohomologicalPurity.Cl
 
@@ -1336,8 +1334,7 @@ theorem chart_nbhd {d : ℕ} {A B : Type} [CommRing A] [CommRing B] (I : Ideal A
     (hc : ∀ a : A, φ a - ψ (MvPolynomial.C (Ideal.Quotient.mk I a)) ∈ I.map φ) :
     Nbhd ψ (Ideal.span (Set.range MvPolynomial.X)) := by
   refine ⟨hψ, ?_, ?_⟩
-  · set_option synthInstance.maxHeartbeats 200000 in
-    apply (injective_iff_map_eq_zero _).2
+  · apply (injective_iff_map_eq_zero _).2
     intro f hf
     obtain ⟨f, rfl⟩ := Ideal.Quotient.mk_surjective f
     rw [Ideal.quotientMap_mk, Ideal.Quotient.eq_zero_iff_mem, hJ] at hf
@@ -1395,8 +1392,11 @@ theorem LeafVanRing_of (hNb : LeafNb) (hTh : LeafThom) : LeafVanRing := by
 
 end LateralTheory.CohomologicalPurity.Cl
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.EtaleCohomology.CohomologicalPurity.LeafZeroPf
+
+open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 
 namespace LateralTheory.CohomologicalPurity.Cl.Flq
 
@@ -1422,6 +1422,8 @@ end LateralTheory.CohomologicalPurity.Cl.Flq
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.EtaleCohomology.CohomologicalPurity.LeafZlocPf
+
+open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 
 namespace LateralTheory.CohomologicalPurity.ZlocPf
 
@@ -1536,6 +1538,8 @@ end LateralTheory.CohomologicalPurity.ZlocPf
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.EtaleCohomology.CohomologicalPurity.LeafZornPf
+
+open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 
 namespace LateralTheory.CohomologicalPurity.ZornPf
 open LateralTheory.CohomologicalPurity.Cl
@@ -1691,8 +1695,6 @@ theorem LeafZorn_of : LeafZorn := by
 
 end LateralTheory.CohomologicalPurity.ZornPf
 end -- clump:auto
-
-end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.EtaleCohomology.CohomologicalPurity.FixLeafCl
 

@@ -7,8 +7,9 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CocycleTenso
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CrystallineCocycleCotangentValueBaseChangeNatura, Development.AbelianVarietyTheory.Proofs.DivisorProofs.CrystallineCocycleOnPointsIsCocycleAndEvalEqStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.CanonicalRigidifiedExtensionPullbackNaturality
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CrystallineCocycleCotangentValueBaseChangeNatura
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CrystallineCocycleCotangentValueBaseChangeNatura
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj TensorProduct WithConv
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp spMap epsR IsTangent IsGrpPullback)
@@ -82,7 +83,6 @@ def cotRingHom {R R' : Type} [CommRing R] [CommRing R'] {σ : R →+* R'} {D D' 
   map_add' a b := by ext <;> simp
   map_mul' a b := by ext <;> simp [map_smulₛₗ]
 
-set_option backward.isDefEq.respectTransparency false in
 theorem cotVal_pull (R R' : Type) [CommRing R] [CommRing R'] (σ : R →+* R')
     (X : Over (Sp R)) (X' : Over (Sp R')) (φ : X'.left ⟶ X.left)
     (m : IsMor (dp0 R) (X.hom ≫ 𝟙 _) (dp0 R') (X'.hom ≫ 𝟙 _) σ φ)
@@ -115,6 +115,7 @@ theorem cotVal_pull (R R' : Type) [CommRing R] [CommRing R'] (σ : R →+* R')
   exact congrArg₂ (· + ·) (hs _) (ps' _)
 
 end GlobalTheory.PtExt
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CrystallineCocycleOnPointsIsCocycleAndEvalEqStatement

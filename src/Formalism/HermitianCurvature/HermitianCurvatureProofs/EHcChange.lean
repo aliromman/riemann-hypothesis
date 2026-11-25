@@ -19,8 +19,9 @@ import Mathlib.RingTheory.PiTensorProduct
 open Matrix Finset
 open scoped ContDiff
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.Hpart2EqZeroOfInLie
+@[expose] public section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.Hpart2EqZeroOfInLie
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.P.JFxE
 
@@ -57,16 +58,10 @@ theorem hp_decomp (Z : Mat k r) : hpart1 (Hpk k r) Z + Complex.I • hpart2 (Hpk
   norm_num
 
 theorem hpart1_add' (Z W : Mat k r) : hpart1 (Hpk k r) (Z + W) = hpart1 (Hpk k r) Z + hpart1 (Hpk k r) W := by
-  simp only [hpart1, Matrix.conjTranspose_add, Matrix.mul_add, Matrix.add_mul]
-  rw [← smul_add]
-  congr 1
-  abel
+  exact Formalism.FourierDecayAlt.P.LieDecompositionLocal.hpart1_add Z W
 
 theorem hpart2_add' (Z W : Mat k r) : hpart2 (Hpk k r) (Z + W) = hpart2 (Hpk k r) Z + hpart2 (Hpk k r) W := by
-  simp only [hpart2, Matrix.conjTranspose_add, Matrix.mul_add, Matrix.add_mul]
-  rw [← smul_add]
-  congr 1
-  abel
+  exact Formalism.FourierDecayAlt.P.LieDecompositionLocal.hpart2_add Z W
 
 theorem hp1_real (x : ℝ) (Z : Mat k r) : hpart1 (Hpk k r) ((x : ℂ) • Z) = (x : ℂ) • hpart1 (Hpk k r) Z := by
   have hs : star (x : ℂ) = (x : ℂ) := Complex.conj_ofReal x
@@ -137,6 +132,7 @@ theorem Psi_sub (D : Mat k r →L[ℝ] E) (g Z W : Mat k r) : Psi D g (Z - W) = 
   rw [sub_eq_add_neg, Psi_add, ← neg_one_smul ℂ W, Psi_smul, neg_one_smul, ← sub_eq_add_neg]
 
 end Formalism.FourierDecayAlt.P.JFxE
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.EHcChange

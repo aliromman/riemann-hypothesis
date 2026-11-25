@@ -105,10 +105,10 @@ namespace PositivityTheory.KB.MeanLatticeAction
 variable {L : Type} [Field L] [NumberField L] {N : ℕ}
 
 theorem countable_latS : Countable (latS L N) := by
-  haveI : Countable (𝓞 L) := Finsupp.Countable.of_moduleFinite (R := ℤ)
-  haveI : Countable (Matrix (Fin N) (Fin N) (𝓞 L)) :=
+  have : Countable (𝓞 L) := Finsupp.Countable.of_moduleFinite (R := ℤ)
+  have : Countable (Matrix (Fin N) (Fin N) (𝓞 L)) :=
     inferInstanceAs (Countable (Fin N → Fin N → 𝓞 L))
-  haveI : Countable (Matrix.SpecialLinearGroup (Fin N) (𝓞 L)) := by
+  have : Countable (Matrix.SpecialLinearGroup (Fin N) (𝓞 L)) := by
     unfold Matrix.SpecialLinearGroup; infer_instance
   unfold latS
   exact (MonoidHom.pi fun w => Matrix.SpecialLinearGroup.map (embO (L := L) w)).rangeRestrict_surjective.countable
@@ -116,9 +116,9 @@ theorem countable_latS : Countable (latS L N) := by
 theorem mean_shift (d : Dom L N) {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] (f : Sp L N → E)
     (hf : ∀ (g : latS L N) (x : Sp L N), f ((g : Sp L N) * x) = f x) (s : Sp L N) :
     ∫ y in d.D, f (y * s) ∂d.μ = ∫ y in d.D, f y ∂d.μ := by
-  haveI := d.haar
-  haveI := d.right
-  haveI : Countable (latS L N) := countable_latS
+  have := d.haar
+  have := d.right
+  have : Countable (latS L N) := countable_latS
   have hmp : MeasurePreserving (fun y : Sp L N => y * s) d.μ d.μ := measurePreserving_mul_right d.μ s
   have hemb : MeasurableEmbedding (fun y : Sp L N => y * s) := measurableEmbedding_mulRight s
   have hD' : IsFundamentalDomain (latS L N) ((fun y : Sp L N => y * s) ⁻¹' d.D) d.μ :=
@@ -445,8 +445,10 @@ end PositivityTheory.KB
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.OddSpanRank.SBStarOddOf
+section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.OddSpanRank.SBStarOddOf
+@[expose] public section
 
+noncomputable section
 
 open NumberField NumberField.InfinitePlace Matrix UpperTheory.V.KT UpperTheory.V.KL
 open scoped TensorProduct
@@ -456,7 +458,7 @@ namespace PositivityTheory.KB
 open PrimeModuloFree LargePrimeDiscriminant in
 theorem sBStarOdd_of : SBStarOdd := by
   intro hC hSep hBr hStab hSurj hWt L _ _ hTC k hk hkr l hl n hn
-  haveI : IsTotallyComplex L := hTC
+  have : IsTotallyComplex L := hTC
   obtain ⟨θ, hθs, hθ0, hθn⟩ := hBr k
   obtain ⟨τ, hτW, hτ⟩ := hWt L k hk
   have hcard : Fintype.card (InfinitePlace L) = nrComplexPlaces L := by
@@ -521,6 +523,8 @@ theorem sBStarOdd_of : SBStarOdd := by
 
 end PositivityTheory.KB
 
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.OddWeightCycles.AevApply
@@ -1140,8 +1144,10 @@ end PositivityTheory.KB.JoinReconstruction
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.IteratedHeckeBounds.LemForm
+section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.IteratedHeckeBounds.LemForm
+@[expose] public section
 
+noncomputable section
 
 open NumberField NumberField.InfinitePlace Matrix MeasureTheory UpperTheory.V.KT UpperTheory.V.KL
 
@@ -1205,7 +1211,7 @@ theorem key (hPrime : SPrime) (hHecke : SHecke) (hHt : SHt) (hPU : SPU) (hMom : 
     lem_form hHt hPU hWhit hCen L hC k a N h1N (hPUa N h1N) c hcI hcd
   obtain ⟨_, _, ⟨c0, hc0, hc0le⟩, _⟩ := hHt L hC N h1N
   have hht0 : ∀ x, 0 ≤ ht x := fun x => hc0.le.trans (hc0le x)
-  haveI : IsFiniteMeasure (d.μ.restrict d.D) := isFiniteMeasure_restrict.2 d.fin.ne
+  have : IsFiniteMeasure (d.μ.restrict d.D) := isFiniteMeasure_restrict.2 d.fin.ne
   have hsq' : IntegrableOn (fun x => ‖fr ω' (ofS L N x)‖ ^ 2) d.D d.μ := by
     refine Integrable.mono' (hd.const_mul (K ^ 2)) ((lem_meas d hω'G.1).norm.pow 2)
       (Filter.Eventually.of_forall fun x => ?_)
@@ -1249,6 +1255,8 @@ theorem key (hPrime : SPrime) (hHecke : SHecke) (hHt : SHt) (hPU : SPU) (hMom : 
 
 end PositivityTheory.KB.JoinReconstruction
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.SurjectivityCase.SSurjOf

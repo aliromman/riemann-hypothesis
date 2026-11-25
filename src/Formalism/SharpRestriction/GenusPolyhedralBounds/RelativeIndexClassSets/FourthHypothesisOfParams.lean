@@ -10,12 +10,10 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.DiscriminantPowEightLeSqrt, Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.BaseDegreeAtLiftIndex, Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.NonvanishingSectionCondition, Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.FourthHypothesisOfParams
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.DiscriminantPowEightLeSqrt
 
 
 open Formalism.MainNotions.WeightAlgebra Formalism.BasicNotions NumberField IsDedekindDomain Module
-
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.DiscriminantPowEightLeSqrt
 
 namespace Formalism.MainNotions.Gaps.EtaleWeightGaps.Num
 
@@ -178,7 +176,12 @@ end Formalism.MainNotions.Gaps.EtaleWeightGaps.Num
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.BaseDegreeAtLiftIndex
+section -- clump member: Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.BaseDegreeAtLiftIndex
+@[expose] public section
+
+noncomputable section
+
+open Formalism.MainNotions.WeightAlgebra Formalism.BasicNotions NumberField IsDedekindDomain Module
 
 namespace Formalism.MainNotions.Gaps.EtaleWeightGaps.Num
 
@@ -293,12 +296,9 @@ structure RunN (D : D7) where
   nW : ℕ
   nP : ℕ
   Q0 : ℕ
-  T_pos : 0 < T
   nW_even : Even nW
   even_nP₂ : Even nP
   split : D.R.nV = nP + T * nW
-  nP_le_nW : nP ≤ nW
-  hQ0 : (WeightFamilies.dimY D D.R.m + 2) * nW + 2 * D.R.r ≤ 2 * Q0
 
 namespace RunN
 
@@ -446,9 +446,16 @@ end RunN
 
 end Formalism.MainNotions.Gaps.EtaleWeightGaps.Num
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.NonvanishingSectionCondition
+section -- clump member: Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.NonvanishingSectionCondition
+@[expose] public section
+
+noncomputable section
+
+open Formalism.MainNotions.WeightAlgebra Formalism.BasicNotions NumberField IsDedekindDomain Module
 
 namespace Formalism.MainNotions.Gaps.EtaleWeightGaps.Num
 
@@ -459,40 +466,14 @@ theorem dm_eq (T : ParamsT D L P) : WeightFamilies.dimY D D.R.m = T.Dp := by
   unfold WeightFamilies.dimY Ranks.sigW Ranks.r
   simp [Nat.choose_two_right]
 
-theorem order_le_modulus (T : ParamsT D L P) (S : SizesAt L) (hZ : 10 ^ 60 ≤ zBase L) : T.TO ≤ q0N T := by
-  unfold q0N
-  have hT40 := T.TO_40
-  have hTpos : (0 : ℝ) < (T.TO : ℝ) := by exact_mod_cast (show 0 < T.TO by omega)
-  have hZ' : (1 : ℝ) ≤ zBase L := by
-    have h : (1 : ℝ) ≤ 10 ^ 60 := by norm_num
-    linarith
-  have hPP : 1 ≤ T.PP := by
-    rw [T.PP_eq]
-    exact one_le_mul_of_one_le_of_one_le T.one_le_CP (Real.one_le_rpow hZ' (by linarith [T.eP_ge]))
-  have hbpos : 0 < L.sc.b := by unfold Scale.b; exact Real.exp_pos _
-  have h1 : (T.TO : ℝ) ≤ L.sc.b ^ (1 / 2 : ℝ) := le_trans (le_mul_of_one_le_right hTpos.le hPP) T.TO_PP'
-  have h2 := mul_self_le_mul_self hTpos.le h1
-  rw [← Real.rpow_add hbpos] at h2
-  norm_num at h2
-  have hq : (T.TO : ℝ) ≤ L.sc.b / (T.TO : ℝ) := by
-    rw [le_div_iff₀ hTpos]
-    linarith
-  exact_mod_cast le_trans hq (Nat.le_ceil _)
-
-abbrev runOf (T : ParamsT D L P) (S : SizesAt L) (hZ : 10 ^ 60 ≤ zBase L) : RunN D where
+abbrev runOf (T : ParamsT D L P) (_S : SizesAt L) (_hZ : 10 ^ 60 ≤ zBase L) : RunN D where
   T := T.TO
   nW := T.nWn
   nP := T.nP
   Q0 := q0N T
-  T_pos := by have := T.TO_40; omega
   nW_even := T.nW_even
   even_nP₂ := T.even_nP₂
   split := T.split
-  nP_le_nW := T.nW_lo.2.2
-  hQ0 := by
-    rw [dm_eq T]
-    have := T.TO_nW; have := order_le_modulus T S hZ
-    omega
 
 def Kc0 : KAdm := ⟨1, 1, 1, 1, 1, 1, 1, 1, 2⟩
 
@@ -634,9 +615,14 @@ end Run
 
 end Formalism.MainNotions.Gaps.EtaleWeightGaps.Num
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.FourthHypothesisOfParams
+
+
+open Formalism.MainNotions.WeightAlgebra Formalism.BasicNotions NumberField IsDedekindDomain Module
 
 namespace Formalism.MainNotions.Gaps.EtaleWeightGaps.Num
 

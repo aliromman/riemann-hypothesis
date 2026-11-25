@@ -181,8 +181,6 @@ open PositivityTheory.Rg.BcB.F.Eig PositivityTheory.Rg.BcN.F2
 
 namespace PositivityTheory.Rg.BcB.F.B3
 
-attribute [local instance] borelG borelF borelA
-
 namespace PTop
 
 section Generic

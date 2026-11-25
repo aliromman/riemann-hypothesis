@@ -59,8 +59,10 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSiegelObjectL
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IsogenyEtaleTranslation.PAlFEt, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IsogenyEtaleTranslation.PBridge, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IsogenyEtaleTranslation.PCxFinOf, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IsogenyEtaleTranslation.PDescEt, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IsogenyEtaleTranslation.PDescFin, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IsogenyEtaleTranslation.PDimUniq, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IsogenyEtaleTranslation.PEtCancel, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IsogenyEtaleTranslation.PLegOf, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IsogenyEtaleTranslation.PPowFEt, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IsogenyEtaleTranslation.PScalEx, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IsogenyEtaleTranslation.PTanIso, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IsogenyEtaleTranslation.PTrFEt, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IsogenyEtaleTranslation.PTrScal, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IsogenyEtaleTranslation.PWitScal, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IsogenyEtaleTranslation.TrEqRe, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IsogenyEtaleTranslation.TranslationFiniteEtaleOfIsogenyData, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IsogenyEtaleTranslation.TrFEtHolds
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IsogenyEtaleTranslation.PAlFEt
+section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IsogenyEtaleTranslation.PAlFEt
+@[expose] public section
 
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.UPel.HT GlobalTheory.UPel.HT.Gen GlobalTheory.LKTrip GlobalTheory.LKMid GlobalTheory.LKGeo
@@ -116,8 +118,8 @@ theorem UpperTheory.Gal.FixZ.alFEt_of :
       exact ha
     · rw [← hb, mul_comm]
   set U := (T.M N).univ with hU
-  letI := U.grp
-  letI := U.comm
+  let := U.grp
+  let := U.comm
   have key : ∀ x y : 𝓞 D.toG.F, ∀ d : ℕ, x * y = d →
       U.act.act (algebraMap (𝓞 D.toG.F) D.toG.O y) ≫ U.act.act (algebraMap (𝓞 D.toG.F) D.toG.O x)
         = 𝟙 U.A ^ d := by
@@ -137,10 +139,14 @@ theorem UpperTheory.Gal.FixZ.alFEt_of :
   show IsFinite ((T.e N).hom ≫ _ ≫ (T.e N).inv) ∧ Etale ((T.e N).hom ≫ _ ≫ (T.e N).inv)
   exact ⟨inferInstance, inferInstance⟩
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IsogenyEtaleTranslation.PBridge
+section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IsogenyEtaleTranslation.PBridge
+@[expose] public section
 
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.UPel.HT GlobalTheory.UPel.HT.Gen GlobalTheory.LKTrip GlobalTheory.LKGeo
@@ -167,7 +173,7 @@ private theorem ind_eq {G : Type} [Group G] (K : Subgroup G) (g : G) :
 
 private theorem smooth_iso {A B C : Scheme.{0}} (e : A ≅ B) (s : B ⟶ C) (n : ℕ)
     (h : SmoothOfRelativeDimension n s) : SmoothOfRelativeDimension n (e.hom ≫ s) := by
-  haveI := h
+  have := h
   have := smoothOfRelativeDimension_comp (n := 0) (m := n) e.hom s
   rwa [Nat.zero_add] at this
 
@@ -202,7 +208,7 @@ theorem UpperTheory.Gal.FixZ.bridge_of :
   have htw : c₂.tw α = (T.e N').inv ≫ leg T N' N h b α ≫ (T.e N).hom := by
     rw [hc₂, Iso.inv_hom_id_assoc]
   have hEt : Etale (c₁.pw k) := by
-    haveI := T.X.etale (T.lev N') (T.lev N) a.1 a.2
+    have := T.X.etale (T.lev N') (T.lev N) a.1 a.2
     rw [hpw]
     infer_instance
   have h₁ : c₁.pw k ≫ W2.sZ (T.M N) k = W2.sZ (T.M N') k := by
@@ -224,13 +230,13 @@ theorem UpperTheory.Gal.FixZ.bridge_of :
   have hFT := hTr p D G L gb k T N' N h b.1 b.2
   have hFA := hAl p D G L gb k T N α (fun s => (hα s).1)
   have hlegF : IsFinite (leg T N' N h b α) := by
-    haveI := hFT.1
-    haveI := hFA.1
+    have := hFT.1
+    have := hFA.1
     unfold leg
     infer_instance
   have hlegE : Etale (leg T N' N h b α) := by
-    haveI := hFT.2
-    haveI := hFA.2
+    have := hFT.2
+    have := hFA.2
     unfold leg
     infer_instance
   refine ⟨hCx p G v (L.KN N.1) (L.KN N'.1) h hLe hAdm hfin hone, hlegF, hlegE, ?_⟩
@@ -257,6 +263,8 @@ theorem UpperTheory.Gal.FixZ.bridge_of :
     refine ⟨∅, fun _ => 0, fun x => (hpt x.1).elim, fun x => (hpt x.1).elim, fun y => ?_⟩
     rw [← hRHS y, hFx0, Finset.sum_empty, Finset.sum_empty]
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IsogenyEtaleTranslation.PCxFinOf
@@ -677,8 +685,10 @@ theorem UpperTheory.Gal.FixZ.scalEx_of :
     exact hk v hv
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IsogenyEtaleTranslation.PTanIso
+section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IsogenyEtaleTranslation.PTanIso
+@[expose] public section
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory GlobalTheory.HodgeCoh GlobalTheory.CechDR KaehlerDifferential
 
@@ -708,9 +718,9 @@ private theorem exists_kaehler_map_D_of_algHom {A B : Type} [CommRing A] [CommRi
     (f : A →ₐ[ℂ] B) :
     ∃ Ψ : Ω[A⁄ℂ] →ₗ[ℂ] Ω[B⁄ℂ], (∀ a, Ψ (D ℂ A a) = D ℂ B (f a)) ∧
       ∀ (a : A) (ω : Ω[A⁄ℂ]), Ψ (a • ω) = f a • Ψ ω := by
-  letI : Algebra A B := f.toRingHom.toAlgebra
-  haveI : IsScalarTower ℂ A B := IsScalarTower.of_algebraMap_eq (fun r => (f.commutes r).symm)
-  haveI : SMulCommClass ℂ A B := ⟨fun r a b => by
+  let : Algebra A B := f.toRingHom.toAlgebra
+  have : IsScalarTower ℂ A B := IsScalarTower.of_algebraMap_eq (fun r => (f.commutes r).symm)
+  have : SMulCommClass ℂ A B := ⟨fun r a b => by
     change r • (f a * b) = f a * (r • b)
     rw [mul_smul_comm]⟩
   refine ⟨(KaehlerDifferential.map ℂ ℂ A B).restrictScalars ℂ, fun a => ?_, fun a ω => ?_⟩
@@ -833,6 +843,8 @@ theorem tanIso_of :
 
 end UpperTheory.Gal.FixZ
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.IsogenyEtaleTranslation.PTrFEt
@@ -1043,7 +1055,7 @@ theorem UpperTheory.Gal.FixZ.witScal_of :
   have hmon : IsMonHom ((𝟙 X.univ.A) ^ d) := _root_.GlobalTheory.SS.DivSemi.isMonHom_id_pow _ d
   have hcomm : ∀ c : D.O, X.univ.act.act c ≫ ((𝟙 X.univ.A) ^ d) = ((𝟙 X.univ.A) ^ d) ≫ X.univ.act.act c := by
     intro c
-    haveI := X.univ.act.hom c
+    have := X.univ.act.hom c
     rw [MonObj.comp_pow, pow_comp_hom, Category.comp_id, Category.id_comp]
   refine ⟨Category.id_comp _, X.univ, (𝟙 X.univ.A) ^ d, m, ?_, by rw [hm]; simp⟩
   refine ⟨hmon, hcomm, ⟨𝟙 _, d, inferInstance, fun c => ?_, Category.comp_id _, Category.id_comp _, hdp⟩,
@@ -1130,7 +1142,7 @@ private lemma kap_iff {D : Datum p} {G : HTGroup p} (L : Link D G) (ha : D.a = 1
   refine ⟨fun h => (h _).trans (D.tau_ω i₀), fun h => ?_⟩
   obtain ⟨i, hi⟩ := (L.sig v).mp hv
   have hii : i = i₀ := by
-    haveI : Subsingleton (Fin D.a) := by rw [ha]; infer_instance
+    have : Subsingleton (Fin D.a) := by rw [ha]; infer_instance
     exact Subsingleton.elim _ _
   subst hii
   have hs : ∀ x, (G.iotaC.comp (L.s i)) (L.e x) = D.tau i x := fun x => L.s_C i x

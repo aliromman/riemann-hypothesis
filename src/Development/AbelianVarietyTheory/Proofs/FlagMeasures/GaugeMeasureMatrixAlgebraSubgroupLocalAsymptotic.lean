@@ -396,10 +396,11 @@ theorem tendsto_rescaled_integral_of_density_one :
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.UnitarySubgroupChartAlmostIsometricNearOne
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.UnitarySubgroupChartAlmostIsometricNearOne
 
 open MeasureTheory NumberField Matrix Finset Formalism.MainNotions.S GlobalTheory.Count GlobalTheory.FlagMeas
 
+noncomputable section
 
 namespace GlobalTheory.GaugeSubLip
 
@@ -486,11 +487,7 @@ theorem norm_coord_span (E : Fin d → Matrix (Fin n) (Fin n) ℂ)
 variable {ε : Fin n → Bool}
 
 theorem uMat_inv (g : UJ ε) : uMat g⁻¹ = Jm ε * (uMat g)ᴴ * Jm ε := by
-  have hu : (uMat g)ᴴ * Jm ε * uMat g = Jm ε := g.2
-  calc uMat g⁻¹ = Jm ε * Jm ε * uMat g⁻¹ := by rw [Jm_mul_self, Matrix.one_mul]
-    _ = Jm ε * ((uMat g)ᴴ * Jm ε * uMat g) * uMat g⁻¹ := by rw [hu]
-    _ = Jm ε * (uMat g)ᴴ * Jm ε * (uMat g * uMat g⁻¹) := by simp only [Matrix.mul_assoc]
-    _ = _ := by rw [uMat_mul_inv, Matrix.mul_one]
+  exact CompanionTheory.Lime.T3.uMat_inv g
 
 theorem hs_inv_sub_one (g : UJ ε) : hs (uMat g⁻¹ - 1) = hs (uMat g - 1) := by
   apply _root_.CompanionTheory.Lime.T3.hs_inv_sub_one <;> assumption
@@ -573,6 +570,7 @@ theorem chart_almost_isometric : ∀ (n : ℕ) (ε : Fin n → Bool) (A : Submod
   exact (inv_mul_le_iff₀ (by linarith)).1 h1
 
 end GlobalTheory.GaugeSubLip
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

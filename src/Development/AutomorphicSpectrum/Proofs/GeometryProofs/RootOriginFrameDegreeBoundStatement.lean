@@ -469,8 +469,9 @@ open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec
 open AlgebraicGeometry CategoryTheory
 open scoped Matrix
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.HomogeneousNonvanishing.RootOriginFrameComparison
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.HomogeneousNonvanishing.RootOriginFrameComparison
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Rec.FinRd.Roots
 
@@ -481,7 +482,6 @@ section Act
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H}
   {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} {O : Type} [CommRing O] {β : O →+* c.F} {Y : Model Xo c β}
   {SS : Finset ℕ} {Ω : Type} [Field Ω] {K : Type} [Fintype K] {J : K → Type} {y : (Σ k, J k) → Ω}
-
 
 set_option backward.isDefEq.respectTransparency false in
 theorem lat_act_of_model_rf (𝔐 : HodgeCpt Y SS y) (q : Cpt 𝔐.ξ) (x : 𝓞 E) (e : 𝔐.Li) (he : e ∈ 𝔐.M.lat q) :
@@ -496,7 +496,6 @@ theorem lat_act_of_model_rf (𝔐 : HodgeCpt Y SS y) (q : Cpt 𝔐.ξ) (x : 𝓞
   · rw [𝔐.act x e, hpt, Category.assoc]
 
 end Act
-
 
 set_option backward.isDefEq.respectTransparency false in
 theorem isUnit_int_of_inFibre_rf {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Spec (CommRingCat.of Ω) ⟶ X}
@@ -634,6 +633,7 @@ theorem fib_eq_lieEig_rf : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E
 end GlobalTheory.CompanionTheory.Ar.Rec.FinRd.Roots
 
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RootOriginFrameCombinedStatement
 
@@ -697,7 +697,6 @@ theorem vV_sub_one {p : ℕ} (hp : p.Prime) {ζ : V} (hζ : IsPrimitiveRoot ζ p
     ((GroundTheory.Heights₂.Heights.RootsOfUnityValuation.associated_sub_comm ζ 1).pow_pow).trans
       (GroundTheory.Heights₂.Heights.RootsOfUnityValuation.one_sub_pow_associated hp hζ)
   rw [← vV_associated hass (pow_ne_zero _ h0), map_pow, vV_pow ((map_ne_zero_iff _ inj).2 h0)]
-
 
 variable (V K) in
 def realVal : Valuation K NNReal :=
@@ -865,7 +864,7 @@ theorem lieEig_htDual : Top.Given → ∀ (E : Type) [Field E] [NumberField E] [
     · have h2 : vV T.V (algebraMap T.V T.Fr (p : T.V)) = 0 := by simp [vV, h1]
       rw [hvp] at h2
       omega
-  obtain ⟨h1, h2, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.HT.hodge_tate_model_point_sandwich E H Dw l Xo c O β Y SS _ _ _ RM.y Or.𝔐 p hpS κ hHT hS T.Fr
+  obtain ⟨h1, h2, -⟩ := _root_.PositivityTheory.HtPt.Gh.hodge_tate_free_sandwich E H Dw l Xo c O β Y SS _ _ _ RM.y Or.𝔐 p hpS κ hHT hS T.Fr
     (realVal T.V T.Fr) T.V realVal_integers hv1 zV EC MC ρC s σ κz hAct hσ hκz
   refine ⟨κz, h1, h2, absT_kappa hla hov (fun h => ?_) (fun h => ?_)⟩
   · rw [HT.IsCp, ite_eq_left h] at hκ
@@ -1053,7 +1052,7 @@ theorem compare : Top.Given → ∀ (E : Type) [Field E] [NumberField E] [IsCMFi
     hSS EC _ _ _ _ MC ρC hact s σ hσ
   have hpla : (p : 𝓞 c.F) ∈ la.asIdeal := hI.1
   have he : 0 < e := hI.2.1.1
-  obtain ⟨hmul, hone, hpos, hle⟩ := GlobalTheory.T.finite_residue_absolute_value E H l c p la T e he (ram_pos hpla)
+  obtain ⟨hmul, hone, hpos, hle⟩ := GlobalTheory.CompanionTheory.Ar.Rec.FinRd.absT_facts E H l c p la T e he (ram_pos hpla)
   have hp1 : (1 : ℝ) ≤ p := by exact_mod_cast (Fact.out : p.Prime).one_lt.le
   have hp0 : (0 : ℝ) < p := by linarith
   have hθ := Small.latExp_nonneg E SS (Fact.out : p.Prime)
@@ -1096,7 +1095,7 @@ theorem diag_bound : Top.Given → ∀ (E : Type) [Field E] [NumberField E] [IsC
     hSS s b Tm hT hfl hfr hb hd i
   have hpla : (p : 𝓞 c.F) ∈ la.asIdeal := hI.1
   have he : 0 < e := hI.2.1.1
-  obtain ⟨hmul, hone, hpos, hle⟩ := GlobalTheory.T.finite_residue_absolute_value E H l c p la T e he (ram_pos hpla)
+  obtain ⟨hmul, hone, hpos, hle⟩ := GlobalTheory.CompanionTheory.Ar.Rec.FinRd.absT_facts E H l c p la T e he (ram_pos hpla)
   obtain ⟨EC, _, _, MC, ρC, hact⟩ := GlobalTheory.T.root_origin_complete_dvr_bound E H Dw l Xo c O β Y SS RM Sys Fx Or T zV
   letI : Module T.V EC := Module.compHom EC (algebraMap T.V T.Fr)
   haveI : IsScalarTower T.V T.Fr EC := IsScalarTower.of_algebraMap_smul fun _ _ => rfl
@@ -1173,7 +1172,7 @@ theorem reads_roots : Top.Given → ∀ (E : Type) [Field E] [NumberField E] [Is
   intro hG E _ _ _ _ H Dw l Xo c O _ β Y SS RM Sys Fx Or Fr hOm hSS A p _ z ev hz hval hA hrat la T io e y evT zT t hI
   have hpla : (p : 𝓞 c.F) ∈ la.asIdeal := hI.1
   have he : 0 < e := hI.2.1.1
-  obtain ⟨hmul, hone, hpos, hle⟩ := GlobalTheory.T.finite_residue_absolute_value E H l c p la T e he (ram_pos hpla)
+  obtain ⟨hmul, hone, hpos, hle⟩ := GlobalTheory.CompanionTheory.Ar.Rec.FinRd.absT_facts E H l c p la T e he (ram_pos hpla)
   have habs : ∀ x : A, ‖ev x‖ = absT p la T e (evT x) := hI.2.2.2.2.2.1
   have hzp := hz.1
   have hmax : ∀ k, ∃ ck : RM.ι k, z ⟨k, ck⟩ ≠ 0 ∧ ∀ i, ‖z ⟨k, i⟩‖ ≤ ‖z ⟨k, ck⟩‖ := by

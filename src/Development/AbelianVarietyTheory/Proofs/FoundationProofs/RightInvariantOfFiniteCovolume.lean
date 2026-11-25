@@ -84,8 +84,9 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.RightInvariantOfFiniteCovolume
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.RightInvariantOfFiniteCovolume
 
+noncomputable section
 
 namespace GlobalTheory.VolumeRatioTypings
 
@@ -111,8 +112,6 @@ theorem rightInvariant_of_finite_covolume {G : Type} [Group G] [TopologicalSpace
   rw [e, Measure.smul_apply, smul_eq_mul] at h1
   have h2 := (ENNReal.mul_left_inj (h.measure_ne_zero (NeZero.ne μ)) hfin).1 (h1.trans (one_mul _).symm)
   rw [e, h2, one_smul]
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7}
 

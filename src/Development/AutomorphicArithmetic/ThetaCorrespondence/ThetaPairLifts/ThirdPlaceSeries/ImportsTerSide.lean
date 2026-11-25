@@ -505,8 +505,9 @@ theorem main : ∀ (D : D7) (P : PairedCharacterCondition.Pend D), PairedCharact
 end GlobalTheory.AdmDepthZero
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsFiniteGroupDataSeriesIdempotentsLabelSums
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsFiniteGroupDataSeriesIdempotentsLabelSums
 
+noncomputable section
 
 namespace GlobalTheory.LzExist
 
@@ -660,7 +661,6 @@ def LabQ (a : ℕ) (x : GA g a) (f : (ZMod g)[X]) : Prop :=
   (f.Monic ∧ f.natDegree = a ∧ f.coeff 0 ≠ 0) ∧
     ∀ h : a = r, e f * cast (congrArg (GA g) h) x = cast (congrArg (GA g) h) x
 
-
 open Classical in
 def labF (a : ℕ) (x : GA g a) : (ZMod g)[X] :=
   if h : ∃ f, LabQ g r e a x f then h.choose else (X - C 1) ^ a
@@ -732,6 +732,7 @@ theorem exists_lz_serEq : ∀ D : D7, ∃ lz : ∀ k : Fin 2, PairedCharacterCon
 
 end GlobalTheory.LzExist
 end -- clump:auto
+end -- clump:auto
 
 end -- clump: shared namespace opens
 
@@ -767,8 +768,9 @@ theorem eq_one_of_pow_eq_one_of_charpoly (K : Type) [Field K] [CharZero K] (N : 
 end GlobalTheory.FinOrd
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsLabelInertiaEigenvalues
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsLabelInertiaEigenvalues
 
+noncomputable section
 
 namespace GlobalTheory.PendOf.LabIneAll
 
@@ -816,7 +818,6 @@ theorem isOfFinOrder_of_isOpen {M : Type} [Group M] (φ : Ine (F := E) A →* M)
   refine isOfFinOrder_iff_pow_eq_one.2 ⟨φ.ker.index, Nat.pos_of_ne_zero Subgroup.FiniteIndex.index_ne_zero, ?_⟩
   rw [← map_pow]
   exact φ.ker.pow_index_mem σ
-
 
 open Classical in
 theorem charpoly_eq_of_gen {n : ℕ} (ρ : Ine (F := E) A →* GL (Fin n) ℂ)
@@ -926,6 +927,7 @@ theorem main : ∀ D : D7, IneRep D → LabDepth D → LabGen D → ∃ Ω : Tam
 
 end GlobalTheory.PendOf.LabIneAll
 end -- clump:auto
+end -- clump:auto
 
 section -- clump: shared namespace opens
 
@@ -971,9 +973,6 @@ theorem roots_prod_map {α : Type*} (s : Multiset α) (f : α → ℂ) :
   rw [show (s.map fun x => X - C (f x)) = (s.map f).map (fun a => X - C a) by rw [Multiset.map_map]; rfl]
   exact roots_multiset_prod_X_sub_C _
 
-end GlobalTheory.TwistLabel
-
-open GlobalTheory.TwistLabel in
 theorem main : ∀ D : D7, SumRepresentations.tie0 D → IneRep D → LabDepth D → LabGen D → LabChar D := by
   intro D hT _ hDep hGen k w hw L χ u hL hχ hχl
   haveI : Fact (D.host.g k).Prime := ⟨D.host.g_prime k⟩
@@ -1008,16 +1007,19 @@ theorem main : ∀ D : D7, SumRepresentations.tie0 D → IneRep D → LabDepth D
   apply Multiset.map_congr rfl
   intro x _
   simp [Function.comp, map_mul]
+
+end GlobalTheory.TwistLabel
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.LabelTwistMultipliesRootsOfTameLabelsStatement
 
 theorem _root_.GlobalTheory.T.labelTwistMultipliesRoots_of_tame_labels : ∀ D : D7, SumRepresentations.tie0 D → IneRep D → LabDepth D → LabGen D → LabChar D := by
-  first | exact @main
+  first | exact @GlobalTheory.TwistLabel.main
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NonemptyLocalisedFormsTypeSectionHecke
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.NonemptyLocalisedFormsTypeSectionHecke
 
+noncomputable section
 
 namespace GlobalTheory.PendOf.SecProof
 
@@ -1110,17 +1112,11 @@ theorem typeV_le_ker {D : D7} {M : MtFam D} (i : D.nd.Loc) (HT : HeckeTied D M) 
   rw [hcP y' hy', hcz]
   rfl
 
-theorem typeV_le_typeSum (D : D7) (i : D.nd.Loc) (P : D.naut.AV i) :
-    D.naut.typeV i P ≤ typeSum D i (D.naut.ptV i P) :=
-  le_biSup (fun P => D.naut.typeV i P) (show P ∈ {P | D.naut.ptV i P = D.naut.ptV i P} from rfl)
-
 end GlobalTheory.PendOf.SecProof
 
 namespace GlobalTheory.PendOf.SecProof
 
 open GlobalTheory.EtaJoin.TypeTieProof Formalism.L2.NG Formalism.AUTREP ReciprocityTheory.Aut
-
-
 
 theorem main : ∀ (D : D7) (M : MtFam D) (i : D.nd.Loc), HeckeTied D M → HeckeRational D M → AVTied D M →
     GlobalTheory.EtaJoin.SplitUnif D → GlobalTheory.EtaJoin.HeckeScalar M i → Nonempty (Sec D i) := by
@@ -1178,8 +1174,8 @@ theorem main : ∀ (D : D7) (M : MtFam D) (i : D.nd.Loc), HeckeTied D M → Heck
     rw [eq_top_iff, ← D.naut.typeV_top i]
     refine iSup_le fun P => ?_
     rcases h : D.naut.ptV i P with _ | x
-    · exact le_sup_of_le_right (h ▸ typeV_le_typeSum D i P)
-    · exact le_sup_of_le_left (le_iSup_of_le x (h ▸ typeV_le_typeSum D i P))
+    · exact le_sup_of_le_right (h ▸ GlobalTheory.PendOf.PrTypeProof.typeV_le_typeSum D i P)
+    · exact le_sup_of_le_left (le_iSup_of_le x (h ▸ GlobalTheory.PendOf.PrTypeProof.typeV_le_typeSum D i P))
 
   have hπr : ∀ u, πh u ∈ LinearMap.range p := by
     intro u
@@ -1297,6 +1293,7 @@ theorem main : ∀ (D : D7) (M : MtFam D) (i : D.nd.Loc), HeckeTied D M → Heck
     rw [map_sub, hΦ, hpe, hpj, sub_self]
 
 end GlobalTheory.PendOf.SecProof
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PointParameterIsTypeParameterOfTame
@@ -1620,8 +1617,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.DepthZeroTameAltAlt
 @[expose] public section
 
-
-
 section
 section
 section
@@ -1662,8 +1657,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.ImportsTerSide
-
-
 
 section
 section

@@ -69,7 +69,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.MemPowOfFlatQuotient
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.FlatThickenings
 
@@ -179,8 +178,8 @@ theorem flat_of_flat_thickenings :
 end GlobalTheory.FlatThickenings
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsVeryAmpleH1Zero
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsVeryAmpleH1Zero
+noncomputable section
 namespace GlobalTheory.Algebraise
 variable {X Y : Scheme.{0}}
 

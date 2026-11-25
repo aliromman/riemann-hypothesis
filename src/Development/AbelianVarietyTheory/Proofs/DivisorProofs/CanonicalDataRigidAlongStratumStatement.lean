@@ -629,7 +629,9 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqZeroOfIsPartOfBasisBalFormsOfMem
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EqZeroOfIsPartOfBasisBalFormsOfMem
+
+noncomputable section
 
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.Toroidal GlobalTheory.LocM
 
@@ -684,9 +686,7 @@ theorem eq_zero_of_linearIndependent_int {Y ι : Type} [Fintype ι] {f : ι → 
 
 end GlobalTheory.PolFan
 
-namespace GlobalTheory.PolFan
-
-end GlobalTheory.PolFan
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

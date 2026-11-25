@@ -61,9 +61,6 @@ theorem t_heis : HeisenbergCocycle := by
 
 end Formalism.HermitianLattices.WeilRepresentation.CocycleEighthPower
 
-namespace Formalism.HermitianLattices.WeilRepresentation
-
-end Formalism.HermitianLattices.WeilRepresentation
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.GlobalTheory.GL3.PIopIso

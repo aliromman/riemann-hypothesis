@@ -368,7 +368,6 @@ theorem trunc_gauss : ∀ (n : ℕ) (C ε : ℝ), 0 < ε → ∃ η : ℝ, 0 < �
   set A : ℝ := K / P + ε with hAdef
   have hA : 0 < A := by positivity
   set K2 : ℝ := K + r with hK2def
-  have hK2 : 0 < K2 := by positivity
   have hs : 0 < r / K2 / A := by positivity
   have hT : Tendsto (fun m : ℕ => Real.exp (-(m * η * δ ^ 2 / 2)) * (2 * Real.pi / η) ^ n)
       atTop (𝓝 0) := by
@@ -815,9 +814,6 @@ theorem morse_local : ∀ (n : ℕ) (U K : Set (V n)) (φ g : V n → ℝ) (ε :
       rw [hq]
       nlinarith
     have hP : 0 ≤ ‖f (z + w)‖ ^ 2 := by positivity
-    have hgz : 0 ≤ (1 - τ) * g z := by
-      have := hgpos z (hKU hz); have : 0 < 1 - τ := by linarith
-      positivity
     calc k * (‖F w‖ ^ 2 * Wf w)
         = ((1 - τ) * g z) * (‖f (z + w)‖ ^ 2 *
             (Real.exp (-(m * φ z)) * (Real.exp (-(m * (h w).re)) ^ 2 * Wf w))) := by
@@ -867,14 +863,12 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MeasIntegralEqChartDensityIntegral
 
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Filter Topology MeasureTheory
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.VolBr GlobalTheory.HSAmp
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MeasIntegralEqChartDensityIntegral
 
 namespace GlobalTheory.HSAmp.VolDens
 
@@ -928,7 +922,13 @@ theorem meas_integral_in_chart : ∀ (k : Type) [CommRing k] (X : Scheme.{0}) [I
 end GlobalTheory.HSAmp.VolDens
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HolomorphicMorseSectionsMLAddAUniform
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HolomorphicMorseSectionsMLAddAUniform
+
+noncomputable section
+
+open CategoryTheory AlgebraicGeometry TopologicalSpace Filter Topology MeasureTheory
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
+open GlobalTheory GlobalTheory.ArInt GlobalTheory.CxPts GlobalTheory.Cartier GlobalTheory.VolBr GlobalTheory.HSAmp
 
 namespace GlobalTheory.HSAmp.Morse
 
@@ -1101,7 +1101,6 @@ theorem local_bound {D : ℕ} (hX : IsArithVar p D) (hs : GenSmooth p D) (P : Pa
     simp only [Set.mem_setOf_eq, C.e.left_inv hy.1] at this
     exact this
   set I := ∫ w in Metric.ball (C.e y) δ, cmb (vals P m 1 f) c σ (C.e.symm w) * (ω σ).dens C (C.e.symm w)
-  have hM : 0 ≤ (m : ℝ) ^ D * I := mul_nonneg (by positivity) hInn
   have h3 : (ω σ).dens C y * cmb (vals P m 1 f) c σ y ≤
       (ω σ).dens C y * ((ρ σ y / D.factorial + ε) * (m : ℝ) ^ D * I) := by
     rw [mul_comm]

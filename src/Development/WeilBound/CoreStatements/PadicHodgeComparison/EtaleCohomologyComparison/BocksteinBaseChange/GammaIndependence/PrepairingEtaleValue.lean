@@ -10,10 +10,9 @@ public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCoh
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.BocksteinBaseChange.GammaIndependence.HomApply, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.BocksteinBaseChange.GammaIndependence.GammaKey, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.BocksteinBaseChange.GammaIndependence.PrepairingEtaleValue
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.BocksteinBaseChange.GammaIndependence.HomApply
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.BocksteinBaseChange.GammaIndependence.HomApply
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 namespace CrystallineSemistableComparison.Gam
 
@@ -64,12 +63,11 @@ theorem hom_key (hlin : ∀ (c : A) (x : H) (φ : Q), κ (c • x) φ = i c * κ
 
 end CrystallineSemistableComparison.Gam
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.BocksteinBaseChange.GammaIndependence.GammaKey
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.BocksteinBaseChange.GammaIndependence.GammaKey
 
-set_option backward.isDefEq.respectTransparency false
-
-
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry TensorProduct
 
@@ -175,6 +173,7 @@ theorem gamma_cup (hL : D.Laws G) {M : Model l K} {a : D.Ch M} (hM : G M) {i j :
   ring
 
 end CrystallineSemistableComparison
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.BocksteinBaseChange.GammaIndependence.PrepairingEtaleValue

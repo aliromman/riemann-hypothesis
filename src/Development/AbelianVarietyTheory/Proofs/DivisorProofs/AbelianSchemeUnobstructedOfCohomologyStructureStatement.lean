@@ -43,8 +43,9 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AxesO1OfProjectiveR
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianSchemeGlobalFormsPrimitiveOfFrames, Development.AbelianVarietyTheory.Proofs.DivisorProofs.GroupLawGlueOverCoprodBase, Development.AbelianVarietyTheory.Proofs.DivisorProofs.GroupLawGlueOverCoprodBaseStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsColimitSpecQuotientComplementaryIdempotents, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsPullbackCoprodDescOfPiecesOverCoprod, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsPullbackSpMapQuotientSpanBaseChange, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SmoothCoprodDescOfSmoothPieces, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAbelianSchemeLiftOfSplitRing, Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianSchemeUnobstructedOfConstantDimension, Development.AbelianVarietyTheory.Proofs.DivisorProofs.AffineOpensPreimageBaseChangeIsBasis, Development.AbelianVarietyTheory.Proofs.DivisorProofs.AffinePairPreimageBaseChangeFstIsBasis, Development.AbelianVarietyTheory.Proofs.DivisorProofs.BaseChangeCoefficientComparisonCommPairPullback, Development.AbelianVarietyTheory.Proofs.DivisorProofs.BaseChangeTensorSectionsHomBijective, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsOpenPreimageEqBaseChangeSqZeroAugmentation, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsOpenPreimageEqBaseChangeSqZeroAugmentationStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.NaturalBijectiveCoefficientsPull1Bijective, Development.AbelianVarietyTheory.Proofs.DivisorProofs.RestrictStructureSheafAffineBasisPull1Bijective, Development.AbelianVarietyTheory.Proofs.DivisorProofs.H1StructureBaseChangeExtension, Development.AbelianVarietyTheory.Proofs.DivisorProofs.AxesVanishingDegreeOneExtension, Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianSchemeUnobstructedOfCohomologyStructure, Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianSchemeUnobstructedOfCohomologyStructureStatement
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianSchemeGlobalFormsPrimitiveOfFrames
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianSchemeGlobalFormsPrimitiveOfFrames
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry KaehlerDifferential MonoidalCategory CartesianMonoidalCategory MonObj
 open scoped TensorProduct
@@ -102,7 +103,6 @@ theorem sumL_coefL (ω : GlobForm s) : sumL fr (coefL fr hc ω) = ω := by
   refine Finset.sum_congr rfl fun i _ ↦ ?_
   rw [coef_spec, algebraMap_smul]
 
-
 include fr hc in
 theorem projective : Module.Projective R (GlobForm s) :=
   Module.Projective.of_split (coefL fr hc) (sumL fr) (LinearMap.ext (sumL_coefL fr hc))
@@ -112,7 +112,6 @@ def back (U : AffOp X) (x : Ω[Sec s U.unop.1⁄R]) : Sec s U.unop.1 ⊗[R] Glob
 
 theorem back_add (U : AffOp X) (x y : Ω[Sec s U.unop.1⁄R]) : back fr U (x + y) = back fr U x + back fr U y := by
   simp only [back, map_add (f := _), TensorProduct.add_tmul, Finset.sum_add_distrib]
-
 
 include fr hc in
 theorem par (U : AffOp X) : IsBaseChange (Sec s U.unop.1) (evForm s U) := by
@@ -156,6 +155,7 @@ theorem formSt_of (H : ∀ (R : Type) [CommRing R] (A : Over (Sp R)) [GrpObj A] 
   exact hP w
 
 end GlobalTheory.FormsOnAb
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens
@@ -505,7 +505,7 @@ theorem exists_lift_of_split : ∀ (R R₀ : Type) [CommRing R] [CommRing R₀] 
   have hnil : IsNilpotent (RingHom.ker π) := ⟨2, by rw [hk, hI]⟩
   have hsm' : Smooth X.hom := hsm
   have hpb' : IsPullback i A₀.hom X.hom (spMap π) := hpb
-  obtain ⟨e₁, he₁, he₁'⟩ := GlobalTheory.T.exists_section_lift_smooth_nilpotent_thickening R R₀ π hπ hnil X A₀ i hpb' hsm' (1 : Over.mk (𝟙 (Sp R₀)) ⟶ A₀).left (Over.w _)
+  obtain ⟨e₁, he₁, he₁'⟩ := GlobalTheory.SecLift.exists_section_lift R R₀ π hπ hnil X A₀ i hpb' hsm' (1 : Over.mk (𝟙 (Sp R₀)) ⟶ A₀).left (Over.w _)
   have hw : ∀ g : A₀ ⊗ A₀ ⟶ A₀, (g.left ≫ i) ≫ X.hom = (Over.mk ((A₀ ⊗ A₀).hom ≫ spMap π)).hom := fun g ↦ by
     simp only [Over.mk_hom, Category.assoc, hpb'.w]; rw [← Category.assoc, Over.w]
   let l : Over.mk ((A₀ ⊗ A₀).hom ≫ spMap π) ⟶ X ⊗ X := lift (Over.homMk _ (hw (fst A₀ A₀))) (Over.homMk _ (hw (snd A₀ A₀)))
@@ -513,7 +513,7 @@ theorem exists_lift_of_split : ∀ (R R₀ : Type) [CommRing R] [CommRing R₀] 
     rw [← Over.comp_left, lift_fst]; rfl
   have hl₂ : l.left ≫ (snd X X).left = (snd A₀ A₀).left ≫ i := by
     rw [← Over.comp_left, lift_snd]; rfl
-  obtain ⟨g, hg, hab⟩ := GlobalTheory.T.exists_grpObj_isAbelianScheme_smoothLift_nilpotent R R₀ π hπ hnil A₀ hA₀ X i hpb' hsm' e₁ he₁ he₁' l.left hl₁ hl₂ m (hm l.left hl₁ hl₂)
+  obtain ⟨g, hg, hab⟩ := GlobalTheory.LiftGroupLaw.exists_grpObj_isAbelianScheme R R₀ π hπ hnil A₀ hA₀ X i hpb' hsm' e₁ he₁ he₁' l.left hl₁ hl₂ m (hm l.left hl₁ hl₂)
   exact ⟨X, g, i, hg, hab⟩
 
 end GlobalTheory.AbLiftGlue

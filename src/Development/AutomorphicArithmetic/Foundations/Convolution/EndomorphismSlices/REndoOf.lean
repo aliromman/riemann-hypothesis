@@ -24,8 +24,9 @@ theorem growthJ_holds : GrowthJ := growthJ_of_ell PositivityTheory.Rg.BcB.CV.ell
 end PositivityTheory.Rg.BcB.E1
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.EndomorphismSlices.REndoOf
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.EndomorphismSlices.REndoOf
 
+noncomputable section
 
 open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology
 open GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host GlobalTheory.BCT GlobalTheory.LFun
@@ -35,8 +36,6 @@ open PositivityTheory.Rg.BcB.SpectralAccumulation (Hf TypeB TypeH)
 open UpperTheory.V.Z.Tf.GlobalTraceComparison
 open UpperTheory.V.Af.Bc (cPl)
 open scoped Classical
-
-set_option synthInstance.maxHeartbeats 200000
 
 namespace UpperTheory.Zero.ConvolutionTheory.EB
 

@@ -892,10 +892,11 @@ end GlobalTheory.LevGlue
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsDlogDerivationsTowerLevelModIntegral
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsDlogDerivationsTowerLevelModIntegral
 
 open GlobalTheory.K5 GlobalTheory.KumDlog Polynomial
 
+noncomputable section
 namespace GlobalTheory.LevDer
 
 theorem int_div_of_mk {p : ℕ} [Fact p.Prime] {Ω : Type} [Field Ω] [Algebra (O0 p) Ω] [CharZero Ω]
@@ -914,8 +915,6 @@ theorem natCast_eq_pow {Ω : Type} [Field Ω] (N p k : ℕ) (h : N = p ^ (k + 1)
   subst h; push_cast; rfl
 
 
-set_option maxHeartbeats 2000000 in
-set_option synthInstance.maxHeartbeats 200000 in
 theorem exists_levDer : ∀ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field Ω] [Algebra (O0 p) Ω], IsClo p Ω → ∀ (T : Tower p Ω) (m : ℕ), 1 ≤ m →
     ∃ dz dq : Ω → Ω, IsDer (Lev T m) dz ∧ IsDer (Lev T m) dq ∧ Vals T m dz dq := by
   intro p _ Ω _ _ hC T m hm
@@ -1024,6 +1023,7 @@ theorem exists_levDer : ∀ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field Ω] [Alg
       ring
 
 end GlobalTheory.LevDer
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens
@@ -1182,9 +1182,9 @@ theorem exponents : ∀ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field Ω] [Algebra
   have h1 : (g (T.ζ (2 * n + k))) ^ (p ^ (2 * n + k)) = 1 := by
     rw [← map_pow, (T.prim _).pow_eq_one, map_one]
   obtain ⟨i, -, hi⟩ := (T.prim _).eq_pow_of_pow_eq_one h1
-  have hqne := qq_ne T (2 * n + k)
+  have hqne := GlobalTheory.K5.Basic.qq_ne_zero T (2 * n + k)
   have h2 : (g (T.qq (2 * n + k)) / T.qq (2 * n + k)) ^ (p ^ (2 * n + k)) = 1 := by
-    rw [div_pow, ← map_pow, kummerTower_qq_pow_level_eq_q, AlgEquiv.commutes, ← kummerTower_qq_pow_level_eq_q T (2 * n + k),
+    rw [div_pow, ← map_pow, GlobalTheory.K5.Basic.qq_pow, AlgEquiv.commutes, ← GlobalTheory.K5.Basic.qq_pow T (2 * n + k),
       div_self (pow_ne_zero _ hqne)]
   obtain ⟨j, -, hj⟩ := (T.prim _).eq_pow_of_pow_eq_one h2
   have hj' : g (T.qq (2 * n + k)) = T.ζ (2 * n + k) ^ j * T.qq (2 * n + k) := by
@@ -1203,7 +1203,7 @@ theorem exponents : ∀ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field Ω] [Algebra
   have kq := hq g hg
   rw [gz, ← ezn, ← pow_mul, ← pow_succ] at kz
   rw [gq, ← ezn, ← pow_mul] at kq
-  have kq' := mul_right_cancel₀ (qq_ne T (2 * n)) kq
+  have kq' := mul_right_cancel₀ (GlobalTheory.K5.Basic.qq_ne_zero T (2 * n)) kq
   rw [GlobalTheory.K5.Basic.zeta_pow_eq_iff] at kz kq'
   rw [Nat.modEq_iff_dvd] at kz kq'
   obtain ⟨s, hs⟩ := kz
@@ -1338,10 +1338,11 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerCochainEqDlogCombinationFiniteLevel
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerCochainEqDlogCombinationFiniteLevel
 
 open GlobalTheory.K5
 
+noncomputable section
 namespace GlobalTheory.KumDlog
 variable {p : ℕ} [Fact p.Prime] {Ω : Type} [Field Ω] [Algebra (O0 p) Ω]
 
@@ -1496,7 +1497,7 @@ theorem core (hp2 : p ≠ 2) (hΩ : IsClo p Ω) (T : Tower p Ω) (n : ℕ) (hn :
   have kq := _root_.GlobalTheory.KumDlog.kaehler_rel_isInt p Ω n ι _ hC (fun x => hLC (hL x)) Dq hDq _ _ _ _ _ _ hrel
   simp only [map_mul, hι.1, hι.2] at kz kq
   have z0 := zeta_ne T n
-  have q0 := qq_ne T n
+  have q0 := GlobalTheory.K5.Basic.qq_ne_zero T n
   have p0 := p_ne T
   have inv := int_mul (int_zeta_inv T n) (int_qq_inv T n)
   obtain ⟨N, hN⟩ : ∃ N, p ^ n = N + 1 := ⟨p ^ n - 1, by have := ppow_pos (p := p) n; omega⟩

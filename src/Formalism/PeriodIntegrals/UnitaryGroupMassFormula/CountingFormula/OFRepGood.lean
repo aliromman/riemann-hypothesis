@@ -10,16 +10,15 @@ import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.LinearI
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FrameDeterminant.DdSNeZero, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.OFRepGood
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FrameDeterminant.DdSNeZero
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.FrameDeterminant.DdSNeZero
 
+noncomputable section
 
 open NumberField
 
 namespace PI.TripleFrameDeterminant.W
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem ddS_ne_zero (D : D7) : ddS D ≠ 0 := by
   unfold ddS
@@ -28,6 +27,7 @@ theorem ddS_ne_zero (D : D7) : ddS D ≠ 0 := by
   exact differentIdeal_ne_bot
 
 end PI.TripleFrameDeterminant.W
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.OFRepGood
@@ -38,8 +38,6 @@ namespace PI.UnitaryGroupMassFormula.CntFormula
 
 open NumberField Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.CntLocal
 open Classical
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem one_mem_ddS_zpow (D : Formalism.BasicNotions.D7) (k : ℕ) :
     (1 : D.host.E) ∈ ((ddS D) ^ (-(k : ℤ)) : FractionalIdeal (nonZeroDivisors (𝓞 D.host.E)) D.host.E) := by

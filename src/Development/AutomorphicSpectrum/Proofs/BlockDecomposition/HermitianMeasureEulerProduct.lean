@@ -51,15 +51,13 @@ import GroundTheory.LocalFields.LocalFourierHaar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SelfDualProdIff, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ApproximateIdentityProductBumps, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CovolumeOneInvariantUnderMatrix, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FourierInversionInvariantMatrix, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermitianCoordinatesMeasurePreserving, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermitianCoordinatesNaturalInRing, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MatrixPreservesIntegersAlmostAll, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ProductNeighbourhoodsShrinkCompactOpen, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TestTContinuousHasCompactSupport, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HermitianMeasureEulerProduct
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SelfDualProdIff
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SelfDualProdIff
 
 open NumberField IsDedekindDomain MeasureTheory Topology Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.GaugeEx
 open scoped TensorProduct NNReal ENNReal
 open GlobalTheory.SWC
 
-namespace GlobalTheory.HermSD
-
-end GlobalTheory.HermSD
+noncomputable section
 
 namespace GlobalTheory.HermSD
 
@@ -97,13 +95,7 @@ theorem eq_of_test_haar {V : Type} [AddCommGroup V] [TopologicalSpace V]
 
 end GlobalTheory.HermSD
 
-namespace GlobalTheory.HermSD
-
-end GlobalTheory.HermSD
-
-namespace GlobalTheory.HermSD
-
-end GlobalTheory.HermSD
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ApproximateIdentityProductBumps

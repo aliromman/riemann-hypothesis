@@ -542,12 +542,14 @@ theorem lbIso_pull_congr {X Y : Scheme.{0}} {L : LB X} (hL : L.IsLB) {f g : Y �
 end GlobalTheory.MBDesc
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsThetaSystemSpreadOfLevelFractionField
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsThetaSystemSpreadOfLevelFractionField
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
 open GlobalTheory.SS
+
+noncomputable section
 
 namespace GlobalTheory.SpreadTheta
 
@@ -573,7 +575,7 @@ theorem exists_base (R₁ : Type) [CommRing R₁] [IsDomain R₁] [CharZero R₁
     have := pb.lift_gen ζ hmin
     rwa [IsPrimitiveRoot.integralPowerBasis_gen] at this
   have hσ : Function.Injective σ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     have hb : RingHom.ker σ = ⊥ := by
       refine Ideal.eq_bot_of_comap_eq_bot (R := ℤ) ?_
@@ -731,6 +733,7 @@ theorem exists_thetaSys_spread : ∀ (R₁ : Type) [CommRing R₁] [IsDomain R�
     (LBIso.trans (pull_isLB (pull_isLB hP _) _) (pull_isLB hP _) (pull_isLB ρ.P.isLB _) c₂ c₃)
 
 end GlobalTheory.Mum
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

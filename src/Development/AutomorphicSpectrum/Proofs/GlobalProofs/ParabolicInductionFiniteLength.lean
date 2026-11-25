@@ -14,12 +14,11 @@ import GroundTheory.LocalFields.PadicLogSeries
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LeviBlocksParabolicInductionFiniteLength, Development.AutomorphicSpectrum.Proofs.GlobalProofs.ParabolicInductionFiniteLength
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LeviBlocksParabolicInductionFiniteLength
 
+noncomputable section
 
 open GlobalTheory.PRep GlobalTheory.SmGL Matrix
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LeviBlocksParabolicInductionFiniteLength
 
 namespace GlobalTheory.BlockReorder
 
@@ -263,13 +262,13 @@ theorem hasFiniteLength_parInd (e : (Σ a, m a) ≃ n) (ρ : Representation ℂ 
 
 end GlobalTheory.BlockReorder
 
-namespace GlobalTheory
-
-
-end GlobalTheory
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.ParabolicInductionFiniteLength
+
+
+open GlobalTheory.PRep GlobalTheory.SmGL Matrix
 
 namespace GlobalTheory.CompanionTheory.BZInd
 

@@ -68,11 +68,11 @@ import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AcrisMemLatticeSub, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsUniquePeriodOfCompatible, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemLatticeIdealIffSum, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeDpowClosedOfHyp, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FontaineLatticeDpowClosed, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaloisPreservesLatticeSub, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaloisPreservesTPowerSpan, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeSubReductionMem, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelFiltrationSpanTPow, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelGaloisFixesField, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelGaloisFixesFieldStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelGaloisFixesIntegers, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelGaloisFixesIntegersStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeIsDPMorphismOfCompat, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelGaloisIsDPMorphism, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelGaloisIsDPMorphismStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelIdealEqMap, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelIotaAlgebraMapIntegers, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelIotaLamEqToB, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelLamGaloisEquivariant, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelSystemTransitionGaloisA, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelSystemTransitionGaloisB, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelSystemTransitionIsDPMorphism, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelSystemTransitionIsDPMorphismStatement, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelToBAlgebraMapField, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelToBEqZeroIffTPowDvd, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelToBGaloisEquivariant, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelToBSurjective, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelXiMemIdealAndThetaCompat, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.LatLink
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AcrisMemLatticeSub
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AcrisMemLatticeSub
 
-set_option backward.isDefEq.respectTransparency false
 set_option maxSynthPendingDepth 1
 
+noncomputable section
 
 open GroundTheory.PAdicHodge Formalism.Per6 DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb CrystallineSemistableComparison.Pb.Lat
 
@@ -138,15 +138,12 @@ theorem factorial_mul_dpow_xi (n : ℕ) :
 theorem pk_toB_algebraMap (k : ℕ) (w : AInf ℂ_[l] l) :
     pk l k (toBDeRhamPlus (normInteger ℂ_[l]) l (algebraMap (AInf ℂ_[l] l) 𝔸 w)) = fk l k w := rfl
 
-
 theorem pk_toB_mem (k M : ℕ) {s : 𝔸} (hs : s ∈ ACris.ACrisZero ℂ_[l] l) :
     pk l k (toBDeRhamPlus (normInteger ℂ_[l]) l s) ∈ sub (fk l k) (xi0 l) l M :=
   map_adjoin_mem (W := AInf ℂ_[l] l) (A := 𝔸) (B := BdRp l) (C := Bk l k)
     (toBDeRhamPlus (normInteger ℂ_[l]) l) (pk l k) (fk l k) (pk_toB_algebraMap l k) (xi0 l)
     (Fact.out : l.Prime).ne_zero M (fun n => ACris.dpow n (xi0 l))
     (factorial_mul_dpow_xi l) (mem_adjoin_dpow l hs)
-
-
 
 theorem cris_in (l : ℕ) [Fact l.Prime] (M k : ℕ) (c : Acris l) :
     Lat.pk l k (ACris.iota ℂ_[l] l c) ∈ Lat.sub (Lat.fk l k) (xi0 l) l M := by
@@ -166,11 +163,11 @@ theorem cris_in (l : ℕ) [Fact l.Prime] (M k : ℕ) (c : Acris l) :
 
 end GlobalTheory.CompanionTheory.LatCris
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsUniquePeriodOfCompatible
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsUniquePeriodOfCompatible
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open GroundTheory.PAdicHodge Formalism.Per6 DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb CrystallineSemistableComparison.Pb.Lat
 
@@ -264,6 +261,7 @@ theorem levSys_existsUnique {l : ℕ} [Fact l.Prime] {K : IntermediateField ℚ_
 
 end GlobalTheory.CompanionTheory.LatC
 end -- clump:auto
+end -- clump:auto
 
 section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MemLatticeIdealIffSum
 @[expose] public section
@@ -274,15 +272,6 @@ namespace GlobalTheory.CompanionTheory.LatIdeal
 
 section
 variable {W B : Type} [CommRing W] [CommRing B] [Algebra ℚ B] (f : W →+* B) (ξ : W) (l M : ℕ)
-
-theorem dpE_succ_mem_IB (i : ℕ) : Lat.dpE f ξ l M (i + 1) ∈ Lat.IB f ξ := by
-  have h1 : Lat.η f ξ l M ∈ Lat.IB f ξ := by
-    unfold Lat.η Lat.IB
-    rw [Algebra.smul_def]
-    exact Ideal.mul_mem_left _ _ (Ideal.mem_span_singleton_self _)
-  unfold Lat.dpE
-  rw [Algebra.smul_def, pow_succ]
-  exact Ideal.mul_mem_left _ _ (Ideal.mul_mem_left _ _ h1)
 
 theorem dpE_zero : Lat.dpE f ξ l M 0 = 1 := by
   unfold Lat.dpE
@@ -398,7 +387,7 @@ theorem mem_I_iff (m : ℕ) (H : Lat.Hyp f ξ l m) (x : Lat.A f ξ l M) :
     have hS : c.sum (fun i w => f w * Lat.dpE f ξ l M (i + 1)) ∈ Lat.IB f ξ :=
       by
         unfold Finsupp.sum
-        exact Ideal.sum_mem _ (fun i _ => Ideal.mul_mem_left _ _ (dpE_succ_mem_IB f ξ l M i))
+        exact Ideal.sum_mem _ (fun i _ => Ideal.mul_mem_left _ _ (GlobalTheory.CompanionTheory.LatPrime.dpE_succ_mem_IB f ξ l M i))
     have hw : f w₀ ∈ Lat.IB f ξ := by
       have h2 := sub_mem hx hS
       rwa [hc, add_sub_cancel_right] at h2
@@ -419,7 +408,7 @@ theorem mem_I_iff (m : ℕ) (H : Lat.Hyp f ξ l m) (x : Lat.A f ξ l M) :
     ring
   · rintro ⟨n, c, hc⟩
     rw [hc]
-    exact Ideal.sum_mem _ (fun i _ => Ideal.mul_mem_left _ _ (dpE_succ_mem_IB f ξ l M _))
+    exact Ideal.sum_mem _ (fun i _ => Ideal.mul_mem_left _ _ (GlobalTheory.CompanionTheory.LatPrime.dpE_succ_mem_IB f ξ l M _))
 
 end
 
@@ -511,10 +500,9 @@ theorem dpClosed {W B : Type} [CommRing W] [CommRing B] [Algebra ℚ B] (f : W �
 end GlobalTheory.CompanionTheory.LatDP
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FontaineLatticeDpowClosed
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FontaineLatticeDpowClosed
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open GroundTheory.PAdicHodge Formalism.Per6 DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb CrystallineSemistableComparison.Pb.Lat
 
@@ -535,11 +523,11 @@ theorem hc_k : ∀ (l : ℕ) [Fact l.Prime] (M k : ℕ),
 
 end GlobalTheory.CompanionTheory.LatCHc
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaloisPreservesLatticeSub
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaloisPreservesLatticeSub
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open GroundTheory.PAdicHodge Formalism.Per6 DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb CrystallineSemistableComparison.Pb.Lat
 
@@ -582,6 +570,7 @@ theorem gal_mem_sub : ∀ (l : ℕ) [Fact l.Prime] (K : IntermediateField ℚ_[l
   rfl
 
 end GlobalTheory.CompanionTheory.LatGal
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GaloisPreservesTPowerSpan
@@ -650,10 +639,9 @@ theorem dk_mem_sub (l : ℕ) [Fact l.Prime] (M k : ℕ) :
 end GlobalTheory.CompanionTheory.LatLevel
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelFiltrationSpanTPow
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelFiltrationSpanTPow
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open GroundTheory.PAdicHodge Formalism.Per6 DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb CrystallineSemistableComparison.Pb.Lat
 
@@ -754,12 +742,12 @@ theorem pInv_eq_tBdR {K : IntermediateField ℚ_[l] (PadicAlgCl l)} (t : (per l 
 
 end GlobalTheory.CompanionTheory.LatPdpB
 
-
 open GlobalTheory.CompanionTheory.LatPdpB in
 theorem GlobalTheory.CompanionTheory.LatPdpB.dividedPowerFiltration_lev_eq_span_pow : ∀ {l : ℕ} [Fact l.Prime] {K : IntermediateField ℚ_[l] (PadicAlgCl l)} {M : ℕ} (h : LevHyp l K M) (k : ℕ), ∀ (r : ℕ) (t : (per l K).P), (t : (per l K).B) = (per l K).tB → pdP (lev h k).γB r = Ideal.span {(lev h k).toB t ^ r} := by
   intro l _ K M h k r t ht
   show pdP (γB (fk l k) (xi0 l)) r = Ideal.span {(pk l k) (pInv l t) ^ r}
   rw [GlobalTheory.CompanionTheory.DPFiltration.pdP_γB, pInv_eq_tBdR l t ht, span_fk_pow]
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens
@@ -871,10 +859,9 @@ theorem isDPMorphism_map {W B W' B' : Type} [CommRing W] [CommRing B] [Algebra �
 end GlobalTheory.CompanionTheory.LatDP
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelGaloisIsDPMorphism
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelGaloisIsDPMorphism
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open GroundTheory.PAdicHodge Formalism.Per6 DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb CrystallineSemistableComparison.Pb.Lat
 
@@ -901,6 +888,7 @@ theorem sigA_isDPMorphism (h : LevHyp l K M) (k : ℕ) (g : K.fixingSubgroup) :
     (h.hc k) (h.hc k)
 
 end GlobalTheory.CompanionTheory.LatSigDP
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelGaloisIsDPMorphismStatement
@@ -948,11 +936,11 @@ theorem iota_algebraMap_OK : ∀ {l : ℕ} [Fact l.Prime] {K : IntermediateField
 end GlobalTheory.CompanionTheory.LatC
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelIotaLamEqToB
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelIotaLamEqToB
 
-set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
+noncomputable section
 open GroundTheory.PAdicHodge Formalism.Per6 DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb CrystallineSemistableComparison.Pb.Lat
 
 namespace GlobalTheory.CompanionTheory.LatC
@@ -975,6 +963,7 @@ theorem iota_lam_eq_toB {l : ℕ} [Fact l.Prime] {K : IntermediateField ℚ_[l] 
   exact hy.symm.trans (algebraMap_pInv y).symm
 
 end GlobalTheory.CompanionTheory.LatC
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelLamGaloisEquivariant
@@ -1041,10 +1030,9 @@ theorem sig_lam : ∀ {l : ℕ} [Fact l.Prime] {K : IntermediateField ℚ_[l] (P
 end GlobalTheory.CompanionTheory.LatCSig
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelSystemTransitionGaloisA
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelSystemTransitionGaloisA
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open GroundTheory.PAdicHodge Formalism.Per6 DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb CrystallineSemistableComparison.Pb.Lat
 
@@ -1064,6 +1052,7 @@ theorem levSys_dA_σA {l : ℕ} [Fact l.Prime] {K : IntermediateField ℚ_[l] (P
   exact dk_gB h (m + 1) g a.1
 
 end GlobalTheory.CompanionTheory.LatLevel
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelSystemTransitionGaloisB
@@ -1085,10 +1074,9 @@ theorem dB_sigmaB {l : ℕ} [Fact l.Prime] {K : IntermediateField ℚ_[l] (Padic
 end GlobalTheory.CompanionTheory.LatLevel
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelSystemTransitionIsDPMorphism
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelSystemTransitionIsDPMorphism
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open GroundTheory.PAdicHodge Formalism.Per6 DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb CrystallineSemistableComparison.Pb.Lat
 
@@ -1136,6 +1124,7 @@ theorem levSys_ddp {K : IntermediateField ℚ_[l] (PadicAlgCl l)} {M : ℕ} (h :
     (fun x hx => h.dIn (m + 1) x hx) (dk_fk (m + 1) (xi0 l)) (h.hc (m + 2)) (h.hc (m + 1))
 
 end GlobalTheory.CompanionTheory.LatC
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelSystemTransitionIsDPMorphismStatement
@@ -1323,8 +1312,6 @@ end GlobalTheory.CompanionTheory.LatC.Red
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.LatLink
-
-set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 

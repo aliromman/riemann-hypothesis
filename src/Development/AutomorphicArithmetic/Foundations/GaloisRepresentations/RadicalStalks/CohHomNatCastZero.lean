@@ -77,14 +77,14 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrobeniusEquivariantDeRham, Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemHodgeFiltrationOneOfAbsoluteFrobeniusPullZero, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrobeniusKernelPrimitiveDeRhamHodge, Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.GrpSchemeAbsoluteFrobeniusKillsHodgeFiltration, Development.AbelianVarietyTheory.Proofs.DivisorProofs.RangeRelativeFrobeniusPrimitiveDeRhamEqConjugate, Development.AbelianVarietyTheory.Proofs.DivisorProofs.RangeRelativeFrobeniusPrimitiveDeRhamEqConjugateStatement, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDeRhamRingAction, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RadicalStalks.FinrankWPow, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RadicalStalks.TmulPMul, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.RadicalStalks.CohHomNatCastZero
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrobeniusEquivariantDeRham
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FrobeniusEquivariantDeRham
 
 open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalCategory
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.VB GlobalTheory.LieVB GlobalTheory.DeRham GlobalTheory.DeRhamSheaf GlobalTheory.AbDual GlobalTheory.Cris
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 
+noncomputable section
 
 namespace GlobalTheory.AbDatum
 
@@ -100,6 +100,7 @@ theorem frobDR_primPull (p : ℕ) [Fact p.Prime] {R : Type} [CommRing R] (hR : (
 
 end GlobalTheory.AbDatum
 end -- clump:auto
+end -- clump:auto
 
 section -- clump: shared namespace opens
 
@@ -109,16 +110,6 @@ open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemHodgeFiltrationOneOfAbsoluteFrobeniusPullZero
 attribute [local instance] Over.cartesianMonoidalCategory
-
-namespace GlobalTheory.CechDR.FrobKill
-
-attribute [local instance] opModule isCentralScalar_kaehler isScalarTower_kaehler
-
-theorem exists_closed_pow_local : ∀ (p : ℕ) [Fact p.Prime] (R : Type) [CommRing R] (hR : (p : R) = 0) (X : Scheme.{0}) (s : X ⟶ Sp R) (hX : (p : Γ(X, ⊤)) = 0) (h : IsMor (dp0 R) s (dp0 R) s (frobR p R hR) (GlobalTheory.VB.frob X p hX)) (f : Z1 (O (dp0 R) s)), h.pull1 (GlobalTheory.CatCoh.H1.mk _ f) = 0 → ∃ u : ∀ U : GlobalTheory.CechDR.AffOp X, GlobalTheory.CechDR.Sec s U.unop.1, (∀ U, KaehlerDifferential.D R (GlobalTheory.CechDR.Sec s U.unop.1) (u U) = 0) ∧ ∀ (U V : GlobalTheory.CechDR.AffOp X) (a : U ⟶ V), (show GlobalTheory.CechDR.Sec s V.unop.1 from (GlobalTheory.CechDR.cmpZZ s f).1.1 U V a) ^ p = u V - GlobalTheory.CechDR.Sec.res s (leOfHom a.unop) (u U) := by
-  apply GlobalTheory.CechDR.FrobKill.exists_closed_pow
-
-
-end GlobalTheory.CechDR.FrobKill
 
 namespace GlobalTheory.ConjSeq
 
@@ -139,7 +130,6 @@ theorem sec_exists_pow_of_D_eq_zero_local : ∀ (p : ℕ) [Fact p.Prime] (k : Ty
     haveI : Subsingleton (GlobalTheory.CechDR.Sec s U.1) := hs
     exact ⟨u, Subsingleton.elim _ _⟩
 
-
 theorem eq_sub_of_pow_eq_sub (p : ℕ) [Fact p.Prime] {B : Type} [CommRing B] [IsReduced B]
     (hB : (p : B) = 0) {c x y : B} (h : c ^ p = x ^ p - y ^ p) : c = x - y := by
   have e : (c - (x - y)) ^ p = 0 := by
@@ -154,7 +144,7 @@ theorem mem_hodgeFiltrationOne_of_absoluteFrobenius_pull_zero : ∀ (p : ℕ) [F
       ∀ (U V : GlobalTheory.CechDR.AffOp X) (a : U ⟶ V),
         (show GlobalTheory.CechDR.Sec s V.unop.1 from (GlobalTheory.CechDR.cmpZZ s f).1.1 U V a) ^ p =
           u V - GlobalTheory.CechDR.Sec.res s (leOfHom a.unop) (u U) :=
-    GlobalTheory.CechDR.FrobKill.exists_closed_pow_local p k hk X s hX h f hc
+    GlobalTheory.CechDR.FrobKill.exists_closed_pow p k hk X s hX h f hc
   obtain ⟨u, hu, hf⟩ := hex
   choose w hw using fun U : GlobalTheory.CechDR.AffOp X ↦ sec_exists_pow_of_D_eq_zero_local p k hk X s U.unop (u U) (hu U)
   refine LinearMap.mem_ker.2 (GlobalTheory.CechDR.cmpO_injective k X s ?_)
@@ -188,8 +178,9 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.GrpSchemeAbsoluteFrobeniusKillsHodgeFiltration
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.GrpSchemeAbsoluteFrobeniusKillsHodgeFiltration
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry MonoidalCategory
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.DeRham GlobalTheory.ConjSeq
@@ -202,10 +193,8 @@ section Kill
 
 variable {X : Scheme.{0}} {s : X ⟶ Sp R} (T : Thick (dp0 R) s)
 
-
 include hR in
 theorem cast_B : (p : T.B) = 0 := by rw [← map_natCast (algebraMap R T.B), hR, map_zero]
-
 
 include hR in
 theorem cast_B₀ : (p : T.B₀) = 0 := by rw [← map_natCast T.π, cast_B p hR T, map_zero]
@@ -242,7 +231,6 @@ def eta : red T ⟶ h.obj T :=
       change spMap (T.π.comp (lft p hR T)) ≫ T.x = T.x ≫ GlobalTheory.VB.frob X p hX
       rw [e, ← frob_sp p _ _ h0, GlobalTheory.VB.frob_naturality p hX T.x h0])
 
-
 variable {T} in
 def redMap {T' : Thick (dp0 R) s} (φ : T ⟶ T') : red T ⟶ red T' :=
   letI : Algebra R T.B₀ := (T.π.comp (algebraMap R T.B)).toAlgebra
@@ -269,8 +257,8 @@ theorem grpScheme_absoluteFrobenius_kills_hodgeFiltration (A : Over (Sp R)) [Grp
       (GlobalTheory.VB.frob A.left p hA)) : ∀ x ∈ PrimitiveSubmodule A, m.pull x = 0 :=
   fun _ hx ↦ Subtype.ext (frobenius_kills_hodge_filtration p hR m.isMor hx)
 
-
 end GlobalTheory.Published.ConjugateFiltration.Test
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RangeRelativeFrobeniusPrimitiveDeRhamEqConjugate

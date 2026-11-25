@@ -30,11 +30,12 @@ def liftedMapLogSize {J Pl Emb : Type} [Fintype Pl] {r : ℕ} (ν : J → Pl →
 end Formalism.DimensionVariation
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.Divisibility.Inputs
+@[expose] public section -- clump member: Formalism.LocalToGlobal.Divisibility.Inputs
 
 open Module NumberField IsDedekindDomain
 open scoped Matrix ComplexOrder
 
+noncomputable section
 
 namespace Formalism.L2.DIV
 
@@ -397,9 +398,6 @@ attribute [instance] CBData.fAA CBData.fCl CBData.nW CBData.sW
 def CBData.sq {m : ℕ} {c : Fin (m + 1) → ℕ} {Xc : ∀ i, InfinitePlace K → Matrix (Fin (c i)) (Fin (c i)) ℂ}
     {Kj : ∀ j : Fin m, Matrix (Fin (c j.succ)) (Fin (c j.castSucc)) K} (D : CBData Xc Kj) (j : Fin m) (v : InfinitePlace K) : ℝ :=
   Formalism.DimensionVariation.cbSq (Fintype.card (D.AA j.castSucc)) (Fintype.card (D.AA j.succ)) (D.hcl j.castSucc) (D.hcl j.succ) (D.tmax j v)
-
-def FoOf (P : IndefCore Df0 Df1 Dc Sp N) : ℝ :=
-  ∑ j, ∑ y ∈ P.base.Tw, lw y * ((ramw y : ℝ) * N.F0 y j)
 
 def shiftZ (sg : HeightOneSpectrum (𝓞 K) → ℝ) : HeightOneSpectrum (𝓞 K) → ℤ := fun w => ⌊sg w⌋
 

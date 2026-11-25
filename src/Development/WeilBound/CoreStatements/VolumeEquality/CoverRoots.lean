@@ -13,8 +13,9 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.VolumeEquality.CoverRootsAlg, Development.WeilBound.CoreStatements.VolumeEquality.CoverRoots
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.VolumeEquality.CoverRootsAlg
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.VolumeEquality.CoverRootsAlg
 
+noncomputable section
 
 namespace SheetDecomposition.CovAlg
 
@@ -26,7 +27,6 @@ def low {R : Type} [CommRing R] {d : ℕ} (a : Fin d → R) : R[X] := ∑ j, C (
 
 theorem mon_map {R S : Type} [CommRing R] [CommRing S] {d : ℕ} (a : Fin d → R) (f : R →+* S) :
     (mon a).map f = mon fun j => f (a j) := by
-  set_option synthInstance.maxHeartbeats 100000 in
     simp [mon, Polynomial.map_sum]
 
 theorem eval₂_low {R S : Type} [CommRing R] [CommRing S] {d : ℕ} (a : Fin d → R) (f : R →+* S) (x : S) :
@@ -94,6 +94,7 @@ theorem exists_prim (Ω₀ Ω : Type) [Field Ω₀] [Field Ω] [CharZero Ω] [Al
   · rw [← MvPolynomial.eval₂_map, hQ, ← hQ₀, MvPolynomial.aeval_def]
 
 end SheetDecomposition.CovAlg
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.VolumeEquality.CoverRoots

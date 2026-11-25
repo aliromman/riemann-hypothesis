@@ -154,11 +154,13 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsSubquotientProdIrrUc
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsSubquotientProdIrrUc
+@[expose] public section
 
 open NumberField IsDedekindDomain MeasureTheory Formalism.L2.Host GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.DiscSpec GlobalTheory.ResW GlobalTheory.Published
 open scoped TensorProduct
 
+noncomputable section
 
 namespace GlobalTheory.GenSph
 
@@ -224,11 +226,8 @@ theorem isSubquotient_prodIrr_uc {N : ℕ} (α : Fin N → ℂˣ) (hd : ∑ i, (
 
 end GlobalTheory.GenSph
 
-namespace GlobalTheory.GenSph
-open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.LocGL ValuativeRel
-
-end GlobalTheory.GenSph
-
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalGaloisCompatibility.ToralDeRham.LocalComponentsOfSmoothCharacters

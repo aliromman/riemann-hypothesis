@@ -197,11 +197,11 @@ theorem chart_bc : ∀ {O R R' : Type} [CommRing O] [CommRing R] [CommRing R'] {
 end GlobalTheory.CompanionTheory.ChartBc
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartBcOfNe
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartBcOfNe
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry TensorProduct GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison.Pb
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.ChartBc
 
 theorem chart_bc_of_ne : ∀ {O R R' : Type} [CommRing O] [CommRing R] [CommRing R'] {I : Ideal R} {I' : Ideal R'}
@@ -218,12 +218,13 @@ theorem chart_bc_of_ne : ∀ {O R R' : Type} [CommRing O] [CommRing R] [CommRing
 
 end GlobalTheory.CompanionTheory.ChartBc
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.StdSomeZero
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.StdSomeZero
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry TensorProduct GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.ChartLocBc
 
 section Alg

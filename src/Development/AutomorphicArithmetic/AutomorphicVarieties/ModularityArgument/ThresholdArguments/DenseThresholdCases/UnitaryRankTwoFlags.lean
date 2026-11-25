@@ -885,7 +885,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.UnitaryRankTwoFlags
 
-set_option maxHeartbeats 800000
 set_option synthInstance.maxHeartbeats 200000
 
 section

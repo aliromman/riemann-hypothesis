@@ -621,8 +621,10 @@ theorem span_ball : ∀ (V : Type) [CommRing V] [IsDomain V] [IsDiscreteValuatio
 end GlobalTheory.SpanBall
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PulledBackSectionIntegralValueDualPoint
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PulledBackSectionIntegralValueDualPoint
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.IntGaugePull
 
@@ -687,8 +689,6 @@ theorem sE_norm_le_one_of_pull : ∀ (V : Type) [CommRing V] [IsDomain V] [IsDis
   have hpt : ∀ i : Fin 4, ⊤ ≤ (spMap (dualMap toS) ≫ Q ≫ D.toPre.famφB β i) ⁻¹ᵁ
       D.toPre.P.L.U (ν.J (redE C ≫ spMap (dualMap (toF V C)) ≫ Q ≫ D.toPre.famφB β i)) := by
     intro i
-    have hQi : (Q ≫ D.toPre.famφB β i) ≫ D.toPre.P.A.hom = spMap (algebraMap V (DualNumber V)) := by
-      rw [Category.assoc, famφB_hom, hQ]
     let xi : TF (R := V) C ⟶ D.toPre.P.A :=
       Over.homMk (redE C ≫ spMap (dualMap (toF V C)) ≫ Q ≫ D.toPre.famφB β i) (by
         simp only [Category.assoc]
@@ -775,6 +775,8 @@ theorem sE_norm_le_one_of_pull : ∀ (V : Type) [CommRing V] [IsDomain V] [IsDis
 
 end GlobalTheory.IntGaugePull
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PulledBackSectionIntegralValueDualPointStatement
@@ -849,8 +851,10 @@ end GlobalTheory.MBLow
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaTranslateTermsJetsBounded
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaTranslateTermsJetsBounded
+@[expose] public section
 
+noncomputable section
 namespace GlobalTheory.MBLow
 
 theorem jc_bound_k (V : Type) [CommRing V] [IsDomain V] [IsDiscreteValuationRing V] (D : DegData V (IsLocalRing.maximalIdeal V))
@@ -864,7 +868,6 @@ theorem jc_bound_k (V : Type) [CommRing V] [IsDomain V] [IsDiscreteValuationRing
   have H2 := _root_.GlobalTheory.MBLow.trVal_bounded V D C hC N ν hν k hk1 s gm₀ gm htan hpull
   choose bb hbb using H2
   have hk0 : (0 : ℤ) < k := by exact_mod_cast hk1
-  have hkR : (0 : ℝ) < k := by exact_mod_cast hk1
   let bs := Module.Free.chooseBasis ℤ N.X
   let g : (Module.Free.ChooseBasisIndex ℤ N.X → Fin k) → N.X := fun c => ∑ i, ((c i : ℕ) : ℤ) • bs i
   let quo : N.X → N.X := fun χ => ∑ i, (bs.repr χ i / (k : ℤ)) • bs i
@@ -941,6 +944,8 @@ theorem jc_bound : ∀ (V : Type) [CommRing V] [IsDomain V] [IsDiscreteValuation
 
 end GlobalTheory.MBLow
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaTranslateTermsJetsBoundedStatement

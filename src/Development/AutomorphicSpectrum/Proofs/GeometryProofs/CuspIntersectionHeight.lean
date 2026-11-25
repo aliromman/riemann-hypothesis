@@ -49,8 +49,9 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.GeometryProofs.StalkClosedPointToToStalk, Development.AutomorphicSpectrum.Statements.GeometryStatements.ExistsRingHomComplex, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ComponentDataAbelianPartBound, Development.AutomorphicSpectrum.Proofs.GeometryProofs.TensorLatticeCoordDegree, Development.AutomorphicSpectrum.Proofs.GeometryProofs.CuspIntersectionHeight
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.StalkClosedPointToToStalk
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.StalkClosedPointToToStalk
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar
 
@@ -75,15 +76,13 @@ theorem ValAt.unique {X : Scheme.{0}} {Ω : Type} [Field Ω] {R : Type} [CommRin
   obtain ⟨hs', s', hsa', rfl⟩ := h'
   exact congrArg (Scheme.stalkClosedPointTo z).hom (hξ.inj ⟨centre z, hs⟩ (hsa.trans hsa'.symm))
 
-namespace CoordInhab
-
-end CoordInhab
-
 end GlobalTheory.CompanionTheory.Ar
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Statements.GeometryStatements.ExistsRingHomComplex
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Statements.GeometryStatements.ExistsRingHomComplex
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.ProvConj
 
@@ -224,25 +223,7 @@ end Final
 
 end GlobalTheory.CompanionTheory.Ar.ProvConj
 
-namespace GlobalTheory.CompanionTheory.Ar.ProvParts
-
-section An
-
-open MeasureTheory _root_.Metric Filter Topology ReciprocityTheory.AnForm ReciprocityTheory.AnForm.M ReciprocityTheory.AnForm.P ReciprocityTheory.AnForm.M.FinHolAtlas
-open scoped ContDiff
-open GlobalTheory.CompanionTheory.Ar.Giv
-
-section PullTop
-
-variable {e : ℕ} {X : Type} [TopologicalSpace X]
-
-end PullTop
-
-end An
-
-open ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.ArakelovGeometry GroundTheory.Heights₂.Heights GroundTheory.Heights₂.Heights.LowerBoundFree
-
-end GlobalTheory.CompanionTheory.Ar.ProvParts
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

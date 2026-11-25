@@ -209,10 +209,12 @@ end GlobalTheory.KerConjMean
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.JetOperatorCharacterScaledTable
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.JetOperatorCharacterScaledTable
+@[expose] public section
 
 open MvPolynomial Formalism.BasicNotions Formalism.L2.DIV Formalism.L2.Ker
 
+noncomputable section
 
 namespace GlobalTheory.JetCharScale
 
@@ -243,8 +245,7 @@ theorem subD_scale (w : ι → K) (P : Pol K ι a) :
     (MvPolynomial.algHom_ext fun v => ?_) P
   simp only [AlgHom.comp_apply, subD, aeval_X]
   split_ifs with h
-  · set_option synthInstance.maxHeartbeats 100000 in
-      simp only [map_sum, map_mul, scaleVar, aeval_X, Sum.elim_inl, Sum.elim_inr, map_one]
+  · simp only [map_sum, map_mul, scaleVar, aeval_X, Sum.elim_inl, Sum.elim_inr, map_one]
     refine Finset.sum_congr rfl fun β _ => ?_
     ring
   · simp
@@ -310,6 +311,8 @@ theorem jetOp_scale : ∀ {ι : Type} [Fintype ι] {a b : ℕ} (lam : ι → Dom
 
 end GlobalTheory.JetCharScale
 
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens

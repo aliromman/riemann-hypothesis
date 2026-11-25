@@ -642,8 +642,9 @@ theorem weighted_bound_rotated_uniform : Formalism.MainNotions.RotatedPoints.Wei
 end CompanionTheory.WaveGrid
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: CompanionTheory.AutomorphicTheory.UniformLocalFormulas.StepThmBPinnedCOfN
+@[expose] public section -- clump member: CompanionTheory.AutomorphicTheory.UniformLocalFormulas.StepThmBPinnedCOfN
 
+noncomputable section
 
 open scoped Classical
 open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.ThB Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full
@@ -653,8 +654,6 @@ open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Fo
 open scoped ENNReal
 
 namespace Formalism.MainStatements.RowRest
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7}
 
@@ -901,6 +900,7 @@ theorem stepThmBG_ofN (hB : JointNormBoundRotatedUniform) (hA : AmpUnif) (hP : P
       (fun sec hs => by rw [ENNReal.ofReal_one, one_mul]; exact hNF sec hs) hs0 hka (by linarith))
 
 end Formalism.MainStatements.RowRest
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: CompanionTheory.AutomorphicTheory.UniformLocalFormulas.RankOneTermInvariant

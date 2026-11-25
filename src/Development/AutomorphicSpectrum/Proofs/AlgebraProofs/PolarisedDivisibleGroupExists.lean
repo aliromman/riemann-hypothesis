@@ -763,8 +763,9 @@ end GlobalTheory.CompanionTheory.Ar.HT
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.TateMapDualHomBidual
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.TateMapDualHomBidual
 
+noncomputable section
 
 open CategoryTheory TensorProduct GlobalTheory GlobalTheory.PDivGroup WithConv
 
@@ -875,7 +876,7 @@ theorem pairing_dual_bidual (G : PDivGroup p O) (t : G.Tate) (χ : G.dual.Tate) 
 
 theorem algebraMap_injective [IsDomain O] [Algebra ℤ_[p] O] (hp : (p : O) ≠ 0) :
     Function.Injective (algebraMap ℤ_[p] O) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   by_contra h
   have h2 := congrArg (algebraMap ℤ_[p] O) (PadicInt.unitCoeff_spec h)
@@ -1005,6 +1006,7 @@ theorem dlog_lagrangian : FarguesHodgeTate → ∀ (p : ℕ) [Fact p.Prime] (C :
     exact hNW ((hN x).2 hx)
 
 end GlobalTheory.CompanionTheory.Ar.HT
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PolarisedDivisibleGroupExists

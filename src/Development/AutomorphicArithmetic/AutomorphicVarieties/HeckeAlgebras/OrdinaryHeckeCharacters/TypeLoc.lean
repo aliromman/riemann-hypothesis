@@ -371,10 +371,11 @@ theorem UpperTheory.le_span_integralValued_of_galoisStable :
   exact key _ y hy le_rfl
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.TypeLoc
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.HeckeAlgebras.OrdinaryHeckeCharacters.TypeLoc
 
 open GlobalTheory.CuspRep
 
+noncomputable section
 
 namespace UpperTheory.V.Hi.TyLoc
 
@@ -403,8 +404,7 @@ private theorem avg {Q N : Type} [Group Q] [Fintype Q] [AddCommGroup N] [Module 
   · rintro ⟨i, v, n, h⟩
     refine ⟨∑ g, (LinearMap.toSpanSingleton ℂ N (π g n)) ∘ₗ (LinearMap.proj i) ∘ₗ ξ g⁻¹, fun h0 => h ?_, fun k v => ?_⟩
     · simpa using LinearMap.congr_fun h0 v
-    · set_option synthInstance.maxHeartbeats 100000 in
-        simp only [LinearMap.coe_sum, Finset.sum_apply, LinearMap.comp_apply, LinearMap.toSpanSingleton_apply,
+    · simp only [LinearMap.coe_sum, Finset.sum_apply, LinearMap.comp_apply, LinearMap.toSpanSingleton_apply,
           LinearMap.proj_apply, map_sum, map_smul]
       rw [← Equiv.sum_comp (Equiv.mulLeft k)]
       refine Finset.sum_congr rfl fun g _ => ?_

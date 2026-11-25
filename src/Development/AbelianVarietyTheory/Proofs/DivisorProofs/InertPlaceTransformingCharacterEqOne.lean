@@ -1200,10 +1200,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormalizedAbsDetMulIntegralCompMulVecFinitePlaceStatement
 
-theorem _root_.GlobalTheory.T.normalizedAbsDet_mul_integral_comp_mulVec_finitePlace : ∀ (F : Type) [Field F] [NumberField F] (v : Pl (F := F)) (N : ℕ) (ν : @Measure (Fin N → Fv F v) (borel _)),
-    @Measure.IsAddHaarMeasure _ _ _ (borel _) ν → ∀ (T : GL (Fin N) (Fv F v)) (f : (Fin N → Fv F v) → ℂ),
-      ((GlobalTheory.SplitWeil.nabs (Fv F v) (Matrix.GeneralLinearGroup.det T) : ℝ) : ℂ) * ∫ y, f (T.val *ᵥ y) ∂ν = ∫ y, f y ∂ν := by
-  first | exact @GlobalTheory.InertLagChar.nabs_det_mul_integral_comp_mulVec
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SiegelParabolicLeviInverseQuotientDetNorm
@@ -1337,14 +1333,10 @@ theorem _root_.GlobalTheory.T.siegelParabolic_leviInverse_quotient_det_norm : �
   first | exact @GlobalTheory.InertLagLevi.levi_det
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.InertPlaceTransformingCharacterEqOne
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.InertPlaceTransformingCharacterEqOne
 
+noncomputable section
 namespace GlobalTheory.InertLagChar
-
-theorem box_mem_SB {k : Type} [CommRing k] [TopologicalSpace k] [T2Space k] {κ κ' : Type}
-    {φ₁ : (κ → k) → ℂ} {φ₂ : (κ' → k) → ℂ} (h₁ : φ₁ ∈ SB (κ → k)) (h₂ : φ₂ ∈ SB (κ' → k)) :
-    boxFun φ₁ φ₂ ∈ SB (κ ⊕ κ' → k) := by
-  apply _root_.GlobalTheory.BoxSpan.boxFun_mem_SB' <;> assumption
 
 def boxL {k κ κ' : Type} [CommRing k] (φ₂ : (κ' → k) → ℂ) : ((κ → k) → ℂ) →ₗ[ℂ] ((κ ⊕ κ' → k) → ℂ) where
   toFun φ := boxFun φ φ₂
@@ -1390,7 +1382,7 @@ theorem Scales.unique {κ : Type} [Fintype κ] {v : Pl (F := F)} {Λ : ((κ → 
     {Φ : (κ → Fv F v) → ℂ} (hΦ : Φ ∈ SB (κ → Fv F v)) (h0 : Λ Φ ≠ 0) : a = a' := by
   obtain ⟨Φ₁, -, hA₁, e₁⟩ := h Φ hΦ
   obtain ⟨Φ₂, -, hA₂, e₂⟩ := h' Φ hΦ
-  have e : Φ₁ = Φ₂ := GlobalTheory.T.eq_of_componentTensorAdelicFunction_eq v Φ Φ₁ Φ₂ hΦ fun r hr => (hA₁ r hr).symm.trans (hA₂ r hr)
+  have e : Φ₁ = Φ₂ := GlobalTheory.TensUniq.eq_of_tens_eq v Φ Φ₁ Φ₂ hΦ fun r hr => (hA₁ r hr).symm.trans (hA₂ r hr)
   rw [e, e₂] at e₁
   exact (mul_right_cancel₀ h0 e₁).symm
 
@@ -1425,7 +1417,7 @@ theorem scales_of_box {κ : Type} [Fintype κ] {v : Pl (F := F)} (ψ : AddChar (
     simp only [tens, h1, evFin_liftV]
     field_simp
   have key := _root_.GlobalTheory.BoxSpan.boxSpan_ker F v κ κ ψ hψ hψ1 (Λ ∘ₗ S - a • Λ) (fun φ₁ h₁ φ₂ h₂ => by
-    obtain ⟨Φ₁, -, hA⟩ := hex _ (box_mem_SB h₁ h₂)
+    obtain ⟨Φ₁, -, hA⟩ := hex _ (GlobalTheory.BoxSpan.boxFun_mem_SB' h₁ h₂)
     simp only [LinearMap.sub_apply, LinearMap.smul_apply, smul_eq_mul, LinearMap.comp_apply]
     rw [← hS _ (_root_.GlobalTheory.BoxSpan.boxFun_mem_SB' h₁ h₂) Φ₁ hA, hbox φ₁ h₁ φ₂ h₂ Φ₁ hA, sub_self])
   intro Φ hΦ
@@ -1461,7 +1453,7 @@ theorem char_eq_one : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numb
     haveI : BorelSpace (Fin N → Fv F v) := ⟨rfl⟩
     exact ⟨Measure.addHaar, inferInstance⟩
   obtain ⟨φ₀, hφ₀, c₁, hc₁, U, hUo, hUc, hU0, hU⟩ := _root_.GlobalTheory.InertLagInd.diagW_box_indicator F v _ B.ψ hunr h2 μ hμ
-  have hSB := _root_.GlobalTheory.DiagWSB.diagW_mem_SB F v _ _ hψc hψ1 μ hμ _ (box_mem_SB hφ₀ hφ₀) c₁ hc₁ U hUo hUc hU0 hU
+  have hSB := _root_.GlobalTheory.DiagWSB.diagW_mem_SB F v _ _ hψc hψ1 μ hμ _ (GlobalTheory.BoxSpan.boxFun_mem_SB' hφ₀ hφ₀) c₁ hc₁ U hUo hUc hU0 hU
   obtain ⟨Λ, hΛ⟩ := _root_.GlobalTheory.InertLagChar.lagInt_linForm F v _ _ hψc μ hμ N ν hν j hj hSB
   have hΛ0 : Λ (boxFun φ₀ φ₀) ≠ 0 := by
     rw [hΛ _ (_root_.GlobalTheory.BoxSpan.boxFun_mem_SB' hφ₀ hφ₀), lagInt]
@@ -1485,9 +1477,9 @@ theorem char_eq_one : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numb
       rw [smul_smul, ← smul_eq_mul, at_liftV v _ t ht, zero_smul])
     have hu' : u = ζ y * Cᵀ := by rw [hy, Matrix.smul_mul, ← hz, smul_of_at hu]
     have hA' := GlobalTheory.VacBridge.rho_acts_locCo G.M'.co B.ψ v u hu φ
-    have e : φ₁ = _ := GlobalTheory.T.eq_of_componentTensorAdelicFunction_eq v φ _ _ hφ fun r hr => (hA r hr).symm.trans (hA' r hr)
+    have e : φ₁ = _ := GlobalTheory.TensUniq.eq_of_tens_eq v φ _ _ hφ fun r hr => (hA r hr).symm.trans (hA' r hr)
     show Λ (boxFun φ₁ φ₂) = Λ (boxFun φ φ₂)
-    rw [hΛ _ (box_mem_SB hφ₁ hφ₂), hΛ _ (box_mem_SB hφ hφ₂), e, hu', (hζ y).2]
+    rw [hΛ _ (GlobalTheory.BoxSpan.boxFun_mem_SB' hφ₁ hφ₂), hΛ _ (GlobalTheory.BoxSpan.boxFun_mem_SB' hφ hφ₂), e, hu', (hζ y).2]
     exact GlobalTheory.T.isotropicIntegral_invariant_heisenberg_first_vars F v _ _ μ hμ N ν hν j hiso y φ φ₂
   obtain ⟨φt, hφt, hline⟩ := _root_.GlobalTheory.InertLagUniq.exists_test F E σ a' (a + a') G.V' G.W G.M' B.ψ v hunr m C hC
   have hlt : l φt ≠ 0 := fun h => by
@@ -1554,7 +1546,7 @@ theorem char_eq_one : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numb
     have hexp : ((Fintype.card (Fin (a + a')) : ℝ) / 2) = (m : ℝ) := by
       rw [Fintype.card_fin, hdm]; push_cast; ring
     rw [hχ, hmod, hexp, Real.rpow_natCast, ← hpow, ← hdT, Circle.coe_one, one_mul] at hpt'
-    rw [hΛ _ hΦ₁, hΛ _ hΦ, one_mul, lagInt, lagInt, ← GlobalTheory.T.normalizedAbsDet_mul_integral_comp_mulVec_finitePlace F v N ν hν T (fun y => diagW (psiAt B.ψ v) μ Φ (j y)),
+    rw [hΛ _ hΦ₁, hΛ _ hΦ, one_mul, lagInt, lagInt, ← GlobalTheory.InertLagChar.nabs_det_mul_integral_comp_mulVec F v N ν hν T (fun y => diagW (psiAt B.ψ v) μ Φ (j y)),
       ← integral_const_mul]
     refine congrArg _ (funext fun y => ?_)
     set_option backward.isDefEq.respectTransparency false in
@@ -1592,6 +1584,7 @@ theorem char_eq_one : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numb
   exact (hdiag g hg gd hgd).unique h hb hΛ0
 
 end GlobalTheory.InertLagChar
+end
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiagonalIntegralHeisenbergTranslateIntegralIndic", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiagWZero\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatAtVAtStable\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EventuallyIntegralPointsIndicatorIsVacuum\nimport Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompactness.AdeleLC\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.DoubledWeilOperatorDiagonalIntegralHeisenbergPoi", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiagWZero\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsLagrAt\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatAtVAtStable\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdelicHeisenbergActsByLocalSchrodinger\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HermitianAdaptedPlaneSeesaw\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchrodingerPreservesSchwartzBruhat\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SymplecticFormEqZeroOfLagrangianAtPlace\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\n\n"}

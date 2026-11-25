@@ -989,11 +989,12 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LevelOnFibreUniqueTwist
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LevelOnFibreUniqueTwist
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
+noncomputable section
 
 namespace GlobalTheory.UPel.TensorTorsionNsmul
 
@@ -1093,11 +1094,7 @@ theorem exists_equiv (n : ℕ) (φ φ' : L → G) (hφ : ∀ a c, φ (a + c) = �
 
 end GlobalTheory.UPel.TensorTorsionNsmul
 
-namespace GlobalTheory.UPel
-
-open scoped TensorProduct
-
-end GlobalTheory.UPel
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens

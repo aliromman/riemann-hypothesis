@@ -30,7 +30,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsGoodPoly
 @[expose] public section
 
-set_option backward.isDefEq.respectTransparency false
 
 namespace GlobalTheory.CompanionTheory.TraceJac
 
@@ -248,7 +247,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FaithfulIntegralClosure
 @[expose] public section
 
-set_option backward.isDefEq.respectTransparency false
 
 namespace GlobalTheory.CompanionTheory.TraceJac
 
@@ -305,7 +303,6 @@ theorem trace_radical (π : R) (hπ : Irreducible π) (y z : integralClosure R L
     have h3 : Matrix.trace ((Algebra.leftMulMatrix (Module.Free.chooseBasis R (integralClosure R L)) y).map
         (IsLocalRing.residue R)) = IsLocalRing.residue R
           (Matrix.trace (Algebra.leftMulMatrix (Module.Free.chooseBasis R (integralClosure R L)) y)) := by
-      set_option synthInstance.maxHeartbeats 100000 in
         simp [Matrix.trace, map_sum]
     rw [← h3]
     exact h2.eq_zero
@@ -634,7 +631,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsPderivNotDvd
 
-set_option backward.isDefEq.respectTransparency false
 
 namespace GlobalTheory.CompanionTheory.TraceJac
 
@@ -827,7 +823,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsPrimeDvdNotUnit
 @[expose] public section
 
-set_option backward.isDefEq.respectTransparency false
 
 namespace GlobalTheory.CompanionTheory.TraceJac
 
@@ -1038,7 +1033,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FractionFieldTranscendenceBasisExt
 
-set_option backward.isDefEq.respectTransparency false
 open MvPolynomial
 
 namespace GlobalTheory.CompanionTheory.TraceJac
@@ -1097,10 +1091,10 @@ theorem trace_minor_mem : ∀ (K : Type) [Field K] [CharZero K] (d : ℕ) (A : T
 end GlobalTheory.CompanionTheory.TraceJac
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.TraceChart
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.TraceChart
 
-set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 namespace CrystallineSemistableComparison.Pb
 

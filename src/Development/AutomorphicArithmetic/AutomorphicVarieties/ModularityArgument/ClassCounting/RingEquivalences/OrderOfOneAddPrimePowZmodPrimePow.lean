@@ -163,22 +163,9 @@ theorem UpperTheory.V.Kum.levCompact :
   exact Set.disjoint_left.mp hv hmem.1 hmem.2
 end -- clump:auto
 
-section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.KummerTheory.CycZConjGal
-@[expose] public section
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.KummerTheory.CycZConjGal
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.GaloisCohomology UpperTheory.V UpperTheory.V.LDataCardLeFinrank UpperTheory.V.Base UpperTheory.V.Kum
-
-namespace UpperTheory.V.Kum
-
-section
-
-variable {F Ω : Type} [Field F] [NumberField F] [Field Ω] [Algebra F Ω] (l : ℕ) [Fact l.Prime]
-
-variable [IsAlgClosure F Ω] {R M : Type} [CommRing R] [AddCommGroup M] [Module R M]
-
-end
-
-end UpperTheory.V.Kum
 
 private theorem cycZ_eq_of_intertwined {F Ω : Type} [Field F] [Field Ω] [Algebra F Ω] (l : ℕ) [Fact l.Prime]
     (σ : Ω ≃+* Ω) (u v : G F Ω) (h : ∀ x, v (σ x) = σ (u x)) : cycZ F Ω l v = cycZ F Ω l u := by
@@ -338,7 +325,6 @@ theorem UpperTheory.V.Kum.eqExt :
     congr 1
     exact Subtype.ext hu'
   · exact (restr_restr R M _ _ (cycU_le_levU l U n) ψ).trans hres
-end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.KummerTheory.MinusLenLeOfCl

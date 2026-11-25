@@ -216,7 +216,3 @@ theorem props_cast (θ : InfFam D) (S : D.what₂.Tau → SPar) {Λ : Submodule 
   exact ⟨h1, h2, h3⟩
 
 end GlobalTheory.EndCusp
-
-namespace GlobalTheory.EndCusp
-
-end GlobalTheory.EndCusp

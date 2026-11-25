@@ -556,7 +556,9 @@ theorem intClosure_aut_extends : ∀ (o₁ Ω₁ : Type) [CommRing o₁] [Field 
 end GlobalTheory.UPoinc
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUdeep
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUdeep
+
+noncomputable section
 
 namespace GlobalTheory.UPoinc.UDeepEx
 
@@ -585,9 +587,7 @@ theorem exists_level (X₁ : USetup C) (K : ℕ) (hK : 0 < K) (hKu : IsUnit (K :
 
 end GlobalTheory.UPoinc.UDeepEx
 
-namespace GlobalTheory.UPoinc.UDeepEx
-
-end GlobalTheory.UPoinc.UDeepEx
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsProjOverModel
@@ -885,7 +885,9 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SameOfUSame
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SameOfUSame
+
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -1015,7 +1017,6 @@ theorem GLab.exists_div [ArithBase o Ω] (hd : M.HasDiv S.th) {y : Sp (OO p) ⟶
     congr 2
     have := hdv.1
     field_simp
-  have hn' : ‖y₀ ⟨c₀ * S.th a, hth a⟩‖ = sc := hn
   have b₁ := RatModel.norm_val_le_one hz (hdv.2 a)
   have b₂ := hle' d
   refine le_antisymm b₁ (not_lt.1 fun hlt => ?_)
@@ -1101,11 +1102,6 @@ theorem GLab.norms [ArithBase o Ω] (hM : ReciprocityTheory.ChartRestriction.G.G
 
     rw [← norm_mul, ← e₂, map_sum]
     simp only [map_mul]
-  have hm0 : (m : ℝ) ≠ 0 := by
-    have := S.N_ge
-    rintro h0
-    obtain rfl : m = 0 := by exact_mod_cast h0
-    omega
   have hqm : ∀ χ, l.q (m • χ) = (S.N : ℝ) * l.q χ := fun χ => by
     rw [← natCast_zsmul, QuadraticMap.map_smul, congrArg (Nat.cast : ℕ → ℝ) hm]
     simp [sq]
@@ -1130,6 +1126,7 @@ theorem GLab.norms [ArithBase o Ω] (hM : ReciprocityTheory.ChartRestriction.G.G
     rwa [mul_comm, mul_right_inj' hδ.ne', hq] at this
 
 end GlobalTheory.UPoinc.USum
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryThetaFourierClassSumsDeeperIntegral

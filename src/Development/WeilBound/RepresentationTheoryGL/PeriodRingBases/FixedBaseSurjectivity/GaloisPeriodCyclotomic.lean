@@ -15,8 +15,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.PeriodRingBases.FixedBaseSurjectivity.GaloisPeriodCyclotomic
 
-set_option backward.isDefEq.respectTransparency false
-
 noncomputable section
 
 namespace period_ring_base

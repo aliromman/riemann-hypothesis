@@ -700,10 +700,11 @@ theorem card_eq (hK : Formalism.HermitianLatticesTheory.IsCMUnram K) (ho : ∀ i
 end Formalism.HermitianLattices.Ext.L3.BallD
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.GL3MeanSquares.GenusMeanAsymptotics.UnimodularClassRepresentatives.DiscreteTopologyOfZsmul
+@[expose] public section -- clump member: Formalism.GL3MeanSquares.GenusMeanAsymptotics.UnimodularClassRepresentatives.DiscreteTopologyOfZsmul
 
 open MeasureTheory Module ZSpan Filter Topology Pointwise Bornology
 
+noncomputable section
 
 namespace Formalism.HermitianLattices.Ext.L3.BallA
 
@@ -782,7 +783,6 @@ theorem tendsto_card_div_pow {s : Set E} (hs₁ : IsBounded s) (hs₂ : Measurab
   rw [hlim, hcard] at key
   exact key
 
-set_option backward.isDefEq.respectTransparency.types false in
 theorem covolume_div_covolume (L₁ L₂ : Submodule ℤ E) [DiscreteTopology L₁] [IsZLattice ℝ L₁]
     [DiscreteTopology L₂] [IsZLattice ℝ L₂] (h : L₁ ≤ L₂) :
     ZLattice.covolume L₁ μ / ZLattice.covolume L₂ μ =
@@ -837,6 +837,7 @@ theorem tendsto_card_of_le (Λ₁ Λ : Submodule ℤ E) [DiscreteTopology Λ₁]
   field_simp
 
 end Formalism.HermitianLattices.Ext.L3.BallA
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

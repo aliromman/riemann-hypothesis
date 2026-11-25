@@ -831,9 +831,6 @@ theorem continuous_blocks' {k Γ : Type} [Field k] [TopologicalSpace k] [IsTopol
 
 end GlobalTheory.AbsIrrConstituents
 
-namespace GlobalTheory.AbsIrrConstituents
-
-end GlobalTheory.AbsIrrConstituents
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.SatakeParameters.HeckeGaloisRepQbarConjugateUnique

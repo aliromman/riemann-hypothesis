@@ -57,9 +57,10 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.EntireEqOfHalfPlane
 
 open MeasureTheory ValuativeRel Matrix GlobalTheory.SplitWeil GlobalTheory.Doubling GlobalTheory.GLDoubling GlobalTheory.IndefiniteRowSideFullHecke.VolumeFlatSection
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EulerFactorEqOneOfExpAt
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EulerFactorEqOneOfExpAt
 open scoped NNReal ENNReal
 
+noncomputable section
 
 attribute [local instance 2000] GlobalTheory.SplitWeil.matrixMeasurableSpace
 
@@ -84,33 +85,7 @@ def stdDatum (μ : kˣ →* ℂˣ) (ϖ : kˣ) (c : ℕ) (x : Matrix (Fin n ⊕ F
 
 end GlobalTheory.StdLocZeta
 
-namespace GlobalTheory.StdLocZeta
-
-variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
-  {n n' : ℕ}
-
-end GlobalTheory.StdLocZeta
-
-namespace GlobalTheory.StdLocZeta
-
-variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
-  {n n' : ℕ}
-
-end GlobalTheory.StdLocZeta
-
-namespace GlobalTheory.StdLocZeta
-
-variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
-  {n n' : ℕ}
-
-end GlobalTheory.StdLocZeta
-
-namespace GlobalTheory.StdLocZeta
-
-variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
-  {n n' : ℕ}
-
-end GlobalTheory.StdLocZeta
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ValuationDetBlocks

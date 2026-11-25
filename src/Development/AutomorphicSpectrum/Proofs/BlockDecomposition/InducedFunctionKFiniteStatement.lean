@@ -60,13 +60,6 @@ import Std.Tactic.BVDecide.Normalize.Prop
 
 open MvPolynomial Formalism.BasicNotions.TH
 
-namespace GlobalTheory.LowStable
-
-theorem X_mul_pderiv_totalDegree_le {σ : Type} (u v : σ) (g : MvPolynomial σ ℂ) :
-    (X u * pderiv v g).totalDegree ≤ g.totalDegree := by
-  apply GlobalTheory.KFixIrr.LowStable.deg_X_pderiv
-
-end GlobalTheory.LowStable
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DetOneAddSingle
@@ -94,7 +87,6 @@ def Qf (e : Fin n → ℤ) (g : Mat n) : ℂ := ∏ j, GlobalTheory.CompanionThe
 
 def wf (e : Fin n → ℤ) (m : ℤ) (p : MvPolynomial (Fin n × Fin n) ℂ) : Mat n → ℂ :=
   (GLs n).indicator fun g => Qf e g * g.det ^ m * evP p g
-
 
 open scoped ComplexOrder in
 theorem gm_ne_zero (j : Fin n) {g : Mat n} (hg : g ∈ GLs n) : GlobalTheory.CompanionTheory.ModelS.gm j g ≠ 0 := by
@@ -533,24 +525,23 @@ theorem Tp_mem (a b : Fin n) (d : ℕ) {q : MvPolynomial (Fin n × Fin n) ℂ}
   have hN := (MvPolynomial.mem_restrictTotalDegree _ _ _).1 hq
   simp only [Tp, LinearMap.sum_apply]
   refine Submodule.sum_mem _ fun c _ => ?_
-  exact (MvPolynomial.mem_restrictTotalDegree _ _ _).2 ((GlobalTheory.LowStable.X_mul_pderiv_totalDegree_le _ _ q).trans hN)
+  exact (MvPolynomial.mem_restrictTotalDegree _ _ _).2 ((GlobalTheory.KFixIrr.LowStable.deg_X_pderiv _ _ q).trans hN)
 
 end GlobalTheory.CompanionTheory.ModelS.FFin
 end -- clump:auto
 end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InducedFunctionKFinite
+
+noncomputable section
 
 open Matrix Finset MeasureTheory
 open scoped ContDiff ComplexConjugate InnerProductSpace
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InducedFunctionKFinite
 open PositivityTheory.RgTw (Mat)
 open GlobalTheory.CompanionTheory.GLK (e1 e2 f1)
 
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 
 open GlobalTheory.CompanionTheory.ModelS.FFin in
 theorem GlobalTheory.CompanionTheory.ModelS.FFin.fRaw_finite (n : ℕ) (lam : Fin n → ℤ) (hl : Antitone lam) (lev : Fin n → ℕ)
@@ -581,11 +572,15 @@ theorem GlobalTheory.CompanionTheory.ModelS.FFin.fRaw_finite (n : ℕ) (lam : Fi
     · show wf e m _ g = _
       rw [wf, Set.indicator_of_notMem hg, (GlobalTheory.CompanionTheory.ModelS.Kf a b (wfL e m q)).2.2 g hg]
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InducedFunctionKFiniteStatement
+
+open Matrix Finset MeasureTheory
+open scoped ContDiff ComplexConjugate InnerProductSpace
+open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD
 open PositivityTheory.RgTw (Mat)
 open GlobalTheory.CompanionTheory.GLK (e1 e2 f1)
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.LowIrreducibleKStable", "h": "module\n\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.LowestDegreeComponentInvariant\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TprodMemTensSpan\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockFirstActionMatrixUnitEq\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FockOperatorsLieRepresentationCommute\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}

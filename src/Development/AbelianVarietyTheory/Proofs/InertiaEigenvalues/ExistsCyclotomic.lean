@@ -79,8 +79,9 @@ theorem exists_isPrimitiveRoot_sub_isUnit_of_dvd_sub_one {l : ℕ} {O : Type} [C
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsCyclotomic
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsCyclotomic
 
+noncomputable section
 namespace GlobalTheory.CycRing
 open scoped LaurentSeries PowerSeries
 open PowerSeries GlobalTheory.PhiGam GlobalTheory.PhiGam.Inh GlobalTheory.IndefiniteRowSideFullHecke GlobalTheory.IndefiniteRowSideFullHecke.OnePlusPowerCharacters GlobalTheory.PsiLemmaCompare GlobalTheory.PsiShiftProof
@@ -246,7 +247,6 @@ def trace (m : ℤ_[l]) : k⟦X⟧ := 1 + ∑ z ∈ mu l, onePlusPow k l (m * z)
 
 theorem hom_trace (σ : k⟦X⟧ →ₐ[k] k⟦X⟧) (t : ℤ_[l]) (h : σ X = onePlusPow k l t - 1) (m : ℤ_[l]) :
     σ (trace k l m) = trace k l (t * m) := by
-  set_option synthInstance.maxHeartbeats 100000 in
     simp only [trace, map_add (f := _), map_one, map_sum, hom_opp' σ t h, mul_assoc]
 
 theorem trace_mul {t : ℤ_[l]} (ht : t ^ (l - 1) = 1) (m : ℤ_[l]) : trace k l (t * m) = trace k l m := by

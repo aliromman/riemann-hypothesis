@@ -486,8 +486,9 @@ alias lt2 := _root_.PositivityTheory.Rg.Sw.HSt.CompactCayleyBlocks.lt2
 end PositivityTheory.Rg.Sw.HSt
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.LoweringDerivativeVacuum
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.LoweringDerivativeVacuum
 
+noncomputable section
 
 open Matrix Filter Topology Polynomial
 open scoped ContDiff
@@ -528,7 +529,6 @@ theorem diff_fz {x : M2 n} (hx : InG x) (m : ℕ) (e : ℤ) (z : ℂ) : Differen
   refine ((hdet.zpow (Or.inl hxU)).mul (hu1.zpow (Or.inl (PositivityTheory.Rg.Sw.LVs.det_first_cayley_block_ne_zero hx)))).mul ?_
   exact (hu1.mul hub1).cpow (differentiableAt_const _) (det_product_mem_slitPlane hx)
 
-set_option backward.isDefEq.respectTransparency false in
 theorem hasDerivAt_det_one_add_smul (A : Matrix (Fin n) (Fin n) ℂ) :
     HasDerivAt (fun s : ℂ => (1 + s • A).det) A.trace 0 := by
   have h : (fun s : ℂ => (1 + s • A).det) = fun s =>
@@ -551,7 +551,6 @@ theorem hasDerivAt_det_one_add_smul (A : Matrix (Fin n) (Fin n) ℂ) :
     | rfl
     | simp
 
-set_option backward.isDefEq.respectTransparency false in
 theorem lt1 : LoweringDerivativeVacuum := by
   intro n m e z Q x hx
   have hxu : IsUnit x := isUnit_of_inG hx
@@ -607,6 +606,7 @@ namespace PositivityTheory.Rg.Sw.HSt
 alias lt1 := _root_.PositivityTheory.Rg.Sw.HSt.LoweringDerivative.lt1
 
 end PositivityTheory.Rg.Sw.HSt
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.CayleyCosetSums.DetFirstCayleyBlockNeGroup

@@ -28,12 +28,14 @@ import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipaliz
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.WeakTransform, Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.BlowupChartCongruence, Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.BlowupLiftCongruence, Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.MaxContactGeometry
 
-@[expose] public noncomputable section -- clump member: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.WeakTransform
+section -- clump member: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.WeakTransform
+@[expose] public section
 
 universe u
 
 open CategoryTheory AlgebraicGeometry
 
+noncomputable section
 
 namespace FunctorialResolution.EmbeddedResolution
 
@@ -250,8 +252,6 @@ theorem existsMaxContactControlledTransforms_of_comapLeControlled (h : MaxContac
     | zero =>
       intro hi
       have := sm 0 hi
-      have : AlgebraicGeometry.Smooth u.isoZero.hom := inferInstance
-      have : AlgebraicGeometry.Smooth (u.isoZero.hom ≫ q) := inferInstance
       show strictTransformMaxContactIdeal u hN 0 ≤ maxContactIdeal k (u.projectionToBase 0 ≫ q) (u.ideal 0) μ
       have e1 : maxContactIdeal k (u.projectionToBase 0 ≫ q) (u.ideal 0) μ =
           maxContactIdeal k (u.isoZero.hom ≫ q) (A'.comap u.isoZero.hom) μ :=
@@ -280,6 +280,8 @@ theorem existsMaxContactControlledTransforms_of_comapLeControlled (h : MaxContac
 
 end FunctorialResolution.EmbeddedResolution
 
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.BlowupChartCongruence
@@ -902,12 +904,14 @@ end FunctorialResolution.EmbeddedResolution
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.BlowupLiftCongruence
+section -- clump member: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.BlowupLiftCongruence
+@[expose] public section
 
 universe u
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace
 
+noncomputable section
 
 namespace FunctorialResolution.EmbeddedResolution
 
@@ -920,7 +924,6 @@ private theorem mul_le_right {X : Scheme.{u}} (I J : X.IdealSheafData) :
 
 private theorem eq_of_comp_ι_eq {X : Scheme.{u}} (U : X.Opens) {W : Scheme.{u}}
     {a b : W ⟶ U.toScheme} (h : a ≫ U.ι = b ≫ U.ι) : a = b := by
-  have : Mono U.ι := inferInstance
   exact (cancel_mono U.ι).mp h
 
 private theorem hom_ext_of_comp_ι_eq_of_opens_cover {X Y : Scheme.{u}} {ι : Type u} (W : ι → X.Opens)
@@ -1157,6 +1160,8 @@ theorem blowupLiftEqOnControlledTransform : BlowupLiftEqOnControlledTransform.{u
 
 end FunctorialResolution.EmbeddedResolution
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.MaxContactGeometry

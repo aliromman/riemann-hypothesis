@@ -308,10 +308,9 @@ theorem admissible_of_absolute (hstab : ∀ g, ∀ x ∈ S, σ g x ∈ S)
 end CrystallineSemistableComparison.AdmAbs
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.BocksteinBaseChange.AdmissibleMinors.admitted
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.BocksteinBaseChange.AdmissibleMinors.admitted
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 namespace CrystallineSemistableComparison
 
@@ -337,11 +336,11 @@ theorem adm : ComparisonAdmissible := by
 
 end CrystallineSemistableComparison
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.BocksteinBaseChange.TranscendentalPeriodUnits.CrystallineSemistableComparison
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.BocksteinBaseChange.TranscendentalPeriodUnits.CrystallineSemistableComparison
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open Formalism.Per6 GroundTheory.PAdicHodge DeRhamPotentiallySemistable.DRPst
 
@@ -418,11 +417,11 @@ theorem regCr : BcrisRegularPeriodRing := by
 
 end CrystallineSemistableComparison
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.BocksteinBaseChange.CstSmoothOfEtSide
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.BocksteinBaseChange.CstSmoothOfEtSide
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry TensorProduct
 open GroundTheory.PAdicHodge Formalism.Per6 DeRhamPotentiallySemistable.DRPst

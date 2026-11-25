@@ -50,10 +50,11 @@ import Mathlib.Tactic.ReduceModChar
 
 open CategoryTheory Limits Opposite AlgebraicTopology GlobalTheory.EZ
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FlatHermUnitSectionAvoid
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FlatHermUnitSectionAvoid
 open scoped Simplicial
 universe u v
 
+noncomputable section
 set_option backward.isDefEq.respectTransparency false
 
 namespace GlobalTheory.EZ.Cone
@@ -66,7 +67,6 @@ def cv {n a : ℕ} (f : ⦋n⦌ ⟶ ⦋a⦌) : ⦋n + 1⦌ ⟶ ⦋a⦌ :=
   SimplexCategory.mkHom ⟨fun j => if h : (j : ℕ) = 0 then 0 else
       f.toOrderHom ⟨(j : ℕ) - 1, by have := j.2; change _ < n + 1; omega⟩, by
     intro i j hij
-    have hij' : (i : ℕ) ≤ j := hij
     dsimp only
     split_ifs with hi hj hj
     · exact le_refl _
@@ -205,6 +205,7 @@ theorem coneContraction : ∃ (cone : ∀ a b n : ℕ, (bo a b ⟶ bo n n) →+ 
       rw [map_zsmul, Preadditive.zsmul_comp, key, Preadditive.zsmul_comp, map_zsmul, smul_sub]
 
 end GlobalTheory.EZ.Cone
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConeContractingHomotopy

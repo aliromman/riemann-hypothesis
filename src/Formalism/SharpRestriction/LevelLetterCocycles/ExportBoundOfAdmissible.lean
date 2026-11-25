@@ -477,10 +477,6 @@ end Formalism.MainNotions.TwistedPlaces
 
 end
 
-namespace Formalism.MainNotions.TwistedPlaces
-
-end Formalism.MainNotions.TwistedPlaces
-
 noncomputable section
 
 namespace Formalism.MainNotions.TwistedPlaces

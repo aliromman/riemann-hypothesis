@@ -528,14 +528,6 @@ noncomputable section
 
 namespace GlobalTheory.CoreOnto.Reps
 
-private theorem selfDual_core {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} (G : GridData L sc) (i : ℕ) (hi : i < D.R.m) :
-    IsSelfDualC (G.pS (.core i)) (G.latS (.core i)) ∧ IsSelfDualC (G.pT (.core i)) (G.latT (.core i)) := by
-  have hV : ∀ k, k ≤ D.R.m → IsSelfDualC (G.V (.core k)) (G.Λ (.core k)) := fun k hk =>
-    (G.isV (X := .core k) hk (fun j h => Node.noConfusion h)).sd
-  exact ⟨isSelfDualC_neg (hV (i + 1) hi), hV i hi.le⟩
-
-private alias nsmul_inj := _root_.GlobalTheory.Mem.CoefInv.nsmul_cancel
-
 private alias isHalf_add := _root_.GlobalTheory.SplitScalar.isHalf_add
 
 private alias isHalf_neg := _root_.GlobalTheory.DownLift.SplitSep.isHalf_neg'
@@ -570,7 +562,7 @@ open GlobalTheory.CoreOnto.Reps in
 theorem _root_.GlobalTheory.T.exists_representatives_half_quotient_pairing_trivial_depthLattice : All fun {D} _ _ _ {G} W _ => ∀ i, i < D.R.m → ∀ e : AE D, IsIdemSum e G.pl.W0 → ∃ R : Finset (WO (G.pS (.core i)) (G.pT (.core i))), (∀ y ∈ R, IsHalf (cA D e) y ∧ ∀ u ∈ depLat G (.core i), W.ψ (symplO (G.pS (.core i)) (G.pT (.core i)) u y) = 1) ∧ (∀ y, IsHalf (cA D e) y → (∀ u ∈ depLat G (.core i), W.ψ (symplO (G.pS (.core i)) (G.pT (.core i)) u y) = 1) → ∃ y' ∈ R, y - y' ∈ latO (G.pS (.core i)) (G.pT (.core i)) (G.latS (.core i) : Set _) (G.latT (.core i) : Set _) fun _ => True) ∧ (∀ y ∈ R, ∀ y' ∈ R, y - y' ∈ latO (G.pS (.core i)) (G.pT (.core i)) (G.latS (.core i) : Set _) (G.latT (.core i) : Set _) (fun _ => True) → y = y') ∧ (∀ y ∈ R, ∀ y' ∈ R, y ≠ y' → ∃ u ∈ latO (G.pS (.core i)) (G.pT (.core i)) (G.latS (.core i) : Set _) (G.latT (.core i) : Set _) (fun _ => True), IsHalf e u ∧ W.ψ (symplO (G.pS (.core i)) (G.pT (.core i)) u y) ≠ W.ψ (symplO (G.pS (.core i)) (G.pT (.core i)) u y')) := by
   intro D hQ T L μ₀ hL sc G W M hM i hi e he
   classical
-  obtain ⟨hS, hT⟩ := selfDual_core G i hi
+  obtain ⟨hS, hT⟩ := GlobalTheory.CoreOnto.IntDatum.selfDual_core G i hi
   set Λ : AddSubgroup (WO (G.pS (.core i)) (G.pT (.core i))) := latO (G.pS (.core i)) (G.pT (.core i))
     (G.latS (.core i) : Set _) (G.latT (.core i) : Set _) (fun _ => True) with hΛ
   have hee : e * e = e := GlobalTheory.PlaceVec.idemSum_mul_self he
@@ -631,7 +623,7 @@ theorem _root_.GlobalTheory.T.exists_representatives_half_quotient_pairing_trivi
     change K • (y : WO (G.pS (.core i)) (G.pT (.core i))) ∈ KΛ ↔ _
     constructor
     · rintro ⟨w, hw, hwe⟩
-      have : w = (y : WO (G.pS (.core i)) (G.pT (.core i))) := nsmul_inj hK (by simpa using hwe)
+      have : w = (y : WO (G.pS (.core i)) (G.pT (.core i))) := GlobalTheory.Mem.CoefInv.nsmul_cancel hK (by simpa using hwe)
       exact this ▸ hw
     · intro hy
       exact ⟨_, hy, by simp⟩
@@ -988,8 +980,6 @@ namespace GlobalTheory.CosDatum
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
-alias cA_cA₀ := _root_.Formalism.L2.Theta.cA_cA
-
 theorem latO_le_true {D : D7} (S T : HSp D) (LS : Set (Fin S.rank → D.host.E)) (LT : Set (Fin T.rank → D.host.E))
     (P : HeightOneSpectrum (𝓞 D.host.F) → Prop) : latO S T LS LT P ≤ latO S T LS LT fun _ => True := by
   apply AddSubgroup.closure_mono
@@ -1006,9 +996,6 @@ end GlobalTheory.CosDatum
 
 namespace GlobalTheory.CoreOnto
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-
 open GlobalTheory.CosDatum in
 theorem datumEx : DatumEx := by
   intro D hq T L μ0 hL sc G W M hM i hi r r' hr hr' S S' MM MM' x₀ hx₀
@@ -1023,7 +1010,7 @@ theorem datumEx : DatumEx := by
   have hxi := GlobalTheory.T.corePair_integralPoint_pairs_trivially_half D hq T L μ0 hL sc G W M hM i hi e he x₀ hx₀
   have hhalf : ∀ z ∈ R, IsHalf e (adjO (G.V (.core i)) (G.V (.core (i + 1))) z) := fun z hz => by
     have := hadj.half _ z (hR1 z hz).1
-    rwa [cA_cA₀] at this
+    rwa [GlobalTheory.DualPairCheck.cA_cA] at this
   have hfin : ∀ z ∈ R, (adjO (G.V (.core i)) (G.V (.core (i + 1))) z).map (infPart D) = 0 := fun z hz =>
     GlobalTheory.T.infinitePart_eq_zero_of_isHalf_idempotentSum _ e he _ (Or.inl (hhalf z hz))
   let c : WO (G.pS (.core i)) (G.pT (.core i)) → ℂ :=

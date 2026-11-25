@@ -396,11 +396,12 @@ theorem main : GlobalTheory.Mass.MaxMass → Formalism.HermitianLatticesTheory.S
 end GlobalTheory.PairsRow
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.IsometricEmbeddedDatumPairsEncardIsometrySmul
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.IsometricEmbeddedDatumPairsEncardIsometrySmul
 
 open NumberField Formalism.HermitianLatticeCounting.S6 GlobalTheory.HermLat GlobalTheory.DegCnt GlobalTheory.DegAsm
 open scoped Pointwise ENNReal Classical
 
+noncomputable section
 
 namespace GlobalTheory.TripInv
 
@@ -422,12 +423,6 @@ theorem mem_pmap (s : V ≃ₗ[K] V) (Γ : Submodule (𝓞 K) (V × V)) (p : V �
     simpa using hq
   · intro h
     exact ⟨_, h, by ext <;> simp⟩
-
-theorem gmap_injective (s : V ≃ₗ[K] V) : Function.Injective (Formalism.HermitianLatticesTheory.gmap (R := 𝓞 K) s) := by
-  intro M M' h
-  ext x
-  have := congrArg (s x ∈ ·) h
-  simpa [Formalism.HermitianLattices.Ext.L3.RankOne.mem_gmap] using this
 
 theorem pmap_injective (s : V ≃ₗ[K] V) : Function.Injective (pmap s) := by
   intro Γ Γ' h
@@ -569,7 +564,7 @@ theorem tr_injective (s : V ≃ₗ[K] V) : Function.Injective (tr (K := K) s) :=
   rintro ⟨⟨a1, a2⟩, ⟨b1, b2⟩, η⟩ ⟨⟨a1', a2'⟩, ⟨b1', b2'⟩, η'⟩ h
   simp only [tr, Prod.mk.injEq] at h
   obtain ⟨⟨e1, e2⟩, ⟨e3, e4⟩, e5⟩ := h
-  simp only [gmap_injective s e1, pmap_injective s e2, gmap_injective s e3, pmap_injective s e4,
+  simp only [Formalism.HermitianLattices.Ext.L3.gmap_injective s e1, pmap_injective s e2, Formalism.HermitianLattices.Ext.L3.gmap_injective s e3, pmap_injective s e4,
     mul_left_cancel (mul_right_cancel e5)]
 
 theorem tr_mapsTo {s : V ≃ₗ[K] V} (hs : s ∈ isomGrp H) (g : ℕ) (L : Submodule (𝓞 K) V) (j x x' : ℕ) :
@@ -600,6 +595,7 @@ theorem trip_encard_smul : ∀ (K W : Type) [Field K] [NumberField K] [StarRing 
     (Formalism.HermitianLatticesTheory.genusBasic_gmap_inv (s : W ≃ₗ[K] W) L))
 
 end GlobalTheory.TripInv
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ParameterSizeConstraints

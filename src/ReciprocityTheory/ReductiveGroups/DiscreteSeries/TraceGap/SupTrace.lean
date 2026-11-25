@@ -102,8 +102,9 @@ theorem gradT_kLowSpan (E : Fin n → Fin n → Module.End ℂ N) {z : TensorPro
 end ReciprocityTheory.ChartRestriction.DS.TRGap
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TraceGap.SupTrace
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TraceGap.SupTrace
 
+noncomputable section
 
 open Finset Matrix MeasureTheory
 
@@ -167,7 +168,6 @@ theorem trace_map_subtype {L : Submodule ℂ D} [FiniteDimensional ℂ L] (g : D
   exact hfg x
 
 end Helpers2
-
 
 open MeasureTheory in
 theorem supTrace (n : ℕ) : SupTraceStatement n := by
@@ -246,7 +246,7 @@ theorem supTrace (n : ℕ) : SupTraceStatement n := by
     rintro k _ ⟨y, hy, rfl⟩
     exact ⟨sigD hD (hφK k) y, sigD_layer hσ hD hV.2.1 hVK J (hφK k) hy, rfl⟩
   have hAc : ∀ v, Continuous fun k => σ (φ k) v := fun v =>
-    (hσ.2.2 v).comp_continuous hφc fun g => kset_mem_UJset (hφK g)
+    (hσ.2.2 v).comp_continuous hφc fun g => ReciprocityTheory.ChartRestriction.DS.closure_inUJ_of_mem_Kset (hφK g)
   have hcont : Continuous fun k => MvPolynomial.eval (entVar (φ k)) P * physDet ε (φ k) := by
     have := hent (P * Q)
     simpa only [map_mul, hQ] using this

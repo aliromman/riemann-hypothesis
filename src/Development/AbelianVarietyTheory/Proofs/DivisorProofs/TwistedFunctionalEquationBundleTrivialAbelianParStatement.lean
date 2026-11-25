@@ -61,8 +61,9 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 open GlobalTheory.Mum GlobalTheory.TwFam
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedFunctionalEquationBundleTrivialAbelianPar
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedFunctionalEquationBundleTrivialAbelianPar
 
+noncomputable section
 
 namespace GlobalTheory.TwFam.Gen0
 
@@ -83,13 +84,7 @@ theorem formEq_of_fs {K K' : Type} [Fintype K] [Fintype K'] {φ : K → (Y ⟶ X
   simpa [ofMul_prod, ofMul_zpow] using e
 
 theorem oneGen_isGen' (L : LB X) : (LB.oneGen L (Y := Y)).IsGen := by
-  intro i j
-  have e : (LB.LinComb L (Y := Y) (K := PEmpty.{1}) PEmpty.elim PEmpty.elim).g i j = 1 := by
-    dsimp only [LB.LinComb]
-    erw [Fintype.prod_empty]
-    rfl
-  show res _ (1 : Γ(Y, _)ˣ) = _ * res _ (1 : Γ(Y, _)ˣ)
-  rw [map_one, map_one, e, _root_.one_mul]
+  exact GlobalTheory.SelfUnif.oneGen_isGen L
 
 def genSub (L : LB X) (Y : Scheme.{0}) : AddSubgroup (FreeAddCommGroup (Y ⟶ X)) where
   carrier := {f | ∃ (K : Type) (_ : Fintype K) (φ : K → (Y ⟶ X)) (ε : K → ℤ), fs φ ε = f ∧
@@ -202,6 +197,7 @@ theorem main : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], AdmBase
   exact exists_gen_twist D.toPre a n j mu (h mu) (h' (h mu)) β (hE.2.2.2.1 mu) u hu
 
 end GlobalTheory.TwFam.Gen0
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwistedFunctionalEquationBundleTrivialAbelianParStatement

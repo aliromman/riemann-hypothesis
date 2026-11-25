@@ -96,8 +96,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsRelAmpleOfAffineOpenMeetsFibresStatement
 
-theorem _root_.GlobalTheory.T.exists_relAmple_of_affineOpen_meets_fibres : ∀ (R : Type) [CommRing R] [IsNoetherianRing R] [IsDomain R] [IsIntegrallyClosed R] (A : Over (Sp R)) [GrpObj A], IsAbelianScheme A → ∀ V : A.left.Opens, IsAffineOpen V → (∀ s : Sp R, ∃ x ∈ V, A.hom x = s) → ∃ L : LB A.left, L.IsLB ∧ Out.RelAmple A L := by
-  first | exact @GlobalTheory.ProjNormal.exists_relAmple_of_affine
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdditiveLineBundleFamilyOfDisjointOpenPieces
@@ -147,11 +145,9 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdditiveLineBundleFamilyOfDisjointOpenPiecesStatement
 
-
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCechPicardGlueFiniteDisjointCoverStatement
-
 
 end -- clump:auto
 
@@ -717,7 +713,7 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 end -- clump:auto
 
--- clump: shared namespace opens
+section -- clump: shared namespace opens
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AbLaw GlobalTheory.CechPic GlobalTheory.AbDual GlobalTheory.DualCon
@@ -765,9 +761,9 @@ theorem hasRepAF_factor (R : Type) [CommRing R] (A : Over (Sp R)) [GrpObj A] (g 
     obtain ⟨x, hx, hxs⟩ := hVs (spMap f s)
     obtain ⟨z, hz1, hz2⟩ := Scheme.Pullback.exists_preimage_pullback x s hxs
     exact ⟨z, by simpa [hz1] using hx, hz2⟩
-  obtain ⟨L, hL, hLa⟩ := GlobalTheory.T.exists_relAmple_of_affineOpen_meets_fibres D _ hA' _ hV' hVs'
+  obtain ⟨L, hL, hLa⟩ := GlobalTheory.ProjNormal.exists_relAmple_of_affine D _ hA' _ hV' hVs'
   have h1 := GlobalTheory.T.hasDualRepresentative_of_relAmple_noetherian D _ g hA' hg' L hL hLa
-  have h2 := ((GlobalTheory.T.hasProperSmoothDualRepresentative_grpPullback_iff _ _ (spMap f) A _ _ hP g (𝟙_ _)).2).1 h1
+  have h2 := ((GlobalTheory.DualCon.hasRep_baseChange_iff _ _ (spMap f) A _ _ hP g (𝟙_ _)).2).1 h1
   simpa using h2
 
 theorem step : ∀ (R : Type) [CommRing R] [Algebra.FiniteType ℤ R] [IsReduced R] (A : Over (Sp R)) [GrpObj A] (g : ℕ), IsAbelianScheme A → SmoothOfRelativeDimension g A.hom → ∀ V : A.left.Opens, IsAffineOpen V → (∀ s : Sp R, ∃ x ∈ V, A.hom x = s) → (∀ J : Ideal R, J ≠ ⊥ → HasRep A g (Over.mk (spMap (Ideal.Quotient.mk J)))) → HasRep A g (𝟙_ _) := by
@@ -832,7 +828,14 @@ theorem hasRep_of_local : ∀ (S : Scheme.{0}) (A : Over S) [GrpObj A] (g : ℕ)
 end GlobalTheory.DualCon
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasProperSmoothDualRepresentativeNoetherianInducBis
+end -- clump: shared namespace opens
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasProperSmoothDualRepresentativeNoetherianInducBis
+
+noncomputable section
+open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AbLaw GlobalTheory.CechPic GlobalTheory.AbDual GlobalTheory.DualCon
+open scoped CategoryTheory.Obj
 
 namespace GlobalTheory.DualCon.Step
 
@@ -904,8 +907,6 @@ theorem hasRep_quot {R R' : Type} [CommRing R] [CommRing R'] (a : R →+* R')
   intro J' hJ'
   set J := J'.comap a
   let q : R ⧸ J →+* R' ⧸ J' := Ideal.quotientMap J' a le_rfl
-  have hq : q.comp (Ideal.Quotient.mk J) = (Ideal.Quotient.mk J').comp a := by
-    ext x; rfl
   have w : spMap q ≫ spMap (Ideal.Quotient.mk J) = (Over.mk (spMap (Ideal.Quotient.mk J') ≫ spMap a)).hom := by
     show Spec.map _ ≫ Spec.map _ = Spec.map _ ≫ Spec.map _
     rw [← Spec.map_comp, ← Spec.map_comp]
@@ -913,7 +914,7 @@ theorem hasRep_quot {R R' : Type} [CommRing R] [CommRing R'] (a : R →+* R')
   let m : Over.mk (spMap (Ideal.Quotient.mk J') ≫ spMap a) ⟶ Over.mk (spMap (Ideal.Quotient.mk J)) :=
     Over.homMk (spMap q) w
   have h1 := GlobalTheory.T.baseChangeBis _ A _ _ g m (hJ J (ha J' hJ'))
-  exact ((GlobalTheory.T.hasProperSmoothDualRepresentative_grpPullback_iff _ _ (spMap a) A A' φ hφ g (Over.mk (spMap (Ideal.Quotient.mk J')))).1).2 h1
+  exact ((GlobalTheory.DualCon.hasRep_baseChange_iff _ _ (spMap a) A A' φ hφ g (Over.mk (spMap (Ideal.Quotient.mk J')))).1).2 h1
 
 theorem local_rep (R : Type) [CommRing R] [Algebra.FiniteType ℤ R] [IsReduced R] (A : Over (Sp R)) [GrpObj A] (g : ℕ)
     (hA : IsAbelianScheme A) (hg : SmoothOfRelativeDimension g A.hom)
@@ -933,7 +934,7 @@ theorem local_rep (R : Type) [CommRing R] [Algebra.FiniteType ℤ R] [IsReduced 
   have h1 : HasRep A' g (𝟙_ _) :=
     GlobalTheory.T.hasProperSmoothDualRepresentative_noetherianInduction (Localization.Away f) A' g hA' hg' V hV hVs
       (hasRep_quot a (comap_ne_bot_away f) A A' _ hφ g hJ)
-  have h2 := ((GlobalTheory.T.hasProperSmoothDualRepresentative_grpPullback_iff _ _ (spMap a) A A' _ hφ g (𝟙_ _)).1).1 h1
+  have h2 := ((GlobalTheory.DualCon.hasRep_baseChange_iff _ _ (spMap a) A A' _ hφ g (𝟙_ _)).1).1 h1
   have h3 : HasRep A g (Over.mk (spMap a)) := by
     convert h2 using 2 <;> first | rfl
   have : IsOpenImmersion (spMap a) :=
@@ -950,6 +951,13 @@ theorem step : ∀ (R : Type) [CommRing R] [Algebra.FiniteType ℤ R] (A : Over 
 
 end GlobalTheory.DualCon.Step
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AbLaw GlobalTheory.CechPic GlobalTheory.AbDual GlobalTheory.DualCon
+open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasProperSmoothDualRepresentativeFiniteType
 
@@ -967,7 +975,7 @@ theorem hasRep_quot_of_factor {S T : Type} [CommRing S] [CommRing T] (J : Ideal 
   have hB : IsGrpPullback B A f (pullback.fst A.hom f) := isGrpPullback_pullback A f
   obtain ⟨hAB, hgB⟩ :=
     GlobalTheory.AbBaseChange.isAbelianScheme_and_relDim_of_isGrpPullback φ A B _ g hB hA hg
-  have h2 := (GlobalTheory.T.hasProperSmoothDualRepresentative_grpPullback_iff _ _ f A B _ hB g (𝟙_ _)).1.mp (h B hAB hgB)
+  have h2 := (GlobalTheory.DualCon.hasRep_baseChange_iff _ _ f A B _ hB g (𝟙_ _)).1.mp (h B hAB hgB)
   refine GlobalTheory.T.baseChangeBis _ A (Over.mk ((𝟙_ (Over (Sp T))).hom ≫ f)) (Over.mk (spMap (Ideal.Quotient.mk J))) g
     (Over.homMk (spMap ψ) ?_) h2
   change spMap ψ ≫ 𝟙 _ ≫ spMap φ = spMap (Ideal.Quotient.mk J)
@@ -1036,7 +1044,7 @@ theorem hasRep_affine : ∀ (R : Type) [CommRing R] (A : Over (Sp R)) [GrpObj A]
   obtain ⟨S, B, _, φ, -, hS, hB, hgB, hφ⟩ :=
     GlobalTheory.AbelianLimit.abelianScheme_descends_to_fg_subring R g A ∅ hA hg
   have h₀ : HasRep B g (𝟙_ _) := GlobalTheory.T.hasProperSmoothDualRepresentative_finiteType S B g hB hgB
-  exact (GlobalTheory.T.hasProperSmoothDualRepresentative_grpPullback_iff _ _ _ B A φ hφ g (𝟙_ _)).1.2 (GlobalTheory.T.baseChangeBis _ B _ _ g (toUnit _) h₀)
+  exact (GlobalTheory.DualCon.hasRep_baseChange_iff _ _ _ B A φ hφ g (𝟙_ _)).1.2 (GlobalTheory.T.baseChangeBis _ B _ _ g (toUnit _) h₀)
 
 end GlobalTheory.DualCon
 end -- clump:auto
@@ -1148,8 +1156,9 @@ end GlobalTheory.DualCon
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RepresentingAdditiveFamiliesIsDualComm
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RepresentingAdditiveFamiliesIsDualComm
 
+noncomputable section
 
 namespace GlobalTheory.DualCon
 
@@ -1179,7 +1188,6 @@ def resCls {T' T : Over S} (u : T' ⟶ T) : addCls A T →+ addCls A T' :=
       simp only [AddMonoidHom.coe_comp, AddSubgroup.coe_subtype, Function.comp_apply, ← CechPic.pull_comp,
         ← Over.comp_left, comp_lift, lift_fst, lift_snd_assoc]
       exact c.2 Y a a' (t ≫ u)
-
 
 variable (A) in
 def famFunctor : (Over S)ᵒᵖ ⥤ CommGrpCat.{1} where
@@ -1280,9 +1288,11 @@ theorem rep_isDual : ∀ (S : Scheme.{0}) (A B : Over S) [GrpObj A] (P : LB (A �
 
 end GlobalTheory.DualCon
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDualAbelianSchemePoincare
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDualAbelianSchemePoincare
 
+noncomputable section
 
 namespace GlobalTheory.DualExist
 
@@ -1321,7 +1331,7 @@ theorem hasRep_affineOpen {S : Scheme.{0}} (A : Over S) [GrpObj A] (hA : IsAbeli
         (pullback.lift_snd _ _ _) (IsPullback.of_hasPullback A.hom V.ι)
     haveI := smoothOfRelativeDimension_isStableUnderBaseChange g
     exact MorphismProperty.of_isPullback sq hg
-  have h1 := ((GlobalTheory.T.hasProperSmoothDualRepresentative_grpPullback_iff _ _ hV.fromSpec A A' _ hpb g (𝟙_ _)).1).1 (GlobalTheory.T.abelianScheme_dual_representable_affine_base _ A' g hA' hg')
+  have h1 := ((GlobalTheory.DualCon.hasRep_baseChange_iff _ _ hV.fromSpec A A' _ hpb g (𝟙_ _)).1).1 (GlobalTheory.T.abelianScheme_dual_representable_affine_base _ A' g hA' hg')
   refine hasRep_of_iso (Over.isoMk hV.isoSpec.symm ?_) h1
   show hV.isoSpec.inv ≫ V.ι = 𝟙 _ ≫ hV.fromSpec
   rw [Category.id_comp, IsAffineOpen.isoSpec_inv_ι]
@@ -1349,6 +1359,7 @@ theorem exists_dual : ∀ (S : Scheme.{0}) (A : Over S) [GrpObj A], IsAbelianSch
     exact _root_.GlobalTheory.DualCon.dimLe_of_local S A B inferInstance S V g cov hgV fun i => (hGood i).smooth
 
 end GlobalTheory.DualExist
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDualAbelianSchemePoincareStatement

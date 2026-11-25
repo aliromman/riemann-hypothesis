@@ -36,13 +36,14 @@ import Mathlib.Tactic.Linter.HaveILetI
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.Foundations.Convolution.BlockHeckeSlices.CuspidalNormBounds.EigComp, Development.AutomorphicArithmetic.Foundations.Convolution.BlockHeckeSlices.CuspidalNormBounds.LangStep, Development.AutomorphicArithmetic.Foundations.Convolution.BlockHeckeSlices.CuspidalNormBounds.Langlands
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.BlockHeckeSlices.CuspidalNormBounds.EigComp
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.BlockHeckeSlices.CuspidalNormBounds.EigComp
 
 open MeasureTheory NumberField IsDedekindDomain
 open GroundTheory.Automorphic GroundTheory.Automorphic.Reduction GroundTheory.Automorphic.RightCosetSpace
 open GroundTheory.Automorphic.AutomorphicForm GroundTheory.Automorphic.CuspidalSpectrum
 open UpperTheory.ConvolutionTheory.C UpperTheory.ConvolutionTheory.Dp UpperTheory.V
 
+noncomputable section
 
 namespace UpperTheory.ConvolutionTheory.BW
 
@@ -184,7 +185,6 @@ private theorem exists_form' {ψ : AdelicGLn.AdelicGL E n → ℂ} (hψ : IsLeft
         ∂quotientMeasure (rationalGLOne (K := E) (n := n)) μ ≠ 0 ∧ ∀ x : KA E n →₀ ℂ,
       (∀ g, (x.sum fun k c => c * ψ (g * k)) = 0) → ∀ g, (x.sum fun k c => c * f.1 (g * k)) = 0 := by
   have : OpensMeasurableSpace (RightCosetSpace (rationalGLOne (K := E) (n := n))) := by
-    set_option synthInstance.maxHeartbeats 200000 in
       infer_instance
   have := Reduction.isFiniteMeasure_quotientMeasure (K := E) (n := n) μ
   obtain ⟨C, hC⟩ := hb
@@ -282,6 +282,7 @@ theorem UpperTheory.ConvolutionTheory.BW.eigComp :
   choose B hB using hsat
   exact ⟨⟨hr, Cm.ofCusp E r f, hne, f.2, fun t g => hf.1 _ g, ⟨V, hV, hf.2⟩, Λ, hΛ, B, hB⟩,
     fun x h => hx x (hk x h), hi⟩
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

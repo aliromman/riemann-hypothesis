@@ -1567,15 +1567,17 @@ end PositivityTheory.AutomorphicGaloisHodgeTate.G8
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.GoodCoverEigenspaces.JumpsExHolds
+section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.GoodCoverEigenspaces.JumpsExHolds
+@[expose] public section
 
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations Formalism.ConjugateSelfDual GlobalTheory.Pst
 
 namespace PositivityTheory.AutomorphicGaloisHodgeTate.G8
 
-theorem jumpsEx_holds : JumpsEx := set_option synthInstance.maxHeartbeats 200000 in by
+theorem jumpsEx_holds : JumpsEx := by
   intro E Ω _ _ _ _ _ l _ P AI hT Gw O _ _ _ Bw d r hc τ LL' τ' hτ
   obtain ⟨T⟩ := hT
   obtain ⟨L, r₁, hm, hcr⟩ := hc
@@ -1592,6 +1594,8 @@ theorem jumpsEx_holds : JumpsEx := set_option synthInstance.maxHeartbeats 200000
 
 end PositivityTheory.AutomorphicGaloisHodgeTate.G8
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.PAdicWittLattices.TraceSplitHolds

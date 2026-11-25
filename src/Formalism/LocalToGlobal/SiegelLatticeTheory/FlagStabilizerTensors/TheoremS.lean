@@ -1616,9 +1616,6 @@ theorem globalCores : Formalism.FourierDecayAlt.PB.GlobalCores :=
 
 end Formalism.FourierDecayAlt.P.HilbertSchmidtNorm
 
-namespace Formalism.FourierDecayAlt.P
-
-end Formalism.FourierDecayAlt.P
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.TheoremS

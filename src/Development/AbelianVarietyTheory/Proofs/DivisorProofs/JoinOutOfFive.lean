@@ -113,19 +113,13 @@ import Mathlib.RingTheory.PiTensorProduct
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CmPeriodConstantEqOfCardCmType, Development.AbelianVarietyTheory.Proofs.DivisorProofs.AlgebraicNormalizedWeierstrassValuesCm, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ImportsSideAlt, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsAlgebraicOfIsIntegralAlgebraicNumbers, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertDiagonalRestrictionCoeffIsAlgebraic, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HilbertEisensteinJetAlgebraicQCoefficients, Development.AbelianVarietyTheory.Proofs.DivisorProofs.QExpansionIsAlgebraicWeierstrassTorsion, Development.AbelianVarietyTheory.Proofs.DivisorProofs.QAllIsAlgebraicHfunTwist, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeValueIsAlgebraicOfEllipticCMTheorems, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeValueIntegralityUnramifiedOfJetIntegralit, Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormFactorialInvLe, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ToricPeriodZetaOfJetIntegralityAlgebra, Development.AbelianVarietyTheory.Proofs.DivisorProofs.JoinOutOfFive
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CmPeriodConstantEqOfCardCmType
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CmPeriodConstantEqOfCardCmType
 
+noncomputable section
 
 open NumberField IsDedekindDomain GlobalTheory.CMVal GlobalTheory.LatVal GlobalTheory.LatJet
 
 namespace GlobalTheory.LatAlgebraic
-
-theorem natAbs_discr_of_finrank_one (F : Type) [Field F] [NumberField F] (h : Module.finrank ℚ F = 1) :
-    (discr F).natAbs = 1 := by
-  have hb : (⊥ : Subalgebra ℚ F) = ⊤ := Subalgebra.bot_eq_top_of_finrank_eq_one h
-  let e : ℚ ≃ₐ[ℚ] F := (Algebra.botEquiv ℚ F).symm.trans ((Subalgebra.equivOfEq _ _ hb).trans Subalgebra.topEquiv)
-  rw [← NumberField.discr_eq_discr_of_algEquiv (f := e), NumberField.discr_rat]
-  rfl
 
 theorem two_le_finrank {E : Type} [Field E] [NumberField E] [IsCMField E] (h : UnramFin E) :
     2 ≤ Module.finrank ℚ (maximalRealSubfield E) := by
@@ -145,6 +139,7 @@ theorem cmPeriodConstant_eq_of_card_cmType {E : Type} [Field E] [NumberField E] 
   ring
 
 end GlobalTheory.LatAlgebraic
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens
@@ -860,8 +855,9 @@ end GlobalTheory.LatValUnr
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormFactorialInvLe
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormFactorialInvLe
 
+noncomputable section
 
 open GlobalTheory.LatVal GlobalTheory.LatJet
 open GlobalTheory.IndefiniteRowSideFullHecke.DefiningCoordinates (iterD)
@@ -908,10 +904,10 @@ theorem expansion_of_jetInt : JetInt → Expansion := by
     rw [div_mul_eq_div_div, div_eq_mul_inv (_ / _)]
   rw [e]
   refine sz_mono ?_ (GlobalTheory.LatValRam.sz_mul h1 h2)
-  have hK : (0 : ℝ) ≤ ((∑ i, κ i : ℕ) : ℝ) := Nat.cast_nonneg _
   split_ifs <;> nlinarith
 
 end GlobalTheory.JetExp
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ToricPeriodZetaOfJetIntegralityAlgebra

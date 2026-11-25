@@ -11,8 +11,10 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.ContinuousCocycleMapApply, Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.SelBase
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.ContinuousCocycleMapApply
+section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.ContinuousCocycleMapApply
+@[expose] public section
 
+noncomputable section
 
 open ReciprocityTheory.Gal TensorProduct
 
@@ -63,6 +65,20 @@ theorem length_of_isBaseChange [IsLocalRing R] [IsLocalRing O] [IsLocalHom (alge
 theorem map_coordSum (b : Module.Basis ι R O) (j : N →ₗ[R] N') (f : N → N) (f' : N' →ₗ[O] N')
     (h : ∀ x, j (f x) = f' (j x)) (x : ι → N) : f' (coordSum b j x) = coordSum b j fun i => f (x i) := by
   simp [coordSum_apply, h]
+
+/-- Under finite free base change, an intertwining eigenvector equation holds
+exactly when it holds in every coordinate. -/
+theorem coordSum_eigenvector_iff (b : Module.Basis ι R O) {j : N →ₗ[R] N'}
+    (hb : IsBaseChange O j) (f : N →ₗ[R] N) (f' : N' →ₗ[O] N')
+    (hf : ∀ x, j (f x) = f' (j x)) (s : R) (x : ι → N) :
+    f' (coordSum b j x) = algebraMap R O s • coordSum b j x ↔
+      ∀ i, f (x i) = s • x i := by
+  rw [map_coordSum b j f f' hf, algebraMap_smul, ← map_smul]
+  constructor
+  · intro h i
+    exact congrFun (((isBaseChange_iff_coordSum b j).mp hb).1 h) i
+  · intro h
+    exact congrArg (coordSum b j) (funext h)
 
 end Alg
 
@@ -202,6 +218,8 @@ end Coh
 
 end UpperTheory.V.Base
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.SelmerTransport.SelBase

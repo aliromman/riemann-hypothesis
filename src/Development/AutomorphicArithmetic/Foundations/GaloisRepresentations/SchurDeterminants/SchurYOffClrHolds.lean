@@ -719,10 +719,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SchurDeterminants.POffRed
 
-namespace UpperTheory.Gal.Schur
-
-end UpperTheory.Gal.Schur
-
 theorem UpperTheory.Gal.Schur.offClrRed_of :
     OffClrPow → OffClrRed := by
   intro h R _ _ n lam g y

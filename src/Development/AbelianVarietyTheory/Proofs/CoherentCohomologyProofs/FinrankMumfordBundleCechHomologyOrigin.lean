@@ -70,11 +70,11 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRin
 
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry DirectSum TensorProduct
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Semi
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.CokerDualMapEquivResidueFieldOfOrigin
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory GlobalTheory.AbLaw
 
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.CokerDualMapEquivResidueFieldOfOrigin
+
+noncomputable section
 
 namespace GlobalTheory.MumfordLocal
 
@@ -388,10 +388,9 @@ theorem coker_dualMap_equiv_residueField_of_origin : ∀ (K : Type) [Field K] [I
 
 end GlobalTheory.MumfordLocal
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.FinrankMumfordBundleCechHomologyOrigin
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory GlobalTheory.AbLaw
 
 namespace GlobalTheory.OriginCohom
 

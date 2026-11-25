@@ -15,8 +15,9 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.T
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Definitions.Divisors.NotHasNonzeroSecOfIsEmpty, Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.FinrankRiemannRochNsmulHyperplane
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.NotHasNonzeroSecOfIsEmpty
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.Divisors.NotHasNonzeroSecOfIsEmpty
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Opposite Limits Filter
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -27,15 +28,6 @@ namespace GlobalTheory.PositivityModel
 
 variable {k : Type} [Field k] {X : Scheme.{0}} [Algebra k Γ(X, ⊤)] {H L N A : LB X}
 
-theorem genericPoint_mem [IsIntegral X] (hd : topologicalKrullDim X = 1) {Z : Closeds X}
-    (hZ : IsCompleteCurve k Z) : genericPoint X ∈ Z := by
-  by_contra hn
-  have h := topologicalKrullDim_add_one_le Z.isClosed isClosed_univ fun x _ =>
-    ⟨genericPoint X, trivial, hn, genericPoint_specializes x⟩
-  have h' := h.trans ((topologicalKrullDim_subspace_le X Set.univ).trans hd.le)
-  rw [hZ.2] at h'
-  exact absurd h' (by decide)
-
 section Space
 open ProjSpace
 variable (k) (D : ℕ)
@@ -43,6 +35,7 @@ variable (k) (D : ℕ)
 end Space
 
 end GlobalTheory.PositivityModel
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.FinrankRiemannRochNsmulHyperplane

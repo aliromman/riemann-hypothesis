@@ -492,7 +492,6 @@ end GlobalTheory.CompanionTheory.Axis
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FlatCocycleTensorRepresentationStatement
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 

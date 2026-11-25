@@ -45,10 +45,11 @@ import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomology
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DividedPowerLogMultiplicative, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CrystallineCocycleClosed
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DividedPowerLogMultiplicative
+-- clump: shared namespace opens
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry TensorProduct GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb GroundTheory.PAdicHodge
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DividedPowerLogMultiplicative
 namespace GlobalTheory.CompanionTheory.TruncLog
 
 variable {A : Type} [CommRing A] {J : Ideal A} (δ : DividedPowers J)
@@ -228,11 +229,9 @@ theorem dlog_mul {A : Type} [CommRing A] {J : Ideal A} (δ : DividedPowers J) (N
 end GlobalTheory.CompanionTheory.TruncLog
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CrystallineCocycleClosed
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CrystallineCocycleClosed
 
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory AlgebraicGeometry TensorProduct GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb GroundTheory.PAdicHodge
-
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.CocCls
 

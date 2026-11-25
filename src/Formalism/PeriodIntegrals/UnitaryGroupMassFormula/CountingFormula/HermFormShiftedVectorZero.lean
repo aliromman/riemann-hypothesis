@@ -10,12 +10,11 @@ public import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.
 open NumberField Module Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.BasicNotions Formalism.L2.SG.CntLocal
 open Classical
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.StabFSymmMemPerp
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.StabFSymmMemPerp
 
+noncomputable section
 
 namespace PI.UnitaryGroupMassFormula.CntFormula.RowsMassW
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section Induced
 
@@ -177,13 +176,13 @@ theorem rowClass_of (hB : RowClassBack) : RowClass := by
 
 end PI.UnitaryGroupMassFormula.CntFormula.RowsMassW
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.RowClassOfSplit
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.RowClassOfSplit
 
+noncomputable section
 
 namespace PI.UnitaryGroupMassFormula.CntFormula.RowsMassW
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem hT_swap (D : D7) (x y : (VS D).V) : (VS D).hT x y = star ((VS D).hT y x) := by
   rw [← (VS D).herm.eq y x, starRingEnd_apply]
@@ -676,13 +675,13 @@ theorem rowClass_of_split (hS : RowSplitF) : RowClass := rowClass_of (rowClassBa
 
 end PI.UnitaryGroupMassFormula.CntFormula.RowsMassW
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.HermFormShiftedVectorZero
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.HermFormShiftedVectorZero
 
+noncomputable section
 
 namespace PI.UnitaryGroupMassFormula.CntFormula.RowsMassW
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section Adjust
 

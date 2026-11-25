@@ -8,10 +8,11 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NatTransUpToSqPullback, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TotalComplexFlipIsomorphism, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.DcColSurj
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NatTransUpToSqPullback
+-- clump: shared namespace opens
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NatTransUpToSqPullback
 universe w w' w'' t t' v u v' u' v'' u''
 
 namespace GlobalTheory.CompanionTheory.CoefUpTo
@@ -71,9 +72,6 @@ end GlobalTheory.CompanionTheory.CoefUpTo
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TotalComplexFlipIsomorphism
-
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH
 universe w w' w'' t t' v u v' u' v'' u''
 
 namespace GlobalTheory.CompanionTheory.DCFlip
@@ -138,9 +136,6 @@ end GlobalTheory.CompanionTheory.DCFlip
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.CechPairings.DcColSurj
-
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH
 universe w w' w'' t t' v u v' u' v'' u''
 
 namespace CrystallineSemistableComparison.Auxfb

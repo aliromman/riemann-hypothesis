@@ -562,10 +562,6 @@ end
 
 end Formalism.FourierDecayAlt.P.RealInputsCompactSupport
 
-namespace Formalism.FourierDecayAlt.P
-
-
-end Formalism.FourierDecayAlt.P
 end -- clump:auto
 end -- clump:auto
 

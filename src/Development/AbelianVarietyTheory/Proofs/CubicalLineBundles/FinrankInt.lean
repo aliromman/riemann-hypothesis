@@ -38,13 +38,14 @@ theorem re_eq_zero_and_im_sq {E : Type} [Field E] [NumberField E] [NumberField.I
 end GlobalTheory.SquareEqNegReIm
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.PrincipalRootReZeroImSq
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.PrincipalRootReZeroImSq
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.Serre
 open scoped CategoryTheory.Obj UpperHalfPlane TensorProduct
 
+noncomputable section
 
 namespace GlobalTheory.PrincipalDatum
 
@@ -76,22 +77,12 @@ theorem exists_clear (𝔞 : Submodule (𝓞 E) E) (h : 𝔞.FG) :
     simp only [RingOfIntegers.coe_eq_algebraMap]
     ring
 
-section Act
-
-variable {M : Type} [AddCommGroup M] [Module (𝓞 E) M]
-
-
-
-
-
-
-end Act
-
 variable [IsCMField E]
 
 alias principal_root_re_zero_im_sq := _root_.GlobalTheory.SquareEqNegReIm.re_eq_zero_and_im_sq
 
 end GlobalTheory.PrincipalDatum
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CubicalLineBundles.FinrankInt

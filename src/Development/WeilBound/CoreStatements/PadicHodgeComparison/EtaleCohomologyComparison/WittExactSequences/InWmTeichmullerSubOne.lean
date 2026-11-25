@@ -211,11 +211,11 @@ theorem acr1 (l : ℕ) [Fact l.Prime] : CrystallineSemistableComparison.D.RAcr1 
 end GlobalTheory.CompanionTheory.ACrisMod
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AcrisLevelSequenceFacts
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AcrisLevelSequenceFacts
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory GroundTheory.PAdicHodge CrystallineSemistableComparison CrystallineSemistableComparison.PAlg
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.LSeq
 
@@ -230,7 +230,6 @@ def alphaL (n : ℕ) : A.Acr0 →ₗ[A.Acr0] (A.Acr0 ⧸ Ideal.span {(l : A.Acr0
   (Submodule.mkQ _).comp (LinearMap.mulLeft A.Acr0 ((l : A.Acr0) ^ n))
 
 
-set_option synthInstance.maxHeartbeats 400000 in
 def alpha (n : ℕ) : A.Acr 1 →+ A.Acr (n + 1) :=
   ((Ideal.span {(l : A.Acr0) ^ 1}).liftQ (alphaL A n) (by
     intro x hx
@@ -244,7 +243,7 @@ theorem alpha_mk (n : ℕ) (y : A.Acr0) :
     alpha A n (A.mkAcr 1 y) = A.mkAcr (n + 1) ((l : A.Acr0) ^ n * y) := rfl
 
 theorem alpha_injective (n : ℕ) : Function.Injective (alpha A n) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨y, rfl⟩ : ∃ y, A.mkAcr 1 y = x := Ideal.Quotient.mk_surjective x
   rw [alpha_mk] at hx
@@ -272,11 +271,11 @@ theorem racrSeq (l : ℕ) [Fact l.Prime] : CrystallineSemistableComparison.D.RAc
 
 end GlobalTheory.CompanionTheory.LSeq
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralRingFacts
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegralRingFacts
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory GroundTheory.PAdicHodge CrystallineSemistableComparison CrystallineSemistableComparison.PAlg
 
@@ -291,12 +290,10 @@ theorem norm_pFlat_eq : ‖(pFlat l : PreTilt (normInteger ℂ_[l]) l)‖ = ‖(
   rw [preTilt_norm_def, coe_untilt_pFlat]
 
 theorem norm_pFlat_pos : 0 < ‖(pFlat l : PreTilt (normInteger ℂ_[l]) l)‖ := by
-  rw [norm_pFlat_eq]
-  exact norm_pos_iff.2 (Nat.cast_ne_zero.2 (Fact.out : l.Prime).ne_zero)
+  exact GlobalTheory.CompanionTheory.TiltCompl.norm_pFlat_pos
 
 theorem norm_pFlat_lt_one : ‖(pFlat l : PreTilt (normInteger ℂ_[l]) l)‖ < 1 := by
-  rw [norm_pFlat_eq]
-  exact IsPerfectoidField.norm_natCast_lt_one
+  exact GlobalTheory.CompanionTheory.TiltCompl.norm_pFlat_lt_one
 
 theorem rt_pow (k : ℕ) : CrystallineSemistableComparison.D.rt l k ^ l ^ k = pFlat l := by
   have h := (iterateFrobeniusEquiv (CrystallineSemistableComparison.Ob l) l k).apply_symm_apply (pFlat l)
@@ -332,10 +329,10 @@ theorem obFacts : ∀ (l : ℕ) [Fact l.Prime], CrystallineSemistableComparison.
 
 end GlobalTheory.CompanionTheory.TiltFacts
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.AcrisKummerUnits.AcrisModLBaseChange
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory GroundTheory.PAdicHodge CrystallineSemistableComparison CrystallineSemistableComparison.PAlg
 
 theorem CrystallineSemistableComparison.RL.d_ob : ∀ (l : ℕ) [Fact l.Prime], CrystallineSemistableComparison.D.ObFacts l := _root_.GlobalTheory.CompanionTheory.TiltFacts.obFacts
@@ -343,8 +340,6 @@ theorem CrystallineSemistableComparison.RL.d_ob : ∀ (l : ℕ) [Fact l.Prime], 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.AcrisKummerUnits.ForD
-
-set_option backward.isDefEq.respectTransparency false
 
 open CrystallineSemistableComparison.PAlg
 
@@ -543,10 +538,9 @@ theorem fil0Inclusion_map {A B : PAlg l} (f : A ⟶ B) (n : ℕ) (z : (FilF l n 
 end CrystallineSemistableComparison.D
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.UDAuxFil
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.UDAuxFil
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory TensorProduct GroundTheory.PAdicHodge CrystallineSemistableComparison.CH
 
@@ -579,6 +573,7 @@ theorem des_Fil_of (h : RIn l) (hA : ∀ n k, Des (AcrF l n) (algebraMap (Ainf l
   | succ r ih => exact des_Fil_succ l h n r k (ih (k + 2))
 
 end CrystallineSemistableComparison.D
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.DesAcrZero
@@ -711,8 +706,6 @@ end CrystallineSemistableComparison.D
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.InWmTeichmullerSubOne
-
-set_option backward.isDefEq.respectTransparency false
 
 open GroundTheory.PAdicHodge
 

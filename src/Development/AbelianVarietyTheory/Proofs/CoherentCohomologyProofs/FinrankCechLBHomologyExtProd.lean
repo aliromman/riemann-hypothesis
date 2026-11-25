@@ -793,10 +793,10 @@ end -- clump:auto
 
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry DirectSum TensorProduct
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Semi
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.ExistsSecOnRTensorEquiv
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory GlobalTheory.AbLaw
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.ExistsSecOnRTensorEquiv
+noncomputable section
 namespace GlobalTheory.AbLaw.ExtProd
 
 theorem exists_tensor_addEquiv {R A B C P Q N N' : Type*} [CommRing R] [CommRing A] [CommRing B]
@@ -996,10 +996,9 @@ theorem exists_secOnR_tensor_equiv : ∀ (R : Type) [CommRing R] (Y Y' Z : Schem
 
 end GlobalTheory.AbLaw
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.FinrankCechLBHomologyExtProd
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory GlobalTheory.AbLaw
 
 namespace GlobalTheory.AbLaw
 

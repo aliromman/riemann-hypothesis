@@ -72,8 +72,9 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.Discrepancy GlobalTheory.FieldPair GlobalTheory.GraphLocal
 open scoped TensorProduct
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFreeGeneratorTopFormsTensorLocalizationOrd
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFreeGeneratorTopFormsTensorLocalizationOrd
 
+noncomputable section
 
 namespace GlobalTheory.GraphLocal
 
@@ -124,7 +125,6 @@ theorem isFreeGen_locAt {n k' : ℕ} (τ' : Fin k' → κ') (E : Place (algebraM
       commutes' := fun _ => rfl }
   let θ : E.ring ⊗[ℂ] κ' ≃ₐ[ℂ] tens (κ' := κ') (placeAlg E) :=
     (Algebra.TensorProduct.congr f AlgEquiv.refl).trans (tensEquiv (placeAlg E))
-  have hθ (a : E.ring) (c : κ') : (θ (a ⊗ₜ c) : K ⊗[ℂ] κ') = (a : K) ⊗ₜ c := rfl
   have hθe : (θ : E.ring ⊗[ℂ] κ' →+* tens (κ' := κ') (placeAlg E)).FormallyEtale := by
     letI := (θ : E.ring ⊗[ℂ] κ' →+* tens (κ' := κ') (placeAlg E)).toAlgebra
     exact Algebra.FormallyEtale.of_equiv
@@ -310,6 +310,7 @@ theorem exists_isFreeGen_locAt_formOrd : ∀ {K κ' L : Type} [Field K] [Field �
 
 end GlobalTheory.GraphLocal
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsUnitMulZpowUniformiserTmul
 
@@ -349,8 +350,9 @@ theorem exists_isUnit_mul_zpow_tmul :
 end GlobalTheory.GraphLocal
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GraphJetsMemPowSupUniformiser
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GraphJetsMemPowSupUniformiser
 
+noncomputable section
 
 namespace GlobalTheory.GraphLocal
 
@@ -454,7 +456,6 @@ theorem jets_mem_pow_sup : ∀ {K κ κ' : Type} [Field K] [Field κ] [Field κ'
     rwa [map_sub, add_sub_cancel] at h
 
   let φ : R →+* T ⧸ I := (q : T →+* T ⧸ I).comp ((jL : placeAlg E →+* T).comp ι)
-  have hφ : ∀ r, φ r = q (jL (ι r)) := fun _ => rfl
   have hker : RingHom.ker π.rangeRestrict ≤ RingHom.ker φ := fun r hr => by
     rw [RingHom.mem_ker] at hr ⊢
     exact hk r (congrArg Subtype.val hr)
@@ -535,6 +536,7 @@ theorem jets_mem_pow_sup : ∀ {K κ κ' : Type} [Field K] [Field κ] [Field κ'
   exact (hq0 w).1 (hwx.symm.trans h2)
 
 end GlobalTheory.GraphLocal
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PlaceGraphIdealTensorNeTop

@@ -18,8 +18,9 @@ open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZM
 open scoped CategoryTheory.Obj
 open ReciprocityTheory.AnForm.R GlobalTheory.ZH GlobalTheory.Poinc GlobalTheory.Poinc.Sep
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LeastVectorUniqueInClassMod
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LeastVectorUniqueInClassMod
 
+noncomputable section
 
 namespace GlobalTheory.Poinc.LeastVec
 
@@ -49,7 +50,6 @@ theorem least_lt_add_smul : ∀ (s : ℕ) (W : Matrix (Fin s) (Fin s) ℤ), PosW
   rw [hN']
   have hle := hmin nu hnu hnu0
   have hp := hpos nu hnu hnu0
-  have hN3 : (3 : ℤ) ≤ N₁ := by exact_mod_cast hN
   set B := cross W β mu₀ nu
   set q0 := qW W β mu₀
   set qn := qW W β nu
@@ -61,6 +61,7 @@ theorem least_lt_add_smul : ∀ (s : ℕ) (W : Matrix (Fin s) (Fin s) ℤ), PosW
   nlinarith
 
 end GlobalTheory.Poinc.LeastVec
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LeastVectorUniqueInClassModStatement

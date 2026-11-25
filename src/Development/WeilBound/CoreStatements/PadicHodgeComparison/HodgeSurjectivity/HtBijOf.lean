@@ -103,15 +103,15 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CocycleZeroAlt, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DWedgeExists, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FormConsEqSmul, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MapHEmptyBij, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OneResOfOneLow, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.HodgeTateDimensionEquality, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.OntoLow, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasStrictlySemistableChartAtOfSmooth, Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasStrictlySemistableChartAtOfSmoothStatement, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.Retract, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.EtaleChartBaseChange.DivisorCoverOfChartLaws, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.RelativeLiftCosieves.Faithful, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.RelativeLiftCosieves.FormCup, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.RelativeLiftCosieves.RelLiftOf, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.RelativeLiftCosieves.ZarRelOf, Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.HtBijOf
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CocycleZeroAlt
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CocycleZeroAlt
 
-set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
 open CategoryTheory CrystallineSemistableComparison CrystallineSemistableComparison.Pb CrystallineSemistableComparison.Onto
 
 universe u v w
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.CovDescent
 
@@ -284,6 +284,7 @@ theorem covDesc : CovDesc := fun _ _ _ _ _ _ _ _ _ _ hU n => desc hU n
 
 end GlobalTheory.CompanionTheory.CovDescent
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DWedgeExists
 
@@ -386,10 +387,9 @@ theorem dLog : DLog := by
 end GlobalTheory.CompanionTheory.OntoDLog
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MapHEmptyBij
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MapHEmptyBij
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CrystallineSemistableComparison CrystallineSemistableComparison.Onto
 
@@ -562,12 +562,14 @@ theorem mvBij : CrystallineSemistableComparison.Onto.MVBij := fun _ _ _ _ _ _ m 
 
 end GlobalTheory.CompanionTheory.Onto
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OneResOfOneLow
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OneResOfOneLow
+@[expose] public section
 
-set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
+noncomputable section
 
 open CrystallineSemistableComparison CrystallineSemistableComparison.Onto
 
@@ -657,13 +659,10 @@ theorem isB_of (A : Sy.{w} R ι) (p q : ℕ) (y : (dcx A).X p q) (h : ∀ i, y i
     choose u hu using h
     exact ⟨u, funext hu⟩
 
-theorem ent_nonempty {n : ℕ} (i : Fin (n + 1) → ι) : (ent i).Nonempty :=
-  ⟨i 0, Finset.mem_image_of_mem _ (Finset.mem_univ _)⟩
-
 theorem hcol (A : Sy.{w} R ι) (a : ℕ) (hO : A.One a) (p q : ℕ) (hq : q ≠ a) (y : (dcx A).X p q)
     (hy : (dcx A).dv p q y = 0) : IsB (dcx A) p q y := by
   refine isB_of A p q y fun i => ?_
-  have hs := hO (ent i) (ent_nonempty i) q hq
+  have hs := hO (ent i) (GlobalTheory.CompanionTheory.CechOne.ent_nonempty i) q hq
   have hi : (A.K (ent i)).d q (y i) = 0 := congrFun hy i
   have h0 : (Submodule.Quotient.mk ⟨y i, hi⟩ : (A.K (ent i)).H q) = 0 := Subsingleton.elim _ _
   have h2 : (⟨y i, hi⟩ : (A.K (ent i)).Z q) ∈ ((A.K (ent i)).B q).submoduleOf ((A.K (ent i)).Z q) :=
@@ -753,12 +752,12 @@ theorem oneRes_of_oneLow : OneLow → OneRes := by
 
 end GlobalTheory.CompanionTheory.OneResProof
 
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.HodgeTateDimensionEquality
 @[expose] public section
-
-set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -877,10 +876,10 @@ end
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.OntoLow
+section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.CupSurjectivity.OntoLow
+@[expose] public section
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.LogCris
 
@@ -953,6 +952,8 @@ theorem ontoLow_pf : OntoLow := by
 
 end CrystallineSemistableComparison.Onto
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasStrictlySemistableChartAtOfSmooth
@@ -1028,7 +1029,6 @@ theorem quotMap_algebraMap {O : Type} [CommRing O] (ϖ : O) (n : ℕ) :
   rw [quotMap_mk, aeval_C, algebraMap_eq]
 
 end GlobalTheory.SmChart
-
 
 open GlobalTheory.SmChart in
 theorem GlobalTheory.SSG.chartAt_of_smooth : ∀ (O : Type) [CommRing O] (ϖ : O) (X : Scheme.{0})
@@ -1338,11 +1338,13 @@ end CrystallineSemistableComparison.Onto
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.RelativeLiftCosieves.Faithful
+section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.RelativeLiftCosieves.Faithful
+@[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.LogCris
 
@@ -1420,7 +1422,6 @@ end CrystallineSemistableComparison.Onto.EquivalenceOnIso
 
 namespace CrystallineSemistableComparison.Onto
 
-
 open EquivalenceOnIso in
 theorem onIso_pf : OnIso := by
   intro K _ W Z q i _ U U' h hU a n
@@ -1432,6 +1433,8 @@ theorem onIso_pf : OnIso := by
 
 end CrystallineSemistableComparison.Onto
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.RelativeLiftCosieves.FormCup
@@ -1623,7 +1626,6 @@ def liftS {Q : ObjectProperty C} (hQ : Cosieve Q) {n : ℕ} (s : ComposableArrow
     ComposableArrows Q.FullSubcategory n :=
   Q.lift s fun k => hQ (s.map (homOfLE (Fin.zero_le _))) hs
 
-
 open Classical in
 def extZ {Q : ObjectProperty C} (hQ : Cosieve Q) {n : ℕ} (b : CH.Cn (Q.ι ⋙ F) n) : CH.Cn F n :=
   fun s => if hs : Q (s.obj 0) then b (liftS hQ s hs) else 0
@@ -1639,7 +1641,6 @@ theorem d_extZ {Q : ObjectProperty C} (hQ : Cosieve Q) {n : ℕ} (b : CH.Cn (Q.�
   rfl
 
 end RelativeFormLift
-
 
 open RelativeFormLift in
 theorem relLiftOf_pf : RelLiftOf := by
@@ -1696,10 +1697,10 @@ end
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.RelativeLiftCosieves.ZarRelOf
+section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.RelativeLiftCosieves.ZarRelOf
+@[expose] public section
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.LogCris
 
@@ -1785,6 +1786,8 @@ theorem zarRelOf_pf : ZarRelOf := by
 
 end CrystallineSemistableComparison.Onto
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivity.HtBijOf

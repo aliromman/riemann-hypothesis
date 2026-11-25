@@ -37,8 +37,9 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeIntersectionAtPlace, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LatIoAt, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LatIoAtStatement
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeIntersectionAtPlace
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeIntersectionAtPlace
 
+noncomputable section
 open NumberField IsDedekindDomain
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.DIV.Cons Formalism.L2.Pj Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Indef.Tree Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Cx
 open Formalism.IndefR.FWT Formalism.IndefR.Datum GlobalTheory.BigTop GlobalTheory.OntoChain GlobalTheory.RealIndexBound GlobalTheory.OnTies GlobalTheory.SeriesTie GlobalTheory.OnCmp
@@ -116,9 +117,7 @@ end BaseChange
 
 end GlobalTheory.BigOn.Exp.SerBase
 
-namespace GlobalTheory.BigOn.Exp.SerBase
-
-end GlobalTheory.BigOn.Exp.SerBase
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LatIoAt
@@ -136,12 +135,6 @@ open Formalism.L2.Host (embLL0)
 open scoped TensorProduct
 
 
-namespace GlobalTheory.BigOn.Exp.SerBase
-section BaseChange
-variable {E K₀ K ι : Type} [Field E] [NumberField E] [Field K₀] [NumberField K₀] [Field K] [NumberField K] [Fintype ι]
-  {n : ℕ}
-end BaseChange
-end GlobalTheory.BigOn.Exp.SerBase
 namespace GlobalTheory.BigOn.Exp.SerBase
 theorem latIoAt_alt : _root_.GlobalTheory.BigOn.Exp.SerBase.LatticeInclusionAt := by
   refine _root_.GlobalTheory.BigOn.Exp.TwistConditions.of_forall fun Fm x hx i p hR hM w hw j => ?_

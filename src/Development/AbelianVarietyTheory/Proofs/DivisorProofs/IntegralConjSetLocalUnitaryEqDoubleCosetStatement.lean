@@ -85,7 +85,9 @@ section -- clump: shared namespace opens
 
 open Polynomial Matrix GlobalTheory.LatOrb
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnitEqOfStableLattices
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnitEqOfStableLattices
+
+noncomputable section
 
 namespace GlobalTheory.LatOrb.Stab
 
@@ -173,7 +175,6 @@ theorem exists_unit_eq_matLat : ∀ {O K : Type} [CommRing O] [IsDomain O] [IsDi
     obtain ⟨p, rfl⟩ := hv₀ u
     exact ⟨⟨aeval γ p, (memA _).2 ⟨p, rfl⟩⟩, rfl⟩
   let e : A ≃ₗ[K] (Fin n → K) := LinearEquiv.ofBijective φ ⟨hinj, hsurj⟩
-  have he : ∀ a : A, e a = (a : Matrix (Fin n) (Fin n) K) *ᵥ v₀ := fun _ => rfl
   let eO : A ≃ₗ[O] (Fin n → K) := e.restrictScalars O
   let J : Submodule O (Fin n → K) → Submodule O A := fun M => M.map (eO.symm : (Fin n → K) →ₗ[O] A)
   have memJ : ∀ M y, y ∈ J M ↔ (y : Matrix (Fin n) (Fin n) K) *ᵥ v₀ ∈ M := by
@@ -236,6 +237,7 @@ theorem exists_unit_eq_matLat : ∀ {O K : Type} [CommRing O] [IsDomain O] [IsDi
     rw [← Units.val_mul, inv_mul_cancel_right]
 
 end GlobalTheory.LatOrb.Stab
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnitaryMulIntegralOfNormMaximalOrderUnit
@@ -469,7 +471,9 @@ theorem isIntegral_of_mapsTo_lattice : ∀ {O K : Type} [CommRing O] [Field K] [
 end GlobalTheory.LatOrb
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnitaryAdjoinLatticeImageEq
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnitaryAdjoinLatticeImageEq
+
+noncomputable section
 
 namespace GlobalTheory.LatOrb
 
@@ -480,7 +484,7 @@ theorem exists_mul_eq_one_mem {B : Type} [Ring B] [Algebra K B] (S : Subalgebra 
     ∃ b ∈ S, a * b = 1 := by
   let f : S →ₗ[K] S := LinearMap.mulLeft K (⟨a, ha⟩ : S)
   have hinj : Function.Injective f := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     apply Subtype.ext
     exact hc x.1 (by simpa [f] using congrArg Subtype.val hx)
@@ -675,6 +679,7 @@ theorem exists_unitary_matLat_eq : ∀ {O K : Type} [CommRing O] [IsDomain O] [I
     exact matLat_mono _ (matLat_le M _ hk2)
 
 end GlobalTheory.LatOrb
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsFullRankLatticeImageStandardLatticeGL

@@ -85,11 +85,12 @@ import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.WeilSie
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DensityOfFourierPairingIntegrable, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ArchimedeanCompactSetDensityBounded, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ArchimedeanCompactSetDensityBoundedStatement
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DensityOfFourierPairingIntegrable
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DensityOfFourierPairingIntegrable
 
 open MeasureTheory Real Complex SchwartzMap FourierTransform
 open scoped ENNReal NNReal RealInnerProductSpace Topology ContDiff Manifold
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.WhitFree.AvgInf.Dens
 
@@ -228,7 +229,7 @@ theorem density_of_fourier_pairing_integrable (e : T ≃ₗ[ℝ] V) (B : T →�
     ∃ C : ℝ≥0∞, C ≠ ⊤ ∧ ∀ Y, MeasurableSet Y → m Y ≤ C * ν Y := by
   let eC : T ≃L[ℝ] V := e.toContinuousLinearEquiv
   have hDinj : Function.Injective B := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro u hu
     exact hB u fun v => by rw [hu]; rfl
   let D : T ≃ₗ[ℝ] Module.Dual ℝ T :=
@@ -240,7 +241,7 @@ theorem density_of_fourier_pairing_integrable (e : T ≃ₗ[ℝ] V) (B : T →�
     rw [h]
     rfl
   have hinj : Function.Injective L0 := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro ξ hξ
     have h := hL0 ξ (e.symm ξ)
     rw [hξ, map_zero, LinearMap.zero_apply, e.apply_symm_apply] at h
@@ -392,7 +393,7 @@ def pairC (n : ℕ) (c : W → ℝ) : (W → hermC n) →ₗ[ℝ] (W → hermC n
       refine Finset.sum_congr rfl fun w _ => ?_
       ring)
     (fun u v v' => by
-      simp [Matrix.mul_add, Matrix.trace_add, mul_add, Finset.sum_add_distrib])
+      simp [Matrix.trace_add, mul_add, Finset.sum_add_distrib])
     (fun r u v => by
       simp [coe_smul_hermC, Matrix.trace_smul, Finset.mul_sum]
       refine Finset.sum_congr rfl fun w _ => ?_
@@ -424,6 +425,7 @@ theorem pairC_nondeg {n : ℕ} {c : W → ℝ} (hc : ∀ w, c w ≠ 0) (u : W �
 end Herm
 
 end GlobalTheory.CompanionTheory.WhitFree.AvgInf.Dens
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens
@@ -555,7 +557,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ArchimedeanCompactSetDensityBoundedStatement
 open GlobalTheory.IndefiniteRowSideFullHecke.ModerateGrowthSchwartz (schwartzA)
 open GlobalTheory.CompanionTheory.WeilSiegel.Frame GlobalTheory.CompanionTheory.WhitFree
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 

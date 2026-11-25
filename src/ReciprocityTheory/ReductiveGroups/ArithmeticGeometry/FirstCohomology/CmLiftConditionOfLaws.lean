@@ -146,13 +146,12 @@ theorem qkActExists_of (hG : Out.GlobalFnsSt) : QkActExistsStatement := by
 end ReciprocityTheory.ChartRestriction.G.H1
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.CanonLiftPf
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.CanonLiftPf
 
+noncomputable section
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj
   IsLocalRing NumberField
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace ReciprocityTheory.ChartRestriction.G.H1
 
@@ -249,6 +248,7 @@ theorem canonLiftFix_of_laws (hL : Out.Laws) : CanonLiftFixStatement := by
     · rw [hsc, hθ, map_zero, smul_zero]
 
 end ReciprocityTheory.ChartRestriction.G.H1
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.FirstCohomology.AlphaBarEnum

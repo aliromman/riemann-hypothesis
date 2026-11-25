@@ -74,7 +74,7 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRin
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.ModuliProofs.CardTypeLe, Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsAdaptedLieBasis, Development.AbelianVarietyTheory.Proofs.ModuliProofs.TangentLeDim
 
--- clump: shared namespace opens
+section -- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -156,7 +156,7 @@ theorem finrank_le : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H :
       map_add' := fun _ _ => rfl
       map_smul' := fun _ _ => rfl }
   have hf : Function.Injective f := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro Θ h0
     obtain ⟨hs, hc⟩ := hV Θ.1 Θ.2
     have key : ∀ i j, ty i H.rt = ρ → Θ.1 i j = 0 := by
@@ -379,7 +379,16 @@ theorem GlobalTheory.exists_adapted_lieBasis : ∀ (E : Type) [Field E] [NumberF
       ((GlobalTheory.DetExtend.lieMult_iff_finrank act hx τ _).1 ((hdet τ).2 h2))
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.TangentLeDim
+end -- clump: shared namespace opens
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.TangentLeDim
+
+noncomputable section
+
+open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
+open scoped CategoryTheory.Obj TensorProduct
+open GlobalTheory.ZM
 
 namespace GlobalTheory.PelTangent
 
@@ -480,7 +489,7 @@ theorem tangent_le_dim : Out.Laws → Out.Laws2 → (∀ (S : Scheme.{0}) (P : O
   obtain ⟨n, v, ty, hv, hty, hdiag⟩ := GlobalTheory.exists_adapted_lieBasis E H D K t₀.A A₀ (β ρ) t₀.ab.smooth det
   obtain ⟨Θ, hsym, hcomm, hker⟩ := _root_.GlobalTheory.KSField.exists_ksMatrix L1 L2 L3 K r t.pol t₀.pol φ₀ n v h₀ hL₀ hv
   have inj : Function.Injective Θ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro lam h0
     let d : Sp (DualNumber K) ⟶ Sp (TrivSqZeroExt K (Fin r → K)) := spMap (dirMap lam)
     have hd : d ≫ spMap ((algebraMap K (TrivSqZeroExt K (Fin r → K))).comp β) =

@@ -18,12 +18,14 @@ import Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipaliz
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.ContinuationComparison, Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.TrivialDivisorContinuation, Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.BoundarySeparationPullbackComparison, Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.LowerDimensionalContinuation, Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.HypersurfaceReductionFunctoriality
 
-@[expose] public noncomputable section -- clump member: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.ContinuationComparison
+section -- clump member: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.ContinuationComparison
+@[expose] public section
 
 universe u v
 
 open CategoryTheory AlgebraicGeometry
 
+noncomputable section
 
 namespace FunctorialResolution.EmbeddedResolution
 
@@ -233,7 +235,6 @@ theorem isPullbackBlowupSequence_derivedTriple
         (MaxContactCoverData.derivedTriple (NontrivialBoundary.pullbackWithNontrivialBoundary S q) s' hftT [] 0)).toSequenceOfBlowups
       (A j (MaxContactCoverData.derivedTriple S s hftS [] 0)).toSequenceOfBlowups := by
   classical
-  have hflatq : AlgebraicGeometry.Flat q := inferInstance
   have hSmoothLast : AlgebraicGeometry.Smooth Dt.lastMap := Dt.smooth_lastMap
   have hsm : AlgebraicGeometry.Smooth (s.proj s.length ≫ S.structMap) := by
     have hsmU := hVU.smooth
@@ -417,6 +418,8 @@ end BoundaryDeletion
 
 end FunctorialResolution.EmbeddedResolution
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.TrivialDivisorContinuation
@@ -608,12 +611,14 @@ end FunctorialResolution.EmbeddedResolution
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.BoundarySeparationPullbackComparison
+section -- clump member: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.BoundarySeparationPullbackComparison
+@[expose] public section
 
 universe u
 
 open CategoryTheory AlgebraicGeometry
 
+noncomputable section
 
 namespace FunctorialResolution.EmbeddedResolution
 
@@ -638,7 +643,6 @@ theorem nonempty_separateBoundaryPullbackComparison
         (NontrivialBoundary.survivingBoundaryCount S q j)).toMarkedSequenceOfBlowups.toSequenceOfBlowups
       (BoundarySeparationBaseChange.separateBoundaryOfFamily hinv T A S j).toMarkedSequenceOfBlowups.toSequenceOfBlowups) := by
   classical
-  have : AlgebraicGeometry.Flat q := inferInstance
   revert hj
   induction j with
   | zero =>
@@ -772,14 +776,18 @@ end NontrivialBoundary
 
 end FunctorialResolution.EmbeddedResolution
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.LowerDimensionalContinuation
+section -- clump member: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.LowerDimensionalContinuation
+@[expose] public section
 
 universe u
 
 open CategoryTheory AlgebraicGeometry
 
+noncomputable section
 
 namespace FunctorialResolution.EmbeddedResolution
 
@@ -801,7 +809,6 @@ theorem strictTransformAtLength_comap_lastMap
     (H : S.scheme.IdealSheafData) :
     MaxContactReduction.strictTransformAtLength s' (H.comap q)
       = (MaxContactReduction.strictTransformAtLength s H).comap Dt.lastMap := by
-  have : AlgebraicGeometry.Flat q := inferInstance
   have h1 : MaxContactReduction.strictTransformAtLength s' (H.comap q) = s'.iteratedStrictTransform s'.length (H.comap q) := by
     rw [MaxContactReduction.strictTransformAtLength_eq, BoundarySeparationByMaxContact.iteratedStrictTransform_eq_toBlowupSequenceData]
   have h2 : MaxContactReduction.strictTransformAtLength s H = s.iteratedStrictTransform s.length H := by
@@ -844,7 +851,6 @@ theorem isPullbackBlowupSequence_appendLowerDimReduction
         (NontrivialBoundary.pullbackWithNontrivialBoundary S q).boundary.length 0).toMarkedSequenceOfBlowups.toSequenceOfBlowups
       (MaxContactReduction.appendLowerDimReduction hinv T (fun S₀ _ i => A i S₀) S s
         [MaxContactReduction.strictTransformAtLength s H] S.boundary.length 0).toMarkedSequenceOfBlowups.toSequenceOfBlowups := by
-  have : AlgebraicGeometry.Flat q := inferInstance
   have hSmoothLast : AlgebraicGeometry.Smooth Dt.lastMap := SequenceOfBlowupsPullback.smooth_lastMap Dt
   have hsm : AlgebraicGeometry.Smooth (s.proj s.length ≫ S.structMap) :=
     BoundarySeparationByMaxContact.smooth_projectionToBase_comp hstar S hV s s.length le_rfl
@@ -1055,6 +1061,8 @@ end StrictTransformComparison
 
 end FunctorialResolution.EmbeddedResolution
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.OrderReduction.HypersurfaceReductionFunctoriality

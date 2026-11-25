@@ -13,7 +13,8 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.ArithmeticGeometry.SchemeCohomology.ProperCohomology.ProjHom, GroundTheory.ArithmeticGeometry.SchemeCohomology.ProperCohomology.ProjSpaceHom
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ArithmeticGeometry.SchemeCohomology.ProperCohomology.ProjHom
+section -- clump member: GroundTheory.ArithmeticGeometry.SchemeCohomology.ProperCohomology.ProjHom
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -21,6 +22,7 @@ open AlgebraicGeometry CategoryTheory Limits Opposite HomogeneousLocalization
 
 namespace GroundTheory.Arith.SchemeCoh
 universe u
+noncomputable section
 variable {σ : Type*} {A : Type u} [CommRing A] [SetLike σ A] [AddSubgroupClass σ A]
   (𝒜 : ℕ → σ) [GradedRing 𝒜]
 
@@ -104,7 +106,6 @@ lemma corr_comp {Y : Scheme.{u}} (h : Y ⟶ X) (g : X ⟶ Proj 𝒜) (r : A) {V 
     Category.assoc]
 
 
-set_option backward.isDefEq.respectTransparency false in
 lemma isUnit_of_basicOpen_eq_top {Y : Scheme.{u}} (s : Γ(Y, ⊤)) (h : Y.basicOpen s = ⊤) :
     IsUnit s := by
   have hu : IsUnit (Y.presheaf.map (homOfLE (Y.basicOpen_le s)).op s) :=
@@ -220,7 +221,9 @@ theorem fromOfGlobalSections_eq_of_twist {ι : Type*} (r : ι → A) (d : ι →
     (hff' _ _ ha) (corr_fromOfGlobalSections' 𝒜 f' hf' (hd i) (hr i) _ (hb i) hle k a ha)
 
 end ProjHom
+end
 end GroundTheory.Arith.SchemeCoh
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.ArithmeticGeometry.SchemeCohomology.ProperCohomology.ProjSpaceHom

@@ -725,8 +725,9 @@ theorem exists_pt_of_mem_cone_of_isAlgClosed : ∀ (F : Type) [Field F] (S : Lin
 end GlobalTheory.ConeOnto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LinearSectionEtaleOfSquarefreeChowForm
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LinearSectionEtaleOfSquarefreeChowForm
 
+noncomputable section
 
 open NumberField MvPolynomial ReciprocityTheory.MultiplicativeHeights CategoryTheory AlgebraicGeometry
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -818,12 +819,7 @@ theorem simpleAt_of_noSquare : ∀ (F : Type) [Field F] [NumberField F] (T : Tup
   have hPf : Finite P := hPfin.to_subtype
   have hrepinj : Function.Injective (fun q => (⟨rep q, hrepP q⟩ : P)) := fun q q' h =>
     hinj q q' (by rw [show rep q = rep q' from congrArg Subtype.val h])
-  have hfr : (Module.finrank E Γ((T.linSection E s).subscheme, ⊤) : ℤ) = δ := hrank.trans hδ.symm
   have h1 : Nat.card P = Nat.card (Γ((T.linSection E s).subscheme, ⊤) →ₐ[E] AlgebraicClosure E) := hcard
-  have h3 : Module.finrank E Γ((T.linSection E s).subscheme, ⊤) = δ := by exact_mod_cast hfr
-  have hPle : Nat.card P ≤ δ := by
-    have h2 := hI.2.1
-    omega
   have hmP : Nat.card (Fin (Nat.card (line '' P))) ≤ Nat.card P := Nat.card_le_card_of_injective _ hrepinj
   rw [Nat.card_fin] at hmP
   have hPδ : Nat.card P = δ := by omega
@@ -851,6 +847,7 @@ theorem simpleAt_of_noSquare : ∀ (F : Type) [Field F] [NumberField F] (T : Tup
     exact ⟨q, Set.mem_univ _, congrArg Subtype.val hq⟩
 
 end GlobalTheory.HSShort.EtaleSection
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SubsetOfForallPtMem

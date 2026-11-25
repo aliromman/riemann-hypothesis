@@ -20,14 +20,15 @@ import Mathlib.Tactic.Linter.HaveILetI
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FirstChernClassEqZeroOfUnitTrivialization, Development.AutomorphicArithmetic.WhittakerHecke.ChernPowerZsmulEqPowSmul, Development.AutomorphicArithmetic.WhittakerHecke.FirstChernClassEqZsmulOfLineUnitEqZpow, Development.AutomorphicArithmetic.WhittakerHecke.FirstChernClassProjBundleLineOfTwistEquiv, Development.AutomorphicArithmetic.WhittakerHecke.ProjBundleDataBundleIsLocallySurjectiveEtale, Development.AutomorphicArithmetic.WhittakerHecke.ProjBundleDataCechExistsUniqueSimplexOfVertices, Development.AutomorphicArithmetic.WhittakerHecke.ProjBundleDataSimplexExtOfVertices, Development.AutomorphicArithmetic.WhittakerHecke.ProjBundleDataExistsUniqueSimplexOfVertices, Development.AutomorphicArithmetic.WhittakerHecke.ProjBundleDataIsLocallySurjectiveEtale, Development.AutomorphicArithmetic.WhittakerHecke.QuasiIsoChainsOfCechConditionOfLocallySurjective, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.EtaleCharts.PolynomialChartSpans.PBOf, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.EtaleCharts.PolynomialChartSpans.LineUnitCm
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FirstChernClassEqZeroOfUnitTrivialization
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FirstChernClassEqZeroOfUnitTrivialization
+@[expose] public section
 
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 
+noncomputable section
 namespace GlobalTheory.EtC.ChartChern
 open CochainComplex CochainComplex.HomComplex GlobalTheory.EtC.ClsSpec GlobalTheory.EtC.ChernSpec
 
-set_option backward.isDefEq.respectTransparency false
 
 theorem firstChernClass_eq_zero_of_unit_trivialization (q : ℕ) [NeZero q] {E : Spc} (L : E ⟶ ofCat (glCat 1)) (hE : Inv q E)
     (s : ∀ U : Scheme.{0}, Sx E 0 U → (Γ(U, ⊤))ˣ)
@@ -156,12 +157,15 @@ theorem firstChernClass_eq_zero_of_unit_trivialization (q : ℕ) [NeZero q] {E :
 
 end GlobalTheory.EtC.ChartChern
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicArithmetic.WhittakerHecke.ChernPowerZsmulEqPowSmul
+section -- clump: shared namespace opens
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC CrystallineSemistableComparison CrystallineSemistableComparison.Onto Simplicial UpperTheory.Gal.KunnethLefschetz UpperTheory.Gal.KunnethLefschetz.G
+
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.WhittakerHecke.ChernPowerZsmulEqPowSmul
 
 private theorem cohomology_cast_zsmul {q : ℕ} {E : Spc} {n i n' i' : ℤ} (hn : n = n') (hi : i = i') (c : ℤ)
     (x : Ht q E n i) : Ht.cast hn hi (c • x) = c • Ht.cast hn hi x := by
@@ -180,9 +184,6 @@ theorem UpperTheory.chernPower_zsmul_eq_pow_smul :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.WhittakerHecke.FirstChernClassEqZsmulOfLineUnitEqZpow
-
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC CrystallineSemistableComparison CrystallineSemistableComparison.Onto Simplicial UpperTheory.Gal.KunnethLefschetz UpperTheory.Gal.KunnethLefschetz.G
 
 private noncomputable def trivNat : glCat 1 ⟶ glCat 1 where
   app A := (SingleObj.mapHom _ _ (1 : GL (Fin 1) A →* GL (Fin 1) A)).toCatHom
@@ -225,9 +226,6 @@ theorem UpperTheory.firstChernClass_eq_zsmul_of_lineUnit_eq_zpow :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.WhittakerHecke.FirstChernClassProjBundleLineOfTwistEquiv
-
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC CrystallineSemistableComparison CrystallineSemistableComparison.Onto Simplicial UpperTheory.Gal.KunnethLefschetz UpperTheory.Gal.KunnethLefschetz.G
 
 private theorem inv_along {q : ℕ} {E E' : Spc} (f : E ⟶ E') (h : Inv q E') : Inv q E := by
   intro U hU
@@ -322,9 +320,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.WhittakerHecke.ProjBundleDataBundleIsLocallySurjectiveEtale
 
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC CrystallineSemistableComparison CrystallineSemistableComparison.Onto Simplicial UpperTheory.Gal.KunnethLefschetz UpperTheory.Gal.KunnethLefschetz.G
-
 private theorem exists_local_lift {T W : Scheme.{0}} {r : T ⟶ W} {d : ℕ} (P : PBData r d) {U : Scheme.{0}}
     (p : P.PA.obj (op U)) (x : U) :
     ∃ O : U.Opens, x ∈ O ∧ ∃ t : Sx (cech P.e) 0 (O : Scheme.{0}),
@@ -361,9 +356,6 @@ theorem UpperTheory.projBundleData_bundle_isLocallySurjective_etale :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.WhittakerHecke.ProjBundleDataCechExistsUniqueSimplexOfVertices
-
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC CrystallineSemistableComparison CrystallineSemistableComparison.Onto Simplicial UpperTheory.Gal.KunnethLefschetz UpperTheory.Gal.KunnethLefschetz.G
 
 private theorem comp_hom_eq_of_coords {T W : Scheme.{0}} {r : T ⟶ W} {d : ℕ} (P : PBData r d) (U : Scheme.{0})
     (a b : Sx (cech P.e) 0 U)
@@ -408,9 +400,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.WhittakerHecke.ProjBundleDataSimplexExtOfVertices
 
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC CrystallineSemistableComparison CrystallineSemistableComparison.Onto Simplicial UpperTheory.Gal.KunnethLefschetz UpperTheory.Gal.KunnethLefschetz.G
-
 private theorem arrow_heq {A : Type} [CommRing A] {N : ℕ} {v v' w w' : Um N A} (hv : v = v') (hw : w = w')
     (p : v ⟶ w) (p' : v' ⟶ w') (h : p.1.1 = p'.1.1) : HEq p p' := by
   subst hv hw
@@ -449,9 +438,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.WhittakerHecke.ProjBundleDataExistsUniqueSimplexOfVertices
 
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC CrystallineSemistableComparison CrystallineSemistableComparison.Onto Simplicial UpperTheory.Gal.KunnethLefschetz UpperTheory.Gal.KunnethLefschetz.G
-
 theorem UpperTheory.projBundleData_existsUnique_simplex_of_vertices :
     ∀ {T W : Scheme.{0}} {r : T ⟶ W} {d : ℕ} (P : PBData r d) (n : ℕ) (U : Scheme.{0}) (t : Fin (n + 1) → Sx P.S 0 U),
         (∀ i j, (P.pS.app (op ⦋0⦌)).app (op U) (t i) = (P.pS.app (op ⦋0⦌)).app (op U) (t j)) →
@@ -479,9 +465,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.WhittakerHecke.ProjBundleDataIsLocallySurjectiveEtale
 
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC CrystallineSemistableComparison CrystallineSemistableComparison.Onto Simplicial UpperTheory.Gal.KunnethLefschetz UpperTheory.Gal.KunnethLefschetz.G
-
 theorem UpperTheory.projBundleData_isLocallySurjective_etale :
     ∀ {T W : Scheme.{0}} {r : T ⟶ W} {d : ℕ} (P : PBData r d),
         Presheaf.IsLocallySurjective Scheme.etaleTopology.{0} (P.pS.app (op ⦋0⦌)) := by
@@ -495,6 +478,8 @@ theorem UpperTheory.projBundleData_isLocallySurjective_etale :
   change Quotient.mk _ (P.sv z 0) = Quotient.mk _ p
   rw [hz]
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.WhittakerHecke.QuasiIsoChainsOfCechConditionOfLocallySurjective
 
@@ -629,7 +614,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.EtaleCharts.PolynomialChartSpans.PBOf
 
-set_option backward.isDefEq.respectTransparency false
 
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC CrystallineSemistableComparison CrystallineSemistableComparison.Onto Simplicial UpperTheory.Gal.KunnethLefschetz UpperTheory.Gal.KunnethLefschetz.G
 

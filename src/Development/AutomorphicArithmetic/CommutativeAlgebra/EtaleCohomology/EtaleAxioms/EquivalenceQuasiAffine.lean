@@ -38,8 +38,10 @@ import Development.EtaleCohomology.EtaleSheaves.TorSecPf
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsOrthogonalIdempotentsIsDomainOfEtale, Development.EtaleCohomology.EtaleSheaves.DescentPf, Development.EtaleCohomology.EtaleSheaves.EmptyVan2, Development.EtaleCohomology.EtaleSheaves.EqvQAPf, Development.EtaleCohomology.EtaleSheaves.EtLiftPf, Development.EtaleCohomology.EtaleSheaves.FinOpenPf, Development.EtaleCohomology.EtaleSheaves.GlueOf, Development.EtaleCohomology.EtaleSheaves.LCGoodPf, Development.EtaleCohomology.EtaleSheaves.LocDiagPf, Development.EtaleCohomology.EtaleSheaves.LocFormPf, Development.EtaleCohomology.EtaleSheaves.LocSHPf, Development.EtaleCohomology.EtaleSheaves.PiecesPf, Development.EtaleCohomology.EtaleSheaves.PrimMapComp, Development.EtaleCohomology.EtaleSheaves.ProjGPf, Development.EtaleCohomology.EtaleSheaves.QAClosedPf, Development.EtaleCohomology.EtaleSheaves.StdCoverPf, Development.EtaleCohomology.EtaleSheaves.StdPBPf, Development.EtaleCohomology.EtaleSheaves.TwGenNZACPf, Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.EtaleAxioms.EquivalenceQuasiAffine
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsOrthogonalIdempotentsIsDomainOfEtale
+section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsOrthogonalIdempotentsIsDomainOfEtale
+@[expose] public section
 
+noncomputable section
 
 open TensorProduct Polynomial
 
@@ -134,7 +136,7 @@ private theorem core (T C : Type) [CommRing T] [IsDomain T] [IsIntegrallyClosed 
     (IsIdempotentElem.iff_eq_one_of_isUnit (IsLocalization.Away.algebraMap_isUnit (c j))).1
       (hidem.map _)
   have hinj : Function.Injective ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     obtain ⟨x, rfl⟩ := hsurj a
     rw [hψ] at ha
@@ -166,17 +168,16 @@ theorem UpperTheory.exists_orthogonalIdempotents_isDomain_of_etale :
   obtain ⟨e, h1, h2⟩ := core T C g
   exact ⟨n, e, h1, h2⟩
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleSheaves.DescentPf
+@[expose] public section -- clump member: Development.EtaleCohomology.EtaleSheaves.DescentPf
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC LateralTheory.E.t_E1Cut LateralTheory.E.LocallyConstantH0
 
 namespace LateralTheory.E.DescentPf
-
-theorem res_comp {R : Type} [CommRing R] {F : Shv R} {W V U : Scheme.{0}} (h : W ⟶ V) (g : V ⟶ U) (x : Sec F U) :
-    Sec.res (h ≫ g) x = Sec.res h (Sec.res g x) := by
-  simp [Sec.res]
 
 theorem val_smul {q : ℕ} [NeZero q] (i : ℤ) {U : Scheme.{0}} (c : ZMod q) (x : Sec (tw q i) U) :
     c.val • x = (ULift.up c : ULift.{1} (ZMod q)) • x := by
@@ -193,7 +194,7 @@ theorem Descent_of (hAC : LateralTheory.E.LCBijPf.TwGenNZAC) : LateralTheory.E.L
       Sec.res (h ≫ g) y = c.val • twGen i ((gam ζ).map (h ≫ g).appTop.hom) := by
     intro V W g h c hc
     have hs : ∀ x : Sec (tw q i) V, Sec.res h (c.val • x) = c.val • Sec.res h x := fun x => map_nsmul _ _ x
-    rw [res_comp, hc, hs, LateralTheory.E.LCBijPf.twGen_res]
+    rw [LateralTheory.E.LCMapPf.res_comp, hc, hs, LateralTheory.E.LCBijPf.twGen_res]
     rfl
   have huniq : ∀ {V1 V2 : Scheme.{0}} (g1 : V1 ⟶ Spec (CommRingCat.of B)) (g2 : V2 ⟶ Spec (CommRingCat.of B))
       (c1 c2 : ZMod q), Sec.res g1 y = c1.val • twGen i ((gam ζ).map g1.appTop.hom) →
@@ -254,7 +255,7 @@ theorem Descent_of (hAC : LateralTheory.E.LCBijPf.TwGenNZAC) : LateralTheory.E.L
   · intro V k hk
     obtain ⟨W, h, k', hk', rfl⟩ := hk
     obtain ⟨x⟩ := hk'
-    rw [res_comp, res_comp]
+    rw [LateralTheory.E.LCMapPf.res_comp, LateralTheory.E.LCMapPf.res_comp]
     congr 1
     rw [hc x]
     obtain ⟨φ, hφ⟩ := Spec.map_surjective (g x)
@@ -267,6 +268,7 @@ theorem Descent_of (hAC : LateralTheory.E.LCBijPf.TwGenNZAC) : LateralTheory.E.L
     exact e.symm
 
 end LateralTheory.E.DescentPf
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleSheaves.EmptyVan2
@@ -761,12 +763,12 @@ theorem LCGood_of : LCGood := by
 end LateralTheory.E.LCGoodPf
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleSheaves.LocDiagPf
+@[expose] public section -- clump member: Development.EtaleCohomology.EtaleSheaves.LocDiagPf
 
+noncomputable section
 open CategoryTheory Limits Opposite
 
 namespace LateralTheory.E.LocDiagPf
-
 
 open Classical in
 def g {S : Type} [CommRing S] (p : PrimeSpectrum S) (s : Finset p.asIdeal.primeCompl) : S :=
@@ -905,6 +907,7 @@ theorem LocDiag_of : LateralTheory.E.ZarLocalPf.LocDiag := by
   exact tr_apply p (leOfHom m) x
 
 end LateralTheory.E.LocDiagPf
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleSheaves.LocFormPf
@@ -1645,8 +1648,9 @@ theorem LateralTheory.E.MVPf.StdPB_of : LateralTheory.E.MVPf.StdPB := by
   exact ⟨h.isoPullback.hom, inferInstance, h.isoPullback_hom_fst, h.isoPullback_hom_snd⟩
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleSheaves.TwGenNZACPf
+@[expose] public section -- clump member: Development.EtaleCohomology.EtaleSheaves.TwGenNZACPf
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC LateralTheory.E.t_E1Cut LateralTheory.E.LocallyConstantH0
 
 namespace LateralTheory.E.TwGenNZACPf
@@ -1660,7 +1664,6 @@ theorem prim_isPrimitiveRoot (z : Prim q L) : IsPrimitiveRoot z.1 q := by
   rw [Polynomial.aeval_def, Polynomial.eval₂_eq_eval_map, Polynomial.map_cyclotomic] at h
   exact Polynomial.isRoot_cyclotomic_iff.1 h
 
-
 open Classical in
 def lg (q : ℕ) (z x : L) : ZMod q := if h : ∃ n : ℕ, z ^ n = x then (h.choose : ZMod q) else 0
 
@@ -1671,7 +1674,6 @@ theorem lg_pow {z : L} (hz : IsPrimitiveRoot z q) (n : ℕ) : lg q z (z ^ n) = n
   have h2 := h.choose_spec
   have h3 := ((hz.isOfFinOrder (NeZero.ne q)).pow_eq_pow_iff_modEq).1 h2
   rwa [← hz.eq_orderOf] at h3
-
 
 open Classical in
 def fv (q : ℕ) (i : ℤ) (z x : L) : ZMod q :=
@@ -1770,6 +1772,7 @@ theorem TwGenNZAC_of : LateralTheory.E.LCBijPf.TwGenNZAC := by
   exact hj
 
 end LateralTheory.E.TwGenNZACPf
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.EtaleAxioms.EquivalenceQuasiAffine

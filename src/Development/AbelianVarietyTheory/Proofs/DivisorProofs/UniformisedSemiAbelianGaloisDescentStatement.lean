@@ -658,7 +658,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LineBundleIsoGenericFibreDescendFiniteExt
 
-set_option backward.isDefEq.respectTransparency false
 
 namespace GlobalTheory.Mum
 

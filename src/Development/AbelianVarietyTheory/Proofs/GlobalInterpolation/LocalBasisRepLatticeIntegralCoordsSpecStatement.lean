@@ -46,10 +46,11 @@ import Mathlib.Topology.Sheaves.Init
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsLocalBasisSnocOfLocalBasis, Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.LocalBasisRepLatticeIntegralCoordsSpec, Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.LocalBasisRepLatticeIntegralCoordsSpecStatement
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsLocalBasisSnocOfLocalBasis
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsLocalBasisSnocOfLocalBasis
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.L2.Col Formalism.L2.DIV Formalism.L2.Forms GlobalTheory.Mem.Col2 Matrix
 
+noncomputable section
 
 namespace GlobalTheory.LocBasisSnoc
 
@@ -68,7 +69,7 @@ theorem blk_mulVec_last (A : Matrix (Fin n) (Fin n) E) (c : E) (x : Fin (n + 1) 
   simp [blk, Matrix.mulVec, dotProduct, Fin.sum_univ_castSucc]
 
 theorem blk_mulVec_ext {P Q : Matrix (Fin (n + 1)) (Fin (n + 1)) E} (h : ∀ x, P *ᵥ x = Q *ᵥ x) : P = Q :=
-  Matrix.ext_of_mulVec_single fun j => h _
+  Matrix.ext_of_mulVec_single fun _ => h _
 
 theorem blk_mul (A A' : Matrix (Fin n) (Fin n) E) (c c' : E) :
     blk A c * blk A' c' = blk (A * A') (c * c') := by
@@ -154,6 +155,7 @@ theorem GlobalTheory.isLocBasis_snoc : ∀ {E : Type} [Field E] [NumberField E] 
       · rw [Nat.cast_mul, mul_smul, Nat.cast_smul_eq_nsmul]
         exact nsmul_mem h3 s
       · rw [Nat.cast_mul, mul_comm (s : E), mul_assoc]; exact hR s' h2
+end -- clump:auto
 end -- clump:auto
 
 -- clump: shared namespace opens

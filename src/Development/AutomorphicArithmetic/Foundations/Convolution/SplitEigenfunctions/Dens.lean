@@ -29,7 +29,9 @@ import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalys
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.OrbitMeasurability.DetCentralSection, Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.OrbitMeasurability.ExistsForm0, Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.OrbitMeasurability.FormBd, Development.AutomorphicArithmetic.AdelicSL2.EqSl2RatMulOfGl2RatSmulAdelicSL2IdeleMapEq, Development.AutomorphicArithmetic.AdelicSL2.ExistsGl2RatSmulMemRangeAdelicSL2IdeleMap, Development.AutomorphicArithmetic.AdelicSL2.IsFundamentalDomainImageSl2DomainProdIdeles, Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.OrbitMeasurability.Imports, Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.Dens
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.OrbitMeasurability.DetCentralSection
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.OrbitMeasurability.DetCentralSection
+
+noncomputable section
 
 open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
 open Neutral.B1 Formalism.L2.Host Formalism.ConjugateSelfDual GlobalTheory.CuspRep GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.Published GroundTheory.Global GroundTheory.Automorphic.GJMatrix
@@ -236,12 +238,6 @@ private theorem nU_rat (c : ℚ) : ∃ γ, nU (algebraMap ℚ (A ℚ) c) = ratS 
   ext i j
   fin_cases i <;> fin_cases j <;> simp
 
-private theorem nU_plus (b c : A ℚ) : nU (b + c) = nU b * nU c := by
-  refine Subtype.ext ?_
-  change !![1, b + c; 0, 1] = !![1, b; 0, 1] * !![1, c; 0, 1]
-  ext i j
-  fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two, add_comm]
-
 private theorem rat_sl (γ : GL (Fin 2) ℚ) (h : Dt γ = 1) : ∃ g, ratGL ℚ 2 γ = gl (ratS ℚ g) :=
   ⟨⟨γ.val, congrArg Units.val h⟩, Units.ext rfl⟩
 
@@ -330,10 +326,11 @@ theorem ext : Ext := by
     · exact hu.cusp _
     · obtain ⟨γ, hγ⟩ := nU_rat c
       change u (nU (algebraMap ℚ (A ℚ) c + b) * sl x) = u (nU b * sl x)
-      rw [nU_plus, hγ, mul_assoc]
+      rw [nU_add, hγ, mul_assoc]
       exact hu.left γ _
 
 end UpperTheory.ConvolutionTheory.RankTwoDescent.Cp
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.OrbitMeasurability.ExistsForm0

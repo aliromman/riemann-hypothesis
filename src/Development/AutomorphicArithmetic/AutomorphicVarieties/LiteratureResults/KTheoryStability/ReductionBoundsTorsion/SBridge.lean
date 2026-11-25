@@ -142,8 +142,9 @@ end PositivityTheory.KB
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.CycleBoundaryInjectivity.ICyclesInjective
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.CycleBoundaryInjectivity.ICyclesInjective
 
+noncomputable section
 
 open CategoryTheory groupHomology UpperTheory.V.KL Finsupp
 
@@ -205,7 +206,6 @@ theorem iCycles_injective (n : ℕ) : Function.Injective (iCycles (Rep.trivial �
 def pz : LinearMap.ker (Dz G k) →ₗ[ℤ] grpH G (k + 1) :=
   (π (Rep.trivial ℤ G ℤ) (k + 1)).hom ∘ₗ cz G k
 
-set_option backward.isDefEq.respectTransparency false in
 theorem pz_surjective : Function.Surjective (pz G k) := by
   intro y
   obtain ⟨c, rfl⟩ := (ModuleCat.epi_iff_surjective (π (Rep.trivial ℤ G ℤ) (k + 1))).1 inferInstance y
@@ -282,6 +282,7 @@ theorem pz_natural (x : LinearMap.ker (Dz G k)) :
   rw [this, i_cz, chainsMap_hom]
 
 end PositivityTheory.KB.NaturalTheta
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.LiteratureResults.KTheoryStability.ReductionBoundsTorsion.CycleBoundaryInjectivity.ThEqZeroIff

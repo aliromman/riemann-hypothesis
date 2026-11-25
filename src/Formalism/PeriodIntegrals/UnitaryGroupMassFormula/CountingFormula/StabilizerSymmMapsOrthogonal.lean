@@ -18,14 +18,13 @@ import Formalism.HermitianLattices.HermitianLatticesProofs.UnimodularSpan
 open NumberField Module Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.BasicNotions Formalism.L2.SG.CntLocal
 open Classical
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.GESymmApply
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.GESymmApply
 
+noncomputable section
 
 namespace PI.UnitaryGroupMassFormula.CntFormula.RowsMassW.RowWeightPf
 
 open PI.UnitaryGroupMassFormula.CntFormula.RowsMassW PI.UnitaryGroupMassFormula.CntFormula.RowsMassW.RowMPf
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section Form
 
@@ -177,15 +176,15 @@ end Gamma
 
 end PI.UnitaryGroupMassFormula.CntFormula.RowsMassW.RowWeightPf
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.ExistsSE
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.ExistsSE
 
+noncomputable section
 
 namespace PI.UnitaryGroupMassFormula.CntFormula.RowsMassW.RowWeightPf
 
 open PI.UnitaryGroupMassFormula.CntFormula.RowsMassW PI.UnitaryGroupMassFormula.CntFormula.RowsMassW.RowMPf
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 section Section
 
@@ -290,15 +289,15 @@ end Section
 
 end PI.UnitaryGroupMassFormula.CntFormula.RowsMassW.RowWeightPf
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.StabilizerSymmMapsOrthogonal
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CountingFormula.StabilizerSymmMapsOrthogonal
 
+noncomputable section
 
 namespace PI.UnitaryGroupMassFormula.CntFormula.RowsMassW.RowWeightPf
 
 open PI.UnitaryGroupMassFormula.CntFormula.RowsMassW PI.UnitaryGroupMassFormula.CntFormula.RowsMassW.RowMPf
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 private theorem lift_span_eq_top_of_unimodular (D : Formalism.BasicNotions.D7) {Λ : Submodule (𝓞 D.host.E) (VS D).V}
     (hL : Λ.FG) (hU : Formalism.HermitianLatticesTheory.IsUnimodular (VS D).hT Λ) :

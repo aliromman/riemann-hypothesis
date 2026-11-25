@@ -22,7 +22,7 @@ import Development.AbelianVarietyTheory.Proofs.DivisorProofs.HermitianSelfDualLa
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SeesawWeilLocalFactorEq, Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.ThetaTripleMapsLieActionEqZero
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SeesawWeilLocalFactorEq
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.SeesawWeilLocalFactorEq
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.DivisionValues
@@ -33,6 +33,7 @@ open scoped TensorProduct ComplexConjugate
 open GlobalTheory.SquareComm
 open scoped GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 
+noncomputable section
 
 namespace GlobalTheory.TripleAssembly.LieInv
 
@@ -139,10 +140,7 @@ theorem exists_line_conjU (θ : InfFam D) (M : HSp D) (τ : D.what₂.Tau) (Y : 
 
 end GlobalTheory.TripleAssembly.LieInv
 
-namespace GlobalTheory.TripleAssembly.LieInv
-
-end GlobalTheory.TripleAssembly.LieInv
-
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.ThetaTripleMapsLieActionEqZero
@@ -156,12 +154,6 @@ open scoped TensorProduct ComplexConjugate
 open GlobalTheory.SquareComm
 open scoped GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 noncomputable section
-namespace GlobalTheory.TripleAssembly.LieInv
-end GlobalTheory.TripleAssembly.LieInv
-namespace GlobalTheory.TripleAssembly.LieInv
-end GlobalTheory.TripleAssembly.LieInv
-namespace GlobalTheory.TripleAssembly.LieInv
-end GlobalTheory.TripleAssembly.LieInv
 namespace GlobalTheory.TripleAssembly.LieInv
 variable {D : D7}
 theorem thetaLift_lie_derivative_eq_zero (hP : _root_.GlobalTheory.FunPr.ThetaLocalInputs) {k : ℕ} (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFam D) (ε : Bool) {M X : HSp D}

@@ -219,15 +219,16 @@ end ReciprocityTheory.L2DbarEstimates.Y
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.APrimeB
+section -- clump member: ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.APrimeB
+@[expose] public section
 
 namespace ReciprocityTheory.L2DbarEstimates.Y
 
 open MeasureTheory Filter Topology WeightedAtlas
 open scoped ContDiff ENNReal
 
+noncomputable section
 
-set_option synthInstance.maxHeartbeats 100000 in
 theorem aprb_complement {n d : ℕ} (Lm : V n →L[ℂ] V d) (hs : Function.Surjective Lm) :
     ∃ A : V n ≃L[ℂ] V d × V (n - d), ∀ v, (A v).1 = Lm v := by
   classical
@@ -263,8 +264,10 @@ theorem aprb_contDiffOn {n d : ℕ} {U : Set (V n)} (hU : IsOpen U) {p : V n →
     (EuclideanSpace.proj i : V d →L[ℂ] ℂ).differentiable.comp_differentiableOn hp
   exact (contDiffOn_of_differentiableOn n _ U hU h1).of_le (by exact_mod_cast le_top)
 
+end
 
 end ReciprocityTheory.L2DbarEstimates.Y
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.L2DbarEstimates.PlurisubharmonicCharts.APrimeLoc

@@ -697,10 +697,11 @@ end GlobalTheory.CompanionTheory.ConeLocal.CoefMemLoc
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoordNear
+-- clump: shared namespace opens
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.Pb GlobalTheory.CompanionTheory.ConeLocal
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoordNear
 open GlobalTheory.CatH (face toLast)
 
 namespace GlobalTheory.CompanionTheory.ConeLocal
@@ -719,9 +720,6 @@ end GlobalTheory.CompanionTheory.ConeLocal
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocalFrameDerivationCompat
-
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.Pb GlobalTheory.CompanionTheory.ConeLocal
 open GlobalTheory.CatH (face toLast)
 
 noncomputable section

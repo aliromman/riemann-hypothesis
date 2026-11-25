@@ -71,8 +71,9 @@ import Mathlib.Tactic.ReduceModChar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FlagMeasures.BaseDataOfGlobalTerm, Development.AbelianVarietyTheory.Proofs.FlagMeasures.GlobalTermLiesOverLocalDatumAfterIsometry, Development.AbelianVarietyTheory.Proofs.FlagMeasures.TermsSameRowSameWeightSameLocalData, Development.AbelianVarietyTheory.Proofs.FlagMeasures.TermsSameRowSameWeightSameLocalDataStatement, Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsLocalObjectFamilyClassesDetermineRows, Development.AbelianVarietyTheory.Proofs.FlagMeasures.FamilyLocalObjectsExistAtTermsProof
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.BaseDataOfGlobalTerm
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.BaseDataOfGlobalTerm
 
+noncomputable section
 
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.TermLoc Formalism.L2.SG.TermDef GlobalTheory.LocOver
 open scoped Classical
@@ -80,26 +81,6 @@ open scoped Classical
 namespace GlobalTheory.BaseTerm
 
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-theorem tri_symm {K W : Type} [CommRing K] [AddCommGroup W] [Module K W] {n : ℕ} {f g : Fin n → W}
-    (h : Tri K f g) : Tri K g f := by
-  obtain ⟨A, hA, hc⟩ := h
-  have hinv := inv_unitri A hA.1 hA.2
-  have hbt : A.BlockTriangular id := fun i j hij => hA.1 i j hij
-  have hdet : A.det = 1 := by
-    rw [Matrix.det_of_upperTriangular hbt]; simp [hA.2]
-  have hu : IsUnit A.det := by rw [hdet]; exact isUnit_one
-  refine ⟨A⁻¹, hinv, fun b => ?_⟩
-  have hm := Matrix.mul_nonsing_inv A hu
-  have key : ∀ c, ∑ a, A c a * A⁻¹ a b = if c = b then (1 : K) else 0 := fun c => by
-    rw [← Matrix.mul_apply, hm, Matrix.one_apply]
-  calc f b = ∑ c, (if c = b then (1 : K) else 0) • f c := by simp
-    _ = ∑ c, (∑ a, A c a * A⁻¹ a b) • f c := by simp only [key]
-    _ = ∑ a, A⁻¹ a b • ∑ c, A c a • f c := by
-      simp only [Finset.sum_smul, Finset.smul_sum, smul_smul]
-      rw [Finset.sum_comm]
-      exact Finset.sum_congr rfl fun a _ => Finset.sum_congr rfl fun c _ => by rw [mul_comm]
-    _ = ∑ a, A⁻¹ a b • g a := Finset.sum_congr rfl fun a _ => by rw [hc a]
 
 theorem tri_refl (K : Type) {W : Type} [CommRing K] [AddCommGroup W] [Module K W] {n : ℕ} (f : Fin n → W) :
     Tri K f f := by
@@ -140,8 +121,8 @@ theorem base_data_of_global_term : ∀ (D : D7) (Z : LocDat D), ∀ (u u' : D.wh
       frFac Z.δ p b • baseChange₂ D p (frame F'1 b)
     rw [hfr1]
 
-  obtain ⟨Ba, hBa, hBac⟩ := tri_symm hTa
-  obtain ⟨Bb, hBb, hBbc⟩ := tri_symm hTb
+  obtain ⟨Ba, hBa, hBac⟩ := GlobalTheory.LocSame.tri_symm hTa
+  obtain ⟨Bb, hBb, hBbc⟩ := GlobalTheory.LocSame.tri_symm hTb
   obtain ⟨Pa, hPa, -⟩ := GlobalTheory.LocOver.tri_scaled D Z _ _ Ba hBa hBac
   obtain ⟨Pb, hPb, -⟩ := GlobalTheory.LocOver.tri_scaled D Z _ _ Bb hBb hBbc
   have hd : ∀ p, ∃ d : LocNG.Datum (FP p), LocNG.IsTermOver (FP p) d (locU Z p Λ (lf D F0) F' (Tu D u) (Tu D u')) := by
@@ -181,6 +162,7 @@ theorem base_data_of_global_term : ∀ (D : D7) (Z : LocDat D), ∀ (u u' : D.wh
   · rw [hf'eq p]; exact (hQb p).2
 
 end GlobalTheory.BaseTerm
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.GlobalTermLiesOverLocalDatumAfterIsometry

@@ -462,13 +462,8 @@ namespace PositivityTheory.Xgn.A_s_joinright
 
 open GroundTheory.Heights₂.Heights.NumbersDVR
 
-theorem fibreVarieties : FibreVarieties.Statement.{0} :=
-  FibreVarieties.proof GenericFibProps.full GenericDimBound.full GenericDimGe.proof SpecialIdealCorresp.full
-    SpecialIdealMultiHomog.full SupSpanMultiHomog.full MinimalPrimeMultiHomog.full SpecialQuotDim.full
-    ComponentDim.proof
-
 theorem pairNumRelabel : PairNumberRelabelAlt.Statement :=
-  PairNumberRelabelAlt.proof (VerticalComponentFibre.proof fibreVarieties)
+  PairNumberRelabelAlt.proof (VerticalComponentFibre.proof GroundTheory.Heights₂.Heights.NumbersDVR.VerticalDivisorSupportFibre.fibreVarieties)
 
 theorem of_pullback (h : PairNumberPullback.Statement) : FlagModelJoinRightAlt.Statement :=
   FlagModelJoinRightAlt.proof JoinVerticalDivisor.proof (FlagPairJoinRight.proof JoinVerticalDivisorRight.proof)
@@ -492,7 +487,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.FlagPlainValueIndependent
 
 namespace GlobalTheory.CompanionTheory.CommAlg.FlagPlainValue
-
 
 open GroundTheory.Heights₂.Heights.NumbersDVR in
 theorem main : GroundTheory.Heights₂.Heights.NumbersDVR.FlagPlainValueIndependence.Statement :=
@@ -541,7 +535,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.FlagModelValueIndependent
 
 namespace GlobalTheory.CompanionTheory.CommAlg.FlagModelValue
-
 
 open GroundTheory.Heights₂.Heights.NumbersDVR in
 theorem main : FlagModelValueIndependence.Statement :=

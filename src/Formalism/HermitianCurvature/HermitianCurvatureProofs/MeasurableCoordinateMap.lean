@@ -14,13 +14,14 @@ import Formalism.HermitianCurvature.HermitianCurvatureProofs.MatExtMulVec
 -- Members: Formalism.HermitianCurvature.HermitianCurvatureProofs.MeasMUpper, Formalism.HermitianCurvature.HermitianCurvatureProofs.MeasurePreservingProdRearrange, Formalism.HermitianCurvature.HermitianCurvatureProofs.MeasurableCoordinateMap
 
 section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.MeasMUpper
-@[expose] public noncomputable section
+@[expose] public section
 
 namespace Formalism.FourierDecayAlt.P.StabilizerDisintegration.OF
 
 open MeasureTheory Matrix Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.P.StabilizerDisintegration.OD Formalism.FourierDecayAlt.P.StabilizerDisintegration.MM
 open scoped ComplexConjugate
 
+noncomputable section
 
 variable {k r : ℕ} {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [NormedAddCommGroup Wq]
   [InnerProductSpace ℂ Wq]
@@ -304,7 +305,7 @@ theorem inj_Tt : Function.Injective (Tt S γ w e) := by
 
 
 include hγ hd hZw hpos he in
-theorem emb_Tt : MeasurableEmbedding (Tt S γ w e) := set_option maxHeartbeats 800000 in by
+theorem emb_Tt : MeasurableEmbedding (Tt S γ w e) := by
   have hm : Measurable (Tt S γ w e) := by
     unfold Tt
     exact measurable_fst.prodMk (meas_Tx S hγ hd hZw hpos e)
@@ -319,6 +320,7 @@ theorem emb_Tt : MeasurableEmbedding (Tt S γ w e) := set_option maxHeartbeats 8
 
 end main
 
+end
 
 end Formalism.FourierDecayAlt.P.StabilizerDisintegration.OF
 end -- clump:auto

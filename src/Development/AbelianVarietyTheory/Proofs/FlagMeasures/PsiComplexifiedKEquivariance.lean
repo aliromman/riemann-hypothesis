@@ -66,11 +66,12 @@ import Mathlib.Analysis.Convex.Contractible
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FlagMeasures.InstSecondCountableSub, Development.AbelianVarietyTheory.Proofs.FlagMeasures.LintegralEquivariantLeftInvariant, Development.AbelianVarietyTheory.Proofs.FlagMeasures.IwasawaInt, Development.AbelianVarietyTheory.Proofs.FlagMeasures.PsiComplexifiedKEquivariance
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.InstSecondCountableSub
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.InstSecondCountableSub
 
 open MeasureTheory Matrix Finset Formalism.MainNotions.S Formalism.REAL Formalism.QuantumDeterminants GlobalTheory.Count GlobalTheory.Dec
 open scoped ComplexOrder
 
+noncomputable section
 
 namespace GlobalTheory.IwaInt
 
@@ -158,14 +159,6 @@ lemma isLo_mul {a b : Matrix (Fin n) (Fin n) ℂ} (ha : IsLo a) (hb : IsLo b) : 
   · rw [ha i k hk, zero_mul]
   · rw [hb k j (lt_of_le_of_lt (not_lt.1 hk) hij), mul_zero]
 
-lemma isLo_mul_diag {a b : Matrix (Fin n) (Fin n) ℂ} (ha : IsLo a) (hb : IsLo b) (i : Fin n) :
-    (a * b) i i = a i i * b i i := by
-  rw [Matrix.mul_apply]
-  refine Finset.sum_eq_single i (fun k _ hk => ?_) (by simp)
-  rcases lt_or_gt_of_ne hk with h | h
-  · rw [hb k i h, mul_zero]
-  · rw [ha i k h, zero_mul]
-
 lemma isLo_inv {a : (Matrix (Fin n) (Fin n) ℂ)ˣ} (ha : IsLo (a : Matrix (Fin n) (Fin n) ℂ)) :
     IsLo ((a⁻¹ : (Matrix (Fin n) (Fin n) ℂ)ˣ) : Matrix (Fin n) (Fin n) ℂ) := by
   have hb : Matrix.BlockTriangular (a : Matrix (Fin n) (Fin n) ℂ) (OrderDual.toDual : Fin n → (Fin n)ᵒᵈ) :=
@@ -193,13 +186,13 @@ def BC (ε : Fin n → Bool) : Subgroup (Matrix (Fin n) (Fin n) ℂ)ˣ where
   mul_mem' := by
     intro g h hg hh
     refine ⟨mul_mem hg.1 hh.1, isLo_mul hg.2.1 hh.2.1, fun l => ?_⟩
-    rw [Units.val_mul, isLo_mul_diag hg.2.1 hh.2.1]
+    rw [Units.val_mul, GlobalTheory.Dec.IwKC.diag_mul_lo hg.2.1 hh.2.1]
     exact mul_pos (hg.2.2 l) (hh.2.2 l)
   one_mem' := ⟨one_mem _, fun i j h => by simp [h.ne], fun l => by simp⟩
   inv_mem' := by
     intro g hg
     refine ⟨inv_mem hg.1, isLo_inv hg.2.1, fun l => ?_⟩
-    have h1 := isLo_mul_diag hg.2.1 (isLo_inv hg.2.1) l
+    have h1 := GlobalTheory.Dec.IwKC.diag_mul_lo hg.2.1 (isLo_inv hg.2.1) l
     rw [Units.mul_inv, Matrix.one_apply_eq] at h1
     rw [← inv_eq_of_mul_eq_one_right h1.symm]
     exact inv_pos.2 (hg.2.2 l)
@@ -225,12 +218,14 @@ instance instBorelBC (ε : Fin n → Bool) : BorelSpace (BC ε) := ⟨rfl⟩
 
 end GlobalTheory.IwaInt
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.LintegralEquivariantLeftInvariant
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.LintegralEquivariantLeftInvariant
 
 open MeasureTheory Matrix GlobalTheory.Dec GlobalTheory.IwaInt
 open scoped ComplexOrder
 
+noncomputable section
 
 namespace GlobalTheory.IwaInt
 
@@ -674,7 +669,7 @@ lemma haarBC (ε : Fin n → Bool) :
     (fun x y hx hy => by
       rw [inW_iff] at *
       refine ⟨Commute.mul_left hx.1 hy.1, isLo_mul hx.2.1 hy.2.1, fun l => ?_⟩
-      rw [isLo_mul_diag hx.2.1 hy.2.1]
+      rw [GlobalTheory.Dec.IwKC.diag_mul_lo hx.2.1 hy.2.1]
       simp [hx.2.2 l, hy.2.2 l])
     (by
       have hce : Continuous (emb (pW ε)) := LinearMap.continuous_of_finiteDimensional _
@@ -774,7 +769,7 @@ theorem iwasawaInt_of (hI : IwasawaKC) : IwasawaInt := by
   have dmul : ∀ a b, d (a * b) = d a * d b := fun a b => by
     simp only [hd, ← Finset.prod_mul_distrib]
     refine Finset.prod_congr rfl fun l _ => ?_
-    rw [← Real.mul_rpow (norm_nonneg _) (norm_nonneg _), ← norm_mul, ← isLo_mul_diag a.2.2.1 b.2.2.1]
+    rw [← Real.mul_rpow (norm_nonneg _) (norm_nonneg _), ← norm_mul, ← GlobalTheory.Dec.IwKC.diag_mul_lo a.2.2.1 b.2.2.1]
     rfl
   have done : d 1 = 1 := by simp [hd]
   have hi : Continuous (iK ε) := (continuous_subtype_val.comp continuous_subtype_val).subtype_mk _
@@ -812,6 +807,7 @@ theorem iwasawaInt_of (hI : IwasawaKC) : IwasawaInt := by
   simp only [hd, e2]
 
 end GlobalTheory.IwaInt
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.IwasawaInt

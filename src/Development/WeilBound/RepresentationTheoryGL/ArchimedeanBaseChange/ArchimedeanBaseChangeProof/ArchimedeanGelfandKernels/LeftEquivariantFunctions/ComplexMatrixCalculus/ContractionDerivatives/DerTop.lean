@@ -7,13 +7,12 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ArchimedeanGelfandKernels.LeftEquivariantFunctions.ComplexMatrixCalculus.ContractionDerivatives.SumSingleSmul, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ArchimedeanGelfandKernels.LeftEquivariantFunctions.ComplexMatrixCalculus.ContractionDerivatives.DerTop
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ArchimedeanGelfandKernels.LeftEquivariantFunctions.ComplexMatrixCalculus.ContractionDerivatives.SumSingleSmul
 
+noncomputable section
 
 open Matrix
 open scoped ContDiff
-
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ArchimedeanGelfandKernels.LeftEquivariantFunctions.ComplexMatrixCalculus.ContractionDerivatives.SumSingleSmul
 
 namespace PositivityTheory.RgBcC.CxbDer
 
@@ -74,9 +73,9 @@ theorem Dop_ι_mul (B : X n) (m : Md n → ℂ) (x : abelian₂ n) :
 def Philin (n : ℕ) : (Md n → ℂ) →ₗ[ℂ] (Finset (Md n) → ℂ) →ₗ[ℂ] (Finset (Md n) → ℂ) :=
   LinearMap.mk₂ ℂ (fun u c => (fb n).equivFun (ExteriorAlgebra.ι ℂ u * (fb n).equivFun.symm c))
     (fun u u' c => by simp [map_add (f := _), add_mul])
-    (fun a u c => by simp [map_smul, smul_mul_assoc])
+    (fun a u c => by simp [map_smul])
     (fun u c c' => by simp [map_add (f := _), mul_add])
-    (fun a u c => by simp [map_smul, mul_smul_comm])
+    (fun a u c => by simp [map_smul])
 
 def Phi (n : ℕ) : (Md n → ℂ) →L[ℂ] (Finset (Md n) → ℂ) →L[ℂ] (Finset (Md n) → ℂ) :=
   LinearMap.toContinuousLinearMap
@@ -148,8 +147,13 @@ theorem key (y : abelian₂ n) : ContDiff ℂ ∞ (F y) ∧
 
 end PositivityTheory.RgBcC.CxbDer
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ArchimedeanGelfandKernels.LeftEquivariantFunctions.ComplexMatrixCalculus.ContractionDerivatives.DerTop
+
+
+open Matrix
+open scoped ContDiff
 
 namespace PositivityTheory.RgBcC.CxbDer
 

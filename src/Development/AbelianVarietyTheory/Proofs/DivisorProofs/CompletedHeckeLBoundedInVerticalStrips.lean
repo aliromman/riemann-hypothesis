@@ -1001,7 +1001,9 @@ theorem mellinSplit_neg (I : Type) [Fintype I] [Nonempty I] (p : (I → ℝ) →
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PeriodicBoundedGaussianSummableCmType
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PeriodicBoundedGaussianSummableCmType
+
+noncomputable section
 
 namespace GlobalTheory.HeckeLat
 
@@ -1036,7 +1038,7 @@ def embHom (φ : I → K →+* ℂ) : 𝓞 K →+ (I → ℂ) where
   map_add' a b := by funext i; simp [GlobalTheory.HeckeTheta.emb]
 
 theorem embHom_injective {φ : I → K →+* ℂ} (hφ : GlobalTheory.CMVal.IsCMType φ) : Function.Injective (embHom φ) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro a ha
   by_contra h0
   obtain ⟨i, hi⟩ := exists_one_le_norm hφ h0
@@ -1119,6 +1121,7 @@ theorem periodic_bound_summable_norm :
   exact mul_le_mul_of_nonneg_right (hC α) (Real.exp_pos _).le
 
 end GlobalTheory.HeckeLat
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CompletedHeckePartialLSeriesEntireBoundedStrips

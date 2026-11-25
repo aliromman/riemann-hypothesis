@@ -457,14 +457,11 @@ end -- clump:auto
 
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.CompanionTheory.Hodge.Nerve
 
-theorem _root_.GlobalTheory.T.coinduced_cech_acyclic : ∀ {R : Type} [CommRing R] {P : Type} [SemilatticeInf P] {κ : Type} [LinearOrder κ] (e : κ → P),
-    Function.Surjective e → ∀ (M : P → ModuleCat.{0} R) (n : ℕ),
-    IsZero (((cechOf e).obj (coind M)).homology (n + 1)) := by
-  first | exact @GlobalTheory.CompanionTheory.Hodge.Nerve.Acyc.isZero_homology
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoinducedNerveAcyclic
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CoinducedNerveAcyclic
 
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.CompanionTheory.Hodge.Nerve
 
@@ -611,7 +608,6 @@ theorem dNC_contr (M : P → ModuleCat.{0} R) {n : ℕ} (f : NC (coind M) (n + 1
 
 end GlobalTheory.CompanionTheory.Hodge.Nerve.Acyc
 
-
 open GlobalTheory.CompanionTheory.Hodge.Nerve.Acyc in
 theorem GlobalTheory.CompanionTheory.Hodge.Nerve.isZero_homology_coind {R : Type} [CommRing R] {P : Type} [SemilatticeInf P]
     (M : P → ModuleCat.{0} R) (n : ℕ) : IsZero ((nerveCx.obj (coind M)).homology (n + 1)) := by
@@ -628,6 +624,7 @@ theorem GlobalTheory.CompanionTheory.Hodge.Nerve.isZero_homology_coind {R : Type
     (((-1 : R) ^ (n + 1)) • GlobalTheory.CompanionTheory.Hodge.Nerve.Acyc.contr M x) = x
   rw [GlobalTheory.CompanionTheory.Hodge.Nerve.nerveCx_d]
   exact GlobalTheory.CompanionTheory.Hodge.Nerve.Acyc.dNC_contr M x hx'
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NaturalDegreeZeroHomologyIso
@@ -993,8 +990,9 @@ theorem degZero {R : Type} [CommRing R] {P : Type} [SemilatticeInf P] {κ : Type
 end GlobalTheory.CompanionTheory.Hodge.Nerve.DegZero
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsToCoindShortExact
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsToCoindShortExact
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry TensorProduct Opposite MonoidalCategory CartesianMonoidalCategory MonObj Limits
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR MainStatements.Hodge
@@ -1064,8 +1062,7 @@ theorem nonempty_iso {R : Type} [CommRing R] {P : Type} [SemilatticeInf P] {κ :
   refine _root_.GlobalTheory.CompanionTheory.Hodge.DimShift.homology_nonempty_iso nerveCx (cechOf e) ε h1 h2 (fun G ↦ ?_) n G
   obtain ⟨Q, p, w, h⟩ := exists_toCoind_shortExact G
   exact ⟨_, Q, toCoind G, p, w, nerveCx_shortExact _ h, cechOf_shortExact e _ h,
-    fun n ↦ ⟨_root_.GlobalTheory.CompanionTheory.Hodge.Nerve.isZero_homology_coind _ n, GlobalTheory.T.coinduced_cech_acyclic e he.2 _ n⟩⟩
-
+    fun n ↦ ⟨_root_.GlobalTheory.CompanionTheory.Hodge.Nerve.isZero_homology_coind _ n, GlobalTheory.CompanionTheory.Hodge.Nerve.Acyc.isZero_homology e he.2 _ n⟩⟩
 
 theorem cmpSt_of_cxSt : CxSt → CmpSt := by
   intro _ R _ X s _ P _ _ S

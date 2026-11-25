@@ -196,7 +196,8 @@ theorem FiniteOrd.proof : FiniteOrd.Statement := by
 end GroundTheory.Heights₂.Heights.Vertical
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.VerticalDivisors.PGenSecKer
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.VerticalDivisors.PGenSecKer
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -204,20 +205,13 @@ namespace GroundTheory.Heights₂.Heights.Vertical
 
 open MvPolynomial Cardinal
 
+noncomputable section
 
 namespace GenSecKer
 
 theorem genPar_algIndep (k : Type*) [Field k] (e n : ℕ) :
     AlgebraicIndependent k (genPar k e n) := by
-  have hinj : Function.Injective (IsScalarTower.toAlgHom k (MvPolynomial (Par e n) k)
-      (GenParField k e n)) :=
-    IsFractionRing.injective (MvPolynomial (Par e n) k) (GenParField k e n)
-  have h := (MvPolynomial.algebraicIndependent_X (Par e n) k).map' hinj
-  have hc : (⇑(IsScalarTower.toAlgHom k (MvPolynomial (Par e n) k) (GenParField k e n)) ∘ X) =
-      genPar k e n := by
-    funext p
-    simp only [Function.comp_apply, IsScalarTower.coe_toAlgHom', genPar]
-  rwa [hc] at h
+  exact GroundTheory.Heights₂.Heights.Vertical.genPar_algebraicIndependent k e n
 
 theorem coeff_mem_of_sum {k L : Type*} [Field k] [Field L] [Algebra k L] (K : IntermediateField k L)
     {n : ℕ} (x c : Fin n → L) (b : L) (j₀ : Fin n) (hx : ∀ j, x j ∈ K) (hx0 : x j₀ ≠ 0)
@@ -442,8 +436,10 @@ theorem GenSecKer.proof (h₁ : SecAlgField.Statement) (h₂ : ConeDimOfChowForm
   rw [hker]
   exact GenSecKer.ker_eq hfield Q (h₂ k n (e + 1) Q g hQ hg) x hgen hR1 hR2 hQ0
 
+end
 
 end GroundTheory.Heights₂.Heights.Vertical
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.VerticalDivisors.OfChartPointSecPointSpecChart

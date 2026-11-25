@@ -42,8 +42,9 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InertiaThroughOfPolyPow, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsRootsOfUnityCharacterHom, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsExtendCharacterTrivialOnNormal, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.AevalEqOfMemDpcris, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MaxUnramifiedSubfieldStableOfNormal, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MonodromyZeroOfDeRhamCharacter, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ContinuousRTwO, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TwistedFamilyPotentiallyCrystallineFrobStable, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.TypeFamilyPotentiallyCrystallineCommonTameExtens
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.InertiaThroughOfPolyPow
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 
 open Formalism Formalism.MainNotions Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N Formalism.WeaklyAdmissibleFiltrations NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Polynomial Module TensorProduct GlobalTheory.Pass
 
@@ -129,7 +130,7 @@ variable {G : Type} [Group G] {Qp K₀ K K₀' K' : Type} [Field Qp] [Field K₀
 theorem actVB_pow (g : G) (n : ℕ) (x : V ⊗[Qp] B) :
     (actVB PC.PD ρ g ^ n) x = actVB PC.PD ρ (g ^ n) x := by
   induction n generalizing x with
-  | zero => simp [GlobalTheory.PassPoly.actVB_one']
+  | zero => simp [GlobalTheory.actVB_one_apply]
   | succ n ih => rw [pow_succ, Module.End.mul_apply, ih, pow_succ, GlobalTheory.PassPoly.actVB_mul']
 
 theorem aeval_index_kill (g : G) : ∀ x ∈ PC.Dpcris ρ,
@@ -179,7 +180,7 @@ theorem inertiaThrough_of_poly_pow [CharZero LL] (Sig : Finset (PC.Iner →* LL�
     have hn : ∀ n : ℕ, actVB PC.PD ρ ((γ : G) ^ n) x = ((a γ : LLˣ) : LL) ^ n • x := by
       intro n
       induction n with
-      | zero => simp [GlobalTheory.PassPoly.actVB_one']
+      | zero => simp [GlobalTheory.actVB_one_apply]
       | succ n ih => rw [pow_succ, GlobalTheory.PassPoly.actVB_mul', hγ, map_smul, ih, smul_smul, pow_succ, mul_comm]
     simp only [Submodule.coe_iInf, Set.mem_iInter, SetLike.mem_coe, LinearMap.mem_ker,
       LinearMap.sub_apply, LinearMap.smul_apply, LinearMap.id_apply, sub_eq_zero]
@@ -201,6 +202,7 @@ theorem main : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (K K' LL : FinExt l
 
 end GlobalTheory.PassPolyPow
 
+end
 end -- clump:auto
 end -- clump:auto
 
@@ -648,9 +650,10 @@ theorem main : ∀ (D : D7) (P : Pend D), TieInePoly D → InertEq D → ∀ (i 
 end GlobalTheory.InertiaChars
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MaxUnramifiedSubfieldStableOfNormal
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MaxUnramifiedSubfieldStableOfNormal
 open Classical
 
+noncomputable section
 
 namespace GlobalTheory.PotExt
 
@@ -705,7 +708,6 @@ theorem mem_stdG_OL {LL : FinExt l} {k : ℕ} (x : Fin k → ↥LL.1) :
     exact ⟨fun j => ⟨x j, h j⟩, rfl⟩
 
 
-set_option synthInstance.maxHeartbeats 400000 in
 def bridgeLat {m : ℕ} (r : ↥Gw →* Matrix.GeneralLinearGroup (Fin m) O)
     (hr : Continuous fun g => ((r g : Matrix.GeneralLinearGroup (Fin m) O) : Matrix (Fin m) (Fin m) O))
     {K : FinExt l} (h : Bw.Kw.1 ≤ K.1) : LocLat ↥(GK K) ℚ_[l] ↥Bw.LL.1 ↥(OL Bw.LL) where
@@ -835,6 +837,7 @@ theorem main : ∀ (D : D7) (P : Pend D), ElementDenominator.adm12 D → ∀ (i 
     exact hLy ⟨y, hy⟩ g (GK_le hyK (Subgroup.mem_subgroupOf.1 hg)) hI
 
 end GlobalTheory.PotExt
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.MonodromyZeroOfDeRhamCharacter

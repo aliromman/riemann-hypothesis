@@ -318,10 +318,9 @@ theorem gg_dh (k : ℕ) : (KK A W).dh 0 (2 * k + 1) (gg b hWV z k) = - BB b 0 (2
 end GlobalTheory.CompanionTheory.ConeZig
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConeZigzagCompat
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConeZigzagCompat
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 
@@ -438,11 +437,11 @@ theorem zig_stair (F : GlobalTheory.CompanionTheory.ConeCech.DFil K) (n : ℕ) (
 
 end GlobalTheory.CompanionTheory.ConeZig
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Mk2EqZeroIffMemS
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Mk2EqZeroIffMemS
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 
@@ -551,6 +550,7 @@ theorem rep_fin {m : ℕ} {ι : Type} [Fintype ι] {Cl E : CH.Cn (CH.modF A) m} 
 end SQ
 
 end GlobalTheory.CompanionTheory.ConeZig
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GradedCoverVanishingInduction
@@ -780,10 +780,9 @@ theorem cech_top_cup_power : ∀ {R : Type} [CommRing R] {C : Type 1} [Category.
 end GlobalTheory.CompanionTheory.ConeZig
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.CechRel
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.CechRel
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory
 

@@ -66,8 +66,9 @@ theorem H_sub (Z : Scheme.{0}) [IsEmpty Z] (F : Shv R) (n : ℤ) : Subsingleton 
 end LateralTheory.E.LeafKunEmptyPf
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleSheaves.DescEqvPf
+@[expose] public section -- clump member: Development.EtaleCohomology.EtaleSheaves.DescEqvPf
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC CochainComplex.HomComplex
 
 namespace LateralTheory.E.DescEqvPf
@@ -194,7 +195,6 @@ theorem sub_pb_coprod (U V : Spc) (F : Shv R) (n : ℤ) :
   have hP := FinitaryExtensive.isPullback_initial_to_binaryCofan (coprodIsCoprod U V)
   have hI : IsInitial (pullback (coprod.inl : U ⟶ U ⨿ V) coprod.inr) :=
     by
-      set_option synthInstance.maxHeartbeats 200000 in
         exact IsInitial.ofIso initialIsInitial hP.isoPullback
   exact sub_of_zero _ (chains_zero_of_initial _ hI) F n
 

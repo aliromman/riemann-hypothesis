@@ -34,12 +34,12 @@ import Mathlib
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CocycleZero, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CovGlue, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OmMapEqMOm, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AffineSmoothFormsBijective, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HodgeFormCupWedge, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HodgeFormIsoOfBijective, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HodgeFormOne, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HodgeFormPullbackCompat, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.AffineHodgeIsomorphisms.AsmOnto, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.AffineHodgeIsomorphisms.HdgAffIsoOnto, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.AffineHodgeIsomorphisms.HodgeAffineIsoType
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CocycleZero
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CocycleZero
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 universe u v w
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.CechRowExact
 
@@ -156,6 +156,7 @@ theorem GlobalTheory.CompanionTheory.CechRowExact.cech_rows : ∀ {R : Type} [Co
     refine (ev_d hU (hh hU α hα f) i (t ⋙ (capT U i).ι) (t.obj 0).property).trans ?_
     refine Eq.trans ?_ (cocycle_eq hU α hα f hf i (t ⋙ (capT U i).ι) (t.obj 0).property).symm
     rfl
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CovGlue
@@ -924,11 +925,12 @@ end GlobalTheory.CompanionTheory.OmGlue
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HodgeFormCupWedge
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HodgeFormCupWedge
 
 set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris DividedPowers GlobalTheory.CechDR GlobalTheory.HodgeCoh
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.OmCup
 open CrystallineSemistableComparison CrystallineSemistableComparison.Pb CrystallineSemistableComparison.HT CrystallineSemistableComparison.Om.L2
 
@@ -1094,21 +1096,12 @@ theorem bilin_ext {H₁ H₂ H₃ M₁ M₂ M₃ : Type*} [AddCommGroup H₁] [A
     (S₁ : Set M₁) (S₂ : Set M₂) (h₁ : Submodule.span K S₁ = ⊤) (h₂ : Submodule.span K S₂ = ⊤)
     (gen : ∀ ω ∈ S₁, ∀ η ∈ S₂, e₃ (B (e₁.symm ω) (e₂.symm η)) = Wd ω η) (x : H₁) (y : H₂) :
     e₃ (B x y) = Wd (e₁ x) (e₂ y) := by
-  have all : ∀ (ω : M₁) (η : M₂), e₃ (B (e₁.symm ω) (e₂.symm η)) = Wd ω η := by
-    intro ω η
-    have hω : ω ∈ Submodule.span K S₁ := h₁ ▸ Submodule.mem_top
-    have hη : η ∈ Submodule.span K S₂ := h₂ ▸ Submodule.mem_top
-    induction hω using Submodule.span_induction with
-    | zero => simp
-    | add u v _ _ hu hv => simp only [map_add (f := _), LinearMap.add_apply, hu, hv]
-    | smul r u _ hu => simp only [map_smul, LinearMap.smul_apply, hu]
-    | mem u hu =>
-      induction hη using Submodule.span_induction with
-      | zero => simp
-      | add u v _ _ hu hv => simp only [map_add (f := _), hu, hv]
-      | smul r u _ hu => simp only [map_smul, hu]
-      | mem v hv => exact gen u hu v hv
-  simpa using all (e₁ x) (e₂ y)
+  let f := (B.compl₁₂ e₁.symm.toLinearMap e₂.symm.toLinearMap).compr₂ e₃.toLinearMap
+  have hf : f = Wd :=
+    LinearMap.ext_on h₁ fun u hu => LinearMap.ext_on h₂ fun v hv => gen u hu v hv
+  simpa only [f, LinearMap.compr₂_apply, LinearMap.compl₁₂_apply, LinearEquiv.coe_coe,
+    LinearEquiv.symm_apply_apply] using
+    LinearMap.congr_fun (LinearMap.congr_fun hf (e₁ x)) (e₂ y)
 
 theorem exists_bil (q : X ⟶ Spec (CommRingCat.of K)) (a b : ℕ) :
     ∃ B : Hdg q a a →ₗ[K] Hdg q b b →ₗ[K] Hdg q (a + b) (a + b), ∀ u v, B u v = cupH q rfl rfl u v := by
@@ -1139,6 +1132,7 @@ theorem main : ∀ {K : Type} [CommRing K] {X : Scheme.{0}} (q : X ⟶ Spec (Com
   exact gen_eq eA eB eC hA hB hC g₀ h₀ g h
 
 end GlobalTheory.CompanionTheory.OmCup
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HodgeFormIsoOfBijective
@@ -1451,10 +1445,9 @@ theorem pull_nat : ∀ {K : Type} [CommRing K] {X Y : Scheme.{0}} (q : X ⟶ Spe
 end GlobalTheory.CompanionTheory.OmNatT
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.AffineHodgeIsomorphisms.AsmOnto
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.AffineHodgeIsomorphisms.AsmOnto
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris DividedPowers GlobalTheory.CechDR GlobalTheory.HodgeCoh
 
@@ -1525,11 +1518,11 @@ theorem asm_onto (hA : CrystallineSemistableComparison.Onto.AffOm) (hN : Crystal
 
 end CrystallineSemistableComparison.Om.L2
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.AffineHodgeIsomorphisms.HdgAffIsoOnto
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.AffineHodgeIsomorphisms.HdgAffIsoOnto
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris DividedPowers GlobalTheory.CechDR GlobalTheory.HodgeCoh
 
@@ -1550,11 +1543,11 @@ theorem hdg_aff_iso_onto (hA : CrystallineSemistableComparison.Onto.AffOm) (hN :
 
 end CrystallineSemistableComparison.Om.L2
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.AffineHodgeIsomorphisms.HodgeAffineIsoType
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.AffineHodgeIsomorphisms.HodgeAffineIsoType
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris DividedPowers GlobalTheory.CechDR GlobalTheory.HodgeCoh
 

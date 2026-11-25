@@ -370,13 +370,14 @@ end GlobalTheory.CompanionTheory.EGlue
 
 end -- clump:auto
 
-section -- clump: shared namespace opens
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FactorInduction
+@[expose] public section
+
+noncomputable section
 
 open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.DiscSpec GlobalTheory.CompanionTheory.CTFin PositivityTheory.Rg.Rs
 open PositivityTheory.Rg.BcB.E PositivityTheory.Rg.BcB.SpectralAccumulation
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FactorInduction
 
 namespace GlobalTheory.CompanionTheory.EGlue
 
@@ -389,7 +390,6 @@ theorem allLeaves_mono {E : Type} [Field E] [NumberField E] [IsCMField E]
   | node t₁ t₂ i₁ i₂ => exact fun h => ⟨i₁ h.1, i₂ h.2⟩
 
 theorem factorStep_holds : FactorStep := by
-  set_option synthInstance.maxHeartbeats 400000 in
     intro h4 E _ _ _ N W hW
     rcases Nat.eq_zero_or_pos N with rfl | hN
     · refine ⟨fun _ => ∅, fun M => ⟨Set.finite_empty, by simp⟩, fun K _ =>
@@ -409,7 +409,15 @@ theorem factorStep_holds : FactorStep := by
 
 end GlobalTheory.CompanionTheory.EGlue
 
+end
 end -- clump:auto
+end -- clump:auto
+
+section -- clump: shared namespace opens
+
+open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology
+open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.DiscSpec GlobalTheory.CompanionTheory.CTFin PositivityTheory.Rg.Rs
+open PositivityTheory.Rg.BcB.E PositivityTheory.Rg.BcB.SpectralAccumulation
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FactorLimit
 open GlobalTheory.CompanionTheory.EGlue
@@ -545,13 +553,11 @@ theorem infOfEq_holds : InfOfEq := by
 end GlobalTheory.CompanionTheory.EGlue
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LeafBound
 
 open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.DiscSpec GlobalTheory.CompanionTheory.CTFin PositivityTheory.Rg.Rs
 open PositivityTheory.Rg.BcB.E PositivityTheory.Rg.BcB.SpectralAccumulation
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LeafBound
 
 namespace GlobalTheory.CompanionTheory.EGlue.LeafB
 
@@ -667,7 +673,14 @@ end GlobalTheory.CompanionTheory.EGlue.LeafB
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LimitLists
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LimitLists
+@[expose] public section
+
+noncomputable section
+
+open NumberField IsDedekindDomain Matrix MeasureTheory Filter Topology
+open GlobalTheory.CuspRep GlobalTheory.UnitaryBC GlobalTheory.SmGL GlobalTheory.DiscSpec GlobalTheory.CompanionTheory.CTFin PositivityTheory.Rg.Rs
+open PositivityTheory.Rg.BcB.E PositivityTheory.Rg.BcB.SpectralAccumulation
 
 namespace GlobalTheory.CompanionTheory.EGlue
 
@@ -688,13 +701,6 @@ theorem limL_allLeaves_shift (P : ∀ M : ℕ, Submodule ℂ (Sm E M) → Prop) 
   induction t with
   | leaf V z' => exact Iff.rfl
   | node t₁ t₂ i₁ i₂ => exact and_congr i₁ i₂
-
-theorem limL_allLeaves_mono {P Q : ∀ M : ℕ, Submodule ℂ (Sm E M) → Prop} (h : ∀ M V, P M V → Q M V) :
-    ∀ {N : ℕ} {t : Tr E N}, t.AllLeaves P → t.AllLeaves Q := by
-  intro N t
-  induction t with
-  | leaf V z => exact h _ _
-  | node t₁ t₂ i₁ i₂ => exact fun a => ⟨i₁ a.1, i₂ a.2⟩
 
 theorem limL_disc_shift (z : ℂ) : ∀ {N : ℕ} {t : Tr E N}, t.AllLeaves (fun M _ => 0 < M) → t.Disc → (t.shift z).Disc := by
   intro N t
@@ -754,7 +760,7 @@ theorem limL_lim_one (hS : ConvStrip) (hSh : ConvShift) (hC : ConvComp) (hT : Tw
       (Complex.continuous_re.tendsto z₀).comp hlim
     simp only [hz, ] at h1
     exact (tendsto_nhds_unique h1 tendsto_const_nhds)
-  have hpos : t₀.AllLeaves (fun M _ => 0 < M) := limL_allLeaves_mono (fun _ _ h => h.1) hL
+  have hpos : t₀.AllLeaves (fun M _ => 0 < M) := GlobalTheory.CompanionTheory.EGlue.allLeaves_mono (fun _ _ h => h.1) hL
   have hposk : ∀ k, (tt k).AllLeaves (fun M _ => 0 < M) := fun k => by
     rw [← limL_allLeaves_strip, hst k, limL_allLeaves_strip]
     exact hpos
@@ -827,7 +833,7 @@ theorem limLists : ConvStrip → ConvShift → ConvComp → LimLists := by
     rwa [(hak k).1, (hak k).2] at h
   obtain ⟨φ, t, s, hφ, hc, hr, hg, hl, hd, he⟩ := limL_lim_one hS hSh hC hT hM hbody (fun k => V (a k))
     (fun k => z (a k)) R hR (fun k => hD _) (fun k => hz _) htyp (fun k => hI _) (fun k => hzR _)
-  refine ⟨fun k => a (φ k), t, s, ha.comp hφ, hc, hr, hg, limL_allLeaves_mono ?_ hl, hd, he⟩
+  refine ⟨fun k => a (φ k), t, s, ha.comp hφ, hc, hr, hg, GlobalTheory.CompanionTheory.EGlue.allLeaves_mono ?_ hl, hd, he⟩
   rintro M' V' ⟨-, K'', hK'', W'', hW'', h⟩
   refine Or.inr ⟨K'', ?_, W'', ?_, h⟩
   · simp only [Set.mem_iUnion]
@@ -837,9 +843,9 @@ theorem limLists : ConvStrip → ConvShift → ConvComp → LimLists := by
 
 end GlobalTheory.CompanionTheory.EGlue
 
+end
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LimitTrees
 

@@ -422,7 +422,6 @@ theorem exists_arch_bound {y : (Σ k, ι k) → Ω} {d : ℕ} (hAr : IsArithVar 
 
 end GlobalTheory.CompanionTheory.Ar.Ht.FlatLine
 
-
 open GlobalTheory.CompanionTheory.Ar.Ht.FlatLine in
 theorem GlobalTheory.CompanionTheory.Ar.Ht.lineHt_bounded_of_genUnit : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι k)] (Ω : Type) [Field Ω] (y : (Σ k, ι k) → Ω) (d : ℕ), IsArithVar (mCoordIdeal y) d → Birational y → ∀ (A : HermLine ι) (k : ℕ) (u : Ω) (c : ℝ), IsSmoothHerm A → 0 < k → GenUnit y (fun b => k * A.a b) u → VertBound y (fun b => k * A.a b) u c → ∃ C : ℝ, ∀ (L : Type) [Field L] [NumberField L], ∀ w ∈ ptsOver L (mCoordIdeal y), |lineHt A L w| ≤ C := by
   intro K _ ι _ Ω _ y d hAr hB A k u c hS hk hG hV
@@ -799,11 +798,9 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RefLowerOfFibreInput
 
 open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo NumberField GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Top GlobalTheory.CompanionTheory.Ar.Small GlobalTheory.CompanionTheory.Ar.Cmp GlobalTheory.CompanionTheory.Ar.Ht
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.RefLowerOfFibreInput
 open GroundTheory.Heights₂.Heights
 
 namespace GlobalTheory.CompanionTheory.Ar.Ht.RefLow
@@ -1129,7 +1126,11 @@ theorem refLower_of_fibre (Ψ : Type) [Fintype Ψ] [DecidableEq Ψ] (j k : ℕ) 
 end GlobalTheory.CompanionTheory.Ar.Ht.RefLow
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.TowerI5OfReference
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.TowerI5OfReference
+
+noncomputable section
+
+open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo NumberField GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Top GlobalTheory.CompanionTheory.Ar.Small GlobalTheory.CompanionTheory.Ar.Cmp GlobalTheory.CompanionTheory.Ar.Ht
 
 namespace GlobalTheory.CompanionTheory.Ar.Ht.RefTower
 
@@ -1262,7 +1263,7 @@ theorem point_bound [DecidableEq Ψ] {II : IntersectionSystem} (hII : IsIntersec
     ∃ x, -C₁ ≤ x ∧ s * x - (C₁ + |C| * (G + 2) + 1) * Real.log (2 + (C₁ + |C| * (G + 2) + 1) + x) -
       (C₁ + |C| * (G + 2) + 1) * l - (C₁ + |C| * (G + 2) + 1) * b - (C₁ + |C| * (G + 2) + 1) ≤
         M.ht II t mu s W := by
-  obtain ⟨L, _, _, w, hWw, hwW, hII'⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Ht.height_eq_intersection_number M.K M.ι II hII W hW.1
+  obtain ⟨L, _, _, w, hWw, hwW, hII'⟩ := _root_.CoverDenseAlt.intersection_number_eq_line_height M.K M.ι II hII W hW.1
   have hwP : w ∈ ptsOver L M.P := ptsOver_mono hW.2 hwW
   have hht : M.ht II t mu s W = rootHt M t mu s L w := by
     unfold RootModel.ht rootHt
@@ -1383,8 +1384,11 @@ theorem i5_of_hasRef_of_refLower : ∀ (Ψ : Type) [Fintype Ψ] [DecidableEq Ψ]
 
 end GlobalTheory.CompanionTheory.Ar.Ht.RefTower
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.TowerI5OfFibreInput
+
+open MvPolynomial ReciprocityTheory.ChartRestriction.G.Geo NumberField GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Top GlobalTheory.CompanionTheory.Ar.Small GlobalTheory.CompanionTheory.Ar.Cmp GlobalTheory.CompanionTheory.Ar.Ht
 
 namespace GlobalTheory.CompanionTheory.Ar.Ht.TopLower
 

@@ -456,15 +456,14 @@ end GlobalTheory.NL.BaseField
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnitSumTensorDualOfCrys
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.UnitSumTensorDualOfCrys
 
+noncomputable section
 
 namespace GlobalTheory.WachTensor
 
 open Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.UnitDualParts GlobalTheory.EtaleExact
 open GlobalTheory.IndefiniteRowSideFullHecke.CrystallineSubrepresentation (LocQuotCrys LocTensorCrys LocDualCrys)
-
-set_option synthInstance.maxHeartbeats 400000
 
 variable {l : ℕ} [Fact l.Prime]
 
@@ -510,6 +509,7 @@ theorem descends {P : LocPrime l} {AI : LocAinf l P} {K : FinExt l} {s : ℕ} {L
   exact _root_.GlobalTheory.FrobDescent.mem_range_of_fixed l P AI K s LL h W E ι M 0 w hg (fun i => by simpa using hw i) i
 
 end GlobalTheory.WachTensor
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SepOfHausdorff

@@ -350,15 +350,14 @@ end GaugeR
 end Formalism.MainNotions.ModuliIntegralCharts.H1
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.GaugeUniqPf
+@[expose] public section -- clump member: Formalism.SharpRestriction.Divisibility.GeneratorPowers.GaugeUniqPf
 
+noncomputable section
 
 namespace Formalism.MainNotions.ModuliIntegralCharts.H1
 
 open AlgebraicGeometry CategoryTheory MonoidalCategory CartesianMonoidalCategory NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G.TB
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GaugeR
 

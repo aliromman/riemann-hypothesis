@@ -65,11 +65,11 @@ theorem exists_tilt_section (f : R →+* O) (n : ℕ)
 end CrystallineSemistableComparison
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.BocksteinBaseChange.TiltSectionUnits.NormLtOneOfMemMax
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.BocksteinBaseChange.TiltSectionUnits.NormLtOneOfMemMax
 
-set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedSectionVars false
 
+noncomputable section
 
 open GroundTheory.PAdicHodge
 

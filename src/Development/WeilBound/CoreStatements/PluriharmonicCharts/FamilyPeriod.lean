@@ -516,12 +516,13 @@ theorem exists_isDerivAt0_loc {g : ℕ} {Z : Scheme.{0}} {B : Set (Fin g → ℂ
 end PositivityTheory.Xgp.c_bm_exists_period
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PluriharmonicCharts.IsDerivAt0Congr
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PluriharmonicCharts.IsDerivAt0Congr
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Flat
 open scoped Matrix ComplexOrder
 
+noncomputable section
 
 namespace PositivityTheory.Xgp.c_bm_exists_period
 
@@ -696,7 +697,7 @@ theorem model_periods {Xo : Moduli D l} {c : Coeff l} {Y : Model Xo c (algebraMa
     fun a s hs t => ?_⟩, fun v hv => ?_⟩
   · obtain ⟨Hm, hR, hH⟩ := (hall u hu).2.2.1
     obtain ⟨w, hw1, hw2⟩ := hw u
-    have hg := GlobalTheory.T.chart_lattice_tangent_coordinates E H D l Xo _ n 0 C 𝔐.X 𝔐.t _ mX Ω 𝔐.ξ 𝔐.Li 𝔐.M r (fun k => b (f k))
+    have hg := GlobalTheory.CompanionTheory.Ar.RiemGram.gramAt_of_isRiem E H D l Xo _ n 0 C 𝔐.X 𝔐.t _ mX Ω 𝔐.ξ 𝔐.Li 𝔐.M r (fun k => b (f k))
       (fun k => x (ea (f k))) u Hm (fun k => w (f k)) hR (fun k => hw1 _) (fun k => hw2 _)
     rw [← hpt u (hsub hu)]
     convert hg using 4 with _ i' _ j'
@@ -761,6 +762,7 @@ theorem model_periods {Xo : Moduli D l} {c : Coeff l} {Y : Model Xo c (algebraMa
     simp only [Category.assoc]
 
 end PositivityTheory.Xgp.c_bm_exists_period
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PluriharmonicCharts.FamilyPeriod

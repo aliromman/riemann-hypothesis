@@ -1097,9 +1097,6 @@ end
 
 end Reformulated
 
-theorem GlobalTheory.FinValAlg.finite_values_isAlgebraic : ∀ {D : D7} {θ : InfFam D} {χ : (Formalism.L2.Theta.AE D)ˣ →* Circle} {n : ℕ}, IsInfFam θ → IsHeckeChar D χ → ResEta D χ n →
-    ∀ x : (Formalism.L2.Theta.AE D)ˣ, infPart D (x : Formalism.L2.Theta.AE D) = 1 → IsAlgebraic ℚ ((χ x : Circle) : ℂ) :=
-  GlobalTheory.FinValAlg.isAlgebraic_of_infPart_eq_one
 end -- clump:auto
 end -- clump:auto
 
@@ -1110,7 +1107,7 @@ open GlobalTheory.RowEx MeasureTheory
 
 theorem _root_.GlobalTheory.T.heckeChar_finiteIdeles_isAlgebraic_of_resEta : ∀ {D : D7} {θ : InfFam D} {χ : (Formalism.L2.Theta.AE D)ˣ →* Circle} {n : ℕ}, IsInfFam θ → IsHeckeChar D χ → ResEta D χ n →
     ∀ x : (Formalism.L2.Theta.AE D)ˣ, infPart D (x : Formalism.L2.Theta.AE D) = 1 → IsAlgebraic ℚ ((χ x : Circle) : ℂ) := by
-  first | exact @GlobalTheory.FinValAlg.finite_values_isAlgebraic
+  first | exact @GlobalTheory.FinValAlg.isAlgebraic_of_infPart_eq_one
 end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.VacuumSelfDualLattices

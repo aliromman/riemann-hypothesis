@@ -1,6 +1,5 @@
 module
 
-
 import Formalism.SharpRestriction.LevelLetterCocycles.InvariantLetterIdempotentOfFixed
 import Formalism.SharpRestriction.LevelLetterCocycles.UniformizerClauseOfAdmitted
 public import Formalism.SharpRestriction.LevelLetterCocycles.CrystallineLiftingInputs
@@ -46,8 +45,10 @@ import Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.SharpRestriction.LevelLetterCocycles.FrobeniusMemPullbackOfInvariant, Formalism.SharpRestriction.LevelLetterCocycles.ExtDataOneMapSmulO, Formalism.SharpRestriction.LevelLetterCocycles.ExtDataExtTool, Formalism.SharpRestriction.LevelLetterCocycles.Step1KillXList, Formalism.SharpRestriction.LevelLetterCocycles.InvariantLetterIdempotentSmul, Formalism.SharpRestriction.LevelLetterCocycles.MultVNonneg, Formalism.SharpRestriction.LevelLetterCocycles.PadicValNatFactorialSucc, Formalism.SharpRestriction.LevelLetterCocycles.FirstLiftOfHypotheses, Formalism.SharpRestriction.LevelLetterCocycles.FirstLiftOfUniformizerClause, Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.LemKD, Formalism.SharpRestriction.LevelLetterCocycles.UniformizerClauseOfAdmittedAlt
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.FrobeniusMemPullbackOfInvariant
+section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.FrobeniusMemPullbackOfInvariant
+@[expose] public section
 
+noncomputable section
 
 namespace Formalism.MainNotions.RamifiedCoefficientChains.Sh
 
@@ -61,17 +62,9 @@ variable {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : Type} [Field Qp]
     {PD : PeriodData G Qp K₀ K B BdR} {LL O : Type} [Field LL] [Algebra Qp LL] [TopologicalSpace LL]
     [CommRing O] [Algebra O LL] {v : AddValuation LL (WithTop ℚ)} {n : ℕ}
 
-theorem letE_mul_self_eq (i : ZMod n) : (letE i : LetA O n) * letE i = letE i := by
-  unfold letE
-  rw [← Pi.single_mul, mul_one]
-
 theorem idempotent_smul_smul (W : LocWach PD LL O v n) (T : LocLat G Qp LL O) (i : ZMod n)
     (x : W.DD T) : (letE i : LetA O n) • (letE i : LetA O n) • x = (letE i : LetA O n) • x := by
-  rw [smul_smul, letE_mul_self_eq]
-
-private theorem phiD_letA_smul_eq_phiA_smul_phiD (W : LocWach PD LL O v n) (T : LocLat G Qp LL O)
-    (a : LetA O n) (x : W.DD T) : W.φD T (a • x) = W.φA a • W.φD T x := by
-  rw [← algebraMap_smul W.EE a x, W.φD_smul, W.φE_ext, algebraMap_smul] <;> rfl
+  rw [smul_smul, Formalism.MainNotions.WachCoordinates.Br.letE_mul_self]
 
 private theorem phiA_letE_sub_one_eq_letE (W : LocWach PD LL O v n) (i : ZMod n) :
     W.φA (letE (i - 1) : LetA O n) = letE i := by
@@ -85,7 +78,7 @@ private theorem phiA_letE_sub_one_eq_letE (W : LocWach PD LL O v n) (i : ZMod n)
 
 theorem frobenius_idempotent_shift (W : LocWach PD LL O v n) (T : LocLat G Qp LL O) (i : ZMod n) (x : W.DD T) :
     W.φD T ((letE (i - 1) : LetA O n) • x) = (letE i : LetA O n) • W.φD T x := by
-  rw [phiD_letA_smul_eq_phiA_smul_phiD, phiA_letE_sub_one_eq_letE]
+  rw [Formalism.MainNotions.LiftingTheory.wmap_φD_smul, phiA_letE_sub_one_eq_letE]
 
 private theorem letGamma_letE_eq_letE (W : LocWach PD LL O v n) (g : W.Gam) (i : ZMod n) :
     letγ (W.γ₀ g) (letE i : LetA O n) = letE i := by
@@ -180,7 +173,7 @@ theorem frobenius_mem_pullback_of_invariant (W : LocWach PD LL O v n) (T : LocLa
 
   rw [ht', map_sum]
   refine Submodule.sum_mem _ fun j _ => ?_
-  rw [phiD_letA_smul_eq_phiA_smul_phiD]
+  rw [Formalism.MainNotions.LiftingTheory.wmap_φD_smul]
   apply Submodule.smul_mem
   unfold pullJ
   apply Submodule.subset_span
@@ -188,10 +181,6 @@ theorem frobenius_mem_pullback_of_invariant (W : LocWach PD LL O v n) (T : LocLa
     ⟨(W.N T).smul_mem _ (hb j).1, idempotent_smul_smul W T (i - 1) (b j), fun δ hδ => ?_⟩, ?_⟩
   · rw [gammaD_idempotent_smul, (hb j).2 δ hδ]
   · simp
-
-private theorem locWach_map_letA_smul_comm (W : LocWach PD LL O v n) {T Y : LocLat G Qp LL O}
-    (f : LatHom T.L Y.L) (a : LetA O n) (x : W.DD T) : W.map f (a • x) = a • W.map f x := by
-  rw [← algebraMap_smul W.EE a x, map_smul, algebraMap_smul]
 
 theorem pullback_span_of_exact (W : LocWach PD LL O v n) {T Y : LocLat G Qp LL O} (ι : LatHom T.L Y.L)
     (π : LatHom Y.L W.one.L) (hY : IsCrys PD Y.ρ) (hO : IsCrys PD W.one.ρ)
@@ -223,12 +212,12 @@ theorem pullback_span_of_exact (W : LocWach PD LL O v n) {T Y : LocLat G Qp LL O
         obtain ⟨c, hc⟩ := Submodule.mem_span_singleton.mp hπz
         exact ⟨c, hc, fun h => (he h).elim⟩
     have hπlet : W.map π z = (letE (i - 1) : LetA O n) • W.map π z := by
-      rw [← locWach_map_letA_smul_comm, hz_idem]
+      rw [← Formalism.MainNotions.LiftingTheory.wmap_map_smul, hz_idem]
     have hce : c • e' = ((letE (i - 1) : LetA O n) * c) • e' := by
       rw [← smul_smul, hc]
       exact hπlet
     have hw : W.map π (((PD.p : ℕ) : LetA O n) ^ N • z - c • ε) = 0 := by
-      rw [map_sub, locWach_map_letA_smul_comm W π _ z, locWach_map_letA_smul_comm W π c ε, hεπ, ← hc, hce]
+      rw [map_sub, Formalism.MainNotions.LiftingTheory.wmap_map_smul W π _ z, Formalism.MainNotions.LiftingTheory.wmap_map_smul W π c ε, hεπ, ← hc, hce]
       simp only [smul_smul]
       rw [sub_eq_zero]
       congr 1
@@ -236,7 +225,7 @@ theorem pullback_span_of_exact (W : LocWach PD LL O v n) {T Y : LocLat G Qp LL O
     obtain ⟨y', hy'⟩ := (hker _).mp hw
     have hι : W.map ι ((letE (i - 1) : LetA O n) • y') =
         ((PD.p : ℕ) : LetA O n) ^ N • z - c • ((letE (i - 1) : LetA O n) • ε) := by
-      rw [locWach_map_letA_smul_comm, hy', smul_sub, smul_comm (letE (i - 1) : LetA O n) _ z, hz_idem,
+      rw [Formalism.MainNotions.LiftingTheory.wmap_map_smul, hy', smul_sub, smul_comm (letE (i - 1) : LetA O n) _ z, hz_idem,
         smul_comm (letE (i - 1) : LetA O n) c ε]
     have hyN : (letE (i - 1) : LetA O n) • y' ∈ W.N T := by
       apply hsat
@@ -244,10 +233,10 @@ theorem pullback_span_of_exact (W : LocWach PD LL O v n) {T Y : LocLat G Qp LL O
       exact sub_mem ((W.N Y).smul_mem _ hzN) ((W.N Y).smul_mem _ ((W.N Y).smul_mem _ hεN))
     have hp := frobenius_mem_pullback_of_invariant W T π' hmT i _ hyN (idempotent_smul_smul W T (i - 1) y')
     have e1 : W.φD Y (((PD.p : ℕ) : LetA O n) ^ N • z) = ((PD.p : ℕ) : LetA O n) ^ N • W.φD Y z := by
-      rw [phiD_letA_smul_eq_phiA_smul_phiD, frobeniusA_natCast_pow]
+      rw [Formalism.MainNotions.LiftingTheory.wmap_φD_smul, frobeniusA_natCast_pow]
     have e2 : W.φD Y (c • (letE (i - 1) : LetA O n) • ε) =
         (W.φA c * (letE i : LetA O n)) • W.φD Y ε := by
-      rw [phiD_letA_smul_eq_phiA_smul_phiD, frobenius_idempotent_shift, smul_smul]
+      rw [Formalism.MainNotions.LiftingTheory.wmap_φD_smul, frobenius_idempotent_shift, smul_smul]
     refine ⟨_, hp, W.φA c * (letE i : LetA O n), ?_, fun h => by rw [hc0 h, map_zero, zero_mul]⟩
     rw [W.map_φ, hι, map_sub, e1, e2, sub_add_cancel]
   | zero => exact ⟨0, Submodule.zero_mem _, 0, by simp, fun _ => rfl⟩
@@ -260,10 +249,12 @@ theorem pullback_span_of_exact (W : LocWach PD LL O v n) {T Y : LocLat G Qp LL O
   | smul c a _ ha =>
     obtain ⟨q, hq, β, h1, h2⟩ := ha
     refine ⟨c • q, Submodule.smul_mem _ _ hq, c * β, ?_, fun h => by rw [h2 h, mul_zero]⟩
-    rw [smul_comm, h1, smul_add, locWach_map_letA_smul_comm, smul_smul]
+    rw [smul_comm, h1, smul_add, Formalism.MainNotions.LiftingTheory.wmap_map_smul, smul_smul]
 
 end Formalism.MainNotions.RamifiedCoefficientChains.Sh
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.ExtDataOneMapSmulO
@@ -1561,14 +1552,14 @@ end Formalism.MainNotions.RamifiedCoefficientChains.S9.ExtensionLemmaAlt
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.LemKD
+@[expose] public section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.QuotientImageDivisibility.LemKD
 
+noncomputable section
 open Classical
 
 namespace Formalism.MainNotions.N.Pv.LocalLengthBound
 
 open Formalism.WeaklyAdmissibleFiltrations Formalism.BasicNotions Formalism.BasicNotions.Loc
-
 
 set_option maxHeartbeats 800000 in
 theorem lemK_D (D : D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW)
@@ -1593,6 +1584,7 @@ theorem lemK_D (D : D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW)
     h1.2.2.2.2.1 h11.2.2 hring hN hAg (gamΔ_of_tie _ tie) (ptTrans_rec D HW F hP9 l K LL hA' h5)
 
 end Formalism.MainNotions.N.Pv.LocalLengthBound
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.SharpRestriction.LevelLetterCocycles.UniformizerClauseOfAdmittedAlt
@@ -1619,8 +1611,6 @@ theorem uniformizer_clause_of_admitted (hA : admitted D HW F Cm CR CA CB CK) : F
 theorem level_tools_of_admitted' (hA : admitted D HW F Cm CR CA CB CK) : Formalism.MainNotions.WachCoordinates.adm7 D HW F Cm :=
   Formalism.MainNotions.UnusedSlot80.tools_unramified_statement D HW F Cm ⟨fun l _ K s LL h => (hA.1 l K s LL h).2.2.1, laurent_clause_of_admitted' D HW F Cm hA,
     uniformizer_clause_of_admitted D HW F Cm hA⟩
-
-
 
 theorem local_lemmas_of_literature (hA : admitted D HW F Cm CR CA CB CK) (h23 : Formalism.MainNotions.LiftingTheory.adm23 D HW F)
     (hHerr : Formalism.MainNotions.ElementDenominator.HerrClassNaturalExtension D.loc D.locA HW F) (a22 : Formalism.MainNotions.CrystallineLiftingBounds.adm22 D HW F)

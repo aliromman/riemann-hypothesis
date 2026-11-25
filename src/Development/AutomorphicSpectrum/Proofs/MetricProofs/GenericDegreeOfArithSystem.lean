@@ -58,8 +58,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.GenericDegreeOfProjectionAndFibreDim
 
-theorem _root_.GlobalTheory.CompanionTheory.Relay.generic_degree_of_projection_and_fibre_dim : PFCoordStatement → FibreDimStatement → GenDegStatement := by
-  first | exact @PositivityTheory.HtPt.Aig.genDeg
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.MetricProofs.GenericDegreeOfArithSystem
@@ -68,7 +66,7 @@ namespace GlobalTheory.CompanionTheory.Ar.Giv
 
 theorem genDeg_of_system (h : ReciprocityTheory.ChartRestriction.G.Geo.ArithIntersectionSystemStatement) :
     GenDegStatement :=
-  _root_.GlobalTheory.CompanionTheory.Relay.generic_degree_of_projection_and_fibre_dim (_root_.PositivityTheory.HtPt.Aig.pfCoord_of_system h) fibreDim
+  _root_.PositivityTheory.HtPt.Aig.genDeg_of_coord (_root_.PositivityTheory.HtPt.Aig.pfCoord_of_system h) fibreDim
 
 end GlobalTheory.CompanionTheory.Ar.Giv
 

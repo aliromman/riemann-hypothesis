@@ -15,12 +15,10 @@ import Development.ResolutionOfSingularities.Foundations.Blowup.BlowupCoproduct
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.ResolutionCharZero.SupportStrictTransformUnion, Development.WeilBound.CoreStatements.ResolutionCharZero.PrincipalisationCharZeroBotOfEff
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.ResolutionCharZero.SupportStrictTransformUnion
 
 
 open AlgebraicGeometry CategoryTheory Limits TopologicalSpace
-
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.ResolutionCharZero.SupportStrictTransformUnion
 
 namespace PositivityTheory.ResPlug.WeightsCompactStabilizer
 
@@ -54,7 +52,11 @@ theorem gTransform : GTransform := fun _ _ π Z D _ _ _ => support_strictTransfo
 end PositivityTheory.ResPlug.WeightsCompactStabilizer
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.ResolutionCharZero.PrincipalisationCharZeroBotOfEff
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.ResolutionCharZero.PrincipalisationCharZeroBotOfEff
+
+noncomputable section
+
+open AlgebraicGeometry CategoryTheory Limits TopologicalSpace
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
 
 namespace PositivityTheory.ResPlug.WeightsCompactStabilizer
@@ -229,10 +231,6 @@ theorem principalisationCharZero_bot (hC : _root_.PositivityTheory.ResPlug.Blowu
   obtain ⟨h1, h2, h3⟩ := hE k X g I [] _ hI hL hs
   obtain ⟨-, -, -, -, -, -, -, -, -, -, -, hsm, -⟩ := hs
   exact ⟨_, _, E', hseq, hsm _ le_rfl, h1, h2, h3⟩
-
-end PositivityTheory.ResPlug.WeightsCompactStabilizer
-
-namespace PositivityTheory.ResPlug.WeightsCompactStabilizer
 
 end PositivityTheory.ResPlug.WeightsCompactStabilizer
 

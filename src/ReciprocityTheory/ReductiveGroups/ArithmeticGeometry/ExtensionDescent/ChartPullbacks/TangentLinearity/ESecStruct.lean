@@ -226,10 +226,11 @@ theorem rhs_act
 end ReciprocityTheory.ChartRestriction.G.Out.TLinPf
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ChartPullbacks.TangentLinearity.WchartInlLe
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ChartPullbacks.TangentLinearity.WchartInlLe
 
 set_option autoImplicit false
 
+noncomputable section
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory
   CartesianMonoidalCategory MonObj
@@ -337,7 +338,7 @@ theorem hA_act (k : Fin 4 ⊕ Fin 6) :
     fin_cases k
     · exact left_act_lemma (U := U) (e := e)
         (padd D.toPre.P.A (U.gt e).pG (toUnit _ ≫ D.toPre.c (star a • χ)))
-        (by simp only [padd, ← Category.assoc, comp_lift, pG_act_lemma, q_act_lemma, unit_act_lemma])
+        (by simp only [padd, ← Category.assoc, comp_lift, q_act_lemma, unit_act_lemma])
     · exact left_act_lemma (U := U) (e := e) (toUnit _ ≫ D.toPre.c (star a • χ))
         (by simp only [← Category.assoc, unit_act_lemma])
     · exact left_act_lemma (U := U) (e := e) (U.gt e).pG (pG_act_lemma U e)
@@ -468,6 +469,7 @@ theorem lhs_act (jA : Fin 4 ⊕ Fin 6 → D.toPre.P.L.ι) (cA : LB.Coh D.toPre.P
       (appLE_pullGen ..).symm)
 
 end ReciprocityTheory.ChartRestriction.G.Out.TLinPf
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ChartPullbacks.TangentLinearity.CompBaseEq

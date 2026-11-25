@@ -554,7 +554,7 @@ theorem UpperTheory.RealTr.clifEx :
 end -- clump:auto
 end -- clump:auto
 
--- clump: shared namespace opens
+section -- clump: shared namespace opens
 
 
 open Matrix Finset
@@ -893,7 +893,14 @@ theorem UpperTheory.RealTr.spnCas :
   rw [← cas_eq, hiso x Submodule.mem_top, hn]
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.BaseChangeIdentities.RealTraceClifford.DiracHW
+end -- clump: shared namespace opens
+
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.BaseChangeIdentities.RealTraceClifford.DiracHW
+
+noncomputable section
+
+open Matrix Finset
+open scoped InnerProductSpace ComplexConjugate
 open PositivityTheory.RgTw (Mat)
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Real PositivityTheory.RgBcC.RealD UpperTheory.RealTr
 open Formalism.REAL (GlRel IsWeight KHighest Cas)
@@ -918,7 +925,6 @@ private theorem nsq_eq {n : ℕ} (u : Fin n → ℝ) : Formalism.REAL.nsq u = ns
 
 private theorem cas_map {A B : Type} [Ring A] [Ring B] [Algebra ℂ A] [Algebra ℂ B] {n : ℕ} (φ : A →ₐ[ℂ] B)
     (F : Fin n → Fin n → A) : φ (Cas F) = Cas fun a b => φ (F a b) := by
-  set_option synthInstance.maxHeartbeats 100000 in
     simp [Cas, map_sum, map_mul]
 
 private theorem spn_map {A B : Type} [Ring A] [Ring B] [Algebra ℂ A] [Algebra ℂ B] {n : ℕ} (φ : A →ₐ[ℂ] B)
@@ -1097,6 +1103,13 @@ theorem UpperTheory.RealTr.diracHW :
   have := mul_pos this hx2
   nlinarith [sq_nonneg ‖D x‖]
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+
+open Matrix Finset
+open scoped InnerProductSpace ComplexConjugate
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.BaseChangeIdentities.RealTraceClifford.DiracCh
 open PositivityTheory.RgTw (Mat)

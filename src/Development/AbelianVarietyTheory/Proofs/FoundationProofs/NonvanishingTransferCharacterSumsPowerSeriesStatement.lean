@@ -923,8 +923,6 @@ end -- clump:auto
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.MainNotions.N GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.HV GlobalTheory.Ord2 GlobalTheory.KZ PowerSeries GlobalTheory.KZ.Cmp
 
-theorem _root_.GlobalTheory.T.norm_gaussSumModPrimePower_le_half_power : ∀ (l : ℕ) [Fact l.Prime] (m : ℕ) (z : Qbar l) (ψ : DirichletCharacter (Qbar l) (l ^ m)), z ^ (l ^ m) = 1 → ‖gSum m z ψ‖ ≤ ‖(l : Qbar l) ^ (m / 2)‖ := by
-  first | (exact @GlobalTheory.KZ.Cmp.norm_gSum_le)
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.SumUnitsPrimePowTeichmullerReindex
@@ -1238,7 +1236,6 @@ theorem tval_eq_sum_pow_of_integral : ∀ (l : ℕ) [Fact l.Prime] (c : Coef l) 
   rcases hdeg with hd | rfl
   · have h1 := Polynomial.aeval_eq_sum_range' (R := c.O) (x := z) hd
     have h2 : Polynomial.aeval z Q = tval F N z := by
-      set_option synthInstance.maxHeartbeats 100000 in
         simp [Q, tval, map_sum]
     rw [← h2, h1]
     refine Finset.sum_congr rfl fun j _ => ?_
@@ -1583,7 +1580,7 @@ theorem nonvanishing_transfer : ∀ (l : ℕ) [Fact l.Prime] (c : Coef l) (Gs L 
       rw [tval_C_mul, tval_C_mul]
       refine cg_div_gauss l k c₁ (chSum Gs (k + 1) z ψ) (chSum L (k + 1) z ψ) _ _ _ _
         (1 - (c₀ : Qbar l) * ψ⁻¹ (c₀ : ZMod (l ^ (k + 1)))) _ _ a a' κ p (by omega) (hv _).1 (hv' _).1 ha ha' hp1 hN
-        (_root_.GlobalTheory.KZ.Cmp.gSum_mul_gSum_inv_prim l (k + 1) z ψ hz hψ) (GlobalTheory.T.norm_gaussSumModPrimePower_le_half_power l (k + 1) z⁻¹ ψ⁻¹ hz.inv.pow_eq_one) g1 ?_ (hzψ ψ hψ)
+        (_root_.GlobalTheory.KZ.Cmp.gSum_mul_gSum_inv_prim l (k + 1) z ψ hz hψ) (GlobalTheory.KZ.Cmp.norm_gSum_le l (k + 1) z⁻¹ ψ⁻¹ hz.inv.pow_eq_one) g1 ?_ (hzψ ψ hψ)
       rw [hAL, tval_sub_C_mul]
       convert g2 using 1 <;> ring)
   have hy : ‖(1 + (l : Qbar l)) ^ e - 1‖ ≤ 1 := by

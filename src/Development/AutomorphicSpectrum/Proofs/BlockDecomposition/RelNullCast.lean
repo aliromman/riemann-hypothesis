@@ -42,14 +42,10 @@ theorem isAffineOpen_preimage_inf_of_isSeparated_over {Y X S : Scheme.{0}} (g : 
 
 end GlobalTheory.FinNear
 
-namespace GlobalTheory.FinNear
-
-end GlobalTheory.FinNear
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AffineFinsetInf
 
-set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
 noncomputable section
@@ -207,13 +203,13 @@ end Per
 end GlobalTheory.CompanionTheory.RelKill
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LamFamily
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LamFamily
 
-set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.Pb CrystallineSemistableComparison.HT CrystallineSemistableComparison.Onto
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.RelKill
 
@@ -361,14 +357,15 @@ end Kill
 
 end GlobalTheory.CompanionTheory.RelKill
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DCupZero
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DCupZero
 
-set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.Pb CrystallineSemistableComparison.HT CrystallineSemistableComparison.Onto
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.RelKill
 
@@ -496,13 +493,13 @@ end Over
 
 end GlobalTheory.CompanionTheory.RelKill
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RelNullCast
-
-set_option backward.isDefEq.respectTransparency false
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RelNullCast
 
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.Pb CrystallineSemistableComparison.HT CrystallineSemistableComparison.Onto
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.RelKill
 

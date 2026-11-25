@@ -115,11 +115,6 @@ theorem eta_holds {E : Type} [Field E] [NumberField E] [IsCMField E] : EtaStatem
 
 end ReciprocityTheory.ChartRestriction.G.AR.Up.EtaPf
 
-namespace ReciprocityTheory.ChartRestriction.G.AR.Up
-
-open NumberField
-
-end ReciprocityTheory.ChartRestriction.G.AR.Up
 end -- clump:auto
 
 @[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.FrameMeasStatementPf

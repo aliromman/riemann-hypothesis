@@ -632,12 +632,12 @@ end GlobalTheory.LambdaValuationPowers.Smooth
 end -- clump:auto
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.CmValuationNewformCongruence
+
+noncomputable section
 
 open scoped MatrixGroups Matrix
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.MainNotions.N GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.HV GlobalTheory.KZ GlobalTheory.Ord2 GlobalTheory.K4
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.CmValuationNewformCongruence
 
 namespace GlobalTheory.LambdaValuationPowers.ZetaCoef
 
@@ -850,14 +850,13 @@ theorem norm_pow_mul_le {a : Qbar l} {k : ℕ} (h : ‖a‖ ≤ (l : ℝ) ^ k) :
 
 end GlobalTheory.LambdaValuationPowers.ZetaCoef
 
-namespace GlobalTheory.LambdaValuationPowers
-
-open ZetaCoef
-
-end GlobalTheory.LambdaValuationPowers
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.IwahoriReduction.SiegelFixedPoints.Thdiam
+
+open scoped MatrixGroups Matrix
+open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.MainNotions.N GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.HV GlobalTheory.KZ GlobalTheory.Ord2 GlobalTheory.K4
 
 theorem UpperTheory.Kd.L.thdiam :
     ∀ (Ω : Type) [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ Ω] (ε : Ω →+* ℂ) (X : Tower Ω ε) (l : ℕ) [Fact l.Prime], l ≠ 2 →
@@ -904,6 +903,9 @@ theorem UpperTheory.Kd.L.thdiam :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SmoothedZetaClasses.Hco
+
+open scoped MatrixGroups Matrix
+open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.MainNotions.N GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.HV GlobalTheory.KZ GlobalTheory.Ord2 GlobalTheory.K4
 
 namespace GlobalTheory.LambdaValuationPowers
 
@@ -1199,8 +1201,6 @@ theorem _root_.UpperTheory.V.Z.Kato.K5.hco : ∀ (Ω : Type) [Field Ω] [Algebra
 
 end GlobalTheory.LambdaValuationPowers
 end -- clump:auto
-
-end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.KatoQuadraticCharacters.SmoothedZetaClasses.Imports
 

@@ -583,7 +583,7 @@ theorem mixS_dRho (hψ : IsStdChar D ψ (-1)) (hθ : IsInfFam θ) {V₀ : HSp D}
       rw [e2]; exact e
     have hs : GlobalTheory.IndefiniteRowSideFullHecke.HermitianSymplecticScalars.symplAt (GlobalTheory.Size.posSp D ρ) W τ z (compAt θ τ x) = 0 :=
       (GlobalTheory.Unf.symplAt_posSp D W ρ τ z (compAt θ τ x)).trans (by rw [hx]; simp)
-    rw [GlobalTheory.Unf.symplO_eq_two_half, AddChar.map_add_eq_mul, e3, hs]
+    rw [GlobalTheory.RatSelfDual.symplO_eq_add, AddChar.map_add_eq_mul, e3, hs]
     simp
   simp only [hphase] at hder
   exact hder.unique (hasDerivAt_const _ _)

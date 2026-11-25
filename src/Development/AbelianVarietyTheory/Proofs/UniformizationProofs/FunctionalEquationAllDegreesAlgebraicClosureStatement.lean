@@ -95,14 +95,15 @@ import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRin
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsGtPt, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.CoeffEqZeroOfSumSmulEqZeroOfSeparating, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsFiniteExtensionPrimitiveResidue, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.SvalEqZeroOfFaithfullyFlatBase, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsTwistConvNeZero, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.Imports, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.IntegralWitness, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.CompOneLeft, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.CubNDescentTelescope, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ProdExpOppositeTranslates, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.AdicSumRel, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.TranslationUnitMul, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ConvTermFe, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.RelationOfFiniteLevels, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.SvalSecScale, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsFunctionalEquationSectionNonzeroClass, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsFunctionalEquationSectionNonzeroClassStatement, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.SecZeroOfPull, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.FunctionalEquationAllDegreesAlgebraicClosure, Development.AbelianVarietyTheory.Proofs.UniformizationProofs.FunctionalEquationAllDegreesAlgebraicClosureStatement
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsGtPt
+section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsGtPt
+@[expose] public section
 
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
 
+noncomputable section
 
 namespace GlobalTheory.UU.TorPtEx
 
@@ -146,6 +147,8 @@ theorem main : AllPre fun {V} _ _ _ {D} {_} {G} _ _ U => ∀ (W : Type) [CommRin
 
 end GlobalTheory.UU.TorPtEx
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.CoeffEqZeroOfSumSmulEqZeroOfSeparating
@@ -258,7 +261,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsFiniteExtensionPrimitiveResidue
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 
@@ -329,7 +331,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.SvalEqZeroOfFaithfullyFlatBase
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 
@@ -374,7 +375,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsTwistConvNeZero
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
 
 namespace GlobalTheory.UU.TwistNonvan
@@ -526,7 +526,6 @@ end GlobalTheory.UU
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.Imports
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
 
 namespace GlobalTheory.NullExp
@@ -548,9 +547,10 @@ theorem main : ∀ (R : Type) [CommRing R] [IsDomain R] (I : Ideal R) (D : DegPr
 end GlobalTheory.NullExp
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.IntegralWitness
-attribute [local instance] Over.cartesianMonoidalCategory
+section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.IntegralWitness
+@[expose] public section
 open GlobalTheory.UU
+noncomputable section
 namespace GlobalTheory.UU.IntWit
 
 theorem gs_zero {X Y : Scheme.{0}} (f : Y ⟶ X) (y : Y) (U : X.Opens) : gs f y U 0 = 0 := by
@@ -595,13 +595,15 @@ theorem integral_witness : AllPre fun {V} _ _ _ {D} {_} {_} _ _ U => ∀ (F : Ty
     (fun y J hJ => (hs' i β y J hJ).trans (sval_eq_zero _ hn _ _ _)) j)
 
 end GlobalTheory.UU.IntWit
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.CompOneLeft
-@[expose] public noncomputable section
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section
 open GlobalTheory.UU
 
+noncomputable section
 namespace GlobalTheory.UU.TorMul
 
 variable {R : Type} [CommRing R] [IsDomain R] {I : Ideal R} {D : DegPre R}
@@ -730,6 +732,7 @@ theorem GlobalTheory.UU.torPt_group : GlobalFnsSt → ∀ (R : Type) [CommRing R
   fun hG _ _ _ _ _ _ _ _ _ U _ _ _ => ⟨TorMul.torPt_one U, fun _ _ _ _ h =>
     ⟨fun h' => TorMul.torPt_mul U hG h h', TorMul.torPt_inv U hG h, TorMul.torPt_pow U hG h⟩⟩
 
+end
 end -- clump:auto
 end -- clump:auto
 
@@ -772,7 +775,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ProdExpOppositeTranslates
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
 
 namespace GlobalTheory.UU.ProdTransl
@@ -936,7 +938,6 @@ theorem GlobalTheory.UU.prodExp_opposite_translates : GlobalFnsSt → AllPre fun
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.AdicSumRel
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
 
 namespace GlobalTheory.UU
@@ -1018,7 +1019,6 @@ end GlobalTheory
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ConvTermFe
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
 
 namespace GlobalTheory.ConvTermFE
@@ -1077,7 +1077,6 @@ end GlobalTheory.ConvTermFE
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.RelationOfFiniteLevels
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory
 
@@ -1092,10 +1091,10 @@ theorem relation_of_finite_levels : ∀ (R : Type) [CommRing R] (I : Ideal R) (T
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.SvalSecScale
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.SvalSecScale
 open GlobalTheory.UU
 
+noncomputable section
 
 namespace GlobalTheory.ConvFE
 open ReciprocityTheory.ChartRestriction.G.DVR
@@ -1266,9 +1265,9 @@ theorem conv_famFE : GlobalFnsSt → ∀ (V : Type) [CommRing V] [IsDomain V] [I
 
 end GlobalTheory.ConvFE
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.ExistsFunctionalEquationSectionNonzeroClass
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
 
 namespace GlobalTheory.UU.FESection
@@ -1324,7 +1323,6 @@ theorem _root_.GlobalTheory.T.exists_functionalEquation_section_nonzero_class : 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.SecZeroOfPull
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
 
 namespace GlobalTheory.UU.SchurConst
@@ -1397,7 +1395,6 @@ end GlobalTheory.UU.SchurConst
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.FunctionalEquationAllDegreesAlgebraicClosure
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UU
 
 namespace GlobalTheory.UU

@@ -17,8 +17,9 @@ import GroundTheory.LocalFields.ExamplesLaurent
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.LocalFields.CompletedUnramified, GroundTheory.LocalFields.LubinTateReciprocity.Descent
 
-@[expose] public noncomputable section -- clump member: GroundTheory.LocalFields.CompletedUnramified
+@[expose] public section -- clump member: GroundTheory.LocalFields.CompletedUnramified
 
+noncomputable section
 
 namespace GroundTheory.LocalField
 
@@ -275,12 +276,7 @@ variable {A B : Type*} [CommRing A] [IsDomain A] [IsDiscreteValuationRing A]
 theorem isLocalHom_algebraMap_of_map_maximalIdeal
     (hunr : (maximalIdeal A).map (algebraMap A B) = maximalIdeal B) :
     IsLocalHom (algebraMap A B) := by
-  refine ⟨fun a ha ↦ ?_⟩
-  by_contra h
-  have hm : a ∈ maximalIdeal A := (mem_maximalIdeal a).2 h
-  have := Ideal.mem_map_of_mem (algebraMap A B) hm
-  rw [hunr] at this
-  exact (mem_maximalIdeal _).1 this ha
+  exact GroundTheory.LocalField.FormalGroup.isLocalHom_of_map_maximalIdeal hunr
 
 variable [IsAdicComplete (maximalIdeal A) A] [Finite (ResidueField A)]
   (hunr : (maximalIdeal A).map (algebraMap A B) = maximalIdeal B) (σ : B →ₐ[A] B)
@@ -506,6 +502,7 @@ end FiniteFrobenius
 end Completed
 
 end GroundTheory.LocalField
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.LocalFields.LubinTateReciprocity.Descent

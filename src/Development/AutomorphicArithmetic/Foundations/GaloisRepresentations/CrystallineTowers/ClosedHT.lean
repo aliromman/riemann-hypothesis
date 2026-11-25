@@ -94,10 +94,10 @@ import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomology
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.CoverRefinementHodge.BridgeLApply, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FormsToCechBijective, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FormsToCechSmul, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.GlobalDifferentialForms.RowSurjZ, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.HdgAffIso, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CechFormsAddSmul, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.CechDifferentialPullback.FormCochPullPf, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.CoverRefinementHodge.FormToCOBijectiveI, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CovOfLocal, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.CoverRefinementHodge.NeedPf, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.CoverRefinementHodge.FinalC, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.DlogClassExistsUnique, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.KFin, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.LvLink, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.HodgeTateComparisonSmoothProjective, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.CrystallineTowers.ClosedHT
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.CoverRefinementHodge.BridgeLApply
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.CoverRefinementHodge.BridgeLApply
 
-set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry GlobalTheory.CechDR GlobalTheory.HodgeCoh
 
@@ -136,6 +136,7 @@ def covX {K : Type} [Field K] {X : Scheme.{0}} (q : X ⟶ Spec (CommRingCat.of K
   Classical.choice ((_root_.GlobalTheory.CompanionTheory.CovEx.exists_cov q).1 inferInstance)
 
 end CrystallineSemistableComparison.Om.Nt2
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FormsToCechBijective
@@ -199,11 +200,11 @@ theorem formToCO_bijective : ∀ {K : Type} [Field K] {X : Scheme.{0}} (q : X �
 end GlobalTheory.CompanionTheory.OmCech
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FormsToCechSmul
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FormsToCechSmul
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry TopologicalSpace Opposite Limits GroundTheory.Arith.SchemeCoh GlobalTheory.SheafPull CrystallineSemistableComparison CrystallineSemistableComparison.Om CrystallineSemistableComparison.Om.Cech
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.OmBridge
 
 open GlobalTheory.HodgeCoh GlobalTheory.CechDR
@@ -266,11 +267,12 @@ theorem formToCO_smul (j : ℕ) (r : K) (x : (Glob.formCos q U a).cx.H j) :
 
 end GlobalTheory.CompanionTheory.OmBridge
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.GlobalDifferentialForms.RowSurjZ
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.GlobalDifferentialForms.RowSurjZ
 
-set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris DividedPowers GlobalTheory.CechDR GlobalTheory.HodgeCoh CrystallineSemistableComparison.Pb GlobalTheory.CompanionTheory.CechSerre
 
@@ -291,11 +293,12 @@ theorem glob_iso (h : ∀ (K : Type) [Field K] [CharZero K],
 
 end CrystallineSemistableComparison.Om.Glob
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.HdgAffIso
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.HdgAffIso
 
-set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris DividedPowers GlobalTheory.CechDR GlobalTheory.HodgeCoh
 
@@ -310,10 +313,10 @@ theorem hdg_iso (h : ∀ (K : Type) [Field K] [CharZero K],
 
 end CrystallineSemistableComparison.Om
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CechFormsAddSmul
 
-set_option backward.isDefEq.respectTransparency false
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Opposite Limits GroundTheory.Arith.SchemeCoh GlobalTheory.SheafPull CrystallineSemistableComparison CrystallineSemistableComparison.Om CrystallineSemistableComparison.Om.Cech
 
@@ -338,10 +341,10 @@ theorem cechOmAdd_smul {K : Type} [Field K] {X : Scheme.{0}} (q : X ⟶ Spec (Co
 end GlobalTheory.CompanionTheory.OmCech
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.CechDifferentialPullback.FormCochPullPf
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.CechDifferentialPullback.FormCochPullPf
 
-set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Opposite Limits
 
@@ -378,10 +381,10 @@ theorem formCoch_pull_pf : ∀ {K : Type} [Field K] {X Y : Scheme.{0}} {q : X �
 
 end CrystallineSemistableComparison.Om.Cech
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.CoverRefinementHodge.FormToCOBijectiveI
 
-set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 
@@ -529,11 +532,11 @@ theorem UpperTheory.Reformulated.B.Qm13.cov_of_local :
       fun a _ => (hc a).some.affine
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.CoverRefinementHodge.NeedPf
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.CoverRefinementHodge.NeedPf
 
-set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry
 
@@ -557,6 +560,7 @@ theorem pullH_id : PullHId := fun q h a n x => GlobalTheory.CompanionTheory.Hodg
 theorem pullC_id : PullCId := fun q h a j x => GlobalTheory.HodgeCoh.hodgePull_id q a j x
 
 end CrystallineSemistableComparison.Om.Nt2
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.DifferentialFormsCech.CoverRefinementHodge.FinalC
@@ -859,10 +863,10 @@ theorem kTop : KTop := by
 end CrystallineSemistableComparison.HT
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.KFin
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.KFin
 
-set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 open CategoryTheory
 
@@ -872,11 +876,12 @@ theorem kFin : KFin := @kFin_of (@Pb.finO'.2)
 
 end CrystallineSemistableComparison.HT
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.LvLink
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.LvLink
 
-set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 open CategoryTheory
 
@@ -887,11 +892,12 @@ theorem lvEx (l : ℕ) [Fact l.Prime] (K : IntermediateField ℚ_[l] (PadicAlgCl
 
 end CrystallineSemistableComparison.HT
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.HodgeTateComparisonSmoothProjective
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.HodgeTateResidues.HodgeTateComparisonSmoothProjective
 
-set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry
 
@@ -900,6 +906,7 @@ namespace CrystallineSemistableComparison.HT
 theorem hodgeTate_of_etale_side (h : EtSideS) : HodgeTateMapExists := ht_of lvEx kFin dlog_class_exists_unique kTop h
 
 end CrystallineSemistableComparison.HT
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.CrystallineTowers.ClosedHT

@@ -384,8 +384,9 @@ theorem isVolMeas_muV (hcd : cdScaleTie D) (hΛ : fr.Λ = Formalism.IndefR.Eqv.U
 end Formalism.L2.S.S7.ZsCovMeas
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.DstarVolPf
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.FlagStabilizerTensors.RootLatticeThresholds.DstarVolPf
 
+noncomputable section
 
 namespace Formalism.L2.SG.Pf.DstarVolPf
 
@@ -546,7 +547,6 @@ theorem covol_gen (hVM : VolMeasOf D) (hVol : VolTie D) (I : Formalism.MainNotio
     congr 1
     erw [Measure.map_apply hmeas hS]
     rw [Set.preimage_image_eq _ (toHA (IV D) hb).injective, Measure.smul_apply, smul_eq_mul]
-  set_option synthInstance.maxHeartbeats 200000 in
   have hA0 : (IV D).muA μf fund ≠ 0 := by
     haveI : ((IV D).muA μf).IsHaarMeasure := Formalism.L2.SG.PoincareInHH.Cut.muA_isHaar' (IV D) μf
     haveI : ((IV D).muA μf).IsMulLeftInvariant := inferInstance

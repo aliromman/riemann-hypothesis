@@ -484,8 +484,9 @@ theorem mDer : MDer := by
 end PositivityTheory.Rg.Sw.AbsSt
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AbsoluteConvergence.SecDerN
+@[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AbsoluteConvergence.SecDerN
 
+noncomputable section
 
 open MeasureTheory Matrix Set Filter Topology MvPolynomial
 
@@ -497,10 +498,6 @@ variable {m n : ℕ}
 
 theorem gs_norm (c : ℝ) (x : Fin m → Fin n → ℂ) : ‖gs c x‖ = Real.exp (-(c * ∑ a, ∑ i, ‖x a i‖ ^ 2)) := by
   rw [gs, Complex.norm_exp, Complex.neg_re, Complex.ofReal_re]
-
-theorem continuous_gs (c : ℝ) : Continuous (gs (m := m) (n := n) c) := by
-  unfold gs
-  fun_prop
 
 theorem integrable_poly_gs (P : PX m n) {c : ℝ} (hc : 0 < c) :
     Integrable (fun x : Fin m → Fin n → ℂ => ‖evX P x‖ * ‖gs c x‖) := by
@@ -527,7 +524,6 @@ def trH (ε : Fin m → Bool) (H : Matrix (Fin n) (Fin n) ℂ) : PX m n := ∑ i
 
 theorem evX_trH (ε : Fin m → Bool) (H : Matrix (Fin n) (Fin n) ℂ) (x : Fin m → Fin n → ℂ) :
     evX (trH ε H) x = (H * gramX ε x).trace := by
-  set_option synthInstance.maxHeartbeats 100000 in
     simp only [trH, Matrix.trace, Matrix.diag, Matrix.mul_apply, gramX, evX, map_sum, map_mul,
     MvPolynomial.eval_C]
 
@@ -536,10 +532,6 @@ theorem evX_DN (ε : Fin m → Bool) (t : ℝ) (H : Matrix (Fin n) (Fin n) ℂ) 
   have h : evX (DN ε t H R) x = (Complex.I * t) * evX (trH ε H) x * evX R x := by
     simp only [DN, trH, evX, map_mul, MvPolynomial.eval_C]
   rw [h, evX_trH]
-
-theorem continuous_gramX (ε : Fin m → Bool) : Continuous (gramX (n := n) ε) := by
-  refine continuous_pi fun i => continuous_pi fun j => ?_
-  exact continuous_evX _
 
 private theorem norm_evX_gs_exp_trace_eq_of_isHermitian (ε : Fin m → Bool) (c t : ℝ) (P : PX m n)
     {B : Matrix (Fin n) (Fin n) ℂ} (hB : B.IsHermitian) (x : Fin m → Fin n → ℂ) :
@@ -627,6 +619,7 @@ theorem nDer : NDer := by
   exact ((hasDerivAt_secN ε hL.cpos t R hb hH s).const_mul C).const_mul _
 
 end PositivityTheory.Rg.Sw.AbsSt
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.HolomorphicContinuation.AbsoluteConvergence.SecDerF

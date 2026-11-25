@@ -66,12 +66,13 @@ import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsoThrough, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaSetupExtendsNormalAffineChartAfterRescaling
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsoThrough
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsIsoThrough
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry
 open scoped CategoryTheory.Obj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.ZH
 open ReciprocityTheory.ChartRestriction.G.Out
+noncomputable section
 namespace GlobalTheory.ThetaExtend
 open GlobalTheory.ThetaPtMove GlobalTheory.CommPairing GlobalTheory.ConstFam GlobalTheory.GlobalLift
 
@@ -377,7 +378,6 @@ variable {S' : Scheme.{0}} {f : S' ⟶ S} {P : PolAV S} {P' : PolAV S'} {φ : P'
 theorem univBasis_of_rel (hw : w.IsGen) {b₀ : κ → SecM P.A P.L n T} (hb₀ : UnivBasis P n b₀)
     {b : κ → SecM P'.A P'.L n (baseOver S')} (hb : ∀ i, Rel hp τ hτ w (b i) (b₀ i)) : UnivBasis P' n b := by
   intro T' hT h
-  have hh : h.left = T'.hom := (Category.comp_id _).symm.trans (Over.w h)
   let h₀ : Over.mk (T'.hom ≫ f) ⟶ T := Over.homMk (h.left ≫ τ) (by
     change (h.left ≫ τ) ≫ T.hom = T'.hom ≫ f
     rw [Category.assoc, hτ, ← Category.assoc, Over.w h])
@@ -412,6 +412,7 @@ theorem rel_inj [Fintype κ] [IsAffine S'] [IsAffine T.left] (hw : w.IsGen) {b�
 end Sections
 
 end GlobalTheory.ThetaExtend
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ThetaSetupExtendsNormalAffineChartAfterRescaling

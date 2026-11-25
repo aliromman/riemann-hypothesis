@@ -592,8 +592,9 @@ end GlobalTheory.GramAt
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilEqOneComplex
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilEqOneComplex
 
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.GeometryOfNumbersTheory
@@ -669,7 +670,7 @@ theorem weilEq_one_complex (A A' B : PAT H (Sp ℂ)) {r : ℂ} (hr : r ^ 2 = -(H
       Category.assoc, Category.assoc]
     exact congrArg _ (hf.comm _).symm) z
   have hA'' : ∀ τ : 𝓞 E →+* ℂ, τ (H.bar H.rt) ≠ r → LieMult A'.t.act (𝟙 (Sp ℂ)) τ 0 := fun τ h =>
-    hA' τ fun h' => h (by rw [EigDec.bar_rt, map_neg, h', neg_neg])
+    hA' τ fun h' => h (by rw [GlobalTheory.HostModel.bar_rt, map_neg, h', neg_neg])
   have e' : ∀ z, ρB (H.bar H.rt) (F' z) = r • F' z := fun z =>
     LinearMap.congr_fun (hu0 (ρB (H.bar H.rt) ∘ₗ F') (r • F') fun z => by
       rw [LinearMap.comp_apply, LinearMap.smul_apply, ← map_smul, hρB, hF', hF', ex_smul A' hA'' u' hA1' hA2',
@@ -878,6 +879,7 @@ theorem exists_inverse : ∃ (N : ℕ) (ψ : Fin p → (X.B.pol.A ⟶ (X.A true)
   · rw [MonObj.comp_pow, (h2 T a a').2, pow_mul]
 
 end GlobalTheory.GramAt
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TateModuleGramRelationsBlocksOrthogonal

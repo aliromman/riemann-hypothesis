@@ -115,17 +115,6 @@ end
 
 end Formalism.FourierDecayAlt.P.CutBP.CompactFormNormalFormDomination
 
-namespace Formalism.FourierDecayAlt.P.CutBPEq.CompactFormNormalFormDomination
-
-open Formalism.FourierDecayAlt Formalism.FourierDecayAlt.TBB Formalism.QuantumDeterminants Formalism.FourierDecayAlt.P.CutBP Formalism.FourierDecayAlt.P.CutBP2 Formalism.FourierDecayAlt.P.CutBP.CompactFormNormalFormDomination MeasureTheory
-open scoped ENNReal
-
-noncomputable section
-
-
-end
-
-end Formalism.FourierDecayAlt.P.CutBPEq.CompactFormNormalFormDomination
 end -- clump:auto
 end -- clump:auto
 

@@ -1248,7 +1248,6 @@ open GlobalTheory.ZV GlobalTheory.CechPic
 
 variable {X : Scheme.{0}} {L : LB X} {I : Type} [Fintype I]
 
-set_option backward.isDefEq.respectTransparency false in
 theorem lbIso_pow (hL : L.IsLB) (φ : I → (X ⟶ X)) (x : I → ℤ) (a : ℕ) :
     LBIso (lbPow (LB.LinComb L φ x) a) (LB.LinComb L φ (a • x)) := by
   have h := LB.isLB_linComb hL φ
@@ -1272,7 +1271,6 @@ theorem lbIso_pow (hL : L.IsLB) (φ : I → (X ⟶ X)) (x : I → ℤ) (a : ℕ)
     intro k hk
     rw [← zpow_mul, ← zpow_mul, mul_comm]
 
-set_option backward.isDefEq.respectTransparency false in
 theorem lbIso_div (hL : L.IsLB) (φ : I → (X ⟶ X)) (x y : I → ℤ) :
     LBIso (LB.div (LB.LinComb L φ x) (LB.LinComb L φ y)) (LB.LinComb L φ (x - y)) := by
   have h := LB.isLB_linComb hL φ

@@ -301,10 +301,9 @@ theorem exists_core {V : Type} [AddCommGroup V] [Module ℂ V] {Λ : Type} [Fint
 end CoverDenseAlt.Met
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AmpleLineBundles.RhoEventually
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.AmpleLineBundles.RhoEventually
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 namespace CoverDenseAlt.Met
 
@@ -555,11 +554,11 @@ theorem chart_cover {κ : Type} {x : κ → Ω} (tie : CoordTie ℤ ξ x) {E : T
 
 end CoverDenseAlt.Met
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.AmpleLineBundles.NonemptyLieMetricOfCoordinates
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.AmpleLineBundles.NonemptyLieMetricOfCoordinates
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 namespace CoverDenseAlt
 
@@ -663,6 +662,7 @@ theorem nonempty_lie_metric_of_coordinates : ∀ (X : Scheme.{0}) (Ω : Type) [F
         rw [vl_eq hall tie h (co_val hξ M _ z _ hfr ha i), vl_eq hall tie h (co_val hξ M _ z _ hfr hb i)]
 
 end CoverDenseAlt
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsLieMetric

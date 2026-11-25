@@ -23,8 +23,9 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Definitions.MetricPeriods.PInjective, Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ExistsSymplecticBasisLagrangianBetween, Development.AutomorphicSpectrum.Proofs.GeometryProofs.SymplecticPolydiscPeriodBasis
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Definitions.MetricPeriods.PInjective
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Definitions.MetricPeriods.PInjective
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.LogPeriodsModel
 
@@ -32,7 +33,7 @@ open Matrix Metric GroundTheory.Heights₂.Heights.Regular
 
 theorem P_injective {n a g : ℕ} {Λ : Type} [AddCommGroup Λ] (L : LogPeriods n a g Λ)
     {w : Fin n → ℂ} (hw : w ∈ logCover L.a_le) : Function.Injective (L.P w) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   apply L.unimod.1
   refine LinearMap.ext fun y => ?_
@@ -43,6 +44,7 @@ theorem P_injective {n a g : ℕ} {Λ : Type} [AddCommGroup Λ] (L : LogPeriods 
   exact_mod_cast this.symm
 
 end GlobalTheory.CompanionTheory.Ar.Flat.LogPeriodsModel
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.ExistsSymplecticBasisLagrangianBetween

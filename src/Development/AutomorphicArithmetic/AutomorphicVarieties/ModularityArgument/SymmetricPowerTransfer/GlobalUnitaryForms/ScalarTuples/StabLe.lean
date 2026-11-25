@@ -78,8 +78,9 @@ theorem UpperTheory.Reformulated.B.Qf45.isInt_conj :
   exact hk.map f
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GlobalUnitaryForms.ScalarTuples.StabLe
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.SymmetricPowerTransfer.GlobalUnitaryForms.ScalarTuples.StabLe
 
+noncomputable section
 
 namespace UpperTheory.V.Z.Sym.Glob
 
@@ -180,7 +181,7 @@ private theorem jA_inj (γ : DX Δ) (h : HasTr γ τ) (hr : τ ^ 2 - 4 ≠ 0) : 
   have hd' : mt γ 0 0 * mt γ 1 1 - mt γ 0 1 * mt γ 1 0 = 1 := by rw [← Matrix.det_fin_two]; exact h.1
   have ht' : mt γ 0 0 + mt γ 1 1 = algebraMap K _ τ := by rw [← h.2, Matrix.trace_fin_two]
   have inj : Function.Injective (algebraMap K (Lsq K Δ)) := (algebraMap K (Lsq K Δ)).injective
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   rw [jA_apply] at hx
   obtain ⟨e0, e1, e2, e3⟩ := jA_entries (Δ := Δ) (mt γ) x.re x.im

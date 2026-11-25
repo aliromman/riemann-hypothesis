@@ -35,8 +35,9 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.NotCompactOfMEqOne
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AppellHumbertDiagonalReal, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAppellHumbertFrameOfComplexExponential, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAppellHumbertFrameOfLineBundleIso, Development.AbelianVarietyTheory.Proofs.DivisorProofs.MumfordBundlePullbackTrivialOfImFormInt, Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiagFormTwoSmulAndKer
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AppellHumbertDiagonalReal
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AppellHumbertDiagonalReal
 
+noncomputable section
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.RealMult GlobalTheory.TorusRM
@@ -83,7 +84,6 @@ theorem im_hermForm_int {A : Over (Sp ℂ)} [GrpObj A] {L : LB A.left} {g : ℕ}
   refine ⟨n, ?_⟩
   have := congrArg Complex.im hn
   simp at this
-  have hp := Real.pi_pos
   refine mul_left_cancel₀ (a := 2 * Real.pi) (by positivity) ?_
   linear_combination this
 
@@ -91,6 +91,7 @@ variable {g : ℕ}
 
 end GlobalTheory.RiemInt
 
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAppellHumbertFrameOfComplexExponential

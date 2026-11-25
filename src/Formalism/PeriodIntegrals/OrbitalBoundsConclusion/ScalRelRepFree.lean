@@ -540,14 +540,13 @@ theorem scalRel_move (Λ : Submodule (𝓞 E) S.V) (hΛ : Submodule.IsFullLattic
 end PI.UnitaryGroupMassFormula.ScalRelRepFree
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.OrbitalBoundsConclusion.ScalRelRepFree
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.OrbitalBoundsConclusion.ScalRelRepFree
 
+noncomputable section
 
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.TermDef
 
 section
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem scalar_rep_free (D : Formalism.BasicNotions.D7) (u u' : D.what₂.Word) : PI.ScalRelRepFree.ScalarRepFree D u u' := by
   intro F0 Λ hrow x y y' hrel hsc

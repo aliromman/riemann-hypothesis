@@ -157,7 +157,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CentralizerOrbitSumConjugate
 
-
 end -- clump:auto
 
 section -- clump: shared namespace opens
@@ -398,7 +397,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FinsumRegroupFibreBijStatement
 
-
 end -- clump:auto
 
 section -- clump: shared namespace opens
@@ -546,10 +544,12 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TermEqOfSimilitudeRel
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TermEqOfSimilitudeRel
 
 open Matrix NumberField GlobalTheory.LKTrip GlobalTheory.LKRes GlobalTheory.LKMid GlobalTheory.LKCount
 open scoped TensorProduct Classical
+
+noncomputable section
 
 namespace GlobalTheory.LKMid.RelMove
 
@@ -574,11 +574,8 @@ end Generic
 
 variable {p : ℕ} [Fact p.Prime] {G : HTGroup p}
 
-theorem sh_mul (a b : G.C) : sh G (a * b) = sh G b * sh G a := by
-  simp only [sh, map_mul, MulOpposite.unop_mul]
-
 theorem sh_units (y : G.Cˣ) : sh G (y : G.C) * sh G ((y⁻¹ : G.Cˣ) : G.C) = 1 := by
-  rw [← sh_mul, Units.inv_mul]; simp [sh]
+  rw [← GlobalTheory.LKMid.PairConj.sh_mul, Units.inv_mul]; simp [sh]
 
 theorem key (y v : G.Cˣ) (β : G.C) (s : ℚ) :
     ((y * v * y⁻¹ : G.Cˣ) : G.C) * (algebraMap ℚ G.C s * (y * β * sh G y)) * sh G ((y * v * y⁻¹ : G.Cˣ) : G.C) =
@@ -586,7 +583,7 @@ theorem key (y v : G.Cˣ) (β : G.C) (s : ℚ) :
   calc ((y * v * y⁻¹ : G.Cˣ) : G.C) * (algebraMap ℚ G.C s * (y * β * sh G y)) * sh G ((y * v * y⁻¹ : G.Cˣ) : G.C)
       = s • ((y : G.C) * v * (((y⁻¹ : G.Cˣ) : G.C) * y) * β * (sh G y * sh G ((y⁻¹ : G.Cˣ) : G.C)) *
           sh G v * sh G y) := by
-        simp only [Units.val_mul, sh_mul, ← Algebra.smul_def, mul_smul_comm, smul_mul_assoc, mul_assoc]
+        simp only [Units.val_mul, GlobalTheory.LKMid.PairConj.sh_mul, ← Algebra.smul_def, mul_smul_comm, smul_mul_assoc, mul_assoc]
     _ = _ := by
         rw [Units.inv_mul, sh_units, mul_one, mul_one, Algebra.smul_def]; simp only [mul_assoc]
 
@@ -692,7 +689,6 @@ end GlobalTheory.LKMid.RelMove
 
 namespace GlobalTheory.LKMid.Pair
 
-
 open GlobalTheory.LKMid.RelMove in
 theorem term_eq_of_rel : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (P Q : Pair G) (Kf : Subgroup G.GAf)
     (f : G.GAf → ℂ) (r : ℕ) (K : Subgroup (Gr G r)) (φ : Gr G r → ℂ), 0 < r →
@@ -751,6 +747,7 @@ theorem term_eq_of_rel : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (P Q : Pai
     rw [dite_eq_right hP, dite_eq_right hQ]
 
 end GlobalTheory.LKMid.Pair
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.EtaleClopenDescent.ComplexCountRegularMarkedPoints
@@ -997,7 +994,6 @@ theorem cls_part
   simp only [hpt]
   rw [_root_.GlobalTheory.CxUnfoldGen.cls_eq_of_uniq p G v _ Kf f hf K' f' hf' β x t hx hu y₀]
   rfl
-
 
 include hf hf' in
 theorem cxSumAtM_unfold

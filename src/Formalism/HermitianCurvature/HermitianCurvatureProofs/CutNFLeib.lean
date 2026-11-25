@@ -20,11 +20,12 @@ import Mathlib.RingTheory.SimpleRing.Principal
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.HermitianCurvature.HermitianCurvatureProofs.ExponentWordRecursion, Formalism.HermitianCurvature.HermitianCurvatureProofs.ListSumSplittings, Formalism.HermitianCurvature.HermitianCurvatureProofs.CutNFLeib
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.ExponentWordRecursion
+@[expose] public section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.ExponentWordRecursion
 
 open Matrix Filter Topology
 open scoped ComplexConjugate
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.P.ListSumInequalities
 open Formalism.FourierDecayAlt.P.Ux1 hiding gN_pos
@@ -64,9 +65,7 @@ lemma list_sum_nonneg {α : Type*} (L : List α) (f : α → ℝ) (h : ∀ a ∈
 end Formalism.FourierDecayAlt.P.ListSumInequalities
 open Formalism.FourierDecayAlt.P.Ux1 hiding gN_pos
 
-namespace Formalism.FourierDecayAlt.P
-
-end Formalism.FourierDecayAlt.P
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.ListSumSplittings

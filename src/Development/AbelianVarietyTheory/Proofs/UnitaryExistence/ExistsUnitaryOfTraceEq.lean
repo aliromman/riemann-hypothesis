@@ -65,18 +65,6 @@ import Development.AbelianVarietyTheory.Definitions.ExistenceOfLattices.Permutes
 -- Members: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsSmulMemOfSpanEqTop, Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsUnitaryOfTraceEq
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsSmulMemOfSpanEqTop
-
-namespace GlobalTheory.SmulMemSpanTop
-
-open NumberField
-
-theorem exists_smul_mem_of_span_eq_top {E : Type} [Field E] [NumberField E] {n : ℕ}
-    (Λ : Submodule (𝓞 E) (Fin n → E))
-    (h : Submodule.span E (↑Λ : Set (Fin n → E)) = ⊤) (v : Fin n → E) :
-    ∃ d : 𝓞 E, d ≠ 0 ∧ d • v ∈ Λ := by
-  apply ReciprocityTheory.MultiplicativeHeights.sc_scale <;> assumption
-
-end GlobalTheory.SmulMemSpanTop
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UnitaryExistence.ExistsUnitaryOfTraceEq
@@ -214,8 +202,6 @@ section Ext
 
 variable {E : Type} [Field E] [NumberField E] {n : ℕ}
 
-alias exists_smul_mem := _root_.GlobalTheory.SmulMemSpanTop.exists_smul_mem_of_span_eq_top
-
 theorem exists_matrix_of_lattice (Λ : Submodule (𝓞 E) (Fin n → E))
     (hΛ : Submodule.span E (Λ : Set (Fin n → E)) = ⊤) (ψ : Λ →ₗ[𝓞 E] (Fin n → E)) :
     ∃ M : Matrix (Fin n) (Fin n) E, ∀ x : Λ, M *ᵥ (x : Fin n → E) = ψ x := by
@@ -224,7 +210,7 @@ theorem exists_matrix_of_lattice (Λ : Submodule (𝓞 E) (Fin n → E))
   haveI : IsLocalizedModule (nonZeroDivisors (𝓞 E)) Λ.subtype :=
     { map_units := hun
       surj := fun v => by
-        obtain ⟨d, hd, h⟩ := exists_smul_mem Λ hΛ v
+        obtain ⟨d, hd, h⟩ := Bl.general_b_fact_second.goal1 Λ hΛ v
         exact ⟨(⟨_, h⟩, ⟨d, mem_nonZeroDivisors_of_ne_zero hd⟩), rfl⟩
       exists_of_eq := fun h => ⟨1, by rw [Subtype.ext h]⟩ }
   let T := IsLocalizedModule.lift (nonZeroDivisors (𝓞 E)) Λ.subtype ψ hun
@@ -290,8 +276,8 @@ theorem exists_unitary_of_trace_eq {La : Type} [AddCommGroup La] [Module (𝓞 E
     rw [LinearEquiv.apply_symm_apply] at this
     rw [← hinj this]
     exact (φ _).2
-  · obtain ⟨d, hd, hu'⟩ := exists_smul_mem Λ hΛ u
-    obtain ⟨d', hd', hv'⟩ := exists_smul_mem Λ hΛ v
+  · obtain ⟨d, hd, hu'⟩ := Bl.general_b_fact_second.goal1 Λ hΛ u
+    obtain ⟨d', hd', hv'⟩ := Bl.general_b_fact_second.goal1 Λ hΛ v
     have e := h1 (φ.symm ⟨_, hu'⟩) (φ.symm ⟨_, hv'⟩)
     rw [← hM', ← hM', LinearEquiv.apply_symm_apply, LinearEquiv.apply_symm_apply] at e
     change herm G (M *ᵥ ((d : E) • u)) (M *ᵥ ((d' : E) • v)) = herm G ((d : E) • u) ((d' : E) • v) at e

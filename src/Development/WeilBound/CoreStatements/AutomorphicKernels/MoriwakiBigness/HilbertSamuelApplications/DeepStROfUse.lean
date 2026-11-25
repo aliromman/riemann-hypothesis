@@ -151,15 +151,14 @@ theorem exists_finite_ext_all_models_uniformised {E : Type} [Field E] [NumberFie
 end GlobalTheory.IntegralPull
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.TypingsAgree
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.JetHarmonics.TypingsAgree
 
 set_option autoImplicit false
 
+noncomputable section
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory
   CartesianMonoidalCategory MonObj IsLocalRing NumberField
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.TorsionFactsCompare
 
@@ -211,6 +210,7 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E}
 end Unif
 
 end GlobalTheory.TorsionFactsCompare
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsIntIffOfNatural
@@ -444,7 +444,6 @@ open NumberField IsDedekindDomain MeasureTheory Filter Topology
 open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD ReciprocityTheory.ChartRestriction.G.AR.Up ReciprocityTheory.ChartRestriction.G.AR.Inst Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec
 open scoped Matrix
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.Ar.Rec
 
@@ -802,17 +801,16 @@ open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec
 open scoped Matrix
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.FieldOfDatumAbelian
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CompanionTheory.Ar.Rec
 
 end GlobalTheory.CompanionTheory.Ar.Rec
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CardLower
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.CardLower
 open scoped GlobalTheory.CompHt
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Rec
 
@@ -828,6 +826,7 @@ theorem card_psi (D : D7) (Q : Par D) : Fintype.card (CMType Q.H) = D.R.f := by
 end SharpLaws
 
 end GlobalTheory.CompanionTheory.Ar.Rec
+end -- clump:auto
 end -- clump:auto
 
 end -- clump: shared namespace opens

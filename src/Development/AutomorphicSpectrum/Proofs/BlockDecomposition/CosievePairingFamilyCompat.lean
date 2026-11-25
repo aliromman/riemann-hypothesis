@@ -293,11 +293,11 @@ theorem sum_desc {K : Type} [Field K] {ι : Type} [DecidableEq ι] [Fintype ι] 
 end GlobalTheory.CompanionTheory.KunGlue.SumDesc
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShiftedComplexCohomology
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShiftedComplexCohomology
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry TensorProduct DirectSum GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.Onto CrystallineSemistableComparison.Pb CrystallineSemistableComparison.HT GlobalTheory.CompanionTheory.KunGlue
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.KunGlue.ShiftCoh
 
@@ -435,12 +435,13 @@ theorem main : ∀ {K : Type} [Field K] (ς : ℤˣ) (k : ℕ) (C : Cx.{1} K) (n
 
 end GlobalTheory.CompanionTheory.KunGlue.ShiftCoh
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShiftedSystemDescends
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShiftedSystemDescends
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry TensorProduct DirectSum GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.Onto CrystallineSemistableComparison.Pb CrystallineSemistableComparison.HT GlobalTheory.CompanionTheory.KunGlue
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.KunGlue.ShDesc
 
@@ -552,6 +553,7 @@ theorem sh_desc : ∀ {K : Type} [Field K] {ι : Type} [DecidableEq ι] (ς : �
   fun _ _ _ h => shSy_desc h
 
 end GlobalTheory.CompanionTheory.KunGlue.ShDesc
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShiftSumDifferentialCompat
@@ -825,7 +827,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TensorDirectSumBasisEquiv
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry TensorProduct DirectSum GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.Onto CrystallineSemistableComparison.Pb CrystallineSemistableComparison.HT GlobalTheory.CompanionTheory.KunGlue
 
 namespace GlobalTheory.CompanionTheory.KunGlue
@@ -857,11 +858,12 @@ theorem tensBasis : ∀ {K : Type} [Field K] {J : Type} [DecidableEq J] (V W : J
 end GlobalTheory.CompanionTheory.KunGlue
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PairingRestrictionNatural
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PairingRestrictionNatural
 
 set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry TensorProduct DirectSum GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.Onto CrystallineSemistableComparison.Pb CrystallineSemistableComparison.HT GlobalTheory.CompanionTheory.KunGlue
 
@@ -900,29 +902,8 @@ theorem reidx {V U : Type 1} [DecidableEq V] [DecidableEq U] (σ : V ≃ U) (W :
     [∀ u, AddCommGroup (W u)] [∀ u, Module K (W u)] :
     ∃ r : (⨁ v, W (σ v)) ≃ₗ[K] ⨁ u, W u,
       ∀ v x, r (DirectSum.lof K V (fun v => W (σ v)) v x) = DirectSum.lof K U W (σ v) x := by
-  let f : (⨁ v, W (σ v)) →ₗ[K] ⨁ u, W u :=
-    DirectSum.toModule K V _ fun v => DirectSum.lof K U W (σ v)
-  let g : (⨁ u, W u) →ₗ[K] ⨁ v, W (σ v) :=
-    DirectSum.toModule K U _ fun u =>
-      (DirectSum.lof K V (fun v => W (σ v)) (σ.symm u)).comp
-        ((LinearEquiv.cast (R := K) (M := W) (σ.apply_symm_apply u).symm).toLinearMap)
-  refine ⟨LinearEquiv.ofLinear f g ?_ ?_, fun v x => ?_⟩
-  · refine DirectSum.linearMap_ext K fun u => LinearMap.ext fun x => ?_
-    have key : ∀ (u' : U) (hu : u' = u) (hh : u = u'),
-        DirectSum.lof K U W u' (LinearEquiv.cast (R := K) (M := W) hh x) = DirectSum.lof K U W u x := by
-      rintro _ rfl hh
-      rfl
-    simp only [LinearMap.comp_apply, LinearMap.id_apply, f, g, DirectSum.toModule_lof, LinearEquiv.coe_coe]
-    exact key _ (σ.apply_symm_apply u) _
-  · refine DirectSum.linearMap_ext K fun v => LinearMap.ext fun x => ?_
-    have key : ∀ (v' : V) (hv : v' = v) (hh : σ v = σ v'),
-        DirectSum.lof K V (fun v => W (σ v)) v' (LinearEquiv.cast (R := K) (M := W) hh x) =
-          DirectSum.lof K V (fun v => W (σ v)) v x := by
-      rintro _ rfl hh
-      rfl
-    simp only [LinearMap.comp_apply, LinearMap.id_apply, f, g, DirectSum.toModule_lof, LinearEquiv.coe_coe]
-    exact key _ (σ.symm_apply_apply v) _
-  · simp only [LinearEquiv.ofLinear_apply, f, DirectSum.toModule_lof]
+  exact ⟨(DirectSum.lequivCongrLeft K (M := W) σ.symm).symm,
+    fun _ _ => DirectSum.lequivCongrLeft_symm_lof K⟩
 
 def KunC {P Q T : ℕ → Cx.{1} K} (pr : ∀ {a a' c : ℕ}, a + a' = c → CxPairing (P a) (Q a') (T c)) (c n : ℕ) : Prop :=
   ∃ e : (⨁ t : Idx c n, (P t.a).H t.i ⊗[K] (Q t.a').H t.j) ≃ₗ[K] (T c).H n,
@@ -1038,10 +1019,10 @@ theorem GlobalTheory.CompanionTheory.KunGlue.kun_glue : MVBij → ∀ {K : Type}
   · intro u S S' hS m n h x
     exact hnat hS u.ha _ _ x
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CosievePairingFamilyCompat
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry TensorProduct DirectSum GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.Onto CrystallineSemistableComparison.Pb CrystallineSemistableComparison.HT GlobalTheory.CompanionTheory.KunGlue
 
 namespace GlobalTheory.CompanionTheory.KunGlue.GlueGen

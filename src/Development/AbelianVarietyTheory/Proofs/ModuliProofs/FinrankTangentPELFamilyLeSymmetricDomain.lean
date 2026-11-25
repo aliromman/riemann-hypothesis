@@ -337,7 +337,7 @@ theorem finrank_symm_comm_le (E : Type) [Field E] [NumberField E] [IsCMField E] 
         apply Subtype.ext
         simp [Matrix.smul_mulVec] }
   have hinj : Function.Injective Ψ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro Θ hΘ
     obtain ⟨hs, hc⟩ := hS Θ.1 Θ.2
     have k1 : ∀ τ : E →+* ℂ, τ (H.rt : E) = ρ₀ → ∀ v ∈ Eig F τ, Θ.1.mulVec (star v) = 0 := by
@@ -1370,17 +1370,14 @@ theorem comm_of_endo : ∀ (P₀ : Out.PolAV (Sp ℂ)) (u : HolUnif P₀.A P₀.
 end GlobalTheory.KS.Endo
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsAnalyticKodairaSpencerClass
+section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.ExistsAnalyticKodairaSpencerClass
+@[expose] public section
+noncomputable section
 namespace GlobalTheory.KS.Exist
 
 alias res_res := _root_.GlobalTheory.KS.VertReg.resG_resG
 
 alias res_const := _root_.GlobalTheory.LocDerExt.res_const
-
-theorem const_zero {R : Type} [CommRing R] {X : Scheme.{0}} (p : X ⟶ Sp R) (U : X.Opens) :
-    constFn p U 0 = 0 := by
-  unfold constFn
-  rw [map_zero, map_zero]
 
 theorem ptDer_add {X : Scheme.{0}} {y : Sp ℂ ⟶ X} {δ δ' : ∀ W : X.Opens, Γ(X, W) → ℂ} (h : PtDer y δ) (h' : PtDer y δ') :
     PtDer y (fun W f => δ W f + δ' W f) := by
@@ -1563,6 +1560,8 @@ theorem exists_ksRel : ∀ (P₀ : Out.PolAV (Sp ℂ)) (u : HolUnif P₀.A P₀.
     ring
 
 end GlobalTheory.KS.Exist
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.ModuliProofs.FderivFnAddLattice

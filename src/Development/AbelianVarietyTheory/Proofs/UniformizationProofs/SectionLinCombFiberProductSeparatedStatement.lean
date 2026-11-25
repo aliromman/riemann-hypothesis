@@ -61,10 +61,10 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.SectionLinCombFiberProductSeparated
-@[expose] public noncomputable section
-attribute [local instance] Over.cartesianMonoidalCategory
+@[expose] public section
 open TensorProduct TopologicalSpace
 
+noncomputable section
 
 namespace GlobalTheory.SectionsProduct
 
@@ -444,6 +444,7 @@ theorem main : ∀ (F : Type) [Field F] (Z : Scheme.{0}) (L : LB Z), L.IsLB → 
   exact funext fun i => e.injective ((congrFun this i).trans (map_zero e).symm)
 
 end GlobalTheory.SectionsProduct
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 

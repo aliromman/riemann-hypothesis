@@ -41,8 +41,9 @@ theorem map_injective_of_injective
 end GlobalTheory.CompanionTheory.PiTensor
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.LanglandsClassificationCuspidalSupport
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.LanglandsClassificationCuspidalSupport
 
+noncomputable section
 
 open GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.SplitWeil GlobalTheory.SplitRead GlobalTheory.LocGL
 
@@ -76,7 +77,7 @@ theorem parIndMap_injective {α n : Type} {m : α → Type} [Fintype α] [Linear
     {V W : Type} [AddCommGroup V] [Module ℂ V] [AddCommGroup W] [Module ℂ W]
     (e : (Σ a, m a) ≃ n) {ρ : Representation ℂ (Levi k m) V} {σ : Representation ℂ (Levi k m) W}
     (f : ρ.IntertwiningMap σ) (hf : Function.Injective f) :
-    Function.Injective (parIndMap e f) := fun x y h =>
+    Function.Injective (parIndMap e f) := fun _ _ h =>
   Subtype.ext (Subtype.ext (funext fun g => hf
     (congrArg (fun z : IndSp e σ => z.1.1 g) h)))
 

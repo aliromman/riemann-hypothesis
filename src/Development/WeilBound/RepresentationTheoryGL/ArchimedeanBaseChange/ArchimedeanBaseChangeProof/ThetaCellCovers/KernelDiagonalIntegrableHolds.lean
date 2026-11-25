@@ -472,16 +472,16 @@ end GlobalTheory.CompanionTheory.LatticeSum
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.CutCountOf
+section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.CutCountOf
+@[expose] public section
 
+noncomputable section
 
 open NumberField IsDedekindDomain Matrix MeasureTheory
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.BcB.E PositivityTheory.Rg.Rs
 open scoped ENNReal Pointwise
 
 namespace PositivityTheory.Rg.BcB.E1
-
-attribute [local instance] borelH
 
 theorem cntPair_of (h : RatProper) (ht : ThetaBasic) : CntPair := by
   intro E _ _ _ a b
@@ -578,6 +578,8 @@ theorem cutCount_of (h1 : RedBasic) (h2 : CutRed) (h3 : WtCount) : CutCount := b
 
 end PositivityTheory.Rg.BcB.E1
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.ThetaCellCovers.KernelDiagonalIntegrableHolds

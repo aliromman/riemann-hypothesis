@@ -196,8 +196,9 @@ theorem massDataMasses_of_strongApprox (hH : HinfCompact) (hK : KCompactOpen) (h
 end MassDataMassesW
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MassComputations.FundamentalDomainOfCompactOpen
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.MassComputations.FundamentalDomainOfCompactOpen
 
+noncomputable section
 
 open MeasureTheory NumberField Set
 open Formalism.BasicNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.L2.SG.Sub Formalism.L2.SG.Measures Formalism.L2.SG.HidaSetting Formalism.L2.SG.AdBridge
@@ -209,12 +210,6 @@ namespace MassDataMassesW
 section Level
 
 variable {D : D7} (X : HidaSetting D)
-
-theorem kset_mul {x y : X.B.I.Gf} (hx : x ∈ X.B.I.Kset) (hy : y ∈ X.B.I.Kset) : x * y ∈ X.B.I.Kset :=
-  (Formalism.UG.stabGL X.B.I.Lf).mul_mem hx hy
-
-theorem kset_inv {x : X.B.I.Gf} (hx : x ∈ X.B.I.Kset) : x⁻¹ ∈ X.B.I.Kset :=
-  (Formalism.UG.stabGL X.B.I.Lf).inv_mem hx
 
 theorem gf_eq_one (hb : AdBridgeIso X.B.I) (δ : X.B.I.GA) (hδ : δ ∈ X.B.I.GFset) (h1 : δ.1 = 1) : δ = 1 := by
   obtain ⟨g, -, hinf, hfin⟩ := hδ
@@ -322,7 +317,7 @@ theorem fundamental_domain_of_compact_open (hKo : KCompactOpen) (hRB : NRatBridg
       have h2 := hL.2.1 _ hK2
       have : δ.2 = X.xu u * ((X.xu u)⁻¹ * δ.2 * X.xu u) * (X.xu u)⁻¹ := by group
       rw [this]
-      exact kset_mul X (kset_mul X hx h2) (kset_inv X hx)
+      exact Formalism.L2.SG.PoincareInHH.Cut.kset_mul X (Formalism.L2.SG.PoincareInHH.Cut.kset_mul X hx h2) (Formalism.L2.SG.PoincareInHH.Cut.kset_inv X hx)
     have hfinK : finHA X hb δ.2 ∈ KX X := (hBK X hb δ.2).1 hKs
     refine ⟨⟨⟨toHA X.B.I hb δ * γ, (Nsub _ _ _ _).mul_mem hγ'N hγN⟩,
       Subgroup.mem_comap.2 (Subgroup.mul_mem _ hγ'F hγF)⟩, ?_⟩
@@ -362,6 +357,7 @@ theorem fundamental_domain_of_compact_open (hKo : KCompactOpen) (hRB : NRatBridg
   exact mul_inv_eq_one.1 h1g
 
 end MassDataMassesW
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.OrbitalBoundsConclusion.MassDataMasses

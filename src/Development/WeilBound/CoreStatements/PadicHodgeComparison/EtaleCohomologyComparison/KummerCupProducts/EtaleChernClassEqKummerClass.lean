@@ -44,11 +44,11 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AcrisZeroImageDividedPower, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChernClassCompatibleSystem, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChernClassUniqueOfLiftAndLog, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EdgeCupOfSteps, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EdgeUniqOf, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsKumPow, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KapOneEqTwGen, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LcCover, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LcMorCup, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LiftEx, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LineBC, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LocSplit, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MapNsmulTwGen, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MulEvCongr, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PullCZsmul, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RedResMor, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RedRootOfRep, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RepBasic, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RepConcOfInputs, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RepOp, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ResGenRes, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ResLoc, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ResSplit, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ResZero, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SecMapRes, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SecResMap, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SecSubsingleton, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SignCancel, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.StAdd, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.StCol, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.StExOfStCol, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.StTopOfStCol, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.StUniq, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.StairCupFirst, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwUgCompAlgebraMap, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UntiltIterateSymmEpsilon, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.KummerCupProducts.EtaleChernClassEqKummerClass
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AcrisZeroImageDividedPower
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AcrisZeroImageDividedPower
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory Limits AlgebraicGeometry Opposite GroundTheory.PAdicHodge CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.LogEpsP
 
@@ -97,10 +97,9 @@ theorem GlobalTheory.CompanionTheory.LogEpsP.logEps : CrystallineSemistableCompa
   · rw [ACris.periodT, GlobalTheory.CompanionTheory.LogEpsP.cris_log]
     exact Finset.sum_congr rfl fun k _ => GlobalTheory.CompanionTheory.LogEpsP.cris_logTerm A n k _
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChernClassCompatibleSystem
-
-set_option backward.isDefEq.respectTransparency false
 
 open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
 
@@ -135,7 +134,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChernClassUniqueOfLiftAndLog
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory Limits AlgebraicGeometry Opposite GroundTheory.PAdicHodge CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
 
 namespace GlobalTheory.CompanionTheory.EtChern
@@ -163,10 +161,11 @@ theorem chern_class_unique_of_lift_and_log : CrystallineSemistableComparison.E.L
 end GlobalTheory.CompanionTheory.EtChern
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EdgeCupOfSteps
+section -- clump: shared namespace opens
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EdgeCupOfSteps
 
 namespace GlobalTheory.CompanionTheory.EdgeMap
 
@@ -186,10 +185,6 @@ end GlobalTheory.CompanionTheory.EdgeMap
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.EdgeUniqOf
-
-set_option backward.isDefEq.respectTransparency false
-
-open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
 
 namespace GlobalTheory.CompanionTheory.EdgeClass
 
@@ -219,9 +214,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsKumPow
 
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
-
 namespace GlobalTheory.CompanionTheory.KumPowProof
 
 theorem isKum_pow {q : ℕ} {t : ∀ U : Scheme.{0}, (Γ(U, ⊤))ˣ → Sec ((res _ (tw q 1)).X 0) U} (ht : IsKum q t)
@@ -237,11 +229,6 @@ theorem isKum_pow {q : ℕ} {t : ∀ U : Scheme.{0}, (Γ(U, ⊤))ˣ → Sec ((re
     have hw' : (w : Γ(U, ⊤)) = ζ.1 * (ζ.1 ^ k * v) := by rw [hw]; ring
     obtain ⟨z, hz⟩ : IsUnit (ζ.1 ^ k * v) := isUnit_of_mul_isUnit_right (hw' ▸ w.isUnit)
     rw [ht.2 U ζ z w (by rw [hw', hz]), ih z hz, succ_nsmul, add_assoc]
-
-theorem res_smap {R : Type} [CommRing R] {F G : Shv R} (φ : F ⟶ G) {V U : Scheme.{0}} (g : V ⟶ U) (x : Sec F U) :
-    Sec.res g (Sec.map φ x) = Sec.map φ (Sec.res g x) := by
-  have h := φ.hom.naturality g.op
-  exact (congrArg (fun m => m.hom x) h).symm
 
 theorem kumPow : LcCover → RepRoot → KapSpec → PrimAlg → KumPow := by
   intro hL _ hK _ hKum q _ U ζ f r v hr
@@ -266,7 +253,7 @@ theorem kumPow : LcCover → RepRoot → KapSpec → PrimAlg → KumPow := by
   have e2 : Sec.res (j a) (kumT q U v) = kumT q (W a) (Units.map (j a).appTop.hom.toMonoidHom v) :=
     ht.1 _ _ (j a) _ hq
   have e3 : Sec.res (j a) (Sec.map (resι _ (tw q 1)) (kap 1 ζ f)) = a.val • resGen 1 (primRes (j a) ζ) := by
-    rw [res_smap, hsm]
+    rw [GlobalTheory.CompanionTheory.EtNatProof.res_map, hsm]
     exact map_nsmul _ _ _
   have e0 : Sec.res (j a) (kumT q U v + Sec.map (resι _ (tw q 1)) (kap 1 ζ f)) =
       Sec.res (j a) (kumT q U v) + Sec.res (j a) (Sec.map (resι _ (tw q 1)) (kap 1 ζ f)) := map_add _ _ _
@@ -276,9 +263,6 @@ end GlobalTheory.CompanionTheory.KumPowProof
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.KapOneEqTwGen
-
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
 
 namespace GlobalTheory.CompanionTheory.EdgeRoot
 
@@ -327,9 +311,6 @@ end GlobalTheory.CompanionTheory.EdgeRoot
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LcCover
-
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
 
 namespace GlobalTheory.CompanionTheory.LcCoverProof
 
@@ -384,9 +365,10 @@ theorem lcCover : CrystallineSemistableComparison.E.LcCover := by
 end GlobalTheory.CompanionTheory.LcCoverProof
 end -- clump:auto
 
+end -- clump: shared namespace opens
+
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LcMorCup
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory Limits AlgebraicGeometry Opposite GroundTheory.PAdicHodge CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
 
 namespace GlobalTheory.CompanionTheory.EtCupF
@@ -429,8 +411,6 @@ end GlobalTheory.CompanionTheory.EtCupF
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LiftEx
-
-set_option backward.isDefEq.respectTransparency false
 
 open CategoryTheory Limits AlgebraicGeometry Opposite GroundTheory.PAdicHodge CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
 
@@ -477,12 +457,6 @@ open CategoryTheory Limits AlgebraicGeometry Opposite GroundTheory.PAdicHodge Cr
 
 namespace GlobalTheory.CompanionTheory.LineBase
 
-theorem u_eq {X : Scheme.{0}} (D : LineData X) {V : Scheme.{0}} {a a' b b' : V ⟶ D.Y}
-    (ha : a = a') (hb : b = b') (h : a ≫ D.f = b ≫ D.f) (h' : a' ≫ D.f = b' ≫ D.f) :
-    D.u a b h = D.u a' b' h' := by
-  subst ha hb
-  rfl
-
 noncomputable def pull {X' X : Scheme.{0}} (g : X' ⟶ X) (D : LineData X) : LineData X' where
   Y := pullback D.f g
   f := pullback.snd D.f g
@@ -494,7 +468,7 @@ noncomputable def pull {X' X : Scheme.{0}} (g : X' ⟶ X) (D : LineData X) : Lin
     rw [Category.assoc, Category.assoc, pullback.condition, ← Category.assoc, ← Category.assoc, h])
   nat := fun {V' V} k a b h => by
     rw [← D.nat k (a ≫ pullback.fst D.f g) (b ≫ pullback.fst D.f g)]
-    exact u_eq D (Category.assoc _ _ _) (Category.assoc _ _ _) _ _
+    exact GlobalTheory.CompanionTheory.FKum.u_congr D (Category.assoc _ _ _) (Category.assoc _ _ _) _ _
   coc := fun {V} a b c h h' => D.coc _ _ _ _ _
 
 theorem lineBC : CrystallineSemistableComparison.E.LineBC := by
@@ -566,11 +540,11 @@ theorem locSplit : CrystallineSemistableComparison.E.LocSplit := by
 end GlobalTheory.CompanionTheory.LocSplitProof
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MapNsmulTwGen
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MapNsmulTwGen
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.CstE.KapRedP
 
@@ -579,11 +553,6 @@ theorem up_smul_eq {q : ℕ} {M : Type*} [AddCommGroup M] [Module (ULift.{1} (ZM
   have e : (ULift.up r : ULift.{1} (ZMod q)) = ((c : ℕ) : ULift.{1} (ZMod q)) := by
     ext; rw [ULift.down_natCast, h]
   rw [e, Nat.cast_smul_eq_nsmul]
-
-theorem res_map {R : Type} [CommRing R] {F G : Shv R} (φ : F ⟶ G) {V U : Scheme.{0}} (g : V ⟶ U) (x : Sec F U) :
-    Sec.res g (Sec.map φ x) = Sec.map φ (Sec.res g x) := by
-  have h := congrArg (fun ψ => ψ.hom x) (φ.hom.naturality g.op)
-  exact h.symm
 
 theorem map_nsmul_twGen {q : ℕ} (i : ℤ) {U : Scheme.{0}} (ζ : Prim q Γ(U, ⊤)) (c : ℕ) :
     Sec.map (resι _ (tw q i)) (c • twGen i ζ) = c • resGen i ζ :=
@@ -605,16 +574,17 @@ theorem kapRed : CrystallineSemistableComparison.E.LcCover → CrystallineSemist
     rw [(hKap q i U ξ (f.map (ZMod.castHom h (ZMod q)))).1 (W a) (j a) (ZMod.castHom h (ZMod q) a)
       (fun v => by simp [hj a v])]
     exact up_smul_eq _ a.val (by rw [ZMod.castHom_apply, ZMod.natCast_val]) _
-  rw [(redMap Q q i).nat (j a) 0, res_map, res_map, hL, hR, map_nsmul_twGen, map_nsmul_twGen, map_nsmul,
+  rw [(redMap Q q i).nat (j a) 0, GlobalTheory.CompanionTheory.EtNatProof.res_map, GlobalTheory.CompanionTheory.EtNatProof.res_map, hL, hR, map_nsmul_twGen, map_nsmul_twGen, map_nsmul,
     hRed Q q h i (W a) (primRes (j a) ζ) (primRes (j a) ξ) hξ']
 
 end GlobalTheory.CompanionTheory.CstE.KapRedP
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MulEvCongr
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MulEvCongr
+@[expose] public section
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
 open CochainComplex CochainComplex.HomComplex
@@ -650,11 +620,12 @@ theorem repCup : CrystallineSemistableComparison.E.EvExt → CrystallineSemistab
 
 end GlobalTheory.CompanionTheory.EdgeRep
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PullCZsmul
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
 
 namespace GlobalTheory.CompanionTheory.EdgeMapPull
@@ -708,7 +679,6 @@ theorem st_pullC (n : ResMor T T' m) {j : ℕ} (z : Cn F j) :
 
 end GlobalTheory.CompanionTheory.EdgeMapPull
 
-
 open GlobalTheory.CompanionTheory.EdgeMapPull in
 theorem GlobalTheory.CompanionTheory.EdgeMapPull.edgeMap : CrystallineSemistableComparison.E.EdgeMap := by
   intro R R' _ _ σ C C' _ _ F F' T T' m n j x h hE
@@ -716,22 +686,18 @@ theorem GlobalTheory.CompanionTheory.EdgeMapPull.edgeMap : CrystallineSemistable
   exact ⟨m.pullC j z, by rw [m.d_pullC, hz, map_zero], st_pullC n z j 0 x hS, rfl⟩
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RedResMor
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RedResMor
 
 set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.EdgeRed
 
 theorem res_res {R : Type} [CommRing R] {F : Shv R} {W V U : Scheme.{0}} (h : W ⟶ V) (g : V ⟶ U) (x : Sec F U) :
     Sec.res h (Sec.res g x) = Sec.res (h ≫ g) x := by
   simp [Sec.res]
-
-theorem res_map {R : Type} [CommRing R] {F G : Shv R} (φ : F ⟶ G) {V U : Scheme.{0}} (g : V ⟶ U) (x : Sec F U) :
-    Sec.res g (Sec.map φ x) = Sec.map φ (Sec.res g x) := by
-  have h := φ.hom.naturality g.op
-  exact (congrArg (fun t => t.hom x) h).symm
 
 variable {C C' : Type 1} [Category.{0} C] [Category.{0} C']
 
@@ -754,13 +720,13 @@ def redResMor (hS : KapSpec) (hK : KapRed) (hR : InRed) {Q q : ℕ} [NeZero Q] [
   ι c x := by
     change Sec.res (g c) ((redMap Q q i).app _ 0 (Sec.map (resι _ (tw Q i)) (kap i (P.ζ (m.G.obj c)) x))) =
       Sec.map (resι _ (tw q i)) (kap i (P'.ζ c) (m.τ c x))
-    rw [(redMap Q q i).nat, res_map, (hS Q i _ (P.ζ (m.G.obj c)) x).2.2 _ (g c),
+    rw [(redMap Q q i).nat, GlobalTheory.CompanionTheory.EtNatProof.res_map, (hS Q i _ (P.ζ (m.G.obj c)) x).2.2 _ (g c),
       hK hR Q q h i _ (primRes (g c) (P.ζ (m.G.obj c))) (P'.ζ c) (hζ c), hτ]
     rfl
   dv s c x := by
     change Sec.res (g c) ((redMap Q q i).app _ ((s + 1 : ℕ) : ℤ) (Sec.map ((GlobalTheory.EtC.res _ (tw Q i)).d (s : ℤ) ((s + 1 : ℕ) : ℤ)) x)) =
       Sec.map ((GlobalTheory.EtC.res _ (tw q i)).d (s : ℤ) ((s + 1 : ℕ) : ℤ)) (Sec.res (g c) ((redMap Q q i).app _ (s : ℤ) x))
-    rw [← (redMap Q q i).comm, res_map]
+    rw [← (redMap Q q i).comm, GlobalTheory.CompanionTheory.EtNatProof.res_map]
 
 theorem etRed : CrystallineSemistableComparison.E.EtSpec → CrystallineSemistableComparison.E.EdgeMap → CrystallineSemistableComparison.E.RepBasic → CrystallineSemistableComparison.E.RepOp → CrystallineSemistableComparison.E.KapSpec →
     CrystallineSemistableComparison.E.KapRed → CrystallineSemistableComparison.E.EtRed := by
@@ -780,10 +746,9 @@ theorem etRed : CrystallineSemistableComparison.E.EtSpec → CrystallineSemistab
 
 end GlobalTheory.CompanionTheory.EdgeRed
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RedRootOfRep
-
-set_option backward.isDefEq.respectTransparency false
 
 open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
 
@@ -801,8 +766,6 @@ end GlobalTheory.CompanionTheory.EdgeMap
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RepBasic
-
-set_option backward.isDefEq.respectTransparency false
 
 open CategoryTheory AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
 
@@ -845,7 +808,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RepConcOfInputs
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
 
 namespace GlobalTheory.CompanionTheory.EdgeMap
@@ -893,8 +855,6 @@ end GlobalTheory.CompanionTheory.EdgeMap
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RepOp
-
-set_option backward.isDefEq.respectTransparency false
 
 open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
 
@@ -975,10 +935,11 @@ theorem repRoot : CrystallineSemistableComparison.E.RepConc → CrystallineSemis
 end GlobalTheory.CompanionTheory.EtRoot
 end -- clump:auto
 
-@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ResLoc
+section -- clump: shared namespace opens
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ResLoc
 
 namespace GlobalTheory.CompanionTheory.EdgeMap
 
@@ -991,15 +952,7 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ResSplit
 
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
-
 namespace GlobalTheory.CompanionTheory.ResSplitProof
-
-theorem map_res {R : Type} [CommRing R] {F G : Shv R} (φ : F ⟶ G) {V U : Scheme.{0}} (g : V ⟶ U)
-    (x : Sec F U) : Sec.map φ (Sec.res g x) = Sec.res g (Sec.map φ x) := by
-  have h := φ.hom.naturality g.op
-  exact congrArg (fun k => ModuleCat.Hom.hom k x) h
 
 theorem resSplit : CrystallineSemistableComparison.E.ResLoc → CrystallineSemistableComparison.E.LocSplit → CrystallineSemistableComparison.E.LcCover → CrystallineSemistableComparison.E.ResSplit := by
   intro hRL hLS hLC R _ F U hU s x
@@ -1014,7 +967,7 @@ theorem resSplit : CrystallineSemistableComparison.E.ResLoc → CrystallineSemis
     obtain ⟨w, -, huniq⟩ := hglue R _ (fun a => Sec.res (j a) x)
     refine ⟨z, ?_⟩
     have h1 := huniq (Sec.map ((GlobalTheory.EtC.res R F).d (↑s) (↑(s + 1))) z)
-      (fun a => by rw [← map_res, hz a, hy a])
+      (fun a => by rw [← GlobalTheory.EtC.exactIff_map_res, hz a, hy a])
     have h2 := huniq x (fun a => rfl)
     exact h1.trans h2.symm
   · rintro ⟨y, rfl⟩
@@ -1030,9 +983,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ResZero
 
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
-
 namespace GlobalTheory.CompanionTheory.EtRes
 
 theorem resZero : CrystallineSemistableComparison.E.ResZero := by
@@ -1045,15 +995,7 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SecMapRes
 
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
-
 namespace GlobalTheory.CompanionTheory.EdgeRes
-
-theorem sec_map_res {R : Type} [CommRing R] {F G : Shv R} (φ : F ⟶ G) {V U : Scheme.{0}} (g : V ⟶ U) (y : Sec F U) :
-    Sec.map φ (Sec.res g y) = Sec.res g (Sec.map φ y) := by
-  have h := φ.hom.naturality g.op
-  exact congrArg (fun f => f.hom y) h
 
 theorem resGood : CrystallineSemistableComparison.E.KapSpec → CrystallineSemistableComparison.E.KapBij → CrystallineSemistableComparison.E.ResZero → CrystallineSemistableComparison.E.ResSplit → CrystallineSemistableComparison.E.ResGood := by
   intro hS hB hZ hX hgen q _ C _ P i
@@ -1061,11 +1003,11 @@ theorem resGood : CrystallineSemistableComparison.E.KapSpec → CrystallineSemis
   · intro c c' φ x
     have h1 := (hS q i (P.U c) (P.ζ c) x).2.2 (P.U c') (P.S.map φ).unop
     rw [P.ζ_nat φ] at h1
-    have h2 := sec_map_res (resι _ (tw q i)) (P.S.map φ).unop (kap i (P.ζ c) x)
+    have h2 := GlobalTheory.EtC.exactIff_map_res (resι _ (tw q i)) (P.S.map φ).unop (kap i (P.ζ c) x)
     rw [h1] at h2
     exact h2
   · intro s c c' φ x
-    exact sec_map_res ((GlobalTheory.EtC.res _ (tw q i)).d (s : ℤ) ((s + 1 : ℕ) : ℤ)) (P.S.map φ).unop x
+    exact GlobalTheory.EtC.exactIff_map_res ((GlobalTheory.EtC.res _ (tw q i)).d (s : ℤ) ((s + 1 : ℕ) : ℤ)) (P.S.map φ).unop x
   · intro c a b h
     exact (hB hgen q i (P.U c) (P.ζ c)).1 ((hZ _ (tw q i) (P.U c)).1 h)
   · intro c y
@@ -1085,16 +1027,7 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SecResMap
 
-set_option backward.isDefEq.respectTransparency false
-
-open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
-
 namespace GlobalTheory.CompanionTheory.KapMulE
-
-theorem sec_res_map {R : Type} [CommRing R] {F G : Shv R} (φ : F ⟶ G) {V U : Scheme.{0}} (g : V ⟶ U)
-    (x : Sec F U) : Sec.res g (Sec.map φ x) = Sec.map φ (Sec.res g x) := by
-  change ((φ.hom.app (op U) ≫ G.obj.map g.op).hom x) = ((F.obj.map g.op ≫ φ.hom.app (op V)).hom x)
-  rw [φ.hom.naturality]
 
 theorem res_kap (hKS : KapSpec) {q : ℕ} (i : ℤ) {U : Scheme.{0}} (ζ : Prim q Γ(U, ⊤))
     (f : LocallyConstant U (ZMod q)) {V : Scheme.{0}} (k : V ⟶ U) (a : ZMod q) (h : ∀ v : V, f (k v) = a) :
@@ -1102,7 +1035,7 @@ theorem res_kap (hKS : KapSpec) {q : ℕ} (i : ℤ) {U : Scheme.{0}} (ζ : Prim 
       (ULift.up a : ULift.{1} (ZMod q)) • resGen i (primRes k ζ) := by
   obtain ⟨h1, -, -⟩ := hKS q i U ζ f
   unfold CrystallineSemistableComparison.E.IsLC at h1
-  rw [sec_res_map, h1 V k a h]
+  rw [GlobalTheory.CompanionTheory.EtNatProof.res_map, h1 V k a h]
   simp only [GlobalTheory.EtC.Sec.map, GlobalTheory.EtC.resGen, map_smul]
 
 theorem kapMul_of : LcCover → RepRoot → KapSpec → KapMul := by
@@ -1132,9 +1065,6 @@ end GlobalTheory.CompanionTheory.KapMulE
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SecSubsingleton
-
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
 
 namespace GlobalTheory.CompanionTheory.TwZeroGen
 
@@ -1180,10 +1110,11 @@ theorem twZero : RootPow → LcCover → RepRoot → TwZero := by
 end GlobalTheory.CompanionTheory.TwZeroGen
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SignCancel
+end -- clump: shared namespace opens
 
-set_option backward.isDefEq.respectTransparency false
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SignCancel
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
 
@@ -1243,11 +1174,13 @@ theorem stCupB : CupLeib.{1} → StCol → StCupB := by
 
 end GlobalTheory.CompanionTheory.Staircase
 end -- clump:auto
+end -- clump:auto
+
+section -- clump: shared namespace opens
+
+open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.StAdd
-
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
 
 namespace GlobalTheory.CompanionTheory.StairAdd
 
@@ -1273,10 +1206,6 @@ end GlobalTheory.CompanionTheory.StairAdd
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.StCol
-
-set_option backward.isDefEq.respectTransparency false
-
-open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
 
 namespace GlobalTheory.CompanionTheory.EdgeStair
 
@@ -1330,10 +1259,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.StExOfStCol
 
-set_option backward.isDefEq.respectTransparency false
-
-open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
-
 namespace GlobalTheory.CompanionTheory.EdgeStair
 
 theorem stEx_of_stCol : CrystallineSemistableComparison.E.StCol → CrystallineSemistableComparison.E.StEx := by
@@ -1363,9 +1288,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.StTopOfStCol
 
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
-
 namespace GlobalTheory.CompanionTheory.EdgeMap
 
 theorem stTop_of_stCol : CrystallineSemistableComparison.E.StCol → CrystallineSemistableComparison.E.StTop := by
@@ -1389,9 +1311,6 @@ end GlobalTheory.CompanionTheory.EdgeMap
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.StUniq
-
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
 
 namespace GlobalTheory.CompanionTheory.EdgeStair
 
@@ -1437,9 +1356,6 @@ end GlobalTheory.CompanionTheory.EdgeStair
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.StairCupFirst
-
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory AlgebraicGeometry Opposite CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
 
 namespace GlobalTheory.CompanionTheory.StairCupFirst
 
@@ -1488,6 +1404,8 @@ theorem stCupA : CrystallineSemistableComparison.E.CupLeib.{1} → CrystallineSe
 
 end GlobalTheory.CompanionTheory.StairCupFirst
 end -- clump:auto
+
+end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwUgCompAlgebraMap
 
@@ -1554,11 +1472,11 @@ theorem GlobalTheory.CompanionTheory.TwUg.twUg_prop : CrystallineSemistableCompa
     fun M A y => GlobalTheory.CompanionTheory.TwUg.geomPt_galMap M σ A y⟩
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UntiltIterateSymmEpsilon
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UntiltIterateSymmEpsilon
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory Limits AlgebraicGeometry Opposite GroundTheory.PAdicHodge CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.E GlobalTheory.EtC
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.EpsRootProof
 
@@ -1601,10 +1519,9 @@ theorem epsRoot : CrystallineSemistableComparison.E.EpsRoot := by
 
 end GlobalTheory.CompanionTheory.EpsRootProof
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.KummerCupProducts.EtaleChernClassEqKummerClass
-
-set_option backward.isDefEq.respectTransparency false
 
 namespace CrystallineSemistableComparison.E.Main
 

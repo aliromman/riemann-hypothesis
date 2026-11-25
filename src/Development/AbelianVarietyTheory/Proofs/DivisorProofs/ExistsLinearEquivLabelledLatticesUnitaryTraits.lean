@@ -190,9 +190,10 @@ theorem latAt_unique : ∀ (o Ω : Type) [CommRing o] [IsDomain o] [Field Ω] [A
 end GlobalTheory.UPoinc.GFibUniq
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CharacterLatticeUnitaryClassicalTraitCentre
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CharacterLatticeUnitaryClassicalTraitCentre
 open GlobalTheory.Poinc.Eq8 GlobalTheory.TorusPart GlobalTheory.ZM GlobalTheory.SiegelTor
 
+noncomputable section
 
 namespace GlobalTheory.UPoinc.GFibCentre
 
@@ -328,7 +329,6 @@ theorem char_eq_bar_smul : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E
     have h3 : ‖algebraMap (FractionRing u.V) (PadicAlgCl p) (algebraMap u.V _ (w : u.V))‖ *
         ‖algebraMap (FractionRing u.V) (PadicAlgCl p) (algebraMap u.V _ ((w⁻¹ : u.Vˣ) : u.V))‖ = 1 := by
       rw [← norm_mul, ← map_mul, ← map_mul, Units.mul_inv, map_one, map_one, norm_one]
-    have h4 := norm_nonneg (algebraMap (FractionRing u.V) (PadicAlgCl p) (algebraMap u.V _ ((w⁻¹ : u.Vˣ) : u.V)))
     have h5 := norm_nonneg (algebraMap (FractionRing u.V) (PadicAlgCl p) (algebraMap u.V _ (w : u.V)))
     nlinarith
   have hpol : ∀ a' b, l.q (s a' + b) - l.q (s a') - l.q b = l.q (a' + m b) - l.q a' - l.q (m b) := by
@@ -544,6 +544,7 @@ theorem latAt_centre : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H
   exact congrArg (k * ·) (hc t a _ ((key a v).1 h))
 
 end GlobalTheory.UPoinc.GFibCentre
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryEndomorphismsTorsionExtendSemiAbelian

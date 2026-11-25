@@ -103,8 +103,9 @@ theorem UpperTheory.Reformulated.B.CommonEigenvectorOfCommutingSet.common_eig :
       exact ⟨v, hv.1, hv0, hv'⟩
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.UpperTriangularPlaces.NormalValuationBounds.CharpolyScalar
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.UpperTriangularPlaces.NormalValuationBounds.CharpolyScalar
 
+noncomputable section
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual Formalism.HC ReciprocityTheory.Gal Polynomial Module UpperTheory.V.Z.Win
 
@@ -171,7 +172,7 @@ private theorem chars_of_comm {Γ : Type} [Group Γ] :
       refine LinearMap.ext fun x => ?_
       obtain ⟨y, rfl⟩ := Submodule.mkQ_surjective W x
       have h1 : ρ a (ρ b y) = ρ b (ρ a y) := LinearMap.congr_fun (hc a b) y
-      simp [ρ', Module.End.mul_apply, h1]) hq
+      simp [ρ', h1]) hq
     refine ⟨Fin.cons c0.toHomUnits χ, fun g => ?_⟩
     rw [Fin.prod_univ_succ, GlobalTheory.CuspGL.charpoly_eq_restrict_mul_mapQ W (ρ g) (hW g)]
     simp only [Fin.cons_zero, Fin.cons_succ]

@@ -71,8 +71,9 @@ import Development.AbelianVarietyTheory.Definitions.RegularCharts.SCharts
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsModularSectionOfIntegralGenericValue, Development.AbelianVarietyTheory.Proofs.GenericRegularity.BddSecPowSuccAndConstTermPowSucc, Development.AbelianVarietyTheory.Proofs.GenericRegularity.EvalIsHomogeneousMemCuspForms, Development.AbelianVarietyTheory.Proofs.GenericRegularity.IsBddSecOfIntegral, Development.AbelianVarietyTheory.Proofs.GenericRegularity.CuspFormOfIntegralOverCuspForms, Development.AbelianVarietyTheory.Proofs.GenericRegularity.IsCuspFormOfIntegralOverDominantWeight, Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsCuspOfIntegralAll, Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExtendByZeroConstMul
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsModularSectionOfIntegralGenericValue
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GenericRegularity.ExistsModularSectionOfIntegralGenericValue
 
+noncomputable section
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField IsDedekindDomain
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.Reg
@@ -150,7 +151,6 @@ theorem evC_aeval (hL : EvLaws Xo c) (h : GenFrEx Xo c) (Z : Comp Xo c) {N : ℕ
 
 theorem chart_mem (hL : EvLaws Xo c) {h : GenFrEx Xo c} (C : FChart h) {a : (E →+* ℂ) × ℕ → ℕ} {n : ℕ}
     {f : Rul Xo c} (hf : f ∈ sec Xo c a n) : wchar (ex Dw a n) C.t * evC h C.Z f ∈ C.R := by
-  set_option synthInstance.maxHeartbeats 200000 in
   have h1 := hL.wt a n f hf (Om C.Z) C.t (genFr h C.Z) C.yg (hL.test _ _) (hL.test _ _) C.bor
   set_option synthInstance.maxHeartbeats 200000 in
   have h2 := _root_.GlobalTheory.Reg.evR_baseChange_of_isReduced E H Dw l Xo c hL a n f hf C.R (Om C.Z) C.R.val C.y C.yg C.gen
@@ -232,6 +232,7 @@ theorem GlobalTheory.Reg.exists_sec_of_integral : ∀ (E : Type) [Field E] [Numb
       refine Finset.sum_congr rfl fun i _ => ?_
       rw [map_mul, map_pow, ← ev, ← ev, hZ, evC_aeval hL]
     · rw [← ev, hZ' Z' hne, zero_mul]
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens

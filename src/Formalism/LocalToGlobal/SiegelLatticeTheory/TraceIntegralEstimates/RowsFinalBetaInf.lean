@@ -19,19 +19,16 @@ import Formalism.HermitianCurvature.HermitianCurvatureProofs.AdjointnessPolynomi
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanCoefficientNonzero.Factor, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanCoefficientNonzero.InnerInvOfDS, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanCoefficientNonzero.Smooth, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanCoefficientNonzero.Assemble, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanCoefficientNonzero.MeasurableTripleProduct, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanCoefficientNonzero.LimRightLimit, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.BetaInfCoefNZ, Formalism.LocalToGlobal.SiegelLatticeTheory.TraceIntegralEstimates.RowsFinalBetaInf
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanCoefficientNonzero.Factor
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanCoefficientNonzero.Factor
 
 open MeasureTheory
 open scoped InnerProductSpace ENNReal
 
+noncomputable section
 
 namespace PI.BICNZ
 
 open Formalism.FourierDecayAlt.B Formalism.QuantumDeterminants Formalism.MainNotions.S.Pv.BetaCut
-
-theorem sf_of_haar {k r : ℕ} {U : Set (Mat k r)} {μ : Measure (Mt k r)} (h : IsHaarOn U μ) : SigmaFinite μ := by
-  haveI : IsFiniteMeasureOnCompacts μ := ⟨fun K hK => h.finite_compact K hK⟩
-  infer_instance
 
 theorem itD_const_mul (a : ℂ) (f : ℝ → ℂ) (n : ℕ) :
     iteratedDeriv n (fun y => a * f y) = fun y => a * iteratedDeriv n f y := by
@@ -117,9 +114,9 @@ theorem hasCompactSupport_right_profile {k r : ℕ} {Wp Wq H : Type} [NormedAddC
 theorem ae_inSS {k r : ℕ} {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp]
     [NormedAddCommGroup Wq] [InnerProductSpace ℂ Wq] (D : RealPlaceData k r Wp Wq) :
     ∀ᵐ p ∂((D.μW.prod D.μN).prod (D.μW'.prod D.μN)), D.inSS p := by
-  haveI := sf_of_haar D.haarW
-  haveI := sf_of_haar D.haarN
-  haveI := sf_of_haar D.haarW'
+  haveI := Formalism.FourierDecayAlt.P.B2x2.sfin D.haarW
+  haveI := Formalism.FourierDecayAlt.P.B2x2.sfin D.haarN
+  haveI := Formalism.FourierDecayAlt.P.B2x2.sfin D.haarW'
   have hW : ∀ᵐ x ∂D.μW, Matrix.of x ∈ UWset k r D.z := by
     rw [ae_iff]
     exact D.haarW.conc
@@ -149,9 +146,9 @@ theorem betaFactor_of (hP : PhiAt) (hL : LeftProfileContDiffTwo) (hR : RightProf
   intro k r Wp Wq _ _ _ _ _ _ D ε lm H _ _ _ σ hHC hDS
   obtain ⟨d, hd, hΦ⟩ := hP k r Wp Wq D ε lm H σ hHC hDS
   refine ⟨d, hd, fun v v' ξ ξ' hv hv' => ?_⟩
-  haveI := sf_of_haar D.haarW
-  haveI := sf_of_haar D.haarN
-  haveI := sf_of_haar D.haarW'
+  haveI := Formalism.FourierDecayAlt.P.B2x2.sfin D.haarW
+  haveI := Formalism.FourierDecayAlt.P.B2x2.sfin D.haarN
+  haveI := Formalism.FourierDecayAlt.P.B2x2.sfin D.haarW'
   have hpt : ∀ p : SS k r, D.inSS p →
       ((((1 + (1 : ℝ) ^ 2 * lam k r D.z (Matrix.of p.1.2) ^ 2)⁻¹ *
         (1 + (1 : ℝ) ^ 2 * lam k r D.z' (Matrix.of p.2.2) ^ 2)⁻¹ : ℝ) : ℂ) *
@@ -214,6 +211,7 @@ theorem betaFactor_of (hP : PhiAt) (hL : LeftProfileContDiffTwo) (hR : RightProf
     exact integral_prod_mul (μ := D.μW.prod D.μN) (ν := D.μW'.prod D.μN) (I1 D σ v ξ) (I2 D σ v' ξ')
 
 end PI.BICNZ
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.ArchimedeanCoefficientNonzero.InnerInvOfDS

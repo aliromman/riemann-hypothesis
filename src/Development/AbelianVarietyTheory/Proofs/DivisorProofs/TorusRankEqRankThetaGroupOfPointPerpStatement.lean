@@ -74,7 +74,7 @@ import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsEmbFractionRingOfDominant, Development.AbelianVarietyTheory.Proofs.DivisorProofs.JKCompEq, Development.AbelianVarietyTheory.Proofs.DivisorProofs.NonemptyPerpKerEquivHom, Development.AbelianVarietyTheory.Proofs.DivisorProofs.SupIClosedPointEq, Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorusRankEqRankThetaGroupOfPointPerp, Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorusRankEqRankThetaGroupOfPointPerpStatement
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsEmbFractionRingOfDominant
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsEmbFractionRingOfDominant
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
@@ -82,6 +82,7 @@ open GlobalTheory.ZH
 open scoped CategoryTheory.Obj
 open Classical
 
+noncomputable section
 namespace GlobalTheory.ZH.RatModel
 
 theorem spMap_fractionRing_specializes (V : Type) [CommRing V] [IsDomain V] (w : Sp V) (p : Sp (FractionRing V)) :
@@ -112,7 +113,7 @@ theorem exists_emb_fractionRing_of_dominant : ∀ (o Ω : Type) [CommRing o] [Fi
     rw [GlobalTheory.Points.valR_eq ξ U h]
     exact e2
   have hinj0 : Function.Injective g0 := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     rintro ⟨x, hx⟩ h0
     obtain ⟨U, f, hz, rfl⟩ := RatModel.mem_O.1 hx
     rw [hg0 U f hz] at h0
@@ -149,6 +150,7 @@ theorem exists_emb_fractionRing_of_dominant : ∀ (o Ω : Type) [CommRing o] [Fi
   rw [hg0 U f hz]
 
 end GlobalTheory.ZH.RatModel
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens

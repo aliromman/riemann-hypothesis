@@ -57,11 +57,13 @@ import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomology
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MapHClsEq, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PullCup, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PullFrob, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RedHcCup, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RedHcOneH, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmulFil, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SquarePull, Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.ZariskiEtaleLifting.FirstChernCompatibleL
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MapHClsEq
+section -- clump: shared namespace opens
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry DividedPowers GroundTheory.PAdicHodge GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.PAlg CrystallineSemistableComparison.B
 
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MapHClsEq
+
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.CrisOne
 
@@ -86,11 +88,9 @@ theorem β_one {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] (F : Fn O) (κ :
 
 end GlobalTheory.CompanionTheory.CrisOne
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PullCup
-
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory AlgebraicGeometry DividedPowers GroundTheory.PAdicHodge GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.PAlg CrystallineSemistableComparison.B
 
 namespace GlobalTheory.CompanionTheory.CupBeta
 open CrystallineSemistableComparison.CH
@@ -112,11 +112,9 @@ theorem beta_cup {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] (F : Fn O) (κ
 end GlobalTheory.CompanionTheory.CupBeta
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PullFrob
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PullFrob
 
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory AlgebraicGeometry DividedPowers GroundTheory.PAdicHodge GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.PAlg CrystallineSemistableComparison.B
-
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.CrysPhi
 
@@ -162,11 +160,9 @@ theorem phi_beta (n j : ℕ) (x : Hc F κ true n j) :
 
 end GlobalTheory.CompanionTheory.CrysPhi
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RedHcCup
-
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory AlgebraicGeometry DividedPowers GroundTheory.PAdicHodge GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.PAlg CrystallineSemistableComparison.B
 
 namespace GlobalTheory.CompanionTheory.CupTrans
 
@@ -187,9 +183,6 @@ end GlobalTheory.CompanionTheory.CupTrans
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RedHcOneH
-
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory AlgebraicGeometry DividedPowers GroundTheory.PAdicHodge GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.PAlg CrystallineSemistableComparison.B
 
 namespace GlobalTheory.CompanionTheory.CrisUnit
 
@@ -226,11 +219,9 @@ theorem redHc_oneH : ∀ {l : ℕ} [Fact l.Prime], ∀ {O : Type} [CommRing O] (
 end GlobalTheory.CompanionTheory.CrisUnit
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmulFil
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SmulFil
 
-set_option backward.isDefEq.respectTransparency false
-open CategoryTheory AlgebraicGeometry DividedPowers GroundTheory.PAdicHodge GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.PAlg CrystallineSemistableComparison.B
-
+noncomputable section
 
 universe w v u
 
@@ -270,11 +261,13 @@ theorem smul_fil : ∀ {l : ℕ} [Fact l.Prime], ∀ {O : Type} [CommRing O] (F 
 
 end GlobalTheory.CompanionTheory.BetaFil
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SquarePull
+end -- clump: shared namespace opens
 
-set_option backward.isDefEq.respectTransparency false
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SquarePull
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry DividedPowers GroundTheory.PAdicHodge GlobalTheory.LogCris CrystallineSemistableComparison CrystallineSemistableComparison.PAlg CrystallineSemistableComparison.B
 
@@ -330,6 +323,7 @@ theorem beta_red (F : Fn O) (κ : O →+* OC l) (k : Bool) {m n : ℕ} (h : n �
     (redNat F κ k h) (fun _ _ => rfl) j x
 
 end GlobalTheory.CompanionTheory.BetaRed
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.ZariskiEtaleLifting.FirstChernCompatibleL

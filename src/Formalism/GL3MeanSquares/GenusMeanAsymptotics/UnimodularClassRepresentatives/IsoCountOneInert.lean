@@ -221,10 +221,11 @@ theorem card_split (φ : A →+* k) (hb : Function.Bijective fun a : A => (φ (s
 end Formalism.HermitianLattices.Ext.L3.UnitaryNormCounts
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.GL3MeanSquares.GenusMeanAsymptotics.UnimodularClassRepresentatives.CardUnitaryFin
+@[expose] public section -- clump member: Formalism.GL3MeanSquares.GenusMeanAsymptotics.UnimodularClassRepresentatives.CardUnitaryFin
 
 open NumberField Module
 
+noncomputable section
 
 namespace Formalism.HermitianLattices.Ext.L3.FiniteUnitaryColumns
 
@@ -260,7 +261,6 @@ theorem exists_refl {n : Type*} [Fintype n] [DecidableEq n] (σ : k ≃+* k)
     rw [ha1]; exact sub_ne_zero.mpr (Ne.symm hxy)
   have hsa0 : σ a ≠ 0 := by simpa using ha0
   have hsa : σ a = 1 - ∑ i, σ (x i) * y i := by
-    set_option synthInstance.maxHeartbeats 100000 in
       rw [ha1]; simp [map_sum, hσ, mul_comm]
   have hn : ∑ i, σ (u i) * u i = a + σ a := by
     rw [hsa, ha1]
@@ -517,6 +517,7 @@ theorem card_GL_fin {k : Type*} [Field k] [Fintype k] (q : ℕ) (hq : Fintype.ca
   rfl
 
 end Formalism.HermitianLattices.Ext.L3
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.GL3MeanSquares.GenusMeanAsymptotics.UnimodularClassRepresentatives.IsoCountOneInert

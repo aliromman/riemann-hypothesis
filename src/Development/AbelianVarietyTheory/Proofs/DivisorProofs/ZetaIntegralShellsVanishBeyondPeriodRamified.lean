@@ -195,9 +195,11 @@ theorem integrableOn_shell : ∀ (k : Type) [Field k] [ValuativeRel k] [Topologi
 end GlobalTheory.ShellInt
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SetIntegralLeftCosetShellIntegrandEqZero
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SetIntegralLeftCosetShellIntegrandEqZero
+@[expose] public section
 open GlobalTheory.IndefiniteRowSideFullHecke.ScaledIntegerPeriodic
 
+noncomputable section
 
 namespace GlobalTheory.ShellPiece
 
@@ -242,7 +244,6 @@ theorem GlobalTheory.ShellPiece.setIntegral_coset_eq_zero : ∀ (k : Type) [Fiel
     · simp [Pi.mulSingle_eq_of_ne h]
   have hcomm : Commute d D := Units.ext (by simp [hd, hD, diagonal_mul_diagonal, mul_comm])
   set k0 := x * D * x⁻¹ with hk0
-  have hk0K : k0 ∈ KO k (Fin a) := mul_mem (mul_mem hx hDK) (inv_mem hx)
   set S := {g : GL (Fin a) k | (x * d)⁻¹ * g ∈ KO k (Fin a)} with hS
   have key : ∀ g, (x * d)⁻¹ * (k0 * g) = D * ((x * d)⁻¹ * g) := fun g => by
     have h1 : d⁻¹ * D = D * d⁻¹ := (hcomm.inv_left).eq
@@ -309,6 +310,8 @@ theorem GlobalTheory.ShellPiece.setIntegral_coset_eq_zero : ∀ (k : Type) [Fiel
     rw [sub_mul, h]; ring
   exact (mul_eq_zero.1 h2).resolve_left hne
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ZetaIntegralShellsVanishBeyondPeriodRamified

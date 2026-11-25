@@ -804,8 +804,9 @@ open NumberField IsDedekindDomain MeasureTheory Formalism.MainNotions.GlobalTheo
 open GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.ThK GlobalTheory.Doubling
 open GlobalTheory.SWLit
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchrodingerIntertwinerScalar
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchrodingerIntertwinerScalar
 
+noncomputable section
 open GroundTheory.Global
 
 namespace GlobalTheory.SubstIntertw
@@ -846,11 +847,7 @@ theorem isStd_stdChar : IsStd (stdChar F) := by
 
 end GlobalTheory.SubstIntertw
 
-namespace GlobalTheory.SubstIntertw
-
-
-
-end GlobalTheory.SubstIntertw
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AdelicFourierMemSchwartzTotallyReal

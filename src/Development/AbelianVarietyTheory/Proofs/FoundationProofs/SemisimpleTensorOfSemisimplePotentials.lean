@@ -912,18 +912,18 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerRelatedPairFstEqZeroOfTrivial
+
+noncomputable section
 
 open scoped MatrixGroups TensorProduct
 open Matrix GlobalTheory.KZ
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.KummerRelatedPairFstEqZeroOfTrivial
 
 namespace GlobalTheory.KZ.H3.LamInj
 
 theorem algebraMap_injective (l : ℕ) [Fact l.Prime] (E : Type) [Field E] [Algebra ℤ_[l] E] [CharZero E] :
     Function.Injective (algebraMap ℤ_[l] E) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   by_contra h0
   have e := PadicInt.unitCoeff_spec h0
@@ -961,6 +961,12 @@ theorem fst_eq_zero_of_triv : ∀ {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlg
 
 end GlobalTheory.KZ.H3.LamInj
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+open scoped MatrixGroups TensorProduct
+open Matrix GlobalTheory.KZ
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.SemisimpleHeckePolyTransportRingEquiv
 

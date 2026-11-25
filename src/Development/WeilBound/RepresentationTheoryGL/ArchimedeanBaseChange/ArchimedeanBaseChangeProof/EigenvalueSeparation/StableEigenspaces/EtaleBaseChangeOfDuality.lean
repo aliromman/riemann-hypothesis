@@ -37,8 +37,10 @@ import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.ClozelP
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TendstoExpMulPoly, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InterpolationLocalL2Bound, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsStableBdSub, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LintegralCompactLe, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LintegralTranslate, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MulInvEqOfCentral, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PairSp, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.EigenvalueSeparation.StableEigenspaces.CentralEigenvalues.CenteigHolds, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.EigenvalueSeparation.StableEigenspaces.CentralEigenvalues.IsStableEigenspaceCap, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.EigenvalueSeparation.StableEigenspaces.StableHulls.IsStableHull, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.EigenvalueSeparation.StableEigenspaces.FrobeniusUniformizerIdentity, Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.EigenvalueSeparation.StableEigenspaces.EtaleBaseChangeOfDuality
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TendstoExpMulPoly
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TendstoExpMulPoly
+@[expose] public section
 
+noncomputable section
 
 open NumberField MeasureTheory Filter Topology
 open scoped ENNReal
@@ -204,10 +206,8 @@ open PositivityTheory.Rg.Rs.JExpNegGlue in
 theorem locNonPosGlue_holds : LocNonPosGlue := by
   intro hSize E _ _ _ N φ hA hLoc r hr0 hrN c hc
   have : LocallyCompactSpace (GA E N) := by
-    set_option synthInstance.maxHeartbeats 400000 in
       exact inferInstance
   have : T2Space (GA E N) := by
-    set_option synthInstance.maxHeartbeats 400000 in
       exact inferInstance
   obtain ⟨haR, -, -, hct⟩ := dict_holds E N
   have hctn := (hct φ hA r hr0 hrN).2
@@ -224,10 +224,8 @@ theorem locNonPosGlue_holds : LocNonPosGlue := by
     have hdec_ctn : Dec μ (An.rho E N r + ε) a (An.ctn r φ.1) := by
       have hctc : Continuous (An.ctn r φ.1) := by
         have : SecondCountableTopology (GA E N) := by
-          set_option synthInstance.maxHeartbeats 400000 in
             exact inferInstance
         have : FirstCountableTopology (GA E N) := by
-          set_option synthInstance.maxHeartbeats 400000 in
             exact inferInstance
         obtain ⟨C, hC, hDC⟩ := GroundTheory.Automorphic.AutomorphicForm.exists_isCompact_superset_unipFundamentalDomain (K := E) (n := N) (r := r)
         have : IsFiniteMeasure ((GroundTheory.Automorphic.AutomorphicForm.unipMeasure E N r).restrict (GroundTheory.Automorphic.AutomorphicForm.unipFundamentalDomain E N r)) :=
@@ -264,6 +262,8 @@ theorem locNonPosGlue_holds : LocNonPosGlue := by
 
 end GlobalTheory.CompanionTheory.LocExponent
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.InterpolationLocalL2Bound
@@ -899,8 +899,10 @@ end GlobalTheory.CompanionTheory.LocSlice
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LintegralTranslate
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LintegralTranslate
+@[expose] public section
 
+noncomputable section
 
 open NumberField IsDedekindDomain MeasureTheory Filter
 open GlobalTheory.CuspRep GlobalTheory.UnitaryBC PositivityTheory.Rg.Rs PositivityTheory.Rg.BcB.E.E3 PositivityTheory.Rg.BcB
@@ -950,7 +952,6 @@ theorem lintegral_translate [MeasurableSpace (GA E N)] [BorelSpace (GA E N)] (μ
   ring
 
 theorem centReGlue_holds : CentReGlue := by
-  set_option synthInstance.maxHeartbeats 200000 in
   intro hS hM E _ _ _ N φ z hφ hne hL hz
   letI : MeasurableSpace (GA E N) := borel _
   haveI : BorelSpace (GA E N) := ⟨rfl⟩
@@ -1018,6 +1019,8 @@ theorem centReGlue_holds : CentReGlue := by
 
 end GlobalTheory.CompanionTheory.CentRe
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MulInvEqOfCentral

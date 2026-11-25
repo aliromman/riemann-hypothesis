@@ -411,10 +411,11 @@ theorem capacity_smoothness_holds : CapSmooth := by
 end Formalism.FourierDecayAlt.P.CutMP.JA.PRhoCut
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRhoEigOrth
+@[expose] public section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRhoEigOrth
 
 open Matrix Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Formalism.FourierDecayAlt.Q
 
+noncomputable section
 
 namespace Formalism.FourierDecayAlt.P.CutMP.JA.PRhoCut
 
@@ -424,19 +425,13 @@ namespace EigenvectorOrthogonality
 
 variable {k r : ℕ}
 
-private theorem herm_mulVec_of_conjTranspose_mul_H_mul_eq {n : ℕ} {H g : Matrix (Fin n) (Fin n) ℂ} (hg : gᴴ * H * g = H)
-    (v w : Fin n → ℂ) : herm H (g *ᵥ v) (g *ᵥ w) = herm H v w := by
-  unfold herm
-  rw [Matrix.star_mulVec, ← Matrix.dotProduct_mulVec]
-  simp only [Matrix.mulVec_mulVec, ← Matrix.mul_assoc, hg]
-
 theorem frame_move {z e : Fin (2 * r + k + 1) → ℂ} {h : Mx k r} (hh : h ∈ UWset k r z) (he : h *ᵥ e = e) {m : ℕ}
     {F : Fin m → Fin (2 * r + k + 1) → ℂ} (hF : IsFrameOf k r [z, e] F) :
     IsFrameOf k r [z, e] (fun p => h *ᵥ F p) := by
   have hG : h ∈ Glev k r (Fin.last r) := ⟨hh.1, fun a _ => hh.2.1 a⟩
   have hU : hᴴ * Hpk k r * h = Hpk k r := hh.1
   refine ⟨fun a => (Formalism.FourierDecayAlt.Q.LieAlgebraWeightVectors.glev_inWb hG (hF.1 a)).1, fun a b => ?_, fun a v hv => ?_⟩
-  · rw [herm_mulVec_of_conjTranspose_mul_H_mul_eq hU]
+  · rw [PI.StabSplit.UnipW.herm_inv hU]
     exact hF.2.1 a b
   · have hv' : h *ᵥ v = v := by
       rcases List.mem_cons.1 hv with rfl | hv2
@@ -445,7 +440,7 @@ theorem frame_move {z e : Fin (2 * r + k + 1) → ℂ} {h : Mx k r} (hh : h ∈ 
         · exact he
         · simp at hv3
     calc herm (Hpk k r) (h *ᵥ F a) v = herm (Hpk k r) (h *ᵥ F a) (h *ᵥ v) := by rw [hv']
-      _ = 0 := by rw [herm_mulVec_of_conjTranspose_mul_H_mul_eq hU]; exact hF.2.2 a v hv
+      _ = 0 := by rw [PI.StabSplit.UnipW.herm_inv hU]; exact hF.2.2 a v hv
 
 theorem frame_swap {z e : Fin (2 * r + k + 1) → ℂ} {m : ℕ} {F : Fin m → Fin (2 * r + k + 1) → ℂ}
     (hF : IsFrameOf k r [z, e] F) : IsFrameOf k r [e, z] F :=
@@ -549,6 +544,7 @@ theorem eigenvector_orthogonality_holds : EigOrth := by
   rw [← (Submodule.starProjection_eq_self_iff).2 hyS, ← Submodule.inner_starProjection_left_eq_right, hAx, inner_zero_left]
 
 end Formalism.FourierDecayAlt.P.CutMP.JA.PRhoCut
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJAPRhoLagrange

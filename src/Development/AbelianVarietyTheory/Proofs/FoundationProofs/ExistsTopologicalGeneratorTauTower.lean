@@ -72,8 +72,9 @@ section -- clump: shared namespace opens
 
 open GlobalTheory.K5
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.DerivationEqZeroOfIsAlgebraicOverPadicIntegers
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.DerivationEqZeroOfIsAlgebraicOverPadicIntegers
 
+noncomputable section
 
 namespace GlobalTheory.K5.DerAlg
 
@@ -85,7 +86,7 @@ abbrev phiZ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field Ω] [Algebra (O0 p) Ω] 
   (algebraMap (O0 p) Ω).comp (algebraMap ℤ_[p] (O0 p))
 
 theorem phiZ_injective [CharZero Ω] : Function.Injective (phiZ p Ω) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro c hc
   by_contra h0
   rw [PadicInt.unitCoeff_spec h0, map_mul, map_pow, map_natCast] at hc
@@ -135,6 +136,7 @@ theorem der_algZp : ∀ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field Ω] [Algebra
   exact key _ P rfl hP0 hPx
 
 end GlobalTheory.K5.DerAlg
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsDerivationExtendPadicLaurentToClosure

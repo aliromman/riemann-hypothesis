@@ -609,8 +609,10 @@ theorem exists_unitary_of_TLat :
 end GlobalTheory.St.G
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsLocalUnitaryOfSelfDualAtPlace
+section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsLocalUnitaryOfSelfDualAtPlace
+@[expose] public section
 
+noncomputable section
 
 open Formalism.BasicNotions Formalism.UG Formalism.L2.Forms NumberField IsDedekindDomain Matrix GlobalTheory.St.G
 open scoped TensorProduct nonZeroDivisors
@@ -727,9 +729,6 @@ section Local
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
   (v : HeightOneSpectrum (𝓞 F))
 
-theorem inclE_mem (x : 𝓞 E) : inclE (F := F) (v.adicCompletion F) (x : E) ∈ intV E v :=
-  Subring.subset_closure (Or.inl ⟨⟨x, x, rfl⟩, rfl⟩)
-
 theorem one_tmul_mem (a : v.adicCompletionIntegers F) :
     (1 : E) ⊗ₜ[F] (a : v.adicCompletion F) ∈ intV E v :=
   Subring.subset_closure (Or.inr ⟨⟨a, a.2⟩, rfl⟩)
@@ -764,7 +763,7 @@ theorem exists_frame {n : ℕ} {L : Submodule (𝓞 E) (Fin n → E)} (hL : IsLa
     | mem x hx =>
       obtain ⟨y, hy, rfl⟩ := hx
       obtain ⟨a, ha⟩ := h1 y hy i
-      have h3 := mul_mem ht (inclE_mem v a)
+      have h3 := mul_mem ht (Formalism.MainNotions.Gaps.LG.fm_incl_mem v a)
       have ha' : (a : E) = _ := ha
       rw [ha', map_mul, ← mul_assoc, hts, one_mul, RingHom.map_mulVec] at h3
       rw [← map_inv]
@@ -826,7 +825,7 @@ theorem sigR_mem (z : E ⊗[F] v.adicCompletion F) (hz : z ∈ intV E v) :
     sigR σ (v.adicCompletion F) z ∈ intV E v := by
   refine intV_induction v (p := fun z => sigR σ (v.adicCompletion F) z ∈ intV E v) (by simp)
     (fun x a => ?_) (fun x y hx hy => by rw [map_add]; exact add_mem hx hy) hz
-  have := mul_mem (inclE_mem v ⟨σ x, map_isIntegral_int σ x.isIntegral_coe⟩) (one_tmul_mem v a)
+  have := mul_mem (Formalism.MainNotions.Gaps.LG.fm_incl_mem v ⟨σ x, map_isIntegral_int σ x.isIntegral_coe⟩) (one_tmul_mem v a)
   convert this using 1
   change _ = (σ x ⊗ₜ[F] (1 : v.adicCompletion F)) * ((1 : E) ⊗ₜ[F] (a : v.adicCompletion F))
   rw [Algebra.TensorProduct.tmul_mul_tmul, mul_one, one_mul, sigR_tmul]
@@ -871,7 +870,7 @@ theorem exists_isUnit_sub (hσ : ∀ x, σ (σ x) = x)
     rw [← hwv, Ideal.mem_comap,
       show algebraMap (𝓞 F) (𝓞 E) s = (θ - t) * (θ - t) from RingOfIntegers.ext hs] at h
     exact hθ ((hw.isPrime.mem_or_mem h).elim id id)
-  refine ⟨⟨_, inclE_mem v θ⟩, isUnit_of_mul_isUnit_left (y := ⟨_, inclE_mem v (θ - t)⟩) ?_⟩
+  refine ⟨⟨_, Formalism.MainNotions.Gaps.LG.fm_incl_mem v θ⟩, isUnit_of_mul_isUnit_left (y := ⟨_, Formalism.MainNotions.Gaps.LG.fm_incl_mem v (θ - t)⟩) ?_⟩
   convert ((SelfDualGenus.isUnit_algebraMap_iff v s).2 hsv).map (baseMap E v)
   apply Subtype.ext
   rw [coe_baseMap_algebraMap, hs]
@@ -927,6 +926,8 @@ theorem exists_unitary_of_selfDualAt : ∀ (F E : Type) [Field F] [NumberField F
 
 end GlobalTheory.St.G.Unimod
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsIntSmulIsIntegral

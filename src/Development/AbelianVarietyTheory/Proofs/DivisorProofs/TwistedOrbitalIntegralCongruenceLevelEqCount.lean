@@ -294,8 +294,9 @@ end -- clump:auto
 open NumberField GlobalTheory.UnitaryBC IsDedekindDomain Matrix Polynomial GlobalTheory.CuspRep Formalism.UG GlobalTheory.BCT GlobalTheory.KapLat GlobalTheory.KapOrb
 open scoped Classical
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeIntegralHermitianCompletion
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeIntegralHermitianCompletion
 
+noncomputable section
 
 namespace GlobalTheory.KapOrb.SelfDualPull
 
@@ -305,12 +306,6 @@ theorem exists_orthonormal_of_selfDual : ∀ (K : GlobalTheory.UnitLemma.UQ) (V 
   have inj : Function.Injective (algebraMap K.O K.E) := IsFractionRing.injective _ _
   obtain ⟨s, hs⟩ := GlobalTheory.UnitLemma.Witt.exists_conj K
   obtain ⟨hN, ⟨t, ht⟩, -⟩ := _root_.GlobalTheory.UnitLemma.UnramNorm.unram_quadratic_facts K
-  have hadd2 : ∀ y z z', h y (z + z') = h y z + h y z' := by
-    intro y z z'
-    rw [hsym, hadd, map_add (f := _), ← hsym, ← hsym]
-  have hlin2 : ∀ (a : K.E) y z, h y (a • z) = K.c a * h y z := by
-    intro a y z
-    rw [hsym, hlin, map_mul, ← hsym]
   have hsum1 : ∀ (S : Finset (Fin (Module.finrank K.E V))) (c : Fin (Module.finrank K.E V) → K.E) (u : Fin (Module.finrank K.E V) → V) z,
       h (∑ i ∈ S, c i • u i) z = ∑ i ∈ S, c i * h (u i) z := by
     intro S c u z
@@ -532,6 +527,7 @@ theorem exists_unitary_pullLat_eq : ∀ (E : Type) [Field E] [NumberField E] [Is
       exact (hint _).mp (((hfL (c • y)).mp (L.smul_mem c hy)) i)
 
 end GlobalTheory.KapOrb.SelfDualPull
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemCompactPartCentralizerIffTorusIntegralUnits

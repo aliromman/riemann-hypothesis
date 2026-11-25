@@ -64,7 +64,8 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualCurvePoint, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualGeomDegPos, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualGeomDegStandard, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualLineConj, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualPointLineDegree, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualTopBound, GroundTheory.HeightsAndTheta.Heights.HeightKernels.ReMulOfPos, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualTopMetricChange, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualTopStandard, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualTopSubLattice, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PFsLineSemipositive, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PGrassHeightBound, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PLineOfLargeDegreeDual, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PPointArInt, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PPointDegCPos, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PPointVertR, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PRootArithVar, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PRootDense, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PRootLogNormBound, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PRootPointConj, GroundTheory.HeightsAndTheta.Heights.HeightKernels.PRootPointsFinite, GroundTheory.HeightsAndTheta.Heights.HeightKernels.Assembly
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualCurvePoint
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualCurvePoint
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -72,6 +73,7 @@ namespace GroundTheory.Heights₂.Heights
 
 open ReciprocityTheory.ChartRestriction.G.Geo MvPolynomial NumberField
 
+noncomputable section
 
 namespace DualCurvePointAlt
 
@@ -149,7 +151,6 @@ theorem ker_coneMapQ_eq {Ω : Type} [Field Ω] [CharZero Ω] (y : (Σ k, ι k) �
   have h := ReciprocityTheory.AnForm.R.IntegerToRational.comap_strictMono hlt
   simp only [hc, IndefiniteRowSideFullHecke.HeightsSet.CoordCurveDegree.comap_ker_coneMapQ] at h
   exact lt_irrefl _ h
-
 
 open IndefiniteRowSideFullHecke.HeightsSet.CoordCurveDegree in
 theorem aeval_ratio_eq_zero_of_le {Ω L : Type} [Field Ω] [CharZero Ω] [Field L] [CharZero L]
@@ -370,11 +371,14 @@ theorem DualCurvePoint.proof : DualCurvePoint.Statement := by
   obtain ⟨_, v, hv, hvz⟩ := DualCurvePointAlt.exists_point b z t0 hz hle
   exact ⟨L, inferInstance, inferInstance, inferInstance, v, hv, by rw [hvz]⟩
 
+end
 
 end GroundTheory.Heights₂.Heights
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualGeomDegPos
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualGeomDegPos
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -383,6 +387,7 @@ namespace GroundTheory.Heights₂.Heights
 open ReciprocityTheory.ChartRestriction.G.Geo MvPolynomial NumberField
 open scoped ComplexOrder
 
+noncomputable section
 
 namespace DualGeometricDegreePositive
 
@@ -432,7 +437,6 @@ theorem isGoodProj (hOn : DualPtsOnPlane.Statement) {D : ℕ} {F : HermLattice K
 
 end DualGeometricDegreePositive
 
-
 open DualGeometricDegreePositive in
 theorem DualGeomDegPos.proof (hDeg : DegreeStatement) (hInd : PtsIndepStatement)
     (hArith : DualArithVar.Statement) (hSemi : DualLineSemipositive.Statement)
@@ -475,8 +479,10 @@ theorem DualGeomDegPos.proof (hDeg : DegreeStatement) (hInd : PtsIndepStatement)
   rw [hswap, hval]
   exact_mod_cast Fintype.card_pos
 
+end
 
 end GroundTheory.Heights₂.Heights
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualGeomDegStandard
@@ -505,7 +511,8 @@ theorem DualGeomDegStandard.proof (hD : DualGeomDegCharts.Statement)
 end GroundTheory.Heights₂.Heights
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualLineConj
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualLineConj
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -513,6 +520,7 @@ namespace GroundTheory.Heights₂.Heights
 
 open ReciprocityTheory.ChartRestriction.G.Geo Matrix NumberField NumberField.ComplexEmbedding
 
+noncomputable section
 
 namespace DualLineConjugation
 
@@ -521,7 +529,6 @@ variable {K : Type} [Field K] [NumberField K] {i : ℕ} {F : HermLattice K i}
 
 def conjPerm (K : Type) [Field K] : Equiv.Perm (K →+* ℂ) :=
   Function.Involutive.toPerm _ (involutive_conjugate K)
-
 
 omit [Fintype T] [DecidableEq T] in
 theorem conj_mulVec (b : Module.Basis T ℤ (dualLattice F)) (w : (K →+* ℂ) × Fin i → ℂ) :
@@ -569,8 +576,10 @@ theorem DualLineConj.proof : DualLineConj.Statement := by
     Real.sqrt (dualNormSq b hb fun t => z ⟨(), t⟩)
   rw [DualLineConjugation.normSq_conj b hb fun t => z ⟨(), t⟩]
 
+end
 
 end GroundTheory.Heights₂.Heights
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualPointLineDegree
@@ -641,7 +650,6 @@ theorem dualNormSq_point (b : Module.Basis T ℤ (dualLattice F))
   · simp
 
 end DualPointLineDegreeAlt
-
 
 open DualPointLineDegreeAlt in
 theorem DualPointLineDegree.proof (hPt : DualCurvePoint.Statement) (hPos : PointDegCPos.Statement)
@@ -796,7 +804,8 @@ theorem gramAt_single {K : Type*} [Field K] {k : ℕ} (h : Matrix (Fin k) (Fin k
 end GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.Kernels
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualTopMetricChange
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualTopMetricChange
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -804,6 +813,7 @@ namespace GroundTheory.Heights₂.Heights
 
 open ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.AI.I2 NumberField
 
+noncomputable section
 
 namespace TopDualMetricChange
 
@@ -884,7 +894,6 @@ theorem degree_withStdMetric_sub (F : HermLattice K i) :
 
 end TopDualMetricChange
 
-
 open TopDualMetricChange in
 theorem DualTopMetricChange.proof (hTel : TelescopeStatement) (hEnergy : DualMetricEnergy.Statement) :
     DualTopMetricChange.Statement := by
@@ -911,8 +920,10 @@ theorem DualTopMetricChange.proof (hTel : TelescopeStatement) (hEnergy : DualMet
   rw [degree_withStdMetric_sub F]
   linarith
 
+end
 
 end GroundTheory.Heights₂.Heights
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PDualTopStandard
@@ -1058,7 +1069,8 @@ theorem LineOfLargeDegreeFromZ.proofDual (hBasis : DualLatticeBasisExists.Statem
 end GroundTheory.Heights₂.Heights
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PPointArInt
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PPointArInt
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -1066,6 +1078,7 @@ namespace GroundTheory.Heights₂.Heights
 
 open ReciprocityTheory.ChartRestriction.G.Geo ReciprocityTheory.ChartRestriction.G.AI.I4 MvPolynomial
 
+noncomputable section
 
 namespace PointArithIntersection
 
@@ -1163,7 +1176,6 @@ theorem sum_ringHom_restrict (κ : IntermediateField ℚ K') (H : (κ →ₐ[ℚ
 
 end PointArithIntersection
 
-
 open PointArithIntersection IndefiniteRowSideFullHecke.HeightsSet.CoordCurveDegree in
 theorem PointArInt.proof : PointArInt.Statement := by
   intro T _ K' _ _ y A s hP hs
@@ -1202,8 +1214,10 @@ theorem PointArInt.proof : PointArInt.Statement := by
   push_cast
   ring
 
+end
 
 end GroundTheory.Heights₂.Heights
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PPointDegCPos
@@ -1265,7 +1279,8 @@ theorem PointVertR.proof (hI : VertRIndex.Statement) (hN : SectionIndexNorm.Stat
 end GroundTheory.Heights₂.Heights
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PRootArithVar
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PRootArithVar
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -1273,19 +1288,9 @@ namespace GroundTheory.Heights₂.Heights
 
 open ReciprocityTheory.ChartRestriction.G.Geo MvPolynomial Matrix
 
+noncomputable section
 
 namespace RootArithmeticVariety
-
-theorem isIntegral_of_pow_eq_one {x : ℂ} {k : ℕ} (hk : 0 < k) (h : x ^ k = 1) : IsIntegral ℤ x :=
-  ⟨Polynomial.X ^ k - Polynomial.C 1, Polynomial.monic_X_pow_sub_C 1 hk.ne', by
-    simp [Polynomial.eval₂_sub, h]⟩
-
-theorem isIntegral_det {n : ℕ} (M : Matrix (Fin n) (Fin n) ℂ) (hM : ∀ a b, IsIntegral ℤ (M a b)) :
-    IsIntegral ℤ M.det := by
-  rw [Matrix.det_apply]
-  refine Subalgebra.sum_mem (integralClosure ℤ ℂ) fun σ _ => ?_
-  rw [Units.smul_def]
-  refine Subalgebra.zsmul_mem _ (Subalgebra.prod_mem _ fun i _ => hM (σ i) i) _
 
 theorem isIntegral_onePipe {j m : ℕ} (Z : Matrix (Fin j) (Fin m) ℂ) (hZ : ∀ a b, IsIntegral ℤ (Z a b))
     (a : Fin j) (b : Fin (j + m)) : IsIntegral ℤ (onePipe Z a b) := by
@@ -1300,14 +1305,13 @@ theorem isIntegral_onePipe {j m : ℕ} (Z : Matrix (Fin j) (Fin m) ℂ) (hZ : �
 
 theorem isIntegral_rootCoord {f j m : ℕ} (ζ : Fin f → Matrix (Fin j) (Fin m) ℂ) (hζ : IsRootMatrix ζ)
     (p : Σ _ : Fin f, PlIdx j m) : IsIntegral ℤ (rootCoord ζ p) := by
-  refine isIntegral_det _ fun a b => ?_
+  refine GroundTheory.Heights₂.Heights.RootDivisorSupportEmpty.isIntegral_det _ fun a b => ?_
   simp only [colsOf, Matrix.submatrix_apply, id]
   refine isIntegral_onePipe _ (fun a b => ?_) _ _
   obtain ⟨k, hk, h⟩ := hζ p.1 a b
-  exact isIntegral_of_pow_eq_one hk h
+  exact GroundTheory.Heights₂.Heights.RootDivisorSupportEmpty.isIntegral_of_pow_eq_one hk h
 
 end RootArithmeticVariety
-
 
 open RootArithmeticVariety in
 theorem RootArithVar.proof (h : CoordConeArithVar.Statement) : RootArithVar.Statement := by
@@ -1323,8 +1327,10 @@ theorem RootArithVar.proof (h : CoordConeArithVar.Statement) : RootArithVar.Stat
       exact (isIntegral_rootCoord ζ hζ p).tower_top
     exact (h1.tower_top (A := IntermediateField.adjoin ℚ (Set.range (Fin.elim0 : Fin 0 → ℂ)))).isAlgebraic
 
+end
 
 end GroundTheory.Heights₂.Heights
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PRootDense
@@ -1401,7 +1407,8 @@ theorem RootDense.proof (h₁ : MultiHomogMemCoord.Statement) (h₂ : RootsOfUni
 end GroundTheory.Heights₂.Heights
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PRootLogNormBound
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PRootLogNormBound
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -1409,6 +1416,7 @@ namespace GroundTheory.Heights₂.Heights
 
 open ReciprocityTheory.ChartRestriction.G.Geo MvPolynomial Matrix
 
+noncomputable section
 
 namespace RootLogNormBoundAlt
 
@@ -1439,7 +1447,6 @@ theorem log_block (h₃ : PlueckerKernel.Statement) (j m : ℕ) (Z : Matrix (Fin
 
 end RootLogNormBoundAlt
 
-
 open RootLogNormBoundAlt in
 theorem RootLogNormBound.proof (h₁ : RootAnchorNonzero.Statement) (h₂ : RootPointConj.Statement)
     (h₃ : PlueckerKernel.Statement) : RootLogNormBound.Statement := by
@@ -1468,11 +1475,14 @@ theorem RootLogNormBound.proof (h₁ : RootAnchorNonzero.Statement) (h₂ : Root
         simp [grassConst]; ring
     _ ≤ _ := Finset.sum_le_sum fun τ _ => key τ
 
+end
 
 end GroundTheory.Heights₂.Heights
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PRootPointConj
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PRootPointConj
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -1480,6 +1490,7 @@ namespace GroundTheory.Heights₂.Heights
 
 open ReciprocityTheory.ChartRestriction.G.Geo MvPolynomial Matrix
 
+noncomputable section
 
 namespace RootPointConjugation
 
@@ -1579,7 +1590,6 @@ theorem map_minor {R S : Type*} [CommRing R] [CommRing S] (φ : R →+* S) {j m 
 
 end RootPointConjugation
 
-
 open RootPointConjugation in
 theorem RootPointConj.proof (h : RootAnchorNonzero.Statement) : RootPointConj.Statement := by
   intro f j m ζ hζ z hz τ
@@ -1613,11 +1623,14 @@ theorem RootPointConj.proof (h : RootAnchorNonzero.Statement) : RootPointConj.St
     simp only [AlgHom.toRingHom_eq_coe, RingHom.coe_coe] at this
     rw [hu I, hq, this]
 
+end
 
 end GroundTheory.Heights₂.Heights
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PRootPointsFinite
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.PRootPointsFinite
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -1625,6 +1638,7 @@ namespace GroundTheory.Heights₂.Heights
 
 open ReciprocityTheory.ChartRestriction.G.Geo MvPolynomial Matrix
 
+noncomputable section
 
 namespace RootPointsFiniteAlt
 
@@ -1663,15 +1677,11 @@ theorem homog_eval (z : (Σ k, ι k) → ℂ) (p a : Σ k, ι k) (hza : z a ≠ 
   conv_rhs => rw [← pow_mul_pow_sub (z a) hle, div_pow]
   field_simp
 
-theorem isIntegral_of_pow_eq_one {x : ℂ} {k : ℕ} (hk : 0 < k) (hx : x ^ k = 1) : IsIntegral ℤ x :=
-  ⟨Polynomial.X ^ k - Polynomial.C 1, Polynomial.monic_X_pow_sub_C 1 hk.ne', by simp [hx]⟩
-
 theorem rootCoord_isIntegral {f j m : ℕ} (ζ : Fin f → Matrix (Fin j) (Fin m) ℂ) (hζ : IsRootMatrix ζ)
     (p : Σ _ : Fin f, PlIdx j m) : IsIntegral ℤ (rootCoord ζ p) :=
   by apply _root_.GroundTheory.Heights₂.Heights.RootDivisorSupportEmpty.isIntegral_rootCoord; assumption
 
 end RootPointsFiniteAlt
-
 
 open RootPointsFiniteAlt in
 theorem RootPointsFinite.proof (h : RootAnchorNonzero.Statement) : RootPointsFinite.Statement := by
@@ -1718,8 +1728,10 @@ theorem RootPointsFinite.proof (h : RootAnchorNonzero.Statement) : RootPointsFin
   rw [div_mul_eq_mul_div, eq_div_iff hza]
   linear_combination -e
 
+end
 
 end GroundTheory.Heights₂.Heights
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.HeightKernels.Assembly

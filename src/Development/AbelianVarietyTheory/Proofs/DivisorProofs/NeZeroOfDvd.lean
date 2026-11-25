@@ -170,11 +170,11 @@ theorem GlobalTheory.RedChern.redMap_cocycle_sub_eq_defects : ∀ (Q q : ℕ) [N
   abel
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoefficientReductionFirstChernClassTateTwist
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoefficientReductionFirstChernClassTateTwist
 
+noncomputable section
 namespace GlobalTheory.EtC.RedChern
 
-set_option backward.isDefEq.respectTransparency false
 
 theorem delta_two_eq : (SimplexCategory.δ (2 : Fin 3) : SimplexCategory.mk 1 ⟶ SimplexCategory.mk 2) =
     SimplexCategory.subinterval 0 1 (by omega) := by
@@ -268,6 +268,7 @@ theorem coefficientReduction_firstChernClass_tateTwist : ∀ (Q q : ℕ) [NeZero
     exact (sec_eq_zero hZ _).trans (sec_eq_zero hZ _).symm
 
 end GlobalTheory.EtC.RedChern
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsSemiMapOfTensorPairing

@@ -962,16 +962,14 @@ theorem ptE_equiv : ∀ (X : Stages) (px : PreX X.B.toPre) (I : Col2.ColIn X.B p
 end GlobalTheory.Mem.R3.RowStdGrp
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsRationalUnitaryEquivRowStageCompat
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsRationalUnitaryEquivRowStageCompat
 
 
+noncomputable section
 
 namespace GlobalTheory.Mem.R3.RowStdRat
 
 open GlobalTheory.Mem.R3.RowAd GlobalTheory.Mem.R3.LiftBrg.StdGroups
-
-theorem ptE_eq (X : Stages) (h : Bridge.Gf X.toD7.sp.X') :
-    ptE X h = LiftBrg.castGL (rank_X' X) (Formalism.UG.bc (swapAE X.toD7) h.1) := rfl
 
 def psiX (X : Stages) (hg : X.toD7.sp.X'.gram = 1) :
     Formalism.L2.Col.URat X.toD7.sp.cm (X.B.R.N X.B.R.m - 1) →* GQ X.toD7.sp.X' where
@@ -994,7 +992,7 @@ theorem psiX_mat (X : Stages) (hg : X.toD7.sp.X'.gram = 1) (γ : Formalism.L2.Co
 
 theorem ptE_ratF_psiX (X : Stages) (hg : X.toD7.sp.X'.gram = 1) (γ : Formalism.L2.Col.URat X.toD7.sp.cm (X.B.R.N X.B.R.m - 1)) :
     ptE X (Bridge.ratF X.toD7.sp.X' (psiX X hg γ)) = (Formalism.L2.Col.ratIn X.toD7.sp.cm (X.B.R.N X.B.R.m - 1) γ).1 := by
-  rw [ptE_eq, Formalism.L2.Col.ratIn_val]
+  rw [GlobalTheory.Mem.R3.RowStdGrp.ptE_eq_castGL, Formalism.L2.Col.ratIn_val]
   have e1 : ((Bridge.ratF X.toD7.sp.X' (psiX X hg γ)) : GL (Fin X.toD7.sp.X'.rank) _) =
       Formalism.UG.bc (inclR (F := X.toD7.host.F) (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.Af X.toD7.host.F))
         (LiftBrg.castGL (rank_X' X).symm (γ : GL (Fin (X.B.R.N X.B.R.m - 1)) X.toD7.host.E)) := by
@@ -1066,6 +1064,7 @@ theorem stdRat_equiv : ∀ (X : Stages) (px : PreX X.B.toPre) (I : Col2.ColIn X.
       matEq_castGL _ _⟩
 
 end GlobalTheory.Mem.R3.RowStdRat
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.MemRowLevelOfReductionMemLevelGroup

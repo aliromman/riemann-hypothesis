@@ -144,8 +144,10 @@ theorem isSel_of_sAnd {Bd : BdT} {Q R : V4.Slot} {Lk : LkT Bd} {E : Par → BdP 
 end GlobalTheory.Fc
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ExistsMuIsRamified
+section -- clump member: Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.ExistsMuIsRamified
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.Mem.Top.Inh
 
@@ -186,9 +188,10 @@ theorem g_big (eps : ℝ) (h0 : 0 < eps) (h1 : eps < 1 / 52) : ∃ x0 : ℝ, ∀
   have c4 : 2 * R.f * R.k + 1 < g := by exact_mod_cast c3
   omega
 
-
 end GlobalTheory.Mem.Top.Inh
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CardDvdCardGL
@@ -430,8 +433,10 @@ theorem duStarOf_nat : ∀ (R : Ranks) (H : Formalism.BasicNotions.Host R) (hc :
 end GlobalTheory.Mem.DuInt
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.RecExGOfRecAtG
+section -- clump member: Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.RecExGOfRecAtG
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.Mem.Top
 
@@ -446,12 +451,10 @@ theorem exists_du_nat (eps : ℝ) (h0 : 0 < eps) (h1 : eps < 1 / 52) : ∃ x0 : 
     fun i => h s P.R _ hs hx hok.rank (hok.val.2.2.2.2.1 i).1
   exact ⟨du, hpos, hdu⟩
 
-namespace Inh
-
-end Inh
-
 end GlobalTheory.Mem.Top
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.TwGoodOneSetDiv
@@ -459,8 +462,6 @@ end -- clump:auto
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.Inhab Formalism.L2.GlobalTheoryTheory GlobalTheory.EX GlobalTheory.EX.OB GlobalTheory.EX.DQ NumberField IsDedekindDomain
 
 namespace GlobalTheory.EX.DQ
-
-
 
 theorem twGoodOne_setDiv (D : D7) (O : Obj D) (N : ∀ u, Submodule (𝓞 D.what₂.LL) (D.div.Nu u).V) (h : D.what₂.Word → ℝ)
     (N0 : D.ntw.Tw → ℕ) (S : ∀ (i : D.ntw.Tw) (j : ℕ) (b : Bool), Finset (D.nexp.Dat i j b))
@@ -666,15 +667,11 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.Inhab Fo
 
 namespace GlobalTheory.EX.DC.TameGen
 
-theorem part_pow {G : Type} [Monoid G] {l : ℕ} (hl : l.Prime) {x : G} (hx : IsOfFinOrder x) :
-    ∃ a : ℕ, Formalism.CyclotomicNorms.primeToPart l x ^ (l ^ a) = x ^ (l ^ a) := by
-  apply GlobalTheory.ParamLabel.Congr.part_pow <;> assumption
-
 theorem pow_eq_of_part_eq {G : Type} [Monoid G] {l : ℕ} (hl : l.Prime) {x y : G} (hx : IsOfFinOrder x)
     (hy : IsOfFinOrder y) (h : Formalism.CyclotomicNorms.primeToPart l x = Formalism.CyclotomicNorms.primeToPart l y) :
     ∃ a : ℕ, x ^ (l ^ a) = y ^ (l ^ a) := by
-  obtain ⟨a, ha⟩ := part_pow hl hx
-  obtain ⟨b, hb⟩ := part_pow hl hy
+  obtain ⟨a, ha⟩ := GlobalTheory.ParamLabel.Congr.part_pow hl hx
+  obtain ⟨b, hb⟩ := GlobalTheory.ParamLabel.Congr.part_pow hl hy
   refine ⟨a + b, ?_⟩
   have h1 : x ^ (l ^ (a + b)) = Formalism.CyclotomicNorms.primeToPart l x ^ (l ^ (a + b)) := by
     rw [pow_add, pow_mul, pow_mul, ha]
@@ -1181,8 +1178,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.RowHTuCTmin
 @[expose] public section
 
-
-
 section
 noncomputable section
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.Pk Formalism.MainNotions.Lnk Formalism.MainNotions.GlobalTheoryTheory Formalism.L2.GlobalTheoryTheory Formalism.MainNotions.RT GlobalTheory.EX GlobalTheory.EX.OB GlobalTheory.Mem GlobalTheory.Mem.Top GlobalTheory.Fc
@@ -1206,13 +1201,9 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.RowHTuCTminStatement
 
-
-
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.NonemptyHypsOfAllRows
-
-
 
 section
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.Pk Formalism.MainNotions.Lnk Formalism.MainNotions.GlobalTheoryTheory Formalism.L2.GlobalTheoryTheory Formalism.MainNotions.RT GlobalTheory.EX GlobalTheory.EX.OB GlobalTheory.Mem GlobalTheory.Mem.Top GlobalTheory.Fc

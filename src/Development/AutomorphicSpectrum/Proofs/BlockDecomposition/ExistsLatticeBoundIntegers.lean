@@ -54,11 +54,10 @@ theorem exists_finset_generators (l : ℕ) [Fact l.Prime]
 end GlobalTheory.CompanionTheory.LocalIntegers
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegerMemLatticeSubBound
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IntegerMemLatticeSubBound
 open Polynomial
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.LatOKElem
 
@@ -339,6 +338,7 @@ theorem ok_mem_sub : ∀ (l : ℕ) [Fact l.Prime] (K : IntermediateField ℚ_[l]
     map_zero, map_zero]
 
 end GlobalTheory.CompanionTheory.LatOKElem
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PadicIntMemSub

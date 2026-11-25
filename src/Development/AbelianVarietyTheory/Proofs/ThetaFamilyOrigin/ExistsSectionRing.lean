@@ -91,8 +91,9 @@ variable (M : ℕ → Submodule K A) [SetLike.GradedMonoid M]
 end GlobalTheory.ReesAlgebraMembership
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaFamilyOrigin.ExistsSectionRing
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.ThetaFamilyOrigin.ExistsSectionRing
 
+noncomputable section
 
 namespace GlobalTheory.SectionRing
 
@@ -117,7 +118,7 @@ def mono (e : ℕ) : M e →ₗ[K] polyAlg M where
 
 theorem mono_val (e : ℕ) (a : M e) : (mono M e a : A[X]) = monomial e (a : A) := rfl
 
-theorem mono_injective (e : ℕ) : Function.Injective (mono M e) := fun a b h =>
+theorem mono_injective (e : ℕ) : Function.Injective (mono M e) := fun _ _ h =>
   Subtype.ext (monomial_injective e (congrArg Subtype.val h))
 
 def piece (e : ℕ) : Submodule K (polyAlg M) := LinearMap.range (mono M e)

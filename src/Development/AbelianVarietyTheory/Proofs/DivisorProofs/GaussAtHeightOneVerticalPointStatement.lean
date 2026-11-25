@@ -1116,8 +1116,9 @@ theorem gauss_baseChange : ∀ (T D : Type) [CommRing T] [IsDomain T] [IsDiscret
 end GlobalTheory.Desc.GaussBC
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaussAtHeightOneVerticalPoint
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaussAtHeightOneVerticalPoint
 
+noncomputable section
 
 namespace GlobalTheory.Desc.GaussDvr
 
@@ -1272,7 +1273,7 @@ theorem cst_comm {R₁ : Type} [CommRing R₁] {Y V : Scheme.{0}} [IsIntegral Y]
   simp only [Category.assoc]
 
 theorem cst_injective [IsDomain R] (p : X ⟶ Sp R) [Surjective p] : Function.Injective (GlobalTheory.Desc.cst p) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro r hr
   obtain ⟨y, hy⟩ := p.surjective ⟨⊥, Ideal.isPrime_bot⟩
   have h1 : cstAt p y r = 0 :=
@@ -1452,6 +1453,7 @@ theorem gaussAt_chart_of_height_one : ∀ (σ : Setup) (p : Sp σ.R) (z : (σ.C 
   simpa only [hva'] using this
 
 end GlobalTheory.Desc
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaussAtHeightOneVerticalPointStatement

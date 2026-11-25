@@ -11,12 +11,13 @@ public import Development.ResolutionOfSingularities.EmbeddedResolution.StrictTra
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.OpenRestriction, Development.ResolutionOfSingularities.EmbeddedResolution.StrictTransformIsolation.VanishingIdealOrderOne, Development.ResolutionOfSingularities.EmbeddedResolution.StrictTransformIsolation.VanishingIdealHypotheses
 
-@[expose] public noncomputable section -- clump member: Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.OpenRestriction
+@[expose] public section -- clump member: Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.OpenRestriction
 
 universe u
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace
 
+noncomputable section
 
 namespace FunctorialResolution.EmbeddedResolution
 
@@ -26,8 +27,6 @@ private theorem exists_subschemeMap_isOpenImmersion {V W : Scheme.{u}} (f : V �
     [IsOpenImmersion f] (D : W.IdealSheafData) :
     ∃ g : (D.comap f).subscheme ⟶ D.subscheme,
       IsOpenImmersion g ∧ g ≫ D.subschemeι = (D.comap f).subschemeι ≫ f := by
-  have h₁ : IsOpenImmersion (Limits.pullback.snd f D.subschemeι) := inferInstance
-  have h₂ : IsOpenImmersion (D.comapIso f).hom := inferInstance
   refine ⟨(D.comapIso f).hom ≫ Limits.pullback.snd f D.subschemeι, inferInstance, ?_⟩
   rw [Category.assoc, ← Limits.pullback.condition, ← Category.assoc,
     Scheme.IdealSheafData.comapIso_hom_fst]
@@ -37,7 +36,6 @@ theorem isOpenImmersion_subschemeMap {V W : Scheme.{u}} (f : V ⟶ W) [IsOpenImm
     (hg : g ≫ D.subschemeι = (D.comap f).subschemeι ≫ f) :
     IsOpenImmersion g := by
   obtain ⟨g', hg', hg'fac⟩ := exists_subschemeMap_isOpenImmersion f D
-  have : Mono D.subschemeι := inferInstance
   have heq : g = g' := by
     refine (cancel_mono D.subschemeι).mp ?_
     rw [hg, hg'fac]
@@ -51,7 +49,6 @@ theorem isSmoothDivisor_comap {V W : Scheme.{u}} {k : Type u} [Field k]
   obtain ⟨g, hg, hgfac⟩ := exists_subschemeMap_isOpenImmersion f D
   refine ⟨hD.1.comap_of_isOpenImmersion f, ?_⟩
   have : IsOpenImmersion g := hg
-  have : AlgebraicGeometry.Smooth g := inferInstance
   have hsm : AlgebraicGeometry.Smooth (D.subschemeι ≫ p) := hD.2
   have hcomp : (D.comap f).subschemeι ≫ f ≫ p = g ≫ D.subschemeι ≫ p := by
     rw [← Category.assoc, ← hgfac, Category.assoc]
@@ -61,6 +58,7 @@ theorem isSmoothDivisor_comap {V W : Scheme.{u}} {k : Type u} [Field k]
 end OpenImmersionRestriction
 
 end FunctorialResolution.EmbeddedResolution
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.ResolutionOfSingularities.EmbeddedResolution.StrictTransformIsolation.VanishingIdealOrderOne
@@ -196,7 +194,6 @@ theorem isLocallyNoetherian_subscheme_of_isSmoothDivisor
     IsLocallyNoetherian D.subscheme := by
   obtain ⟨_, hsm⟩ := hD
   have : AlgebraicGeometry.Smooth (D.subschemeι ≫ U.ι ≫ p) := hsm
-  have : LocallyOfFiniteType (D.subschemeι ≫ U.ι ≫ p) := inferInstance
   have : IsNoetherianRing (CommRingCat.of k) := inferInstanceAs (IsNoetherianRing k)
   exact AlgebraicGeometry.LocallyOfFiniteType.isLocallyNoetherian (D.subschemeι ≫ U.ι ≫ p)
 

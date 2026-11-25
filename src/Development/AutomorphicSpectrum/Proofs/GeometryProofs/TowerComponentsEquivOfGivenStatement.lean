@@ -21,8 +21,9 @@ open Formalism.L2.Pj ReciprocityTheory.ChartRestriction.G ReciprocityTheory.Char
 open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec
 open scoped Matrix
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.HomogeneousNonvanishing.YCompOf
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.HomogeneousNonvanishing.YCompOf
 
+noncomputable section
 
 namespace PositivityTheory.UnitarySelfGeneration
 
@@ -57,7 +58,7 @@ theorem exists_component_equiv_of_tower : ∀ (E : Type) [Field E] [NumberField 
     have e₃ : Or.𝔐.f (GlobalTheory.CompanionTheory.Ar.genPt Or.𝔐.ξ) = GlobalTheory.CompanionTheory.Ar.genPt Or.𝔐.ξ₀ := RegAtDom.map_genPt Or.𝔐.fn_over
     let η : Sp (T.M 0 a).Ω ⟶ pullback Y.s (spMap (algebraMap (𝓞 c.F) c.F)) :=
       pullback.lift (Or.𝔐.ξ ≫ Or.𝔐.f) (spMap Or.𝔐.cst) (by
-        rw [Category.assoc, Or.𝔐.cst_over, KapEquiv.spMap_comp_eq])
+        rw [Category.assoc, Or.𝔐.cst_over, GlobalTheory.CompanionTheory.Ar.FlagPull.spMap_comp])
     have hη : pullback.fst Y.s (spMap (algebraMap (𝓞 c.F) c.F)) (GlobalTheory.CompanionTheory.Ar.genPt η) =
         GlobalTheory.CompanionTheory.Ar.genPt Or.𝔐.ξ₀ := by
       rw [← e₃]
@@ -80,12 +81,11 @@ theorem exists_component_equiv_of_tower : ∀ (E : Type) [Field E] [NumberField 
     exact Scheme.Hom.comp_apply _ _ _
   exact ⟨Equiv.ofBijective k ⟨hinj, hsurj⟩, hk⟩
 
-
 end PositivityTheory.UnitarySelfGeneration
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.TowerComponentsEquivOfGiven
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 theorem _root_.GlobalTheory.CompanionTheory.Relay.tower_components_equiv_of_given : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (Y : Model Xo c (algebraMap (𝓞 c.F) c.F)) (T : Top.RootTower (CMType H) (Dw.p + Dw.q)) (o : TowerOrigin Y T), Top.Given → ∃ κ : Comp Xo c ≃ T.Comp, CompOf o κ := by
   first | exact @_root_.PositivityTheory.UnitarySelfGeneration.exists_component_equiv_of_tower

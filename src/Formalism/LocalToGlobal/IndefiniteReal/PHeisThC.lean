@@ -5,8 +5,10 @@ public import Formalism.LocalToGlobal.IndefiniteReal.PHeisFC
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.LocalToGlobal.IndefiniteReal.PHeisThP, Formalism.LocalToGlobal.IndefiniteReal.PHeisThC
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.IndefiniteReal.PHeisThP
+section -- clump member: Formalism.LocalToGlobal.IndefiniteReal.PHeisThP
+@[expose] public section
 
+noncomputable section
 
 open MeasureTheory Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR.Heis
   IsDedekindDomain NumberField Formalism.IndefR.PHeisFC
@@ -20,11 +22,6 @@ abbrev Ix {D : D7} (V W : HSp D) : Type := Fin V.rank × Fin W.rank × Fin (nE D
 
 def Co {D : D7} (V W : HSp D) (x : WA V W) (a : Ix V W) : AF D.host.F := Phi V W x a.1 a.2.1 a.2.2
 
-def CoordFinP : Prop :=
-  ∀ (D : D7) (V W : HSp D) (x : WA V W), x.map (finPart D) = 0 → ∀ a, (Co V W x a).2 = 0
-
-
-
 def PsiOpenP : Prop :=
   ∀ (F : Type) [Field F] [NumberField F] (ψ : AddChar (AF F) ℂ), IsCharAF F ψ →
     ∃ G : AddSubgroup (Af F), IsOpen (G : Set (Af F)) ∧ (∀ y ∈ G, ∀ z ∈ Ohat F, z * y ∈ G) ∧
@@ -37,6 +34,8 @@ def PsiSmoothP : Prop :=
 
 end Formalism.IndefR.PHeisTh
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.IndefiniteReal.PHeisThC

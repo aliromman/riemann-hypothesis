@@ -12,7 +12,8 @@ import Mathlib.Tactic.TypeStar
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.ArithmeticGeometry.SchemeCohomology.ProjTwistAway, GroundTheory.ArithmeticGeometry.SchemeCohomology.ProjLaurent, GroundTheory.ArithmeticGeometry.SchemeCohomology.ProjCechModel
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ArithmeticGeometry.SchemeCohomology.ProjTwistAway
+section -- clump member: GroundTheory.ArithmeticGeometry.SchemeCohomology.ProjTwistAway
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -25,6 +26,7 @@ universe u
 variable {A σ : Type u} [CommRing A] [SetLike σ A] [AddSubgroupClass σ A]
 variable {𝒜 : ℕ → σ} [GradedRing 𝒜]
 
+noncomputable section
 
 namespace ProjTwist
 
@@ -166,7 +168,6 @@ lemma isLocallyFraction_locMap {f : A} {d : ℕ} (hf : f ∈ 𝒜 d) (hd : 0 < d
   (toSection hf hd k ⟨z, hz⟩).2
 
 
-set_option backward.isDefEq.respectTransparency.types false in
 open ProjectiveSpectrum in
 lemma exists_section_of_isLocallyFraction_zero {U : Opens (ProjectiveSpectrum.top 𝒜)}
     (t : ∀ x : U, Loc 𝒜 x.1) (ht : (isLocallyFraction 𝒜 0).pred t) :
@@ -275,8 +276,10 @@ theorem toSection_bijective {f u g : A} {e : ℕ} (hu : u ∈ 𝒜 1) (hg : g �
 
 end ProjTwist
 
+end
 
 end GroundTheory.Arith.SchemeCoh
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.ArithmeticGeometry.SchemeCohomology.ProjLaurent

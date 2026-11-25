@@ -77,7 +77,8 @@ theorem subst_mem_fg : ∀ {D : Formalism.BasicNotions.D7} {a b : ℕ} (τ : For
 end GlobalTheory.SubstitutionFinitelyGenerated
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeilModelRationalStructure
+section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.WeilModelRationalStructure
+@[expose] public section
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.MainNotions.S MeasureTheory IsDedekindDomain NumberField Matrix
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Indef Formalism.DivisionValues
@@ -89,6 +90,7 @@ open GlobalTheory.SquareComm
 open scoped ComplexConjugate
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun
 
+noncomputable section
 
 namespace GlobalTheory.RealDict.CompactCoinv
 
@@ -522,10 +524,8 @@ end Reading
 
 end GlobalTheory.RealDict.CompactCoinv
 
-namespace GlobalTheory.RealDict
-
-end GlobalTheory.RealDict
-
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.WeilModelRationalStructure
@@ -540,8 +540,6 @@ open GlobalTheory.SquareComm
 open scoped ComplexConjugate
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun
 noncomputable section
-namespace GlobalTheory.RealDict.CompactCoinv
-end GlobalTheory.RealDict.CompactCoinv
 namespace GlobalTheory.RealDict
 open GlobalTheory.RealDict.CompactCoinv
 theorem sub_mem_map_coinv_alt : _root_.GlobalTheory.FunPr.ThetaLocalInputs →

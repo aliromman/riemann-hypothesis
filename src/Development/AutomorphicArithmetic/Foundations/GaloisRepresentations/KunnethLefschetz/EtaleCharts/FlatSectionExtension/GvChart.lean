@@ -18,9 +18,11 @@ import Development.WeilBound.CoreStatements.PadicHodgeComparison.HodgeSurjectivi
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.EtaleCharts.FlatSectionExtension.BlowupChartRelation, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.EtaleCharts.FlatSectionExtension.ChartNzdAlg, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.EtaleCharts.FlatSectionExtension.NzdChart, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.EtaleCharts.FlatSectionExtension.NzdRes, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.EtaleCharts.FlatSectionExtension.GvChart
 
-@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.EtaleCharts.FlatSectionExtension.BlowupChartRelation
+-- clump: shared namespace opens
 
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.EtC CrystallineSemistableComparison CrystallineSemistableComparison.Onto UpperTheory.Gal.KunnethLefschetz.G.PX
+
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.EtaleCharts.FlatSectionExtension.BlowupChartRelation
 
 namespace UpperTheory.Gal.KunnethLefschetz.G.PX
 
@@ -114,18 +116,6 @@ theorem UpperTheory.Gal.KunnethLefschetz.G.PX.gvNzd :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.EtaleCharts.FlatSectionExtension.ChartNzdAlg
-
-namespace UpperTheory.Gal.KunnethLefschetz.G.PX
-
-section Chart
-
-open CategoryTheory Limits MvPolynomial
-
-end Chart
-
-end UpperTheory.Gal.KunnethLefschetz.G.PX
-
-open CategoryTheory Limits AlgebraicGeometry GlobalTheory.EtC CrystallineSemistableComparison CrystallineSemistableComparison.Onto UpperTheory.Gal.KunnethLefschetz.G.PX
 
 private theorem chart_quotient_X_nonZeroDivisor {A : Type} [CommRing A] {D : ℕ} (j : Fin D) :
     IsSMulRegular (MvPolynomial (Fin D) (MvPolynomial (Fin D) A) ⧸
@@ -284,10 +274,6 @@ theorem UpperTheory.Gal.KunnethLefschetz.G.PX.chartNzdAlg :
   have h5 := hΦI f h4
   simpa using h5
 end -- clump:auto
-
--- clump: shared namespace opens
-
-open CategoryTheory Limits AlgebraicGeometry GlobalTheory.EtC CrystallineSemistableComparison CrystallineSemistableComparison.Onto UpperTheory.Gal.KunnethLefschetz.G.PX
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.EtaleCharts.FlatSectionExtension.NzdChart
 

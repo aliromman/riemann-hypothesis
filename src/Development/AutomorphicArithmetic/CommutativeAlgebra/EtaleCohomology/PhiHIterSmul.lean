@@ -181,10 +181,9 @@ theorem UpperTheory.Ru.crystallineComparison.locAvg :
       exact ⟨0, by rw [map_zero, ih _ hL x' hk.symm]⟩
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.AveragingTransferKills
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.AveragingTransferKills
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory CategoryTheory.Limits GroundTheory.PAdicHodge CrystallineSemistableComparison
 
@@ -272,6 +271,7 @@ theorem UpperTheory.Ru.crystallineComparison.avgMH :
     UpperTheory.Ru.crystallineComparison.AvgMH := by
   intro l _ Q P p I _ g h n j x hx
   exact averaging_transfer_kills locAvg partsEx acrAdd theoryEx p h n j x hx
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.SplitOnOfDisj
@@ -783,8 +783,6 @@ section -- clump member: Development.AutomorphicArithmetic.EtaleIdempotents.Crys
 @[expose] public section
 
 
-set_option backward.isDefEq.respectTransparency false
-
 open CategoryTheory Limits AlgebraicGeometry GroundTheory.PAdicHodge CrystallineSemistableComparison TensorProduct UpperTheory.Gal.crystallineComparison UpperTheory.Ru.crystallineComparison
 
 private theorem core {F R C : Type} {V : Type*} [Field F] [AddCommGroup V] [Module F V] [CommRing R] [CommRing C] [Algebra F C]
@@ -908,8 +906,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.EtaleIdempotents.ExistsCrystallineLatticeExpansion
 
-
-set_option backward.isDefEq.respectTransparency false
 
 open CategoryTheory Limits AlgebraicGeometry GroundTheory.PAdicHodge CrystallineSemistableComparison TensorProduct UpperTheory.Gal.crystallineComparison UpperTheory.Ru.crystallineComparison
 
@@ -1048,8 +1044,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.EtaleIdempotents.HeckeCorrespondenceProduct
 
 
-set_option backward.isDefEq.respectTransparency false
-
 open CategoryTheory Limits AlgebraicGeometry GroundTheory.PAdicHodge CrystallineSemistableComparison TensorProduct UpperTheory.Gal.crystallineComparison UpperTheory.Ru.crystallineComparison
 
 private theorem pow_mul_int (l : ℕ) [Fact l.Prime] (q : ℚ_[l]) :
@@ -1150,8 +1144,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.EtaleIdempotents.LinearCombinationTransferOfProjectorRelations
 
 
-set_option backward.isDefEq.respectTransparency false
-
 open CategoryTheory Limits AlgebraicGeometry GroundTheory.PAdicHodge CrystallineSemistableComparison TensorProduct UpperTheory.Gal.crystallineComparison UpperTheory.Ru.crystallineComparison
 
 theorem UpperTheory.linear_combination_transfer_of_projector_relations :
@@ -1197,8 +1189,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.EtaleIdempotents.NatCastPrimeNeZeroAndNotIsUnitIntegers
 
 
-set_option backward.isDefEq.respectTransparency false
-
 open CategoryTheory Limits AlgebraicGeometry GroundTheory.PAdicHodge CrystallineSemistableComparison TensorProduct UpperTheory.Gal.crystallineComparison UpperTheory.Ru.crystallineComparison
 
 private theorem norm_l_val {l : ℕ} [Fact l.Prime] : ‖(l : PadicAlgCl l)‖ = (l : ℝ)⁻¹ := by
@@ -1239,11 +1229,10 @@ theorem UpperTheory.natCast_prime_ne_zero_and_not_isUnit_integers :
     linarith
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.PhiHIterSmul
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.EtaleCohomology.PhiHIterSmul
 
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry GroundTheory.PAdicHodge CrystallineSemistableComparison TensorProduct
 

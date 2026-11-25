@@ -1093,10 +1093,12 @@ end
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CmDifferentFromIdeal
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CmDifferentFromIdeal
+@[expose] public section
 
 open AlgebraicGeometry CategoryTheory NumberField IsDedekindDomain ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.GeometryOfNumbersTheory GlobalTheory GlobalTheory.CM GlobalTheory.FlatCM
 
+noncomputable section
 
 namespace GlobalTheory.FlatCore.CMDiff
 
@@ -1121,10 +1123,8 @@ theorem latRank_iSup {K V ι : Type} [Field K] [NumberField K] [AddCommGroup V] 
 
 end GlobalTheory.FlatCore.CMDiff
 
-namespace GlobalTheory.FlatCore.CMDiff
-
-end GlobalTheory.FlatCore.CMDiff
-
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelIndexISupMapEqPow

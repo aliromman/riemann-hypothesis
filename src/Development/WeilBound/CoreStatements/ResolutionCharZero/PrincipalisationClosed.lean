@@ -857,7 +857,7 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
--- clump: shared namespace opens
+section -- clump: shared namespace opens
 
 open AlgebraicGeometry CategoryTheory Limits TopologicalSpace
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
@@ -1068,7 +1068,14 @@ theorem smooth_and_comap_eq : ∀ {k : Type} [Field k] {X : Scheme.{0}} (g : X �
 end GlobalTheory.CompanionTheory.SmoothPart
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.PrincipalisationOfCharZero
+end -- clump: shared namespace opens
+
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GlobalProofs.PrincipalisationOfCharZero
+
+noncomputable section
+
+open AlgebraicGeometry CategoryTheory Limits TopologicalSpace
+open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
 
 namespace GlobalTheory.CompanionTheory.Hypotheses₂.CentreOver
 
@@ -1135,13 +1142,13 @@ theorem seq_of_iso {k : Type} [Field k] {X X' : Scheme.{0}} {g : X ⟶ Sp k} {E 
 
 end GlobalTheory.CompanionTheory.Hypotheses₂.CentreOver
 
-namespace GlobalTheory.CompanionTheory.Hypotheses₂
-
-
-end GlobalTheory.CompanionTheory.Hypotheses₂
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.ResolutionCharZero.PrincipalisationClosed
+
+open AlgebraicGeometry CategoryTheory Limits TopologicalSpace
+open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.AnForm.R
 
 namespace PositivityTheory.ResPlug.WeightsCompactStabilizer
 

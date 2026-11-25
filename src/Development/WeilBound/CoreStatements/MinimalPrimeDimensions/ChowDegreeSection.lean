@@ -105,9 +105,6 @@ theorem sectionCycleReduced_closed : SectionCycleReduced.Statement :=
 
 end GlobalTheory.CompanionTheory.Ar.Short.ChowClosing
 
-namespace GlobalTheory.CompanionTheory.Ar.Short
-
-end GlobalTheory.CompanionTheory.Ar.Short
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.MinimalPrimeDimensions.RangeOfMemSupportPush

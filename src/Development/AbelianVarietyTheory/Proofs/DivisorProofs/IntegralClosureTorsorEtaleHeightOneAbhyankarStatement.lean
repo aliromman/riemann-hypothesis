@@ -563,8 +563,9 @@ section -- clump: shared namespace opens
 open IsLocalRing Polynomial
 open scoped TensorProduct
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleIntegralClosureTorsorOfFractionFields
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleIntegralClosureTorsorOfFractionFields
 
+noncomputable section
 
 namespace GlobalTheory.KeyOriginTransport
 
@@ -634,7 +635,7 @@ theorem etale_closure_of_field : (∀ (S S₁ K K₁ : Type) [CommRing S] [IsDom
     exact isUnit_of_map_unit (Localization.localRingHom (P₁.comap φ) P₁ φ rfl) _ hu
   have hSS₁ : Function.Injective
       (algebraMap (Localization.AtPrime (P₁.comap φ)) (Localization.AtPrime P₁)) := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     by_contra hx0'
     obtain ⟨n, hn⟩ := IsDiscreteValuationRing.associated_pow_irreducible hx0' hπ
@@ -658,6 +659,7 @@ theorem etale_closure_of_field : (∀ (S S₁ K K₁ : Type) [CommRing S] [IsDom
     (algebraMap A _ π) hπ (algebraMap R₁ _ y) hy' (φ (algebraMap A R π)) hx0 hxu hxB
 
 end GlobalTheory.KeyOriginTransport
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RamificationIdxDvdOfGaloisDegreeDvdUnitDvr

@@ -25,7 +25,7 @@ def nrmv (h : HermNorm n) (v : Fin n → ℂ) : Fin n → ℂ := fun j => ((h.no
 end GroundTheory.Heights₂.Heights
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.StatementsMahler
+@[expose] public section -- clump member: GroundTheory.HeightsAndTheta.Heights.ArithmeticBezout.StatementsMahler
 
 set_option maxSynthPendingDepth 1
 
@@ -33,6 +33,7 @@ namespace GroundTheory.Heights₂.Heights
 
 open MvPolynomial MeasureTheory Matrix
 
+noncomputable section
 
 variable {n : ℕ}
 
@@ -178,10 +179,7 @@ def ChowFormCycleSmul.Statement : Prop :=
   ∀ (F : Type) [Field F] (n k m : ℕ) (Z : ProjCycle F n) (f : MvPolynomial (Fin k × Fin n) F),
     IsChowFormCycle Z k f → IsChowFormCycle (m • Z) k (f ^ m)
 
-namespace MahlerInhabit
-
-end MahlerInhabit
-
+end
 
 end GroundTheory.Heights₂.Heights
 

@@ -66,11 +66,12 @@ import Development.AbelianVarietyTheory.Proofs.RingsOfIntegers.ThetaGrpActIterat
 open CategoryTheory CategoryTheory.Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry IsLocalRing
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.DVR
 open scoped CategoryTheory.Obj
-
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.SymmetricFramePhiPowOrderEqId
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.UT
 
+section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.SymmetricFramePhiPowOrderEqId
+@[expose] public section
+
+noncomputable section
 
 namespace GlobalTheory.UT.PhiOrder
 
@@ -441,11 +442,11 @@ theorem main : LL → AllD fun {R} _ _ {I} D F _ _ => ∀ (N : ℕ), Odd N → �
 
 end GlobalTheory.UT.PhiOrder
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.UniformizationProofs.SymmetricLiftOddOrderActsAsExpansionOperator
-attribute [local instance] Over.cartesianMonoidalCategory
-open GlobalTheory.UT
 
 noncomputable section
 namespace GlobalTheory.UT.SymLiftPhi

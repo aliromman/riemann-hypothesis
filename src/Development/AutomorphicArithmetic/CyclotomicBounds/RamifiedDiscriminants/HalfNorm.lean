@@ -127,14 +127,11 @@ theorem UpperTheory.HF.cond_rd :
     (Nat.le_of_dvd htpos hdvd).trans (Nat.totient_le _)⟩
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDifferentExponentDenominator
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDifferentExponentDenominator
 
+noncomputable section
 
 open NumberField IsDedekindDomain UniqueFactorizationMonoid
-
-namespace GlobalTheory.DifferentElement
-
-end GlobalTheory.DifferentElement
 
 namespace GlobalTheory.DifferentElement
 
@@ -160,10 +157,7 @@ theorem mult_ratio (E : Type) [Field E] [NumberField E] [IsGalois ℚ E] (l : �
 
 end GlobalTheory.DifferentElement
 
-namespace GlobalTheory.DifferentElement
-
-
-end GlobalTheory.DifferentElement
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens

@@ -38,8 +38,9 @@ import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.CFCoreB, ReciprocityTheory.ReductiveGroups.DiscreteSeries.BochnerInequality.SchForm, ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.CFCore, ReciprocityTheory.ReductiveGroups.DiscreteSeries.LaplaceOperators.KTypeLemma.SchmidCas
 
-@[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.CFCoreB
+@[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.CFCoreB
 
+noncomputable section
 
 open Finset
 
@@ -77,7 +78,6 @@ theorem khw_map (f : M →ₗ[ℂ] M') (hf : ∀ a b x, f (E a b x) = E' a b (f 
 
 theorem casimir_map (f : M →ₗ[ℂ] M') (hf : ∀ a b x, f (E a b x) = E' a b (f x)) (x : M) :
     f (casimir E x) = casimir E' (f x) := by
-  set_option synthInstance.maxHeartbeats 100000 in
     simp [casimir, LinearMap.sum_apply, map_sum, hf]
 
 end Intertwine
@@ -141,6 +141,7 @@ theorem isInfUnitary_prod (hU₁ : IsInfUnitary ε E₁) (hU₂ : IsInfUnitary �
 end ProdUnitary
 
 end ReciprocityTheory.ChartRestriction.DS
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.BochnerInequality.SchForm

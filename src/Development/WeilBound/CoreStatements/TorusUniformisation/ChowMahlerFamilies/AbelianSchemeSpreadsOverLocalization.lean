@@ -40,8 +40,9 @@ import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.LieModel
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.WeilBound.CoreStatements.TorusUniformisation.SiegelCompactSupport.ExistsSabExtension, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.AbelianSchemeSpreadsOverLocalization
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.TorusUniformisation.SiegelCompactSupport.ExistsSabExtension
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.TorusUniformisation.SiegelCompactSupport.ExistsSabExtension
 
+noncomputable section
 
 open CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj AlgebraicGeometry NumberField
 open scoped CategoryTheory.Obj
@@ -201,9 +202,7 @@ theorem exists_sab_extension {X U : Scheme.{0}} [IsLocallyNoetherian X] (hX : Ge
 
 end PositivityTheory.Member.SiegelModularCharts.K6
 
-namespace PositivityTheory.Member.SiegelModularCharts
-
-end PositivityTheory.Member.SiegelModularCharts
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.AbelianSchemeSpreadsOverLocalization

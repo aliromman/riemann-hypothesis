@@ -96,7 +96,6 @@ import Mathlib.Tactic.Lemma
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FilteredModuleFiniteOfGraded
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 
 namespace GlobalTheory.CompanionTheory.LenDev
@@ -113,23 +112,7 @@ theorem finite_mid [IsNoetherianRing R] {M₁ M₂ M₃ : Type 1} [AddCommGroup 
     Module.Finite.equiv g.quotKerEquivRange.symm
   exact Module.Finite.of_submodule_quotient (LinearMap.ker g)
 
-theorem H_subsingleton (F : C ⥤ ModuleCat.{0} R) (h : ∀ T, Subsingleton (F.obj T)) (n : ℕ) :
-    Subsingleton (CH.H F n) := by
-  have hX : Subsingleton ((CH.cx F).X n) := ⟨fun a b => funext fun s => (h _).elim _ _⟩
-  refine ⟨fun x y => ?_⟩
-  obtain ⟨a, ha, rfl⟩ := (CrystallineSemistableComparison.P.cls_surj (CH.cx F) n).1 x
-  obtain ⟨b, hb, rfl⟩ := (CrystallineSemistableComparison.P.cls_surj (CH.cx F) n).1 y
-  have e : a = b := hX.elim _ _
-  subst e
-  rfl
-
-
 variable {a b c : IdF A}
-
-theorem sq_les (hba : ∀ T, b.S T ≤ a.S T) (hcb : ∀ T, c.S T ≤ b.S T) (n : ℕ) :
-    Function.Exact ((sqLe (a := b) (b := c) (a' := a) (b' := c) hba fun _ => le_rfl).pull n)
-      ((sqLe (a := a) (b := c) (a' := a) (b' := b) (fun _ => le_rfl) hcb).pull n) := by
-  apply GlobalTheory.CompanionTheory.KFin.sq_les
 
 theorem finite_dev [IsNoetherianRing R] (a : ℕ → IdF A) (hanti : ∀ k l, k ≤ l → ∀ T, (a l).S T ≤ (a k).S T) (s n : ℕ)
     (hgr : ∀ r, r < s → Module.Finite R (CH.H (sq (a r) (a (r + 1))) n)) :
@@ -139,13 +122,13 @@ theorem finite_dev [IsNoetherianRing R] (a : ℕ → IdF A) (hanti : ∀ k l, k 
   | zero =>
     intro r h
     obtain rfl : r = s := by omega
-    have := H_subsingleton _ (GlobalTheory.CompanionTheory.KFin.sq_self_subsingleton (a r)) n
+    have := GlobalTheory.CompanionTheory.KFin.H_subsingleton _ (GlobalTheory.CompanionTheory.KFin.sq_self_subsingleton (a r)) n
     exact Module.Finite.of_finite
   | succ d ih =>
     intro r h
     have := ih (r + 1) (by omega)
     have := hgr r (by omega)
-    exact finite_mid _ _ (sq_les (hanti r (r + 1) (by omega)) (hanti (r + 1) s (by omega)) n)
+    exact finite_mid _ _ (GlobalTheory.CompanionTheory.KFin.sq_les (hanti r (r + 1) (by omega)) (hanti (r + 1) s (by omega)) n)
 
 theorem finite_H_sq : ∀ {R : Type} [CommRing R] [IsNoetherianRing R] {C : Type 1} [Category.{0} C] {A : C ⥤ CommAlgCat.{0} R} (Fil : ℤ → IdF A),
     (∀ r r' : ℤ, r ≤ r' → ∀ T, (Fil r').S T ≤ (Fil r).S T) → ∀ s : ℕ,
@@ -165,10 +148,9 @@ theorem finite_H_sq : ∀ {R : Type} [CommRing R] [IsNoetherianRing R] {C : Type
 end GlobalTheory.CompanionTheory.LenDev
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteLengthWittCohomology
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FiniteLengthWittCohomology
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 
@@ -179,7 +161,7 @@ universe w w'
 theorem mapH_injective {R R' : Type} [CommRing R] [CommRing R'] {σ : R →+* R'} {K : Cx.{w} R} {L : Cx.{w'} R'}
     (φ : Cx.Hom K L σ) (hi : ∀ n, Function.Injective (φ.f n)) (hs : ∀ n, Function.Surjective (φ.f n)) (n : ℕ) :
     Function.Injective (φ.mapH n) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro x hx
   obtain ⟨z, rfl⟩ := Submodule.Quotient.mk_surjective _ x
   have h0 : φ.mapZ n z ∈ (L.B n).submoduleOf (L.Z n) := (Submodule.Quotient.mk_eq_zero _).1 hx
@@ -284,10 +266,10 @@ theorem finiteLength_level_one : ∀ {l : ℕ} [Fact l.Prime] {k : Type} [Field 
 
 end GlobalTheory.CompanionTheory.LevelOne
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SquarePullBijectiveOfAcyclic
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 
 namespace GlobalTheory.CompanionTheory.LengthOneCochainExactness
@@ -614,11 +596,13 @@ theorem basis_gen {W₀ : Y.Opens} {d : ℕ} (t₀ : Fin d → Γ(Y, W₀)) (P�
 end GlobalTheory.CompanionTheory.FibGr
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PreimageMono
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PreimageMono
+@[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
 open CategoryTheory Limits AlgebraicGeometry TensorProduct GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.FibGr
 open GlobalTheory.CompanionTheory.ChartAlg (fromSpec_comp top_le_fromSpec eq_specMap evalAt_specMap)
 
@@ -813,7 +797,6 @@ theorem free_at (hp : p ≠ 0) (hn : IsNilpotent (p : R)) {V W : X.Opens} (h : W
   exact free_of_frame _ GlobalTheory.CompanionTheory.LocGrStep.loc_gr (fun T => sq_inY hI _ T.property) u _ E σ θ hGr hbot hco hσ hpt Qp r
     (fun r' _ => (hQp r').1)
 
-
 include hI in
 theorem off_at (hp : p ≠ 0) (hn : IsNilpotent (p : R)) {W : X.Opens} {d : ℕ} (c : Coord q W d) (r j : ℕ) (hj : j ≠ r) :
     Subsingleton (HU (GF (nlFun γ p X q κ) r) (SQ q κ γ p W) j) := by
@@ -924,13 +907,15 @@ theorem cover_pre (U : Cov q) : (⨆ α, jF hI q κ ⁻¹ᵁ U.U α) = ⊤ := by
 end Fin
 
 end GlobalTheory.CompanionTheory.FibGr
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.GlobSerre
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.GlobSerre
 
-set_option backward.isDefEq.respectTransparency false
 set_option linter.unusedVariables false
 
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry TensorProduct
 
@@ -938,15 +923,17 @@ namespace CrystallineSemistableComparison.Pb
 
 alias vb_fin := _root_.GlobalTheory.CompanionTheory.VBGlue.finite_H_cx
 
-
 end CrystallineSemistableComparison.Pb
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WittLevelOneGradedFinite
+section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WittLevelOneGradedFinite
+@[expose] public section
 
 set_option backward.isDefEq.respectTransparency false
 open CategoryTheory Limits AlgebraicGeometry TensorProduct GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 
+noncomputable section
 namespace GlobalTheory.CompanionTheory.FibGr
 
 section Abs
@@ -982,7 +969,6 @@ theorem serre_red [IsNoetherianRing R] (F : Thick (nlFun γ p X q κ) ⥤ Module
     Module.Finite R (HU F (St Q (Set.range U)) j) := by
   obtain ⟨𝒮, h𝒮⟩ := _root_.GlobalTheory.CompanionTheory.SerreFin.exists_serre_finite R
   exact (h𝒮 _).1 (GlobalTheory.CompanionTheory.GlobSt.glob_st.2.1 F Q U 𝒮 j fun a b hab => (h𝒮 _).2 (h a b hab))
-
 
 include hI in
 theorem fin_gen [IsNoetherianRing R] (hp : p ≠ 0) (hn : IsNilpotent (p : R)) [IsProper q] (U : Cov q) (r j : ℕ) :
@@ -1024,11 +1010,12 @@ theorem level_one_gr_finite : ∀ {l : ℕ} [Fact l.Prime] {k : Type} [Field k] 
   exact h
 
 end GlobalTheory.CompanionTheory.FibGr
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.WittLevelOneVanishAboveDim
 
-set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry GlobalTheory.LogCris DividedPowers CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 
 namespace GlobalTheory.CompanionTheory.WittLevel.Van
@@ -1098,10 +1085,9 @@ theorem witt_level_one_filtration_vanish : ∀ {l : ℕ} [Fact l.Prime] {k : Typ
 end GlobalTheory.CompanionTheory.WittLevel.Van
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.LocalSystemQuotients.SmoothModelFiniteLengthLink
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.LocalSystemQuotients.SmoothModelFiniteLengthLink
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry GroundTheory.PAdicHodge GlobalTheory.LogCris DividedPowers
 

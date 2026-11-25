@@ -110,9 +110,6 @@ theorem exists_ext_of_le {K L : IntermediateField ℚ ℂ} [FiniteDimensional �
 
 end GlobalTheory.CoverExists
 
-namespace GlobalTheory.CoverExists
-
-end GlobalTheory.CoverExists
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.CoverComponentOverBaseComponentRationalIsometry

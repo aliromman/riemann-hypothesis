@@ -18,8 +18,9 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MapEqZeroOfCommuteDoubling, Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianSchemeHomEqOfTangentEq, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LevelStructureChangeFramedGeometricPointUnique
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MapEqZeroOfCommuteDoubling
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MapEqZeroOfCommuteDoubling
 
+noncomputable section
 
 namespace GlobalTheory.LieFaithful
 
@@ -89,7 +90,6 @@ theorem map_eq_zero_of_commute_doubling {k RA RB : Type} [Field k] [CharZero k] 
         have : ((2 ^ (n + 2) - 2 : ℤ) : k) ≠ 0 := by
           rw [Int.cast_ne_zero]
           have : (2 : ℤ) ^ (n + 2) = 4 * 2 ^ n := by ring
-          have h6 : (0 : ℤ) < 2 ^ n := by positivity
           omega
         simpa using this
       have h7 := Ideal.mul_mem_left _ (algebraMap k RA (2 ^ (n + 2) - 2 : k)⁻¹) h5
@@ -180,6 +180,7 @@ theorem ker_eq_maximalIdeal_of_algHom [IsLocalRing R] : RingHom.ker ev = maximal
 end Tan
 
 end GlobalTheory.LieFaithful
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianSchemeHomEqOfTangentEq

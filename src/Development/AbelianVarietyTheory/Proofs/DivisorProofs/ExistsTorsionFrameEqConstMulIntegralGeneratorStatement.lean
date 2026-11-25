@@ -121,11 +121,11 @@ open GlobalTheory.UT ReciprocityTheory.ChartRestriction.G.DVR
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTorsionFrameEqConstMulIntegralGenerator
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTorsionFrameEqConstMulIntegralGenerator
 open GlobalTheory.UT ReciprocityTheory.ChartRestriction.G.DVR
 
+noncomputable section
 
-set_option backward.isDefEq.respectTransparency false
 
 namespace GlobalTheory.Poinc.IntTerm.FrameInt
 
@@ -360,6 +360,7 @@ theorem exists_frRel : ∀ (V : Type) [CommRing V] [IsDomain V] [IsLocalRing V],
   rfl
 
 end GlobalTheory.Poinc.IntTerm.FrameInt
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsTorsionFrameEqConstMulIntegralGeneratorStatement

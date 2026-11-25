@@ -61,8 +61,6 @@ import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomology
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FrameFormRespectsFiltration
 
-set_option backward.isDefEq.respectTransparency false
-
 open CategoryTheory CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 
 namespace GlobalTheory.CompanionTheory.FormMem

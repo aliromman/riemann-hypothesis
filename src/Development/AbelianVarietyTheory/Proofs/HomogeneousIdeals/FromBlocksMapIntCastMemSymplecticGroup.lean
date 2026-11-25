@@ -537,11 +537,12 @@ end Matrices
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.CovolumeBounds.HasSumLocallyUniformlyOnIteratedFDerivRiemannThe
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CovolumeBounds.HasSumLocallyUniformlyOnIteratedFDerivRiemannThe
 
 open Complex Matrix Filter Topology
 open scoped Real
 
+noncomputable section
 
 namespace GlobalTheory
 
@@ -613,15 +614,8 @@ theorem differentiableOn_riemannTheta_comp (a b : ι → ℝ) {Ω : E → Matrix
 
 end Families
 
-section Upper
-
-variable {ι : Type*} [LinearOrder ι]
-
-variable [Fintype ι]
-
-end Upper
-
 end GlobalTheory
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.FromBlocksMapIntCastMemSymplecticGroup

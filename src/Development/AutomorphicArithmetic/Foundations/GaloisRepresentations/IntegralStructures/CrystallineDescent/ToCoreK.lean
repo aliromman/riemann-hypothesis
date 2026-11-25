@@ -83,7 +83,7 @@ namespace GlobalTheory.StdRescale
 theorem exists_isStd_mulShift : ∀ (F : Type) [Field F] [NumberField F], IsTotallyReal F → ∀ ψ : AddChar (AF F) ℂ, IsCharAF F ψ →
     ∃ a : F, a ≠ 0 ∧ IsStd (ψ.mulShift (algebraMap F (AF F) a)) := by
   intro F _ _ hF ψ h
-  haveI := hF
+  have := hF
   obtain ⟨a₀, ha₀, hinf⟩ := GlobalTheory.AdeleCharConductor.exists_scaling h
   have him : ∀ (w : InfinitePlace F) (x : F), (w.embedding x).im = 0 := fun w x => by
     have := congrArg Complex.im (GlobalTheory.AdeleCharConductor.embedding_re w x)
@@ -162,8 +162,8 @@ theorem UpperTheory.Gal.TP.Skew.conjAut :
   classical
   intro F E _ _ _ _ _ σ hσ
   obtain ⟨_, hE, h2, hconj⟩ := hσ
-  haveI hfin : FiniteDimensional F E := Module.finite_of_finrank_eq_succ h2
-  haveI : Algebra.IsQuadraticExtension F E := ⟨h2⟩
+  have hfin : FiniteDimensional F E := Module.finite_of_finrank_eq_succ h2
+  have : Algebra.IsQuadraticExtension F E := ⟨h2⟩
   have hgal : IsGalois F E := inferInstance
   obtain ⟨τ⟩ : Nonempty (E →+* ℂ) := inferInstance
   have hsq : ∀ x, σ (σ x) = x := fun x => τ.injective (by rw [hconj, hconj, star_star])
@@ -205,8 +205,8 @@ theorem UpperTheory.Gal.TP.Skew.ideleStep :
     UpperTheory.Gal.TP.Skew.ConjAut → UpperTheory.Gal.TP.Skew.IdeleStep := by
   intro hconj F E _ _ _ _ _ σ hcm a
   obtain ⟨hgal, s, -, -, hss, hall, -⟩ := hconj F E σ hcm
-  haveI := hgal
-  haveI hcomm : IsMulCommutative Gal(E/F) := ⟨⟨fun g h => by
+  have := hgal
+  have hcomm : IsMulCommutative Gal(E/F) := ⟨⟨fun g h => by
     rcases hall g with rfl | rfl <;> rcases hall h with rfl | rfl <;> simp⟩⟩
   obtain ⟨hFr, hEc, -, -⟩ := hcm
   let v : InfinitePlace F := Classical.arbitrary _
@@ -274,11 +274,9 @@ theorem UpperTheory.Gal.TP.Skew.invFun :
   rw [toFractionalIdeal_eq_iff.1 ha, count_finprod_primeIdealUnit_zpow _ hn, key]
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.CartanIdeles.LineEx
 
 open scoped nonZeroDivisors Matrix
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.CartanIdeles.LineEx
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 open GroundTheory.Global GroundTheory.Global.IdeleGroup
 
@@ -340,7 +338,12 @@ theorem UpperTheory.Gal.TP.Skew.lineEx :
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.CartanIdeles.LineSkew
+section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.CartanIdeles.LineSkew
+@[expose] public section
+
+noncomputable section
+
+open scoped nonZeroDivisors Matrix
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
 
 namespace UpperTheory.Gal.TP.Skew
@@ -361,7 +364,7 @@ theorem lineSkew : LineSkew := by
     exact absurd v.2 (by simp [hP])
   case lat =>
     have hfg := Submodule.fg_pi (ι := Fin d) (p := fun _ => 𝔞) (fun _ => hl.lat.fg)
-    haveI : Submodule.IsLattice E (skewSpc F δ 𝔞 d).L := Submodule.IsLattice.of_fg E hfg
+    have : Submodule.IsLattice E (skewSpc F δ 𝔞 d).L := Submodule.IsLattice.of_fg E hfg
     have ha : ∃ a : E, a ∈ 𝔞 ∧ a ≠ 0 := by
       by_contra h
       have hz : ∀ x ∈ 𝔞, x = 0 := by
@@ -457,9 +460,13 @@ theorem lineSkew : LineSkew := by
 
 end UpperTheory.Gal.TP.Skew
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.CartanIdeles.MemDual
+
+open scoped nonZeroDivisors Matrix
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GroundTheory.Global GroundTheory.Global.IdeleGroup UpperTheory.Gal.TP.Skew
 
 theorem UpperTheory.Gal.TP.Skew.memDual :
@@ -483,6 +490,8 @@ theorem UpperTheory.Gal.TP.Skew.memDual :
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.CartanIdeles.MemOrd
+
+open scoped nonZeroDivisors Matrix
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GroundTheory.Global GroundTheory.Global.IdeleGroup UpperTheory.Gal.TP.Skew
 
 private theorem le_one_of_count {E : Type} [Field E] [NumberField E] (J : FractionalIdeal (𝓞 E)⁰ E) (hJ : J ≠ 0)
@@ -555,22 +564,10 @@ theorem UpperTheory.Gal.TP.Skew.memOrd :
   exact ⟨mem_iff I hI, attained I hI, lattice I hI⟩
 end -- clump:auto
 
-end -- clump: shared namespace opens
-
-section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.CartanIdeles.OrdAut
-@[expose] public section
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.CartanIdeles.OrdAut
 
 open scoped nonZeroDivisors Matrix Pointwise
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GroundTheory.Global GroundTheory.Global.IdeleGroup UpperTheory.Gal.TP.Skew
-
-namespace UpperTheory.Gal.TP.Skew
-
-section
-variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
-
-end
-
-end UpperTheory.Gal.TP.Skew
 
 private theorem count_le_count_galois_smul {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E]
     [Algebra F E] (g : Gal(E/F)) (P : HeightOneSpectrum (𝓞 E)) (J : Ideal (𝓞 E)) (hJ : J ≠ 0) :
@@ -695,7 +692,6 @@ theorem UpperTheory.Gal.TP.Skew.ordAut :
         have := galois_apply_mem_dual_one g _ hy
         rwa [hinv2] at this
 end -- clump:auto
-end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.CartanIdeles.OrdEmb
 
@@ -757,7 +753,10 @@ end UpperTheory.Gal.TP.Skew
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.CartanIdeles.StdHerm
+section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.CartanIdeles.StdHerm
+@[expose] public section
+
+noncomputable section
 
 open scoped nonZeroDivisors Matrix ComplexOrder
 open NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicU GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
@@ -813,7 +812,7 @@ theorem stdHerm : StdHerm := by
       · have e' : ¬ j = i := fun h => e h.symm
         simp [e, e']
     all_goals first | exact i.elim0 | exact j.elim0
-  · haveI : (stdSpc F E n).L.IsLattice E := by
+  · have : (stdSpc F E n).L.IsLattice E := by
       refine ⟨Submodule.fg_pi fun _ => ?_, ?_⟩
       · rw [Submodule.one_eq_span]
         exact Submodule.fg_span_singleton 1
@@ -845,6 +844,8 @@ theorem stdHerm : StdHerm := by
 
 end UpperTheory.Gal.TP.Skew
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.CartanIdeles.SpacesExHolds
@@ -942,7 +943,7 @@ open UpperTheory.Gal.TP.Sub
 private theorem unram_of_forall {E : Type} [Field E] [NumberField E] [IsCMField E]
     (hE : ∀ w : HeightOneSpectrum (𝓞 E), Algebra.IsUnramifiedAt (𝓞 (maximalRealSubfield E)) w.asIdeal) :
     Algebra.Unramified (𝓞 (maximalRealSubfield E)) (𝓞 E) := by
-  haveI : Algebra.FormallyUnramified (𝓞 (maximalRealSubfield E)) (𝓞 E) := by
+  have : Algebra.FormallyUnramified (𝓞 (maximalRealSubfield E)) (𝓞 E) := by
     rw [Algebra.formallyUnramified_iff_forall]
     intro q
     obtain ⟨Q, hQ, hqQ⟩ := Ideal.exists_le_maximal q.1 q.2.ne_top

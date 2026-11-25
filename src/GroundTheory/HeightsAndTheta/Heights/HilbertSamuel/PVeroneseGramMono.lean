@@ -15,7 +15,8 @@ import Mathlib.Topology.Sheaves.Presheaf
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.HeightsAndTheta.Heights.ComplexPoints, GroundTheory.HeightsAndTheta.Heights.HomogeneousLocalization.IntegralMonoInnerEqZero, GroundTheory.HeightsAndTheta.Heights.HilbertSamuel.PVeroneseGramMono
 
-@[expose] public noncomputable section -- clump member: GroundTheory.HeightsAndTheta.Heights.ComplexPoints
+section -- clump member: GroundTheory.HeightsAndTheta.Heights.ComplexPoints
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -26,6 +27,7 @@ open scoped LinearAlgebra.Projectivization
 
 universe u
 
+noncomputable section
 
 structure ProjScheme (A : Type u) [CommRing A] (N : ℕ) where
 
@@ -37,16 +39,10 @@ structure ProjScheme (A : Type u) [CommRing A] (N : ℕ) where
 
 attribute [instance] ProjScheme.isClosedImmersion
 
-namespace ProjScheme
-
-variable {A : Type u} [CommRing A] {N : ℕ}
-
-variable (X : ProjScheme A N)
-
-end ProjScheme
-
+end
 
 end GroundTheory.Heights₂.Heights
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: GroundTheory.HeightsAndTheta.Heights.HomogeneousLocalization.IntegralMonoInnerEqZero

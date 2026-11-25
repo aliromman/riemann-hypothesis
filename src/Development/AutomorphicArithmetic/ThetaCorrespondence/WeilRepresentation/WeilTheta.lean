@@ -15,13 +15,6 @@ import Development.WeilBound.ThetaLifts.Reductions.SiegelOfCore
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilThetaConvergenceOfSiegelSet
 
-namespace GlobalTheory.WeilThetaConv
-
-theorem weilThetaConvergence_of_siegelSet (hRT : GlobalTheory.Published.SiegelSetUnitary) :
-    GlobalTheory.Published.WeilThetaConvergence :=
-  GlobalTheory.CompanionTheory.WeilTheta.weilThetaConvergence_of_siegelSet hRT
-
-end GlobalTheory.WeilThetaConv
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.WeilRepresentation.WeilTheta

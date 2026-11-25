@@ -173,10 +173,6 @@ theorem antitone_of_gap_nonneg {N : ℕ} {v : Fin N → ℤ} (h : ∀ k, k + 1 <
 
 end GlobalTheory.FrameBerg
 
-namespace GlobalTheory.FrameBerg
-
-
-end GlobalTheory.FrameBerg
 end -- clump:auto
 end -- clump:auto
 
@@ -257,8 +253,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.LevelStructureAutomorphisms (LevelA
 open GlobalTheory.BadCount
 open scoped TensorProduct
 noncomputable section
-namespace GlobalTheory.FrameBerg
-end GlobalTheory.FrameBerg
 open scoped GlobalTheory.CompHt
 namespace GlobalTheory.FrameBerg
 
@@ -799,10 +793,6 @@ open GlobalTheory.BadCount
 open scoped TensorProduct
 noncomputable section
 namespace GlobalTheory.CovTop.DgLog
-end GlobalTheory.CovTop.DgLog
-namespace GlobalTheory.CovTop.DgLog
-end GlobalTheory.CovTop.DgLog
-namespace GlobalTheory.CovTop.DgLog
 theorem log_degree_le_of_covering_range_alt : GlobalTheory.CovTop.HypothesesX → _root_.GlobalTheory.CovTop.PublishedHodgeBundleTheorems → GlobalTheory.Published.GrothendieckDeformation → GlobalTheory.HSCore.Quoted → GlobalTheory.Published.ToroidalForFanKS → GlobalTheory.Published.SemiAbelianLieSeminegative → _root_.GlobalTheory.CovTop.DeepGoodness → _root_.GlobalTheory.CovTop.SizeCondition → _root_.GlobalTheory.CovTop.FlatDegreeCondition → _root_.GlobalTheory.CovTop.CoversCondition fun Fm x _ ι p i Y PP _ => ∀ Z, Real.log (Y.dg (⟨uW p i, cZero (Fm.D x ι) ((i : ℕ) + 1), (Fm.D x ι).R.k - 2, lenT p i PP⟩ : WtPar (dat p i)).u₁ Z) ≤ PP := by
   intro hX hP hG hQ hFan hSA hDG hSz hFD
   refine Closed.imp (Closed.and (Closed.and (_root_.GlobalTheory.CovTop.DgShare.choose_mul_compDeg_le_alt_alt hX hP hG hQ hFan hSA hDG hSz hFD) (_root_.GlobalTheory.CovTop.DimLogTop.log_top_dimension_le_alt hP hSz)) hSz) ?_
@@ -1154,10 +1144,6 @@ theorem log_sum_le {S k fr L : ℝ} (hS0 : 0 ≤ S) (hSk : S ≤ (fr * L) ^ 2 * 
 
 end GlobalTheory.CovTop.ShortSpanUnitCover
 
-namespace GlobalTheory.CovTop.ShortSpanUnitCover
-
-
-end GlobalTheory.CovTop.ShortSpanUnitCover
 end -- clump:auto
 end -- clump:auto
 
@@ -1179,10 +1165,6 @@ open GlobalTheory.BadCount
 open scoped TensorProduct
 
 noncomputable section
-namespace GlobalTheory.CovTop.ShortSpanUnitCover
-end GlobalTheory.CovTop.ShortSpanUnitCover
-namespace GlobalTheory.CovTop.ShortSpanUnitCover
-end GlobalTheory.CovTop.ShortSpanUnitCover
 open scoped GlobalTheory.CompHt
 namespace GlobalTheory.CovTop.ShortSpanUnitCover
 

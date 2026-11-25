@@ -249,8 +249,9 @@ theorem measurePreserving_of_sum_sq_eq : ∀ (k a b : ℕ), k = a + b → ∀ Q 
 end GlobalTheory.IwConst
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.TraceCmbMulCmbStar
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.TraceCmbMulCmbStar
 
+noncomputable section
 
 namespace GlobalTheory.IwConst.Adapted
 
@@ -348,7 +349,7 @@ theorem exists_adapted (n : ℕ) (dN dM dK dL : ℕ) (EN : Fin dN → Matrix (Fi
   let T : ((Fin dN → ℝ) × (Fin dL → ℝ)) →ₗ[ℝ] (Fin dK → ℝ) := (crdL EK).comp (adp EN EL)
   have hT : ∀ v, cmb EK (T v) = adp EN EL v := fun v => cmb_crd hK (hmem v)
   have hinj : Function.Injective T := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro v hv
     have h := hhs v
     rw [← hT, hv, hs_cmb hK] at h
@@ -383,6 +384,7 @@ theorem exists_adapted (n : ℕ) (dN dM dK dL : ℕ) (EN : Fin dN → Matrix (Fi
     simp
 
 end GlobalTheory.IwConst.Adapted
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.VolumeShearedBalls

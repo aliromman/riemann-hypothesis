@@ -85,10 +85,11 @@ variable {V : Type*} [NormedAddCommGroup V] [NormedSpace ℂ V]
 end GlobalTheory.SOrb
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.OpnFrobCompare
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.OpnFrobCompare
 
 open Matrix
 
+noncomputable section
 
 namespace GlobalTheory.SOrb.CCBridge
 
@@ -144,11 +145,7 @@ variable {k r : ℕ} {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
 end GlobalTheory.SOrb.CCBridge
 
-namespace GlobalTheory.SOrb
-
-open Formalism.QuantumDeterminants Formalism.FourierDecayAlt.B Formalism.FourierDecayAlt.P.BetaSesquilinearity GlobalTheory.SOrb.CCBridge
-
-end GlobalTheory.SOrb
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.LocInOfUniqOfDecLow

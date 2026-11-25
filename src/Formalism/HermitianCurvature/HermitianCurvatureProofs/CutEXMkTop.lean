@@ -581,10 +581,6 @@ end Formalism.FourierDecayAlt.P.CutEX.MkTopPf
 
 namespace Formalism.FourierDecayAlt.P.CutEX.MkTopPf
 
-end Formalism.FourierDecayAlt.P.CutEX.MkTopPf
-
-namespace Formalism.FourierDecayAlt.P.CutEX.MkTopPf
-
 section right
 
 variable {k p ρ : ℕ} {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [NormedAddCommGroup Wq]

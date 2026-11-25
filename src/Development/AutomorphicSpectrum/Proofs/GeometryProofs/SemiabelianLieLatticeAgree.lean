@@ -429,8 +429,10 @@ theorem lat_eq_of_dvr : ∀ (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : Sp Ω 
 end GlobalTheory.CompanionTheory.Ar.DvrExtension
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.SemiabelianLieLatticeAgree
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.SemiabelianLieLatticeAgree
 open ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.LieStalk
+
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.LieStalk
 
@@ -457,7 +459,7 @@ theorem lat_fin (h : IsCptGen ξ) (G : Over X) [GrpObj G] [IsCommMonObj G] [Smoo
   have hl : IsLocalizedModule (nonZeroDivisors (regAt ξ p)) j :=
     (isLocalizedModule_iff_isBaseChange (nonZeroDivisors (regAt ξ p)) Ω j).mpr hb
   have hinj : Function.Injective j := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro m hm
     obtain ⟨c, hc⟩ := (IsLocalizedModule.eq_zero_iff (nonZeroDivisors (regAt ξ p)) j).1 hm
     have hreg := Module.Flat.isSMulRegular_of_nonZeroDivisors (M := Ep) c.2

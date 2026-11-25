@@ -211,8 +211,9 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped CategoryTheory.Obj
 open GlobalTheory.Mum
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFiniteExtensionFractionFieldUniform
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFiniteExtensionFractionFieldUniform
 
+noncomputable section
 
 namespace GlobalTheory.Mum.RatTors
 
@@ -252,10 +253,6 @@ theorem exists_finite_tors (K : Type) [Field K] (A : PolAV (Sp K)) (n : ℕ) (hn
     refine ⟨(Spec.preimage w).hom, ?_⟩
     change y = Spec.map (Spec.preimage w) ≫ _
     rw [Spec.map_preimage, Category.assoc, Iso.hom_inv_id_assoc, pullback.lift_fst]
-
-end GlobalTheory.Mum.RatTors
-
-namespace GlobalTheory.Mum.RatTors
 
 end GlobalTheory.Mum.RatTors
 
@@ -304,6 +301,7 @@ theorem torsion_rational : ∀ (R₁ : Type) [CommRing R₁] [IsDomain R₁] [Is
   · rw [Category.assoc, hpb.1.lift_snd, Category.comp_id, hxh]
 
 end GlobalTheory.Mum.RatTors
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsFiniteExtensionRealisingSubextension

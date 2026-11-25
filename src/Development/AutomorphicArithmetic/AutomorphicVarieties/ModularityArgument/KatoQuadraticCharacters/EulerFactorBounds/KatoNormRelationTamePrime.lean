@@ -401,15 +401,8 @@ theorem cast_down {M K : ℕ} (h : K ∣ M) {a b : ℤ} (e : (a : ZMod M) = b) :
   have e' := congrArg (ZMod.castHom h (ZMod K)) e
   rwa [map_intCast, map_intCast] at e'
 
-theorem gamma_le {M K : ℕ} (h : K ∣ M) : CongruenceSubgroup.Gamma M ≤ CongruenceSubgroup.Gamma K := by
-  intro γ hγ
-  rw [CongruenceSubgroup.Gamma_mem] at hγ ⊢
-  obtain ⟨h1, h2, h3, h4⟩ := hγ
-  refine ⟨?_, ?_, ?_, ?_⟩
-  · simpa using cast_down h (b := 1) (by simpa using h1)
-  · simpa using cast_down h (b := 0) (by simpa using h2)
-  · simpa using cast_down h (b := 0) (by simpa using h3)
-  · simpa using cast_down h (b := 1) (by simpa using h4)
+theorem gamma_le {M K : ℕ} (h : K ∣ M) : CongruenceSubgroup.Gamma M ≤ CongruenceSubgroup.Gamma K :=
+  gamma_le_of_dvd h
 
 theorem slU_mul (X : Tower Ω ε) (γ γ' : SL(2, ℤ)) (a : X.Kˣ) :
     slU X (ofSL (γ * γ')) a = slU X (ofSL γ') (slU X (ofSL γ) a) := by

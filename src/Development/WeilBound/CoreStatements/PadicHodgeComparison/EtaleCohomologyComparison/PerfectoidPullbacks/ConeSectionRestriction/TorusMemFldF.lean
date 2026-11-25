@@ -14,7 +14,6 @@ public import Mathlib.Algebra.DualNumber
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DerivationCommutesWithTrace
 
-set_option backward.isDefEq.respectTransparency false
 open MvPolynomial
 
 namespace GlobalTheory.CompanionTheory.TraceDerivation
@@ -88,10 +87,10 @@ theorem trace_map_derivation : ∀ (K F L : Type) [Field K] [CharZero K] [Field 
 end GlobalTheory.CompanionTheory.TraceDerivation
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.ResidFinPf
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.ResidFinPf
 
-set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 namespace CrystallineSemistableComparison.Pb
 
@@ -177,11 +176,12 @@ theorem fldF_findim_pf (t : Fin (n + 1) → Rˣ) (Bu : Subalgebra K R) (hTB : to
 
 end CrystallineSemistableComparison.Pb
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.TorusMemFldF
+@[expose] public section -- clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.ConeSectionRestriction.TorusMemFldF
 
-set_option backward.isDefEq.respectTransparency false
 
+noncomputable section
 
 namespace CrystallineSemistableComparison.Pb
 

@@ -1355,21 +1355,6 @@ section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.T
 section
 section
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal ReciprocityTheory.Aut Formalism.AUTREP Formalism.L2 Formalism.L2.Host Formalism.L2.NT NumberField IsDedekindDomain Polynomial GlobalTheory.HeightCounting GlobalTheory.RowTie GlobalTheory.SplitRead GlobalTheory.NPin GlobalTheory.PendOf
-namespace GlobalTheory.DepthZeroRankOneLabel
-open ValuativeRel
-variable {E : Type} [Field E] [NumberField E] {w : HeightOneSpectrum (𝓞 E)} {g : ℕ} [Fact g.Prime]
-variable (i : ℚ_[g] ≃+* w.adicCompletion E) (hi : Continuous i)
-end GlobalTheory.DepthZeroRankOneLabel
-namespace GlobalTheory.DepthZeroRankOneLabel
-open ValuativeRel GlobalTheory.WeilDeligne GlobalTheory.LocGL GlobalTheory.LocLanglands
-variable {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] {g : ℕ} [Fact g.Prime]
-  {A : ValuationSubring Ω} {w : HeightOneSpectrum (𝓞 E)} {h : IsPlaceOver A w}
-end GlobalTheory.DepthZeroRankOneLabel
-namespace GlobalTheory.DepthZeroRankOneLabel
-open GlobalTheory.TameRes
-end GlobalTheory.DepthZeroRankOneLabel
-namespace GlobalTheory.DepthZeroRankOneLabel
-end GlobalTheory.DepthZeroRankOneLabel
 open GlobalTheory.WeilDeligne in
 theorem GlobalTheory.DepthZeroRankOneLabel.wild_trivial_m_alt (D : D7) (k : Fin 2) (v : D.nd.PlG k)
     (μ : ((D.naut.plGw k v).adicCompletion D.host.E)ˣ →* ℂˣ) (hμ : GlobalTheory.SmGL.IsSmoothChar μ) (hT : GlobalTheory.SplitWeil.IsTame μ)

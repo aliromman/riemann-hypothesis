@@ -45,8 +45,10 @@ import Mathlib.Topology.Sheaves.Init
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.HeightProofs.HermPartIsHermitian, Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsCMFamHost
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.HermPartIsHermitian
+section -- clump member: Development.AbelianVarietyTheory.Proofs.HeightProofs.HermPartIsHermitian
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.CuspAlgComparison
 
@@ -89,15 +91,10 @@ theorem tau_ne_conj (τ τ' : Pl R) : tau H τ ≠ (starRingEnd ℂ).comp (tau H
 
 end Host
 
-section Forms
-
-variable {R : Ranks} {H : Host R} {n : ℕ}
-
-
-end Forms
-
 end GlobalTheory.CuspAlgComparison
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.IsCMFamHost

@@ -11,10 +11,11 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FlagMeasures.MultisetEq, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GelfandSeriesShiftIdentity
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.MultisetEq
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.MultisetEq
 
 open Finset Matrix
 
+noncomputable section
 
 namespace GlobalTheory.Dec.GelfSepProof
 
@@ -91,9 +92,7 @@ theorem _root_.GlobalTheory.Dec.GelfSepProof.gen {n : ℕ} (l : Fin n → ℂ) :
 
 end GlobalTheory.Dec.GelfSepProof
 
-namespace GlobalTheory.Dec
-
-end GlobalTheory.Dec
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.GelfandSeriesShiftIdentity

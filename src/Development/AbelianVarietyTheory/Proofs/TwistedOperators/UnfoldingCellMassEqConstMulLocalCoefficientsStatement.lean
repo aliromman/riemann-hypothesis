@@ -826,10 +826,12 @@ end GlobalTheory.SymmetricJacobianSignature
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsHaarVolumeOfConjugateLattice
+section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsHaarVolumeOfConjugateLattice
+@[expose] public section
 
 open GlobalTheory.CellMass
 
+noncomputable section
 
 namespace GlobalTheory.CellIdx
 
@@ -859,30 +861,8 @@ variable {D : D7}
 
 end GlobalTheory.CellIdx
 
-namespace GlobalTheory.CellIdx
-open GlobalTheory.RootEx GlobalTheory.LocGrp GlobalTheory.RowRep GlobalTheory.SplitWeil
-
-section Local
-variable {k : Type} [Field k]
-
-variable [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
-
-end Local
-
-variable {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc} {W : G.Weil} {U : Set T}
-
-
-
-theorem vol_mul_colCoef : Big fun {D} _ _ _ _ _ _ _ _ _ _ _ ch => ∀ (s : ℤˣ), ∀ j ∈ idx D,
-    ∀ la : Measure ((rowN ch.G j).subgroupOf (GfC (ch.G.V (.grid D.R.m j)))), la.IsHaarMeasure →
-    ∃ V₀ : ℝ, 0 < V₀ ∧ ∀ t β b, IsRep t ch.S.B s β b → ∀ hb : b j ∈ GfC _,
-      la.real {n | (⟨b j, hb⟩ : GfC _)⁻¹ * n.1 * ⟨b j, hb⟩ ∈ (latGrp ch.G j).subgroupOf (GfC _)} *
-        (GlobalTheory.RowWt.colCoef ch t β j : ℝ) = V₀ := by
-  first
-  | (exact @_root_.GlobalTheory.SymmetricJacobianSignature.cell_volume_mul_coef)
-
-end GlobalTheory.CellIdx
-
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsHaarVolumeOfConjugateLatticeStatement
@@ -895,7 +875,7 @@ theorem _root_.GlobalTheory.T.exists_haar_volume_of_conjugate_lattice : Big fun 
     ∃ V₀ : ℝ, 0 < V₀ ∧ ∀ t β b, IsRep t ch.S.B s β b → ∀ hb : b j ∈ GfC _,
       la.real {n | (⟨b j, hb⟩ : GfC _)⁻¹ * n.1 * ⟨b j, hb⟩ ∈ (latGrp ch.G j).subgroupOf (GfC _)} *
         (GlobalTheory.RowWt.colCoef ch t β j : ℝ) = V₀ := by
-  first | exact @GlobalTheory.CellIdx.vol_mul_colCoef
+  first | exact @GlobalTheory.SymmetricJacobianSignature.cell_volume_mul_coef
 end -- clump:auto
 
 end -- clump: shared namespace opens

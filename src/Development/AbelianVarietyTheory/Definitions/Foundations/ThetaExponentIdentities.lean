@@ -14,8 +14,10 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.BlockTheory.DivisorBase.DescentConstants, Development.AbelianVarietyTheory.Definitions.Foundations.ThetaExponentIdentities
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.BlockTheory.DivisorBase.DescentConstants
+section -- clump member: Development.AbelianVarietyTheory.BlockTheory.DivisorBase.DescentConstants
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.DescentConstants
 
@@ -47,8 +49,6 @@ def cTw (j : ℕ) : ℕ := ceilEight (max (D.R.r + (dX D j + 1).choose 2 + 2) (8
 
 def nCol (j : ℕ) : ℕ :=
   ceilEight (max (D.R.f * (pp D j * (pp D j + 1) + qq D j * (qq D j + 1))) (8 * D.R.f * D.R.r + 4))
-
-def eZero (j : ℕ) : ℝ := (D.R.f : ℝ) * D.R.r * ((cTw D j : ℝ) + 4 * D.R.r)
 
 def bigR : ℝ := D.host.rdE ^ 7
 
@@ -179,6 +179,8 @@ end Run
 
 end GlobalTheory.IndefiniteRowSideFullHecke.DescentConstants
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Definitions.Foundations.ThetaExponentIdentities

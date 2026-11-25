@@ -171,10 +171,11 @@ theorem valR_gen_linComb : ∀ {X Y : Scheme.{0}} (L : LB X) {K : Type} [Fintype
 end GlobalTheory.MBLow.TanGauge
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SectionValueLinCombChangeOfCharts
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SectionValueLinCombChangeOfCharts
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.MBLow.TanGauge
 
+noncomputable section
 namespace GlobalTheory.MBLow.TanGauge
 
 theorem valHom_res_pullU_zpow {X Y : Scheme.{0}} {A : Type} [CommRing A] (y : Sp A ⟶ Y) (f : Y ⟶ X)
@@ -206,13 +207,12 @@ theorem valR_linComb_sec : ∀ {X Y : Scheme.{0}} (L : LB X) {K : Type} [Fintype
   dsimp only [LB.LinComb]
   rw [Units.coe_prod, map_prod]
   refine Finset.prod_congr rfl fun k _ => ?_
-  have hk : ⊤ ≤ (y ≫ φ k) ⁻¹ᵁ (L.U (j k) ⊓ L.U (j' k)) := fun q _ =>
-    ⟨wchart_top_le L φ j y h k (x := q) trivial, wchart_top_le L φ j' y h' k (x := q) trivial⟩
   unfold trV
   exact valHom_res_pullU_zpow y (φ k) (L.U (j k) ⊓ L.U (j' k)) (V := LB.wchart L φ j ⊓ LB.wchart L φ j') _ hh
     (L.g (j k) (j' k)) (ε k)
 
 end GlobalTheory.MBLow.TanGauge
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SectionValueLinearRelationLinComb

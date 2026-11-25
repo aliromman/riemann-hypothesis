@@ -84,12 +84,13 @@ theorem isMulRightInvariant_of_modular {G : Type} [Group G] [TopologicalSpace G]
 end GlobalTheory.ParAvg
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ModularCharacterAdelicGLEqOne
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ModularCharacterAdelicGLEqOne
 
 open scoped Matrix NNReal ENNReal TensorProduct
 open MeasureTheory Filter NumberField IsDedekindDomain
 open Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.AdelicPointsUnimod
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.GLUnimod
 
@@ -297,7 +298,7 @@ theorem exists_char_eq_cut (π : A →+* B) (hs : Function.Surjective π) (e : A
     simp
   have e0' : e • (1 : Matrix n n A) = 1 - (1 - e) • 1 := eq_sub_of_add_eq e0
   have hgi : (g⁻¹.val * g.val) = 1 := by simp
-  have v1 : (s (m g)⁻¹).val = cut e g⁻¹.val := hsv _ _ (by simp [m, hmv, ← map_inv])
+  have v1 : (s (m g)⁻¹).val = cut e g⁻¹.val := hsv _ _ (by simp [m, ← map_inv])
   have v2 : (s (m g)).val = cut e g.val := hsv _ _ (hmv g)
   refine ⟨(s (m g))⁻¹ * g, ?_, ?_, ?_⟩
   · rw [Units.val_mul, ← map_inv, v1]
@@ -458,6 +459,7 @@ end Main
 
 end GlobalTheory.CompanionTheory.GLUnimod
 end -- clump:auto
+end -- clump:auto
 
 -- clump: shared namespace opens
 
@@ -574,7 +576,6 @@ theorem GlobalTheory.CompanionTheory.QKAvg.exists_levM_haar : ∀ (D : D7) (B W 
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsRightInvariantHaarLeviStatement
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsMulRightInvariantOfModular", "h": "module\n\npublic import Mathlib.MeasureTheory.Group.ModularCharacter\npublic import Mathlib.Topology.Algebra.Group.Units\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.T2SpaceGeneralLinearGroup\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\nimport Development.AbelianVarietyTheory.Definitions.Divisors.HilbertNinetyQuotientHomEqIff\n\n"}

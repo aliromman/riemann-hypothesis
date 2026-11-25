@@ -9,14 +9,13 @@ import Mathlib.Analysis.CStarAlgebra.ContinuousLinearMap
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.JReproB, ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.JRepro
 
--- clump: shared namespace opens
+section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.JReproB
+@[expose] public section
 
+noncomputable section
 
 open Matrix MeasureTheory
 open scoped ENNReal ComplexConjugate InnerProductSpace
-
-section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.JReproB
-@[expose] public noncomputable section
 
 namespace ReciprocityTheory.ChartRestriction.DS.Mult1.ReproducingFormula
 
@@ -106,7 +105,7 @@ theorem cont_adj_pi (D : RealPlaceData k r Wp Wp) :
       (EE k r D.z) :=
   haveI : CompleteSpace Wp := FiniteDimensional.complete ℂ Wp
   (ContinuousLinearMap.adjoint : (Wp →L[ℂ] Wp) ≃ₗᵢ⋆[ℂ] (Wp →L[ℂ] Wp)).continuous.comp_continuousOn
-    (D.π_cont.comp (continuous_fst.comp continuous_snd).continuousOn fun q hq => hq.2.1)
+    (D.π_cont.comp (continuous_fst.comp continuous_snd).continuousOn fun _ hq => hq.2.1)
 
 theorem cont_psi (D : RealPlaceData k r Wp Wp) :
     Continuous (fun q : Mt k r × (Mt k r × Mt k r) => star (psiD D (Matrix.of q.2.2))) :=
@@ -114,7 +113,7 @@ theorem cont_psi (D : RealPlaceData k r Wp Wp) :
 
 theorem cont_sig_fst (X : SigData k r) (z : Fin (2 * r + k + 1) → ℂ) (x : X.Hs) :
     ContinuousOn (fun q : Mt k r × (Mt k r × Mt k r) => X.σ (Matrix.of q.1) x) (EE k r z) :=
-  (X.rep.2.2 x).comp continuous_fst.continuousOn fun q hq => hq.1
+  (X.rep.2.2 x).comp continuous_fst.continuousOn fun _ hq => hq.1
 
 theorem representation_continuousOn_product (X : SigData k r) (z : Fin (2 * r + k + 1) → ℂ) (hCG : IsClosedSubgroup (GV k r)) (x : X.Hs) :
     ContinuousOn (fun q : Mt k r × (Mt k r × Mt k r) => X.σ (Matrix.of q.2.2 * Matrix.of q.2.1) x) (EE k r z) := by
@@ -251,8 +250,13 @@ end reproducing_fst
 end ReciprocityTheory.ChartRestriction.DS.Mult1.ReproducingFormula
 end -- clump:auto
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.MultiplicityOne.JRepro
+
+
+open Matrix MeasureTheory
+open scoped ENNReal ComplexConjugate InnerProductSpace
 
 namespace ReciprocityTheory.ChartRestriction.DS.Mult1.ReproducingFormula
 

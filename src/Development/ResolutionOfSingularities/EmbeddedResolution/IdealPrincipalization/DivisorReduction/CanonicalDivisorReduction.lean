@@ -108,12 +108,14 @@ theorem support_ker_comp_subset_support_ker {T S Y : Scheme}
 end FunctorialResolution.EmbeddedResolution
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.DivisorReduction.AmbientEmbeddingCompatibility
+section -- clump member: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.DivisorReduction.AmbientEmbeddingCompatibility
+@[expose] public section
 
 universe u
 
 open CategoryTheory AlgebraicGeometry
 
+noncomputable section
 
 namespace FunctorialResolution.EmbeddedResolution
 
@@ -340,9 +342,6 @@ private theorem preimage_support_center_ambientBlowupSeq (hres : FunctorialResol
 private theorem isNoetherian_boundary_subscheme (T : MarkedIdealWithBoundary.{u})
     [AlgebraicGeometry.IsNoetherian T.scheme] (j : ℕ) (hj : j < T.boundary.length) :
     AlgebraicGeometry.IsNoetherian (T.boundary.get ⟨j, hj⟩).subscheme := by
-  have : AlgebraicGeometry.LocallyOfFiniteType (T.boundary.get ⟨j, hj⟩).subschemeι :=
-    inferInstance
-  have : AlgebraicGeometry.QuasiCompact (T.boundary.get ⟨j, hj⟩).subschemeι := inferInstance
   exact isNoetherian_of_locallyOfFiniteType (T.boundary.get ⟨j, hj⟩).subschemeι
 
 private theorem isNoetherian_schemeAt_restrictToBoundaryDivisor (T : MarkedIdealWithBoundary.{u})
@@ -613,14 +612,17 @@ end DivisorReduction
 
 end FunctorialResolution.EmbeddedResolution
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.DivisorReduction.CanonicalDivisorReduction
+@[expose] public section -- clump member: Development.ResolutionOfSingularities.EmbeddedResolution.IdealPrincipalization.DivisorReduction.CanonicalDivisorReduction
 
 universe u
 
 open CategoryTheory AlgebraicGeometry
 
+noncomputable section
 
 namespace FunctorialResolution.EmbeddedResolution
 
@@ -784,7 +786,7 @@ private theorem orderAtComapOffExceptionalLocus : OrderAtComapOffExceptionalLocu
 
 private theorem pushedBlowupSequenceProperties_canonicalAlgorithmRules (hres : FunctorialResolution.Blowup.StrictTransformIsBlowupOfClosedSubscheme.{u}) :
     PushedBlowupSequenceProperties hres blowupPreservesNoetherian := by
-  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
   · intro T hV j hj
     exact DivisorReduction.isOpen_preimage_support_containedComponentsIdeal T j hj
       (DivisorReduction.preimageSupportEqComponentsInOrderLocus_of_isAdmissible T hV j hj)
@@ -801,8 +803,6 @@ private theorem pushedBlowupSequenceProperties_canonicalAlgorithmRules (hres : F
   · intro T inst j hj hb s hpr hmk t ht
     exact DivisorReduction.boundaryLocus_subset_preimage_otherBoundaryLocus_succ hres blowupPreservesNoetherian T j hj hb s
       hpr hmk t ht
-  · intro T hV
-    exact DivisorReduction.one_le_mult_of_isAdmissible T hV
   · intro T hV hOB hbal j hj hpre hlow inst s hpr hmk t ht
     exact DivisorReduction.isSmoothDivisor_ker_embeddingIntoAmbient_of_eq_top hres blowupPreservesNoetherian T hV
       hOB hbal j hj hpre hlow s hpr hmk t ht

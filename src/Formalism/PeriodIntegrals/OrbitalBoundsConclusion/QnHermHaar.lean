@@ -33,11 +33,12 @@ import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HermitianHaarMeasure.Ne
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HermitianHaarMeasure.ElementaryGeneratorPreservesTest, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HermitianHaarMeasure.RestrictedGramHermitianInvolution, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HermitianHaarMeasure.Assemble, Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HermitianHaarMeasure.HermitianAlgebraGeneration, Formalism.PeriodIntegrals.OrbitalBoundsConclusion.QnHermHaar
 
-@[expose] public noncomputable section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HermitianHaarMeasure.ElementaryGeneratorPreservesTest
+@[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HermitianHaarMeasure.ElementaryGeneratorPreservesTest
 
 open Matrix Finset MeasureTheory Filter Topology
 open scoped ContDiff
 
+noncomputable section
 
 namespace PI.QnHermHaar
 
@@ -45,10 +46,6 @@ open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt.Q
 
 section Linfty
 attribute [local instance] Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebra
-
-lemma tst_exp_hasSum_linfty {n : ℕ} (X : Matrix (Fin n) (Fin n) ℂ) :
-    HasSum (fun j : ℕ => ((j.factorial : ℂ)⁻¹) • X ^ j) (NormedSpace.exp X) :=
-  NormedSpace.exp_series_hasSum_exp' (𝕂 := ℂ) X
 
 end Linfty
 
@@ -68,10 +65,6 @@ private theorem smul_mulVec_lemma {n : ℕ} (c : ℂ) (M : Matrix (Fin n) (Fin n
     (c • M) *ᵥ v = c • (M *ᵥ v) := by
   ext x
   simp [Matrix.mulVec, dotProduct, Finset.mul_sum, mul_assoc]
-
-lemma tst_exp_mulVec {n : ℕ} (X : Matrix (Fin n) (Fin n) ℂ) (v : Fin n → ℂ) (hv : X *ᵥ v = 0) :
-    NormedSpace.exp X *ᵥ v = v :=
-  _root_.PI.QnHermHaar.HermitianAdjointLemmas.exp_mulVec_fix X v hv
 
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
@@ -312,6 +305,7 @@ theorem test_function_pairing_integral : TestInt := by
     exact Set.indicator_apply_eq_zero.mpr (fun _ => e)
 
 end PI.QnHermHaar
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.PeriodIntegrals.UnitaryGroupMassFormula.HermitianHaarMeasure.RestrictedGramHermitianInvolution

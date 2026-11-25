@@ -19,12 +19,10 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirabolicExtensionExact, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PhiProductLeftRankZero, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PsiPreservesIsomorphism, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictionProductRankZeroLeft, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictionProductRankZeroRight, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistProductDistributes, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistTwistAdd, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsFiltration, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PhiProductRankZeroTrivial, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LeibnizOrderOfExactSequences
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirabolicExtensionExact
 
 open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.LeibOrd
 open scoped TensorProduct
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirabolicExtensionExact
 
 namespace GlobalTheory.CompanionTheory.LeibOrd
 
@@ -93,7 +91,12 @@ end GlobalTheory.CompanionTheory.LeibOrd
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PhiProductLeftRankZero
-@[expose] public noncomputable section
+@[expose] public section
+
+noncomputable section
+
+open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.LeibOrd
+open scoped TensorProduct
 
 namespace GlobalTheory.CompanionTheory.LeibOrd.GLZero
 
@@ -173,7 +176,7 @@ theorem nonempty_cInd_of_top [TopologicalSpace G] [IsTopologicalGroup G] (H : Su
     rw [hR]
     exact this
   have hinj : Function.Injective ev := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro f hf
     apply Subtype.ext; apply Subtype.ext; apply Subtype.ext
     funext g
@@ -308,10 +311,14 @@ theorem phiN_prodPGn_zero : ∀ (k : Type) [Field k] [ValuativeRel k] [Topologic
 
 end GlobalTheory.CompanionTheory.LeibOrd.GLZero
 
+end
 end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PsiPreservesIsomorphism
+
+open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.BZMir.Leib GlobalTheory.RgGu.Leib GlobalTheory.CompanionTheory.LeibOrd
+open scoped TensorProduct
 
 namespace GlobalTheory.CompanionTheory.LeibOrd.PsiIso
 
@@ -331,8 +338,6 @@ theorem giso_psiN : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace 
 end GlobalTheory.CompanionTheory.LeibOrd.PsiIso
 
 end -- clump:auto
-
-end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictionProductRankZeroLeft
 

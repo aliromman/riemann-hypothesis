@@ -182,15 +182,9 @@ theorem exists_div_torsion : ∀ (X₁ : GlobalTheory.GSep.GSet) (z : X₁.M.Z) 
 end GlobalTheory.GSep
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaloisTowerDividingLabelStaysDividing
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaloisTowerDividingLabelStaysDividing
 
-namespace GlobalTheory.GSep.DeepDivG
-
-variable {I : Type} {X₁ : GSet} {z₁ : X₁.M.Z} {act : I → (X₁.ρ.P.A ⟶ X₁.ρ.P.A)} {x₀ : X₁.S.Gam}
-  {V : Type} [CommRing V] [IsDomain V] [IsLocalRing V] {ev : X₁.M.Z.presheaf.stalk z₁ →+* V}
-  {X : Type} [AddCommGroup X] {t : X → V} {δ : I → X → X}
-
-end GlobalTheory.GSep.DeepDivG
+noncomputable section
 
 namespace GlobalTheory.GSep.DeepDivG
 
@@ -281,6 +275,7 @@ theorem GlobalTheory.GSep.DeepDivG.div_lam : (∀ (I : Type) (X₁ : GlobalTheor
   convert this using 1
   rw [map_div₀]
   field_simp
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeClassZeroOfMemberTerms

@@ -720,15 +720,11 @@ theorem rt_mem_isoTyp {L : Type} [Field L] [NumberField L] [IsCMField L] {n : �
     exact le_sSup hS' (hS'.1.1.stable h y hy)
   exact this hf
 
-
-
 end GlobalTheory.LocCompTy
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.BlockEig
 @[expose] public section
-
-
 
 section
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal ReciprocityTheory.Aut Formalism.AUTREP Formalism.L2 Formalism.L2.NT NumberField IsDedekindDomain Polynomial GlobalTheory.TypeRec GlobalTheory.GLq GlobalTheory.GLp GlobalTheory.SerSys
@@ -843,8 +839,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LocalLanglandsSplitQp
 @[expose] public section
 
-
-
 section
 section
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal ReciprocityTheory.Aut Formalism.AUTREP Formalism.L2 Formalism.L2.NT Formalism.L2.Host NumberField IsDedekindDomain Polynomial GlobalTheory.TypeRec GlobalTheory.GLq GlobalTheory.GLp GlobalTheory.SerSys
@@ -881,8 +875,6 @@ end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.GaloisRepLocalGlobalCompatible
 @[expose] public section
-
-
 
 section
 section
@@ -1009,14 +1001,13 @@ section -- clump: shared namespace opens
 open Polynomial GlobalTheory.GLq GlobalTheory.GLp GlobalTheory.GLp.Supp GlobalTheory.SerSys GlobalTheory.TypeLeaf Formalism.BasicNotions Formalism.MainNotions.N Formalism.MainNotions.ArithmeticCylinders
 open scoped Classical
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SeriesEqOfOpposite
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.SeriesEqOfOpposite
 
+noncomputable section
 
 namespace GlobalTheory.SerSys.Opp
 
 open GlobalTheory.GLq.Opp
-
-
 
 variable {g : ℕ} [Fact g.Prime] {k l n : ℕ}
 
@@ -1065,6 +1056,7 @@ theorem eq_par (z : Gn g (k + l)) (h0 : InPar k (z : Mt g (k + l))) (h1 : tl k (
   · rw [← e2 (z : Mt g (k + l)) i j, h2]; simp
 
 end GlobalTheory.SerSys.Opp
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.HasSeriesVectorMulOfParahoricBlockCharVector
@@ -1224,13 +1216,6 @@ section Roots
 
 variable {g : ℕ} [Fact g.Prime]
 
-theorem eq_of_rootsBar_eq {f f' : (ZMod g)[X]} (hf : f.Monic) (hf' : f'.Monic)
-    (h : Formalism.CyclotomicNorms.rootsBar f = Formalism.CyclotomicNorms.rootsBar f') : f = f' := by
-  apply Polynomial.map_injective (algebraMap (ZMod g) (Formalism.CyclotomicNorms.Fbar g)) (RingHom.injective _)
-  rw [(IsAlgClosed.splits _).eq_prod_roots_of_monic (hf.map _),
-    (IsAlgClosed.splits (f'.map _)).eq_prod_roots_of_monic (hf'.map _)]
-  exact congrArg (fun m => (Multiset.map (fun x => X - C x) m).prod) h
-
 theorem eq_of_teich (τ : Formalism.CyclotomicNorms.Fbar g →* ℂ) (hτ : Function.Injective τ) {f f' : (ZMod g)[X]} (hf : f.Monic)
     (hf' : f'.Monic) (c : ZMod g) (t : ℕ)
     (h : ((Formalism.CyclotomicNorms.rootsBar (f * (X - C c) ^ t)).map fun x => X - C (τ x)).prod =
@@ -1250,7 +1235,7 @@ theorem eq_of_teich (τ : Formalism.CyclotomicNorms.Fbar g →* ℂ) (hτ : Func
       ((m.map fun x => X - C (τ x)).prod).roots = m.map τ := fun m => by
     rw [← roots_multiset_prod_X_sub_C (m.map τ), Multiset.map_map]; rfl
   rw [e, e] at h3
-  exact eq_of_rootsBar_eq hf hf' (Multiset.map_injective hτ h3)
+  exact GlobalTheory.SerSys.LabLoc.eq_of_roots_eq hf hf' (Multiset.map_injective hτ h3)
 
 end Roots
 
@@ -1296,8 +1281,6 @@ end -- clump: shared namespace opens
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LocTypeOfSerParamLe
 @[expose] public section
 
-
-
 section
 noncomputable section
 namespace DiscreteGroups.sglob.DzType.Rt
@@ -1332,8 +1315,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.SerLocOfTiesLe
 @[expose] public section
 
-
-
 section
 noncomputable section
 namespace DiscreteGroups.sglob.DzType.Rt
@@ -1359,8 +1340,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.DepthZeroTypeGlobalOfSeriesLocal
-
-
 
 section
 section

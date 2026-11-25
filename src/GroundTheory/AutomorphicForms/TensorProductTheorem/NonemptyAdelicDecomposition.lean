@@ -20,8 +20,9 @@ import Mathlib.Algebra.Order.Archimedean.Real.Hom
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: GroundTheory.AutomorphicForms.TensorProductTheorem.GKMain, GroundTheory.AutomorphicForms.TensorProductTheorem.GeneralLinearIntegers, GroundTheory.AutomorphicForms.TensorProductTheorem.NonemptyAdelicDecomposition
 
-@[expose] public noncomputable section -- clump member: GroundTheory.AutomorphicForms.TensorProductTheorem.GKMain
+@[expose] public section -- clump member: GroundTheory.AutomorphicForms.TensorProductTheorem.GKMain
 
+noncomputable section
 
 universe u
 
@@ -280,17 +281,12 @@ theorem nonempty_decomposition (hirr : Mx.IsIrreducible) (hadm : Mx.IsAdmissible
     isAdmissible₂ := hπ₂adm
     equiv := Φ' }⟩
 
-namespace Decomposition
-
-variable {Mx}
-
-end Decomposition
-
 end GKLModule
 
 end GKTensor
 
 end GroundTheory.Automorphic
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: GroundTheory.AutomorphicForms.TensorProductTheorem.GeneralLinearIntegers
@@ -449,20 +445,15 @@ theorem nonempty_tensorDecomposition {ρ : Representation ℂ (FiniteAdelicGL K 
       (g := e.toMulEquiv.toMonoidHom) (fun x => e.symm_apply_apply x)).trans
       (equivComp Φ e.toMulEquiv.toMonoidHom) }⟩
 
-namespace TensorDecomposition
-
-variable {ρ : Representation ℂ (FiniteAdelicGL K n) V}
-
-end TensorDecomposition
-
 end AdelicGLn
 
 end GroundTheory.Automorphic
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.AutomorphicForms.TensorProductTheorem.NonemptyAdelicDecomposition
+@[expose] public section -- clump member: GroundTheory.AutomorphicForms.TensorProductTheorem.NonemptyAdelicDecomposition
 
+noncomputable section
 
 universe u
 
@@ -524,12 +515,6 @@ theorem nonempty_adelicDecomposition {V : Type u} [AddCommGroup V] [Module ℂ V
   obtain ⟨D⟩ := Mx.nonempty_decomposition hirr hadm
   obtain ⟨T⟩ := AdelicGLn.nonempty_tensorDecomposition D.isAdmissible₂ D.isIrreducible₂
   exact ⟨⟨D, T⟩⟩
-
-namespace AdelicDecomposition
-
-variable {V : Type u} [AddCommGroup V] [Module ℂ V] {Mx : AdelicGKModule K n V}
-
-end AdelicDecomposition
 
 
 variable (K n) in

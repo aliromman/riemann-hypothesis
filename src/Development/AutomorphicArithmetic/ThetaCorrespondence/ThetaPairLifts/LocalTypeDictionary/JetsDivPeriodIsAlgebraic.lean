@@ -95,11 +95,6 @@ theorem even_bot {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData
 
 end GlobalTheory.BotTransJet
 
-namespace GlobalTheory.BotTransJet
-
-open GlobalTheory.Grid (neg)
-
-end GlobalTheory.BotTransJet
 end -- clump:auto
 end -- clump:auto
 
@@ -136,9 +131,6 @@ theorem inV_stdL_eq_colLat {D : D7} {n : ℕ} (B : GL (Fin n) D.host.E) :
 
 end GlobalTheory.FinTransJet
 
-namespace GlobalTheory.FinTransJet
-
-end GlobalTheory.FinTransJet
 end -- clump:auto
 end -- clump:auto
 
@@ -152,8 +144,6 @@ open Formalism.L2.Host (HChar)
 open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (Tri)
 open GlobalTheory.RowEx MeasureTheory
 noncomputable section
-namespace GlobalTheory.FinTransJet
-end GlobalTheory.FinTransJet
 namespace GlobalTheory.FinTransJet
 theorem fock_jets_heisenberg_orbit_finite : _root_.GlobalTheory.FunPr.ThetaLocalInputs → (∀ D, GlobalTheory.NormSum.Inp D) →
     ∀ {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFam D) (S T : HSp D)
@@ -211,8 +201,6 @@ open Formalism.L2.Host (HChar)
 open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (Tri)
 open GlobalTheory.RowEx MeasureTheory
 noncomputable section
-namespace GlobalTheory.BotTransJet
-end GlobalTheory.BotTransJet
 namespace GlobalTheory.BotTransJet
 open GlobalTheory.Grid (neg)
 theorem isAlgebraic_pureTensorO_div_period : ∀ {D : D7} {T : Type} [Finite T] {L : LevCh D T} {μ₀ : T} {sc : Consts} {G : GridData L sc} {W : G.Weil}

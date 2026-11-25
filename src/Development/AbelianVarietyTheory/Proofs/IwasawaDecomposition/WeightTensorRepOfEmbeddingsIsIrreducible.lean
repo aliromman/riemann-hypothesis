@@ -345,8 +345,9 @@ theorem GlobalTheory.cmType_family_extend : ∀ (L : Type) [Field L] [NumberFiel
       simp
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NablaSqEndomorphismEqSumGLOperators
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NablaSqEndomorphismEqSumGLOperators
 
+noncomputable section
 
 namespace GlobalTheory.NablaDensity
 
@@ -588,7 +589,7 @@ theorem mem_spanAlg [CharZero k] (hS : ∀ M : Submodule k (MvPolynomial (Fin N 
       (∀ g : GL (Fin N) k, ∀ f ∈ M, sqAct k N lam g f ∈ M) → M = ⊥ ∨ M = nablaSq k N lam)
     (φ : Module.End k (nablaSq k N lam)) : φ ∈ spanAlg k N lam := by
   haveI := simple k N lam hS
-  haveI := GlobalTheory.WeylDimGL.finiteDimensional_nablaSq k N lam
+  haveI := GlobalTheory.Branching.finite_nablaSq k N lam
   let F : Module.End (Module.End (spanAlg k N lam) (nablaSq k N lam)) (nablaSq k N lam) :=
     { toFun := φ
       map_add' := φ.map_add
@@ -623,6 +624,7 @@ theorem GlobalTheory.NablaDensity.endo_eq_sum_sqAct : ∀ (k : Type) [Field k] [
   refine ⟨c.support, c, fun f => ?_⟩
   rw [← hc, Finsupp.sum, LinearMap.sum_apply, Submodule.coe_sum]
   rfl
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NontrivialWeylCoefficientSpace

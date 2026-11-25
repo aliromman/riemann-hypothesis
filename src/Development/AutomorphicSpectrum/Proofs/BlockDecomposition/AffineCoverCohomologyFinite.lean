@@ -14,10 +14,9 @@ public import GroundTheory.ArithmeticGeometry.SchemeCohomology.ProperFiniteness
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsSheafSecPresheaf, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AffineCoverCohomologyFinite
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsSheafSecPresheaf
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsSheafSecPresheaf
 
-set_option backward.isDefEq.respectTransparency false
-
+noncomputable section
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Opposite CrystallineSemistableComparison CrystallineSemistableComparison.Pb
 
@@ -221,10 +220,9 @@ theorem sec_ext_coord (hc : Coc g) {W : X.Opens} (α : ι) (h : W ≤ U α) {s t
 
 end GlobalTheory.CompanionTheory.VBGlue
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AffineCoverCohomologyFinite
-
-set_option backward.isDefEq.respectTransparency false
 
 noncomputable section
 

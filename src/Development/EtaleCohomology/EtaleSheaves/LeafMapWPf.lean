@@ -6,8 +6,9 @@ import Mathlib.Tactic.Linter.Style
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.EtaleCohomology.EtaleSheaves.HalfDegreeVanishing, Development.EtaleCohomology.EtaleSheaves.LeafMapWPf
 
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleSheaves.HalfDegreeVanishing
+@[expose] public section -- clump member: Development.EtaleCohomology.EtaleSheaves.HalfDegreeVanishing
 
+noncomputable section
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC LateralTheory.E.D2 LateralTheory.E.LeafGeomPf
 
 namespace LateralTheory.E.HalfDegreeVanishing
@@ -36,7 +37,7 @@ theorem arrow_eq {n : ℕ} {X : Scheme.{0}} (x : Sx (PB (bsumOf V W)) n X) {i j 
 def gfun {n : ℕ} {X : Scheme.{0}} (x : Sx (PB (bsumOf V W)) n X) (hx : AllSec V W x) :
     Fin (n + 1) ⥤ Um b (Scheme.Γ.obj (op X)) where
   obj i := ⟨wb (a := a) ((pv V W x).obj i).1, hx i⟩
-  map {i j} f := ⟨((pw W (pe V W x)).map f, ((pv V W x).map f).1.2), arrow_eq V W x f⟩
+  map {_ _} f := ⟨((pw W (pe V W x)).map f, ((pv V W x).map f).1.2), arrow_eq V W x f⟩
   map_id i := Subtype.ext (Prod.ext ((pw W (pe V W x)).map_id i) (congrArg (fun p => p.1.2) ((pv V W x).map_id i)))
   map_comp f g := Subtype.ext (Prod.ext ((pw W (pe V W x)).map_comp f g) (congrArg (fun p => p.1.2) ((pv V W x).map_comp f g)))
 
@@ -51,6 +52,7 @@ theorem pw_res {n : ℕ} {X Y : Scheme.{0}} (k : Y ⟶ X) (e : Sx E n X) {i j : 
   eq_of_heq (Functor.hcongr_hom (NatTrans.naturality_apply (W.app (op (SimplexCategory.mk n))) k.op e) f)
 
 end LateralTheory.E.HalfDegreeVanishing
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.EtaleCohomology.EtaleSheaves.LeafMapWPf

@@ -486,7 +486,7 @@ theorem isTranscendenceBasis_quotient_integralClosure
     Ideal.Quotient.lift (Ideal.span {t}) g (fun a ha => (hg a).2 ha)
   have hf : ∀ a : A, f (Ideal.Quotient.mk _ a) = Ideal.Quotient.mk Q (ι a) := fun a => rfl
   have hinj : Function.Injective f := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro x hx
     obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective x
     exact Ideal.Quotient.eq_zero_iff_mem.2 ((hg a).1 hx)
@@ -597,8 +597,9 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CuspFormGramSize
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CuspFormGramSize
 
+noncomputable section
 
 open GlobalTheory.PD GlobalTheory.CechDR KaehlerDifferential
 
@@ -614,7 +615,7 @@ theorem isTranscendenceBasis_quot_polynomial {k : Type} [Field k] {m : ℕ}
     (Ideal.Quotient.mkₐ k (Ideal.span {p})).comp (IsScalarTower.toAlgHom k (MvPolynomial (Fin m) k) _)
   have hφ : ∀ b, φ b = Ideal.Quotient.mk (Ideal.span {p}) (Polynomial.C b) := fun b => rfl
   have hinj : Function.Injective φ := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro b hb
     rw [hφ, Ideal.Quotient.eq_zero_iff_mem, Ideal.mem_span_singleton] at hb
     by_contra hb0
@@ -721,6 +722,7 @@ theorem trBasis_mod_irreducible : ∀ (k F : Type) [Field k] [Field F] [Algebra 
     exact hb
 
 end GlobalTheory.TrBasisQuot
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DifferentialsSpanOfUniformizerBasis
@@ -1089,7 +1091,7 @@ theorem trace_quotient_pow {k B : Type*} [Field k] [CommRing B] [IsDedekindDomai
     have hbij : Function.Bijective
         (Ideal.Quotient.factor (Ideal.pow_le_self (I := P) (Nat.succ_ne_zero 0))) := by
       refine ⟨?_, Ideal.Quotient.factor_surjective _⟩
-      set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+      rw [injective_iff_map_eq_zero]
       intro y hy
       obtain ⟨y, rfl⟩ := Ideal.Quotient.mk_surjective y
       rw [Ideal.Quotient.factor_mk, Ideal.Quotient.eq_zero_iff_mem] at hy

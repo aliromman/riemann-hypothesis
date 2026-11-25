@@ -299,8 +299,9 @@ theorem GlobalTheory.Reg.cell_change_birational :
 end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.GenericRegularity.TriangularReframeCompBaseChangeBorel
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.Reg
 
@@ -313,13 +314,10 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : D
   {Xo : Moduli Dw l} {c : Coeff l} {S : Type} [CommRing S]
 
 theorem reframe_scal_mul (x : Sp S ⟶ Xo.X) (a b : S) (i : (PPx x).ι) :
-    scal x (a * b) i = scal x a i * scal x b i := by
-  unfold scal Out.liftFun
-  simp only [map_mul]
+    scal x (a * b) i = scal x a i * scal x b i := GlobalTheory.Frames.Model.scal_mul x a b i
 
 theorem reframe_scal_one (x : Sp S ⟶ Xo.X) (i : (PPx x).ι) : scal x (1 : S) i = 1 := by
-  unfold scal Out.liftFun
-  simp only [map_one]
+  exact GlobalTheory.Frames.Model.scal_one x i
 
 theorem generators_unit {x : Sp S ⟶ Xo.X} (s s' : LB.Sec (PPx x))
     (hs : ∀ r : LB.Sec (PPx x), ∃! a : S, ∀ i, r.f i = scal x a i * s.f i)
@@ -389,6 +387,7 @@ theorem reframe_calculus : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E
     fun T _ _ φ g y y' z z' h hz hz' => Reframe.baseChange φ h hz hz', fun y y' => frBor_iff_reframe y y'⟩
 
 end GlobalTheory.Reg
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 

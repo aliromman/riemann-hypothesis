@@ -1629,8 +1629,9 @@ namespace LateralTheory.Fin.SLayer
 end LateralTheory.Fin.SLayer
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.EtaleCohomology.CyclotomicDiscriminants.SSteinTPf
+@[expose] public section -- clump member: Development.EtaleCohomology.CyclotomicDiscriminants.SSteinTPf
 
+noncomputable section
 
 open NumberField IsDedekindDomain FractionalIdeal Matrix
 open scoped nonZeroDivisors
@@ -1645,21 +1646,8 @@ set_option linter.unnecessarySeqFocus false
 variable {R : Type} [CommRing R] [IsDedekindDomain R] {K : Type} [Field K] [Algebra R K] [IsFractionRing R K]
 
 theorem val_eq_count (P : HeightOneSpectrum R) (x : K) (hx : x ≠ 0) :
-    P.valuation K x = WithZero.exp (-count K P (spanSingleton R⁰ x)) := by
-  obtain ⟨r, s, hs, rfl⟩ := IsFractionRing.div_surjective (A := R) x
-  have hs0 : s ≠ 0 := nonZeroDivisors.ne_zero hs
-  have hr0 : r ≠ 0 := by
-    rintro rfl
-    simp at hx
-  have h : spanSingleton R⁰ (algebraMap R K r / algebraMap R K s) =
-      spanSingleton R⁰ (algebraMap R K s)⁻¹ * ((Ideal.span {r} : Ideal R) : FractionalIdeal R⁰ K) := by
-    rw [coeIdeal_span_singleton, spanSingleton_mul_spanSingleton, div_eq_inv_mul]
-  rw [count_well_defined K P (spanSingleton_ne_zero_iff.mpr hx) h, map_div₀,
-    HeightOneSpectrum.valuation_of_algebraMap, HeightOneSpectrum.valuation_of_algebraMap,
-    HeightOneSpectrum.intValuation_if_neg P hr0, HeightOneSpectrum.intValuation_if_neg P hs0,
-    ← WithZero.exp_sub]
-  congr 1
-  ring
+    P.valuation K x = WithZero.exp (-count K P (spanSingleton R⁰ x)) :=
+  GlobalTheory.Idele.valuation_eq_exp_neg_count P hx
 
 theorem val_le_of_mem (P : HeightOneSpectrum R) {I : FractionalIdeal R⁰ K} {x : K} (hx : x ∈ I) :
     P.valuation K x ≤ WithZero.exp (-count K P I) := by
@@ -1858,6 +1846,7 @@ theorem SStein_of : UpperTheory.V.ZK.SStein := by
     exact h x
 
 end LateralTheory.Q.SSteinT
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.EtaleCohomology.CyclotomicDiscriminants.FinSStein

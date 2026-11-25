@@ -92,11 +92,12 @@ end GlobalTheory.CompanionTheory.MassCocompact
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SwMeasPlaneOfNotRepresented
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SwMeasPlaneOfNotRepresented
 
 open HeckeCharacterZeroLocus.SiegelWeilU GlobalTheory.CompanionTheory.SW NumberField IsDedekindDomain MeasureTheory Topology
 open scoped TensorProduct ENNReal NNReal Matrix
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.SW.Plane
 
@@ -323,9 +324,7 @@ theorem exists_hom {σ : E →ₐ[F] E} (hCM : IsCMExt F E σ) (τ : E →+* ℂ
 
 end GlobalTheory.CompanionTheory.SW.Plane
 
-namespace GlobalTheory.CompanionTheory.SW
-
-end GlobalTheory.CompanionTheory.SW
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HassePrinciple
