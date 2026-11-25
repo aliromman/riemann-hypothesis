@@ -1,0 +1,36 @@
+{
+  "pr": 879,
+  "parent": "91b273530883b723ef4422436e0dc3557749325a",
+  "head": "82b1032cfad04398c6ad77d2455e08dbe871e36c",
+  "tested_at": "2026-11-25T17:39:04.722444+00:00",
+  "environment": "local macOS, pinned base workflow steps, clean temporary Git repositories reusing local Git objects",
+  "steps": [
+    {
+      "workflow": ".github/workflows/challenge-files.yml",
+      "workflow_blob": "93ceba501b10f93ff90be59d95f541bf98bef1e5",
+      "stage": "Compare the files where the pull request branched off and at its head",
+      "exit_code": 0,
+      "stdout": "pull request 879: branched off at 91b273530883b723ef4422436e0dc3557749325a, head 82b1032cfad04398c6ad77d2455e08dbe871e36c\nunchanged: src/Challenge.lean\nunchanged: comparator.json\nunchanged: export-targets.txt\nunchanged: comparator/FormalConjecturesChallenge.lean\nunchanged: comparator/formal-conjectures.json\nunchanged: comparator/formal-conjectures-export-targets.txt",
+      "stderr": "",
+      "coverage": "complete calculation step"
+    },
+    {
+      "workflow": ".github/workflows/technical-debt.yml",
+      "workflow_blob": "b859f6dc68ee4305a8a53c9e3ee4130115224fa1",
+      "stage": "Count the changes in technical debt",
+      "exit_code": 0,
+      "stdout": "No changes to strong technical debt.\n\nNo changes to weak technical debt.\n\nBase 91b2735308, head 82b1032cfa.",
+      "stderr": "",
+      "coverage": "complete calculation step"
+    },
+    {
+      "workflow": ".github/workflows/label-pr.yml",
+      "workflow_blob": "8ff2c650e1ef1c18e01fd5b4315f92629a0e3ac2",
+      "stage": "Add and remove labels for this PR's paths and size",
+      "exit_code": 0,
+      "stdout": "extra large: +152 -387166, 15245 changed paths",
+      "stderr": "",
+      "coverage": "read-only label calculation before GitHub label writes"
+    }
+  ]
+}
