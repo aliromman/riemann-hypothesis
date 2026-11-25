@@ -11,18 +11,6 @@ public import GroundTheory.GlobalFields.Adele.Discrete
 public import GroundTheory.GlobalFields.TateThesis.AdelicCharDual
 public import GroundTheory.GlobalFields.Adele.Approximation
 public import Mathlib.NumberTheory.NumberField.AdeleRing
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Formalism.SharpRestriction.GlobalSchurBounds.GeneralLinearActions.GenusMassVolumes
 import Mathlib.Algebra.Quaternion
 import Mathlib.NumberTheory.NumberField.ClassNumber

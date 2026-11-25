@@ -24,27 +24,13 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.Convolut
 public import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.KernelTransforms.UiwPow
 import GroundTheory.AutomorphicForms.MeasuresGL
 import GroundTheory.LocalFields.PadicLogSeries
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicArithmetic.Foundations.Convolution.GeneralizedMeasures.LocHeckeInert
 import Development.WeilBound.RepresentationTheoryGL.TwistedFactors.CuspDecayHeights.HeightLe
 import Development.WeilBound.RepresentationTheoryGL.TwistedFactors.SelmerRankBounds.IsNormAlong
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.TypeStar
 import Mathlib.Tactic.Linter.HaveILetI
 import GroundTheory.AutomorphicForms.SphericalLaurent
 import GroundTheory.LocalFields.LocalFourierHaar
-import Mathlib.Topology.LocallyConstant.Algebra
 import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.KernelTransforms.PrjFix
 
 -- This file was produced by scripts/clump.py from the modules listed below.

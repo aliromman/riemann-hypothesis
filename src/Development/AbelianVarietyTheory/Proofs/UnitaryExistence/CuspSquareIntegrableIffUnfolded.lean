@@ -67,7 +67,6 @@ open scoped ENNReal
 
 variable {r : ℕ}
 
-set_option autoImplicit false in
 open MeasureTheory Topology Matrix NumberField in
 open scoped ENNReal in
 variable {r : ℕ} in
@@ -77,7 +76,6 @@ private lemma det_ne_zero_of_form_eq {K G M : Matrix (Fin r) (Fin r) ℂ} (hK : 
   apply hK
   rw [← h, det_mul, det_mul, det_transpose, hM0, zero_mul, zero_mul]
 
-set_option autoImplicit false in
 open MeasureTheory Topology Matrix NumberField in
 open scoped ENNReal in
 variable {r : ℕ} in
@@ -85,7 +83,6 @@ private lemma form_smul_left_automorphic_membership (c : ℂ) (K A : Matrix (Fin
     Aᵀ * (c • K) * A.map (starRingEnd ℂ) = c • (Aᵀ * K * A.map (starRingEnd ℂ)) := by
   rw [Matrix.mul_smul, Matrix.smul_mul]
 
-set_option autoImplicit false in
 open MeasureTheory Topology Matrix NumberField in
 open scoped ENNReal in
 variable {r : ℕ} in
@@ -101,7 +98,6 @@ private lemma form_smul_right_automorphic_membership (a : ℝ) (K A : Matrix (Fi
   push_cast
   ring
 
-set_option autoImplicit false in
 open MeasureTheory Topology Matrix NumberField in
 open scoped ENNReal in
 variable {r : ℕ} in
@@ -111,7 +107,6 @@ private lemma form_mul' (K A B : Matrix (Fin r) (Fin r) ℂ) :
   rw [transpose_mul, Matrix.map_mul]
   simp only [Matrix.mul_assoc]
 
-set_option autoImplicit false in
 open MeasureTheory Topology Matrix NumberField in
 open scoped ENNReal in
 variable {r : ℕ} in
@@ -119,7 +114,6 @@ private lemma form_one' (K : Matrix (Fin r) (Fin r) ℂ) :
     (1 : Matrix (Fin r) (Fin r) ℂ)ᵀ * K * (1 : Matrix (Fin r) (Fin r) ℂ).map (starRingEnd ℂ) = K := by
   simp [Matrix.map_one]
 
-set_option autoImplicit false in
 open MeasureTheory Topology Matrix NumberField in
 open scoped ENNReal in
 variable {r : ℕ} in
@@ -137,7 +131,6 @@ private lemma form_conj_eq_of_similitude {J B g : Matrix (Fin r) (Fin r) ℂ} {c
   rw [form_mul', form_mul', hinv, form_smul_left_automorphic_membership, hg, form_smul_left_automorphic_membership, hsim, smul_smul,
     inv_mul_cancel₀ hc, one_smul]
 
-set_option autoImplicit false in
 open MeasureTheory Topology Matrix NumberField in
 open scoped ENNReal in
 variable {r : ℕ} in
@@ -152,7 +145,6 @@ private lemma exists_transport_haarU_pi {ι : Type} (Ψ Ψ' : Finset ι) (p p' :
   rw [Subtype.ext h]
   rfl
 
-set_option autoImplicit false in
 open MeasureTheory Topology Matrix NumberField in
 open scoped ENNReal in
 variable {r : ℕ} in

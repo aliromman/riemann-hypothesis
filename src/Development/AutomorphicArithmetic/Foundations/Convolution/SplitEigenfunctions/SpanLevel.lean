@@ -34,28 +34,11 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.RealGrou
 public import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.UnramifiedSplitting.PlaceAe
 public import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.Cap
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CuspidalSatakeAlmostAll
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.BaseChangeUnits.CycCOfCyclic
 import GroundTheory.AutomorphicForms.ReductionMeasure
 import GroundTheory.GlobalFields.Adele.Topology
 import GroundTheory.GlobalFields.TateThesis.AdelicCharDual
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Dynamics.Ergodic.Action.Regular
-import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.TypeStar
-import Mathlib.Topology.Algebra.ProperAction.Basic
 import Std.Tactic.BVDecide.Normalize.Prop
 import GroundTheory.AutomorphicForms.AutomorphicFormSpaces.Archimedean
 import PositivityTheory.AutomorphicForms.PublishedInputs.CuspidalContinuity.ArchimedeanCuspidal.AdFormOf
@@ -68,7 +51,6 @@ import GroundTheory.LocalFields.LocalFourierHaar
 import Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.MkMemAdmissibleAtIffCocycle
 import Development.AbelianVarietyTheory.Definitions.Foundations.NormEulerPolySubOneLe
 import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.WeilRepresentation.Smooth
-import Mathlib.Algebra.Order.Star.Int
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.InfPair, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ElementarySubgroupInvariance, Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.CoefZero, Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.DerCurve, Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.PairEx, Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.SatPair, Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.SplitEigAlt, Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.SpanLevel

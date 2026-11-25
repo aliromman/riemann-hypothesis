@@ -41,25 +41,7 @@ public import Development.AutomorphicArithmetic.CommutativeAlgebra.TraceEtaIdent
 public import Development.AutomorphicArithmetic.CommutativeAlgebra.TraceIdentityOfTjElement
 public import Development.AutomorphicArithmetic.CommutativeAlgebra.TracePullbackIdentity
 public import Development.AutomorphicArithmetic.CommutativeAlgebra.TraceUnitOfPullbackMultiplier
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Algebra.AffineMonoid.Basic
-import Mathlib.Tactic.Lemma
-import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 import Development.AbelianVarietyTheory.Proofs.ModuliProofs.LevelMapFibreSimplyTransitive
 import Mathlib.Tactic.Linter.Style
 
@@ -1820,8 +1802,6 @@ theorem liftSep_of (I : MIn) : LiftSep := UpperTheory.hecke_lift_separated_of_la
 theorem count_of (I : MIn) : Count := UpperTheory.tower_point_count_statement
 
 theorem tjLies_of (I : MIn) : TjLies := UpperTheory.heckeCorrespondence_lies_in_tower_of_lift_count I (numEx_of I) (clsEx_of I) (powCart_of I) (piInv_of I) (piFet_of I) (liftEx_of I) (liftSep_of I) (count_of I)
-
-theorem stdEx_of (I : MIn) : StdEx := UpperTheory.standard_datum_exists
 
 theorem kSCong_of (I : MIn) : KSCong := UpperTheory.tower_covering_congruence_of_hecke_lies I (siteEx_of I) (numEx_of I) (clsEx_of I) (kSCover_of I) (tjLies_of I)
 

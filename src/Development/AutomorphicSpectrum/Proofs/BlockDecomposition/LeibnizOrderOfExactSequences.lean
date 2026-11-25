@@ -14,21 +14,7 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirProjE
 public import Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.LeibnizOrders.LeibnizOrd
 public import Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.LeibnizOrders.PhiPG0
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DerivativeTwistedIso
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Linter.Style
-import Mathlib.RingTheory.Coalgebra.CoassocSimps
-import Mathlib.Tactic.TypeStar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirabolicExtensionExact, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PhiProductLeftRankZero, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PsiPreservesIsomorphism, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictionProductRankZeroLeft, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RestrictionProductRankZeroRight, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistProductDistributes, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TwistTwistAdd, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsFiltration, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PhiProductRankZeroTrivial, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LeibnizOrderOfExactSequences
@@ -351,18 +337,6 @@ open Matrix GlobalTheory.PRep GlobalTheory.SmGL GlobalTheory.BZMir GlobalTheory.
 open scoped TensorProduct
 
 namespace GlobalTheory.CompanionTheory.LeibOrd.PsiIso
-
-private theorem mapQ_eq_id_of_eq_id {R M : Type*} [Ring R] [AddCommGroup M] [Module R M]
-    (p : Submodule R M) {f : M →ₗ[R] M} (hf : f = LinearMap.id) (h : p ≤ p.comap f) :
-    p.mapQ p f h = LinearMap.id := by
-  subst hf
-  exact Submodule.mapQ_id p h
-
-private theorem mapQ_congr {R M M₂ : Type*} [Ring R] [AddCommGroup M] [Module R M] [AddCommGroup M₂]
-    [Module R M₂] (p : Submodule R M) (q : Submodule R M₂) {f g : M →ₗ[R] M₂} (hfg : f = g)
-    (hf : p ≤ q.comap f) (hg : p ≤ q.comap g) : p.mapQ q f hf = p.mapQ q g hg := by
-  subst hfg
-  rfl
 
 theorem twAct_equiv {G M V W : Type} [Group G] [Group M] [AddCommGroup V] [Module ℂ V] [AddCommGroup W] [Module ℂ W]
     {ρ : Representation ℂ G V} {σ : Representation ℂ G W} (e : ρ.Equiv σ) (N : Subgroup G) (θ : N →* ℂˣ) (s : M →* G)

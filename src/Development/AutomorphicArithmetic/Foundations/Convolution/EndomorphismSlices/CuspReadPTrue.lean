@@ -3,18 +3,6 @@ module
 public import Development.AutomorphicArithmetic.Foundations.Convolution.EndomorphismSlices.SphComm2
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.TraceFormula.GaloisFromTraceFormula.EvaluationAtUnitaryOne
 public import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.RealDescent.RGrowthPiJ
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -32,8 +20,6 @@ open scoped Classical
 
 
 namespace UpperTheory.Zero.ConvolutionTheory.EB
-
-attribute [local instance] borelG borelF borelA borelH
 
 abbrev Pred : Type 1 := ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (N : ℕ), CD E N → ((E →+* ℂ) → Multiset ℂ) → Prop
 

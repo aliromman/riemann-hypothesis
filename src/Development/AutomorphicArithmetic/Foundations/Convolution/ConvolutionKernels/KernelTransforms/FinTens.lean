@@ -7,27 +7,13 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.Convolut
 public import Development.AbelianVarietyTheory.Definitions.Foundations.ContinuousOfMemCcSmooth
 public import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.KernelTransforms.HomConv
 public import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.KernelTransforms.NormIntLe
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import GroundTheory.LocalFields.PadicLogSeries
 import GroundTheory.AutomorphicForms.ReductionFinite
 import Development.AbelianVarietyTheory.Definitions.Divisors.T2SpaceGeneralLinearGroup
 import GroundTheory.AutomorphicForms.WhittakerGroups
 import GroundTheory.GlobalFields.LocalAtPlace
-import Mathlib.Topology.Separation.Connected
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.TypeStar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.LocalTestFunctions.CompProjFixedLevelEqOfLocalInvariance, Development.AutomorphicArithmetic.LocalTestFunctions.ExistsCompactOpenBiinvariantOfTest, Development.AutomorphicArithmetic.LocalTestFunctions.ExistsOpenCompactLevelSubgroup, Development.AutomorphicArithmetic.LocalTestFunctions.ExistsTestFunctionIntegralLocalFactor, Development.AutomorphicArithmetic.LocalTestFunctions.ExistsTestFunctionIntegralProdLocalFactors, Development.AutomorphicArithmetic.LocalTestFunctions.FinprodLocalEqIndicatorMulProd, Development.AutomorphicArithmetic.LocalTestFunctions.IndicatorIntegralAwayMulLocalEmbedding, Development.AutomorphicArithmetic.LocalTestFunctions.IndicatorLevelEqProdLocalIndicator, Development.AutomorphicArithmetic.LocalTestFunctions.IntegratedRightRegularEqLocalOperator, Development.AutomorphicArithmetic.LocalTestFunctions.LocalOperatorCommuteRhoFOfTrivialAtPlace, Development.AutomorphicArithmetic.LocalTestFunctions.LocalOperatorCompRhoLEqOfRightInvariant, Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.KernelTransforms.FinTens

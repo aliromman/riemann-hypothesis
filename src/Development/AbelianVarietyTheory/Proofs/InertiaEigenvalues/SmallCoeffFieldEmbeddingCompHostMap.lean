@@ -303,7 +303,6 @@ open GlobalTheory.NT GlobalTheory.FieldSize GlobalTheory.IndefiniteRowSideFullHe
 
 variable {K : Type} [Field K] [NumberField K]
 
-set_option autoImplicit false in
 open NumberField IsDedekindDomain in
 variable {K : Type} [Field K] [NumberField K] in
 private theorem heckeIdeal_comp_restrictNormalHom {L M : Type} [Field L]
@@ -329,7 +328,6 @@ private theorem heckeIdeal_comp_restrictNormalHom {L M : Type} [Field L]
         (_root_.GlobalTheory.RayMaximal.isFrob_restrictNormal hσ)]
     rfl
 
-set_option autoImplicit false in
 open NumberField IsDedekindDomain in
 variable {K : Type} [Field K] [NumberField K] in
 private theorem not_isUnit_natCast_of_prime' {F : Type} [Field F] [NumberField F] {q : ℕ}
@@ -342,7 +340,6 @@ private theorem not_isUnit_natCast_of_prime' {F : Type} [Field F] [NumberField F
   have := hq.two_le
   omega
 
-set_option autoImplicit false in
 open NumberField IsDedekindDomain in
 variable {K : Type} [Field K] [NumberField K] in
 private theorem isCoprime_of_le_right {R : Type} [CommRing R] {I J J' : Ideal R}
@@ -350,7 +347,6 @@ private theorem isCoprime_of_le_right {R : Type} [CommRing R] {I J J' : Ideal R}
   rw [Ideal.isCoprime_iff_sup_eq] at h ⊢
   exact top_unique (h.ge.trans (sup_le_sup_left hJ _))
 
-set_option autoImplicit false in
 open NumberField IsDedekindDomain in
 variable {K : Type} [Field K] [NumberField K] in
 private theorem mem_of_mul_mem_of_isCoprime_span {R : Type} [CommRing R] {J : Ideal R} {y z : R}
@@ -361,7 +357,6 @@ private theorem mem_of_mul_mem_of_isCoprime_span {R : Type} [CommRing R] {J : Id
   rw [this]
   exact J.add_mem (J.mul_mem_left _ hyz) (J.mul_mem_left _ hj)
 
-set_option autoImplicit false in
 open NumberField IsDedekindDomain in
 variable {K : Type} [Field K] [NumberField K] in
 private theorem exists_rayPair_inf_of_rayPair (hu : ∀ u : (𝓞 K)ˣ, u = 1 ∨ u = -1)
@@ -461,7 +456,6 @@ private theorem exists_rayPair_inf_of_rayPair (hu : ∀ u : (𝓞 K)ˣ, u = 1 �
       Ideal.span_singleton_mul_span_singleton, hmul]
 
 
-set_option autoImplicit false in
 open NumberField IsDedekindDomain in
 variable {K : Type} [Field K] [NumberField K] in
 theorem _root_.GlobalTheory.RayCompositum.fieldRange_sup_eq_top : ∀ {K H H₁ H₂ : Type} [Field K] [NumberField K] [Field H] [NumberField H]

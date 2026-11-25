@@ -2,25 +2,8 @@ module
 
 public import Formalism.PadicSubsetSums.CentralIdempotents.IsConstituent
 public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
-import Mathlib.Analysis.CStarAlgebra.Classes
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.RingTheory.Henselian
 public import Mathlib.RingTheory.MvPolynomial.Symmetric.NewtonIdentities
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.WeilBound.CoreStatements.FiniteTypeHarishChandra.FiniteDimensionalHcSpace
 public import Mathlib.FieldTheory.Finite.Basic
@@ -264,26 +247,11 @@ theorem exists_elliptic (C : LabelConv K) {ι : Type} [Fintype ι] [DecidableEq 
   · rw [IsUnit.unit_spec, hMchar]
     exact minpoly.aeval K _
 
-private theorem two_mul_le_two_pow_lemma_2 : ∀ m : ℕ, 1 ≤ m → 2 * m ≤ 2 ^ m := by
-  intro m hm
-  induction m with
-  | zero => omega
-  | succ m ih =>
-    rcases Nat.eq_zero_or_pos m with h | h
-    · subst h
-      norm_num
-    · have h1 := ih h
-      have h2 : 2 ≤ 2 ^ m := by
-        calc 2 = 2 ^ 1 := by norm_num
-          _ ≤ 2 ^ m := Nat.pow_le_pow_right (by norm_num) h
-      rw [pow_succ]
-      omega
-
 private theorem small_lt_lemma_3 {q d e : ℕ} (hq : 2 ≤ q) (he : 1 ≤ e) (hed : 2 * e ≤ d) :
     d * (q ^ e - 1) < q ^ d - 1 := by
   have hB : d ≤ q ^ (d - e) := by
     have h1 : d ≤ 2 * (d - e) := by omega
-    have h2 := two_mul_le_two_pow_lemma_2 (d - e) (by omega)
+    have h2 := Nat.mul_le_pow (by decide : 2 ≠ 1) (d - e)
     have h3 : 2 ^ (d - e) ≤ q ^ (d - e) := Nat.pow_le_pow_left hq _
     omega
   have hsplit : q ^ d = q ^ e * q ^ (d - e) := by

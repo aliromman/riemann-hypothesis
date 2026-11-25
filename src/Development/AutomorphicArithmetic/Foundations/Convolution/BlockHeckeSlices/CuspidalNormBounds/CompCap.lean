@@ -37,25 +37,12 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.BlockHec
 public import Development.AutomorphicArithmetic.Foundations.Convolution.BlockHeckeSlices.CuspidalNormBounds.SliceUmg
 import GroundTheory.AutomorphicForms.CuspidalDiscreteness.CuspFormsHeight
 import GroundTheory.GlobalFields.Adele.Topology
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.OneMemGoodCT
 import GroundTheory.AutomorphicForms.CuspidalDiscreteness.AltSum
 import GroundTheory.AutomorphicForms.QuotientMeasure
 import GroundTheory.AutomorphicForms.ReductionBlock
 import Mathlib.Tactic.Linter.HaveILetI
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.RingTheory.PiTensorProduct
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.WhittakerHecke.ConstantTermLeviRestrictionModerateGrowth, Development.AutomorphicArithmetic.WhittakerHecke.FunctionalQdetEqAevalShiftedPolynomial, Development.AutomorphicArithmetic.WhittakerHecke.FunctionalVanishesInvariant, Development.AutomorphicArithmetic.WhittakerHecke.IntegrableMulConjOfModerateGrowthOfCuspidal, Development.AutomorphicArithmetic.WhittakerHecke.IntegralQuotientDerivativeOneParameterEqZero, Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.MovedPointDeterminant, Development.AutomorphicArithmetic.WhittakerHecke.OneParameterSubgroupNormOne, Development.AutomorphicArithmetic.Foundations.Convolution.BlockHeckeSlices.CuspidalNormBounds.SliceCapR, Development.AutomorphicArithmetic.Foundations.Convolution.BlockHeckeSlices.CuspidalNormBounds.SliceCap, Development.AutomorphicArithmetic.Foundations.Convolution.BlockHeckeSlices.CuspidalNormBounds.CompCap

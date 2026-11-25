@@ -25,7 +25,6 @@ open scoped IntermediateField
 
 namespace GlobalTheory.FieldSize.InRayAny
 
-set_option autoImplicit false in
 open NumberField IsDedekindDomain Polynomial in
 open scoped IntermediateField in
 private theorem weberSet_subset_of_isRay_span_natCast :
@@ -61,7 +60,6 @@ private theorem weberSet_subset_of_isRay_span_natCast :
   exact fun x hx => hMR (IntermediateField.subset_adjoin _ _ hx)
 
 
-set_option autoImplicit false in
 open NumberField IsDedekindDomain Polynomial in
 open scoped IntermediateField in
 theorem _root_.GlobalTheory.FieldSize.InRayAny.weberSet_subset :

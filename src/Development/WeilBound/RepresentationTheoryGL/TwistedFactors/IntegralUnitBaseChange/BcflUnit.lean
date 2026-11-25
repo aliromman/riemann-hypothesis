@@ -20,27 +20,9 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Separabl
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitFundamentalLemmaFirstHolds
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnramifiedDualFamilyHolds
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnramifiedExtensionIntegralBasis
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Order.CompletePartialOrder
 import Mathlib.Tactic.Linter.Style
-import Mathlib.RingTheory.Henselian
-import Mathlib.Tactic.TypeStar
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Topology.Connected.Separation
-import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 import Development.AbelianVarietyTheory.Definitions.Divisors.T2SpaceGeneralLinearGroup
-import Mathlib.Topology.Compactness.Paracompact
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HeckeThirdProperty, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeFirstProperty, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeFourthProperty, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeSecondProperty, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NormCentralizerIdentification, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NormCommutesSeparableHolds, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NormMapSecondProperty, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NormMapTorusSurjective, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnipotentHeckeFourthProperty, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SecondCountableT2LocalField, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnipotentHeckeSupport, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnitFundamentalLemmaSecondHolds, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnramifiedDictionaryPartB, Development.WeilBound.RepresentationTheoryGL.TwistedFactors.IntegralUnitBaseChange.QuotientIntegralOfCompactOpen, Development.WeilBound.RepresentationTheoryGL.TwistedFactors.IntegralUnitBaseChange.BcflUnit

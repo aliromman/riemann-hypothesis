@@ -7,27 +7,11 @@ public import Development.WeilBound.RepresentationTheoryGL.EisensteinSeries.Sieg
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.BoundaryTermGood
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PrincipalIdentityAssembly
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.RatVSmul
-import Mathlib.Algebra.Order.Star.Real
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Analysis.CStarAlgebra.ContinuousMap
 import GroundTheory.AutomorphicForms.ReductionMeasure
-import Mathlib.Topology.Compactness.CompactlyGeneratedSpace
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompactness.AdeleLC
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.TopoAF
-import Mathlib.Topology.Compactness.Paracompact
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AverageInvariance, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.AverageMembership, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DiagonalTermGood, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HeightTermGood, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MasterIdentity, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MirabolicGeneration, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SideTermConvergence, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SideTermIdentity, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SideTermUnfolding, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TestFunctionSphericalK, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.UnfoldingOfAverage, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.VecKapMul, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ZetaIntegralOfEpsteinConv, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ZetaValueAtOne, Development.WeilBound.RepresentationTheoryGL.EisensteinSeries.SiegelEisensteinHalfPlane.MirabolicGenerators.MirGen

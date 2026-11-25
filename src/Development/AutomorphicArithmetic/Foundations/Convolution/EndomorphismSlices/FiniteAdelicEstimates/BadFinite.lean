@@ -24,23 +24,9 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnramifiedFa
 public import Development.AutomorphicArithmetic.Foundations.Convolution.EndomorphismSlices.CuspReadPTrue
 public import Development.AutomorphicArithmetic.Foundations.Convolution.EndomorphismSlices.FiniteAdelicEstimates.SatCard
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AutomorphicArithmetic.Foundations.Convolution.EndomorphismSlices.FiniteAdelicEstimates.LocAlg
 import Development.AutomorphicArithmetic.Foundations.Convolution.EndomorphismSlices.FiniteAdelicEstimates.PositionTest
-import Mathlib.RingTheory.Etale.Weakly
-import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
 import Development.AutomorphicArithmetic.Foundations.Convolution.EndomorphismSlices.TwTrSum
 import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.RealDescent.PowerBoundFastDecay
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.ExistsIsSplitChartOfBasis
@@ -67,8 +53,6 @@ open scoped Classical
 
 
 namespace UpperTheory.Zero.ConvolutionTheory.EB
-
-attribute [local instance] borelG borelF borelA borelH
 
 private theorem zVal_ite' {m : ℕ} (c : Prop) [Decidable c] (L : List (Bool × ℕ)) (χ : Inf m) :
     zVal (if c then L else []) χ = if c then zVal L χ else 1 := by
@@ -141,8 +125,6 @@ open scoped Classical
 
 
 namespace UpperTheory.Zero.ConvolutionTheory.EB
-
-attribute [local instance] borelG borelF borelA borelH
 
 private theorem position_off {E : Type} [Field E] [NumberField E] [IsCMField E] {a b : ℕ} {Z : Finset (Pl E)} (L : Lv a b Z)
     {w i : Pl E} (e : Pl E → Ex (Fin (a + 1) × Fin (b + 1))) (hi : i ≠ w) :
@@ -376,8 +358,6 @@ open scoped Classical
 
 open UpperTheory.Zero.ConvolutionTheory.EB PositivityTheory.Rg.BcB.F.RS
 
-attribute [local instance] borelG borelF borelA borelH
-
 theorem UpperTheory.Zero.ConvolutionTheory.EB.satRead₁ :
     UpperTheory.Zero.ConvolutionTheory.EB.SatRead₁ := by
   intro E _ _ _ a b l₁ l₂ D A S Z L hS hZ f hf _ hL _ w hw hwZ t ht
@@ -583,8 +563,6 @@ open scoped Classical
 
 open UpperTheory.Zero.ConvolutionTheory.EB PositivityTheory.Rg.BcB.F.RS
 
-attribute [local instance] borelG borelF borelA borelH
-
 section Back
 
 open PositivityTheory.Rg.BcB.F.RS.JetMatrixAlgebra GlobalTheory.ThetaSatake
@@ -670,8 +648,6 @@ open scoped Classical
 
 
 open UpperTheory.Zero.ConvolutionTheory.EB PositivityTheory.Rg.BcB.F.RS
-
-attribute [local instance] borelG borelF borelA borelH
 
 theorem UpperTheory.Zero.ConvolutionTheory.EB.satRead₂ :
     UpperTheory.Zero.ConvolutionTheory.EB.SatRead₂ := by
@@ -839,8 +815,6 @@ open scoped Classical
 
 namespace UpperTheory.Zero.ConvolutionTheory.EB
 
-attribute [local instance] borelG borelF borelA borelH
-
 private theorem ev_tendsto {ι : Type} (e : Ex ι) {x : ℕ → ι → ℂ} {y : ι → ℂ}
     (h : ∀ i, Tendsto (fun k => x k i) atTop (𝓝 (y i))) :
     Tendsto (fun k => e.ev (x k)) atTop (𝓝 (e.ev y)) := by
@@ -912,8 +886,6 @@ open scoped Classical
 
 
 namespace UpperTheory.Zero.ConvolutionTheory.EB
-
-attribute [local instance] borelG borelF borelA borelH
 
 private theorem bad_finite {E : Type} [Field E] [NumberField E] [IsCMField E] (Z : Finset (Pl E)) :
     {w : Pl E | ¬ Off Z w}.Finite := by

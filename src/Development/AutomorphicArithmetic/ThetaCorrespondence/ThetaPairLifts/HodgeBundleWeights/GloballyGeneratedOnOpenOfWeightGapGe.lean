@@ -128,7 +128,6 @@ open GlobalTheory.HSApp
 open GlobalTheory.Cartier GlobalTheory.Discrepancy GlobalTheory.QCoh
 open GlobalTheory.Twist GlobalTheory.SerreCriterion
 
-set_option autoImplicit false
 noncomputable section
 namespace GlobalTheory
 namespace IsolatedSec
@@ -388,7 +387,6 @@ open GlobalTheory.FlagMod (FlagCover)
 open GlobalTheory.FlagTan (dimFlag)
 open GlobalTheory.HSApp
 
-set_option autoImplicit false
 noncomputable section
 open GlobalTheory.Cartier GlobalTheory.Discrepancy GlobalTheory.QCoh
 
@@ -532,8 +530,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace Limits NumberField
@@ -622,7 +618,6 @@ section -- clump:auto
 @[expose] public section
 
 section
-set_option autoImplicit false
 noncomputable section
 open CategoryTheory AlgebraicGeometry TopologicalSpace Limits NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.GeometryOfNumbersTheory Formalism.L2.Pj Formalism.BasicNotions

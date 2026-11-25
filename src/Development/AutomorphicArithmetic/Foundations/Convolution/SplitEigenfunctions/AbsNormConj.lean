@@ -45,33 +45,13 @@ public import Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.Slic
 public import Development.AbelianVarietyTheory.Definitions.AutomorphicMembership.SubsingletonRankZero
 public import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.SmoothRepresentationsGL.ExistsCombComb
 import Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.HeckeCharacterUnramifiedAeAndExistsLevel
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.ReductionDomains.ContinuousEntry
-import Mathlib.Dynamics.Ergodic.Action.Regular
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.Lemma
-import Mathlib.Tactic.TypeStar
-import Mathlib.Topology.Compactness.Paracompact
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.Algebra.Ring.IsFormallyReal
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.Topology.Algebra.ProperAction.Basic
 import Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.BaseChangeUnits.CycCOfCyclic
 import Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective
 import GroundTheory.GlobalFields.SemilocalAlgebras.Galois
-import Mathlib.RingTheory.AdicCompletion.Noetherian
 import ReciprocityTheory.NeutralLocalFields.LocalFieldComparison.HCFFromRecipA
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -203,9 +183,6 @@ open NumberField IsDedekindDomain MeasureTheory Matrix Topology Filter
 open GroundTheory.Global GroundTheory.Automorphic GroundTheory.Automorphic.GJMatrix
 open scoped Classical ENNReal NNReal Pointwise
 open UpperTheory.ConvolutionTheory.R2
-
-private theorem diag_val (F : Type) [Field F] [NumberField F] (t : Fˣ) :
-    ((IdeleGroup.diagonal F t : (A F)ˣ) : A F) = rt (t : F) := rfl
 
 private theorem diag_inv_val (F : Type) [Field F] [NumberField F] (t : Fˣ) :
     (((IdeleGroup.diagonal F t : (A F)ˣ)⁻¹ : (A F)ˣ) : A F) = rt ((t : F)⁻¹) := by

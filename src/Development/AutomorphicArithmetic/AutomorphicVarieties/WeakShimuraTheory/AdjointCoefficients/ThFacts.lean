@@ -9,18 +9,6 @@ public import Development.AutomorphicArithmetic.AutomorphicVarieties.SymplecticG
 import Mathlib.NumberTheory.Multiplicity
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Connected.Separation
 import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 
@@ -177,11 +165,6 @@ private theorem nu_eq_one_of_mem_n_of_good_of_ok {Ω : Type} [Field Ω] [CharZer
       rw [h, Units.val_one, map_one, sub_self]
   exact th_one hcyc hom hxi hps
 
-private theorem coprime_sub_one_of_one_le (n : ℕ) (h : 1 ≤ n) : n.Coprime (n - 1) := by
-  obtain ⟨k, rfl⟩ : ∃ k, n = k + 1 := ⟨n - 1, by omega⟩
-  rw [Nat.add_sub_cancel, add_comm]
-  exact Nat.coprime_add_self_left.mpr (Nat.coprime_one_left k)
-
 private theorem pow_eq_one_of_pow_eq_one_of_dvd {M : Type} [Monoid M] {x : M} {n N : ℕ} (h : x ^ n = 1) (hd : n ∣ N) : x ^ N = 1 := by
   obtain ⟨k, rfl⟩ := hd
   rw [pow_mul, h, one_pow]
@@ -235,7 +218,7 @@ private theorem nu_eq_one_of_mem_mu_of_good_of_deep {Ω : Type} [Field Ω] [Char
   have e3 : D.ψ (resQ T.F s) ^ m2 = 1 := hψ s
   have hco : l.Coprime ((l - 1) * m1 * m2) :=
     Nat.Coprime.mul_right (Nat.Coprime.mul_right
-      (coprime_sub_one_of_one_le l (Fact.out : l.Prime).one_lt.le) hm1) hm2
+      ((Nat.coprime_self_sub_right (Fact.out : l.Prime).one_lt.le).2 l.coprime_one_right) hm1) hm2
   have hM : χ s ^ ((l - 1) * m1 * m2) = 1 := by
     rw [hχ, MonoidHom.comp_apply, MonoidHom.mul_apply, MonoidHom.mul_apply, MonoidHom.inv_apply,
       mul_pow, mul_pow, inv_pow,

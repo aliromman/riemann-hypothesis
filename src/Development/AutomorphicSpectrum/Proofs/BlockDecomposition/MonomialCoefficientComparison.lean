@@ -4,21 +4,6 @@ import GroundTheory.HeightsAndTheta.Heights.ComplexAnalyticSets.PUnitaryZariskiD
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TZero
 public import Mathlib.Algebra.MvPolynomial.Eval
 public import Mathlib.Analysis.Complex.Norm
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.Analysis.CStarAlgebra.Classes
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 public import Mathlib.Algebra.MvPolynomial.Funext
 public import Mathlib.Analysis.Normed.Field.Basic
 

@@ -2,18 +2,6 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.Divisors.RankEqCardIffExistsFrameMatrixFirstColumnBlock
 public import Mathlib.Analysis.CStarAlgebra.Classes
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -29,14 +17,6 @@ variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchim
 
 def scaledInt (ϖ : kˣ) (a : ℕ) (m : ℤ) : Set (Matrix (Fin a) (Fin a) k) :=
   {Z | ∀ i j, valuation k (Z i j) ≤ valuation k ((ϖ ^ m : kˣ) : k)}
-
-theorem mem_scaledInt_iff (ϖ : kˣ) (a : ℕ) (m : ℤ) (Z : Matrix (Fin a) (Fin a) k) :
-    Z ∈ scaledInt ϖ a m ↔ Z ∈ matLat (A := Fin a) (ϖ ^ m • stdLat (k := k) (D := Fin a)) := by
-  have hmem {Λ : Submodule 𝒪[k] (Fin a → k)} :
-      Z ∈ matLat (A := Fin a) Λ ↔ ∀ i, Z.row i ∈ Λ := Iff.rfl
-  rw [stdLat, smul_diagLat, hmem]
-  simp only [mem_diagLat, Pi.one_apply, mul_one]
-  rfl
 
 def IsPeriodic (ϖ : kˣ) {a : ℕ} (M : ℤ) (φ : Matrix (Fin a) (Fin a) k → ℂ) : Prop :=
   ∀ X, ∀ Z ∈ scaledInt ϖ a M, φ (X + Z) = φ X

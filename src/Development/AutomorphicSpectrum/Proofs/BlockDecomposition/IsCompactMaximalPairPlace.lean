@@ -5,18 +5,6 @@ import Development.AbelianVarietyTheory.Proofs.FoundationProofs.HasSatakeGLOfIsS
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FinsumOutOfLe
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelFamInf
 import GroundTheory.GlobalFields.LocalFieldAtPlace
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 public import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.FrameReading.FmTools
 
 @[expose] public section
@@ -27,8 +15,6 @@ open NumberField IsDedekindDomain Matrix MeasureTheory Filter
 open GlobalTheory.CuspRep GlobalTheory.PRep GlobalTheory.UnitaryBC GlobalTheory.BCT GlobalTheory.LFun PositivityTheory.Rg.BcB.E PositivityTheory.Rg.BcB.SpectralAccumulation PositivityTheory.Rg.BcB.G8 PositivityTheory.Rg.BcB.CG
 open PositivityTheory.Rg.BcB.F.RS PositivityTheory.Rg.BcB.F.Tail PositivityTheory.Rg.BcB.F PositivityTheory.Rg.BcB.F.FA
 open scoped Classical
-
-attribute [local instance] borelG borelF borelH
 
 namespace GlobalTheory.CompanionTheory.FmPowP
 

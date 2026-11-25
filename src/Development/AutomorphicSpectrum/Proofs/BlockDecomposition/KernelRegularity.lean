@@ -3,28 +3,8 @@ module
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FactorRapid
 public import Mathlib.Analysis.SpecialFunctions.SmoothTransition
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FunctionalCalculusFirstAssumption
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Algebra.Ring.IsFormallyReal
-import Mathlib.Tactic.Lemma
-import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
-import Mathlib.Analysis.CStarAlgebra.ContinuousMap
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Topology.Algebra.Group.Units
-import Mathlib.Topology.Compactness.Paracompact
-import Mathlib.Topology.UniformSpace.Uniformizable
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.
@@ -155,8 +135,6 @@ namespace GlobalTheory.CompanionTheory.KerFc
 
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Fc
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 theorem inner_cls_eq {n : ℕ} [MeasurableSpace (G n)] (μ : Measure (G n)) {V : Type} [NormedAddCommGroup V]
     [InnerProductSpace ℂ V] {a b : Mat n → V} (ha : MemLp (fun y : G n => a y.val) 2 μ)
@@ -317,8 +295,6 @@ namespace GlobalTheory.CompanionTheory.KerFc
 
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Fc
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 theorem rowExists_of_factor (hFac : FactorRapid) (hEv : EvAdj) : RowExists := by
   intro n _ _ μ _ E _ Ω T F c hS h hh v
@@ -489,8 +465,6 @@ namespace GlobalTheory.CompanionTheory.KerFc.RowLin
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Fc
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 theorem sum_sec {n : ℕ} [MeasurableSpace (G n)] [BorelSpace (G n)] (μ : Measure (G n)) [μ.IsHaarMeasure]
     (E : KMod n) (hLg : LgFacts) (hU : Unimod) (hR : RCalc) (hCl : ClsFacts) (hOps : SobOps)
     {ι : Type} (f₀ : Mat n → E.V) (h₀ : Sob μ f₀) (f : ι → Mat n → E.V) (hS : ∀ i, Sob μ (f i))
@@ -527,8 +501,6 @@ namespace GlobalTheory.CompanionTheory.KerFc
 
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Fc
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 theorem rowMatrix_holds : RowMatrix := by
   intro n _ _ μ _ E _ Ω T F c hstd h hrow
@@ -728,8 +700,6 @@ namespace GlobalTheory.CompanionTheory.KerFc
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Fc
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 def lTrL {n : ℕ} [MeasurableSpace (G n)] [BorelSpace (G n)] (μ : Measure (G n)) [μ.IsHaarMeasure] (V : Type)
     [NormedAddCommGroup V] [InnerProductSpace ℂ V] (x : G n) : Lp V 2 μ →L[ℂ] Lp V 2 μ :=
   (Lp.compMeasurePreservingₗᵢ ℂ (fun y : G n => x * y) (measurePreserving_mul_left μ x)).toContinuousLinearMap
@@ -887,8 +857,6 @@ namespace GlobalTheory.CompanionTheory.KerFc
 
 open PositivityTheory.RgTw (Mat G)
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Fc
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 theorem toC0_eq_of_coe (p : C₀(ℝ, ℂ)) (f : ℝ → ℂ) (h : ∀ y, p y = f y) : toC0 f = p := by
   have hf : f = ⇑p := funext fun y => (h y).symm
@@ -1286,8 +1254,6 @@ open scoped ContDiff ComplexConjugate InnerProductSpace ZeroAtInfty
 open PositivityTheory.RgBcC PositivityTheory.RgBcC.Fc
 open PositivityTheory.RgTw (Mat G)
 open GlobalTheory.CompanionTheory.WaveFc.Asm
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 namespace GlobalTheory.CompanionTheory.KerFc
 

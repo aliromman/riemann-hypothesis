@@ -38,18 +38,6 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.TraceSpl
 public import Development.AutomorphicArithmetic.Foundations.Convolution.TraceSplitting.T2SpaceGlCompletionsOver
 import Development.AutomorphicArithmetic.Foundations.Convolution.TraceSplitting.UnitTrace
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerOrbitVolume.DetAdmA
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.BlockTheory.AdelicCMFields.UnitaryHeckeCharacterIdele
 import Development.AutomorphicArithmetic.Foundations.Convolution.CentreSplitting.ExCusp
 import Development.AutomorphicArithmetic.Foundations.Convolution.CentreSplitting.IsoEq
@@ -58,7 +46,6 @@ import Development.AutomorphicArithmetic.Foundations.Convolution.CentreSplitting
 import Development.AutomorphicArithmetic.Foundations.Convolution.TraceSplitting.CarryLift
 import Development.AutomorphicArithmetic.Foundations.Convolution.TraceSplitting.PowTwist
 import Development.WeilBound.RepresentationTheoryGL.JacquetShalikaBounds.AbsoluteRigidity.SatakeTwists.SatakeTwistHolds
-import Mathlib.Data.Multiset.Functor
 import Development.AutomorphicArithmetic.Foundations.Convolution.IntegrableConvolution.IntPow
 import PositivityTheory.AutomorphicForms.PublishedInputs.CyclicBaseChange.PSConjSpaceR
 import Development.AutomorphicArithmetic.Foundations.Convolution.SphericalIdeles.SmoEq

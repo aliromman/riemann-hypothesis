@@ -17,23 +17,9 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.Generali
 import GroundTheory.AutomorphicForms.HaarCosets
 import GroundTheory.GlobalFields.KummerTheory.LocalIndexAtPlace
 import GroundTheory.LocalFields.LocalFourierHaar
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
 import GroundTheory.AutomorphicForms.ReductionFinite
 import GroundTheory.GlobalFields.Adele.Topology
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Topology.Separation.Connected
 import GroundTheory.AutomorphicForms.CuspidalAdmissible
 import Mathlib.Tactic.Linter.HaveILetI
 

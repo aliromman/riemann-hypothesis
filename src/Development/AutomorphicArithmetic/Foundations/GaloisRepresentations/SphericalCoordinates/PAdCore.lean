@@ -8,24 +8,10 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPrimeP
 public import Development.AbelianVarietyTheory.Definitions.Divisors.Uniformised
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.LevelChange
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PerCApply
-import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsGDatumOneOneOne
 import Development.AbelianVarietyTheory.Definitions.Divisors.IsHolPeriods
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.FlatHermUnitConstant
-import Mathlib.RingTheory.Coalgebra.CoassocSimps
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.PAdicLatticeApproximation.ExistsRationalEquivOfIsPlace, Development.AutomorphicArithmetic.PAdicLatticeApproximation.ExistsUnitTrivOfSimilitudeFactor, Development.AutomorphicArithmetic.PAdicLatticeApproximation.FormScalarOfAdelicEndoPreservingLattice, Development.AutomorphicArithmetic.PAdicLatticeApproximation.OneTmulMemCompletedLatticeIff, Development.AutomorphicArithmetic.PAdicLatticeApproximation.PrimeToPIsogenyOfAdelicEndoPreservingLattice, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.PAdCore

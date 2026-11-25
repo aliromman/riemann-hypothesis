@@ -15,27 +15,11 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ConeFram
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.TorusArchimedeanFrameAction
 public import Development.WeilBound.ThetaLifts.Reductions.SiegelAbs
 public import Development.WeilBound.ThetaLifts.Reductions.SiegelPar
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import GroundTheory.AutomorphicForms.LocallyProfinite
 import GroundTheory.HeightsAndTheta.Heights.FiniteCovolume.StatementsTorusIntegral
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AbelianVarietyTheory.Definitions.Foundations.EventuallyNormFinLeOne
 import Development.WeilBound.ThetaLifts.Reductions.SiegelHaar
-import Mathlib.Analysis.CStarAlgebra.Classes
 import Std.Tactic.BVDecide.Normalize.Prop
 
 -- This file was produced by scripts/clump.py from the modules listed below.

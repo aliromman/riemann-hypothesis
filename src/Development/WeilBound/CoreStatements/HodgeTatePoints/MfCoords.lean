@@ -453,8 +453,6 @@ open ReciprocityTheory.ChartRestriction.G.Geo.Tor (Sp spMap PSpace resG valR lbP
 open ReciprocityTheory.ChartRestriction.G.Semi (LB)
 open GlobalTheory.QCoh.Qcqs GlobalTheory.ProjSpace GlobalTheory.Points GlobalTheory.TupleCone GlobalTheory.TuplePoint
 
-attribute [local instance] MvPolynomial.gradedAlgebra
-
 namespace GlobalTheory.TupleNorm
 
 variable {L : Type} [Field L]
@@ -794,8 +792,6 @@ open GlobalTheory.ProjSpace GlobalTheory.Points GlobalTheory.TuplePoint
 noncomputable section
 
 namespace PositivityTheory.HtPt.Mf
-
-attribute [local instance] MvPolynomial.gradedAlgebra
 
 variable {X : Scheme.{0}} {Ω : Type} [Field Ω]
 

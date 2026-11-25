@@ -110,7 +110,6 @@ section -- clump:auto
 
 open NumberField NumberField.mixedEmbedding Matrix MeasureTheory GroundTheory.Automorphic GroundTheory.Automorphic.AutomorphicForm UpperTheory.V.Af.Fin
 open scoped TensorProduct
-attribute [local instance 100] LieRing.ofAssociativeRing
 
 theorem UpperTheory.centerU_action_commute_rightTranslation :
     ∀ (K : Type) [Field K] [NumberField K] (n : ℕ), ∀ z ∈ (isExpLieAlgebra K n).centerU, ∀ g, Commute (uAction z) (rt (K := K) (n := n) g) := by
@@ -142,7 +141,6 @@ section -- clump:auto
 
 open NumberField NumberField.mixedEmbedding Matrix MeasureTheory GroundTheory.Automorphic GroundTheory.Automorphic.AutomorphicForm UpperTheory.V.Af.Fin
 open scoped TensorProduct
-attribute [local instance 100] LieRing.ofAssociativeRing
 
 private theorem grp1 {G : Type*} [Group G] (g a b u : G) (h : a * u = u * a) :
     g * u * (a * b) = g * (a * b) * (b⁻¹ * u * b) := by

@@ -10,23 +10,9 @@ public import Development.AbelianVarietyTheory.Definitions.Divisors.T2SpaceGener
 public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.ValuationDetOfMemKO
 public import Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsJLeviMulJPlus
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.ExistsReadingLaws
-import Mathlib.Tactic.TypeStar
-import Mathlib.Topology.Algebra.Group.Units
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsCentralContract, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.CentralTorusContractsLower, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsFixedMkEqOfCommute, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FixedInjSmooth, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsCompactParahoricSubgroup, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsOpenGx, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IwahoriLeviUnipotentFactor, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ParahoricUnipotentTimesKernel, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ParahoricLeviUnipotentLower, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.MoyPrasadJacquetIso

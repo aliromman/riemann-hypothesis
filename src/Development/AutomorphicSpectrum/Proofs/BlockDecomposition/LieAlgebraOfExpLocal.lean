@@ -21,28 +21,8 @@ public import Mathlib.Analysis.Calculus.Deriv.Mul
 public import GroundTheory.AutomorphicForms.RealGroupsLie
 public import Mathlib.Topology.Algebra.Group.Units
 public import Development.AbelianVarietyTheory.Definitions.TwistedInnerProducts.IsAdmOnOfFiniteDimensional
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
-import Mathlib.Analysis.Matrix.Normed
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Topology.UniformSpace.Matrix
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsSmoothLogMemLieAlg, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LieAlgebraOfTangentCurve, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.HasDerivAtExpMulExpOfFiniteDimensional, Development.AutomorphicSpectrum.Proofs.GlobalProofs.IsClosedMatrixGroupImage, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LieAlgebraOfExpLocal

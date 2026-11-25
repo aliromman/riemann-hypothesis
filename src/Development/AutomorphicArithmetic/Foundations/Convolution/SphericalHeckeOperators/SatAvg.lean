@@ -6,20 +6,6 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.Spherica
 public import Development.AutomorphicArithmetic.Foundations.Convolution.SphericalHeckeOperators.Mac
 public import Development.AutomorphicArithmetic.Foundations.Convolution.SphericalHeckeOperators.ThPMul
 import GroundTheory.LocalFields.LocalFourierHaar
-import Mathlib.Algebra.AffineMonoid.UniqueSums
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.TypeStar
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
@@ -44,12 +30,6 @@ private theorem cv_smul_left (c : ℂ) (a b : G → ℂ) : groupConv μ (c • a
 private theorem cv_smul_right (c : ℂ) (a b : G → ℂ) : groupConv μ a (c • b) = c • groupConv μ a b := by
   funext x
   simp only [groupConv, Pi.smul_apply, smul_eq_mul, mul_left_comm _ c, integral_const_mul]
-
-private theorem cv_sub_right {a b c : G → ℂ} (ha : a ∈ locallyConstantCompactSupport G ℂ ℂ)
-    (hb : b ∈ locallyConstantCompactSupport G ℂ ℂ) (hc : c ∈ locallyConstantCompactSupport G ℂ ℂ) :
-    groupConv μ a (b - c) = groupConv μ a b - groupConv μ a c :=
-  congrArg (fun x : HeckeAlgebra μ => (x : G → ℂ))
-    (mul_sub (HeckeAlgebra.mk μ a ha) (HeckeAlgebra.mk μ b hb) (HeckeAlgebra.mk μ c hc))
 
 private theorem cv_sum_right {ι : Type*} (S : Finset ι) {a : G → ℂ} {b : ι → G → ℂ}
     (ha : a ∈ locallyConstantCompactSupport G ℂ ℂ)

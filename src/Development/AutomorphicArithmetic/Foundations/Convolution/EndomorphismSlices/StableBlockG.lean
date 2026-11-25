@@ -32,23 +32,8 @@ public import Development.DiscreteGroups.PiInvariants.CompactSupportTwists.Theta
 public import Development.AutomorphicArithmetic.Foundations.Convolution.EndomorphismSlices.FiniteAdelicEstimates.VcStHolds
 public import Development.WeilBound.RepresentationTheoryGL.ArchimedeanBaseChange.ArchimedeanBaseChangeProof.SatakeExponents.UniformizerValuations.AdelicHeckeBlocks.PGrowth
 public import Development.AutomorphicArithmetic.Foundations.Convolution.EndomorphismSlices.FiniteAdelicEstimates.BadFinite
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Analysis.CStarAlgebra.ContinuousLinearMap
-import Mathlib.Tactic.Lemma
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.RingTheory.PiTensorProduct
 import Development.AutomorphicArithmetic.Foundations.Convolution.EndomorphismSlices.FiniteAdelicEstimates.CmbTest
 import Development.AutomorphicArithmetic.Foundations.Convolution.EndomorphismSlices.FiniteAdelicEstimates.KgFacts
 import Development.AutomorphicArithmetic.Foundations.Convolution.EndomorphismSlices.FiniteAdelicEstimates.SeenFam
@@ -243,8 +228,6 @@ open scoped Classical
 
 
 namespace UpperTheory.Zero.ConvolutionTheory.EB
-
-attribute [local instance] borelG borelF borelA borelH
 
 section AlgExPf
 
@@ -644,8 +627,6 @@ open scoped Classical
 
 namespace UpperTheory.Zero.ConvolutionTheory.EB
 
-attribute [local instance] borelG borelF borelA borelH
-
 private lemma wdVal_map {B C Γ : Type} [CommRing B] [StarRing B] [Algebra ℂ B] [Ring C] [StarRing C] [Algebra ℂ C]
     (f : B →⋆ₐ[ℂ] C) (gen : Γ → B) (w : List (Γ × Bool)) :
     f (wdVal gen w) = wdVal (fun x => f (gen x)) w := by
@@ -944,8 +925,6 @@ open scoped Classical
 
 
 namespace UpperTheory.Zero.ConvolutionTheory.EB
-
-attribute [local instance] borelG borelF borelA borelH
 
 theorem peakRun : PeakRun := by
   intro E _ _ _ B Q _ χa χb Γ _ t arch a₀ x g ρ hG hK hT hHa hHb ha hv hψ hmul hadj hρ hs

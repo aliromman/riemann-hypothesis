@@ -5,22 +5,7 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.Integrab
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsLeftInvariantOfIsAutForm
 public import Development.WeilBound.RepresentationTheoryGL.ResidualSpectrum.ExponentialNegativity.ExponentialGluing.DecTranslate
 import GroundTheory.GlobalFields.Adele.Topology
-import Mathlib.Algebra.Ring.IsFormallyReal
-import Mathlib.CategoryTheory.Countable
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Topology.Compactness.Paracompact
 public import GroundTheory.AutomorphicForms.AutomorphicFormSpaces
 
 @[expose] public section

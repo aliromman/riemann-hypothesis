@@ -31,8 +31,6 @@ open GlobalTheory.FlagTan (dimFlag)
 open GlobalTheory.HSApp
 open scoped GlobalTheory.CompHt
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace GlobalTheory.LiftGaps

@@ -33,21 +33,7 @@ public import Development.AbelianVarietyTheory.Counterexamples.ModuliSurvey.IsQP
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.PAdicWittLattices.PBcSplits
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.GalMapMul
-import Mathlib.Topology.Sheaves.Presheaf
-import Mathlib.Tactic.TypeStar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.SimultaneousEigenspaces.EtaleCohomologyCorrOpCommPullback, Development.AutomorphicArithmetic.SimultaneousEigenspaces.ExistsAlgEquivRestrictHomOfAlgebraMapCompat, Development.AutomorphicArithmetic.SimultaneousEigenspaces.ExistsBasisSimultaneousEigenspaceOfEquivariantBi, Development.AutomorphicArithmetic.SimultaneousEigenspaces.ExistsIsPullbackGeomFiberBaseChangeTower, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.PAdicWittLattices.JLocTower

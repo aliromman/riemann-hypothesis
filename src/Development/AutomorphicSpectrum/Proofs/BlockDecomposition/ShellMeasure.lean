@@ -10,30 +10,13 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SphericalWey
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.SwapLtSwapIffOfAddTwo
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.TorusConjugationWeylCell
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemShellUIffDepth
 import Development.AbelianVarietyTheory.Proofs.TwistedOperators.HasBoundedSumsOne
 import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.GindikinKarpelevich
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.Linter.HaveILetI
 import Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.IsOpenIsCompactUnitaryIntegralPoints
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.Topology.UniformSpace.Uniformizable
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCellUAbsorbUnip, Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeylCellStabilizerMeasure, Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeylCellStabilizerMeasureTwo, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ShellMeasure
@@ -750,7 +733,7 @@ theorem shiftCore (L : Type) [Field L] [Valued L (WithZero (Multiplicative ℤ))
           exact absurd hij (not_lt.2 hlt.le))]
       simp
     · rw [Units.val_mul, Units.val_mul, conj_apply hy, hT, ite_eq_left rfl,
-        ite_eq_right (fun h => hne (h.1.symm.trans h.2)), add_zero, mul_one, inv_mul_diag hy]
+        ite_eq_right (fun h => hne (h.1.symm.trans h.2)), add_zero, mul_one, GlobalTheory.WeylCellRankOne.diag_mul_eq_one hy]
   · intro u hu g
     have huB : (u : GL (Fin n) L) ∈ unipB L (Fin n) := (mem_cell.1 hu).1
     set N : GL (Fin n) L := (u : GL (Fin n) L) * ν * (u : GL (Fin n) L)⁻¹ * T⁻¹ with hN
@@ -784,7 +767,7 @@ theorem shiftCore (L : Type) [Field L] [Valued L (WithZero (Multiplicative ℤ))
       · exact ((mem_unipB L).1 hNB).1 _ _ h
     have hbd : ∀ i, ((b : GL (Fin n) L) : Matrix (Fin n) (Fin n) L) i i = 1 := by
       intro i
-      rw [hbv, ((mem_unipB L).1 hNB).2, mul_one, inv_mul_diag hy]
+      rw [hbv, ((mem_unipB L).1 hNB).2, mul_one, GlobalTheory.WeylCellRankOne.diag_mul_eq_one hy]
     have hchi : chiDeltaU q α b = 1 := by
       unfold chiDeltaU
       apply Finset.prod_eq_one

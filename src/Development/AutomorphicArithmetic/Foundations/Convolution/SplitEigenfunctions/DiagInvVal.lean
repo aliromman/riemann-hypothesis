@@ -2,20 +2,7 @@ module
 
 public import Development.AutomorphicArithmetic.Foundations.Convolution.SplitEigenfunctions.ThetaLiftEqAnisotropicPart
 public import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.ReductionDomains.ContinuousEntry
-import Mathlib.Dynamics.Ergodic.Action.Regular
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.UnitaryActions.ContinuousAdelicGL2OfContinuousEntries
 
 @[expose] public section
@@ -90,9 +77,6 @@ private theorem right_tr {E : Type} [Field E] [NumberField E] (N : MeasE E) (u :
   rw [hpre] at h3
   rw [h3]
   exact hfd.setIntegral_eq N.fund hinv
-
-private theorem diag_val (E : Type) [Field E] [NumberField E] (t : Eˣ) :
-    ((IdeleGroup.diagonal E t : (A E)ˣ) : A E) = rt (t : E) := rfl
 
 private theorem diag_inv_val (E : Type) [Field E] [NumberField E] (t : Eˣ) :
     (((IdeleGroup.diagonal E t : (A E)ˣ)⁻¹ : (A E)ˣ) : A E) = rt ((t : E)⁻¹) := by

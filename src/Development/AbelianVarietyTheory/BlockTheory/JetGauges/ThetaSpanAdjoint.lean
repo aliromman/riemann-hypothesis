@@ -3,18 +3,6 @@ module
 public import Formalism.LocalToGlobal.ProjectiveLattices.ThShort
 public import Formalism.LocalToGlobal.ProjectiveLattices.ThGerm
 public import Mathlib.NumberTheory.NumberField.Discriminant.Defs
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -69,7 +57,6 @@ def pushLet {n : ℕ} (γ : Matrix (Fin n) (Fin n) E) :
     MvPolynomial (LtN Dw n) c.F →ₐ[c.F] MvPolynomial (LtN Dw n) c.F :=
   aeval fun ℓ : LtN Dw n => letB c ℓ.1 ℓ.2.1 fun k => γ k ℓ.2.2
 
-set_option autoImplicit false in
 open NumberField MvPolynomial in
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.Datum H}
   {l : _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.Level H} in

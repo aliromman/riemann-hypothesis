@@ -19,6 +19,7 @@ import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Connected.Separation
 import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
+import Development.AbelianVarietyTheory.Proofs.JetHarmonics.MultiplicativeShiftEqTranslateBySmallPoint
 
 @[expose] public section
 
@@ -78,14 +79,7 @@ theorem bdd_add {f g : ℂ_[q]⟦X⟧} (hf : Bdd f) (hg : Bdd g) : Bdd (f + g) :
   exact ⟨A + B, fun n => by rw [map_add (f := _)]; exact (norm_add_le _ _).trans (add_le_add (hA n) (hB n))⟩
 
 theorem bdd_mul {f g : ℂ_[q]⟦X⟧} (hf : Bdd f) (hg : Bdd g) : Bdd (f * g) := by
-  obtain ⟨A, hA⟩ := hf
-  obtain ⟨B, hB⟩ := hg
-  refine ⟨A * B, fun n => ?_⟩
-  rw [coeff_mul]
-  refine IsUltrametricDist.norm_sum_le_of_forall_le_of_nonneg
-    (mul_nonneg (bd_nonneg hA) (bd_nonneg hB)) fun x _ => ?_
-  rw [norm_mul]
-  exact mul_le_mul (hA _) (hB _) (norm_nonneg _) (bd_nonneg hA)
+  apply _root_.GlobalTheory.MomOne.SmallTranslate.bdd_mul <;> assumption
 
 theorem Hom.comp {Φ Ψ : ℂ_[q]⟦X⟧ → ℂ_[q]⟦X⟧} (h : Hom Φ) (h' : Hom Ψ) : Hom (fun f => Φ (Ψ f)) := by
   refine ⟨fun f B hf => h.bd _ _ (h'.bd _ _ hf), ?_, ?_, ?_⟩

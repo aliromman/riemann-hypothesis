@@ -3,18 +3,6 @@ module
 public import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.FockOperators.XApply
 public import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.FockOperators.AtLaws
 import GroundTheory.AutomorphicForms.ReductionMeasure
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 
 @[expose] public section
 
@@ -52,8 +40,6 @@ private theorem cont_B (δ : F) (v : V4 F) : Continuous fun y : V4 F => B4 δ y 
 variable [IsTotallyReal F]
 
 private theorem cw_add (w : InfinitePlace F) (a b : A F) : cw w (a + b) = cw w a + cw w b := by
-  simp [cw]
-private theorem cw_sub (w : InfinitePlace F) (a b : A F) : cw w (a - b) = cw w a - cw w b := by
   simp [cw]
 private theorem cw_mul (w : InfinitePlace F) (a b : A F) : cw w (a * b) = cw w a * cw w b := by
   simp [cw]

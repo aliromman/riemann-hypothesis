@@ -9,26 +9,8 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DividedP
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeIdealIsPrime
 public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.LevelChainValuations.LatCDefs
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.IsAdicCompleteOfEquiv
-import Mathlib.Algebra.Order.Star.Rat
-import Mathlib.Algebra.Ring.IsFormallyReal
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Algebra.Ring.BooleanRing
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.TypeStar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeFiltrationFg, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeFiltrationLAdicClosed, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeFiltrationTopEqBot, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeIdealQuotientChain, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeIsAdicComplete, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeLPowMemSpanOfNotMem, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LatticeNatDividesLPow, Development.AutomorphicSpectrum.Proofs.BlockDecomposition.LevelLatticeBase

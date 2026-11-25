@@ -864,7 +864,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 400000
 
 noncomputable section
@@ -1574,7 +1573,6 @@ section -- clump:auto
 @[expose] public section
 
 section
-set_option autoImplicit false
 
 noncomputable section
 namespace GlobalTheory.CentreCusp

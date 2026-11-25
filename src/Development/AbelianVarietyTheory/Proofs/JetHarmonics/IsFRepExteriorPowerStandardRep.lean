@@ -16,6 +16,7 @@ import Mathlib.Tactic.NormNum.Ordinal
 import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
+import Development.AbelianVarietyTheory.Proofs.JetHarmonics.IsFRepDualStandardUnitaryRep
 
 @[expose] public section
 
@@ -25,14 +26,7 @@ open scoped InnerProductSpace ENNReal
 namespace GlobalTheory.WedgeFRep
 
 theorem entry_le_hs {k r : ℕ} (g : Mx k r) (i j : Fin (2 * r + k + 1)) : ‖g i j‖ ≤ B.gN g := by
-  unfold B.gN
-  apply Real.le_sqrt_of_sq_le
-  rw [← Complex.normSq_eq_norm_sq]
-  calc Complex.normSq (g i j) ≤ ∑ j', Complex.normSq (g i j') :=
-        Finset.single_le_sum (f := fun j' => Complex.normSq (g i j'))
-          (fun _ _ => Complex.normSq_nonneg _) (Finset.mem_univ j)
-    _ ≤ _ := Finset.single_le_sum (f := fun i' => ∑ j', Complex.normSq (g i' j'))
-          (fun _ _ => Finset.sum_nonneg fun _ _ => Complex.normSq_nonneg _) (Finset.mem_univ i)
+  apply _root_.GlobalTheory.DualFRep.entry_le <;> assumption
 
 theorem isFRep_cmp (k r l : ℕ) :
     IsFRep (k := k) (r := r) (cmp l) (cmp l (Formalism.QuantumDeterminants.Hpk k r)) l := by

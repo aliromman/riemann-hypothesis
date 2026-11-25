@@ -2,24 +2,8 @@ module
 
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.DwCons
 public import GroundTheory.AutomorphicForms.RealGroupsHaar
-import Mathlib.Algebra.Order.Archimedean.Real.Hom
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Topology.Algebra.Group.Units
 
 @[expose] public section
 
@@ -36,8 +20,6 @@ attribute [local instance] Matrix.linftyOpNormedRing Matrix.linftyOpNormedAlgebr
 theorem isOpenEmbedding_valG (n : ℕ) : Topology.IsOpenEmbedding (Units.val : G n → Mat n) :=
   haveI : CompleteSpace (Matrix (Fin n) (Fin n) ℂ) := FiniteDimensional.complete ℝ _
   Units.isOpenEmbedding_val
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 def coords {n : ℕ} (M : Mat n) : Idx n → ℝ :=
   fun p => if p.1 then (M p.2.1 p.2.2).re else (M p.2.1 p.2.2).im

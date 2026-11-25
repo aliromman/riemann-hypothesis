@@ -21,34 +21,16 @@ public import GroundTheory.AutomorphicForms.L2LocalComponents.ArchBump
 public import Mathlib.Analysis.Calculus.BumpFunction.Normed
 public import GroundTheory.AutomorphicForms.AutomorphicFormSpaces.GKStableCartan
 public import Development.AutomorphicArithmetic.Foundations.Convolution.PowerSumTraces.DecayTraceClassAlt
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicArithmetic.Foundations.Convolution.ConvolutionKernels.KernelTransforms.TensCont
 import Development.AutomorphicArithmetic.Foundations.Convolution.PowerSumTraces.CuspidalMultiplicityOneTotallyComplex
 import GroundTheory.AutomorphicForms.HilbertSchmidtKernel
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Topology.Sheaves.Presheaf
-import Mathlib.Tactic.TypeStar
 import GroundTheory.AutomorphicForms.CuspidalDiscreteness.Counting
 import GroundTheory.AutomorphicForms.QuotientMeasure
-import Mathlib.Topology.UniformSpace.Uniformizable
 import Mathlib.Tactic.Linter.Style
 import GroundTheory.AutomorphicForms.ReductionBlock
 import GroundTheory.AutomorphicForms.WhittakerRelevance
 import GroundTheory.AutomorphicForms.NormDetDiagUnitsPosRealToUnits
-import Mathlib.Analysis.Calculus.BumpFunction.FiniteDimension
-import Mathlib.RingTheory.Henselian
 import GroundTheory.AutomorphicForms.CuspidalDiscreteness.SummandsAreCuspForms
 
 -- This file was produced by scripts/clump.py from the modules listed below.

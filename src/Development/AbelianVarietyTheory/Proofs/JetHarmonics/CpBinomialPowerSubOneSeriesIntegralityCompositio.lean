@@ -15,6 +15,7 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Std.Tactic.BVDecide.Normalize.Prop
+import Development.AbelianVarietyTheory.Proofs.JetHarmonics.ConstantCoeffSubstEq
 
 @[expose] public section
 
@@ -158,14 +159,7 @@ theorem bd_mulS (a : ℤ_[q]) : Bd 1 (mulS a : ℂ_[q]⟦X⟧) := by
   · rw [norm_zc]; exact PadicInt.norm_le_one _
 
 theorem bd_one_pow {h : ℂ_[q]⟦X⟧} (hh : Bd 1 h) (d : ℕ) : Bd 1 (h ^ d) := by
-  induction d with
-  | zero => intro n; rw [pow_zero, coeff_one]; split_ifs <;> simp
-  | succ d ih =>
-    intro n
-    rw [pow_succ, coeff_mul]
-    refine IsUltrametricDist.norm_sum_le_of_forall_le_of_nonneg zero_le_one fun p _ => ?_
-    rw [norm_mul]
-    exact mul_le_one₀ (ih _) (norm_nonneg _) (hh _)
+  apply _root_.GlobalTheory.MomOne.FeUniq.intSer_pow <;> assumption
 
 theorem bd_subst {f h : ℂ_[q]⟦X⟧} {A : ℝ} (hf : Bd A f) (hh : Bd 1 h) (h0 : constantCoeff h = 0) :
     Bd A (f.subst h) := by

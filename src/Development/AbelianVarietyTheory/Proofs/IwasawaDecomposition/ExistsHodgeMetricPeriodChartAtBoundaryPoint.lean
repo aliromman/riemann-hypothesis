@@ -316,7 +316,6 @@ open Matrix
 open scoped ComplexOrder Topology
 open GlobalTheory.ShFam.Hor GlobalTheory.CxPts
 open MonoidalCategory CartesianMonoidalCategory MonObj GlobalTheory.ShFam.Hor.LogCh
-attribute [local instance] Over.cartesianMonoidalCategory
 
 noncomputable section
 
@@ -445,7 +444,6 @@ open Matrix
 open scoped ComplexOrder Topology
 open GlobalTheory.ShFam.Hor GlobalTheory.CxPts
 open MonoidalCategory CartesianMonoidalCategory MonObj GlobalTheory.ShFam.Hor.LogCh
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ShFam.Hor.LogCh
 
@@ -842,7 +840,6 @@ open scoped ComplexOrder Topology
 open GlobalTheory.ShFam.Hor GlobalTheory.CxPts
 open MonoidalCategory CartesianMonoidalCategory MonObj GlobalTheory.ShFam.Hor.LogCh
 open ReciprocityTheory.ChartRestriction.G.FD ReciprocityTheory.ChartRestriction.G.AR.Up GlobalTheory.ArcQ GlobalTheory.FrameNormLie GlobalTheory.HodgeSmooth
-attribute [local instance] Over.cartesianMonoidalCategory
 
 noncomputable section
 
@@ -1285,7 +1282,6 @@ open scoped ComplexOrder Topology
 open GlobalTheory.ShFam.Hor GlobalTheory.CxPts
 open MonoidalCategory CartesianMonoidalCategory MonObj GlobalTheory.ShFam.Hor.LogCh
 open ReciprocityTheory.ChartRestriction.G.FD ReciprocityTheory.ChartRestriction.G.AR.Up GlobalTheory.ArcQ GlobalTheory.FrameNormLie GlobalTheory.HodgeSmooth
-attribute [local instance] Over.cartesianMonoidalCategory
 
 noncomputable section
 
@@ -1393,7 +1389,6 @@ open Matrix
 open scoped ComplexOrder Topology
 open GlobalTheory.ShFam.Hor GlobalTheory.CxPts
 open MonoidalCategory CartesianMonoidalCategory MonObj GlobalTheory.ShFam.Hor.LogCh
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.ShFam.Hor.PerChart
 

@@ -21,20 +21,6 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.PowerSum
 public import Development.AutomorphicArithmetic.TwistedTraces.IntegralOperatorFixedInvariantOfLeftInvariantKer
 public import Development.AutomorphicArithmetic.TwistedTraces.SummandLeClosureSpanLocalTypeImages
 public import Development.AutomorphicArithmetic.Foundations.Convolution.PowerSumTraces.LocUApply
-import Mathlib.Algebra.Module.StablyFree.Basic
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AutomorphicArithmetic.IntegralCasts.IsOpenStabOfMemNhds
 import Formalism.SharpRestriction.LevelLetterCocycles.DataNLoc
 import Mathlib.Tactic.Linter.Style
@@ -43,7 +29,6 @@ import GroundTheory.AutomorphicForms.QuotientMeasure
 import GroundTheory.AutomorphicForms.ReductionBlock
 import Mathlib.Tactic.Linter.HaveILetI
 import GroundTheory.AutomorphicForms.WhittakerRelevance
-import Mathlib.RingTheory.Coalgebra.CoassocSimps
 import Std.Tactic.BVDecide.Normalize.Prop
 import Development.AbelianVarietyTheory.Definitions.Divisors.T2SpaceGeneralLinearGroup
 import GroundTheory.GlobalFields.LocalAtPlace

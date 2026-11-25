@@ -22,8 +22,6 @@ noncomputable section
 
 open NumberField MeasureTheory UpperTheory.V.TR GroundTheory.Automorphic GroundTheory.Automorphic.AutomorphicForm GroundTheory.Automorphic.UnitaryAdmissible
 
-attribute [local instance 100] LieRing.ofAssociativeRing
-
 namespace UpperTheory.V.Af.Gk
 
 def ToFound : Prop :=

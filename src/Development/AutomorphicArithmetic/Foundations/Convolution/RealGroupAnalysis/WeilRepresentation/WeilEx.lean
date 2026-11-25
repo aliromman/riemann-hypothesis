@@ -29,28 +29,10 @@ public import Development.AutomorphicArithmetic.Foundations.Convolution.RealGrou
 public import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.GaussianForms.IdxEta
 public import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.GaussianForms.Imports
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsUniqueIdeleOfLinearEquivQuotientLocal
-import Mathlib.Tactic.Lemma
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import GroundTheory.AutomorphicForms.ReductionMeasure
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.NumberTheory.RamificationInertia.Inertia
-import Mathlib.RingTheory.Ideal.Norm.RelNorm
 import GroundTheory.AutomorphicForms.GL2.GJMatrixInfinite
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Order.CompletePartialOrder
 import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.TrivialOnInertiaOfUnr
 import Development.AutomorphicArithmetic.AutomorphicVarieties.AutomorphicForms.Newform
 import Development.AutomorphicArithmetic.IntegralCasts.IsOpenStabOfMemNhds
@@ -58,11 +40,8 @@ import Formalism.ConjugateSelfDual.Statement
 import Formalism.LocalToGlobal.UnitaryNorms.IsUnitaryNormOf
 import GroundTheory.GlobalFields.TateThesis.NoSmallSubgroups
 import ReciprocityTheory.NeutralLocalFields.Reciprocity
-import Mathlib.Tactic.TypeStar
 import GroundTheory.GlobalFields.CompletionAtPlace.Integers
-import Mathlib.Topology.Compactness.Paracompact
 import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.UnitaryActions.ContinuousAdelicGL2OfContinuousEntries
-import Mathlib.Algebra.Order.Positive.Field
 import Development.AutomorphicArithmetic.Foundations.Convolution.RealGroupAnalysis.GaussianForms.ImportsBis
 
 -- This file was produced by scripts/clump.py from the modules listed below.

@@ -3,31 +3,9 @@ module
 public import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.AlgebraEquivSetup.CodiffUnit
 public import Mathlib.RingTheory.Complex
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CardSubtypeEqOfMultiset
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Tactic.Lemma
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsGDatumOneOneOne
-import Mathlib.NumberTheory.Padics.Hensel
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Algebra.AffineMonoid.Basic
-import Mathlib.LinearAlgebra.FreeModule.IdealQuotient
-import Mathlib.Algebra.Order.Star.Int
-import Mathlib.RingTheory.PiTensorProduct
-import Mathlib.Algebra.Order.Star.Rat
 import Std.Tactic.BVDecide.Normalize.Prop
-import Mathlib.RingTheory.Coalgebra.CoassocSimps
-import Mathlib.LinearAlgebra.Matrix.CharP
 import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.CmUnitPowFourIdempotentModEight
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.AlgebraEquivSetup.PDomSt
 import Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.SphericalCoordinates.AlgebraEquivSetup.PFormPerfSt

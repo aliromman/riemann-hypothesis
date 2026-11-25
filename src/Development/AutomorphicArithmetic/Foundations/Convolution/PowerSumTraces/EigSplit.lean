@@ -5,26 +5,12 @@ public import Mathlib.Analysis.CStarAlgebra.ContinuousLinearMap
 public import Development.AutomorphicArithmetic.Foundations.Convolution.PowerSumTraces.CuspidalMultiplicityOneTotallyComplex
 public import GroundTheory.AutomorphicForms.CompactSelfAdjoint
 public import GroundTheory.AutomorphicForms.TraceClass
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
 import GroundTheory.AutomorphicForms.AutomorphicFormSpaces.Archimedean
 import GroundTheory.AutomorphicForms.CuspidalDiscreteness.AltSum
 import GroundTheory.AutomorphicForms.CuspidalDiscreteness.Counting
 import GroundTheory.AutomorphicForms.QuotientMeasure
 import GroundTheory.AutomorphicForms.ReductionBlock
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.Lemma
-import Mathlib.Tactic.TypeStar
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.TwistedTraces.CfcApplyOfEigenvector, Development.AutomorphicArithmetic.TwistedTraces.EigInFiniteAboveOfIsCompactOperator, Development.AutomorphicArithmetic.TwistedTraces.ExistsHilbertBasisPrjEigenvectorsOfIsCompactOper, Development.AutomorphicArithmetic.TwistedTraces.NormTraceCompLeMulTraceNorm, Development.AutomorphicArithmetic.TwistedTraces.PrjEigInOfEigenvectorPrj, Development.AutomorphicArithmetic.TwistedTraces.TrOnSubSumEqTraceCompCompression, Development.AutomorphicArithmetic.Foundations.Convolution.PowerSumTraces.EigSplit
