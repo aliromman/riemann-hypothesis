@@ -1,0 +1,40 @@
+{
+  "head": "c8612c024cfc12b0aa89ca2553f33ca5af8aa9ee",
+  "parent": "4a5b4a2d2a5177a2b6cb876425f0cb4cb6b85061",
+  "groups": 12,
+  "first_group_count": 8,
+  "additional_groups": 4,
+  "modules": 1130,
+  "declaration_occurrences": 24737,
+  "normalized_warnings": 2732,
+  "edited": 766,
+  "with_identical_generated_C": 364,
+  "all_current_source_compiler_setups_in_completed_groups": 529,
+  "generated_C_bytes": {
+    "parent": 32807798,
+    "candidate": 21175109
+  },
+  "direct_mathlib_initializer_calls": {
+    "parent": 81958,
+    "candidate": 38322
+  },
+  "actual_compiler_file_bytes": {
+    "parent": {
+      ".olean": 134515376,
+      ".olean.server": 4622624,
+      ".olean.private": 452213768,
+      ".ir.sig": 280240,
+      ".ir": 15243136
+    },
+    "candidate": {
+      ".olean": 130567392,
+      ".olean.server": 4629216,
+      ".olean.private": 452357040,
+      ".ir.sig": 280240,
+      ".ir": 11236928
+    }
+  },
+  "original_group_rows_sha256": "242708e91670ddaac72cf6aa3fddaa947d03db1043cd434e1c4a98d9282fdd80",
+  "additional_group_rows_sha256": "0a1152b9c3c7c8f69c66ab18ae67b1b343a049dc6070bdd9f4a189b13958f603",
+  "paired_full_project_timings": false
+}
