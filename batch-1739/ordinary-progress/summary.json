@@ -1,0 +1,42 @@
+{
+  "base": "4a5b4a2d2a5177a2b6cb876425f0cb4cb6b85061",
+  "head": "9b5b3c860537e95becc28e23c767b6a7c4053aa6",
+  "tree": "2c3978c7ef0f549d18b0b003ed9182c8ec5e7cb9",
+  "groups": 1,
+  "modules": 237,
+  "edited": 29,
+  "declaration_occurrences": 7495,
+  "normalized_warnings": 823,
+  "with_identical_generated_C": 237,
+  "generated_C_bytes": {
+    "parent": 4151064,
+    "candidate": 4151064
+  },
+  "direct_mathlib_initializer_calls": {
+    "parent": 5222,
+    "candidate": 5222
+  },
+  "all_selected_module_facets_in_bytes": {
+    "parent": {
+      ".olean": 35014984,
+      ".olean.server": 1252392,
+      ".olean.private": 128067784,
+      ".ir.sig": 58776,
+      ".ir": 2394392
+    },
+    "candidate": {
+      ".olean": 35014984,
+      ".olean.server": 1252752,
+      ".olean.private": 128067784,
+      ".ir.sig": 58776,
+      ".ir": 2394392
+    }
+  },
+  "all_current_source_compiler_setups_in_completed_groups": 11,
+  "completed_stock_build_seconds_in_warm_own_workspace": 23.022655334003503,
+  "paired_full_build_time": false,
+  "expanded_all_projected_dependencies": false,
+  "rows_sha256": "91f09cf45aa534736c4785a45ddfd9487bb8067c83aa16ef9fb0448c50bd465f",
+  "official_parent_source_tree": "d3a833ab773a1be76c77a6fd77a2888820a71a96",
+  "official_parent_manifest": "15e03cf76e536cda086cb24303f06bc7053d66fa9d8a6577cd142fe6867789a5"
+}
