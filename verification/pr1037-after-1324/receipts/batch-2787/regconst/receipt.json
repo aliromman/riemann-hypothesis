@@ -1,0 +1,124 @@
+{
+  "base": "251c7b05dd869ceba1aa42c6001c00b4010f23f9",
+  "candidate": "0f6a46608035dae6e767ce73dc11da996fa1a240",
+  "tree": "55bdb75c3f61fa939dad5687193658fe2095f98a",
+  "target": "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.RegConstEqAwayUnitMulFactor",
+  "source_closure": 9756,
+  "affected": 2090,
+  "unaffected": 7666,
+  "local_archives": 9756,
+  "compressed_bytes": 532897017,
+  "toolchain": "leanprover/lean4:v4.37.0-rc1",
+  "started": "20261125T112734.240862Z",
+  "finished": "2026-11-25T16:44:38.207601+00:00",
+  "results": {
+    "main-build": {
+      "exit": 0,
+      "completion": [
+        "Build completed successfully (31556 jobs)."
+      ],
+      "fresh": 1,
+      "target_compiled": true,
+      "command": [
+        "lake",
+        "--no-cache",
+        "--rehash",
+        "build",
+        "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.RegConstEqAwayUnitMulFactor"
+      ],
+      "log": "main-build.log.gz",
+      "uncompressed_sha256": "42b998277680e6543bcbac1f4fbf121de5821d164817cf00ae05510d250f4a0e"
+    },
+    "main-check": {
+      "exit": 0,
+      "completion": [
+        "All targets up-to-date (31556 jobs)."
+      ],
+      "fresh": 0,
+      "target_compiled": false,
+      "command": [
+        "lake",
+        "--no-cache",
+        "--rehash",
+        "build",
+        "--no-build",
+        "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.RegConstEqAwayUnitMulFactor"
+      ],
+      "log": "main-check.log.gz",
+      "uncompressed_sha256": "4c1f9329cc98306c131b38ce82f9cf13a5df788a0a581f521a69c126ec1f1217"
+    },
+    "main-kernel": {
+      "exit": 0,
+      "object_sha256": "d332255a879de0d81e7c150d4ae58fb27cdd54dd2b44590456314bcfd2a1758d",
+      "command": [
+        "lake",
+        "--no-cache",
+        "env",
+        "leanchecker",
+        "-v",
+        "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.RegConstEqAwayUnitMulFactor"
+      ],
+      "log": "main-kernel.log.gz",
+      "uncompressed_sha256": "67601f2e36cb46441ec956cb5d27c09f2f51f3d7ab27b92bfc576c5865b28ee0"
+    },
+    "candidate-build": {
+      "exit": 0,
+      "completion": [
+        "Build completed successfully (31556 jobs)."
+      ],
+      "fresh": 71,
+      "target_compiled": true,
+      "total_distinct_fresh": 2079,
+      "command": [
+        "lake",
+        "--no-cache",
+        "--rehash",
+        "build",
+        "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.RegConstEqAwayUnitMulFactor"
+      ],
+      "log": "candidate-build.log.gz",
+      "uncompressed_sha256": "6fcc34d482229aea0c45d13997c72c5629a4c29ed063410198d469ea401c0767"
+    },
+    "candidate-check": {
+      "exit": 0,
+      "completion": [
+        "All targets up-to-date (31556 jobs)."
+      ],
+      "command": [
+        "lake",
+        "--no-cache",
+        "--rehash",
+        "build",
+        "--no-build",
+        "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.RegConstEqAwayUnitMulFactor"
+      ],
+      "log": "candidate-check.log.gz",
+      "uncompressed_sha256": "d3f80bc603361ba7a97419fd2a126d10ee4753b4402daea4251c2146f99b271e"
+    },
+    "candidate-kernel": {
+      "exit": 0,
+      "object_sha256": "d332255a879de0d81e7c150d4ae58fb27cdd54dd2b44590456314bcfd2a1758d",
+      "command": [
+        "lake",
+        "--no-cache",
+        "env",
+        "leanchecker",
+        "-v",
+        "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.RegConstEqAwayUnitMulFactor"
+      ],
+      "log": "candidate-kernel.log.gz",
+      "uncompressed_sha256": "67601f2e36cb46441ec956cb5d27c09f2f51f3d7ab27b92bfc576c5865b28ee0"
+    }
+  },
+  "initial_candidate_build": {
+    "log": "candidate-interrupted.log.gz",
+    "uncompressed_sha256": "cc3079b5f921f8fda575dfc05a45c294a710e3071555f350275bc271b0e22d87",
+    "compiled": 2008,
+    "finished": false
+  },
+  "first_candidate_kernel_attempt": {
+    "exit": 1,
+    "stderr_sha256": "cf2234e20a21f0d36a8409f1ca2971de4d38ba27dc48c484acfabb858d040a73",
+    "error": "Too many open files in system"
+  }
+}

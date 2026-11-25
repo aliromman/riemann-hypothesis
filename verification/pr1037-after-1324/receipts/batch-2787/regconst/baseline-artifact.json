@@ -1,0 +1,40 @@
+{
+  "baseline": "251c7b05dd869ceba1aa42c6001c00b4010f23f9",
+  "target": "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.RegConstEqAwayUnitMulFactor",
+  "archive": "9c885f3818a9e026.ltar",
+  "archive_sha256": "bef5f07fe7a5cfe62c79b0e1fee02298e3a7c98850489044ceff6713cafeb55d",
+  "facets": {
+    "ir/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/RegConstEqAwayUnitMulFactor.c": {
+      "archive_sha256": "4c469667b3654b6f406e91b5d945d1062ef0b2f94ba12c2eedb60a64ff971ef8",
+      "rebuilt_sha256": "4c469667b3654b6f406e91b5d945d1062ef0b2f94ba12c2eedb60a64ff971ef8"
+    },
+    "lib/lean/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/RegConstEqAwayUnitMulFactor.ilean": {
+      "archive_sha256": "55ed243666f6b887eb01433f419792eb6a417cd7c93cdf617dd9a4d741928504",
+      "rebuilt_sha256": "55ed243666f6b887eb01433f419792eb6a417cd7c93cdf617dd9a4d741928504"
+    },
+    "lib/lean/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/RegConstEqAwayUnitMulFactor.ir": {
+      "archive_sha256": "859929e87d8fda9b244c24d1424e03b3f716f921d9c5d3386612f50da7dbd245",
+      "rebuilt_sha256": "859929e87d8fda9b244c24d1424e03b3f716f921d9c5d3386612f50da7dbd245"
+    },
+    "lib/lean/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/RegConstEqAwayUnitMulFactor.ir.sig": {
+      "archive_sha256": "87a10fcb5ee7b7919296183436ba73c9ad57d68f3123d269f04a6be3f065ed11",
+      "rebuilt_sha256": "87a10fcb5ee7b7919296183436ba73c9ad57d68f3123d269f04a6be3f065ed11"
+    },
+    "lib/lean/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/RegConstEqAwayUnitMulFactor.olean": {
+      "archive_sha256": "d332255a879de0d81e7c150d4ae58fb27cdd54dd2b44590456314bcfd2a1758d",
+      "rebuilt_sha256": "d332255a879de0d81e7c150d4ae58fb27cdd54dd2b44590456314bcfd2a1758d"
+    },
+    "lib/lean/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/RegConstEqAwayUnitMulFactor.olean.private": {
+      "archive_sha256": "6e6897efc78b6bef8cc24799b74ac209d441ed47cc8184a80a9ffffd868ddaed",
+      "rebuilt_sha256": "01125a9746bacff195680ea9a4f9002c6987189359d9cb3e222158e60984d62d"
+    },
+    "lib/lean/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/RegConstEqAwayUnitMulFactor.olean.server": {
+      "archive_sha256": "4b90eb41a95831566510aff0c47068ab76743ec987fdf44f16d61ad3d0dc882d",
+      "rebuilt_sha256": "95e4627e4013da52b66dcb7fb419229e9bce4ef82b7382711ddf1ff071e93ede"
+    },
+    "lib/lean/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/LocalTypeDictionary/RegConstEqAwayUnitMulFactor.trace": {
+      "archive_sha256": "c981594cc71474a6b0829a1ba3a3df96594adac94f6c7813dec382676d4ef6d5",
+      "rebuilt_sha256": "194f30ac24ff866d917205ed2ed1b0061b05f550594c24fe7d84e1f2d184d137"
+    }
+  }
+}
