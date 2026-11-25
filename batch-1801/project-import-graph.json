@@ -1,0 +1,10 @@
+{
+  "base": "c40250a50104b7e02e7d74f658d00fa7b1f4827c",
+  "src": "612edf11834ae1f87f3bd15db16734127278dbb8",
+  "sha256": "ab362dd82bfd29ef291992f23978c29b1150d15195ebffe7cc4108d31bd29238",
+  "modules": 59789,
+  "edges": 367287,
+  "deep": 5,
+  "meta": 0,
+  "seconds": 8.59
+}
