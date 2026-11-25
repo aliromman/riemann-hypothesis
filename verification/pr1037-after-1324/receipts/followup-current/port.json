@@ -1,0 +1,25 @@
+{
+  "base": "5ab7e11d01ee36fa4f32e8be00a4d2529eec5f1b",
+  "previous": "eb1a7892994ce07f281da1c8338298944e6d04b7",
+  "candidate": "63e4077100de67259780b159cc7c528e9046ab29",
+  "tree": "a239defff38eca94344e6b2d823ac0ff808b28e4",
+  "changed_files": 28,
+  "overlap": {
+    "src/Development/AbelianVarietyTheory/Proofs/DivisorProofs/SumOKEx.lean": {
+      "retained_upstream_edits": 1,
+      "retired_instance_edits": 0
+    },
+    "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/ThetaParseval/ThetaKernels/SiegelWeilFinFinal.lean": {
+      "retained_upstream_edits": 0,
+      "retired_instance_edits": 1
+    },
+    "src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/ThetaParseval/ThetaKernels/SiegelWeilKwhitTop.lean": {
+      "retained_upstream_edits": 0,
+      "retired_instance_edits": 2
+    },
+    "src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/AtChoice.lean": {
+      "retained_upstream_edits": 1,
+      "retired_instance_edits": 0
+    }
+  }
+}

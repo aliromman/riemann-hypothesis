@@ -12,6 +12,7 @@ Lean 4.37.0-rc1 can select three project instances for the measurable space on m
 | Community main after #1324 merged | `b2f365a68500e2bde98cd60a2324263fc62fba10` |
 | #1037 on this main | `5ab7e11d01ee36fa4f32e8be00a4d2529eec5f1b` |
 | Proposed GitHub merge of these two revisions | `5446ee0fd9a7c0a2301ccd1a3b476b482896df14` |
+| Fork cleanup updated on top of #1037 | `63e4077100de67259780b159cc7c528e9046ab29` |
 
 ## Results
 
@@ -47,6 +48,12 @@ The 36 targets in `combined-targets.txt` passed on the community main parent and
 
 Both Git revisions also passed `lake build Challenge` and `lake env leanexport Challenge` with the upstream export list. The two five-statement challenge exports had 363,237,517 bytes and SHA-256 `bb37c4bb518fe68a13f12aa3929dd62dfecb663f0c063ad8c338e39601f28a60`. The solution export and the final Comparator verdict still require a full run on the merge. [Runner request](https://github.com/leanprover-community/riemann-hypothesis/pull/1037#issuecomment-7129886079).
 
+## Optional removal of the four names
+
+The updated cleanup at `63e4077100de` removes four instance declarations and 60 local attribute commands in 28 files. It also removes two local measurable-space witnesses and one Borel-space witness. It retains main’s changes to the local instance list in `SumOKEx` and the theorem reference `PI.WUN.exp_mem_UH` in `AtChoice`. Two other overlapping files had upstream edits to comments and matrix priority commands that the cleanup deletes. A Git search and a SHA-checked scan of all 59,823 project source blobs found zero uses of the four names. [Change from the #1037 head](https://github.com/aliromman/riemann-hypothesis/compare/5ab7e11d01ee36fa4f32e8be00a4d2529eec5f1b..63e4077100de67259780b159cc7c528e9046ab29).
+
+This revision passed the 25 targets in `followup-port-25.txt`, with 2,959 distinct source modules. This includes the two explicit GL comap proofs, `LocalZetaFunctionalUniqueness`, and `SumOKEx`. The matrix probes selected Mathlib’s Borel witness, and both import orders passed for the live and archived proof bodies. Lean selected both original scoped GL names. The eight candidate modules in `kernel-targets.txt` passed kernel replay. Nine of the 28 changed files occur in the tested source closure. Eleven more terminal targets cover the other 19. The complete changed-file closure contains 17,360 modules. The optional cleanup stays on the fork while these checks are open.
+
 ## Reproduce
 
 Set `MAIN`, `BEFORE`, and `AFTER` to Git checkouts at the first, third, and fourth revisions in the table. Set `EVIDENCE` to this directory in the verification branch and `BIN` to the pinned Lean toolchain’s `bin` directory. Use a checkout with the archived commit in its Git object store. Set `OUT` to an empty directory for the results.
@@ -80,6 +87,13 @@ To repeat the 36-target measurement, build the names in `combined-targets.txt` i
 
 ```sh
 python3 "$EVIDENCE/verify_challenge_export.py" --repo "$AFTER" --bin "$BIN" --packages "$AFTER/.lake/packages" --base "$PARENT" --merge "$CANDIDATE" --output "$OUT/challenge"
+```
+
+In a Git checkout of the cleanup, the following commands repeat the name scan and cover all 28 changed files.
+
+```sh
+python3 "$EVIDENCE/verify_retired_names.py" --repo . --revision 63e4077100de67259780b159cc7c528e9046ab29 --output "$OUT/removed-names.json"
+"$BIN/lake" build $(cat "$EVIDENCE/followup-all-leaves.txt")
 ```
 
 The JSON receipts record the revision, probe source hashes, diagnostics, and kernel checks. A full `Main` build and upstream Comparator on the five final statements are still required on the proposed merge commit. [Upstream verification instructions](https://github.com/leanprover-community/riemann-hypothesis/blob/9282d3a102c4aff0e6026746db2a8990f5d9cddd/README.md#checking-the-proof-yourself)

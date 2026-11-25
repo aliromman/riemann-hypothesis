@@ -1,0 +1,31 @@
+{
+  "revision": "63e4077100de67259780b159cc7c528e9046ab29",
+  "changed_files": 28,
+  "all_terminals": 14,
+  "source_closure": 17360,
+  "tested_targets": 25,
+  "tested_source_closure": 2959,
+  "changed_in_tested_closure": 9,
+  "remaining_terminals": 11,
+  "not_in_tested_closure": [
+    "Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.LocalInvariantIntegralsSymmetricHaarSubgroupsStatement",
+    "Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ProdRFJCoe",
+    "Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.RootExchangeUnipotentHaarIntegralPointsEqOneStatement",
+    "Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.SymmetricDoubleIntegralsPositionOneEqCellSum",
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsDoubledSchrodingerModelTransposedSiegelRulStatement",
+    "Development.AbelianVarietyTheory.Proofs.SatakeParameters.ThetaFunctionsSpannedHeckeTwistedStandardFrameStatement",
+    "Development.AbelianVarietyTheory.Proofs.TwistedOperators.SplitThetaGridIsAdmissibleFlipTensor",
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.SiegelWeilFinFinal",
+    "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.SiegelWeilKwhitTop",
+    "Development.AutomorphicArithmetic.LocalEmbeddings.ReBaseMain",
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.FiniteDataBound",
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.LocalCharacterPowerConductorBound",
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.RegConstEqAwayUnitMulFactor",
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.AtChoice",
+    "Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.VolLevelWtConstStatement",
+    "Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FinSplitOfNarrow",
+    "Development.WeilBound.CoreStatements.AutomorphicKernels.SiegelWeilFormula.SiegelWeilStandard.SiegelWeilStd",
+    "Development.WeilBound.CoreStatements.TemperedRepresentationTheory.BernsteinNarrowness.BernsteinClosure.RamifiedMultiplicityOne",
+    "Development.WeilBound.ThetaLifts.LocalTheory.StandardValuations.ExistsVol"
+  ]
+}

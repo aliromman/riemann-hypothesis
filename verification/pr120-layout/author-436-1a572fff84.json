@@ -1,0 +1,29 @@
+{
+  "base": "c7791603122c0328f79e49f6be5d7d4402effc53",
+  "author_head": "1a572fff84e761c194c31523adb49c9ef062fece",
+  "src_lean_before": 149397,
+  "src_lean_after": 47885,
+  "difference": 101512,
+  "added": 20260,
+  "deleted": 121772,
+  "unchanged_inputs": [
+    "src/Challenge.lean",
+    "comparator.json",
+    "export-targets.txt",
+    "lean-toolchain"
+  ],
+  "board": {
+    "document_revision": "2c7655b3519966b0face87140d446d46967e467f",
+    "shard_head": "3c7f552d17",
+    "updated_utc": "2026-11-25T00:37:00Z",
+    "compiled": 41892,
+    "open": 70,
+    "url": "https://github.com/rohanarun/alpoge-rh-replay/blob/2c7655b3519966b0face87140d446d46967e467f/PR120-BUGS.md"
+  },
+  "filter": "Tracked files under src/ with a .lean suffix",
+  "count_commands": [
+    "git ls-tree -r -z --name-only <revision> -- src",
+    "git diff --no-renames --name-status -z <base> <author_head> -- src"
+  ],
+  "author_url": "https://github.com/rohanarun/riemann-hypothesis/commit/1a572fff84e761c194c31523adb49c9ef062fece"
+}
