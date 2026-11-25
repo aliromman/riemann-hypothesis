@@ -6,8 +6,6 @@ public import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
 import Mathlib.Analysis.Matrix.Normed
 public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
 import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 public import Mathlib.Analysis.Calculus.Deriv.Mul
 public import Mathlib.Analysis.Calculus.Deriv.Slope
 public import Mathlib.Analysis.SpecialFunctions.Exponential
