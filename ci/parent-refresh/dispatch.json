@@ -1,22 +1,18 @@
 {
-  "request": "clumps-1313-remaining",
+  "request": "direct-1410",
   "groups": [
-    "clumps-1313-large-1",
-    "clumps-1313-large-2",
-    "clumps-1313-ordinary-10",
-    "clumps-1313-ordinary-11",
-    "clumps-1313-ordinary-12",
-    "clumps-1313-ordinary-13",
-    "clumps-1313-ordinary-14",
-    "clumps-1313-ordinary-3",
-    "clumps-1313-ordinary-4",
-    "clumps-1313-ordinary-5",
-    "clumps-1313-ordinary-7",
-    "clumps-1313-ordinary-8",
-    "clumps-1313-ordinary-tail-1",
-    "clumps-1313-ordinary-tail-2",
-    "clumps-1313-ordinary-tail-3",
-    "clumps-1313-ordinary-tail-4"
+    "direct-1410-large-1",
+    "direct-1410-large-2",
+    "direct-1410-ordinary-1",
+    "direct-1410-ordinary-10",
+    "direct-1410-ordinary-2",
+    "direct-1410-ordinary-3",
+    "direct-1410-ordinary-4",
+    "direct-1410-ordinary-5",
+    "direct-1410-ordinary-6",
+    "direct-1410-ordinary-7",
+    "direct-1410-ordinary-8",
+    "direct-1410-ordinary-9"
   ],
-  "seed_run": 45460415396
+  "seed_run": 45515769929
 }

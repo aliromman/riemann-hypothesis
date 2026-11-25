@@ -1,0 +1,115 @@
+{
+  "authority": {
+    "base": "82c577caf1b8a66c76212d78a399234f55813d28",
+    "tree": "01237e23d953494c79cdec97baf46686f7a74285",
+    "manifest": "62be9e7203bad90a5315c03c95795e9afb7674eef09f21a360988e698724c97c",
+    "graph": "539eb07c2560e07ec9409cd8ddb26925be680a3b4b49f36e04302508d5138cba"
+  },
+  "tasks": {
+    "private": {
+      "pr": 879,
+      "head": "299eff8a308272be2b9167be917156f1929359a2",
+      "src": "98322f9e7758e1587b78ac21c1281d7f2431286c",
+      "upstream_clump_blob": "5e0f4b831daef5df11efb71135484f84c2ceb496",
+      "source_table_sha256": "dc38557de6ad85c63561778e8b66cf5b56755d36f18ce13be6c556a58d944410"
+    }
+  },
+  "groups": {
+    "direct-1410-large-1": {
+      "task": "private",
+      "count": 27,
+      "sha256": "7fdefa4e5cc79718f46670576c671f98afb9962f5a70a99a7dbaff289d9aaf08",
+      "workers": 1,
+      "timeout": 1500,
+      "old_cpu_wall_seconds": 1399.42
+    },
+    "direct-1410-large-2": {
+      "task": "private",
+      "count": 26,
+      "sha256": "9d33b17583fc81b3664d473c033d37a166fa005bf315920ecdb1a5e395f9fe9b",
+      "workers": 1,
+      "timeout": 1500,
+      "old_cpu_wall_seconds": 1397.94
+    },
+    "direct-1410-ordinary-1": {
+      "task": "private",
+      "count": 554,
+      "sha256": "7886f2d5d3dc07afb0585c75fafa2405361fdfe9bbd17d8d962e137a33bc7288",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 2867.47
+    },
+    "direct-1410-ordinary-2": {
+      "task": "private",
+      "count": 554,
+      "sha256": "cde3ac168b0c71493d11846915abc3ee88e044ef027d746eb9b68661bfc2882c",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 2867.48
+    },
+    "direct-1410-ordinary-3": {
+      "task": "private",
+      "count": 554,
+      "sha256": "244e279367b65209fd0ad539f97795f913e29a461f2b60b455670787860da126",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 2867.48
+    },
+    "direct-1410-ordinary-4": {
+      "task": "private",
+      "count": 554,
+      "sha256": "bde4f7db1d6e48a532462c554ceec98e7a98914960e47320245de63de785ac9f",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 2867.48
+    },
+    "direct-1410-ordinary-5": {
+      "task": "private",
+      "count": 555,
+      "sha256": "8e729cb72f83a3c896280909291067f23697320f677da24c54e5253cb4aa0014",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 2868.18
+    },
+    "direct-1410-ordinary-6": {
+      "task": "private",
+      "count": 555,
+      "sha256": "6dea8cf4de6e60376b2266c6a46a5819e29ce6a0ebcbb13bb2ce60f527eae099",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 2868.16
+    },
+    "direct-1410-ordinary-7": {
+      "task": "private",
+      "count": 554,
+      "sha256": "28018749c8133479d4b81c883e79b3424710dc1755af7885d47e86619c485e0d",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 2867.48
+    },
+    "direct-1410-ordinary-8": {
+      "task": "private",
+      "count": 554,
+      "sha256": "8ed85c274a987c892a38a2fe4a8ad65e574760c71b8d0ab84e49b2b9d834aed6",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 2867.48
+    },
+    "direct-1410-ordinary-9": {
+      "task": "private",
+      "count": 554,
+      "sha256": "eef45a977e91e981f7fa426fbfef42065bb45f220cfe9979c7aba396030bfadd",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 2867.48
+    },
+    "direct-1410-ordinary-10": {
+      "task": "private",
+      "count": 554,
+      "sha256": "b569f47141678c8181ff3bff861a3522e491ae185da6a4aa2eabc98c8c6dff7a",
+      "workers": 2,
+      "timeout": 750,
+      "old_cpu_wall_seconds": 2867.47
+    }
+  }
+}
