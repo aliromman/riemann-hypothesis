@@ -1,0 +1,914 @@
+[
+  {
+    "name": "Development.AbelianVarietyTheory.BlockTheory.AdelicCMFields.UnitaryHeckeCharacterIdele",
+    "community_bytes": {
+      ".olean": 365376,
+      ".olean.server": 16312,
+      ".olean.private": 757016,
+      ".ir.sig": 248,
+      ".ir": 10512
+    },
+    "candidate_bytes": {
+      ".olean": 360216,
+      ".olean.server": 16328,
+      ".olean.private": 757352,
+      ".ir.sig": 248,
+      ".ir": 5264
+    },
+    "candidate_sha256": {
+      ".olean": "a5185afd5f906c09c718275ffbd79dc1d027366c4aff1b132a4d9d17cd9d2bb2",
+      ".olean.server": "37d265e8379e80ff1ecd99a00cf5f43c0cf00945e8ba448f93e7f0cd9319bb79",
+      ".olean.private": "2c406ef9af0d3afe6cde731cf631685dba2abb5dee170e841729f1335720a687",
+      ".ir.sig": "fbce710f203238b8404af66c8a7952465c2555f49b250320481e5161d9a514b7",
+      ".ir": "11ed5d347e74db220b4973198143634fa54b94ad122cd0d2aa98a5a391a40f24"
+    }
+  },
+  {
+    "name": "Development.AbelianVarietyTheory.Definitions.Divisors.DivisorSupportCondition",
+    "community_bytes": {
+      ".olean": 430408,
+      ".olean.server": 8728,
+      ".olean.private": 60880,
+      ".ir.sig": 248,
+      ".ir": 9440
+    },
+    "candidate_bytes": {
+      ".olean": 425592,
+      ".olean.server": 8728,
+      ".olean.private": 61176,
+      ".ir.sig": 248,
+      ".ir": 4456
+    },
+    "candidate_sha256": {
+      ".olean": "35f013aedeb4ab57e7a20909f0863a894e0906a7714e22e18a11bc469c933d52",
+      ".olean.server": "e060b0843250165a0acca3854ffb90c0557b8763f540688684117f269b43e9d0",
+      ".olean.private": "aeaf6e089f323da1b11279d480d201169a634e46ebe232e8e505d36217a758bf",
+      ".ir.sig": "26b72dbab0af38032cbb08b1ecc3ea0f35539f8ab55b18eeafe7bd6221ad6a2c",
+      ".ir": "18acad53310ace7a9036f9bb664ebe7c3cc9b40e8ac9ddff2e324115b25193dc"
+    }
+  },
+  {
+    "name": "Development.AbelianVarietyTheory.Definitions.Divisors.EntireEqOfHalfPlane",
+    "community_bytes": {
+      ".olean": 294048,
+      ".olean.server": 20200,
+      ".olean.private": 954280,
+      ".ir.sig": 248,
+      ".ir": 19008
+    },
+    "candidate_bytes": {
+      ".olean": 288784,
+      ".olean.server": 20216,
+      ".olean.private": 954624,
+      ".ir.sig": 248,
+      ".ir": 13432
+    },
+    "candidate_sha256": {
+      ".olean": "e0dd1afdde5494cd1b6805b6cd30d5c0e6a25a340856865f2e98e7f193c4b663",
+      ".olean.server": "9f1f8482fec30989a020653c27acf84922c4e4b4d5284061d3818eaf21a207fc",
+      ".olean.private": "b3881a0a87672e81445dc7f955c5b06beaf9d21ed6acaa2988eb749a3002c110",
+      ".ir.sig": "d8ef2b92b3a8092ddaaa800f20e6151e165702d10780944bc7f51f008ee959a4",
+      ".ir": "03014f4a616b84efb0c00fd1bd5eeac382135e60f4fb911743de7bc41828b71a"
+    }
+  },
+  {
+    "name": "Development.AbelianVarietyTheory.Definitions.Divisors.HilbertNinetyQuotientHomEqIff",
+    "community_bytes": {
+      ".olean": 888952,
+      ".olean.server": 17600,
+      ".olean.private": 1112808,
+      ".ir.sig": 248,
+      ".ir": 54984
+    },
+    "candidate_bytes": {
+      ".olean": 883608,
+      ".olean.server": 17624,
+      ".olean.private": 1113008,
+      ".ir.sig": 248,
+      ".ir": 49552
+    },
+    "candidate_sha256": {
+      ".olean": "3e34c1a46a5f6aafb198a5968b942c5ce108028a12fe283118e0930289e0fdd8",
+      ".olean.server": "77671273927e409d2f7323cc66be32c24a59c6b5c5c1dacd41782235d3dea465",
+      ".olean.private": "f03ff6049854b3d7598a86344e6160db709182528177f6ab5988287985ddb230",
+      ".ir.sig": "759896d733b0b7a537740345ca32a85fcf311fc695b09090c3f5cca9a84aa26f",
+      ".ir": "9d628354c7b975f7eb1ba6272d0364ba469bebe0b99c41ac4d7bd76bfdc28948"
+    }
+  },
+  {
+    "name": "Development.AbelianVarietyTheory.Definitions.Foundations.IsSatFrame",
+    "community_bytes": {
+      ".olean": 90256,
+      ".olean.server": 3216,
+      ".olean.private": 21688,
+      ".ir.sig": 248,
+      ".ir": 17128
+    },
+    "candidate_bytes": {
+      ".olean": 85296,
+      ".olean.server": 3216,
+      ".olean.private": 21792,
+      ".ir.sig": 248,
+      ".ir": 12080
+    },
+    "candidate_sha256": {
+      ".olean": "b42d887e3fb794555daa8a380b5da8f7769aae7a129b3424ec4d0d6de8e35793",
+      ".olean.server": "54bd91658b5d206b763e22e82a4ebba516ac266528fb379fe9daac4836021331",
+      ".olean.private": "d03837bafb1b1aa79193ff2485b60e88d7e313366c8abe35a4b46c909e4159b4",
+      ".ir.sig": "4a3c1855b41d635473c50f698105dda6a8ab6d8cb2bd7a068fa7648bb1c0b03d",
+      ".ir": "a485e706fc142a4069e6a30b4a2f6f069c12e4f5c3a947a2a3fe74d7e17a6652"
+    }
+  },
+  {
+    "name": "Development.AbelianVarietyTheory.Definitions.Foundations.MatrixMeasurableSpace",
+    "community_bytes": {
+      ".olean": 144024,
+      ".olean.server": 5256,
+      ".olean.private": 21064,
+      ".ir.sig": 248,
+      ".ir": 12240
+    },
+    "candidate_bytes": {
+      ".olean": 139224,
+      ".olean.server": 5272,
+      ".olean.private": 21240,
+      ".ir.sig": 248,
+      ".ir": 7312
+    },
+    "candidate_sha256": {
+      ".olean": "11ebfdb3c0d13e171f2e82614e6b76e534bb67824e0697f583e8e171e46cdc68",
+      ".olean.server": "575949ed49dd2a8074460011fc2469d02e1ca11aad35bffb9b81323488c151b4",
+      ".olean.private": "7200156810a6b6a34d11b4c4b6c04808b435db228bef8ab2a3d0d190dbb826e8",
+      ".ir.sig": "2d99f1c019c49b50824985ebe5f4c1972a1d2980cfb1d09ab96fee1ac6a0fc7b",
+      ".ir": "0a2004a1a11bc9df9ea5e6c1be6e41f717390ae9f2aaa28abbe873f22d3691e5"
+    }
+  },
+  {
+    "name": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.TypicalCurvesTangentAndBases",
+    "community_bytes": {
+      ".olean": 111848,
+      ".olean.server": 6664,
+      ".olean.private": 1210392,
+      ".ir.sig": 248,
+      ".ir": 12576
+    },
+    "candidate_bytes": {
+      ".olean": 106344,
+      ".olean.server": 6680,
+      ".olean.private": 1210520,
+      ".ir.sig": 248,
+      ".ir": 6984
+    },
+    "candidate_sha256": {
+      ".olean": "59cf3ad3a6053fabe7e4ebba2ef2ce1f207f2dcd9f2dafe80262b80f0797a044",
+      ".olean.server": "d33ae54a87b88449dbecc71b1d51fa91a75f3d1405a5f671e88118663bf9cba3",
+      ".olean.private": "97977f217f9862ff1939180746db48e42489b26b907e22733f76e0b222c5e4e1",
+      ".ir.sig": "f2b2ab9c04e32e7dbb49268d487da6ce0c0016273814b82ddc07ca6bce758ca5",
+      ".ir": "10966484d0d825f47f09065af8f1bf3554d6f3bde5ea091e3e58f55483bcf312"
+    }
+  },
+  {
+    "name": "Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.ExistsVariableChangeEqLatticeCurve",
+    "community_bytes": {
+      ".olean": 64272,
+      ".olean.server": 5152,
+      ".olean.private": 760072,
+      ".ir.sig": 248,
+      ".ir": 11584
+    },
+    "candidate_bytes": {
+      ".olean": 59752,
+      ".olean.server": 5176,
+      ".olean.private": 760408,
+      ".ir.sig": 248,
+      ".ir": 7064
+    },
+    "candidate_sha256": {
+      ".olean": "3a19db2de79a6ea213bf540edf00fbe5f1b8b1442f416f12a40ba5909d455ced",
+      ".olean.server": "d51a1f4e23614cbf594a84e693a6f45c2f8a5b13194332f8e64aa8aa1ca2cfb4",
+      ".olean.private": "3d83e25cba1456369231a05a5b1d4c5b43fe8d0fce563b2de105ab8d9acd0e59",
+      ".ir.sig": "edbc0440be2db13c0872a115e00af3e4e18a694c786dab8d46bde87e6018d117",
+      ".ir": "cbac6bd03e05e045b901f51529e48070ed118c1b00edc3f8dd14da85b7256770"
+    }
+  },
+  {
+    "name": "Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExtensionEmbeddingMixedSymmOfIsComplex",
+    "community_bytes": {
+      ".olean": 140632,
+      ".olean.server": 9848,
+      ".olean.private": 698640,
+      ".ir.sig": 248,
+      ".ir": 11248
+    },
+    "candidate_bytes": {
+      ".olean": 135408,
+      ".olean.server": 9864,
+      ".olean.private": 698920,
+      ".ir.sig": 248,
+      ".ir": 5896
+    },
+    "candidate_sha256": {
+      ".olean": "7b0df6fbfd59213a3aa2d6d80ac41f4485899a22778283ffb01e0be8a4801fcc",
+      ".olean.server": "de67e85803f010e298073e2968edb6a40750d159aae85900e3fa547f81d8c66f",
+      ".olean.private": "2649feb2dde952255506b90491e9be8139a76dab9124801666ff77a272224984",
+      ".ir.sig": "1b6a2e548360dceafc3ee783bbcc5418d6c9c521efcdc53026cf945aa8f53035",
+      ".ir": "1de4e28790a1130d0d27949bc69f9019ae055d7e0d37bcaa1278381a93ffc674"
+    }
+  },
+  {
+    "name": "Development.AbelianVarietyTheory.Proofs.UnramifiedDepth.TypicalBasisCoordinates",
+    "community_bytes": {
+      ".olean": 71120,
+      ".olean.server": 1096,
+      ".olean.private": 95048,
+      ".ir.sig": 248,
+      ".ir": 13840
+    },
+    "candidate_bytes": {
+      ".olean": 66248,
+      ".olean.server": 1096,
+      ".olean.private": 95384,
+      ".ir.sig": 248,
+      ".ir": 8920
+    },
+    "candidate_sha256": {
+      ".olean": "51fc4eb0ec9716564e17c44f315364620495c024e11586dcd7690183eac83445",
+      ".olean.server": "aa846fb3d3d13edb24b8a822731b40a12b35cdeb86991d96b9ae5389b7849907",
+      ".olean.private": "0afd68ec69ec095bda8cc04bbc8036e662f42d81eb59e881520e4249f744354f",
+      ".ir.sig": "e067125858b8c935ac664dc8cd7f1355198d84cc8b8a12147cd35ae14e9db734",
+      ".ir": "edffffa5e74051db19b7cee00ce1a1115df4471dace6245d1f41e90eb3a9e189"
+    }
+  },
+  {
+    "name": "Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.HeckeLEntireAndNonzeroAtOne",
+    "community_bytes": {
+      ".olean": 86392,
+      ".olean.server": 5048,
+      ".olean.private": 208744,
+      ".ir.sig": 248,
+      ".ir": 9168
+    },
+    "candidate_bytes": {
+      ".olean": 80992,
+      ".olean.server": 5048,
+      ".olean.private": 209376,
+      ".ir.sig": 248,
+      ".ir": 3512
+    },
+    "candidate_sha256": {
+      ".olean": "f22d35eef9fd7bb6e4c1a14a15b4ea69b07c187b776b3bbef4d6688aab590f6f",
+      ".olean.server": "fc138041c6243b13fcfa8cc5ceb10c2a1933913f62acf1a4017a0e6e7939d931",
+      ".olean.private": "a074773ca6500dcc6a13f12751dbed7dfe9fced27d8f9ccb53ca3187dc356bed",
+      ".ir.sig": "52b07a1df2838ff15377d5ce89d54236ddcf564ef5b01545a0a2d8b25ff054c1",
+      ".ir": "0ead96fbf0503adf40869e5a97d46211c837b2702a6d3f645b7c085e50e79eea"
+    }
+  },
+  {
+    "name": "Development.AutomorphicArithmetic.AutomorphicVarieties.CommutativeAlgebra.ResMapBijective",
+    "community_bytes": {
+      ".olean": 1006392,
+      ".olean.server": 14496,
+      ".olean.private": 708392,
+      ".ir.sig": 248,
+      ".ir": 34656
+    },
+    "candidate_bytes": {
+      ".olean": 1001448,
+      ".olean.server": 14496,
+      ".olean.private": 708600,
+      ".ir.sig": 248,
+      ".ir": 29584
+    },
+    "candidate_sha256": {
+      ".olean": "145bac0219f00d760ce26960e19588556caee5597ac58e9910c77303ace49d4a",
+      ".olean.server": "ee48d77458016eb18827a44ae556eed156bd4cf50e1facaf092386bffe6b960f",
+      ".olean.private": "0b6b63bf6fc7c510eeb349ba8f5cecd1d5790b5bf4023e04c1426a7afa332958",
+      ".ir.sig": "c5aa8a4b7bb3e02ce507331b2615f5f01110ef5305136844adad1f6da370341e",
+      ".ir": "e61742badfe55c54f861d60acc5b264d37f66c0271a6ef8fbac344232be59069"
+    }
+  },
+  {
+    "name": "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.LocalRingsCompletion.IsCharOneOfSubsingleton",
+    "community_bytes": {
+      ".olean": 192296,
+      ".olean.server": 5464,
+      ".olean.private": 378600,
+      ".ir.sig": 248,
+      ".ir": 14048
+    },
+    "candidate_bytes": {
+      ".olean": 186736,
+      ".olean.server": 5496,
+      ".olean.private": 378752,
+      ".ir.sig": 248,
+      ".ir": 8448
+    },
+    "candidate_sha256": {
+      ".olean": "c3c60e84f9b871ca2397db7213f89eef456a45dea0befeaf24754ad55d7c49ae",
+      ".olean.server": "b7c10dd880a4863595e2221bead36231f1471eef42197c4b0061e8a57e2ee9f9",
+      ".olean.private": "3043c2525a90c317fb6b41c09202d2b8e7cf101985d1d31c72d559ff4719b798",
+      ".ir.sig": "1fbace9b7a3cc0703d3f8f304b59a4b123c0fdc373c2ac21aa22cb6b11f97b48",
+      ".ir": "a135a0ee063078ea28c0d49eb1a478942af17c111efed824fa9b6aac28e35a1d"
+    }
+  },
+  {
+    "name": "Development.AutomorphicArithmetic.AutomorphicVarieties.GaloisLibrary.LocalRingsCompletion.nakayama",
+    "community_bytes": {
+      ".olean": 27920,
+      ".olean.server": 3896,
+      ".olean.private": 182992,
+      ".ir.sig": 248,
+      ".ir": 9616
+    },
+    "candidate_bytes": {
+      ".olean": 22800,
+      ".olean.server": 3912,
+      ".olean.private": 183288,
+      ".ir.sig": 248,
+      ".ir": 4456
+    },
+    "candidate_sha256": {
+      ".olean": "701e47b50c204c441482e455d758514b90c63763af204af0b201cbeda3bd39b3",
+      ".olean.server": "f97e8f13f532ffb2be272804b05bd5cc04887ce999280a1e5882338379526043",
+      ".olean.private": "2ac627708a93915a55f01db6878873cb1d364b405c08c70765523095e4dd29f6",
+      ".ir.sig": "a0d4462cff39e8e0f3ca152c146db7b969695922003d0ed9c6a94165c2532714",
+      ".ir": "cb77300b17f7d594e776f30c8e23c89bbcd6c9833fe95c2a501963b49f6770e7"
+    }
+  },
+  {
+    "name": "Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.DegreeCountCohomology.SolCnt",
+    "community_bytes": {
+      ".olean": 108880,
+      ".olean.server": 12648,
+      ".olean.private": 2143992,
+      ".ir.sig": 248,
+      ".ir": 15824
+    },
+    "candidate_bytes": {
+      ".olean": 103440,
+      ".olean.server": 12672,
+      ".olean.private": 2144312,
+      ".ir.sig": 248,
+      ".ir": 10344
+    },
+    "candidate_sha256": {
+      ".olean": "12860bba94dd27275fbce81bc8b7483efefea84c4475865b4214b689323aa78d",
+      ".olean.server": "f4370b9ade106f42e0c0e403fca82a3f730600f4a6dae4eaf73d3fbf13775591",
+      ".olean.private": "8c92e769663f4cf65430318f0b10e5af6b93740c1e05db3beb39c85992a4aacd",
+      ".ir.sig": "d0418b977a6fb5e5f7230d145cfa95a9298ee1f65b0c5bb859f6b0f72c0063dd",
+      ".ir": "8b121ee49bcda99249feb5801c9caea7e4ac4a293ecee00b7667dcbcd2afa7e7"
+    }
+  },
+  {
+    "name": "Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.PairedDualFirstOrderDualMatrixSpace",
+    "community_bytes": {
+      ".olean": 1609336,
+      ".olean.server": 30648,
+      ".olean.private": 1377816,
+      ".ir.sig": 248,
+      ".ir": 82376
+    },
+    "candidate_bytes": {
+      ".olean": 1603912,
+      ".olean.server": 30680,
+      ".olean.private": 1378136,
+      ".ir.sig": 248,
+      ".ir": 76816
+    },
+    "candidate_sha256": {
+      ".olean": "64c6ead43a59822bb7739abfb6dcef6e6ad09829a471e346e545c6a78c628f6e",
+      ".olean.server": "72d3cc24fd2c4cef70d40ff766fdb714158f5530443a1e74e39274ca5a2c9c71",
+      ".olean.private": "2ed057d3cc331feb40e3bc3047832986acf05f2c8fb3800526bafee8b4138dba",
+      ".ir.sig": "20c8bf2a6bfc8b6f96f58622946b79e82a9905206609cbc3cbd059af5fa8a1e6",
+      ".ir": "4e7620b730e33dcadb80a6d2eac77efe65b57978f26d6d4a473f25a904d21805"
+    }
+  },
+  {
+    "name": "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.BaseRepGL3NormalisedOfPsiEqOne",
+    "community_bytes": {
+      ".olean": 205256,
+      ".olean.server": 6864,
+      ".olean.private": 66544,
+      ".ir.sig": 248,
+      ".ir": 33688
+    },
+    "candidate_bytes": {
+      ".olean": 199840,
+      ".olean.server": 6864,
+      ".olean.private": 66784,
+      ".ir.sig": 248,
+      ".ir": 28192
+    },
+    "candidate_sha256": {
+      ".olean": "9a47d3fc01fb1323b561f9a71fac53a3fa009a9cb3bc8a60917aa1194cacde7b",
+      ".olean.server": "fd28483d1050b9345e82516c4a8cd6ebd87232b17dec76b49f028142d10f1382",
+      ".olean.private": "76c5fc701ce4ffdae5678d15e3e5c63ff6be8de8f856ef353287d3fc5d9cc84b",
+      ".ir.sig": "6fb6a0f4aa9d20db3b11817f872b0a3d7c0b0cb24e973b6a6ea1528062e73fd6",
+      ".ir": "a9807febbe75b2a1e20aece0968959a0cb09769f20b475c4c5fd73560931f5f9"
+    }
+  },
+  {
+    "name": "Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups.UnitaryThreeReflectionRight",
+    "community_bytes": {
+      ".olean": 395920,
+      ".olean.server": 14584,
+      ".olean.private": 959232,
+      ".ir.sig": 248,
+      ".ir": 69624
+    },
+    "candidate_bytes": {
+      ".olean": 390064,
+      ".olean.server": 14584,
+      ".olean.private": 959432,
+      ".ir.sig": 248,
+      ".ir": 63768
+    },
+    "candidate_sha256": {
+      ".olean": "6f2e7341a579a57137222b88f4ef85987a83f47a081e82b8dcdc48a0b1d8eae2",
+      ".olean.server": "0b3f8cd95f6593b7995f408f5a001d139063975e7325e8363a02d0629cd8ce3f",
+      ".olean.private": "10f1a59d3659a95d7c9fcb66ae4f00e929907fab205e13d11590fa720d5e5fa2",
+      ".ir.sig": "f192ce253c696c1e93fa609e45e0993c06f024ae477f31f56cc74dad276e1e59",
+      ".ir": "aaa28643ae5193fa192f8f53edb1d12900c97eb08f8a904a21155b87576602dd"
+    }
+  },
+  {
+    "name": "Development.AutomorphicArithmetic.AutomorphicVarieties.WeilGroupCharacters.RepAlg",
+    "community_bytes": {
+      ".olean": 508416,
+      ".olean.server": 6352,
+      ".olean.private": 675344,
+      ".ir.sig": 248,
+      ".ir": 150328
+    },
+    "candidate_bytes": {
+      ".olean": 503448,
+      ".olean.server": 6352,
+      ".olean.private": 675528,
+      ".ir.sig": 248,
+      ".ir": 145320
+    },
+    "candidate_sha256": {
+      ".olean": "de4cc2d17e7f2dd761022dcc98efe904f7cb76fd4d23778f3537f33dc035e75e",
+      ".olean.server": "5643be4371f87ea129d70166fa637f6234f1033276c06cc9c4bf57c0072bfa0a",
+      ".olean.private": "4dbfc222427e38726fe8f9d3a14cf76b34853bfdff448f9f3367d44b4d14903b",
+      ".ir.sig": "86186761239cf84348e869daab14eab3e5de40abd4f2e8183b652b55bacc9772",
+      ".ir": "9178bbcf6ab07f98299b7b09ecd0b3617e563c96475dc92312eeda5182076884"
+    }
+  },
+  {
+    "name": "Development.AutomorphicArithmetic.AutomorphicVarieties.WeilGroupCharacters.UniversalOrdinaryDeterminantRing",
+    "community_bytes": {
+      ".olean": 1834624,
+      ".olean.server": 23424,
+      ".olean.private": 916776,
+      ".ir.sig": 248,
+      ".ir": 27424
+    },
+    "candidate_bytes": {
+      ".olean": 1829360,
+      ".olean.server": 23424,
+      ".olean.private": 916968,
+      ".ir.sig": 248,
+      ".ir": 22024
+    },
+    "candidate_sha256": {
+      ".olean": "45292a12686c3e16b408fbe00ac9667f97fd4df8aac1f06a1f38b3af622cc6c9",
+      ".olean.server": "753383377ad5dba894568f5c219d7b27e59d9ff5ee48797ba8b1f180756ac5f6",
+      ".olean.private": "142fd545dabe9989bb085ba3ddd6507be2354acd4103bacb8babb8c66b1a6b73",
+      ".ir.sig": "cca5a732b2dbe977e525a30364ce477973c8c5da70afcb7b58b0ca6f5f54ad5a",
+      ".ir": "ba3416fb9bdc81b1a58c356660c722044e7596d49051f89984d32014db17c916"
+    }
+  },
+  {
+    "name": "Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.IsTight",
+    "community_bytes": {
+      ".olean": 182640,
+      ".olean.server": 2760,
+      ".olean.private": 220848,
+      ".ir.sig": 248,
+      ".ir": 19296
+    },
+    "candidate_bytes": {
+      ".olean": 177168,
+      ".olean.server": 2760,
+      ".olean.private": 221040,
+      ".ir.sig": 248,
+      ".ir": 13656
+    },
+    "candidate_sha256": {
+      ".olean": "4b079a706a0ef3d2f60513800fed1ddef8458e25310ff7011a1098c606df8540",
+      ".olean.server": "a94c4303fe104d8ecd68e9ef634c6d1f08a62529ab276b1a51cfd38d4cc1b1d7",
+      ".olean.private": "61d2ce74900a06a5ef5044e1c16c0dda8a582f47abdca533d80b1344d9e1df5f",
+      ".ir.sig": "b66a2de36f979c90bd68902835bd82671e689972fce79b6322ab2286e90ab83e",
+      ".ir": "09db38f534b6f51c260f3a323c993177a032210eeac86260871df764c0c30d13"
+    }
+  },
+  {
+    "name": "Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.StepOrderRes",
+    "community_bytes": {
+      ".olean": 244912,
+      ".olean.server": 3224,
+      ".olean.private": 338712,
+      ".ir.sig": 248,
+      ".ir": 20008
+    },
+    "candidate_bytes": {
+      ".olean": 239520,
+      ".olean.server": 3224,
+      ".olean.private": 338904,
+      ".ir.sig": 248,
+      ".ir": 14488
+    },
+    "candidate_sha256": {
+      ".olean": "1048ae36f85d84f4a71961ddb48b06efe3eaca3a030ecdf0d78f425a9c03f967",
+      ".olean.server": "ea113a226e2919a346ca657d3b811244574ac2369b4af253e1aa04ace0312b79",
+      ".olean.private": "5699dfaf2dcec98fff91b1e02b01c7df25f55dd209eb944081af347a0ecd9473",
+      ".ir.sig": "4bfdb1d704da4721340c33fa9472efa01f94fae63bda17befd58ed08a7d1ba45",
+      ".ir": "0a1e0f24075966229e6f850eb686b2b8f5d6a7b1b686fbc5d2085d12482babfe"
+    }
+  },
+  {
+    "name": "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.CharacterIdealPrincipalEigen",
+    "community_bytes": {
+      ".olean": 63384,
+      ".olean.server": 2056,
+      ".olean.private": 341000,
+      ".ir.sig": 248,
+      ".ir": 9544
+    },
+    "candidate_bytes": {
+      ".olean": 58312,
+      ".olean.server": 2056,
+      ".olean.private": 341168,
+      ".ir.sig": 248,
+      ".ir": 4384
+    },
+    "candidate_sha256": {
+      ".olean": "26f1aeead7543a4c2b2e842fbd31ce3d3049acabe15003c3904a42ac6122d7dd",
+      ".olean.server": "e2d6b1050c2a20600bd0a54bafc6daf8b406b6e3c5fad0ddf37e55cda4a8a7f9",
+      ".olean.private": "e61a7f958d0e5dbdf0398b67cac78e7daebd877b68177f2b990070796211c004",
+      ".ir.sig": "837331d6b84e8bc62329c27c4202b0aa434799583ed914e4c0fa91bc143c483c",
+      ".ir": "61abcab2094587087721e77a0675675ef83c9acad8a0d70626e7d7a436c80e13"
+    }
+  },
+  {
+    "name": "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.CharacterIdealPrincipalEigenStatement",
+    "community_bytes": {
+      ".olean": 40832,
+      ".olean.server": 608,
+      ".olean.private": 2056,
+      ".ir.sig": 248,
+      ".ir": 9648
+    },
+    "candidate_bytes": {
+      ".olean": 35656,
+      ".olean.server": 608,
+      ".olean.private": 2200,
+      ".ir.sig": 248,
+      ".ir": 4344
+    },
+    "candidate_sha256": {
+      ".olean": "acf5df252c91fe381f7ee528ac1653a36e5c82e1ae7ed1d7d2eeed240366e0c7",
+      ".olean.server": "77da771ac19df03a81b57fbae73b4a0a5975469653eb6424135835d17f1bfca4",
+      ".olean.private": "4e2c770dd46fd2555aa9bdc9b07f00f00c35e84570eda5d85b01b7f9eab0de1e",
+      ".ir.sig": "1941e72fb70db4af8dbc07a8db2f1c05eb6fdbd28fa06d94515ec4c4a800006c",
+      ".ir": "8edb49392c7bafba4cb0cc505cc13e4011bff133baa99f943ff32ae5820606aa"
+    }
+  },
+  {
+    "name": "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.TeichmullerCharacterOrderGenerates",
+    "community_bytes": {
+      ".olean": 145352,
+      ".olean.server": 2760,
+      ".olean.private": 443248,
+      ".ir.sig": 248,
+      ".ir": 15888
+    },
+    "candidate_bytes": {
+      ".olean": 140320,
+      ".olean.server": 2760,
+      ".olean.private": 443384,
+      ".ir.sig": 248,
+      ".ir": 10768
+    },
+    "candidate_sha256": {
+      ".olean": "3e71e0d5afccfdb8c6ce942fb70624ab586bb7f5d81b19eb82043fc6ba92c5cf",
+      ".olean.server": "4c9c9a4c84261d33efa650738ab7ace854a10f609779b036c5e68e67eaec12c9",
+      ".olean.private": "9a55057238ed190511ca2f4b3c90c63903fb7607a68eb55c24bcd3fe646537b1",
+      ".ir.sig": "2435a193c4273e50cd964d780d95b26cb8d70b9059554b36da374ec03b37d8d1",
+      ".ir": "f075ec6621bf677b8afdc812efc301464f29cdc2738efe48c251840f5310d9d5"
+    }
+  },
+  {
+    "name": "Development.EtaleCohomology.CohomologicalPurity.InrFold",
+    "community_bytes": {
+      ".olean": 604440,
+      ".olean.server": 11504,
+      ".olean.private": 244328,
+      ".ir.sig": 248,
+      ".ir": 17496
+    },
+    "candidate_bytes": {
+      ".olean": 599456,
+      ".olean.server": 11504,
+      ".olean.private": 244704,
+      ".ir.sig": 248,
+      ".ir": 12432
+    },
+    "candidate_sha256": {
+      ".olean": "69ef5368f49103c8ef8aeb7e4130d1028447d24f3feba3c37789964fcc1c1397",
+      ".olean.server": "560b26f81eb0cf27429fd50ab0081d2045de0b8fa497e222da9bc2c1d141681e",
+      ".olean.private": "7dc4636e34c7db73ffa90fa13bc31e983596be8c424ffe68e117eda851f33aaa",
+      ".ir.sig": "f56f369ae89528f8431a134af7b6e8ebb2fedb069f337dd3444c32ef4e018fb2",
+      ".ir": "be16f3c7504d4b09ad212639404721e58d70ddc56d132a0fb168c91826f69507"
+    }
+  },
+  {
+    "name": "Development.EtaleCohomology.CohomologicalPurity.LeafBdCut",
+    "community_bytes": {
+      ".olean": 250592,
+      ".olean.server": 5336,
+      ".olean.private": 638144,
+      ".ir.sig": 248,
+      ".ir": 18864
+    },
+    "candidate_bytes": {
+      ".olean": 245608,
+      ".olean.server": 5336,
+      ".olean.private": 638480,
+      ".ir.sig": 248,
+      ".ir": 13800
+    },
+    "candidate_sha256": {
+      ".olean": "412e486dff62ad3132df1fc378a88e9aae4fe399b56b0b73a6f80bc83d51fbd7",
+      ".olean.server": "fb0e147f4e1eb8b250bea143aa73a96f6b6325323ad27ddc93052d713a098293",
+      ".olean.private": "611484b057de5771547d5f6c840d7f0ae5120eaa3067ddb15c5ad20cc0f50d38",
+      ".ir.sig": "4d4ce716ba44c8972862b4857e92374bc2f1dd5a6c419a386e33dadb81e55b59",
+      ".ir": "c4ae05cda6f0c57910f754120b21c68a2c94231ffbd3980034f4daf55e9078fc"
+    }
+  },
+  {
+    "name": "Development.EtaleCohomology.CohomologicalPurity.LeafImgPf",
+    "community_bytes": {
+      ".olean": 12112,
+      ".olean.server": 3992,
+      ".olean.private": 1076240,
+      ".ir.sig": 248,
+      ".ir": 11960
+    },
+    "candidate_bytes": {
+      ".olean": 7136,
+      ".olean.server": 3992,
+      ".olean.private": 1076616,
+      ".ir.sig": 248,
+      ".ir": 6984
+    },
+    "candidate_sha256": {
+      ".olean": "d7927bf5f06b876251342cd78f37bb66a75990964caa2ec16f6f80c4b554feae",
+      ".olean.server": "7ee18929daca41a718ec0597b21bddccb534d7bbbc24ba5acbc33c6c3606b3ef",
+      ".olean.private": "d1d7c745306821636e8a9a6dd30b34cb614cd216b251f34f0574e18558b9af0d",
+      ".ir.sig": "cdaaf3fe85f6309458fce70e0178b54a24cf2de054e1743e502d8cbe7d9a232b",
+      ".ir": "c78c0e9cbc11bee73a2b968bfe10656711d45d874d573b76dcac7aeddf0d95ec"
+    }
+  },
+  {
+    "name": "Development.EtaleCohomology.CohomologicalPurity.LeafIndExc",
+    "community_bytes": {
+      ".olean": 169960,
+      ".olean.server": 3624,
+      ".olean.private": 22944,
+      ".ir.sig": 248,
+      ".ir": 8824
+    },
+    "candidate_bytes": {
+      ".olean": 164976,
+      ".olean.server": 3624,
+      ".olean.private": 23240,
+      ".ir.sig": 248,
+      ".ir": 3760
+    },
+    "candidate_sha256": {
+      ".olean": "03449e1db262fabe6a6c87f9a5bc749ab5ae4ee34fe3fad907c921ebcf4d1587",
+      ".olean.server": "69efb1358476d1355d08cc9bc3551ef049fa71e95dede78803d843fc6c8e6b6b",
+      ".olean.private": "2a9fddfd6a49440484436a17aa47b0190c600ca8fcd807d701c8b1a09034aa74",
+      ".ir.sig": "20c0a4c70884821a91b81482ae87d1d9be7f2fa55107a5c486609356d6bf95db",
+      ".ir": "85e33dee9475a3a0a64f174bc7f38dc61daf39d109585b9f6613db26c252e9dc"
+    }
+  },
+  {
+    "name": "Development.ResolutionOfSingularities.EmbeddedResolution.AlgebraicPreliminaries.SpanSingletonProduct",
+    "community_bytes": {
+      ".olean": 57624,
+      ".olean.server": 2680,
+      ".olean.private": 224616,
+      ".ir.sig": 248,
+      ".ir": 8624
+    },
+    "candidate_bytes": {
+      ".olean": 52592,
+      ".olean.server": 2680,
+      ".olean.private": 224864,
+      ".ir.sig": 248,
+      ".ir": 3464
+    },
+    "candidate_sha256": {
+      ".olean": "83b8d2648093dd1096f167795bb8e55c2859b7b63dba67edf4dba168a1829b83",
+      ".olean.server": "f21e5e88da8cffe5592dbee60052aef078e7a3f7bc145a3bd95e2c03d1c36d01",
+      ".olean.private": "6361ad98d24bc105d8d1efd72e705c21db9cb2297eacdef3e2caa22abbc82c91",
+      ".ir.sig": "3560bc7f5dec58f4b6789ffe07a84b4fa6bbcf15b7b173aeadd7ca2e324aaff6",
+      ".ir": "6f27d6dcd26f063859a6a3f3c387093948ab48a1dc6571e271d4f3fca75d71c0"
+    }
+  },
+  {
+    "name": "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.EtaleChartExistence",
+    "community_bytes": {
+      ".olean": 44688,
+      ".olean.server": 4744,
+      ".olean.private": 944824,
+      ".ir.sig": 248,
+      ".ir": 9216
+    },
+    "candidate_bytes": {
+      ".olean": 39744,
+      ".olean.server": 4744,
+      ".olean.private": 945328,
+      ".ir.sig": 248,
+      ".ir": 4232
+    },
+    "candidate_sha256": {
+      ".olean": "a2cc6c3df16b2b563634519206f003a0ebc88b197a08df4113411b457bef1ecd",
+      ".olean.server": "4dfe07858143a626d7d48ffe93ff196810863da1361441ac8561455ee9857a20",
+      ".olean.private": "6de0c39a1eb2ecb13962f72eb9c27bad821506ff3fc34f755e1c25018dd8ca33",
+      ".ir.sig": "a540f24f515de0ee79af07f5902d64565cbabef2fbc2c8c3be01de2ada0bc8d8",
+      ".ir": "f12eafb9160f77fa88431800f6cbde541873bba93805beab0990908f587f5333"
+    }
+  },
+  {
+    "name": "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.SmoothRegular",
+    "community_bytes": {
+      ".olean": 41592,
+      ".olean.server": 8192,
+      ".olean.private": 655704,
+      ".ir.sig": 248,
+      ".ir": 10688
+    },
+    "candidate_bytes": {
+      ".olean": 36848,
+      ".olean.server": 8192,
+      ".olean.private": 655928,
+      ".ir.sig": 248,
+      ".ir": 5824
+    },
+    "candidate_sha256": {
+      ".olean": "9f95aa2521e93fd8ed3aabe865b91184ebb6ea40b1fe1bafe7b4776f06b399f2",
+      ".olean.server": "7f1b4af90bdde0694086676dee310b5796967e190efbb50b578eb622da45fe80",
+      ".olean.private": "9de618bffd561fe8fed8e793909e1334ba97b7030a4b9380fddf29fbdeb71f29",
+      ".ir.sig": "23570cafbccf7b65bf49f1173ba9fd88517f725571c0639d05556566105e8f92",
+      ".ir": "e5b55b89de1a911238733cd1c451ed5671fe67a3ad91cfaa143dc8534a26e389"
+    }
+  },
+  {
+    "name": "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.StalkKrullDimension",
+    "community_bytes": {
+      ".olean": 41616,
+      ".olean.server": 8368,
+      ".olean.private": 675160,
+      ".ir.sig": 248,
+      ".ir": 10912
+    },
+    "candidate_bytes": {
+      ".olean": 36536,
+      ".olean.server": 8368,
+      ".olean.private": 675448,
+      ".ir.sig": 248,
+      ".ir": 5792
+    },
+    "candidate_sha256": {
+      ".olean": "d3695d5786f3049a3985519054d007b64c40f7b5c719c1e63567cb83c3f432ba",
+      ".olean.server": "3fc52658483ead695015a0f0fa7e6321e6837b037258fa16522a1c8e85939c37",
+      ".olean.private": "ef5ff84ee2480dcda3817d843517e75c439aa9ea9ff2e8661850388934c37795",
+      ".ir.sig": "87f9bb57afaa61d27e77a36b0c73378021c558904be70fd8eb5d67c4d298528a",
+      ".ir": "2ffc97b5b7ce062e11bbf5c4782124c317a8c00b419b33f026ad81eacc53bef2"
+    }
+  },
+  {
+    "name": "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.StrictNormalCrossings",
+    "community_bytes": {
+      ".olean": 174800,
+      ".olean.server": 7768,
+      ".olean.private": 265040,
+      ".ir.sig": 248,
+      ".ir": 8928
+    },
+    "candidate_bytes": {
+      ".olean": 169816,
+      ".olean.server": 7768,
+      ".olean.private": 265408,
+      ".ir.sig": 248,
+      ".ir": 3904
+    },
+    "candidate_sha256": {
+      ".olean": "6dc931a372e8861551d7b92b1f6dc0792bae1f03b3bc5c7dcdff851095669023",
+      ".olean.server": "f63c6f1632e75d8ccab5081a9aa49d33f557126bcaa066775aeffd426343021c",
+      ".olean.private": "f2cece06c43120e1b726729d871e71ede9db6272800ece0d9a928ab8467203ec",
+      ".ir.sig": "928c0368c7b80e9c2c4da010ef647ac14726084444d21d1501f0334db83f6e2d",
+      ".ir": "7b5a746c03768311e463c1eb71ccfa8d766d923f3823cbbfd455c00f00fa0ae2"
+    }
+  },
+  {
+    "name": "Development.ResolutionOfSingularities.Foundations.BlowupUniversalProperty",
+    "community_bytes": {
+      ".olean": 27208,
+      ".olean.server": 840,
+      ".olean.private": 1792,
+      ".ir.sig": 248,
+      ".ir": 8480
+    },
+    "candidate_bytes": {
+      ".olean": 22224,
+      ".olean.server": 840,
+      ".olean.private": 1976,
+      ".ir.sig": 248,
+      ".ir": 3496
+    },
+    "candidate_sha256": {
+      ".olean": "f1689273a83654b9f609572c01e748a89286384f11d0e1f85e001319c4c2e226",
+      ".olean.server": "c2e7ab9beb0f224d4303fb31c44af670bf09121aef6e1bfd5f601e6226a3c848",
+      ".olean.private": "a881b2d44a5a79e81843cf24aa41dabe19dc0e6442e24d98d252a4f699e02dad",
+      ".ir.sig": "41705a6fc32a2953d7659aec52c9930231167e150dada4a1b43b9fe0ec1530f1",
+      ".ir": "fe6113de082f94a2c03adac12c14be15d46c9cccb4e6c1cf63d1bc6663646ea6"
+    }
+  },
+  {
+    "name": "Development.ResolutionOfSingularities.Foundations.Schemes.AffineOpens",
+    "community_bytes": {
+      ".olean": 18408,
+      ".olean.server": 1072,
+      ".olean.private": 50960,
+      ".ir.sig": 248,
+      ".ir": 8192
+    },
+    "candidate_bytes": {
+      ".olean": 13384,
+      ".olean.server": 1072,
+      ".olean.private": 51072,
+      ".ir.sig": 248,
+      ".ir": 3168
+    },
+    "candidate_sha256": {
+      ".olean": "a5b7ead88178ccc733ae7e0b7a8145525e23dd06cb3269b187b3226def647f05",
+      ".olean.server": "96baacc9fa956c9efb5c07e5fc9ae36cf2ef28dad2e7662cd5cc40f6c70d926c",
+      ".olean.private": "37b1f87c7fc0b7aa7576ba2c9fb1e5daab40b7f5b42834df9f9677fe3a0e7530",
+      ".ir.sig": "a872e1d1f9ae2b4da6bfb69757e06504e0622b91c38032a4106d5fb454dc8556",
+      ".ir": "5ad5783448afdf386464d07738544fb724687fd5118e9441bd4af9090c405708"
+    }
+  },
+  {
+    "name": "Development.WeilBound.CoreStatements.HodgeTatePoints.RiRank",
+    "community_bytes": {
+      ".olean": 127440,
+      ".olean.server": 5192,
+      ".olean.private": 1613712,
+      ".ir.sig": 248,
+      ".ir": 10736
+    },
+    "candidate_bytes": {
+      ".olean": 122048,
+      ".olean.server": 5216,
+      ".olean.private": 1613920,
+      ".ir.sig": 248,
+      ".ir": 5256
+    },
+    "candidate_sha256": {
+      ".olean": "15300aa0a54a683c7e8d564e1080b94ec68b73b44c0d8755872527142c7293ff",
+      ".olean.server": "1e0d8c5d01146b9185b7b1696763c0a9c77c8485dff93bf71b5073f4b18bab6a",
+      ".olean.private": "01cdcc3fe74ffc088833354d5a43966e4075567449fcf83909277298b4bba57f",
+      ".ir.sig": "92e1b157c7622241065c05617b3a7796fb722018660128d81ad8c37b34d904c5",
+      ".ir": "143364934ce0846391c5e7ca1a7cfd107be0c0118b3d24d51795a81f2cb47fcc"
+    }
+  },
+  {
+    "name": "Development.WeilBound.ThetaLifts.LeviDeterminants.GrowSplit",
+    "community_bytes": {
+      ".olean": 83256,
+      ".olean.server": 6840,
+      ".olean.private": 181336,
+      ".ir.sig": 248,
+      ".ir": 8696
+    },
+    "candidate_bytes": {
+      ".olean": 78104,
+      ".olean.server": 6856,
+      ".olean.private": 181624,
+      ".ir.sig": 248,
+      ".ir": 3416
+    },
+    "candidate_sha256": {
+      ".olean": "c59c78611f2f4767948f29957f4c8f36d43287a36c6d5d0d1ab2a6f977c77a03",
+      ".olean.server": "994818bd41dfebfc3450df7cb8cbc49e2842151d5e5ec558ecb7d796aa1062c5",
+      ".olean.private": "4caabdb8d36fa5c7abd80848d75c62147a37ca2e3fc0ab0e3d04b9003875814d",
+      ".ir.sig": "9171659688bc771756ced463a1ce7b85fc110ada779f54cb1d4ca46a93a6304d",
+      ".ir": "988b415e8703893ec22a06788b25a3912a4f309fd4246f4e7d58728bbfee4e5a"
+    }
+  }
+]

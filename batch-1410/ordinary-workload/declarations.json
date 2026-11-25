@@ -1,0 +1,33 @@
+{
+  "parent": "82c577caf1b8a66c76212d78a399234f55813d28",
+  "head": "299eff8a308272be2b9167be917156f1929359a2",
+  "source": "98322f9e7758e1587b78ac21c1281d7f2431286c",
+  "coverage": "batch-0000",
+  "owners": 74,
+  "edited": 38,
+  "declarations_counted": 3452,
+  "warnings_compared": 178,
+  "routes": {
+    "ordinary and official declarations compared directly": 74
+  },
+  "raw_differences_from_native_or_original": {
+    ".olean": 38,
+    ".olean.server": 38,
+    ".olean.private": 38,
+    ".ir": 38
+  },
+  "c_bytes": {
+    "parent": 2646724,
+    "candidate": 2071878
+  },
+  "c_initializer_calls": {
+    "parent": 4748,
+    "candidate": 2594
+  },
+  "unchanged_generated_c": 36,
+  "full_private_comparator_source": "9987e5d85022c8f285864fe4e9344373a4051cec0ab8e5623bdc83930dfcb429",
+  "comparator_binary": "ceabcaf423d986f10712143cc07d268dc37fcefa697d845d309e3305bb39ef53",
+  "negative_control": {},
+  "result_table_sha256": "80910d279bab3e3fd4dbb9c08994174844b01b8bc092794ba37af1c6484c31f9",
+  "seconds": 2.5185324589983793
+}

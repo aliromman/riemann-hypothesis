@@ -1,0 +1,46 @@
+{
+  "parent": "82c577caf1b8a66c76212d78a399234f55813d28",
+  "head": "299eff8a308272be2b9167be917156f1929359a2",
+  "source": "98322f9e7758e1587b78ac21c1281d7f2431286c",
+  "roots": [
+    "Development.AbelianVarietyTheory.Proofs.DivisorProofs.TypicalCurvesTangentAndBases",
+    "Development.AutomorphicArithmetic.AutomorphicVarieties.PatchingModules.DegreeCountCohomology.SolCnt",
+    "Development.AutomorphicSpectrum.Proofs.AlgebraProofs.CharacterIdealPrincipalEigenStatement",
+    "Development.EtaleCohomology.CohomologicalPurity.LeafImgPf",
+    "Development.ResolutionOfSingularities.EmbeddedResolution.EtaleCoordinates.StalkKrullDimension",
+    "Development.WeilBound.CoreStatements.HodgeTatePoints.RiRank",
+    "Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExtensionEmbeddingMixedSymmOfIsComplex"
+  ],
+  "project_modules": 74,
+  "edited_modules": 38,
+  "declarations_in_all_owners": 3452,
+  "warnings_in_all_owners": 178,
+  "edited_raw_compiler_bytes": {
+    "community": {
+      ".olean": 10907224,
+      ".olean.server": 299056,
+      ".olean.private": 21250984,
+      ".ir.sig": 9424,
+      ".ir": 835312
+    },
+    "candidate": {
+      ".olean": 10711960,
+      ".olean.server": 299328,
+      ".olean.private": 21260904,
+      ".ir.sig": 9424,
+      ".ir": 636592
+    }
+  },
+  "all_generated_c_bytes": {
+    "parent": 2646724,
+    "candidate": 2071878
+  },
+  "all_mathlib_initializer_calls": {
+    "parent": 4748,
+    "candidate": 2594
+  },
+  "signed_official_sizes": "1d4f03ccf2a5d739477b5b22eff809d203fbb32bd5797c1a74713dfd71c02084",
+  "stock_time_seconds_in_warm_workspace": 17.430926250002813,
+  "fresh_compiler_setup_files": 8,
+  "paired_full_timing": false
+}

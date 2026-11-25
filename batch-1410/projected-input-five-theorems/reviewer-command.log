@@ -1,0 +1,9 @@
+Lean (version 4.37.0-rc1, arm64-apple-darwin24.6.0, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)
+Main.ltar: OK
+CheckInterface.lean: OK
+true
+ClaimStrip.ltar: OK
+MainConclusion.ltar: OK
+true
+true
+Verified each compiler setup and the private import of Lemmata.TracePi
