@@ -1,0 +1,15 @@
+{
+  "base": "c7791603122c0328f79e49f6be5d7d4402effc53",
+  "head": "b964e9b2e15a9fbd108cfe1627640f6fe2f2b929",
+  "src_lean_before": 149397,
+  "src_lean_after": 47885,
+  "difference": 101512,
+  "added": 20260,
+  "deleted": 121772,
+  "protected_git_blobs": {
+    "src/Challenge.lean": "9677ace64b3a5e8b1a571d82d52ee13c53b08026",
+    "comparator.json": "e989bcf90ff0c487a7146319a026e661a5bad47c",
+    "export-targets.txt": "e2d4c02bac8a1411eae85af0376c1aad3b6b5294",
+    "lean-toolchain": "00f848359b1cdaf7c12cd6b7acc5b4364752e154"
+  }
+}
