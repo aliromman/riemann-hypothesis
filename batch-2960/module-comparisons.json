@@ -38,13 +38,21 @@
       "warnings": 34,
       "declaration_occurrences_counted": 289,
       "ordinary and official declarations compared directly": 3
+    },
+    "completed-new-built-imports": {
+      "stock_lake_built": 1323,
+      "modules": 1323,
+      "edited": 1323,
+      "warnings": 4194,
+      "declaration_occurrences_counted": 29454,
+      "ordinary and official declarations compared directly": 1323
     }
   },
   "distinct_union": {
-    "modules": 1024,
-    "edited_modules": 381,
-    "declaration_occurrences": 44273,
-    "warnings": 5022
+    "modules": 2347,
+    "edited_modules": 1704,
+    "declaration_occurrences": 73727,
+    "warnings": 9216
   },
   "private_import_check": "pending at this checkpoint",
   "full_build": "pending at this checkpoint",

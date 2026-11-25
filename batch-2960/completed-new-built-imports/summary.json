@@ -1,0 +1,17 @@
+{
+  "head": "66cee35856ff43a444fcbaf9d3a57329a8ac623b",
+  "parent": "8e5cefeeaffe7e4c12153385b7bb33fb7223c41a",
+  "src": "8f584850eff4750e24baecc26066e747af47163e",
+  "scope": "completed-new-built-imports",
+  "counts": {
+    "stock_lake_built": 1323,
+    "modules": 1323,
+    "edited": 1323,
+    "warnings": 4194,
+    "declaration_occurrences_counted": 29454,
+    "ordinary and official declarations compared directly": 1323
+  },
+  "rows_sha256": "f5ff0006a6df0d77f0dfb66826f4a4f055566f91b3b886482bcdac62171d21c9",
+  "checker_sha256": "ceabcaf423d986f10712143cc07d268dc37fcefa697d845d309e3305bb39ef53",
+  "selection": "Edited import headers freshly compiled in the full build, excluding the four previously reported groups."
+}
