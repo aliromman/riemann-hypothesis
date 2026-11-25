@@ -4,7 +4,6 @@ public import Mathlib.Algebra.Ring.Hom.Defs
 public import Mathlib.Data.Nat.Prime.Defs
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.ReduceModChar
 import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.WittExactSequences.IsCompl
 public import Mathlib.Algebra.CharP.Lemmas
 

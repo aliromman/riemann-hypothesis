@@ -5,7 +5,6 @@ public import Development.ResolutionOfSingularities.EmbeddedResolution.Algebraic
 import Mathlib.RingTheory.PiTensorProduct
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 public import Mathlib.RingTheory.Localization.Ideal
 

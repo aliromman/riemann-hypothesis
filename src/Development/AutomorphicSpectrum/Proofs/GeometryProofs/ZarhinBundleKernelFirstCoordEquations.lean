@@ -2,8 +2,6 @@ module
 
 public import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.IsCptGen
 public import Mathlib.RingTheory.MvPolynomial.Homogeneous
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.RingTheory.GradedAlgebra.HomogeneousLocalization
 
 @[expose] public section

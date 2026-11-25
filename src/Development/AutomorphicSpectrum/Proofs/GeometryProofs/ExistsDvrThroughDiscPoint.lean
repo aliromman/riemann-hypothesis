@@ -8,7 +8,6 @@ import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
 import Mathlib.RingTheory.AdicCompletion.Completeness
 import Mathlib.RingTheory.Henselian
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.ReduceModChar
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.AmplePt
 public import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ExtensionDescent.ChartPullbacks.CubePullbacks.CubePull
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.PrecompleteBases.PsbLb

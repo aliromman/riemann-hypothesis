@@ -2,11 +2,9 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.Foundations.SmoothPartStable
 public import Mathlib.Basic.Complex.Basic
-import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.ReduceModChar
 import Std.Tactic.BVDecide.Normalize.Prop
 public import Mathlib.GroupTheory.Index
 

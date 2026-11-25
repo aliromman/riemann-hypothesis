@@ -9,19 +9,16 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PureAdel
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.NormThetaMul
 public import Development.WeilBound.RepresentationTheoryGL.SiegelWeilProof.BinaryMassMeans.MeanVal
 public import GroundTheory.GlobalFields.IdeleGroups.NormOneCompact
-import Mathlib.Tactic.ReduceModChar
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.AdelicLocalCompactness.AdeleLC
 import GroundTheory.GlobalFields.LocalFieldAtPlace
 import GroundTheory.LocalFields.PadicLogSeries
 import Mathlib.Topology.UniformSpace.Uniformizable
 import Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.ExistsUniqueIdeleOfLinearEquivQuotientLocal
 import Mathlib.Algebra.Order.Archimedean.Real.Hom
-import Mathlib.Tactic.Polynomial.Basic
 import CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.GlobalUnitScalingHaarProductFormula
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.StabilizerVolume.TensTop
 import GroundTheory.LocalFields.LocalFourierHaar
 import Mathlib.Tactic.Linter.HaveILetI
-import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Topology.Sheaves.Presheaf
 

@@ -7,9 +7,7 @@ import GroundTheory.HeightsAndTheta.Heights.Regularisation.Assembly
 import GroundTheory.HeightsAndTheta.Heights.Regularisation.PLogCoverDescent
 import GroundTheory.HeightsAndTheta.Heights.Regularisation.PPuncturedExpOrder
 import GroundTheory.HeightsAndTheta.Heights.Regularisation.PRiemannExtensionSlices
-import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.ReduceModChar
 
 @[expose] public section
 

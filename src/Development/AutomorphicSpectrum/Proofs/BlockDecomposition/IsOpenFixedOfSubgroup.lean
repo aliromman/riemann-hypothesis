@@ -8,11 +8,8 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PadicIsNo
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ContinuousMirProj
 public import GroundTheory.AutomorphicForms.LocallyProfinite
 public import Mathlib.GroupTheory.DoubleCoset
-import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Topology.Algebra.Group.Units
 import Mathlib.Topology.Algebra.Nonarchimedean.TotallyDisconnected
 import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.MirabolicDerivatives.TwistedKernels.ExPhiPlusOnto

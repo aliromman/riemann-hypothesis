@@ -6,7 +6,6 @@ import Development.AbelianVarietyTheory.Definitions.Foundations.SecondCountableA
 import Development.AbelianVarietyTheory.Proofs.FoundationProofs.PadicIsNonarchimedeanLocalField
 public import GroundTheory.AutomorphicForms.SmoothRep
 import Mathlib.RingTheory.Henselian
-import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.Topology.Algebra.Nonarchimedean.TotallyDisconnected
 

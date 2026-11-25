@@ -4,8 +4,6 @@ public import Mathlib.RingTheory.Derivation.Basic
 public import Mathlib.RingTheory.Ideal.Quotient.Defs
 public import Mathlib.RingTheory.Ideal.Span
 import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 public import Mathlib.RingTheory.Ideal.BigOperators
 

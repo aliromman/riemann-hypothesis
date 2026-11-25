@@ -2,10 +2,7 @@ module
 
 public import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.FlagMinor
 import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar
 
 @[expose] public section

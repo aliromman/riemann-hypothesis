@@ -3,7 +3,6 @@ module
 public import Development.WeilBound.CoreStatements.TemperedRepresentationTheory.ZelevinskyJacquet.ZelevinskyInterleaving.Interleave
 public import Mathlib.Algebra.BigOperators.Group.Finset.Defs
 public import Mathlib.Data.Finset.Sigma
-import Mathlib.Tactic.ENatToNat
 import Mathlib.Tactic.Linter.Style
 import Mathlib.Tactic.ReduceModChar
 import Mathlib.Tactic.TypeStar

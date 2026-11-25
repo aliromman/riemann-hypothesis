@@ -5,10 +5,7 @@ public import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.NegOne
 public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.DpZeroRight
 public import Mathlib.GroupTheory.Perm.Sign
 import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.ReduceModChar
 import Mathlib.CategoryTheory.Monoidal.Mon
-import Mathlib.Tactic.ENatToNat
-import Mathlib.Tactic.Polynomial.Basic
 import Mathlib.Topology.Sheaves.Presheaf
 
 -- This file was produced by scripts/clump.py from the modules listed below.
