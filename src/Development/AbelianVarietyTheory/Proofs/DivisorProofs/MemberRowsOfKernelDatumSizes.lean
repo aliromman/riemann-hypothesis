@@ -46,8 +46,9 @@ section -- clump: shared namespace opens
 
 open Module NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Col Formalism.L2.Ker GlobalTheory.IndefiniteRowSideFullHecke.PlaceLogThetaBounds GlobalTheory.ColRows
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ColsInIsometry
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ColsInIsometry
 
+noncomputable section
 
 namespace GlobalTheory.ColFirstIso
 
@@ -125,24 +126,12 @@ theorem ipAt_frm (hQ : Q = ∅) (C : CoefPk X n (DecoSet (E := X.E) (n := n) (ST
 
 end Frames
 
-theorem qe_one {X : Fields} (sel : HeightOneSpectrum (𝓞 X.F) → HeightOneSpectrum (𝓞 X.E)) {Sg : Set ℕ} :
-    QE sel ((1 : Tup X.F X.E X.K Sg) : Chr X.F X.E X.K) = ∅ := by
-  have h : Qprime ((1 : Tup X.F X.E X.K Sg) : Chr X.F X.E X.K) = ∅ := by
-    change Qprime (1 : Chr X.F X.E X.K) = ∅
-    ext v
-    simp [Qprime, MonoidHom.ker_one]
-  unfold QE
-  split_ifs with hf
-  · rw [(Set.Finite.toFinset_eq_empty (h := hf)).2 h]
-    rfl
-  · rfl
-
 theorem colsIn_isometry : ∀ (X : Fields) (hX : X.Ok) (Pr : Primes X) (R : Ranks) (W : Wts X Pr.Word R) (Ch : Chars X Pr R.m) (sel : HeightOneSpectrum (𝓞 X.F) → HeightOneSpectrum (𝓞 X.E)) (Sg : Set ℕ) (mu : Tup X.F X.E X.K Sg) (cst : LocCst X (rowSG Pr sel mu)) (I : ChIdx X Pr R (QE sel (mu : Chr X.F X.E X.K))) (G : ChGlob X R.m) (m2 : ℕ) (hL : I.Ok Ch sel mu cst G m2) (u : Pr.Word) (h : (chF W sel mu I u 0).Ok), mu = 1 → (∀ v, IsUnit ((MramH W Ch hX u).X v).det) ∧ ∀ (v : InfinitePlace X.K) (x : Fin (ramDim W Ch hX u) → X.K), ((Formalism.HermitianLatticesTheory.normAt (Pi.basisFun X.K (Fin (ramDim W Ch hX u))) (MramH W Ch hX u).X v x ^ 2 : ℝ) : ℂ) = famIpAt (chF W sel mu I u 0) h v (colsIn W Ch hX sel mu cst I hL u x) (colsIn W Ch hX sel mu cst I hL u x) := by
   intro X hX Pr R W Ch sel Sg mu cst I G m2 hL u h hmu
   refine ⟨(colPosH W Ch hX u 0).frameOK_sub (MramV W Ch u) (MramL W Ch u), fun v x => ?_⟩
   have hQ : QE sel (mu : Chr X.F X.E X.K) = ∅ := by
     subst hmu
-    exact qe_one sel
+    exact GlobalTheory.ColNormsUnit.qe_one sel
   obtain ⟨b, hb⟩ := hL.zero_uniq
   have h1 : famIpAt (chF W sel mu I u 0) h v (colsIn W Ch hX sel mu cst I hL u x) (colsIn W Ch hX sel mu cst I hL u x) =
       (colGSD W Ch u 0).ipAt (colOk W Ch hX u 0) v (colOfCoord W Ch hX u x) (colOfCoord W Ch hX u x) := by
@@ -162,6 +151,7 @@ theorem colsIn_isometry : ∀ (X : Fields) (hX : X.Ok) (Pr : Primes X) (R : Rank
   rfl
 
 end GlobalTheory.ColFirstIso
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DatFramedOfGramPosDef
@@ -544,8 +534,9 @@ end GlobalTheory.PairingOpNorm
 end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.KerChainMatricesWithNormBounds
-@[expose] public noncomputable section
+@[expose] public section
 
+noncomputable section
 
 namespace GlobalTheory.DefRowsChain
 
@@ -555,7 +546,6 @@ def bund (Dc : DefCols Df) (u : Dc.Mem) (Q : KerChain K) (nF : ℕ → ℕ) (XF 
     (nS : ℕ) (XS : InfinitePlace K → Matrix (Fin nS) (Fin nS) ℂ) : ℕ → Σ n : ℕ, (InfinitePlace K → Matrix (Fin n) (Fin n) ℂ)
   | 0 => ⟨Dc.a u, Dc.Xc u⟩
   | k + 1 => if k + 1 ≤ Q.n then ⟨nF (k + 1), XF (k + 1)⟩ else ⟨nS, XS⟩
-
 
 omit [NumberField K] [StarRing K] in
 theorem normAt_of_eq (p : Σ n : ℕ, (InfinitePlace K → Matrix (Fin n) (Fin n) ℂ)) (n : ℕ)
@@ -807,6 +797,7 @@ theorem rowsBody_of_framed : ∀ (K : Type) [Field K] [NumberField K] [StarRing 
   exact h8 v (T.coL y) F
 
 end GlobalTheory.DefRowsChain
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 

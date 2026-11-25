@@ -237,12 +237,11 @@ end Formalism.L2.SG.Pf.NcReal.JX.NOf.Ex
 end -- clump:auto
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.NOfibLatB
 
+noncomputable section
 
 open scoped Classical
-
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.NOfibLatB
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Matrix
 
 namespace Formalism.L2.SG.Pf.NcReal.JX.NOf
@@ -346,7 +345,6 @@ theorem inv_up (X0 : Matrix (Fin D.R.rS) (Fin D.R.rS) D.host.E) (hup : ∀ b a, 
 
 end LatB
 
-
 open LatB LatA Alg in
 theorem dictLatB_holds : DictLatB := by
   intro D X u n hn hLQ
@@ -446,8 +444,13 @@ theorem dictLatB_holds : DictLatB := by
 
 end Formalism.L2.SG.Pf.NcReal.JX.NOf
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.NOfibLatF
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.NOfibLatF
+
+noncomputable section
+
+open scoped Classical
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.L2.SG.HidaSetting Matrix
 
 namespace Formalism.L2.SG.Pf.NcReal.JX.NOf
@@ -562,7 +565,6 @@ theorem rows_mem (hL : Formalism.HermitianLatticesTheory.gmap n (VS D).L0 = (VS 
 
 end LatF
 
-
 open Alg LatF in
 theorem dictLatF_holds : DictLatF := by
   intro D X u n hn hL
@@ -575,8 +577,13 @@ theorem dictLatF_holds : DictLatF := by
 
 end Formalism.L2.SG.Pf.NcReal.JX.NOf
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.MemClosureImage
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.MemClosureImage
+
+noncomputable section
+
+open scoped Classical
 open NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Matrix
 
 namespace Formalism.L2.SG.Pf.NcReal.JX.NOf
@@ -589,15 +596,10 @@ theorem mem_closure_image {A B : Type*} [AddCommGroup A] [AddCommGroup B] (f : A
 
 variable {D : D7} (X : HidaSetting D)
 
-def embHom : D.host.E →+ (InfinitePlace X.B.I.F → ℂ) where
-  toFun := embV X
-  map_zero' := by funext v; simp [embV]
-  map_add' x y := by funext v; simp [embV]
-
 theorem mem_cl_emb (I : FractionalIdeal (nonZeroDivisors (𝓞 D.host.E)) D.host.E)
     (y : InfinitePlace X.B.I.F → ℂ) :
     y ∈ AddSubgroup.closure (embV X '' (I : Set D.host.E)) ↔ ∃ t ∈ I, embV X t = y := by
-  have := mem_closure_image (embHom X) ((I : Submodule (𝓞 D.host.E) D.host.E).toAddSubgroup) y
+  have := mem_closure_image (Formalism.L2.SG.Pf.NcReal.JX.CovB.embVHom X) ((I : Submodule (𝓞 D.host.E) D.host.E).toAddSubgroup) y
   exact this
 
 theorem theta_spec (D : D7) : IsIntegral ℤ (theta D) ∧ theta D + D.host.conj (theta D) = 1 := by
@@ -610,8 +612,13 @@ end Onto
 
 end Formalism.L2.SG.Pf.NcReal.JX.NOf
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.NOfibOnto
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.NOfibOnto
+
+noncomputable section
+
+open scoped Classical
 open NumberField Formalism.BasicNotions Matrix
 
 namespace Formalism.L2.SG.Pf.NcReal.JX.NOf
@@ -667,17 +674,11 @@ def imH (a : Fin D.R.rS) : AddSubgroup D.host.E where
     rintro s ⟨hs1, hs2⟩
     exact ⟨Submodule.neg_mem _ hs1, by rw [map_neg, hs2]⟩
 
-def imHom : D.host.E →+ (InfinitePlace X.B.I.F → ℝ) where
-  toFun t := fun v => (embS D (X.pl v) t).im
-  map_zero' := by funext v; simp
-  map_add' s t := by funext v; simp
-
 theorem mem_cl_im (a : Fin D.R.rS) (z : InfinitePlace X.B.I.F → ℝ) :
-    z ∈ cLat X u (Sum.inr (Sum.inr a)) ↔ ∃ t ∈ imH a, imHom X t = z := by
-  exact mem_closure_image (imHom X) (imH a) z
+    z ∈ cLat X u (Sum.inr (Sum.inr a)) ↔ ∃ t ∈ imH a, Formalism.L2.SG.Pf.NcReal.JX.CovB.imVHom X t = z := by
+  exact mem_closure_image (Formalism.L2.SG.Pf.NcReal.JX.CovB.imVHom X) (imH a) z
 
 end Onto
-
 
 open Onto in
 theorem fibOnto_holds : FibOnto := by
@@ -696,7 +697,7 @@ theorem fibOnto_holds : FibOnto := by
   have hC : ∀ p : LsNc5.LtPair D.R.rS, ∃ s ∈ aaD D p.1.1 * aaD D p.1.2,
       embV X s = fun v => x (Sum.inr (Sum.inl p)) v - Hc X u x v p.1.1 p.1.2 / 2 :=
     fun p => (mem_cl_emb X _ _).1 (hx (Sum.inr (Sum.inl p)))
-  have hD : ∀ a : Fin D.R.rS, ∃ t ∈ imH a, imHom X t =
+  have hD : ∀ a : Fin D.R.rS, ∃ t ∈ imH a, Formalism.L2.SG.Pf.NcReal.JX.CovB.imVHom X t =
       fun v => x (Sum.inr (Sum.inr a)) v - -((Hc X u x v a a).re * (embS D (X.pl v) (theta D)).im) :=
     fun a => (mem_cl_im X u a _).1 (hx (Sum.inr (Sum.inr a)))
   choose tA htA htA' using hA
@@ -777,7 +778,7 @@ theorem fibOnto_holds : FibOnto := by
   · funext v
     show (embS D (X.pl v) (M a a)).im = _
     have hs := congrFun (htD' a) v
-    simp only [imHom, AddMonoidHom.coe_mk, ZeroHom.coe_mk, hHc v, Matrix.map_apply] at hs
+    simp only [Formalism.L2.SG.Pf.NcReal.JX.CovB.imVHom, AddMonoidHom.coe_mk, ZeroHom.coe_mk, hHc v, Matrix.map_apply] at hs
     have hr : (embS D (X.pl v) (Gp D X0 xs a a)).im = 0 := by
       have := congrArg (embS D (X.pl v)) (hGh a a)
       rw [emb_star X] at this
@@ -787,8 +788,7 @@ theorem fibOnto_holds : FibOnto := by
 
 end Formalism.L2.SG.Pf.NcReal.JX.NOf
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.NOfibPl
 
@@ -966,17 +966,12 @@ def imSub (a : Fin D.R.rS) : AddSubgroup D.host.E where
   zero_mem' := ⟨Submodule.zero_mem _, by rw [map_zero, neg_zero]⟩
   neg_mem' := fun {t} ht => ⟨Submodule.neg_mem _ ht.1, by rw [map_neg, ht.2]⟩
 
-def imHom : D.host.E →+ (InfinitePlace X.B.I.F → ℝ) where
-  toFun t := fun v => (embS D (X.pl v) t).im
-  map_zero' := by funext v; simp
-  map_add' s t := by funext v; simp
-
 theorem mem_cl_im (a : Fin D.R.rS) (x : InfinitePlace X.B.I.F → ℝ) :
     x ∈ cLat X u (Sum.inr (Sum.inr a)) ↔
       ∃ t : D.host.E, t ∈ aaD D a * aaD D a ∧ D.host.conj t = -t ∧ (fun v => (embS D (X.pl v) t).im) = x := by
-  have hc : cLat X u (Sum.inr (Sum.inr a)) = (imSub a).map (imHom X) :=
-    AddSubgroup.closure_eq ((imSub a).map (imHom X))
-  have key : x ∈ cLat X u (Sum.inr (Sum.inr a)) ↔ x ∈ (imSub a).map (imHom X) := by
+  have hc : cLat X u (Sum.inr (Sum.inr a)) = (imSub a).map (Formalism.L2.SG.Pf.NcReal.JX.CovB.imVHom X) :=
+    AddSubgroup.closure_eq ((imSub a).map (Formalism.L2.SG.Pf.NcReal.JX.CovB.imVHom X))
+  have key : x ∈ cLat X u (Sum.inr (Sum.inr a)) ↔ x ∈ (imSub a).map (Formalism.L2.SG.Pf.NcReal.JX.CovB.imVHom X) := by
     rw [hc]; exact Iff.rfl
   refine key.trans (AddSubgroup.mem_map.trans ?_)
   constructor

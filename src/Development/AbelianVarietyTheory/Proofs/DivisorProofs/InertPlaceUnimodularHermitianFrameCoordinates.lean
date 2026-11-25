@@ -339,17 +339,14 @@ theorem exists_basis_at_inert : ∀ (F E : Type) [Field F] [NumberField F] [Fiel
 end GlobalTheory.InertLocBasis
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnimodularGramInverseInertPlace
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnimodularGramInverseInertPlace
 
+noncomputable section
 namespace GlobalTheory.InertGram
 
 open GlobalTheory.InertLocFrame
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {L : Type} [Field L]
-
-def intAt (v : Pl (F := F)) : AddSubgroup (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)) :=
-  AddSubgroup.closure {z : _root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E) | ∃ a : AF F, At (evFin F v) a ∧
-    evFin F v a ∈ v.adicCompletionIntegers F ∧ ∃ o : 𝓞 E, z = a • inclR (F := F) (AF F) (o : E)}
 
 def hA (σ : E →ₐ[F] E) {n : ℕ} (J : Matrix (Fin n) (Fin n) E) (U V : Fin n → _root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)) : _root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E) :=
   ∑ k, ∑ l, U k * inclR (F := F) (AF F) (J k l) * cA σ (V l)
@@ -392,7 +389,7 @@ theorem hA_gen (σ : E →ₐ[F] E) {n : ℕ} (J : Matrix (Fin n) (Fin n) E) (a 
 
 theorem hA_mem (σ : E →ₐ[F] E) (B : Base F E) {n r s : ℕ} (X : Spc F E n) (hX : X.IsHerm σ B r s) (v : Pl (F := F))
     {U V : Fin n → _root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)} (hU : U ∈ GlobalTheory.InertSph.latAt X v) (hV : V ∈ GlobalTheory.InertSph.latAt X v) :
-    hA σ X.J U V ∈ intAt (E := E) v := by
+    hA σ X.J U V ∈ GlobalTheory.InertLocFrame.Lat.intAt (E := E) v := by
   induction hU using AddSubgroup.closure_induction with
   | mem U hU' =>
     induction hV using AddSubgroup.closure_induction with
@@ -410,7 +407,7 @@ theorem hA_mem (σ : E →ₐ[F] E) (B : Base F E) {n r s : ℕ} (X : Spc F E n)
   | add U U' _ _ h1 h2 => rw [hA_add_left]; exact add_mem h1 h2
   | neg U _ h => rw [hA_neg_left]; exact neg_mem h
 
-theorem mul_lat_mem {d : ℕ} (W : Spc F E d) (v : Pl (F := F)) {c : _root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)} (hc : c ∈ intAt (E := E) v) {y : Fin d → E}
+theorem mul_lat_mem {d : ℕ} (W : Spc F E d) (v : Pl (F := F)) {c : _root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)} (hc : c ∈ GlobalTheory.InertLocFrame.Lat.intAt (E := E) v) {y : Fin d → E}
     (hy : y ∈ W.L) : (fun k => c * inclR (F := F) (AF F) (y k)) ∈ GlobalTheory.InertSph.latAt W v := by
   induction hc using AddSubgroup.closure_induction with
   | mem z hz =>
@@ -500,7 +497,7 @@ theorem exists_gram_inv : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [
         ((JS⁻¹ : GL (Fin n) L) : Matrix (Fin n) (Fin n) L) = GlobalTheory.InertLocFrame.gram σL ι P X.J ∧
         ∀ i j, σL ((JS : Matrix (Fin n) (Fin n) L) i j) = (JS : Matrix (Fin n) (Fin n) L) j i := by
   intro F E _ _ _ _ _ σ B _ v w _ n r s X hX L _ _ ϖ σL q ι hun hinj himg hmul hσ hint P hP
-  have hint' : ∀ x, x ∈ Formalism.UG.intL L ↔ ι x ∈ intAt (E := E) v := hint
+  have hint' : ∀ x, x ∈ Formalism.UG.intL L ↔ ι x ∈ GlobalTheory.InertLocFrame.Lat.intAt (E := E) v := hint
   have hPPi : (P : Matrix (Fin n) (Fin n) L) * ((P⁻¹ : GL (Fin n) L) : Matrix (Fin n) (Fin n) L) = 1 :=
     Units.mul_inv P
   have hPiP : ((P⁻¹ : GL (Fin n) L) : Matrix (Fin n) (Fin n) L) * (P : Matrix (Fin n) (Fin n) L) = 1 :=
@@ -572,7 +569,7 @@ theorem exists_gram_inv : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [
       rw [← mul_assoc (ι (Pm a i)), mul_one_right himg hmul]
     rw [this]; exact hA_mem σ B X hX v (hcolP i) (hcolP j)
 
-  have h1mem : ι 1 ∈ intAt (E := E) v := (hint' 1).1 (one_mem _)
+  have h1mem : ι 1 ∈ GlobalTheory.InertLocFrame.Lat.intAt (E := E) v := (hint' 1).1 (one_mem _)
   have hXs : ∀ a j, (Pi' * tJ ι S) a j ∈ Formalism.UG.intL L := fun a j => hcol (tJ ι S) j (by
     have : (fun i => ι (tJ ι S i j)) = fun i => ι 1 * inclR (F := F) (AF F) (S i j) :=
       funext fun i => tJ_spec himg hmul S i j
@@ -617,6 +614,7 @@ theorem exists_gram_inv : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [
   exact hHo
 
 end GlobalTheory.InertGram
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 
@@ -1504,8 +1502,9 @@ theorem GlobalTheory.InertLocFrame.xm_bij_at : ∀ (F E : Type) [Field F] [Numbe
     exact (him _).2 ⟨_, rfl⟩ u hu
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilSymplecticFormFrameCoordinatesEqLocalTrace
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.WeilSymplecticFormFrameCoordinatesEqLocalTrace
 
+noncomputable section
 
 namespace GlobalTheory.InertLocSymp
 
@@ -1541,7 +1540,6 @@ theorem mul_inclR {L : Type} [Field L] (ι : L →+ _root_.GlobalTheory.Indefini
   rw [hmul, GlobalTheory.InertLocFrame.pre_spec ι hat, ← mul_assoc, ← hmul, mul_one]
 
 end GlobalTheory.InertLocSymp
-
 
 open GlobalTheory.InertLocSymp in
 theorem GlobalTheory.InertLocSymp.psi_symp_eq :
@@ -1602,6 +1600,7 @@ theorem GlobalTheory.InertLocSymp.psi_symp_eq :
       Algebra.trace (AF F) (AE F E) (ι (z / 2)) := by
     rw [symp, hT, hS, map_neg, neg_one_mul, neg_neg, ← smul_eq_mul, ← LinearMap.map_smul, hhalf]
   rw [hsymp, hψ, map_div₀, map_ofNat, add_div]
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.InertPlaceUnimodularHermitianFrameCoordinates

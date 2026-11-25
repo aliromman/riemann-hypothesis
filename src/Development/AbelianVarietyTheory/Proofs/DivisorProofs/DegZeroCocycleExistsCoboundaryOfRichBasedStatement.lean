@@ -490,8 +490,9 @@ theorem _root_.GlobalTheory.T.exists_primitive_cech_poincare_rich_charts :
     linear_combination h1 + h2 - h3
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DegZeroCocycleExistsCoboundaryOfRichBased
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DegZeroCocycleExistsCoboundaryOfRichBased
 
+noncomputable section
 
 open CategoryTheory GlobalTheory.CatCoh GlobalTheory.AnPer GlobalTheory.AnPer.Charts TopologicalSpace
 
@@ -635,9 +636,10 @@ theorem exists_gauge : ∀ {I : Type} [Fintype I] {g : ℕ} {Λ : Type} [AddComm
     have z0 : (jet0 k).φ (G₀ k) = TrivSqZeroExt.inl (G₀ k) :=
       congrArg TrivSqZeroExt.inl (sh_refl (K.le_refl k) (G₀ k))
     rw [z0]
-    exact (tszeSec_sub_inl dw (G₀ k)).trans (congrArg TrivSqZeroExt.inr (funext (hd k)))
+    exact (tszeSec_sub_inl (O := Hol (K.W k)) dw (G₀ k)).trans (congrArg TrivSqZeroExt.inr (funext (hd k)))
 
 end GlobalTheory.AnPer.Charts.DegZero
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DegZeroCocycleExistsCoboundaryOfRichBasedStatement

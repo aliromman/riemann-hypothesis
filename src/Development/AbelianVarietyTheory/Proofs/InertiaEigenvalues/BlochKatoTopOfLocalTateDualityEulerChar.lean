@@ -107,10 +107,11 @@ import Mathlib.Topology.Sheaves.Presheaf
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BlochKatoDimensionSaturationUnramified, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BlochKatoTopOfLocalTateDualityEulerChar
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BlochKatoDimensionSaturationUnramified
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.BlochKatoDimensionSaturationUnramified
 
 open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations Formalism.MainNotions Formalism.MainNotions.N TensorProduct Module
 
+noncomputable section
 namespace GlobalTheory.FiltrationJumpMultiplicity
 
 section Gen
@@ -123,16 +124,13 @@ variable {G : Type} [Group G] {Qp K₀ K : Type} [Field Qp] [Field K₀] [Field 
     {LL : Type} [Field LL] [Algebra Qp LL]
     {V : Type} [AddCommGroup V] [Module LL V] [Module Qp V] [IsScalarTower Qp LL V]
 
-theorem fil_anti {a b : ℤ} (h : a ≤ b) : PD.Fil b ≤ PD.Fil a :=
-  antitone_int_of_succ_le PD.Fil_anti h
-
 theorem filV_anti {a b : ℤ} (h : a ≤ b) :
     FilV PD (LL := LL) (V := V) b ≤ FilV PD (LL := LL) (V := V) a := by
   rintro x ⟨y, rfl⟩
   induction y using TensorProduct.induction_on with
   | zero => simp
   | tmul v c =>
-    refine ⟨v ⊗ₜ ⟨(c : BdR), fil_anti PD h c.2⟩, ?_⟩
+    refine ⟨v ⊗ₜ ⟨(c : BdR), GlobalTheory.NL.JumpsSES.fil_anti PD h c.2⟩, ?_⟩
     simp
   | add y z hy hz => rw [map_add (f := _)]; exact Submodule.add_mem _ hy hz
 
@@ -274,6 +272,7 @@ theorem blochKato_dimension_saturation_unramified : ∀ D : D7, Formalism.MainNo
   · exact _root_.GlobalTheory.UnramifiedTrivial.unrTriv l (D.loc l) (D.locA l) (D.locT l) K LL
 
 end GlobalTheory.FiltrationJumpMultiplicity
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 

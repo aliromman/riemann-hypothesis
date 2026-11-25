@@ -452,10 +452,11 @@ theorem selmer_inj_column_place : SelmerInjColumnPlace := by
 end Formalism.RepresentationBoundsCohomology.BR
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.WachLatticeTwists.CoprimeLiftBounds.CoprimeLiftProofs.TheoremNFiveDeltaClause
+@[expose] public section -- clump member: Formalism.WachLatticeTwists.CoprimeLiftBounds.CoprimeLiftProofs.TheoremNFiveDeltaClause
 
 open Finset
 
+noncomputable section
 
 namespace Formalism.RepresentationBoundsCohomology.BR
 
@@ -624,30 +625,19 @@ theorem inputs_from_selmer_inj : SelmerInjConditions := by
   exact selmer_inj_column_place O A T' G M L V r χ (D (colIdx l)) iL qV tens a1 a2 a3 a4 a5 a6 a7 (Ff l)
     (j (colIdx l)) (κ l) (κz l) b1 b2 b3 b4 b5
 
-
 end Formalism.RepresentationBoundsCohomology.BR
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.WachLatticeTwists.CupProductVanishing.StatVhEInChi
+@[expose] public section -- clump member: Formalism.WachLatticeTwists.CupProductVanishing.StatVhEInChi
 
 open Formalism.NG
 open Formalism.RepresentationBoundsCohomology.BR
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal
 
+noncomputable section
 
 namespace Formalism.RepresentationBoundsCohomology.T2
-
-def StatVhE : Prop :=
-  ∀ (E Ω : Type) [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω]
-    (Av : HeightOneSpectrum (𝓞 E) → ValuationSubring Ω), (∀ v, IsPlaceOver (Av v) v) →
-    ∀ (l : ℕ) [Fact l.Prime] (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] [Algebra ℤ_[l] O]
-      [Module.Finite ℤ_[l] O], (l ≠ 2 ∨ InfinitePlace.nrRealPlaces E = 0) →
-    ∀ (M : Type) [AddCommGroup M] [Module O M], Nonempty (M ≃ₗ[O] KO O) →
-    ∀ (ρ : Representation O (G E Ω) M), (∀ g m, ρ g m = m) →
-    ∀ S : Submodule O (H1z ρ),
-      (∀ x ∈ S, ∃ z : coZ1s ρ, Submodule.mkQ _ z = x ∧ IsLocallyConstant (z : G E Ω → M)) →
-      (∀ v, S ≤ unrH1 ρ (Ine (F := E) (Av v))) →
-      Module.length O S ≤ Module.length O (O ⧸ Ideal.span {(l : O)}) * (padicValNat l (classNumber E) : ℕ∞)
 
 def StatVhEInChi : Prop :=
   ∀ (E Ω : Type) [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω]
@@ -674,8 +664,9 @@ def StatVhEInChi : Prop :=
 
 end Formalism.RepresentationBoundsCohomology.T2
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.WachLatticeTwists.CupProductVanishing.CupProductProofs.CoboundaryTrivialActionZero
+@[expose] public section -- clump member: Formalism.WachLatticeTwists.CupProductVanishing.CupProductProofs.CoboundaryTrivialActionZero
 
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
 
@@ -683,6 +674,7 @@ open Formalism.NG
 open Formalism.RepresentationBoundsCohomology.BR
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal
 
+noncomputable section
 
 namespace Formalism.RepresentationBoundsCohomology.T2
 
@@ -706,7 +698,7 @@ theorem unr_vanish (ρ : Representation O Γ M) (h : ∀ g m, ρ g m = m) (I : S
 
 end Triv
 
-theorem vhE : StatVhE := hT2Core.out.vhE
+theorem vhE : ReciprocityTheory.ChartRestriction.T2.VhE := hT2Core.out.vhE
 
 theorem unramified_H1_antitone {O : Type*} [CommRing O] {Γ : Type*} [Group Γ] {M : Type*} [AddCommGroup M] [Module O M]
     (ρ : Representation O Γ M) (h : ∀ g m, ρ g m = m) {I J : Subgroup Γ} (hIJ : I ≤ J) : unrH1 ρ J ≤ unrH1 ρ I := by
@@ -742,6 +734,7 @@ theorem vhEInChi : StatVhEInChi := by
     rw [this, map_zero]
 
 end Formalism.RepresentationBoundsCohomology.T2
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.WachLatticeTwists.RealClassMaps.RealClassMapProofs.InRowRealOf
@@ -936,7 +929,6 @@ noncomputable section
 
 namespace Formalism.RepresentationBoundsCohomology.LocallyConstantCohomology
 
-
 theorem kRow_rel {O Γ VT VT' : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     [TopologicalSpace O] [TopologicalSpace (FractionRing O)]
     [IsTopologicalAddGroup (FractionRing O)] [ContinuousSMul O (FractionRing O)]
@@ -963,7 +955,6 @@ theorem kRow_rel {O Γ VT VT' : Type} [CommRing O] [IsDomain O] [IsDiscreteValua
   have h2 : ρM g m - m = u.symm (x.1 g) - (b : Γ → M) g := h1
   have h3 : (b : Γ → M) g = u.symm (x.1 g) - (ρM g m - m) := by rw [h2]; abel
   rw [h3, map_sub, map_sub, LinearEquiv.apply_symm_apply, hu]
-
 
 theorem clause5Gen {O Γ VT VT' : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     [TopologicalSpace O] [TopologicalSpace (FractionRing O)]
@@ -1037,7 +1028,6 @@ noncomputable section
 
 namespace Formalism.RepresentationBoundsCohomology.FIN
 
-
 theorem rowRhoReal : StatRowRhoReal := by
   intro p _ O _ _ _ _ _ _ _ VT VT' _ _ _ _ _ _ _ _ _ _ _ _ _ _ Ek Ω _ _ _ _ _ Aw hp A T' _ _ _ _ _ _ _
     M _ _ _ _ r χ E ε T₁ T₂ _ _ _ _ ρ₁ ρ₂ inc π γ D u hu v familyMassRatio iS1 familyMassSecondLine iS2 HfV HfV' Fs Im hO hF hA hcyc hε hD hπ
@@ -1072,17 +1062,17 @@ theorem rowRhoReal : StatRowRhoReal := by
     · exact clause5Row O VT VT' A T' _ M r χ (Aw.decompositionSubgroup Ek) ε T₁ T₂ ρ₁ ρ₂ π γ
         (withInv D inv.toLinearMap invF.toLinearMap) u hu v hε hD.contT hπ hv hγ hk C₁ c3'
 
-
 end Formalism.RepresentationBoundsCohomology.FIN
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.WachLatticeTwists.RealClassMaps.RealClassMapProofs.TheoremNFiveReal
+@[expose] public section -- clump member: Formalism.WachLatticeTwists.RealClassMaps.RealClassMapProofs.TheoremNFiveReal
 
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
 
 open Finset Classical
 
+noncomputable section
 
 namespace Formalism.RepresentationBoundsCohomology.FIN
 
@@ -1096,16 +1086,17 @@ theorem blk_ko {O : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] 
   obtain ⟨hu⟩ := Fintype.card_eq_one_iff_nonempty_unique.1 h
   exact ⟨(LinearEquiv.funUnique {a // bl a = k} O (KO O) : ({a // bl a = k} → KO O) ≃ₗ[O] KO O)⟩
 
-
 end Formalism.RepresentationBoundsCohomology.FIN
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.WachLatticeTwists.RealClassMaps.RealClassMapProofs.TheoremNFiveRealAllLiftThird
+@[expose] public section -- clump member: Formalism.WachLatticeTwists.RealClassMaps.RealClassMapProofs.TheoremNFiveRealAllLiftThird
 
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
 
 open Finset Classical
 
+noncomputable section
 
 namespace Formalism.RepresentationBoundsCohomology.FIN
 
@@ -1194,11 +1185,8 @@ theorem pi_ko_torsion (O : Type) [CommRing O] [IsDomain O] (d : Type) [Fintype d
   rw [Pi.smul_apply, ← Finset.prod_erase_mul _ _ (Finset.mem_univ i), mul_smul, hc i, smul_zero]
   rfl
 
-
-
-
-
 end Formalism.RepresentationBoundsCohomology.FIN
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Formalism.WachLatticeTwists.SplitLocalLifts.SplitLocalLiftProofs.LocLift
@@ -1279,12 +1267,13 @@ theorem colFun : StatColFun := by
 end Formalism.RepresentationBoundsCohomology.JL
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.AdmissibleDesigns.RealDisplayAllKOf
+@[expose] public section -- clump member: Formalism.AdmissibleDesigns.RealDisplayAllKOf
 
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
 
 open Finset Classical
 
+noncomputable section
 
 namespace Formalism.MainNotions.N.K
 
@@ -1301,8 +1290,6 @@ open Formalism.RepresentationBoundsCohomology.SplitClassesAll (InRhoFix)
 open Formalism.RepresentationBoundsCohomology.T2 (vhEInChi)
 open ReciprocityTheory.ChartRestriction.T2 (IsCycOn)
 open ReciprocityTheory.Gal (H1)
-
-
 
 theorem realDisplayAllK_of (ℓ : ℕ) [Fact ℓ.Prime] (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     [Algebra ℤ_[ℓ] O] [Module.Finite ℤ_[ℓ] O]

@@ -24,10 +24,12 @@ import Mathlib.LinearAlgebra.PiTensorProduct.Finite
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CharacterPartTensorSpan, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCommonIrreducibleQuotient, Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemTensSpanOfKilled
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CharacterPartTensorSpan
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CharacterPartTensorSpan
+@[expose] public section
 
 open scoped TensorProduct
 
+noncomputable section
 
 namespace GlobalTheory.KFixIrr.TensProj
 
@@ -175,11 +177,6 @@ theorem homogeneousComponent_fockAct1 {P Q R S : ℕ} (X : Mat P Q) (hX : IsKC X
     homogeneousComponent n (fockAct1 P Q R S X f) = fockAct1 P Q R S X (homogeneousComponent n f) := by
   apply _root_.GlobalTheory.FockAlg.MinFirst.comp_comm <;> assumption
 
-theorem homogeneousComponent_mem_chiOne {P Q R S : ℕ} (x : ℚ) (f : Pol P Q R S) (hf : f ∈ chiOne P Q R S x) (n : ℕ) :
-    homogeneousComponent n f ∈ chiOne P Q R S x := by
-  rw [mem_chiOne] at hf ⊢
-  intro X hX
-  rw [← homogeneousComponent_fockAct1 X hX, hf X hX, map_smul]
 
 end GlobalTheory.KFixIrr.TensProj
 
@@ -189,6 +186,8 @@ open MvPolynomial Formalism.BasicNotions.TH TensProj
 
 end GlobalTheory.KFixIrr
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsCommonIrreducibleQuotient

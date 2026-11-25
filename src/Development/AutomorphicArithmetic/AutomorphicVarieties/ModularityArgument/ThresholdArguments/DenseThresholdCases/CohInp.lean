@@ -304,20 +304,6 @@ private theorem res_zpow {O R : Type} [CommRing O] [IsLocalRing O] [CommRing R] 
   rw [h1, _root_.one_zpow] at h2
   exact congrArg Units.val h2
 
-private def torLift {O : Type} [CommRing O] [IsLocalRing O] {G : Type} [Group G] [TopologicalSpace G]
-    {η : G →* ℤˣ} {Ψ : G →* Oˣ} {R : Type} [CommRing R] [Algebra O R] [IsCO O R] (r : GLift O η Ψ R) (t : Rˣ)
-    (ht : res O R t = 1) : GLift O η Ψ R where
-  hom := conjBy (tor R t) r.hom
-  cont a b N := by
-    simp only [(conjBy_tor r.hom t).1, map_mul]
-    exact (r.cont a b N).comp fun y => Ideal.Quotient.mk _ ((t ^ wt a b : Rˣ) : R) * y
-  red g := by
-    rw [← r.red g]
-    refine SemidirectProduct.ext (Units.ext ?_) ((conjBy_tor r.hom t).2.1 g)
-    ext a b
-    show res O R ((conjBy (tor R t) r.hom g).mat a b) = res O R ((r.hom g).mat a b)
-    rw [(conjBy_tor r.hom t).1, map_mul, res_zpow t ht, one_mul]
-
 private theorem congOne_tor {O R : Type} [CommRing O] [IsLocalRing O] [CommRing R] [Algebra O R] [IsCO O R]
     (t : Rˣ) (ht : res O R t = 1) : CongOne (maximalIdeal R) (tor R t) := by
   intro a b
@@ -370,11 +356,11 @@ private theorem exists_pres {O : Type} [CommRing O] [IsDomain O] [IsLocalRing O]
       exact ((S.rep R').2 _ ((S.rep R').1 f')).unique h1 rfl)
     (fun R' _ _ _ f t ht => by
       obtain ⟨hn, hk, hI⟩ := (S.rep R').1 f
-      obtain ⟨f', hf', -⟩ := (S.rep R').2 (torLift (S.r.map f) (t (Multiplicative.ofAdd 1)) (ht _))
+      obtain ⟨f', hf', -⟩ := (S.rep R').2 (gf_torLift (S.r.map f) (t (Multiplicative.ofAdd 1)) (ht _))
         ⟨(conjBy_tor _ _).2.2.1 _ _ hn, fun g hg => by
           show MulAut.conj _ ((S.r.map f).hom g) = 1
           rw [hk g hg, map_one], hL R' ((S.r.map f).comap ι hι)
-            ((torLift (S.r.map f) (t (Multiplicative.ofAdd 1)) (ht _)).comap ι hι) _ (congOne_tor _ (ht _))
+            ((gf_torLift (S.r.map f) (t (Multiplicative.ofAdd 1)) (ht _)).comap ι hι) _ (congOne_tor _ (ht _))
             (MonoidHom.ext fun _ => rfl) hI⟩
       have htj : ∀ j : ℤ, t (Multiplicative.ofAdd 1) ^ j = t (Multiplicative.ofAdd j) := fun j => by
         rw [← map_zpow, ← ofAdd_zsmul, smul_eq_mul, mul_one]
@@ -555,9 +541,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.AutomorphyU3OfEndoscopy
 @[expose] public section
 
-
-
-
 section
 open UpperTheory.GalN.V hiding autCsd_iso
 open NumberField IsLocalRing Formalism.ConjugateSelfDual ReciprocityTheory.Gal GlobalTheory.GalOfCusp UpperTheory.V.HV UpperTheory.V.U3 UpperTheory.V.Aut UpperTheory.V.Pr UpperTheory.V
@@ -668,9 +651,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.CohInp
-
-
-
 
 section
 open Formalism.GaloisCohomology UpperTheory.Top GlobalTheory.Mem.LiteralAutomorphy

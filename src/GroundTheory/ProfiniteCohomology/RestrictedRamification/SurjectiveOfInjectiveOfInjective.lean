@@ -60,7 +60,7 @@ theorem finite_divFunEval_ne_zero (n : ℕ) (x : cohomology (divFunRep φ A) n) 
 end GroundTheory.ProfCoh
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ProfiniteCohomology.RestrictedRamification.SurjectiveOfInjectiveOfInjective
+@[expose] public section -- clump member: GroundTheory.ProfiniteCohomology.RestrictedRamification.SurjectiveOfInjectiveOfInjective
 
 set_option maxSynthPendingDepth 1
 
@@ -68,16 +68,14 @@ namespace GroundTheory.ProfCoh
 
 open CategoryTheory NumberField IsDedekindDomain IntermediateField GroundTheory.Global
 
+noncomputable section
 
 local notation "ℚ̄" => AlgebraicClosure ℚ
 
 theorem surjective_of_injective_of_injective {α β : Type*} [Finite α] {f : α → β} {g : β → α}
-    (hf : Function.Injective f) (hg : Function.Injective g) : Function.Surjective f := by
+    (hf : Function.Injective f) (hg : Function.Injective g) : Function.Surjective f :=
   have : Finite β := Finite.of_injective g hg
-  have hfg : Function.Injective (f ∘ g) := hf.comp hg
-  exact fun b => by
-    obtain ⟨a, ha⟩ := Finite.injective_iff_surjective.1 hfg b
-    exact ⟨g a, ha⟩
+  (Finite.injective_iff_surjective.1 (hf.comp hg)).of_comp
 
 section Val
 
@@ -417,6 +415,7 @@ theorem eq_zero_of_h3_sUnits (ℓ : ℕ) (hℓ : ℓ.Prime)
 
 end H3Main
 
+end
 
 end GroundTheory.ProfCoh
 

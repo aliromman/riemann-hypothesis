@@ -254,11 +254,6 @@ theorem lmap_comp {R S T : Type} [CommRing R] [CommRing S] [CommRing T] (f : R �
   refine RingHom.ext fun p => lext fun n => ?_
   rw [RingHom.comp_apply, lmap_apply, lmap_apply, lmap_apply, RingHom.comp_apply]
 
-theorem spMap_comp' {R S T : Type} [CommRing R] [CommRing S] [CommRing T] (F : R →+* S) (G : S →+* T) :
-    spMap (G.comp F) = spMap G ≫ spMap F := by
-  show sch.map (Spec.map (CommRingCat.ofHom (G.comp F))) = sch.map (Spec.map (CommRingCat.ofHom G)) ≫ sch.map (Spec.map (CommRingCat.ofHom F))
-  rw [CommRingCat.ofHom_comp, Spec.map_comp, Functor.map_comp]
-
 attribute [local instance] Classical.propDecidable
 
 variable {A : Type} [CommRing A]
@@ -325,7 +320,6 @@ theorem sub_fg (u : A) (s : Finset A) : (sub u s).FG := ⟨insert u s, rfl⟩
 
 end GlobalTheory.EtC.LaurentNoeth
 
-
 open GlobalTheory.EtC.LaurentNoeth in
 theorem GlobalTheory.EtC.laurent_vanishing_of_noetherian : ∀ (q : ℕ) [NeZero q], (∀ (A : Type) [CommRing A] [IsNoetherianRing A], SH A → IsUnit (q : A) → ∀ n i : ℤ, 2 ≤ n → Subsingleton (Ht q (sp (LaurentPolynomial A)) n i)) → ∀ (A : Type) [CommRing A], SH A → IsUnit (q : A) → ∀ n i : ℤ, 2 ≤ n → Subsingleton (Ht q (sp (LaurentPolynomial A)) n i) := by
   classical
@@ -352,7 +346,7 @@ theorem GlobalTheory.EtC.laurent_vanishing_of_noetherian : ∀ (q : ℕ) [NeZero
     rw [← lmap_comp, hfg]; rfl
   rw [← hy, e]
   change pull _ (spMap ((lmap g).comp (lmap f))) _ _ y = 0
-  rw [spMap_comp']
+  rw [GlobalTheory.EtC.FracAway.spMap_comp]
   refine (pull_comp (ZMod q) (spMap (lmap g)) (spMap (lmap f)) (tw q i) n y).trans ?_
   have : pull _ (spMap (lmap f)) (tw q i) n y = 0 := Subsingleton.elim _ _
   rw [this, map_zero]
@@ -482,7 +476,6 @@ theorem gmPhi_bijective_prod (h6 : DivisorNaturality) (q : ℕ) [NeZero q] (T₁
 
 end GlobalTheory.EtC.LaurentMapPullbackBijective
 
-
 open GlobalTheory.EtC.LaurentMapPullbackBijective in
 theorem GlobalTheory.EtC.GmStep.gmPhi_bijective_finite : ∀ (q : ℕ) [NeZero q] (A : Type) [CommRing A], SH A → IsUnit (q : A) →
     ∀ (T : Type) [CommRing T] [Algebra A T], Module.Finite A T → ∀ i : ℤ, Function.Bijective (gmPhi q T i) := by
@@ -581,10 +574,11 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleSpaceCohomologyEqZeroOfSimplicialRowExact
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleSpaceCohomologyEqZeroOfSimplicialRowExact
 
 open CategoryTheory Limits AlgebraicGeometry Opposite Simplicial CochainComplex CochainComplex.HomComplex GlobalTheory.EtC GlobalTheory.EtC.GmStep
 
+noncomputable section
 
 namespace GlobalTheory.EtC.RowVanish
 
@@ -751,7 +745,6 @@ theorem clear_step {K L : Cx R} {n : ℤ} (z : Cocycle K L n) (k : ℕ)
 
 end GlobalTheory.EtC.RowVanish
 
-
 open GlobalTheory.EtC.RowVanish GlobalTheory.EtC.ClsBasic GlobalTheory.EtC.HCElements in
 theorem GlobalTheory.EtC.vanish_of_rowExact : ∀ (R : Type) [CommRing R] (F : Shv R) (E : Spc) (P : PSh) (g : disc.obj P ⟶ E),
     IsIso (g.app (op ⦋0⦌)) →
@@ -869,6 +862,7 @@ theorem GlobalTheory.EtC.vanish_of_rowExact : ∀ (R : Type) [CommRing R] (F : S
     · exact (hneg q (by omega)).eq_of_tgt _ _)
   rw [← hz, h0]
   rfl
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens
@@ -1229,10 +1223,12 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SimplicialSpectralRowExactZeroOfAcyclic
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SimplicialSpectralRowExactZeroOfAcyclic
+@[expose] public section
 
 open CategoryTheory Limits AlgebraicGeometry Opposite Simplicial CochainComplex CochainComplex.HomComplex GlobalTheory.EtC GlobalTheory.EtC.GmStep
 
+noncomputable section
 
 namespace GlobalTheory.EtC.GmStep.DegRow
 
@@ -1305,7 +1301,6 @@ theorem simplicialSpectralRowDifferential_degreeZeroClass (E : Spc) (p : ℕ) (s
 
 end GlobalTheory.EtC.GmStep.DegRow
 
-
 open GlobalTheory.EtC.GmStep.DegRow in
 theorem GlobalTheory.EtC.GmStep.rowExact_zero_of_acyclic : ∀ (R : Type) [CommRing R] (F : Shv R) (E : Spc),
     (∀ (p : ℕ) (s : ℤ), 0 < s → Subsingleton (H R (disc.obj (E.obj (op ⦋p⦌))) F s)) →
@@ -1322,6 +1317,8 @@ theorem GlobalTheory.EtC.GmStep.rowExact_zero_of_acyclic : ∀ (R : Type) [CommR
   obtain ⟨t, ht⟩ := (leray_inj R F E p (fun k m hm _ y => @Subsingleton.elim _ (hlev k m (by exact_mod_cast hm)) y 0)).2 s hx
   exact ⟨cls0 F _ t, by rw [simplicialSpectralRowDifferential_degreeZeroClass, ht]⟩
 
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LaurentPolynomialTateTwistCohomologyVanishingInd

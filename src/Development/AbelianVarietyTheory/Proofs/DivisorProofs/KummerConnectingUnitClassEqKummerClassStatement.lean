@@ -57,10 +57,12 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleSheafSectionsGlueOfLocallyUnique, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsEtaleLocalRootOfUnitOfKummer, Development.AbelianVarietyTheory.Proofs.DivisorProofs.RootOfUnityEtaleLocallyPowPrimitiveRoot, Development.AbelianVarietyTheory.Proofs.DivisorProofs.KummerSplittingDifferenceMulRootOfUnity, Development.AbelianVarietyTheory.Proofs.DivisorProofs.KummerConnectingUnitClassEqKummerClass, Development.AbelianVarietyTheory.Proofs.DivisorProofs.KummerConnectingUnitClassEqKummerClassStatement
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleSheafSectionsGlueOfLocallyUnique
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleSheafSectionsGlueOfLocallyUnique
+@[expose] public section
 
 open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex GlobalTheory.EtC
 
+noncomputable section
 
 namespace GlobalTheory.EtC.SecGlueLoc
 
@@ -117,7 +119,6 @@ theorem loc_unique {R : Type} [CommRing R] (F : Shv R) (X : Scheme.{0})
 
 end GlobalTheory.EtC.SecGlueLoc
 
-
 open GlobalTheory.EtC.SecGlueLoc in
 theorem GlobalTheory.EtC.secGlue_of_loc : ∀ {R : Type} [CommRing R] (F : Shv R) (X : Scheme.{0}) (A : ∀ U : Scheme.{0}, (U ⟶ X) → Sec F U → Prop),
     (∀ (V U : Scheme.{0}) (g : V ⟶ U) (x : U ⟶ X) (s : Sec F U), A U x s → A V (g ≫ x) (Sec.res g s)) →
@@ -138,22 +139,16 @@ theorem GlobalTheory.EtC.secGlue_of_loc : ∀ {R : Type} [CommRing R] (F : Shv R
     exact hP W (h ≫ g) hh
   · refine loc_unique F X A h2 U x _ _ (he U x) ⟨⊤, Scheme.etaleTopology.top_mem U, fun V g _ => h1 V U g x s hs⟩
 
+end
+end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsEtaleLocalRootOfUnitOfKummer
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsEtaleLocalRootOfUnitOfKummer
 
 open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComplex.HomComplex GlobalTheory.EtC
 
+noncomputable section
 namespace GlobalTheory.EtC.KumRoots
-
-theorem loc_bind {U : Scheme.{0}} {P Q : ∀ V : Scheme.{0}, (V ⟶ U) → Prop} (hP : Loc U P)
-    (h : ∀ (V : Scheme.{0}) (g : V ⟶ U), P V g → Loc V fun W k => Q W (k ≫ g)) : Loc U Q := by
-  obtain ⟨S, hS, hSP⟩ := hP
-  choose R hR hRQ using fun (V : Scheme.{0}) (g : V ⟶ U) (hg : S.arrows g) => h V g (hSP V g hg)
-  refine ⟨Sieve.bind S.arrows (fun V g hg => R V g hg),
-    Scheme.etaleTopology.bind_covering hS (fun V g hg => hR V g hg), ?_⟩
-  rintro W f ⟨V, k, g, hg, hk, rfl⟩
-  exact hRQ V g hg W k hk
 
 abbrev unitsP : Scheme.{0}ᵒᵖ ⥤ ModuleCat.{1} (ULift.{1} ℤ) := Scheme.Γ ⋙ unitsF
 
@@ -197,9 +192,9 @@ theorem roots : ∀ (q : ℕ) [NeZero q],
     ∀ (U : Scheme.{0}), IsUnit (q : Γ(U, ⊤)) → ∀ u : (Γ(U, ⊤))ˣ,
       Loc U fun V g => ∃ v : (Γ(V, ⊤))ˣ, v ^ q = Units.map g.appTop.hom.toMonoidHom u := by
   intro q _ hyp U hq u
-  refine loc_bind (hyp U hq (unitSec u)) ?_
+  refine GlobalTheory.EtC.TwMulInj.loc_bind (hyp U hq (unitSec u)) ?_
   rintro V g ⟨c, hc⟩
-  refine loc_bind (P := fun W h => ∃ v : (Γ(W, ⊤))ˣ, unitSec v = Sec.res h c)
+  refine GlobalTheory.EtC.TwMulInj.loc_bind (P := fun W h => ∃ v : (Γ(W, ⊤))ˣ, unitSec v = Sec.res h c)
     ⟨_, Presheaf.imageSieve_mem Scheme.etaleTopology (toSheafify Scheme.etaleTopology unitsP) (U := op V) c, ?_⟩ ?_
   · rintro W h ⟨t, ht⟩
     exact ⟨Additive.toMul t.down, ht⟩
@@ -223,6 +218,7 @@ theorem roots : ∀ (q : ℕ) [NeZero q],
     rw [← map_pow, hk', Category.assoc, units_map_comp k (h ≫ g)]
 
 end GlobalTheory.EtC.KumRoots
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RootOfUnityEtaleLocallyPowPrimitiveRoot
@@ -581,8 +577,8 @@ theorem kum_connect : ∀ (q : ℕ) [NeZero q] (κ : (restr (Int.castRingHom (ZM
       rw [← h1, map_res]
       rfl
     | succ p =>
-      exact (_root_.GlobalTheory.EtC.Sec.eq_zero_of_isZero (isZero_res_neg _ _ (by omega)) _).trans
-        (_root_.GlobalTheory.EtC.Sec.eq_zero_of_isZero (isZero_res_neg _ _ (by omega)) _).symm
+      exact (_root_.GlobalTheory.EtC.TensUniv.sec_zero_of_isZero (isZero_res_neg _ _ (by omega)) _).trans
+        (_root_.GlobalTheory.EtC.TensUniv.sec_zero_of_isZero (isZero_res_neg _ _ (by omega)) _).symm
   have hL : HK.ext ℤ _ z 0 (0 + 1) rfl (secClass (cokernel κ) c) = s • CohomologyClass.mk (zcomp acyc w (zero_add 1)) := by
     have hα1' : CohomologyClass.mk α = secClass (cokernel κ) c := hα1
     rw [← hα1', hαa]
@@ -635,7 +631,7 @@ theorem kum_connect : ∀ (q : ℕ) [NeZero q] (κ : (restr (Int.castRingHom (ZM
       rw [hγ1 U x]
       simp
     | succ p =>
-      rw [_root_.GlobalTheory.EtC.Sec.eq_zero_of_isZero (isZero_res_neg _ t (by omega)) (ev γ.1 _ t _ U x)]
+      rw [_root_.GlobalTheory.EtC.TensUniv.sec_zero_of_isZero (isZero_res_neg _ t (by omega)) (ev γ.1 _ t _ U x)]
       simp
 
 end GlobalTheory.EtC.KumUnit

@@ -97,9 +97,6 @@ import Development.AutomorphicArithmetic.AutomorphicVarieties.UnitaryThreeGroups
 section -- clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.ThresholdArguments.DenseThresholdCases.RigidityEndomorphismWeightTwo
 @[expose] public section
 
-
-
-
 section
 open UpperTheory.GalN.V
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal IsLocalRing Polynomial UpperTheory.V UpperTheory.V.HV GlobalTheory.GalOfCusp UpperTheory.V.Th

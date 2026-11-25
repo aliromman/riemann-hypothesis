@@ -235,7 +235,6 @@ theorem commGroup_inv_eq_conj_twist_identity {G : Type} [CommGroup G] (a b g : G
 
 end GlobalTheory.ExtendClass
 
-
 open GlobalTheory.GlueLineBundle TopologicalSpace GlobalTheory.ExtendClass in
 theorem GlobalTheory.extend_class_of_locally_trivial : ∀ (X : Scheme.{0}) [IsLocallyNoetherian X], ReciprocityTheory.ChartRestriction.G.Geo.Tor.IsNormalScheme X → ∀ W : X.Opens, (∀ z : X, ringKrullDim ((X).presheaf.stalk z) ≤ 1 → z ∈ W) → ∀ c : Pic W.toScheme, (∀ x : X, ∃ N : X.Opens, x ∈ N ∧ GlobalTheory.CechPic.pull (X.homOfLE (inf_le_right : N ⊓ W ≤ W)) c = 0) → ∃ c' : Pic X, GlobalTheory.CechPic.pull W.ι c' = c := by
   intro X _ hX W hW c hc
@@ -588,7 +587,7 @@ theorem pull_mul_add_pull_mul_inv_of_opens : ∀ (S : Scheme.{0}) [IsLocallyNoet
     rw [map_one, MonObj.comp_one]
   rw [key _ _ hmul, key _ _ hinv, key _ _ hx, key _ _ ha, key _ _ hainv, key _ _ hone]
   simp only [pull_comp]
-  exact GlobalTheory.T.theorem_of_square_cechPicard_translates U.toScheme A' hA' (pull e.inv c) Y' x' a'
+  exact GlobalTheory.SquareSym.pull_mul_add_pull_mul_inv U.toScheme A' hA' (pull e.inv c) Y' x' a'
 
 end GlobalTheory.SquareOpen
 end -- clump:auto
@@ -1093,8 +1092,9 @@ theorem exists_sec_near : ∀ (B C : Type) [CommRing B] [IsNoetherianRing B] [Co
 end GlobalTheory.FlatTrivSec
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PicardClassLocallyTrivialOfTrivialSmoothNormalCo
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PicardClassLocallyTrivialOfTrivialSmoothNormalCo
 
+noncomputable section
 
 namespace GlobalTheory.LocalTriv
 
@@ -1134,7 +1134,7 @@ theorem factor_locus : ∀ (X T : Scheme.{0}) (W : X.Opens) (c : Pic W.toScheme)
     exact ⟨z', h⟩)
   have hk : k ≫ (j ∣_ W) = X.homOfLE (inf_le_right : N ⊓ W ≤ W) := IsOpenImmersion.lift_fac _ _ _
   rw [← hk, pull_comp]
-  refine GlobalTheory.T.nonvanishingLocus_pullback_and_vanish_into_locus.2 _ _ k _ V hV fun z => ?_
+  refine GlobalTheory.LocusPull.locus_pull.2 _ _ k _ V hV fun z => ?_
   obtain ⟨z', hz'V, h⟩ := hz z
   have hkz : k z = z' := (j ∣_ W).isOpenEmbedding.injective (by
     have e : (j ∣_ W) (k z) = X.homOfLE (inf_le_right : N ⊓ W ≤ W) z := congrArg (fun f => f.base z) hk
@@ -1195,6 +1195,7 @@ theorem locally_trivial : ∀ (X Y : Scheme.{0}) [IsLocallyNoetherian X] (q : Y 
   exact (congrArg hA0.fromSpec.base e).trans (hpt d)
 
 end GlobalTheory.LocalTriv
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.TwoSmulPicardClassExtendsAbelianScheme

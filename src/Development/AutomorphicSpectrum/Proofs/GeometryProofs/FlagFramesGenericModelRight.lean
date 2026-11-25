@@ -921,8 +921,9 @@ end -- clump:auto
 
 open AlgebraicGeometry CategoryTheory GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.FlagBun GlobalTheory.CompanionTheory.Ar.FlagBun.Sm
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.TwistedFrameInChart
+@[expose] public section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.TwistedFrameInChart
 
+noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.FlagBun.Sm
 
@@ -953,18 +954,9 @@ theorem unitAt_mul' {p : Cpt ξ} {f g : Ω} (hf : unitAt ξ p f) (hg : unitAt ξ
 
 theorem unitAt_prod' {p : Cpt ξ} {ι : Type} (s : Finset ι) (f : ι → Ω) (h : ∀ i ∈ s, unitAt ξ p (f i)) :
     unitAt ξ p (∏ i ∈ s, f i) := by
-  classical
-  induction s using Finset.induction_on with
-  | empty =>
-    rw [Finset.prod_empty]
-    unfold GlobalTheory.CompanionTheory.Ar.unitAt
-    refine ⟨one_ne_zero, one_mem _, ?_⟩
-    rw [inv_one]
-    exact one_mem _
-  | @insert a s ha ih =>
-    rw [Finset.prod_insert ha]
-    exact unitAt_mul' (h a (Finset.mem_insert_self a s))
-      (ih fun i hi => h i (Finset.mem_insert_of_mem hi))
+  refine Finset.prod_induction f (unitAt ξ p) (fun _ _ ha hb => unitAt_mul' ha hb) ?_ h
+  unfold GlobalTheory.CompanionTheory.Ar.unitAt
+  refine ⟨one_ne_zero, one_mem _, by rw [inv_one]; exact one_mem _⟩
 
 theorem exists_dual_family {E : Type} [AddCommGroup E] [Module Ω E] {r : ℕ} {β : Fin r → E}
     (hβ : LinearIndependent Ω β) :
@@ -1105,6 +1097,7 @@ theorem exists_chart_frame : ∀ (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : S
           mul_one, mul_comm])
 
 end GlobalTheory.CompanionTheory.Ar.FlagBun.Sm
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.FlagFramesGenericModelRight

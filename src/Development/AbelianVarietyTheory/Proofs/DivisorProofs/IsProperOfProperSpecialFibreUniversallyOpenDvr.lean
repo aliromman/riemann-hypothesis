@@ -173,8 +173,9 @@ theorem connectedSpace_specialFibre_of_morphisms : GlobalTheory.Published.Formal
 end GlobalTheory.AlgConn
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsClosedImageClosureCompleteDVRSpecialFibre
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsClosedImageClosureCompleteDVRSpecialFibre
 
+noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry
 
@@ -214,7 +215,7 @@ theorem isClosed_image_closure : ∀ (O : Type) [CommRing O] [IsDomain O] [IsDis
       rw [← I.subschemeι.isEmbedding.isInducing.isPreconnected_image, Set.image_univ, hrange]
       exact hZirr.2.isPreconnected
     haveI : ConnectedSpace I.subscheme := { toPreconnectedSpace := ⟨hpc⟩, toNonempty := hne }
-    haveI hsp := GlobalTheory.AlgConn.connectedSpace_specialFibre_of_morphisms GlobalTheory.T.formalAlgebraisation_morphisms' O _
+    haveI hsp := GlobalTheory.AlgConn.connectedSpace_specialFibre_of_morphisms GlobalTheory.FormalAlgMorphisms.formalAlgebraisation_morphisms O _
       (I.subschemeι ≫ s) inferInstance inferInstance
     have hT : Set.range (GlobalTheory.IndefiniteRowSideFullHecke.SpecialFibreUnits.specialι (I.subschemeι ≫ s)) =
         (I.subschemeι ≫ s) ⁻¹' {IsLocalRing.closedPoint O} := by
@@ -279,6 +280,7 @@ theorem isClosed_image_closure : ∀ (O : Type) [CommRing O] [IsDomain O] [IsDis
   exact hZc
 
 end GlobalTheory.FibProperClosed
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UniversallyClosedOfClosedCoverInUniversallyClose

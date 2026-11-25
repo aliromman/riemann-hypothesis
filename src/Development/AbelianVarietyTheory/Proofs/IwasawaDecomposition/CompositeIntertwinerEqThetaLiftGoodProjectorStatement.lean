@@ -98,7 +98,6 @@ open Formalism.IndefR.RecTie Formalism.IndefR.Lev Formalism.L2.Rows GlobalTheory
 
 namespace GlobalTheory.Mem.R3.StepUniq
 
-
 open Classical in
 theorem eq_zero_of_vanish_it : GlobalTheory.Published.DiscreteSeriesCover → GlobalTheory.Published.HarishChandraModules → ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 I0 T : Type) (A3 : FamIn3 D.what₂.LL G Pl0 I0 (List ℕ) T D.R.m) (Ks : Type) [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat3 D A3 Ks) (F : Face3 D A3) (cG : G0 R.Pg D.R.r ≃* G0g D.nd), Pins R F cG → Holds R F → ∀ (t : T) (k : ℕ), k + 1 < D.R.m → ∀ u : MMap (R.MY k), Formalism.IndefR.Eqv.ContAt (R.MY k) u → (∀ φ w, PiTensorProduct.lift u (R.ItY k φ w) = 0) → u = 0 := by
   intro hDS hHC D G _ _ Pl0 I0 T A3 Ks _ _ _ R F cG hP hH t k hk u hc hv
@@ -335,8 +334,9 @@ theorem stepLev_holds : (GlobalTheory.Published.DiscreteSeriesCover ∧ GlobalTh
 end GlobalTheory.Mem.R3.DTheta
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LastThetaStepKeepsFaceLevel
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.LastThetaStepKeepsFaceLevel
 
+noncomputable section
 
 namespace GlobalTheory.Mem.R3.DTheta
 
@@ -350,8 +350,6 @@ theorem liftsExist_top (R : RealDat D A Ks) (hl : R.toLevCh.Is A.μ0) (t : T) (g
   obtain ⟨c, hc⟩ := hl.βX
   exact GlobalTheory.T.parahoricLevel_liftsExist D.sp.X' R.βX (R.datXt t) _ _ hc (GlobalTheory.ChainEquiv.places_sep R.toLevCh _ hl t).1
     (GlobalTheory.ChainEquiv.places_sep R.toLevCh _ hl t).2 g0
-
-
 
 theorem topLev_of_clauses (R : RealDat D A Ks) (F : Face D A) (hl : R.toLevCh.Is A.μ0) (hM : R.IsModels) (hc : R.IsChain)
     (hS : ∀ t j, j < D.R.m → SchurMult R.θ (R.MY j) (levS _ (R.βY j) (R.datYt t j R.triv))
@@ -386,8 +384,6 @@ theorem topLev_of_clauses (R : RealDat D A Ks) (F : Face D A) (hl : R.toLevCh.Is
 
 end TopLevProof
 
-
-
 theorem topLev_holds : (GlobalTheory.Published.DiscreteSeriesCover ∧ GlobalTheory.Published.HarishChandraModules ∧ GlobalTheory.Published.CasselmanWallach ∧ GlobalTheory.Published.HarishChandraFinite ∧ GlobalTheory.Published.CuspRapidDecay) → ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 I0 T : Type) (A3 : FamIn3 D.what₂.LL G Pl0 I0 (List ℕ) T D.R.m) (Ks : Type) [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat3 D A3 Ks) (F : Face3 D A3) (cG : G0 R.Pg D.R.r ≃* G0g D.nd), Pins R F cG → Holds R F → GlobalTheory.Mem.R3.DTheta.TopLev R.toRealDat F.lv2 := by
   intro hC D G _ _ Pl0 I0 T A3 Ks _ _ _ R F cG hP hH
   exact topLev_of_clauses R.toRealDat F.lv2 hP.char.base.lev hP.char.base.models
@@ -395,6 +391,7 @@ theorem topLev_holds : (GlobalTheory.Published.DiscreteSeriesCover ∧ GlobalThe
     (fun _ _ _ => GlobalTheory.MultFinite.schurMult hC.2.2.2.2 _ _)
 
 end GlobalTheory.Mem.R3.DTheta
+end -- clump:auto
 end -- clump:auto
 
 end -- clump: shared namespace opens
@@ -490,17 +487,12 @@ section Act
 variable {D : D7} {V : HSp D} {S : D.what₂.Tau → SPar} {θ : InfFam D} {M : DSModel V S} {β : GL (Fin V.rank) (Lev.EAf D)}
   {L : LevDat D.host.E ℂ V.rank} {G : Type} [Group G] [Fintype G] {μ : Measure (GA D V)} {𝓕 : Set (GA D V)}
 
-theorem isLiftFlagGroup_inv {g : G0 L.Pg L.r} {κ : GA D V} (h : IsLevelLift V β L g κ) : IsLevelLift V β L g⁻¹ κ⁻¹ := by
-  refine ⟨(GfC V).inv_mem h.1, ?_, ?_⟩
-  · rw [map_inv]; exact Subgroup.inv_mem _ h.2.1
-  · rw [map_inv, rTup_inv h.2.1, h.2.2]
-
 theorem levChi_inv {g : G0 L.Pg L.r} {κ : GA D V} (h : IsLevelLift V β L g κ) :
     (levChi V β (flagL L) κ⁻¹)⁻¹ = star (levChi V β (flagL L) κ)⁻¹ := by
   have h1 : κ ∈ levG V β (flagL L) := ⟨h.1, h.2.1, Subgroup.mem_top _⟩
   have hn := GlobalTheory.norm_levChi_flagL_eq_one V β L κ h1
   have h2 : levChi V β (flagL L) κ⁻¹ * levChi V β (flagL L) κ = 1 := by
-    have a := levFn_flag_mul (V := V) (β := β) (L := L) (isLiftFlagGroup_inv h).2.1 h.2.1
+    have a := levFn_flag_mul (V := V) (β := β) (L := L) (GlobalTheory.ProjComm.isLift_inv h).2.1 h.2.1
     have b := levFn_flag_mul (V := V) (β := β) (L := L) (Subgroup.one_mem _) (Subgroup.one_mem _)
     rw [mul_one, left_eq_mul] at b
     rw [← map_mul, inv_mul_cancel, map_one, b] at a
@@ -520,7 +512,7 @@ theorem integral_act (hμ : μ.IsHaarMeasure) (h𝓕 : IsFundamentalDomain (GQ V
   have := GlobalTheory.AdelicPointsUnimod.isMulRightInvariant_of_isHaarMeasure D V μ hμ
   by_cases hk : ∃ κ, IsLevelLift V β L g κ
   · have hκ := hk.choose_spec
-    have h1 := level_action_spec ht ⟨_, isLiftFlagGroup_inv hκ⟩ _ (isLiftFlagGroup_inv hκ)
+    have h1 := level_action_spec ht ⟨_, GlobalTheory.ProjComm.isLift_inv hκ⟩ _ (GlobalTheory.ProjComm.isLift_inv hκ)
     have h2 := (GlobalTheory.fundamentalDomain_integral_mul_right μ (GQ V) 𝓕 (fun x => star (φ x) * actG0 V β L g⁻¹ ψ x) hk.choose h𝓕
       fun γ hγ x => by rw [h1, h1, mul_assoc γ, hφ γ hγ, hψ γ hγ]).2
     rw [← h2]
@@ -528,7 +520,7 @@ theorem integral_act (hμ : μ.IsHaarMeasure) (h𝓕 : IsFundamentalDomain (GQ V
     show star (actG0 V β L g φ x) * ψ x = star (φ (x * hk.choose)) * actG0 V β L g⁻¹ ψ (x * hk.choose)
     rw [h1, levChi_inv hκ, mul_inv_cancel_right, actG0, dite_eq_left hk, star_mul']
     ring
-  · have hk' : ¬ ∃ κ, IsLevelLift V β L g⁻¹ κ := fun ⟨κ, h⟩ => hk ⟨κ⁻¹, by simpa using isLiftFlagGroup_inv h⟩
+  · have hk' : ¬ ∃ κ, IsLevelLift V β L g⁻¹ κ := fun ⟨κ, h⟩ => hk ⟨κ⁻¹, by simpa using GlobalTheory.ProjComm.isLift_inv h⟩
     simp [actG0, dite_eq_right hk, dite_eq_right hk']
 
 theorem ipM_gaL (hP : GlobalTheory.Published.CuspRapidDecay) (hθ : IsInfFam θ) (hμ : μ.IsHaarMeasure) (h𝓕 : IsFundamentalDomain (GQ V) 𝓕 μ)
@@ -620,12 +612,11 @@ theorem rowProj_holds : GlobalTheory.Published.CuspRapidDecay → ∀ (D : D7) (
 end GlobalTheory.Mem.R3.DTheta
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CompositeIntertwinerEqThetaLiftGoodProjector
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CompositeIntertwinerEqThetaLiftGoodProjector
 
+noncomputable section
 
 namespace GlobalTheory.Mem.R3.DTheta
-
-
 
 theorem composite_eq_lift : (GlobalTheory.Published.DiscreteSeriesCover ∧ GlobalTheory.Published.HarishChandraModules ∧ GlobalTheory.Published.CasselmanWallach ∧ GlobalTheory.Published.HarishChandraFinite ∧ GlobalTheory.Published.CuspRapidDecay) → ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 I0 T : Type) (A3 : FamIn3 D.what₂.LL G Pl0 I0 (List ℕ) T D.R.m) (Ks : Type) [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat3 D A3 Ks) (F : Face3 D A3) (cG : G0 R.Pg D.R.r ≃* G0g D.nd) (X0 : BaseLevelRowSide D) (Y : Read (A3 := A3) R.toRealDat F.lv2 X0), Pins R F cG → Holds R F → (∀ t x, (Y.Ish.jE (D.what₂.iota (Y.tup t) (Y.jA t x))).1 = PiTensorProduct.lift (R.HE.e (R.Th t (R.jX t (rowForm A3.A F.P1 F.ψ1 t x))))) ∧ ∀ t x, (Y.Iz.jE (X0.s.iota (Y.tup t) (Y.jA0 t x))).1 = PiTensorProduct.lift (R.HE.e (R.Th t (R.jX t (rowForm A3.A F.P0 F.ψ0 t x)))) := by
   intro hC D G _ _ Pl0 I0 T A3 Ks _ _ _ R F cG X0 Y hPins hHolds
@@ -650,6 +641,7 @@ theorem composite_eq_lift : (GlobalTheory.Published.DiscreteSeriesCover ∧ Glob
       (Y.tup t) (hUsed t) (Y.jA0 t x) t (Y.tupT_tup t) _ (Y.topRead0 t (hUsed t) x)
 
 end GlobalTheory.Mem.R3.DTheta
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.CompositeIntertwinerEqThetaLiftGoodProjectorStatement

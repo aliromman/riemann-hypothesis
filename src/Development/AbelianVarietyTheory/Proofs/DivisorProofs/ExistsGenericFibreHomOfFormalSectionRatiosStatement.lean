@@ -45,10 +45,11 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAdditiveActionThickeningEndosCompletePoint
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAdditiveActionThickeningEndosCompletePoint
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
 
+noncomputable section
 
 namespace GlobalTheory.ThickEndo
 
@@ -131,11 +132,6 @@ theorem red_snd (e : ℕ) (x : Over.mk (Spec.map φ) ⟶ G) :
   Over.w (red hI e x)
 
 omit [GrpObj G] in
-theorem thickMap_fst (e : ℕ) :
-    thickMap R I e G ≫ pullback.fst G.hom (thick R I (e + 1)) = pullback.fst G.hom (thick R I e) :=
-  (pullback.lift_fst _ _ _).trans (Category.comp_id _)
-
-omit [GrpObj G] in
 theorem thickMap_snd (e : ℕ) :
     thickMap R I e G ≫ pullback.snd G.hom (thick R I (e + 1)) =
       pullback.snd G.hom (thick R I e) ≫ thickTrans R I e :=
@@ -145,7 +141,7 @@ theorem red_succ (e : ℕ) (x : Over.mk (Spec.map φ) ⟶ G) :
     adicLevelMap (maximalIdeal B) (Nat.le_succ (e + 1)) ≫ (red hI (e + 1) x).left =
       (red hI e x).left ≫ thickMap R I e G := by
   apply pullback.hom_ext
-  · rw [Category.assoc, red_fst, Category.assoc, thickMap_fst, red_fst]
+  · rw [Category.assoc, red_fst, Category.assoc, GlobalTheory.FormalTower.thickMap_fst, red_fst]
     exact adicLevelMap_ι_assoc (maximalIdeal B) (Nat.le_succ (e + 1)) x.left
   · rw [Category.assoc, red_snd, Category.assoc, thickMap_snd, ← Category.assoc, red_snd, adicLevelMap_lev]
 
@@ -160,7 +156,7 @@ theorem fam_adic (hb : ∀ e, thickMap R I e G ≫ (b (e + 1)).left = (b e).left
     (x : Over.mk (Spec.map φ) ⟶ G) : IsAdicFamily (maximalIdeal B) (fam hI b x) := fun e => by
   simp only [fam, Over.comp_left, Category.assoc]
   rw [← Category.assoc (adicLevelMap _ _), red_succ, Category.assoc, ← Category.assoc (thickMap R I e G),
-    hb, Category.assoc, thickMap_fst]
+    hb, Category.assoc, GlobalTheory.FormalTower.thickMap_fst]
 
 variable (b) in
 theorem fam_over (x : Over.mk (Spec.map φ) ⟶ G) (e : ℕ) :
@@ -206,7 +202,6 @@ end Main
 
 end GlobalTheory.ThickEndo
 
-
 open GlobalTheory.ThickEndo in
 theorem GlobalTheory.exists_mul_map_points_of_thickEndo : ∀ (R : Type) [CommRing R] (I : Ideal R) (G : Over (Sp R)) [GrpObj G] (b : ∀ e : ℕ, thickObj R I e G ⟶ thickObj R I e G), (∀ e, IsMonHom (b e)) → (∀ e, thickMap R I e G ≫ (b (e + 1)).left = (b e).left ≫ thickMap R I e G) → ∀ (B : Type) [CommRing B] [IsLocalRing B] [IsAdicComplete (maximalIdeal B) B] (s : Sp B ⟶ Sp R), s (closedPoint B) ∈ Set.range (thick R I 0) → ∃ Φ : (Over.mk s ⟶ G) → (Over.mk s ⟶ G), (∀ x y, Φ (x * y) = Φ x * Φ y) ∧ ∀ (x : Over.mk s ⟶ G) (e : ℕ), ∃ r : Sp (B ⧸ maximalIdeal B ^ (e + 1)) ⟶ (thickObj R I e G).left, r ≫ pullback.fst G.hom (thick R I e) = thick B (maximalIdeal B) e ≫ x.left ∧ r ≫ (b e).left ≫ pullback.fst G.hom (thick R I e) = thick B (maximalIdeal B) e ≫ (Φ x).left := by
   intro R _ I G _ b hmon hb B _ _ _ s hs
@@ -215,6 +210,7 @@ theorem GlobalTheory.exists_mul_map_points_of_thickEndo : ∀ (R : Type) [CommRi
   refine ⟨lim hI hb, fun x y => lim_mul hI hmon hb x y, fun x e => ⟨(red hI e x).left, red_fst hI e x, ?_⟩⟩
   rw [lim_level hI hb x e]
   simp only [fam, Over.comp_left, Category.assoc]
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsMonHomExtensionOpenPartField
@@ -657,9 +653,10 @@ theorem sections_move_integral : ∀ (R : Type) [CommRing R] [IsDomain R] (I : I
 end GlobalTheory.Mum
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsVeryAmpleFourthPowerPolarisedAbelianField
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsVeryAmpleFourthPowerPolarisedAbelianField
 open GlobalTheory.Mum
 
+noncomputable section
 
 namespace GlobalTheory.Mum.FieldVA
 
@@ -684,7 +681,6 @@ theorem nonzeroLocus_pullPow (L : LB X) (N : ℕ) (t : (lbPow L N).Sec) :
 end GlobalTheory.Mum.FieldVA
 
 namespace GlobalTheory.Mum
-
 
 open GlobalTheory.Mum.FieldVA in
 theorem veryAmpleAlong_field (hA : AmpleSt) (K : Type) [Field K] (P : PolAV (Sp K)) :
@@ -739,6 +735,7 @@ theorem veryAmpleAlong_field (hA : AmpleSt) (K : Type) [Field K] (P : PolAV (Sp 
     exact ⟨p, hp.trans (hρ f)⟩
 
 end GlobalTheory.Mum
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.VeryAmpleAlongPullbackTransportIso
@@ -856,7 +853,6 @@ end -- clump:auto
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.VeryAmpleAlongPullbackTransportIsoStatement
 attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.Mum
-
 
 end -- clump:auto
 

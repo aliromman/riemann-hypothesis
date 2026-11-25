@@ -574,10 +574,12 @@ theorem selfDualOverBase : GlobalTheory.IndefiniteRowSideFullHecke.SplittingProj
 end GlobalTheory.OverObj
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsFrameCm
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.ExistsFrameCm
 
 open NumberField IsDedekindDomain Matrix Formalism.UG Formalism.BasicNotions Formalism.MainNotions.StandardLattice
 open scoped TensorProduct
+
+noncomputable section
 
 namespace GlobalTheory.SelfDualFrame
 
@@ -670,15 +672,6 @@ theorem sw_sigR (hc : CMData (maximalRealSubfield E) E)
   | add x y hx hy => simp only [map_add (f := _), hx, hy]
   | tmul a e => rfl
 
-theorem unramified (hc : CMData (maximalRealSubfield E) E) :
-    Algebra.Unramified (𝓞 (maximalRealSubfield E)) (𝓞 E) :=
-  Formalism.L2.Pj.unramBridge_holds E fun P hP => by
-    obtain ⟨θ, t, e1, e2⟩ := hc.cmUnram.2.2 P hP
-    refine ⟨θ, ?_⟩
-    have : RingOfIntegers.mapRingEquiv (IsCMField.complexConj E : E ≃+* E) θ = t :=
-      RingOfIntegers.ext e1.symm
-    rwa [this]
-
 theorem exists_frame_cm (hc : CMData (maximalRealSubfield E) E) {r : ℕ}
     (J : Matrix (Fin r) (Fin r) E) (hJ : IsHerm (hc.sig : E →+* E) J) (hd : IsUnit J.det)
     (N : Submodule (𝓞 E) (Fin r → E))
@@ -689,7 +682,7 @@ theorem exists_frame_cm (hc : CMData (maximalRealSubfield E) E) {r : ℕ}
           b.1 = 1 ∧
       ∀ x, x ∈ latS (F := maximalRealSubfield E) (v.adicCompletion (maximalRealSubfield E))
         (intV E v) N ↔ ∀ i, ((b⁻¹).1 *ᵥ x) i ∈ intV E v := by
-  have := unramified hc
+  have := GlobalTheory.PlaceComp.unramified hc
   have hG : ∀ a b, ReciprocityTheory.ChartRestriction.G.FD.cc (Jᵀ a b) = Jᵀ b a :=
     fun a b => congrFun (congrFun hJ a) b
   have hd' : Jᵀ.det ≠ 0 := by
@@ -755,6 +748,7 @@ theorem exists_frame : ∀ (D : D7) (N : Submodule (𝓞 D.host.E) (Fin D.R.k �
     (GlobalTheory.OverCompare.gram_matrix_det_unit D.sp) N hN
 
 end GlobalTheory.SelfDualFrame
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.MemIntVIffOfSplitting
@@ -1077,12 +1071,10 @@ theorem ringEquiv_adicCompletion_mem_integers_iff (F : Type) [Field F] [NumberFi
 end GlobalTheory
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.SplitStabGLIffMemRange
 
 open NumberField IsDedekindDomain Matrix Formalism.UG Formalism.BasicNotions Formalism.MainNotions.StandardLattice
 open scoped TensorProduct
-
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.SplitStabGLIffMemRange
 
 namespace GlobalTheory
 
@@ -1160,6 +1152,9 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.StabilizerIndex
 
+open NumberField IsDedekindDomain Matrix Formalism.UG Formalism.BasicNotions Formalism.MainNotions.StandardLattice
+open scoped TensorProduct
+
 namespace GlobalTheory.Proof.StabilizerIndex
 
 lemma index_field (F : Type) [Field F] [Finite F] (k : ℕ) (φ : Fin k → F) (hφ : φ ≠ 0) :
@@ -1194,7 +1189,12 @@ theorem index_stabRow : ∀ (κ : Type) [CommRing κ] (T k : ℕ), T.Prime → N
 end GlobalTheory.Proof.StabilizerIndex
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.LocalLevelRelIndexAtLevelPrimeSelfDual
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.LocalLevelRelIndexAtLevelPrimeSelfDual
+
+noncomputable section
+
+open NumberField IsDedekindDomain Matrix Formalism.UG Formalism.BasicNotions Formalism.MainNotions.StandardLattice
+open scoped TensorProduct
 
 namespace GlobalTheory.LevelIndex
 
@@ -1503,7 +1503,6 @@ theorem relIndex_level (hp : ∀ i, (gp i).Prime) (hne : gp 0 ≠ gp 1) {f : ℕ
 
 end Record
 
-
 open GlobalTheory.IndefiniteRowSideFullHecke.SelfDualStabiliserIndex GlobalTheory.IndefiniteRowSideFullHecke.SplittingProjection in
 theorem indexKU_of_selfDualOverBase (H : SelfDualOverBase) : IndexKU := by
   intro D Lv u
@@ -1514,8 +1513,7 @@ theorem indexKU_of_selfDualOverBase (H : SelfDualOverBase) : IndexKU := by
 
 end GlobalTheory.LevelIndex
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.GlobalInterpolation.SelfDualLatticeLevel
 

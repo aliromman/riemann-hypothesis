@@ -239,7 +239,8 @@ lemma IsBaseChangeAt.span_range {g : T ⟶ U} {N : U.Modules} {O : U.Opens}
 end GroundTheory.Arith.SchemeCoh
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: GroundTheory.ArithmeticGeometry.SchemeCohomology.ProperCohomology.ReesRing
+section -- clump member: GroundTheory.ArithmeticGeometry.SchemeCohomology.ProperCohomology.ReesRing
+@[expose] public section
 
 set_option maxSynthPendingDepth 1
 
@@ -249,6 +250,7 @@ open AlgebraicGeometry CategoryTheory Limits Opposite
 
 universe u
 
+noncomputable section
 
 variable {A : Type u} [CommRing A] {I : Ideal A} {X : Scheme.{u}} [X.Over (Spec (.of A))]
   {V : X.Opens}
@@ -337,7 +339,7 @@ def reesRingHom (hV : IsAffineOpen V) : Γ(reesScheme I X, reesPr I X ⁻¹ᵁ V
 
 lemma reesRingHom_inl (hV : IsAffineOpen V) (c : Γ(X, V)) :
     reesRingHom hV ((reesPr I X).app V c) = Polynomial.C c :=
-  polyRingHom_inl hV c
+  polyRingHom_inl (I := I) hV c
 
 lemma reesRingHom_inr (hV : IsAffineOpen V) (r : reesAlgebra I) :
     reesRingHom hV (reesInr (I := I) V r) = (r : Polynomial A).map (algV (A := A) X V) := by
@@ -408,7 +410,7 @@ theorem reesRingHom_mem (hV : IsAffineOpen V) (s : Γ(reesScheme I X, reesPr I X
     · refine CommRingCat.hom_ext (RingHom.ext fun c => ?_)
       have := congrArg (fun f : Γ(X, V) ⟶ CommRingCat.of (reesCoeffRing I X V) =>
         (f.hom c : Polynomial Γ(X, V))) (IsPushout.inl_desc (isPushout_rees (I := I) hV) l r hw')
-      exact (reesRingHom_inl hV c).trans this.symm
+      exact (reesRingHom_inl (I := I) hV c).trans this.symm
     · refine CommRingCat.hom_ext (RingHom.ext fun x => ?_)
       have := congrArg (fun f : CommRingCat.of (reesAlgebra I) ⟶ CommRingCat.of (reesCoeffRing I X V) =>
         (f.hom x : Polynomial Γ(X, V))) (IsPushout.inr_desc (isPushout_rees (I := I) hV) l r hw')
@@ -419,8 +421,10 @@ theorem reesRingHom_mem (hV : IsAffineOpen V) (s : Γ(reesScheme I X, reesPr I X
   rw [show reesRingHom hV s = ((d.hom s : reesCoeffRing I X V) : Polynomial Γ(X, V)) from this]
   exact (d.hom s).2
 
+end
 
 end GroundTheory.Arith.SchemeCoh
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: GroundTheory.ArithmeticGeometry.SchemeCohomology.ProperCohomology.ReesSections

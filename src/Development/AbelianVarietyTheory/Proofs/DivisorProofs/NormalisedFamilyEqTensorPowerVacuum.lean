@@ -341,7 +341,13 @@ theorem inter_comap_isom : ∀ (V W : Type) [AddCommGroup V] [Module ℂ V] [Add
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeIntertwinerProdOrthogonalBlocks
+end -- clump: shared namespace opens
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeIntertwinerProdOrthogonalBlocks
+
+noncomputable section
+open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Ker Formalism.L2.Th1.H GlobalTheory.BaseVacuum
+open Classical
 open scoped BigOperators
 
 namespace GlobalTheory.BaseVacuum.ProductTheta
@@ -455,7 +461,6 @@ end GlobalTheory.BaseVacuum.ProductTheta
 
 namespace GlobalTheory.BaseVacuum
 
-
 open ProductTheta in
 theorem prod_blk_inter : ∀ (L : PeriodPair) (ω₀ : ℂ) (c : ℝ) (ι m : Type) [Fintype ι] [DecidableEq ι] [Fintype m] [DecidableEq m] (Λ : AddSubgroup (m → ℂ)), IsSemiChar (stdH L m) Λ (alphaQ c (stdH L m)) → F0 L ω₀ m ∈ fixedBy (stdH L m) (alphaQ c (stdH L m)) (stdLat L m) → relIdx (stdLat L m) Λ ≠ 0 → IsSemiChar (stdH L (ι × m)) (blkLat Λ) (alphaQ c (stdH L (ι × m))) ∧ F0 L ω₀ (ι × m) ∈ fixedBy (stdH L (ι × m)) (alphaQ c (stdH L (ι × m))) (stdLat L (ι × m)) ∧ relIdx (stdLat L (ι × m)) (blkLat Λ) ≠ 0 ∧ ∀ w, inter (stdH L (ι × m)) (alphaQ c (stdH L (ι × m))) (stdLat L (ι × m)) (blkLat Λ) (F0 L ω₀ (ι × m)) w = ∏ k, inter (stdH L m) (alphaQ c (stdH L m)) (stdLat L m) Λ (F0 L ω₀ m) (fun v => w (k, v)) := by
   intro L ω₀ c ι m _ _ _ _ Λ hα hF hn
@@ -473,6 +478,12 @@ theorem prod_blk_inter : ∀ (L : PeriodPair) (ω₀ : ℂ) (c : ℝ) (ι m : Ty
 
 end GlobalTheory.BaseVacuum
 end -- clump:auto
+end -- clump:auto
+
+section -- clump: shared namespace opens
+
+open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Ker Formalism.L2.Th1.H GlobalTheory.BaseVacuum
+open Classical
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.OrthonormalBasisBlockVacuumLatticeBasisFamily
 
@@ -557,8 +568,6 @@ theorem orthonormal_bas (B : Base D cc δ) (n n' : ℕ) : TaylorLogMetric.Orthon
     intro h
     exact hk (by rw [h])
 
-
-
 theorem sum_g_smul_xv (B : Base D cc δ) (y : Fin 4 → D.host.E) :
     ∑ w, B.γ₀.g y w • xv B w = y := by
   have h1 : ∑ w, B.γ₀.g y w • (Pi.single w (1 : D.host.K) : Fin 4 × D.what₂.Tau → D.host.K) = B.γ₀.g y := by
@@ -603,8 +612,9 @@ end GlobalTheory.BaseVacuum
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.BlockVacuumLatticeBasisCoordinateEqCoordinateEqu
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.BlockVacuumLatticeBasisCoordinateEqCoordinateEqu
 
+noncomputable section
 namespace GlobalTheory.BaseVacuum
 open scoped BigOperators
 
@@ -650,8 +660,8 @@ theorem blockVacuum_coordinate_eq_coordinateEquiv_numbering (D : D7) (cc : Ideal
   simp [Pi.single_apply]
   rfl
 
-
 end GlobalTheory.BaseVacuum
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.PullbackBasisThetaEqF0Form
@@ -756,7 +766,9 @@ end -- clump:auto
 
 open NumberField Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Ker
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormOneCharacterModulusOneAllEmbeddings
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormOneCharacterModulusOneAllEmbeddings
+
+noncomputable section
 
 namespace GlobalTheory.CharModOne
 
@@ -871,15 +883,11 @@ theorem emb_conj (D : D7) (ρ : D.host.E →+* ℂ) (x : D.host.E) :
     ρ (D.host.conj x) = starRingEnd ℂ (ρ x) :=
   D.host.conjE_apply ρ x
 
-theorem conj_conj (D : D7) (x : D.host.E) : D.host.conj (D.host.conj x) = x := by
-  apply D.host.φ₀.injective
-  rw [emb_conj, emb_conj, Complex.conj_conj]
-
 theorem mod1All_of_isChi : ∀ (D : D7) (χ : TaylorLogMetric.IdE D → ℂ), TaylorLogMetric.IsChi D χ → ∀ 𝔞 : TaylorLogMetric.IdE D, TaylorLogMetric.N1 D 𝔞 →
     StandardLatticesGL3.Mod1All (χ 𝔞) := by
   intro D χ hχ 𝔞 h𝔞
   set σ := D.host.conj with hσdef
-  have hinv : ∀ x, σ (σ x) = x := conj_conj D
+  have hinv : ∀ x, σ (σ x) = x := GlobalTheory.HomDual.conj_conj D
   obtain ⟨𝔟, h𝔟, hab⟩ := h𝔞
   have hb : 𝔟 = cj σ 𝔞 := Submodule.ext h𝔟
   have hN1 : ∀ n : ℕ, TaylorLogMetric.N1 D (𝔞 ^ n) := fun n =>
@@ -955,6 +963,7 @@ theorem mod1All_of_isChi : ∀ (D : D7) (χ : TaylorLogMetric.IdE D → ℂ), Ta
   exact (pow_eq_one_iff_of_nonneg (norm_nonneg _) (by omega)).1 h4
 
 end GlobalTheory.CharModOne
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.RelDetIdealSelfDualNormOne

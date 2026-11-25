@@ -286,7 +286,9 @@ theorem _root_.GlobalTheory.T.comparison_cocycles_alt : ∀ (D : Formalism.Basic
   first | exact @GlobalTheory.NewPrime.comparison_cocycles
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ContinuousCConj
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ContinuousCConj
+
+noncomputable section
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.BlochKatoReduction Formalism.MainNotions.BlochKatoReduction.Gen GlobalTheory.TwSys GlobalTheory.SelFun GlobalTheory.Published GlobalTheory.ResSel GlobalTheory.StepTwo GlobalTheory.TwistDet
 
@@ -305,8 +307,8 @@ theorem exists_isDual (i : X.Tw) (s : X.Sig i) : ∃ ρ, IsDual i s ρ := by
         simp only [Tdual, ← Tgl_coe, map_mul, Units.val_mul, Matrix.mul_inv_rev, Matrix.transpose_mul, smul_mul_smul_comm] }
   exact ⟨τ.toHomUnits, fun g => rfl⟩
 
-
 end GlobalTheory.NewPrime
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.CoherentCohomologyProofs.RootCharOfAddNatCast
@@ -933,15 +935,6 @@ end -- clump:auto
 
 namespace GlobalTheory.NewPrime.LocInv
 
-theorem tors_of_finite (A : Type) [CommRing A] [IsLocalRing A] [Finite A] (Y : Type) [AddCommGroup Y] [Module A Y] :
-    Tors A Y := by
-  intro b
-  obtain ⟨n, hn⟩ := IsArtinianRing.isNilpotent_jacobson_bot (R := A)
-  rw [IsLocalRing.jacobson_eq_maximalIdeal ⊥ bot_ne_top] at hn
-  refine ⟨n, fun x hx => ?_⟩
-  rw [hn] at hx
-  rw [(Submodule.mem_bot _).1 hx, zero_smul]
-
 theorem dual_eq_one {D : Formalism.BasicNotions.D7} {N : NData D.R D.host D.what₂} {X : NTw D.R D.host D.what₂ D.LL0 N} (bkP : BKPh X)
     (i : X.Tw) (s : X.Sig i) (h : IsotypicValuationAtRing bkP i s) {ρ : GE N →* GL (Fin D.R.r) (X.O0 i)} (hρ : IsDual i s ρ)
     (v : PlE D.host) (hl : v ∉ placesOver D.host.E (X.l i)) (hS : v ∉ Spl i) (σ : GE N)
@@ -969,7 +962,7 @@ theorem local_invariants_killed : TameLocal → ∀ (D : Formalism.BasicNotions.
       ext g
       simp [MonoidHom.mem_ker]
     have h0 := (GlobalTheory.PrimeToInertia.local_cohomology_vanishes D N X bkP i s hG v hS A κ⁻¹ (hker ▸ hκo) hκl' Y
-      (tors_of_finite A Y) ρ (Or.inr hρ)).1
+      (GlobalTheory.NewPrime.tors_of_finite_local A Y) ρ (Or.inr hρ)).1
     have : m ∈ H0 ((repOn ρ κ⁻¹ Y).comp (DecV N v).subtype) := (mem_riemannRochSpace_iff_regularAt_everywhere _ _).2 fun g => hm g.1 g.2
     rw [h0, Submodule.mem_bot] at this
     rw [this, smul_zero]
@@ -1016,7 +1009,6 @@ end -- clump:auto
 
 namespace GlobalTheory.NewPrime
 
-
 open IsLocalRing GlobalTheory.ScalarFrob in
 theorem noInvDual_of_setup : ∀ (D : Formalism.BasicNotions.D7) (N : NData D.R D.host D.what₂) (X : NTw D.R D.host D.what₂ D.LL0 N) (bkP : BKPh X) (i : X.Tw) (s : X.Sig i), ∀ (A : Type) [CommRing A] [IsLocalRing A] [Finite A] [Algebra (X.O0 i) A] (κ : GE N →* Aˣ) (Q : Finset (PlE D.host)) (ρ : GE N →* GL (Fin D.R.r) (X.O0 i)) (z : GE N), Setup bkP i s κ Q → IsDual i s ρ → IsTameInertiaElementAtTwistPrime X i z → NoInvDual i κ ρ := by
   intro D N X bkP i s A _ _ _ _ κ Q ρ z hS hρ hz Y' _ _ m hm
@@ -1043,7 +1035,9 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PerfectPairingFiniteModuleRowsCriterion
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.PerfectPairingFiniteModuleRowsCriterion
+
+noncomputable section
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.BasicNotions Formalism.MainNotions.BlochKatoReduction Formalism.MainNotions.BlochKatoReduction.Gen GlobalTheory.TwSys GlobalTheory.SelFun
   GlobalTheory.Published GlobalTheory.ResSel GlobalTheory.StepTwo GlobalTheory.TwistDet GlobalTheory.NewPrime GlobalTheory.Published.PoitouTate
@@ -1083,7 +1077,6 @@ def charModule : Module A (A →+ ZMod n) where
 end GlobalTheory.NewPrime.CharDual
 
 namespace GlobalTheory.NewPrime
-
 
 open GlobalTheory.NewPrime.CharDual in
 theorem charDual_cogenerator : ∀ (A : Type) [CommRing A] [Finite A] (n : ℕ), n ≠ 0 → (n : A) = 0 →
@@ -1151,6 +1144,7 @@ theorem charDual_cogenerator : ∀ (A : Type) [CommRing A] [Finite A] (n : ℕ),
     exact hψ h1
 
 end GlobalTheory.NewPrime
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens

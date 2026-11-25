@@ -11,8 +11,9 @@ public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.GlobalTwoFor
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry KaehlerDifferential MonoidalCategory CartesianMonoidalCategory MonObj TensorProduct
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.AbCoh
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HyperH2SumOfCupsExact
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HyperH2SumOfCupsExact
 
+noncomputable section
 namespace GlobalTheory.AbCoh
 
 theorem hyp2_eq_sum_cup_of_fn_exact : ∀ (R : Type) [CommRing R] (C : Type) [Category.{0} C] (F : C ⥤ CommAlgCat.{0} R), HasFrame F → CohomZeroIsConstants F → ∀ hc : Closed1 F = ⊤, Function.Surjective (toO F) → ∀ c : cechDeRhamTotalCocyclesTwo F, (∃ f, d1 F f = c.1.1) → ∃ (n : ℕ) (a : Fin n → Hyp1 F) (w : Fin n → Glob1 F), Hyp2.mk F c = ∑ k, cupHyp F (a k) (clAll F hc (w k)) := by
@@ -60,7 +61,7 @@ theorem hyp2_eq_sum_cup_of_fn_exact : ∀ (R : Type) [CommRing R] (C : Type) [Ca
     rw [cechDeRhamTotalCocyclesTwo.two c' φ, ← ha, hd]
     simp only [he', map_add (f := _), LinearMap.add_apply, Finset.sum_add_distrib, ← hw]
     abel
-  obtain ⟨n, u, v, huv⟩ := GlobalTheory.T.globalTwoForm_eq_sumWedgeGlobalOneForms R C F ⟨m, ⟨fr⟩⟩ h0 η' hη'
+  obtain ⟨n, u, v, huv⟩ := GlobalTheory.AbCoh.twoForm_eq_wsum R C F ⟨m, ⟨fr⟩⟩ h0 η' hη'
   refine ⟨m + n, Fin.append (fun i ↦ Hyp1.mk F (e i)) (fun k ↦ clAll F hc (u k)), Fin.append fr.w v, ?_⟩
   rw [Fin.sum_univ_add]
 
@@ -80,6 +81,7 @@ theorem hyp2_eq_sum_cup_of_fn_exact : ∀ (R : Type) [CommRing R] (C : Type) [Ca
       Finset.sum_apply, coe_cupZZ, cupTot_η]
     rw [← this]; abel
 end GlobalTheory.AbCoh
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HyperH2SumOfCupsExactStatement

@@ -35,16 +35,13 @@ theorem EtNbhd.flat_B : ∀ (R : Type) [CommRing R] [IsLocalRing R] (i : EtNbhd 
 end GlobalTheory.Henselisation
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FlatHens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.FlatHens
 
+noncomputable section
 
 namespace GlobalTheory.Henselisation
 
 variable {R : Type} [CommRing R] [IsLocalRing R]
-
-theorem Hens.of_trans {i j : EtNbhd R} (h : i ≤ j) (y : i.B) :
-    Hens.of j (EtNbhd.trans h y) = Hens.of i y :=
-  Ring.DirectLimit.of_f h y
 
 theorem Hens.exists_of (hdir : IsDirected (EtNbhd R) (· ≤ ·)) (z : Hens R) :
     ∃ (i : EtNbhd R) (y : i.B), Hens.of i y = z :=
@@ -65,8 +62,8 @@ theorem Hens.exists_of_fin (hdir : IsDirected (EtNbhd R) (· ≤ ·)) :
     refine ⟨m, Fin.lastCases (EtNbhd.trans hjm z) (fun k => EtNbhd.trans him (y k)), ?_⟩
     intro k
     induction k using Fin.lastCases with
-    | last => dsimp only; rw [Fin.lastCases_last, Hens.of_trans, hz]
-    | cast k => dsimp only; rw [Fin.lastCases_castSucc, Hens.of_trans, hy]
+    | last => dsimp only; rw [Fin.lastCases_last, GlobalTheory.Henselisation.LocalLimit.of_trans, hz]
+    | cast k => dsimp only; rw [Fin.lastCases_castSucc, GlobalTheory.Henselisation.LocalLimit.of_trans, hy]
 
 theorem flat_hens_of_stages (hdir : IsDirected (EtNbhd R) (· ≤ ·))
     (hinj : ∀ i : EtNbhd R, Function.Injective (Hens.of i))
@@ -94,6 +91,7 @@ theorem flat_hens : ∀ (R : Type) [CommRing R] [IsLocalRing R], Module.Flat R (
   fun R _ _ => flat_hens_of_stages (_root_.GlobalTheory.Henselisation.etNbhd_isDirected R) (_root_.GlobalTheory.Henselisation.Hens.of_injective_of_nbhd R) (_root_.GlobalTheory.Henselisation.Hens.of_algebraMap R) (_root_.GlobalTheory.Henselisation.EtNbhd.flat_B R)
 
 end GlobalTheory.Henselisation
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MaximalIdealPointedEtaleNeighbourhoodEqMap

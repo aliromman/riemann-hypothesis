@@ -62,12 +62,10 @@ import Mathlib.Topology.Algebra.InfiniteSum.Nonarchimedean
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DiscBoundedFunctionIsPowerSeries, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsBaseEqOfClosedDiscExtendsNormLeOne, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsPhiContractionDiscStep, Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsBoundedOfPhiEquationDisc
 
--- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DiscBoundedFunctionIsPowerSeries
 
 open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations TensorProduct PowerSeries GlobalTheory.Prism GlobalTheory.BKReal GlobalTheory.Per GlobalTheory.BSP
 open scoped Formalism.Per NNReal
-
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.DiscBoundedFunctionIsPowerSeries
 
 namespace GlobalTheory.BSP
 
@@ -128,7 +126,12 @@ theorem disc_bdd_isSeries : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK
 end GlobalTheory.BSP
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsBaseEqOfClosedDiscExtendsNormLeOne
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsBaseEqOfClosedDiscExtendsNormLeOne
+
+noncomputable section
+
+open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations TensorProduct PowerSeries GlobalTheory.Prism GlobalTheory.BKReal GlobalTheory.Per GlobalTheory.BSP
+open scoped Formalism.Per NNReal
 
 namespace GlobalTheory.BSP
 
@@ -139,7 +142,7 @@ theorem exists_toDisc_eq_of_extends_norm_le_one : ∀ (l : ℕ) [Fact l.Prime] (
     ∃ a, toDisc l (s X) ρ a = y := by
   intro l _ K bk A _ s ι TB ρ hρ hρ1 y hy
   have hj : ∀ ρ' : ℝ≥0, 0 < ρ' → ∃ j : bk.DS ρ' →+* Disc l (s X) ρ', IsDiscMap (l := _) (u := _) (ρ := _) s j := fun ρ' h =>
-    GlobalTheory.T.exists_closedDiscExtension_of_pow_dvd l bk.S A s X (s X) ρ' ρ' 1 h (by rw [pow_one]) (by rw [pow_one])
+    GlobalTheory.BSP.exists_discMap_of_pow_dvd l bk.S A s X (s X) ρ' ρ' 1 h (by rw [pow_one]) (by rw [pow_one])
   obtain ⟨j, hjd⟩ := hj ρ hρ
   obtain ⟨cD, hc1, -, hc3, hc4, -, hc6, -, -⟩ := _root_.GlobalTheory.BSP.disc_coefficients l K bk A s ι TB ρ hρ hρ1 j hjd
 
@@ -151,7 +154,7 @@ theorem exists_toDisc_eq_of_extends_norm_le_one : ∀ (l : ℕ) [Fact l.Prime] (
     have hρ' : 0 < ρ' := hρ.trans_le h2
     obtain ⟨j', hj'd⟩ := hj ρ' hρ'
     obtain ⟨cD', hc1', -, hc3', -⟩ := _root_.GlobalTheory.BSP.disc_coefficients l K bk A s ι TB ρ' hρ' h3 j' hj'd
-    obtain ⟨RS, hRS⟩ := GlobalTheory.T.exists_closedDiscExtension_of_pow_dvd l bk.S bk.S (RingHom.id _) X X ρ' ρ 1 hρ (by simp) (by simpa using h2)
+    obtain ⟨RS, hRS⟩ := GlobalTheory.BSP.exists_discMap_of_pow_dvd l bk.S bk.S (RingHom.id _) X X ρ' ρ 1 hρ (by simp) (by simpa using h2)
     refine ⟨ρ', RS, cD' i y', h1, h2, h3, hRS, ?_, (hc3' i y').trans hy'⟩
 
     have htor : ∀ z : bk.DS ρ, l • z = 0 → z = 0 := fun z hz => by
@@ -189,8 +192,16 @@ theorem exists_toDisc_eq_of_extends_norm_le_one : ∀ (l : ℕ) [Fact l.Prime] (
 
 end GlobalTheory.BSP
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsPhiContractionDiscStep
+-- clump: shared namespace opens
+
+open Formalism Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.WeaklyAdmissibleFiltrations TensorProduct PowerSeries GlobalTheory.Prism GlobalTheory.BKReal GlobalTheory.Per GlobalTheory.BSP
+open scoped Formalism.Per NNReal
+
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsPhiContractionDiscStep
+
+noncomputable section
 
 namespace GlobalTheory.BSP
 
@@ -217,7 +228,7 @@ theorem exists_discStep : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K
     exact absurd hρ1 (not_lt.2 h2)
   have hρρ' : ρ ≤ ρ' := by rw [← hρ']; exact pow_le_of_le_one zero_le hρ'1.le (by omega)
 
-  obtain ⟨Φ', hΦ'⟩ := GlobalTheory.T.exists_closedDiscExtension_of_pow_dvd l A A φ (s X) (s X) ρ ρ' l hρ'pos (by rw [hφ]) hρ'.le
+  obtain ⟨Φ', hΦ'⟩ := GlobalTheory.BSP.exists_discMap_of_pow_dvd l A A φ (s X) (s X) ρ ρ' l hρ'pos (by rw [hφ]) hρ'.le
   have hc1 := (_root_.GlobalTheory.BSP.DiscBasic.disc_basic l A (s X) ρ).2.2.2 A A (s X) (s X) ρ' bk.ρ₀ φ (RingHom.id A) Φ' R' hΦ' hR'
   have hc2 := (_root_.GlobalTheory.BSP.DiscBasic.disc_basic l A (s X) ρ).2.2.2 A A (s X) (s X) bk.ρ₀ bk.ρ₀ (RingHom.id A) φ R Φ hR hΦ
   rw [RingHom.id_comp] at hc1
@@ -293,6 +304,7 @@ theorem exists_discStep : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K
 
 end GlobalTheory.BSP
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.InertiaEigenvalues.ExistsBoundedOfPhiEquationDisc
 
@@ -332,7 +344,7 @@ theorem exists_bounded_of_phi_equation : ∀ (l : ℕ) [Fact l.Prime] (K : FinEx
   obtain ⟨r, r0, rs, rle, rlt, rlim⟩ := exists_root_radii l hl2 bk.ρ₀ h0 h1
   have rpos : ∀ n, 0 < r n := fun n => h0.trans_le (rle n)
   have hR : ∀ n, ∃ R : Disc l (s X) (r n) →+* Disc l (s X) bk.ρ₀, IsDiscMap (l := _) (u := _) (ρ := _) (RingHom.id A) R := fun n =>
-    GlobalTheory.T.exists_closedDiscExtension_of_pow_dvd l A A (RingHom.id A) (s X) (s X) (r n) bk.ρ₀ 1 h0 (by simp) (by simpa using rle n)
+    GlobalTheory.BSP.exists_discMap_of_pow_dvd l A A (RingHom.id A) (s X) (s X) (r n) bk.ρ₀ 1 h0 (by simp) (by simpa using rle n)
   choose R hR using hR
   obtain ⟨C, hC0, hC⟩ : ∃ C : ℝ, 0 ≤ C ∧ ∀ j, ‖V j‖ ≤ C := by
     obtain ⟨C, hC⟩ := isBounded_iff_forall_norm_le.1 (Metric.isBounded_range_of_tendsto_cofinite hV)

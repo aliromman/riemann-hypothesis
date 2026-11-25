@@ -152,17 +152,16 @@ theorem _root_.GlobalTheory.lagIdem_spec : ∀ (R E ι : Type) [CommRing R]
     exact commute_aeval_of_commute' hT _
 end -- clump:auto
 
-section -- clump: shared namespace opens
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ProdSubConjEqZero
+@[expose] public section
 
 open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ProdSubConjEqZero
-
+noncomputable section
 
 namespace GlobalTheory.EtC.GalSec.Tens
 
 variable (K Ω : Type) [Field K] [Field Ω] [Algebra K Ω]
-
 
 open Classical in
 def conj (θ : Ω) : Finset Ω := by
@@ -172,7 +171,6 @@ def conj (θ : Ω) : Finset Ω := by
 def DependsOn (k : ℕ) (θ : Ω) (φ : LCRing K Ω k) : Prop :=
   ∀ g g' : Fin k → (Ω ≃ₐ[K] Ω), (∀ i, g i θ = g' i θ) → φ g = φ g'
 
-
 open Classical in
 def pick (k : ℕ) (θ : Ω) (t : Fin k → Ω) : Fin k → (Ω ≃ₐ[K] Ω) := by
   classical
@@ -180,7 +178,6 @@ def pick (k : ℕ) (θ : Ω) (t : Fin k → Ω) : Fin k → (Ω ≃ₐ[K] Ω) :=
 
 variable {K Ω}
 variable {B : Type} [CommRing B]
-
 
 open Classical in
 def idem (g₀ : Ω →+* B) (θ : Ω) (b : B) (s : conj K Ω θ) : B := by
@@ -285,9 +282,13 @@ theorem pick_spec [Algebra.IsAlgebraic K Ω] [Normal K Ω] (k : ℕ) (θ : Ω) (
 
 end GlobalTheory.EtC.GalSec.Tens
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaloisLocallyConstantTupleRingTensorPowerUnivers
+
+open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 
 open GlobalTheory.EtC.GalSec
 
@@ -664,11 +665,17 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaloisLocallyConstantTupleRingTensorPowerUniversStatement
 
+open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
+
 theorem _root_.GlobalTheory.T.galoisLocallyConstantTupleRing_tensorPower_universal : ∀ (K Ω : Type) [Field K] [Field Ω] [Algebra K Ω] [IsSepClosure K Ω] (k : ℕ) (B : Type) [CommRing B] (g : Fin (k + 1) → (Ω →+* B)) (c : K →+* B), (∀ i, (g i).comp (algebraMap K Ω) = c) → ∃! u : GlobalTheory.EtC.GalSec.LCRing K Ω k →+* B, u.comp (GlobalTheory.EtC.GalSec.baseHom K Ω k) = c ∧ ∀ i, u.comp (GlobalTheory.EtC.GalSec.legHom K Ω k i) = g i := by
   first | (exact @GlobalTheory.EtC.GalSec.Tens.lcRing_universal)
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaloisDescentFreeSheafCechLevelSepClosure
+section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaloisDescentFreeSheafCechLevelSepClosure
+@[expose] public section
+
+noncomputable section
+open CategoryTheory Limits AlgebraicGeometry Opposite GlobalTheory.EtC
 
 open Simplicial
 
@@ -884,7 +891,7 @@ theorem gal_sec : ∀ (R : Type) [CommRing R] (F : Shv R), Finitary F → ∀ (K
           ∃ t : Sec F (Spec (CommRingCat.of (LocallyConstant X B))), ∀ x,
             Sec.res (Spec.map (CommRingCat.ofHom (LocallyConstant.evalRingHom x))) t = ψ x := by
     intro R _ F hF X _ _ B _
-    have hfin := (GlobalTheory.T.preservesFilteredColimits_moduleCat_iff_forget_iff_elements
+    have hfin := (GlobalTheory.EtC.FilteredElements.preservesFilteredColimits_modules_iff_elements
       (ULift.{1} R) (onRings F)).2.mp hF _ (LCSec.stage X B) (LCSec.lcCocone X B)
         (LCSec.lcCoconeIsColimit X B)
     have hrep (t : Sec F (Spec (CommRingCat.of (LocallyConstant X B)))) :
@@ -927,7 +934,7 @@ theorem gal_sec : ∀ (R : Type) [CommRing R] (F : Shv R), Finitary F → ∀ (K
           Sec.res (Spec.map (CommRingCat.ofHom (τ : Ω →+* Ω))) x) := by
     intro R _ F hF K Ω _ _ _ _ x
     classical
-    have elements := (GlobalTheory.T.preservesFilteredColimits_moduleCat_iff_forget_iff_elements
+    have elements := (GlobalTheory.EtC.FilteredElements.preservesFilteredColimits_modules_iff_elements
       (ULift.{1} R) (onRings F)).2.mp hF
     obtain ⟨s, y, hy⟩ := (elements (Finset Ω) (GalSmooth.diag Ω) (GalSmooth.cocone Ω)
       (GalSmooth.coconeIsColimit Ω)).1 x
@@ -964,9 +971,9 @@ theorem gal_sec : ∀ (R : Type) [CommRing R] (F : Shv R), Finitary F → ∀ (K
 
 end GlobalTheory.EtC.GalSec
 
+end
 end -- clump:auto
-
-end -- clump: shared namespace opens
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.GaloisDescentFreeSheafCechLevelSepClosureStatement
 

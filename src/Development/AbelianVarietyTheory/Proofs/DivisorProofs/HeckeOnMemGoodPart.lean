@@ -24,8 +24,6 @@ open scoped ComplexOrder
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.FiniteRealPointsCommuteStatement
 
-theorem _root_.GlobalTheory.T.mul_comm_of_mem_GfC_of_mem_GinfC : ∀ {D : D7} (V : HSp D) (a b : GA D V), a ∈ GfC V → b ∈ GinfC V → a * b = b * a := by
-  first | exact @GlobalTheory.FinRealComm.finite_real_points_commute
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.IsSmoothAutomorphicRightTranslateFiniteStatement
@@ -64,7 +62,7 @@ theorem isMultMap_rightTranslate_finite : ∀ {D : D7} {V : HSp D} {S : D.what�
     rw [LinearMap.compMultilinearMap_apply, hT.equiv τ g hg v w hw]
     funext x
     simp only [LinearMap.compMultilinearMap_apply, LinearMap.funLeft_apply, rTr]
-    rw [mul_assoc, mul_assoc, GlobalTheory.T.mul_comm_of_mem_GfC_of_mem_GinfC V κ _ hκ (atTau_mem_GinfC_twisted_operators θ V τ g)]
+    rw [mul_assoc, mul_assoc, GlobalTheory.FinRealComm.finite_real_points_commute V κ _ hκ (atTau_mem_GinfC_twisted_operators θ V τ g)]
   ·
     obtain ⟨ℓ, hℓ, hℓw⟩ := hT.cont τ v (x * κ)
     exact ⟨ℓ, hℓ, fun w => hℓw w⟩

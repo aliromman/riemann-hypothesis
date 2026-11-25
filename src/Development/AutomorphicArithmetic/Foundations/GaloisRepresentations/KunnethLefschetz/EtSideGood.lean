@@ -140,6 +140,7 @@ import Mathlib.Tactic.Linter.HaveILetI
 import Mathlib.CategoryTheory.Abelian.GrothendieckCategory.EnoughInjectives
 import Mathlib.AlgebraicGeometry.Modules.Sheaf
 import Development.EtaleCohomology.EtaleSheaves.LeafCover2Of
+import Development.AbelianVarietyTheory.Proofs.HomogeneousIdeals.IsIsoIffBijectiveOverAlgClosed
 
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CupVanishesOnTwoMemberCover, Development.AbelianVarietyTheory.Proofs.DivisorProofs.CupVanishesOnTwoMemberCoverStatement, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.InFormalGroupPoints, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.ProjectiveBaseChange.PCupEx, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.ProjectiveBaseChange.PDualSum, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.ProjectiveBaseChange.PGeomPb, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.ProjectiveBaseChange.PIntFun, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.ProjectiveBaseChange.PSumBC, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.ProjectiveBaseChange.PullbackComp, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.ProjectiveBaseChange.AdicTopHolds, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.TrInHolds, Development.EtaleCohomology.KummerTheory.AdicAlgPf, Development.EtaleCohomology.KummerTheory.AdicLimPfCok, Development.EtaleCohomology.KummerTheory.AdicLimPfGlue, Development.EtaleCohomology.KummerTheory.FinAdicDeg, Development.EtaleCohomology.KummerTheory.LimAssemblePf, Development.EtaleCohomology.KummerTheory.LimExtHlPf, Development.EtaleCohomology.KummerTheory.LimLHPf, Development.EtaleCohomology.KummerTheory.FinLimit, Development.EtaleCohomology.KummerTheory.EtaleNormalizedFreeChainsDifferentialOneZeroEqZe, Development.EtaleCohomology.KummerTheory.PrimIsPrimitiveRoot, Development.EtaleCohomology.KummerTheory.ResNegZero, Development.EtaleCohomology.KummerTheory.StalkPf, Development.EtaleCohomology.KummerTheory.FixStalk, Development.EtaleCohomology.KummerTheory.FinStalk, Development.EtaleCohomology.KummerTheory.InvOfField, Development.EtaleCohomology.KummerTheory.GoalHolds, Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.EtSideGood
@@ -305,12 +306,10 @@ theorem dualSum_holds : DualSum := by
 end UpperTheory.Gal.KunnethLefschetz
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.ProjectiveBaseChange.PGeomPb
 
 open CategoryTheory Limits AlgebraicGeometry GlobalTheory.EtC LateralTheory.EtaleTrace CrystallineSemistableComparison ReciprocityTheory.ChartRestriction.G.Geo.Tor UpperTheory.Gal.KunnethLefschetz
 open scoped TensorProduct DirectSum
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.ProjectiveBaseChange.PGeomPb
 
 private theorem isPullback_lift_fst {X Y S T : Scheme.{0}} (p : X ⟶ S) (q : Y ⟶ S) (t : T ⟶ S) (u : X ⟶ Y)
     (hu : u ≫ q = p) (w : (pullback.fst p t ≫ u) ≫ q = pullback.snd p t ≫ t) :
@@ -330,6 +329,9 @@ theorem UpperTheory.Gal.KunnethLefschetz.geomPb_holds :
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.ProjectiveBaseChange.PIntFun
+
+open CategoryTheory Limits AlgebraicGeometry GlobalTheory.EtC LateralTheory.EtaleTrace CrystallineSemistableComparison ReciprocityTheory.ChartRestriction.G.Geo.Tor UpperTheory.Gal.KunnethLefschetz
+open scoped TensorProduct DirectSum
 
 theorem UpperTheory.Gal.KunnethLefschetz.intFun_holds :
     UpperTheory.Gal.KunnethLefschetz.IntFun := by
@@ -359,14 +361,11 @@ theorem UpperTheory.Gal.KunnethLefschetz.intFun_holds :
   exact hsm
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.ProjectiveBaseChange.PSumBC
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.ProjectiveBaseChange.PSumBC
 
-private theorem range_eq_preimage {P X Y Z : Scheme.{0}} {a : P ⟶ X} {b : P ⟶ Y} {f : X ⟶ Z} {g : Y ⟶ Z}
-    (h : IsPullback a b f g) : Set.range a = f ⁻¹' Set.range g := by
-  have e := h.isoPullback_hom_fst
-  rw [← e, Scheme.Hom.comp_base, TopCat.coe_comp, Set.range_comp,
-    Set.range_eq_univ.mpr (fun y => ⟨h.isoPullback.inv y, by simp⟩), Set.image_univ,
-    Scheme.Pullback.range_fst]
+noncomputable section
+open CategoryTheory Limits AlgebraicGeometry GlobalTheory.EtC LateralTheory.EtaleTrace CrystallineSemistableComparison ReciprocityTheory.ChartRestriction.G.Geo.Tor UpperTheory.Gal.KunnethLefschetz
+open scoped TensorProduct DirectSum
 
 theorem UpperTheory.Gal.KunnethLefschetz.sumBC_holds :
     UpperTheory.Gal.KunnethLefschetz.SumBC := by
@@ -378,13 +377,17 @@ theorem UpperTheory.Gal.KunnethLefschetz.sumBC_holds :
     exact MorphismProperty.of_isPullback (P := @IsOpenImmersion) (h s).flip (ho s)
   · obtain ⟨s, hs⟩ := hc (f x)
     refine ⟨s, ?_⟩
-    rw [range_eq_preimage (h s)]
+    rw [GlobalTheory.FinEt.range_of_isPullback (h s)]
     exact hs
-  · rw [range_eq_preimage (h s), range_eq_preimage (h s')]
+  · rw [GlobalTheory.FinEt.range_of_isPullback (h s), GlobalTheory.FinEt.range_of_isPullback (h s')]
     exact (hd s s' hs).preimage f
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.ProjectiveBaseChange.PullbackComp
+
+open CategoryTheory Limits AlgebraicGeometry GlobalTheory.EtC LateralTheory.EtaleTrace CrystallineSemistableComparison ReciprocityTheory.ChartRestriction.G.Geo.Tor UpperTheory.Gal.KunnethLefschetz
+open scoped TensorProduct DirectSum
 
 private theorem pb_id_projective_base_change (l : ℕ) [Fact l.Prime] (X : Scheme.{0}) (n : ℤ) (z : V l X n) :
     pb l (𝟙 X) n z = z := by
@@ -424,8 +427,6 @@ theorem UpperTheory.Gal.KunnethLefschetz.perm_holds :
     · rw [hg.off (π s) (π t) (fun h => hts (π.injective h).symm), map_zero,
         hg.off s t (fun h => hts h.symm), smul_zero]
 end -- clump:auto
-
-end -- clump: shared namespace opens
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.KunnethLefschetz.ProjectiveBaseChange.AdicTopHolds
 

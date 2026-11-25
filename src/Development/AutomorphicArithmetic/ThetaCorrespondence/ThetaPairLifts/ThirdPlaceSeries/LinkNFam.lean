@@ -133,7 +133,6 @@ theorem le_supZ {D : D7} (i : D.nd.Loc) (f : D.nd.X i → ℝ) {π : D.nd.X i} (
 
 end GlobalTheory.NLink.Adm4Tab
 
-
 open GlobalTheory.NLink.Adm4Tab in
 theorem GlobalTheory.NLink.admissible_table_of_conclusion : ∀ (D : D7) (L : SizeData₂ D) (P : ParameterChoice' D L) (X : KillingConditions.HubData D) (C : ℝ) (tf : TwistedPlaces.Tab L),
     Concl L P X C → (∀ i, TwistedPlaces.TwLoc D i → (D.nd.l i ∈ D.host.small ∨ D.nd.l i = 3) → ∀ π ∈ D.nd.Zgood i,
@@ -555,8 +554,9 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.HeckeGaloisCriteria.BuDefQEta
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.HeckeGaloisCriteria.BuDefQEta
 
+noncomputable section
 
 namespace UpperTheory.GalC.Gen
 
@@ -573,8 +573,6 @@ structure Raw (D : D7) where
 @[reducible] def Raw.rec' {D : D7} (Λ : Raw D) : D7 := setRaw D Λ.η Λ.hη Λ.P Λ.hZ Λ.hE
 
 variable {D : D7} (Λ : Raw D)
-
-
 
 @[reducible] def ledTr (L : SizeData₂ D) : SizeData₂ Λ.rec' := { L with }
 
@@ -697,17 +695,17 @@ theorem rrDefTr (h : DV.RRDef D) : DV.RRDef Λ.rec' := by
 
 end UpperTheory.GalC.Gen
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.HeckeGaloisCriteria.KapSharpTr
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.HeckeGaloisCriteria.KapSharpTr
 
+noncomputable section
 
 namespace UpperTheory.GalC
 
 open Formalism.BasicNotions Formalism.MainNotions NumberField
 
 variable {D : D7} (Λ : CutD D)
-
-
 
 @[reducible] def sideTr {EE : Type} [NormedAddCommGroup EE] [InnerProductSpace ℂ EE] [FiniteDimensional ℂ EE] (S : RowSide D EE) :
     RowSide (cut D Λ) EE := { S with }
@@ -752,9 +750,11 @@ def ambTr {EE : Type} [NormedAddCommGroup EE] [InnerProductSpace ℂ EE] [Finite
 
 end UpperTheory.GalC
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.HeckeGaloisCriteria.ExtraTr
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.HeckeGaloisCriteria.ExtraTr
 
+noncomputable section
 
 namespace UpperTheory.GalC
 
@@ -770,8 +770,6 @@ def raw : Gen.Raw D :=
 
 theorem tiesTr (h : Ties D) : Ties (raw c).rec' := Gen.tiesTr (raw c) h h.tw_cover
 
-
-
 def extraTr {L : SizeData₂ D} {gatT : GatTies D} {Gx : G.Inst D L} {Gy : G.LatInst D} {K : G.Consts} {X : DivX D} {cX : ExtraC}
     (ex : Extra D L gatT Gx Gy K X cX) :
     Extra (raw c).rec' (Gen.ledTr (raw c) L) (Gen.gatTr (raw c) gatT) (Gen.instTr (raw c) Gx) (Gen.latTr (raw c) Gy) K
@@ -780,6 +778,7 @@ def extraTr {L : SizeData₂ D} {gatT : GatTies D} {Gx : G.Inst D L} {Gy : G.Lat
     (show BaseLevelRowSide (cut D c) from ⟨sideTr c ex.p0.s⟩) (rrDef_tr c _ ex.rationalRoots_def) (ambTr c ex.amb) (ambTr c ex.amb0) (kapSharp_tr c)
 
 end UpperTheory.GalC
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.HeckeGaloisCriteria.EvPowLeExp
@@ -852,8 +851,9 @@ theorem ev_pow_le_exp (C eps : ℝ) (he : 0 < eps) : ∃ x0 : ℝ, ∀ x ≥ x0,
 end UpperTheory.GalC
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.HeckeGaloisCriteria.LengthLeOfSpan
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.HeckeGaloisCriteria.LengthLeOfSpan
 
+noncomputable section
 
 namespace UpperTheory.GalC.Alg
 
@@ -919,7 +919,6 @@ theorem decomp : ∃ (f : X → T) (d : O), d ≠ 0 ∧ (∀ x y, y ≠ x → (f
       rw [Finset.sum_insert ha, Finset.sum_insert ha, ih, map_add (f := _), LinearMap.baseChange_add, LinearMap.add_apply]
     rw [hlin, hsum, map_smul, map_one, LinearMap.baseChange_smul, LinearMap.smul_apply]
     simp
-
 
 include hs in
 theorem qK_eq_zero_iff {v : FractionRing O ⊗[O] M} : qK T act S v = 0 ↔ v ∈ ⨆ x ∈ Sᶜ, heckeEig T act x := by
@@ -1034,7 +1033,6 @@ private theorem smul_eq_of_mem_iSup_heckeEig_of_forall_eigen (Y : Set X)
     rw [LinearMap.mem_ker, LinearMap.sub_apply, LinearMap.smul_apply, LinearMap.id_apply, h x hx w hw, sub_self]
   have := hle hu
   rwa [LinearMap.mem_ker, LinearMap.sub_apply, LinearMap.smul_apply, LinearMap.id_apply, sub_eq_zero] at this
-
 
 include hs in
 theorem length_le [IsPrincipalIdealRing O] [Module.Finite O M] (Z : Finset X) (Y' : Set S) (hY : ∀ x : S, x ∈ Y' ↔ x.1 ∈ Z)
@@ -1187,6 +1185,7 @@ theorem lenUnit_le_add {O : Type} [CommRing O] (l : ℕ) {B C E : Type} [AddComm
 
 end UpperTheory.GalC.Alg
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.HeckeGaloisCriteria.IsHeckeGaloisIff
 
@@ -1292,16 +1291,15 @@ end UpperTheory.GalC
 end -- clump:auto
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.HeckeGaloisCriteria.LinkNOfGd
+@[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.HeckeGaloisCriteria.LinkNOfGd
 
+noncomputable section
 
 namespace UpperTheory.GalC
 
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N NumberField
 
 variable {eps : ℝ}
-
-
 
 def gd (Fm : FamP eps) (c : ∀ x (i : Fm.Ix x), CutD (Fm.D x i)) : FamP eps :=
   { Fm with
@@ -1321,7 +1319,6 @@ def gd (Fm : FamP eps) (c : ∀ x (i : Fm.Ix x), CutD (Fm.D x i)) : FamP eps :=
 theorem twGood_gd (Fm : FamP eps) (c : ∀ x (i : Fm.Ix x), CutD (Fm.D x i)) (h : TwGood Fm) : TwGood (gd Fm c) := by
   obtain ⟨x0, h⟩ := h
   exact ⟨x0, fun x hx0 hx i => twAt_tr (c x i) (h x hx0 hx i)⟩
-
 
 open Classical in
 theorem linkN_of_gd (Fm : FamP eps) (c : ∀ x (i : Fm.Ix x), CutD (Fm.D x i))
@@ -1383,11 +1380,10 @@ theorem linkN_of_gd (Fm : FamP eps) (c : ∀ x (i : Fm.Ix x), CutD (Fm.D x i))
 
 end UpperTheory.GalC
 end -- clump:auto
+end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.Lg1EntryOfMembership
 @[expose] public section
-
-
 
 section
 noncomputable section
@@ -1452,8 +1448,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.OverNEOfNEb
 @[expose] public section
 
-
-
 section
 noncomputable section
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.L2 Formalism.L2.Host GlobalTheory.EX GlobalTheory.EX.OB GlobalTheory.Mem GlobalTheory.Mem.Top GlobalTheory.Mem.Top.Bl GlobalTheory.Fc GlobalTheory.HeightCounting GlobalTheory.HeightCounting.Up
@@ -1487,8 +1481,6 @@ end -- clump:auto
 section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.SlotMvPin
 @[expose] public section
 
-
-
 section
 noncomputable section
 namespace GlobalTheory.NLink.Final
@@ -1521,8 +1513,6 @@ end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.LinkNFam
-
-
 
 section
 noncomputable section

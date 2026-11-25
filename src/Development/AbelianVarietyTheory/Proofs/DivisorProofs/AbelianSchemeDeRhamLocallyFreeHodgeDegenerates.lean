@@ -745,7 +745,6 @@ theorem congr_two (p : M →ₗ[R] H) (F : M [⋀^Fin 2]→ₗ[R] Q)
 
 end GlobalTheory.ExtSqKer
 
-
 open GlobalTheory.ExtSqKer in
 theorem GlobalTheory.exteriorSquare_ker_of_surjective (R : Type) [CommRing R] (W M H : Type)
     [AddCommGroup W] [Module R W] [AddCommGroup M] [Module R M] [AddCommGroup H] [Module R H]
@@ -797,8 +796,9 @@ end -- clump:auto
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HyperH2GeneratedByCups
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HyperH2GeneratedByCups
 
+noncomputable section
 
 namespace GlobalTheory.AbCoh.SpanCup
 
@@ -846,7 +846,6 @@ theorem cechDeRhamFunctionPart_cup_eq_cup (a b : cechDeRhamTotalCocyclesOne F) :
 
 end GlobalTheory.AbCoh.SpanCup
 
-
 open GlobalTheory.AbCoh.SpanCup in
 theorem GlobalTheory.AbCoh.hyp2_eq_sum_cupHyp : ∀ (R : Type) [CommRing R] (C : Type) [Category.{0} C]
     (F : C ⥤ CommAlgCat.{0} R), HasFrame F → CohomZeroIsConstants F → Closed1 F = ⊤ → Function.Surjective (toO F) →
@@ -883,11 +882,13 @@ theorem GlobalTheory.AbCoh.hyp2_eq_sum_cupHyp : ∀ (R : Type) [CommRing R] (C :
 
   simp only [map_sub, map_sum, cupHyp_mk, sub_add_cancel]
 end -- clump:auto
+end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HyperH2ExteriorSquareIso
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HyperH2ExteriorSquareIso
 
+noncomputable section
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry KaehlerDifferential MonoidalCategory CartesianMonoidalCategory MonObj TensorProduct
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.AbCoh
@@ -950,13 +951,8 @@ section Forget
 
 variable {R : Type} [CommRing R] {C : Type} [Category.{0} C] (F : C ⥤ CommAlgCat.{0} R)
 
-def fnZZ2 : cechDeRhamTotalCocyclesTwo F →ₗ[R] Z2 F where
-  toFun c := ⟨c.1.1, (mem_cechDeRhamTotalCocyclesTwo_iff.1 c.2).1⟩
-  map_add' _ _ := rfl
-  map_smul' _ _ := rfl
-
 def hypercohomologyTwoToAlgebraCohomology : Hyp2 F →ₗ[R] CatCoh.H2 F :=
-  Submodule.mapQ _ _ (fnZZ2 F) (by rintro _ ⟨e, rfl⟩; exact ⟨e.1, rfl⟩)
+  Submodule.mapQ _ _ (GlobalTheory.AbCoh.SpanCup.fn2 F) (by rintro _ ⟨e, rfl⟩; exact ⟨e.1, rfl⟩)
 
 theorem hypercohomologyTwo_cup_forget_forms (a b : Hyp1 F) : hypercohomologyTwoToAlgebraCohomology F (cupHyp F a b) = cup F (toO F a) (toO F b) := by
   obtain ⟨a, rfl⟩ := Hyp1.mk_surjective F a
@@ -1093,6 +1089,7 @@ theorem exists_wedge_hyp_equiv : ∀ (R : Type) [CommRing R] (C : Type) [Categor
   exact this
 
 end GlobalTheory.AbCoh
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianSchemeDeRhamLocallyFreeHodgeDegenerates

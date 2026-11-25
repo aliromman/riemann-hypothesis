@@ -259,7 +259,6 @@ open GlobalTheory.NormRatio
 open scoped nonZeroDivisors
 open GlobalTheory.CosetOrth
 
-
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjugatePlaceValuationCountUnder
@@ -513,7 +512,6 @@ open GlobalTheory.NormRatio
 open scoped nonZeroDivisors
 open GlobalTheory.CosetOrth
 
-
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsPowIntegralCompletedHomLattice
@@ -651,7 +649,6 @@ open GlobalTheory.StdLoc (glVol blockIdx)
 open GlobalTheory.NormRatio
 open scoped nonZeroDivisors
 open GlobalTheory.CosetOrth
-
 
 end -- clump:auto
 
@@ -1199,7 +1196,7 @@ theorem exists_read_of_wd (h : Setup ψ θ S T ⊤ δ r) {G : VC D a d → ℂ} 
     field_simp
   have h1 := hφ.smul (c * wdPh D (tor0 D ⊤ δ) x)⁻¹
   rw [e] at h1
-  have h2 := GlobalTheory.T.heisenbergFinitePoint_reads_classicalTranslation ψ θ S T hS hT ⊤ δ r h _ _ h1 (-z)
+  have h2 := GlobalTheory.NormExact.heisO_finPt_reads ψ θ S T hS hT ⊤ δ r h _ _ h1 (-z)
   have e2 : pt D (tor0 D ⊤ δ) δ (-z) = -x := by
     funext τ i j
     simp [hx, pt, Formalism.MainNotions.TaylorLogMetric.embV, tor0]
@@ -1218,7 +1215,7 @@ theorem heis_two_finPt (h : Setup ψ θ S T ⊤ δ r) {L L'} {G : VC D a d → �
   set x := pt D (tor0 D ⊤ δ) δ z with hx
   have hxm : x ∈ La D (tor0 D ⊤ δ) L L' :=
     AddSubgroup.subset_closure ⟨δ, AddSubgroup.subset_closure ⟨1, trivial, by simp⟩, z, hz, rfl⟩
-  have h1 := (GlobalTheory.T.heisenbergFinitePoint_reads_classicalTranslation ψ θ S T hS hT ⊤ δ r h _ _ hf z).smul (al D (tor0 D ⊤ δ) x)
+  have h1 := (GlobalTheory.NormExact.heisO_finPt_reads ψ θ S T hS hT ⊤ δ r h _ _ hf z).smul (al D (tor0 D ⊤ δ) x)
   have e : al D (tor0 D ⊤ δ) x • U D (tor0 D ⊤ δ) x G = G := funext fun y => hG.2 x hxm y
   rw [e] at h1
   have h2 := h1.unique hf
@@ -1443,7 +1440,6 @@ open GlobalTheory.Core.Rk.IP (openOff integrand wcoef)
 open GlobalTheory.StdLoc (glVol blockIdx)
 
 open GlobalTheory.NormRatio
-
 
 
 -- clump-header: {"m": "Development.AbelianVarietyTheory.Proofs.DivisorProofs.AddCharTraceUnitBlockTrivialOfMoves", "h": "module\n\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IpEqZeroOfHeisEigen\npublic import Development.AbelianVarietyTheory.Definitions.Divisors.FinitePrimesUnder\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsCongLevelIntG\nimport Development.AbelianVarietyTheory.Proofs.AdelicLatticeProofs.SelfDualLatticePairingDual\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.GoodModModT\n\n"}

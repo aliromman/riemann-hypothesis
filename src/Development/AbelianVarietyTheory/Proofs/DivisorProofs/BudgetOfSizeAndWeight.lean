@@ -131,7 +131,7 @@ theorem g_le_of (hW : W.Hyp) {x : ℤ} (hx : W.h0 ≤ 4 * W.T * x) : W.g ≤ (x 
 
 theorem adj_ge (hW : W.Hyp) (hD : W.IsDiv) (τ : ι) (a b : Fin N) (hab : (b : ℕ) = a + 1) (hb : W.p ≤ (b : ℕ)) :
     W.g ≤ reWt W.u' τ a - reWt W.u' τ b := by
-  obtain ⟨-, h2, h3⟩ := GlobalTheory.T.dividedWeight_gaps_block_and_bar ι N W hW hD τ a b hab
+  obtain ⟨-, h2, h3⟩ := GlobalTheory.MeanTop.divided_gaps ι N W hW hD τ a b hab
   have hk := hW.kc_lt
   by_cases hp : (b : ℕ) = W.p
   · have := g_le_of W hW (h2 hp).2
@@ -153,7 +153,7 @@ theorem adj_lt (hW : W.Hyp) (hD : W.IsDiv) (τ : ι) (a b : Fin N) (hab : (b : �
   · have := adj_ge W hW hD τ a b hab hb
     have := g_pos W hW
     linarith
-  · obtain ⟨h1, -, -⟩ := GlobalTheory.T.dividedWeight_gaps_block_and_bar ι N W hW hD τ a b hab
+  · obtain ⟨h1, -, -⟩ := GlobalTheory.MeanTop.divided_gaps ι N W hW hD τ a b hab
     have h := h1 (by omega)
     have h' : W.u1 τ b < W.u1 τ a := by omega
     have ha : (a : ℕ) < W.p := by omega
@@ -244,7 +244,6 @@ open scoped BigOperators Matrix
 open Polynomial
 
 namespace GlobalTheory.PrimeLogSum
-
 
 open scoped BigOperators Matrix in
 open Polynomial in
@@ -354,8 +353,6 @@ end Formalism.BasicNotions.Host
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.BudgetOfSizeAndWeight
-
-
 
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2.Pj Formalism.BasicNotions.TH Formalism.L2.Theta ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD GlobalTheory.AllWt GlobalTheory.CompHt GlobalTheory.CovTop GlobalTheory.BigTop GlobalTheory.CovHt
 
@@ -488,8 +485,6 @@ theorem pp_bounds {PP A : ℝ} (h : HostNum D L PP A 1) : (D.R.f : ℝ) ^ 2 * (D
   rw [mul_pow, mul_pow]
   refine le_trans ?_ (le_mul_of_one_le_right (by positivity) (one_le_pow₀ hL))
   gcongr <;> first | assumption | norm_num
-
-
 
 theorem sizes {PP A : ℝ} (h : HostNum D L PP A 1) (hw : WtNum p i PP) (h0 : ℤ) (S eta : ℝ) (hS : 0 ≤ S) (he : 0 ≤ eta)
     (hP : PP * (S + eta) ≤ 100 * L.sc.w'' D.R.n)

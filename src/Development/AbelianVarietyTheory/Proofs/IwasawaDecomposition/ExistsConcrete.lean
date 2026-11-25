@@ -244,8 +244,6 @@ end Gen
 
 attribute [local instance] Formalism.BasicNotions.factResChar
 
-
-
 theorem exists_psi : ∀ (D : D7) (L0 : LevelData D) (T : ∀ u : D.what₂.Word, Forms0 D u), (∀ u, Joint0 L0 u (T u)) → (∀ u, LevelZeroCharacterRational T u) →
     ∀ (u : D.what₂.Word) (w : D.what₂.places.Pl) (hg : GIdx D.host (D.mem u).A.T (D.what₂.places.resChar w)),
     ∃ ψ : Formalism.L2.Herm.awayFrom₂ (L0 u) (D.what₂.places.resChar w) →*
@@ -333,16 +331,6 @@ namespace GlobalTheory.ClassRank
 variable {p : ℕ} {O Kf : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] [Field Kf] [Algebra O Kf]
   {P : Places p O Kf}
 
-theorem gPos_mul (v : Fin P.nV) (s : Fin (P.n' v)) (A B : Matrix (Fin (P.m + 1)) (Fin (P.m + 1)) (P.Qq v)) :
-    P.gPos v s (A * B) = P.gPos v s A * P.gPos v s B := by
-  ext a b
-
-  simp only [Places.gPos, Matrix.mul_apply, map_sum, map_mul]
-
-theorem gPos_one (v : Fin P.nV) (s : Fin (P.n' v)) : P.gPos v s 1 = 1 := by
-  ext a b
-  by_cases h : a = b <;> simp [Places.gPos, Matrix.one_apply, h]
-
 theorem subst_comp (G H : ∀ v, Fin (P.n' v) → Matrix (Fin (P.m + 1)) (Fin (P.m + 1)) Kf) :
     (P.subst G).comp (P.subst H) = P.subst fun v s => H v s * G v s := by
   apply MvPolynomial.algHom_ext
@@ -370,11 +358,11 @@ theorem natAct_mul (A B : ∀ v, GL (Fin (P.m + 1)) (P.Qq v)) (F : P.Xsp) :
     (fun v s => P.gPos v s ((B v)⁻¹ : GL (Fin (P.m + 1)) (P.Qq v))))
   simp only [AlgHom.comp_apply] at h
   simp only [Places.natAct, LinearMap.smul_apply, AlgHom.toLinearMap_apply, map_smul, smul_smul, h,
-    mul_inv_rev, Units.val_mul, gPos_mul, Matrix.det_mul, mul_zpow, Finset.prod_mul_distrib]
+    mul_inv_rev, Units.val_mul, Formalism.MainNotions.G.LatticeSystems.jd_gPos_mul, Matrix.det_mul, mul_zpow, Finset.prod_mul_distrib]
   first | (congr 1; exact mul_comm _ _)
 
 theorem natAct_one (F : P.Xsp) : P.natAct (fun _ => 1) F = F := by
-  simp only [Places.natAct, inv_one, Units.val_one, gPos_one, Matrix.det_one, one_zpow, Finset.prod_const_one,
+  simp only [Places.natAct, inv_one, Units.val_one, Formalism.MainNotions.G.LatticeSystems.jd_gPos_one, Matrix.det_one, one_zpow, Finset.prod_const_one,
     one_smul, subst_one, AlgHom.toLinearMap_apply, AlgHom.id_apply]
 
 variable (C : Level P)
@@ -386,11 +374,6 @@ theorem actX_mul (γ δ : C.Γ) (F : P.Xsp) : C.actX (γ * δ) F = C.actX γ (C.
 theorem actX_one (F : P.Xsp) : C.actX 1 F = F := by
   simp only [Level.actX, map_one]
   exact natAct_one F
-
-theorem smul_mul (γ δ : C.Γ) (L : P.Tup) : C.smul (γ * δ) L = C.smul γ (C.smul δ L) := by
-  funext v
-  simp only [Level.smul, map_mul, Units.val_mul, Matrix.mulVecLin_mul, ← Submodule.map_comp]
-  rfl
 
 theorem smul_one (L : P.Tup) : C.smul 1 L = L := by
   funext v
@@ -409,7 +392,7 @@ theorem isLatTup_smul (γ : C.Γ) {L : P.Tup} (hL : P.IsLatTup L) : P.IsLatTup (
 theorem isLatTup_smul_iff (γ : C.Γ) (L : P.Tup) : P.IsLatTup (C.smul γ L) ↔ P.IsLatTup L := by
   refine ⟨fun h => ?_, isLatTup_smul C γ⟩
   have := isLatTup_smul C γ⁻¹ h
-  rwa [← smul_mul, inv_mul_cancel, smul_one] at this
+  rwa [← Formalism.MainNotions.G.LatticeSystems.jd_smul_mul, inv_mul_cancel, smul_one] at this
 
 theorem mem_funMod_iff (Hv : P.Tup → Submodule O P.Xsp) (F : P.Tup → P.Xsp) :
     F ∈ C.funMod Hv ↔ (∀ L, P.IsLatTup L → F L ∈ Hv L) ∧ (∀ L, ¬ P.IsLatTup L → F L = 0) ∧
@@ -461,7 +444,7 @@ theorem evalReps_surjective (Hv : P.Tup → Submodule O P.Xsp)
     generalize idx _ h = j at e ⊢
     generalize gam _ h = δ at e ⊢
     have e' : C.smul (δ⁻¹ * γ) (rep i) = rep j := by
-      rw [smul_mul, e, ← smul_mul, inv_mul_cancel, smul_one]
+      rw [Formalism.MainNotions.G.LatticeSystems.jd_smul_mul, e, ← Formalism.MainNotions.G.LatticeSystems.jd_smul_mul, inv_mul_cancel, smul_one]
     obtain rfl := hr.inj _ _ _ e'
     obtain rfl : δ = γ := inv_mul_eq_one.1 (htriv _ _ (hr.lat i) e')
     rfl
@@ -471,7 +454,7 @@ theorem evalReps_surjective (Hv : P.Tup → Submodule O P.Xsp)
     exact Submodule.smul_mem _ _ ⟨_, (x i).2, rfl⟩
   · by_cases hL : P.IsLatTup L
     · obtain ⟨i, δ, rfl⟩ := hr.surj L hL
-      rw [← smul_mul, key, key, map_mul, Units.val_mul, mul_smul, actX_mul]
+      rw [← Formalism.MainNotions.G.LatticeSystems.jd_smul_mul, key, key, map_mul, Units.val_mul, mul_smul, actX_mul]
       congr 1
       exact (((C.actX γ).restrictScalars O).map_smul _ _).symm
     · have h1 : F L = 0 := dite_eq_right hL
@@ -696,7 +679,7 @@ theorem actHW (G : GAtP p) (c : G.comp) : (G.lev c).ActHW := by
     exact h1 γ L hL x hx
   · intro y hy
     have h := h1 γ⁻¹ _ (isLatTup_smul _ γ hL) y hy
-    rw [← smul_mul, inv_mul_cancel, smul_one] at h
+    rw [← Formalism.MainNotions.G.LatticeSystems.jd_smul_mul, inv_mul_cancel, smul_one] at h
     refine ⟨_, h, ?_⟩
     show (G.lev c).actX γ ((G.lev c).actX γ⁻¹ y) = y
     rw [← actX_mul, mul_inv_cancel, actX_one]
@@ -752,8 +735,6 @@ section Record
 open Formalism.BasicNotions Formalism.MainNotions Formalism.L2.G Formalism.L2.Forms GlobalTheory.Mem.LocalPack
 
 attribute [local instance] Formalism.BasicNotions.factResChar
-
-
 
 theorem locPack_d_eq (D : D7) (L0 : LevelData D) (u : D.what₂.Word) (T : Forms0 D u) (w : D.what₂.places.Pl)
     (hg : GIdx D.host (D.mem u).A.T (D.what₂.places.resChar w)) (X : LocPack D u (L0 u) (D.what₂.places.resChar w))
@@ -965,11 +946,12 @@ theorem exists_lam {p : ℕ} [Fact p.Prime] {L : Type} [Field L] [NumberField L]
 end GlobalTheory.PadicPlaceExt
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsLocIdOfCompletions
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsLocIdOfCompletions
 
 open NumberField IsDedekindDomain IsLocalRing Formalism.UG Formalism.BasicNotions Formalism.FrobeniusOrbits Formalism.L2.G GlobalTheory.GO.PlWitt
 open scoped TensorProduct
 
+noncomputable section
 
 namespace GlobalTheory.PlaceOrbit
 
@@ -1080,12 +1062,10 @@ theorem cc_pow (e : Formalism.HC.Frame) (m : ℕ) : e.cc ^ m = 1 ∨ e.cc ^ m = 
 theorem frob_eq_mul (h : R.MA) : ((c0, h) : R.GG) = (zPsi R.toFrame h : R.GG) * R.cc := by
   rw [zPsi_eq, mul_assoc, _root_.Formalism.HC.Frame.cc_mul_cc, mul_one]
 
-
 variable (H) in
 def tw (i : H.E →+* Qn p n) (g : R.GG) : H.E →+* Qn p n := i.comp (H.sigmaOf g : H.E →+* H.E)
 
 theorem tw_apply (i : H.E →+* Qn p n) (g : R.GG) (x : H.E) : tw H i g x = i (H.sigmaOf g x) := rfl
-
 
 variable (H) in
 def twF (i : H.E →+* Qn p n) (g : R.GG) : H.F →+* Qn p n := (tw H i g).comp (algebraMap H.F H.E)
@@ -1151,7 +1131,6 @@ theorem fr_pow_apply {Q : HeightOneSpectrum (𝓞 H.E)} {i : H.E →+* Qn p n} (
   | zero => simp [Host.sigmaOf]
   | succ s ih => rw [pow_succ, pow_succ, RingAut.mul_apply, fr_apply hfr hi, ih, sigmaOf_mul]
 
-
 include hfr h2 he in
 theorem degree_eq {Q : HeightOneSpectrum (𝓞 H.E)} {i : H.E →+* Qn p n} (hi : Good Q i) (hn : n ≠ 0) : n = orderOf h := by
   have h1 : ((c0, h) : R.GG) ^ n = 1 := sigmaOf_inj (H := H) (AlgEquiv.ext fun x => i.injective (by
@@ -1169,7 +1148,6 @@ variable {Q₀ : HeightOneSpectrum (𝓞 H.E)} {i : H.E →+* Qn p n} (hi : Good
 include hi in
 theorem good_tw (g : R.GG) : Good (plc (tw H i g)) (tw H i g) := good_aut hi _ fun _ => rfl
 
-
 include hun hfr hi hn in
 theorem exists_pow_of_plc_eq {g g' : R.GG} (e : plc (tw H i g') = plc (tw H i g)) : ∃ s : ℕ, g' = g * (c0, h) ^ s := by
   have := hun _ (p_mem_plc (tw H i g))
@@ -1179,14 +1157,12 @@ theorem exists_pow_of_plc_eq {g g' : R.GG} (e : plc (tw H i g') = plc (tw H i g)
   rw [sigmaOf_mul]
   exact (hs x).trans (fr_pow_apply hfr (good_tw hi g) s x)
 
-
 include hun hfr he hi hn in
 theorem plc_ne_conj (g : R.GG) : plc (tw H i (g * R.cc)) ≠ plc (tw H i g) := fun e => by
   obtain ⟨s, hs⟩ := exists_pow_of_plc_eq hun hfr hi hn e
   have h1 := (R.toFrame.cc_mem_zpowers_iff (c0, h)).1 (by
     rw [mul_left_cancel hs]; exact Subgroup.npow_mem_zpowers _ s)
   exact Nat.not_even_iff_odd.2 h1.2 he
-
 
 include hun hfr he hi hn in
 theorem good_twF (g : R.GG) : Good (plc (twF H i g)) (twF H i g) :=
@@ -1410,6 +1386,7 @@ end Assembly
 
 end GlobalTheory.PlaceOrbit
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsConcrete
 
@@ -1461,7 +1438,6 @@ def gatOf (I : ∀ u (w : D.what₂.places.Pl), GIdx D.host (D.mem u).A.T (D.wha
     GAtP (D.what₂.places.resChar w) :=
   (packC D (fun u => L0 u) I ψ u w h).gat (rSc sc D.R.k (D.what₂.places.resChar w)) (epSc D.R sc 1 (D.what₂.places.resChar w))
 
-
 theorem gatOf_d (T : ∀ u : D.what₂.Word, Forms0 D u) (hJ : ∀ u, Joint0 L0 u (T u)) (I) (ψ) (sc : Scale) (u : D.what₂.Word)
     (w : D.what₂.places.Pl) (h : GIdx D.host (D.mem u).A.T (D.what₂.places.resChar w)) :
     (gatOf D L0 I ψ sc u w h).d = Module.finrank ℂ (D.mem u).A.Mu0 := by
@@ -1473,7 +1449,6 @@ theorem gatOf_d (T : ∀ u : D.what₂.Word, Forms0 D u) (hJ : ∀ u, Joint0 L0 
 section Main
 
 variable {D L0}
-
 
 theorem posOK_placeId (hS : Formalism.L2.Herm.StdTied D) (hC : Companion D L0)
     (ψ : ∀ u (w : D.what₂.places.Pl), GIdx D.host (D.mem u).A.T (D.what₂.places.resChar w) →

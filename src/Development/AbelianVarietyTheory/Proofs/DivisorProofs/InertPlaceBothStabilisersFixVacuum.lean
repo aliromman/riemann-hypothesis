@@ -1591,8 +1591,9 @@ theorem exists_unip_corner_isUnit : ∀ (F E : Type) [Field F] [NumberField F] [
 end GlobalTheory.InertTransv
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchwartzBoxTensorLeftFixedLinearApply
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchwartzBoxTensorLeftFixedLinearApply
 
+noncomputable section
 namespace GlobalTheory.DblGenV
 
 open Matrix GlobalTheory.DblVac
@@ -1600,9 +1601,6 @@ open Matrix GlobalTheory.DblVac
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
 
 theorem matD_mul {σ : E →ₐ[F] E} {d : ℕ} {W : Spc F E d} (g h : UD σ W) : matD (g * h) = matD g * matD h := rfl
-
-theorem matD_inv_mul {σ : E →ₐ[F] E} {d : ℕ} {W : Spc F E d} (g : UD σ W) : matD g⁻¹ * matD g = 1 := by
-  rw [← matD_mul, inv_mul_cancel]; rfl
 
 alias KD_mul := _root_.GlobalTheory.DblVacFactor.KD_mul
 
@@ -1618,7 +1616,7 @@ theorem PDiag_inv {σ : E →ₐ[F] E} {d : ℕ} {W : Spc F E d} {p : UD σ W} (
   have hTT : T * Ti = 1 := by rw [hT, hTi, ← Units.val_mul, mul_inv_cancel, Units.val_one]
   have ht' : matD p * D = D * T := ht
   have key : matD p⁻¹ * (D * T) = D := by
-    rw [← ht', ← Matrix.mul_assoc, matD_inv_mul, Matrix.one_mul]
+    rw [← ht', ← Matrix.mul_assoc, GlobalTheory.DblVacFlip.matD_inv_mul, Matrix.one_mul]
   show matD p⁻¹ * D = D * Ti
   calc matD p⁻¹ * D = matD p⁻¹ * (D * T) * Ti := by
         rw [Matrix.mul_assoc (matD p⁻¹), Matrix.mul_assoc D, hTT, Matrix.mul_one]
@@ -1642,6 +1640,7 @@ theorem mem_of_KD_diag_anti : ∀ (F E : Type) [Field F] [NumberField F] [Field 
   exact H.mul_mem (H.mul_mem (hD p hp hpP) (hA q hq hqA)) (hD _ (KD_inv hu) (PDiag_inv huP))
 
 end GlobalTheory.DblGenV
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatticeStabiliserVacuumEigenvalueOneInertPlace

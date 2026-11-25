@@ -82,8 +82,10 @@ import Std.Tactic.BVDecide.Normalize.Prop
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsPowerDecompositionOfRootOfUnity, Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsTwoChartQuotientOfFiniteCoord, Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsSectionLiftOfEtaleOfHenselian, Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsCommonZeroOfJacobianIsUnitHenselian, Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsZeroOfLinearFormJacobianHenselian, Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsFactorizationNearRootOfUnityHenselian, Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsMonicLaurentPolynomialNearRootOfUnity, Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsTwoChartAdjoinRootLaurent, Development.AutomorphicArithmetic.CommutativeAlgebra.RootsOfUnityLiftModNilpotentUnique, Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsNearRootOfUnityProductDecomposition
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsPowerDecompositionOfRootOfUnity
+section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsPowerDecompositionOfRootOfUnity
+@[expose] public section
 
+noncomputable section
 open IsLocalRing UpperTheory.Et
 
 namespace UpperTheory.LineDecomposition
@@ -123,21 +125,12 @@ private def NN (T : TC A D) (X : Finset D) : Submodule A D :=
 private lemma NN_mul (T : TC A D) (X : Finset D) {u : D} (hu : ∀ x ∈ X, u * x ∈ T.C)
     {n : D} (hn : n ∈ NN T X) : u * n ∈ T.C := by
   unfold NN at hn
-  induction hn using Submodule.span_induction with
-  | mem y hy =>
-    obtain ⟨x, hx, j, rfl⟩ := hy
-    have h := T.C.mul_mem (T.C.pow_mem T.sC j) (hu x hx)
-    convert h using 1
-    ring
-  | zero =>
-    rw [mul_zero]
-    exact T.C.zero_mem
-  | add y z _ _ hy hz =>
-    rw [mul_add]
-    exact T.C.add_mem hy hz
-  | smul a y _ hy =>
-    rw [mul_smul_comm]
-    exact T.C.smul_mem hy a
+  refine (Submodule.span_le (p := (Subalgebra.toSubmodule T.C).comap
+    (LinearMap.mulLeft A u))).2 ?_ hn
+  rintro _ ⟨x, hx, j, rfl⟩
+  rw [SetLike.mem_coe, Submodule.mem_comap, LinearMap.mulLeft_apply,
+    Subalgebra.mem_toSubmodule, mul_left_comm]
+  exact T.C.mul_mem (T.C.pow_mem T.sC j) (hu x hx)
 
 private lemma split (T : TC A D) (X : Finset D) (hXB : ∀ x ∈ X, x ∈ T.B)
     (hX : ∀ b ∈ T.B, b ∈ Submodule.span A {y | ∃ x ∈ X, ∃ i : ℕ, y = T.t ^ i * x})
@@ -145,32 +138,23 @@ private lemma split (T : TC A D) (X : Finset D) (hXB : ∀ x ∈ X, x ∈ T.B)
   obtain ⟨k, hk⟩ := T.locB y
   have key : ∀ z ∈ Submodule.span A {y | ∃ x ∈ X, ∃ i : ℕ, y = T.t ^ i * x},
       T.s ^ k * z ∈ Subalgebra.toSubmodule T.B ⊔ NN T X := by
-    intro z hz
-    induction hz using Submodule.span_induction with
-    | mem w hw =>
-      obtain ⟨x, hx, i, rfl⟩ := hw
-      rcases le_or_gt k i with hki | hki
-      · obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_le hki
-        apply Submodule.mem_sup_left
-        have e : T.s ^ k * (T.t ^ (k + d) * x) = T.t ^ d * x := by
-          linear_combination (T.t ^ d * x) * tsPow T k
-        rw [e]
-        exact T.B.mul_mem (T.B.pow_mem T.tB d) (hXB x hx)
-      · obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_lt hki
-        apply Submodule.mem_sup_right
-        have e : T.s ^ (i + d + 1) * (T.t ^ i * x) = T.s ^ (d + 1) * x := by
-          linear_combination (T.s ^ (d + 1) * x) * tsPow T i
-        rw [e]
-        exact Submodule.subset_span ⟨x, hx, d + 1, rfl⟩
-    | zero =>
-      rw [mul_zero]
-      exact Submodule.zero_mem _
-    | add a b _ _ ha hb =>
-      rw [mul_add]
-      exact Submodule.add_mem _ ha hb
-    | smul r a _ ha =>
-      rw [mul_smul_comm]
-      exact Submodule.smul_mem _ r ha
+    refine (Submodule.span_le (p := (Subalgebra.toSubmodule T.B ⊔ NN T X).comap
+      (LinearMap.mulLeft A (T.s ^ k)))).2 ?_
+    rintro _ ⟨x, hx, i, rfl⟩
+    rw [SetLike.mem_coe, Submodule.mem_comap, LinearMap.mulLeft_apply]
+    rcases le_or_gt k i with hki | hki
+    · obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_le hki
+      apply Submodule.mem_sup_left
+      have e : T.s ^ k * (T.t ^ (k + d) * x) = T.t ^ d * x := by
+        linear_combination (T.t ^ d * x) * tsPow T k
+      rw [e]
+      exact T.B.mul_mem (T.B.pow_mem T.tB d) (hXB x hx)
+    · obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_lt hki
+      apply Submodule.mem_sup_right
+      have e : T.s ^ (i + d + 1) * (T.t ^ i * x) = T.s ^ (d + 1) * x := by
+        linear_combination (T.s ^ (d + 1) * x) * tsPow T i
+      rw [e]
+      exact Submodule.subset_span ⟨x, hx, d + 1, rfl⟩
   have hy := key _ (hX _ hk)
   have e : T.s ^ k * (T.t ^ k * y) = y := by
     linear_combination y * tsPow T k
@@ -291,6 +275,8 @@ theorem UpperTheory.exists_power_decomposition_of_root_of_unity :
   linear_combination (-(q : D) * algebraMap A D r) * hup - T.t ^ (q * m) * p₁ * hrq +
     T.t ^ (q * m) * hy - σ * hqm
 
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsTwoChartQuotientOfFiniteCoord
@@ -331,9 +317,8 @@ private theorem mem_map_of_coord {A D ι : Type} [CommRing A] [CommRing D] [Alge
   exact Ideal.mul_mem_right _ _ (Ideal.mem_map_of_mem _ (hc i))
 
 theorem UpperTheory.exists_twoChart_quotient_of_finite_coord :
-    ∀ (A D : Type) [CommRing A] [CommRing D] [Algebra A D] (T : TC A D), T.Fin → T.Coord → ∀ I : Ideal A, ∃ T' : TC A (D ⧸ I.map (algebraMap A D)), T'.Fin ∧ T'.t = Ideal.Quotient.mk _ T.t ∧ T'.s = Ideal.Quotient.mk _ T.s ∧
-      (∀ j, ∀ y ∈ T'.S j, ∃ x ∈ T.S j, Ideal.Quotient.mk _ x = y) ∧ (∀ j, ∀ x ∈ T.S j, Ideal.Quotient.mk _ x ∈ T'.S j) ∧
-      (∀ x ∈ T.B, x ∈ I.map (algebraMap A D) → x ∈ I • Subalgebra.toSubmodule T.B) ∧ ∀ x ∈ T.C, x ∈ I.map (algebraMap A D) → x ∈ I • Subalgebra.toSubmodule T.C := by
+    ∀ (A D : Type) [CommRing A] [CommRing D] [Algebra A D] (T : TC A D), T.Fin → T.Coord → ∀ I : Ideal A, ∃ T' : TC A (D ⧸ I.map (algebraMap A D)), T'.Fin ∧ T'.t = Ideal.Quotient.mk _ T.t ∧
+      (∀ j, ∀ y ∈ T'.S j, ∃ x ∈ T.S j, Ideal.Quotient.mk _ x = y) ∧ (∀ j, ∀ x ∈ T.S j, Ideal.Quotient.mk _ x ∈ T'.S j) := by
   classical
   intro A D _ _ _ T hF hC I
   obtain ⟨ι, β, U, V, hU, hV⟩ := hC
@@ -361,7 +346,7 @@ theorem UpperTheory.exists_twoChart_quotient_of_finite_coord :
         obtain ⟨x, rfl⟩ := hsurj y
         obtain ⟨k, hk⟩ := T.locC x
         exact ⟨k, Subalgebra.mem_map.2 ⟨_, hk, by rw [hq, map_mul, map_pow]⟩⟩ }
-  refine ⟨T', ?_, rfl, rfl, ?_, ?_, ?_, ?_⟩
+  refine ⟨T', ?_, rfl, ?_, ?_⟩
   · obtain ⟨X, hX1, hX2⟩ := hF
     refine ⟨X.image q, ?_, ?_⟩
     · intro y hy
@@ -421,16 +406,7 @@ theorem UpperTheory.exists_twoChart_quotient_of_finite_coord :
     refine Submodule.mem_inf.2 ⟨Subalgebra.mem_map.2 ⟨x, hxB, rfl⟩, ?_⟩
     show Ideal.Quotient.mk J T.s ^ j * Ideal.Quotient.mk J x ∈ T.C.map q
     exact Subalgebra.mem_map.2 ⟨T.s ^ j * x, hxC, by rw [hq, map_mul, map_pow]⟩
-  · intro x hx hxJ
-    have hxs : x ∈ Submodule.span A (β '' U) := by rw [← hU]; exact hx
-    rw [hU]
-    exact mem_smul_span_of_coord β I U hxs (coord_mem_of_mem β I hxJ)
-  · intro x hx hxJ
-    have hC0 : Subalgebra.toSubmodule T.C = Submodule.span A (β '' V 0) := by
-      rw [← (hV 0).1, pow_zero, LinearMap.mulLeft_one, Submodule.comap_id]
-    have hxs : x ∈ Submodule.span A (β '' V 0) := by rw [← hC0]; exact hx
-    rw [hC0]
-    exact mem_smul_span_of_coord β I (V 0) hxs (coord_mem_of_mem β I hxJ)
+
 
 end
 end -- clump:auto
@@ -835,7 +811,7 @@ theorem UpperTheory.exists_factorization_near_root_of_unity_henselian :
     rcases Nat.eq_zero_or_pos q with h | h
     · subst h; simp at hq
     · exact h
-  obtain ⟨T', hT'F, hT't, -, hlift, hproj, -, -⟩ := exists_twoChart_quotient_of_finite_coord A D T hF hC M
+  obtain ⟨T', hT'F, hT't, hlift, hproj⟩ := exists_twoChart_quotient_of_finite_coord A D T hF hC M
   have hω' : (Ideal.Quotient.mk J ω) ^ q = 1 := by
     rw [← map_pow, ← map_one (Ideal.Quotient.mk J), Ideal.Quotient.eq]
     exact hωJ
@@ -956,11 +932,9 @@ end
 end -- clump:auto
 end -- clump:auto
 
--- clump: shared namespace opens
+@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsMonicLaurentPolynomialNearRootOfUnity
 
 open IsLocalRing UpperTheory.Et
-
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsMonicLaurentPolynomialNearRootOfUnity
 
 theorem UpperTheory.exists_monic_laurent_polynomial_near_root_of_unity :
     ∀ (A D : Type) [CommRing A] [IsLocalRing A] [CommRing D] [Algebra A D] (T : TC A D), T.Int → ∀ (q : ℕ), 0 < q → ∀ w : D, w ^ q - 1 ∈ mm (⊤ : Subalgebra A D) →
@@ -1059,7 +1033,11 @@ theorem UpperTheory.exists_monic_laurent_polynomial_near_root_of_unity :
 
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsTwoChartAdjoinRootLaurent
+section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.ExistsTwoChartAdjoinRootLaurent
+@[expose] public section
+
+noncomputable section
+open IsLocalRing UpperTheory.Et
 
 section SlopeTestRemainingChoices
 
@@ -1085,13 +1063,8 @@ private theorem gen_eq {e : ℤ → D} (e0 : e 0 = 1) (ea : ∀ a b, e (a + b) =
   ring
 
 private theorem span_mul_mem {S : Set D} {M : Submodule A D} {c : D}
-    (h : ∀ x ∈ S, c * x ∈ M) : ∀ w ∈ Submodule.span A S, c * w ∈ M := by
-  intro w hw
-  induction hw using Submodule.span_induction with
-  | mem x hx => exact h x hx
-  | zero => rw [mul_zero]; exact M.zero_mem
-  | add x y _ _ hx hy => rw [mul_add]; exact M.add_mem hx hy
-  | smul a x _ hx => rw [mul_smul_comm]; exact M.smul_mem a hx
+    (h : ∀ x ∈ S, c * x ∈ M) : ∀ w ∈ Submodule.span A S, c * w ∈ M :=
+  fun _ hw => (Submodule.span_le (p := M.comap (LinearMap.mulLeft A c))).2 h hw
 
 private theorem chart_eq {e : ℤ → D} (e0 : e 0 = 1) (ea : ∀ a b, e (a + b) = e a * e b) {r : D}
     {k N : ℕ}
@@ -1396,7 +1369,13 @@ theorem UpperTheory.exists_twoChart_adjoinRoot_laurent :
   obtain ⟨T, h1, h2, h3, h4, h5, h6⟩ := assemble (k := k) e0 ea β hβ (rel_model hP hk)
   exact ⟨k, hk0, T, h1, h2, h3, h4, h5, h6⟩
 
+end
 end -- clump:auto
+end -- clump:auto
+
+-- clump: shared namespace opens
+
+open IsLocalRing UpperTheory.Et
 
 @[expose] public noncomputable section -- clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.RootsOfUnityLiftModNilpotentUnique
 

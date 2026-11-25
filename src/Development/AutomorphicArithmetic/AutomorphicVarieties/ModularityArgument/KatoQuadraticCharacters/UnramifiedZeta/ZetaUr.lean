@@ -1239,9 +1239,12 @@ end -- clump:auto
 theorem UpperTheory.V.Z.Kato.K5.smoothedZetaClass_hodgeTateLaw : UpperTheory.V.Z.Kato.Joint.SmoothedZetaClassHodgeTateLawStatement := UpperTheory.V.Z.Kato.K5.top
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.QuotientCharTrivialInertiaCyclotomicTower
+section -- clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.QuotientCharTrivialInertiaCyclotomicTower
+@[expose] public section
 
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Formalism.MainNotions.N GlobalTheory.GalOfCusp UpperTheory.V UpperTheory.V.Af UpperTheory.V.HV GlobalTheory.Ord2 GlobalTheory.KZ PowerSeries
+
+noncomputable section
 
 namespace GlobalTheory.QuotInertia
 
@@ -1463,7 +1466,6 @@ theorem dt_eq_one [IsAlgClosure ℚ Ω] {W : R2 Ω l} (hcont : Continuous W) (hd
 
 end GlobalTheory.QuotInertia
 
-
 open GlobalTheory.QuotInertia in
 theorem GlobalTheory.quot_eq_one_of_cycBar_eq_one : ∀ (l : ℕ) [Fact l.Prime] (Ω : Type) [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ Ω]
     (ι : Qbar l ≃+* ℂ) (e : ℕ) (S : Finset Pl) (A : ValuationSubring Ω) (W : R2 Ω l) (g : Newform (2 * e + 1)),
@@ -1477,6 +1479,8 @@ theorem GlobalTheory.quot_eq_one_of_cycBar_eq_one : ∀ (l : ℕ) [Fact l.Prime]
   rw [hc, hχs, hdt] at h
   simpa using h
 
+end
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AutomorphicArithmetic.Foundations.IwahoriReduction.LangPolynomials.NormFactorLeOne

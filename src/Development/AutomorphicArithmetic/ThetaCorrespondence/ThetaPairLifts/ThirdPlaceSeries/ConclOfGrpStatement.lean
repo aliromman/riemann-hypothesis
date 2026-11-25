@@ -457,7 +457,10 @@ end -- clump:auto
 
 end -- clump: shared namespace opens
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsTypes
+section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.ExistsTypes
+@[expose] public section
+
+noncomputable section
 
 namespace GlobalTheory.ParRay
 
@@ -481,9 +484,6 @@ theorem exists_types : GlobalTheory.Published.RayClassFieldSt → GlobalTheory.P
       instMray := inferInstance
       nfMray := nfOf hf
       algKM := algK D jE h
-      Mray_gal := hgal
-      Mray_ab := hab
-      Mray_unr := hunr
       g_Mray := fun k => hsplit _ (hg k)
       iota := fun k _ w =>
         haveI : Fact (D.host.g k).Prime := ⟨D.host.g_prime k⟩
@@ -497,8 +497,7 @@ theorem exists_types : GlobalTheory.Published.RayClassFieldSt → GlobalTheory.P
       locPar := fun σ w => isoLoc D.nd D.naut σ.1 w
       locPar_dim := fun σ w => (GlobalTheory.RowPar.lpDim_isoLoc D.naut σ.1 w).trans σ.2.2.2.1
       labPar_def := fun _ _ _ => rfl
-      MtPar := fun _ _ _ => ⊥
-      AmbPar := fun _ _ => ⊥ }
+      MtPar := fun _ _ _ => ⊥ }
   refine ⟨X, D.nStage_trivialCharacter_compat, D.nStage_trivialCharacter_coeff_eq, rfl, rfl, rfl, rfl, rfl, ⟨?_⟩, fun _ => ?_⟩
   · exact
       { eM := RingEquiv.refl _
@@ -510,6 +509,8 @@ theorem exists_types : GlobalTheory.Published.RayClassFieldSt → GlobalTheory.P
 
 end GlobalTheory.ParRay
 
+end
+end -- clump:auto
 end -- clump:auto
 
 section -- clump member: Development.AbelianVarietyTheory.Proofs.IwasawaDecomposition.NonemptyWdSideOfTie

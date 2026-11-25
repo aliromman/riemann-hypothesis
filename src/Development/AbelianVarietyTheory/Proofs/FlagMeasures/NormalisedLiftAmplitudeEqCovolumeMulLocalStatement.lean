@@ -85,11 +85,12 @@ import Mathlib.MeasureTheory.Integral.Pi
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsQuotientMeasureUnipotentStabilisers, Development.AbelianVarietyTheory.Proofs.FlagMeasures.NormalisedMeasureEqProdBesselRootMeasures, Development.AbelianVarietyTheory.Proofs.FlagMeasures.RealPlaceFlagUnipotentRadicalIsUnipotent, Development.AbelianVarietyTheory.Proofs.FlagMeasures.UnitaryJHaarEntryBoundedPolynomialGrowth, Development.AbelianVarietyTheory.Proofs.FlagMeasures.UnipotentSubgroupUJHaarRightInvariant, Development.AbelianVarietyTheory.Proofs.FlagMeasures.RealOrbitalIntegralHsNormEqProdLocal, Development.AbelianVarietyTheory.Proofs.FlagMeasures.NormalisedLiftAmplitudeEqCovolumeMulLocal, Development.AbelianVarietyTheory.Proofs.FlagMeasures.NormalisedLiftAmplitudeEqCovolumeMulLocalStatement
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsQuotientMeasureUnipotentStabilisers
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.ExistsQuotientMeasureUnipotentStabilisers
 
 open scoped Classical ENNReal
 open Matrix MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.PackageTie2 Formalism.L2.SG.LocWSOf
 
+noncomputable section
 
 namespace GlobalTheory.QuotExist
 
@@ -213,9 +214,6 @@ open Formalism.L2.SG.RealObj Formalism.L2.SG.RealObj.InfCut.JacobianCoordinates
 
 variable {n r : ℕ} (ε : Fin n → Bool) (e : Fin r → Fin n → ℂ) (z : Fin n → ℂ)
 
-theorem spanLt_mono {a b : ℕ} (h : a ≤ b) : spanLt e a ≤ spanLt e b :=
-  Submodule.span_mono (Set.image_mono fun c (hc : c.1 < a) => lt_of_lt_of_le hc h)
-
 def Pres (M : Matrix (Fin n) (Fin n) ℂ) : Prop := ∀ a : ℕ, ∀ v ∈ spanLt e a, M *ᵥ v ∈ spanLt e a
 
 theorem pres_of (M : Matrix (Fin n) (Fin n) ℂ) (h : ∀ b : Fin r, M *ᵥ e b ∈ spanLt e (b.1 + 1)) : Pres e M := by
@@ -225,7 +223,7 @@ theorem pres_of (M : Matrix (Fin n) (Fin n) ℂ) (h : ∀ b : Fin r, M *ᵥ e b 
     rintro _ ⟨c, hc, rfl⟩
     show Matrix.mulVecLin M (e c) ∈ spanLt e a
     rw [Matrix.mulVecLin_apply]
-    exact spanLt_mono e (Nat.succ_le_of_lt hc) (h c)
+    exact Formalism.L2.SG.Pf.WuDec.spanLt_mono e (Nat.succ_le_of_lt hc) (h c)
   have h2 := this hv
   rw [Submodule.mem_comap, Matrix.mulVecLin_apply] at h2
   exact h2
@@ -237,7 +235,7 @@ def Good (M : Matrix (Fin n) (Fin n) ℂ) : Prop :=
 variable {ε e z}
 
 theorem Good.pres {M : Matrix (Fin n) (Fin n) ℂ} (hM : Good ε e z M) : Pres e M :=
-  pres_of e M fun b => spanLt_mono e (Nat.le_succ _) (hM.1.1 b)
+  pres_of e M fun b => Formalism.L2.SG.Pf.WuDec.spanLt_mono e (Nat.le_succ _) (hM.1.1 b)
 
 theorem Good.pres_mul {P M : Matrix (Fin n) (Fin n) ℂ} (hP : Pres e P) (hM : Good ε e z M) :
     Good ε e z (P * M) := by
@@ -267,7 +265,7 @@ theorem pres_of_good {g : Matrix (Fin n) (Fin n) ℂ} (h : Good ε e z (g - 1)) 
   have e1 : g *ᵥ e b = (g - 1) *ᵥ e b + e b := by
     rw [Matrix.sub_mulVec, Matrix.one_mulVec, sub_add_cancel]
   rw [e1]
-  exact add_mem (spanLt_mono e (Nat.le_succ _) (h.1.1 b)) (Submodule.subset_span ⟨b, Nat.lt_succ_self _, rfl⟩)
+  exact add_mem (Formalism.L2.SG.Pf.WuDec.spanLt_mono e (Nat.le_succ _) (h.1.1 b)) (Submodule.subset_span ⟨b, Nat.lt_succ_self _, rfl⟩)
 
 theorem pres_inv {g g' : Matrix (Fin n) (Fin n) ℂ} (h1 : g' * g = 1) (hP : Pres e g) : Pres e g' := by
   intro a v hv
@@ -369,12 +367,14 @@ theorem quot_exists : ∀ (D : D7) (X : HidaSetting D) (u u' : D.what₂.Word) (
 
 end GlobalTheory.QuotExist
 end -- clump:auto
+end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.NormalisedMeasureEqProdBesselRootMeasures
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.NormalisedMeasureEqProdBesselRootMeasures
 
 open scoped Classical ENNReal
 open Matrix MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Formalism.L2.SG.HidaSetting Formalism.L2.SG.Full Formalism.L2.SG.PackageTie2 Formalism.L2.SG.LocWSOf
 
+noncomputable section
 
 namespace GlobalTheory.Amp.PinRoot
 
@@ -830,15 +830,6 @@ theorem conj_loc (u : D.what₂.Word) {a : X.B.I.Ginf} (ha : a ∈ X.SinfU u) (v
     rwa [e] at h2
   · exact conj_loc_of X u ha v
 
-theorem sinf_conj_iff (u : D.what₂.Word) {a : X.B.I.Ginf} (ha : a ∈ X.SinfU u) (n : X.B.I.Ginf) :
-    a * n * a⁻¹ ∈ X.NinfU u ↔ n ∈ X.NinfU u := by
-  constructor
-  · intro h
-    have h2 := sinf_conj X u (Formalism.L2.SG.Pf.Sinf.sinf_inv' X u ha) h
-    have e : a⁻¹ * (a * n * a⁻¹) * a⁻¹⁻¹ = n := by group
-    rwa [e] at h2
-  · exact sinf_conj X u ha
-
 variable {θ : ℝ} (C : Choice X θ) (τ : D.what₂.Tau)
 
 theorem trG_mul (x y : Formalism.REAL.UJ (X.B.I.ε (vOf X τ))) :
@@ -922,7 +913,7 @@ theorem pinned_root : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (θ : ℝ) (
     show (s0 * z * s0⁻¹ ∈ X.NinfU u ∧ (s.pt.1)⁻¹ * (s0 * z * s0⁻¹) * s.pt.1 ∈ X.NinfU u') ↔
       (z ∈ X.NinfU u ∧ γw⁻¹ * z * γw ∈ X.NinfU u')
     rw [e]
-    exact and_congr (sinf_conj_iff X u hs0 z) (sinf_conj_iff X u' hs1 _)
+    exact and_congr (Formalism.L2.SG.Pf.FormTranspose.sinf_conj_iff X u hs0 z) (Formalism.L2.SG.Pf.FormTranspose.sinf_conj_iff X u' hs1 _)
   · intro τ
     refine ⟨Formalism.MainNotions.S.ThB.ptLoc D τ w, ?_⟩
     have hb := root_base X C u u' w γw τ hrep (m (vOf X τ)) (hmH _) (hmmap _)
@@ -986,6 +977,7 @@ theorem pinned_root : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (θ : ℝ) (
     exact hmove
 
 end GlobalTheory.Amp.PinRoot
+end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

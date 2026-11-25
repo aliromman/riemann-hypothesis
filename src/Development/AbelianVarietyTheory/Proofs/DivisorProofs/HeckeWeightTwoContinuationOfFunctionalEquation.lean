@@ -146,7 +146,9 @@ theorem card_le_absNorm_of_forall_le : ∀ (F : Type) [Field F] [NumberField F] 
 end GlobalTheory
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CardHilbertEisensteinFourierFiberLeNorm
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CardHilbertEisensteinFourierFiberLeNorm
+
+noncomputable section
 
 namespace GlobalTheory.QFiber
 
@@ -166,10 +168,6 @@ theorem coe_toIdeal {K : FractionalIdeal (𝓞 F)⁰ F} (h : K ≤ 1) :
 theorem nrm_nonneg (𝔞 : Frac F) : 0 ≤ nrm 𝔞 := by
   unfold nrm; exact_mod_cast absNorm_nonneg _
 
-theorem emb_nonempty [IsTotallyReal F] : Nonempty (Emb F) := by
-  obtain ⟨φ⟩ : Nonempty (F →+* ℂ) := inferInstance
-  exact ⟨(IsTotallyReal.complexEmbedding_isReal φ).embedding⟩
-
 theorem card_le_norm : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (𝔞 𝔟 : Frac F) (ξ : F)
     (s : Finset (Quotient (qRel 𝔞 𝔟))), (∀ c ∈ s, c.out.1.1 * c.out.1.2 = ξ) →
     (s.card : ℝ) ≤ |(Algebra.norm ℚ ξ : ℝ)| / (nrm 𝔞 * nrm 𝔟) := by
@@ -181,7 +179,7 @@ theorem card_le_norm : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F
   have hA : ((𝔞 : FractionalIdeal (𝓞 F)⁰ F)) ≠ 0 := 𝔞.ne_zero
   have hB : ((𝔟 : FractionalIdeal (𝓞 F)⁰ F)) ≠ 0 := 𝔟.ne_zero
   have hξ : ξ ≠ 0 := by
-    obtain ⟨τ⟩ := emb_nonempty (F := F)
+    obtain ⟨τ⟩ := GlobalTheory.HeckeTwoExp.emb_nonempty (F := F)
     have h := c0.out.2.2.2 τ
     rw [hs c0 hc0] at h
     intro h0
@@ -264,6 +262,7 @@ theorem card_le_norm : ∀ (F : Type) [Field F] [NumberField F] [IsTotallyReal F
       exact this
 
 end GlobalTheory.QFiber
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.NormSqMulExpNegTraceLe

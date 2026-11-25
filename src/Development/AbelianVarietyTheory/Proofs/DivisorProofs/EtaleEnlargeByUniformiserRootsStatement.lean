@@ -86,19 +86,15 @@ import Mathlib.RingTheory.TotallySplit
 -- This file was produced by scripts/clump.py from the modules listed below.
 -- Members: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsKummerEnlargementRootsOfUniformisers, Development.AbelianVarietyTheory.Proofs.DivisorProofs.CountingBound, Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleAwayOfIsEtaleAtOffSubmonoid, Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleLocalizationAtPrimeTensorOfEtaleAway, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsReducedOfFormallyEtale, Development.AbelianVarietyTheory.Proofs.DivisorProofs.FiniteIntegralClosureOverGenericFibreOfEtale, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsNeZeroClosureEtaleAt, Development.AbelianVarietyTheory.Proofs.DivisorProofs.ProductFormulaLogNorms, Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalizationIntegralClosureEquiv, Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleAtPrimeOfRegularOfIsIntegrallyClosedIn, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsIntegrallyClosedInClosureLocalization, Development.AbelianVarietyTheory.Proofs.DivisorProofs.DualHopfOrderGaussSum, Development.AbelianVarietyTheory.Proofs.DivisorProofs.IntegralClosureEtaleAtOfHeightLeOnePurity, Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleEnlargeByUniformiserRoots, Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleEnlargeByUniformiserRootsStatement
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsKummerEnlargementRootsOfUniformisers
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsKummerEnlargementRootsOfUniformisers
 
 open IsLocalRing Polynomial
 
+noncomputable section
 
 namespace GlobalTheory.KummerEnlarge
 
 open GlobalTheory.NormalApprox
-
-theorem height_comap_eq_one_of_goingDown {A B : Type} [CommRing A] [IsDomain A] [CommRing B]
-    [Algebra A B] [Algebra.HasGoingDown A B] (Q : Ideal B) [Q.IsPrime] (hQ : Q.height = 1)
-    (hne : Q.comap (algebraMap A B) ≠ ⊥) : (Q.comap (algebraMap A B)).height = 1 := by
-  apply GlobalTheory.ComplementaryForms.height_under_eq_one <;> assumption
 
 theorem exists_uniformiser (A : Type) [CommRing A] [IsDomain A] [IsNoetherianRing A]
     [IsIntegrallyClosed A] (p : Ideal A) :
@@ -239,7 +235,7 @@ theorem exists_kummer_enlargement : ∀ (T : Type) [CommRing T] [IsDomain T] [Is
     exact ha this
   have hheight : (p₁.comap f).height = 1 := by
     rw [hcomap]
-    exact height_comap_eq_one_of_goingDown P hPh hne
+    exact GlobalTheory.ComplementaryForms.height_under_eq_one P hPh hne
 
   have hmin : p₁.comap f ∈ (Ideal.span {a}).minimalPrimes := by
     refine ⟨⟨inferInstance, (Ideal.span_singleton_le_iff_mem _).mpr hfa⟩, fun r hr hrp => ?_⟩
@@ -266,6 +262,7 @@ theorem exists_kummer_enlargement : ∀ (T : Type) [CommRing T] [IsDomain T] [Is
   exact hy _
 
 end GlobalTheory.KummerEnlarge
+end -- clump:auto
 end -- clump:auto
 
 section -- clump: shared namespace opens

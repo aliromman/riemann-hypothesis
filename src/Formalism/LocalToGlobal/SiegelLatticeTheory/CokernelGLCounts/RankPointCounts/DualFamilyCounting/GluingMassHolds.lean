@@ -189,10 +189,11 @@ theorem sameGenusFix_push_iff (hK : Formalism.HermitianLatticesTheory.IsCMUnram 
 end Formalism.L2.SG.Pf.OrthogonalComplementGenusMass
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.PushforwardOrthComplement
+@[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.PushforwardOrthComplement
 
 open NumberField Module
 
+noncomputable section
 
 namespace Formalism.L2.SG.Pf.OrthogonalComplementGenusMass
 
@@ -293,7 +294,7 @@ theorem genusMassW_of (h1 : JordanExists) (h5 : AlphaDisc) : GenusMassW := by
       rw [e]
   · intro T hT _
     obtain ⟨N, rfl⟩ : ∃ N, push (orthK h U) N = T := ⟨_, push_pull (mem_of_isLatIn hT)⟩
-    have hfin := Formalism.HermitianLatticesTheory.autFinite K ↥(orthK h U) (formOn h (orthK h U)) hWs (StabilizerLattices.trace_pos hWd) N
+    have hfin := Formalism.HermitianLatticesTheory.autFinite K ↥(orthK h U) (formOn h (orthK h U)) (StabilizerLattices.trace_pos hWd) N
       ((isLatIn_push_iff_isLattice N).1 hT)
     have : Finite ↥(Formalism.ThetaLiftIndependence.autL (formOn h (orthK h U)) N) := hfin.to_subtype
     exact Set.finite_coe_iff.mp (Finite.of_equiv _ (stabEquivW hs hc N).symm)
@@ -388,6 +389,7 @@ theorem glueMass_of' (h1 : JordanExists) (h2 : JordanInv) (h5 : AlphaDisc) (h6 :
   glueMass_of h1 h2 h6 h8 (OrthogonalComplementGenusMass.genusMassW_of h1 h5)
 
 end Formalism.L2.SG.Pf.Cnt
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Formalism.LocalToGlobal.SiegelLatticeTheory.CokernelGLCounts.RankPointCounts.DualFamilyCounting.GluingMassHolds

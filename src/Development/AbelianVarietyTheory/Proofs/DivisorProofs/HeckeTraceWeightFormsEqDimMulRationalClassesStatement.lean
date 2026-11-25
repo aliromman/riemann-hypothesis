@@ -52,8 +52,9 @@ section -- clump: shared namespace opens
 open NumberField IsDedekindDomain Matrix Polynomial Filter GlobalTheory.CuspRep GlobalTheory.PRep Formalism.UG Formalism.BasicNotions GlobalTheory.UnitaryBC Formalism.L2.Host GlobalTheory.BCT
 open scoped Classical TensorProduct
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CentralizerRegularRationalPointFiniteAdelicComm
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.CentralizerRegularRationalPointFiniteAdelicComm
 
+noncomputable section
 
 namespace GlobalTheory.BCT.FinCentComm
 
@@ -133,7 +134,6 @@ theorem map_snd_finPt (γ : UE E n) :
 
 end GlobalTheory.BCT.FinCentComm
 
-
 open GlobalTheory.BCT.FinCentComm in
 theorem GlobalTheory.BCT.finCent_comm : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (n : ℕ) (γ : UE E n),
     γ.1.val.charpoly.Separable → ∀ a ∈ twCent (MonoidHom.id (finU (E := E) (n := n))) (finPt γ),
@@ -153,6 +153,7 @@ theorem GlobalTheory.BCT.finCent_comm : ∀ (E : Type) [Field E] [NumberField E]
   · rw [Matrix.map_mul, Matrix.map_mul, map_fst_eq_one a, map_fst_eq_one b]
   · rw [Matrix.map_mul, Matrix.map_mul]
     exact commute_of_commute_map_separable (algebraMap E (Af E)) γ.1.val hγ _ _ (key a ha) (key b hb)
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LevelStabiliserLeCentraliserCompactPart
@@ -245,7 +246,7 @@ theorem stab_le_cptPart : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
       exact hKx.closure_of_subset fun s hs => Subgroup.zpowers_le.2 htK hs
   · have hUo : IsOpen ((globLev S K').map (MulAut.conj x).toMonoidHom : Set (finU (E := E) (n := n))) := by
       rw [hconj]
-      exact (GlobalTheory.T.isOpen_productOfLocalLevelsUnitary E hU n S K' hK').preimage (by fun_prop)
+      exact (GlobalTheory.BCT.isOpen_globLev E hU n S K' hK').preimage (by fun_prop)
     choose C0 hC0c hC0 using fun w => loc_cpt_part hU n w (ρ w δ) (hsep w)
     have hcof := GlobalTheory.T.centraliser_compactPart_le_integral_almostAll E hU n γ hγ
     let C : ∀ w : Pl E, Set (UL n w) := fun w =>
@@ -388,7 +389,6 @@ end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EventuallyIntegralUnitaryConjOfCharpolyEqStatement
 
-
 theorem _root_.GlobalTheory.T.eventually_integralUnitary_conj_of_charpoly_eq : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Unr E → ∀ (n : ℕ) (P : E[X]), P.Separable → ∀ᶠ w in (cofinite : Filter (Pl E)), ∀ y y' : UL n w, y ∈ KL n w → y' ∈ KL n w → y.1.val.charpoly = atPl w P → y'.1.val.charpoly = atPl w P → ∃ g ∈ KL n w, y' = g⁻¹ * y * g := by
   exact @GlobalTheory.BCT.IntUnitConj.main
 end -- clump:auto
@@ -401,18 +401,13 @@ namespace GlobalTheory.BCT.ClsSupp
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {n : ℕ}
 
-theorem cLoc_mem_UL' (w : Pl E) (x : UA E n) : cLoc w x ∈ UL n w := by
-  by_cases hsp : IsSplitAt w
-  · unfold UL; rw [ite_eq_left hsp]; trivial
-  · exact GlobalTheory.LocInj.cLoc_mem_UL hsp x
-
 def cw (w : Pl E) : finU (E := E) (n := n) →* UL n w where
-  toFun x := ⟨cLoc w (x : UA E n), cLoc_mem_UL' w _⟩
+  toFun x := ⟨cLoc w (x : UA E n), GlobalTheory.BCT.GlobLev.cLoc_mem_UL w _⟩
   map_one' := Subtype.ext (by simp)
   map_mul' x y := Subtype.ext (by simp)
 
 theorem toSub_eq (w : Pl E) (x : finU (E := E) (n := n)) : toSub (UL n w) (cLoc w (x : UA E n)) = cw w x :=
-  dite_eq_left (cLoc_mem_UL' w _)
+  dite_eq_left (GlobalTheory.BCT.GlobLev.cLoc_mem_UL w _)
 
 theorem cw_val (w : Pl E) (x : finU (E := E) (n := n)) : (cw w x).1 = cLoc w (x : UA E n) := rfl
 
@@ -427,7 +422,6 @@ theorem ne_zero_of_finprod {S : Set (Pl E)} {g : Pl E → ℂ} (hg : ∀ᶠ w in
   exact (Filter.eventually_cofinite.1 hg).subset Set.inter_subset_right
 
 end GlobalTheory.BCT.ClsSupp
-
 
 open GlobalTheory.BCT.ClsSupp in
 theorem GlobalTheory.BCT.ClsSupp.finite_supp : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Unr E → ∀ n : ℕ, 1 ≤ n → ∀ (S : Set (Pl E)), IsSection S → ∀ (K' : ∀ w : Pl E, Subgroup (UL n w)), IsLevelFam (fun w : Pl E => MonoidHom.id (UL n w)) (KL n) K' → ∀ f : ∀ w : Pl E, UL n w → ℂ, IsTest (KL n) K' f → ∀ γ : UE E n, γ.1.val.charpoly.Separable → {q : DoubleCoset.Quotient (twCent (MonoidHom.id (finU (E := E) (n := n))) (finPt γ) : Set (finU (E := E) (n := n))) (globLev S K' : Set (finU (E := E) (n := n))) | globFn S f ((Quotient.out q)⁻¹ * finPt γ * (MonoidHom.id (finU (E := E) (n := n))) (Quotient.out q)) ≠ 0}.Finite := by

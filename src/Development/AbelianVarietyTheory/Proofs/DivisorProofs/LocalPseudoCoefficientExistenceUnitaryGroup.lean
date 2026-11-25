@@ -202,21 +202,13 @@ theorem isCutFn_intervalIntegral_and_deriv :
 end GlobalTheory.PsCo.Pc1
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ScaledKoszulTestFamilyHasDerivAtScale
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ScaledKoszulTestFamilyHasDerivAtScale
 
 open MvPolynomial GlobalTheory.PsCo.Pc1 GlobalTheory.PsCo.Pc1.A
 
+noncomputable section
 
 namespace GlobalTheory.PsCo.HomotDeriv
-
-theorem ev_rP {n : ℕ} (ε : Fin n → Bool) (g : Mat n) : ev g (rP ε) = ((rM ε g : ℝ) : ℂ) := by
-
-  simp only [rP, rM, map_sum, map_mul, ev, MvPolynomial.eval_X, Sum.elim_inl, Sum.elim_inr]
-  push_cast
-  refine Finset.sum_congr rfl fun x _ => ?_
-  rw [Complex.star_def, Complex.mul_conj, Complex.normSq_eq_norm_sq]
-  push_cast
-  ring
 
 theorem hasDerivAt_scale (G : ℝ → ℝ) (hG : ContDiff ℝ (⊤ : ℕ∞) G) (k : ℕ) (r t : ℝ) (ht : t ≠ 0) :
     HasDerivAt (fun s : ℝ => iteratedDeriv k (fun y => G (s * y)) r)
@@ -289,7 +281,7 @@ theorem famF_hasDerivAt : ∀ {n : ℕ} (ε : Fin n → Bool) (G : ℝ → ℝ) 
     intro j
     have := congrArg (ev g) (hrec j)
 
-    simpa only [map_sum, map_add (f := _), map_mul, ev_rP, map_natCast, map_one] using this
+    simpa only [map_sum, map_add (f := _), map_mul, GlobalTheory.PsCo.Pc1.B.sb_evrp, map_natCast, map_one] using this
   rw [sum_shift (nMode ε) a (fun k => ev g (p k)) (rM ε g : ℂ) (by simp [hp (nMode ε + 1) (Nat.lt_succ_self _)])]
   simp only [hA, hR, Finset.mul_sum]
   rw [Finset.sum_comm]
@@ -298,6 +290,7 @@ theorem famF_hasDerivAt : ∀ {n : ℕ} (ε : Fin n → Bool) (G : ℝ → ℝ) 
   rw [sum_prev g (nMode ε) a (q x) (hq x _ le_rfl)]
 
 end GlobalTheory.PsCo.HomotDeriv
+end -- clump:auto
 end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ContDiffIter

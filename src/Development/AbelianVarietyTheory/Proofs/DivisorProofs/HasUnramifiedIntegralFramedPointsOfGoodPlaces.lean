@@ -393,13 +393,11 @@ theorem exists_ell_torsion_sections : ∀ (E : Type) [Field E] [NumberField E] [
 end GlobalTheory.TorsionModel
 end -- clump:auto
 
-section -- clump: shared namespace opens
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsComplexLinearOfPureTypesFiniteIndex
 
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.PureType GlobalTheory.CompRat
 open scoped CategoryTheory.Obj
-
-@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsComplexLinearOfPureTypesFiniteIndex
 
 namespace GlobalTheory.CompRat
 
@@ -467,7 +465,13 @@ theorem exists_complex_linear_of_pure_types_of_index : ∀ (E : Type) [Field E] 
 end GlobalTheory.CompRat
 end -- clump:auto
 
-@[expose] public noncomputable section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLatticeIsometryConjPointSplitUpToIndex
+@[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLatticeIsometryConjPointSplitUpToIndex
+
+noncomputable section
+
+open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.PureType GlobalTheory.CompRat
+open scoped CategoryTheory.Obj
 
 namespace GlobalTheory.ConjSplitIndex
 
@@ -487,7 +491,6 @@ theorem form_nsmul_nsmul (D : Datum H) (N : ℕ) (x y : D.La) : D.EF (N • x) (
 end GlobalTheory.ConjSplitIndex
 
 namespace GlobalTheory.CompRat
-
 
 open ConjIsometry in
 theorem exists_isometry_of_conj_split_index : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (σ : KA l →+* ℂ) (g : ℕ) (ty : Fin g → (E →+* ℂ)) (F : FamilyUnif Xo σ ty), 1 ≤ D.p + D.q → σ (baseKA l).ρ = H.rt0 → IsTypeFn H D.p D.q ty → ∀ τ : ℂ ≃+* ℂ, τ H.rt0 = H.rt0 → ∀ (C : Curve H) (io : C.P.A.left ⟶ C.P.A.left), IsGrpPullback C.P.A C.P.A (spMap (τ : ℂ →+* ℂ)) io → ∀ (i : Fin F.n) (P : (F.Di i).La →+ (Fin g → ℂ)) (hP : IsPeriod (F.Di i) ty P), ∀ (i' : Fin F.n) (P' : (F.Di i').La →+ (Fin g → ℂ)) (hP' : IsPeriod (F.Di i') ty P') (N : ℕ), 0 < N → (∀ v : (F.Di i).La, N • v ∈ lat hP H.rt0 ⊔ lat hP (-H.rt0)) → spMap (τ : ℂ →+* ℂ) ≫ F.u i P = F.u i' P' → C.ActsBy τ io N (1, 0) → ∃ Φ : (F.Di i).La ≃ₗ[𝓞 E] (F.Di i').La, (∀ a b, (F.Di i').EF (Φ a) (Φ b) = (F.Di i).EF a b) ∧ (∀ a ∈ lat hP H.rt0, Φ a ∈ lat hP' H.rt0) ∧ (∀ a ∈ lat hP (-H.rt0), Φ a ∈ lat hP' (-H.rt0)) ∧ ∀ n : ℕ, 0 < n → C.ActsBy τ io (N * n) (1, 0) → ∀ v, spMap (τ : ℂ →+* ℂ) ≫ (F.ex i P ((n : ℂ)⁻¹ • P v)).left = (F.ex i' P' ((n : ℂ)⁻¹ • P' (Φ v))).left := by
@@ -624,8 +627,13 @@ theorem exists_isometry_of_conj_split_index : ∀ (E : Type) [Field E] [NumberFi
 
 end GlobalTheory.CompRat
 end -- clump:auto
+end -- clump:auto
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUnramifiedFieldOfInertiaProperty
+
+open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
+open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj GlobalTheory.PureType GlobalTheory.CompRat
+open scoped CategoryTheory.Obj
 
 namespace GlobalTheory.InertiaGood
 
@@ -706,8 +714,6 @@ theorem exists_unramified_field_good : ∀ (N : IntermediateField ℚ ℂ) [Numb
 
 end GlobalTheory.InertiaGood
 end -- clump:auto
-
-end -- clump: shared namespace opens
 
 section -- clump: shared namespace opens
 
@@ -965,12 +971,6 @@ end -- clump:auto
 
 namespace GlobalTheory.InertiaTransfer
 
-theorem spMap_comp_of {A B C : Type} [CommRing A] [CommRing B] [CommRing C] {f : A →+* B} {g : B →+* C}
-    {h : A →+* C} (e : g.comp f = h) : spMap g ≫ spMap f = spMap h := by
-  subst e
-  show Spec.map _ ≫ Spec.map _ = Spec.map _
-  rw [← Spec.map_comp, ← CommRingCat.ofHom_comp]
-
 theorem exists_completion (K : Type) [Field K] [NumberField K] (σ : K →+* ℂ) (𝔮 : Ideal (𝓞 K)) (h𝔮 : 𝔮.IsMaximal) :
     ∃ (T : Formalism.L2.Pj.CDVR) (a : 𝓞 K →+* T.V) (j : T.V →+* ℂ), j.comp a = σ.comp (algebraMap (𝓞 K) K) ∧
       ∀ x, a x ∈ IsLocalRing.maximalIdeal T.V ↔ x ∈ 𝔮 := by
@@ -1041,13 +1041,13 @@ theorem exists_isGrpPullback_of_inertia : GlobalTheory.Published.FormalAlgebrais
       IsGrpPullback B P.A (spMap a) φ := ⟨_, inferInstance, _, isGrpPullback_pullback P.A (spMap a)⟩
   obtain ⟨φ', hφ', hred⟩ := _root_.GlobalTheory.PureTower.exists_isGrpPullback_of_congr hFA hGM (𝓞 N) P.A P.g P.isAb P.smoothDim W r s hW T.V T.cpl q hq hqT a b
     hab hu B φ hφ
-  have ea : spMap j ≫ spMap a = spMap i := spMap_comp_of hj
+  have ea : spMap j ≫ spMap a = spMap i := GlobalTheory.ModelDescent.spMap_comp_eq hj
   have eb : spMap j ≫ spMap b = spMap (τ : ℂ →+* ℂ) ≫ spMap i :=
-    (spMap_comp_of (RingHom.ext fun x => (RingHom.congr_fun hj (σ x)).trans (hσ x))).trans
-      (spMap_comp_of (f := i) (g := (τ : ℂ →+* ℂ)) rfl).symm
+    (GlobalTheory.ModelDescent.spMap_comp_eq (RingHom.ext fun x => (RingHom.congr_fun hj (σ x)).trans (hσ x))).trans
+      (GlobalTheory.ModelDescent.spMap_comp_eq (f := i) (g := (τ : ℂ →+* ℂ)) rfl).symm
   have er : spMap (IsLocalRing.residue T.V) ≫ spMap a = spMap (IsLocalRing.residue T.V) ≫ spMap b :=
-    (spMap_comp_of (RingHom.ext fun x => Ideal.Quotient.eq.2 (hab x))).trans
-      (spMap_comp_of (f := b) (g := IsLocalRing.residue T.V) rfl).symm
+    (GlobalTheory.ModelDescent.spMap_comp_eq (RingHom.ext fun x => Ideal.Quotient.eq.2 (hab x))).trans
+      (GlobalTheory.ModelDescent.spMap_comp_eq (f := b) (g := IsLocalRing.residue T.V) rfl).symm
   have w₁ : ψ ≫ P.A.hom = (A.hom ≫ spMap j) ≫ spMap a := by rw [Category.assoc, ea, hψ.1.w]
   obtain ⟨χ, hχ₁, hχ₂⟩ : ∃ χ : A.left ⟶ B.left, χ ≫ φ = ψ ∧ χ ≫ B.hom = A.hom ≫ spMap j :=
     ⟨hφ.1.lift _ _ w₁, hφ.1.lift_fst _ _ _, hφ.1.lift_snd _ _ _⟩
@@ -1095,8 +1095,6 @@ end -- clump:auto
 end -- clump: shared namespace opens
 
 @[expose] public section -- clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HasUnramifiedIntegralFramedPointsOfGoodPlaces
-
-
 
 noncomputable section
 
