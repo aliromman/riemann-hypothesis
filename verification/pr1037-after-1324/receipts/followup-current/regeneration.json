@@ -1,0 +1,34 @@
+{
+  "cases": [
+    {
+      "base": "5ab7e11d01ee36fa4f32e8be00a4d2529eec5f1b",
+      "expected": "63e4077100de67259780b159cc7c528e9046ab29",
+      "verified_blobs": 28,
+      "sorted_path_oid_sha256": "95733ce9851a7bdf9be61b1a407756d09802334e20710ccfc07ae96d7e25e1ba"
+    },
+    {
+      "base": "b2f365a68500e2bde98cd60a2324263fc62fba10",
+      "expected": "63e4077100de67259780b159cc7c528e9046ab29",
+      "verified_blobs": 28,
+      "sorted_path_oid_sha256": "95733ce9851a7bdf9be61b1a407756d09802334e20710ccfc07ae96d7e25e1ba"
+    },
+    {
+      "base": "e851a5d2c500ad1c04eb4ddae9706205fd194dbb",
+      "expected": "eb1a7892994ce07f281da1c8338298944e6d04b7",
+      "verified_blobs": 28,
+      "sorted_path_oid_sha256": "5af160339f286397913b4bde6dd087ddc1e74ed231cbe84df9e1180174e22525"
+    }
+  ],
+  "operation_counts_per_case": {
+    "provider_declarations_removed": 4,
+    "local_attribute_commands_removed": 60,
+    "local_measurable_witnesses_removed": 2,
+    "local_borel_witnesses_removed": 1,
+    "explicit_GL_proofs_migrated": 2,
+    "explicit_comap_argument_migrated": 1
+  },
+  "negative_existing_directory": {
+    "exit": 1,
+    "sentinel_preserved": true
+  }
+}

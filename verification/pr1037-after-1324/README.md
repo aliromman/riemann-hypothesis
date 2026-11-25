@@ -46,13 +46,21 @@ On `b2f365a68500` and `5ab7e11d01ee`, the archived doubling body passed in both 
 
 The 36 targets in `combined-targets.txt` passed on the community main parent and the exact GitHub merge. Their union contains 3,340 project modules. The audit found the same 85,211 public types and recorded axiom sets in both builds. All 47,458 theorem proofs agreed. Of 34,073 definition bodies, 34,070 agreed under the structural comparison. Lean accepted each of the three changed provider bodies in both environments. The 12 additional targets accounted for all 13 affected modules outside `Main`. These counts include each module once.
 
-Both Git revisions also passed `lake build Challenge` and `lake env leanexport Challenge` with the upstream export list. The two five-statement challenge exports had 363,237,517 bytes and SHA-256 `bb37c4bb518fe68a13f12aa3929dd62dfecb663f0c063ad8c338e39601f28a60`. The solution export and the final Comparator verdict still require a full run on the merge. [Runner request](https://github.com/leanprover-community/riemann-hypothesis/pull/1037#issuecomment-7129886079).
+Both Git revisions also passed `lake build Challenge` and `lake env leanexport Challenge` with the upstream export list. The two five-statement challenge exports had 363,237,517 bytes and SHA-256 `bb37c4bb518fe68a13f12aa3929dd62dfecb663f0c063ad8c338e39601f28a60`. The solution export and the final Comparator verdict still require a full run on the merge. Roy7 accepted the full build and Comparator run on the pinned merge. [Runner assignment](https://github.com/leanprover-community/riemann-hypothesis/issues/599#issuecomment-7148937434).
 
 ## Optional removal of the four names
 
 The updated cleanup at `63e4077100de` removes four instance declarations and 60 local attribute commands in 28 files. It also removes two local measurable-space witnesses and one Borel-space witness. It retains main’s changes to the local instance list in `SumOKEx` and the theorem reference `PI.WUN.exp_mem_UH` in `AtChoice`. Two other overlapping files had upstream edits to comments and matrix priority commands that the cleanup deletes. A Git search and a SHA-checked scan of all 59,823 project source blobs found zero uses of the four names. [Change from the #1037 head](https://github.com/aliromman/riemann-hypothesis/compare/5ab7e11d01ee36fa4f32e8be00a4d2529eec5f1b..63e4077100de67259780b159cc7c528e9046ab29).
 
 This revision passed the 25 targets in `followup-port-25.txt`, with 2,959 distinct source modules. This includes the two explicit GL comap proofs, `LocalZetaFunctionalUniqueness`, and `SumOKEx`. The matrix probes selected Mathlib’s Borel witness, and both import orders passed for the live and archived proof bodies. Lean selected both original scoped GL names. The eight candidate modules in `kernel-targets.txt` passed kernel replay. Nine of the 28 changed files occur in the tested source closure. Eleven more terminal targets cover the other 19. The complete changed-file closure contains 17,360 modules. The optional cleanup stays on the fork while these checks are open.
+
+The generator reads source files directly from Git. It verifies each changed file against the expected commit before it writes any output. It can use either the merged main parent or the three-file #1037 head to produce the same 28 files. Run this command from a repository that has both commits. Set `EVIDENCE` to this directory and `OUT` to a directory for the results.
+
+```sh
+python3 "$EVIDENCE/regenerate_cleanup.py" --repo . \
+  --base 5ab7e11d01ee36fa4f32e8be00a4d2529eec5f1b \
+  --expected 63e4077100de67259780b159cc7c528e9046ab29 --output "$OUT/cleanup-src"
+```
 
 ## Reproduce
 
