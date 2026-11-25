@@ -103,6 +103,10 @@ def logged(command, path):
     with path.open("w") as output:
         result = subprocess.run(command, stdout=output, stderr=subprocess.STDOUT)
     if result.returncode:
+        with path.open(errors="replace") as lines:
+            errors = (line.rstrip() for line in lines if "error:" in line)
+            for _, error in zip(range(12), errors):
+                print(error, flush=True)
         with path.open("rb") as output:
             output.seek(max(0, path.stat().st_size - 12000))
             print(output.read().decode(errors="replace"), flush=True)

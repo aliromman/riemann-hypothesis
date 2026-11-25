@@ -2,7 +2,6 @@ name: Check RH successor proofs
 on:
   push:
     branches: [codex/rh-successor-target-checks]
-    paths: ['verification/successor-checks/**', '.github/workflows/rh-successor-target-checks.yml']
 permissions:
   contents: read
 jobs:
