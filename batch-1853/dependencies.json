@@ -1,0 +1,15 @@
+{
+  "base": "fcb6eac7534875d32d68030967e2deae6d686151",
+  "head": "88ac64dbb08e96f5bae2181b1c65cd84474fe5b5",
+  "src": "a18243b2862162bb078ca1048f99315fd91e86ec",
+  "project_modules": 59763,
+  "project_import_edges": 367146,
+  "edited_modules": 11521,
+  "untouched_direct_importers": 9842,
+  "untouched_transitive_importers": 30338,
+  "union": 41859,
+  "all_imports_edges": 5,
+  "edited_import_all_targets": 0,
+  "source_Main_closure": 59723,
+  "edited_in_Main_source_closure": 11520
+}

@@ -1,0 +1,21 @@
+test_apply_reads_only_the_modules_in_the_plan (test_clump_scopes.ClumpScopesTest.test_apply_reads_only_the_modules_in_the_plan) ... ok
+test_blame_marks_the_shared_group_and_each_member (test_clump_scopes.ClumpScopesTest.test_blame_marks_the_shared_group_and_each_member) ... ok
+test_dotted_namespace_can_close_one_component_at_a_time (test_clump_scopes.ClumpScopesTest.test_dotted_namespace_can_close_one_component_at_a_time) ... ok
+test_existing_clump_after_a_preamble_is_protected (test_clump_scopes.ClumpScopesTest.test_existing_clump_after_a_preamble_is_protected) ... ok
+test_markers_outside_the_archive_are_comments (test_clump_scopes.ClumpScopesTest.test_markers_outside_the_archive_are_comments) ... ok
+test_named_scopes_can_share_one_end (test_clump_scopes.ClumpScopesTest.test_named_scopes_can_share_one_end) ... ok
+test_old_layout (test_clump_scopes.ClumpScopesTest.test_old_layout) ... ok
+test_original_comment_can_use_the_new_marker (test_clump_scopes.ClumpScopesTest.test_original_comment_can_use_the_new_marker) ... ok
+test_plan_keeps_existing_clumps_separate (test_clump_scopes.ClumpScopesTest.test_plan_keeps_existing_clumps_separate) ... refused 0 folds because of clashing declaration names
+refused 0 folds because of clashing declaration names
+ok
+test_remove_all_shared_opens (test_clump_scopes.ClumpScopesTest.test_remove_all_shared_opens) ... ok
+test_separator_is_optional (test_clump_scopes.ClumpScopesTest.test_separator_is_optional) ... ok
+test_shared_namespace_opens_round_trip (test_clump_scopes.ClumpScopesTest.test_shared_namespace_opens_round_trip) ... ok
+test_temporary_open_stays_with_its_command (test_clump_scopes.ClumpScopesTest.test_temporary_open_stays_with_its_command) ... ok
+test_unassigned_text_is_reported (test_clump_scopes.ClumpScopesTest.test_unassigned_text_is_reported) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.087s
+
+OK
