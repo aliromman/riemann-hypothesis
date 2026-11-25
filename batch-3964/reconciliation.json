@@ -1,0 +1,16 @@
+{
+  "pr": "977",
+  "previous_base": "91b273530883b723ef4422436e0dc3557749325a",
+  "previous_proposal": "a65d357901f20edd8ae8ddfb282a8c5a58b072a7",
+  "community": "98d36aafeeb30c1f40fdda96c3574faa34dfa413",
+  "head": "2ca4b2ac12b18e36fb83d6c9bc5b1f63d3553dae",
+  "tree": "3a2a7280a7a588f2d29da903114815fc370d0dd1",
+  "edited_paths": 11321,
+  "actions": {
+    "apply original edit": 7693,
+    "recovered current members": 3628,
+    "community archive retained": 14,
+    "removed upstream": 4,
+    "community retired archive": 1
+  }
+}
