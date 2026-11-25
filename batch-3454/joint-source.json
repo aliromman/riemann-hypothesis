@@ -1,0 +1,28 @@
+{
+  "base": "91b273530883b723ef4422436e0dc3557749325a",
+  "heads": {
+    "879": "82b1032cfad04398c6ad77d2455e08dbe871e36c",
+    "977": "a65d357901f20edd8ae8ddfb282a8c5a58b072a7"
+  },
+  "joint_tree": "913e9f8c007c63b9eed0c856bb0678f1958c288c",
+  "shared_sources": 2731,
+  "lean_files": 59239,
+  "nonblank": {
+    "base": 12691816,
+    "joint": 11983674
+  },
+  "saved": 708142,
+  "dependencies": {
+    "879": {
+      "edited": 15245,
+      "direct_outside": 11359,
+      "transitive_outside": 27403
+    },
+    "977": {
+      "edited": 11337,
+      "direct_outside": 10044,
+      "transitive_outside": 31051
+    }
+  },
+  "dependency_method": "Project imports in source headers, parsed with the community clumper's IMPORT_RE"
+}
