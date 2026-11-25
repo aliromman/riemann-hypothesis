@@ -1,0 +1,46 @@
+{
+  "test": "Old ResBound source against batch #2057 imports",
+  "source": "fcb6eac7534875d32d68030967e2deae6d686151",
+  "dependencies": "27b55787485ac2a5b5b3ed2dffc697e0ae6a2f59",
+  "module": "Development.AbelianVarietyTheory.Definitions.NonGaloisDescent.ResBound",
+  "source_sha256": "ddfd63ed1c84f20180c1850a4735a9262d28d66ded36a2224d01819c0f3387fb",
+  "exit": 1,
+  "errors": [
+    {
+      "pos": {
+        "column": 11,
+        "line": 125
+      },
+      "message": "failed to synthesize\n  Module S.O (H1 (twCoef W S.\u0393.\u03c7\u2081 X) \u22a4)\n(deterministic) timeout at `typeclass`, maximum number of heartbeats (20000) has been reached\n\nNote: Use `set_option synthInstance.maxHeartbeats <num>` to set the limit.\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command."
+    },
+    {
+      "pos": {
+        "column": 29,
+        "line": 133
+      },
+      "message": "failed to synthesize\n  Module S.O (IndefiniteRowSideFullHecke.InvariantsVanishing.resK S.\u0393)\n(deterministic) timeout at `typeclass`, maximum number of heartbeats (20000) has been reached\n\nNote: Use `set_option synthInstance.maxHeartbeats <num>` to set the limit.\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command."
+    },
+    {
+      "pos": {
+        "column": 16,
+        "line": 134
+      },
+      "message": "failed to synthesize\n  Module S.O (IndefiniteRowSideFullHecke.InvariantsVanishing.resK S.\u0393)\n(deterministic) timeout at `typeclass`, maximum number of heartbeats (20000) has been reached\n\nNote: Use `set_option synthInstance.maxHeartbeats <num>` to set the limit.\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command."
+    },
+    {
+      "pos": {
+        "column": 10,
+        "line": 134
+      },
+      "message": "(deterministic) timeout at `isDefEq`, maximum number of heartbeats (4000000) has been reached\n\nNote: Use `set_option maxHeartbeats <num>` to set the limit.\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command."
+    },
+    {
+      "pos": {
+        "column": 2,
+        "line": 138
+      },
+      "message": "failed to synthesize\n  Module (\u21a5(OL S.LL)) (\u21a5S.\u0393.T\u2080.L.T \u2297[\u21a5(OL S.LL)] IndefiniteRowSideFullHecke.InvariantsVanishing.resK S.\u0393)\n(deterministic) timeout at `typeclass`, maximum number of heartbeats (20000) has been reached\n\nNote: Use `set_option synthInstance.maxHeartbeats <num>` to set the limit.\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command.\n\nHint: Additional diagnostic information may be available using the `set_option diagnostics true` command."
+    }
+  ],
+  "log_sha256": "892c0aa8d6618e1b0cdf473e7013de2e5e4434728387c30915bb3614231032af"
+}

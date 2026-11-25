@@ -11,6 +11,8 @@ Daniel Ang’s #1971 removed seven duplicate module instances, including the two
 
 The Satake proof is the complete `DmulMulDRight.lean` file. Each import-order fixture has the same SHA-256 on both sides. Three targets were built from source on each revision with 939 verified project dependencies. Both Lake builds exited 0 after 12,274 jobs. [Compiler errors, fixture hashes and kernel exits](results.json) · [Stock build receipts](builds.json)
 
+With the merged imports held fixed, the parent version of `ResBound.lean` produced four typeclass search timeouts at 20,000 heartbeats and one definitional equality timeout. The merged version compiled in 34 seconds and passed kernel replay. The only token changes in the source are the three local `set_option synthInstance.maxHeartbeats 400000 in` commands. [Five diagnostics and source hash](resbound-control.json)
+
 ## Reproduce the check
 
 Use separate clean checkouts of `fcb6eac7534875d32d68030967e2deae6d686151` and `27b55787485ac2a5b5b3ed2dffc697e0ae6a2f59`. In each checkout fetch the official Mathlib cache, then run the three targets. The original fixture script inserts one import and preserves the proof body. [Fixture and kernel check](../../pr120-admloc-dependents/replay_exposed_satake.py)
@@ -25,4 +27,16 @@ python3 "$evidence/verification/pr120-admloc-dependents/replay_exposed_satake.py
   --repo "$after" --before "$before" --after "$after" --bin "$(dirname "$(elan which lean)")" \
   --parent fcb6eac7534875d32d68030967e2deae6d686151 \
   --candidate 27b55787485ac2a5b5b3ed2dffc697e0ae6a2f59 --output "$results"
+```
+
+To repeat the search-limit control, run this from the built merged checkout. The temporary source has the same module name as the original.
+
+```sh
+scratch=$(mktemp -d)
+file=Development/AbelianVarietyTheory/Definitions/NonGaloisDescent/ResBound.lean
+mkdir -p "$scratch/$(dirname "$file")"
+git show "fcb6eac7534875d32d68030967e2deae6d686151:src/$file" > "$scratch/$file"
+lake --no-cache env lean --json --tstack=400000 -DautoImplicit=false \
+  -DrelaxedAutoImplicit=false -DmaxSynthPendingDepth=3 -DmaxHeartbeats=4000000 \
+  --root "$scratch" "$scratch/$file"
 ```
