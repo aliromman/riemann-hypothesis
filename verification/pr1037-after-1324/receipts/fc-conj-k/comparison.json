@@ -1,0 +1,54 @@
+{
+  "parent": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
+  "broken": "6341848acdd84056724d3204b1a24c011721885f",
+  "fixed": "1650daef8d9ba43cdff53d36dd2fca3283e1c59b",
+  "module": "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.IndepDomK",
+  "runs": {
+    "main-with-direct-proof": {
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "errors": [],
+      "completion": [],
+      "fresh": 0
+    },
+    "broken-build": {
+      "exit": 1,
+      "log_sha256": "ec612696f05f85b1ccfb50797104ef1417f326cbfed12aca83b0efb817a69033",
+      "errors": [
+        "error: src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/ThetaParseval/ThetaKernels/IndepDomK.lean:511:83: No goals to be solved",
+        "error: build failed"
+      ],
+      "completion": [],
+      "fresh": 458,
+      "proof_errors": [
+        "error: src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/ThetaParseval/ThetaKernels/IndepDomK.lean:511:83: No goals to be solved"
+      ]
+    },
+    "fixed-build": {
+      "exit": 0,
+      "log_sha256": "a0514f52ffed30373c9d3e62e482044c2a5c6636da2b58f2451187389e97f352",
+      "errors": [],
+      "completion": [
+        "Build completed successfully (23474 jobs)."
+      ],
+      "fresh": 1
+    },
+    "fixed-check": {
+      "exit": 0,
+      "log_sha256": "0f7e88d4faf126380deab7fcf567305112837dbab0f80f69afd346a4ca769027",
+      "errors": [],
+      "completion": [
+        "All targets up-to-date (23474 jobs)."
+      ],
+      "fresh": 0
+    },
+    "fixed-kernel": {
+      "exit": 0,
+      "log_sha256": "c06b22eef358fe8a5a5e2da08f3d9e4023f4f66f7517be328a785d2abd1dee7a",
+      "errors": [],
+      "completion": [],
+      "fresh": 0
+    }
+  },
+  "verified": true
+}

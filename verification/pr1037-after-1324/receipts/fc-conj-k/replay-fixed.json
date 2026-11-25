@@ -1,0 +1,47 @@
+{
+  "revision": "1650daef8d9ba43cdff53d36dd2fca3283e1c59b",
+  "lean": "Lean (version 4.37.0-rc1, arm64-apple-darwin24.6.0, commit 0b77e12952ad39077d80d8bd6b66d601f225c321, Release)",
+  "module": "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.IndepDomK",
+  "project_modules": 2589,
+  "source_sha256": "7735181becd7f9861b8e0cf4905d4632639b9f71ce557c8c341df873443236cf",
+  "runs": {
+    "build": {
+      "command": [
+        "lake",
+        "--no-cache",
+        "--rehash",
+        "build",
+        "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.IndepDomK"
+      ],
+      "exit": 0,
+      "source_errors": [],
+      "log_sha256": "dbfdcb6cedcf749235e149afddf45f917b8ddb9d6a2faf786476eae15fcb43fe"
+    },
+    "check": {
+      "command": [
+        "lake",
+        "--no-cache",
+        "--rehash",
+        "build",
+        "--no-build",
+        "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.IndepDomK"
+      ],
+      "exit": 0,
+      "source_errors": [],
+      "log_sha256": "d6c29acbe70d2b006eb384eaa3e662430a3b3af5ee0eefb8525ce7d119c095a2"
+    },
+    "kernel": {
+      "command": [
+        "lake",
+        "--no-cache",
+        "env",
+        "leanchecker",
+        "-v",
+        "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.IndepDomK"
+      ],
+      "exit": 0,
+      "source_errors": [],
+      "log_sha256": "c06b22eef358fe8a5a5e2da08f3d9e4023f4f66f7517be328a785d2abd1dee7a"
+    }
+  }
+}

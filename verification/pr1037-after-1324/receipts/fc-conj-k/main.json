@@ -1,0 +1,27 @@
+{
+  "revision": "75e2012dcc6f3093e223ef8d327b88395ff7d27c",
+  "module": "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.IndepDomK",
+  "module_source_sha256": "e69e3188f231e56dcd978c3d43dff766491ae7ba74bac795d7d622fea8e923a4",
+  "restored": 2588,
+  "olean_sha256": "c1761c565b4b401fba86c8cc1bd10356cfd7c655bd3d6f70d8b392603c3bf881",
+  "runs": {
+    "build": {
+      "exit": 0,
+      "completion": [
+        "Build completed successfully (23474 jobs)."
+      ],
+      "compiled": [
+        "Development.AutomorphicArithmetic.Foundations.GaloisRepresentations.ThetaParseval.ThetaKernels.IndepDomK"
+      ],
+      "log_sha256": "104091173942ba97b076395f510047029a20211ff75e1fb3df6a2425c62c334c"
+    },
+    "check": {
+      "exit": 0,
+      "completion": [
+        "All targets up-to-date (23474 jobs)."
+      ],
+      "compiled": [],
+      "log_sha256": "0f1df590f185e084d9ad20501f948aa385478705eeee73ad823c4a236bb355ab"
+    }
+  }
+}
