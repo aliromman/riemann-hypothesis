@@ -1,7 +1,6 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.GlobalTwisting.SubClosed
-import Mathlib.Tactic.Polynomial.Basic
 
 @[expose] public section
 
