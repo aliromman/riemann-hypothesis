@@ -27,6 +27,7 @@ def main():
         parser.add_argument("--"+arg, required=True, type=Path)
     parser.add_argument("--stage", required=True)
     parser.add_argument("--jobs", required=True, type=int)
+    parser.add_argument("--rehash", action="store_true", help="Recompute file hashes in a previously built checkout.")
     parser.add_argument("targets", nargs="*")
     a = parser.parse_args()
     project, out, binary = [d.resolve() for d in (a.project,a.out,a.bin)]
@@ -59,7 +60,8 @@ def main():
     receipt = dict(merge=plan["merge"], head=git("rev-parse","HEAD^2"), base=plan["base"],
                    tree=git("rev-parse","HEAD^{tree}"), source_tree=plan["source_tree"],
                    lean=version, targets=a.targets, closure=plan["closure"], affected_in_closure=plan["affected_in_closure"],
-                   cache_manifest=plan["manifest"], cache_donor=plan["donor"], jobs=a.jobs, started=timestamp(), runs=[])
+                   cache_manifest=plan["manifest"], cache_donor=plan["donor"], jobs=a.jobs, rehash=a.rehash,
+                   started=timestamp(), runs=[])
     def save():
         f=attempt/"result.tmp"
         f.write_text(json.dumps(receipt,indent=2)+"\n")
@@ -67,7 +69,10 @@ def main():
     save()
     for label, args in (("build", [*a.targets]),("check", ["--no-build",*a.targets])):
         logfile = attempt/(label+".log")
-        command = [str(binary/"lake"),"--no-cache","build",*args]
+        options = ["--no-cache"]
+        if a.rehash:
+            options.append("--rehash")
+        command = [str(binary/"lake"),*options,"build",*args]
         with logfile.open("wb") as stream:
             job=subprocess.run(command,cwd=project,env=env,stdout=stream,stderr=subprocess.STDOUT)
         with logfile.open(errors="replace") as stream:
