@@ -1,0 +1,8 @@
+{
+  "pr": "879",
+  "head": "54cc6203a2ebbc260c325d54968ba328c0445d70",
+  "scope": "private import consumers and their providers",
+  "exit": 0,
+  "last_line": "Build completed successfully (10431 jobs).",
+  "full_log_sha256": "ad801c7a84f85198bf0993ef5ae2846bde5d659733f7e9d5e9aea69da0e2dea3"
+}

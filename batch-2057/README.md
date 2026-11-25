@@ -1,0 +1,7 @@
+# PR #879 on community batch 2057
+
+The two Git revisions in [the source counts](source-counts.json) use Lean 4.37.0-rc1 and Mathlib `31ce06eaadf4`. The refactor edits 38,580 modules and removes 1,004,944 nonblank Lean lines. The six protected Comparator files, Main, Statements, both immediate proof providers and all three build pins match the common ancestor. [Protected inputs](protected-inputs-879.json) · [Project dependencies](dependencies.json)
+
+The ordinary Lake outputs in this snapshot cover 1,076 distinct modules and 42,451 declaration occurrences. The checker reads the public, server and private module data from the actual compiler outputs and the authenticated community archives. It compares constant information, theorem proof terms, public environment data and public imports. The warning comparison uses normalized messages and multiplicities. A comparison between two different modules fails as expected. [Comparison counts](module-comparisons.json) · [Checker source](CheckInterface.lean) · [Private import targets and stock build results](import-all/targets-and-results.json) · [Rejection control](import-all/negative-control.json)
+
+The full default build, five-theorem kernel replay against its outputs and sandboxed Linux Comparator are separate checks. Whole-project compilation speed is unmeasured. [Community batch](https://github.com/leanprover-community/riemann-hypothesis/pull/2057) · [Linux runner request](https://github.com/leanprover-community/riemann-hypothesis/pull/879#issuecomment-7152632617)

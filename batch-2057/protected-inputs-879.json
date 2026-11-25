@@ -1,0 +1,35 @@
+{
+  "pr": "879",
+  "base": "27b55787485ac2a5b5b3ed2dffc697e0ae6a2f59",
+  "head": "54cc6203a2ebbc260c325d54968ba328c0445d70",
+  "merge_bases": [
+    "27b55787485ac2a5b5b3ed2dffc697e0ae6a2f59"
+  ],
+  "raw_commit_fetched_from": "https://github.com/leanprover-community/riemann-hypothesis",
+  "public_ci_inputs": [
+    "src/Challenge.lean",
+    "comparator.json",
+    "export-targets.txt",
+    "comparator/FormalConjecturesChallenge.lean",
+    "comparator/formal-conjectures.json",
+    "comparator/formal-conjectures-export-targets.txt"
+  ],
+  "entries": {
+    "src/Challenge.lean": "100644 blob 9677ace64b3a5e8b1a571d82d52ee13c53b08026",
+    "comparator.json": "100644 blob e989bcf90ff0c487a7146319a026e661a5bad47c",
+    "export-targets.txt": "100644 blob e2d4c02bac8a1411eae85af0376c1aad3b6b5294",
+    "comparator/FormalConjecturesChallenge.lean": "100644 blob 290a2c6270f8da3852c7051d7da0f30032a70421",
+    "comparator/formal-conjectures.json": "100644 blob e3afddc98129d1d1183ff217d434165fd893a0fe",
+    "comparator/formal-conjectures-export-targets.txt": "100644 blob 80bbbf91461783bb8e7f0bb8061b792668d4140a",
+    "src/Statements.lean": "100644 blob 23b01f745b80075e377c415abae96ece3570d0b0",
+    "src/Main.lean": "100644 blob eb95ca808793dd61984cc853ab5630f54a74490c",
+    "src/Development/AutomorphicArithmetic/CharacterBoxes/ClaimStrip.lean": "100644 blob fcd2fad437422195d9d6695f4bf7723ec125d6bf",
+    "src/Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean": "100644 blob 06c2154a1813ba89d1e48f940fb0a9a93dc9f681",
+    "lean-toolchain": "100644 blob 0e037f58f9a1aa2d5139277bcc4be0061ebeeb05",
+    "lake-manifest.json": "100644 blob 8a747b58a34565cc6cb5341b86544aa5d3a20a2d",
+    "lakefile.toml": "100644 blob 43b9f74431077a10cc1edecbc15239fe38d92591",
+    ".github/workflows": "040000 tree ae3e0648b9410f4a728859046edd2248f9dd2123"
+  },
+  "current_state_verified_utc": "2026-11-25T04:45:34.422663+00:00",
+  "hosted_workflow_rerun": "Repository admin rights required"
+}
